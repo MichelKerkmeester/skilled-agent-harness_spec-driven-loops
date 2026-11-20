@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme",
+  "spec_folder": "sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme",
+  "parent_id": "sk-doc/document-standards/006-readme-template-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repo rules readme",
+      "phase 9 repo rules readme",
+      "repo rules checker skips readme",
+      "repo rules readme plan",
+      "repo rules readme tasks",
+      "repo rules readme goal",
+      "repo rules readme implementation summary"
+    ],
+    "key_topics": [
+      "repo",
+      "rules",
+      "readme",
+      "phase",
+      "checker",
+      "skips",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "reader"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/repo-rules/README.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs",
+      ".skilled/skills/sk-doc/scripts/tests/test_check_repo_rules.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_build_rule_cards.py",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-repo-rules.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-rule-cards.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test_check_repo_rules.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_check_repo_rules.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_build_rule_cards.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_build_rule_cards.py",
+        "source": "derived"
+      },
+      {
+        "name": "measure-rule-compliance.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_measure_rule_compliance.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A reader who opens `.skilled/repo-rules/` finds ten rule files and nothing that says how they load or how to add one",
+    "created_at": "2026-11-18T08:48:49Z",
+    "last_save_at": "2026-11-18T09:06:42.980Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:22c06c8affdf0fea42f2fe0910a91ffc52cc0d9287f5c5c62eba3cbaad6e6257",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4a48d4f2f09852193403e84c4cd1c6d85c00569636ca0eb6c86a667cc2c71fcc",
+      "plan.md": "4ecb3fb4d5bba03a59582dc47f0e2faa931811d70a6ee9a2d74bf763eb36d652",
+      "tasks.md": "27f921a5dbde73db5293703ddfccbf21d33f01d6c4c252374c4cec9261a22c0e",
+      "implementation-summary.md": "eb2cc4737d8efc9defd24284d76efdd2a77f3b0f97c053d1b31c3d71fae5a342"
+    },
+    "last_active_at": null
+  }
+}

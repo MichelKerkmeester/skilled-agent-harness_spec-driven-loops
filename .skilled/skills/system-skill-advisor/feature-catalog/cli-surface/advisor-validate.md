@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp validate tool"
   - "release gate slices"
   - "corpus holdout parity"
-version: 0.8.0.15
+version: 0.8.1.0
 ---
 
 # advisor_validate Command
@@ -37,7 +37,7 @@ Threshold semantics are explicit so release gating does not get conflated with p
 | `aggregateValidation` | `fullCorpusTop1=0.75`, `holdoutTop1=0.725`, `perSkillTop1=0.7`, `unknownCountTargetMax=10` |
 | `runtimeRouting` | `confidenceThreshold=0.8`, `uncertaintyThreshold=0.35`, `confidenceOnly=false` |
 
-The current baseline slices remain:
+The reference baseline slices remain (the latest recorded playbook run did not meet them; see the playbook scenario):
 
 | Slice | Target | Measured |
 | --- | --- | --- |

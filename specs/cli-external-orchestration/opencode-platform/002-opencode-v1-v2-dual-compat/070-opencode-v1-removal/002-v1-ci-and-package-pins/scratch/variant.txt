@@ -1,0 +1,3 @@
+Checked 2026-11-19. Result: read (kept).
+Evidence: .skilled/hooks/session-handover/lib/context-usage.cjs:318-320 records that OpenCode keeps a `variant` per model in its own state and on its model rows, so the key is a v2 concept.
+No live `opencode run` was made for this check; the cli-opencode dispatch guard blocks bare probes, and T012 changes nothing when the result is "read".

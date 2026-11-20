@@ -8,7 +8,7 @@ trigger_phrases:
   - "goal chat slice"
 importance_tier: normal
 contextType: general
-version: 1.2.3.0
+version: 1.2.5.0
 ---
 
 # sk-create-goal
@@ -92,19 +92,49 @@ Four pre-write decisions come next. The packet router holds them in full.
 
 The mode then copies the template for the goal's kind and fills it from those sources. It replaces every bracketed placeholder, writes the objective and the decision table, then adds three to seven criteria that name a result an operator can read. Where the goal contract asks for the criteria in the objective text, it repeats them word for word.
 
-A phase parent gets one more step. Its binding table needs exactly one row for each direct phase-child folder. Each target must be that child's `NNN-slug/goal.md` path. Read the map folder set and the folder set on disk, then check every binding row against both.
+A phase parent gets one more step. Its binding table needs exactly one row for each direct phase-child folder. Each target must be that child's `[NNN-slug]/goal.md` path. Read the map folder set and the folder set on disk, then check every binding row against both.
 
 Last, the checker runs and the packet report supplies the slice. A finding stops the run with `STATUS=FAIL` and no `chat_slice`.
 
-```mermaid
-flowchart TD
-  Request["Goal request"] --> Route["Four pre-write decisions"]
-  Route --> Template["Template for the goal kind"]
-  Template --> Fill["Objective, decisions, criteria"]
-  Fill --> Bind["Binding rows for a phase parent"]
-  Bind --> Check["check-goal.cjs"]
-  Check --> Slice["goal.cjs packet"]
-  Slice --> Handoff["chat_slice for the operator"]
+```text
+┌─────────────────────────────────┐
+│ Goal request                    │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ Four pre-write decisions        │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ Template for the goal kind      │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ Objective, decisions, criteria  │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ Binding rows for a phase parent │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ check-goal.cjs                  │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ goal.cjs packet                 │
+└────────────────┬────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐
+│ chat_slice for the operator     │
+└─────────────────────────────────┘
 ```
 
 ### The Five Checks
@@ -152,7 +182,7 @@ Stay away when the packet does not exist yet or its phase structure is unsettled
 
 | What you see | Why | Fix |
 |---|---|---|
-| `missing-binding-row` names a child folder | The phase-parent binding table has no target row for that folder | Add exactly one row that points at `NNN-slug/goal.md`. Never omit a folder because its goal is missing |
+| `missing-binding-row` names a child folder | The phase-parent binding table has no target row for that folder | Add exactly one row that points at `[NNN-slug]/goal.md`. Never omit a folder because its goal is missing |
 | `placeholder` names the objective, a decision or a criterion | Template text survived the fill | Replace it with text from the packet's sources and leave no bracketed placeholder |
 | `criteria-count` reports a number outside 3 through 7 | The goal has too few or too many completion criteria | Merge or split criteria. Keep each one checkable without another file |
 | `parent-budget` reports a durable slice over the limit | The goal runs past the 4,000-character cap | Cut in the section 3 order in the budget and handoff reference, then run the packet report again |

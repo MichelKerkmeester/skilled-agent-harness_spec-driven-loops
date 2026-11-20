@@ -38,6 +38,7 @@ _memory:
 | Q002 | Check whether Vibe is really integrated into the loop shell shim before choosing code or docs. | Not stated. | None | plan.md affected surfaces |
 | Q003 | Add vibe to skilled-loop-shell.sh with shim test cases instead of changing the docs. | Not stated. | None | REQ-002, AC-002, .skilled/bin/skilled-loop-shell.sh |
 | Q004 | Resolve the guards-and-hooks.md version conflict to main plus one bump, 1.3.9.0. | Not stated. | None | tasks.md T008 |
+| Q005 | The alignment run checks that all hand-over docs (READMEs and other md files) match the current session-handover logic; the fixes land in new child 049, and a local command for the check is built in the git-ignored specs/other/007-local-doc-alignment. | Not stated. | none | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/049-handover-doc-alignment/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -123,6 +124,26 @@ Abort the merge
 Answer:
 ```text
 Take main, bump once (Recommended)
+```
+
+### Q005
+<!-- source: claude:b726ec67-1d85-4833-b219-c038e184d696:toolu_01Mnv28WA2vypixxSV6juFR2:0 -->
+
+Question:
+```text
+The HEAD scope holds only 3 uncommitted files from other sessions (.pi/settings.json and two description.json files), with 0 commits, so it would not check any of the 048 hand-over work. What should the alignment run check?
+```
+
+Options:
+```text
+048 range (Recommended)
+Approve HEAD as-is
+Cancel
+```
+
+Answer:
+```text
+We just need tp make sure all docs mds reassmes etc are alligned with current state of session handover logic
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

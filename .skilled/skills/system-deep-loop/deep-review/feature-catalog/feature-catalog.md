@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.11.0
+version: 1.11.12.0
 ---
 
 # deep-review: Feature Catalog
@@ -160,15 +160,17 @@ See [`loop-lifecycle/executor-selection-contract.md`](../feature-catalog/loop-li
 #### Description
 
 Opt-in fan-out dispatch layer: `step_resolve_artifact_root` artifact-dir override branch,
-`step_fanout_spawn` (CLI pool + native sequential agent dispatch), and `step_fanout_merge`
+`step_fanout_spawn` (CLI pool only; a native lineage is refused), and `step_fanout_merge`
 with strongest-restriction verdict binding at the top of `phase_synthesis`. Single-executor
 path is byte-identical to pre-change behavior.
 
 #### How It Works
 
 Three new YAML steps gated on `config.fanout` presence. CLI lineages run via `fanout-run.cjs`
-(pool-capped headless subprocesses). Native lineages run as sequential `agent: deep-review`
-dispatches. `step_fanout_merge` produces a consolidated `deep-review-findings-registry.json`
+(pool-capped headless subprocesses). A lineage whose kind is `native` is refused before any
+lineage spawns, because OpenCode 2 `run` cannot start the registered `deep/review` command
+that adapter needed; `native` runs only as the single executor. `step_fanout_merge` produces
+a consolidated `deep-review-findings-registry.json`
 using strongest-restriction (any active P0 → `mergedVerdict=FAIL`) and binds
 `p0_count/p1_count/p2_count` from the merged result for `step_derive_verdict`. This
 binding is review-specific: without it, `step_derive_verdict` would read zero counts from an

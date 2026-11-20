@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups",
+  "parent_id": "system-skill-advisor/routing-and-scoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "surfacing scorer follow ups",
+      "fix eight skill and command surfacing gaps",
+      "surfacing scorer follow ups plan",
+      "surfacing scorer follow ups tasks",
+      "surfacing scorer follow ups acceptance criteria",
+      "surfacing scorer follow ups goal",
+      "011-surfacing-scorer-follow-ups operator decisions",
+      "surfacing scorer follow ups implementation summary"
+    ],
+    "key_topics": [
+      "surfacing",
+      "scorer",
+      "follow",
+      "ups",
+      "eight",
+      "skill",
+      "command",
+      "gaps",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/command-bridge-loader.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/command-phrase-tolerance.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/review-status-wording.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/command-bridge-loader.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/name-mention-scoring.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/dashboard-design-source.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/advisor-quality-049-003.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridge-loader.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/command-bridge-loader.ts",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-phrase-tolerance.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/command-phrase-tolerance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-status-wording.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/review-status-wording.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridge-loader.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/command-bridge-loader.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "name-mention-scoring.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/name-mention-scoring.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ambiguity.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dashboard-design-source.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/dashboard-design-source.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-quality-049-003.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/advisor-quality-049-003.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Success",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Command",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A project that vendors Skilled measured the advisor on its own prompts and reported eight surfacing gaps",
+    "created_at": "2026-11-17T20:46:09Z",
+    "last_save_at": "2026-11-18T08:38:43.442Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:266c11cac704efa40d029b59851b176900331a27f467aa7ee02f4e0d8fad1f72",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e1f66c5ab5e4df96fe747c56bd27145c3a903a2396b26ee9627ca65ebcce0a2c",
+      "plan.md": "940637b7420285bf74ab58b11d8e496e1cfba77695410134bf79a43bc4fef1fc",
+      "tasks.md": "d56d756bc8601889a15cba9f4fd8c9291afe8e31c0805b187084112401af1745",
+      "decision-record.md": "4048a41643e6f256357cac654a52f0d36e8faa190656e3c9f233a8ab15691e2b",
+      "implementation-summary.md": "41710fa345ca194ee4fef819dd5675c2e4e0fda92104a422e65fc9b4b07dff0d"
+    },
+    "last_active_at": null
+  }
+}

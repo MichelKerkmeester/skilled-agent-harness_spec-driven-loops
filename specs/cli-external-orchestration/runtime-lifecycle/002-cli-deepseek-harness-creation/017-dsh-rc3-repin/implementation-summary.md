@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c774397febcf60ace39f440f96d4684be54b37b9eb694d39b46dc14d7f393336"
       session_id: "scaffold-017-dsh-rc3-repin"
       parent_session_id: null
     completion_pct: 100

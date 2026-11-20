@@ -29,7 +29,7 @@ trigger_phrases:
   - "sk-git advisory plugin"
   - "SKGIT_ADVISORY_SKIP"
   - "tool result advisory"
-version: 1.0.12.0
+version: 1.0.13.0
 ---
 
 # Git Message Gate and Preflight Advisory: sk-git Command Hooks
@@ -78,7 +78,7 @@ The shared [hook registry](../../../system-spec-kit/runtime/cli/runtime-mirrors/
 - `.devin/hooks.v1.json` registers both IDs for `PreToolUse` with matcher `^exec$`. Its timeout is `5` seconds.
 - `.cursor/hooks.json` registers both IDs for `preToolUse` with matcher `Shell`. Its timeout is `10` seconds.
 
-OpenCode's plugin glob is `.opencode/plugins/`. Pi loads `.pi/extensions/git-message-gate.ts` and `.pi/extensions/git-preflight-advisory.ts`. Each entry re-exports its adapter from this skill.
+OpenCode's plugin glob is `.opencode/plugins/`. Pi loads `.pi/extensions/git-message-gate.ts` and `.pi/extensions/git-preflight-advisory.ts`. Each entry imports its adapter from this skill.
 
 The DSH bundle entry `.dsh/plugins/repo-guards/index.mjs` imports both adapters through `.dsh/plugins/repo-guards/adapters/`. Vibe registers only the message gate in `.vibe/hooks.toml` as `pre_tool` with match `re:bash|process_start|process_write`.
 

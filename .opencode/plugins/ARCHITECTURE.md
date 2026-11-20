@@ -1,10 +1,10 @@
 ---
 title: "Architecture: OpenCode plugins"
-description: "Current architecture for the OpenCode plugin folder: one dual export per file, the bridge that maps the v1 hooks onto OpenCode 2, kill-switch integration and the verification gates."
+description: "Current architecture for the OpenCode plugin folder: one export per file, the bridge that maps the factory's hooks onto OpenCode 2, kill-switch integration and the verification gates."
 trigger_phrases:
   - "opencode plugins architecture"
-  - "opencode v1 v2 compatibility"
-  - "dual plugin export"
+  - "opencode plugin compatibility"
+  - "plugin export shape"
   - "v2 bridge"
 importance_tier: "important"
 version: 1.0.1.0
@@ -12,40 +12,40 @@ version: 1.0.1.0
 
 # Architecture: OpenCode plugins
 
-> The dual export and the v1-to-v2 bridge that let every plugin file run on OpenCode 1 and OpenCode 2.
+> The export shape and the bridge that carry every plugin file's hooks onto OpenCode 2.
 
 ---
 
 ## 1. OVERVIEW
 
-`.opencode/plugins/` holds the plugin files that OpenCode discovers (20 on 2026-11-15) as local plugins. Every file runs on OpenCode 1 and OpenCode 2 because each one default-exports `{ id, setup, server }`, where `server` is the OpenCode 1 entry and `setup` is the OpenCode 2 entry, and a plugin that exported only one entry would be a silent no-op on the other host. The per-file inventory table lives in [README.md](./README.md) and is linked here rather than repeated.
+`.opencode/plugins/` holds the plugin files that OpenCode discovers (20 on 2026-11-15) as local plugins. Every file default-exports `{ id, setup }`, where `setup` is the OpenCode 2 entry and the hook factory rides along as a non-enumerable `factory` property, so tests and helpers can build the hooks directly. A plugin that exported no `setup` would be a silent no-op. The per-file inventory table lives in [README.md](./README.md) and is linked here rather than repeated.
 
-The dual-version proof was captured on 2026-10-19 on OpenCode 1.19.3 (`opencode`, the `opencode-ai` package) and OpenCode 2.0.32 (`opencode2` launcher). The doctor battery discovered all 17 plugin files on OpenCode 1.19.3 and reported all 17 active on OpenCode 2.0.32.
+The doctor battery proves the folder on OpenCode 2: it starts a private server with the pinned binary and reports every plugin file active.
 
 ### Architecture diagram
 
 ```text
 ┌────────────────────────────────────────────────────────────────┐
-│ plugin file:  export default { id, setup, server }             │
-└──────────┬────────────────────────────────┬────────────────────┘
-           │                                │
-           │ server(input)                  │ setup(ctx)
-           ▼                                ▼
-┌─────────────────────┐           ┌──────────────────────────────┐
-│     OpenCode 1      │           │      lib/v2-bridge.js        │
-│ calls server(input) │           │         setup(ctx)           │
-│  and registers the  │           │  builds the v1-shaped input  │
-│  returned v1 hooks  │           │ calls server(input) once     │
-│       directly      │           │ and maps the returned hooks  │
-└─────────────────────┘           └─────────┬────────────────────┘
-                                            ▼
-                                  ┌──────────────────────────────┐
-                                  │   OpenCode 2 registrations   │
-                                  │  ctx.event.subscribe         │
-                                  │  ctx.tool.hook               │
-                                  │  ctx.session.hook('context') │
-                                  │  ctx.tool.transform          │
-                                  └──────────────────────────────┘
+│ plugin file:  export default { id, setup }                     │
+│               (the hook factory on a hidden `factory`)         │
+└───────────────────────────────┬────────────────────────────────┘
+                                │ setup(ctx)
+                                ▼
+                  ┌──────────────────────────────┐
+                  │      lib/v2-bridge.js        │
+                  │         setup(ctx)           │
+                  │  builds the factory input    │
+                  │ calls factory(input) once    │
+                  │ and maps the returned hooks  │
+                  └─────────┬────────────────────┘
+                            ▼
+                  ┌──────────────────────────────┐
+                  │   OpenCode 2 registrations   │
+                  │  ctx.event.subscribe         │
+                  │  ctx.tool.hook               │
+                  │  ctx.session.hook('context') │
+                  │  ctx.tool.transform          │
+                  └──────────────────────────────┘
 ```
 
 The diagram shows the bridged plugins. Every entry file in the folder is one.
@@ -54,11 +54,11 @@ The diagram shows the bridged plugins. Every entry file in the folder is one.
 
 ## 2. PACKAGE TOPOLOGY
 
-`lib/` holds the modules the entry files import and `tests/` holds the regression suites. Every entry file builds its export with `dualPlugin(id, server)` from `lib/v2-bridge.js`, which puts `lib/` on its load path.
+`lib/` holds the modules the entry files import and `tests/` holds the regression suites. Every entry file builds its export with `dualPlugin(id, factory)` from `lib/v2-bridge.js`, which puts `lib/` on its load path.
 
 ```text
 .opencode/plugins/
-├── ask-surface-guard.js             # every entry from here to system-speckit-completion.js is built with dualPlugin, each default-exporting { id, setup, server }
+├── ask-surface-guard.js             # every entry from here to system-speckit-completion.js is built with dualPlugin, each default-exporting { id, setup }
 ├── classifier-injection-screen.js
 ├── cli-dispatch-audit.js
 ├── codex-hooks-watchdog.js
@@ -86,14 +86,14 @@ The diagram shows the bridged plugins. Every entry file in the folder is one.
 │   ├── sk-code-post-edit-quality-core.js
 │   ├── skill-advisor-render.js
 │   ├── tool-identity.js
-│   └── v2-bridge.js           # builds the dual export and maps the v1 hooks onto OpenCode 2
+│   └── v2-bridge.js           # builds the export and maps the factory's hooks onto OpenCode 2
 ├── tests/                     # regression suites for the entry files
 │   ├── v2-bridge.test.cjs     # covers the bridge itself
 │   ├── plugin-inventory.test.cjs   # inventory, unmapped-hook and event-name guards
 │   ├── plugin-inventory.json       # native-dual exceptions and event-name lists
 │   ├── v2-hard-plugins.test.cjs    # selected hard cases: expected registrations and behavior
-│   ├── v2-registration.test.cjs    # checks the dual export shape for every bridged plugin
-│   └── ...                    # the remaining v1 behavior suites
+│   ├── v2-registration.test.cjs    # checks the export shape for every bridged plugin
+│   └── ...                    # the remaining behavior suites
 ├── README.md                  # folder index with the per-file inventory
 └── ARCHITECTURE.md            # this document
 ```
@@ -109,24 +109,22 @@ Allowed dependency direction:
 
 ## 3. CANONICAL FLOWS
 
-**OpenCode 1 load path.** The OpenCode 1 host calls `server(input)` and registers the returned hooks directly. The input carries the keys `client`, `project`, `worktree`, `directory`, `experimental_workspace`, `serverUrl` and `$`.
-
-**OpenCode 2 load path.** The OpenCode 2 host calls `setup(ctx)` in `lib/v2-bridge.js`. The bridge builds the v1-shaped input, with `client` from `createV1Client(ctx)`, `worktree` and `directory` from `ctx.location.directory`; `project`, `experimental_workspace`, `serverUrl` and `$` set to `undefined` (`lib/v2-bridge.js` (`dualPlugin`, `setup`)), then calls `server(input)` once, registers each mapped hook and returns the cleanup function. A failed registration runs that cleanup and rethrows the original error (`lib/v2-bridge.js` (`dualPlugin`, `setup`)).
+**OpenCode 2 load path.** The OpenCode 2 host calls `setup(ctx)` in `lib/v2-bridge.js`. The bridge builds the factory input, with `client` from `createV1Client(ctx)`, `worktree` and `directory` from `ctx.location.directory`; `project`, `experimental_workspace`, `serverUrl` and `$` set to `undefined` (`lib/v2-bridge.js` (`dualPlugin`, `setup`)), then calls `factory(input)` once, registers each mapped hook and returns the cleanup function. A failed registration runs that cleanup and rethrows the original error (`lib/v2-bridge.js` (`dualPlugin`, `setup`)).
 
 **Key modules:**
 
-- `lib/v2-bridge.js` owns the dual export (`dualPlugin`), the v1 client adapter (`createV1Client`), the tool-context adapter (`toV1ToolContext`) and the tool result converter (`toV1ToolOutput`), all in `lib/v2-bridge.js`.
+- `lib/v2-bridge.js` owns the export builder (`dualPlugin`), the v1 client adapter (`createV1Client`), the tool-context adapter (`toV1ToolContext`) and the tool result converter (`toV1ToolOutput`), all in `lib/v2-bridge.js`.
 - `lib/tool-identity.js`, the identity helper for tool definitions.
 
 ---
 
 ## 4. RUNTIME SUBSYSTEMS
 
-**Dual export.** `dualPlugin(id, server)` returns `{ id, server, setup }` (`lib/v2-bridge.js` (`dualPlugin`)) and leaves `server`, the v1 factory, unchanged. Every entry file builds its export with it. Every default export therefore carries exactly the keys `id`, `server` and `setup`, and each host calls only its own entry.
+**Export shape.** `dualPlugin(id, factory)` returns `{ id, setup }` (`lib/v2-bridge.js` (`dualPlugin`)) and keeps `factory`, the hook factory, on a non-enumerable `factory` property. Every entry file builds its export with it. Every default export therefore carries exactly the enumerable keys `id` and `setup`, and the host calls only `setup`.
 
-**Hook mapping.** The bridge maps the v1 hook keys a factory returns onto OpenCode 2 registrations, driven by the `MAPPED_HOOKS` set (`lib/v2-bridge.js` (`MAPPED_HOOKS`)). The table is the full mapping.
+**Hook mapping.** The bridge maps the hook keys a factory returns onto OpenCode 2 registrations, driven by the `MAPPED_HOOKS` set (`lib/v2-bridge.js` (`MAPPED_HOOKS`)). The table is the full mapping.
 
-| v1 hook | OpenCode 2 registration | Notes |
+| Factory hook | OpenCode 2 registration | Notes |
 |---|---|---|
 | `event` | `ctx.event.subscribe` | replays each v2 event to the v1 handler, adds `info: { id: sessionID }` to session events and announces each session once with a synthesized `session.created` (`lib/v2-bridge.js` (`dualPlugin`, `setup` event stream), `lib/v2-bridge.js` (`announceSession`)) |
 | `tool.execute.before` | `ctx.tool.hook('execute.before')` | passes `{ tool, sessionID, callID }` and `{ args }`, reports v2 `shell` and `subagent` as `bash` and `task` with `subagent_type` added beside `agent`, writes changed args back under the v2 names and denies the call on a throw (`lib/v2-bridge.js` (`dualPlugin`, `tool.execute.before`), `lib/v2-bridge.js` (`toV1ToolName`, `toV1ToolArgs`, `toV2ToolArgs`)) |
@@ -146,7 +144,7 @@ Allowed dependency direction:
 | `session.step.ended` | the original is delivered and `message.updated` is also delivered | cost, tokens, a top-level `sessionID` and `info.time.completed` from the event's `created` time (`lib/v2-bridge.js` (`EVENT_MAPPINGS`, `session.step.ended`)) |
 | `session.inbox.enqueued` | the original is delivered and `message.updated` and `message.part.updated` are also delivered | a user item becomes a user `message.updated` and its text `message.part.updated`, sharing the inbox id (`lib/v2-bridge.js` (`EVENT_MAPPINGS`, `session.inbox.enqueued`)) |
 
-The bridge also announces each session once. `opencode2 run` sends no `session.created` for its own session, so before that session's first other `session.*` event or its first system transform, whichever comes first, the bridge delivers `session.created` with `{ sessionID, info: { id } }` (`lib/v2-bridge.js` (`announceSession`), `lib/v2-bridge.js` (`dualPlugin`, `setup` event stream), `lib/v2-bridge.js` (`dualPlugin`, `experimental.chat.system.transform`)). A real `session.created` that arrives later for an announced session is dropped, and `session.deleted` waits for any in-flight announcement before it clears the record (`lib/v2-bridge.js` (`dualPlugin`, `setup` event stream), `lib/v2-bridge.js` (`announceSession`)).
+The bridge also announces each session once. `opencode run` sends no `session.created` for its own session, so before that session's first other `session.*` event or its first system transform, whichever comes first, the bridge delivers `session.created` with `{ sessionID, info: { id } }` (`lib/v2-bridge.js` (`announceSession`), `lib/v2-bridge.js` (`dualPlugin`, `setup` event stream), `lib/v2-bridge.js` (`dualPlugin`, `experimental.chat.system.transform`)). A real `session.created` that arrives later for an announced session is dropped, and `session.deleted` waits for any in-flight announcement before it clears the record (`lib/v2-bridge.js` (`dualPlugin`, `setup` event stream), `lib/v2-bridge.js` (`announceSession`)).
 
 The once-per-session events are `session.idle` and `session.compacted` (`lib/v2-bridge.js` (`DEDUPED_SESSION_EVENTS`)). Their delivery latches reset when the session sees `session.execution.started`, `session.compaction.started` or `session.deleted` (`lib/v2-bridge.js` (`SESSION_EVENT_RESET_TYPES`), cleared in the `setup` event stream).
 
@@ -169,28 +167,28 @@ The once-per-session events are `session.idle` and `session.compacted` (`lib/v2-
 
 ## 5. HOOK AND PLUGIN INTEGRATION
 
-Most entry files are transport adapters that translate OpenCode events into the shared policy cores under `.skilled/skills/` and `.skilled/hooks/`. `opencode-goal.js` is the exception: it implements the goal state machine and goal tools itself and shares only selected helpers. Every plugin calls its core inside the one v1 factory, so the same core serves the OpenCode 1 hooks and, through the bridge, the OpenCode 2 registrations. Nothing under `lib/` or `tests/` is a plugin source.
+Most entry files are transport adapters that translate OpenCode events into the shared policy cores under `.skilled/skills/` and `.skilled/hooks/`. `opencode-goal.js` is the exception: it implements the goal state machine and goal tools itself and shares only selected helpers. Every plugin calls its core inside the one hook factory, and the bridge turns what that factory returns into the OpenCode 2 registrations. Nothing under `lib/` or `tests/` is a plugin source.
 
-Four capabilities have no OpenCode 2 equivalent:
+Four capabilities the bridge cannot carry:
 
 | Capability | OpenCode 2 status | Workaround or effect |
 |---|---|---|
-| Server-side toast | the v2 `Context` has no `tui` member and the event domain is subscribe-only | a bridged plugin cannot show one on OpenCode 2 |
+| Server-side toast | the v2 `Context` has no `tui` member and the event domain is subscribe-only | a bridged plugin cannot show one |
 | Agent `temperature` | no effect on 2.0.32 with the `openai-compatible` provider package, the only one tested | no effect observed on the one provider tested |
 | A global `command.execute.before` observer | v2 has none | a plugin that needs a command owns it through `ctx.command.transform` instead |
 | Tool `ask` inside a bridged tool | `ask` throws `ask is not available on OpenCode 2` (`lib/v2-bridge.js` (`toV1ToolContext`)) | a bridged plugin cannot raise a permission prompt |
 
 ### Adding a plugin
 
-1. Write the v1 factory.
+1. Write the hook factory.
 2. Default-export `dualPlugin('<id>', factory)`.
 3. Use only the mapped hook keys or accept that the others do nothing on OpenCode 2.
 4. Run `tests/plugin-inventory.test.cjs`. The v2 suites find the new file on their own; add a case to `PLUGINS` in `tests/v2-hard-plugins.test.cjs` only when the plugin needs behavior checks.
 5. Gate it with `isHookEnabled('<concern>')`.
 6. Add the file to the inventory table and directory tree in `README.md` and to the topology in Section 2 here, and update the dated file count in both documents. The inventory in `tests/helpers/plugin-inventory.cjs` is the source of truth for which plugins the v2 suites cover.
-7. Run the plugin suite and both battery families.
+7. Run the plugin suite and the doctor battery.
 
-A plugin that needs an OpenCode 2 registration the bridge does not map, such as a command, skips steps 2 and 3. It default-exports its own `{ id, setup, server }`, and it goes in `nativeDual` in `tests/plugin-inventory.json` with its reason, and its v2 check goes in `PLUGINS` in `tests/v2-hard-plugins.test.cjs`.
+A plugin that needs an OpenCode 2 registration the bridge does not map, such as a command, skips steps 2 and 3. It default-exports its own `{ id, setup }`, and it goes in `nativeDual` in `tests/plugin-inventory.json` with its reason, and its v2 check goes in `PLUGINS` in `tests/v2-hard-plugins.test.cjs`.
 
 ---
 
@@ -198,7 +196,6 @@ A plugin that needs an OpenCode 2 registration the bridge does not map, such as 
 
 ```bash
 node --test .opencode/plugins/tests/
-node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v1
 node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 ```
 
@@ -206,9 +203,9 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 
 **Purity test.** `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` imports every entry file, symlinks included. For a symlinked entry it first checks that the link is relative, stays inside the repository and resolves to a built bundle, then applies the same export contract as any other entry.
 
-**Doctor battery.** The next two commands check both versions, and the v2 run starts a private server on its own port. On 2026-10-19, after main added `session-handover.js`, the battery discovered all 17 plugin files on OpenCode 1.19.3 and reported all 17 active on OpenCode 2.0.32. In a worktree nested inside another checkout, OpenCode 2 also loads the outer checkout's plugin folder, so the battery's v2 read turns that walk off with `OPENCODE_CONFIG_PROJECT_DISABLE=1`, sets `OPENCODE_CONFIG_DIR` to the root's own `.opencode`, and names each outer folder in an `isolated:` line of the plugin-active result. A plain checkout and CI keep OpenCode 2's normal discovery.
+**Doctor battery.** The second command checks OpenCode 2, and the run starts a private server on its own port. On 2026-10-19, after main added `session-handover.js`, the battery reported all 17 plugin files then in the folder active on OpenCode 2.0.32. That count is dated history: the folder holds 20 plugin files today. In a worktree nested inside another checkout, OpenCode 2 also loads the outer checkout's plugin folder, so the battery's read turns that walk off with `OPENCODE_CONFIG_PROJECT_DISABLE=1`, sets `OPENCODE_CONFIG_DIR` to the root's own `.opencode`, and names each outer folder in an `isolated:` line of the plugin-active result. A plain checkout and CI keep OpenCode 2's normal discovery.
 
-**CI workflow.** `.github/workflows/opencode-dual-version.yml` runs the battery per family plus a job with both versions installed, on pushes and pull requests to `main` and `skilled/**` that touch the plugin, agent or dispatch-hook trees, the package manifests and lockfiles, the battery script and its test, the config-shape test, `opencode.json` or the workflow itself. Each job first provisions every dependency tree the plugins import. The first run with all three jobs green was on main at `793b50ccbf` on 2026-10-19.
+**CI workflow.** `.github/workflows/opencode-v2-battery.yml` runs one job: it provisions every dependency tree the plugins import, runs the config-shape, battery, default-model-id and models-form unit tests, installs `@opencode/cli@2.3.2` into its own prefix and runs the battery with `--family=v2`. It runs on pushes and pull requests to `main` and `skilled/**` that touch the plugin, agent or dispatch-hook trees, the cli-opencode skill (`.skilled/skills/cli-external-orchestration/cli-opencode/**` and `.opencode/skills/cli-external-orchestration/cli-opencode/**`), the setup action (`.github/actions/**`), the package manifests and lockfiles, the battery script and its test, the config-shape test, `opencode.json` or the workflow itself.
 
 ---
 
@@ -216,18 +213,18 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 
 | ADR | Subject | Status |
 |---|---|---|
-| ADR-001 | One default export `{ id, setup, server }` per plugin file rather than an env-selected entry | Accepted |
-| ADR-002 | The v1 factory stays the single implementation and `setup` is derived by the bridge | Accepted |
+| ADR-001 | One default export `{ id, setup }` per plugin file rather than an env-selected entry | Accepted |
+| ADR-002 | The hook factory stays the single implementation and `setup` is derived by the bridge | Accepted |
 | ADR-004 | Hook keys the bridge cannot map are skipped and reported, not failed | Accepted |
 
 ### Known limits
 
 - OpenCode 2 has no server-side toast and agent `temperature` has no effect (see Section 5).
-- The proposed version floors of 1.19.0 and 2.0.32 are inferred and unprobed below the tested versions.
-- OpenCode 2.0.32 does not deliver `server.instance.disposed` or `global.disposed` to plugins; it sends `location.shutdown` and runs the cleanup the bridge returns. The disposal branches in `system-skill-advisor.js` and `system-dist-freshness-guard.js` therefore run only on OpenCode 1 (observed 2026-10-20, listed in `tests/plugin-inventory.json`).
-- The event-name guard in `tests/plugin-inventory.test.cjs` parses each bridged plugin with rolldown, which `.skilled/package.json` now declares directly as a dev dependency. Comments and strings are never read as code, and an escaped name reads as the name it spells. The guard resolves every name through its lexical scope and reports every other check on the event type for `unscannedEventChecks`, including one that wraps the type in a call. A `typeof` check reads only the value's type, so the guard does not count it as an event check. A file it cannot parse fails the test. It knows the event type by name: `type`, a name ending in `Type`, a `.type` field, or a local declared from one of those. An object key or member property with such a name is not a value. A parameter with such a name counts as the event type. It stops counting only when the function has a name, is not exported, never escapes, has calls in the file, never writes the parameter, and every call passes no event type at that position, a default included. The guard follows a helper result stored in a variable through declarations, plain assignments and object or array literals built from it, and it reports the helper call when any read of that binding decides a branch: an `if`, a loop, a conditional, a `switch` or a `case`. It still does not follow values across files, through a function's return value or through a function that escapes. An unrelated value named `type` that is not a traced parameter is still read as the event type, and a check on an event type held under any other name is invisible to it. The authoritative guard for what each plugin does on each host is still the two-version doctor battery.
-- OpenCode 2.0.32 merges every ancestor `.opencode` folder, so a session started in a worktree nested inside another checkout, such as `.worktrees/NNN-slug`, registers the outer checkout's plugins first and the worktree's own copies fail with `Duplicate plugin ID` (observed 2026-10-20). That session runs the outer checkout's plugin code. OpenCode 1.19.3 stops at the worktree root. To run a worktree's own plugins on OpenCode 2, start it with `OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR=<worktree>/.opencode`, or use a checkout outside the other one.
-- Live delivery is verified per plugin by the `plugin-utilization` playbook in `cli-opencode`. On 2026-10-20 all 17 plugins showed their checked effect on OpenCode 1.19.3 and 2.0.32 (`specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/scratch/live-runs/results-matrix.md`).
+- The proposed version floor of 2.0.32 is inferred and unprobed below the tested version.
+- On 2026-10-20, OpenCode 2.0.32 delivered neither `server.instance.disposed` nor `global.disposed` to a plugin; it sent `location.shutdown` and ran the cleanup the bridge returns. The disposal branches still handle `global.disposed`, because OpenCode 2.3.2 defines that bus type (read from the 2.3.2 binary's strings on 2026-11-19, which hold no `server.instance.disposed`). Delivery of `global.disposed` on 2.3.2 is not captured. Both facts are listed in `tests/plugin-inventory.json`.
+- The event-name guard in `tests/plugin-inventory.test.cjs` parses each bridged plugin with rolldown, which `.skilled/package.json` now declares directly as a dev dependency. Comments and strings are never read as code, and an escaped name reads as the name it spells. The guard resolves every name through its lexical scope and reports every other check on the event type for `unscannedEventChecks`, including one that wraps the type in a call. A `typeof` check reads only the value's type, so the guard does not count it as an event check. A file it cannot parse fails the test. It knows the event type by name: `type`, a name ending in `Type`, a `.type` field, or a local declared from one of those. An object key or member property with such a name is not a value. A parameter with such a name counts as the event type. It stops counting only when the function has a name, is not exported, never escapes, has calls in the file, never writes the parameter, and every call passes no event type at that position, a default included. The guard follows a helper result stored in a variable through declarations, plain assignments and object or array literals built from it, and it reports the helper call when any read of that binding decides a branch: an `if`, a loop, a conditional, a `switch` or a `case`. It still does not follow values across files, through a function's return value or through a function that escapes. An unrelated value named `type` that is not a traced parameter is still read as the event type, and a check on an event type held under any other name is invisible to it. The authoritative guard for what each plugin does on the host is still the doctor battery.
+- OpenCode 2.0.32 merges every ancestor `.opencode` folder, so a session started in a worktree nested inside another checkout, such as `.worktrees/NNN-slug`, registers the outer checkout's plugins first and the worktree's own copies fail with `Duplicate plugin ID` (observed 2026-10-20). That session runs the outer checkout's plugin code. To run a worktree's own plugins on OpenCode 2, start it with `OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR=<worktree>/.opencode`, or use a checkout outside the other one.
+- Live delivery is verified per plugin by the `plugin-utilization` playbook in `cli-opencode`. On 2026-10-20 all 17 plugins showed their checked effect on OpenCode 2.0.32 (`specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/scratch/live-runs/results-matrix.md`).
 
 ---
 
@@ -235,7 +232,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 
 - [README.md](./README.md): the folder index with the per-file inventory and configuration.
 - [tests/README.md](./tests/README.md): the regression suite index.
-- [lib/v2-bridge.js](./lib/v2-bridge.js): the dual export builder and hook mapping.
+- [lib/v2-bridge.js](./lib/v2-bridge.js): the export builder and hook mapping.
 - [hook-flags.cjs](../../.skilled/hooks/shared/hook-flags.cjs): the kill-switch resolver.
-- [opencode-dual-version.yml](../../.github/workflows/opencode-dual-version.yml): the dual-version CI workflow.
+- [opencode-v2-battery.yml](../../.github/workflows/opencode-v2-battery.yml): the OpenCode 2 CI workflow.
 - [opencode-version-battery.cjs](../../.skilled/commands/doctor/scripts/opencode-version-battery.cjs): the doctor battery.

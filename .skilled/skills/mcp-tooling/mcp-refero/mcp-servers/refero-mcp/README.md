@@ -5,7 +5,7 @@ trigger_phrases:
   - "refero mcp server"
   - "refero mcp-remote"
   - "refero code mode"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # refero-mcp
@@ -55,7 +55,7 @@ Expected result: `list_tools()` includes the `refero` manual's tools, and `tool_
 | HTTP 401 on every call | Not authenticated; the empty manual `env` is not anonymous access | Operator completes browser OAuth on a Pro (or higher) account, or wires the documented Bearer alternative |
 | `refero.refero_<tool>` not found | Single-prefix name; the convention doubles the prefix | Use `refero.refero_refero_<tool>` and confirm with `tool_info` first |
 | `-32000 Connection closed` from Code Mode | Code Mode running on Node 25 (isolated-vm SIGSEGV) | Run Code Mode on Node 24 |
-| Tools missing after wiring changes | Manuals load at Code Mode startup | Reconnect Code Mode, then re-run discovery |
+| Tools missing after wiring changes | The manual ships disabled and loads only when the ask step registers it | Run the ask step so `register_manual` registers the manual, then re-run discovery |
 
 ---
 

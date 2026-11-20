@@ -17,6 +17,7 @@ declare const process: {
   cwd(): string;
   pid: number;
   execPath: string;
+  stderr: { write(chunk: string): boolean };
 };
 
 declare module "node:child_process" {

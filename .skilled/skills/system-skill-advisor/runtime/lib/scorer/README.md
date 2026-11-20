@@ -34,6 +34,7 @@ scorer/
 +-- ambiguity.ts             # Ambiguity detection and handling
 +-- attribution.ts           # Lane attribution assembly
 +-- beta-reliability.ts      # Beta-posterior reliability primitive for the shadow learning loop
++-- command-bridge-loader.ts # Reads the generated command-bridge JSON at runtime
 +-- feedback-calibration.ts  # Advisor feedback calibration reducer
 +-- fusion.ts                # Score fusion logic
 +-- lane-registry.ts         # Lane registration
@@ -58,7 +59,7 @@ scorer/
 | `attribution.ts` | Builds prompt-safe lane attribution details. |
 | `ambiguity.ts` | Detects close or unclear recommendation states. A command row and its `ownerSkill` count as one answer, so they never make each other ambiguous. |
 | `feedback-calibration.ts` | Reduces advisor feedback into shadow calibration reports. |
-| `projection.ts` | Projects scorer internals into caller-facing output. Its `COMMAND_BRIDGES` list is the generated block that `derive-command-bridges.cjs` writes, with an `ownerSkill` on each row. |
+| `projection.ts` | Projects scorer internals into caller-facing output. Its `COMMAND_BRIDGES` list comes from `command-bridges.generated.json` at runtime through `command-bridge-loader.ts`, and falls back to the generated block that `derive-command-bridges.cjs` writes. Each row carries an `ownerSkill`. Regenerating the JSON changes the bridges without a rebuild, and a running daemon needs a restart. |
 | `weights-config.ts` | Stores configurable lane and scorer weights. |
 | `types.ts` | Defines scorer input, output and lane types. |
 
@@ -94,6 +95,7 @@ prompt and candidate skills
 | `aliases.ts` | TypeScript module | Canonical command/skill alias helpers. |
 | `lane-registry.ts` | TypeScript module | Lane registration. |
 | `projection.ts` | TypeScript module | Output projection. |
+| `command-bridge-loader.ts` | TypeScript module | Runtime reader for the command-bridge JSON. |
 | `types.ts` | TypeScript module | Scorer contracts. |
 | `lanes/` | Folder | Lane-specific scoring modules. |
 

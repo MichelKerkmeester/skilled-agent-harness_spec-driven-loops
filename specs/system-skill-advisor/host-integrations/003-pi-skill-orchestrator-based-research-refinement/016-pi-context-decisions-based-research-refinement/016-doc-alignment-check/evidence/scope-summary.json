@@ -1,0 +1,13 @@
+{
+  "target": "topic advisor-pasted-reply",
+  "head": "717347fbcba748f4112bb7a94b1466c77aed3070",
+  "files": 15,
+  "owners": [
+    {
+      "id": "docs:.skilled/skills",
+      "kind": "docs",
+      "root": ".skilled/skills",
+      "files": 15
+    }
+  ]
+}

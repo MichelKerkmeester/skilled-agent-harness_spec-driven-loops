@@ -63,7 +63,7 @@ DSH, OpenCode, Pi and Vibe call `markTurn` to prevent repeated reprompts for one
 
 The registry id is `ask-surface-guard`. It binds Claude and Codex at `Stop` with 5-second timeouts. Devin uses `Stop` with the same timeout. Claude's entry is in `.claude/settings.json` and Codex's entry is in `.codex/hooks.json`. Devin's entry is in `.devin/hooks.v1.json`. Cursor's `.cursor/hooks.json` has no ask-surface entry.
 
-The registry's Pi binding names `ask-surface-guard.ts`. `.pi/extensions/ask-surface-guard.ts` re-exports the adapter. The DSH bundle registers the guard in `.dsh/plugins/repo-guards/index.mjs`. OpenCode loads plugin modules from the flat `.opencode/plugins/` glob.
+The registry's Pi binding names `ask-surface-guard.ts`. `.pi/extensions/ask-surface-guard.ts` imports the adapter. The DSH bundle registers the guard in `.dsh/plugins/repo-guards/index.mjs`. OpenCode loads plugin modules from the flat `.opencode/plugins/` glob.
 
 Vibe registers `turn-end` as a `post_agent` hook in `.vibe/hooks.toml`. It matches `main` and has a 20-second timeout. `.skilled/hooks/session-lifecycle/vibe/turn-end.mjs` loads the ask-surface part.
 

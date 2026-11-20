@@ -1,0 +1,8 @@
+{
+  "js-space-nbsp": "You\u00a0said: run the tests. Task: fix the failing parser test",
+  "js-space-info-separator": "\u001cYou said: run the tests. Task: fix the failing parser test",
+  "js-space-bom": "\ufeffYou said: run the tests. Task: fix the failing parser test",
+  "ascii-case-fold": "You \u017faid: run the tests. Task: fix the failing parser test",
+  "js-trim-trailing-separator": "You said: run the tests. Task: fix the failing parser test\u001c",
+  "js-space-nel": "You\u0085said: run the tests. Task: fix the failing parser test"
+}

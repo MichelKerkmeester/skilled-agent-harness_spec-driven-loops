@@ -1,7 +1,7 @@
 ---
 title: "RATELIMIT-001 -- 429 Retry-After And Backoff Observation"
 description: "This scenario validates rate-limit handling for `RATELIMIT-001`. It focuses on the documented 60 requests per 60 seconds per user contract: on HTTP 429 the agent honors Retry-After, then applies exponential backoff with jitter, and never invents finer burst or concurrency contracts. SKIP-valid: a 429 cannot be forced deliberately."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # RATELIMIT-001 -- 429 Retry-After And Backoff Observation
@@ -44,7 +44,7 @@ Operators run the exact sequence for `RATELIMIT-001` and confirm the expected si
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: Requires DISCOVER-001's live branch PASS (fresh Code Mode session, operator OAuth on a paid account). Never force a 429: the scenario observes one if it occurs naturally. Otherwise SKIP with the blocker (no-429-observed, or session/auth) documented.
+PRE: Requires DISCOVER-001's live branch PASS (manual registered through the ask step, operator OAuth on a paid account). Never force a 429: the scenario observes one if it occurs naturally. Otherwise SKIP with the blocker (no-429-observed, or registration/auth) documented.
 
 1. `tool_info` confirmation of the live callable  # -> schema on the live name
 2. call plan announced with the 60/60s budget stated  # -> deliberate pacing, limit: 5 per call

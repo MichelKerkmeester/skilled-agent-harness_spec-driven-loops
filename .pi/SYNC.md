@@ -1,6 +1,6 @@
 ---
 title: "Pi CLI: Runtime Sync Manifest"
-description: "How .pi derives from .skilled: the generated agent and prompt trees, the one-line extension entries, the authored settings and the checks that catch drift."
+description: "How .pi derives from .skilled: the generated agent and prompt trees, the rendered extension entries, the authored settings and the checks that catch drift."
 trigger_phrases:
   - "pi sync manifest"
   - "pi runtime surfaces"
@@ -9,7 +9,7 @@ trigger_phrases:
 
 # Pi CLI Sync Manifest
 
-> Two generators and a set of one-line extension entries carry `.skilled/` into Pi.
+> Three generators carry `.skilled/` into Pi: two write the agent and prompt trees, and one renders the extension entries.
 
 ---
 
@@ -17,9 +17,9 @@ trigger_phrases:
 
 Pi reads `AGENTS.md` from the working directory and the folders above it, so the root [`AGENTS.md`](../AGENTS.md) reaches a session with no copy in this folder. `--no-context-files` turns that read off. Pi also loads the project settings in `settings.json` and reads the prompt templates in `prompts/`. It scans the top-level `*.ts` files in `extensions/` for entries. The `code_mode` server comes from `mcp.json`.
 
-Two generators in `.skilled/skills/system-spec-kit/runtime/cli/pi/` write `agents/` and `prompts/` as flat files. The folder also holds four links: `skills`, `repo-rules` and `manual-testing-playbook`, plus the adapter file at `extensions/lib/claude-hook-adapter.ts`. The extension entries are written here. The settings files and the folder documents are too.
+Two generators in `.skilled/skills/system-spec-kit/runtime/cli/pi/` write `agents/` and `prompts/` as flat files. The folder also holds four links: `skills`, `repo-rules` and `manual-testing-playbook`, plus the adapter file at `extensions/lib/claude-hook-adapter.ts`. `sync-hook-registrations.cjs` renders the extension entries from one template. The settings files and the folder documents are written here.
 
-An entry re-exports an adapter under `.skilled/`. The adapter calls the core that owns the policy. A guard change lands in the core, so an entry needs no edit. The entries are authored. `sync-hook-registrations.cjs` checks their shape rather than writing them.
+An entry imports an adapter under `.skilled/` inside its factory. The adapter calls the core that owns the policy. A guard change lands in the core, so an entry needs no edit. When the adapter cannot load, because the Skilled checkout is missing or out of date, the entry turns its hook off and Pi shows one notice for the whole session instead of one load error per entry. An adapter that throws while it registers still fails as a Pi load error, because that is a bug in the adapter.
 
 ---
 
@@ -30,7 +30,7 @@ An entry re-exports an adapter under `.skilled/`. The adapter calls the core tha
 | `agents/*.md` | generated | `.skilled/agents/*.md` | Yes. `sync-agents-pi.cjs --check` reports drift file by file |
 | `prompts/*.md` | generated stub | `.skilled/commands/**/*.md` | Yes. `sync-prompts-pi.cjs --check` reports drift file by file |
 | `prompts/goal-pi.md` | authored native command | none | No. `command-scope.cjs` names it, so the generator never writes or prunes it |
-| `extensions/*.ts` | authored one-line re-export | the adapter it names under `.skilled/` | Yes. `sync-hook-registrations.cjs --check` reports an entry that is not one re-export of an existing adapter |
+| `extensions/*.ts` | rendered from one template | the adapter it names under `.skilled/` | Yes. `sync-hook-registrations.cjs --check` reports an entry that differs from the template or names an adapter that does not exist |
 | `extensions/lib/claude-hook-adapter.ts` | relative symlink | `.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/claude-hook-adapter.ts` | Yes, if the target moves. No check reads the link |
 | `extensions/pi-cache-optimizer/` | authored local package | none | No. Pi loads it from the `packages` list |
 | `extensions/pi-fast-mode-w-subagent-support/` | authored local package | none | No. Pi loads it from the `packages` list |
@@ -61,7 +61,7 @@ An entry re-exports an adapter under `.skilled/`. The adapter calls the core tha
 |---|---|---|
 | A copy of the shared instructions | `../AGENTS.md` | Pi reads the root file from the working directory and its ancestors |
 | A skills tree | `.skilled/skills/` | The `skills` link is the only copy. A fix to a skill lands once |
-| A guard rule | `.skilled/hooks/` | An entry re-exports an adapter. The adapter calls the core that owns the rule |
+| A guard rule | `.skilled/hooks/` | An entry imports an adapter. The adapter calls the core that owns the rule |
 | Keys and login state | `~/.pi/agent/auth.json` and `~/.pi/agent/models-store.json` | `models.json` reads `${LLMGATEWAY_API_KEY}` from the environment and holds no secret |
 
 ---
@@ -149,9 +149,10 @@ Each check prints a pass line or one line for each problem it finds. The agents 
 
 - **No surface loads the generated agents.** Pi core has no agent flag. The package that used to find these profiles is gone. The files stay generated and checked as a ready deliverable.
 - **The tool list loses permissions.** A permission outside `PERMISSION_TOOL_MAP` has no Pi equivalent, so it survives only as a comment and the generated file cannot be round-tripped.
-- **The extension check reads shape, not behavior.** `sync-hook-registrations.cjs --check` proves each entry is one re-export of an adapter that exists. A change in a shared core shows up at run time or in the Pi suites under `.skilled/hooks/*/pi/`.
+- **The extension check reads shape, not behavior.** `sync-hook-registrations.cjs --check` proves each entry matches the template byte for byte and names an adapter that exists. A change in a shared core shows up at run time or in the Pi suites under `.skilled/hooks/*/pi/`.
+- **A failed adapter import is quiet by design.** An entry whose adapter cannot load registers nothing but the session notice. `/doctor:setup` and `hook-wiring-check.cjs` name the entry and the missing file.
 - **The adapter link has no check.** The two session bridges import the real path under `.skilled/`, so `extensions/lib/claude-hook-adapter.ts` is there for browsing. A moved target leaves a dangling link that no check reports.
-- **The type declarations run in no gate.** No CI workflow or git hook runs `tsc -p tsconfig.pi.json`, so a declaration that falls behind an adapter is caught only by hand.
+- **The type declarations run in one CI gate.** `pi-entry-checks.yml` runs `tsc -p tsconfig.pi.json` on a change to `.pi/`, the config or a Pi adapter, and no git hook runs it. That config checks the entry template through three entries whose adapters it already includes.
 - **The cache-optimizer config here is not the one the package reads.** `extensions/pi-cache-optimizer/index.ts` reads `pi-cache-optimizer-config.json` from Pi's agent directory, so a change to the copy in this folder has no effect.
 
 ---
@@ -161,7 +162,7 @@ Each check prints a pass line or one line for each problem it finds. The agents 
 | Document | Purpose |
 |---|---|
 | [`README.md`](./README.md) | What a session here receives and the checks that confirm it |
-| [`extensions/README.md`](./extensions/README.md) | Each entry, the adapter it re-exports and the switches that silence it |
+| [`extensions/README.md`](./extensions/README.md) | Each entry, the adapter it imports and the switches that silence it |
 | [`types/README.md`](./types/README.md) | The declarations behind `tsconfig.pi.json` |
 | [`../.skilled/skills/system-spec-kit/runtime/cli/pi/README.md`](../.skilled/skills/system-spec-kit/runtime/cli/pi/README.md) | The two generators and their `--check` mode |
 | [`../.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`](../.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md) | The hook registry, the renderer and the entry check |

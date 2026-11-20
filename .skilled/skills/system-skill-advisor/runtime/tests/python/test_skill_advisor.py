@@ -20,6 +20,7 @@ import re
 import sqlite3
 import sys
 import tempfile
+import time
 
 # ───────────────────────────────────────────────────────────────
 # 1. MODULE LOADING
@@ -2527,6 +2528,195 @@ def test_declared_phrase_specificity():
 # 6. MAIN
 # ───────────────────────────────────────────────────────────────
 
+def test_pasted_reply_strip_parity():
+    """The local scorer drops a pasted earlier reply exactly as the native scorer does."""
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        fixture_path = os.path.realpath(os.path.join(
+            os.path.dirname(os.path.realpath(__file__)),
+            "..",
+            "fixtures",
+            "pasted-reply-strip-cases.json",
+        ))
+        with open(fixture_path, "r", encoding="utf-8") as fh:
+            cases = json.load(fh)["cases"]
+    except Exception as exc:
+        fail_test("STRIP: load scorer and shared fixture", str(exc))
+        return
+
+    # The TypeScript prompt-policy test reads the same rows, so both scorers
+    # drop the same text before scoring.
+    for case in cases:
+        name = f"STRIP-{case['id']}"
+        try:
+            stripped = advisor.strip_leading_pasted_reply(case["input"])
+            again = advisor.strip_leading_pasted_reply(stripped)
+        except Exception as exc:
+            fail_test(name, str(exc))
+            continue
+        if stripped == case["expected"] and again == stripped:
+            ok(name)
+        else:
+            fail_test(name, f"got={stripped!r} expected={case['expected']!r}")
+
+    # A long whitespace run with newlines once made the marker search backtrack
+    # for seconds, so the strip has to stay linear on it.
+    name = "STRIP-LINEAR: a 64K whitespace run with newlines strips in under 500 ms"
+    slow_input = "Claude replied: ok." + " \n" * 32768 + "x"
+    started = time.perf_counter()
+    try:
+        stripped = advisor.strip_leading_pasted_reply(slow_input)
+    except Exception as exc:
+        fail_test(name, str(exc))
+    else:
+        elapsed_ms = (time.perf_counter() - started) * 1000
+        if stripped == slow_input and elapsed_ms < 500:
+            ok(name, f"{elapsed_ms:.0f} ms")
+        else:
+            fail_test(name, f"{elapsed_ms:.0f} ms")
+
+    for label, marker_input in (
+        ("an indented marker after a newline", "Claude replied: done.\n   Now: refactor the store"),
+        ("a marker after a CRLF line break", "Claude replied: done.\r\nNow: refactor the store"),
+    ):
+        name = f"STRIP-MARKER: keeps the task after {label}"
+        try:
+            stripped = advisor.strip_leading_pasted_reply(marker_input)
+        except Exception as exc:
+            fail_test(name, str(exc))
+            continue
+        if stripped == "refactor the store":
+            ok(name)
+        else:
+            fail_test(name, f"got={stripped!r}")
+
+    # The strip runs at the entry of analyze_request, so a pasted reply and the
+    # bare task score the same.
+    probe = next((case for case in cases if case["id"] == "probe"), None)
+    name = "STRIP-ENTRY: analyze_request scores the probe as its bare task"
+    if probe is None:
+        fail_test(name, "probe row missing")
+        return
+    try:
+        pasted = [r["skill"] for r in advisor.analyze_request(probe["input"])]
+        bare = [r["skill"] for r in advisor.analyze_request(probe["expected"])]
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if pasted == bare:
+        ok(name, f"top={pasted[:1]}")
+    else:
+        fail_test(name, f"pasted={pasted[:3]} bare={bare[:3]}")
+
+    # The native path drops the pasted reply before it cuts the prompt to the
+    # advisor limit, so a long paste cannot push the task past the cut.
+    name = "STRIP-NATIVE: recommend_with_native_advisor sends the task behind a long pasted reply"
+    sent = {}
+
+    def capture_bridge(payload, timeout=None):
+        sent.update(payload)
+        return {"status": "ok", "data": {"recommendations": []}}
+
+    original_bridge = advisor._run_native_bridge
+    advisor._run_native_bridge = capture_bridge
+    try:
+        long_paste = (
+            "Earlier you replied: "
+            + "I updated the README with sk-doc conventions. " * 300
+            + "Now: "
+            + probe["expected"]
+        )
+        advisor.recommend_with_native_advisor(long_paste)
+    except Exception as exc:
+        fail_test(name, str(exc))
+    else:
+        if sent.get("prompt") == probe["expected"]:
+            ok(name)
+        else:
+            fail_test(name, f"sent={str(sent.get('prompt'))[:80]!r}")
+    finally:
+        advisor._run_native_bridge = original_bridge
+
+    # Batch mode trims each prompt before scoring. It must trim JavaScript's
+    # whitespace set, or a control character the native scorer keeps would
+    # expose a pasted reply that the native scorer leaves in place.
+    for label, lead in (("U+001C", "\x1c"), ("U+0085", "\x85")):
+        name = f"STRIP-BATCH: analyze_batch keeps a {label}-led pasted reply as native does"
+        raw = lead + probe["input"]
+        try:
+            batch = advisor.analyze_batch(
+                prompts=[raw],
+                confidence_threshold=0.8,
+                uncertainty_threshold=0.35,
+                confidence_only=False,
+                show_rejections=False,
+            )
+            single = advisor.analyze_prompt(
+                prompt=raw,
+                confidence_threshold=0.8,
+                uncertainty_threshold=0.35,
+                confidence_only=False,
+                show_rejections=False,
+            )
+        except Exception as exc:
+            fail_test(name, str(exc))
+            continue
+        batch_top = [r["skill"] for r in batch[0]["recommendations"]][:1] if batch else []
+        single_top = [r["skill"] for r in single][:1]
+        if batch and batch[0]["prompt"] == raw and batch_top == single_top:
+            ok(name, f"top={batch_top}")
+        else:
+            fail_test(name, f"batch={batch_top} single={single_top}")
+
+
+def test_native_bridge_floor_flag():
+    """The native bridge keeps the confidence floor flag, so a floored route reads as floored."""
+    name = "BRIDGE-FLOOR: a floored native row keeps confidenceFloored and an earned row gets none"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        rows = advisor._legacy_recommendations_from_native({
+            "recommendations": [
+                {"skillId": "sk-code", "confidence": 0.82, "uncertainty": 0.2, "confidenceFloored": True},
+                {"skillId": "sk-doc", "confidence": 0.91, "uncertainty": 0.1},
+            ],
+        })
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if rows[0].get("confidenceFloored") is True and "confidenceFloored" not in rows[1]:
+        ok(name)
+    else:
+        fail_test(name, f"rows={rows!r}")
+
+
+def test_deep_routing_clears_floor_flag():
+    """A floored row the deep routing layer raises rests on that layer's evidence, not the floor."""
+    name = "DEEP-FLOOR: the deep routing layer clears confidenceFloored only when it raises the row"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        original = advisor.deep_skill_routing_payload
+        advisor.deep_skill_routing_payload = lambda prompt, context: {
+            "scores": {"review": 0.9, "research": 0.0},
+            "mode": "review",
+            "skill": "system-deep-loop",
+            "confidence_band": "HIGH",
+        }
+        try:
+            raised = [{"skill": "system-deep-loop", "confidence": 0.82, "uncertainty": 0.2, "confidenceFloored": True}]
+            advisor._apply_deep_skill_routing_layer(raised, "deep review the release until convergence")
+            kept = [{"skill": "system-deep-loop", "confidence": 0.95, "uncertainty": 0.2, "confidenceFloored": True}]
+            advisor._apply_deep_skill_routing_layer(kept, "deep review the release until convergence")
+        finally:
+            advisor.deep_skill_routing_payload = original
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if "confidenceFloored" not in raised[0] and kept[0].get("confidenceFloored") is True:
+        ok(name)
+    else:
+        fail_test(name, f"raised={raised[0]!r} kept={kept[0]!r}")
+
+
 def main():
     print("=" * 60)
     print("  SKILL ADVISOR AUTOMATED TEST SUITE (T243/T246)")
@@ -2540,6 +2730,9 @@ def main():
     test_private_skill_link_trust()
     test_private_skill_discovery_trust()
     test_declared_phrase_specificity()
+    test_pasted_reply_strip_parity()
+    test_native_bridge_floor_flag()
+    test_deep_routing_clears_floor_flag()
 
     print(f"\nSummary: pass={passed}, fail={failed}")
     return 0 if failed == 0 else 1

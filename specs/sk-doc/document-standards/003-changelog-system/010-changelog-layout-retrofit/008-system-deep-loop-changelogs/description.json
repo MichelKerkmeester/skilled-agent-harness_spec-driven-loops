@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs",
+  "description": "Phase 8: system-deep-loop-changelogs",
+  "keywords": [
+    "phase",
+    "system-deep-loop-changelogs"
+  ],
+  "lastUpdated": "2026-11-18T03:59:49.330Z",
+  "specId": "008",
+  "folderSlug": "system-deep-loop-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "010-changelog-layout-retrofit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-11-26_04-59__rewrote-all-148-system-deep-loop-changelogs-into.md"
+  ]
+}

@@ -28,7 +28,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "008-hook-library-cleanup-and-readme-rewrite operator decisions"
     ],
     "key_topics": [
       "hook",
@@ -44,11 +45,12 @@
       "names",
       "dead"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       ".github/workflows/opencode-plugin-tests.yml",
       ".github/scripts/check-gate-inputs.sh",
       ".skilled/hooks/shared/hook-flags.test.cjs",
@@ -70,6 +72,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -161,21 +169,59 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Interactive Autopilot",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A person who opens `.skilled/hooks/` to learn which hook does what meets four obstacles",
     "created_at": "2026-11-15T14:58:48Z",
-    "last_save_at": "2026-11-16T13:04:15.242Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:35:44.190Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:25fdad62e569802c10974098f24951a08a03feb4160325f272521f41df1cd07c",
+    "source_fingerprint": "sha256:0d39cba0ab9f6fbde6f4a0829af9fc7521b3a4f75318f165f03a81e027ad15b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d5764c5f7c69d0ec88fba493c390975ed349cf39d8763c0af4c4f3425531af50"
+      "spec.md": "d5764c5f7c69d0ec88fba493c390975ed349cf39d8763c0af4c4f3425531af50",
+      "decision-record.md": "657b2a2e6f4eec5a9bb4f1462498c545b08355c1d81cd4a4e869731c910aac68"
     },
     "last_active_child_id": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard",
     "last_active_at": "2026-11-16T13:04:15.242Z"

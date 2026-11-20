@@ -1,0 +1,13 @@
+# Baseline before any rewrite, measured on HEAD 3c9cc2a3b59 (originals)
+# list files layout_fail shape_fail by-rule
+002       62 61 38 [checked-section]=38 
+003      306 305 13 [checked-section]=12 [sentence-mean]=1 
+004      216 216 19 [checked-section]=15 [sentence-max]=16 [sentence-mean]=3 
+005      205 204 9 [checked-section]=9 
+006      171 169 18 [checked-section]=18 
+007      169 168 26 [checked-section]=26 
+008      148 148 21 [checked-section]=17 [sentence-max]=7 [sentence-mean]=4 
+009       75 75 3 [checked-section]=3 
+010       71 70 10 [checked-section]=10 
+011       54 54 5 [checked-section]=5 
+012       99 98 6 [checked-section]=5 [sentence-max]=1 [sentence-mean]=1 

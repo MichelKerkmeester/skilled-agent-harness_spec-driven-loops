@@ -1,5 +1,5 @@
 ---
-description: Create or update OpenCode slash command sets with :auto/:confirm workflow assets.
+description: Create or update Skilled slash command sets with :auto/:confirm workflow assets.
 argument-hint: "<command_invocation> [command_request] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
@@ -10,7 +10,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## 1. ROUTER CONTRACT
 
-Route /create:command to its presentation contract and workflow YAML for creating or updating OpenCode slash command sets.
+Route /create:command to its presentation contract and workflow YAML for creating or updating Skilled slash command sets.
 
 - Do not author command workflow logic from this router.
 - Do not edit workflow YAML while executing this command.

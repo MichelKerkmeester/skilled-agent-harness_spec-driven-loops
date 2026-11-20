@@ -193,7 +193,9 @@ class Repo:
             rules_dir = os.path.join(self.root, "repo-rules")
         self.rules_dir = rules_dir
         self.markers: Dict[str, Tuple[Tuple[str, ...], Optional[str]]] = {}
-        paths = glob.glob(os.path.join(rules_dir, "*.md")) + [os.path.join(self.root, INDEX_RULE)]
+        # The folder's own README orients a reader and is never routed, so it is not a rule.
+        rule_paths = [p for p in glob.glob(os.path.join(rules_dir, "*.md")) if os.path.basename(p).lower() != "readme.md"]
+        paths = rule_paths + [os.path.join(self.root, INDEX_RULE)]
         for path in paths:
             marker = self._marker(path)
             if marker:

@@ -1,7 +1,7 @@
 ---
 title: "Example: limit-1 Smoke Search"
 description: "The smallest useful mcp-mobbin walkthrough: re-confirm the discovery-confirmed callable with tool_info, run one screen search at limit 1, and verify the response shape against the fixture-declared schema without widening anything."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Example: limit-1 Smoke Search
@@ -15,8 +15,8 @@ The minimum end-to-end verification of the Mobbin transport: one confirmed calla
 ## 2. PRECONDITIONS
 
 - `bash .skilled/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports `OK 'mobbin' manual registered`.
-- Fresh Code Mode session (manuals load at startup).
-- **Operator OAuth completed** on a paid plan (Pro, Team, or Enterprise). If not: record `SKIP: operator OAuth pending — trigger any first mobbin.* call in a fresh Code Mode session and complete the browser authorization`, and stop here. SKIP is a valid result.
+- The ask step has registered the `mobbin` manual in this session (it ships disabled).
+- **Operator OAuth completed** on a paid plan (Pro, Team, or Enterprise). If not: record `SKIP: operator OAuth pending — register the manual through the ask step and complete the browser authorization`, and stop here. SKIP is a valid result.
 
 ---
 

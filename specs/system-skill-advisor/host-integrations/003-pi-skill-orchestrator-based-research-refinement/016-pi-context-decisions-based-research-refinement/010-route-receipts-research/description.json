@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research",
+  "description": "Phase 10: route-receipts-research",
+  "keywords": [
+    "phase",
+    "route-receipts-research"
+  ],
+  "lastUpdated": "2026-11-19T17:48:35.832Z",
+  "specId": "010",
+  "folderSlug": "route-receipts-research",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "18-11-26_20-26__deep-research-completed-3-iterations-on-claude.md",
+    "19-11-26_18-37__manual-context-save.md",
+    "19-11-26_18-48__manual-context-save.md"
+  ]
+}

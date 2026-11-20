@@ -9,7 +9,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const assert = require('node:assert/strict');
-const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const { describe, test } = require('node:test');
@@ -88,23 +87,11 @@ describe('the shipped .opencode directory matches its sync manifest', () => {
     assert.equal(fs.lstatSync(goal).isFile(), true, 'goal-opencode.md is not a real file');
   });
 
-  test('package.json gives the plugins their module type and their SDK', () => {
+  // The plugins import no OpenCode SDK at runtime, and OpenCode 2 ships its own, so the
+  // manifest only has to give them their module type.
+  test('package.json gives the plugins their module type', () => {
     const manifest = JSON.parse(fs.readFileSync(path.join(COMPAT_ROOT, 'package.json'), 'utf8'));
     assert.equal(manifest.type, 'module');
-    assert.ok(manifest.dependencies && manifest.dependencies['@opencode-ai/plugin'], 'no plugin SDK dependency');
-  });
-
-  const installed = fs.existsSync(path.join(COMPAT_ROOT, 'node_modules'));
-  // The SDK exports ES modules only, so it is resolved the way a plugin imports it: as a
-  // module whose own location is the plugins directory.
-  test('a plugin resolves the SDK from beside it', { skip: installed ? false : 'run npm ci in .opencode first' }, () => {
-    const probe = spawnSync(process.execPath, ['--input-type=module', '-e', "process.stdout.write(import.meta.resolve('@opencode-ai/plugin'))"], {
-      cwd: path.join(COMPAT_ROOT, 'plugins'),
-      encoding: 'utf8',
-    });
-    assert.equal(probe.status, 0, probe.stderr);
-    const resolved = fs.realpathSync(new URL(probe.stdout).pathname);
-    assert.equal(resolved.startsWith(fs.realpathSync(path.join(COMPAT_ROOT, 'node_modules')) + path.sep), true, resolved);
   });
 
   test('the MCP launcher opencode.json names resolves under the source tree', () => {

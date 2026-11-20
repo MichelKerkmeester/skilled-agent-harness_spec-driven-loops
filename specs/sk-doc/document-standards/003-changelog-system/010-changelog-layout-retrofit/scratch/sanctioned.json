@@ -1,0 +1,7 @@
+{
+  ".skilled/skills/cli-external-orchestration/changelog/v2.1.0.0.md": {
+    "allowSpans": ["cli-deepseek-harness"],
+    "writer": "The voice rules ban the bare word harness. In this entry, the harness is the `cli-deepseek-harness` mode: the hub README in the commit that added this entry lists it seventh in `routerPolicy.tieBreak`, right before this mode. Write `cli-deepseek-harness` wherever the original says the harness.",
+    "verifier": "Not a problem: naming the harness as `cli-deepseek-harness`. The hub README in the commit that added this entry lists `cli-deepseek-harness` seventh in `routerPolicy.tieBreak`, right before this mode, so the name states what the original's 'the harness' refers to. The voice rules ban the bare word harness."
+  }
+}

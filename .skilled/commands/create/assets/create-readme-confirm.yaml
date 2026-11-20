@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: README WORKFLOW (CONFIRM MODE)
+# SKILLED CREATE: README WORKFLOW (CONFIRM MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow does NOT support :auto mode. All executions
@@ -321,7 +321,7 @@ readme_types:
     - "How do I configure it?"
 
   skill:
-    scope: "OpenCode skill"
+    scope: "Skilled skill"
     sections:
     # Full canonical 9-section set from readme-template.md S13
     - "OVERVIEW"
@@ -410,7 +410,7 @@ readme_workflow:
       project: "Entire project - overview, installation, configuration, usage"
       component: "Module/package - purpose, API, usage examples, integration"
       feature: "Specific feature - what it does, how it works, configuration"
-      skill: "OpenCode skill - triggers, commands, MCP tools, architecture"
+      skill: "Skilled skill - triggers, commands, MCP tools, architecture"
     outputs:
     - target_confirmed
     - type_confirmed

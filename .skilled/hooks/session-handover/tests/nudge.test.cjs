@@ -59,8 +59,12 @@ const RELAUNCH_INSTRUCTION = ' If the remaining work fits in a few more steps, f
 const SPEC_FOLDER_GUIDANCE = '   spec_folder is a repo-relative '
   + 'packet path, "none" for Gate 3 D) Skip, or empty if unanswered.';
 const GOAL_GUIDANCE_START = '   When spec_folder names a packet, open ## Goal with one line';
-const CONTINUITY_WRITER = 'node .skilled/skills/system-spec-kit/runtime/cli/'
-  + 'dist/continuity/generate-context.js';
+// The writer finds the repository from the working directory, so its script path can be
+// absolute and the command still runs from a subdirectory.
+const CONTINUITY_WRITER = `node '${path.resolve(
+  __dirname, '..', '..', '..', 'skills', 'system-spec-kit', 'runtime', 'cli',
+  'dist', 'continuity', 'generate-context.js',
+)}'`;
 const SEED_REMAINING_WORK_STEP = [
   '7. Continue the work under "Remaining work". Do not run prepare for this note;',
   'its handoff is already done. If Remaining work names only handoff steps,',
@@ -1375,11 +1379,21 @@ test('handoffPending is false when the record cannot be read', (t) => {
   assert.equal(handoffPending({ sessionId: SESSION_ID, env: envForLoop(env, loopId) }), false);
 });
 
+// The command names this checkout's CLI by its real absolute path, so a session whose shell
+// stands in another checkout or a subdirectory still runs the CLI that planned its note.
 test('the nudge module exports the one CLI command every adapter prints', () => {
-  assert.equal(
-    nudgeModule.CLI_COMMAND,
-    'node .skilled/hooks/session-handover/bin/session-handover.cjs',
-  );
+  const cliPath = fs.realpathSync(path.resolve(__dirname, '..', 'bin', 'session-handover.cjs'));
+  assert.equal(nudgeModule.CLI_COMMAND, `node '${cliPath}'`);
+});
+
+test('the printed CLI command runs from a directory outside the checkout', () => {
+  const { spawnSync } = require('node:child_process');
+  const result = spawnSync('/bin/sh', ['-c', `${nudgeModule.CLI_COMMAND} --help`], {
+    cwd: os.tmpdir(),
+    encoding: 'utf8',
+  });
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /prepare/);
 });
 
 test('handoff text leaves an unknown spec folder empty instead of a placeholder prepare rejects', () => {

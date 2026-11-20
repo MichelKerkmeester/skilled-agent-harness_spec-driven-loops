@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-04-25T08:09:44.753Z",
-  "corpusSha": "4b50b4ad7666d341fa43111ec05986430c855e4d0f5b8578a469f9a78e417e4d",
-  "corpusRows": 200,
-  "brierScore": 0.204829,
-  "expectedCalibrationError": 0.138314,
+  "generatedAt": "2026-11-18T13:55:12.185Z",
+  "corpusSha": "18bc5977180a722ec3967559fee4dd379f2a2e9404fa9e687304bfe5a0598fe1",
+  "corpusRows": 196,
+  "brierScore": 0.21428,
+  "expectedCalibrationError": 0.136112,
   "reliability": [
     {
       "bucket": "0.0-0.1",
-      "n": 10,
+      "n": 13,
       "accuracy": 1,
       "avgConfidence": 0
     },
@@ -56,15 +56,15 @@
     },
     {
       "bucket": "0.8-0.9",
-      "n": 102,
-      "accuracy": 0.705882,
-      "avgConfidence": 0.845714
+      "n": 118,
+      "accuracy": 0.745763,
+      "avgConfidence": 0.847627
     },
     {
       "bucket": "0.9-1.0",
-      "n": 88,
-      "accuracy": 0.897727,
-      "avgConfidence": 0.936363
+      "n": 65,
+      "accuracy": 0.907692,
+      "avgConfidence": 0.9332
     }
   ],
   "tolerance": {

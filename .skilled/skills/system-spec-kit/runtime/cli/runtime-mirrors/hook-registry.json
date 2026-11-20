@@ -1,5 +1,5 @@
 {
-  "_note": "Canonical hook set: every hook once, with its per-runtime event bindings and script. Generated files: .claude/settings.json hooks key, .codex/hooks.json, .cursor/hooks.json, .devin/hooks.v1.json via sync-hook-registrations.cjs; Pi registers through one-line re-export entry files under .pi/extensions and is verified, not generated.",
+  "_note": "Canonical hook set: every hook once, with its per-runtime event bindings and script. Generated files: .claude/settings.json hooks key, .codex/hooks.json, .cursor/hooks.json, .devin/hooks.v1.json via sync-hook-registrations.cjs; Pi registers through entry files under .pi/extensions, which the same script renders from one template and verifies.",
   "runtimes": {
     "claude": {
       "file": ".claude/settings.json",
@@ -64,7 +64,7 @@
     },
     "pi": {
       "extensionsDir": ".pi/extensions",
-      "shape": "re-export files"
+      "shape": "rendered entry files"
     }
   },
   "hooks": [

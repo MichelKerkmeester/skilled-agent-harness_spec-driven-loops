@@ -10,7 +10,7 @@ trigger_phrases:
   - "voice pass workflow"
 importance_tier: normal
 contextType: general
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # create-with-human-voice
@@ -71,16 +71,46 @@ Scoring starts at 100. One occurrence costs one penalty and the first match wins
 
 An `apply` run edits only in-scope spans, fixes hard blockers before soft deductions and leaves every exempt span untouched. It then re-runs the scanner on the new text and reports both numbers.
 
-```mermaid
-flowchart TD
-  Request["Draft or target"] --> Scope["Scope gate"]
-  Scope --> Scan["Mechanical scan"]
-  Scan --> Judge["Judgment pass"]
-  Judge --> Op{"apply or score"}
-  Op -->|score| Report["Report only"]
-  Op -->|apply| Edit["Edit in-scope spans"]
-  Edit --> Rescan["Re-scan"]
-  Rescan --> Report
+```text
+┌──────────────────────┐
+│ Draft or target      │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Scope gate           │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Mechanical scan      │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Judgment pass        │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ apply or score       │
+└────┬────────────┬────┘
+     │  score     │  apply
+     │            │
+     │            ▼
+     │  ┌──────────────────────┐
+     │  │ Edit in-scope spans  │
+     │  └─────────┬────────────┘
+     │             │
+     │             ▼
+     │  ┌──────────────────────┐
+     │  │ Re-scan              │
+     │  └─────────┬────────────┘
+     │             │
+     ▼             ▼
+┌────┬────────────┬────┐
+│ Report only          │
+└──────────────────────┘
 ```
 
 ### A Finding Is a Candidate

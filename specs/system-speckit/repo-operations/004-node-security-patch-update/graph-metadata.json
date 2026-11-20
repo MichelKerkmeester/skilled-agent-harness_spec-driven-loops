@@ -16,6 +16,7 @@
       "node security patch update plan",
       "node security patch update tasks",
       "node security patch update acceptance criteria",
+      "004-node-security-patch-update operator decisions",
       "node security patch update implementation summary"
     ],
     "key_topics": [
@@ -30,7 +31,7 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation"
+      "004-node-security-patch-update"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/mcp-code-mode/mcp-server/.nvmrc",
       ".skilled/skills/mcp-code-mode/mcp-server/package.json",
@@ -78,6 +80,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -193,17 +201,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The October 23, 2026 security notice asked everyone to use patched Node.js releases and remove older versions kept by version managers",
     "created_at": "2026-11-10T10:33:34Z",
-    "last_save_at": "2026-11-10T11:45:54.518Z",
+    "last_save_at": "2026-11-19T17:48:54.544Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +213,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57269fa9b0460049dbab31b75bc17cd988a71648feb2a9ef5a1f7bd7381592ff",
+    "source_fingerprint": "sha256:c6f60fd93b99b2419fa9e80346811e1794eeb18b0f2db333ee71cd135b818673",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7250a3b83dd913c6d031781387d4901eebd8712a1700281090586cdc4b89ec21",
       "plan.md": "cc148865b6575d28057ac586040cff6181c31a38eb288ac1748c33638e0dffc8",
       "tasks.md": "515b572f1a87d28563dfa607c4ca56f7c921c2a174f43ac2bad48557be83a7ce",
+      "decision-record.md": "9e65618b70d00e7aba3dc4d3c63c8c2dc88315391fede37a4c4999bab9c96476",
       "implementation-summary.md": "c01fee91091486dd9e261a35bd7d717f1229642d181623210ebb22597b25eb32"
     },
     "last_active_at": null

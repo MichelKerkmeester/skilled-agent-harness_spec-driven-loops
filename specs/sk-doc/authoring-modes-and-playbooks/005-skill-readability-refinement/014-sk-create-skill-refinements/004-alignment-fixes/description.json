@@ -14,7 +14,7 @@
     "open",
     "overview"
   ],
-  "lastUpdated": "2026-11-13T10:04:51.555Z",
+  "lastUpdated": "2026-11-19T17:48:11.937Z",
   "specId": "004",
   "folderSlug": "alignment-fixes",
   "parentChain": [
@@ -23,9 +23,11 @@
     "005-skill-readability-refinement",
     "014-sk-create-skill-refinements"
   ],
-  "memorySequence": 2,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "05-11-26_20-19__fixed-every-upheld-local-skilled-alignment.md",
-    "05-11-26_20-19__fixed-every-upheld-local-skilled-alignment.md"
+    "05-11-26_20-19__fixed-every-upheld-local-skilled-alignment.md",
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-48__manual-context-save.md"
   ]
 }

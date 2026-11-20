@@ -116,7 +116,7 @@ function setBunRuntime(t) {
 
 async function loadPlugin(ctx) {
   const moduleUrl = `${pathToFileURL(PLUGIN_PATH).href}?test=${Date.now()}-${Math.random()}`;
-  return (await import(moduleUrl)).default.server(ctx);
+  return (await import(moduleUrl)).default.factory(ctx);
 }
 
 function transform(hooks, sessionID, model = { limit: { context: 200000 } }) {
@@ -378,10 +378,13 @@ test('OpenCode nudge includes the save step when SYSTEM_SPEC_FOLDER is unset', a
   );
   assert.ok(
     active[0].includes(
-      'node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/'
-        + "generate-context.js --stdin --full-auto '<spec-folder>'",
+      'skills/system-spec-kit/runtime/cli/dist/continuity/'
+        + "generate-context.js' --stdin --full-auto '<spec-folder>'",
     ),
+    active[0],
   );
+  // The writer is named by its absolute path, so the save step runs from any subdirectory.
+  assert.match(active[0], /`node '\/[^']*\/generate-context\.js' --stdin/);
   assert.equal(active[0].includes('/speckit:save'), false);
 });
 

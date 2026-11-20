@@ -1,0 +1,7 @@
+.skilled/skills/sk-doc/changelog/v1.6.0.0.md
+.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.2.0.0.md
+.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.0.0.md
+.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.15.0.md
+.skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.3.0.md
+.skilled/skills/system-deep-loop/deep-review/changelog/v1.3.0.0.md
+.skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md

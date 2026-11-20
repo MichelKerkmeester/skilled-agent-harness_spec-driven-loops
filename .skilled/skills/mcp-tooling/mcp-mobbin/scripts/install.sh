@@ -70,12 +70,12 @@ log "-- Phase 3: first-use authentication (operator-only pointer) --"
 info "Mobbin MCP auth is a browser OAuth round-trip on first use — operator-only, never automated here"
 info "There is NO API key or auth env var for Mobbin MCP; the manual env stays empty and no credential is ever added"
 info "Requires a paid plan (Pro, Team, or Enterprise); the Free plan has no MCP access"
-info "To authenticate: open a FRESH Code Mode session (manuals load at startup), trigger any first mobbin.* call, and complete the browser authorization; auth state persists under ~/.mcp-auth"
+info "To authenticate: let the ask step call register_manual with the mobbin entry (the manual ships disabled), then complete the browser authorization. Auth state persists under ~/.mcp-auth"
 info "Then confirm the callables inside Code Mode: tool_info({ tool_name: \"mobbin.mobbin_search_screens\" }) — confirmed 2026-07-16 (plus search_flows, search_sections; see references/discovery-fixture-2026-07-16.json); re-confirm per session"
 
 log ""
 if [ "$FAILURES" -eq 0 ]; then
-  ok "Posture verified: runtime ready, manual registered. Remaining steps are operator-only (reconnect + OAuth)"
+  ok "Posture verified: runtime ready, manual registered. Remaining steps are operator-only (Ready in the ask step + OAuth approval)"
   exit 0
 else
   err "Posture check failed ($FAILURES issue(s) above). Nothing was changed; see INSTALL-GUIDE.md"

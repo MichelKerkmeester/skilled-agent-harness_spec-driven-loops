@@ -7,7 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
-import path from 'node:path';
+import path, { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 import {
@@ -20,6 +20,7 @@ import {
   getDb as getSkillGraphDb,
   indexSkillMetadata,
   initDb as initSkillGraphDb,
+  refreshEmbeddingsInBackground,
   resolveSkillGraphDbDir,
 } from './lib/skill-graph/skill-graph-db.js';
 import { ensureActiveEmbedder } from './lib/embedders/schema.js';
@@ -27,6 +28,11 @@ import { findAdvisorWorkspaceRoot } from './lib/utils/workspace-root.js';
 import { computeAdvisorSourceSignature } from './lib/freshness.js';
 import { publishSkillGraphGeneration } from './lib/freshness/generation.js';
 import { startSkillGraphDaemon, type SkillGraphDaemon } from './lib/daemon/lifecycle.js';
+import {
+  HEARTBEAT_FILE_NAME,
+  startHeartbeat,
+  startParentWatch,
+} from './lib/daemon/liveness.js';
 import type { SkillGraphFsWatcher } from './lib/daemon/watcher.js';
 import { readAdvisorStatus } from './handlers/advisor-status.js';
 import { runWithCallerContext, type CallerContext } from './lib/caller-context.js';
@@ -143,11 +149,11 @@ function logSkillGraphIndexResult(trigger: string, result: ReturnType<typeof ind
 // 5. DAEMON LIFECYCLE
 // ───────────────────────────────────────────────────────────────────
 
-async function startupSkillGraphScan(): Promise<void> {
+async function startupSkillGraphScan(): Promise<string | null> {
   const skillGraphSourceDir = resolveSkillGraphSourceDir();
   if (!skillGraphSourceDir) {
     console.warn('[system-skill-advisor-launcher] Skill graph source directory not found; skipping startup scan');
-    return;
+    return null;
   }
 
   try {
@@ -179,11 +185,15 @@ async function startupSkillGraphScan(): Promise<void> {
     const message = error instanceof Error ? error.message : String(error);
     console.warn('[system-skill-advisor-launcher] Skill graph startup scan failed:', message);
   }
+
+  return skillGraphSourceDir;
 }
 
 let skillGraphDaemon: SkillGraphDaemon | null = null;
 let ipcBridge: IpcSocketServerHandle | null = null;
 let launcherIdleMonitor: LauncherIdleMonitor | null = null;
+let parentWatchHandle: ReturnType<typeof startParentWatch> | null = null;
+let heartbeatHandle: ReturnType<typeof startHeartbeat> | null = null;
 let shuttingDown = false;
 
 async function shutdownAdvisor(reason: string): Promise<void> {
@@ -193,6 +203,14 @@ async function shutdownAdvisor(reason: string): Promise<void> {
   if (launcherIdleMonitor) {
     launcherIdleMonitor.stop();
     launcherIdleMonitor = null;
+  }
+  if (parentWatchHandle) {
+    parentWatchHandle.stop();
+    parentWatchHandle = null;
+  }
+  if (heartbeatHandle) {
+    heartbeatHandle.stop();
+    heartbeatHandle = null;
   }
   if (ipcBridge) {
     await ipcBridge.close().catch((error: unknown) => {
@@ -369,13 +387,12 @@ async function handleAdvisorFrame(frame: unknown): Promise<Record<string, unknow
 export async function main(): Promise<void> {
   console.error(`[system-skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
   initSkillGraphDb(resolveSkillGraphDbDir());
+  heartbeatHandle = startHeartbeat({
+    filePath: join(resolveSkillGraphDbDir(), HEARTBEAT_FILE_NAME),
+  });
 
-  // Resolve the active embedder via the shared cascade if the
-  // persisted pointer is the `'auto'` sentinel or references a manifest the
-  // shared registry no longer knows about (legacy `embeddinggemma-300m`
-  // pointer from a legacy install). The first scan or watcher tick
-  // after this call routes through `refreshSkillEmbeddingsViaAdapter`
-  // because `hasActiveEmbedderPointer` now returns true.
+  // An unset or unknown pointer resolves to the one registered manifest;
+  // skill vectors are written only by a trusted skill_graph_scan.
   try {
     const resolved = await ensureActiveEmbedder(getSkillGraphDb(), { contentType: 'text' });
     console.error(
@@ -388,7 +405,7 @@ export async function main(): Promise<void> {
     );
   }
 
-  await startupSkillGraphScan();
+  const startupSkillsRoot = await startupSkillGraphScan();
   const watchFactory = await loadSkillGraphWatchFactory();
   skillGraphDaemon = await startSkillGraphDaemon({
     workspaceRoot: resolveWorkspaceRoot(),
@@ -412,6 +429,37 @@ export async function main(): Promise<void> {
     log: (message: string) => console.error(message),
     onActivity: () => launcherIdleMonitor?.markActivity(),
   });
+  parentWatchHandle = startParentWatch({
+    onOrphaned: async () => {
+      await shutdownAdvisor('launcher exited');
+      process.exit(0);
+    },
+  });
+  if (skillGraphDaemon.active) {
+    void refreshEmbeddingsInBackground(startupSkillsRoot ?? undefined)
+      .then((result) => {
+        if (result !== null) {
+          const warningDetails = result.warnings.length > 0
+            ? ` warnings=${result.warnings.join('; ')}`
+            : '';
+          console.error(
+            '[system-skill-advisor-launcher] Startup skill embeddings: embedded=%d '
+              + 'skipped=%d failed=%d%s',
+            result.embedded,
+            result.skipped,
+            result.failed,
+            warningDetails,
+          );
+        }
+      })
+      .catch((error: unknown) => {
+        const message = error instanceof Error ? error.message : String(error);
+        console.error(
+          '[system-skill-advisor-launcher] Startup skill embedding refresh failed:',
+          message,
+        );
+      });
+  }
 }
 
 const isMain = process.argv[1] && decodeURIComponent(import.meta.url).endsWith(process.argv[1].replace(/\\/g, '/'));

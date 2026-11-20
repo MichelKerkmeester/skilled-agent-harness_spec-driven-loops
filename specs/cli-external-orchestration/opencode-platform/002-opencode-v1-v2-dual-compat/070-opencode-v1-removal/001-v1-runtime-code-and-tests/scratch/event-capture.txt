@@ -1,0 +1,58 @@
+# Event capture for OpenCode 2.3.2 (static, no live session was launched)
+# Binary: ~/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe (package.json "version": "2.3.2", read-only)
+# Method: count the bus definition literal type:"<name>" and every quoted "<name>" literal in the binary (LC_ALL=C grep -a -F).
+# The v2 bridge forwards every bus type it receives verbatim (.opencode/plugins/lib/v2-bridge.js:464), so a name with no literal in the binary cannot reach a plugin.
+# Positive controls (v2 is known to emit them): session.execution.succeeded type-def=1, session.compaction.ended type-def=1, session.created type-def=2, session.deleted type-def=2, session.idle type-def=1. The binary is text-searchable.
+# Verdict key: seen = delivered in a capture; not-seen = no definition and no event literal in the shipped binary; not-captured = defined in the binary but delivery to a plugin was not captured, so its branch is kept.
+#
+# name | verdict | evidence
+session.resumed | not seen | opencode.exe: 0 literals of any form (type-def=0, quoted=0, bare=0); .opencode/plugins/tests/plugin-inventory.json@HEAD:18 listed it unverified
+session.compact | not seen | opencode.exe: type-def=0; its 9 quoted literals are a keybind, a command id and the /api/session/:sessionID/compact route id, none an event; .opencode/plugins/tests/plugin-inventory.json@HEAD:20
+session.updated | not captured, kept | opencode.exe@148999973: type:"session.updated" defined inside the SessionV1 namespace; delivery not captured; .opencode/plugins/tests/plugin-inventory.json@HEAD:19
+session.status | not captured, kept | opencode.exe@149002597: type:"session.status" (SessionStatusUpdated) defined; delivery needs a model turn, not captured; .opencode/plugins/tests/plugin-inventory.json@HEAD:17
+permission.asked | not captured, kept | opencode.exe@148557321: type:"permission.asked" defined (type-def=2); delivery needs a model turn, not captured; .opencode/plugins/tests/plugin-inventory.json@HEAD:21
+permission.replied | not captured, kept | opencode.exe@148557370: type:"permission.replied" defined (type-def=2); delivery not captured; .opencode/plugins/tests/plugin-inventory.json@HEAD:22
+question.asked | not seen | opencode.exe: 0 literals of any form, and no "question. prefix literal exists; .opencode/plugins/tests/plugin-inventory.json@HEAD:23
+question.replied | not seen | opencode.exe: 0 literals of any form; .opencode/plugins/tests/plugin-inventory.json@HEAD:24
+question.rejected | not seen | opencode.exe: 0 literals of any form; .opencode/plugins/tests/plugin-inventory.json@HEAD:25
+server.instance.disposed | not seen | opencode.exe: 0 literals of any form; .opencode/plugins/tests/plugin-inventory.json@HEAD:13 records it never arrived on 2.0.32 after location.shutdown
+app.disposed | not seen | opencode.exe: 0 literals of any form; the only disposed bus types defined are type:"global.disposed" (1) and type:"disposed" (2); .opencode/plugins/opencode-goal.js@HEAD:3689 matched it through endsWith('.disposed')
+global.disposed | defined on 2.3.2, kept | opencode.exe@149002330: type:"global.disposed" defined beside server.connected (the global connection stream); .opencode/plugins/tests/plugin-inventory.json@HEAD:14 records it did not reach a plugin on 2.0.32; delivery on 2.3.2 not captured; its branches stay, matched on this exact name
+
+== live capture on OpenCode 2.3.2, 2026-11-19
+Method: a temporary logger plugin (.opencode/plugins/zz-event-capture-probe.js, built with the repo dualPlugin bridge, removed right after the run) recorded every event type its hooks received during one standalone session run through run-plugin-scenario.sh ("Reply with the single word OK. Do not run any tools."), exit=0, requests=2.
+Event types received (count):
+   2 event session.usage.updated
+   2 event message.updated
+   2 event message.part.updated
+   1 factory
+   1 event websearch.updated
+   1 event vcs.branch.updated
+   1 event skill.updated
+   1 event session.text.started
+   1 event session.text.ended
+   1 event session.text.delta
+   1 event session.step.streamed
+   1 event session.step.started
+   1 event session.step.first-token
+   1 event session.step.ended
+   1 event session.renamed
+   1 event session.instructions.updated
+   1 event session.inbox.enqueued
+   1 event session.inbox.delivered
+   1 event session.idle
+   1 event session.execution.succeeded
+   1 event session.execution.started
+   1 event session.created
+   1 event reference.updated
+   1 event provider.updated
+   1 event plugin.updated
+   1 event model.updated
+   1 event location.shutdown
+   1 event integration.updated
+   1 event command.updated
+   1 event artifact.updated
+   1 event agent.updated
+   1 dispose
+T004 events: session.resumed NOT SEEN, session.compact NOT SEEN, session.updated NOT SEEN, session.status NOT SEEN, permission.* NOT SEEN, question.* NOT SEEN. This run triggered no resume, compaction, permission or question, so not-seen means not exercised, not proven absent.
+Disposal: global.disposed NOT SEEN and server.instance.disposed NOT SEEN; shutdown arrived as location.shutdown plus the dispose hook. The three kept global.disposed branches (system-dist-freshness-guard.js, system-skill-advisor.js, opencode-goal.js) clear in-memory state only, which a standalone process drops on exit, so no state leaks.

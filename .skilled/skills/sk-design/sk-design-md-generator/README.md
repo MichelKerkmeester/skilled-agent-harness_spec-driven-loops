@@ -7,7 +7,7 @@ trigger_phrases:
   - "capture website css"
   - "design tokens from url"
   - "validate design.md"
-version: 1.1.8.0
+version: 1.1.10.0
 ---
 
 # sk-design-md-generator
@@ -37,7 +37,7 @@ The packet captures a surface that exists. It does not invent a direction for a 
 
 ### The Cardinal Rule
 
-Every value in `DESIGN.md` traces to a token in `tokens.json`. The value-bearing sections are rendered from the tokens and pasted unchanged, so the pipeline never asks a writer to type a number. Two guards hold the rest. Hex codes are six-digit lowercase. A claim the tokens contradict is never asserted. When the tokens record no shadows, the reference records that absence instead of describing depth it never measured.
+Every value in `DESIGN.md` traces to a token in `tokens.json`. The value-bearing sections are rendered from the tokens and pasted unchanged, so the pipeline never asks a writer to type a number. A pair of guards holds the rest. Hex codes are six-digit lowercase. A claim the tokens contradict is never asserted. When the tokens record no shadows, the reference records that absence instead of describing depth it never measured.
 
 ### The Design-System Knowledge Layer
 
@@ -94,15 +94,45 @@ The report opens with `=== DESIGN.md Validation ===`. It lists the checks that p
 
 The packet runs one sequence from a live URL to a checked file. A crawl reads the live page at five viewport widths and keeps the computed styles it can see, covering colors, type, shadows, radii, spacing and CSS custom properties. The cluster step groups values that are near-identical and stamps each token with a stability class. A deterministic renderer builds the value tables from the tokens, and the writer adds prose around them. The validator reads the finished file against `tokens.json` before anyone calls it done.
 
-```mermaid
-flowchart TD
-  Url["Live URL"] --> Crawl["extract.ts crawls five viewports"]
-  Crawl --> Cluster["cluster.ts groups values and stamps L1 to L4"]
-  Cluster --> Tokens["tokens.json"]
-  Tokens --> Render["formatters-v3.ts renders the value sections"]
-  Render --> Prompt["build-write-prompt.ts prints the prompt and FACTS block"]
-  Prompt --> Design["DESIGN.md"]
-  Design --> Check["validate.ts checks hex, sections and Quick Start"]
+```text
+┌──────────────────────────────────────────────────────────┐
+│ Live URL                                                 │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ extract.ts crawls five viewports                         │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ cluster.ts groups values and stamps L1 to L4             │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ tokens.json                                              │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ formatters-v3.ts renders the value sections              │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ build-write-prompt.ts prints the prompt and FACTS block  │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ DESIGN.md                                                │
+└─────────────────────────────┬────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────┐
+│ validate.ts checks hex, sections and Quick Start         │
+└──────────────────────────────────────────────────────────┘
 ```
 
 The report phase is optional. `proof.ts` compares rendered output against the live page. `report-gen.ts` writes `report.html`, and `preview-gen.ts` writes `preview.html`. Each one reads an existing token file and refuses to overwrite a previous artifact unless you pass `--force`.
@@ -192,7 +222,7 @@ You write the prose. The value sections arrive pre-rendered from `tokens.json`, 
 
 ### What if I only want to validate an existing `DESIGN.md`?
 
-Run `validate.ts` with the pair and skip the crawl. It reads the two files and checks hex accuracy, section presence, Quick Start values and prose provenance. No extraction is needed.
+Run `validate.ts` with the pair and skip the crawl. It reads both files and checks hex accuracy, section presence, Quick Start values and prose provenance. No extraction is needed.
 
 ---
 
@@ -225,3 +255,8 @@ The backend manifest also defines `npm run build` beside these checks, and its t
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The operator scenarios that a green validator cannot replace |
 | [`../SKILL.md`](../SKILL.md) | The `sk-design` hub that routes here |
 | [Skills Library](../../README.txt) | The skill catalog and routing front door |
+
+<!-- readme-check
+allow-ref .opencode/specs/ | an alternative output root that output-policy.ts accepts, absent at this repository's root
+allow-ref extraction-report.json | a file the extraction writes, so it exists only after a run
+-->

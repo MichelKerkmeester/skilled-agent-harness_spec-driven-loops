@@ -12,17 +12,17 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "19394855c70d7af8a05e5a371a2c7c0f5b90a2b8392c523992c25213da7095f1",
+      "sha256": "815429515b58ad59c39a8a962f6aedfb5f2aad4a9825009704865981354fabb7",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "6d3a97d63de823afcb09c3e15b3a4fd13e296eb0663e9b04351291d3b2ab4259",
+      "sha256": "7dc7f10404b5420fef031b2dad3070068cc6700492ad53097dd4eb993778acf4",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research.yaml",
-      "sha256": "b4870c9e12a321d4fd1947b4000713dbc99f34ee9f82cd4da641e1c4cd4db189",
+      "sha256": "e3ff2e978d5c86abe21bc5b598922f30168d69f14188733a1bcfbe44a8128610",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "6f84ed8ffda7e587594e2edb4223a6700b0bf60aa5077bdc4c8dde302bcb98ba",
+      "sha256": "724f4232b5a774ac6a11261b148a54ec1c6cadef897f7eea417b8371275f3a34",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "5c490539d92e27960222d49e32c6f37f8fc1e184437b6fd5fc114cdb2a260f5e"
+  "compiledBodyDigest": "457e67576170e00dc2a7d9e5938d0bcd297866dcaa017ff7fb20d87f59dd3a70"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -97,7 +97,7 @@ This generated contract collapses the maintained command authority chain into on
 
 > Read this first. It is an imperative to you, the executor — not background information.
 
-You were invoked via `opencode run --command deep/research` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
+You were invoked as `/deep:research` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
 
 - DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).
@@ -237,7 +237,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 
 **Lifecycle policy:** `lineage_mode=auto` preserves the existing classifier behavior, `lineage_mode=resume` continues a valid packet, and `lineage_mode=restart` archives the resolved `{artifact_dir}` before any config write, phase init, or fan-out spawn. In `:auto`, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization for this archive move, so do not ask for a second confirmation. Preserve rollback by moving the timestamped archive back to `research/` if needed. A restart request must never silently downgrade to resume; if the archive step cannot run, halt with `STATUS=FAIL`.
 
-**Fan-out default policy:** 0–1 `--executor` flags and no `--executors`, or an `--executors` matrix that expands to exactly one lineage → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, an `--executors` matrix that expands to two or more lineages, or any `--count > 1` → `config.fanout`. Native fan-out (count N for `native` executor) runs N sequential `@deep-research` agent dispatches with isolated dirs. CLI fan-out runs N headless subprocesses concurrently in the capped pool.
+**Fan-out default policy:** 0–1 `--executor` flags and no `--executors`, or an `--executors` matrix that expands to exactly one lineage → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, an `--executors` matrix that expands to two or more lineages, or any `--count > 1` → `config.fanout`. Every fan-out lineage needs a `cli-*` executor: CLI fan-out runs N headless subprocesses concurrently in the capped pool. A native fan-out lineage is refused before any lineage spawns, because OpenCode 2 `run` cannot start the registered `deep/research` command that adapter needed; `native` runs only as the single executor, and the default `native` executor with `--count > 1` is refused the same way.
 ~~~
 <!-- END renderBlocks.auto -->
 
@@ -342,7 +342,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-research agent with Opus.
-     B) cli-opencode — OpenCode 2 (expected): `opencode run --standalone -m X[#Y] --format json [--auto] "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. OpenCode 1 (fallback): `opencode run --model X --format json --dir {repo_root} [--dangerously-skip-permissions] [--variant Y] "PROMPT"`. The bypass flag is added only under `danger-full-access`, the one explicit sandbox mode cli-opencode accepts. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
+     B) cli-opencode — `opencode run --standalone -m X[#Y] --format json [--auto] "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is added only under `danger-full-access`, the one explicit sandbox mode cli-opencode accepts. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
      C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`; the default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
      D) cli-codex — requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.

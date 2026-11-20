@@ -31,6 +31,7 @@ const path = require('node:path');
 const test = require('node:test');
 
 const { buildReport, main, renderText } = require('../agents-md-check.cjs');
+const { sourceStatus } = require('../agents-md-manifest.cjs');
 const { segment } = require('../lib/agents-md-sections.cjs');
 const {
   FIXTURES,
@@ -53,6 +54,14 @@ const POINTER_SYNC = path.join(
 );
 
 const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
+
+// The suite ships into consumer repositories, whose root AGENTS.md carries their own block.
+// The cases that assert this repository's own install state are gated on the origin remote
+// naming the manifest's source repository, a signal the install-state classifier never reads.
+const source = sourceStatus({ root: REPO_ROOT, manifest });
+const NOT_SOURCE = source.isSource
+  ? false
+  : `asserts the Skilled source repository's own state; this host vendors Skilled (${source.reason})`;
 
 // The rows every report carries, in the order the engine prints them.
 const ROWS = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10', 'A11', 'A12'];
@@ -259,7 +268,7 @@ for (const name of ['pure', 'adopted', 'stale', 'forked', 'foreign', 'claude-onl
   });
 }
 
-test('A1 install state: this repository is the source template and classifies as pure', () => {
+test('A1 install state: this repository is the source template and classifies as pure', { skip: NOT_SOURCE }, () => {
   const report = buildReport({ root: REPO_ROOT });
   assert.equal(report.state, 'pure', 'the shipped template carries every section current and an empty block');
 });
@@ -722,7 +731,7 @@ test('--json carries the same rows and the same state as the text form', (t) => 
   }
 });
 
-test('this repository reports STATUS=OK and a pure install state', () => {
+test('this repository reports STATUS=OK and a pure install state', { skip: NOT_SOURCE }, () => {
   const run = runCheck([]);
   assert.equal(run.code, 0);
   assert.match(run.out, /^STATUS=OK/m);
@@ -771,6 +780,12 @@ test('A12 reports INFO outside the source repository and runs inside it', (t) =>
   assert.equal(row.state, 'INFO');
   assert.match(row.detail, /source repository/);
 
+  // The outside half runs on a fixture everywhere; the inside half is a claim about this
+  // repository, so a vendored host stops after the half it can prove.
+  if (NOT_SOURCE) {
+    t.skip(NOT_SOURCE);
+    return;
+  }
   const inside = buildReport({ root: REPO_ROOT });
   assert.equal(inside.rows.find((entry) => entry.id === 'A12').state, 'PASS');
 });

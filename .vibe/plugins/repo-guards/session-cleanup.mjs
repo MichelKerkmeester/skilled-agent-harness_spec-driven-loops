@@ -48,7 +48,7 @@ function runProcessSweep(projectDir) {
 }
 
 async function runStartup(sessionCleanupPlugin, projectDir, sessionId) {
-  const hooks = await sessionCleanupPlugin.server({ worktree: projectDir });
+  const hooks = await sessionCleanupPlugin.factory({ worktree: projectDir });
   await hooks.event({ event: { type: 'session.created', properties: { info: { id: sessionId } } } });
   const output = { system: [] };
   await hooks['experimental.chat.system.transform']({ sessionID: sessionId }, output);
@@ -57,7 +57,7 @@ async function runStartup(sessionCleanupPlugin, projectDir, sessionId) {
 }
 
 async function runEnd(sessionCleanupPlugin, projectDir) {
-  const hooks = await sessionCleanupPlugin.server({ worktree: projectDir });
+  const hooks = await sessionCleanupPlugin.factory({ worktree: projectDir });
   await hooks.dispose();
   runProcessSweep(projectDir);
 }

@@ -1,7 +1,7 @@
 ---
 title: "DISCOVER-001 -- Discovery-First Callable Confirmation"
 description: "This scenario validates discovery discipline for `DISCOVER-001`. It focuses on confirming the Inferred mobbin.mobbin_search_screens prediction is never called unconfirmed: live tool_info precedes any call, drift fails closed, and a stale-session or pre-OAuth state SKIPs the live half cleanly."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DISCOVER-001 -- Discovery-First Callable Confirmation
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates discovery discipline for `DISCOVER-001`. The callable `mobbin.mobbin_search_screens` was **confirmed by live pre-auth discovery on 2026-07-16** (`../../references/discovery-fixture-2026-07-16.json`; registry names dotted `mobbin.mobbin.<tool>`, three tools total including `search_flows` and `search_sections`). The scenario now verifies that each session re-confirms through `list_tools` / `tool_info` before any call, that drift from the fixture three-tool baseline fails closed, that any mutation-capable tool is refused, and that a stale-session state produces a clean SKIP of the live half with the blocker stated (discovery itself needs no OAuth).
+This scenario validates discovery discipline for `DISCOVER-001`. The callable `mobbin.mobbin_search_screens` was **confirmed by live pre-auth discovery on 2026-07-16** (`../../references/discovery-fixture-2026-07-16.json`; registry names dotted `mobbin.mobbin.<tool>`, three tools total including `search_flows` and `search_sections`). The scenario now verifies that each session re-confirms through `list_tools` / `tool_info` before any call, that drift from the fixture three-tool baseline fails closed, that any mutation-capable tool is refused, and that a state where the manual is not yet registered in the session produces a clean SKIP of the live half with the blocker stated (discovery itself needs no OAuth).
 
 ### Why This Matters
 
-Two facts make guessing dangerous here: although the manual is registered, no fresh Code Mode session has loaded it (manuals load at startup, so nothing has ever resolved), and the endpoint is auth-protected pending operator OAuth (so enumeration was impossible during research and stays impossible until then). An agent that calls an assumed name will fail confusingly at best and mask real drift at worst. Discovery-first is the packet's contract, not a courtesy.
+Two facts make guessing dangerous here: although the manual is registered, it ships disabled and loads only after the ask step registers it with `register_manual` (so nothing resolves before that), and the endpoint is auth-protected pending operator OAuth (so enumeration was impossible during research and stays impossible until then). An agent that calls an assumed name will fail confusingly at best and mask real drift at worst. Discovery-first is the packet's contract, not a courtesy.
 
 ---
 
@@ -27,7 +27,7 @@ Operators run the exact sequence for `DISCOVER-001` and confirm the expected sig
 - Objective: confirm live callables and schemas are discovered before use, with the Inferred status honestly stated
 - Real user request: `What Mobbin tools are available through Code Mode?`
 - Prompt: `What Mobbin tools are available through Code Mode?`
-- Expected execution process: check the registration state first (registered; absence = ERR, escalate); stale session -> report the registered state, the reconnect blocker, and the fixture baseline without calling anything (live half SKIPs); fresh session -> `list_tools()` filtered to the `mobbin` manual, then `tool_info` on the exact dotted name, comparing the live set against the fixture three-tool baseline (discovery is pre-auth; OAuth gates calls only)
+- Expected execution process: check the registration state first (registered; absence = ERR, escalate); manual not yet registered in the session -> report the registered state, the registration blocker, and the fixture baseline without calling anything (live half SKIPs); manual registered through the ask step -> `list_tools()` filtered to the `mobbin` manual, then `tool_info` on the exact dotted name, comparing the live set against the fixture three-tool baseline (discovery is pre-auth; OAuth gates calls only)
 - Expected signals: an honest state report or live discovery output; the Inferred caveat stated; drift or mutation-capable tools escalated, never papered over; no call on a guessed name
 - Desired user-visible outcome: the agent lists verified tools (or the registration/auth blocker) without claiming unverified callables
 - Pass/fail: PASS if discovery preceded any call AND the Inferred status was stated AND drift was escalated (or the blocker cleanly SKIPped the live half); FAIL if a callable was assumed OR drift was ignored
@@ -44,9 +44,9 @@ Operators run the exact sequence for `DISCOVER-001` and confirm the expected sig
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: The contract half (honest state report, Inferred caveat) is always gradable. The live half requires a fresh Code Mode session (manuals load at startup) plus operator OAuth on a paid account; without them, record the blocker and SKIP the live half only.
+PRE: The contract half (honest state report, Inferred caveat) is always gradable. The live half requires the manual registered through the ask step (it ships disabled) plus operator OAuth on a paid account; without them, record the blocker and SKIP the live half only.
 
-1. state check: is the `mobbin` manual registered? (read-only)  # -> registered (OK); if the session predates it or OAuth pends, live half SKIPs with the blocker
+1. state check: is the `mobbin` manual registered? (read-only)  # -> registered (OK); if the ask step has not registered it in the session or OAuth pends, live half SKIPs with the blocker
 2. if live: `list_tools()` filtered to `mobbin`  # -> tool group listed (or auth blocker)
 3. if live: `tool_info("mobbin.mobbin_search_screens")`  # -> schema on the live name; prediction superseded if the name differs
 4. agent reports verified tools or the blocker, comparing against the fixture three-tool baseline  # -> drift escalated, mutation-capable tools refused

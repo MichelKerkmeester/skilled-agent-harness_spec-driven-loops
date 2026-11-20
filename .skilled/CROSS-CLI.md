@@ -40,7 +40,7 @@ A real file in a runtime folder is not automatically authored. Many of them are 
 | `.codex/` | `hooks/` with one link per hook script, `repo-rules` and the playbook | `agents/` as TOML, `prompts/`, `hooks.json` | `config.toml` |
 | `.cursor/` | `agents/` linked into `.claude/agents/`, `commands/` with one link per command, `hooks/`, `repo-rules` and the playbook | `hooks.json` and the pointer blocks inside `rules/skill-routing.md` | The rest of that rule, the `goal-cursor` command, `mcp.json`, `cli.json` |
 | `.devin/` | `agents/<name>/AGENT.md` linked into `.claude/agents/`, `skills`, `hooks/`, `repo-rules` and the playbook | `hooks.v1.json` | `config.json`, `mcp_config.json` |
-| `.pi/` | `skills`, `repo-rules`, the playbook and the shared adapter in `extensions/lib/` | `agents/`, `prompts/` | The one-line entry files in `extensions/`, the two extension packages, the `goal-pi` prompt, `settings.json`, `models.json`, `mcp.json`, `statusline.sh` and the Pi config, type and package folders |
+| `.pi/` | `skills`, `repo-rules`, the playbook and the shared adapter in `extensions/lib/` | `agents/`, `prompts/` | The rendered entry files in `extensions/`, the two extension packages, the `goal-pi` prompt, `settings.json`, `models.json`, `mcp.json`, `statusline.sh` and the Pi config, type and package folders |
 | `.dsh/` | `skills/` with one link per skill and mode, the adapter links in the guard bundle and the playbook | `prompts/` as stubs, `agents/` as persona patches | `patches/`, the rest of `plugins/repo-guards/` |
 | `.vibe/` | `skills/` with one link per skill and mode, and the playbook | `prompts/` as stubs, `agents/` as profiles | `config.toml`, `hooks.toml`, `plugins/repo-guards/` |
 
@@ -64,9 +64,9 @@ The DeepSeek Harness and Mistral Vibe folders also serve runs dispatched from ou
 
 ## 3. WHY EACH ONE DIFFERS
 
-**OpenCode links almost everything,** because its format is the authored format. Nothing needs translating, so nothing is copied. The exception is `plugins/`. The plugins are OpenCode's own extension surface, so no other runtime loads them, and the folder's `package.json` supplies the plugin SDK they build against. `commands/` is a real folder of links, so OpenCode's own goal command can sit beside the shared ones.
+**OpenCode links almost everything,** because its format is the authored format. Nothing needs translating, so nothing is copied. The exception is `plugins/`. The plugins are OpenCode's own extension surface, so no other runtime loads them, and the folder's `package.json` pins `zod`, their one runtime dependency. `commands/` is a real folder of links, so OpenCode's own goal command can sit beside the shared ones.
 
-**One set of plugin files serves OpenCode 2 and OpenCode 1.** Each plugin exports one `{ id, setup, server }` object. OpenCode 2 runs `setup`, which wraps the same `server` that OpenCode 1 runs. Both versions register every `*.md` file under a `commands/` folder as a command, at any depth, so Markdown in `.skilled/commands/` that is not a command is named `.markdown`. In CI, the OpenCode Dual-Version Battery loads the plugins on OpenCode 2.3.0 and 1.19.4, and OpenCode Plugin Tests runs their unit tests.
+**One set of plugin files serves OpenCode 2.** Each plugin exports one `{ id, setup }` object, and the hook factory it wraps sits on a non-enumerable `factory` property. OpenCode 2 runs `setup`. OpenCode registers every `*.md` file under a `commands/` folder as a command, at any depth, so Markdown in `.skilled/commands/` that is not a command is named `.markdown`. In CI, the OpenCode v2 Battery loads the plugins on OpenCode 2.3.2, and OpenCode Plugin Tests runs their unit tests.
 
 **`.claude/agents/` is the one deliberate content fork.** Claude's agent frontmatter uses `tools:`, where the authored format uses `mode`, `temperature` and `permission:`. The bodies are otherwise the same document, so a blocking pre-commit check holds the pair in step instead of a link. This is the only place where the same prose is authored twice on purpose. `Explore.md` is a Claude-only agent with no counterpart in `.skilled/agents/`.
 
@@ -76,7 +76,7 @@ The DeepSeek Harness and Mistral Vibe folders also serve runs dispatched from ou
 
 **Codex, Pi, DeepSeek Harness and Mistral Vibe generate,** because none of them reads the authored format. Codex wants TOML agents and flat prompt stubs. Pi wants its own agent and prompt trees. DeepSeek Harness takes each agent as a patch passed at launch. Mistral Vibe wants TOML profiles. DeepSeek Harness finds skills only one level deep, so its generator links every skill and every mode on its own. The Mistral Vibe generator links each skill the same way, under its own name.
 
-**Four runtimes register hooks through a JSON file,** each with its own nesting and matcher rules. One hook registry renders all four files. Pi has no such file. It registers each hook through a one-line entry file that re-exports a shared bridge, and the same generator checks that every entry resolves.
+**Four runtimes register hooks through a JSON file,** each with its own nesting and matcher rules. One hook registry renders all four files. Pi has no such file. It registers each hook through an entry file that imports a shared bridge. The same generator renders every entry from one template and checks that it resolves.
 
 &nbsp;
 
@@ -87,7 +87,7 @@ Each generator rewrites its output when run plain, and takes `--check` to report
 | Generator | Builds | Checked by |
 |---|---|---|
 | `sync-runtime-mirrors.cjs` | Every link tree in the runtime folders, including the guard bundle's adapter links | pre-commit, CI |
-| `sync-hook-registrations.cjs` | The four hook registration files, and a check of the Pi entry files | pre-commit, CI |
+| `sync-hook-registrations.cjs` | The four hook registration files and the Pi entry files | pre-commit, CI |
 | `sync-gate1-pointers.cjs` | The lookup pointer blocks in the rule Cursor and Devin share | CI |
 | `sync-agents.cjs`, `sync-prompts.cjs` | `.codex/agents/`, `.codex/prompts/` | pre-commit, CI |
 | `sync-agents-pi.cjs`, `sync-prompts-pi.cjs` | `.pi/agents/`, `.pi/prompts/` | CI |
@@ -120,7 +120,7 @@ node .skilled/bin/check-agent-mirror-sync.cjs
 
 **An agent.** Edit `.skilled/agents/<name>.md`, then carry the same change into `.claude/agents/<name>.md`. The pre-commit check blocks the commit until the pair matches. Cursor and Devin follow their links from the Claude copy, and the generators carry the change to the other four.
 
-**A hook's registration.** Edit the hook registry beside `sync-hook-registrations.cjs`, then run that generator. Never edit the four registration files by hand. Pi's entry files are not rendered, so add or change a Pi entry by hand, and the generator's check confirms it resolves.
+**A hook's registration.** Edit the hook registry beside `sync-hook-registrations.cjs`, then run that generator. Never edit the four registration files by hand. To add a Pi entry, write a one-line re-export of its adapter and run the generator, which renders the entry from its template. Change the template in the generator, never one entry by hand.
 
 **A runtime's own configuration.** Edit it in that runtime's folder. Nothing else reads it.
 

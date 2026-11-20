@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: COMMAND AUTHORING WORKFLOW (CONFIRM MODE)
+# SKILLED CREATE: COMMAND AUTHORING WORKFLOW (CONFIRM MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow mirrors auto mode and adds user approval gates
@@ -7,7 +7,7 @@
 #       to create-command-auto.yaml except for checkpoint handling.
 # ─────────────────────────────────────────────────────────────────
 role: Expert Slash Command Author using sk-doc create-command packet
-purpose: Create production-ready OpenCode slash command 4-file sets with router/presentation separation
+purpose: Create production-ready Skilled slash command 4-file sets with router/presentation separation
 action: Guide command creation from invocation contract through validation with frontmatter, routing, YAML workflow, and presentation verification
 
 # ─────────────────────────────────────────────────────────────────
@@ -479,11 +479,18 @@ workflow:
     - Grep generated files for copied source workflow names
     - IF validation fails: Fix issues and re-run
     - Repeat until passing
+    - Regenerate command bridges after writing the command files with `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`
+    - Run `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check`; fail this step on a non-zero exit
+    - Tell the operator the advisor daemon picks up the new command on its next start and embeds it when Ollama is reachable
+    quality_gates:
+      command_bridges: "derive-command-bridges.cjs --check must exit 0"
+      enforcement: HARD_BLOCK
     outputs:
     - frontmatter_validation_result: pass_or_fail
     - yaml_validation_result: pass_or_fail
     - path_validation_result: pass_or_fail
     - leftover_source_check: pass_or_fail
+    - command_bridge_check: pass_or_fail
     validation: command_set_valid
     checkpoint:
       question: "Validation complete. [PASS/FAIL]. Proceed?"

@@ -39,7 +39,7 @@
       "waves"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,14 +49,18 @@
       "implementation-summary.md",
       ".skilled/hooks/shared/README.md",
       ".skilled/hooks/README.md",
-      ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
-      ".skilled/hooks/session-handover/history/README.md",
       ".skilled/hooks/session-handover/tests/fixtures/README.md",
-      ".skilled/hooks/shared/session-readers/README.md",
-      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
-      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs",
-      ".skilled/hooks/hook-flags.env.example"
+      "shared/tests/README.md",
+      ".skilled/hooks/session-handover/lib/README.md",
+      ".skilled/hooks/classifier-injection-screen/lib/README.md",
+      ".skilled/hooks/classifier-injection-screen/tests/README.md",
+      ".skilled/hooks/cli-dispatch/lib/README.md",
+      ".skilled/hooks/cli-dispatch/tests/README.md",
+      ".skilled/hooks/completion-evidence/tests/README.md",
+      ".skilled/hooks/decision-capture/bin/README.md",
+      ".skilled/hooks/decision-capture/lib/README.md",
+      ".skilled/hooks/decision-capture/tests/README.md",
+      ".skilled/hooks/git-message-gate/tests/README.md"
     ],
     "entities": [
       {
@@ -99,36 +103,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/shared/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "readme-code-template.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "baseline-readme-verdicts.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-index.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-        "source": "derived"
-      },
-      {
-        "name": "runtime-refusal.test.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "hook-flags.env.example",
-        "kind": "file",
-        "path": ".skilled/hooks/hook-flags.env.example",
         "source": "derived"
       },
       {
@@ -202,11 +176,41 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A code folder README orients a developer before they open the source",
     "created_at": "2026-11-16T15:20:18Z",
-    "last_save_at": "2026-11-16T19:27:10.631Z",
+    "last_save_at": "2026-11-17T21:51:24.467Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9a7044192fb5b6655c9a649d565bdde1d837f5ba0f1130c9bd00cfb2918a5f7",
+    "source_fingerprint": "sha256:c85e541e00fbba55226f6200e3b2599c286e0ec9d9c36a1cfc705cd5dd85ce8e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "44edbb5097f3fd1f84f41c1cff094c5da5f35b962feda32b0c07e7dea6a93fdc",
+      "spec.md": "9b1a29b60d0dbff572fa04404f42d0ff8f89fb77f194c40d0d270c33bb5b6452",
       "plan.md": "f51e98076c32ec5246b738ff3a9b6ab54830205939f50399855126395fd1b830",
-      "tasks.md": "8015018da83ca99198052819bd6db792a559cad6649f10cb619ab2b08bb5daaf",
-      "implementation-summary.md": "56c43227ea5d368838e79d9109e5970c289479b54b14f36b972865500a02b7c5"
+      "tasks.md": "edd666be55c48b63239b2caee71e4b0a7518138a232106985477ec6cf88858ff",
+      "implementation-summary.md": "9da8e74299f8c30f0706099326aa9146b2cf460243e79cc45df4c3ecc0dcb96d"
     },
     "last_active_at": null
   }

@@ -1,24 +1,20 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: ensureActiveEmbedder tests
 // ───────────────────────────────────────────────────────────────
-// Covers the cascade integration helper that flips the persisted active
-// pointer from the `'auto'` sentinel to a concrete embedder via the shared
-// auto-select cascade.
-//
-// Scenarios:
-//   1. Pointer is 'auto' → cascade fires → winner persisted.
-//   2. Pointer is set (nomic) → cascade skipped → existing pointer returned.
-//   3. Pointer is orphan (embeddinggemma-300m, post-purge) → cascade fires
-//      → winner persisted (migration safety net).
-//   4. `contentType` parameter is plumbed through to the cascade.
-//   5. Pointer is valid but has no persisted provider row (pre-existing or
-//      set via the bare 3-arg call) → provider is backfilled without
-//      re-running the cascade.
+// Covers manifest-based pointer resolution and provider backfill without
+// probing a backend. A trusted skill_graph_scan owns writing skill vectors.
 // ───────────────────────────────────────────────────────────────
 
 import Database from 'better-sqlite3';
-import { describe, expect, it, vi } from 'vitest';
-import type { AutoSelectResult } from '@spec-kit/shared/embeddings/auto-select.js';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+const autoSelectMocks = vi.hoisted(() => ({
+  autoSelectActiveEmbedder: vi.fn(),
+}));
+
+vi.mock('@spec-kit/shared/embeddings/auto-select.js', () => ({
+  autoSelectActiveEmbedder: autoSelectMocks.autoSelectActiveEmbedder,
+}));
 
 import {
   ensureActiveEmbedder,
@@ -26,6 +22,7 @@ import {
   getActiveEmbedder,
   setActiveEmbedder,
 } from '../../lib/embedders/schema.js';
+import { listManifests } from '../../lib/embedders/registry.js';
 
 function memoryDb(): Database.Database {
   const db = new Database(':memory:');
@@ -38,99 +35,81 @@ function memoryDb(): Database.Database {
   return db;
 }
 
-function fakeWinner(name: string, dim: number, provider: AutoSelectResult['provider']): AutoSelectResult {
-  return {
-    name,
-    dim,
-    provider,
-    probes: [{ tier: provider, ok: true, reason: `fake winner ${name}` }],
-  };
+function firstManifest() {
+  const manifest = listManifests()[0];
+  if (!manifest) {
+    throw new Error('test requires a registered embedder manifest');
+  }
+  return manifest;
+}
+
+function totalChanges(db: Database.Database): number {
+  const row = db.prepare('SELECT total_changes() AS count').get() as { count: number };
+  return row.count;
 }
 
 describe('ensureActiveEmbedder', () => {
-  it('runs the cascade when pointer is the auto sentinel', async () => {
+  beforeEach(() => vi.clearAllMocks());
+
+  it('resolves the auto sentinel to the first registered manifest', async () => {
     const db = memoryDb();
+    const manifest = firstManifest();
     expect(getActiveEmbedder(db)).toEqual({ name: 'auto', dim: 0 });
 
-    const autoSelect = vi.fn(async () => fakeWinner('nomic-embed-text-v1.5', 768, 'ollama'));
+    const result = await ensureActiveEmbedder(db);
 
-    const result = await ensureActiveEmbedder(db, { autoSelect });
-
-    expect(autoSelect).toHaveBeenCalledTimes(1);
-    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
-    expect(getActiveEmbedder(db)).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
+    expect(result).toEqual({ name: manifest.name, dim: manifest.dim, provider: 'ollama' });
+    expect(getActiveEmbedder(db)).toEqual(result);
+    expect(autoSelectMocks.autoSelectActiveEmbedder).not.toHaveBeenCalled();
   });
 
-  it('skips the cascade when a concrete known pointer is already persisted', async () => {
+  it('resolves an unknown manifest name to the first registered manifest', async () => {
     const db = memoryDb();
-    setActiveEmbedder(db, 'nomic-embed-text-v1.5', 768);
+    const manifest = firstManifest();
+    setActiveEmbedder(db, 'unknown-embedder', manifest.dim);
 
-    const autoSelect = vi.fn(async () => fakeWinner('nomic-embed-text-v1.5', 768, 'ollama'));
+    const result = await ensureActiveEmbedder(db);
 
-    const result = await ensureActiveEmbedder(db, { autoSelect });
-
-    expect(autoSelect).not.toHaveBeenCalled();
-    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
+    expect(result).toEqual({ name: manifest.name, dim: manifest.dim, provider: 'ollama' });
+    expect(getActiveEmbedder(db)).toEqual(result);
+    expect(autoSelectMocks.autoSelectActiveEmbedder).not.toHaveBeenCalled();
   });
 
-  it('backfills provider on a valid pre-existing pointer with no persisted provider row', async () => {
+  it('returns a known pointer unchanged', async () => {
     const db = memoryDb();
-    // Old-shape 3-arg call — no provider persisted.
-    setActiveEmbedder(db, 'nomic-embed-text-v1.5', 768);
-    expect(getActiveEmbedder(db)).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
+    const manifest = firstManifest();
+    setActiveEmbedder(db, manifest.name, manifest.dim, 'ollama');
+    const pointer = getActiveEmbedder(db);
 
-    const autoSelect = vi.fn(async () => fakeWinner('nomic-embed-text-v1.5', 768, 'ollama'));
+    const result = await ensureActiveEmbedder(db);
 
-    const result = await ensureActiveEmbedder(db, { autoSelect });
-
-    expect(autoSelect).not.toHaveBeenCalled();
-    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
-    expect(getActiveEmbedder(db)).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
+    expect(result).toEqual(pointer);
+    expect(getActiveEmbedder(db)).toEqual(pointer);
+    expect(autoSelectMocks.autoSelectActiveEmbedder).not.toHaveBeenCalled();
   });
 
-  it('runs the cascade when pointer references a manifest no longer in the registry', async () => {
+  it('backfills provider on a known pointer without a provider row', async () => {
     const db = memoryDb();
-    // Legacy gemma pointer still in vec_metadata.
-    setActiveEmbedder(db, 'embeddinggemma-300m', 768);
+    const manifest = firstManifest();
+    setActiveEmbedder(db, manifest.name, manifest.dim);
+    expect(getActiveEmbedder(db)).toEqual({ name: manifest.name, dim: manifest.dim });
 
-    const autoSelect = vi.fn(async () => fakeWinner('nomic-embed-text-v1.5', 768, 'ollama'));
+    const result = await ensureActiveEmbedder(db);
 
-    const result = await ensureActiveEmbedder(db, { autoSelect });
-
-    expect(autoSelect).toHaveBeenCalledTimes(1);
-    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
-    expect(getActiveEmbedder(db)).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
+    expect(result).toEqual({ name: manifest.name, dim: manifest.dim, provider: 'ollama' });
+    expect(getActiveEmbedder(db)).toEqual(result);
+    expect(autoSelectMocks.autoSelectActiveEmbedder).not.toHaveBeenCalled();
   });
 
-  it('passes contentType through to the cascade (defaults to text)', async () => {
+  it('leaves the persisted pointer unchanged on a second call', async () => {
     const db = memoryDb();
-    const autoSelect = vi.fn(async () => fakeWinner('nomic-embed-text-v1.5', 768, 'ollama'));
+    const first = await ensureActiveEmbedder(db);
+    const changesBeforeSecondCall = totalChanges(db);
 
-    await ensureActiveEmbedder(db, { autoSelect });
-    expect(autoSelect).toHaveBeenLastCalledWith(expect.objectContaining({ contentType: 'text' }));
+    const second = await ensureActiveEmbedder(db);
 
-    // Reset by clearing the vec_metadata pointer rows so the next call triggers
-    // the cascade again. `setActiveEmbedder(db, 'auto', 0)` is rejected by
-    // `validateDim`, which is correct — the `'auto'` sentinel lives in the
-    // application-layer default, not in the persistent table.
-    db.prepare('DELETE FROM vec_metadata WHERE key IN (?, ?)').run(
-      'active_embedder_name',
-      'active_embedder_dim',
-    );
-
-    await ensureActiveEmbedder(db, { autoSelect, contentType: 'code' });
-    expect(autoSelect).toHaveBeenLastCalledWith(expect.objectContaining({ contentType: 'code' }));
-  });
-
-  it('persists the winner so a second call is a no-op', async () => {
-    const db = memoryDb();
-    const autoSelect = vi.fn(async () => fakeWinner('nomic-embed-text-v1.5', 768, 'ollama'));
-
-    const first = await ensureActiveEmbedder(db, { autoSelect });
-    const second = await ensureActiveEmbedder(db, { autoSelect });
-
-    expect(autoSelect).toHaveBeenCalledTimes(1);
-    expect(first).toEqual(second);
-    expect(first).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
+    expect(second).toEqual(first);
+    expect(totalChanges(db)).toBe(changesBeforeSecondCall);
+    expect(autoSelectMocks.autoSelectActiveEmbedder).not.toHaveBeenCalled();
   });
 });

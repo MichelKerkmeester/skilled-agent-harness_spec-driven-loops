@@ -7,14 +7,15 @@
 // nesting, matcher dialect and wrapper convention, and each file used to be
 // kept by hand. hook-registry.json names every hook once with its concern, its
 // script and its per-runtime bindings; this script renders the four files from
-// it. Pi registers through a one-line re-export entry file under
-// .pi/extensions, so for Pi the registry is verified against the directory
-// instead of rendered.
+// it. Pi registers through an entry file per extension under .pi/extensions;
+// every entry is rendered from one template here, with only its own name and
+// adapter path filled in, and write mode also turns an older one-line
+// re-export entry into the template.
 //
 // Usage:
 //   node sync-hook-registrations.cjs [--check] [--root <repo-root>]
-// Exit: 0 in sync (or written), 1 drift or a Pi extension entry that is not a
-//       resolvable re-export under --check,
+// Exit: 0 in sync (or written), 1 drift or a Pi extension entry that differs
+//       from the rendered template or names a missing adapter under --check,
 //       2 usage or a registry the renderer cannot honour.
 
 // ───────────────────────────────────────────────────────────────────
@@ -38,12 +39,15 @@ const ENVELOPE_REJECTS_UNKNOWN_KEYS = new Set(['codex']);
 // context; Stop and PreCompact reject it and discard the whole response, so
 // their fallback carries the message as a plain `systemMessage` instead.
 const SYSTEM_MESSAGE_EVENTS = new Set(['codex:Stop', 'codex:PreCompact']);
-// A Pi extension entry has to be a plain file holding exactly one re-export of
-// the adapter, because Pi 1.5.1 and later resolve a symlinked entry to the real
-// adapter first while older Pi resolves the entry's imports from the entry's own
-// folder: no symlink plus static import loads on both. Any other content in the
-// entry registers nothing, so the shape is checked, not just the file's presence.
+// A Pi extension entry has to be a plain file, because Pi 1.5.1 and later
+// resolve a symlinked entry to the real adapter first while older Pi resolves
+// the entry's imports from the entry's own folder. The entry imports its adapter
+// inside an async factory, which Pi has awaited since 0.38.0, so a missing or
+// stale adapter costs one session notice instead of a failed extension. The
+// adapter path is the one value an entry carries; it is read back from either
+// shape so write mode can move an older re-export entry onto the template.
 const PI_REEXPORT_PATTERN = /^export \{ default \} from (['"])([^'"]+)\1;\r?\n?$/u;
+const PI_LAZY_IMPORT_PATTERN = /\badapter = await import\((['"])([^'"\n]+)\1\);/u;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -231,24 +235,99 @@ function renderRuntimeFile(registry, runtime, current) {
 // 6. PI VERIFICATION
 // ───────────────────────────────────────────────────────────────────
 
-/** Every Pi extension the registry names must be a one-line re-export file whose adapter exists. */
-function verifyPiExtensions(registry, repoRoot) {
+/** The one Pi entry template, filled with the entry's file name and its adapter's relative path. */
+function renderPiEntry(entry, adapterSpecifier) {
+  return [
+    '// ───────────────────────────────────────────────────────────────────',
+    '// MODULE: Pi Hook Entry',
+    '// ───────────────────────────────────────────────────────────────────',
+    '// Rendered by sync-hook-registrations.cjs from its Pi entry template, which',
+    '// --check holds every entry to byte for byte: change the template, then rerun it.',
+    '// Pi loads every .ts file in this folder. The adapter is imported inside the',
+    '// factory, so a Skilled tree that is missing or out of date turns this hook off',
+    '// with one notice for the session instead of failing the extension at startup.',
+    '',
+    "import type { ExtensionAPI, ExtensionContext } from '@earendil-works/pi-coding-agent';",
+    '',
+    `const ENTRY = '${entry}';`,
+    "const FAILURES = Symbol.for('skilled.pi.adapterImportFailures');",
+    '',
+    'type FailureRegistry = { [FAILURES]?: Map<string, string> };',
+    '',
+    '// Pi evaluates each entry in its own module scope, so the entries that fail in',
+    '// one load pass collect into a map on globalThis. Each failing entry registers a',
+    '// session_start handler, and the first one to run reports them all and clears',
+    '// the map, so a load pass Pi discards cannot swallow the notice.',
+    'function reportImportFailure(pi: ExtensionAPI, error: unknown): void {',
+    '  const registry = globalThis as FailureRegistry;',
+    '  const failures = registry[FAILURES] ?? new Map<string, string>();',
+    '  registry[FAILURES] = failures;',
+    "  failures.set(ENTRY, error instanceof Error ? error.message.split('\\n')[0] : String(error));",
+    "  pi.on('session_start', (_event, ctx: ExtensionContext) => {",
+    '    const pending = registry[FAILURES];',
+    '    if (pending === undefined || pending.size === 0) return;',
+    '    delete registry[FAILURES];',
+    '    const [firstError] = pending.values();',
+    '    const message = [',
+    "      `Skilled: ${pending.size} Pi hook entr${pending.size === 1 ? 'y is' : 'ies are'} off for this session because the adapter did not load: ${[...pending.keys()].join(', ')}.`,",
+    "      'The Skilled checkout this project uses may be out of date: run git pull in it, then /doctor:setup.',",
+    '      `First error: ${firstError}`,',
+    "    ].join('\\n');",
+    "    if (ctx.hasUI) ctx.ui.notify(message, 'warning');",
+    '    else process.stderr.write(`${message}\\n`);',
+    '  });',
+    '}',
+    '',
+    'export default async function piEntry(pi: ExtensionAPI): Promise<void> {',
+    '  let adapter: { default: (api: ExtensionAPI) => unknown };',
+    '  try {',
+    `    adapter = await import('${adapterSpecifier}');`,
+    '  } catch (error) {',
+    '    reportImportFailure(pi, error);',
+    '    return;',
+    '  }',
+    '  // Outside the try: an adapter that throws while it registers is a real bug,',
+    "  // and Pi's own load error is the right report for it.",
+    '  await adapter.default(pi);',
+    '}',
+    '',
+  ].join('\n');
+}
+
+/** The adapter path an entry names, from the template or from an older one-line re-export. */
+function piAdapterSpecifier(source) {
+  const match = PI_LAZY_IMPORT_PATTERN.exec(source) ?? PI_REEXPORT_PATTERN.exec(source);
+  return match === null ? null : match[2];
+}
+
+/**
+ * Every Pi extension the registry names must be a plain file whose adapter
+ * exists and whose content is the rendered template. Write mode rewrites an
+ * entry that names a live adapter but has drifted from the template.
+ */
+function verifyPiExtensions(registry, repoRoot, options = { check: true }) {
   const directory = registry.runtimes.pi.extensionsDir;
   const dir = path.join(repoRoot, directory);
   const problems = [];
+  let written = 0;
   const expected = new Set(registry.hooks.map((hook) => hook.pi?.extension).filter(Boolean));
   for (const extension of [...expected].sort()) {
     const entry = path.join(dir, extension);
     let stat;
     try { stat = fs.lstatSync(entry); } catch { problems.push(`${directory}/${extension}: missing`); continue; }
-    if (stat.isSymbolicLink()) { problems.push(`${directory}/${extension}: a symlink, which Pi before 1.5.1 cannot load; make it a one-line re-export file`); continue; }
+    if (stat.isSymbolicLink()) { problems.push(`${directory}/${extension}: a symlink, which Pi before 1.5.1 cannot load; make it a plain entry file`); continue; }
     const source = stat.isFile() ? fs.readFileSync(entry, 'utf8') : null;
-    const match = source === null ? null : PI_REEXPORT_PATTERN.exec(source);
-    if (match === null) { problems.push(`${directory}/${extension}: not a one-line re-export of the adapter`); continue; }
-    const target = path.resolve(dir, match[2]);
-    if (!fs.existsSync(target) || !fs.statSync(target).isFile()) problems.push(`${directory}/${extension}: dangling -> ${path.relative(repoRoot, target)}`);
+    const specifier = source === null ? null : piAdapterSpecifier(source);
+    if (specifier === null) { problems.push(`${directory}/${extension}: names no adapter import`); continue; }
+    const target = path.resolve(dir, specifier);
+    if (!fs.existsSync(target) || !fs.statSync(target).isFile()) { problems.push(`${directory}/${extension}: dangling -> ${path.relative(repoRoot, target)}`); continue; }
+    const rendered = renderPiEntry(extension, specifier);
+    if (source === rendered) continue;
+    if (options.check) { problems.push(`${directory}/${extension}: differs from the Pi entry template`); continue; }
+    fs.writeFileSync(entry, rendered, 'utf8');
+    written += 1;
   }
-  return { checked: expected.size, problems };
+  return { checked: expected.size, written, problems };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -274,7 +353,7 @@ function main(argv) {
     written += 1;
   }
 
-  const pi = verifyPiExtensions(registry, repoRoot);
+  const pi = verifyPiExtensions(registry, repoRoot, { check: options.check });
   drift.push(...pi.problems);
 
   if (drift.length > 0) {
@@ -284,7 +363,7 @@ function main(argv) {
   }
   const hookCount = registry.hooks.length;
   if (options.check) console.log(`${TAG} PASS: ${JSON_RUNTIMES.length} registration files match the ${hookCount}-hook registry; ${pi.checked} Pi extensions resolve.`);
-  else console.log(`${TAG} Wrote ${written} of ${JSON_RUNTIMES.length} registration files from the ${hookCount}-hook registry; ${pi.checked} Pi extensions resolve.`);
+  else console.log(`${TAG} Wrote ${written} of ${JSON_RUNTIMES.length} registration files from the ${hookCount}-hook registry and ${pi.written} of ${pi.checked} Pi extension entries; ${pi.checked} Pi extensions resolve.`);
   return 0;
 }
 
@@ -300,4 +379,4 @@ if (require.main === module) {
 // ───────────────────────────────────────────────────────────────────
 // 8. EXPORTS
 // ───────────────────────────────────────────────────────────────────
-module.exports = { JSON_RUNTIMES, loadRegistry, renderRuntimeFile, renderProjectDirCommand, renderCursorCommand, verifyPiExtensions, main };
+module.exports = { JSON_RUNTIMES, loadRegistry, renderRuntimeFile, renderProjectDirCommand, renderCursorCommand, renderPiEntry, piAdapterSpecifier, verifyPiExtensions, main };

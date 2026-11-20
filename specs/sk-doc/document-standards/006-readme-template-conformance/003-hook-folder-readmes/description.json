@@ -6,7 +6,7 @@
     "phase",
     "hook-folder-readmes"
   ],
-  "lastUpdated": "2026-11-17T06:17:53.445Z",
+  "lastUpdated": "2026-11-19T17:48:21.162Z",
   "specId": "003",
   "folderSlug": "hook-folder-readmes",
   "parentChain": [
@@ -14,10 +14,12 @@
     "document-standards",
     "006-readme-template-conformance"
   ],
-  "memorySequence": 3,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "16-11-26_20-27__phase-planned.md",
     "16-11-26_23-57__guard-self-edit-rule-blocks-the-env-secret-guard.md",
-    "17-11-26_07-17__operator-authorized-guard-off-sessions-for-the.md"
+    "17-11-26_07-17__operator-authorized-guard-off-sessions-for-the.md",
+    "19-11-26_18-37__manual-context-save.md",
+    "19-11-26_18-48__manual-context-save.md"
   ]
 }

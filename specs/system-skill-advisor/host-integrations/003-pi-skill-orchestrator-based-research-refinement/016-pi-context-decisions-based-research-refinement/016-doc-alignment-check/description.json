@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check",
+  "description": "Phase 16: doc-alignment-check",
+  "keywords": [
+    "phase",
+    "doc-alignment-check"
+  ],
+  "lastUpdated": "2026-11-19T09:31:34.254Z",
+  "specId": "016",
+  "folderSlug": "doc-alignment-check",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-11-26_10-31__ran-local-doc-alignment-on-the-new-advisor-pasted.md"
+  ]
+}

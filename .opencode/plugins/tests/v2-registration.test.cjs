@@ -104,7 +104,11 @@ for (const pluginName of PLUGIN_NAMES) {
     );
     assert.equal(typeof plugin.id, 'string', `${pluginName} must have a string id`);
     assert.equal(typeof plugin.setup, 'function', `${pluginName} must have a setup function`);
-    assert.equal(typeof plugin.server, 'function', `${pluginName} must have a server function`);
+    assert.equal(Object.hasOwn(plugin, 'server'), false, `${pluginName} must not expose a server entry point`);
+    assert.deepEqual(Object.keys(plugin).sort(), ['id', 'setup'], `${pluginName} must expose only id and setup`);
+    const factory = Object.getOwnPropertyDescriptor(plugin, 'factory');
+    assert.equal(typeof factory?.value, 'function', `${pluginName} must carry its hook factory`);
+    assert.equal(factory.enumerable, false, `${pluginName} factory must be non-enumerable`);
 
     const { context: stubCtx, registrations } = createStubContext();
     const cleanup = await plugin.setup(stubCtx);

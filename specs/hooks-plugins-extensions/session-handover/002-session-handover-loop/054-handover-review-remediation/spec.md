@@ -26,9 +26,9 @@ contextType: "implementation"
 | **Created** | 2026-11-17 |
 | **Branch** | `worktrees/440-handover-review-remediation` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 54 of 54 |
+| **Phase** | 54 of 55 |
 | **Predecessor** | 053-handover-and-history-deep-review |
-| **Successor** | None |
+| **Successor** | 055-cross-checkout-root-pinning |
 | **Handoff Criteria** | Every adapter withdraws on a prompt through one helper that logs its failures, the three doc drifts are gone, and the hand-over suites pass |
 <!-- /ANCHOR:metadata -->
 

@@ -16,9 +16,11 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isAdvisorRuntime, type AdvisorRuntime } from '../../runtime/lib/advisor-runtime-values.js';
 import { findAdvisorWorkspaceRoot } from '../../runtime/lib/utils/workspace-root.js';
+import { shouldFireAdvisor, stripLeadingPastedReply } from '../../runtime/lib/prompt-policy.js';
 import {
   buildSkillAdvisorBrief,
   skippedAdvisorResultFor,
+  skippedWeakFollowUpResult,
   type AdvisorHookResult,
   type AdvisorHookStatus,
   type AdvisorHookFreshness,
@@ -30,8 +32,15 @@ import {
   type DirectiveLifecycleState,
 } from '../lib/directive-lifecycle.js';
 import {
+  decideRouteReceiptGuard,
+  defaultRouteReceiptStore,
+  ROUTE_RECEIPT_VERSION,
+  type RouteReceiptStore,
+} from '../lib/route-receipt.js';
+import {
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
+  renderAdvisorTimeoutFallback,
   observeEmittedAdvisorPolicy,
 } from '../../runtime/lib/render.js';
 import type { ShadowDeliveryRenderOptions } from '../../runtime/lib/render.js';
@@ -79,17 +88,28 @@ function hookFlagsResolverPath(): string | null {
   }
 }
 
-function skillAdvisorHookEnabled(): boolean {
+function hookConcernEnabled(concern: string): boolean {
   try {
     const resolverPath = hookFlagsResolverPath();
     if (resolverPath === null) return true;
     const { isHookEnabled } = requireFromAdvisor(resolverPath) as {
       isHookEnabled?: (concern: string) => boolean;
     };
-    return typeof isHookEnabled !== 'function' || isHookEnabled('skill-advisor') !== false;
+    return typeof isHookEnabled !== 'function' || isHookEnabled(concern) !== false;
   } catch {
     return true;
   }
+}
+
+function skillAdvisorHookEnabled(): boolean {
+  return hookConcernEnabled('skill-advisor');
+}
+
+// A route receipt expires on the directive-lifecycle clock, and the lifecycle
+// hooks stop moving that clock while their switch is off. A receipt kept then
+// would outlive a compaction, so receipts are neither read nor written.
+function routeReceiptsEnabled(): boolean {
+  return hookConcernEnabled('directive-lifecycle');
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -133,6 +153,8 @@ export interface UserPromptSubmitDependencies {
   readonly writeDiagnostic?: (line: string) => void;
   /** Per-session directive-lifecycle dedup state; defaults to the durable file-backed store. */
   readonly directiveLifecycleStore?: DirectiveLifecycleState;
+  /** Per-session record of the last confident route; defaults to the durable file-backed store. */
+  readonly routeReceiptStore?: RouteReceiptStore;
   /** Delay a full-delivery receipt until the process handoff acknowledges stdout. */
   readonly deferDirectiveReceipt?: boolean;
 }
@@ -171,10 +193,13 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-function normalizePrompt(value: unknown): string | null {
-  if (typeof value !== 'string') {
+function normalizePrompt(raw: unknown): string | null {
+  if (typeof raw !== 'string') {
     return null;
   }
+  // Drop a pasted earlier reply before the cut, so a long paste cannot push the
+  // task line past it.
+  const value = stripLeadingPastedReply(raw);
   if (Buffer.byteLength(value, 'utf8') <= MAX_PROMPT_BYTES) {
     return value;
   }
@@ -302,6 +327,221 @@ export function parseClaudeUserPromptSubmitInput(raw: string): ClaudeUserPromptS
 // 6. CORE LOGIC
 // ───────────────────────────────────────────────────────────────
 
+// A session's last confident route lets a weak follow-up that would route
+// elsewhere only on the confidence floor be held back, because the earlier
+// brief is still in context and the floored one would steer the model off the
+// session's task. Receipts are advisory: any fault keeps the turn as it was.
+//
+// A receipt is keyed by session id, so only an identity the host has confirmed
+// may hold or read one; otherwise a session reusing a provisional id could have
+// its follow-up held back against another session's route. Absent flags count
+// as confirmed, the same rule the directive lifecycle applies.
+function receiptSessionId(input: ClaudeUserPromptSubmitInput): string | null {
+  const sessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0
+    ? input.session_id.trim()
+    : null;
+  const confirmed = input.session_identity_confirmed
+    ?? (sessionId !== null && input.session_identity_ambiguous !== true);
+  return sessionId !== null && confirmed === true ? sessionId : null;
+}
+
+function transcriptBytesFor(input: ClaudeUserPromptSubmitInput): number | null {
+  if (typeof input.transcript_path !== 'string' || input.transcript_path.length === 0) return null;
+  try {
+    return statSync(input.transcript_path).size;
+  } catch {
+    return null;
+  }
+}
+
+function topPassingRecommendation(result: AdvisorHookResult): AdvisorHookResult['recommendations'][number] | null {
+  return result.status === 'ok'
+    ? result.recommendations.find((recommendation) => recommendation.passes_threshold === true) ?? null
+    : null;
+}
+
+function guardWeakFollowUp(
+  result: AdvisorHookResult,
+  prompt: string,
+  input: ClaudeUserPromptSubmitInput,
+  dependencies: UserPromptSubmitDependencies,
+): AdvisorHookResult {
+  try {
+    const sessionId = receiptSessionId(input);
+    const top = topPassingRecommendation(result);
+    if (!sessionId || !top || top.confidenceFloored !== true || !routeReceiptsEnabled()) return result;
+    // A startup, resume or compact turn starts the model on fresh context, so the
+    // earlier route no longer frames this prompt.
+    if (lifecycleEventFor(input)) return result;
+    const receipt = (dependencies.routeReceiptStore ?? defaultRouteReceiptStore()).read(sessionId);
+    if (!receipt) return result;
+    const strippedPrompt = stripLeadingPastedReply(prompt);
+    const lifecycle = dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore();
+    const decision = decideRouteReceiptGuard({
+      receipt,
+      clock: () => lifecycle.clock(sessionId),
+      transcriptBytes: transcriptBytesFor(input),
+      strippedPrompt,
+      // Read from stripped text, as every other gate does. The prompt is already
+      // stripped when it gets here, and stripping again returns the same text.
+      policyReason: shouldFireAdvisor(strippedPrompt).reason,
+      topSkill: top.skill,
+      topFloored: true,
+    });
+    return decision === 'suppress' ? skippedWeakFollowUpResult() : result;
+  } catch {
+    return result;
+  }
+}
+
+// Works out the route receipt change this turn earns and returns it as an action,
+// so the caller can hold it until the host has taken the output. A turn the model
+// never saw then leaves the session on its earlier route.
+function routeReceiptActionFor(
+  result: AdvisorHookResult,
+  brief: string | null,
+  input: ClaudeUserPromptSubmitInput,
+  dependencies: UserPromptSubmitDependencies,
+): (() => void) | undefined {
+  try {
+    const sessionId = receiptSessionId(input);
+    const top = topPassingRecommendation(result);
+    if (!sessionId || !brief || !top || !routeReceiptsEnabled()) return undefined;
+    const store = dependencies.routeReceiptStore ?? defaultRouteReceiptStore();
+    // Only a route the model was shown on the advisor's own evidence is worth
+    // holding to: not one lifted onto the confidence floor, and not one the
+    // local scorer gave while the advisor was down. Showing either still moves
+    // the session off an earlier route that differs, so that route expires.
+    if (top.confidenceFloored === true || result.metrics.degraded === true) {
+      return () => {
+        const held = store.read(sessionId);
+        if (held && held.skill !== top.skill) store.remove(sessionId);
+      };
+    }
+    // The clock is read now, before this turn's directive delivery moves it.
+    const clock = (dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore()).clock(sessionId);
+    if (!clock) return undefined;
+    const transcriptBytes = transcriptBytesFor(input);
+    return () => store.write({
+      version: ROUTE_RECEIPT_VERSION,
+      sessionId,
+      skill: top.skill,
+      storeGeneration: clock.storeGeneration,
+      lifecycleEpoch: clock.lifecycleEpoch,
+      transcriptBytes,
+    });
+  } catch {
+    return undefined;
+  }
+}
+
+function runRouteReceiptAction(action: () => void): void {
+  try {
+    action();
+  } catch {
+    // A lost receipt only means the next follow-up is routed on its own evidence.
+  }
+}
+
+// A host that confirms its write holds both receipts for one commit after the
+// write lands, even on a repeat turn whose directive receipt needs no commit.
+// Without that confirmation the route receipt is written at once.
+function deliveryCommitFor(
+  commitFullReceipt: (() => boolean) | undefined,
+  routeReceiptAction: (() => void) | undefined,
+  dependencies: UserPromptSubmitDependencies,
+): (() => boolean) | undefined {
+  if (!routeReceiptAction) return commitFullReceipt;
+  if (dependencies.deferDirectiveReceipt !== true) {
+    runRouteReceiptAction(routeReceiptAction);
+    return commitFullReceipt;
+  }
+  return () => {
+    const committed = commitFullReceipt ? commitFullReceipt() : true;
+    runRouteReceiptAction(routeReceiptAction);
+    return committed;
+  };
+}
+
+// Directive-lifecycle dedup delivers the full brief on the first message
+// and after lifecycle boundaries or transcript shrink. On proven repeats,
+// it keeps the head and drops the constant directive block. A headed
+// fallback reduces like a brief; unknown sessions and the kill switch get
+// the full text. A fault inside dedup keeps the full text, and a crash
+// elsewhere in the hook dedups its fallback like any headed fallback.
+function applyDirectiveLifecycle(
+  emitted: string,
+  input: ClaudeUserPromptSubmitInput,
+  dependencies: UserPromptSubmitDependencies,
+): { effectiveEmitted: string; commitFullReceipt?: (() => boolean) | undefined } {
+  try {
+    const sessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0
+      ? input.session_id
+      : undefined;
+    const sessionConfirmed = input.session_identity_confirmed
+      ?? (Boolean(sessionId) && input.session_identity_ambiguous !== true);
+    const transcriptPath = typeof input.transcript_path === 'string' && input.transcript_path.length > 0
+      ? input.transcript_path
+      : null;
+    let transcriptBytes: number | null = null;
+    if (transcriptPath) {
+      try {
+        transcriptBytes = statSync(transcriptPath).size;
+      } catch {
+        transcriptBytes = null;
+      }
+    }
+    const decision = decideDirectiveLifecycleDelivery(emitted, {
+      state: dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore(),
+      sessionId,
+      sessionConfirmed,
+      lifecycleEvent: lifecycleEventFor(input),
+      transcriptPath,
+      transcriptBytes,
+      enabled: isDirectiveLifecycleDedupEnabled(),
+      deferFullReceipt: dependencies.deferDirectiveReceipt === true,
+    });
+    return {
+      effectiveEmitted: decision.suppressed && decision.reducedContext ? decision.reducedContext : emitted,
+      commitFullReceipt: decision.commitFullReceipt,
+    };
+  } catch {
+    // Directive dedup is advisory; on any failure keep the full brief.
+    return { effectiveEmitted: emitted };
+  }
+}
+
+// Builds the hook output, attaches the deferred receipt when there is one and
+// records the emitted policy once, so a normal turn and a crash deliver alike.
+function finishAdvisorDelivery(
+  additionalContext: string,
+  commitFullReceipt: (() => boolean) | undefined,
+  deliveryState: ShadowDeliveryRenderOptions,
+  runtime: AdvisorRuntime,
+): ClaudeUserPromptSubmitOutput {
+  const output: ClaudeUserPromptSubmitOutput = {
+    hookSpecificOutput: {
+      hookEventName: 'UserPromptSubmit',
+      additionalContext,
+    },
+  };
+  if (commitFullReceipt) {
+    Object.defineProperty(output, DIRECTIVE_RECEIPT_COMMIT, {
+      configurable: true,
+      enumerable: false,
+      value: commitFullReceipt,
+    });
+  }
+  observeEmittedAdvisorPolicy(additionalContext, {
+    ...deliveryState,
+    // Claude keeps its display label and every other caller is recorded under
+    // the runtime it named, so no other runtime's delivery is counted as Claude's.
+    runtime: runtime === 'claude' ? 'Claude Code' : runtime,
+    candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
+  });
+  return output;
+}
+
 export async function handleClaudeUserPromptSubmit(
   input: ClaudeUserPromptSubmitInput | null,
   dependencies: UserPromptSubmitDependencies = {},
@@ -309,8 +549,19 @@ export async function handleClaudeUserPromptSubmit(
   const environmentRuntime = process.env.SPECKIT_RUNTIME;
   const runtime = dependencies.runtime
     ?? (isAdvisorRuntime(environmentRuntime) ? environmentRuntime : 'claude');
-  const startedAt = dependencies.now?.() ?? performance.now();
-  const elapsed = (): number => Number(((dependencies.now?.() ?? performance.now()) - startedAt).toFixed(3));
+  let startedAt: number | null = null;
+  const elapsed = (): number => {
+    try {
+      const now = dependencies.now?.() ?? performance.now();
+      return startedAt === null ? 0 : Number((now - startedAt).toFixed(3));
+    } catch {
+      return 0;
+    }
+  };
+  let prompt: string | null = null;
+  let workspaceRoot: string | undefined;
+  let skippedResult: AdvisorHookResult | null = null;
+  let deliveryState: ShadowDeliveryRenderOptions = {};
   const writeDiagnostic = dependencies.writeDiagnostic;
 
   try {
@@ -340,8 +591,9 @@ export async function handleClaudeUserPromptSubmit(
       return {};
     }
 
-    const prompt = normalizePrompt(input.prompt);
-    const workspaceRoot = workspaceRootFor(input);
+    startedAt = dependencies.now?.() ?? performance.now();
+    prompt = normalizePrompt(input.prompt);
+    workspaceRoot = workspaceRootFor(input);
     if (prompt === null) {
       emitDiagnostic({
         runtime,
@@ -355,6 +607,9 @@ export async function handleClaudeUserPromptSubmit(
       }, writeDiagnostic);
       return {};
     }
+    // Set before the brief build, so a crash below records its fallback against
+    // this session instead of an anonymous one.
+    deliveryState = deliveryStateOptionsFor(input);
 
     const renderBrief = dependencies.renderBrief ?? renderAdvisorBrief;
     // The CLI owns the warm-daemon probe and local-scorer fallback.
@@ -362,19 +617,21 @@ export async function handleClaudeUserPromptSubmit(
     // CLI call; injected full producers stay ungated for producer-level tests.
     const injectedBrief = dependencies.buildBrief;
     const buildCliBrief = dependencies.buildCliBrief ?? buildSkillAdvisorBriefFromCli;
+    skippedResult = injectedBrief ? null : skippedAdvisorResultFor(prompt);
     let result = injectedBrief
       ? await injectedBrief(prompt, {
         runtime,
         workspaceRoot,
         subprocessTimeoutMs: claudeHookTimeoutMs(),
       })
-      : skippedAdvisorResultFor(prompt) ?? await buildCliBrief(prompt, {
+      : skippedResult ?? await buildCliBrief(prompt, {
         runtime,
         workspaceRoot,
         timeoutMs: claudeHookTimeoutMs(),
       }, {
         now: dependencies.now,
       });
+    result = guardWeakFollowUp(result, prompt, input, dependencies);
 
     result = {
       ...result,
@@ -383,52 +640,12 @@ export async function handleClaudeUserPromptSubmit(
         durationMs: elapsed(),
       },
     };
-    const deliveryState = deliveryStateOptionsFor(input);
     const brief = renderBrief(result, { deliveryState });
+    const routeReceiptAction = routeReceiptActionFor(result, brief, input, dependencies);
     const renderOptions = { deliveryState, setupWording: !brief && SETUP_WORDING.test(prompt) };
     const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions, result);
-    // Directive-lifecycle dedup delivers the full brief on the first message
-    // and after lifecycle boundaries or transcript shrink. On proven repeats,
-    // it keeps the head and drops the constant directive block. A headed
-    // fallback reduces like a brief; unknown sessions, the kill switch, and
-    // thrown errors still get the full text.
-    let effectiveEmitted = emitted;
-    let commitFullReceipt: (() => boolean) | undefined;
-    try {
-      const sessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0
-        ? input.session_id
-        : undefined;
-      const sessionConfirmed = input.session_identity_confirmed
-        ?? (Boolean(sessionId) && input.session_identity_ambiguous !== true);
-      const transcriptPath = typeof input.transcript_path === 'string' && input.transcript_path.length > 0
-        ? input.transcript_path
-        : null;
-      let transcriptBytes: number | null = null;
-      if (transcriptPath) {
-        try {
-          transcriptBytes = statSync(transcriptPath).size;
-        } catch {
-          transcriptBytes = null;
-        }
-      }
-      const decision = decideDirectiveLifecycleDelivery(emitted, {
-        state: dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore(),
-        sessionId,
-        sessionConfirmed,
-        lifecycleEvent: lifecycleEventFor(input),
-        transcriptPath,
-        transcriptBytes,
-        enabled: isDirectiveLifecycleDedupEnabled(),
-        deferFullReceipt: dependencies.deferDirectiveReceipt === true,
-      });
-      commitFullReceipt = decision.commitFullReceipt;
-      if (decision.suppressed && decision.reducedContext) {
-        effectiveEmitted = decision.reducedContext;
-      }
-    } catch {
-      // Directive dedup is advisory; on any failure keep the full brief.
-      effectiveEmitted = emitted;
-    }
+    const { effectiveEmitted, commitFullReceipt } = applyDirectiveLifecycle(emitted, input, dependencies);
+    const commitReceipts = deliveryCommitFor(commitFullReceipt, routeReceiptAction, dependencies);
     emitDiagnostic({
       runtime,
       workspaceRoot,
@@ -444,39 +661,39 @@ export async function handleClaudeUserPromptSubmit(
       directivesSuppressed: effectiveEmitted !== emitted,
     }, writeDiagnostic);
 
-    const output: ClaudeUserPromptSubmitOutput = {
-      hookSpecificOutput: {
-        hookEventName: 'UserPromptSubmit',
-        additionalContext: effectiveEmitted,
-      },
-    };
-    if (commitFullReceipt) {
-      Object.defineProperty(output, DIRECTIVE_RECEIPT_COMMIT, {
-        configurable: true,
-        enumerable: false,
-        value: commitFullReceipt,
-      });
-    }
-    observeEmittedAdvisorPolicy(effectiveEmitted, {
-      ...deliveryState,
-      // Claude keeps its display label and every other caller is recorded under
-      // the runtime it named, so no other runtime's delivery is counted as Claude's.
-      runtime: runtime === 'claude' ? 'Claude Code' : runtime,
-      candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
-    });
-    return output;
+    return finishAdvisorDelivery(effectiveEmitted, commitReceipts, deliveryState, runtime);
   } catch {
-    emitDiagnostic({
-      runtime,
-      workspaceRoot: input ? workspaceRootFor(input) : process.cwd(),
-      status: 'fail_open',
-      freshness: 'unavailable',
-      durationMs: elapsed(),
-      cacheHit: false,
-      errorCode: 'UNKNOWN',
-      errorDetails: 'Unhandled UserPromptSubmit hook exception',
-    }, writeDiagnostic);
-    return {};
+    // process.cwd() throws when the working directory was removed, and a lost
+    // diagnostic must not cost the model its fallback.
+    try {
+      emitDiagnostic({
+        runtime,
+        workspaceRoot: workspaceRoot ?? process.cwd(),
+        status: 'fail_open',
+        freshness: 'unavailable',
+        durationMs: elapsed(),
+        cacheHit: false,
+        errorCode: 'UNKNOWN',
+        errorDetails: 'Unhandled UserPromptSubmit hook exception',
+      }, writeDiagnostic);
+    } catch {
+      // Diagnostics are best effort; the fallback below still runs.
+    }
+    // A payload with no prompt string is silent on the normal path, so a crash
+    // while rejecting it must not turn it into an outage line.
+    if (!input || typeof input.prompt !== 'string') return {};
+    // A crash shows the model what a timeout would show for this turn, deduplicated the
+    // same way. If any of that throws as well, there is nothing safe left to show.
+    try {
+      const renderOptions = { deliveryState, setupWording: prompt !== null && SETUP_WORDING.test(prompt) };
+      const emitted = skippedResult
+        ? renderAdvisorFallbackDirective(renderOptions, skippedResult)
+        : renderAdvisorTimeoutFallback(renderOptions);
+      const delivery = applyDirectiveLifecycle(emitted, input, dependencies);
+      return finishAdvisorDelivery(delivery.effectiveEmitted, delivery.commitFullReceipt, deliveryState, runtime);
+    } catch {
+      return {};
+    }
   }
 }
 
@@ -504,10 +721,22 @@ export function commitClaudeDirectiveDeliveryReceipt(
   return commit();
 }
 
-function writeHookOutput(output: ClaudeUserPromptSubmitOutput): Promise<void> {
+export interface HookOutputStream {
+  write(chunk: string, callback: (error?: Error | null) => void): boolean;
+}
+
+/**
+ * Write the hook output and commit its deferred receipt once the write lands.
+ * A failed write leaves the receipt uncommitted, so the next turn delivers the
+ * full brief again instead of a head the model never saw the rest of.
+ */
+export function writeHookOutput(
+  output: ClaudeUserPromptSubmitOutput,
+  stream: HookOutputStream = process.stdout,
+): Promise<void> {
   return new Promise<void>((resolvePromise) => {
-    process.stdout.write(`${JSON.stringify(output)}\n`, () => {
-      commitClaudeDirectiveDeliveryReceipt(output);
+    stream.write(`${JSON.stringify(output)}\n`, (error) => {
+      if (!error) commitClaudeDirectiveDeliveryReceipt(output);
       resolvePromise();
     });
   });

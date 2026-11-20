@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.26.0
+version: 1.14.27.0
 ---
 
 # deep-research
@@ -77,16 +77,50 @@ Expected output: a JSON summary that names the files it rewrote and reports the 
 
 The workflow runs four phases: initialization, iteration, synthesis and save. Initialization classifies the packet as fresh, resume, completed-session or invalid-state, then writes the config and the strategy. It seeds the state log with its first line through the append gateway. The iteration phase repeats until a stop is legal: read state, check the pause sentinel, dispatch one fresh agent, validate its outputs and run the reducer. Synthesis compiles the iteration trail into `research.md`. Save writes continuity through `generate-context.js`.
 
-```mermaid
-flowchart TD
-  Start["/deep:research:auto or :confirm"] --> Init["Init writes the packet"]
-  Init --> Read["Read state and check convergence"]
-  Read --> Dispatch["Dispatch one fresh @deep-research round"]
-  Dispatch --> Reduce["Reducer rewrites derived state"]
-  Reduce --> Stop{"Stop legal?"}
-  Stop -- No --> Read
-  Stop -- Yes --> Synth["Synthesis compiles research.md"]
-  Synth --> Save["Save writes continuity"]
+```text
+  ┌────────────────────────┐
+  │ /deep:research:auto    │
+  │ or :confirm            │
+  └───────────┬────────────┘
+              │
+              ▼
+  ┌────────────────────────┐
+  │ Init writes the packet │
+  └───────────┬────────────┘
+              │
+              ▼
+  ┌────────────────────────┐
+  │ Read state and check   │◀[NO]──┐
+  │ convergence            │
+  └───────────┬────────────┘       │
+              │                    │
+              ▼                    │
+  ┌────────────────────────┐       │
+  │ Dispatch one fresh     │       │
+  │ @deep-research round   │       │
+  └───────────┬────────────┘       │
+              │                    │
+              ▼                    │
+  ┌────────────────────────┐       │
+  │ Reducer rewrites       │       │
+  │ derived state          │       │
+  └───────────┬────────────┘       │
+              │                    │
+              ▼                    │
+  ┌────────────────────────┐       │
+  │ Stop legal?            │───────┘
+  └───────────┬────────────┘
+              │
+              ▼ [YES]
+  ┌────────────────────────┐
+  │ Synthesis compiles     │
+  │ research.md            │
+  └───────────┬────────────┘
+              │
+              ▼
+  ┌────────────────────────┐
+  │ Save writes continuity │
+  └────────────────────────┘
 ```
 
 ### The Packet Files

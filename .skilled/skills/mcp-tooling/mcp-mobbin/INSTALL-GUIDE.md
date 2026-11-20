@@ -1,12 +1,12 @@
 ---
 title: "mcp-mobbin Installation Guide"
 description: "Verify-only setup for the read-only Mobbin design-research transport: plan access, browser OAuth and the registered Code Mode manual."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-mobbin Installation Guide
 
-Verify-only setup guide for the `mcp-mobbin` skill, the read-only Mobbin design-research transport. There is **nothing to install and no config to write from this packet**: the provider is a hosted remote service, the `mobbin` Code Mode manual **is registered** in `.utcp_config.json` (operator-applied 2026-07-16), and this guide never rewrites configuration. Setup means verifying the runtime and the registered manual, understanding the plan gating and the OAuth-only auth model, and knowing exactly which steps remain the operator's (Code Mode reconnect and browser OAuth).
+Verify-only setup guide for the `mcp-mobbin` skill, the read-only Mobbin design-research transport. There is **nothing to install and no config to write from this packet**: the provider is a hosted remote service, the `mobbin` Code Mode manual **is registered** in `.utcp_config.json` (operator-applied 2026-07-16), and this guide never rewrites configuration. Setup means verifying the runtime and the registered manual, understanding the plan gating and the OAuth-only auth model, and knowing exactly which step remains the operator's (the browser OAuth approval that the ask step opens).
 
 > **Access trap, read first.** Mobbin MCP access requires a **paid plan: Pro, Team, or Enterprise** — the Free plan has no MCP access (the exact denial semantics are unverified; do not guess them). Authentication is **browser OAuth only**: there is **no API key and no auth env var** for Mobbin MCP — do not invent one. Unauthenticated requests return HTTP 401. The service enforces **60 requests per 60 seconds per user**.
 > **Bridge (registered):** `npx -y mcp-remote https://api.mobbin.com/mcp` (stdio, launched by Code Mode from the registered manual) | **Dependencies:** Node.js 18+ and working `npx` for the bridge
@@ -28,7 +28,7 @@ Please help me:
    (the manual IS registered - presence is the healthy result; absence means a broken registration to escalate)
 3. Explain the plan requirement (Mobbin Pro, Team, or Enterprise; Free has no MCP access)
 4. Explain the auth model (browser OAuth only - there is NO API key or auth env var) and tell me exactly
-   which steps are mine to do (Code Mode reconnect + browser OAuth), then STOP there
+   which step is mine to do (the browser OAuth approval that the ask step opens), then STOP there
 5. Confirm the callables inside Code Mode with tool_info (discovery works pre-auth; confirmed
    2026-07-16: mobbin.mobbin_search_screens plus search_flows and search_sections -
    see references/discovery-fixture-2026-07-16.json)
@@ -42,15 +42,15 @@ The AI will:
 - Run `scripts/doctor.sh`, which verifies only and never edits configuration or auth state
 - Report the manual's registration state honestly (registered; absence escalated as a failure) without touching the config
 - Explain the OAuth-only model and surface the operator-only steps, then wait
-- Confirm the callable through Code Mode discovery only after your OAuth, in a fresh session
+- Confirm the callable through Code Mode discovery only after the ask step has registered the manual and you completed OAuth
 
-**Expected setup time:** 2 to 5 minutes for verification; the Code Mode reconnect and OAuth are operator steps
+**Expected setup time:** 2 to 5 minutes for verification; the OAuth approval is the operator step
 
 ### Quick Success Check (30 seconds)
 
 1. Run `bash scripts/doctor.sh` from the skill folder. `OK 'mobbin' manual registered in .utcp_config.json` plus the bridge shape means the packet and the wiring state agree (absence would report ERR).
 2. Run `MOBBIN_DOCTOR_LIVE=1 bash scripts/doctor.sh`. `HTTP 401` means the endpoint is reachable and correctly requires OAuth.
-3. After operator OAuth, inside a fresh Code Mode session: `tool_info({ tool_name: "mobbin.mobbin_search_screens" })` returns a schema (or the actual live name, which then supersedes the prediction).
+3. After the ask step registers the manual and you approve OAuth, inside that Code Mode session: `tool_info({ tool_name: "mobbin.mobbin_search_screens" })` returns a schema (or the actual live name, which then supersedes the prediction).
 
 Not working? Go to [Troubleshooting](#6-troubleshooting).
 
@@ -58,11 +58,11 @@ Not working? Go to [Troubleshooting](#6-troubleshooting).
 
 ## 1. OVERVIEW
 
-`mcp-mobbin` reaches the remote, paid Mobbin MCP (`https://api.mobbin.com/mcp`, hosted Streamable HTTP; the official repo is registration metadata only, so there is no server to install) through this project's Code Mode. The registered `mobbin` manual launches `npx -y mcp-remote`, which bridges Code Mode's stdio to Mobbin's remote endpoint (HTTP-first; SSE fallback only after a 404; never forced) — in any Code Mode session started after the registration.
+`mcp-mobbin` reaches the remote, paid Mobbin MCP (`https://api.mobbin.com/mcp`, hosted Streamable HTTP; the official repo is registration metadata only, so there is no server to install) through this project's Code Mode. The registered `mobbin` manual launches `npx -y mcp-remote`, which bridges Code Mode's stdio to Mobbin's remote endpoint (HTTP-first; SSE fallback only after a 404; never forced) — once the ask step has registered it in the session.
 
 ### Core Principle
 
-> **Verify, never rewrite.** The manual is registered and operator-owned. This guide adds no configuration, edits no files, invents no credentials, and treats the Code Mode reconnect and authentication as operator-only actions. A broken registration is escalated, never repaired here.
+> **Verify, never rewrite.** The manual is registered and operator-owned. This guide adds no configuration, edits no files, invents no credentials, and treats the browser OAuth approval as an operator-only action. A broken registration is escalated, never repaired here.
 
 ### Architecture
 
@@ -132,25 +132,25 @@ The gated live probe sends one unauthenticated HTTPS request. **HTTP 401 is the 
 
 ---
 
-## 4. INSTALLATION: RECONNECT AND AUTHENTICATE (OPERATOR-ONLY)
+## 4. INSTALLATION: REGISTER AND AUTHENTICATE (OPERATOR APPROVES)
 
-> **This entire section is performed by the operator — never by the agent.** The agent surfaces these steps and waits. It never edits `.utcp_config.json`, never opens the OAuth URL on your behalf, never reads or repairs `~/.mcp-auth`, and never handles tokens.
+> **The approval in this section is the operator's.** The agent asks first and calls `register_manual` only after the operator picks Ready, then waits. It never edits `.utcp_config.json`, never opens the OAuth URL on your behalf, never reads or repairs `~/.mcp-auth`, and never handles tokens.
 
-### Step A: reconnect Code Mode
+### Step A: register the manual in the session
 
-The `mobbin` manual is already registered in `manual_call_templates[]` of `.utcp_config.json` (stdio, `npx -y mcp-remote https://api.mobbin.com/mcp`, **empty `env`** — no credential of any kind, and no `.env` line; reference shape in [`assets/utcp-mobbin-manual.md`](assets/utcp-mobbin-manual.md)). Reconnect Code Mode so the manual loads: manuals load at startup, so any session opened before the registration cannot see it.
+The `mobbin` manual is already registered in `manual_call_templates[]` of `.utcp_config.json` (stdio, `npx -y mcp-remote https://api.mobbin.com/mcp`, **empty `env`** — no credential of any kind, and no `.env` line; reference shape in [`assets/utcp-mobbin-manual.md`](assets/utcp-mobbin-manual.md)). The entry carries `"disabled": true`, so Code Mode skips it at startup and reconnecting does not load it. Its tools appear only after the ask step in `SKILL.md` calls Code Mode's `register_manual` with the `mobbin` entry from `.utcp_config.json`. Once registered, the tools stay listed for the rest of the session.
 
 ### Step B: browser OAuth (the only auth path)
 
-1. Trigger a first Mobbin call through Code Mode (or let the agent attempt discovery). With no credential configured — which is the only correct configuration — `mcp-remote` starts a browser OAuth flow (protected-resource discovery, Dynamic Client Registration per RFC 7591, authorization-code + PKCE S256, `openid` scope).
+1. The `register_manual` call in Step A launches `mcp-remote`. With no credential configured — which is the only correct configuration — `mcp-remote` starts a browser OAuth flow (protected-resource discovery, Dynamic Client Registration per RFC 7591, authorization-code + PKCE S256, `openid` scope).
 2. Complete the authorization in your browser with your paid Mobbin account. Access is revocable later from Mobbin Account Settings -> MCP.
-3. Auth state persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`). It is yours; the skill never touches it. Ephemeral runtimes without a persistent home may need to re-authenticate.
+3. Auth state persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`). It is yours; the skill never touches it. Ephemeral runtimes without a persistent home may need to re-authenticate. When a token is already cached there, registration connects silently with no tab.
 
 > **Honesty note:** end-to-end OAuth completion through this bridge is **Inferred**, not verified in this repo's record. A live unauthenticated probe confirmed the OAuth shape (401 + protected-resource metadata; the authorization server publishes DCR and PKCE S256), but no operator has completed the flow. If it fails, that is a finding to report, not to work around silently — and never by inventing an API key, because none exists.
 
 ### Validation: `phase_3_complete`
 
-- [ ] Code Mode was reconnected after the registration (the `mobbin` manual resolves in the fresh session)
+- [ ] The ask step registered the manual with `register_manual` (the `mobbin` tools are listed in the current session)
 - [ ] You completed the browser authorization on a paid account
 - [ ] No token, header, or auth-state content was pasted into any chat, file, or evidence; the manual `env` is still empty
 
@@ -181,7 +181,7 @@ Expected: `search_screens` resolves under the `mobbin` manual. The predicted cal
 
 | Error | Cause | Fix |
 | ----- | ----- | --- |
-| No `mobbin.*` tools resolve | Code Mode session predates the registration, OAuth incomplete, or the registration broke (`doctor.sh` absence = ERR) | Reconnect Code Mode in a fresh session, re-run `doctor.sh`, complete Section 4; a missing manual is escalated to the operator |
+| No `mobbin.*` tools resolve | The manual ships disabled and the ask step has not registered it in this session, OAuth incomplete, or the registration broke (`doctor.sh` absence = ERR) | Run the ask step so `register_manual` registers the manual, re-run `doctor.sh`, complete Section 4; a missing manual is escalated to the operator |
 | HTTP 401 on every call | Not authenticated; the empty manual `env` is correct, not the problem | Complete the operator browser OAuth (Section 4) on a paid account. **Never add an API key — none exists** |
 | OAuth callback fails or times out | Headless session or blocked localhost callback | Retry in a browser-capable session; there is no token-paste or API-key alternative for MCP |
 | Access denied despite auth | The account is on the Free plan (no MCP access; exact denial semantics unverified) | Upgrade the plan; relay the provider's message verbatim; do not guess semantics |
@@ -234,9 +234,9 @@ bash scripts/install.sh                       # non-interactive verify-only post
 MOBBIN_DOCTOR_LIVE=1 bash scripts/doctor.sh   # + one unauthenticated probe (expect 401)
 ```
 
-### Reconnect + authenticate (operator-only)
+### Register + authenticate (operator approves)
 
-The manual is registered (empty `env`; no credential exists to add). Reconnect Code Mode, complete browser OAuth on a Pro/Team/Enterprise account; auth state persists in `~/.mcp-auth`.
+The manual is registered (empty `env`; no credential exists to add). Register it through the ask step, which calls `register_manual` and opens the sign-in tab. Complete browser OAuth on a Pro/Team/Enterprise account. Auth state persists in `~/.mcp-auth`.
 
 ### Confirm (inside Code Mode)
 
@@ -250,7 +250,7 @@ tool_info({ tool_name: "mobbin.mobbin_search_screens" })  // Inferred prediction
 | ---------- | ------- |
 | `phase_1_complete` | Node 18+/npx present; plan known |
 | `phase_2_complete` | Wiring state verified read-only (manual registered = OK); probe returns 401 |
-| `phase_3_complete` | Operator Code Mode reconnect + browser OAuth completed; env still empty |
+| `phase_3_complete` | Manual registered through the ask step and browser OAuth completed; env still empty |
 | `phase_4_complete` | Live callables confirmed via `tool_info` (done 2026-07-16, pre-auth; three-tool baseline recorded); smoke search observed (still pends operator OAuth) |
 
 ---

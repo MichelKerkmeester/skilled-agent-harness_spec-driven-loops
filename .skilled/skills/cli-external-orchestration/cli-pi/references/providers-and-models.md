@@ -11,7 +11,7 @@ trigger_phrases:
   - "pi mistral deepseek glm route"
 importance_tier: normal
 contextType: implementation
-version: 1.5.12.0
+version: 1.5.13.0
 ---
 
 # cli-pi Providers, Models & Invocation
@@ -81,6 +81,7 @@ OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--mod
 |----------|-------|
 | `deepseek-v4.1-flash` | Latency-optimized reasoning model that takes images as well as text, pinned to `--thinking max` by policy — a tier this route carries. **The deep-loop fan-out reaches this route through the provider-qualified literal `opencode-go/deepseek-v4.1-flash`**, which dispatches as `--model opencode-go/deepseek-v4.1-flash` at `--thinking max`; the dated bare literal `deepseek-v4.1-flash-1017` goes to DevPass. The two routes named the same model from 2026-09-11, when this id moved onto the gateway's own `deepseek-v4.1-flash` name and off `deepseek-v4-flash-vision-exp`, until DevPass moved to the 2026-10-17 release; they now carry different releases, and they stay separate routes under the one-literal-one-provider rule, which is why DevPass holds the DeepSeek fan-out slot. Catalog-verified 2026-09-11 (1M context, 384K output, `images: yes`), and the route returned a real reply through its `opencode` client that same day |
 | `qwen3.8-max` | Qwen 3.8 Max; a live `pi --provider opencode-go --model qwen3.8-max -p` dispatch completed a real turn 2026-08-07 |
+| `glm-5.3` | Z.AI GLM-5.3, the full model rather than the flash one, via the Go gateway. Reasoning, text only, context 1M, output 131K, catalog price $1.40 in / $4.40 out per 1M (cached reads $0.26). Its ladder here is `low`/`high`/**`max`**, with no `xhigh`, so pass `--thinking max` (or `low`/`high`) explicitly. Dispatch as `pi --offline --model opencode-go/glm-5.3 --thinking max -p`. Pi also lists `opencode/glm-5.3` and `mistral/zai-glm-5-3`, but the roster carries GLM-5.3 on opencode-go only. **Direct dispatch only:** no `glm-5.3` literal is in `PI_SUPPORTED_MODELS`, so the deep-loop fan-out does not reach it. **Not dispatch-verified:** Pi lists the id, but a live turn at each level on 2026-11-19 returned `403 Model access is disabled`, because the Go plan's usage was exhausted |
 | `glm-5.3-flash` | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has no `xhigh` — dispatched at its top tier `--thinking max`; ladder re-verified in `opencode models opencode-go --verbose` on OpenCode 1 on 2026-09-04. Reachable as `--model opencode-go/glm-5.3-flash`. **Direct-dispatch route only since 2026-09-05:** the bare `glm-5.3-flash` literal now maps to `llmgateway` in `PI_MODEL_PROVIDERS`, and one literal maps to one provider, so the deep-loop fan-out reaches GLM-5.3-Flash through DevPass, not here |
 
 ### llmgateway

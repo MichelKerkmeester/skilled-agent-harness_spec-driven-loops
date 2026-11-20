@@ -1,0 +1,5 @@
+.skilled/changelog/skilled/v4.0.0.3.md
+.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.2.0.md
+.skilled/changelog/skilled/v4.0.0.7.md
+.skilled/changelog/skilled/v4.0.0.9.md
+.skilled/changelog/skilled/v4.0.2.0.md

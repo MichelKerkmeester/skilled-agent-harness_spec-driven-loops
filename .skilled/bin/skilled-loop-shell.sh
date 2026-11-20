@@ -48,6 +48,7 @@ skilled_loop_real_path() {
   printf '%s/%s\n' "$directory" "${entry##*/}"
 }
 # An unresolved or misplaced shim cannot let the caller's directory establish trust.
+skilled_loop_previous_checkout=${skilled_loop_sourced_checkout:-}
 if [ -n "${BASH_VERSION:-}" ]; then
   skilled_loop_source_file=${BASH_SOURCE[0]}
 else
@@ -66,7 +67,20 @@ case "$skilled_loop_source_dir" in
     ;;
   *) skilled_loop_sourced_checkout='' ;;
 esac
-unset skilled_loop_source_file skilled_loop_source_dir skilled_loop_sourced_bin
+# Each shim records only its own checkout, so a second checkout's shim sourced later would
+# drop the trust the first one's sourcing gave. The earlier checkout moves to the trusted
+# list instead, once.
+if [ -n "$skilled_loop_previous_checkout" ] \
+  && [ "$skilled_loop_previous_checkout" != "$skilled_loop_sourced_checkout" ]; then
+  case ":${SKILLED_LOOP_TRUSTED_CHECKOUTS:-}:" in
+    *":$skilled_loop_previous_checkout:"*) ;;
+    *)
+      SKILLED_LOOP_TRUSTED_CHECKOUTS="${SKILLED_LOOP_TRUSTED_CHECKOUTS:+$SKILLED_LOOP_TRUSTED_CHECKOUTS:}$skilled_loop_previous_checkout"
+      ;;
+  esac
+fi
+unset skilled_loop_source_file skilled_loop_source_dir skilled_loop_sourced_bin \
+  skilled_loop_previous_checkout
 
 # ───────────────────────────────────────────────────────────────
 # 1. WRAPPER RESOLUTION
@@ -326,13 +340,16 @@ function cursor-agent { skilled_loop_launch cursor cursor-agent "$@"; }
 function vibe { skilled_loop_launch vibe vibe "$@"; }
 
 # A manual claim is pasted as `skilled-loop <runtime>`, so the shim answers to that name.
-# The wrapper comes from the checkout that owns this shim, never from the current directory,
-# so a pasted claim cannot start a session from a wrapper the shim has not trusted.
+# The current directory's wrapper runs only when the trust check a runtime launch uses
+# accepts it, so a pasted claim never starts a session from an untrusted wrapper, and with
+# two checkouts it runs the one the operator stands in. Anywhere else the wrapper comes from
+# the checkout that owns this shim.
 # A shim copied away from its checkout, or one whose wrapper was removed, has nothing to
 # run; naming that beats bash failing on a path rooted at /.
 function skilled-loop {
-  local wrapper=''
-  if [ -n "${skilled_loop_sourced_checkout:-}" ]; then
+  local wrapper
+  wrapper=$(skilled_loop_find_wrapper)
+  if [ -z "$wrapper" ] && [ -n "${skilled_loop_sourced_checkout:-}" ]; then
     wrapper="${skilled_loop_sourced_checkout}/.skilled/bin/skilled-loop"
   fi
   if [ -z "$wrapper" ] || [ ! -f "$wrapper" ]; then

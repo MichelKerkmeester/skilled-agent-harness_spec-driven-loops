@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: PARENT SKILL WORKFLOW (AUTO MODE)
+# SKILLED CREATE: PARENT SKILL WORKFLOW (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: autonomous execution (no approval checkpoints)
 # Entrypoint: /create:skill-parent

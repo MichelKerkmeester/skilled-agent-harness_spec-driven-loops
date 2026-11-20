@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doc alignment check",
+      "phase 16 doc alignment check",
+      "advisor pasted reply topic",
+      "doc alignment check plan",
+      "doc alignment check tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "016-doc-alignment-check operator decisions",
+      "doc alignment check implementation summary"
+    ],
+    "key_topics": [
+      "doc",
+      "alignment",
+      "check",
+      "phase",
+      "advisor",
+      "pasted",
+      "reply",
+      "topic",
+      "plan",
+      "tasks",
+      "packet",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/assets/local-doc-alignment/topics.json",
+      "evidence/report.md",
+      "evidence/topics-entry.json",
+      "evidence/findings.json",
+      "evidence/fix-plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "topics.json",
+        "kind": "config",
+        "path": ".skilled/commands/assets/local-doc-alignment/topics.json",
+        "source": "derived"
+      },
+      {
+        "name": "report.md",
+        "kind": "doc",
+        "path": "evidence/report.md",
+        "source": "derived"
+      },
+      {
+        "name": "topics-entry.json",
+        "kind": "config",
+        "path": "evidence/topics-entry.json",
+        "source": "derived"
+      },
+      {
+        "name": "findings.json",
+        "kind": "config",
+        "path": "evidence/findings.json",
+        "source": "derived"
+      },
+      {
+        "name": "fix-plan.md",
+        "kind": "doc",
+        "path": "evidence/fix-plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/local-doc-alignment` checks docs only for a topic listed in `topics.json`, and no listed topic covers the skill advisor",
+    "created_at": "2026-11-19T05:47:14Z",
+    "last_save_at": "2026-11-19T09:31:34.254Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:521f593f814b8acde1d9faad9551ec0435d5f57ec5dede1559988228dc9c8917",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "917a8c2f287037144d9202db4214a3480acca104f342c2cbce113a44b7e9a78d",
+      "plan.md": "474d7a1bebea4d685d17241d3342a6008572fd1a8662493c0b97a63dafaf2f74",
+      "tasks.md": "5cac1bd03f1b9fc070019575f3a34ff83958cc11fb03c1c1d220c434d115881a",
+      "decision-record.md": "bcfdf52ec28b7953649157c98bd96e7fa04b8bc763401010bd06d5f0497bf160",
+      "implementation-summary.md": "2a4c43727e4fbaac382a4ac5043416ddd9b4462fe14182b6ed2c891eb229f3b7"
+    },
+    "last_active_at": null
+  }
+}

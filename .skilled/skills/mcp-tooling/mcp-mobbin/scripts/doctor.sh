@@ -90,7 +90,7 @@ fi
 
 # Tool discovery pointer (tool_info runs inside Code Mode, not in a shell)
 log "-- Callable confirmation (run inside Code Mode) --"
-info "The mandatory tool_info confirmation cannot run from a shell. In a fresh Code Mode session (manuals load at startup), run:"
+info "The mandatory tool_info confirmation cannot run from a shell. Once the ask step has registered the manual in the session, run:"
 info '  tool_info({ tool_name: "mobbin.mobbin_search_screens" })'
 info "Callables CONFIRMED by live discovery 2026-07-16 (references/discovery-fixture-2026-07-16.json):"
 info "  registry names mobbin.mobbin.{search_screens,search_flows,search_sections} (dotted)."

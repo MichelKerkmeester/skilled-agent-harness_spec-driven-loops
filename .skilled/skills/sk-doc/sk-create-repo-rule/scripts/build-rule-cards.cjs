@@ -110,11 +110,12 @@ function extractSection(body, pattern, ruleName, label) {
   return section;
 }
 
-// Rule file names in a stable order, so output never depends on directory order.
+// Rule file names in a stable order, so output never depends on directory order. The
+// folder's own README is skipped, because it orients a reader and holds no rule to card.
 function listRules(rulesDirAbs) {
   return fs
     .readdirSync(rulesDirAbs, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md') && entry.name.toLowerCase() !== 'readme.md')
     .map((entry) => entry.name)
     .sort();
 }

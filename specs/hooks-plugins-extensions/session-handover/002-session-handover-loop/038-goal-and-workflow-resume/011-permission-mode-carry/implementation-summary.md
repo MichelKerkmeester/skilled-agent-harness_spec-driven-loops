@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d36b509f10132dae8050a395d2195e364f66388cb6b2d25f30654f45862cec33"
       session_id: "scaffold-011-permission-mode-carry"
       parent_session_id: null
     completion_pct: 90

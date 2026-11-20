@@ -94,7 +94,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "disabled": true
         },
         {
             "name": "figma",
@@ -169,7 +170,8 @@
                         "env": {}
                     }
                 }
-            }
+            },
+            "disabled": true
         },
         {
             "name": "notion",
@@ -227,7 +229,8 @@
                         "env": {}
                     }
                 }
-            }
+            },
+            "disabled": true
         },
         {
             "name": "webflow",

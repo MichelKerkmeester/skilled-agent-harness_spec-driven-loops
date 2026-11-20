@@ -21,14 +21,14 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Working on this repository in OpenCode with the shared skills and the authored plugins |
 | **Start with** | `opencode` from the repository root, after one install inside `.opencode/` |
-| **Works on** | Every session started at the repository root, on OpenCode 1 or OpenCode 2 |
+| **Works on** | Every session started at the repository root, on OpenCode 2 |
 | **Checked by** | `/doctor:runtime-mirrors` and the commands in section 5 |
 
 ### What You Get
 
-Most of this folder is a link into `.skilled/`. A skill or an agent changes once there and the change appears here, because a link holds no content of its own. The plugins are the part written here, because they import the OpenCode plugin SDK and no other runtime loads them.
+Most of this folder is a link into `.skilled/`. A skill or an agent changes once there and the change appears here, because a link holds no content of its own. The plugins are the part written here, because OpenCode is the only runtime that loads them.
 
-Every plugin exports one object with a `server` entry and a `setup` entry. OpenCode 1 runs `server` and OpenCode 2 runs `setup`, which wraps the same factory. Most of the guards behind them live in `.skilled/hooks/`, so a rule changes in one place for every runtime. The shared instructions arrive through the root `AGENTS.md`.
+Every plugin exports one object with an `id` and a `setup` entry, and the hook factory it wraps sits on a non-enumerable `factory` property. OpenCode 2 runs `setup`. Most of the guards behind them live in `.skilled/hooks/`, so a rule changes in one place for every runtime. The shared instructions arrive through the root `AGENTS.md`.
 
 ---
 
@@ -48,7 +48,7 @@ Every plugin exports one object with a `server` entry and a `setup` entry. OpenC
 
 ## 3. GETTING STARTED
 
-1. Run `npm ci` in `.opencode/` once. It installs the plugin SDK into `node_modules/`, which git ignores.
+1. Run `npm ci` in `.opencode/` once. It installs the plugins' one runtime dependency, `zod`, into `node_modules/`, which git ignores.
 2. Start `opencode` from the repository root. OpenCode reads the links and loads every `.js` file at the top of `plugins/`.
 3. Use `/goal-opencode` for the session goal, and the shared commands as usual. OpenCode registers every `*.md` file under a `commands/` folder at any depth.
 4. Run the checks in section 5 after you change a command or a link.
@@ -62,8 +62,8 @@ Every plugin exports one object with a `server` entry and a `setup` entry. OpenC
 | `skills`, `agents`, `hooks`, `bin`, `scripts`, `repo-rules` | Link | Each points at its own tree under `.skilled/` |
 | `manual-testing-playbook` | Link | The `cli-opencode` playbook |
 | `commands/` | Real folder of links | One link per top-level entry of `.skilled/commands/` that git does not ignore, written by `sync-runtime-mirrors.cjs`. A private `local-*` link is neither written nor pruned. `goal-opencode.md` is written here |
-| `plugins/` | Authored | The plugin entries, with `lib/` and `tests/`. They sit here because they import the plugin SDK |
-| `package.json`, `package-lock.json` | Authored | The module type and the pinned SDK install |
+| `plugins/` | Authored | The plugin entries, with `lib/` and `tests/`. They sit here because OpenCode loads them from this folder |
+| `package.json`, `package-lock.json` | Authored | The module type and the pinned `zod` dependency |
 | `node_modules/` | Installed | Written by `npm ci` from the lockfile. Git ignores it |
 | `.gitignore` | Written at install | The ignore list for this folder |
 | `README.md`, `SYNC.md` | Authored | The documentation |
@@ -104,7 +104,7 @@ The suite prints a pass line per inventory row. It reports `ℹ fail 0` and exit
 
 - [`SYNC.md`](./SYNC.md): the surface inventory and the drift checks
 - [`plugins/README.md`](./plugins/README.md): each plugin entry and the core it calls
-- [`plugins/ARCHITECTURE.md`](./plugins/ARCHITECTURE.md): the dual export and the bridge limits
+- [`plugins/ARCHITECTURE.md`](./plugins/ARCHITECTURE.md): the export shape and the bridge limits
 - [`.skilled/hooks/README.md`](../.skilled/hooks/README.md): the hook cores and the coverage matrix
 - [`cli-opencode`](../.skilled/skills/cli-external-orchestration/cli-opencode/README.md): dispatching OpenCode from another runtime
 - [`AGENTS.md`](../AGENTS.md): the shared instruction file

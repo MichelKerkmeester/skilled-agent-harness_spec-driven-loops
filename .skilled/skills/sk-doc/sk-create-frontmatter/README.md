@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # create-frontmatter
@@ -85,13 +85,35 @@ A request reaches the mode through the `sk-doc` hub. `hub-router.json` scores it
 
 From there the work is a short sequence. Name the class, copy its template, fit the description to the budget and set the version last. Version goes in as the final key before the closing delimiter, so its position stays the same whatever else the block carries.
 
-```mermaid
-flowchart TD
-  Request["Frontmatter question"] --> Class["Name the document class"]
-  Class --> Template["Copy the class template"]
-  Template --> Budget["Fit the description to the budget"]
-  Budget --> Version["Set the version last"]
-  Version --> Check["Validate the block"]
+```text
+┌───────────────────────────────────┐
+│ Frontmatter question              │
+└─────────────────┬─────────────────┘
+                  │
+                  ▼
+┌───────────────────────────────────┐
+│ Name the document class           │
+└─────────────────┬─────────────────┘
+                  │
+                  ▼
+┌───────────────────────────────────┐
+│ Copy the class template           │
+└─────────────────┬─────────────────┘
+                  │
+                  ▼
+┌───────────────────────────────────┐
+│ Fit the description to the budget │
+└─────────────────┬─────────────────┘
+                  │
+                  ▼
+┌───────────────────────────────────┐
+│ Derive the version last           │
+└─────────────────┬─────────────────┘
+                  │
+                  ▼
+┌───────────────────────────────────┐
+│ Validate the block                │
+└───────────────────────────────────┘
 ```
 
 Two kinds of version come out of this contract. A `SKILL.md` carries the skill edition, which is the higher of its own frontmatter version and the highest changelog filename version, compared as integer tuples. Every other doc carries its own edition. A valid 4-part value is kept. A missing one starts at `1.0.0.0`. A body change raises the third segment and resets the fourth.

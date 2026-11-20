@@ -46,9 +46,8 @@ const { buildStopDecisionInput } = nodeRequire(join(skillRoot, 'runtime', 'scrip
     graph: Record<string, unknown>,
   ) => { config: Record<string, unknown> };
 };
-const { buildLoopPrompt, buildNativeCommandInput } = nodeRequire(join(skillRoot, 'runtime', 'scripts', 'fanout-run.cjs')) as {
+const { buildLoopPrompt } = nodeRequire(join(skillRoot, 'runtime', 'scripts', 'fanout-run.cjs')) as {
   buildLoopPrompt: (...args: unknown[]) => string;
-  buildNativeCommandInput: (...args: unknown[]) => string;
 };
 
 const ARTIFACTS = [
@@ -306,13 +305,6 @@ function renderArtifacts(variant: Variant): Record<Artifact, string> {
     null,
     loopOptions,
   );
-  const nativeInput = buildNativeCommandInput(
-    'review',
-    '.opencode/specs/system-speckit/999-golden',
-    '.opencode/specs/system-speckit/999-golden/review/lineages/alpha',
-    lineage,
-    loopOptions,
-  );
 
   const stateLogRows = readFileSync(join(reviewDir, 'deep-review-state.jsonl'), 'utf8')
     .split('\n')
@@ -336,7 +328,7 @@ function renderArtifacts(variant: Variant): Record<Artifact, string> {
     'pivot-seeds.json': normalize(`${JSON.stringify({ ...pivotInput, config: undefined }, null, 2)}\n`, specFolder),
     // The lineage prompt names the repository checkout it runs from, which differs
     // per worktree, so the checkout path is tokenized like the spec folder.
-    'lineage-prompt.txt': `${withoutExpansiveOnlyPersona(lineagePrompt)}\n--- native command input ---\n${nativeInput}\n`
+    'lineage-prompt.txt': `${withoutExpansiveOnlyPersona(lineagePrompt)}\n`
       .split(process.cwd())
       .join('<CWD>'),
     'stop-decision-config.json': `${JSON.stringify(decisionInput.config, null, 2)}\n`,

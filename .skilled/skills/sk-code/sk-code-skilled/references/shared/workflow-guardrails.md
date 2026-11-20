@@ -2,8 +2,8 @@
 title: "OpenCode Workflow Guardrails"
 description: "OpenCode-only rules that sit on top of the shared implement and verify workflow: the continuity writer, the sk-git boundary, the spec validation and typecheck chain, and runtime build traps."
 trigger_phrases:
-  - "opencode workflow guardrails"
-  - "opencode verification reality"
+  - "skilled workflow guardrails"
+  - "skilled verification reality"
   - "runtime build traps"
   - "rebuild dist before verifying"
 importance_tier: normal

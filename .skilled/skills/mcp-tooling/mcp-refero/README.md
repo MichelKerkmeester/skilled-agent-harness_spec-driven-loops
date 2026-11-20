@@ -7,7 +7,7 @@ trigger_phrases:
   - "design reference"
   - "ui reference search"
   - "real app screens"
-version: 1.1.7.0
+version: 1.1.9.0
 ---
 
 # mcp-refero
@@ -97,12 +97,30 @@ Cite styles by `record.url` and screens by `record.refero_url`. When the work al
 
 A request arrives as a design-reference question. The agent reads the wiring state, confirms the callable in the live session and then searches one layer at a time. Metadata is compared before any detail is fetched. A screenshot is the last request. Every record used is cited by its source URL.
 
-```mermaid
-flowchart TD
-  Request["Design-reference request"] --> Doctor["doctor.sh reads the manual state"]
-  Doctor --> Confirm["tool_info confirms the callable"]
-  Confirm --> Funnel["styles, then screens, then flows"]
-  Funnel --> Cite["cited evidence by url or refero_url"]
+```text
+┌───────────────────────────────────────┐
+│       Design-reference request        │
+└───────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────┐
+│   doctor.sh reads the manual state    │
+└───────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────┐
+│    tool_info confirms the callable    │
+└───────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────┐
+│   styles, then screens, then flows    │
+└───────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────┐
+│  cited evidence by url or refero_url  │
+└───────────────────────────────────────┘
 ```
 
 ### The Research Funnel
@@ -160,7 +178,7 @@ Skip it when the work is the design judgment itself. Skip Mobbin research for `m
 |---|---|---|
 | HTTP 401 on every call | The endpoint requires authentication. The empty manual `env` is not anonymous access | Operator only: complete browser OAuth on a Pro (or higher) account or wire the documented Bearer alternative. The agent surfaces the step and waits |
 | Access denied on a Free account | The Free plan has no MCP access at all, so this is a denial rather than a smaller tool list | Report the entitlement denial verbatim and stop |
-| `refero.*` tools do not resolve | The manual was not loaded at Code Mode startup or OAuth is incomplete | Reconnect Code Mode in a fresh session, verify the manual with the doctor script and escalate auth to the operator |
+| `refero.*` tools do not resolve | The manual ships disabled and has not been registered in this session or OAuth is incomplete | Run the ask step so `register_manual` registers the manual, verify it with the doctor script and escalate auth to the operator |
 | `refero.refero_search_styles` not found | A single-prefix name was used. The convention doubles the prefix for tools already named `refero_*` | Use `refero.refero_refero_<tool>(...)` and confirm the exact callable with `tool_info` first |
 | `-32000 Connection closed` on every call | Code Mode runs on Node 25 or newer, where isolated-vm has no build and `call_tool_chain` crashes | Operator side: run Code Mode on Node 24 |
 | A `get_style` or `get_screen` batch fails | Full styles run about 10-15k characters each, so a large batch is too big | Retry with fewer IDs, 3-4 styles per batch |

@@ -2,13 +2,13 @@
 title: Config Style Guide
 description: Formatting standards and conventions for JSONC behavior config and strict-JSON machine descriptors in the OpenCode development environment.
 trigger_phrases:
-  - "opencode config style guide"
+  - "skilled config style guide"
   - "jsonc formatting standards"
   - "config section organization"
   - "json style conventions"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Config Style Guide
@@ -387,7 +387,7 @@ Use 2 spaces for indentation (consistent with JSON convention):
 | Skill-graph identity | `graph-metadata.json` | `.skilled/skills/sk-code/graph-metadata.json` |
 | Hub registry | `mode-registry.json` | `.skilled/skills/sk-code/mode-registry.json` |
 | Root OpenCode runtime config | `opencode.json` | `opencode.json` |
-| Command route assets | `*.yaml` | `.skilled/commands/create/assets/create-skill-auto.yaml` |
+| Command route assets | `*.yaml` | `.skilled/commands/create/assets/create-sk-skill-auto.yaml` |
 
 ### Location
 

@@ -77,9 +77,10 @@ async function MkSpeckitCompletionPlugin(ctx) {
             strict: args?.strict === true,
           });
           // The tool's return value is the legitimate output channel (unlike
-          // stdout/stderr, which corrupt the OpenCode TUI); execute() returns
-          // a string per the @opencode-ai/plugin tool() contract, so the
-          // merged payload is delivered as pretty-printed JSON text.
+          // stdout/stderr, which corrupt the OpenCode TUI). The v2 tool contract
+          // takes the result as the tool's content, and the bridge passes a
+          // string through as that content, so the merged payload is delivered
+          // as pretty-printed JSON text.
           return JSON.stringify(payload, null, 2);
         },
       }),

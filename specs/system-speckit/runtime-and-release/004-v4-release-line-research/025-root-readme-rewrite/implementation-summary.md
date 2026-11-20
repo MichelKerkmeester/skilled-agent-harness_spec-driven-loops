@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:947a11c8117fce61a9e1cbaedfd300be94fc92f42d1e945f90abb5d99e77fab1"
       session_id: "scaffold-025-root-readme-rewrite"
       parent_session_id: null
     completion_pct: 100

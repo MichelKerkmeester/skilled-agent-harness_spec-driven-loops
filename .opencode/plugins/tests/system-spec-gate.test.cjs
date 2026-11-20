@@ -63,7 +63,7 @@ test('kill switch is a full no-op: chat.system.transform never reads or mutates 
   const projectDir = makeProjectDir();
   try {
     await withEnv(DISABLED_ENV, '1', async () => {
-      const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
+      const hooks = await MkSpecGatePlugin.factory({ directory: projectDir });
 
       // output.system starts as a non-array sentinel. If the kill switch were
       // checked AFTER the normalize line (the pre-fix ordering), this would
@@ -87,7 +87,7 @@ test('kill switch is a full no-op even when output is missing/malformed', async 
   const projectDir = makeProjectDir();
   try {
     await withEnv(DISABLED_ENV, '1', async () => {
-      const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
+      const hooks = await MkSpecGatePlugin.factory({ directory: projectDir });
       // Must not throw even though `output` is undefined -- the disabled
       // check returns before the `!output` guard ever runs.
       await assert.doesNotReject(
@@ -104,7 +104,7 @@ test('kill switch off: chat.system.transform still normalizes output.system and 
   const projectDir = makeProjectDir();
   try {
     await withEnv(DISABLED_ENV, undefined, () => withEnv('AI_SESSION_CHILD', undefined, async () => {
-      const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
+      const hooks = await MkSpecGatePlugin.factory({ directory: projectDir });
 
       const output = {};
       await hooks['experimental.chat.system.transform']({ prompt: 'fix the login bug' }, output);
@@ -152,7 +152,7 @@ test('P1 fix: a ctx.client stub returning a Gate-3-triggering user message opens
       },
     };
     await withEnv('AI_SESSION_CHILD', undefined, async () => {
-      const hooks = await MkSpecGatePlugin.server(ctx);
+      const hooks = await MkSpecGatePlugin.factory(ctx);
 
       // No `prompt` field anywhere on input -- matches the real typed shape
       // `{ sessionID?, model }`. If extractPrompt(input) were the only prompt
@@ -185,7 +185,7 @@ test('P1 fix: a ctx.client throw fails OPEN -- no question injected, no throw pr
         },
       },
     };
-    const hooks = await MkSpecGatePlugin.server(ctx);
+    const hooks = await MkSpecGatePlugin.factory(ctx);
 
     const output = {};
     await assert.doesNotReject(
@@ -211,7 +211,7 @@ test('P1 fix: no real session (no sessionID on input) never attempts the ctx.cli
       directory: projectDir,
       client: { session: { messages: async () => { called = true; return { data: [] }; } } },
     };
-    const hooks = await MkSpecGatePlugin.server(ctx);
+    const hooks = await MkSpecGatePlugin.factory(ctx);
 
     const output = {};
     await hooks['experimental.chat.system.transform']({}, output);
@@ -234,7 +234,7 @@ test('P2 fix: classify and enforce key an absent sessionID under the same fallba
   try {
     await withEnv('AI_SESSION_CHILD', undefined, async () => {
       await withEnv('SYSTEM_SPEC_GATE_ENFORCE', '1', async () => {
-        const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
+        const hooks = await MkSpecGatePlugin.factory({ directory: projectDir });
 
         // No sessionID anywhere on this input -- exercises the no-session
         // fallback on the classify surface. Uses the `prompt` field directly
@@ -281,7 +281,7 @@ test('session.deleted without a session id evicts the unknown-session gate state
   const projectDir = makeProjectDir();
   try {
     await withEnv('AI_SESSION_CHILD', undefined, () => withEnv(DISABLED_ENV, undefined, async () => {
-      const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
+      const hooks = await MkSpecGatePlugin.factory({ directory: projectDir });
       const { stateDir } = guardCore.resolveGuardPaths(projectDir);
       const unknownStatePath = path.join(stateDir, `${guardCore.sessionStateKey(guardCore.UNKNOWN_SESSION_ID)}.json`);
 
@@ -338,7 +338,7 @@ test('SYSTEM_SPEC_GATE_ENFORCE unset: no Write/Edit is ever denied through the O
           },
         },
       };
-      const hooks = await MkSpecGatePlugin.server(ctx);
+      const hooks = await MkSpecGatePlugin.factory(ctx);
 
       await hooks['experimental.chat.system.transform']({ sessionID }, {});
 
@@ -375,7 +375,7 @@ test('WS1 telemetry: a source-file Write with an open gate writes exactly one pa
       undefined,
       async () => {
         const sessionID = 'telemetry-session';
-        const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
+        const hooks = await MkSpecGatePlugin.factory({ directory: projectDir });
 
         await hooks['experimental.chat.system.transform']({ prompt: 'implement the export pipeline', sessionID }, {});
 
@@ -412,7 +412,7 @@ test('WS1 telemetry: SYSTEM_SPEC_GATE_DISABLED=1 writes no telemetry line at all
   try {
     await withEnv(DISABLED_ENV, '1', async () => {
       const sessionID = 'telemetry-disabled-session';
-      const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
+      const hooks = await MkSpecGatePlugin.factory({ directory: projectDir });
 
       await hooks['experimental.chat.system.transform']({ prompt: 'implement the export pipeline', sessionID }, {});
 
@@ -452,7 +452,7 @@ test('WS4: AI_SESSION_CHILD=1 never opens, advises, logs, or denies through the 
     await withEnv('SYSTEM_SPEC_GATE_ENFORCE', '1', async () => {
       await withEnv('AI_SESSION_CHILD', '1', async () => {
         const sessionID = 'child-session';
-        const hooks = await MkSpecGatePlugin.server({ directory: projectDir });
+        const hooks = await MkSpecGatePlugin.factory({ directory: projectDir });
         const { stateDir } = guardCore.resolveGuardPaths(projectDir);
         const statePath = path.join(stateDir, `${guardCore.sessionStateKey(sessionID)}.json`);
         const warningLogPath = path.join(stateDir, 'spec-gate-warnings.log');

@@ -18,6 +18,7 @@
       "shared blocks and retired mechanisms plan",
       "shared blocks and retired mechanisms tasks",
       "shared blocks and retired mechanisms acceptance criteria",
+      "007-shared-blocks-and-retired-mechanisms operator decisions",
       "shared blocks and retired mechanisms implementation summary"
     ],
     "key_topics": [
@@ -41,6 +42,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml",
       ".skilled/commands/speckit/assets/speckit-plan.yaml",
@@ -55,8 +57,7 @@
       ".skilled/commands/speckit/assets/speckit-complete.yaml",
       ".skilled/hooks/goal/bin/goal.cjs",
       ".skilled/skills/system-spec-kit/shared/tests/boolean-expr.test.ts",
-      ".skilled/commands/speckit/implement.md",
-      ".skilled/commands/speckit/complete.md"
+      ".skilled/commands/speckit/implement.md"
     ],
     "entities": [
       {
@@ -81,6 +82,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -168,12 +175,6 @@
         "source": "derived"
       },
       {
-        "name": "complete.md",
-        "kind": "doc",
-        "path": ".skilled/commands/speckit/complete.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,7 +207,7 @@
     ],
     "causal_summary": "An agent that runs `/speckit:plan`, `/speckit:implement` or `/speckit:complete` reads the same goal block, checkpoint options and documentation levels three times, and the copies already disagree",
     "created_at": "2026-11-14T11:33:24Z",
-    "last_save_at": "2026-11-15T16:19:22.161Z",
+    "last_save_at": "2026-11-19T17:37:58.130Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +215,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4b113dbdd513eb5a0cfd1f62e86e6971b2244b4db55b82c70c98192648d2de8",
+    "source_fingerprint": "sha256:cdfd6d12ff4270990c90c643132f6d9e80225497ca89f2cf863de901bf1c3d9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc6b530259d75bbeab07530dfaae85b66ffc63774d9f9759db303ee0692a3549",
       "plan.md": "a7868923a779a90fba536f985dc09f67b4050a29d6fe02d5fac54fce74c2b139",
       "tasks.md": "475229fb573ffe46305229feeccc1ea314898cb3d29c8e677ed264deba53f66f",
+      "decision-record.md": "28b18aa5851e5eb67507a4ed1a8644bcc658e1a05a9e8a1570f9d7451cc4aadb",
       "implementation-summary.md": "cddcdbfb81073839de335aad965a759af184bf89f7aa0138f1fe988304f157d4"
     },
     "last_active_at": null

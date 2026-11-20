@@ -5,7 +5,7 @@ trigger_phrases:
   - "github actions workflow standards"
   - "ci workflow rules"
   - "workflow yaml evidence"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # sk-code-ci
@@ -71,13 +71,23 @@ A request reaches this surface through the `sk-code` hub. The advisor routes the
 
 When the request scores, the hub bundles the surface beside the workflow mode it picked, with the workflow mode first. The packet advertises no `surfaceDetection` block, so detection by file path never selects it. The first resource a run loads is `references/ci-workflow-standards.md`, the rule index that the other three references extend. The paired mode then applies the rules to the change, and the values those rules name come from the CI profile rather than from the packet.
 
-```mermaid
-flowchart TD
-  Request["A request names a workflow concern"] --> Route["The sk-code hub scores the CI_WORKFLOW keywords"]
-  Route --> Bundle["The surface bundles beside the workflow mode"]
-  Bundle --> Index["references/ci-workflow-standards.md loads first"]
-  Profile["repository/ci.json"] --> Index
-  Index --> Apply["The paired mode applies the rule to the change"]
+```text
+┌──────────────────────────┐    ┌──────────────────────────┐    ┌──────────────────────────┐
+│ A request names a        │ ─▶ │ The sk-code hub scores   │ ─▶ │ The surface bundles      │
+│ workflow concern         │    │ the CI_WORKFLOW keywords │    │ beside the workflow mode │
+└──────────────────────────┘    └──────────────────────────┘    └─────────────┬────────────┘
+                                                                              │
+                                                                              ▼
+                                ┌──────────────────────────┐    ┌──────────────────────────┐
+                                │ repository/ci.json       │ ─▶ │ references/ci-workflow-  │
+                                └──────────────────────────┘    │ standards.md loads first │
+                                                                └─────────────┬────────────┘
+                                                                              │
+                                                                              ▼
+                                                                ┌──────────────────────────┐
+                                                                │ The paired mode applies  │
+                                                                │ the rule to the change   │
+                                                                └──────────────────────────┘
 ```
 
 ### The File Map

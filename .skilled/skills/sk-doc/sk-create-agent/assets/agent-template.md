@@ -1,19 +1,19 @@
 ---
 title: Agent Template - Specialist Agent Structure
-description: Template for creating OpenCode agent files with production frontmatter, permission boundaries, dispatch rules, and orchestration contracts.
+description: Template for creating Skilled agent files with production frontmatter, permission boundaries, dispatch rules, and orchestration contracts.
 trigger_phrases:
-  - "opencode agent template"
+  - "skilled agent template"
   - "agent frontmatter scaffold"
   - "agent permission boundaries"
   - "specialist agent structure"
 importance_tier: normal
 contextType: general
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # Agent Template - Specialist Agent Structure
 
-> Template for creating OpenCode agent files with current production frontmatter, permission boundaries, dispatch rules, and grep-checkable orchestration contracts.
+> Template for creating Skilled agent files with current production frontmatter, permission boundaries, dispatch rules, and grep-checkable orchestration contracts.
 
 Last Updated: 2026-05-03 (post-063 alignment)
 
@@ -27,7 +27,7 @@ Agents are specialized AI personas with defined authority, tool permissions, and
 
 ### Usage
 
-- Copy this template when you are creating an OpenCode agent file.
+- Copy this template when you are creating a Skilled agent file.
 - Read When to Create an Agent below before you commit to an agent rather than a skill.
 - Keep the resulting file at or below 600 lines, and move reusable knowledge into a skill or reference file.
 

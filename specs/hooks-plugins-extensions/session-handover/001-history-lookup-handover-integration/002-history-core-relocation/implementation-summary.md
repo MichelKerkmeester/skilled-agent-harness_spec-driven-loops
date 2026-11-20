@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:920ff762d2cbc75fbf840cd9618f9fb90eddc7a1b0e0d5636666884170820251"
       session_id: "scaffold-002-history-core-relocation"
       parent_session_id: null
     completion_pct: 100

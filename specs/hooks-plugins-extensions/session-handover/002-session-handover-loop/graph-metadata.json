@@ -57,7 +57,8 @@
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/051-handover-doc-alignment-3",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/052-duplicate-hop-title-numbers",
     "hooks-plugins-extensions/session-handover/002-session-handover-loop/053-handover-and-history-deep-review",
-    "hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation"
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation",
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning"
   ],
   "manual": {
     "depends_on": [],
@@ -72,7 +73,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "002-session-handover-loop operator decisions"
     ],
     "key_topics": [
       "session",
@@ -88,11 +90,12 @@
       "durable",
       "directive"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       "research/research.md",
       "review-archive/20261018T184826Z/review-report.md",
       "review-archive/20261019T144809Z/review-report.md",
@@ -109,8 +112,7 @@
       "008-review-3-remediation/goal.md",
       "009-research-fixes-and-core-consolidation/goal.md",
       "010-post-fix-research/goal.md",
-      "011-post-fix-remediation/goal.md",
-      "033-research-remediation/goal.md"
+      "011-post-fix-remediation/goal.md"
     ],
     "entities": [
       {
@@ -123,6 +125,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -228,53 +236,49 @@
         "source": "derived"
       },
       {
-        "name": "Executive Summary This",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Method The",
+        "name": "Operator Decisions",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Goal Packet Persistence The",
+        "name": "Verbatim Operator Answers Each",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Receiver Binding",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Environment Restoration The",
-        "kind": "proper_noun",
-        "path": "research/research.md",
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-17T08:03:24.042Z",
+    "last_save_at": "2026-11-19T17:47:57.690Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:76be73389de63a28cf6a53819ccb10f9bf95e82af43c3e32c90328306cc9e091",
+    "source_fingerprint": "sha256:51c91a05201c3ac4b1b4e5853a6ee72709adeb1a747813ced8a3983bb386fd28",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d5affd82bc68e147cbb50e8be9c821e7c57d5c007cc320a328497b7097a2964",
+      "spec.md": "d9d6de0f0fc2272998324727a0d56ad7a1c70227c94134ffcbfdb7d63c639faf",
+      "decision-record.md": "2074cb7ca1ccbf3f48d0b2ee7bcf99ee60dd455fce0f5c81d129b0c9a2c9fc35",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation",
-    "last_active_at": "2026-11-17T08:03:20.254Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/050-handover-doc-alignment-2",
+    "last_active_at": "2026-11-19T17:47:57.690Z"
   }
 }

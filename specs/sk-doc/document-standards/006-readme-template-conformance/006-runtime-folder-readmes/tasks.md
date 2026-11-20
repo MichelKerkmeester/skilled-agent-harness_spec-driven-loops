@@ -57,7 +57,7 @@ contextType: "general"
 
 - [x] T009 Rerun the full baseline and the structure check on all 16 files (`$S/baseline-006-after.tsv`). Verify: every line prints `✅ VALID`, `hard=0` and `emojiH=0`, `h2model.py` prints EXACT or SUBSET for each and no ceiling is lower than its baseline. Evidence: 16 of 16 on all three, 15 `EXACT` and 1 `SUBSET`, and no ceiling dropped.
 - [x] T010 Rerun the link check and every consumer test (`plan.md` affected surfaces). Verify: `readme_links.py` prints `0 problems`, `check-markdown-links.cjs` prints `0 broken` and each consumer prints its pass line. Evidence: `0 problems` over 157 links, `15212 links checked, 0 broken`, and `opencode-compat-layout.test.cjs` `pass 21`.
-- [B] T011 Run the sk-doc suite (`run-script-tests.sh`). Verify: it exits 0. Blocked: `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` exits 1 with `FAIL test_check_changelog_shape.py`, the same changelog failure that blocks phase 005 and outside this phase. 57 other tests pass.
+- [x] T011 Run the sk-doc suite (`run-script-tests.sh`). Verify: it exits 0. Evidence: the changelog test that held this row blocked passes again. Rerun 2026-11-17: `run-script-tests.sh` printed `all sk-doc script tests passed`, 58 PASS, exit 0.
 - [ ] T012 Record before and after numbers and close the packet docs (`implementation-summary.md`). Verify: `validate.sh --strict` on this folder prints `RESULT: PASSED`.
 - [x] T013 Commit, merge origin/main and push under sk-git (`git log -1`). Verify: `git rev-parse HEAD origin/main` prints the same hash twice. Evidence: commit `599674d9365` was merged with origin/main and pushed as `1a01cbe94c3`, and `git rev-parse HEAD origin/main` printed `1a01cbe94c3` twice.
 <!-- /ANCHOR:phase-3 -->
@@ -68,7 +68,7 @@ contextType: "general"
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed: every reviewer finding is applied or rejected with a reason
 - [ ] The phase commit is on origin/main
 <!-- /ANCHOR:completion -->
@@ -125,8 +125,8 @@ A blocked task is marked `[B]` with the failing command and its output beside it
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Every consumer test in the plan's affected surfaces table passes Blocked: the sk-doc suite fails on a changelog test outside this phase. `opencode-compat-layout.test.cjs` and the parity test pass.
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: every row in `acceptance-criteria.md` is Met
+- [x] CHK-021 [P0] Every consumer test in the plan's affected surfaces table passes. Evidence: `opencode-compat-layout.test.cjs` `pass 21`, `PARITY PASS` and the sk-doc suite exit 0, rerun 2026-11-17
 - [x] CHK-022 [P1] `readme_links.py` prints `0 problems`. Evidence: 157 outbound links, `0 problems`
 - [x] CHK-023 [P1] Every reviewer finding is applied or rejected with a reason. Evidence: Review Record, 51 applied and 0 rejected
 <!-- /ANCHOR:testing -->
@@ -164,8 +164,8 @@ A blocked task is marked `[B]` with the failing command and its output beside it
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 5/7 |
-| P1 Items | 9 | 8/9 |
+| P0 Items | 7 | 7/7 |
+| P1 Items | 9 | 9/9 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-11-17

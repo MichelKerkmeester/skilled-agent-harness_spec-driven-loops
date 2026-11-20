@@ -75,7 +75,7 @@ workflow:
     activities:
       - "With rollback_run_id, skip the stage. Read .skilled-overlays.json at the tree root for the overlay folder, skilled-overlays/ when it is absent, and list the files under <overlay folder>/repin-runs/{rollback_run_id}/ with find, which writes nothing. With no such folder, render the unknown-run failure and stop with STATUS=FAIL. Otherwise render the rollback plan from the presentation contract and go to phase 5. Phases 3 and 4 do not run on this path."
       - "Create a fresh, empty temporary folder with mktemp -d and keep the exact path it printed as stage_dir. It is outside the vendored tree."
-      - "Run node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --upstream \"{upstream}\" --to \"{to_commit}\" --stage \"{stage_dir}\", adding --root \"{root}\" when the operator passed one. The live tree is not touched. Keep every line it prints: the overlay-lock note line when there is one, the copy <n> paths, delete <n> paths line, each blocked line, each equals-upstream line, each not-copied line, the stage skipped line, each MISS line and the final RESULT line."
+      - "Run node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --upstream \"{upstream}\" --to \"{to_commit}\" --stage \"{stage_dir}\", adding --root \"{root}\" when the operator passed one. The live tree is not touched. Keep every line it prints: the overlay-lock note line when there is one, the copy <n> paths, delete <n> paths line, each blocked line, each equals-upstream line, each not-copied line, each upstream-lost line, each NOTE line, the stage skipped line, each MISS line and the final RESULT line. An upstream-lost line names an upstream change the copy brings in that an overlay then writes over or removes, and a NOTE line names an insert anchor the new copy no longer holds. Neither stops the run."
       - "Exit 2 means the engine refused before any write: a held lock, a destination in live-edited, both-changed, upstream-moved or cannot-apply state, an unowned file in the copied roots that differs from the old pin, which the engine names, an overlay the engine refuses, shown as a blocked <overlay-id>: refused line whose fix is the presentation contract's An overlay is refused row, or a commit missing from --upstream. Quote the engine's lines, name the presentation contract's fix for the refusal and end with STATUS=FAIL. Nothing was written."
       - "Exit 1 with any blocked <overlay-id>: <state> <path> line stops the run before the question. The operator rebases each blocked overlay onto the new upstream file, then reruns this command. Show each blocked line with the presentation contract's rebase step and end with STATUS=FAIL. Nothing was written."
       - "Exit 1 with no blocked line means the full check failed on the staged copy, so the live run would end the same way. Show each MISS line and end with STATUS=FAIL. Nothing was written."
@@ -85,7 +85,7 @@ workflow:
   phase_3_approval:
     purpose: "Ask the re-pin question once against the stage report on screen, and write only after its yes"
     activities:
-      - "Render the repin plan from the presentation contract: the copy and delete counts, each equals-upstream line, each not-copied line and the stage skipped line, the backup the live run takes, the steps it runs and the lock the engine holds. Then ask the repin question once."
+      - "Render the repin plan from the presentation contract: the copy and delete counts, each equals-upstream line, each not-copied line, each upstream-lost line, each NOTE line and the stage skipped line, the backup the live run takes, the steps it runs and the lock the engine holds. Then ask the repin question once."
       - "Any answer other than yes is a no: print the cancelled result naming the re-pin that was declined, state Changed: none, and end with STATUS=CANCELLED ACTION=cancelled. Nothing is written."
       - "Never default an answer, never carry an approval from an earlier run, and never ask against a report the operator has not seen. Phase 4 runs only after this phase's yes."
 
@@ -111,13 +111,14 @@ workflow:
     purpose: "Prove the tree reads back through the read-only status mode"
     activities:
       - "After any engine write, run node .skilled/commands/doctor/scripts/overlay-engine.cjs status once more, with --root \"{root}\" when this run used it, and read its RESULT line and counts against the engine's own result lines."
+      - "After the re-pin or rollback result, resolve the advisor workspace root to {root} when supplied or \"$PWD\" otherwise, then make one read-only `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root <workspace root> --include-semantic-health true --format json --timeout-ms 1500 --warm-only` call. Report skills and command vectors as current/total, using total minus stale minus missing for current. If the daemon is absent or the status cannot be read, report coverage as unavailable; include an unreachable or missing-model backend state when returned. This line is informational and never changes the re-pin result, so missing Ollama is not a failed step."
       - "When the re-read cannot run at all, report its message, keep the write result and name the missing re-read as the next step. Never report a write as verified when the re-read never answered."
 
   phase_7_report:
     purpose: "Summarize the run and hand the next step back to the operator"
     activities:
       - "Render the repinned, rolled-back, left-in-place, cancelled or failure result from the presentation contract, with the engine's lines as printed and the re-read verdict."
-      - "Name each equals-upstream overlay as an entry the operator can drop, and name the next command from the presentation contract's next-step table."
+      - "Name each equals-upstream overlay as an entry the operator can drop, name each upstream-lost line as an upstream change to carry into its overlay by hand when it applies, and name the next command from the presentation contract's next-step table."
       - "End by saying the operator commits the changed files themselves, because this route stages and commits nothing."
 
 # ─────────────────────────────────────────────────────────────────

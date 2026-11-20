@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.19.0
+version: 1.8.20.0
 ---
 
 # sk-git
@@ -87,13 +87,35 @@ A git task moves through three phases. Setup gives the work a numbered branch an
 
 Nothing past `references/quick-reference.md` loads until an intent selects a phase reference. A request whose keywords barely score loads the shared patterns and asks a short checklist instead of guessing.
 
-```mermaid
-flowchart TD
-  Ask["Workspace question"] --> Name["Allocate NNN and create the branch"]
-  Name --> Stage["Stage the change"]
-  Stage --> Message["Type, scope and Commit-Id"]
-  Message --> Finish["Merge, PR or discard"]
-  Finish --> Clean["Remove worktree and branch"]
+```text
+┌────────────────────────────────────┐
+│ Workspace question                 │
+└──────────────────┬─────────────────┘
+                  │
+                  ▼
+┌────────────────────────────────────┐
+│ Allocate NNN and create the branch │
+└──────────────────┬─────────────────┘
+                  │
+                  ▼
+┌────────────────────────────────────┐
+│ Stage the change                   │
+└──────────────────┬─────────────────┘
+                  │
+                  ▼
+┌────────────────────────────────────┐
+│ Type, scope and Commit-Id          │
+└──────────────────┬─────────────────┘
+                  │
+                  ▼
+┌────────────────────────────────────┐
+│ Merge, PR or discard               │
+└──────────────────┬─────────────────┘
+                  │
+                  ▼
+┌────────────────────────────────────┐
+│ Remove worktree and branch         │
+└────────────────────────────────────┘
 ```
 
 ### The Number Allocator

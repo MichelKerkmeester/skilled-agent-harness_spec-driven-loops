@@ -41,7 +41,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 
 // Resolver API: export function parseOpencodeVersion(text) and export function
 // resolveOpencodeVersion(binary, { probe, stat, realpath }).
-// Both return 'v1' | 'v2' | 'unknown'; resolution memoizes by realpath, size, and mtime.
+// Both return 'v2' | 'unsupported' | 'unknown'; resolution memoizes by realpath, size, and mtime.
 // PROBE_TIMEOUT_MS is exported.
 
 function makeScratchDir() {
@@ -87,41 +87,41 @@ function versionResolverOptions(key, probe) {
 }
 
 describe('OpenCode version resolution', () => {
-  it('R1 — opencode resolves v1 from 1.x probe output', async () => {
+  it('R1 — opencode resolves unsupported from 1.x probe output', async () => {
     const probe = vi.fn(async () => '1.19.3');
 
-    await expect(resolveOpencodeVersion('opencode', versionResolverOptions('r1', probe))).resolves.toBe('v1');
+    await expect(resolveOpencodeVersion('opencode', versionResolverOptions('r1', probe))).resolves.toBe('unsupported');
     expect(probe).toHaveBeenCalledTimes(1);
   });
 
-  it('R2 — opencode2 resolves v2 from v2 probe output', async () => {
+  it('R2 — opencode resolves v2 from v2 probe output', async () => {
     const probe = vi.fn(async () => 'opencode v2.0.32');
 
-    await expect(resolveOpencodeVersion('opencode2', versionResolverOptions('r2', probe))).resolves.toBe('v2');
+    await expect(resolveOpencodeVersion('opencode', versionResolverOptions('r2', probe))).resolves.toBe('v2');
     expect(probe).toHaveBeenCalledTimes(1);
   });
 
-  it('R3 — opencode2 resolves v1 when the probe reports a v1 version', async () => {
+  it('R3 — a renamed binary that reports 1.x is still unsupported', async () => {
     const probe = vi.fn(async () => '1.19.3');
 
-    await expect(resolveOpencodeVersion('opencode2', versionResolverOptions('r3', probe))).resolves.toBe('v1');
+    await expect(resolveOpencodeVersion('opencode1', versionResolverOptions('r3', probe))).resolves.toBe('unsupported');
     expect(probe).toHaveBeenCalledTimes(1);
   });
 
-  it('R4 — opencode resolves v2 when the probe reports a v2 version', async () => {
+  it('R4 — a renamed binary takes its v2 family from the probe, not its name', async () => {
     const probe = vi.fn(async () => 'opencode v2.0.32');
 
-    await expect(resolveOpencodeVersion('opencode', versionResolverOptions('r4', probe))).resolves.toBe('v2');
+    await expect(resolveOpencodeVersion('opencode1', versionResolverOptions('r4', probe))).resolves.toBe('v2');
     expect(probe).toHaveBeenCalledTimes(1);
   });
 
   it('R5 — empty or unparsable probe output resolves to unknown', async () => {
     const empty = await resolveOpencodeVersion(
-      'opencode2',
+      'opencode',
       versionResolverOptions('r5-empty', async () => ''),
     );
     const unparsable = await resolveOpencodeVersion(
-      'opencode2',
+      'opencode',
       versionResolverOptions('r5-unparsable', async () => 'version unavailable'),
     );
 
@@ -163,7 +163,7 @@ describe('OpenCode version resolution', () => {
   it('R8 — a probe that fails to spawn resolves to unknown', async () => {
     const probe = vi.fn(async () => { throw new Error('spawn failed'); });
 
-    await expect(resolveOpencodeVersion('opencode2', versionResolverOptions('r8', probe))).resolves.toBe('unknown');
+    await expect(resolveOpencodeVersion('opencode', versionResolverOptions('r8', probe))).resolves.toBe('unknown');
     expect(probe).toHaveBeenCalledTimes(1);
   });
 
@@ -175,8 +175,8 @@ describe('OpenCode version resolution', () => {
     clearOpencodeVersionCache();
 
     try {
-      await expect(resolveOpencodeVersion('opencode2', options)).resolves.toBe('unknown');
-      await expect(resolveOpencodeVersion('opencode2', options)).resolves.toBe('v2');
+      await expect(resolveOpencodeVersion('opencode', options)).resolves.toBe('unknown');
+      await expect(resolveOpencodeVersion('opencode', options)).resolves.toBe('v2');
       expect(probe).toHaveBeenCalledTimes(2);
     } finally {
       clearOpencodeVersionCache();
@@ -191,8 +191,8 @@ describe('OpenCode version resolution', () => {
     clearOpencodeVersionCache();
 
     try {
-      await expect(resolveOpencodeVersion('opencode2', options)).resolves.toBe('unknown');
-      await expect(resolveOpencodeVersion('opencode2', options)).resolves.toBe('v2');
+      await expect(resolveOpencodeVersion('opencode', options)).resolves.toBe('unknown');
+      await expect(resolveOpencodeVersion('opencode', options)).resolves.toBe('v2');
       expect(probe).toHaveBeenCalledTimes(2);
     } finally {
       clearOpencodeVersionCache();
@@ -201,7 +201,7 @@ describe('OpenCode version resolution', () => {
 
   it('resolveOpencodeVersionSync retries a non-zero probe result', () => {
     const directory = makeScratchDir();
-    const binaryPath = join(directory, 'opencode2');
+    const binaryPath = join(directory, 'opencode');
     const counterPath = join(directory, 'probe-count');
     const previousPath = process.env.PATH;
     const previousBinary = process.env.OPENCODE_BIN;
@@ -224,8 +224,8 @@ describe('OpenCode version resolution', () => {
       delete process.env.OPENCODE_BIN;
       process.env.OPENCODE_PROBE_COUNTER = counterPath;
 
-      expect(resolveOpencodeVersionSync('opencode2')).toBe('unknown');
-      expect(resolveOpencodeVersionSync('opencode2')).toBe('v2');
+      expect(resolveOpencodeVersionSync('opencode')).toBe('unknown');
+      expect(resolveOpencodeVersionSync('opencode')).toBe('v2');
       expect(readFileSync(counterPath, 'utf8').trim().split(/\r?\n/)).toHaveLength(2);
     } finally {
       if (previousPath === undefined) delete process.env.PATH;
@@ -239,8 +239,9 @@ describe('OpenCode version resolution', () => {
     }
   });
 
-  it('adversarial — CRLF and trailing whitespace still parse a v1 version', () => {
-    expect(parseOpencodeVersion('1.19.3\r\n ')).toBe('v1');
+  it('adversarial — CRLF and trailing whitespace still parse a version', () => {
+    expect(parseOpencodeVersion('2.0.32\r\n ')).toBe('v2');
+    expect(parseOpencodeVersion('1.19.3\r\n ')).toBe('unsupported');
   });
 
   it('adversarial — joined version tokens choose the first version', () => {
@@ -267,7 +268,7 @@ describe('OpenCode version resolution', () => {
       ['opencode', 'unknown'],
       ['/opt/tools/1.19.3/opencode', 'unknown'],
       ['2.0.32-rc.1', 'v2'],
-      ['1.19.3 2.0.32', 'v1'],
+      ['1.19.3 2.0.32', 'unsupported'],
       ['opencode v2.0.32\n1.19.3', 'v2'],
     ];
     for (const [sample, answer] of pinned) {
@@ -277,12 +278,12 @@ describe('OpenCode version resolution', () => {
 
   it('adversarial — probe failure keeps shared rules and warns version-specific rules', async () => {
     const version = await resolveOpencodeVersion(
-      'opencode2',
+      'opencode',
       versionResolverOptions('fallback-rules', async () => { throw new Error('probe failed'); }),
     );
     const rules = [
-      { id: 'shared-rule', check: 'always-fail', message: 'shared', severity: 'error', appliesTo: ['v1', 'v2'] },
-      { id: 'v1-rule', check: 'always-fail', message: 'v1 only', severity: 'error', appliesTo: ['v1'] },
+      { id: 'shared-rule', check: 'always-fail', message: 'shared', severity: 'error', appliesTo: ['v2'] },
+      { id: 'other-family-rule', check: 'always-fail', message: 'other family only', severity: 'error', appliesTo: ['v3'] },
     ];
     const violations = evaluate('opencode run "task"', rules, {
       version,
@@ -292,7 +293,7 @@ describe('OpenCode version resolution', () => {
     expect(version).toBe('unknown');
     expect(violations.map(({ id, severity }) => ({ id, severity }))).toEqual([
       { id: 'shared-rule', severity: 'block' },
-      { id: 'v1-rule', severity: 'warn' },
+      { id: 'other-family-rule', severity: 'warn' },
     ]);
   });
 
@@ -324,13 +325,13 @@ describe('OpenCode version resolution', () => {
     const previousBinary = process.env.OPENCODE_BIN;
     process.env.OPENCODE_BIN = 'opencode';
     const probe = vi.fn(async (executable) => {
-      expect(executable).toBe('opencode2');
+      expect(executable).toBe('opencode-next');
       return 'opencode v2.0.32';
     });
 
     try {
       await expect(
-        resolveOpencodeVersion('opencode2', versionResolverOptions('named-binary-wins', probe)),
+        resolveOpencodeVersion('opencode-next', versionResolverOptions('named-binary-wins', probe)),
       ).resolves.toBe('v2');
       expect(probe).toHaveBeenCalledTimes(1);
     } finally {

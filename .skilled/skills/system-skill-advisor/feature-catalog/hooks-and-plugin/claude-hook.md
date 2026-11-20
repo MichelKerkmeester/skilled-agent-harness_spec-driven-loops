@@ -6,7 +6,7 @@ trigger_phrases:
   - "claude user-prompt-submit"
   - "hookSpecificOutput claude"
   - "claude advisor hook"
-version: 0.11.5.0
+version: 0.11.6.0
 ---
 
 # Claude Code user-prompt-submit Hook
@@ -30,6 +30,8 @@ Before any CLI spawn the hook runs the casual-prompt gate. `/help`, short acknow
 When no brief is available the hook emits a fallback that opens with one status line and then the directives block. The status line takes one of three forms. For an outage the line is `Advisor: outage (<label>); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json` and the label is `absent`, `degraded` or `fail_open`. When no skill matched the line is `Advisor: no skill matched.` When the prompt gate skips the prompt the line is `Advisor: prompt skipped.` The `/doctor:setup` hint appears on no-match and outage lines when prompts use set up, set-up or setup wording, install or reinstall wording including installation and installer, configure or configuration wording or `check` followed within three words by environment, env, config, hooks, tools, tooling, toolchain or skilled. The no-match line ends with ` For setup or health checks, run /doctor:setup.` The outage line places `for setup or health checks, run /doctor:setup;` before `route by hand`, so the command stays last.
 
 Directive-lifecycle dedup treats that fallback like a brief. In a known, confirmed session the first no-route turn gets the whole text and later turns get the status line alone. Unknown sessions, the dedup kill switch and thrown errors still get the whole text.
+
+On an unhandled crash, the hook emits the timeout fallback, or the skipped fallback for an already skipped prompt, unless the prompt string is missing or fallback delivery fails, in which case it returns `{}`.
 
 ### Timeouts
 
@@ -60,6 +62,7 @@ Each record carries `runtime`, taken from `SPECKIT_RUNTIME` when it names a know
 | `Playbook scenario [CL-001](../../manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md).` | Manual playbook | Source reference |
 | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/runtime-parity.vitest.ts` | Automated test | parity across hooks |
 | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Automated test | prompt gate, fallback status lines, repeats, runtime and bytes, diagnostic flush |
+| `.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts` | Automated test | weak follow-up route-receipt guard and storage |
 | `.skilled/skills/system-spec-kit/runtime/tests/user-prompt-submit-shim.vitest.ts` | Automated test | shim child budget |
 
 ---

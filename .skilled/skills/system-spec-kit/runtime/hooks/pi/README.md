@@ -1,6 +1,6 @@
 ---
 title: "Pi Hooks: Spec-Gate + Session-Lifecycle Bridges"
-description: "Pi extension factories for Gate-3 spec-gate enforcement and session-lifecycle context, discovered through one-line entry files in .pi/extensions/ that re-export them."
+description: "Pi extension factories for Gate-3 spec-gate enforcement and session-lifecycle context, discovered through entry files in .pi/extensions/ that import them."
 trigger_phrases:
   - "pi spec gate"
   - "pi session lifecycle"
@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`hooks/pi/` holds the real files behind the `.pi/extensions/` entry files for this skill's Pi hooks. Pi discovers each one through its one-line entry file, which re-exports it, so it loads from this folder and every import Pi resolves in these files is relative to this folder.
+`hooks/pi/` holds the real files behind the `.pi/extensions/` entry files for this skill's Pi hooks. Pi discovers each one through its entry file, which imports it, so it loads from this folder and every import Pi resolves in these files is relative to this folder. When an import here fails, the entry turns the hook off and Pi shows one notice for the session.
 
 ---
 

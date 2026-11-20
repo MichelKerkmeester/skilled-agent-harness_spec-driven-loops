@@ -211,9 +211,9 @@ function spawnFanout(
   }).then((result) => ({ hermetic, result }));
 }
 
-const OPENCODE_VERSION_PROBE = 'if [ "$1" = "--version" ]; then echo 1.19.3; exit 0; fi';
+const OPENCODE_VERSION_PROBE = 'if [ "$1" = "--version" ]; then echo 2.3.2; exit 0; fi';
 const OPENCODE_NODE_VERSION_PROBE = "if (process.argv[2] === '--version') { "
-  + "console.log('1.19.3'); process.exit(0); }";
+  + "console.log('2.3.2'); process.exit(0); }";
 
 /**
  * Write a stub binary at `binDir/{name}` that exits 0.
@@ -235,31 +235,6 @@ function writeStubBinary(binDir: string, name: string): string {
       '',
     ].join('\n')
       .replace('write_fanout_artifacts', writeFanoutArtifactsShell()),
-    { mode: 0o755 },
-  );
-  return stubPath;
-}
-
-function writeNativeOpencodeStubBinary(binDir: string, captureCommand = false): string {
-  const stubPath = join(binDir, 'opencode');
-  writeFileSync(
-    stubPath,
-    [
-      '#!/bin/sh',
-      OPENCODE_VERSION_PROBE,
-      'payload="$*"',
-      'lineage_dir=$(printf "%s\\n" "$payload" | sed -n "s/.*--fanout-lineage-artifact-dir=//p" | sed "s/[[:space:]].*//" | head -n 1)',
-      'if [ -n "$lineage_dir" ]; then',
-      '  mkdir -p "$lineage_dir"',
-      ...(captureCommand ? ['  printf "%s\\n" "$payload" > "$lineage_dir/native-command.capture"'] : []),
-      '  printf "ok\\n" > "$lineage_dir/research.md"',
-      '  printf "ok\\n" > "$lineage_dir/review-report.md"',
-      `  ${completedLineageStateShell}`,
-      'fi',
-      'echo "native-stub-done"',
-      'exit 0',
-      '',
-    ].join('\n'),
     { mode: 0o755 },
   );
   return stubPath;
@@ -597,7 +572,6 @@ const fanoutRunScript = resolve(runtimeRoot, 'scripts', 'fanout-run.cjs');
 const {
   withAgentPersona,
   buildLoopPrompt,
-  buildNativeCommandInput,
   normalizeDepthMode,
   partitionFrontierNodes,
   resolveFrontierPartition,
@@ -617,13 +591,6 @@ const {
       frontierScope?: string[];
       reviewFocus?: string;
     },
-  ) => string;
-  buildNativeCommandInput: (
-    loopType: 'research' | 'review',
-    specFolder: string,
-    lineageDir: string,
-    lineage: { label: string; kind: string; iterations?: number },
-    options?: { researchTopic?: string; depthMode?: string | null; frontierScope?: string[] },
   ) => string;
   normalizeDepthMode: (raw: unknown) => string | null;
   partitionFrontierNodes: (
@@ -1188,51 +1155,25 @@ describe('fanout-run.cjs — stall watchdog is non-disableable', () => {
   });
 });
 
-describe('fanout-run.cjs — native convergence threshold defaults', () => {
+describe('fanout-run.cjs — native lineage refusal and loop prompt', () => {
   const { buildLineageCommand } = requireCjs(fanoutRunScript) as {
     buildLineageCommand: (
-      lineage: { kind: 'native'; iterations?: number },
+      lineage: { kind: string },
       prompt: string,
       resolvedSandbox: string,
       resolvedPermission: string,
-      options: {
-        loopType: 'research' | 'review';
-        specFolder: string;
-        lineageDir: string;
-        convergenceThreshold?: number;
-        env: NodeJS.ProcessEnv;
-      },
-    ) => { command: string; args: string[]; input: string };
+      options: Record<string, unknown>,
+    ) => unknown;
   };
 
-  function nativeCommandInput(loopType: 'research' | 'review'): string {
-    const binDir = makeTempDir('fanout-run-native-defaults-');
-    writeStubBinary(binDir, 'opencode');
-    const env: NodeJS.ProcessEnv = {
-      ...process.env,
-      PATH: `${binDir}:${process.env.PATH ?? ''}`,
-      OPENCODE_BIN: undefined,
-    };
-    const command = buildLineageCommand(
+  it('refuses to build a command for a native lineage', () => {
+    expect(() => buildLineageCommand(
       { kind: 'native' },
       '',
       'workspace-write',
       'default',
-      { loopType, specFolder: 'specs/test-native-defaults', lineageDir: '/tmp/native-defaults', env },
-    );
-    return command.args.at(-1) ?? '';
-  }
-
-  it('uses the research-specific 0.05 default for native dispatch when no threshold is explicit', () => {
-    const input = nativeCommandInput('research');
-    expect(input).toContain('--convergence=0.05');
-    expect(input).toContain('convergenceThreshold: 0.05');
-  });
-
-  it('keeps the 0.1 default for review native dispatch when no threshold is explicit', () => {
-    const input = nativeCommandInput('review');
-    expect(input).toContain('--convergence=0.1');
-    expect(input).toContain('convergenceThreshold: 0.1');
+      { loopType: 'research', specFolder: 'specs/test-native-refusal', lineageDir: '/tmp/native-refusal' },
+    )).toThrow(/native fan-out lineages are not supported/);
   });
 
   it('tells the leaf to copy the lineage directory verbatim and to record the max-iterations stop reason', () => {
@@ -1380,7 +1321,6 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     writeStubBinary(binDir, 'opencode');
     writeStubBinary(binDir, 'cursor-agent');
     const cases = [
-      { kind: 'native', label: 'native', sandbox: 'workspace-write' },
       { kind: 'cli-codex', label: 'codex', model: 'gpt-6-sol', sandbox: 'workspace-write' },
       { kind: 'cli-claude-code', label: 'claude', model: 'claude-fable-5', sandbox: 'workspace-write' },
       // cli-opencode has no OS-level sandbox flag, so only danger-full-access (which
@@ -1508,10 +1448,10 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     const payload = buildInvocationFingerprintPayload({
       kind: 'cli-opencode',
       command: 'opencode',
-      args: ['run', '--model', 'model', 'secret raw prompt'],
+      args: ['run', '-m', 'model', 'secret raw prompt'],
       prompt: 'secret raw prompt',
       promptArgIndexes: [3],
-      executableVersion: 'opencode 1.0.0',
+      executableVersion: 'opencode 2.3.2',
       model: 'model',
       reasoningEffort: null,
       serviceTier: null,
@@ -1522,43 +1462,6 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     expect(JSON.stringify(payload)).not.toContain('secret raw prompt');
     expect(JSON.stringify(payload)).not.toContain('OPENAI_API_KEY');
     expect(payload).toMatchObject({ promptDigest: expect.stringMatching(/^[a-f0-9]{64}$/) });
-
-    const native = buildLineageCommand(
-      { kind: 'native', label: 'native-fingerprint', iterations: 1 },
-      'generic loop prompt',
-      'workspace-write',
-      'acceptEdits',
-      {
-        executableVersion: 'opencode 1.0.0',
-        loopType: 'review',
-        specFolder: 'specs/sensitive-native-input',
-        lineageDir: '/tmp/sensitive-native-lineage',
-        sessionId: 'sensitive-native-session',
-        env: { ...process.env, PATH: pathValue, OPENCODE_BIN: undefined },
-      } as never,
-    );
-    const nativePromptIndex = native.args.length - 1;
-    const nativePrompt = native.args[nativePromptIndex];
-    const nativePayload = buildInvocationFingerprintPayload({
-      kind: 'native',
-      command: native.command,
-      args: native.args,
-      prompt: nativePrompt,
-      promptArgIndexes: [nativePromptIndex],
-      executableVersion: 'opencode 1.0.0',
-      model: null,
-      reasoningEffort: null,
-      serviceTier: null,
-      resolvedSandbox: 'workspace-write',
-      resolvedPermission: 'acceptEdits',
-      webSearch: 'inherit',
-    });
-    expect(JSON.stringify(nativePayload)).not.toContain('sensitive-native-input');
-    expect(JSON.stringify(nativePayload)).not.toContain('sensitive-native-lineage');
-    expect(JSON.stringify(nativePayload)).not.toContain('sensitive-native-session');
-    expect(native.invocationFingerprint).toBe(
-      `inv:${createHash('sha256').update(JSON.stringify(nativePayload)).digest('hex')}`,
-    );
   });
 
   it('fails closed before command construction when codex is absent', () => {
@@ -2680,26 +2583,26 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     expect(proHigh.args[idx + 1]).toBe('high');
   });
 
-  it('pins cli-opencode deepseek-v4-flash to --variant max even when a lower effort is requested', () => {
-    const binDir = makeTempDir('fanout-run-opencode-variant-');
+  it('pins cli-opencode deepseek-v4-flash to the max effort suffix even when a lower effort is requested', () => {
+    const binDir = makeTempDir('fanout-run-opencode-effort-');
     writeStubBinary(binDir, 'opencode');
     const env = { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` };
     const flashHigh = buildLineageCommand(
       { kind: 'cli-opencode', model: 'deepseek/deepseek-v4-flash', reasoningEffort: 'high' },
       'p', 'danger-full-access', 'default', { env },
     ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null } };
-    const vIdx = flashHigh.args.indexOf('--variant');
-    expect(vIdx).toBeGreaterThan(-1);
-    expect(flashHigh.args[vIdx + 1]).toBe('max');
+    const mIdx = flashHigh.args.indexOf('-m');
+    expect(mIdx).toBeGreaterThan(-1);
+    expect(flashHigh.args[mIdx + 1]).toBe('deepseek/deepseek-v4-flash#max');
     expect(flashHigh.effectiveConfig.reasoningEffort).toBe('max');
     // A non-flash opencode model keeps the requested effort.
     const other = buildLineageCommand(
       { kind: 'cli-opencode', model: 'anthropic/claude-opus-4-8', reasoningEffort: 'high' },
       'p', 'danger-full-access', 'default', { env },
     ) as { args: string[] };
-    const oIdx = other.args.indexOf('--variant');
+    const oIdx = other.args.indexOf('-m');
     expect(oIdx).toBeGreaterThan(-1);
-    expect(other.args[oIdx + 1]).toBe('high');
+    expect(other.args[oIdx + 1]).toBe('anthropic/claude-opus-4-8#high');
   });
 
   it('forwards reasoningEffort as --thinking, mapping the renamed levels none->off and ultra->max', () => {
@@ -3477,7 +3380,7 @@ describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
     expect(defaulted).toContain('review_target_type: spec-folder');
   });
 
-  it('names the lineage steer.md by repository-relative path for a CLI lineage only', () => {
+  it('names the lineage steer.md by repository-relative path for a CLI lineage', () => {
     const lineageDir = 'specs/test-fanout-steer/research/lineages/seat';
     const cliPrompt = buildLoopPrompt(
       'research', 'specs/test-fanout-steer', lineageDir, 'fanout-research-run-123',
@@ -3486,22 +3389,13 @@ describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
     expect(cliPrompt).toContain(
       `Before init, before each iteration, and before resolving any conflict, read ${lineageDir}/steer.md when it exists.`,
     );
-    const nativePrompt = buildLoopPrompt(
-      'research', 'specs/test-fanout-steer', lineageDir, 'fanout-research-run-123',
-      { kind: 'native', label: 'seat' } as never, 'test research topic',
-    );
-    expect(nativePrompt).not.toContain('steer.md');
   });
 
-  it('places the persona after the executor directive and leaves native prompts unchanged', () => {
+  it('places the persona after the executor directive', () => {
     const lineageDir = 'specs/test-fanout-persona/research/lineages/seat';
     const cliPrompt = buildLoopPrompt(
       'research', 'specs/test-fanout-persona', lineageDir, 'fanout-research-run-123',
       { kind: 'cli-opencode', label: 'seat', model: 'opencode-go/glm-5.1' }, 'persona test topic',
-    );
-    const nativePrompt = buildLoopPrompt(
-      'research', 'specs/test-fanout-persona', lineageDir, 'fanout-research-run-123',
-      { kind: 'native', label: 'seat' } as never, 'persona test topic',
     );
 
     expect(cliPrompt.indexOf('GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.'))
@@ -3509,7 +3403,6 @@ describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
     expect(cliPrompt.indexOf('EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.'))
       .toBeLessThan(cliPrompt.indexOf('=== BEGIN AGENT PERSONA'));
     expect(cliPrompt).toContain('=== END AGENT PERSONA (resolved persona: deep-research) ===');
-    expect(nativePrompt).not.toContain('=== BEGIN AGENT PERSONA');
   });
 
   it('rejects deprecated context fan-out prompt construction', () => {
@@ -3583,31 +3476,8 @@ describe('fanout-run.cjs — buildLoopPrompt child-dispatch preamble and path fo
 });
 
 describe('fanout-run.cjs — review session id propagation templates', () => {
-  const { buildLineageCommand } = requireCjs(fanoutRunScript) as {
-    buildLineageCommand: (
-      lineage: { kind: 'native'; iterations?: number },
-      prompt: string,
-      resolvedSandbox: string,
-      resolvedPermission: string,
-      options: {
-        loopType: 'review';
-        specFolder: string;
-        lineageDir: string;
-        sessionId?: string;
-        env: NodeJS.ProcessEnv;
-      },
-    ) => { command: string; args: string[]; input: string };
-  };
-
   it('uses a supplied session_id for review init artifacts and preserves the timestamp fallback', () => {
     const suppliedSessionId = 'fanout-lineage-a-run-123';
-    const binDir = makeTempDir('fanout-run-session-id-');
-    writeStubBinary(binDir, 'opencode');
-    const env: NodeJS.ProcessEnv = {
-      ...process.env,
-      PATH: `${binDir}:${process.env.PATH ?? ''}`,
-      OPENCODE_BIN: undefined,
-    };
 
     expect(renderReviewInitSessionIds(reviewWorkflowPath, suppliedSessionId)).toEqual({
       config: suppliedSessionId,
@@ -3619,55 +3489,54 @@ describe('fanout-run.cjs — review session id propagation templates', () => {
       stateLog: '2035-02-03T04:05:06.000Z',
       findingsRegistry: '2035-02-03T04:05:06.000Z',
     });
-
-    const withSession = buildLineageCommand(
-      { kind: 'native', iterations: 2 },
-      '',
-      'workspace-write',
-      'default',
-      {
-        loopType: 'review',
-        specFolder: 'specs/test-session-id',
-        lineageDir: '/tmp/fanout-lineage-a',
-        sessionId: suppliedSessionId,
-        env,
-      },
-    );
-    const withoutSession = buildLineageCommand(
-      { kind: 'native', iterations: 2 },
-      '',
-      'workspace-write',
-      'default',
-      {
-        loopType: 'review',
-        specFolder: 'specs/test-session-id',
-        lineageDir: '/tmp/fanout-lineage-a',
-        env,
-      },
-    );
-
-    expect(withSession.args.at(-1)).toContain(`session_id: ${suppliedSessionId}`);
-    expect(withoutSession.args.at(-1)).not.toContain('session_id:');
   });
 });
 
 describe('fanout-run.cjs — module basics', () => {
-  it('exits 0 and emits ok JSON for native fanout through opencode command dispatch', async () => {
-    const binDir = makeTempDir('fanout-run-native-bin-');
-    writeNativeOpencodeStubBinary(binDir);
-    const baseDir = makeTempDir('fanout-run-native-');
-    const nativeOnlyConfig = JSON.stringify({
-      executors: [{ label: 'native-a', kind: 'native', count: 1 }],
+  it('exits 3 (INPUT_VALIDATION) and names the lineage when the fan-out config holds a native lineage', async () => {
+    const baseDir = makeTempDir('fanout-run-native-refusal-');
+    const config = JSON.stringify({
+      executors: [
+        { label: 'native-a', kind: 'native', count: 1 },
+        { label: 'opencode-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
+      ],
       concurrency: 2,
     });
 
-    const { result } = await spawnFanout('module-native', [
+    const { result } = await spawnFanout('module-native-refusal', [
       '--spec-folder',
-      'specs/test-fanout-run-native',
+      'specs/test-fanout-run-native-refusal',
       '--loop-type',
       'research',
       '--fanout-config-json',
-      nativeOnlyConfig,
+      config,
+      '--base-artifact-dir',
+      baseDir,
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(`${result.stdout}${result.stderr}`).toContain(
+      'fan-out refused for lineage(s) native-a: native fan-out lineages are not supported',
+    );
+    expect(existsSync(join(baseDir, 'lineages', 'opencode-a'))).toBe(false);
+  });
+
+  it('exits 0 with ok JSON and reads a lineage log with no cost record as unknown cost', async () => {
+    const binDir = makeTempDir('fanout-run-cost-bin-');
+    writeStubBinary(binDir, 'opencode');
+    const baseDir = makeTempDir('fanout-run-cost-');
+    const config = JSON.stringify({
+      executors: [{ label: 'opencode-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+    });
+
+    const { result } = await spawnFanout('module-cost-unknown', [
+      '--spec-folder',
+      'specs/test-fanout-run-cost-unknown',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      config,
       '--base-artifact-dir',
       baseDir,
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
@@ -3676,51 +3545,9 @@ describe('fanout-run.cjs — module basics', () => {
     const json = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
     expect(json.status).toBe('ok');
     expect(json.summary).toMatchObject({ total: 1, succeeded: 1, failed: 0, all_failed: false });
-
-    const summary = JSON.parse(readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8')) as {
-      convergence?: { status?: string; reason?: string; no_new_findings?: boolean };
-      gauges?: { lag?: number; pending?: number; failed?: number };
-      total?: number;
-      succeeded?: number;
-      failed?: number;
-    };
-    expect(summary.total).toBe(1);
-    expect(summary.succeeded).toBe(1);
-    expect(summary.failed).toBe(0);
-    expect(summary.gauges).toEqual({ lag: 0, pending: 0, failed: 0 });
-    // The stub's log carries no cost record, so its cost and the total read as unknown.
-    expect(json.summary).toMatchObject({ provider_cost_usd: { total: null, by_lineage: { 'native-a': null } } });
-  });
-
-  it('passes the absolute lineage path to native dispatch when the base path is relative', async () => {
-    const binDir = makeTempDir('fanout-run-native-relative-bin-');
-    writeNativeOpencodeStubBinary(binDir, true);
-    const specFolder = 'specs/test-fanout-run-native-relative';
-    const relativeBaseDir = join(specFolder, 'research', 'artifacts');
-    const config = JSON.stringify({
-      executors: [{ label: 'native-relative', kind: 'native', count: 1 }],
-      concurrency: 1,
-    });
-
-    const { hermetic, result } = await spawnFanout('native-relative-lineage', [
-      '--spec-folder',
-      specFolder,
-      '--loop-type',
-      'research',
-      '--fanout-config-json',
-      config,
-      '--base-artifact-dir',
-      relativeBaseDir,
-    ], {
-      env: { PATH: `${binDir}:${process.env.PATH ?? ''}` },
-      timeoutMs: 15_000,
-    });
-
-    expect(result.exitCode).toBe(0);
-    const lineageDir = resolve(realpathSync(hermetic.tmpDir), relativeBaseDir, 'lineages', 'native-relative');
-    const nativeCommand = readFileSync(join(lineageDir, 'native-command.capture'), 'utf8');
-    expect(nativeCommand).toContain(`--fanout-lineage-artifact-dir=${lineageDir}`);
-    expect(nativeCommand).toContain(`config.fanout_lineage_artifact_dir: ${lineageDir}`);
+    // The stub prints plain text, so its log carries no cost record and both the lineage
+    // cost and the run total read as unknown rather than zero.
+    expect(json.summary).toMatchObject({ provider_cost_usd: { total: null, by_lineage: { 'opencode-a': null } } });
   });
 
   it('logs and falls back to flat_pool when wave assignment is requested', async () => {
@@ -3796,27 +3623,27 @@ describe('fanout-run.cjs — module basics', () => {
     expect(ledgerEvents.some((event) => event.event === 'started' && event.label === 'wave-seat')).toBe(true);
   });
 
-  it('replays a native fanout cassette with a stable normalized run envelope', async () => {
-    const binDir = makeTempDir('fanout-run-native-cassette-bin-');
-    writeNativeOpencodeStubBinary(binDir);
-    const hermetic = useHermeticEnv('native-cassette');
-    const baseDir = makeBaseArtifactDir(hermetic, 'specs/cassette-fanout-native', 'research');
+  it('replays a fanout cassette with a stable normalized run envelope', async () => {
+    const binDir = makeTempDir('fanout-run-cassette-bin-');
+    writeStubBinary(binDir, 'opencode');
+    const hermetic = useHermeticEnv('fanout-cassette');
+    const baseDir = makeBaseArtifactDir(hermetic, 'specs/cassette-fanout', 'research');
     const cassetteDir = makeTempDir('fanout-run-cassette-dir-');
-    const cassetteId = 'fanout-native-empty';
+    const cassetteId = 'fanout-opencode-empty';
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'native-a', kind: 'native', count: 1 }],
+      executors: [{ label: 'opencode-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 2,
     });
     const args = [
       '--spec-folder',
-      'specs/cassette-fanout-native',
+      'specs/cassette-fanout',
       '--loop-type',
       'research',
       '--fanout-config-json',
       fanoutConfig,
       '--base-artifact-dir',
       baseDir,
-      '--only-lineage', 'native-a',
+      '--only-lineage', 'opencode-a',
     ];
     const options = {
       cassetteDir,
@@ -3836,14 +3663,14 @@ describe('fanout-run.cjs — module basics', () => {
       cwd: '<CWD>',
       argv: [
         '--spec-folder',
-        'specs/cassette-fanout-native',
+        'specs/cassette-fanout',
         '--loop-type',
         'research',
         '--fanout-config-json',
         fanoutConfig,
         '--base-artifact-dir',
         '<BASE_ARTIFACT_DIR>',
-        '--only-lineage', 'native-a',
+        '--only-lineage', 'opencode-a',
       ],
       exitCode: 0,
       signal: null,
@@ -3853,7 +3680,7 @@ describe('fanout-run.cjs — module basics', () => {
       status: 'ok',
       run_id: '<RUN_ID>',
       results: [
-        expect.objectContaining({ label: 'native-a', status: 'fulfilled' }),
+        expect.objectContaining({ label: 'opencode-a', status: 'fulfilled' }),
       ],
       summary: {
         total: 1,
@@ -3913,7 +3740,7 @@ describe('fanout-run.cjs — module basics', () => {
   it('exits 3 (INPUT_VALIDATION) when --lineage-timeout-hours exceeds the 4-hour hard ceiling', async () => {
     const baseDir = makeTempDir('fanout-run-lineage-timeout-ceiling-');
     const fanoutConfig = JSON.stringify({
-      executors: [{ label: 'opus', kind: 'native', count: 1 }],
+      executors: [{ label: 'opencode-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
     });
 
@@ -6102,16 +5929,17 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
     return { stdout, baseDir };
   }
 
-  it('omits --variant from opencode argv when reasoningEffort is unset', async () => {
-    const { stdout } = await runOpencodeEcho({ label: 'no-variant' }, 'research');
+  it('passes the bare model to opencode when reasoningEffort is unset', async () => {
+    const { stdout } = await runOpencodeEcho({ label: 'no-effort' }, 'research');
     const argvLine = stdout.split('\n').find((l) => l.startsWith('ARGV:')) ?? '';
-    expect(argvLine).not.toContain('--variant');
+    expect(argvLine).toContain('-m opencode-go/glm-5.1 ');
+    expect(argvLine).not.toContain('opencode-go/glm-5.1#');
   });
 
-  it('includes --variant in opencode argv when reasoningEffort is set', async () => {
-    const { stdout } = await runOpencodeEcho({ label: 'with-variant', reasoningEffort: 'high' }, 'research');
+  it('suffixes the model with the effort when reasoningEffort is set', async () => {
+    const { stdout } = await runOpencodeEcho({ label: 'with-effort', reasoningEffort: 'high' }, 'research');
     const argvLine = stdout.split('\n').find((l) => l.startsWith('ARGV:')) ?? '';
-    expect(argvLine).toContain('--variant high');
+    expect(argvLine).toContain('-m opencode-go/glm-5.1#high');
   });
 
   it('adds config.maxIterations to the prompt when lineage.iterations is set (A3)', async () => {
@@ -6974,7 +6802,7 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
     expect(readFileSync(join(lineageDir, 'inbox.jsonl'), 'utf8').trim().split('\n')).toHaveLength(1);
   });
 
-  it('adds no depth-mode bytes to a default lineage prompt or native input', () => {
+  it('adds no depth-mode bytes to a default lineage prompt', () => {
     const lineage = { label: 'a', kind: 'cli-opencode', model: 'm', iterations: 2 };
     const baseline = buildLoopPrompt(
       'research',
@@ -7001,16 +6829,6 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       expect(prompt).not.toContain('depthMode');
       expect(prompt).not.toContain('Expansive depth');
     }
-
-    const nativeInput = buildNativeCommandInput(
-      'research',
-      'specs/x',
-      '/tmp/x/lineages/a',
-      { label: 'a', kind: 'native', iterations: 2 },
-      { researchTopic: 'Topic' },
-    );
-    expect(nativeInput).not.toContain('--depth-mode');
-    expect(nativeInput).not.toContain('frontier_scope:');
   });
 
   it('binds the frontier scope under expansive', () => {
@@ -7028,16 +6846,6 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
     expect(prompt).toContain('  config.depthMode: expansive');
     expect(prompt).toContain('  frontier_scope: F-1-001, F-1-003');
     expect(prompt).toContain('- Expansive depth:');
-
-    const nativeInput = buildNativeCommandInput(
-      'research',
-      'specs/x',
-      '/tmp/x/lineages/a',
-      { label: 'a', kind: 'native', iterations: 2 },
-      { researchTopic: 'Topic', depthMode: 'expansive', frontierScope: ['F-1-002'] },
-    );
-    expect(nativeInput).toContain('--depth-mode=expansive');
-    expect(nativeInput).toContain('frontier_scope: F-1-002');
   });
 
   it('writes the lineage store before spawn and records the partition', async () => {
@@ -7372,8 +7180,8 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
 });
 
 // Under expansive depth a lineage the matrix gave no iterations is sized from its
-// own share of the seed, with the budget it would have had as the floor: 12 for a
-// native lineage, the workflow default for a CLI one. A matrix value always wins.
+// own share of the seed, with the workflow default for its loop as the floor. A
+// matrix value always wins, and a native lineage never reaches the sizing at all.
 describe('fanout-run.cjs — per-lineage expansive budget', () => {
   const { expansiveLineageBudgets } = requireCjs(fanoutRunScript) as {
     expansiveLineageBudgets: (
@@ -7388,12 +7196,12 @@ describe('fanout-run.cjs — per-lineage expansive budget', () => {
       [
         { label: 'a', kind: 'cli-opencode' },
         { label: 'b', kind: 'cli-opencode' },
-        { label: 'c', kind: 'native' },
+        { label: 'c', kind: 'cli-pi' },
         { label: 'd', kind: 'cli-opencode', iterations: 5 },
       ],
-      { loopType: 'research', partition: { a: nodes(4), b: nodes(1), c: nodes(1), d: nodes(6) } },
+      { loopType: 'research', partition: { a: nodes(4), b: nodes(1), c: nodes(0), d: nodes(6) } },
     );
-    expect(lineages.map((lineage) => lineage.iterations)).toEqual([12, 10, 12, 5]);
+    expect(lineages.map((lineage) => lineage.iterations)).toEqual([12, 10, 10, 5]);
   });
 
   it('scales a review lineage by the four dimensions it reviews and stops at the ceiling', () => {
@@ -7424,12 +7232,34 @@ describe('fanout-run.cjs — per-lineage expansive budget', () => {
     ]);
   });
 
-  it('runs a lineage with no seed share at its loop default', () => {
-    const lineages = expansiveLineageBudgets(
-      [{ label: 'a', kind: 'native' }, { label: 'b', kind: 'native' }, { label: 'c', kind: 'cli-opencode' }],
-      { loopType: 'review', partition: { a: nodes(1), b: [], c: [] } },
-    );
-    expect(lineages.map((lineage) => lineage.iterations)).toEqual([24, 12, 7]);
+  it('refuses an expansive fan-out that holds a native lineage before it sizes or seeds one', async () => {
+    const baseDir = makeTempDir('fanout-run-expansive-native-refusal-');
+    const config = JSON.stringify({
+      executors: [
+        { label: 'native-a', kind: 'native', count: 1 },
+        { label: 'opencode-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 },
+      ],
+      concurrency: 2,
+    });
+
+    const { result } = await spawnFanout('expansive-native-refusal', [
+      '--spec-folder',
+      'specs/test-fanout-run-expansive-native-refusal',
+      '--loop-type',
+      'review',
+      '--depth-mode',
+      'expansive',
+      '--fanout-config-json',
+      config,
+      '--base-artifact-dir',
+      baseDir,
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    const output = `${result.stdout}${result.stderr}`;
+    expect(output).toContain('fan-out refused for lineage(s) native-a: native fan-out lineages are not supported');
+    expect(output).not.toContain('budget');
+    expect(existsSync(join(baseDir, 'lineages'))).toBe(false);
   });
 });
 

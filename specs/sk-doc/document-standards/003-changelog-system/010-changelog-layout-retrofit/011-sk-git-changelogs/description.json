@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs",
+  "description": "Phase 11: sk-git-changelogs",
+  "keywords": [
+    "phase",
+    "sk-git-changelogs"
+  ],
+  "lastUpdated": "2026-11-18T05:10:57.803Z",
+  "specId": "011",
+  "folderSlug": "sk-git-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "010-changelog-layout-retrofit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-11-26_06-10__rewrote-all-54-sk-git-changelogs-into-the-release.md"
+  ]
+}

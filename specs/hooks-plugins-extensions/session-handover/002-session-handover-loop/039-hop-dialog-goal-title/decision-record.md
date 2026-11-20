@@ -60,6 +60,9 @@ _memory:
 | Q024 | Add an optional refines field so the reducer folds a refinement into the finding it names instead of counting it twice. | Not stated. | None | specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines |
 | Q025 | Place the tool fixes at review-lineage/004-reducer-traceability-and-refines and commands/006-alignment-lane-result-parser. | Not stated. | None | specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines, specs/commands/006-alignment-lane-result-parser |
 | Q026 | Merge origin/main into branch 385, regenerate the conflicted trigger index, rerun the gates and push to origin/main. | Not stated. | None | D4, goal.md log |
+| Q027 | The next build covers the wrapper notice with safety fixes, the document fixes and goal continuity. | Not stated. | none | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/spec.md |
+| Q028 | Packet 039 is amended to 8 children with the document fixes batched. | Not stated. | none | 039-hop-dialog-goal-title/goal.md |
+| Q029 | The three hop fixes move to new packet 039 instead of becoming children 018 to 020 of packet 038. | Not stated. | none | specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -579,6 +582,66 @@ Leave the branch
 Answer:
 ```text
 Merge, rebuild, push (Recommended)
+```
+
+### Q027
+<!-- source: claude:5992419c-a5f9-4b3d-b5f5-0e6a2d7131ec:toolu_01FkhtPgYRpqJP4kUPpuKYzA:1 -->
+
+Question:
+```text
+Which research findings should be built next? The research found that every running relaunch wrapper predates the name-carry code, plus smaller gaps. Pick any.
+```
+
+Options:
+```text
+Wrapper notice + safety fixes (Recommended)
+Document fixes
+Goal continuity
+Nothing yet
+```
+
+Answer:
+```text
+Wrapper notice + safety fixes (Recommended), Document fixes, Goal continuity
+```
+
+### Q028
+<!-- source: claude:6aaddcfe-0055-40fd-8250-3cf2a6684ed3:toolu_01FTAreYCWimXXoXH8sF9jgr:1 -->
+
+Question:
+```text
+Packet 039 goal.md and phase map must change before the build. Which child layout and amendment do you approve?
+```
+
+Options:
+```text
+8 children, docs batched (Recommended)
+12 children, D1 kept
+```
+
+Answer:
+```text
+8 children, docs batched (Recommended)
+```
+
+### Q029
+<!-- source: claude:53e771b8-c072-45b2-b8e1-c6a16e34711f:toolu_016SRihwbZC1Zw6qtu9W1V71:0 -->
+
+Question:
+```text
+All three fixes are built, committed on branch worktrees/366-hop-after-question-dialog and green (1536, 200 and 62 tests). One snag with your choice to add them as children 018 to 020 of packet 038: that packet's goal.md is at 3,996 of its 4,000 character limit, and binding three more children needs about 230 characters. The allowed cuts free about 175. The goal rules say a parent that still does not fit must be split. How should the three children be bound?
+```
+
+Options:
+```text
+Move to new packet 039 (Recommended)
+Squeeze packet 038's goal
+Raise the limit question
+```
+
+Answer:
+```text
+Move to new packet 039 (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

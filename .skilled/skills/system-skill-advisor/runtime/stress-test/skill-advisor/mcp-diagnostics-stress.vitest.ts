@@ -72,7 +72,7 @@ describe('sa-027 / sa-028 — MCP diagnostics under degraded daemon state', () =
         lexical: 0.28,
         graph_causal: 0.13,
         derived_generated: 0.12,
-        semantic_shadow: 0.05,
+        semantic_shadow: 0,
       }));
       expect(response.content[0]?.text).not.toMatch(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
     } finally {

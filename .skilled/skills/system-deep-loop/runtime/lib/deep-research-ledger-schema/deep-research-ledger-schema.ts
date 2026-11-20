@@ -677,6 +677,11 @@ const OPTIONAL_DATA_FIELD_RULES: Readonly<
     edgeCase: 'prose',
     toolsUsed: 'prose-array',
     sourcesQueried: 'prose-array',
+    // An earlier writer stored the route-proof fields under camelCase names, so a
+    // ledger it wrote still validates and projects them back to the state log.
+    targetAgent: 'prose',
+    agentDefinitionLoaded: 'boolean',
+    resolvedRoute: 'prose',
   }),
   // The idea rows are hand-written, so beyond the idea text they carry only the
   // fields their writer gave them; the projection writes back exactly those.

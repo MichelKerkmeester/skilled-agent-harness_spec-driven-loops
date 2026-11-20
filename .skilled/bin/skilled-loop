@@ -4,7 +4,8 @@
 # ───────────────────────────────────────────────────────────────
 # Relaunch a supported runtime with a fresh handoff seed when state is armed.
 # Exit codes preserve the runtime result, except invalid relaunch state returns 1, and
-# so does a clean exit whose manual command cannot repeat the launch options.
+# so does a clean exit whose manual command cannot repeat the launch options, and an
+# OpenCode 1 binary the wrapper refuses to launch.
 set -euo pipefail
 
 resolve_script_path() {
@@ -40,6 +41,15 @@ relaunch_core="$script_directory/../hooks/session-handover/lib/relaunch-core.cjs
 goal_handover="$script_directory/../hooks/session-handover/lib/goal-handover.cjs"
 relaunch_nudge="$script_directory/../hooks/session-handover/lib/nudge.cjs"
 hook_flags="$script_directory/../hooks/shared/hook-flags.cjs"
+
+# A looped session can run another checkout's hand-over CLI, for one when it works in a
+# project that vendors its own copy. Every copy reads its notes from this root, so the note
+# a session prepares is the one this wrapper consumes. A caller's own root is kept, but one
+# inherited from an outer loop belongs to that loop's checkout, not this one.
+if [[ -n "${SKILLED_LOOP_ID:-}" || -z "${SESSION_HANDOVER_REPO_ROOT:-}" ]]; then
+  SESSION_HANDOVER_REPO_ROOT=$(cd -P "$script_directory/../.." && pwd)
+fi
+export SESSION_HANDOVER_REPO_ROOT
 manual_handoff_token='@@HANDOFF@@'
 manual_template_conflict=''
 consumed_record_json=''
@@ -187,7 +197,8 @@ consumed_goal_packet() {
 }
 
 # Prints one string field of the consumed record, or nothing. Used for the sender's live
-# model and effort, which the CLI records only when the sender's own state proves them.
+# model and effort, which the CLI records only when the sender's own state proves them, and
+# for the two roots consume names when a note lies outside this loop's root.
 consumed_field() {
   local field_value=''
   if [[ -n "$consumed_record_json" ]]; then
@@ -738,7 +749,7 @@ skilled_loop_replay_recorded() {
   return 1
 }
 
-# OpenCode 2 has no model flag, but it reads config text from OPENCODE_CONFIG_CONTENT above the
+# OpenCode has no model flag, but it reads config text from OPENCODE_CONFIG_CONTENT above the
 # project config, so the carried model rides there. A project may pin a model on the build and
 # plan agents as well, and an agent's model wins over the top-level one, so all three are set.
 # The operator's own config text stays the base. When that text is not plain JSON it cannot be
@@ -808,18 +819,14 @@ build_relaunch_arguments() {
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
     opencode)
-      # OpenCode 2 starts on a private server only with --standalone, and its root command
+      # OpenCode starts on a private server only with --standalone, and its root command
       # has no model flag, so a replayed -m would end the launch with a usage error. A printed
       # manual command never runs here, so only a hop sets the carried model.
-      if ((opencode_two == 1)); then
-        if ((opencode_server_seen == 0)); then
-          launch_arguments+=(--standalone)
-        fi
-        if [[ "$mode" != 'manual' ]]; then
-          carry_opencode_model
-        fi
-      elif [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
-        launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
+      if ((opencode_server_seen == 0)); then
+        launch_arguments+=(--standalone)
+      fi
+      if [[ "$mode" != 'manual' ]]; then
+        carry_opencode_model
       fi
       launch_arguments+=(--prompt "$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
@@ -942,7 +949,6 @@ pi_extension_arguments_set=0
 pi_no_extensions_seen=0
 codex_no_daemon_seen=0
 codex_config_model=''
-opencode_two=0
 opencode_standalone_seen=0
 opencode_server_seen=0
 # The operator's own OpenCode config text, kept so each hop rebuilds the carried model on top
@@ -1205,19 +1211,31 @@ if [[ "$runtime" == 'codex' && "$codex_no_daemon_seen" == 0 ]]; then
   fi
 fi
 
-# OpenCode 2 is told apart by its help listing --standalone, not by a version number, so a
-# build that drops or renames the flag falls back to the plain launch.
-if [[ "$runtime" == 'opencode' ]]; then
-  opencode_help=$("$runtime_command" --help 2>&1 || true)
-  if [[ "$opencode_help" == *'--standalone'* ]]; then
-    opencode_two=1
-  fi
-fi
-if ((opencode_two == 1 && opencode_server_seen == 1)); then
+if [[ "$runtime" == 'opencode' ]] && ((opencode_server_seen == 1)); then
   printf '%s\n' \
     'warning: --server attaches to a shared server, so the loop cannot arm and no relaunch follows' >&2
 fi
-if ((opencode_two == 1 && opencode_server_seen == 0 && opencode_standalone_seen == 0)); then
+if [[ "$runtime" == 'opencode' ]] && ((opencode_server_seen == 0 && opencode_standalone_seen == 0)); then
+  # OpenCode 1 has no --standalone flag, so a leftover install would end the launch with a
+  # bare usage error. The version is read with the parser the deep loop uses, and only its
+  # OpenCode 1 verdict refuses: a probe that fails, times out or reads any other version
+  # leaves the launch as it was, so it never blocks OpenCode 2.
+  opencode_version_family=$(node -e '
+    const { spawnSync } = require("node:child_process");
+    const { parseOpencodeVersion } = require(process.argv[1]);
+    const probe = spawnSync(process.argv[2], ["--version"], {
+      encoding: "utf8",
+      timeout: 3000,
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    if (probe.error || probe.status !== 0) process.exit(0);
+    process.stdout.write(parseOpencodeVersion([probe.stdout, probe.stderr].join("\n")));
+  ' -- "$script_directory/../skills/system-deep-loop/runtime/scripts/opencode-version.cjs" \
+    "$runtime_command" 2>/dev/null) || opencode_version_family=''
+  if [[ "$opencode_version_family" == 'unsupported' ]]; then
+    printf '%s\n' 'skilled-loop: OpenCode 1 is unsupported; remove it with .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh remove-v1, then install with its v2 mode' >&2
+    exit 1
+  fi
   if ((original_argument_count > 0)); then
     launch_arguments=(--standalone "${launch_arguments[@]}")
   else
@@ -1396,16 +1414,28 @@ while true; do
         if [[ -z "$note_state" ]]; then
           printf '%s\n' \
             'warning: could not read the consumed relaunch record; not relaunching' >&2
-        else
+        elif [[ "$note_state" != 'outside-root' ]]; then
           printf 'warning: the handoff note is %s; not relaunching\n' "$note_state" >&2
         fi
         # A claim throws on a claimed, done or missing note, so a command for one could
         # never work. An invalid note can be repaired and an unread state may hide an open
-        # note, so those two keep the command.
+        # note, so those two keep the command. A note outside this root is claimable only
+        # under its own root, so its command pins that root.
         case "$note_state" in
           ''|invalid)
             spec_folder=$(consumed_spec_folder)
             print_manual_command "$handoff_path" "$spec_folder" || true
+            ;;
+          outside-root)
+            note_root=$(consumed_field note_root)
+            printf 'warning: the handoff note %s belongs to %s, outside the handoffs directory this loop reads under %s; not relaunching\n' \
+              "$handoff_path" "${note_root:-another checkout}" "$(consumed_field repo_root)" >&2
+            if [[ -n "$note_root" ]]; then
+              manual_command=$(print_manual_command "$handoff_path" '') || true
+              if [[ -n "$manual_command" ]]; then
+                printf 'SESSION_HANDOVER_REPO_ROOT=%q %s\n' "$note_root" "$manual_command"
+              fi
+            fi
             ;;
         esac
         exit 1

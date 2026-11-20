@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Scores a two-line run log whose arms are `zzz` and `paired` (both unloadable, so
 # unscored) and prints the text summary and the JSON arm keys. Usage: paired-arm.sh <tmpdir>
+set -uo pipefail
 S=/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
 mkdir -p "$1"
 printf '%s\n' '{"runtime":"claude","rowId":"cmd-create-agent-plain-tune-01","arm":"zzz","exit":0,"locator":{"sessionId":"x","transcriptPath":"/nonexistent/a.jsonl"}}' \

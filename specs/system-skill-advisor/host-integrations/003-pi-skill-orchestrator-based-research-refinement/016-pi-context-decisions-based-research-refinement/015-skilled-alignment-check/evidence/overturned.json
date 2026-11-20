@@ -1,0 +1,50 @@
+[
+  {
+    "id": "A2",
+    "source_id": "A2",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+    "line": "604",
+    "issue": "recordRouteReceipt writes the session's route receipt while the handler builds its output, before writeHookOutput (line 717) hands that output to stdout, and it is not covered by the deferred-receipt mechanism this same change built for the directive receipt. Case: the host never receives the brief (the write callback reports an error such as EPIPE), so the model's context holds no route from that turn, yet the receipt says it does; a later weak follow-up that routes elsewhere only on the confidence floor is then suppressed against a route the model never saw. The directive receipt is deliberately committed only after a successful write, and its test asserts that, so the two receipts now disagree about what 'delivered' means. Fix: move the route receipt write behind the output handoff, or have writeHookOutput commit both receipts, so a lost brief leaves no route receipt.",
+    "evidence": {
+      "cmd": "cd .skilled/skills/system-skill-advisor/runtime && node --input-type=module -e 'import {readFileSync} from \"node:fs\"; const hook=await import(\"./dist/hooks/claude/user-prompt-submit.js\"); const rr=await import(\"./dist/hooks/lib/route-receipt.js\"); const dl=await import(\"./dist/hooks/lib/directive-lifecycle.js\"); const f=JSON.parse(readFileSync(\"./tests/legacy/advisor-fixtures/livePassingSkill.json\",\"utf8\")); const receipts=new rr.InMemoryRouteReceiptStore(); const out=await hook.handleClaudeUserPromptSubmit({session_id:\"s1\",hook_event_name:\"UserPromptSubmit\",prompt:\"implement a TypeScript hook\",cwd:\"/workspace/project\"},{buildCliBrief:async()=>f,directiveLifecycleStore:new dl.InMemoryDirectiveLifecycleStore(),routeReceiptStore:receipts,deferDirectiveReceipt:true,writeDiagnostic:()=>{}}); console.log(\"before write:\",receipts.read(\"s1\")?.skill ?? null); await hook.writeHookOutput(out,{write:(_c,cb)=>{cb(new Error(\"EPIPE\"));return false;}}); console.log(\"after failed write:\",receipts.read(\"s1\")?.skill ?? null);'",
+      "exit": 0,
+      "out": "before write: sk-code\nafter failed write: sk-code"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "refuted",
+      "note": "011's implementation-summary Known Limitations 5 records this exact trade-off as accepted: 'A receipt is written before the host acknowledges delivery. The directive receipt defers its commit to the stdout callback; the route receipt does not, because that deferral exists only when the lifecycle defers. If the hook process dies between the write and the output, the next weak follow-up that floors to another skill shows `Advisor: prompt skipped.` against a brief the model never saw. The cost is one low-confidence route withheld, and only after a hook crash or timeout.' The lane's write-callback failure is the same window, so it is a documented limitation, not an unrecorded defect.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "D-03",
+    "source_id": "D-03",
+    "lane": "D",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+    "line": "57",
+    "issue": "The hook reference documents the policy gate and the directive lifecycle but not the route receipt guard, and no markdown file in the skill mentions 'route receipt' (`rg -l 'route receipt|route-receipt' .skilled/skills/system-skill-advisor --glob '*.md'` prints nothing). A reader of the changed file cannot predict why a weak follow-up is held back or which session state controls it. The file was edited in this change for the crash fallback, so the receipt paragraph belongs in the same update.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "B-01 records the same defect on the same file: the hook reference never documents the route receipt (or the pasted-reply strip). B-01 also names the missing KEY FILES row, the scorer reference and the missing validation entry, so D-03 adds no separate finding.",
+      "lane_severity": "P2"
+    }
+  }
+]

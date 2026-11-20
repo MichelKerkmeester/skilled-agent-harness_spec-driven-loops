@@ -2,6 +2,7 @@
 # Writes a counterfactual copy of the committed transcript scorer, outside the
 # repository, whose readDocument also accepts a shell read, so a start-rate delta
 # over the stored arms can be read. Usage: make-shell-start-variant.sh <out.mjs>
+set -uo pipefail
 RAD=/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy
 sed -e "s#from '../../../../../hooks/shared/session-readers/index.mjs'#from '/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/hooks/shared/session-readers/index.mjs'#" \
     -e "s#from './run-command-behaviour.mjs'#from '$RAD/run-command-behaviour.mjs'#" \

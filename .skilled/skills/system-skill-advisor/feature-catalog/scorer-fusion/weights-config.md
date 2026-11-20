@@ -6,7 +6,7 @@ trigger_phrases:
   - "weights-config.ts"
   - "canonical weights"
   - "lane weight source of truth"
-version: 0.8.0.14
+version: 0.8.2.0
 ---
 
 # Lane Weights Configuration
@@ -19,7 +19,9 @@ Keep the canonical lane weights in exactly one place and expose them to callers 
 
 ## 2. HOW IT WORKS
 
-`lib/scorer/weights-config.ts` defines the canonical weights from `lib/scorer/lane-registry.ts`: `explicit_author: 0.42`, `lexical: 0.28`, `graph_causal: 0.13`, `derived_generated: 0.12`, `semantic_shadow: 0.05`. These values are surfaced through `advisor_status.laneWeights` and consumed by `lib/scorer/fusion.ts`.
+`lib/scorer/weights-config.ts` defines the canonical weights from `lib/scorer/lane-registry.ts`: `explicit_author: 0.42`, `lexical: 0.28`, `graph_causal: 0.13`, `derived_generated: 0.12`, `semantic_shadow: 0`. These values are surfaced through `advisor_status.laneWeights` and consumed by `lib/scorer/fusion.ts`.
+
+The lane remains registered as live, but its default weight of 0 disables prompt embedding. The background index refresh still runs and updates missing and stale vectors. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable semantic scoring. The lane requires current vectors for every embeddable skill and command. A failed prompt embed degrades it for that call.
 
 ---
 

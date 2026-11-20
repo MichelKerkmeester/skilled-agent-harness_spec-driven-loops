@@ -287,16 +287,12 @@ describe('deep_*_auto.yaml CLI branches route through the audited wrapper', () =
     const message = 'Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; state_source=externalized_files; do_not_switch_mode=true\n\nPROMPT-BODY';
     const args = [
       'run',
-      '--model',
-      model,
+      '--standalone',
+      '-m',
+      `${model}#high`,
       '--format',
       'json',
-      '--dangerously-skip-permissions',
-      '--pure',
-      '--dir',
-      dir,
-      '--variant',
-      'high',
+      '--auto',
       message,
     ];
     const dispatchId = 'review-i3-opencode';
@@ -304,7 +300,7 @@ describe('deep_*_auto.yaml CLI branches route through the audited wrapper', () =
     const dump = captureChildDump(() => {
       runAuditedExecutorCommand({
         command: NODE,
-        // `--` forwards the branch's own flags (--model / --format / run) verbatim.
+        // `--` forwards the branch's own flags (-m / --format / run) verbatim.
         args: ['-e', RECORDER, '--', ...args],
         cwd: dir,
         timeoutSeconds: 10,

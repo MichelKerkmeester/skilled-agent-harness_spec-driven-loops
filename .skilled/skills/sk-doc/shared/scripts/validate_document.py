@@ -750,6 +750,116 @@ def validate_general_structure(content: str, doc_type_rules: Dict[str, Any]) -> 
     return errors
 
 
+_FOLD_OPEN = re.compile(r'^\s*<details(?:\s[^>]*)?>\s*$')
+_FOLD_CLOSE = re.compile(r'^\s*</details>\s*$')
+_FOLD_SUMMARY = re.compile(r'^\s*<summary>.*</summary>\s*$')
+
+
+def _fold_issue(rule_id: str, message: str, fix_hint: str, line_number: int) -> Dict[str, Any]:
+    return {
+        'type': rule_id,
+        'rule_id': rule_id,
+        'severity': 'blocking',
+        'message': message,
+        'line_number': line_number,
+        'fix_hint': fix_hint,
+    }
+
+
+def validate_folds(content: str) -> List[Dict[str, Any]]:
+    """Check every `<details>` fold the way GitHub renders it.
+
+    A fold left open hides the rest of the page, and markdown placed right
+    after the `<summary>` line renders as raw text, so both block. Only a tag
+    on a line of its own counts: a fold shown inside a code fence or named in
+    inline code is prose, not a fold.
+    """
+    lines = content.split('\n')
+    fenced = _fenced_line_numbers(content)
+    issues: List[Dict[str, Any]] = []
+    open_lines: List[int] = []
+    for index, line in enumerate(lines):
+        line_number = index + 1
+        if line_number in fenced:
+            continue
+        if _FOLD_OPEN.match(line):
+            open_lines.append(line_number)
+            summary = index + 1
+            while summary < len(lines) and not lines[summary].strip():
+                summary += 1
+            if summary >= len(lines) or not _FOLD_SUMMARY.match(lines[summary]):
+                issues.append(_fold_issue(
+                    'fold_summary_missing',
+                    'A `<details>` fold needs a `<summary>...</summary>` line naming what it hides.',
+                    'Add `<summary>[what the fold holds]</summary>` on the line after `<details>`.',
+                    line_number,
+                ))
+            elif summary + 1 < len(lines) and lines[summary + 1].strip():
+                issues.append(_fold_issue(
+                    'fold_summary_spacing',
+                    'Markdown right after a `<summary>` line renders as raw text on GitHub.',
+                    'Leave one blank line after the `<summary>` line.',
+                    summary + 1,
+                ))
+        elif _FOLD_CLOSE.match(line):
+            if open_lines:
+                open_lines.pop()
+            else:
+                issues.append(_fold_issue(
+                    'fold_stray_close',
+                    'A `</details>` closes a fold that was never opened.',
+                    'Remove the `</details>` line or add the `<details>` it closes.',
+                    line_number,
+                ))
+    for line_number in open_lines:
+        issues.append(_fold_issue(
+            'fold_unclosed',
+            'A `<details>` fold never closes, so GitHub hides the rest of the page inside it.',
+            'Add a `</details>` line after the folded content.',
+            line_number,
+        ))
+    return issues
+
+
+_FENCE_LINE = re.compile(r'^(`{3,}|~{3,})(.*)$')
+
+
+def validate_readme_diagrams(content: str, file_path: str) -> List[Dict[str, Any]]:
+    """Block a Mermaid fence in a README.
+
+    A Mermaid block draws only on GitHub and reads as raw code in a terminal or
+    an editor, where most README readers here meet it, so READMEs draw diagrams
+    as box-drawing text. The rule keys on the file name, not the document type,
+    because an untyped document falls back to the README type. Only a fence that
+    opens at the top level counts: one inside a longer outer fence is an example.
+    Other documents keep Mermaid, since diagram references use it on purpose.
+    """
+    if Path(file_path).name.lower() != 'readme.md':
+        return []
+    issues: List[Dict[str, Any]] = []
+    fence_char = ''
+    fence_len = 0
+    for line_number, line in enumerate(content.split('\n'), start=1):
+        match = _FENCE_LINE.match(line.strip())
+        if not match:
+            continue
+        marker, info = match.group(1), match.group(2).strip()
+        if fence_len == 0:
+            fence_char, fence_len = marker[0], len(marker)
+            if info.split()[:1] and info.split()[0].lower() == 'mermaid':
+                issues.append({
+                    'type': 'readme_mermaid',
+                    'rule_id': 'readme_mermaid',
+                    'severity': 'blocking',
+                    'message': 'A README draws diagrams as box-drawing text, not Mermaid.',
+                    'line_number': line_number,
+                    'fix_hint': 'Redraw the diagram with box-drawing characters in a `text` fence.',
+                })
+        elif marker[0] == fence_char and len(marker) >= fence_len and info == '':
+            fence_len = 0
+    return issues
+
+
 # ───────────────────────────────────────────────────────────────
 # 4B. RENDER CHECKS
 # ───────────────────────────────────────────────────────────────
@@ -3079,6 +3189,8 @@ def validate_document(
         if is_repo_root_guide(file_path):
             structure_rules = {**doc_type_rules, 'h2DividerRequired': False}
         all_errors.extend(validate_general_structure(content, structure_rules))
+    all_errors.extend(validate_folds(content))
+    all_errors.extend(validate_readme_diagrams(content, file_path))
     all_errors.extend(validate_render_checks(content, doc_type, doc_type_rules, Path(file_path)))
     all_errors.extend(validate_required_sections(content, doc_type_rules))
     if doc_type == 'feature_catalog':

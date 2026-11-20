@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift",
   "description": "Fix the speckit command workflows: step order, quality gates, execution modes, review dispatch, resume detection, save and search contracts, shared bl",
   "keywords": [
@@ -23,14 +24,16 @@
     "documentation",
     "drift"
   ],
-  "lastUpdated": "2026-11-14T11:33:17.693Z",
+  "lastUpdated": "2026-11-19T17:49:06.390Z",
   "specId": "007",
   "folderSlug": "speckit-command-gates-step-order-drift",
   "parentChain": [
     "system-speckit",
     "spec-authoring-and-continuity"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-11-26_18-37__manual-context-save.md",
+    "19-11-26_18-49__manual-context-save.md"
+  ]
 }

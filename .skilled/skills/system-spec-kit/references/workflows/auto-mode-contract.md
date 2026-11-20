@@ -9,7 +9,7 @@ trigger_phrases:
   - "confirm invariance"
 importance_tier: important
 contextType: implementation
-version: 1.6.7.0
+version: 1.6.8.0
 ---
 
 # Auto Mode Contract Reference
@@ -162,7 +162,7 @@ Dispatch with one or more truly missing required inputs (and stdin closed in non
 ### Trace D — `:confirm` regression
 Dispatch with `:confirm` suffix and any inputs. Expected: existing full consolidated Q-block emitted.
 
-Live verification (when feasible) extends the dry-run traces with actual non-interactive dispatches (opencode `exec </dev/null`, opencode `run --pure ... </dev/null`, claude `--print`) capturing transcripts as evidence. Live verification confirms the contract works under real runtime stdin-closure conditions.
+Live verification (when feasible) extends the dry-run traces with actual non-interactive dispatches (opencode `run --standalone -m <provider/model>#<effort> ... </dev/null`, claude `--print`) capturing transcripts as evidence. Live verification confirms the contract works under real runtime stdin-closure conditions.
 
 Evidence schema (one file per dispatch):
 - Command invocation verbatim

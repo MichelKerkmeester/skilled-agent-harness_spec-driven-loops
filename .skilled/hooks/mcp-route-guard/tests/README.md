@@ -14,25 +14,70 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`tests/` holds the automated checks for the DSH adapter in `dsh/`. The suite drives `registerMcpRouteGuard()` with a fake plugin context. It uses the real core, and a stubbed core only for the non-MCP and throw cases. It then asserts the handler verdicts directly, under `node --test` and with no running dsh install.
+`.skilled/hooks/mcp-route-guard/tests/` holds the `node --test` suite for the DSH adapter in `../dsh/mcp-route-guard.mjs`. The suite calls `registerMcpRouteGuard()` with a fake plugin context and asserts the verdict its `tools/pre-execute` handler returns. No DSH install is needed.
 
-The cases cover the `code_mode` mount allowlist and the core kill switch. An allowlisted tool reaches `next()`, while an unlisted one is denied. A non-MCP tool is not evaluated, so the core never sees it. A throw from the core fails closed, logs one warning and returns a deny verdict. One case compares the deny reason with a local copy of the Pi extension's reason logic.
-
-DSH registers the adapter on `tools/pre-execute` through its repo-guards bundle in `.dsh/plugins/repo-guards/index.mjs`.
+The suite imports the real shared core from `../lib/mcp-route-guard.cjs`. A stub replaces it only where a case needs to show that the core is skipped or that a throw fails closed. One case writes a small `.utcp_config.json` manifest in a temporary folder and compares the DSH deny reason with the reason the Pi extension would produce.
 
 ---
 
 ## 2. FILES
 
+The folder is flat. It holds this README and one suite.
+
 | File | Responsibility |
 |---|---|
-| `dsh-mcp-route-guard.test.mjs` | The `node --test` suite for the DSH adapter. |
+| `dsh-mcp-route-guard.test.mjs` | The `node --test` suite. It builds the fake context and asserts the verdict from each call. |
 
-The suite builds a fake plugin context that records handlers and log lines. It registers the guard on `tools/pre-execute` and calls that handler directly. Each case asserts the returned `kind` and, on a deny, the reason text. The file has no error path of its own, since it asserts behavior.
+`harness()` returns `handlers`, `logs` and `ctx`. `ctx.on()` records each handler in the `handlers` map, and `ctx.logger` records `warn` and `error` entries in the `logs` array. Each case fetches the `tools/pre-execute` handler and calls it directly. The file has no error path of its own, since it asserts behavior.
 
 ---
 
-## 3. VALIDATION
+## 3. BOUNDARIES AND FLOW
+
+The cases run in one Node process. The allow and deny cases read the checkout manifest. The kill-switch case returns before the core reads a manifest. The parity case creates its own manifest folder under `os.tmpdir()` and removes it in a `finally` block. No other case writes to disk.
+
+| Boundary | Rule |
+|---|---|
+| Runtime | No DSH process. Each case calls the recorded handler with a fake context. |
+| Core | The real core is the default. A stub stands in where a case needs to show that the core is skipped or that a throw fails closed. |
+| Filesystem | The parity case writes a `.utcp_config.json` into a temporary folder and deletes it. |
+| Network | Nothing connects out. |
+
+The kill-switch case sets `env: { [guardCore.DISABLED_ENV]: '1' }`. `guardCore.DISABLED_ENV` is `MCP_ROUTE_GUARD_DISABLED`. The handler evaluates the call, then reads the switch before the mount allowlist runs. A tool that the allowlist would deny reaches `next()` while the switch is on.
+
+Main flow:
+
+```text
+╭──────────────────────────────────────────╮
+│ test case                                │
+╰──────────────────────────────────────────╯
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ harness()                                │
+│ ctx.on records the handler               │
+│ ctx.logger records warn and error lines  │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ registerMcpRouteGuard(ctx, options)      │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ tools/pre-execute handler                │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ verdict returned to the test             │
+└──────────────────────────────────────────┘
+```
+
+---
+
+## 4. VALIDATION
 
 Run from the repository root.
 
@@ -40,12 +85,13 @@ Run from the repository root.
 node --test .skilled/hooks/mcp-route-guard/tests/dsh-mcp-route-guard.test.mjs
 ```
 
-Expected result: all tests pass.
+Expected result: the runner passes every case and exits 0. Its summary reports `pass 6` and `fail 0`.
 
 ---
 
-## 4. RELATED
+## 5. RELATED
 
-- [`../README.md`](../README.md): the concern README with the policy table and the per-runtime matrix.
-- [`../dsh/mcp-route-guard.mjs`](../dsh/mcp-route-guard.mjs): the adapter under test.
-- [`../lib/mcp-route-guard.cjs`](../lib/mcp-route-guard.cjs): the shared core the parity case compares against.
+- The [concern README](../README.md) sets out the routing rule and the runtime coverage.
+- The [DSH adapter](../dsh/mcp-route-guard.mjs) is the module under test.
+- The [shared core](../lib/mcp-route-guard.cjs) decides allow or warn before the adapter applies its mount rule.
+- The [core suite](../lib/mcp-route-guard.test.cjs) covers the policy decisions. It also drives the Claude and Cursor adapters.

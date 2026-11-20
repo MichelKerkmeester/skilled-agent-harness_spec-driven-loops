@@ -1,0 +1,882 @@
+[
+  {
+    "id": "BAT-01",
+    "source_id": "S2-skill-root-metadata",
+    "lane": "battery",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P0",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S2-skill-root-metadata failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+      "exit": 1,
+      "out": "OK   [H] cli-classifier\nOK   [H] cli-external-orchestration\nOK   [S] cli-orca\nOK   [S] mcp-code-mode\nOK   [H] mcp-tooling\nOK   [H] sk-code\nOK   [H] sk-design\nOK   [H] sk-doc\nOK   [S] sk-git\nOK   [S] sk-prompt\nOK   [H] system-deep-loop\nFAIL [S] system-skill-advisor\n       STALE_GENERATED_FILE: system-skill-advisor: leaf-aliases.json does not match the projection of its leaf-manifest.json\nOK   [S] system-skilled-doctor\nOK   [S] system-spec-kit\n\nchecked=14 passed=13 failed=1 fixed=0\nRe-run with --fix to regenerate missing or stale manifests; authored files must be written by hand.",
+      "ci_gated": true,
+      "ci_workflows": [
+        "routing-registry-drift.yml > routing-drift > Skill-root metadata class contract - every root, hub or standalone"
+      ]
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "BAT-02",
+    "source_id": "S3-catalog-package",
+    "lane": "battery",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P0",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S3-catalog-package failed (exit 1).",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+      "exit": 1,
+      "out": "PACKAGE cli-classifier/cli-jev: PASS tier=fail violations=0\nPACKAGE cli-classifier: PASS tier=fail violations=0\nPACKAGE cli-external-orchestration: PASS tier=fail violations=0\nPACKAGE cli-orca: PASS tier=fail violations=0\nPACKAGE mcp-tooling: PASS tier=fail violations=0\nPACKAGE mcp-tooling/mcp-aside-devtools: PASS tier=fail violations=0\nPACKAGE mcp-tooling/mcp-chrome-devtools: PASS tier=fail violations=0\nPACKAGE mcp-tooling/mcp-click-up: PASS tier=fail violations=0\nPACKAGE mcp-tooling/mcp-figma: PASS tier=fail violations=0\nPACKAGE mcp-tooling/mcp-mobbin: PASS tier=fail violations=0\nPACKAGE mcp-tooling/mcp-notion: PASS tier=fail violations=0\nPACKAGE mcp-tooling/mcp-obsidian: PASS tier=fail violations=0\nPACKAGE mcp-tooling/mcp-refero: PASS tier=fail violations=0\nPACKAGE sk-code: PASS tier=fail violations=0\nPACKAGE sk-design/sk-design-diagram: PASS tier=fail violations=0\nPACKAGE sk-design/sk-design-md-generator: PASS tier=fail violations=0\nPACKAGE sk-doc: PASS tier=fail violations=0\nPACKAGE sk-doc/sk-create-diff: PASS tier=fail violations=0\nPACKAGE sk-git: PASS tier=fail violations=0\nPACKAGE system-deep-loop/deep-research: PASS tier=fail violations=0\nPACKAGE system-deep-loop/deep-review: PASS tier=fail violations=0\nPACKAGE system-deep-loop: PASS tier=fail violations=0\nPACKAGE system-deep-loop/runtime: PASS tier=fail violations=0\nPACKAGE system-skill-advisor: FAIL tier=fail violations=2\nPACKAGE system-spec-kit: PASS tier=fail violations=0\nFAIL: 7 violation(s) (2 fail, 0 warn, 5 note):\n  - [note] [ignored_path_absent] system-deep-loop/runtime/mk-deep-loop-guard.md:43: prose path is absent and ignored by a repository .gitignore: .skilled/skills/.state/loop-guard/guard-warnings.log\n  - [fail] [packet_history_metadata] system-skill-advisor/weak-follow-up-route-receipt-guard.md:50: packet-history metadata is not allowed in a feature catalog\n  - [fail] [packet_history_metadata] system-skill-advisor/pasted-reply-stripping.md:49: packet-history metadata is not allowed in a feature catalog\n  - [note] [ignored_path_absent] system-spec-kit/feature-catalog.md:1164: prose path is absent and ignored by a repository .gitignore: .skilled/skills/.state/ask-surface/fires.jsonl\n  - [note] [ignored_path_absent] system-spec-kit/session-handover-loop.md:102: prose path is absent and ignored by a repository .gitignore: .skilled/skills/.state/session-handover/hop-history.log\n  - [note] [ignored_path_absent] system-spec-kit/spec-validation-rule-engine.md:29: prose path is absent and ignored by a repository .gitignore: .skilled/hooks/hook-flags.env\n  - [note] [ignored_path_absent] system-spec-kit/ask-surface-guard.md:38: prose path is absent and ignored by a repository .gitignore: .skilled/skills/.state/ask-surface/fires.jsonl",
+      "ci_gated": true,
+      "ci_workflows": [
+        "sk-doc-script-tests.yml > catalog-packages > Validate every feature catalog package"
+      ]
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "BAT-03",
+    "source_id": "S7-skill-graph-freshness",
+    "lane": "battery",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P0",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S7-skill-graph-freshness failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs --strict",
+      "exit": 1,
+      "out": "Skill-graph freshness panel (read-only)\n  compiled skill-graph.json : 14 skills, generated_at 2026-11-17T11:29:50.903233+00:00\n  SQLite skill-graph.sqlite : 14 nodes\n  on-disk graph-metadata    : 14 skills (source of truth)\n  scan rule                 : depth-1 only (direct children of .skilled/skills); nested folders are not read\n  STALE COMPILED: none (generated_at 2026-11-17T11:29:50.903233+00:00, newest source stamp 2026-11-14T00:00:00Z)\n  UNREADABLE graph-metadata: none\n  ZOMBIE (in SQLite, not on disk): none\n  MISSING (on disk, not in SQLite): none\n  FAMILY MISMATCH SQLite vs disk: none\n  GHOST (in compiled json, not on disk): none\n  MISSING (on disk, not in compiled json): none\n  FAMILY MISMATCH compiled vs disk: none\n  SIGNAL DRIFT compiled vs disk: system-skill-advisor\n  NULL derived timestamp: none\n  (report-only - the canonical reindex is operator-gated; nothing was written)",
+      "ci_gated": true,
+      "ci_workflows": [
+        "routing-registry-drift.yml > routing-drift > Compiled skill graph freshness - compiled json matches graph-metadata"
+      ]
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-01",
+    "source_id": "C-01",
+    "lane": "C",
+    "surface": "S13",
+    "standard": ".env.example header contract",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".env.example",
+    "line": "408",
+    "issue": "The scope adds SYSTEM_SKILL_ADVISOR_EMBED_REFRESH, an operator-settable switch read at .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1445 and forwarded to the daemon child at .skilled/bin/system-skill-advisor-launcher.cjs:188. It is documented in ENV-REFERENCE.md:394, the skill README:48, INSTALL-GUIDE.md, the v1.3.0.0 changelog, the v4.1.0.0 release note and the lifecycle feature file, but .env.example does not list it. .env.example lists 381 variables and README.md:698 states it 'lists every setting the code reads', so a user who wants to stop the new background Ollama refresh reads the file the root README points at and finds nothing. The battery row S13-env-tokens fails on exactly this token. The row's second token, VITEST at semantic-shadow.ts:372, is a test-runner variable that vitest sets itself, is not operator-settable, and already existed at base line 368, so it is a pre-existing false positive and not caused by this change.",
+    "evidence": {
+      "cmd": "node /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/check-env-tokens.cjs --scope /Users/michelkerkmeester/.local/state/local-skilled-alignment/480-ollama-lane-honest-and-closeout/20261119T224518Z/scope.json --out $TMPDIR/local-skilled-alignment-scratch/20261119T224518Z/C/env-tokens.json",
+      "exit": 1,
+      "out": "UNLISTED SYSTEM_SKILL_ADVISOR_EMBED_REFRESH  .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1445\nUNLISTED VITEST  .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:372\nSTATUS=FINDINGS check-env-tokens: files=8 tokens=2 unlisted=2"
+    },
+    "fix": {
+      "old": "# SYSTEM_SKILL_ADVISOR_THRESHOLD_CONFIDENCE=0.8 # Advisor recommend confidence threshold",
+      "new": "# SYSTEM_SKILL_ADVISOR_THRESHOLD_CONFIDENCE=0.8 # Advisor recommend confidence threshold\n# SYSTEM_SKILL_ADVISOR_EMBED_REFRESH=  # Set \"off\" to stop the daemon's background skill and command vector refresh"
+    },
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "B-01",
+    "source_id": "B-01",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/references/runtime/freshness-contract.md",
+    "line": "146",
+    "issue": "The freshness contract still tells a reader that the daemon never writes SQLite on its own: 'The daemon is NOT responsible for: Rebuilding the index automatically. SQLite database writes happen through trusted maintenance paths such as advisor_rebuild and skill_graph_scan'. The change makes the daemon write skill and command vectors from refreshEmbeddingsInBackground after startup IPC and after every watcher reindex, with no trusted gate and no maintenance command. The leaf is a routed reference (ROUTER.md:52 FRESHNESS -> references/runtime/freshness-contract.md, leaf-manifest.json) and the change left it untouched, so the doc-honesty sweep that corrected INSTALL-GUIDE.md, README.md, embedders/README.md and advisor-scorer.md missed this member of the same class. Case: an operator whose request fires FRESHNESS loads this leaf and is told the daemon never writes SQLite automatically, then observes vec_<dim> and vec_cmd_<dim> rows appear after a watcher reindex with no skill_graph_scan run.",
+    "evidence": {
+      "cmd": "grep -n \"NOT responsible for\" -A 4 .skilled/skills/system-skill-advisor/references/runtime/freshness-contract.md",
+      "exit": 0,
+      "out": "144:The daemon is NOT responsible for:\n145:\n146:- Rebuilding the index automatically. SQLite database writes happen through trusted maintenance paths such as `advisor_rebuild` and `skill_graph_scan`; corrupt-database recovery may also move aside and recreate the database during lazy initialization.\n147:- Validating skill content. Only `skill_graph_validate` checks edge integrity."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "B-02",
+    "source_id": "B-02",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md",
+    "line": "58",
+    "issue": "The lane-tuning reference still states the semantic lane 'carries the lowest fusion weight (0.05), so its live contribution is small by design'. The shipped default live weight is 0 (DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow = 0, README.md:46, references/scoring/advisor-scorer.md:55, ENV-REFERENCE.md:391). The sentence cannot be read as the shadow weight because it names shadow_weight separately in the next clause. The leaf is a routed reference (ROUTER.md:43 LANE_TUNING -> references/scoring/lane-weight-tuning.md). The change corrected this exact claim in advisor-scorer.md, README.md, INSTALL-GUIDE.md, feature-catalog/scorer-fusion/five-lane-fusion.md and weights-config.md but left this one, so the fix is incomplete for its own class. Case: an operator whose request fires LANE_TUNING reads that the lane carries 0.05 and tunes around a live contribution the shipped build does not have.",
+    "evidence": {
+      "cmd": "grep -n \"lowest fusion weight\" .skilled/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md",
+      "exit": 0,
+      "out": "58:- \"The semantic lane scored higher than expected.\" The semantic_shadow lane is live in the registry but carries the lowest fusion weight (0.05), so its live contribution is small by design. Re-weight it only with measured evidence; adjust the shadow_weight separately if you are tuning shadow mode rather than the live ranking."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "B-03",
+    "source_id": "B-03",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/ablation.md",
+    "line": "37",
+    "issue": "The change added a new feature claim at line 24 (196-row corpus, 156 vs 161 correct, 7 flips) but the leaf's Validation And Tests table still lists only advisor-validate.vitest.ts. semantic-shadow-ablation.vitest.ts is the only test that produces those numbers and it is not anchored. The same gap runs through every catalog leaf the change edited: daemon-and-freshness/lifecycle.md:42 claims the background refresh but anchors no refresh-in-background.vitest.ts; daemon-and-freshness/watcher.md:35 claims the per-reindex refresh with the same gap; cli-surface/advisor-status.md:52 claims coverageComplete/stale/missing but anchors no embedding-coverage.vitest.ts; scorer-fusion/five-lane-fusion.md:61 claims incomplete_skill_vectors and the degraded-lane fallback but anchors neither semantic-shadow-cosine.vitest.ts nor semantic-outage-degraded.vitest.ts. sk-create-feature-catalog section 8 rule 7 is ALWAYS: 'Include source-file and validation anchors for every feature claim', and its SKILL.md states that source-anchor accuracy is exactly what the validator does not check and manual review must. Case: an agent maintaining the advisor loads feature-catalog/scorer-fusion/ablation.md to reproduce the 156/161 pass bar and finds no pointer to the test that computes it.",
+    "evidence": {
+      "cmd": "for t in refresh-in-background embedding-coverage semantic-outage-degraded semantic-shadow-ablation semantic-shadow-cosine; do printf '%-32s anchored_in_catalog=' \"$t\"; grep -rl \"$t\" .skilled/skills/system-skill-advisor/feature-catalog/ | wc -l; done",
+      "exit": 0,
+      "out": "refresh-in-background            anchored_in_catalog=0\nembedding-coverage               anchored_in_catalog=0\nsemantic-outage-degraded         anchored_in_catalog=0\nsemantic-shadow-ablation         anchored_in_catalog=0\nsemantic-shadow-cosine           anchored_in_catalog=0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-01",
+    "source_id": "D-01",
+    "lane": "D",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/graph-metadata.json",
+    "line": "66",
+    "issue": "The v1.3.0.0 features have no advisor routing vocabulary. graph-metadata.json is byte-identical between base and head, and the only new trigger_phrases in the diff are in changelog/v1.3.0.0.md, which the advisor never reads. 10 of 12 positive probes authored from the changelog and feature-catalog prose route nowhere or to a doctor command bridge, so an operator asking about vector coverage, the semantic lane, background refresh, ablation, attribution, watcher scope, daemon shutdown or command-bridge regeneration cannot reach the owning skill. The repo's own precedent is commit b162e1b98f5 'route requests that name the new advisor features', which added intent_signals for the previous feature batch. generate-router-intent-signals.cjs --check still passes because it only verifies the 5 intent_signals_generated entries, not that new features are reachable.",
+    "evidence": {
+      "cmd": "node .skilled/commands/assets/local-skilled-alignment/run-probes.cjs --probes probes.json --out probe-results.json --timeout-ms 60000",
+      "exit": 1,
+      "out": "fail P01 want=system-skill-advisor got=- | fail P02 got=command-doctor-helper | fail P03 got=command-doctor-skill-advisor-rebuild | fail P04 got=sk-code | fail P05 got=- | fail P06 got=- | fail P07 got=- | fail P08 got=command-doctor-helper | fail P09 got=- | pass P10 got=system-skill-advisor | fail P11 got=command-doctor-helper | fail P12 got=- | STATUS=FINDINGS run-probes: pass=6 fail=12 cannot_run=0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "D-02",
+    "source_id": "D-02",
+    "lane": "D",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+    "line": "383",
+    "issue": "The incomplete_skill_vectors gate checks vector presence, not currency. cachedVectors is built from loadSkillEmbeddings(), which returns contentHash but the map keeps only row.embedding, and the gate is `!cachedVectors.has(skill.id)`. A stale vector (content_hash mismatch after a description edit whose re-embed failed) is present, so the gate passes and the lane scores with the old vector. changelog/v1.3.0.0.md states 'it scores only with current vectors for every embeddable skill and command', and embeddingCoverage() correctly reports that row as stale with coverageComplete false, so the status surface and the scoring gate disagree. The projection staleness check the removed deleteEmbedding call relied on (projection.ts readAdvisorEmbeddingStaleness) compares model id and dim only, never per-row content_hash. Reach: SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{\"semantic_shadow\":0.05}' (documented in feature-catalog/scorer-fusion/weights-config.md) plus one failed embed while Ollama is down.",
+    "evidence": {
+      "cmd": "grep -n 'requiredVectorRows.some' .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts && grep -c contentHash .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+      "exit": 0,
+      "out": "383:      if (requiredVectorRows.some((skill) => !cachedVectors.has(skill.id))) {\n0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-01",
+    "source_id": "P01",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P01 \"check the advisor's vector coverage for skills and commands\" expected system-skill-advisor; top-1 was nothing.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"check the advisor'\\''s vector coverage for skills and commands\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was nothing"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-02",
+    "source_id": "P02",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P02 \"turn on the semantic lane and see whether routing improves\" expected system-skill-advisor; top-1 was command-doctor-helper.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"turn on the semantic lane and see whether routing improves\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was command-doctor-helper"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-03",
+    "source_id": "P03",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P03 \"why is the advisor daemon not refreshing stale skill vectors in the background\" expected system-skill-advisor; top-1 was command-doctor-skill-advisor-rebuild.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"why is the advisor daemon not refreshing stale skill vectors in the background\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was command-doctor-skill-advisor-rebuild"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-04",
+    "source_id": "P04",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P04 \"run an ablation comparing the semantic lane against the lexical baseline\" expected system-skill-advisor; top-1 was sk-code.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"run an ablation comparing the semantic lane against the lexical baseline\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was sk-code"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-05",
+    "source_id": "P05",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P05 \"explain which lane contributed to this routing recommendation\" expected system-skill-advisor; top-1 was nothing.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"explain which lane contributed to this routing recommendation\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was nothing"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-06",
+    "source_id": "P06",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P06 \"make the advisor daemon shut down cleanly when the session ends\" expected system-skill-advisor; top-1 was nothing.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"make the advisor daemon shut down cleanly when the session ends\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was nothing"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-07",
+    "source_id": "P07",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P07 \"narrow the watcher so it only reindexes the skill I just edited\" expected system-skill-advisor; top-1 was nothing.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"narrow the watcher so it only reindexes the skill I just edited\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was nothing"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-08",
+    "source_id": "P08",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P08 \"diagnose why the advisor reports degraded when Ollama is offline\" expected system-skill-advisor; top-1 was command-doctor-helper.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"diagnose why the advisor reports degraded when Ollama is offline\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was command-doctor-helper"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-09",
+    "source_id": "P09",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P09 \"regenerate the command bridges so command vectors become embeddable\" expected system-skill-advisor; top-1 was nothing.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"regenerate the command bridges so command vectors become embeddable\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was nothing"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-10",
+    "source_id": "P11",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P11 \"show the advisor status with semantic lane health\" expected system-skill-advisor; top-1 was command-doctor-helper.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"show the advisor status with semantic lane health\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was command-doctor-helper"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "PRB-11",
+    "source_id": "P12",
+    "lane": "probe",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "Probe P12 \"disable the background vector refresh for this session\" expected system-skill-advisor; top-1 was nothing.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"disable the background vector refresh for this session\"}' --format json",
+      "exit": 0,
+      "out": "top-1 was nothing"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A2",
+    "source_id": "A2",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts",
+    "line": "179",
+    "issue": "The comment \"Keep every projection row as a candidate; unseeded rows receive no cosine match\" is false, and the behavior it describes is what the ablation now measures. createFixtureProjection sets source:\"fixture\" (projection.ts:1882), so scoreSemanticShadowLane builds fixtureVectors for every projection row (semantic-shadow.ts:352-357) and falls back to it at semantic-shadow.ts:394. Unseeded rows therefore do get a cosine match: a 32-dim hash vector (semantic-shadow.ts:103) compared against the real 768-dim prompt vector, which cosineSimilarity truncates to Math.min(left.length, right.length) = 32 (semantic-shadow.ts:78). The projection carries 63 command rows while readCommandEmbeddingSources() returns 47 TypeScript-enabled sources, so 16 command rows are unseeded and scored on that truncated comparison. The pollution biases the full arm toward more matches, which is the direction that would wrongly promote the lane to a live weight, and this test is the gate that decides DEFAULT_SCORER_LANE_WEIGHTS.semantic_shadow. The current verdict is unaffected (default stays 0), so this is latent rather than active.",
+    "evidence": {
+      "cmd": "node -e 'const j=JSON.parse(require(\"fs\").readFileSync(\"scripts/command-bridges/command-bridges.generated.json\",\"utf8\")); const ts=j.entries.filter(e=>e.runtime&&e.runtime.typescript&&e.runtime.typescript.enabled===true); console.log(\"total\",j.entries.length,\"ts-enabled\",ts.length)'",
+      "exit": 0,
+      "out": "total 63 ts-enabled 47"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A3",
+    "source_id": "A3",
+    "lane": "A",
+    "surface": "S1",
+    "standard": "sk-code",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts",
+    "line": "390",
+    "issue": "Two changed behaviors have no test. (1) The heartbeat moved from after startSkillGraphDaemon to immediately after initSkillGraphDb (advisor-server.ts:390), which is the fix that makes the new HEARTBEAT_STARTUP_GRACE_MS window meaningful: without it a slow startup scan outlives the grace and the watchdog SIGTERMs a healthy daemon. launcher-heartbeat-watchdog.vitest.ts covers heartbeatVerdict and the watchdog SIGTERM, but nothing asserts the server-side ordering, and launcher-bootstrap.vitest.ts only asserts the SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT string in advisor-server.ts. (2) The background refresh wiring at advisor-server.ts:439 and watcher.ts:496 is untested. refreshEmbeddingsInBackground itself is well covered by refresh-in-background.vitest.ts, but the only coverage of the call sites is the source-text regex at launcher-bootstrap.vitest.ts:609, which asserts the defaultReindex shape and never asserts that a reindex fires a refresh. A future reorder or a dropped call site would regress silently.",
+    "evidence": {
+      "cmd": "grep -rn \"refreshEmbeddingsInBackground\" .skilled/skills/system-skill-advisor/runtime --include=*.ts | grep -v node_modules",
+      "exit": 0,
+      "out": "tests/skill-graph/refresh-in-background.vitest.ts (unit only); advisor-server.ts:439 and watcher.ts:496 are the only call sites and neither has a behavior test"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "ENV-01",
+    "lane": "env",
+    "surface": "S13",
+    "standard": ".env.example header contract",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+    "line": "1445",
+    "issue": "SYSTEM_SKILL_ADVISOR_EMBED_REFRESH is read in changed code but .env.example does not list it.",
+    "evidence": {
+      "cmd": "node ../../../MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/check-env-tokens.cjs --scope /Users/michelkerkmeester/.local/state/local-skilled-alignment/480-ollama-lane-honest-and-closeout/20261119T224518Z/scope.json --out /Users/michelkerkmeester/.local/state/local-skilled-alignment/480-ollama-lane-honest-and-closeout/20261119T224518Z/env-tokens.json",
+      "exit": 1,
+      "out": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1445"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "ENV-02",
+    "lane": "env",
+    "surface": "S13",
+    "standard": ".env.example header contract",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts",
+    "line": "372",
+    "issue": "VITEST is read in changed code but .env.example does not list it.",
+    "evidence": {
+      "cmd": "node ../../../MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/check-env-tokens.cjs --scope /Users/michelkerkmeester/.local/state/local-skilled-alignment/480-ollama-lane-honest-and-closeout/20261119T224518Z/scope.json --out /Users/michelkerkmeester/.local/state/local-skilled-alignment/480-ollama-lane-honest-and-closeout/20261119T224518Z/env-tokens.json",
+      "exit": 1,
+      "out": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:372"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-01",
+    "source_id": "X-01",
+    "lane": "critic",
+    "surface": "S14",
+    "standard": "system-spec-kit packet checklist",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/tasks.md",
+    "line": "137",
+    "issue": "CHK-020 is a P0 testing-checklist item marked `[x]` while its own evidence says two acceptance criteria are unmet: 'Every AC row is Met except AC-011 and AC-013, which wait on finalization.' The same packet's completion criteria at line 77 is `[ ]` and says T013 to T016 wait on finalization, and acceptance-criteria.md:70-71 marks AC-011 and AC-013 `Unmet` with `Closeable: No`. A checked P0 item that admits unmet criteria is the one place the packet claims a gate it has not passed; the S14 packet validator checks structure, not checklist consistency, so no battery row catches it.",
+    "evidence": {
+      "cmd": "sed -n '137p;77p' specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/tasks.md; grep -n 'AC-011\\|AC-013\\|Closeable' specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md",
+      "exit": 0,
+      "out": "- [x] CHK-020 [P0] All acceptance criteria met Evidence: Every AC row is Met except AC-011 and AC-013, which wait on finalization.\n- [ ] All tasks marked `[x]` (T013 to T016 wait on finalization)\n70:| AC-011 | ... | Unmet | - |\n71:| AC-013 | ... | Unmet | - |\n**Closeable:** No"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-02",
+    "source_id": "X-02",
+    "lane": "critic",
+    "surface": "S14",
+    "standard": "system-spec-kit packet plan",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/plan.md",
+    "line": "29",
+    "issue": "The plan still describes the pre-amendment lane-live refresh: 'at the default weight 0 the daemon still makes no Ollama call. The refresh helper returns at once at weight 0' (line 29), '`refreshSkillEmbeddingsWhenLaneLive` ... does nothing at weight 0' (line 57), and 'the refresh helper, which refreshes only above weight 0' (line 63). The shipped code refreshes at any lane weight (`refreshEmbeddingsInBackground` at skill-graph-db.ts:1445-1470), and the spec's own Scope Amendment (spec.md:67) says the daemon now keeps every vector current at any lane weight. tasks.md:47-48 still call the helper 'lane-live' and verify 'a live daemon with the lane on', while the recorded evidence is 'at weight 0'. A reader who follows the plan builds the opposite behavior.",
+    "evidence": {
+      "cmd": "sed -n '29p;57p;63p' specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/plan.md; sed -n '67p' specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/spec.md; grep -n 'refreshEmbeddingsInBackground' .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      "exit": 0,
+      "out": "29:Each lane fix keys off the resolved lane weight, so at the default weight 0 the daemon still makes no Ollama call. The refresh helper returns at once at weight 0.\n57:- **`refreshSkillEmbeddingsWhenLaneLive`**: the one refresh entry point for the daemon. It does nothing at weight 0.\n63:Startup scan or watcher reindex, then the refresh helper, which refreshes only above weight 0, then the vectors.\n67:The daemon now keeps every embeddable skill and command vector current at any lane weight.\n1445:export async function refreshEmbeddingsInBackground("
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-03",
+    "source_id": "X-03",
+    "lane": "critic",
+    "surface": "S14",
+    "standard": "system-spec-kit packet spec",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/spec.md",
+    "line": "215",
+    "issue": "The spec's edge case says 'a startup scan that blocks for more than 3 minutes now gets the server reaped', but the launcher's startup grace is 5 minutes (`HEARTBEAT_STARTUP_GRACE_MS = 300_000` at system-skill-advisor-launcher.cjs:1557), and the spec's own REQ-006 (line 152), the plan (line 60), AC-006 and the implementation summary all say 5 minutes. The 3-minute figure is the existing heartbeat staleness threshold, not the startup grace. A reader who tests the edge case at 3 minutes sees a healthy server and concludes the watchdog is broken. The same spec's SC-002 (line 176) also says the orphan scan 'lists only live sessions', while AC-009 (acceptance-criteria.md:64) allows 'live or skipped sessions' and the implementation summary records 2 held answers.",
+    "evidence": {
+      "cmd": "sed -n '215p;176p' specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/spec.md; grep -n 'HEARTBEAT_STARTUP_GRACE_MS' .skilled/bin/system-skill-advisor-launcher.cjs; grep -n 'AC-009' specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md",
+      "exit": 0,
+      "out": "215:- Maximum input: a startup scan that blocks for more than 3 minutes now gets the server reaped, which is the intended behavior for a wedged start.\n176:- **SC-002**: ... `match-decision-table --scan-orphans` lists only live sessions.\n1557:const HEARTBEAT_STARTUP_GRACE_MS = 300_000;\n64:| AC-009 | ... | lists only live or skipped sessions, each skip with its reason | ... | Met | - |"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-04",
+    "source_id": "X-04",
+    "lane": "critic",
+    "surface": "S14",
+    "standard": "system-spec-kit packet metadata",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/description.json",
+    "line": "8",
+    "issue": "The 019 packet's own metadata was never refreshed after the implementation. description.json still carries `lastUpdated: 2026-11-19T17:05:15.920Z` and `memorySequence: 0`; goal.md:11-14 still says `last_updated_by: scaffold`, `recent_action: Authored the durable directive`, `next_safe_action: Execute against the completion criteria`; acceptance-criteria.md:11-14 says `scaffold`; implementation-summary.md:11-14 still says `template-author`, `Initialized Level 2 template`, `Replace continuity placeholders`. The docs themselves were rewritten at 23:29-23:33 and the summary's Metadata says `Completed 2026-11-19`. The other 75 packets the same commits touched have their `description.json` `lastUpdated` and `memorySequence` bumped (for example 004-alignment-fixes goes to 2026-11-19T17:48:11.937Z and memorySequence 4), so this packet is the outlier. A `/speckit:resume` reads the stale continuity and reports the packet as untouched.",
+    "evidence": {
+      "cmd": "grep -n 'lastUpdated\\|memorySequence' specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/description.json; grep -n 'last_updated_by\\|recent_action\\|next_safe_action' specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/goal.md specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/implementation-summary.md; git -c core.fsmonitor=false show 2df1515110b -- 'specs/**/description.json'",
+      "exit": 0,
+      "out": "8:  \"lastUpdated\": \"2026-11-19T17:05:15.920Z\",\n17:  \"memorySequence\": 0,\ngoal.md:12:    last_updated_by: \"scaffold\"\ngoal.md:13:    recent_action: \"Authored the durable directive\"\ngoal.md:14:    next_safe_action: \"Execute against the completion criteria\"\nacceptance-criteria.md:12:    last_updated_by: \"scaffold\"\nimplementation-summary.md:12:    last_updated_by: \"template-author\"\nimplementation-summary.md:13:    recent_action: \"Initialized Level 2 template\"\nimplementation-summary.md:14:    next_safe_action: \"Replace continuity placeholders\"\n004-alignment-fixes/description.json: -  \"lastUpdated\": \"2026-11-13T10:04:51.555Z\" / +  \"lastUpdated\": \"2026-11-19T17:48:11.937Z\""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-07",
+    "source_id": "B-07",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/SKILL.md",
+    "line": "111",
+    "issue": "The SKILL.md advisor_status sentence enumerates the opt-in diagnostics and names only includeEmbeddingsHealth: 'with includeEmbeddingsHealth, an opt-in embeddingsHealth covering provider resolution and the local model server'. The change added a second opt-in diagnostic, includeSemanticHealth, which now carries coverageComplete plus skill and command vector coverage, and SKILL.md never names it. The capability is reachable from README.md:48, INSTALL-GUIDE.md:290 and references/scoring/advisor-scorer.md:79, so this is a completeness gap in the entry doc rather than a reachability failure.",
+    "evidence": {
+      "cmd": "sed -n '111p' .skilled/skills/system-skill-advisor/SKILL.md",
+      "exit": 0,
+      "out": "`advisor_status` reports `indexStaleness` on every successful call and, with `includeEmbeddingsHealth`, an opt-in `embeddingsHealth` covering provider resolution and the local model server. It adds `hookHealth` once a prompt hook has written a health record for the workspace."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-08",
+    "source_id": "B-08",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/leaf-aliases.json",
+    "line": "1",
+    "issue": "Battery row S2-skill-root-metadata fails with STALE_GENERATED_FILE: leaf-aliases.json does not match the projection of its leaf-manifest.json. Confirmed cause: the committed file holds 120 rows while the projection of leaf-manifest.json holds 124; the four missing rows are feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md, feature-catalog/scorer-fusion/pasted-reply-stripping.md and their two manual-testing-playbook siblings. The change did not cause it: both inputs to the projection (leaf-manifest.json and leaf-aliases.json) are byte-identical at f2f03c90fb6 and aaaff7dd9df (blob 279743f4fcc5de17b8b8c2a9eb4ad7674a61c232 and df02bcdd00e78d6be83f039599d49215932afa4d), the four leaf files exist at both commits, and the gate reproduces the same single failure when run against the base tree extracted to scratch. It predates the change and is a repo follow-up, not a blocker for this lane.",
+    "evidence": {
+      "cmd": "node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --skills-dir $SCRATCH/base/.skilled/skills",
+      "exit": 1,
+      "out": "FAIL [S] system-skill-advisor\n       STALE_GENERATED_FILE: system-skill-advisor: leaf-aliases.json does not match the projection of its leaf-manifest.json\n\nchecked=1 passed=0 failed=1 fixed=0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "pre-existing (critic)",
+    "critic_override": {
+      "verdict": "pre-existing",
+      "note": "leaf-manifest.json and leaf-aliases.json are byte-identical between f2f03c90fb6 and aaaff7dd9df (git diff --name-only returns nothing), the four leaf files exist at both commits, and the same STALE_GENERATED_FILE reproduces against the base tree. The change did not cause it.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "B-04",
+    "source_id": "B-04",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+    "line": "26",
+    "issue": "The background vector refresh is a new capability with its own env var (SYSTEM_SKILL_ADVISOR_EMBED_REFRESH), its own coverage function (embeddingCoverage), its own start sites (advisor-server.ts, watcher.ts) and three new tests, but it has no catalog entry. The daemon-and-freshness group still reads '7 | Watcher, lease, lifecycle, generation, trust state, rebuild-from-source, cache invalidation' and never names it; the capability survives only as prose inside lifecycle.md and watcher.md. The root index is inventory-first by rule 9 and the per-feature files own implementation truth by rule 10, so an operator browsing the group cannot see the capability as a feature.",
+    "evidence": {
+      "cmd": "grep -n \"daemon-and-freshness) | 7\" .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+      "exit": 0,
+      "out": "26:| [daemon-and-freshness](../feature-catalog/daemon-and-freshness) | 7 | Watcher, lease, lifecycle, generation, trust state, rebuild-from-source, cache invalidation |"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "B-09",
+    "source_id": "B-09",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md",
+    "line": "49",
+    "issue": "Battery row S3-catalog-package fails with two packet_history_metadata violations: pasted-reply-stripping.md:49 and hooks-and-plugin/weak-follow-up-route-receipt-guard.md:50. Confirmed cause: both lines are '- Feature ID: SC-006' and '- Feature ID: CL-011', and PACKET_HISTORY_RE in validate_catalog_package.py:102-105 matches 'feature[- ]?id:' case-insensitively. The change did not cause it: neither leaf is in the diff, and validate_catalog_package.py is byte-identical at f2f03c90fb6 and aaaff7dd9df, so the same two violations reproduce against the base tree. It predates the change and is a repo follow-up, not a blocker for this lane.",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --skills-root $SCRATCH/base/.skilled/skills --repo-root $SCRATCH/base --package system-skill-advisor",
+      "exit": 1,
+      "out": "  - [fail] [packet_history_metadata] system-skill-advisor/weak-follow-up-route-receipt-guard.md:50: packet-history metadata is not allowed in a feature catalog\n  - [fail] [packet_history_metadata] system-skill-advisor/pasted-reply-stripping.md:49: packet-history metadata is not allowed in a feature catalog"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "pre-existing (critic)",
+    "critic_override": {
+      "verdict": "pre-existing",
+      "note": "pasted-reply-stripping.md and weak-follow-up-route-receipt-guard.md are unchanged between f2f03c90fb6 and aaaff7dd9df, and validate_catalog_package.py is unchanged, so the two packet_history_metadata violations reproduce at base. The change did not cause them.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "B-05",
+    "source_id": "B-05",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ablation.md",
+    "line": "58",
+    "issue": "SC-005 now carries two ablation records in one Expected Signals list: line 58 keeps 'The recorded ablation covered 193 prompts. It scored 149 with semantic_shadow and 150 without it', and line 59 adds 'Two runs on the 196-row corpus ... 156 correct ... 161 with the lane disabled'. The committed corpus is 196 non-empty rows, so the 193-prompt record is pinned to a corpus size the change superseded, and nothing in the scenario says which record is current. A tester cannot tell whether 149/150 or 156/161 is the number to reproduce.",
+    "evidence": {
+      "cmd": "grep -n \"193 prompts\" .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ablation.md; grep -c '[^[:space:]]' .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+      "exit": 0,
+      "out": "58:- The recorded ablation covered 193 prompts. It scored 149 with `semantic_shadow` and 150 without it.\n196"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-06",
+    "source_id": "B-06",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md",
+    "line": "61",
+    "issue": "The new OP-001 expected signal says 'With includeSemanticHealth enabled and Ollama unavailable, semantic health reports DEGRADED'. The status envelope carries no DEGRADED value: semanticLaneHealth.backend.state is one of reachable, unreachable, model_missing or probe_not_implemented (advisor-tool-schemas.ts:261-264). DEGRADED is the doctor leg's verdict derived from that state (doctor-setup.yaml:60), not a field the tester can read. Case: a tester runs OP-001 with Ollama stopped, greps the envelope for DEGRADED, finds backend.state 'unreachable' instead, and records a false FAIL.",
+    "evidence": {
+      "cmd": "grep -n \"reports `DEGRADED`\" .skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md; sed -n '261,264p' .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      "exit": 0,
+      "out": "61:- With `includeSemanticHealth` enabled and Ollama unavailable, semantic health reports `DEGRADED` and includes skill and command vector coverage. A lane weight of 0 passes this setup check. Recommendation prompts are not embedded at that weight.\n  backend: z.object({\n    state: z.enum(['reachable', 'unreachable', 'model_missing', 'probe_not_implemented']),\n    reason: z.string().nullable(),\n  }).strict().optional(),"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "X-05",
+    "source_id": "X-05",
+    "lane": "critic",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-status-transitions.md",
+    "line": "69",
+    "issue": "The new background vector refresh and the new `includeSemanticHealth` status surface have no manual testing step. native-status-transitions.md:69 says 'With `includeSemanticHealth` enabled, the response reports ...' but the scenario's four steps (lines 39-58) never pass `--include-semantic-health true`. watcher-narrow-scope.md:87 says 'Each watcher reindex starts the shared skill and command vector refresh' but the scenario only checks `generation`, never coverage. daemon-lifecycle-shutdown.md:71 says 'After startup IPC is ready, the shared background refresh starts' but the scenario never reads coverage after startup. The playbook's own rule is that a new feature gets a scenario; the change added the capability and three tests but no scenario step that exercises it, so a manual tester cannot reproduce AC-001's 14/14 and 47/47 result.",
+    "evidence": {
+      "cmd": "grep -n 'includeSemanticHealth\\|Each watcher reindex\\|After startup IPC' .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-status-transitions.md .skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md .skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md; sed -n '39,58p' .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-status-transitions.md",
+      "exit": 0,
+      "out": "native-status-transitions.md:69:- With `includeSemanticHealth` enabled, the response reports `vectorCoverage` and `commandVectorCoverage` ...\nwatcher-narrow-scope.md:87:- Each watcher reindex starts the shared skill and command vector refresh. ...\ndaemon-lifecycle-shutdown.md:71:- After startup IPC is ready, the shared background refresh starts without delaying readiness. ...\n39:1. Live check: ... 40-58: advisor_status --format json; stale check; absent check; hook health check (no --include-semantic-health step)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-02",
+    "source_id": "C-02",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": "README.md",
+    "line": "203",
+    "issue": "The root README's Skill Routing section describes the advisor as a resident daemon and says nothing about the capability this scope adds: after startup IPC is ready and after each watcher reindex the daemon now checks skill and command vector coverage and, when coverage is incomplete, probes Ollama once and embeds missing or stale rows. That is a new background network call to Ollama on daemon start, and it is the headline of the skill's v1.3.0.0 changelog. The root README is the only place a reader learns what the advisor does at this level, and neither README.md:203 nor the standalone-skill line at README.md:299 reflects it. The skill README, INSTALL-GUIDE and feature catalog all describe it, so the gap is the root README alone.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "C-03",
+    "source_id": "C-03",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/README.md",
+    "line": "48",
+    "issue": "The skill README tells a reader to set SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{\"semantic_shadow\":0.05}' 'to enable its live scoring' and stops there. The scope adds a precondition the same release note states at .skilled/changelog/skilled/v4.1.0.0.md:227: raising the weight requires current vectors for every embeddable skill and command. semantic-shadow.ts:383-385 returns an empty match list with disabledReason 'incomplete_skill_vectors' when any required row lacks a vector, so a reader who follows the README right after upgrading gets no semantic scoring and no explanation. The README's next sentence, that the background refresh runs at any lane weight, does not state the precondition.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-04",
+    "source_id": "C-04",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/changelog/skilled/v4.1.0.0.md",
+    "line": "220",
+    "issue": "The open release note now contradicts itself about whether the daemon probes a backend. Line 220, unchanged by this scope, says the embedder 'points straight to its one registered model at daemon start, with no backend probes'. The scope adds line 226 in the next section: 'Incomplete coverage triggers one Ollama probe'. Both statements sit in the same Skill Advisor block of the same release note, so a reader cannot tell whether the daemon contacts Ollama. The scope added the probe and did not qualify the older sentence, which is now true only of pointer resolution.",
+    "evidence": null,
+    "fix": null,
+    "inferred": true,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-05",
+    "source_id": "D-05",
+    "lane": "D",
+    "surface": "S7",
+    "standard": ".skilled/repo-rules/skill-hub-routing.md",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skill-advisor/graph-metadata.json",
+    "line": "98",
+    "issue": "S7-skill-graph-freshness fails on SIGNAL DRIFT compiled vs disk for system-skill-advisor. Cause confirmed in the repository: the compiled runtime/scripts/skill-graph.json carries 31 signals for the skill while graph-metadata.json declares 39 intent_signals; the first 8 missing are 'pasted earlier reply' (line 98) through 'confidence floor' (line 105), and signalDrift() requires compiledList.length >= onDisk.length. This predates the change under review: both files are byte-identical between f2f03c90fb6 and aaaff7dd9df (git diff --name-only returns nothing for either), the compiled generated_at is 2026-11-17T11:29:50.903233+00:00 at both ends, and the 8 signals were added by commit b162e1b98f5, which is an ancestor of the base. The canonical reindex is operator-gated, so this change neither caused nor could fix it.",
+    "evidence": {
+      "cmd": "node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs --strict",
+      "exit": 1,
+      "out": "  SIGNAL DRIFT compiled vs disk: system-skill-advisor\n  (report-only - the canonical reindex is operator-gated; nothing was written)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "pre-existing (critic)",
+    "critic_override": {
+      "verdict": "pre-existing",
+      "note": "graph-metadata.json and runtime/scripts/skill-graph.json are byte-identical between f2f03c90fb6 and aaaff7dd9df; the compiled file carries 31 signals against 39 on disk at both ends, with generated_at 2026-11-17T11:29:50.903233+00:00. The 8 missing signals predate the change.",
+      "lane_severity": "P2"
+    }
+  },
+  {
+    "id": "D-03",
+    "source_id": "D-03",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+    "line": "148",
+    "issue": "The /doctor:skill-advisor embedder route tells the operator to repair an unreachable backend by running /doctor:skill-advisor embedder, which is the route they are already in. doctor-skill-advisor-presentation.txt:300 and :304 repeat the same self-reference in the Final Result Next line and the status rule. The repair pointer should name a route that adds information, such as /doctor:setup, whose embedder leg reports the same coverage and backend state.",
+    "evidence": {
+      "cmd": "grep -n 'point to /doctor:skill-advisor embedder' .skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml && grep -n 'Next: \\[none|start the advisor daemon' .skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt",
+      "exit": 0,
+      "out": "148:      - \"Report the coverage check as PASS when `semanticLaneHealth.coverageComplete` is true. Set STATUS=DEGRADED when `backend.state` is not `reachable` ... point to /doctor:skill-advisor embedder. ...\"\n300:Next: [none|start the advisor daemon with Ollama up so it refreshes missing vectors|/doctor:skill-advisor embedder]"
+    },
+    "fix": {
+      "old": "say routing continues on the other lanes and point to /doctor:skill-advisor embedder.",
+      "new": "say routing continues on the other lanes and point to /doctor:setup, whose embedder leg reports the same coverage and backend state."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-04",
+    "source_id": "D-04",
+    "lane": "D",
+    "surface": "S9",
+    "standard": "sk-doc/sk-create-command",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/commands/create/assets/create-command-auto.yaml",
+    "line": "470",
+    "issue": "The new bridge-regeneration activity sits in step_5_validation, whose enforcement is HARD_BLOCK, but it adds no quality_gates entry and no validation_command line, so nothing can fail when the bridges are not regenerated. create-command-confirm.yaml:482 has the same gap. The presentation template at create-command-presentation.txt:168 then prints 'Advisor command bridges: regenerated' unconditionally, so a skipped regeneration is reported as done.",
+    "evidence": {
+      "cmd": "grep -n 'Regenerate command bridges' .skilled/commands/create/assets/create-command-auto.yaml && grep -n 'bridge' .skilled/commands/create/assets/create-command-auto.yaml | grep -i 'must pass'",
+      "exit": 1,
+      "out": "470:    - Regenerate command bridges after writing the command files with `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`\n(no quality_gates line mentions the bridges)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

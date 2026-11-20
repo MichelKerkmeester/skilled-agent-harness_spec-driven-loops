@@ -250,7 +250,10 @@ const semanticLaneHealthSchema = z.object({
     embedded: z.number().int().nonnegative(),
     total: z.number().int().nonnegative(),
     ratio: z.number().min(0).max(1),
+    stale: z.number().int().nonnegative().optional(),
+    missing: z.number().int().nonnegative().optional(),
   }).strict(),
+  coverageComplete: z.boolean().optional(),
   dimMismatch: z.boolean(),
   lastRefresh: z.string().nullable(),
   disabledReason: z.string().nullable(),
@@ -262,6 +265,8 @@ const semanticLaneHealthSchema = z.object({
   commandVectorCoverage: z.object({
     embedded: z.number().int().nonnegative(),
     total: z.number().int().nonnegative(),
+    stale: z.number().int().nonnegative().optional(),
+    missing: z.number().int().nonnegative().optional(),
   }).strict().optional(),
   checkedAt: z.string().datetime(),
 }).strict();
@@ -309,6 +314,7 @@ export const AdvisorRecommendationSchema = z.object({
   uncertainty: z.number().min(0).max(1),
   dominantLane: AdvisorLaneSchema.nullable(),
   laneBreakdown: z.array(laneBreakdownSchema).optional(),
+  laneContributions: z.array(laneBreakdownSchema).optional(),
   why_recommended: whyRecommendedSchema.optional(),
   matchedDocs: z.array(z.string().min(1)).max(3).optional(),
   redirectFrom: z.array(z.string().min(1)).optional(),
@@ -328,6 +334,10 @@ export const AdvisorRecommendationSchema = z.object({
   // Set only when a hub held back its command because the prompt names no
   // single mode, so the head can say so.
   needsMode: z.literal(true).optional(),
+  // Set only when the confidence was raised to the task-intent floor rather
+  // than earned by the recommendation's own evidence, so a hook can tell a
+  // floored route from a confident one.
+  confidenceFloored: z.literal(true).optional(),
 }).strict();
 
 export const AdvisorRecommendOutputSchema = z.object({

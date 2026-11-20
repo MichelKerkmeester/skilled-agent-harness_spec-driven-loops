@@ -6,7 +6,7 @@ trigger_phrases:
   - "/doc:quality"
   - "score this document"
   - "human voice"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # create-quality-control
@@ -66,17 +66,45 @@ A run starts by reading the target and choosing a mode. The default is a report-
 
 The audit ends with a fixed report: the path and detected type, the DQI score and band, the filename-case signal, the blocking list and the next steps. When you ask for edits, the packet applies only the transformations the gaps call for and edits the one target. Then it re-runs validation and extraction, so the new score is evidence rather than hope.
 
-```mermaid
-flowchart TD
-  Request["Quality request"] --> Read["Read the target and pick a mode"]
-  Read --> Extract["Run extract_structure.py"]
-  Extract --> Rank["Rank blockers before softer findings"]
-  Rank --> Voice["Apply the voice review"]
-  Voice --> Report["Report the score and the findings"]
-  Report --> Decision{"Edits requested?"}
-  Decision -->|"no"| Stop["Stop with the report"]
-  Decision -->|"yes"| Edit["Edit the one target"]
-  Edit --> Recheck["Re-run validation and extraction"]
+```text
+┌──────────────────────────────────────┐
+│ Quality request                      │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│ Read the target and pick a mode      │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│ Run extract_structure.py             │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│ Rank blockers before softer findings │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│ Apply the voice review               │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│ Report the score and the findings    │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐                  ┌──────────────────────────────────────┐
+│ Edits requested?                     ├─────────[YES]───▶├ Edit the one target                  │
+└──────────────────┬───────────────────┘                  └──────────────────┬───────────────────┘
+                   │ [NO]                                                    │
+                   ▼                                                         ▼
+┌──────────────────────────────────────┐                  ┌──────────────────────────────────────┐
+│ Stop with the report                 │                  │ Re-run validation and extraction     │
+└──────────────────────────────────────┘                  └──────────────────────────────────────┘
 ```
 
 ### The Four Execution Modes

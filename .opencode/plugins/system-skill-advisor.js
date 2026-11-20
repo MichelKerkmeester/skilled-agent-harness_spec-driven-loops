@@ -902,8 +902,7 @@ function lifecycleEventFrom(input, eventType = null) {
     }
   }
   if (eventType === 'session.created') return 'startup';
-  if (eventType === 'session.resumed') return 'resume';
-  if (eventType === 'session.compacted' || eventType === 'session.compact') return 'compact';
+  if (eventType === 'session.compacted') return 'compact';
   return undefined;
 }
 
@@ -1051,7 +1050,7 @@ function deliverTransformContribution(decision, deliver) {
 /**
  * Create the Spec Kit skill advisor OpenCode plugin hooks.
  *
- * @param {import('@opencode-ai/plugin').PluginInput} ctx - OpenCode plugin context
+ * @param {import('./lib/v2-bridge.js').PluginInput} ctx - OpenCode plugin context
  * @param {Object} [rawOptions] - Plugin options
  * @param {boolean} [rawOptions.enabled] - Whether the plugin should inject advisor briefs
  * @param {number} [rawOptions.cacheTTLMs] - Advisor cache TTL in milliseconds
@@ -1620,9 +1619,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         return;
       }
 
-      if (eventType === 'session.resumed'
-        || eventType === 'session.compacted'
-        || eventType === 'session.compact') {
+      if (eventType === 'session.compacted') {
         const identity = advanceOpenCodeDirectiveBoundary(state, eventPayload);
         const sessionID = identity.sessionID;
         if (options.enabled) {
@@ -1663,7 +1660,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         return;
       }
 
-      if (eventType === 'server.instance.disposed' || eventType === 'global.disposed') {
+      if (eventType === 'global.disposed') {
         resetRuntimeState();
       }
     },

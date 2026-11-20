@@ -2,14 +2,14 @@
   {
     "command": "/create:sk-skill",
     "ownerMode": "sk-create-skill",
-    "description": "Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.",
+    "description": "Create or update Skilled skills via one unified command with operation routing. :auto/:confirm.",
     "argumentHint": "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm]",
     "mutating": "mutates",
-    "gate3_location": "a new or updated OpenCode skill package at --path or the path setup resolves",
+    "gate3_location": "a new or updated Skilled skill package at --path or the path setup resolves",
     "userIntent": {
-      "job": "I want to create or update a standalone OpenCode skill package.",
+      "job": "I want to create or update a standalone Skilled skill package.",
       "ownedSignals": [
-        "create an OpenCode skill",
+        "create a Skilled skill",
         "scaffold a skill package",
         "update a skill definition"
       ]
@@ -30,12 +30,12 @@
       {
         "order": 3,
         "skill": "create-skill",
-        "resource": ".skilled/commands/create/assets/create-skill-presentation.txt",
+        "resource": ".skilled/commands/create/assets/create-sk-skill-presentation.txt",
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ],
     "discriminator": {
-      "whenToUse": "Use this command when the deliverable is a standalone OpenCode skill or a shared skill packet.",
+      "whenToUse": "Use this command when the deliverable is a standalone Skilled skill or a shared skill packet.",
       "preferSiblingWhen": [
         {
           "sibling": "/create:skill-parent",
@@ -127,14 +127,14 @@
   {
     "command": "/create:agent",
     "ownerMode": "sk-create-agent",
-    "description": "Create a new OpenCode agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.",
+    "description": "Create a new Skilled agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.",
     "argumentHint": "<agent_name> [agent_description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "mutating": "mutates",
     "gate3_location": "a new agent file under .skilled/agents/ and its runtime mirrors",
     "userIntent": {
-      "job": "I want to create an OpenCode agent with explicit permissions and behavioral rules.",
+      "job": "I want to create a Skilled agent with explicit permissions and behavioral rules.",
       "ownedSignals": [
-        "create an OpenCode agent",
+        "create a Skilled agent",
         "define agent permissions",
         "write an agent persona"
       ]
@@ -163,12 +163,12 @@
   {
     "command": "/create:command",
     "ownerMode": "sk-create-command",
-    "description": "Create or update OpenCode slash command sets with :auto/:confirm workflow assets.",
+    "description": "Create or update Skilled slash command sets with :auto/:confirm workflow assets.",
     "argumentHint": "<command_invocation> [command_request] [:auto|:confirm]",
     "mutating": "mutates",
     "gate3_location": "a slash command file plus its auto and confirm workflow YAML assets",
     "userIntent": {
-      "job": "I want to create or update an OpenCode slash command with routed workflow assets.",
+      "job": "I want to create or update a Skilled slash command with routed workflow assets.",
       "ownedSignals": [
         "create a slash command",
         "scaffold command routing",

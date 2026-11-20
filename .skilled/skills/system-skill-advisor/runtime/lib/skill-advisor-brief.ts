@@ -26,7 +26,7 @@ import {
 } from './prompt-cache.js';
 import { onCacheInvalidation } from './freshness/cache-invalidation.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
-import { shouldFireAdvisor } from './prompt-policy.js';
+import { shouldFireAdvisor, stripLeadingPastedReply } from './prompt-policy.js';
 import {
   runAdvisorSubprocess,
   type AdvisorRecommendation,
@@ -419,7 +419,9 @@ export function clearAdvisorBriefCacheForTests(): void {
 /** Return the skipped result when the prompt gate declines, or null when the advisor should run. */
 export function skippedAdvisorResultFor(prompt: string): AdvisorHookResult | null {
   const startedAt = performance.now();
-  const policy = shouldFireAdvisor(prompt);
+  // Decide on the task, not on a pasted earlier reply: a skill named only in the
+  // paste would otherwise read as an explicit marker and fire the advisor.
+  const policy = shouldFireAdvisor(stripLeadingPastedReply(prompt));
   if (policy.fire) return null;
 
   const baseDiagnostics: AdvisorHookDiagnostics | null = policy.metalinguisticMentions.length > 0
@@ -442,6 +444,21 @@ export function skippedAdvisorResultFor(prompt: string): AdvisorHookResult | nul
   });
 }
 
+/**
+ * Return the skipped result shown when a weak follow-up is held back against the
+ * session's earlier route, so it renders like any other prompt the policy declines.
+ */
+export function skippedWeakFollowUpResult(): AdvisorHookResult {
+  return result({
+    startedAt: performance.now(),
+    status: 'skipped',
+    freshness: 'unavailable',
+    brief: null,
+    diagnostics: { policyReason: 'weak_follow_up_receipt' },
+    freshnessResult: null,
+  });
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
@@ -457,8 +474,11 @@ export async function buildSkillAdvisorBrief(
 
     const policy = shouldFireAdvisor(prompt);
     // advisor_recommend refuses a longer prompt, so a longer one is routed on its head
-    // instead of failing open as an outage.
-    const routedPrompt = policy.canonicalPrompt.slice(0, ADVISOR_PROMPT_MAX_CHARS);
+    // instead of failing open as an outage. A pasted earlier reply is dropped before
+    // the cut, so a long paste cannot push the task past it, and before the prompt is
+    // folded to one line, which would hide a task marker that starts a line.
+    const routedPrompt = shouldFireAdvisor(stripLeadingPastedReply(prompt)).canonicalPrompt
+      .slice(0, ADVISOR_PROMPT_MAX_CHARS);
     const baseDiagnostics: AdvisorHookDiagnostics | null = policy.metalinguisticMentions.length > 0
       ? {
         metalinguisticMention: policy.metalinguisticMentions,

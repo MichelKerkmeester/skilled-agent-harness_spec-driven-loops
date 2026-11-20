@@ -10,11 +10,10 @@ _memory:
     packet_pointer: "sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes"
     last_updated_at: "2026-11-17T13:13:51Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed phase 005 docs with the sk-doc suite criterion blocked, as the operator chose"
-    next_safe_action: "Review the staged phase 005 paths, commit, push, then start phase 006"
+    recent_action: "Closed the sk-doc suite criterion after the changelog test passed again"
+    next_safe_action: "None: the phase is complete"
     packet_purpose: "Purpose: Each of the 8 READMEs follows the runtime plugin template, passes the validator and the voice scan with zero hard blockers, and maps every entry to its real file as the folder shows it."
-    blockers:
-      - "sk-doc suite red on a changelog shape test"
+    blockers: []
     key_files:
       - "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/implementation-summary.md"
       - "specs/sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes/tasks.md"
@@ -30,7 +29,7 @@ _memory:
       savedAt: "2026-11-17T13:13:51Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -121,7 +120,7 @@ Before numbers come from `baseline-005-before.tsv`, taken before the canary ran.
 | `check-markdown-links.cjs` | `7820 files, 15212 links checked, 0 broken`, exit 0 |
 | `hook-wiring-check.cjs --root .` | `ok` for claude, codex, cursor, devin and vibe, exit 0 |
 | `test_readme_verdict_parity.py` | `PARITY PASS: verdict diff is empty`, exit 0 |
-| sk-doc `run-script-tests.sh` | Blocked, exit 1: 57 PASS and 1 FAIL, `test_check_changelog_shape.py::test_the_model_entry_passes_every_rule`. Commit `14926d78a37` from another session changed `.skilled/changelog/skilled/v4.0.2.1.md`, and the changelog checker now gives that entry a glance-order note the test rejects. The entry before that commit gets no note. No README in this phase is read by the test, and goal D3 bars a hand edit to a changelog, so the operator chose to commit with T011 and AC-006 blocked |
+| sk-doc `run-script-tests.sh` | At commit: exit 1, 57 PASS and 1 FAIL in `test_check_changelog_shape.py`, a changelog test outside this phase. Rerun 2026-11-17 after that test was fixed elsewhere: 58 PASS, `all sk-doc script tests passed`, exit 0 |
 | Secret scan over the 8 files | 34 hits on token, secret or API key, all prose about those features. No key-shaped string, no user path and no scratchpad path |
 | Scope of the change | `git status` over the eight runtime folders shows exactly the 8 READMEs, beside the operator's own `.pi/settings.json` |
 | Blocking `@review` | CHANGES REQUESTED, advisory 90/100, no P0. It sampled all 8 READMEs: 159 link and re-export targets, 137 event and matcher rows and about 80 behavior claims. The main session confirmed its three P1 and four P2 findings in the code and applied all seven across seven READMEs, then reran every gate above |
@@ -152,6 +151,6 @@ One line per README. Every reviewer session was separate from the writer of the 
 1. **Loader behavior rests on this repository's own files.** Two writers noted that the claims "Pi scans `.pi/extensions/` and calls each default export" and "OpenCode loads each top-level `.js` file" come from this repository's tests and READMEs, not from the runtimes' loader source, which is not here.
 2. **Effect cells restate each script's own contract.** The mirror READMEs describe what each linked script does from its code and header, not from a live session of each runtime.
 3. **`.cursor/SYNC.md` still points at the removed caveat.** Its row for `hooks/README.md` mentions a compiled ESM caveat this phase removed as false. SYNC docs belong to phase 006, which fixes that row.
-4. **The sk-doc suite is red for a reason outside this phase.** `test_check_changelog_shape.py` fails on the v4.0.2.1 changelog entry another session is rewriting. T011 and AC-006 stay blocked until that entry or the test changes, and rerunning `run-script-tests.sh` then closes both.
+4. **The sk-doc suite was red for a while for a reason outside this phase.** `test_check_changelog_shape.py` failed on a changelog entry another session was rewriting, so T011 and AC-006 stayed blocked at commit time. The suite passes again as of 2026-11-17, and both rows are now closed.
 5. **Fact checks sampled each README's claims.** Every claim a reviewer named was checked, but prose can still hold a claim nobody tested.
 <!-- /ANCHOR:limitations -->

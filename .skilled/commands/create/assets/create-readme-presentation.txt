@@ -84,7 +84,7 @@ Q_R2. README Type (if not provided via --type)
 A) Project - Main project documentation
 B) Component - Module/package/skill documentation
 C) Feature - Specific feature/system documentation
-D) Skill - OpenCode skill documentation
+D) Skill - Skilled skill documentation
 
 If an existing README was found: E) Overwrite, F) Backup and overwrite, G) Merge, H) Cancel
 

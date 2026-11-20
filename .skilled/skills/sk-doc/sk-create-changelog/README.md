@@ -4,7 +4,7 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
-version: 1.3.12.0
+version: 1.3.13.0
 ---
 
 # create-changelog
@@ -64,13 +64,35 @@ It reads the component folders under `.skilled/changelog/` at run time. A compon
 
 Versions are four-part and strictly sequential. The workflow starts from the highest version, locally and upstream. Then it applies the bump and increments the build segment until the path is free. A new file never overwrites an existing one. The `skilled` line has one exception. When its latest entry has no release tag on origin, that release is still open. New work joins that entry and the version stays as it is.
 
-```mermaid
-flowchart TD
-  Source["Spec folder or component name"] --> Component["Resolve the component folder"]
-  Component --> Version["Calculate the next version"]
-  Version --> Draft["Write the compact or expanded entry"]
-  Draft --> Gate["Run the shape and voice checks"]
-  Gate --> File["Entry in the component changelog folder"]
+```text
+┌─────────────────────────────────────────┐
+│ Spec folder or component name           │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Resolve the component folder            │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Calculate the next version              │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Write the compact or expanded entry     │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Run the shape and voice checks          │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ Entry in the component changelog folder │
+└─────────────────────────────────────────┘
 ```
 
 ### The Two Entry Formats

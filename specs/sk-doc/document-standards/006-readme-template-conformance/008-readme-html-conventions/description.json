@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions",
+  "description": "Phase 8: readme-html-conventions",
+  "keywords": [
+    "phase",
+    "readme-html-conventions"
+  ],
+  "lastUpdated": "2026-11-18T07:14:13.478Z",
+  "specId": "008",
+  "folderSlug": "readme-html-conventions",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "006-readme-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

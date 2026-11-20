@@ -57,14 +57,14 @@ The plugin writes diagnostics to `.skilled/logs/dist-freshness-guard.log`. The a
 | Codex | `SessionStart` | `codex/check-dist-staleness.sh` (browsing symlink) | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Stdout banner. The wrapper adds an `additionalContext` note if the command fails. |
 | Cursor | `sessionStart` | `cursor/check-dist-staleness.sh` (browsing symlink) | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Stdout banner. The wrapper sends an `agent_message` if the command fails. |
 | Devin | `SessionStart` | `devin/check-dist-staleness.sh` (browsing symlink) | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Stdout banner. No fallback is registered. |
-| OpenCode | `session.created`, `session.deleted`, `server.instance.disposed`, `global.disposed`, `tool.execute.before` and `experimental.chat.system.transform` | `opencode/system-dist-freshness-guard.js` (browsing symlink) | `.opencode/plugins/system-dist-freshness-guard.js` | Stale or error details enter system context and the workspace log. |
+| OpenCode | `session.created`, `session.deleted`, `global.disposed`, `tool.execute.before` and `experimental.chat.system.transform` | `opencode/system-dist-freshness-guard.js` (browsing symlink) | `.opencode/plugins/system-dist-freshness-guard.js` | Stale or error details enter system context and the workspace log. |
 | Pi | `session_start` | None (session-start bundle) | `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | A warning notification appears when the check prints text. A clean check stays silent. |
 | DSH | `agent/created` on startup | None (guard bundle) | `.skilled/skills/system-spec-kit/runtime/hooks/dsh/session-start-advisories.mjs` | A labeled notice is injected when the check prints text. Fan-out leaves skip the check. |
 | Vibe | `session_start` and `post_tool` | `vibe/dist-freshness.mjs` (browsing symlink) | Session start: `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`<br>Post-tool: `.vibe/plugins/repo-guards/dist-freshness.mjs` | Startup and tool warnings go into `hook_specific_output.additional_context`. |
 
 The shared registry gives the shell check the ID `check-dist-staleness`. It maps the startup commands in `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`. Each command runs the Python checker with `--all`. The timeout is 5 seconds except for Cursor, which uses 10 seconds.
 
-OpenCode loads the plugin through the flat `.opencode/plugins/*.js` glob. Pi loads `.pi/extensions/session-start-advisories.ts`, which re-exports its adapter. The DSH bundle in `.dsh/plugins/repo-guards/index.mjs` registers the session-start adapter.
+OpenCode loads the plugin through the flat `.opencode/plugins/*.js` glob. Pi loads `.pi/extensions/session-start-advisories.ts`, which imports its adapter. The DSH bundle in `.dsh/plugins/repo-guards/index.mjs` registers the session-start adapter.
 
 Vibe registers its `session_start` hook and two `post_tool` checks in `.vibe/hooks.toml`. The session-start entry runs `.skilled/hooks/session-lifecycle/vibe/session-start.mjs`. The post-tool entries run `.vibe/plugins/repo-guards/dist-freshness.mjs`.
 

@@ -16,6 +16,7 @@
       "configurable host index folder plan",
       "configurable host index folder tasks",
       "configurable host index folder acceptance criteria",
+      "023-configurable-host-index-folder operator decisions",
       "configurable host index folder implementation summary"
     ],
     "key_topics": [
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/host-index.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
@@ -53,8 +55,7 @@
       ".skilled/commands/speckit/README.txt",
       ".skilled/changelog/skilled/v4.0.2.0.md",
       "spec/upgrade-legacy.mjs",
-      "runtime/data/README.md",
-      "lib/README.md"
+      "runtime/data/README.md"
     ],
     "entities": [
       {
@@ -79,6 +80,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -194,33 +201,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The host trigger index folder is fixed at `.speckit-index/`",
     "created_at": "2026-11-09T18:06:54Z",
-    "last_save_at": "2026-11-10T06:23:22.314Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:37:46.898Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5df7013fdb10eadc64d54d4720d3d55cfcbc62c464c968b2492ba3bc15b5ea7a",
+    "source_fingerprint": "sha256:0017fa7bceb338113a11632e71ceb85f0692ffc6b3c4e5c549b281f6d8f17cdb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d63ff3a74c1fec5eb9f0cfb5e6c4b06c14ee7e8ac77d0dd300741f21c7f22c6",
       "plan.md": "72c4bb0f1fa1c9c135bce186e3745375a35c79a49eb0318bc0a987b58b6279b9",
       "tasks.md": "bff7f94d8b945c3a84db614122d40fe3b12a0ff970415b3360f374586e08f114",
-      "implementation-summary.md": "6d5ffccb11ed6270a6d417bafbf0fd8738ec30474a22621929a521d761e6e179"
+      "decision-record.md": "6b77ce6eac49b8d6e2cb2d96b657e84a02116121ba73cd28848f8b8e27c3283e",
+      "implementation-summary.md": "382026bcfaf2c81ada1c506a2672e83fb505130d849fd7e5855366c049427d28"
     },
     "last_active_at": null
   }

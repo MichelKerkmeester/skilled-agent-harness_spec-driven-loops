@@ -12,17 +12,17 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "884b0fa1fc98700c7f8d151cccb001e7f8cfb3433cf1ab025ab339f806cc4f1b",
+      "sha256": "ebbe814e1f8dc9340d8585868b1e4f2b9cf9735177d8424e91c9dddf94f016ea",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "6d3a97d63de823afcb09c3e15b3a4fd13e296eb0663e9b04351291d3b2ab4259",
+      "sha256": "7dc7f10404b5420fef031b2dad3070068cc6700492ad53097dd4eb993778acf4",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "f835737ad27e90cfd6f93128e875aaeb4d3c40b01d1125f69367bcb9146c0112",
+      "sha256": "8231b8fa37de61b217adc27b77a37fa765d3f06abd332efa09bc24d06315ac1d",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "b42ab8dad8c842de3272be51423c7d004311f0bb8dbda2dc84653424cb378a55",
+      "sha256": "9e01026998fdc7bd6dcba3f446f31d943104b0e5ef6276bb387705a5b5019721",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "84de0169bc846537511d677d00db77e0657f30c2732351e315a8a29b550744d4"
+  "compiledBodyDigest": "03fa107803e109884442858fa531c8137f4df1e9050a6d0eb228b9f631ed9882"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -92,7 +92,7 @@ This generated contract collapses the maintained command authority chain into on
 
 > Read this first. It is an imperative to you, the executor — not background information.
 
-You were invoked via `opencode run --command deep/review` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
+You were invoked as `/deep:review` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
 
 - DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).
@@ -234,7 +234,7 @@ Rules:
 | `fanout_executors` | N | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`; one expanded lineage selects `config.executor`, two or more select `config.fanout` | none (single-executor when absent) | N |
 | `fanout_concurrency` | N | flag `--concurrency=N` | `2` | N |
 
-**Fan-out default policy:** 0–1 `--executor` flags and no `--executors`, or an `--executors` matrix that expands to exactly one lineage → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, an `--executors` matrix that expands to two or more lineages, or any `--count > 1` → `config.fanout`. Review fan-out uses strongest-restriction: any lineage active P0 → merged FAIL. Native and CLI fan-out lineages run under `fanout-run.cjs` in the capped pool so every lineage shares retries, artifact checks, and stop-policy validation. The native adapter calls the `deep/review` command with the internal `--fanout-lineage-artifact-dir` override; it must not dispatch the LEAF `@deep-review` agent or a pasted phase-running prompt as a full-loop sub-agent. When fan-out includes `cli-opencode`, that lineage is an explicit parallel-detached OpenCode session with its own lineage directory and session id; this is the documented exception to the cli-opencode self-invocation guard. Single-executor `cli-opencode` remains cross-runtime only.
+**Fan-out default policy:** 0–1 `--executor` flags and no `--executors`, or an `--executors` matrix that expands to exactly one lineage → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, an `--executors` matrix that expands to two or more lineages, or any `--count > 1` → `config.fanout`. Review fan-out uses strongest-restriction: any lineage active P0 → merged FAIL. Every fan-out lineage needs a `cli-*` executor and runs under `fanout-run.cjs` in the capped pool so every lineage shares retries, artifact checks, and stop-policy validation. A native fan-out lineage is refused before any lineage spawns, because OpenCode 2 `run` cannot start the registered `deep/review` command that adapter needed; `native` runs only as the single executor, and the default `native` executor with `--count > 1` is refused the same way. Fan-out never dispatches the LEAF `@deep-review` agent or a pasted phase-running prompt as a full-loop sub-agent. When fan-out includes `cli-opencode`, that lineage is an explicit parallel-detached OpenCode session with its own lineage directory and session id; this is the documented exception to the cli-opencode self-invocation guard. Single-executor `cli-opencode` remains cross-runtime only.
 
 **Lifecycle policy:** `lineage_mode=auto` preserves the existing classifier behavior, `lineage_mode=resume` continues a valid packet, and `lineage_mode=restart` archives the resolved `{artifact_dir}` before any config write, phase init, or fan-out spawn. In `:auto`, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization for this archive move, so do not ask for a second confirmation. Preserve rollback by moving the timestamped archive back to `review/` if needed. A restart request must never silently downgrade to resume; if the archive step cannot run, halt with `STATUS=FAIL`.
 
@@ -363,7 +363,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-review agent with Opus.
-     B) cli-opencode — OpenCode 2 (expected): `opencode run --standalone -m X[#Y] --format json [--auto] "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. OpenCode 1 (fallback): `opencode run --model X --format json --dir {repo_root} [--dangerously-skip-permissions] [--variant Y] "PROMPT"`. The bypass flag is added only under `danger-full-access`, the one explicit sandbox mode cli-opencode accepts. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
+     B) cli-opencode — `opencode run --standalone -m X[#Y] --format json [--auto] "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is added only under `danger-full-access`, the one explicit sandbox mode cli-opencode accepts. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
       C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`. The default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
      D) cli-codex — requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.

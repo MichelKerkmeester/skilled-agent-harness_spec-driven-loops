@@ -1,0 +1,7 @@
+# Per-run copies and logs: the originals, dispatch logs and failed drafts.
+# A rewrite is rechecked with them before its commit, and the commit holds the result.
+orig/
+runs/
+failed/
+STOP
+render/

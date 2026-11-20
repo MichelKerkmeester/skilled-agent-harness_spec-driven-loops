@@ -4,10 +4,9 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// One default serves both OpenCode versions: the llmgateway route, marked with a `✓`
+// One default serves every dispatch: the llmgateway route, marked with a `✓`
 // row in the roster's `### llmgateway` table. The opencode-go provider stays
-// documented but is no longer a default, because its quota is spent on OpenCode 1 and
-// OpenCode 2 lists no opencode-go provider at all. The roster, the skill's default
+// documented as a non-default route. The roster, the skill's default
 // invocation and every scenario document name that default, and they drifted apart
 // when the gateway retired an id: the roster moved to the live slug while the docs kept
 // dispatching the dead one. The roster is the single source, and these tests hold the
@@ -82,9 +81,10 @@ function read(file) {
   return fs.readFileSync(file, 'utf8');
 }
 
-// OpenCode 1 pins a model with `--model <id>` and OpenCode 2 with `-m <id>` plus an
-// effort suffix (`#max`). The id runs to the next space, so a closing backtick or
-// quote ends it, and the suffix is stripped so both spellings compare equal.
+// OpenCode pins a model with `-m <id>` plus an effort suffix (`#max`). A stray
+// `--model` is still matched so a doc that reintroduces it is checked for drift. The
+// id runs to the next space, so a closing backtick or quote ends it, and the suffix is
+// stripped before ids are compared.
 const MODEL_SELECTOR_PATTERN = /(?<![\w-])(--model|-m)\s+([^\s`'"]+)/g;
 
 function modelSelectors(markdown) {
@@ -192,7 +192,7 @@ test('the roster keeps the previous llmgateway release as a non-default row', ()
   assert.ok(notes.includes('2026-10-24'), `${PREVIOUS_RELEASE_ID} carries no 2026-10-24 deactivation note`);
 });
 
-test('both versions default to llmgateway, each in its own syntax', () => {
+test('the default invocation names the llmgateway default with its effort suffix', () => {
   const lines = read(SKILL).split('\n');
   const start = lines.findIndex((line) => line.startsWith('### Default Invocation'));
   assert.notEqual(start, -1, 'SKILL.md has no "### Default Invocation" section');
@@ -206,23 +206,11 @@ test('both versions default to llmgateway, each in its own syntax', () => {
   const text = section.join('\n');
   const selectors = modelSelectors(text);
 
-  // Both dispatch forms ship there as copyable commands, so each version's syntax
-  // names the same default: OpenCode 1 through `--model` and OpenCode 2 through `-m`
-  // with the effort suffix on the id.
-  assert.ok(
-    selectors.some((selector) => selector.flag === '--model' && selector.id === DEFAULT_ID),
-    `the Default Invocation section has no "--model ${DEFAULT_ID}" selector`,
-  );
-
+  // OpenCode 2 pins the model with `-m` and carries the effort on the id itself.
   const v2Selector = `-m ${DEFAULT_ID}#max`;
   assert.ok(
     selectors.some((selector) => selector.text === v2Selector),
     `the Default Invocation section has no "${v2Selector}" selector`,
-  );
-
-  assert.ok(
-    text.includes('--variant max'),
-    'the Default Invocation section has no "--variant max"',
   );
 
   // Every selector there is a dispatch an operator may run: one that pins another

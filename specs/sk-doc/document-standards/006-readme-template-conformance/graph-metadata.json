@@ -10,7 +10,11 @@
     "sk-doc/document-standards/006-readme-template-conformance/004-hook-runtime-readmes",
     "sk-doc/document-standards/006-readme-template-conformance/005-runtime-plugin-readmes",
     "sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes",
-    "sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes"
+    "sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes",
+    "sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions",
+    "sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme",
+    "sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams",
+    "sk-doc/document-standards/006-readme-template-conformance/011-readme-guards"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +48,7 @@
       "packet"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -55,6 +59,7 @@
       ".skilled/skills/sk-doc/sk-create-readme/assets/runtime-folder-template.md",
       ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
       ".skilled/skills/sk-design/README.md",
+      ".vibe/README.md",
       ".skilled/hooks/README.md",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
@@ -140,12 +145,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -170,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Human Voice Rules",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -182,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Flash Max",
+        "name": "Flash Free",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -200,13 +205,13 @@
         "source": "derived"
       },
       {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Operator Decisions",
+        "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
@@ -214,7 +219,7 @@
     ],
     "causal_summary": "The root README and its five root guides now read in a plain human voice, and the `sk-create-readme` templates were rewritten to match",
     "created_at": "2026-11-16T15:20:12Z",
-    "last_save_at": "2026-11-17T17:07:56.519Z",
+    "last_save_at": "2026-11-19T17:48:21.205Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +227,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:8344c25a96b5d10883bb92f868a49a15820cdf0904b0aa34b79972b768e727fa",
+    "source_fingerprint": "sha256:4d6212b3ed0630b69009a4c08986275a31a6cb03cda034e16bcc5174804e0695",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "78a6332a59eb50a00126081512d8b1c4e735917f21afba1efb1766f87ba01045",
-      "decision-record.md": "3f3fc09fbcd3e7fd7b992b3f59e3c3641fe7f3c4946f426daf16458611d6a62c"
+      "spec.md": "4dd76bd386d8bd9f13f4c650d1721068905e7e2c8f4feabb4245d4fefb76d2d3",
+      "decision-record.md": "88cd632732eff7bc25225b6fa2cd20a87504d2419685761ef1d1fa3b4611ff6c"
     },
-    "last_active_child_id": "sk-doc/document-standards/006-readme-template-conformance/006-runtime-folder-readmes",
-    "last_active_at": "2026-11-17T17:07:56.519Z"
+    "last_active_child_id": "sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes",
+    "last_active_at": "2026-11-19T17:48:21.205Z"
   }
 }

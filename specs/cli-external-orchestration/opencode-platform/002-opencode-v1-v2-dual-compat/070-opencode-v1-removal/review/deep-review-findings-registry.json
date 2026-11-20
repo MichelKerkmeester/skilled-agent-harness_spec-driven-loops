@@ -1,0 +1,1289 @@
+{
+  "sessionId": "2026-11-19T15:56:57.978Z",
+  "parentSessionId": "2026-11-19T15:28:38.046Z",
+  "generation": 2,
+  "lineageMode": "restart",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "DR3-P1-001",
+      "severity": "P1",
+      "title": "The phase-003 acceptance table still marks AC-004 Met while the same packet's completion record says it is not met",
+      "file": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md",
+      "line": 57,
+      "description": "",
+      "findingClass": "closure-metadata inconsistency",
+      "deltaStatus": null,
+      "scopeProof": "all cited lines are inside the 070 packet and its phase children",
+      "affectedSurfaceHints": [
+        "/speckit:resume parent continuity",
+        "AC_CLOSURE validator rule",
+        "phase handoff gate"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR4-P1-001",
+      "severity": "P1",
+      "title": "The removed server dual export still has exactly one runtime consumer, and that consumer fails open",
+      "file": ".opencode/plugins/lib/v2-bridge.js",
+      "line": 593,
+      "description": "",
+      "findingClass": "dangling consumer of a removed export key",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR1-P2-001",
+      "severity": "P2",
+      "title": "Retired-major comment promises a token the parser never returns",
+      "file": ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+      "line": 17,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR1-P2-002",
+      "severity": "P2",
+      "title": "Two byte-identical version parsers with divergent failure semantics",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+      "line": 148,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR1-P2-003",
+      "severity": "P2",
+      "title": "Loop wrapper drops the capability probe and always passes --standalone",
+      "file": ".skilled/bin/skilled-loop",
+      "line": 1217,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR2-P2-001",
+      "severity": "P2",
+      "title": "The bare-name probe runs a command-chosen opencode<N> binary from PATH before any rule decides",
+      "file": ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+      "line": 238,
+      "description": "",
+      "findingClass": "trust-boundary",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR3-P2-001",
+      "severity": "P2",
+      "title": "Phase-003 AC rows carry Waiver '-' while their printed verification command fails as written",
+      "file": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md",
+      "line": 55,
+      "description": "",
+      "findingClass": "checklist-evidence discipline",
+      "deltaStatus": null,
+      "scopeProof": "reproduction command was run over the cited cli-opencode playbook folder only",
+      "affectedSurfaceHints": [
+        "validate.sh --strict AC checks",
+        "phase 003 closure report"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR3-P2-002",
+      "severity": "P2",
+      "title": "justified.txt justifies a feature-catalog path that no longer exists",
+      "file": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/justified.txt",
+      "line": 23,
+      "description": "",
+      "findingClass": "evidence-artifact drift after rename",
+      "deltaStatus": null,
+      "scopeProof": "survivor list and live grep output are packet artifacts inside the declared target",
+      "affectedSurfaceHints": [
+        "phase 003 AC-007",
+        "T021 final-grep record"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR4-P2-001",
+      "severity": "P2",
+      "title": "Two of the four re-exported internals in v2-bridge have no importer",
+      "file": ".opencode/plugins/lib/v2-bridge.js",
+      "line": 602,
+      "description": "",
+      "findingClass": "export surface wider than its consumers",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 6,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [
+    {
+      "findingId": "DR3-P1-001",
+      "severity": "P1",
+      "title": "The phase-003 acceptance table still marks AC-004 Met while the same packet's completion record says it is not met",
+      "file": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md",
+      "line": 57,
+      "description": "",
+      "findingClass": "closure-metadata inconsistency",
+      "deltaStatus": null,
+      "scopeProof": "all cited lines are inside the 070 packet and its phase children",
+      "affectedSurfaceHints": [
+        "/speckit:resume parent continuity",
+        "AC_CLOSURE validator rule",
+        "phase handoff gate"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR4-P1-001",
+      "severity": "P1",
+      "title": "The removed server dual export still has exactly one runtime consumer, and that consumer fails open",
+      "file": ".opencode/plugins/lib/v2-bridge.js",
+      "line": 593,
+      "description": "",
+      "findingClass": "dangling consumer of a removed export key",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "DR3-P1-001",
+      "severity": "P1",
+      "title": "The phase-003 acceptance table still marks AC-004 Met while the same packet's completion record says it is not met",
+      "file": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md",
+      "line": 57,
+      "description": "",
+      "findingClass": "closure-metadata inconsistency",
+      "deltaStatus": null,
+      "scopeProof": "all cited lines are inside the 070 packet and its phase children",
+      "affectedSurfaceHints": [
+        "/speckit:resume parent continuity",
+        "AC_CLOSURE validator rule",
+        "phase handoff gate"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR4-P1-001",
+      "severity": "P1",
+      "title": "The removed server dual export still has exactly one runtime consumer, and that consumer fails open",
+      "file": ".opencode/plugins/lib/v2-bridge.js",
+      "line": 593,
+      "description": "",
+      "findingClass": "dangling consumer of a removed export key",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 7
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.5,
+  "graphConvergenceScore": 0.836,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 0.8,
+    "evidenceDensity": 0.36363636363636365,
+    "findingStability": 0.9090909090909091,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.836
+  },
+  "candidateCoverage": {
+    "covered": [
+      "contradictory_packet_state",
+      "cross_runtime_contract_break",
+      "dangling_consumer",
+      "dead_export",
+      "documentation_claim_vs_behaviour",
+      "duplicate_implementation",
+      "error_reporting",
+      "evidence_artifact_drift",
+      "stale_completion_claim",
+      "traceability_status_conflict",
+      "trust_boundary_violation",
+      "unreproducible_verification_command"
+    ],
+    "ruledOut": [
+      "authorization_bypass",
+      "boundary_handling",
+      "command_injection",
+      "cross_runtime_contract_multi_consumer",
+      "dependency_supply_chain",
+      "insecure_temp_file",
+      "orphaned_helper",
+      "removed_feature_residue",
+      "secret_exposure",
+      "spec_code_drift",
+      "stale_completion_claim",
+      "stale_cross_reference",
+      "stale_plugin_count",
+      "state_transition",
+      "trust_boundary_violation"
+    ],
+    "deferred": [
+      "mirror_check_capability"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "documentation_claim_vs_behaviour": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "duplicate_implementation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "error_reporting": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "removed_feature_residue": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "boundary_handling": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "trust_boundary_violation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "authorization_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "insecure_temp_file": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "dependency_supply_chain": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stale_completion_claim": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "unreproducible_verification_command": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "evidence_artifact_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "contradictory_packet_state": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "spec_code_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "dangling_consumer": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_export": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "orphaned_helper": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_cross_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "traceability_status_conflict": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "cross_runtime_contract_break": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "cross_runtime_contract_multi_consumer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stale_plugin_count": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "mirror_check_capability": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 5,
+      "id": "SL-5-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "003-v1-docs-and-playbooks-sweep/scratch/locations.txt"
+      ],
+      "bugClass": "mirror_check_capability",
+      "disposition": "deferred",
+      "rationale": "recorded rather than turned into a pass",
+      "evidenceRefs": [
+        "003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:64"
+      ],
+      "reason": "iteration budget spent on the checklist sweep and consumer sweep; whether the mirror check compares bytes only is unverified"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "removed_feature_residue",
+      "disposition": "ruled_out",
+      "rationale": "Both barriers throw inputError before any lineage starts, and two tests assert each.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3505"
+      ],
+      "reason": "refusal precedes every lineage start and the removed builder has no caller"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/opencode.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "No second producer of tool items remains, so a per-call dedup set is sufficient.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/opencode.mjs:102"
+      ],
+      "reason": "verified by direct read of the only remaining producer"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+        ".skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json"
+      ],
+      "bugClass": "boundary_handling",
+      "disposition": "ruled_out",
+      "rationale": "Every documented output shape resolves to its declared family.",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json:9"
+      ],
+      "reason": "corpus coverage confirmed against the parser body"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/lib/v2-bridge.js"
+      ],
+      "bugClass": "authorization_bypass",
+      "disposition": "ruled_out",
+      "rationale": "Deny-on-throw survives the bridge, so the v1 security hooks keep their block",
+      "evidenceRefs": [
+        ".opencode/plugins/lib/v2-bridge.js:516",
+        ".opencode/plugins/ARCHITECTURE.md:130"
+      ],
+      "reason": "verified by direct read of the registration and the documented contract"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/system-spec-gate.js",
+        ".opencode/plugins/system-skill-advisor.js",
+        ".opencode/plugins/system-dist-freshness-guard.js"
+      ],
+      "bugClass": "authorization_bypass",
+      "disposition": "ruled_out",
+      "rationale": "The dropped branches have no producer on the v2 bus",
+      "evidenceRefs": [
+        ".opencode/plugins/ARCHITECTURE.md:142",
+        ".opencode/plugins/ARCHITECTURE.md:224"
+      ],
+      "reason": "code read plus event inventory evidence"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs"
+      ],
+      "bugClass": "trust_boundary_violation",
+      "disposition": "ruled_out",
+      "rationale": "Path-qualified names are compared, never executed as named",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs:139"
+      ],
+      "reason": "verified by direct read of the identity check"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell interpolation of lineage input; destructive paths are guarded before the first write",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2379",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:222"
+      ],
+      "reason": "direct read of both surfaces"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-301",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "every binding decision is visible in code or in an explicit absence check; no spec-vs-code drift survived",
+      "evidenceRefs": [
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:105",
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:109",
+        ".github/workflows/opencode-v2-battery.yml:84",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:30",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/pure-and-print-logs.md:52",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md:44"
+      ],
+      "reason": "direct read plus reproduced verification commands on both sides"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/tasks.md",
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/acceptance-criteria.md"
+      ],
+      "bugClass": "stale_completion_claim",
+      "disposition": "ruled_out",
+      "rationale": "the phase 001 and 002 blocker rows are consistent across parent and child, so the inconsistency is confined to phase 003",
+      "evidenceRefs": [
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/tasks.md:116",
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:18"
+      ],
+      "reason": "parent and child rows agree for the two non-phase-003 blockers"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/plugins/system-skill-advisor.js",
+        ".opencode/plugins/system-dist-freshness-guard.js",
+        ".opencode/plugins/opencode-goal.js"
+      ],
+      "bugClass": "orphaned_helper",
+      "disposition": "ruled_out",
+      "rationale": "ADR-001 in the packet's decision-record keeps these branches by name and the code matches",
+      "evidenceRefs": [
+        ".opencode/plugins/system-dist-freshness-guard.js:221",
+        ".opencode/plugins/ARCHITECTURE.md:224"
+      ],
+      "reason": "documented v2 event with an uncaptured delivery, not a v1 leftover"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review-presentation.txt",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt"
+      ],
+      "bugClass": "stale_cross_reference",
+      "disposition": "ruled_out",
+      "rationale": "both surviving mentions describe the refusal, which is the post-removal behaviour",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:474"
+      ],
+      "reason": "the text states the refusal rather than a supported path"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runtime mirrors"
+      ],
+      "bugClass": "cross_runtime_contract_multi_consumer",
+      "disposition": "ruled_out",
+      "rationale": "the break is single-consumer, so the v1-facing removal is otherwise complete",
+      "evidenceRefs": [
+        ".vibe/plugins/README.md:103",
+        ".opencode/plugins/session-cleanup.js:375"
+      ],
+      "reason": "no second consumer of the removed key exists; every other dualPlugin user reaches OpenCode through setup"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "003-v1-docs-and-playbooks-sweep/acceptance-criteria.md"
+      ],
+      "bugClass": "stale_plugin_count",
+      "disposition": "ruled_out",
+      "rationale": "count is current",
+      "evidenceRefs": [
+        "003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:58"
+      ],
+      "reason": "the folder holds 20 .js files, matching the row"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "removed_feature_residue",
+      "disposition": "ruled_out",
+      "rationale": "Both barriers throw inputError before any lineage starts, and two tests assert each.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3505"
+      ],
+      "proof": "refusal precedes every lineage start and the removed builder has no caller"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/shared/session-readers/opencode.mjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "No second producer of tool items remains, so a per-call dedup set is sufficient.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/session-readers/opencode.mjs:102"
+      ],
+      "proof": "verified by direct read of the only remaining producer"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs",
+        ".skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json"
+      ],
+      "bugClass": "boundary_handling",
+      "disposition": "ruled_out",
+      "rationale": "Every documented output shape resolves to its declared family.",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json:9"
+      ],
+      "proof": "corpus coverage confirmed against the parser body"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/lib/v2-bridge.js"
+      ],
+      "bugClass": "authorization_bypass",
+      "disposition": "ruled_out",
+      "rationale": "Deny-on-throw survives the bridge, so the v1 security hooks keep their block",
+      "evidenceRefs": [
+        ".opencode/plugins/lib/v2-bridge.js:516",
+        ".opencode/plugins/ARCHITECTURE.md:130"
+      ],
+      "proof": "verified by direct read of the registration and the documented contract"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/system-spec-gate.js",
+        ".opencode/plugins/system-skill-advisor.js",
+        ".opencode/plugins/system-dist-freshness-guard.js"
+      ],
+      "bugClass": "authorization_bypass",
+      "disposition": "ruled_out",
+      "rationale": "The dropped branches have no producer on the v2 bus",
+      "evidenceRefs": [
+        ".opencode/plugins/ARCHITECTURE.md:142",
+        ".opencode/plugins/ARCHITECTURE.md:224"
+      ],
+      "proof": "code read plus event inventory evidence"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs"
+      ],
+      "bugClass": "trust_boundary_violation",
+      "disposition": "ruled_out",
+      "rationale": "Path-qualified names are compared, never executed as named",
+      "evidenceRefs": [
+        ".skilled/hooks/cli-dispatch/lib/opencode-version.mjs:139"
+      ],
+      "proof": "verified by direct read of the identity check"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell interpolation of lineage input; destructive paths are guarded before the first write",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2379",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:222"
+      ],
+      "proof": "direct read of both surfaces"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-301",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "every binding decision is visible in code or in an explicit absence check; no spec-vs-code drift survived",
+      "evidenceRefs": [
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:105",
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:109",
+        ".github/workflows/opencode-v2-battery.yml:84",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:30",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/pure-and-print-logs.md:52",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md:44"
+      ],
+      "proof": "direct read plus reproduced verification commands on both sides"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/tasks.md",
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/acceptance-criteria.md"
+      ],
+      "bugClass": "stale_completion_claim",
+      "disposition": "ruled_out",
+      "rationale": "the phase 001 and 002 blocker rows are consistent across parent and child, so the inconsistency is confined to phase 003",
+      "evidenceRefs": [
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/tasks.md:116",
+        "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:18"
+      ],
+      "proof": "parent and child rows agree for the two non-phase-003 blockers"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/plugins/system-skill-advisor.js",
+        ".opencode/plugins/system-dist-freshness-guard.js",
+        ".opencode/plugins/opencode-goal.js"
+      ],
+      "bugClass": "orphaned_helper",
+      "disposition": "ruled_out",
+      "rationale": "ADR-001 in the packet's decision-record keeps these branches by name and the code matches",
+      "evidenceRefs": [
+        ".opencode/plugins/system-dist-freshness-guard.js:221",
+        ".opencode/plugins/ARCHITECTURE.md:224"
+      ],
+      "proof": "documented v2 event with an uncaptured delivery, not a v1 leftover"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review-presentation.txt",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt"
+      ],
+      "bugClass": "stale_cross_reference",
+      "disposition": "ruled_out",
+      "rationale": "both surviving mentions describe the refusal, which is the post-removal behaviour",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:474"
+      ],
+      "proof": "the text states the refusal rather than a supported path"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runtime mirrors"
+      ],
+      "bugClass": "cross_runtime_contract_multi_consumer",
+      "disposition": "ruled_out",
+      "rationale": "the break is single-consumer, so the v1-facing removal is otherwise complete",
+      "evidenceRefs": [
+        ".vibe/plugins/README.md:103",
+        ".opencode/plugins/session-cleanup.js:375"
+      ],
+      "proof": "no second consumer of the removed key exists; every other dualPlugin user reaches OpenCode through setup"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "003-v1-docs-and-playbooks-sweep/acceptance-criteria.md"
+      ],
+      "bugClass": "stale_plugin_count",
+      "disposition": "ruled_out",
+      "rationale": "count is current",
+      "evidenceRefs": [
+        "003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:58"
+      ],
+      "proof": "the folder holds 20 .js files, matching the row"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "traceability_status_conflict",
+      "cross_runtime_contract_break",
+      "checklist_evidence_scope"
+    ],
+    "covered": [
+      "traceability_status_conflict",
+      "cross_runtime_contract_break"
+    ],
+    "ruledOut": [
+      "cross_runtime_contract_multi_consumer",
+      "stale_plugin_count"
+    ],
+    "deferred": [
+      "mirror_check_capability"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 1,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/acceptance-criteria.md:60",
+          ".opencode/plugins/lib/v2-bridge.js:593",
+          ".opencode/plugins/ARCHITECTURE.md:123"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "the packet records the server-key removal in AC-007 and the code, ARCHITECTURE.md and README.md all state the surviving { id, setup } shape, so the decision and the implementation agree"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "001-v1-runtime-code-and-tests/acceptance-criteria.md:60",
+          "002-v1-ci-and-package-pins/acceptance-criteria.md:61",
+          "003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:57",
+          "003-v1-docs-and-playbooks-sweep/implementation-summary.md:130"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "Swept every AC row in the three acceptance tables (9 + 8 + 11): 26 Met rows carry a printed command and a dated observed result, 001 AC-007 is Superseded under ADR-001, 002 AC-008 is openly Unmet pending the operator push. Two defects keep it partial: 001 AC-007's .server( check searches .opencode/plugins/tests only, and 003 AC-004 is Met in the table while implementation-summary.md:130 says it is not met with no waiver written."
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

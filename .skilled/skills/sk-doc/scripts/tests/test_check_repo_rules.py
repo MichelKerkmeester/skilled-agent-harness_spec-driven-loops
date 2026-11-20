@@ -144,3 +144,14 @@ def test_trigger_row_linking_a_card_credits_its_rule(tmp_path: Path) -> None:
     assert result.returncode == 0, result.stdout + result.stderr
     assert "row coverage" in result.stdout and "all links resolve" in result.stdout
     assert "bullets=2 every bullet has a router counterpart" in result.stdout
+
+
+def test_a_readme_in_the_rules_folder_is_not_counted_as_a_rule(tmp_path: Path) -> None:
+    root = make_tree(tmp_path)
+    (root / ".skilled" / "repo-rules" / "README.md").write_text("# Repo Rules\n\n> What this folder holds.\n")
+
+    result = run(root)
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "files=1 triggerRows=1 indexRows=1" in result.stdout
+    assert "RESULT: PASSED (11/11 checks)" in result.stdout

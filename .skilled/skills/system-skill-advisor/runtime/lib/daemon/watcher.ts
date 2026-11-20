@@ -10,7 +10,10 @@ import { createHash } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { createPrivateSkillLinkCheck } from '../private-skill-target.js';
-import { indexSkillMetadata } from '../skill-graph/skill-graph-db.js';
+import {
+  indexSkillMetadata,
+  refreshEmbeddingsInBackground,
+} from '../skill-graph/skill-graph-db.js';
 import { isDocTriggerHarvestEnabled, listSkillDocFiles } from '../skill-graph/doc-frontmatter.js';
 import { runDaemonStateMutation } from './state-mutation.js';
 import { workspaceRelativeFilePath } from '../derived/provenance.js';
@@ -488,7 +491,33 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
   // loop after the active batch settles.
   let flushPromise: Promise<void> | null = null;
 
-  const defaultReindex = async (): Promise<ReindexResult> => indexSkillMetadata(skillsRoot);
+  const defaultReindex = async (): Promise<ReindexResult> => {
+    const result = indexSkillMetadata(skillsRoot);
+    void refreshEmbeddingsInBackground(skillsRoot)
+      .then((refreshResult) => {
+        if (refreshResult !== null) {
+          const warningDetails = refreshResult.warnings.length > 0
+            ? ` warnings=${refreshResult.warnings.join('; ')}`
+            : '';
+          console.error(
+            '[system-skill-advisor-launcher] Watcher skill embeddings: embedded=%d '
+              + 'skipped=%d failed=%d%s',
+            refreshResult.embedded,
+            refreshResult.skipped,
+            refreshResult.failed,
+            warningDetails,
+          );
+        }
+      })
+      .catch((error: unknown) => {
+        const message = error instanceof Error ? error.message : String(error);
+        console.error(
+          '[system-skill-advisor-launcher] Watcher skill embedding refresh failed:',
+          message,
+        );
+      });
+    return result;
+  };
   const reindexSkill = options.reindexSkill ?? defaultReindex;
 
   // Orchestrator owns per-skill processing (hash bookkeeping,

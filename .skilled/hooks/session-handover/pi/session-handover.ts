@@ -198,7 +198,7 @@ function asModule<T>(value: unknown): T {
 }
 
 // `../lib/` resolves from this file's own folder, where Pi loads it through its
-// one-line `.pi/extensions/` entry file. The `as string` assertion keeps the
+// `.pi/extensions/` entry file. The `as string` assertion keeps the
 // typechecker from resolving the path while transpilers still emit the literal
 // specifier for the module loader.
 function checkedCore(core: CoreModule): CoreModule {

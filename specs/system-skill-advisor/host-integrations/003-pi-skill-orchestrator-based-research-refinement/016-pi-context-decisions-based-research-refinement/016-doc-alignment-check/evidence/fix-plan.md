@@ -1,0 +1,46 @@
+# Fix plan
+
+Target: topic advisor-pasted-reply; head: 717347fbcba748f4112bb7a94b1466c77aed3070
+
+## In scope
+
+### docs:.skilled/skills
+
+- [ ] L4-2 P1 .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:157 The row says setting `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP` to `0`/`false`/`off`/`no` restores always-full delivery. Route receipts are not gated by this variable: `routeReceiptsEnabled()` checks `hookCo
+  fix: Set `0`/`false`/`off`/`no` to restore always-full delivery -> Set `0`/`false`/`off`/`no` to restore always-full directive delivery; route receipts are separate and are gated by `SYST
+- [ ] L1-3 P1 .skilled/skills/system-skill-advisor/hooks/lib/README.md:13 The overview says this module runs 'when the in-process advisor brief returns `fail_open` or a degraded, unavailable-freshness result'. The shared handler no longer calls an in-process brief in produc
+  fix: When the in-process advisor brief returns `fail_open` or a degraded, unavailable-freshness result, this module finds the -> When a prompt passes the advisor's prompt-policy gate, this module is the hook's producer: it finds the advisor CLI unde
+- [ ] L2-4 P1 .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md:46 The no-spawn check greps for `mk-skill-advisor-launcher`, a name that exists nowhere in the repository: the CLI spawns `.skilled/bin/system-skill-advisor-launcher.cjs`, mirrored under `.opencode/bin`.
+  fix: BEFORE=$(pgrep -f "mk-skill-advisor-launcher" | wc -l) -> BEFORE=$(pgrep -f "system-skill-advisor-launcher" | wc -l)
+- [ ] L1-4 P2 .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:49 The degraded path's condition is stated over 'the prompt'. `degradedRecommendations()` strips a leading pasted reply first and tests the remaining task text (`const task = stripLeadingPastedReply(prom
+  fix: when the prompt contains the row's bare slash command -> when the prompt, after any leading pasted reply is stripped, contains the row's bare slash command
+- [ ] L3-1 P2 .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md:14 The doc says the memory-backed session-prime, compact-inject, session-stop and session-start hooks were removed with their server. They still exist and are registered: `.claude/settings.json` runs ses
+  fix: The memory-backed session-prime, compact-inject, session-stop and session-start hooks were removed with their server, so -> The session-prime, compact-inject, session-stop and session-start hooks remain, but they do not consult the advisor daem
+- [ ] L4-3 P2 .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:159 The documented default `os.tmpdir()/speckit-advisor/directive-lifecycle` is not the variable's default base. `FileDirectiveLifecycleStore` defaults it to `join(tmpdir(), 'speckit-advisor')`; the Pytho
+  fix: `os.tmpdir()/speckit-advisor/directive-lifecycle` -> `os.tmpdir()/speckit-advisor`
+- [ ] N1 P2 .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md:72 The validation table says the disabled-switch test pins an 'exact-`1` value rule', while line 23 says any truthy value disables the advisor. Both describe the wrong rule: the hooks resolver treats `1`
+  fix: The switch names, the exact-`1` value rule and the envelope fields. -> The switch names, the hooks' active-value rule (`1`/`true`/`yes`/`on`) and the envelope fields.
+- [ ] N2 P2 .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md:55 The source table calls `hooks/lib/skill-advisor-cli-fallback.ts` a 'Shared warm-only CLI fallback for Claude/OpenCode prompt-submit hooks'. The helper runs the CLI with `--no-warm-only` because it nee
+  fix: | `hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared warm-only CLI fallback for Claude/OpenCode prompt-sub -> | `hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared CLI fallback that runs `--no-warm-only` for the Claud
+- [ ] N3 P2 .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md:28 The warm-only sentence names only `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` and `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` as the way warm-only becomes the default. `defaultWarmOnly()` also returns true for any
+  fix: `--warm-only` (default via `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`) probes the sock -> `--warm-only` (default via `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`, or when any pro
+- [ ] N4 P2 .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:190 The section 8 File column displays `001-claude-user-prompt-submit.md` (and `005-opencode-plugin-bridge.md` at line 192, `006-skill-advisor-cli-fallback.md` at line 193), but those files do not exist; 
+  fix: | CL-001 | Claude Code UserPromptSubmit Hook | [001-claude-user-prompt-submit.md](cli-hooks-and-plugin/claude-user-promp -> | CL-001 | Claude Code UserPromptSubmit Hook | [claude-user-prompt-submit.md](cli-hooks-and-plugin/claude-user-prompt-su
+- [ ] N6 P2 .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md:95 The anchor table says `hooks/lib/skill-advisor-cli-fallback.ts` is a 'Hook helper relying on this contract' — the warm-only no-spawn contract. The helper does the opposite: it passes `--no-warm-only` 
+  fix: | `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper relying on this contract  -> | `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper that opts out of warm-onl
+- [ ] L2-1 P2 .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md:29 The doc calls `why_recommended` a string. The handler emits an object, `{reason, dominantLane, topLanes[], matchedSkillFeatures[]}` (advisor-recommend.ts:276-280), and the output schema types it as `w
+  fix: plus a prompt-safe `why_recommended` string, and that no prompt text -> plus a prompt-safe `why_recommended` explanation object, and that no prompt text
+- [ ] L2-2 P2 .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md:69 The failure triage sends the reader to `attribution.ts` to audit lane tagging, but that module only reads the flag (`contributions.filter((contribution) => !contribution.shadowOnly)`). `shadowOnly` is
+  fix: Audit `attribution.ts` lane tagging. -> Audit `fusion.ts` lane tagging (`isLiveScorerLane`).
+- [ ] L1-2 P2 .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:57 The sentence says `{}` is returned 'only if that fallback cannot be rendered'. The catch also returns `{}` before attempting any fallback when the payload carries no prompt string (hooks/claude/user-p
+  fix: When its own code throws, it returns the outage fallback, or the skipped fallback for a skipped prompt, and returns `{}` -> When its own code throws, it returns the outage fallback, or the skipped fallback for a skipped prompt; it returns `{}` 
+- [ ] L2-5 P2 .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md:16 The doc names only the two explicit warm-only switches as setting the default. `defaultWarmOnly()` also returns true whenever any prompt-time marker is set (`SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME`, `SP
+  fix: `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` set the default and `--no-warm-only` re-ena -> `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` set the default, any prompt-time marker (`S
+- [ ] L3-2 P1 .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md:54 The block wraps all three hook runs in `gtimeout 20`, but `gtimeout` is GNU coreutils and is not installed on this macOS host: `gtimeout 20 true` exits 127 with `command not found`. The three runs nev
+- [ ] L4-4 P1 .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:382 The row says the fusion scorer reads `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` once at module load, so a warm daemon keeps the value it read when the daemon starts until a restart. In a launcher-spawned 
+- [ ] L4-1 P2 .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:153 The cadence sentence says model-context surfaces deliver the complete advisor brief on the first message and after lifecycle boundaries, then retain only the dynamic `Advisor:` route line on a proven 
+- [ ] N5 P2 .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-validate.md:40 The table introduced as 'The current baseline slices remain' reports 80.5% full corpus and 77.5% holdout as measured current values, while the in-scope NC-003 scenario records the run it captured at 5
+- [ ] L2-3 P2 .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md:28 The 'bounded cold-start window of at most 5 seconds' is stated unconditionally, but `ensureDaemonReady` applies `COLD_START_WAIT_MS` only in the `hasLocalFallback && !probeTimedOut(initialProbe)` bran
+
+## Pre-existing or outside the scope
+

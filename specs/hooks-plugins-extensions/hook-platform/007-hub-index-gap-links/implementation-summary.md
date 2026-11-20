@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".skilled/hooks/README.md"
     session_dedup:
-      fingerprint: "sha256:07b3deb0bb173e2e5a62a9ae3d9ce8fe257eaa254be6dab7d32b5df55e1e654d"
+      fingerprint: "sha256:ab863d3c31e398002f7ea4c7c4687ccd7821df5fba7082a625e08bb2fdbb2656"
       session_id: "scaffold-007-hub-index-gap-links"
       parent_session_id: null
     completion_pct: 100

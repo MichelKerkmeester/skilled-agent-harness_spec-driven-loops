@@ -1,7 +1,7 @@
 ---
 title: "CP-047 -- SPEC_FENCE_WRITEBACK bounded spec mutation **(SANDBOXED)**"
 description: "Validate that /deep:research uses the lock, spec_check_protocol and generated findings fence rather than freeform spec.md mutation."
-version: 1.14.3.0
+version: 1.14.4.0
 ---
 
 # CP-047 -- SPEC_FENCE_WRITEBACK bounded spec mutation **(SANDBOXED)**
@@ -47,6 +47,8 @@ Operators run the exact command sequence for `CP-047` and confirm only grep-chec
 
 ### Exact Runnable Command Sequence
 
+**OpenCode 2 status:** stage A is a plain prompt and runs in its sandbox with `opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --auto "<prompt>" </dev/null`. Stage B is a registered slash command, which `run` does not expand on OpenCode 2 (hard rule `v2-slash-prompt-route`), so stage B is UNVERIFIED until a `session.command` runner is recorded. This scenario cannot PASS on OpenCode 2 until then.
+
 ```bash
 rm -rf /tmp/cp-047-sandbox /tmp/cp-047-sandbox-baseline /tmp/cp-047-spec
 mkdir -p /tmp/cp-047-spec
@@ -76,10 +78,13 @@ Acceptance: emit spec_check_result, one spec_mutation or dedupe event, one gener
 Return status, spec_path, generated_fence_count, validation_signal, and notes.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-047-task.txt)" > /tmp/cp-047-prompt-A.txt
-opencode run "$(cat /tmp/cp-047-prompt-A.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-047-sandbox </dev/null 2>&1 | tee /tmp/cp-047-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-047-A-exit.txt
+(cd /tmp/cp-047-sandbox && opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --auto "$(cat /tmp/cp-047-prompt-A.txt)" </dev/null) 2>&1 | tee /tmp/cp-047-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-047-A-exit.txt
 rm -rf /tmp/cp-047-sandbox && cp -a /tmp/cp-047-sandbox-baseline /tmp/cp-047-sandbox
 cd /tmp/cp-047-sandbox
-opencode run "/deep:research:auto \"CP-047 bounded spec findings fence\" --spec-folder=/tmp/cp-047-spec --max-iterations=1 --convergence=0.05" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-047-sandbox </dev/null 2>&1 | tee /tmp/cp-047-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-047-B-exit.txt
+# Stage B is a registered slash command. OpenCode 2 `run` does not expand it (hard rule v2-slash-prompt-route),
+# so it needs the session.command route (POST /api/session/{id}/command). No verified request body for that route
+# is recorded in this repository, so this step is UNVERIFIED and is not run here.
+echo "EXIT_B=UNVERIFIED" | tee /tmp/cp-047-B-exit.txt
 cd "$(git rev-parse --show-toplevel)"
 diff -u /tmp/cp-047-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-047-sandbox/.opencode/agents/deep-research.md > /tmp/cp-047-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-047-B-canonical-exit.txt
 find /tmp/cp-047-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-047-B-artifacts.txt 2>/dev/null || touch /tmp/cp-047-B-artifacts.txt

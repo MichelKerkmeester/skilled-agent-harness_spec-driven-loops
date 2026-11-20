@@ -1,0 +1,1 @@
+CHK-012 evidence, 2026-11-19: `npm install --package-lock-only --ignore-scripts` run again in .opencode and .skilled (each exit 0) leaves `git diff -- .opencode/package-lock.json .skilled/package-lock.json` at 0 lines, so the committed lockfiles are exactly what npm writes from the manifests.

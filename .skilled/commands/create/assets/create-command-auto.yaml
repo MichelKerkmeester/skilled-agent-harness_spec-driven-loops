@@ -1,12 +1,12 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: COMMAND AUTHORING WORKFLOW (AUTO MODE)
+# SKILLED CREATE: COMMAND AUTHORING WORKFLOW (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: autonomous (no user approval gates)
 # Note: This workflow executes all steps sequentially with
 #       continuous self-validation. Pauses only if confidence < 40%.
 # ─────────────────────────────────────────────────────────────────
 role: Expert Slash Command Author using sk-doc create-command packet
-purpose: Create production-ready OpenCode slash command 4-file sets with router/presentation separation
+purpose: Create production-ready Skilled slash command 4-file sets with router/presentation separation
 action: Guide command creation from invocation contract through validation with frontmatter, routing, YAML workflow, and presentation verification
 
 # ─────────────────────────────────────────────────────────────────
@@ -467,6 +467,9 @@ workflow:
     - Grep generated files for copied source workflow names
     - IF validation fails: Fix issues and re-run
     - Repeat until passing
+    - Regenerate command bridges after writing the command files with `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`
+    - Run `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check`; fail this step on a non-zero exit
+    - Tell the operator the advisor daemon picks up the new command on its next start and embeds it when Ollama is reachable
     validation_command: |
       Run the validators specified by .skilled/skills/sk-doc/sk-create-command/SKILL.md Step 13 when available.
       grep -R "[source-workflow-name]" [generated-file-list]
@@ -477,6 +480,7 @@ workflow:
       router_thinness: "no presentation templates in router"
       confirm_consistency: "same workflow as auto plus checkpoints"
       no_source_leftovers: "must pass"
+      command_bridges: "derive-command-bridges.cjs --check must exit 0"
       enforcement: HARD_BLOCK
     fix_workflow: |
       IF validation fails:
@@ -489,6 +493,7 @@ workflow:
     - yaml_validation_result: pass_or_fail
     - path_validation_result: pass_or_fail
     - leftover_source_check: pass_or_fail
+    - command_bridge_check: pass_or_fail
     validation: command_set_valid
 
   step_5b_quality_validation:

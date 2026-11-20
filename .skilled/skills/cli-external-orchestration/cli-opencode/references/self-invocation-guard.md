@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode circular dispatch refusal"
 importance_tier: important
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # OpenCode CLI - Self-Invocation Guard (ADR-001)
@@ -37,7 +37,7 @@ A running cli-opencode skill never dispatches itself. The guard trips on ANY pos
 
 ```bash
 # Verify OpenCode CLI is available
-command -v opencode || echo "Not installed. Run: brew install opencode (macOS) or curl -fsSL https://opencode.ai/install | bash"
+command -v opencode || echo "Not installed. Run: brew install opencode (macOS) or curl -fsSL https://opencode.ai/v2/install | bash"
 
 # SELF-INVOCATION GUARD (ADR-001 layered detection)
 # Layer 1: env var lookup — any OPENCODE_* variable except OPENCODE_API_KEY

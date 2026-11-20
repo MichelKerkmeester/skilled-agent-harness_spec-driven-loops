@@ -133,6 +133,39 @@ describe('buildSkillAdvisorBrief', () => {
     expect(prompt.startsWith(sent)).toBe(true);
   });
 
+  it('routes the task behind a pasted reply whose marker starts a new line', async () => {
+    // No end punctuation before the marker: once the prompt is folded to one line, only
+    // the newline told the strip rule where the task starts.
+    const prompt = 'Earlier you replied: I updated the README and committed the change\nNow: implement feature X';
+    const result = await buildSkillAdvisorBrief(prompt, options);
+
+    expect(result.status).toBe('ok');
+    expect(vi.mocked(runAdvisorSubprocess).mock.calls[0]?.[0]).toBe('implement feature X');
+  });
+
+  it('routes the task behind a pasted reply longer than advisor_recommend accepts', async () => {
+    const prompt = `Earlier you replied: ${'I updated the README and committed the change. '.repeat(300)}Now: implement feature X`;
+    expect(prompt.length).toBeGreaterThan(10_000);
+    const result = await buildSkillAdvisorBrief(prompt, options);
+
+    expect(result.status).toBe('ok');
+    expect(vi.mocked(runAdvisorSubprocess).mock.calls[0]?.[0]).toBe('implement feature X');
+  });
+
+  it('skips a pasted reply that names a skill ahead of a casual task', async () => {
+    const result = await buildSkillAdvisorBrief('Claude replied: I used sk-doc to update the README. Now: thanks', options);
+
+    expect(result.status).toBe('skipped');
+    expect(runAdvisorSubprocess).not.toHaveBeenCalled();
+  });
+
+  it('still fires on a plain task that names a skill', async () => {
+    const result = await buildSkillAdvisorBrief('Update the README with sk-doc conventions', options);
+
+    expect(result.status).toBe('ok');
+    expect(runAdvisorSubprocess).toHaveBeenCalledTimes(1);
+  });
+
   it('uses the shared ambiguous renderer contract for payload and brief content', async () => {
     vi.mocked(runAdvisorSubprocess).mockResolvedValue({
       ok: true,

@@ -1,7 +1,7 @@
 ---
 title: "mcp-refero Installation Guide"
 description: "Verify-only setup for the read-only Refero design-reference transport: plan access, authentication and the registered Code Mode manual."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-refero Installation Guide
@@ -127,15 +127,15 @@ The gated live probe sends one unauthenticated HTTPS request. **HTTP 401 is the 
 
 ---
 
-## 4. INSTALLATION: AUTHENTICATE (OPERATOR-ONLY)
+## 4. INSTALLATION: AUTHENTICATE (OPERATOR APPROVES)
 
-> **This entire section is performed by the operator, never by the agent.** The agent surfaces this step and waits. It never opens the OAuth URL on your behalf, never reads or repairs `~/.mcp-auth`, and never handles tokens.
+> **The approval in this section is the operator's.** The agent asks first and calls `register_manual` only after the operator picks Ready, then waits. It never opens the OAuth URL on your behalf, never reads or repairs `~/.mcp-auth`, and never handles tokens.
 
 ### Default path: browser OAuth
 
-1. Trigger a first Refero call through Code Mode (or let the agent attempt discovery). With no custom header, `mcp-remote` starts a browser OAuth flow with a localhost callback (port 3334 by default; 30-second default callback timeout).
+1. The `register_manual` call from the ask step launches `mcp-remote`. With no custom header, `mcp-remote` starts a browser OAuth flow with a localhost callback (port 3334 by default; 30-second default callback timeout).
 2. Complete the authorization in your browser with your Pro (or higher) Refero account.
-3. Auth state (client info, tokens, PKCE state) persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`). It is yours; the skill never touches it. Ephemeral runtimes without a persistent home may need to re-authenticate.
+3. Auth state (client info, tokens, PKCE state) persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`). It is yours; the skill never touches it. Ephemeral runtimes without a persistent home may need to re-authenticate. When a token is already cached there, registration connects silently with no tab.
 
 > **Honesty note:** end-to-end OAuth completion through this bridge is **Inferred**, not verified in this repo's record. An unauthenticated probe observed HTTP 401 with OAuth metadata, and a prior live-verified invocation through this exact manual exists from a paid, OAuth-completed account, but nobody has re-run the full authorization during packet authoring. If the flow fails, that is a finding to report, not to work around silently.
 
@@ -161,7 +161,7 @@ const all = await list_tools();
 const info = await tool_info({ tool_name: "refero.refero_refero_search_styles" });
 ```
 
-Expected: the eight documented tools resolve with the **doubled prefix** (`refero.refero_refero_<tool>`). If tools are missing, renamed, or expanded, fail closed and report the drift. Manuals load at Code Mode startup, so a fresh registration needs a reconnect before its tools resolve.
+Expected: the eight documented tools resolve with the **doubled prefix** (`refero.refero_refero_<tool>`). If tools are missing, renamed, or expanded, fail closed and report the drift. The `refero` manual ships with `"disabled": true`, so its tools resolve only after the ask step calls `register_manual` with the `refero` entry from `.utcp_config.json`.
 
 ### Validation: `phase_4_complete`
 
@@ -178,7 +178,7 @@ A first read-only search (`refero_refero_search_styles`) that returns a `{ pagin
 | ----- | ----- | --- |
 | HTTP 401 on every call | Not authenticated; the empty manual `env` is not anonymous access | Complete the operator OAuth (Section 4) on a Pro or higher account |
 | Access denied despite auth | The account is on the Free plan, which has no MCP access | Upgrade the plan; do not retry, and do not expect a reduced Free tool set |
-| `refero.*` tools do not resolve | Manual not loaded at Code Mode startup, or OAuth incomplete | Reconnect Code Mode; re-run `doctor.sh`; complete Section 4 |
+| `refero.*` tools do not resolve | The manual ships disabled and the ask step has not registered it in this session, or OAuth incomplete | Run the ask step so `register_manual` registers the manual, then re-run `doctor.sh` and complete Section 4 |
 | Callable not found with `refero.refero_<tool>` | Single-prefix name; the convention doubles the prefix | Use `refero.refero_refero_<tool>` and confirm with `tool_info` |
 | `-32000 Connection closed` on every call | Code Mode on Node 25 (isolated-vm SIGSEGV) | Run Code Mode on Node 24 |
 | OAuth callback times out | 30-second default callback timeout, or no browser session | Retry in a browser-capable session; consider the Bearer alternative for headless use |

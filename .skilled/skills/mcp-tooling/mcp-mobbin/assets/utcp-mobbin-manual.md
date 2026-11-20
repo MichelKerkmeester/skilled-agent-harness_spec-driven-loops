@@ -8,7 +8,7 @@ trigger_phrases:
   - "mobbin registered manual"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mobbin Code Mode Manual - registered reference shape
@@ -67,11 +67,11 @@ If this asset and the live `.utcp_config.json` ever disagree, **the live config 
 
 ## 3. POST-REGISTRATION CHECKLIST (DOC-SIDE ITEMS EXECUTED; LIVE ITEMS PENDING)
 
-Registration landed 2026-07-16. Items an agent can verify from the repo are marked done with evidence; items that need a fresh Code Mode session, an operator browser round-trip, or an authenticated paid account stay open as valid SKIPs with the exact command each one needs.
+Registration landed 2026-07-16. Items an agent can verify from the repo are marked done with evidence; items that need the manual registered in the session, an operator browser round-trip, or an authenticated paid account stay open as valid SKIPs with the exact command each one needs.
 
 - [x] Validate the config JSON parses and the `mobbin` entry matches the reference shape (stdio, `npx -y mcp-remote https://api.mobbin.com/mcp`, empty `env`). [evidence: `python3 -c "json.load(open('.utcp_config.json'))"` parses; 1 `mobbin` entry; `transport: stdio`, `args: ['-y','mcp-remote','https://api.mobbin.com/mcp']`, `env: {}` — field-for-field match, 2026-07-16]
-- [ ] Reconnect Code Mode before the first authenticated call — manuals load at startup, and each active session must re-confirm the dated fixture baseline before relying on it. [SKIP-valid: restart/reconnect the Code Mode MCP server, then verify the three registry callables with `list_tools()` / `tool_info()` inside Code Mode]
-- [ ] Complete the **operator-only** browser OAuth on a paid account (Pro, Team, or Enterprise; Free has no MCP access). Auth state persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`) and stays operator-owned. [SKIP-valid: trigger any first `mobbin.*` call in a fresh Code Mode session and complete the browser authorization; no agent-side command exists]
+- [ ] Register the manual in the session before the first authenticated call. The manual ships disabled, and each active session must re-confirm the dated fixture baseline before relying on it. [SKIP-valid: run the ask step so Code Mode's `register_manual` registers the `mobbin` entry, then verify the three registry callables with `list_tools()` / `tool_info()` inside Code Mode]
+- [ ] Complete the **operator-only** browser OAuth on a paid account (Pro, Team, or Enterprise; Free has no MCP access). Auth state persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`) and stays operator-owned. [SKIP-valid: run the ask step so `register_manual` opens the browser tab, then complete the browser authorization there]
 - [x] Run discovery: DONE 2026-07-16, pre-auth, via direct stdio MCP probe of CodeMode-MCP. Actual names: registry `mobbin.mobbin.{search_screens,search_flows,search_sections}` (dotted), TS callables `mobbin.mobbin_search_screens(...)` etc. — THREE tools, superseding the one-tool baseline. [evidence: `../references/discovery-fixture-2026-07-16.json` `discoveredCallableNames` + `tool_info_first`]
 - [x] Confirm the live tool set against the documented baseline: DONE 2026-07-16 — three tools listed (`search_screens`, `search_flows`, `search_sections`), superseding the one-tool baseline via a reviewed packet update; all read-only, mutation-refusal check passed. Future drift from the fixture three-tool baseline still fails closed. [evidence: `../references/discovery-fixture-2026-07-16.json` `list_tools` + `discoveredCallableNames`]
 - [x] Check the live schema for the open items: RESOLVED 2026-07-16 — `deep` IS a client-settable input (`mode?: "deep" | "standard" | "fast"` on `search_screens`), and the schema exposes `exclude_screen_ids` and `image_format` beyond `query`/`platform`/`limit`. [evidence: `../references/discovery-fixture-2026-07-16.json` `tool_info_first` schema]

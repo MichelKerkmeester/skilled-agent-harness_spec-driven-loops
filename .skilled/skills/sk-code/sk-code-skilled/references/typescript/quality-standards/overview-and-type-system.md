@@ -2,7 +2,7 @@
 title: TypeScript Quality Standards
 description: Type system patterns, error handling, documentation, async patterns, and tsconfig baseline for TypeScript files in the OpenCode development environment.
 trigger_phrases:
-  - "opencode typescript quality standards"
+  - "skilled typescript quality standards"
   - "interface vs type decision"
   - "typescript type safety policies"
   - "tsconfig baseline standards"

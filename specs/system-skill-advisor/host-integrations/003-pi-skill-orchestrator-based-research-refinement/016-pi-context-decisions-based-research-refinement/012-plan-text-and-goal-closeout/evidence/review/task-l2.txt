@@ -1,0 +1,18 @@
+TASK: review lane 2, crash-path fallback (phases 004, 009).
+What it should do: when the shared Claude UserPromptSubmit advisor hook throws anywhere, the
+model still receives the advisor's outage or timeout fallback line instead of nothing, the
+directive lifecycle still dedups that fallback like any headed fallback, and the environment
+reference says when the confidence threshold variable takes effect.
+Commits: `git show 31469e5ee4e cfad65c7c72 98a58b6245b`.
+Read the code at HEAD:
+  A/hooks/claude/user-prompt-submit.ts (the whole handler: the try/catch structure, the
+    fallback rendering, finishAdvisorDelivery, the directive lifecycle call and its deferred
+    receipt, and the CLI entry point that writes stdout)
+  A/hooks/skill-advisor-hook.md
+  .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md (the advisor threshold rows)
+  A/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts (the crash cases)
+For intent, read P/004-*/spec.md, P/009-*/spec.md and their implementation-summary.md.
+Look hardest at: a throw that still yields empty output or invalid JSON, a crash inside the
+fallback path itself, a deferred receipt committed although delivery failed, a fallback that
+other runtimes (Vibe, DSH) wrapping this handler would mishandle, and a doc line that misstates
+when the variable takes effect.

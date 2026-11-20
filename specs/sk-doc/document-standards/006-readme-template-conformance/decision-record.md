@@ -43,6 +43,13 @@ _memory:
 | Q007 | Devin writers and reviewers run in `dangerous` permission mode, four sessions at a time, each killed by its own PID. | `auto` mode refuses the shell commands both roles need to run their checks. | None | 004-hook-runtime-readmes/plan.md Key Components |
 | Q008 | When devin's daily quota ran out at 08:19, the operator asked to keep DeepSeek Flash Max on devin. A probe of both DeepSeek Flash Max ids returned `resource_exhausted`, so the question was asked again. | Not stated. | None | Q009 |
 | Q009 | Writers and reviewers run DeepSeek V4.1 Flash at max through cli-opencode on the OpenCode Go route (`opencode-go/deepseek-v4.1-flash#max`). | Not stated. | Q006 | ../goal.md D4, 004-hook-runtime-readmes/plan.md Key Components |
+| Q010 | The README alert and fold conventions run as phase 008 of this program, not as a new packet. | Not stated. | None | ../goal.md D3, 008-readme-html-conventions/spec.md |
+| Q011 | The repo-rules folder README runs as phase 009 of this program, and the repo-rules checker and card builder skip a README in that folder so it can exist. | Not stated. | None | ../goal.md D3, 009-repo-rules-readme/spec.md |
+| Q012 | Phase 010 writers and reviewers run Hy4 Flash Free at high through cli-opencode (`opencode-go/hy4-flash-free#high`), one README per session. The operator named it in chat as "Hy4 flash high free". | Not stated. | Q009 for phase 010 | ../goal.md D4, 010-readme-text-diagrams/plan.md Key Components |
+| Q013 | README diagrams go back to box-drawing text, run as phase 010 of this program. The skill README template and the README rules ask for a text diagram and rule out Mermaid, and the 55 Mermaid blocks are redrawn. The operator asked to "revert to like we always did markdown diagrams". | Not stated. | None | ../goal.md D3, 010-readme-text-diagrams/spec.md |
+| Q014 | The README follow-ups run as phase 011. The operator answered "fix all" to the review of the open items, which also settles the `SKILL.md` question: the `SKILL.md` template stops asking for Mermaid, a template-only change because no `SKILL.md` uses it. README edits keep Q012's executor, Hy4 Flash Free at high, one writer and one reviewer session per README. | Not stated. | None | ../goal.md D3 and D4, 011-readme-guards/spec.md |
+| Q015 | The 4 stale generated trigger-index files in the primary checkout are discarded so origin/main can merge. | Not stated. | none | 007-hook-code-folder-readmes (commit ddacb0a2bf9) |
+| Q016 | The four uncommitted generated trigger-index files are discarded and local main takes origin's versions. | Not stated. | none | 010-readme-text-diagrams |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -232,6 +239,45 @@ Codex at 10:38 (Recommended)
 Answer:
 ```text
 Cli opencode with opencode go
+```
+
+### Q015
+<!-- source: claude:3984aaec-9181-4f22-ae90-fe5d131a5589:toolu_01FvjrFkaCjW3dRkakDYDGqQ:0 -->
+
+Question:
+```text
+Phase 007 is committed locally (ddacb0a2bf9), but merging origin/main is blocked by 4 uncommitted generated files in the primary checkout: trigger-index.json and three retrieval fixtures under system-spec-kit. They have been dirty since before this session's work, and origin/main already carries a newer index rebuild (4458e492e6a). sk-git forbids me from stashing or resetting a shared checkout on my own. How should I clear them so I can merge and push?
+```
+
+Options:
+```text
+Discard them (Recommended)
+Stash them, keep the stash
+I'll clear them myself
+```
+
+Answer:
+```text
+Discard them (Recommended)
+```
+
+### Q016
+<!-- source: claude:3984aaec-9181-4f22-ae90-fe5d131a5589:toolu_0164wTJstJybMxEuoBiYfcTp:0 -->
+
+Question:
+```text
+Local main can't fast-forward to origin/main: four generated trigger-index files (trigger-index.json and three retrieval fixtures) have uncommitted edits from another session, and origin/main changed them too. Everything else in the goal holds. How do you want to clear them?
+```
+
+Options:
+```text
+Discard, take origin (Recommended)
+Wait for the other session
+```
+
+Answer:
+```text
+Discard, take origin (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

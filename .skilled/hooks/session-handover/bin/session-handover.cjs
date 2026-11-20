@@ -796,6 +796,15 @@ function specFolderFromBrokenNote(handoffText) {
   };
 }
 
+// The repository root whose handoffs directory holds this note path, or '' when the path
+// is not shaped like a note under any root.
+function owningRepoRoot(notePath) {
+  if (typeof notePath !== 'string' || !path.isAbsolute(notePath)) return '';
+  const directory = path.dirname(path.resolve(notePath));
+  const candidate = path.resolve(directory, '..', '..', '..', '..', '..');
+  return path.resolve(nudge.handoffDir(candidate)) === directory ? candidate : '';
+}
+
 function consume(args) {
   const { options } = parseArgs(args, { flags: ['--loop-id'] });
   const loopId = options['--loop-id'];
@@ -861,6 +870,23 @@ function consume(args) {
     try {
       core.appendLog('handoff-outside-dropped', { loopId });
     } catch {}
+  }
+  // A note dropped as outside sits under another checkout's handoffs directory when the
+  // session ran that checkout's CLI. Calling it missing hides the cause, so the wrapper is
+  // told both roots and can print a claim command pinned to the note's own root. The note
+  // itself stays unread: this root does not vouch for it.
+  if (handoffOutsideDropped) {
+    const consumed = {
+      handoff: '',
+      spec_folder: '',
+      note: 'outside-root',
+      repo_root: nudge.resolveRepoRoot(process.env),
+    };
+    const noteRoot = owningRepoRoot(record.handoff);
+    if (noteRoot !== '') consumed.note_root = noteRoot;
+    if (withdrawn) consumed.withdrawn = true;
+    process.stdout.write(`${JSON.stringify(consumed)}\n`);
+    return 0;
   }
   // A note with no goal packet keeps the output it always had.
   const consumed = { handoff: handoffPath, spec_folder: specFolder, note };

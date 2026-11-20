@@ -1,0 +1,2 @@
+.skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs	Refusal test: resolves the opencode1 launcher and asserts it is unsupported, which is the intended survivor
+.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs	Refusal test: names the opencode1 binary as unsupported and checks that the dispatch rules still block it

@@ -4,7 +4,7 @@ description: Templates and best practices for creating production-quality slash 
 trigger_phrases:
   - "slash command template"
   - "command frontmatter structure"
-  - "opencode command scaffold"
+  - "skilled command scaffold"
   - "argument hint patterns"
 importance_tier: normal
 contextType: general

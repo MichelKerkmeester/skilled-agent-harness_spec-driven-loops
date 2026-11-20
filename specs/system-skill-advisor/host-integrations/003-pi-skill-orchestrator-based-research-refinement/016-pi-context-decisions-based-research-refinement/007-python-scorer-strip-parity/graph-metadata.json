@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "python scorer strip parity",
+      "phase 7 python scorer strip parity",
+      "python local scorer pasted reply",
+      "rr-paste-208 divergence",
+      "python scorer strip parity plan",
+      "python scorer strip parity tasks",
+      "python scorer strip parity goal",
+      "python scorer strip parity implementation summary"
+    ],
+    "key_topics": [
+      "python",
+      "scorer",
+      "strip",
+      "parity",
+      "phase",
+      "local",
+      "pasted",
+      "reply",
+      "rr-paste-208",
+      "divergence",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/tests/fixtures/README.md",
+      "tmp/p002-briefs/out/last-refute.txt",
+      "tmp/p002-briefs/rule.cjs",
+      "SCRATCH/proposed-port.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/tests/fixtures/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "last-refute.txt",
+        "kind": "file",
+        "path": "tmp/p002-briefs/out/last-refute.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rule.cjs",
+        "kind": "file",
+        "path": "tmp/p002-briefs/rule.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "proposed-port.py",
+        "kind": "file",
+        "path": "SCRATCH/proposed-port.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Python Scorer Strip Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Luna",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When the daemon is unreachable, `advisorrecommend` falls back to the Python scorer",
+    "created_at": "2026-11-18T15:49:26Z",
+    "last_save_at": "2026-11-18T22:50:04.022Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ea1522641db2b30ff7bb420f5c471db503d086dfae9d0cfd277a8ae0d36a216d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "62973214a31eca0b6ff40b0e6f32edfd0562df92b275bf22348e30efc71b2e30",
+      "plan.md": "06a83467e959ed38652cc05fde575467274434955c49885e9007ae275cbaaed9",
+      "tasks.md": "c089a63b81c4b35e4d27f21d173129862fa8d66277ecd593e240e58c3ff343f8",
+      "implementation-summary.md": "5ee0aa7b7854a73a4334729e423480200ab06b6d3c608fda82a42eb011ec9872"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams",
+  "description": "Phase 10: readme-text-diagrams",
+  "keywords": [
+    "phase",
+    "readme-text-diagrams"
+  ],
+  "lastUpdated": "2026-11-18T10:21:38.111Z",
+  "specId": "010",
+  "folderSlug": "readme-text-diagrams",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "006-readme-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

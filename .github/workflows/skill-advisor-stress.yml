@@ -46,6 +46,8 @@ env:
   # Every model load runs on the CPU, so the onnxruntime-node install skips its Linux CUDA
   # provider download: unused here, and the install step that fails when that host times out.
   ONNXRUNTIME_NODE_INSTALL_CUDA: skip
+  # Test daemons must not embed against a live local Ollama.
+  SYSTEM_SKILL_ADVISOR_EMBED_REFRESH: 'off'
 
 jobs:
   skill-advisor-stress:

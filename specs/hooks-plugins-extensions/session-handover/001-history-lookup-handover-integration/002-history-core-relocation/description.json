@@ -18,7 +18,7 @@
     "names",
     "file"
   ],
-  "lastUpdated": "2026-11-15T11:24:12.390Z",
+  "lastUpdated": "2026-11-19T17:47:20.091Z",
   "specId": "002",
   "folderSlug": "history-core-relocation",
   "parentChain": [
@@ -26,6 +26,9 @@
     "session-handover",
     "001-history-lookup-handover-integration"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-11-26_18-35__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
+  ]
 }

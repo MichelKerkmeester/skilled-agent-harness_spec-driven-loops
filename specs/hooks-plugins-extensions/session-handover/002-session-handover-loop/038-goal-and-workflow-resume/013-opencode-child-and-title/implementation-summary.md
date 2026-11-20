@@ -17,7 +17,7 @@ _memory:
       - ".opencode/plugins/session-relaunch.js"
       - ".opencode/plugins/lib/v2-bridge.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:926302e1460a9f9bd87c84b6b7f54877ebddf45df92af81896f0ac59194596d0"
       session_id: "scaffold-013-opencode-child-and-title"
       parent_session_id: null
     completion_pct: 100

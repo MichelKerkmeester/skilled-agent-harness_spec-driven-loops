@@ -81,7 +81,8 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 The `mobbin` manual is registered in this repo's `.utcp_config.json`. An operator registered it on 2026-07-16, not this packet.
 `scripts/doctor.sh` reports the state without changing it. Manual presence is healthy. Absence is now an ERROR. Escalate a missing registration as broken or reverted; never repair it here.
-Manuals load at Code Mode startup, and OAuth is still pending. Discovery through a fresh Code Mode session is mandatory before any call:
+The entry carries `"disabled": true`, so Code Mode does not register it at startup and no Mobbin sign-in tab opens on its own. Register it only when the task needs Mobbin. When `list_tools()` shows no `mobbin.` tools, ask: "Mobbin needs a one-time approval. When you pick Ready, a Mobbin sign-in tab opens in your browser. Approve it within about a minute." Offer **Ready** and **Skip Mobbin for now**. On Ready, call Code Mode's `register_manual` with the `mobbin` entry from `.utcp_config.json`. The call waits for the approval and succeeds once it lists tools. On skip, say the Mobbin step was skipped.
+Discovery through Code Mode is mandatory before any call:
 
 ```typescript
 // Live-confirmed dotted discovery names (2026-07-16 fixture):
@@ -244,7 +245,7 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 
 ### Tool Usage Guidelines
 
-- **Code Mode** (`mcp__code_mode__call_tool_chain`) owns every Mobbin call, including discovery (`list_tools`, `search_tools`, `tool_info`) — the registered manual resolves in a fresh Code Mode session (manuals load at startup).
+- **Code Mode** (`mcp__code_mode__call_tool_chain`) owns every Mobbin call, including discovery (`list_tools`, `search_tools`, `tool_info`). The manual is disabled at startup, so its tools resolve only after the ask step above registers it with `register_manual`.
 - **Read/Grep/Glob** load references and check the manual's registration state in `.utcp_config.json` read-only.
 - **Bash** runs only the read-only `scripts/doctor.sh` diagnostics; this transport has no other shell role (Code Mode owns the stdio process launch, so the packet never runs `npx` itself).
 

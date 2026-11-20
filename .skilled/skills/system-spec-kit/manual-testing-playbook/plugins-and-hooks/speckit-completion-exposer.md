@@ -7,7 +7,7 @@ trigger_phrases:
   - "spec folder completion state"
   - "checklist completion tool"
   - "plg-002"
-version: 1.0.5.0
+version: 1.0.6.0
 id: plugins-and-hooks-speckit-completion-exposer
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -73,7 +73,7 @@ node -e '
 (async () => {
   const mod = await import(new URL("./.opencode/plugins/system-speckit-completion.js", "file://" + process.cwd() + "/"));
   const plugin = mod.default;
-  const hooks = await plugin.server({ directory: process.cwd() });
+  const hooks = await plugin.factory({ directory: process.cwd() });
   const exec = hooks.tool.system_speckit_completion.execute;
 
   const level2Complete = "specs/system-speckit/runtime-and-release/001-system-speckit-v4/024-metadata-regeneration-and-shared-parser";
@@ -110,7 +110,7 @@ node .skilled/bin/speckit-completion.cjs
 SYSTEM_SPECKIT_COMPLETION_DISABLED=1 node -e '
 (async () => {
   const mod = await import(new URL("./.opencode/plugins/system-speckit-completion.js", "file://" + process.cwd() + "/"));
-  const hooks = await mod.default.server({ directory: process.cwd() });
+  const hooks = await mod.default.factory({ directory: process.cwd() });
   console.log("hooks keys:", Object.keys(hooks));
   console.log("hooks JSON:", JSON.stringify(hooks));
 })();

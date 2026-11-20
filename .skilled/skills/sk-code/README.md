@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.50.0
+version: 2.2.52.0
 ---
 
 # sk-code
@@ -69,13 +69,33 @@ It prints one JSON line with `"action":"route"`. The `targets` array names `sk-c
 
 Routing runs in two stages. Stage one scores the request against the mode vocabulary in `hub-router.json` and picks a workflow mode. Stage two maps the intent to the exact leaf files in `ROUTER.md`. The hub then bundles the surfaces that match, with the workflow mode leading.
 
-```mermaid
-flowchart TD
-  Request["code request"] --> Detect["surface detection"]
-  Detect --> Stage1["stage one: hub-router.json picks the workflow mode"]
-  Stage1 --> Stage2["stage two: ROUTER.md maps the intent to leaves"]
-  Stage2 --> Mode["workflow mode acts on the change"]
-  Stage2 --> Surface["surface packet supplies read-only evidence"]
+```text
+┌──────────────────────────────┐
+│ code request                 │
+└─────────────┬────────────────┘
+              │
+              ▼
+┌──────────────────────────────┐
+│ surface detection            │
+└─────────────┬────────────────┘
+              │
+              ▼
+┌──────────────────────────────┐
+│ stage one: hub-router.json   │
+│ picks the workflow mode      │
+└─────────────┬────────────────┘
+              │
+              ▼
+┌──────────────────────────────┐    ┌──────────────────────────────┐
+│ stage two: ROUTER.md maps    │ ─▶ │ surface packet supplies      │
+│ the intent to leaves         │    │ read-only evidence           │
+└─────────────┬────────────────┘    └──────────────────────────────┘
+              │
+              ▼
+┌──────────────────────────────┐
+│ workflow mode acts on the    │
+│ change                       │
+└──────────────────────────────┘
 ```
 
 Each answer is one of four actions. `route` loads its targets. `clarify` and `defer` ask a question. `reject` refuses the request. A request to write or debug code that names no mode becomes a surface bundle. An unclear code intent asks for disambiguation.
@@ -200,3 +220,7 @@ node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about you
 | [`sk-code-ci/README.md`](./sk-code-ci/README.md) | The CI surface |
 | [`sk-code-frontend/README.md`](./sk-code-frontend/README.md) | The frontend surface |
 | [`changelog/`](./changelog/) | Hub release entries |
+
+<!-- readme-check
+allow-count 4 guards | run-all-drift-guards.sh runs four guards and prints this line
+-->

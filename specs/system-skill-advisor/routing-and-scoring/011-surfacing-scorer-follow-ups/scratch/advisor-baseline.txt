@@ -1,0 +1,9 @@
+Advisor vitest baseline on clean origin/main 9cda2018330 (2026-11-17):
+ Test Files  3 failed | 182 passed (185)
+      Tests  6 failed | 2389 passed | 8 skipped (2403)
+ FAIL  tests/cli-exit-taxonomy.vitest.ts > skill-advisor CLI exit taxonomy > accepts semantic and embeddings health options for advisor_status
+ FAIL  tests/hooks/vibe-prompt-advisor.vitest.ts > Vibe prompt advisor with the real advisor > names the git skill and its doctor follow-up for a hooks prompt
+ FAIL  tests/hooks/vibe-prompt-advisor.vitest.ts > Vibe prompt advisor with the real advisor > names the readme command for a documentation prompt
+ FAIL  tests/skill-advisor-cli-job-semantics.vitest.ts > skill-advisor CLI rebuild and scan job semantics > keeps status trust-state, shadow telemetry, and scan embedder reporting visible through the CLI
+ FAIL  tests/skill-advisor-cli-job-semantics.vitest.ts > skill-advisor CLI rebuild and scan job semantics > reports rebuild mutation wall-time, before/after generation, and successful exit status
+ FAIL  tests/skill-advisor-cli-job-semantics.vitest.ts > skill-advisor CLI rebuild and scan job semantics > wraps skill_graph_scan as a trusted progress-reporting job with generation before and after

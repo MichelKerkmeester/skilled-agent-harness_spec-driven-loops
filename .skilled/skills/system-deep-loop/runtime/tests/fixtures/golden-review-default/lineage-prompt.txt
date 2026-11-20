@@ -635,7 +635,7 @@ Read .skilled/skills/system-deep-loop/deep-review/SKILL.md and execute the revie
   config.stopPolicy: convergence
   config.maxIterations: 3
 
-Review setup bindings (emit before any writes, same as native PRE-BOUND SETUP ANSWERS):
+Review setup bindings (emit before any writes, as PRE-BOUND SETUP ANSWERS):
 review_target: src
 review_target_type: files
 review_dimensions: all
@@ -665,18 +665,3 @@ It is the lead's channel: its rulings are the dispatcher's answers to questions 
 It grants no write outside the lineage. When you read it, list it among that iteration's sources.
 
 When complete, output a single line: FANOUT_LINEAGE_COMPLETE:alpha
---- native command input ---
-:auto "src" --spec-folder=.opencode/specs/system-speckit/999-golden --max-iterations=3 --convergence=0.1 --stop-policy=convergence --fanout-lineage-artifact-dir=.opencode/specs/system-speckit/999-golden/review/lineages/alpha --lineage-mode=auto --review-focus="error handling"
-
-PRE-BOUND SETUP ANSWERS:
-review_target: src
-review_target_type: files
-review_dimensions: all
-review_focus: error handling
-spec_folder: .opencode/specs/system-speckit/999-golden
-execution_mode: AUTONOMOUS
-lineage_mode: auto
-maxIterations: 3
-convergenceThreshold: 0.1
-stop_policy: convergence
-config.fanout_lineage_artifact_dir: .opencode/specs/system-speckit/999-golden/review/lineages/alpha

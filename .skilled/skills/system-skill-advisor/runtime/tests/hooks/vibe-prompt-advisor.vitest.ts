@@ -169,9 +169,9 @@ describe('withCommandDocuments', () => {
   });
 
   it('drops a second colon part and lists each command once', () => {
-    const both = 'Advisor: live; use x → /deep:research:auto, /local-skilled-alignment (start) 0.9/0.1 pass.';
+    const both = 'Advisor: live; use x → /deep:research:auto, /doctor:setup (start) 0.9/0.1 pass.';
     expect(vibeAdvisor.withCommandDocuments(both, repoRoot)).toBe(
-      `${both}\n${LEAD}/deep:research is .skilled/commands/deep/research.md, /local-skilled-alignment is .skilled/commands/local-skilled-alignment.md.`,
+      `${both}\n${LEAD}/deep:research is .skilled/commands/deep/research.md, /doctor:setup is .skilled/commands/doctor/setup.md.`,
     );
 
     const twice = 'Advisor: live; use sk-doc → /create:readme (start) 0.9/0.1 pass.\nAlso: /create:readme (start)';
@@ -269,5 +269,73 @@ describe('buildAdvisorPart head receipt location', () => {
       if (previous === undefined) delete process.env.SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR;
       else process.env.SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR = previous;
     }
+  });
+});
+
+describe('reduceRepeatedHead with a held-back follow-up', () => {
+  it('delivers the route, the skipped head once, nothing on the repeat and then the next route', () => {
+    const heads = new Map<string, string>();
+    const receipts = {
+      read: (sessionId: string) => heads.get(sessionId) ?? null,
+      write: (sessionId: string, head: string) => {
+        heads.set(sessionId, head);
+      },
+      env: {},
+    };
+    const directives = '\nDirectives:\n- Comment hygiene [HARD BLOCK]: keep the durable why.';
+    const route = 'Advisor: live; use sk-doc 0.94/0.20 pass.';
+    const skipped = 'Advisor: prompt skipped.';
+
+    expect(vibeAdvisor.reduceRepeatedHead(`${route}${directives}`, 'vibe-session', receipts)).toBe(`${route}${directives}`);
+    expect(vibeAdvisor.reduceRepeatedHead(skipped, 'vibe-session', receipts)).toBe(skipped);
+    expect(vibeAdvisor.reduceRepeatedHead(skipped, 'vibe-session', receipts)).toBe('');
+    expect(vibeAdvisor.reduceRepeatedHead(route, 'vibe-session', receipts)).toBe(route);
+  });
+});
+
+describe('buildAdvisorPart receipt commit', () => {
+  it('commits the handler receipts only for a turn that returns a brief', async () => {
+    const head = 'Advisor: live; use sk-code 0.91/0.12 pass.';
+    const output = { hookSpecificOutput: { additionalContext: head } };
+    const commits: unknown[] = [];
+    const receipts = new Map<string, string>();
+    const dependencies = {
+      run: async () => output,
+      commit: async (delivered: unknown) => {
+        commits.push(delivered);
+      },
+      env: {},
+      isEnabled: () => true,
+      read: (sessionId: string) => receipts.get(sessionId) ?? '',
+      write: (sessionId: string, text: string) => {
+        receipts.set(sessionId, text);
+      },
+    };
+    const payload = { hook_event_name: 'pre_agent', prompt: 'refactor the session store', session_id: 'vibe-receipt-commit' };
+
+    await expect(vibeAdvisor.buildAdvisorPart(payload, dependencies)).resolves.toBe(head);
+    expect(commits).toEqual([output]);
+    // The repeat returns nothing, so the model sees no brief and nothing is committed.
+    await expect(vibeAdvisor.buildAdvisorPart(payload, dependencies)).resolves.toBe('');
+    expect(commits).toEqual([output]);
+  });
+});
+
+describe('buildAdvisorPart receipt commit failure', () => {
+  it('keeps the brief when the receipt commit throws', async () => {
+    const head = 'Advisor: live; use sk-code 0.91/0.12 pass.';
+    const dependencies = {
+      run: async () => ({ hookSpecificOutput: { additionalContext: head } }),
+      commit: async () => {
+        throw new Error('commit failed');
+      },
+      env: {},
+      isEnabled: () => true,
+      read: () => '',
+      write: () => {},
+    };
+    const payload = { hook_event_name: 'pre_agent', prompt: 'refactor the session store', session_id: 'vibe-commit-throws' };
+
+    await expect(vibeAdvisor.buildAdvisorPart(payload, dependencies)).resolves.toBe(head);
   });
 });

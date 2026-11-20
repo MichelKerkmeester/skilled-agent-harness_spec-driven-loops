@@ -271,3 +271,10 @@ def test_malformed_lines_are_counted_not_fatal(tmp_path: Path) -> None:
 
     assert claude["malformed_lines"] == 1
     assert claude["prohibitions"]["table"]["by_delivery"]["never"]["n"] == 1
+
+
+def test_a_readme_in_the_rules_folder_is_not_a_rule(tmp_path: Path) -> None:
+    repo = make_repo(tmp_path / "repo")
+    (repo / ".skilled" / "repo-rules" / "README.md").write_text("# Repo Rules\n\nWhat this folder holds.\n")
+
+    assert "README.md" not in mrc.Repo(str(repo)).injected_rules("# Repo Rules\nWhat this folder holds.\n")

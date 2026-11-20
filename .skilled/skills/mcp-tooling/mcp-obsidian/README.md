@@ -7,7 +7,7 @@ trigger_phrases:
   - "notesmd-cli"
   - "obsidian mcp"
   - "local rest api"
-version: 0.18.5.0
+version: 0.18.7.0
 ---
 
 # mcp-obsidian
@@ -91,15 +91,30 @@ const info = await tool_info("obsidian.obsidian_get_note");
 
 Every request starts with a surface decision. Vault files are the default because the headless CLI works in CI, over SSH and with no app open. An app-backed surface waits until the result needs the running app.
 
-```mermaid
-flowchart TD
-  Request["Obsidian request"] --> Files{"Vault files are enough?"}
-  Files -->|yes| Headless["notesmd-cli on the vault files"]
-  Files -->|no| App{"App running?"}
-  App -->|no| Start["Start Obsidian, then retry"]
-  App -->|yes| Special{"MCP-only work or a long batch?"}
-  Special -->|no| Official["official obsidian CLI"]
-  Special -->|yes| Mcp["cyanheads MCP through Code Mode"]
+```text
+┌──────────────────────────────────┐
+│ Obsidian request                 │
+└────────────────┬─────────────────┘
+                 │
+                 ▼
+┌──────────────────────────────────┐            ┌──────────────────────────────────┐
+│ Vault files are enough?          │   [YES] ─▶ │ notesmd-cli on the vault files   │
+└────────────────┬─────────────────┘            └──────────────────────────────────┘
+                 │ [NO]
+                 ▼
+┌──────────────────────────────────┐            ┌──────────────────────────────────┐
+│ App running?                     │    [NO] ─▶ │ Start Obsidian, then retry       │
+└────────────────┬─────────────────┘            └──────────────────────────────────┘
+                 │ [YES]
+                 ▼
+┌──────────────────────────────────┐            ┌──────────────────────────────────┐
+│ MCP-only work or a long batch?   │    [NO] ─▶ │ official obsidian CLI            │
+└────────────────┬─────────────────┘            └──────────────────────────────────┘
+                 │ [YES]
+                 ▼
+┌──────────────────────────────────┐
+│ cyanheads MCP through Code Mode  │
+└──────────────────────────────────┘
 ```
 
 ### Choosing a Surface
@@ -234,4 +249,5 @@ The scenarios behind these checks live in the [manual testing playbook](./manual
 
 <!-- readme-check
 allow-ref data.json | the Iconic community plugin rulebook inside an Obsidian vault, written by the live plugin rather than kept in this repository
+allow-count 24 enabled plugins | matches the roster count in references/plugins/installed-plugins.md
 -->

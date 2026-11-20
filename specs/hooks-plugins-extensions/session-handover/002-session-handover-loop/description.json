@@ -16,14 +16,14 @@
     "same",
     "terminal"
   ],
-  "lastUpdated": "2026-11-15T17:24:07.862Z",
+  "lastUpdated": "2026-11-19T17:47:31.352Z",
   "specId": "002",
   "folderSlug": "session-handover-loop",
   "parentChain": [
     "hooks-plugins-extensions",
     "session-handover"
   ],
-  "memorySequence": 11,
+  "memorySequence": 13,
   "memoryNameHistory": [
     "25-10-26_13-14__ten-iteration-deep-research-cli-codex-gpt-6-luna.md",
     "12-11-26_22-15__added-phase-37-which-splits-the-slow-relaunch.md",
@@ -35,6 +35,8 @@
     "13-11-26_06-44__closed-child-008-of-the-goal-and-workflow-resume.md",
     "15-11-26_18-23__i-can-t-satisfy-the-goal-hook-on-my-own-because.md",
     "15-11-26_18-23__the-goal-hook-is-still-checking-the-original.md",
-    "15-11-26_18-24__you-ll-clear-the-goal-with-goal-clear-so-i-ve.md"
+    "15-11-26_18-24__you-ll-clear-the-goal-with-goal-clear-so-i-ve.md",
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
   ]
 }

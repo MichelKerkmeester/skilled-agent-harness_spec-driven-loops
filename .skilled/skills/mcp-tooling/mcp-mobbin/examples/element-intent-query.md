@@ -1,7 +1,7 @@
 ---
 title: "Example: Element-Intent Query Compared Across Apps"
 description: "A worked mcp-mobbin element-research walkthrough: tool_info re-confirmation of the discovery-confirmed callable, a component-plus-context query at limit 5, behavior analyzed within returned screens and compared across app_name values, with the no-invented-tools boundary held."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Example: Element-Intent Query Compared Across Apps
@@ -14,8 +14,8 @@ Research how real iOS apps present a **bottom-sheet destructive confirmation** �
 
 ## 2. PRECONDITIONS
 
-- `doctor.sh` reports `OK 'mobbin' manual registered`; fresh Code Mode session.
-- **Operator OAuth completed** on a paid plan. If not: record `SKIP: operator OAuth pending — trigger any first mobbin.* call in a fresh Code Mode session and complete the browser authorization`, and stop. SKIP is a valid result.
+- `doctor.sh` reports `OK 'mobbin' manual registered`; the ask step has registered it in this session.
+- **Operator OAuth completed** on a paid plan. If not: record `SKIP: operator OAuth pending — register the manual through the ask step and complete the browser authorization`, and stop. SKIP is a valid result.
 
 ---
 

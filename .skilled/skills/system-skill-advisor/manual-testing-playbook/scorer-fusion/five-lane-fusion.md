@@ -1,12 +1,12 @@
 ---
 title: "SC-001 Five-Lane Analytical Fusion"
-description: "Manual validation that the 5-lane fusion produces weighted scores using the canonical weights: explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0.05."
+description: "Manual validation that the 5-lane fusion produces weighted scores using the canonical weights: explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0."
 trigger_phrases:
   - "sc-001"
   - "five lane fusion"
   - "lane weights canonical"
   - "advisor fusion"
-version: 0.8.0.16
+version: 0.8.3.0
 id: SC-001
 category: scorer_fusion
 stage: routing
@@ -18,14 +18,14 @@ expected_leaf_resources:
 
 # SC-001 Five-Lane Analytical Fusion
 
-Prompt: Manual validation that the 5-lane fusion produces weighted scores using the canonical weights: explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0.05.
+Prompt: Manual validation that the 5-lane fusion produces weighted scores using the canonical weights: explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0.
 
 
 ---
 
 ## 1. OVERVIEW
 
-Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical weights `explicit_author: 0.42`, `lexical: 0.28`, `graph_causal: 0.13`, `derived_generated: 0.12`, `semantic_shadow: 0.05` and that the weight configuration is discoverable via `advisor_status.laneWeights`.
+Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical weights `explicit_author: 0.42`, `lexical: 0.28`, `graph_causal: 0.13`, `derived_generated: 0.12`, `semantic_shadow: 0` and that the weight configuration is discoverable via `advisor_status.laneWeights`.
 
 ---
 
@@ -41,10 +41,10 @@ Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical 
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
 
-1. Call status and capture `laneWeights`:
+1. Call status with semantic health enabled and capture `laneWeights`:
 
 ```text
-node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --include-semantic-health true --format json
 ```
 
 2. Call `advisor_recommend` with a prompt that hits multiple lanes and `includeAttribution: true`:
@@ -60,7 +60,11 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conver
 ### Expected Signals
 
 - `advisor_status.laneWeights` equals the canonical configuration above.
-- `semantic_shadow.weight == 0.05` in envelopes that expose current lane weights.
+- `advisor_status` reports `semantic_shadow` with `disabledReason: "lane_weight_zero"` and `laneEnabled: false`.
+- `semantic_shadow.weight == 0` in envelopes that expose current lane weights.
+- At weight 0, the semantic lane skips prompt embeddings. `advisor_recommend` adds no `semantic_lane_off` warning. The shared index refresh still runs independently of lane weight. An opt-in semantic-health status call can also run an Ollama readiness probe.
+- At a non-zero weight, the semantic lane scores only when every embeddable skill and command has a current vector. Incomplete coverage reports `incomplete_skill_vectors`.
+- A failed prompt embed marks the semantic lane degraded and removes it from that call's live confidence total.
 - For every lane, `weightedScore` matches `rawScore * weight` within `1e-9` tolerance.
 - Aggregate score equals the sum of lane `weightedScore` values (or matches the documented fusion formula).
 
@@ -69,7 +73,8 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conver
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Lane weights off-canonical | `laneWeights` does not match the canonical set | Inspect `lib/scorer/weights-config.ts`. |
-| Semantic shadow has non-zero weight | Response shows `semantic_shadow.weight > 0` | Block release. Semantic lock violated (see PG-005). |
+| Semantic lane has a non-zero default weight | Response shows `semantic_shadow.weight != 0` without an override | Inspect `lib/scorer/weights-config.ts`. |
+| Zero-weight semantic lane still embeds | Ollama receives an embed call or the response adds `semantic_lane_off` | Inspect the lane activation guard. |
 | Fusion arithmetic mismatch | `weightedScore != rawScore * weight` | Audit `lib/scorer/fusion.ts`. |
 
 ---

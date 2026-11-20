@@ -6,7 +6,7 @@ trigger_phrases:
   - "/create:manual-testing-playbook"
   - "deterministic scenario"
   - "release readiness"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # create-manual-testing-playbook
@@ -85,16 +85,37 @@ Per-feature files carry one of two styles. A single prompt sends the Exact Promp
 
 Then run the operator-contract validator over the whole package. A run is not complete until its verdict, its reason and its evidence paths are recorded in the owning skill's `benchmark/reports/<dated-run-label>/` folder.
 
-```mermaid
-flowchart TD
-  Request["A validation request"] --> Gate{"Reusable package needed?"}
-  Gate -- "no" --> Checklist["Keep the steps in a spec-folder checklist"]
-  Gate -- "yes" --> Root["Root playbook: shared policy and index"]
-  Root --> Files["One file per feature ID"]
-  Files --> Contract["Nine display fields filled"]
-  Contract --> Validator["validate-playbook-package.cjs"]
-  Validator -- "violation" --> Contract
-  Validator -- "clean" --> Run["Run the scenarios and record evidence"]
+```text
+┌───────────────────────────────┐
+│ A validation request          │
+└───────────────┬───────────────┘
+                │
+                ▼
+┌───────────────────────────────┐
+│ Reusable package needed?      │         [NO] ─▶ ┌───────────────────────────────┐
+└───────────────┬───────────────┘                 │ Keep the steps in a           │
+                │ [YES]                           │ spec-folder checklist         │
+                ▼                                 └───────────────────────────────┘
+┌───────────────────────────────┐
+│ Root playbook: shared         │
+│ policy and index              │
+└───────────────┬───────────────┘
+                │
+                ▼
+┌───────────────────────────────┐
+│ One file per feature ID       │
+└───────────────┬───────────────┘
+                │
+                ▼
+┌───────────────────────────────┐                 ┌───────────────────────────────┐
+│ Nine display fields filled    │         ─▶      │ validate-playbook-package.cjs │
+└───────────────────────────────┘ [violation] ◀── └───────────────┬───────────────┘
+                                                                  │ [clean]
+                                                                  ▼
+                                                  ┌───────────────────────────────┐
+                                                  │ Run the scenarios and         │
+                                                  │ record evidence               │
+                                                  └───────────────────────────────┘
 ```
 
 ### Prompt Synchronization

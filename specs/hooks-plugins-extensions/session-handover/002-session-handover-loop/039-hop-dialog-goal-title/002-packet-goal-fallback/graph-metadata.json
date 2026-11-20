@@ -199,8 +199,8 @@
     ],
     "causal_summary": "A hop carried a goal only when the Claude sender had set one itself",
     "created_at": "2026-11-13T16:59:12Z",
-    "last_save_at": "2026-11-15T14:28:42.762Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:47:50.690Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e20f9a68af520b80d0b06c47e362477061f9cb0000714abb099dd88c131acab",
+    "source_fingerprint": "sha256:2133e2ed2a64f96fe9dbc0ed7b2c5ca354a2a1468883ef812fdfcaafe5c97481",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6fa17d6e2e09b580a3501acb6a3c3305253f6b85ee48169674a125244b0f41c",
       "plan.md": "ffeac66efac92ec47c0d4371c9423cb38550fb7fbe0993af84d0b9c795137cc2",
       "tasks.md": "3825dfc2809c7cf1a0f23e66f4646d76e1f45ca2b687baf28a78abb5023ed2b1",
-      "decision-record.md": "b59ecad16af54249ecf36bbcb970770254802c98de148e3e5f4ebefc412d96f0",
-      "implementation-summary.md": "08b997bf07d056b54f803ffd5433e37466b6e9c9bdda8de60f13f36c5853ac7b"
+      "decision-record.md": "c98159013d3078de270703a19546e1f248dd70f90409416959abb0081067e610",
+      "implementation-summary.md": "91f98ef0d985983db6e2ced6ef3dfa5e6d759740e16a9fc2e71242ca9c253d3c"
     },
     "last_active_at": null
   }

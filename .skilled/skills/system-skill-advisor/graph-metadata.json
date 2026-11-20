@@ -94,7 +94,25 @@
     "prompt hook health",
     "command transcripts",
     "workflow each run opened",
-    "vibe prompt hook"
+    "vibe prompt hook",
+    "pasted earlier reply",
+    "pasted reply strip",
+    "route receipt",
+    "advisor outage line",
+    "outage line",
+    "advisor lifecycle clock",
+    "lifecycle clock",
+    "confidence floor",
+    "vector coverage",
+    "semantic lane",
+    "which lane contributed",
+    "lane attribution",
+    "advisor daemon",
+    "watcher reindex",
+    "narrow the watcher",
+    "command bridges",
+    "background vector refresh",
+    "vector refresh"
   ],
   "derived": {
     "trigger_phrases": [

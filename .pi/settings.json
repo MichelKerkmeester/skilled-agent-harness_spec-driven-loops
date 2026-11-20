@@ -1,8 +1,6 @@
 {
   "lastChangelogVersion": "1.5.2",
   "theme": "dark",
-  "defaultProvider": "llmgateway",
-  "defaultModel": "deepseek-v4.1-flash-1017",
   "defaultThinkingLevel": "max",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,

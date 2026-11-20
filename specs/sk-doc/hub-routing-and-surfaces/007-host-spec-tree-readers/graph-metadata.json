@@ -17,6 +17,7 @@
       "route gold host repository",
       "host spec tree readers plan",
       "host spec tree readers tasks",
+      "007-host-spec-tree-readers operator decisions",
       "host spec tree readers implementation summary"
     ],
     "key_topics": [
@@ -39,6 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/bin/compiled-route-sync.cjs",
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
@@ -69,6 +71,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -190,32 +198,28 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skilled is vendored into host repositories",
     "created_at": "2026-11-13T18:46:08Z",
-    "last_save_at": "2026-11-15T07:10:07.347Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:37:07.885Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4ebde3ecaac53f82c9858fc42eb952c09d91d89bde993f327a7b381c20602f8",
+    "source_fingerprint": "sha256:1d3dcbad17fb1219b58000c8065098edb6ef85525713fbed71095aa8d0f0e8f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7be43ba32827da950e069c45f1041cbe682e114d5bc012b0230aaa93f38fbd38",
       "plan.md": "681b16b9fda3bdbaae14e2b3030bfd8499c90ea92a28b6014f38dc58aae4b870",
       "tasks.md": "df3f24067c921edd0f0307be7f58b147529188375b55c87e6192d4de8582e53e",
-      "implementation-summary.md": "fa99e78b708dd36f77d041fab1ebf108d57c21df099a4924bbd861f2a281306d"
+      "decision-record.md": "b97fe8f853bc631d6106d13cc48668a6398ae97d1fd5593788ec9696bcaf440e",
+      "implementation-summary.md": "3503347a95ef7937fbaff423511046e2e6f37c007f43b41446c145d73d4bc3f0"
     },
     "last_active_at": null
   }

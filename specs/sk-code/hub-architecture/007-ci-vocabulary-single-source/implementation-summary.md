@@ -19,7 +19,7 @@ _memory:
       - ".skilled/skills/sk-code/hub-router.json"
       - ".skilled/skills/sk-code/sk-code-ci/ROUTER.md"
     session_dedup:
-      fingerprint: "sha256:57fa0903ef5448de942f2d9e1b228315bd63b4adbfc39b7184425341146b1e5f"
+      fingerprint: "sha256:b33125ce630130cdf4ed1097b9615b25f584e2f909adb6d547ffc913edde1abc"
       session_id: "scaffold-007-ci-vocabulary-single-source"
       parent_session_id: null
     session_ref:

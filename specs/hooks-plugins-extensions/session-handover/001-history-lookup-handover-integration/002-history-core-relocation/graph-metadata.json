@@ -16,6 +16,7 @@
       "history core relocation plan",
       "history core relocation tasks",
       "history core relocation goal",
+      "002-history-core-relocation operator decisions",
       "history core relocation implementation summary"
     ],
     "key_topics": [
@@ -26,11 +27,11 @@
       "plan",
       "tasks",
       "goal",
+      "002-history-core-relocation",
+      "operator",
+      "decisions",
       "implementation",
-      "summary",
-      "lookup",
-      "typescript",
-      "compiled"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/session-handover/bin/history-lookup.mjs",
       ".skilled/hooks/session-handover/tests/history-lookup-entry.test.cjs",
@@ -69,6 +71,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -184,33 +192,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The lookup core is TypeScript compiled into `.skilled/skills/system-spec-kit/runtime/dist/`, and the command a model runs names that compiled file",
     "created_at": "2026-11-15T06:24:19Z",
-    "last_save_at": "2026-11-16T11:15:09.319Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:35:58.803Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6b7e21f8904b0c1e7ac8dd71c8c80720b04424d9c0443660fad76c224eb3b14",
+    "source_fingerprint": "sha256:6f01c38c8150ca89bc2ddeac64b9f8bcb1a708ef538038a07865d487dfaa8e42",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a8bb525d2efde3e84a0079e6886ac78e713119b3abfce50b09d03102c438e5a1",
       "plan.md": "1bb92ada9c325015abbb6ee4fc91caf4d08642eacc3ac12e13698b8c54119710",
       "tasks.md": "e23f5818c1f444928f00aabe86a9948a6226120f1b96537d1483a7d1f067876a",
-      "implementation-summary.md": "920ff762d2cbc75fbf840cd9618f9fb90eddc7a1b0e0d5636666884170820251"
+      "decision-record.md": "ff225f31e2cc63058f162a3164506774120d9132e6a80f4f56617c488cfd307c",
+      "implementation-summary.md": "0c6d1d6ca24341582deba19b24a2a2923f1e7439f7f35977f7e95b81d0dcdf87"
     },
     "last_active_at": null
   }

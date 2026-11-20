@@ -823,6 +823,10 @@ def _legacy_recommendations_from_native(output: Dict[str, Any]) -> List[Dict[str
         }
         if "passes" in recommendation:
             item["passes"] = bool(recommendation["passes"])
+        # The hook holds a floored route back against the session's earlier route,
+        # so the flag has to survive the translation to the legacy contract.
+        if recommendation.get("confidenceFloored") is True:
+            item["confidenceFloored"] = True
         if "score" in recommendation:
             item["score"] = recommendation["score"]
         if "dominantLane" in recommendation:
@@ -1009,6 +1013,9 @@ def recommend_with_native_advisor(
     confidence_only: bool = False,
 ) -> Optional[List[Dict[str, Any]]]:
     """Return native recommendations when the compiled advisor runtime is available."""
+    # Drop a pasted earlier reply before the head cut and the routing layers below,
+    # so a long paste cannot push the task past the cut or steer the layers.
+    prompt = strip_leading_pasted_reply(prompt)
     response = _run_native_bridge({
         "mode": "recommend",
         "workspaceRoot": REPO_ROOT,
@@ -2355,7 +2362,7 @@ GENERATED_COMMAND_BRIDGES = {
         "routing_enabled": True,
     },
     "command-create-agent": {
-        "description": "Create a new OpenCode agent using /create:agent.",
+        "description": "Create a new Skilled agent using /create:agent.",
         "slash_markers": ["/create:agent", "create:agent"],
         "inventory_id": "command-create-agent",
         "command": "/create:agent",
@@ -2373,7 +2380,7 @@ GENERATED_COMMAND_BRIDGES = {
         "routing_enabled": True,
     },
     "command-create-sk-skill": {
-        "description": "Create or update an OpenCode skill using /create:sk-skill.",
+        "description": "Create or update a Skilled skill using /create:sk-skill.",
         "slash_markers": ["/create:sk-skill", "create:sk-skill"],
         "inventory_id": "command-create-sk-skill",
         "command": "/create:sk-skill",
@@ -3115,7 +3122,7 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
 
     skills["create:agent"] = _build_inline_record(
         name="create:agent",
-        description="Create command bridge for /create:agent OpenCode agent scaffolding.",
+        description="Create command bridge for /create:agent Skilled agent scaffolding.",
         kind="skill",
         source="bridge",
         path=None,
@@ -3682,7 +3689,11 @@ def _apply_deep_skill_routing_layer(
         else:
             continue
         routed_confidence = mode_scores.get(mode, 0.0)
-        recommendation["confidence"] = round(max(float(recommendation.get("confidence", 0.0)), routed_confidence), 2)
+        prior_confidence = float(recommendation.get("confidence", 0.0))
+        recommendation["confidence"] = round(max(prior_confidence, routed_confidence), 2)
+        # A raised row rests on the deep routing evidence, not on the scorer's floor.
+        if routed_confidence > prior_confidence:
+            recommendation.pop("confidenceFloored", None)
         recommendation["uncertainty"] = min(float(recommendation.get("uncertainty", 0.0)), 0.30)
         recommendation["mode"] = mode
         recommendation["workflowMode"] = mode
@@ -4784,6 +4795,55 @@ def _apply_iteration_loop_tiebreaker(
 # 4. ANALYSIS
 # ───────────────────────────────────────────────────────────────
 
+# JavaScript's \s and String.prototype.trim() set. Python's own \s also matches
+# U+001C to U+001F and U+0085 and misses U+FEFF, so the set is spelled out here
+# to keep this strip equal to the native scorer's for every input.
+_JS_SPACE_CHARS = (
+    "\t\n\v\f\r \u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006"
+    "\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff"
+)
+_JS_SPACE = "[" + _JS_SPACE_CHARS + "]"
+# re.ASCII keeps case folding to ASCII letters, as a JavaScript /i regex without
+# the u flag does. Unicode folding would read "\u017f" as "s".
+_STRIP_FLAGS = re.IGNORECASE | re.ASCII
+_PASTED_REPLY_CUE = re.compile(
+    rf"^{_JS_SPACE}*(?:(?:earlier|previously|above),?{_JS_SPACE}+)?"
+    rf"(?:(?:you|the assistant|claude){_JS_SPACE}+(?:replied|said|wrote|answered|responded)"
+    rf"|(?:the{_JS_SPACE}+)?(?:assistant|claude){_JS_SPACE}+(?:response|reply|answer)){_JS_SPACE}*:",
+    _STRIP_FLAGS,
+)
+# The whitespace after a boundary stops at a newline, which starts a match of its own.
+# Letting it cross newlines rescanned a long run of spaces and newlines once per newline.
+_JS_SPACE_NO_NEWLINE = "[" + _JS_SPACE_CHARS.replace("\n", "") + "]"
+_TASK_MARKER = re.compile(rf"(?:^|[.!?\n]{_JS_SPACE_NO_NEWLINE}*)(?:now|task){_JS_SPACE}*:{_JS_SPACE}*", _STRIP_FLAGS)
+
+
+def _strip_pasted_reply_once(prompt: str) -> str:
+    if not _PASTED_REPLY_CUE.search(prompt):
+        return prompt
+    markers = list(_TASK_MARKER.finditer(prompt))
+    if not markers:
+        return prompt
+    # The last marker wins: a pasted reply can hold its own "Task:" line.
+    marker = markers[-1]
+    task = prompt[marker.end():].strip(_JS_SPACE_CHARS)
+    return task if task else prompt
+
+
+def strip_leading_pasted_reply(prompt: str) -> str:
+    """Drop an earlier reply pasted ahead of the task, as the native scorer does.
+
+    The skill names in a pasted reply would otherwise steer routing away from the
+    task. Repeats until nothing changes, so a second call returns the same text.
+    """
+    current = prompt
+    while True:
+        stripped = _strip_pasted_reply_once(current)
+        if stripped == current:
+            return current
+        current = stripped
+
+
 def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     """Analyze user request and return ranked skill recommendations.
 
@@ -4793,6 +4853,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     if not prompt:
         return []
 
+    prompt = strip_leading_pasted_reply(prompt)
     prompt_lower = prompt.lower()
     all_tokens = re.findall(r'\b\w+\b', _strip_command_mode_suffixes(prompt_lower))
     skills = get_skills()
@@ -5274,7 +5335,10 @@ def analyze_batch(
     """Analyze multiple prompts in a single process for lower overhead."""
     results = []
     for prompt in prompts:
-        trimmed = prompt.strip()
+        # JavaScript's trim set, not Python's: str.strip() also drops
+        # U+001C to U+001F and U+0085, which would expose a pasted reply
+        # that the native scorer keeps.
+        trimmed = prompt.strip(_JS_SPACE_CHARS)
         if not trimmed:
             continue
 

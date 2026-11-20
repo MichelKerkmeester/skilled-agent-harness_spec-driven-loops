@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync",
+  "description": "Phase 13: github-release-notes-sync",
+  "keywords": [
+    "phase",
+    "github-release-notes-sync"
+  ],
+  "lastUpdated": "2026-11-18T08:46:19.629Z",
+  "specId": "013",
+  "folderSlug": "github-release-notes-sync",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "010-changelog-layout-retrofit"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "18-11-26_08-43__finished-the-changelog-layout-retrofit-all-1-576.md",
+    "18-11-26_09-46__finished-the-changelog-layout-retrofit-all-1-576.md"
+  ]
+}

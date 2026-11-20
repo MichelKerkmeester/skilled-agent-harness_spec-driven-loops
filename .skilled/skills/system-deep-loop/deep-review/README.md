@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.29.0
+version: 1.11.30.0
 ---
 
 # deep-review
@@ -85,15 +85,42 @@ Expected output: one JSON object carrying `registryPath`, `dashboardPath`, `stra
 
 `/deep:review` owns the loop. Its YAML workflow owns the state and every dispatch, and it decides the stop. Initialization writes the packet. The loop then repeats a fixed cycle: check convergence, dispatch one `@deep-review` LEAF agent for one dimension, wait for the write-back, run the reducer and decide whether to continue. Synthesis compiles the report, and the save phase writes continuity.
 
-```mermaid
-flowchart TD
-  Command["/deep:review"] --> Init["Init: config, strategy and state log"]
-  Init --> Iteration["Iteration: one LEAF agent, one dimension"]
-  Iteration --> Reduce["Reducer: registry and dashboard"]
-  Reduce --> Stop{"Convergence and gates agree"}
-  Stop -->|continue| Iteration
-  Stop -->|stop| Synthesis["Synthesis: report and verdict"]
-  Synthesis --> Save["Save: continuity"]
+```text
+┌────────────────────────────────┐
+│ /deep:review                   │
+└───────────────┬────────────────┘
+                │
+                ▼
+┌────────────────────────────────┐
+│ Init: config, strategy and     │
+│ state log                      │
+└───────────────┬────────────────┘
+                │
+                ▼
+┌────────────────────────────────┐
+│ Iteration: one LEAF agent,     ├◀─────────┐ continue
+│ one dimension                  │          │
+└───────────────┬────────────────┘          │
+                │                           │
+                ▼                           │
+┌────────────────────────────────┐          │
+│ Reducer: registry and          │          │
+│ dashboard                      │          │
+└───────────────┬────────────────┘          │
+                │                           │
+                ▼                           │
+┌────────────────────────────────┐          │
+│ Convergence and gates agree    ├──────────┘
+└───────────────┬────────────────┘
+                ▼ stop
+┌────────────────────────────────┐
+│ Synthesis: report and verdict  │
+└───────────────┬────────────────┘
+                │
+                ▼
+┌────────────────────────────────┐
+│ Save: continuity               │
+└────────────────────────────────┘
 ```
 
 ### The Iteration Lifecycle

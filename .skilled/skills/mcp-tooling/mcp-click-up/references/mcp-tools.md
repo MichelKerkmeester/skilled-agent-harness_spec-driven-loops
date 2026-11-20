@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.19.0
+version: 1.1.20.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -118,7 +118,7 @@ Run the program below as the `code` of one `mcp__code_mode__call_tool_chain` cal
 ```
 
 Act on each result in this order, and run the program again after each fix. Ask with the runtime's structured question tool, such as `AskUserQuestion` in Claude Code, and fall back to a one-line question and a wait where the runtime has none. After two rechecks of the same state, stop and report what is missing instead of asking again.
-1. **`mcp: "not-connected"` or `"login"`.** Ask: "ClickUp needs a one-time approval. When you pick Ready, a ClickUp 'allow access' tab opens in your browser. Approve it within about a minute." Offer **Ready** and **Skip ClickUp for now**. On Ready, register the `clickup_official` manual again with Code Mode's `register_manual`, using its entry from `.utcp_config.json`. The call waits for the approval and succeeds once it lists tools. Where the runtime has no `register_manual`, ask the user to restart the client or reconnect Code Mode and approve the tab that opens.
+1. **`mcp: "not-connected"` or `"login"`.** Ask: "ClickUp needs a one-time approval. When you pick Ready, a ClickUp 'allow access' tab opens in your browser. Approve it within about a minute." Offer **Ready** and **Skip ClickUp for now**. On Ready, register the `clickup_official` manual again with Code Mode's `register_manual`, using its entry from `.utcp_config.json`. The call waits for the approval and succeeds once it lists tools. Where the runtime has no `register_manual`, the manual cannot load, because it ships disabled and a restart does not register it. Say so and skip the ClickUp step.
 2. **`mcp: "error"`.** Report `mcpError` and stop. It is not a login problem.
 3. **`asideError` contains `Not connected`.** Register the `aside` manual again from its `.utcp_config.json` entry and rerun the check. This needs no question.
 4. **`browser: "aside-login"` or `"chrome-login"`.** Ask: "Log in to ClickUp in {Aside or Chrome}, then pick Logged in." Offer **Logged in** and **Skip the gap removal**.

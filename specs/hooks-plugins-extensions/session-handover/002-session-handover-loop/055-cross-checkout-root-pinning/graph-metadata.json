@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross checkout root pinning",
+      "phase 55 cross checkout root pinning",
+      "handoff note is missing not relaunching",
+      "outside-root handoff note",
+      "skilled-loop rc block",
+      "cross checkout root pinning plan",
+      "cross checkout root pinning tasks",
+      "cross checkout root pinning goal",
+      "055-cross-checkout-root-pinning operator decisions",
+      "cross checkout root pinning implementation summary"
+    ],
+    "key_topics": [
+      "cross",
+      "checkout",
+      "root",
+      "pinning",
+      "phase",
+      "handoff",
+      "note",
+      "missing",
+      "relaunching",
+      "outside-root",
+      "skilled-loop",
+      "block"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/bin/skilled-loop-shell.sh",
+      ".skilled/hooks/session-handover/bin/session-handover.cjs",
+      ".skilled/hooks/session-handover/lib/nudge.cjs",
+      ".skilled/hooks/session-handover/claude/handover-stop-arm.mjs",
+      ".skilled/hooks/session-handover/tests/skilled-loop-wrapper-repo-root.test.cjs",
+      ".skilled/bin/README.md",
+      ".skilled/hooks/session-handover/runtime-behavior.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py",
+      ".opencode/plugins/tests/session-handover.test.cjs",
+      ".skilled/changelog/skilled/v4.1.0.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.sh",
+        "kind": "script",
+        "path": ".skilled/bin/skilled-loop-shell.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/bin/session-handover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handover-stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/claude/handover-stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-repo-root.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/skilled-loop-wrapper-repo-root.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-behavior.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/runtime-behavior.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-transcript.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-handover.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "v4.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator launched `claude` from the Skilled checkout while the session worked in a project with its own vendored Skilled",
+    "created_at": "2026-11-17T19:17:53Z",
+    "last_save_at": "2026-11-17T19:49:57.985Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fd730b36dc5c7fccc09756812498ca5074d42f6fc55c2011a45b526b3b9d82e2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1ec77adc5bc0d3806db41b7a5a57ad679d1a65e1df24659755606315c4e44f3a",
+      "plan.md": "4b4a2c7cdc6112c79ca2377946d9818065ca7fad32121dee37512e49a94cb7c9",
+      "tasks.md": "496b4ddb56b016c4ab7b0b4a275d73eb3261c2ccfabc0865245b4eef3ee0082e",
+      "decision-record.md": "2ac799fac853c06a5d860523db5d6258b1e85471435550e4508c03de7aa87997",
+      "implementation-summary.md": "5b1b01912b514ce270a48d55eca74384cbbea56f65b475ad36fbcb4abe2f1b1a"
+    },
+    "last_active_at": null
+  }
+}

@@ -23,7 +23,7 @@ const GATE_3_MENU_FILES = [
   '.skilled/commands/create/assets/create-feature-catalog-presentation.txt',
   '.skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt',
   '.skilled/commands/create/assets/create-skill-parent-presentation.txt',
-  '.skilled/commands/create/assets/create-skill-presentation.txt',
+  '.skilled/commands/create/assets/create-sk-skill-presentation.txt',
   '.skilled/commands/deep/assets/deep-research-presentation.txt',
   '.skilled/commands/deep/assets/deep-review-presentation.txt',
   '.skilled/commands/deep/assets/compiled/deep-research.contract.markdown',

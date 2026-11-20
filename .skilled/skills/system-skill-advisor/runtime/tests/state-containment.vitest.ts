@@ -63,6 +63,15 @@ describe('advisor state containment, generation under a DB dir override', () => 
     expect(getSkillGraphGenerationPath(specDir)).toBe(join(resolve(dbDir), 'skill-graph-generation.json'));
   });
 
+  it('keeps the shared generation file when the override names the default database directory', () => {
+    const { repo, specDir } = repoWithSpecDir();
+    const sharedPath = getSkillGraphGenerationPath(specDir);
+    const defaultDbDir = join(repo, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database');
+    mkdirSync(defaultDbDir, { recursive: true });
+    process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = defaultDbDir;
+    expect(getSkillGraphGenerationPath(specDir)).toBe(sharedPath);
+  });
+
   it('publishes a sandboxed shutdown without touching the workspace generation file', () => {
     const { repo } = repoWithSpecDir();
     const liveFile = getSkillGraphGenerationPath(repo);

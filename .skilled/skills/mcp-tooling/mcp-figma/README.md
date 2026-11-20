@@ -8,7 +8,7 @@ trigger_phrases:
   - "render in figma"
   - "drive figma from the terminal"
   - "figma mcp"
-version: 1.1.10.0
+version: 1.1.11.0
 ---
 
 # mcp-figma
@@ -92,14 +92,31 @@ The write verbs change the open file: create, render, the token and variable ver
 
 Every call follows the same shape. The agent checks the binary and confirms Figma Desktop holds an open file. It connects, which starts the daemon that brokers each command over `127.0.0.1:3456`. It classifies the verb before running it. A read returns data or writes an export file. A write changes the document behind a gate. The verbs that support verification report the result.
 
-```mermaid
-flowchart TD
-  Check["Check the binary and the open file"] --> Connect["Connect and start the daemon"]
-  Connect --> Class["Classify the verb"]
-  Class --> Read["Read or export"]
-  Class --> Write["Author behind a gate"]
-  Read --> Out["Data or a file at your path"]
-  Write --> Done["A changed Figma document"]
+```text
+┌──────────────────────────────┐
+│ Check the binary             │
+│ and the open file            │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│ Connect and start the daemon │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐    ┌──────────────────────────────┐
+│ Classify the verb            │ ─▶ │ Author behind a gate         │
+└───────────────┬──────────────┘    └───────────────┬──────────────┘
+                │                                   │
+                ▼                                   ▼
+┌──────────────────────────────┐    ┌──────────────────────────────┐
+│ Read or export               │    │ A changed Figma document     │
+└───────────────┬──────────────┘    └──────────────────────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│ Data or a file at your path  │
+└──────────────────────────────┘
 ```
 
 ### Two Connect Modes

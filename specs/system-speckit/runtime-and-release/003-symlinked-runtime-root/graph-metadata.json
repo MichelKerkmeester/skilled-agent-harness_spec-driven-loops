@@ -20,6 +20,7 @@
       "symlinked runtime root plan",
       "symlinked runtime root tasks",
       "symlinked runtime root acceptance criteria",
+      "003-symlinked-runtime-root operator decisions",
       "symlinked runtime root implementation summary"
     ],
     "key_topics": [
@@ -43,6 +44,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       "runtime/cli/lib/esm-entry.ts",
       "runtime/lib/esm-entry.ts",
@@ -57,8 +59,7 @@
       ".skilled/skills/system-spec-kit/runtime/tests/esm-entry-symlink.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/symlinked-project-root.vitest.ts",
       "runtime/lib/graph/graph-metadata-parser.ts",
-      ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
-      ".skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts"
+      ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts"
     ],
     "entities": [
       {
@@ -83,6 +84,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -131,12 +138,6 @@
         "name": "graph-metadata-parser.ts",
         "kind": "code",
         "path": "runtime/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-schema.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts",
         "source": "derived"
       },
       {
@@ -208,23 +209,25 @@
     ],
     "causal_summary": "Consuming repositories reach the spec-kit runtime through a `.skilled` symlink into the shared runtime repository",
     "created_at": "2026-10-12T09:25:17Z",
-    "last_save_at": "2026-11-10T05:48:26.771Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:37:44.492Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18c57e2481d1688e0a77555555abd371900fbcfb1543c85a482be065222bcf54",
+    "source_fingerprint": "sha256:9246ff51230becca19772a56ffb244429c57ff278f28b1fd10c5ac8c65418ac3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cb6b7ed791163a734094fbf08ba936127be9bc26b3c6db92c02635c9b0cc8d3d",
       "plan.md": "bb9dca68ad2a21b4d23f445d2d6aed12ecd2e14458c9e85bc132866528142b6e",
       "tasks.md": "04d39279f3e5acbf3e17cb98d6d280dd71828e480c2c07d0fab4896ce85f28a3",
-      "implementation-summary.md": "939a09aa447ec18d1d43610ebee2fd85f388202c15037ea0ea70822c6d0e0680"
+      "decision-record.md": "dadf8cf51ad8457c5965e6292c606183cd3567769a3fe628a4010f4777dd639b",
+      "implementation-summary.md": "e79b6f692f2358c8f90e016705f0d7c5f4294b68783f5d25676a4dabec2ba27c"
     },
     "last_active_at": null
   }

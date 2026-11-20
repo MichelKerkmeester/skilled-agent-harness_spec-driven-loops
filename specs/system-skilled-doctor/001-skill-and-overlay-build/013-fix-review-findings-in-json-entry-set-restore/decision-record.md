@@ -143,6 +143,8 @@ The handoff for this phase said to restore the deepest dropped path first, so tw
 | Q009 | The Fable 5.2 harden-and-UX question runs through the claude2 shell function, not a sub-agent. | The operator ruled out Fable sub-agents. | None | scratch/fable-harden-ux-answer.md |
 | Q010 | All four Fable item groups become a follow-up phase after 013 ships. | Not stated. | None | implementation-summary.md, scratch/fable-harden-ux-answer.md |
 | Q011 | The three P1s of the second Opus review are fixed in round three, and the two P2s are documented as limits. | Not stated. | None | tasks.md T020-T023, overlays.md |
+| Q012 | A second, independent review of the pushed set restore runs on a different model before Barter re-pins. | Not stated. | none | specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/spec.md |
+| Q013 | The fix scope covers the P0 wrong item after re-pin, the P1 re-pin refusing after writing, the P1 nested sets and index spelling, and the P1/P2 messages and no-checkout case. | Not stated. | none | specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -366,6 +368,47 @@ Fix 1 only, document rest
 Answer:
 ```text
 Fix 1-3, document 4-5 (Recommended)
+```
+
+### Q012
+<!-- source: claude:3912763e-4a15-47d7-994e-71d31bbf339f:toolu_01WXuMLVXyvKwXHYAQaNbCRh:2 -->
+
+Question:
+```text
+Review coverage: one reviewer, Opus 5.5, did the engine review and all three rechecks. That is one model's opinion four times, not independent views. Do you want a second, independent review of the pushed engine before Barter re-pins?
+```
+
+Options:
+```text
+Second model review (Recommended)
+Fresh Opus review
+No more review
+```
+
+Answer:
+```text
+Second model review (Recommended)
+```
+
+### Q013
+<!-- source: claude:3912763e-4a15-47d7-994e-71d31bbf339f:toolu_01QNYC8Kbzjmu3TdYaBxPiGM:0 -->
+
+Question:
+```text
+The fresh Opus review found 7 problems in the pushed set restore, all reproduced by its scripts. I reran the worst one myself: when a json-entry destination is not re-copied by a re-pin (in repin.exclude, or at the tree root) and upstream reorders the array, the re-pin writes item A's value into item B and prints RESULT: PASSED. Which do you want fixed in a new phase 013 (test first, DeepSeek on Vibe, then a review, then push)?
+```
+
+Options:
+```text
+P0 wrong item after re-pin
+P1 re-pin refuses after writing
+P1 nested sets, index spelling
+P1+P2 messages and no-checkout
+```
+
+Answer:
+```text
+P0 wrong item after re-pin, P1 re-pin refuses after writing, "P1 nested sets, index spelling", P1+P2 messages and no-checkout
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -17,14 +17,14 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(HERE, '..', '..', '..', '..');
 const LINT = join(HERE, 'dispatch-preflight-lint.mjs');
 const AUDIT = join(HERE, 'dispatch-audit-posttooluse.mjs');
-const FLAGGED_DISPATCH = 'opencode run -m p/m --agent general "x" </dev/null';
+const FLAGGED_DISPATCH = 'opencode run -m p/m "x" --share </dev/null';
 
 // The lint picks its OpenCode rule set by asking the first `opencode` on PATH for
-// its version, and the rule this suite expects applies to OpenCode 1 only. A stub
-// that answers as OpenCode 1 keeps the result the same on a machine with OpenCode 2.
+// its version. A stub that answers as OpenCode 2 keeps the result the same on a
+// machine whose own opencode is missing or reports another version.
 const STUB_BIN = mkdtempSync(join(tmpdir(), 'codex-shell-tool-bin-'));
 const STUB_OPENCODE = join(STUB_BIN, 'opencode');
-writeFileSync(STUB_OPENCODE, '#!/bin/sh\necho 1.19.4\n');
+writeFileSync(STUB_OPENCODE, '#!/bin/sh\necho 2.3.2\n');
 chmodSync(STUB_OPENCODE, 0o755);
 
 afterAll(() => {
@@ -64,7 +64,7 @@ describe('Codex dispatch preflight lint', () => {
       tool_input: { command: FLAGGED_DISPATCH },
     });
     expect(result.status).toBe(0);
-    expect(result.stdout).toContain('no-bare-agent-general');
+    expect(result.stdout).toContain('share-requires-confirmation');
   });
 
   it('ignores a tool that is not the Codex shell', () => {

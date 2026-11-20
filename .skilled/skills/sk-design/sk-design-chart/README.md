@@ -12,7 +12,7 @@ trigger_phrases:
   - "style reference chart"
 importance_tier: normal
 contextType: general
-version: 0.23.4.0
+version: 0.23.5.0
 ---
 
 # sk-design-chart
@@ -75,15 +75,45 @@ The run prints one line per check family and ends with `Summary: errors: 0` and 
 
 The workflow is template-first, and that is a constraint rather than a preference. A chart written freehand breaks in a browser, where no check is looking. A form that already renders has answered its axis labels and palette capacity once.
 
-```mermaid
-flowchart TD
-  Request["Chart request"] --> Route["sk-design hub resolves the packet"]
-  Route --> Catalog["references/catalog.md picks one row"]
-  Catalog --> Copy["Copy the form under assets/templates/"]
-  Copy --> Data["Swap the data block"]
-  Data --> Colour["Apply one colour system"]
-  Colour --> File["One self-contained HTML file"]
-  File --> Check["check-corpus.cjs"]
+```text
+┌────────────────────────────────────────┐
+│ Chart request                          │
+└────────────────────────────────────────┘
+                     │
+                     ▼
+┌────────────────────────────────────────┐
+│ sk-design hub resolves a chart request │
+└────────────────────────────────────────┘
+                     │
+                     ▼
+┌────────────────────────────────────────┐
+│ references/catalog.md picks one row    │
+└────────────────────────────────────────┘
+                     │
+                     ▼
+┌────────────────────────────────────────┐
+│ Copy the form under assets/templates/  │
+└────────────────────────────────────────┘
+                     │
+                     ▼
+┌────────────────────────────────────────┐
+│ Swap the data block                    │
+└────────────────────────────────────────┘
+                     │
+                     ▼
+┌────────────────────────────────────────┐
+│ Apply one colour system                │
+└────────────────────────────────────────┘
+                     │
+                     ▼
+┌────────────────────────────────────────┐
+│ One self-contained HTML file           │
+└────────────────────────────────────────┘
+                     │
+                     ▼
+┌────────────────────────────────────────┐
+│ check-corpus.cjs                       │
+└────────────────────────────────────────┘
 ```
 
 Read the request and name the comparison. Resolve that comparison to one catalog row and copy the file the row names. Leave the render code alone, swap the data block, apply one colour system from `assets/style-reference/evilcharts/palettes.json` and keep the result a single file. Run the corpus check before you report it.

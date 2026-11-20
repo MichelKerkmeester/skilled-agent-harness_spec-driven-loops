@@ -16,7 +16,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.14.0
+version: 2.3.15.0
 ---
 
 # sk-doc
@@ -105,13 +105,40 @@ Routing runs in two stages. The first picks a mode. `hub-router.json` holds the 
 
 The second stage picks files inside the mode. `ROUTER.md` maps the authoring intent to the references and assets that mode loads, in its packet or in the shared backbone. The hub never emits a leaf path. The surface router never re-decides the mode.
 
-```mermaid
-flowchart LR
-  Request["Request"] --> Hub["hub-router.json<br/>picks a mode"]
-  Hub --> Registry["mode-registry.json<br/>names the packet"]
-  Registry --> Router["ROUTER.md<br/>loads the leaves"]
-  Router --> Packet["Packet<br/>authors the artifact"]
-  Packet --> Gate["validate_document.py<br/>validates format"]
+```text
+┌──────────────────────┐
+│ Request              │
+└───────────┬──────────┘
+            │
+            ▼
+┌───────────┬──────────┐
+│ hub-router.json      │
+│ picks a mode         │
+└───────────┬──────────┘
+            │
+            ▼
+┌───────────┬──────────┐
+│ mode-registry.json   │
+│ names the packet     │
+└───────────┬──────────┘
+            │
+            ▼
+┌───────────┬──────────┐
+│ ROUTER.md            │
+│ loads the leaves     │
+└───────────┬──────────┘
+            │
+            ▼
+┌───────────┬──────────┐
+│ Packet               │
+│ authors the artifact │
+└───────────┬──────────┘
+            │
+            ▼
+┌───────────┬──────────┐
+│ validate_document.py │
+│ validates format     │
+└──────────────────────┘
 ```
 
 ### What The Scripts Measure

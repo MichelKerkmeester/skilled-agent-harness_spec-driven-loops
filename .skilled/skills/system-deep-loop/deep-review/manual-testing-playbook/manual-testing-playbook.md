@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.18.0
+version: 1.13.19.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -946,7 +946,7 @@ The deep-review feature catalog is at [`../feature-catalog/feature-catalog.md`](
 
 - DRV-064: [Fan-out review with two CLI lineages](../manual-testing-playbook/fanout/fanout-cli-lineages-review.md)
 - DRV-065: [Fan-out review strongest-restriction verdict](../manual-testing-playbook/fanout/fanout-strongest-restriction.md)
-- DRV-066: [Fan-out native sequential review dispatch](../manual-testing-playbook/fanout/fanout-native-sequential-review.md)
+- DRV-066: [Fan-out native lineage refusal](../manual-testing-playbook/fanout/fanout-native-sequential-review.md)
 - DRV-067: [Fan-out single-executor parity for review loop](../manual-testing-playbook/fanout/fanout-single-executor-parity-review.md)
 - DRV-071: [Fan-out merged review keeps its coverage surfaces](../manual-testing-playbook/fanout/fan-out-merged-coverage-surfaces.md)
 - DRV-082: [Review fan-out deals seeded frontier nodes round-robin](../manual-testing-playbook/fanout/fanout-frontier-partition-round-robin.md)
@@ -1085,7 +1085,7 @@ Expected signals: The convergence case stops clean with performance covered, the
 
 ## 17. FAN-OUT
 
-This category covers 6 scenarios validating the opt-in fan-out dispatch layer added in the review loop: CLI lineage pool dispatch, strongest-restriction verdict binding, native sequential command dispatch, single-executor parity, merged coverage surfaces, and the expansive frontier partition.
+This category covers 6 scenarios validating the opt-in fan-out dispatch layer added in the review loop: CLI lineage pool dispatch, strongest-restriction verdict binding, native lineage refusal, single-executor parity, merged coverage surfaces, and the expansive frontier partition.
 
 ### DRV-064 | Fan-out review with two CLI lineages
 
@@ -1113,15 +1113,15 @@ Expected signals: 5/5 review strongest-restriction tests pass; `SEVERITY_RANK` c
 #### Test Execution
 > **Feature File:** [DRV-065](../manual-testing-playbook/fanout/fanout-strongest-restriction.md)
 
-### DRV-066 | Fan-out native sequential review dispatch
+### DRV-066 | Fan-out native lineage refusal
 
 #### Description
-Validate that native fan-out runs sequential `deep/review` command lineages through `fanout-run.cjs` with per-lineage isolated artifact dirs, not full-loop `@deep-review` agent dispatches.
+Validate that a review fan-out whose lineage kind is `native` is refused before any lineage spawns, with a message containing `native fan-out lineages are not supported`, and that the same run with two `cli-*` executors is accepted.
 
 #### Scenario Contract
-Prompt summary: Validate native fan-out for deep-review: confirm `step_fanout_spawn` runs native lineages through `fanout-run.cjs` and passes the correct lineage artifact dir override.
+Prompt summary: Validate native fan-out refusal for deep-review: confirm `fanout-run.cjs` refuses a native lineage before any spawn, and accepts the same run with two `cli-*` executors.
 
-Expected signals: `fanout-run.cjs --loop-type review` in `step_fanout_spawn_cli`, `config.fanout_lineage_artifact_dir` in context, and the correct `skip_when`.
+Expected signals: `NATIVE_LINEAGE_REFUSAL` reads `native fan-out lineages are not supported`; the guard runs on `expandLineages` output before the pool starts and names the lineage labels; exit code 3; no `lineages/{label}/` directory created; the two-`cli-*` config reaches the pool.
 
 #### Test Execution
 > **Feature File:** [DRV-066](../manual-testing-playbook/fanout/fanout-native-sequential-review.md)

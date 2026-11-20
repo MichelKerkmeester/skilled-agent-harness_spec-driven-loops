@@ -198,9 +198,10 @@ Four more rules run after the work. The agent checks the final state, proves com
 
 ### Skill Routing
 
-The skill advisor scores each prompt and puts a one-line routing brief in front of the agent. At a confidence of 0.8 or more, the agent must load that skill.
+The skill advisor scores each prompt and puts a one-line routing brief in front of the agent. An emitted skill recommendation at a confidence of 0.8 or more must be loaded. The task-intent confidence floor is 0.82, but the prompt hook can withhold a confidence-floored route for a weak follow-up when it differs from the session's stored route, so the brief can say `Advisor: prompt skipped.` The scorer strips a recognized earlier reply pasted ahead of the task before scoring.
 
 The advisor is a resident daemon behind one command-line front door. When the daemon is down, a local scorer answers instead and marks its answer stale. A setup or health prompt with no match gets a pointer to `/doctor:setup`. The [Skill Advisor README](.skilled/skills/system-skill-advisor/README.md) has the scoring and the CLI.
+When Ollama is available, the daemon refreshes missing or stale skill and command vectors in the background.
 
 ### Spec Folders
 
@@ -635,7 +636,7 @@ Skilled runs in eight AI runtimes, so you can work from the subscriptions you al
 
 The eight runtimes share one source tree. Skills, agents, commands and hooks live there once, and a generator writes each runtime's copy. `/doctor:runtime-mirrors` checks that every copy still matches. Each runtime's README says which files are generated and which are authored there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [Cursor](.cursor/README.md), [Devin](.devin/README.md), [OpenCode](.opencode/README.md), [Pi](.pi/README.md) and [DeepSeek Harness](.dsh/README.md). Mistral Vibe keeps the same notes in its [sync notes](.vibe/SYNC.md).
 
-A few runtimes need one step of their own. Codex runs a repository hook only after you approve that entry, so open `/hooks` after an update and approve each entry it lists. Mistral Vibe loads its hooks only in a trusted checkout. DSH loads plugins only from the patches a run names, and a guards patch loads the guard bundle. OpenCode loads the same plugins on OpenCode 2 and OpenCode 1.
+A few runtimes need one step of their own. Codex runs a repository hook only after you approve that entry, so open `/hooks` after an update and approve each entry it lists. Mistral Vibe loads its hooks only in a trusted checkout. DSH loads plugins only from the patches a run names, and a guards patch loads the guard bundle. OpenCode loads its plugins on OpenCode 2, the only supported version; if an OpenCode 1 install is still on the machine, `bash .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh remove-v1` removes the package under `~/.local` and the `opencode1` launcher, and leaves its data files in place.
 
 Each runtime also has a bridge in the CLI orchestration hub, which [CLI Orchestration](#cli-orchestration) describes. Six bridges refuse to dispatch the runtime they run in. The Pi and DeepSeek Harness bridges may call their own runtime, but neither dispatches from inside a fan-out lineage or a dispatch that already uses it. That bound keeps delegation from looping. The DeepSeek Harness and Mistral Vibe bridges are experimental.
 

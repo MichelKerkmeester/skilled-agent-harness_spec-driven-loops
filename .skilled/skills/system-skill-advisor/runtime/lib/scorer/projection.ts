@@ -12,6 +12,7 @@ import { basename, dirname, extname, isAbsolute, join, resolve } from 'node:path
 import Database from 'better-sqlite3';
 
 import { getManifest } from '../embedders/registry.js';
+import { loadCommandBridges } from './command-bridge-loader.js';
 import type { BackendKind } from '../embedders/types.js';
 import { lifecycleStatusForPath } from '../lifecycle/archive-handling.js';
 import { createPrivateSkillLinkCheck } from '../private-skill-target.js';
@@ -88,7 +89,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     family: 'system',
     category: 'command',
     name: 'create:agent',
-    description: 'Create command bridge for /create:agent OpenCode agent scaffolding.',
+    description: 'Create command bridge for /create:agent Skilled agent scaffolding.',
     keywords: ['/create:agent', 'create new agent', 'create agent', 'new agent', 'make new agent'],
     domains: ['create', 'agent', 'command'],
     intentSignals: ['/create:agent', 'create new agent', 'create agent', 'new agent', 'make new agent'],
@@ -1235,7 +1236,9 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
 ];
 // END GENERATED COMMAND BRIDGES
 
-export const COMMAND_BRIDGES: readonly CommandBridgeProjection[] = GENERATED_COMMAND_BRIDGES;
+// The generated JSON wins when it is readable, so regenerating it is enough to
+// change the bridges; the compiled copy above is the fallback.
+export const COMMAND_BRIDGES: readonly CommandBridgeProjection[] = loadCommandBridges() ?? GENERATED_COMMAND_BRIDGES;
 
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS

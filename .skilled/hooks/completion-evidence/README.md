@@ -69,7 +69,7 @@ The adapters call `appendAdvisoryLog()` to write a bounded line to `.skilled/log
 
 Claude registers its Stop hook in `.claude/settings.json`. Codex uses `.codex/hooks.json`. Cursor uses `.cursor/hooks.json` and Devin uses `.devin/hooks.v1.json`.
 
-OpenCode loads both plugin files through its flat `.opencode/plugins/` glob. Pi re-exports the adapter from `.pi/extensions/completion-evidence.ts`. The DSH patch `.dsh/patches/guards.patch.yml` registers `.dsh/plugins/repo-guards/index.mjs`, whose entrypoint calls `registerCompletionEvidence()`.
+OpenCode loads both plugin files through its flat `.opencode/plugins/` glob. Pi imports the adapter through `.pi/extensions/completion-evidence.ts`. The DSH patch `.dsh/patches/guards.patch.yml` registers `.dsh/plugins/repo-guards/index.mjs`, whose entrypoint calls `registerCompletionEvidence()`.
 
 Vibe registers the `turn-end` `post_agent` composer in `.vibe/hooks.toml`. The composer calls the completion adapter. Its `turn-start` composer delivers the saved advisory on the next main turn.
 

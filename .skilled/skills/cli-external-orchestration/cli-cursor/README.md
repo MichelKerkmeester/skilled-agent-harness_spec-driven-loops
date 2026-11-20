@@ -8,7 +8,7 @@ trigger_phrases:
   - "composer"
   - "delegate to cursor"
   - "second opinion"
-version: 1.4.7.0
+version: 1.4.9.0
 ---
 
 # cli-cursor
@@ -94,14 +94,44 @@ An answer prints and no file changes. `--mode plan` and `--mode ask` stay read-o
 
 A dispatch starts when the calling assistant decides a task belongs at Cursor. The skill scores the request and loads the references that match. It then confirms `cursor-agent` is on PATH before it builds a command. For a research or review lineage the shared runtime takes over: `fanout-run.cjs` runs with executor kind `cli-cursor` and owns process construction. A single build or doc dispatch uses the child envelope in the models reference instead.
 
-```mermaid
-flowchart TD
-  Request["Task in the calling runtime"] --> Route["Router picks the intent and its references"]
-  Route --> Probe["Availability probe, then the account check"]
-  Probe --> Guard["Self-invocation guard"]
-  Guard --> Dispatch["cursor-agent -p with a model and an approval mode"]
-  Dispatch --> Read["Caller reads the output text"]
-  Read --> Integrate["Caller validates and integrates the result"]
+```text
+┌──────────────────────────────┐
+│ Task in the calling runtime  │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Router picks the intent      │
+│ and its references           │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Availability probe, then     │
+│ the account check            │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Self-invocation guard        │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ cursor-agent -p with a model │
+│ and an approval mode         │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Caller reads the output text │
+└──────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│ Caller validates and         │
+│ integrates the result        │
+└──────────────────────────────┘
 ```
 
 ### The Two Silent Traps
@@ -249,3 +279,9 @@ The packet ships a manual playbook of 40 scenarios across 13 categories, plus a 
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The 40-scenario validation gate |
 | [`hard-rules.json`](./hard-rules.json) | Two preflight checks read by the dispatcher |
 | [`benchmark/README.md`](./benchmark/README.md) | Stored validation reports for the goal-hook scenario |
+
+<!-- readme-check
+allow-ref /Users/you/.local/bin/cursor-agent | sample output of `command -v cursor-agent`, which prints an absolute path on the reader's machine
+allow-ref tests/stress/cli-adapter/cli-cursor.vitest.ts | relative to the `cd .skilled/skills/system-deep-loop/runtime` in the same command, where the file exists
+allow-count Five guards | the table below this sentence has one row per guard, five rows
+-->

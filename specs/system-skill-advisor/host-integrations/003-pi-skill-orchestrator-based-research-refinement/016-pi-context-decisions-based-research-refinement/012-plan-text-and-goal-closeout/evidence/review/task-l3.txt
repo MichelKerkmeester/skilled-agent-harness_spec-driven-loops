@@ -1,0 +1,26 @@
+TASK: review lane 3, follow-up routing bench and route receipts (phases 003, 010, 011).
+What it should do: the calibration bench measures floored top-1 passes and nine follow-up
+pairs (003). Route receipts (011, designed in 010) remember the skill the advisor last
+delivered confidently in a session; a later weak follow-up whose top route sits on the
+confidence floor and points at another skill is shown "Advisor: prompt skipped." instead.
+A missing, stale or unreadable receipt must leave the turn exactly as before.
+Commits: `git show 663f6af140b c27addb7117`.
+Read the code at HEAD:
+  A/hooks/lib/route-receipt.ts
+  A/hooks/claude/user-prompt-submit.ts (guardWeakFollowUp, recordRouteReceipt,
+    receiptSessionId and where they are called)
+  A/hooks/dsh/prompt-advisor.mjs (advanceBoundary and its callers)
+  A/runtime/lib/prompt-policy.ts (promptPolicyTokens), A/runtime/lib/skill-advisor-brief.ts
+  A/runtime/schemas/advisor-tool-schemas.ts, A/runtime/handlers/advisor-recommend.ts,
+    A/runtime/lib/subprocess.ts, A/hooks/lib/skill-advisor-cli-fallback.ts (confidenceFloored)
+  A/hooks/lib/directive-lifecycle.ts and directive-lifecycle-file-store.ts (the clock)
+  A/runtime/bench/scorer-calibration.bench.ts
+  A/runtime/tests/hooks/route-receipt.vitest.ts, the route-receipt block of
+    claude-user-prompt-submit-hook.vitest.ts, A/hooks/tests/dsh-prompt-advisor.test.mjs
+For intent, read P/003-*/spec.md, P/010-*/research/research.md (sections 3 to 8),
+P/011-*/spec.md and both implementation-summary.md files. A read-only refutation pass already
+ran on 011; its five findings and verdicts are in P/011-*/implementation-summary.md. Do not
+repeat them unless a verdict is wrong.
+Look hardest at: a suppression of a prompt that names new work, a receipt that outlives the
+context it describes, a receipt shared across sessions, a bench number that does not measure
+what its label says, and the confidenceFloored flag changing a public contract.

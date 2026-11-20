@@ -1,7 +1,7 @@
 ---
 title: "Hooks Lib: Skill Advisor CLI Fallback"
 description: "Warm-daemon CLI fallback that the skill-advisor prompt hook falls back to when the in-process advisor brief comes back empty."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Hooks Lib: Skill Advisor CLI Fallback
@@ -10,7 +10,7 @@ version: 1.0.1.0
 
 ## 1. OVERVIEW
 
-`hooks/lib/` holds the CLI fallback path for the `system-skill-advisor` prompt hook. When the in-process advisor brief returns `fail_open` or a degraded, unavailable-freshness result, this module finds the advisor CLI under `.skilled` first and `.opencode` second, takes the CLI, its IPC bridge and the database directory from that one root, shells out to `<root>/bin/skill-advisor.cjs advisor_recommend` and reshapes the CLI response back into the same `AdvisorHookResult` envelope the hook already understands. The CLI starts the daemon itself when the socket is cold, so a cold in-process path does not have to mean a silent miss.
+`hooks/lib/` holds the CLI fallback path for the `system-skill-advisor` prompt hook. When a prompt passes the advisor's prompt-policy gate, this module is the hook's producer: it finds the advisor CLI under `.skilled` first and `.opencode` second, takes the CLI, its IPC bridge and the database directory from that one root, shells out to `<root>/bin/skill-advisor.cjs advisor_recommend` and reshapes the CLI response back into the same `AdvisorHookResult` envelope the hook already understands. The CLI starts the daemon itself when the socket is cold, so a cold in-process path does not have to mean a silent miss.
 
 ---
 

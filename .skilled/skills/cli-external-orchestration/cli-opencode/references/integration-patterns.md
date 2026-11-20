@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.17.0
+version: 1.4.18.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -32,12 +32,12 @@ cli-opencode resolves this by documenting THREE orthogonal use cases. The smart 
 | Use case | Calling runtime | Target | Self-invocation? |
 |----------|-----------------|--------|------------------|
 | 1. External runtime to OpenCode | Claude Code, OpenCode, Copilot, raw shell | OpenCode for full plugin / skill / MCP runtime | No |
-| 2. In-OpenCode parallel detached session | OpenCode itself (TUI / web / serve / acp) | New OpenCode session via `--port N` (OpenCode 1 only, no OpenCode 2 `run` form, see `./install-and-versions.md`) | No (different session id) |
+| 2. In-OpenCode parallel detached session | OpenCode itself (TUI / web / serve / acp) | New OpenCode session via `--server <url>` against a running server | No (different session id) |
 | 3. Cross-AI orchestration handback | OpenCode / Copilot | OpenCode for spec-kit specific workflows | No |
 
 The cycle ADR-001 protects against is the operator inside OpenCode asking cli-opencode to "delegate this exact prompt to OpenCode". That case is REFUSED at the routing layer.
 
-**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
+**Version baseline.** This reference is pinned to OpenCode 2 at 2.3.2, the only supported version. Observations that name 2.0.32 were read on that release and have not been re-read on 2.3.2. Later versions are unsupported until re-verified. The install and upgrade path is in [`install-and-versions.md`](./install-and-versions.md).
 
 ---
 
@@ -79,32 +79,17 @@ Memory epilogue: include MEMORY_HANDBACK delimiters at the end of the response s
 
 ### Invocation shape
 
-On OpenCode 1 (1.19.3):
-
-```bash
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --agent general \
-  --variant max \
-  --format json \
-  --dir "$REPO_ROOT" \
-  "<prompt-from-template>" 2>&1
-```
-
-On OpenCode 2 (2.0.32), the same dispatch rides `max` on the model id as `#max`, replaces `--dir` with `cd`, and adds `--standalone`:
-
 ```bash
 cd "$REPO_ROOT" && opencode run \
   --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
-  --agent general \
   --format json \
-  "<prompt-from-template>" 2>&1
+  "<prompt-from-template>" </dev/null 2>&1
 ```
 
-On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
+The effort level rides the model id as `#max`, and the working directory moves into the `cd`. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
 
-OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash-1017#max`).
+OpenCode 2.0.32 listed no `opencode-go` provider on this machine (2.3.2 listed `opencode-go/` ids on 2026-11-19), so confirm that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash-1017#max`).
 
 ### Why it matters
 
@@ -120,7 +105,7 @@ Start the worker in the worktree and set `PWD` to the same path. A shell `cd <wo
 
 ### When to use
 
-The operator is already inside an OpenCode session (TUI, web, serve, acp). They want a SEPARATE OpenCode session (not a continuation, not a fork) to run an ablation suite, a worker farm, or a parallel research sweep. The new session has its own session id and its own state directory. Nothing is published: `--share` is a deprecated no-op on OpenCode 1.19.3.
+The operator is already inside an OpenCode session (TUI, web, serve, acp). They want a SEPARATE OpenCode session (not a continuation, not a fork) to run an ablation suite, a worker farm, or a parallel research sweep. The new session has its own session id. Nothing is published: `--share` is not a `run` flag.
 
 ### Smart-router signal
 
@@ -133,7 +118,7 @@ ADR-001's detection signal trips (in-OpenCode runtime). The router checks the pr
 - "spawn detached"
 - "share URL"
 
-If at least one of these phrases appears AND the prompt does NOT request "delegate this exact prompt", the router permits the dispatch with `--port <N>` (OpenCode 1 only, absent on OpenCode 2 `run`, see `./install-and-versions.md`).
+If at least one of these phrases appears AND the prompt does NOT request "delegate this exact prompt", the router permits the dispatch with `--server <url>` against a running server.
 
 ### Prompt template
 
@@ -150,7 +135,7 @@ Context:
 Constraints:
 - This session must NOT modify the parent session's state.
 - Write results to <state file path>.
-- Do not pass `--share`: it is a deprecated no-op on OpenCode 1.19.3 and publishes nothing.
+- Do not pass `--share`: it is not a `run` flag and publishes nothing.
 
 Success criteria:
 - <list>
@@ -158,28 +143,22 @@ Success criteria:
 
 ### Invocation shape
 
-On OpenCode 1 (1.19.3):
-
 ```bash
-opencode run \
-  --port 4096 \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --agent deep-research \
-  --variant max \
+# Start a headless server with `opencode serve`, then dispatch into it
+cd "$REPO_ROOT" && opencode run \
+  --server http://127.0.0.1:4096 \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
-  --dir "$REPO_ROOT" \
-  "<prompt-from-template>" 2>&1
+  "<prompt-from-template>" </dev/null 2>&1
 ```
-
-On OpenCode 2 (2.0.32), `run` has no `--port`, so this shape is unverified on OpenCode 2.0.32 (see `./install-and-versions.md`).
 
 ### Why it matters
 
 Parallel research, ablation studies, and worker farms need N concurrent sessions. Each must be independent. The detached pattern makes this possible without leaking state between sessions.
 
-### --share is a deprecated no-op
+### `--share` is not a `run` flag
 
-OpenCode 1.19.3 discontinued session sharing, so `--share` is a hidden, deprecated no-op: it prints `!  Session sharing has been discontinued` and publishes nothing. OpenCode 2 `run` has no such flag. No dispatch should pass it.
+`--share` publishes nothing: OpenCode `run` has no such flag. No dispatch should pass it.
 
 ---
 
@@ -225,27 +204,12 @@ Memory epilogue: include MEMORY_HANDBACK delimiters at the end so the calling ru
 
 ### Invocation shape
 
-On OpenCode 1 (1.19.3):
-
-```bash
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --agent general \
-  --variant max \
-  --format json \
-  --dir "$REPO_ROOT" \
-  "<prompt-from-template>" 2>&1
-```
-
-On OpenCode 2 (2.0.32), the same translation as use case 1 applies:
-
 ```bash
 cd "$REPO_ROOT" && opencode run \
   --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
-  --agent general \
   --format json \
-  "<prompt-from-template>" 2>&1
+  "<prompt-from-template>" </dev/null 2>&1
 ```
 
 The invocation shape is identical to use case 1. The difference is the prompt content, which targets a project-specific subsystem.
@@ -277,7 +241,7 @@ INPUT: prompt + calling runtime
 [CALLING RUNTIME]   [PROMPT KEYWORDS]
         |               |
         |               +-- parallel words ......... USE CASE 2 (in-OpenCode parallel)
-        |               +-- self-dispatch only ..... REFUSE (cycle — surface ADR-001 error)
+        |               +-- self-dispatch only ..... REFUSE (cycle: surface ADR-001 error)
         |
         +-- Anthropic (Claude Code) ............... USE CASE 1 (external to OpenCode)
         +-- Other (OpenCode Copilot)
@@ -303,17 +267,17 @@ Options:
 1. Use a sibling cli-* skill (cli-claude-code, cli-opencode)
    to dispatch a different model.
 2. Open a fresh shell session (no OpenCode parent) and re-run from there.
-3. If you wanted a parallel detached session (different session id, separate
-   state directory), restate the request with explicit "parallel detached" /
-   "ablation suite" / "worker farm" / "share URL" keywords — that triggers
-   use case 2 instead of refusal.
+3. If you wanted a parallel detached session (different session id), restate
+   the request with explicit "parallel detached" / "ablation suite" /
+   "worker farm" / "share URL" keywords: that triggers use case 2 instead of
+   refusal.
 ```
 
 ---
 
 ## 6. STDIN HANDLING: `</dev/null` IS REQUIRED FOR ALL NON-INTERACTIVE DISPATCH
 
-**On OpenCode 1, `opencode run` reads stdin at startup before session creation (opencode v1.14.39).** Without an explicit closed stdin, ANY non-interactive automation that redirects stdout/stderr hangs forever at 0% CPU, even with a clean tool registry, valid model, and `--pure` set (`--pure` is OpenCode 1 only). This is the third independent root cause discovered during the 027-xce-research-based-refinement deep-research run on 2026-05-08. See `../CHANGELOG-2026-05-08-tool-name-regex-fix.md` §Fix 4 and memory `feedback_opencode_run_requires_dev_null_stdin.md`. This stdin behaviour is unverified on OpenCode 2.0.32.
+**`stdin-redirect-required` (error).** Ad-hoc `opencode run` MUST close or redirect stdin (`</dev/null`). Without an explicit closed stdin, ANY non-interactive automation that redirects stdout/stderr can hang indefinitely at 0% CPU with zero output, even with a clean tool registry and a valid model. The recorded hang is from OpenCode 1 (v1.14.39), and no OpenCode 2 reproduction is recorded, so the redirect stays required. See memory `feedback_opencode_run_requires_dev_null_stdin.md`.
 
 ### Hang symptom (diagnostic)
 
@@ -329,15 +293,15 @@ If you see ALL of:
 ### Failure patterns (all hang)
 
 ```bash
-# WRONG #1 — file redirect without </dev/null
-opencode run --model X "<prompt>" > stdout.log 2> stderr.log
+# WRONG #1: file redirect without </dev/null
+opencode run -m <provider/model>#max "<prompt>" > stdout.log 2> stderr.log
 
-# WRONG #2 — combined redirect via tee
-opencode run --model X "<prompt>" 2>&1 | tee combined.log
+# WRONG #2: combined redirect via tee
+opencode run -m <provider/model>#max "<prompt>" 2>&1 | tee combined.log
 
-# WRONG #3 — background opencode in while-read loop without </dev/null
+# WRONG #3: background opencode in while-read loop without </dev/null
 while IFS= read -r line; do
-  opencode run --format json "<prompt>" > "$LOG" 2>&1 &
+  opencode run -m <provider/model>#max --format json "<prompt>" > "$LOG" 2>&1 &
 done < input.jsonl
 # Both bugs apply: stdin-startup-read AND silent loop-stdin consumption.
 ```
@@ -345,19 +309,19 @@ done < input.jsonl
 ### Fix patterns (all work)
 
 ```bash
-# RIGHT #1 — file redirect with </dev/null
-opencode run --model X "<prompt>" </dev/null > stdout.log 2> stderr.log
+# RIGHT #1: file redirect with </dev/null
+opencode run -m <provider/model>#max "<prompt>" </dev/null > stdout.log 2> stderr.log
 
-# RIGHT #2 — combined redirect with explicit closed stdin via < /dev/null
-opencode run --model X "<prompt>" </dev/null 2>&1 | tee combined.log
+# RIGHT #2: combined redirect with explicit closed stdin via < /dev/null
+opencode run -m <provider/model>#max "<prompt>" </dev/null 2>&1 | tee combined.log
 
-# RIGHT #3 — background in while-read loop
+# RIGHT #3: background in while-read loop
 while IFS= read -r line; do
-  opencode run --format json "<prompt>" > "$LOG" 2>&1 </dev/null &
+  opencode run -m <provider/model>#max --format json "<prompt>" > "$LOG" 2>&1 </dev/null &
 done < input.jsonl
 
-# RIGHT #4 — foreground pipe to tail (works WITHOUT </dev/null because the empty pipe upstream provides EOF)
-opencode run --model X "<prompt>" 2>&1 | tail -15
+# RIGHT #4: foreground pipe to tail (</dev/null is redundant under a pipe, because the upstream pipe provides EOF, and is stated anyway)
+opencode run -m <provider/model>#max "<prompt>" </dev/null 2>&1 | tail -15
 ```
 
 ### Why foreground `| tail` accidentally works
@@ -372,28 +336,12 @@ When you run `opencode run "..." 2>&1 | tail`, the shell sets up a pipe BEFORE i
 
 ```bash
 # canonical order
-opencode run --flags "<prompt>" </dev/null > stdout 2> stderr
-#                              ^^^^^^^^^^
+opencode run -m <provider/model>#max "<prompt>" </dev/null > stdout 2> stderr
+#                                               ^^^^^^^^^^
 #                              stdin from /dev/null (immediate EOF)
 ```
 
 ### Background dispatch from automation scripts (the deep-research / deep-review pattern)
-
-On OpenCode 1 (1.19.3):
-
-```bash
-timeout 720 opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
-  --pure \
-  --dangerously-skip-permissions \
-  "$(cat prompt.md)" \
-  </dev/null \
-  > "$LOG_DIR/iter-N-stdout.log" \
-  2> "$LOG_DIR/iter-N-stderr.log"
-```
-
-On OpenCode 2 (2.0.32), the same dispatch adds `--standalone` and rides `max` on the model id as `#max`:
 
 ```bash
 timeout 720 opencode run \
@@ -406,11 +354,7 @@ timeout 720 opencode run \
   2> "$LOG_DIR/iter-N-stderr.log"
 ```
 
-`--pure` (OpenCode 1 only) has no OpenCode 2 `run` form. The fanout passes `--auto` on OpenCode 2, where it approves permissions that are not explicitly denied. Whether `--auto` equals the v1-only `--dangerously-skip-permissions` is unverified (see `./install-and-versions.md`). This is the pattern enforced by the 4 `if_cli_opencode` blocks in the deep-research and deep-review YAML workflow files. Any new automation that dispatches opencode MUST follow it.
-
-### Upstream
-
-The bug is in opencode v1.14.39. The fix would be: in the `run` subcommand entrypoint, check `process.stdin.isTTY` (or equivalent) and skip the stdin read in non-interactive mode. The message is already provided as a positional argument, so stdin is informational only. Until upstream patches this, `</dev/null` at every callsite is the workaround. File a bug report with opencode-ai/opencode if not already filed.
+The fanout passes `--auto`, which approves permissions that are not explicitly denied. This is the pattern enforced by the 4 `if_cli_opencode` blocks in the deep-research and deep-review YAML workflow files. Any new automation that dispatches opencode MUST follow it.
 
 ---
 

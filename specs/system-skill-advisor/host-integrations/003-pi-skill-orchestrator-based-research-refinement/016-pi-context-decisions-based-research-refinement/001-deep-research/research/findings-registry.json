@@ -1,0 +1,934 @@
+{
+  "sessionId": "2026-11-18T06:54:55Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-decision-model-versus-local-scorer-rq1-rq4-where-would-a-hosted-per-skill-0-2-re",
+      "inboxId": null,
+      "text": "Decision model versus local scorer (RQ1, RQ4): where would a hosted per-skill 0-2 relevance score beat or lose to the advisor's five-lane fusion, and what do the extension's thresholds, cap, inventory floor and benchmark method teach about calibrating the advisor?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-additive-per-branch-advertising-rq2-does-the-advisor-brief-churn-between-prompts",
+      "inboxId": null,
+      "text": "Additive per-branch advertising (RQ2): does the advisor brief churn between prompts in one session, does that cost routing quality or prompt cache, and would session memory of already-surfaced skills help?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-context-beyond-the-prompt-rq3-do-short-follow-up-prompts-route-badly-today-and-w",
+      "inboxId": null,
+      "text": "Context beyond the prompt (RQ3): do short follow-up prompts route badly today, and would a bounded slice of the previous reply fix that?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-allowlists-failure-policy-and-observability-rq5-rq6-rq8-pinned-always-surface-se",
+      "inboxId": null,
+      "text": "Allowlists, failure policy and observability (RQ5, RQ6, RQ8): pinned always-surface sets, fail-closed versus fail-open, and why-was-this-surfaced history. Which gaps does the advisor have?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-tool-and-mcp-filtering-rq7-does-any-part-of-our-stack-over-advertise-tools-the-s",
+      "inboxId": null,
+      "text": "Tool and MCP filtering (RQ7): does any part of our stack over-advertise tools the same way, and would the idea transfer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-decision-model-versus-local-scorer-rq1-rq4-where-would-a-hosted-per-skill-0-2-re",
+      "inboxId": null,
+      "text": "Decision model versus local scorer (RQ1, RQ4): where would a hosted per-skill 0-2 relevance score beat or lose to the advisor's five-lane fusion, and what do the extension's thresholds, cap, inventory floor and benchmark method teach about calibrating the advisor?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-additive-per-branch-advertising-rq2-does-the-advisor-brief-churn-between-prompts",
+      "inboxId": null,
+      "text": "Additive per-branch advertising (RQ2): does the advisor brief churn between prompts in one session, does that cost routing quality or prompt cache, and would session memory of already-surfaced skills help?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-context-beyond-the-prompt-rq3-do-short-follow-up-prompts-route-badly-today-and-w",
+      "inboxId": null,
+      "text": "Context beyond the prompt (RQ3): do short follow-up prompts route badly today, and would a bounded slice of the previous reply fix that?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-allowlists-failure-policy-and-observability-rq5-rq6-rq8-pinned-always-surface-se",
+      "inboxId": null,
+      "text": "Allowlists, failure policy and observability (RQ5, RQ6, RQ8): pinned always-surface sets, fail-closed versus fail-open, and why-was-this-surfaced history. Which gaps does the advisor have?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-tool-and-mcp-filtering-rq7-does-any-part-of-our-stack-over-advertise-tools-the-s",
+      "inboxId": null,
+      "text": "Tool and MCP filtering (RQ7): does any part of our stack over-advertise tools the same way, and would the idea transfer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "RQ2 additive per-branch advertising and brief churn.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ7 tool and MCP filtering.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ3 previous-reply context for short follow-ups.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ5/RQ6/RQ8 allowlists, failure policy, observability.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ7: tool and MCP filtering.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None of RQ1 to RQ8 are open. Iteration 5 can consolidate the verdicts.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None of the tracked key questions. Open confirmations are listed in finding 6.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-a-hosted-per-skill-score-as-a-replacement-loses-on-the-advisor-s-job-confirmed-f",
+      "text": "**A hosted per-skill score as a replacement loses on the advisor's job (confirmed from benchmark data plus inference on fit). REJECT as replacement.** At the default policy, both arms kept about 10 of 30 skills for tasks needing 3-4, with precision 0.39 and recall 1.00 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:173]. The cap, not the threshold, decided 38 of 80 runs [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:17]. One model scored almost every skill near 1 and kept 12 on the unrelated control [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:200]. The policy is built for high-recall advertising, where a miss is costly and an extra listing is cheap. The advisor brief pushes one route, or an ambiguous pair, into every prompt [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:83]. For that job precision at top-1 is what matters, and the measured precision is the policy's weak side. [INFERENCE: based on the benchmark precision and the advisor's top-1 pass contract] Latency also misses our hook budget. Measured picker time ranged 254-5,704 ms [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:124], while the OpenCode hook times out at 3,000 ms [SOURCE: .skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts:28]. Every call also sends the prompt off the machine [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/skill-picking.md:33].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`016-.../001-deep-research/spec.md:98-141` (Research Brief)",
+        "`context/pi-context-decisions-main/docs/skill-picking.md`",
+        "`context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,75`",
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:23-25,147-171`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73,363-368,509-522,1468-1470`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:29-32,72-83`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:209`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:114-147`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:145-168,270`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts:28`"
+      ]
+    },
+    {
+      "id": "finding-1-7-benchmark-method-worth-copying-negative-controls-a-required-acceptable-split-and",
+      "text": "**Benchmark method worth copying: negative controls, a required/acceptable split, and policy-pinned resumable raw data (confirmed for the extension, gap on our side inferred). ADAPT.** The extension benchmark fixes labels before any live run. It separates `required` from `acceptable` adjacent skills, so a reasonable adjacent pick is not an error. It includes an unrelated control where any pick is a false positive [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:83-92]. It also refuses to resume a raw file whose recorded policy or inventory hash differs [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:66-68]. The advisor's calibration bench is stronger on calibration itself: reliability buckets, ECE and a Brier/ECE baseline-tolerance gate [SOURCE: .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:145-168] [SOURCE: .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:270]. The extension has none of that. Proposed change: add an explicit abstain metric to our routing benchmarks (the rate at which a no-skill prompt yields a passing recommendation), plus an `acceptable` set per golden prompt so adjacent hits are scored apart from wrong routes. Benefit: the false-positive surface the extension shows is its weak spot gets measured on ours. Cost: label work on the golden corpus. Risk: labels drift without a pinned inventory hash. UNKNOWN: whether `routing-golden-prompts.vitest.ts` already carries expected-null rows. I did not read its fixtures, and reading them would decide whether this is new work or a reporting change.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`016-.../001-deep-research/spec.md:98-141` (Research Brief)",
+        "`context/pi-context-decisions-main/docs/skill-picking.md`",
+        "`context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,75`",
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:23-25,147-171`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73,363-368,509-522,1468-1470`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:29-32,72-83`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:209`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:114-147`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:145-168,270`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts:28`"
+      ]
+    },
+    {
+      "id": "finding-1-3-both-scores-are-rubric-indices-not-probabilities-the-advisor-s-floors-hide-diffe",
+      "text": "**Both scores are rubric indices, not probabilities. The advisor's floors hide differences in evidence the way the extension's expectation does (inference).** The benchmark shows argmax labels and thresholded expectations disagreeing on eligibility for 2-15 of 240 verdicts per model, because one number cannot express a three-way distribution [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:32] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:233]. The advisor's 0.82 floor does the same: many differently evidenced skills land on one value. `ambiguity.ts` already concedes this by dropping floored members from the confidence-margin cluster [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:29-32] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:72-75]. [INFERENCE: based on the floor table and the ambiguity exception] The lesson is to read uncertainty, not the confidence value, as the separating signal. A floored count per recommendation in the brief diagnostics would show how often the floor decides the pass. What would confirm it: count `confidenceFloored === true` among passing top-1s over the golden prompts.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`016-.../001-deep-research/spec.md:98-141` (Research Brief)",
+        "`context/pi-context-decisions-main/docs/skill-picking.md`",
+        "`context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,75`",
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:23-25,147-171`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73,363-368,509-522,1468-1470`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:29-32,72-83`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:209`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:114-147`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:145-168,270`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts:28`"
+      ]
+    },
+    {
+      "id": "finding-1-8-do-not-port-the-inventory-floor-inferred-reject-the-extension-skips-filtering-be",
+      "text": "**Do not port the inventory floor (inferred). REJECT.** The extension skips filtering below 8 skills [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-filter.ts:147] because filtering a small inventory saves little and risks hiding a needed skill. The advisor removes nothing from the runtime's native skill listing. It adds one push brief on top, so there is no advertisement to protect. [INFERENCE: based on skill-picking.md:22-23 describing replacement of the native skills section versus the advisor's additive brief] What would confirm it: check that no advisor hook rewrites the host's skills section.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`016-.../001-deep-research/spec.md:98-141` (Research Brief)",
+        "`context/pi-context-decisions-main/docs/skill-picking.md`",
+        "`context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,75`",
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:23-25,147-171`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73,363-368,509-522,1468-1470`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:29-32,72-83`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:209`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:114-147`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:145-168,270`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts:28`"
+      ]
+    },
+    {
+      "id": "finding-1-6-one-global-threshold-is-wrong-across-models-and-the-extension-says-so-itself-con",
+      "text": "**One global threshold is wrong across models, and the extension says so itself (confirmed).** The post-hoc sweep puts the best floor anywhere from about 1.0 to 1.75 depending on the model. For one model no needed skill reaches 1.5 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:297]. For the same Jev model our `cli-jev` path targets, F1 rises from 0.40 at the default to 0.88 at 1.75 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:283]. The document closes by asking for held-out labeled tasks per model, rubric and version [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:298]. Any model lane in the advisor would need a per-model threshold keyed to model id and version, never a shared constant. Verdict for copying the extension's default 0.375 into the advisor: REJECT, because it was never calibrated, not even for the extension's own default.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`016-.../001-deep-research/spec.md:98-141` (Research Brief)",
+        "`context/pi-context-decisions-main/docs/skill-picking.md`",
+        "`context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,75`",
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:23-25,147-171`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73,363-368,509-522,1468-1470`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:29-32,72-83`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:209`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:114-147`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:145-168,270`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts:28`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-advisor-s-pass-rule-is-a-two-bar-gate-on-a-floored-pseudo-confidence-confirm",
+      "text": "**The advisor's pass rule is a two-bar gate on a floored pseudo-confidence (confirmed from code).** A recommendation passes when `confidence >= confidenceThreshold && uncertainty <= uncertaintyThreshold` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1468-1470]. Confidence is a ramp (`0.52 + 0.43 * liveNormalized`), lifted to hard floors of 0.82 for task intent, direct score and read-only routes, pinned to 0.72 when only the derived lane carries the score, and capped at 0.95 [SOURCE: .skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:114-130]. Uncertainty is stepped by evidence count (0.42/0.30/0.22/0.18), plus 0.08 when confidence is below 0.8 [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:209] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:509-522]. The hook bench pins the render thresholds at 0.8/0.35 [SOURCE: .skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts:28]. Inferred: 0.8/0.35 is also the default of `resolvedConfidenceThreshold()` and `resolvedUncertaintyThreshold()` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73]. I did not read those resolver bodies, and reading them would confirm it.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`016-.../001-deep-research/spec.md:98-141` (Research Brief)",
+        "`context/pi-context-decisions-main/docs/skill-picking.md`",
+        "`context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,75`",
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:23-25,147-171`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73,363-368,509-522,1468-1470`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:29-32,72-83`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:209`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:114-147`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:145-168,270`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts:28`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-extension-s-selection-policy-confirmed-from-code-each-skill-gets-an-expected",
+      "text": "**The extension's selection policy (confirmed from code).** Each skill gets an expected rubric index in [0, 2]. It is eligible when `score >= 2 * threshold` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-filter.ts:23]. Eligible skills are ranked and sliced to `maxSkills` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-filter.ts:25]. The defaults are cap 12 and inventory floor 8 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts:75], and below the floor filtering is skipped as `below-minimum` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-filter.ts:155]. The decision call defaults to `failMode: \"closed\"` with an 8,000 ms timeout [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts:67]. A configuration error forces fail-closed even when fail-open is set [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-filter.ts:170-171]. The normalized default is 0.375, which is raw 0.75 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:5].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`016-.../001-deep-research/spec.md:98-141` (Research Brief)",
+        "`context/pi-context-decisions-main/docs/skill-picking.md`",
+        "`context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,75`",
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:23-25,147-171`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73,363-368,509-522,1468-1470`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:29-32,72-83`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:209`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:114-147`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:145-168,270`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts:28`"
+      ]
+    },
+    {
+      "id": "finding-1-5-where-a-model-score-could-win-a-bounded-shadow-or-tie-break-lane-on-ambiguous-cl",
+      "text": "**Where a model score could win: a bounded shadow or tie-break lane on ambiguous clusters only (inferred). ADAPT.** On the 30-skill demo, four of five models gave needed skills median scores of about 1.85-2.0 and non-required skills about 0.07-0.35, a separation lexical lanes cannot get on paraphrase [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:200]. The advisor already has a shadow seam: a `semantic_shadow` lane whose weight is zeroed when not live [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:363-368], and a shadow sink under `runtime/lib/shadow/` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts:1]. Proposed change: off the hook path only (daemon or async), score just the members of an ambiguity cluster with a decision model through the existing `cli-jev` path, and log the verdict to the shadow sink without changing the brief. Benefit: cluster size is usually 2, so the call is small, and shadow logs measure whether it would have resolved ties correctly. Cost: about $0.0002-0.0018 per call at benchmark prices [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:132-146], plus prompt egress. Risk: calibration is per model (finding 6), so a shadow verdict needs its own threshold before it can ever be promoted. What would confirm it: a shadow-log run over the golden prompts' ambiguous rows, scoring tie-break accuracy against the gold label.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`016-.../001-deep-research/spec.md:98-141` (Research Brief)",
+        "`context/pi-context-decisions-main/docs/skill-picking.md`",
+        "`context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,75`",
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:23-25,147-171`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73,363-368,509-522,1468-1470`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:29-32,72-83`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:209`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:114-147`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:145-168,270`",
+        "`.skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts:28`"
+      ]
+    },
+    {
+      "id": "finding-2-6-observability-rq8-the-extension-keeps-a-replayable-per-turn-history-with-each-sk",
+      "text": "**Observability (RQ8): the extension keeps a replayable per-turn history with each skill's score and threshold; the advisor's durable record drops the skill on purpose (confirmed). ADAPT, opt-in only.** The extension history is read from the committed branch. It marks each advertised skill with `score X / ≥min` on the same 0-2 scale, or `pinned (allowlist)`, `base`, `re-delivered` or `unknown`, and never infers a mark from current settings [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/decisions-history.ts:12-27] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/decisions-history.ts:47-77]. The advisor's diagnostic record has `skillLabel` but no confidence, uncertainty or lane [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:50-64]. Persistence strips `skillLabel` and `errorDetails` unless `SKILL_ADVISOR_DEBUG` is set, because they say what the prompt was about [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:456-460]. \"Why\" is answerable only live: `advisor_recommend` with `includeAttribution` returns lane attribution for a prompt you re-run, and `advisor_status` reports freshness and lane weights [SOURCE: .skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md:48-50]. The gap: after the fact, you cannot see what was surfaced on prompt N, or why, without the prompt. Re-running needs the prompt text, and that text may hit a different generation or cache state. Candidate: under the existing `SKILL_ADVISOR_DEBUG` opt-in only, add the top recommendation's confidence, uncertainty and `dominantLane` to the persisted record. The type already carries `dominantLane` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts:165]. The prompt-free default stays as it is. Making it default-on would break a deliberate prompt-safety invariant, so it is rejected.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:55-106`",
+        "`context/pi-context-decisions-main/src/apps/allowlist.ts:10-73`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,189-192`",
+        "`context/pi-context-decisions-main/src/extension/runtime.ts:223,254,282-287,316,329`",
+        "`context/pi-context-decisions-main/src/extension/decisions-history.ts:1-110`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:225-479`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:24-79,456-460`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:630-674`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts:165`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md:48-51`"
+      ]
+    },
+    {
+      "id": "finding-2-5-pins-rq5-the-extension-s-pins-are-the-fail-closed-floor-and-a-scoring-bypass-the",
+      "text": "**Pins (RQ5): the extension's pins are the fail-closed floor and a scoring bypass; the advisor has no pin concept (confirmed). REJECT a pinned set in the brief.** Effective pins are the union of `relevance.pinned` and the global and project allowlists [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:223]. Pinned skills skip scoring and the cap [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-filter.ts:76-78]. Names are bounded, at most 1000 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/allowlist.ts:18-24]. In the advisor, grep over `runtime/lib`, `references` and the Claude hook found no pinned or always-surface set; the only constant block is the directive and hygiene text appended to every brief [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:663]. Pins exist in the extension because filtering can hide a skill. The advisor never hides a skill, since the host still lists every skill. A pin would repeat a constant line on every prompt, which is the churn the directive-lifecycle dedup was built to remove [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:390-427]. The \"always route X\" need is already met outside the advisor by the framework's Gate 2 artifact trigger (sk-code before code writes, sk-doc before `.md` writes). [INFERENCE: from the loaded CLAUDE.md Gate 2 text; not an advisor file.]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:55-106`",
+        "`context/pi-context-decisions-main/src/apps/allowlist.ts:10-73`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,189-192`",
+        "`context/pi-context-decisions-main/src/extension/runtime.ts:223,254,282-287,316,329`",
+        "`context/pi-context-decisions-main/src/extension/decisions-history.ts:1-110`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:225-479`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:24-79,456-460`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:630-674`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts:165`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md:48-51`"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-advisor-has-two-fail-open-outcomes-and-one-of-them-is-silent-to-the-model-co",
+      "text": "**The advisor has two fail-open outcomes, and one of them is silent to the model (confirmed). ADAPT.** When the CLI returns a failed or absent result, the hook emits a visible outage directive with a hand-routing command [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:389] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:633-663]. The parse-failure paths and the unhandled-exception path return `{}`: no context at all, with only a stderr line and the durable diagnostic [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:329-356] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:468-479]. The model then cannot tell \"advisor crashed\" from \"advisor disabled\". The kill-switch path (`status: 'skipped'`) correctly returns `{}` [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:317-326]. The unhandled-exception path is the one that hides a real fault from the model. Candidate: on the unhandled catch, emit the static `renderAdvisorTimeoutFallback()` text, which needs no scorer state [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:669-674]. That would need its own try, so a render fault cannot escalate. Whether the other runtime hooks share the same `{}` path is UNKNOWN; I read only the Claude hook.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:55-106`",
+        "`context/pi-context-decisions-main/src/apps/allowlist.ts:10-73`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,189-192`",
+        "`context/pi-context-decisions-main/src/extension/runtime.ts:223,254,282-287,316,329`",
+        "`context/pi-context-decisions-main/src/extension/decisions-history.ts:1-110`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:225-479`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:24-79,456-460`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:630-674`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts:165`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md:48-51`"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-extension-tells-the-operator-the-advisor-tells-only-the-record-confirmed-bot",
+      "text": "**The extension tells the operator; the advisor tells only the record (confirmed both sides, gap inferred). ADAPT, low priority.** The extension raises a warning naming the reason and code and pointing at `/decisions status`. It skips the warning for `aborted`, so a superseded prompt does not nag [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:329]. Superseded or aborted decisions are still recorded as `fail-closed` with `errorCode: \"aborted\"` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:282-287]. The advisor's operator signal is a rolling fail-open rate with warn and page thresholds in the hook health section [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:66-79]. That catches a sustained outage. It cannot catch one silent crash on the prompt that mattered. Finding 3 closes most of this gap through the model, so no separate operator channel is proposed.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:55-106`",
+        "`context/pi-context-decisions-main/src/apps/allowlist.ts:10-73`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,189-192`",
+        "`context/pi-context-decisions-main/src/extension/runtime.ts:223,254,282-287,316,329`",
+        "`context/pi-context-decisions-main/src/extension/decisions-history.ts:1-110`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:225-479`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:24-79,456-460`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:630-674`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts:165`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md:48-51`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-extension-s-failure-policy-is-a-filter-policy-fail-closed-keeps-only-pins-an",
+      "text": "**The extension's failure policy is a filter policy: fail-closed keeps only pins and unfilterable skills (confirmed).** When the decision fails or the policy is invalid, the kept set is the skills with `disableModelInvocation` plus the pinned set; fail-open keeps the whole list [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-filter.ts:68-74]. An invalid policy can never opt in to fail-open [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-filter.ts:69-70]. The default is `failMode: \"closed\"`, `timeoutMs: 8000` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts:67]. Errors are reduced to a closed set of safe codes, with anything else mapped to `decision-failed` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-filter.ts:102-106].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:55-106`",
+        "`context/pi-context-decisions-main/src/apps/allowlist.ts:10-73`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,189-192`",
+        "`context/pi-context-decisions-main/src/extension/runtime.ts:223,254,282-287,316,329`",
+        "`context/pi-context-decisions-main/src/extension/decisions-history.ts:1-110`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:225-479`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:24-79,456-460`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:630-674`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts:165`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md:48-51`"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-extension-s-recorded-not-inferred-rule-is-the-transferable-discipline-confir",
+      "text": "**The extension's recorded-not-inferred rule is the transferable discipline (confirmed for the extension; advisor side inferred).** The history note says counts are historical advertisements, not proof of provider visibility, and that missing picks are `unknown` rather than recomputed [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/decisions-history.ts:27]. Any advisor \"why\" view built on finding 6 should follow the same rule. Show what was recorded at emit time, and mark gaps `unknown`, never a fresh re-score dressed as history. [INFERENCE: a re-score after an `advisor_rebuild` can differ from what was emitted.]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:55-106`",
+        "`context/pi-context-decisions-main/src/apps/allowlist.ts:10-73`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,189-192`",
+        "`context/pi-context-decisions-main/src/extension/runtime.ts:223,254,282-287,316,329`",
+        "`context/pi-context-decisions-main/src/extension/decisions-history.ts:1-110`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:225-479`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:24-79,456-460`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:630-674`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts:165`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md:48-51`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-two-policy-words-mean-opposite-outcomes-in-the-two-systems-inference-do-not-",
+      "text": "**The two policy words mean opposite outcomes in the two systems (inference). Do not port \"fail-closed\" by name.** The extension filters a list the host would otherwise advertise in full, so its fail-open costs tokens and its fail-closed risks hiding a needed skill. The advisor adds a hint on top of a skill list the host already advertises, so its \"fail open\" (emit nothing) already lands on the extension's fail-closed outcome minus the pins. [INFERENCE: based on skill-filter.ts:68-74 and the advisor hook's empty returns at user-prompt-submit.ts:326,340,356,479.] Porting the extension's fail-closed default would therefore mean nothing for the advisor. The question that transfers is which failures each policy hides from whom.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`context/pi-context-decisions-main/src/apps/skill-filter.ts:55-106`",
+        "`context/pi-context-decisions-main/src/apps/allowlist.ts:10-73`",
+        "`context/pi-context-decisions-main/src/settings.ts:67,189-192`",
+        "`context/pi-context-decisions-main/src/extension/runtime.ts:223,254,282-287,316,329`",
+        "`context/pi-context-decisions-main/src/extension/decisions-history.ts:1-110`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:225-479`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:24-79,456-460`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:630-674`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts:165`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md:48-51`"
+      ]
+    },
+    {
+      "id": "finding-3-6-do-not-feed-reply-text-into-the-lexical-lanes-use-a-weak-follow-up-guard-instead",
+      "text": "**Do not feed reply text into the lexical lanes. Use a weak-follow-up guard instead. INFERRED.** The extension's context goes to a model that is told to treat it as data [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/relevance.ts:149]. Our lanes are lexical and derived, and an assistant reply often names several skills, gates and commands. Concatenating up to 2,000 characters of reply would drag the fusion toward whatever the reply mentioned, and it would also break the exact-prompt cache key [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:33]. Proposed change: a guard. When a prompt fires on weak grounds (`length_and_token_threshold`, or `work_intent` at the token floor) and its top recommendation is below the confidence bar, emit nothing rather than a context-free brief, and let the prior brief in history stand. Benefit: no contradicting brief on follow-ups, with no new data read and no privacy surface. Cost: one branch in the policy or render step. Risk: a real topic change phrased tersely gets no brief. That is the same outcome as today's silent \"continue\", and the user can still name a skill. **Verdict: ADAPT** the guard, after the benchmark in finding 5 shows the harm is real. **REJECT** sending previous-reply text to the local scorer. A shadow hosted lane (RQ1, iteration 1) is the only place where reply context would fit.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/skill-state.ts:14`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-additions.ts:43`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:266`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:24`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/skill-picking.md:33`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:182`",
+        "`.skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json:84`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:390`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:171`"
+      ]
+    },
+    {
+      "id": "finding-3-3-session-memory-that-hides-already-surfaced-skills-would-weaken-the-brief-inferre",
+      "text": "**Session memory that hides already-surfaced skills would weaken the brief. INFERRED.** The extension can hide what it already advertised because the advertisement stays in the system prompt on that branch [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/skill-state.ts:16]. An advisor brief is a per-turn user-message attachment, and compaction can summarize it away. That is why the Pi hook resets its dedup on compaction [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:252]. If the advisor stopped naming a skill because it surfaced N turns ago, the model could lose it after compaction. Proposed change: none. **Verdict: REJECT.** The advisor's context has no durable advertisement that suppression could rely on. Confirm by checking whether a compacted Claude transcript keeps prior `additionalContext` text.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/skill-state.ts:14`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-additions.ts:43`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:266`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:24`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/skill-picking.md:33`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:182`",
+        "`.skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json:84`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:390`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:171`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-advisor-dedups-churn-as-text-not-as-skills-and-nobody-measures-churn-confirm",
+      "text": "**The advisor dedups churn as text, not as skills, and nobody measures churn. CONFIRMED.** On a proven repeat, the Claude hook keeps the brief's head and drops the constant directive block [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:390] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:121]. The Pi hook suppresses a contribution only when it is byte-identical to the last one in the same session [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:171], and it clears that memory on `session_compact` [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:252]. The exact-prompt cache is keyed on the canonical prompt with a 5-minute TTL [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:33], so it never joins different prompts in one session. The extension's counterpart is a score cache keyed on task, backend and limits, which adds next-best skills for the same task without a new call [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-additions.ts:43]. No advisor surface reports how often the top skill flips between consecutive prompts in one session. The hook already writes a per-turn `skillLabel` into its diagnostic record [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:436]. Proposed change: compute a per-session flip rate offline from those existing diagnostic records, with no new persisted field. That stays clear of the iteration-2 block on persisting surfaced skills by default. Benefit: we learn whether churn is a real problem before designing anything for it. Cost: one offline script. Risk: low. [INFERENCE: whether the diagnostic records carry a session key that can group turns is unverified; confirm by reading the diagnostic writer's record shape.] **Verdict: ADAPT.** Measure churn from data we already write before building any session memory.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/skill-state.ts:14`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-additions.ts:43`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:266`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:24`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/skill-picking.md:33`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:182`",
+        "`.skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json:84`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:390`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:171`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-extension-is-additive-because-of-where-it-injects-not-because-additive-routi",
+      "text": "**The extension is additive because of where it injects, not because additive routing is better. CONFIRMED (mechanism), INFERRED (cache motive).** The extension rewrites Pi's native system-prompt skills section (`event.systemPromptOptions.skills = selected` inside `apply`) [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:274]. It rebuilds the set of advertised skills from the system sections already committed on the active branch [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/skill-state.ts:14]. It also scores only skills that have not been advertised yet, and an advertised skill can never use up the cap [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-additions.ts:16] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-additions.ts:112]. Retracting a skill would rewrite an earlier system section, which breaks the model's view of the session and the cached prefix. The advisor injects into the current user turn instead. The Pi hook appends the brief to `event.text` and returns `action: \"transform\"` [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:356]. The Claude hook emits it as `additionalContext` on `UserPromptSubmit` [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:446]. So a brief that changes between prompts never rewrites an earlier turn, and each sent brief stays fixed in history. [INFERENCE: provider prompt caches key on an unchanged prefix, so text appended to the newest turn adds only new tokens; confirm by comparing cache-read token counts on two consecutive Claude turns whose briefs differ.] Proposed change: none. Benefit: none, since our injection point has no cache problem to solve. Cost and risk of porting: an additive-only brief would keep a stale top skill on screen after the task changes. **Verdict: REJECT.** The cache problem the additive design solves does not exist at the advisor's injection point.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/skill-state.ts:14`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-additions.ts:43`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:266`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:24`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/skill-picking.md:33`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:182`",
+        "`.skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json:84`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:390`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:171`"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-real-rq3-risk-is-mid-length-follow-ups-that-fire-with-no-context-confirmed-c",
+      "text": "**The real RQ3 risk is mid-length follow-ups that fire with no context. CONFIRMED (code trace), INFERRED (harm).** \"fix that too\" fires through `work_intent_with_meaningful_tokens`. `fix` is a work verb, and `that` and `too` are not stop words, so it reaches the 3-token floor [SOURCE: .skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json:54] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:182]. \"yes, apply the second option\" fires through `length_and_token_threshold`: 28 characters and 4 meaningful tokens [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:192]. Both are scored on their own words alone. A fresh brief built from \"fix\" or \"option\" can name a different skill than the one the session is using, and it lands in the newest turn, where it carries the most weight. The extension avoids this by sending the previous final reply (up to 2,000 characters) as `state.previousReply` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/skill-picking.md:33], plus up to 12 past-turn summaries of 240 characters each, capped at 2,000 characters [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:24]. It folds both into its cache key [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:308]. On the advisor side, the Claude hook receives `transcript_path` but only stats its size for dedup [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:403]. The Pi hook passes only `prompt`, `cwd` and `hook_event_name` [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:289]. No advisor path reads prior turn content. [INFERENCE: confirm the harm with a benchmark of follow-up pairs, each holding a primed prompt and then a weak follow-up, scoring whether the follow-up's top skill contradicts the primed one.]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/skill-state.ts:14`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-additions.ts:43`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:266`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:24`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/skill-picking.md:33`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:182`",
+        "`.skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json:84`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:390`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:171`"
+      ]
+    },
+    {
+      "id": "finding-3-4-very-short-follow-ups-such-as-continue-or-do-it-do-not-route-badly-they-do-not-r",
+      "text": "**Very short follow-ups such as \"continue\" or \"do it\" do not route badly. They do not route at all. CONFIRMED (code trace).** `continue` and `do it` are not in `CASUAL_ACKNOWLEDGEMENTS` [SOURCE: .skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json:4], and neither `do`, `continue` nor `proceed` is in `WORK_INTENT_VERBS` [SOURCE: .skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json:20]. They sit under the 20-character and 50-character floors [SOURCE: .skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json:84], so `shouldFireAdvisor` returns `fire: false` with `below_prompt_policy_threshold` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:213]. The previous turn's brief is still in history, so the model carries the prior route forward. That is the outcome RQ3 wants, reached without any context. The extension gets the same effect differently: it sends prior context only when the task is non-empty [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:266], and an additive brief never retracts a skill. **Verdict: no change needed for very short follow-ups.** [INFERENCE: confirm by running `advisor_recommend` on \"continue\" and \"do it\" and reading `diagnostics.policyReason`; that probe was blocked this iteration.]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/skill-state.ts:14`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/skill-additions.ts:43`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/runtime.ts:266`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:24`",
+        "`specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/skill-picking.md:33`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:182`",
+        "`.skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json:84`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:390`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:171`"
+      ]
+    },
+    {
+      "id": "finding-4-4-call-gating-code-mode-has-no-per-task-gate-that-is-a-gap-only-in-theory-confirme",
+      "text": "**Call gating: Code Mode has no per-task gate. That is a gap only in theory (confirmed absence; risk inferred).** `call_tool_chain` executes code \"with direct access to all registered tools\" [SOURCE: .skilled/skills/mcp-code-mode/mcp-server/index.ts:354], and `list_tools` returns every registered name [SOURCE: .skilled/skills/mcp-code-mode/mcp-server/index.ts:307]. The launcher does no manual filtering. It only resolves a Node interpreter and spawns the server [SOURCE: .skilled/bin/mcp-code-mode-launcher.cjs:141]. The extension's own `tool_call` gate cannot stop codemode-style access in a meaningful way either: it gates by tool name, and it admits that `bash` and discovery are unaffected [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts:7]. In our stack, the controls that actually bind are static ones: the host permission prompts and per-agent `permission:` blocks (for example `chrome_devtools: deny` in the dispatched deep-research agent definition) [INFERENCE: based on the agent persona frontmatter supplied in this dispatch]. **Verdict: REJECT.** A relevance-scored gate is the wrong tool for safety, because a probabilistic model call would decide access. It is not needed for context, per finding 2. If per-task MCP scoping is ever wanted, it belongs in static agent permissions or UTCP manual enablement, not in an advisor-scored gate.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/tool-policy.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/README.md",
+        ".mcp.json, opencode.json, .utcp_config.json",
+        ".skilled/skills/mcp-code-mode/mcp-server/index.ts, .skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/bin/mcp-code-mode-launcher.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-1-extension-mechanism-confirmed-from-code-tool-filtering-is-opt-in-and-off-by-defa",
+      "text": "**Extension mechanism (confirmed from code).** Tool filtering is opt-in and off by default: `enabled: false, mode: \"tools\", cadence: \"prompt\", maxAdded: 8, minCandidates: 0` and empty `alwaysAllowedTools` / `alwaysAllowedMcpServers` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts:71]. It has two levers. Declared tools are removed with `pi.setActiveTools`, and the filter only ever restores tools it removed itself. Codemode and deferred tools cannot be hidden, so they are gated at `tool_call` instead [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts:5]. Availability is additive per branch: internal tools are always available, and a group is available when it is in the ledger or an allowlist [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/tool-policy.ts:45]. The file comment says it is \"NOT a sandbox\", and the README repeats the point [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts:8] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/README.md:159].",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/tool-policy.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/README.md",
+        ".mcp.json, opencode.json, .utcp_config.json",
+        ".skilled/skills/mcp-code-mode/mcp-server/index.ts, .skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/bin/mcp-code-mode-launcher.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-6-fail-closed-polarity-differs-for-tools-confirmed-from-code-for-tools-the-extensi",
+      "text": "**Fail-closed polarity differs for tools (confirmed from code).** For tools, the extension fails closed. With no registry snapshot it blocks every external call, a throwing allowlist read falls back to fewer grants, and an unknown tool on a degraded registry is blocked [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts:360] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts:461]. That is the right polarity for an access gate, and the wrong one for the advisor's additive brief. This agrees with iteration 2's REJECT of porting `failMode: \"closed\"` by name. The two features in one extension use opposite failure policies, which supports the iteration 2 reading that polarity must follow what the component does: an access gate fails closed, an advertisement fails open.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/tool-policy.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/README.md",
+        ".mcp.json, opencode.json, .utcp_config.json",
+        ".skilled/skills/mcp-code-mode/mcp-server/index.ts, .skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/bin/mcp-code-mode-launcher.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-2-our-native-tool-surface-is-one-server-with-seven-fixed-tools-confirmed-from-conf",
+      "text": "**Our native tool surface is one server with seven fixed tools (confirmed from config and code).** Claude Code registers exactly one MCP server, `code_mode` [SOURCE: .mcp.json:3], and OpenCode registers the same one [SOURCE: opencode.json:22]. Behind it, `.utcp_config.json` holds 13 manuals: aside, three chrome_devtools instances, clickup_official, figma, github, gitkraken, mobbin, notion, obsidian, refero and webflow [SOURCE: .utcp_config.json:16] [SOURCE: .utcp_config.json:233]. Code Mode registers seven static meta-tools: `register_manual`, `deregister_manual`, `search_tools`, `list_tools`, `get_required_keys_for_tool`, `tool_info` and `call_tool_chain` [SOURCE: .skilled/skills/mcp-code-mode/mcp-server/index.ts:245] [SOURCE: .skilled/skills/mcp-code-mode/mcp-server/index.ts:352]. Their descriptions are fixed strings that never list a manual's tools [SOURCE: .skilled/skills/mcp-code-mode/mcp-server/index.ts:354]. The roughly 200 manual tools reach context only when the model pulls them through `search_tools`, which is capped by a `limit` parameter [SOURCE: .skilled/skills/mcp-code-mode/mcp-server/index.ts:281] [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:12]. So the problem the extension solves, too many declared tool schemas in every request, does not exist on our native surface. Code Mode's pull design already removed it.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/tool-policy.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/README.md",
+        ".mcp.json, opencode.json, .utcp_config.json",
+        ".skilled/skills/mcp-code-mode/mcp-server/index.ts, .skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/bin/mcp-code-mode-launcher.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-3-verdict-on-porting-the-advertisement-filter-reject-inferred-from-findings-1-and-",
+      "text": "**Verdict on porting the advertisement filter: REJECT (inferred from findings 1 and 2).** The only tool schemas we advertise are seven fixed meta-tools, so there is nothing to withhold. Scoring \"which manuals are relevant to this prompt\" would only change what `search_tools` returns, and the model already passes its own task description to that call [SOURCE: .skilled/skills/mcp-code-mode/mcp-server/index.ts:280]. Cost: a second scorer and ledger, with no saved schema tokens. One probe would confirm the \"no saved tokens\" claim: measure the token size of the seven declared tool schemas in a fresh session. A few hundred tokens would mean nothing is left to save. This verdict matches the sibling research's REJECT of pull replacing push, here in the opposite direction: push filtering for a surface that is already pull.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/tool-policy.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/README.md",
+        ".mcp.json, opencode.json, .utcp_config.json",
+        ".skilled/skills/mcp-code-mode/mcp-server/index.ts, .skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/bin/mcp-code-mode-launcher.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-5-what-does-carry-over-essentials-always-allowed-as-a-static-additive-floor-adapt-",
+      "text": "**What does carry over: \"essentials always allowed\" as a static, additive floor (ADAPT, inferred).** The extension makes an allowlist grant bypass scoring and records it as `allowlisted`, never with a score, so removing the allowlist entry later never takes availability away [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts:258] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/tool-policy.ts:66]. Our analogue is the skill's `allowed-tools` frontmatter, which names the four Code Mode meta-tools a skill may use [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:4]. It already plays the role of a static essentials list. I found nothing to add. I record this only so a later phase does not rebuild the extension's allowlist machinery for tools. Verdict: ADAPT means \"keep the static floor we already have\", with no new work. The skill-side pinned set was already ruled out in iteration 2.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/apps/tool-policy.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/README.md",
+        ".mcp.json, opencode.json, .utcp_config.json",
+        ".skilled/skills/mcp-code-mode/mcp-server/index.ts, .skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/bin/mcp-code-mode-launcher.cjs"
+      ]
+    },
+    {
+      "id": "finding-5-4-consolidated-verdict-table-synthesis-of-iterations-1-5-each-row-cites-the-iterat",
+      "text": "**Consolidated verdict table (synthesis of iterations 1-5).** Each row cites the iteration finding that holds the extension `file:line`, the advisor `file:line`, the change, the benefit, the cost and the risk.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    },
+    {
+      "id": "finding-5-6-live-probes-the-orchestrator-should-run-because-a-leaf-could-not-get-through-the",
+      "text": "**Live probes the orchestrator should run, because a leaf could not get through the permission layer. INFERRED list.**",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-advisor-s-default-bars-are-0-8-and-0-35-and-an-env-var-overrides-each-one-co",
+      "text": "**The advisor's default bars are 0.8 and 0.35, and an env var overrides each one. CONFIRMED.** `SKILL_ADVISOR_COMPAT_CONTRACT.defaults` sets `confidenceThreshold: 0.8` and `uncertaintyThreshold: 0.35` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:10-11]. `resolvedConfidenceThreshold()` and `resolvedUncertaintyThreshold()` accept `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` and `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` when the value is in [0, 1], and otherwise fall back to those defaults [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:25-35]. `fusion.ts` reads both at module load [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73]. This closes iteration 1's inferred claim. It also means the advisor already has the per-deployment threshold knob the extension benchmark asks for [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:298]. What is missing is a per-model key, which matters only if the shadow model lane (iteration 1 finding 5) is ever built.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-extension-s-two-features-fail-in-opposite-directions-and-that-is-the-cross-c",
+      "text": "**The extension's two features fail in opposite directions, and that is the cross-cutting lesson. INFERRED from confirmed code on both sides.** Skill filtering defaults to fail-closed [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/settings.ts:67]. The tool gate blocks external calls when the registry is missing [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/tool-filter.ts:360]. The advisor's correct polarity is fail-open with a visible signal, which the timeout path already shows [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:633-663]. Most REJECTs in the table share one root: the extension replaces or withholds an advertisement, and the advisor adds a hint on top of one. The ideas that transfer are measurement and observability ideas (V2, V4, V5, V8, V16, V17) and one failure-visibility fix (V13), not selection mechanics.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-golden-routing-fixture-has-no-negative-control-rows-confirmed-that-the-keywo",
+      "text": "**The golden routing fixture has no negative-control rows. CONFIRMED that the keywords are absent; INFERRED that the rows are absent.** The fixture's `_schema` defines every case as a positive routing assertion: `expectedSkillAny` gold labels with `tier` top1 or top3 [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1]. Grepping it for `negative`, `abstain`, `expectNoPass`, `noRoute`, an empty `expectedSkillAny` and null-expected forms returned 0 matches. The extension benchmark has an unrelated control on which any pick counts as a false positive, and it separates `required` from `acceptable` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:83-92]. So iteration 1 finding 7 is new fixture work, not a reporting change. `expectedSkillAny` already covers part of \"acceptable\", but it scores an adjacent hit as a pass rather than as its own class. Reading `prompt-policy-gold-replay.vitest.ts`, which may replay non-firing prompts, would confirm whether any abstain coverage exists elsewhere.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-silent-failure-gap-also-exists-in-the-pi-hook-confirmed-when-the-advisor-mod",
+      "text": "**The silent-failure gap also exists in the Pi hook. CONFIRMED.** When the advisor module throws, the Pi hook sets `advisorFailed = true` [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:323-324]. It then delivers context only `if (!advisorFailed && context)` [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:333]. The thrown path therefore adds nothing to the user turn, and the only trace is a debug line when advisor-debug is enabled [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:329-331]. The timeout path does emit `renderAdvisorFallbackDirective` [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:309-313]. So Pi has the same split as Claude: a timeout is visible to the model, and a crash is silent. Iteration 2 finding 3's ADAPT (emit the static fallback text on the unhandled catch, inside its own try) applies to both hooks. The `return {}` grep found that literal only in the Claude hook and a DSH test [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:479]. Pi reaches the same outcome by returning no transform. I did not read the OpenCode plugin (`.opencode/plugins/system-skill-advisor.js`), so it is still UNKNOWN whether it shares the gap.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    },
+    {
+      "id": "finding-5-7-rq3-run-advisor-recommend-on-continue-do-it-fix-that-too-and-yes-apply-the-secon",
+      "text": "RQ3: run `advisor_recommend` on \"continue\", \"do it\", \"fix that too\" and \"yes, apply the second option\", and read `diagnostics.policyReason`. This confirms iteration 3 findings 4-5.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    },
+    {
+      "id": "finding-5-8-rq7-measure-the-token-size-of-the-seven-declared-code-mode-tool-schemas-in-a-fre",
+      "text": "RQ7: measure the token size of the seven declared Code Mode tool schemas in a fresh session. This confirms iteration 4 finding 3.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    },
+    {
+      "id": "finding-5-11-v13-read-opencode-plugins-system-skill-advisor-js-for-the-same-thrown-path-behav",
+      "text": "V13: read `.opencode/plugins/system-skill-advisor.js` for the same thrown-path behavior.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    },
+    {
+      "id": "finding-5-9-v2-v3-run-a-shadow-log-over-the-golden-prompts-ambiguous-rows-and-score-tie-brea",
+      "text": "V2/V3: run a shadow log over the golden prompts' ambiguous rows and score tie-break accuracy against gold.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    },
+    {
+      "id": "finding-5-10-v8-group-diagnostic-records-by-session-key-if-the-writer-stores-one-unverified-i",
+      "text": "V8: group diagnostic records by session key, if the writer stores one (unverified, iteration 3 finding 2), and compute the top-1 flip rate.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md:98-141",
+        "research/iterations/iteration-001.md through iteration-004.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts:1-35",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:72-73",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:266-340",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1",
+        "grep `return {}` over `.skilled/skills/system-skill-advisor/hooks`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-12778754aa92",
+      "text": "Model score as a replacement for fusion (finding 4).",
+      "contentHash": "12778754aa92",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-3fc58800a60f",
+      "text": "None yet. The replacement direction is a candidate for \"ruled out\", not an exhausted approach.",
+      "contentHash": "3fc58800a60f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-874c571ecfe6",
+      "text": "Porting the 0.375 default threshold (finding 6).",
+      "contentHash": "874c571ecfe6",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-85fcd37f202c",
+      "text": "Porting the inventory floor (finding 8).",
+      "contentHash": "85fcd37f202c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-299b14e96e3a",
+      "text": "An operator-pinned always-surface skill set in the brief (finding 5).",
+      "contentHash": "299b14e96e3a",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-fdde977f827c",
+      "text": "Default-on persistence of surfaced skills or \"why\" fields (finding 6). It breaks the prompt-free record invariant.",
+      "contentHash": "fdde977f827c",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-20d6f4968ef4",
+      "text": "None. The grep for an advisor pin concept was a clean no-hit, which counts as evidence for finding 5, not a dead end.",
+      "contentHash": "20d6f4968ef4",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d1d71daa573b",
+      "text": "Porting the extension's `failMode: \"closed\"` default by name (finding 2). The polarity is inverted for an additive advisor.",
+      "contentHash": "d1d71daa573b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3062560a581b",
+      "text": "Concatenating previous-reply text into the lexical scorer input (finding 6).",
+      "contentHash": "3062560a581b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-12950d015638",
+      "text": "Porting additive-only semantics (finding 1).",
+      "contentHash": "12950d015638",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9df9f8671150",
+      "text": "Probing the live advisor CLI from this iteration. The permission layer refused the `printf | node` pipe twice. The routing claims are code traces, and each one names the probe that would confirm it.",
+      "contentHash": "9df9f8671150",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-baa5617fb1ef",
+      "text": "Skill-level suppression memory (finding 3).",
+      "contentHash": "baa5617fb1ef",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3cb08b0f9c8b",
+      "text": "The advisor runtime has no `benchmarks/` directory. The grep for follow-up test fixtures found no advisor test that covers \"continue\" or \"do it\", so follow-up routing has no test coverage today. That is evidence for finding 5's benchmark recommendation.",
+      "contentHash": "3cb08b0f9c8b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-cdf742115b51",
+      "text": "An advisor-scored `call_tool_chain` gate (finding 4).",
+      "contentHash": "cdf742115b51",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-fb8f5e9499c8",
+      "text": "Porting relevance-scored tool or MCP filtering into our stack. Our only native surface is seven fixed meta-tools, and access control is static by design.",
+      "contentHash": "fb8f5e9499c8",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f6748eb9ff17",
+      "text": "Porting the advertisement-side tool filter (`setActiveTools` withholding) to Code Mode (finding 3).",
+      "contentHash": "f6748eb9ff17",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-0ea567ade5a0",
+      "text": "None this iteration.",
+      "contentHash": "0ea567ade5a0",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a0509228f68c",
+      "text": "Re-litigating any iteration 1-4 REJECT. None had new evidence against it.",
+      "contentHash": "a0509228f68c",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 7,
+    "keyFindings": 38,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.45,
+    "coverageBySources": {
+      "code": 50,
+      "other": 31
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

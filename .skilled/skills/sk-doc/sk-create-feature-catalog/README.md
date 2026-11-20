@@ -4,7 +4,7 @@ description: "Author a canonical feature inventory, a root catalog plus one sour
 trigger_phrases:
   - "feature catalog"
   - "feature inventory"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # create-feature-catalog
@@ -81,14 +81,40 @@ The root catalog comes from the scaffold in section 4 of `assets/feature-catalog
 
 Each leaf comes from `assets/feature-catalog-snippet-template.md` and carries four sections: `## 1. OVERVIEW`, `## 2. HOW IT WORKS`, `## 3. SOURCE FILES`, `## 4. SOURCE METADATA`. The Implementation table gives every file a Layer and a Role. The Validation And Tests table does the same for each test. Leaf frontmatter `title` must equal the root H3. The `description` must match the root description after normalization. Names are contracts here, not labels.
 
-```mermaid
-flowchart TD
-  Surface["Target feature surface"] --> Read["Read source files and tests"]
-  Read --> Taxonomy["Lock categories and feature slugs"]
-  Taxonomy --> Root["Write the root catalog from the template"]
-  Root --> Leaves["Write one leaf per root entry"]
-  Leaves --> Validate["Validate each file, then the package"]
-  Validate --> Catalog["Current-state catalog with linked proof"]
+```text
+┌──────────────────────────────────────────┐
+│ Target feature surface                   │
+└─────────────────────┬────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ Read source files and tests              │
+└─────────────────────┬────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ Lock categories and feature slugs        │
+└─────────────────────┬────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ Write the root catalog from the template │
+└─────────────────────┬────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ Write one leaf per root entry            │
+└─────────────────────┬────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ Validate each file, then the package     │
+└─────────────────────┬────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────┐
+│ Current-state catalog with linked proof  │
+└──────────────────────────────────────────┘
 ```
 
 ### Key Concept: Orientation and Proof

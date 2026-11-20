@@ -17,7 +17,7 @@ _memory:
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs"
       - ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs"
     session_dedup:
-      fingerprint: "sha256:db2e8a05e40b8024108dfdb003a1fcb431771723b6d7c37cb867bc8ce4abb188"
+      fingerprint: "sha256:799acfb8c2c4421f3fcf5db9df581ca2b15e4f6a550c132c71086cc5a7a8992f"
       session_id: "scaffold-010-mixed-track-sweep-guard"
       parent_session_id: null
     session_ref:

@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e76e33cacbbe0983028d6b1fd830a270a8a29bae0c641bff4142979041573f9d"
       session_id: "scaffold-002-frontend-reach"
       parent_session_id: null
     completion_pct: 100

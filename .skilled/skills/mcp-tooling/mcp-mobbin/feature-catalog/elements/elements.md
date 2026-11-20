@@ -6,7 +6,7 @@ trigger_phrases:
   - "mobbin component examples"
   - "mobbin element research"
   - "mobbin ui elements"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Elements (element-intent queries over search_screens)
@@ -21,7 +21,7 @@ The capability is READ-ONLY, with a hard fabrication boundary: element behavior 
 
 ## 2. HOW IT WORKS
 
-Compose the query from the component plus its context and state — for example `"bottom-sheet destructive confirmation"` or `"inline validation on signup"` — plus the platform (`ios`|`web`, inferred or asked), starting at `limit: 5`. The inferred callable is `mobbin.mobbin_search_screens({ query, platform, limit? })` (confirm with `tool_info` in a fresh Code Mode session). Analyze the element's behavior within the returned screens: placement, states, hierarchy, interaction cues visible in the inline images, compared across the `screens[]` records by `index` and `app_name`. Cite every screen used by its `mobbin_url`, report `failed[]` and missing images as partial success, and pair `sk-design-md-generator` for a measured Style Reference of extracted design tokens — element evidence informs it, it is not itself a measured token set.
+Compose the query from the component plus its context and state — for example `"bottom-sheet destructive confirmation"` or `"inline validation on signup"` — plus the platform (`ios`|`web`, inferred or asked), starting at `limit: 5`. The inferred callable is `mobbin.mobbin_search_screens({ query, platform, limit? })` (confirm with `tool_info` once the ask step has registered the manual). Analyze the element's behavior within the returned screens: placement, states, hierarchy, interaction cues visible in the inline images, compared across the `screens[]` records by `index` and `app_name`. Cite every screen used by its `mobbin_url`, report `failed[]` and missing images as partial success, and pair `sk-design-md-generator` for a measured Style Reference of extracted design tokens — element evidence informs it, it is not itself a measured token set.
 
 ### Query-intent recipes
 

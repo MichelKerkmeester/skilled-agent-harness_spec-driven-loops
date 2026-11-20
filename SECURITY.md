@@ -99,7 +99,7 @@ The CLI bridges and the deep-loop fan-out start other AI CLIs with no terminal a
 | CLI | What a lane gets |
 |---|---|
 | Devin | `--permission-mode dangerous` for any lane that may write. A single `cli-devin` dispatch uses it too, unless you name another mode |
-| OpenCode | `--dangerously-skip-permissions` for a native lane that may write, which runs on v1 only. A `cli-opencode` lane with full access gets it on v1 and `--auto` on v2 |
+| OpenCode | `run --standalone -m provider/model#effort --format json`, plus `--auto` only for a `danger-full-access` sandbox. The executor exposes no sandbox flag, so any other requested sandbox mode fails closed before dispatch |
 | Cursor | `--force`, with its sandbox on for workspace writes and off for full access |
 | Codex | `approval_policy=never`, confined only by the sandbox mode it is given |
 | Mistral Vibe | `--trust --auto-approve` on every lane |

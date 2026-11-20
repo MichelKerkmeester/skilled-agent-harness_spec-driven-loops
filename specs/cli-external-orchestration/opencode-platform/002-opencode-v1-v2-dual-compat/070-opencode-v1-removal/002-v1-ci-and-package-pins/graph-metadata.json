@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v1 ci and package pins",
+      "phase 2 v1 ci and package pins",
+      "v1 ci and package pins plan",
+      "v1 ci and package pins tasks",
+      "v1 ci and package pins acceptance criteria",
+      "v1 ci and package pins decision record",
+      "sdk record ordering waiver",
+      "v1 ci and package pins implementation summary"
+    ],
+    "key_topics": [
+      "package",
+      "pins",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "record",
+      "sdk",
+      "ordering",
+      "waiver"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".github/workflows/opencode-v2-battery.yml",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+      ".opencode/package.json",
+      ".skilled/package.json",
+      ".opencode/package-lock.json",
+      ".skilled/package-lock.json",
+      ".skilled/bin/tests/opencode-config-shape.test.cjs",
+      ".skilled/bin/tests/opencode-compat-layout.test.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs",
+      "scratch/versions.txt",
+      "scratch/sdk-usage.txt",
+      "scratch/variant.txt",
+      "scratch/gated-suites.txt",
+      "scratch/after.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-v2-battery.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-v2-battery.yml",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-setup.sh",
+        "kind": "script",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-config-shape.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/opencode-config-shape.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-compat-layout.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/opencode-compat-layout.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "default-model-id.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "versions.txt",
+        "kind": "file",
+        "path": "scratch/versions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sdk-usage.txt",
+        "kind": "file",
+        "path": "scratch/sdk-usage.txt",
+        "source": "derived"
+      },
+      {
+        "name": "variant.txt",
+        "kind": "file",
+        "path": "scratch/variant.txt",
+        "source": "derived"
+      },
+      {
+        "name": "gated-suites.txt",
+        "kind": "file",
+        "path": "scratch/gated-suites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The CI workflow `.github/workflows/opencode-v2-battery.yml` still runs a v1 matrix entry that installs `opencode-ai@1.19.4`, plus a `both` job that installs both majors side by side",
+    "created_at": "2026-11-19T09:04:22Z",
+    "last_save_at": "2026-11-19T23:02:51.450Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:94fc8b9dcb29c4cb021bfc8bb1e588b2c87ea31c0221962dbd771536c7c61e49",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6841c0c94acb88eb70cec40e61919707a13927ab94b4e5b4866f320ccbb5b23a",
+      "plan.md": "5a2c89e75b971f6ac6c3710c788c94c6ecedfd856507de81042621940eb3db78",
+      "tasks.md": "fff35cdf231fed5dbfa917a2a90170a82016c3d6c2cc56c7ca40b49358257a23",
+      "decision-record.md": "8270fd8bd7a3ebc9d7b74de6c794f47cc95fc9c54264bc934e4aa83307bd8c95",
+      "implementation-summary.md": "0a6a38819b9a32e46499bf96bb86e047839cd3f414a29b22f2f7b3d43ba43d30"
+    },
+    "last_active_at": null
+  }
+}

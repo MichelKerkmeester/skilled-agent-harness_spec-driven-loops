@@ -6,7 +6,7 @@ trigger_phrases:
   - "command row embedding"
   - "vec_cmd table"
   - "command meaning anchor"
-version: 1.0.4.0
+version: 1.0.6.0
 ---
 
 # Command Meaning Matching
@@ -15,7 +15,7 @@ version: 1.0.4.0
 
 A command row can pass on meaning when the prompt's real embedding sits close to the row's own vector, so a paraphrase that shares no words with a command can still reach it.
 
-A command row used to pass only on one of its own phrases or its slash string. A paraphrase shares none of those words, so it reached nothing. Meaning matching adds a second way in. It works only when the local embedder runs. Without it the advisor returns the phrase-only result.
+A command row used to pass only on one of its own phrases or its slash string. A paraphrase shares none of those words, so it reached nothing. Meaning matching adds a second way in, but it is off by default because the semantic lane's live weight is `0`. It works only when the local embedder runs and `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` raises `semantic_shadow` above `0`. Without both conditions, the advisor returns the phrase-only result.
 
 ---
 
@@ -25,7 +25,7 @@ A command row used to pass only on one of its own phrases or its slash string. A
 
 `derive-command-bridges.cjs` writes an `embeddingText` for each command row the TypeScript scorer serves, 47 rows in all. A metadata row leads with its `userIntent.job` sentence and adds its owned phrases. The `description` stands in only when the record states no job. A doctor row uses its router's frontmatter `description` and the route's trigger phrases. Slash command strings are stripped from the text.
 
-`skill_graph_scan` embeds that text into a separate `vec_cmd_<dim>` table. The table carries no foreign key, and the skill vector table is left untouched. A row whose text hash has not changed is skipped. A stored row that the deriver no longer generates is pruned.
+`skill_graph_scan` embeds that text into a separate `vec_cmd_<dim>` table. The table carries no foreign key, and the skill vector table is left untouched. A row whose text hash has not changed is skipped. A stored row that the deriver no longer generates is pruned. The daemon's shared background refresh also checks command vectors after startup and each watcher reindex, regardless of semantic lane weight. It embeds only missing or stale rows and keeps an old vector when an embed fails. A command is embeddable only when its generated bridge has non-empty `embeddingText` and an enabled TypeScript runtime id. `/create:command` regenerates these command bridges after writing command files.
 
 ### Passing on Meaning
 

@@ -2,9 +2,9 @@
 // MODULE: Hook Registration Synchronizer
 // ───────────────────────────────────────────────────────────────────
 // The registry must reproduce the committed registration files byte for byte,
-// --check must report a hand-edited file and a Pi extension entry that is not
-// a one-line re-export, and write mode must restore a drifted file while
-// leaving the settings file's other keys alone.
+// --check must report a hand-edited file and a Pi extension entry that differs
+// from the rendered entry template, and write mode must restore a drifted file
+// while leaving the settings file's other keys alone.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -16,9 +16,10 @@ import { afterAll, describe, expect, it } from 'vitest';
 const SCRIPT = path.resolve(__dirname, '..', 'runtime-mirrors', 'sync-hook-registrations.cjs');
 const REGISTRY = path.resolve(__dirname, '..', 'runtime-mirrors', 'hook-registry.json');
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
-const { renderCursorCommand, renderProjectDirCommand } = createRequire(__filename)(SCRIPT) as {
+const { renderCursorCommand, renderProjectDirCommand, renderPiEntry } = createRequire(__filename)(SCRIPT) as {
   renderCursorCommand: (config: { defaultMessage: string }, binding: Record<string, unknown>) => string;
   renderProjectDirCommand: (runtime: string, config: Record<string, unknown>, binding: Record<string, unknown>) => string;
+  renderPiEntry: (entry: string, adapterSpecifier: string) => string;
 };
 const FILES = ['.claude/settings.json', '.codex/hooks.json', '.cursor/hooks.json', '.devin/hooks.v1.json'];
 
@@ -29,8 +30,8 @@ function run(root: string, ...args: string[]): { status: number | null; stdout: 
 
 /**
  * A copy of the repository's four registration files plus a Pi extensions
- * directory whose re-export entries all resolve: the adapters live under
- * `real/` and each entry is the one statement Pi loads on every version.
+ * directory whose entries all resolve: the adapters live under `real/` and
+ * each entry is the rendered template naming its adapter there.
  */
 function seed(root: string): void {
   for (const file of FILES) {
@@ -44,10 +45,7 @@ function seed(root: string): void {
   fs.mkdirSync(realDir, { recursive: true });
   for (const extension of new Set(registry.hooks.map((hook) => hook.pi?.extension).filter((value): value is string => Boolean(value)))) {
     fs.writeFileSync(path.join(realDir, extension), 'export default () => {};\n');
-    fs.writeFileSync(
-      path.join(extensionsDir, extension),
-      `export { default } from '../../real/${extension}';\n`,
-    );
+    fs.writeFileSync(path.join(extensionsDir, extension), renderPiEntry(extension, `../../real/${extension}`));
   }
 }
 
@@ -107,7 +105,21 @@ describe('sync-hook-registrations.cjs', () => {
     fs.writeFileSync(path.join(root, 'real', 'spec-gate-enforce.ts'), 'export default () => {};\n');
   });
 
-  it('reports a Pi extension entry that is a symlink instead of a re-export file', () => {
+  it('reports an older one-line re-export entry and renders it from the template in write mode', () => {
+    const entry = path.join(root, '.pi', 'extensions', 'spec-gate-enforce.ts');
+    const rendered = fs.readFileSync(entry, 'utf8');
+    fs.writeFileSync(entry, "export { default } from '../../real/spec-gate-enforce.ts';\n");
+    const older = run(root, '--check');
+    expect(older.status).toBe(1);
+    expect(older.stderr).toMatch(/spec-gate-enforce\.ts: differs from the Pi entry template/u);
+    const written = run(root);
+    expect(written.status, written.stderr).toBe(0);
+    expect(written.stdout).toMatch(/1 of \d+ Pi extension entries/u);
+    expect(fs.readFileSync(entry, 'utf8')).toBe(rendered);
+    expect(run(root, '--check').status).toBe(0);
+  });
+
+  it('reports a Pi extension entry that is a symlink instead of a plain entry file', () => {
     const entry = path.join(root, '.pi', 'extensions', 'spec-gate-enforce.ts');
     const reexport = fs.readFileSync(entry, 'utf8');
     fs.rmSync(entry);

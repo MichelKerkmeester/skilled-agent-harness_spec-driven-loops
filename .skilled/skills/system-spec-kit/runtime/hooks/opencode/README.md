@@ -61,7 +61,7 @@ The file is the same artifact as `.opencode/plugins/system-spec-gate.js`, which 
 | Entrypoint | Type | Behavior |
 |---|---|---|
 | `MkSpecGatePlugin` | Default export, async factory | Takes the OpenCode plugin context, resolves `ctx.directory` and the guard state directory, returns the hook object. |
-| `event(input)` | Event hook | `session.created` sweeps stale gate state. `session.resumed`, `session.compacted` and `session.compact` advance the lifecycle epoch and rearm the one-shot notice, because a resume opens a new stretch of work. `session.deleted` evicts that session's state. |
+| `event(input)` | Event hook | `session.created` sweeps stale gate state. `session.compacted` advances the lifecycle epoch and rearms the one-shot notice, because a compaction opens a new stretch of work. `session.deleted` evicts that session's state. |
 | `experimental.chat.system.transform(input, output)` | System-transform hook | Reads the session's last user message through `ctx.client` when the hook input carries no prompt, runs `classifyIntent()`, then pushes `GATE_3_DEFERRED_INSTRUCTION` into `output.system` once per stretch of work. |
 | `tool.execute.before(input, output)` | Tool hook | Runs `evaluateMutation()` for the mutating tool set and for `bash`, writes one telemetry line for every non-allow decision, and throws only when the core returns `deny`. |
 | `MkSpecGatePlugin.__test` | Test surface | Exposes `extractPrompt`, `sessionIdFrom`, `fetchLastUserPromptViaClient`, `eventTypeFrom`, `sessionIdFromEvent` and `filePathFromArgs`. |

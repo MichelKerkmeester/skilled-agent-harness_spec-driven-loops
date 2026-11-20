@@ -4,7 +4,7 @@ description: "Local, Git-free before/after review of an edited document, rendere
 trigger_phrases:
   - "before after document review"
   - "document diff report"
-version: 1.1.5.0
+version: 1.1.7.0
 ---
 
 # create-diff
@@ -21,7 +21,7 @@ version: 1.1.5.0
 |---|---|
 | **Use it for** | Reviewing an edit to a Markdown, text, HTML, DOCX or text-PDF document outside Git |
 | **Invoke with** | `/create:diff` or `python3 scripts/create_diff.py <subcommand>` |
-| **Works on** | One document or a pre-composed before/after bundle of several files |
+| **Works on** | One document or a pre-composed before/after bundle of files |
 | **Produces** | One self-contained HTML report with inlined CSS and no network references |
 
 ### What It Does
@@ -99,18 +99,35 @@ The lifecycle has one hard rule: capture the baseline before the edit. Once a fi
 
 The renderer refuses to overwrite an existing report. Without `--report`, the file lands in the working directory as `<source-slug>.diff.html`, where the slug is lowercase kebab-case derived from the file stem.
 
-```mermaid
-flowchart TD
-  Ask["Review an edited document"] --> Shape{"Baseline captured before the edit?"}
-  Shape -->|Yes| Snap["snapshot, then compare"]
-  Shape -->|No| Pair["compare-pair with --before and --after"]
-  Snap --> Diff["Extract, normalize and diff"]
-  Pair --> Diff
-  Diff --> Report["One self-contained HTML report"]
-  Report --> Check["validate_report.py"]
+```text
+                       ┌────────────────────────────────────────┐
+                       │ Review an edited document              │
+                       └────────────────────────────────────────┘
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │ Baseline captured before the edit?     │
+                       └────────────────────────────────────────┘
+                                 │[YES]              │[NO]
+                                 ▼                   ▼
+┌────────────────────────────────────────┐    ┌────────────────────────────────────────┐
+│ snapshot, then compare                 │    │ compare-pair with --before and --after │
+└────────────────────────────────────────┘    └────────────────────────────────────────┘
+                                 │                   │
+                                 ▼                   ▼
+                       ┌────────────────────────────────────────┐
+                       │ Extract, normalize and diff            │
+                       └────────────────────────────────────────┘
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │ One self-contained HTML report         │
+                       └────────────────────────────────────────┘
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │ validate_report.py                     │
+                       └────────────────────────────────────────┘
 ```
 
-### Key Concept: One Report, Many Files
+### Key Concept: One Report for a Bundle
 
 `compare-pair` always receives one before-document and one after-document. To review a bundle of files in one pass, compose both sides with the same markers:
 
@@ -211,4 +228,5 @@ A report that fails the validator is not safe to share, even when the diff looks
 
 <!-- readme-check
 allow-ref .create-diff/ | the snapshot store a run creates in the working directory, so a checkout holds one only after a snapshot
+allow-count 59 tests | `python3 scripts/test_create_diff.py` prints Ran 59 tests and OK
 -->

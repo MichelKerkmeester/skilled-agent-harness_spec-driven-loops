@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs",
+  "description": "Phase 7: system-spec-kit-changelogs",
+  "keywords": [
+    "phase",
+    "system-spec-kit-changelogs"
+  ],
+  "lastUpdated": "2026-11-18T03:12:29.626Z",
+  "specId": "007",
+  "folderSlug": "system-spec-kit-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "010-changelog-layout-retrofit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-11-26_04-12__rewrote-all-169-system-spec-kit-changelogs-into.md"
+  ]
+}

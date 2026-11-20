@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "strip rule boundary edges",
+      "phase 6 strip rule boundary edges",
+      "pasted reply strip edges",
+      "pasted reply strip shared fixture",
+      "strip rule boundary edges plan",
+      "strip rule boundary edges tasks",
+      "strip rule boundary edges goal",
+      "strip rule boundary edges implementation summary"
+    ],
+    "key_topics": [
+      "strip",
+      "rule",
+      "boundary",
+      "edges",
+      "phase",
+      "pasted",
+      "reply",
+      "shared",
+      "fixture",
+      "plan",
+      "tasks",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/tests/fixtures/README.md",
+      "tmp/p002-briefs/out/last-refute.txt",
+      "scratch/count-corpus-strips.mjs",
+      "SCRATCH/candidate-rules.cjs",
+      "SCRATCH/score-miss-outputs.mjs",
+      "SCRATCH/count-corpus-strips.mjs",
+      "tmp/p002-briefs/rule.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/tests/fixtures/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "last-refute.txt",
+        "kind": "file",
+        "path": "tmp/p002-briefs/out/last-refute.txt",
+        "source": "derived"
+      },
+      {
+        "name": "count-corpus-strips.mjs",
+        "kind": "file",
+        "path": "scratch/count-corpus-strips.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "candidate-rules.cjs",
+        "kind": "file",
+        "path": "SCRATCH/candidate-rules.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-miss-outputs.mjs",
+        "kind": "file",
+        "path": "SCRATCH/score-miss-outputs.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rule.cjs",
+        "kind": "file",
+        "path": "tmp/p002-briefs/rule.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rule Boundary Edges",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fixture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cue at `runtime/lib/prompt-policy.ts:225` fires on a leading `>`, `\"` or `“` alone, so a user's own quoted requirement before `Task:` is dropped as if it were pasted",
+    "created_at": "2026-11-18T15:49:24Z",
+    "last_save_at": "2026-11-18T16:49:03.383Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:48ca633ec541148d7641d5059695dc3af6a8921d06c01b1fcf59c047cef6368a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2414d7f915ad71abc46e916bfc9ecfb5993239cf2917191a7ebff6fe3279c5d2",
+      "plan.md": "8242a8d204adde1ae9bcbf37fce5eea9a771a1a303fb9e86657a4b7c2d99ee8d",
+      "tasks.md": "3f0f56b7fd754a6bb3b8acb90353282b33f402def04ba95157e612e8c9220d41",
+      "implementation-summary.md": "13eab4105a9d6bac560a0ee8c51d8adc175cae908c3eaca71775115b38f09477"
+    },
+    "last_active_at": null
+  }
+}

@@ -6,20 +6,15 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { createHash } from 'node:crypto';
-import os from 'node:os';
-import path from 'node:path';
 import Database from 'better-sqlite3';
-import {
-  autoSelectActiveEmbedder,
-  type AutoSelectedEmbedderProvider,
-  type AutoSelectMetadataStore,
-  type AutoSelectResult,
-  type EmbedderContentType,
+
+import { getManifest, listManifests } from './registry.js';
+
+import type {
+  AutoSelectedEmbedderProvider,
+  EmbedderContentType,
 } from '@spec-kit/shared/embeddings/auto-select.js';
 import type { BackendKind } from '@spec-kit/shared/embeddings/types.js';
-
-import { getManifest } from './registry.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -40,14 +35,8 @@ interface MetadataRow {
 // 3. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-// The shared-embedder alignment flipped the default
-// from `embeddinggemma-300m` to the `'auto'` sentinel. The shared cascade
-// (`@spec-kit/shared/embeddings/auto-select.ts`) picks the actual model at
-// runtime: Ollama (nomic-embed-text:v1.5 priority) → hf-local nomic →
-// OpenAI → Voyage. The `ensureActiveEmbedder()` helper added later in this
-// packet invokes the cascade when the persisted pointer is `'auto'` or when
-// the persisted name references a manifest the shared registry no longer
-// knows about (orphan migration from the gemma era).
+// The `'auto'` sentinel keeps the default independent of backend availability.
+// `ensureActiveEmbedder()` resolves the pointer to the first registered manifest.
 export const DEFAULT_ACTIVE_EMBEDDER: ActiveEmbedder = Object.freeze({
   name: 'auto',
   dim: 0,
@@ -236,27 +225,19 @@ export function setActiveEmbedder(
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 6. CASCADE INTEGRATION
+// 6. POINTER RESOLUTION
 // ───────────────────────────────────────────────────────────────────
 
 export interface EnsureActiveEmbedderOptions {
-  /** Override the content-type passed to the shared cascade. Defaults to 'text'. */
+  /** Retained for compatibility with callers that still specify content type. */
   readonly contentType?: EmbedderContentType;
-  /** Override the lock path. Defaults to a per-database lock in `os.tmpdir()`. */
-  readonly lockPath?: string;
-  /**
-   * Override the cascade invocation. Used by tests to inject a deterministic
-   * resolver instead of probing real backends.
-   */
-  readonly autoSelect?: (options: { metadataStore: AutoSelectMetadataStore; contentType: EmbedderContentType; lockPath?: string }) => Promise<AutoSelectResult>;
 }
 
 /**
- * Decide whether the persisted active-embedder pointer needs cascade
+ * Decide whether the persisted active-embedder pointer needs manifest
  * resolution. Returns true when:
  * - the pointer is the `'auto'` sentinel (fresh install or explicit reset)
- * - the persisted name no longer resolves through `getManifest()` (orphan
- *   from a legacy install that still has `embeddinggemma-300m` saved)
+ * - the persisted name no longer resolves through `getManifest()`
  */
 function pointerNeedsResolution(pointer: ActiveEmbedder): boolean {
   if (pointer.name === 'auto' || pointer.dim === 0) {
@@ -265,19 +246,10 @@ function pointerNeedsResolution(pointer: ActiveEmbedder): boolean {
   return getManifest(pointer.name) === undefined;
 }
 
-function defaultLockPath(db: Database.Database): string {
-  const dbName = db.name ?? '';
-  const digest = createHash('sha1').update(dbName).digest('hex').slice(0, 12);
-  return path.join(os.tmpdir(), `skill-advisor-auto-select-${digest}.lock`);
-}
-
 /**
- * Map a manifest's `BackendKind` to the cascade's `provider` taxonomy. The
- * cascade distinguishes Voyage from OpenAI at the api tier, but
- * `EmbedderManifest.backend` collapses both into `'api'`. For the api case
- * we default to `'openai'` because the shared registry has no Voyage
- * manifest today; a future refactor that adds Voyage-specific manifests
- * should extend `EmbedderManifest` with an explicit provider hint.
+ * Map a manifest backend to the provider stored with the active pointer.
+ * Manifests collapse API providers into `'api'`, so that backend currently
+ * maps to `'openai'`. A Voyage manifest needs an explicit provider hint.
  */
 function backendToProvider(backend: BackendKind | undefined): AutoSelectedEmbedderProvider {
   switch (backend) {
@@ -292,21 +264,14 @@ function backendToProvider(backend: BackendKind | undefined): AutoSelectedEmbedd
 }
 
 /**
- * Ensure an embedder pointer is persisted in `vec_metadata`. If the
- * current pointer is the `'auto'` sentinel or references a manifest the
- * shared registry no longer knows about, invoke the shared cascade
- * (`@spec-kit/shared/embeddings/auto-select.ts`) to resolve and persist
- * the winner. Otherwise return the persisted pointer unchanged.
+ * Resolve an unset or unknown pointer to the first registered manifest.
+ * Known pointers stay unchanged, with their provider backfilled when it is missing.
  *
- * The shared cascade probes (in order): Ollama → hf-local → OpenAI → Voyage,
- * landing on `nomic-embed-text-v1.5` in local-only environments. The
- * `contentType` parameter is currently informational because the TS shared
- * cascade is text-tuned by design, but it is plumbed through for future
- * code-oriented consumers.
+ * Skill vectors are written only by a trusted `skill_graph_scan`.
  */
 export async function ensureActiveEmbedder(
   db: Database.Database,
-  options: EnsureActiveEmbedderOptions = {},
+  _options: EnsureActiveEmbedderOptions = {},
 ): Promise<ActiveEmbedder> {
   const current = getActiveEmbedder(db);
   if (!pointerNeedsResolution(current)) {
@@ -314,7 +279,7 @@ export async function ensureActiveEmbedder(
       // Pre-existing pointer written before the provider column existed
       // (or via a bare 3-arg `setActiveEmbedder` call). Backfill the
       // provider from the manifest so future reads don't repeat this
-      // derivation, without re-running the cascade.
+      // derivation, without resolving the pointer again.
       const manifest = getManifest(current.name);
       if (manifest) {
         const provider = backendToProvider(manifest.backend);
@@ -325,47 +290,14 @@ export async function ensureActiveEmbedder(
     return current;
   }
 
-  const metadataStore: AutoSelectMetadataStore = {
-    readActiveEmbedder() {
-      const pointer = getActiveEmbedder(db);
-      if (pointerNeedsResolution(pointer)) {
-        return null;
-      }
-      // Derive the cascade-tier provider from the manifest's backend kind so
-      // the metadata-store contract stays truthful when non-Ollama manifests
-      // are added in the future. Today all shared MANIFESTS use `backend: 'ollama'`
-      // so this always evaluates to `'ollama'` — the derivation removes the
-      // hardcoded lie that an earlier review flagged.
-      const manifest = getManifest(pointer.name);
-      return {
-        name: pointer.name,
-        dim: pointer.dim,
-        provider: backendToProvider(manifest?.backend),
-      };
-    },
-    persistActiveEmbedder(embedder) {
-      setActiveEmbedder(db, embedder.name, embedder.dim, embedder.provider);
-    },
-  };
+  const manifest = listManifests()[0];
+  if (!manifest) {
+    throw new Error('no embedder manifest is registered');
+  }
 
-  const contentType: EmbedderContentType = options.contentType ?? 'text';
-  const lockPath = options.lockPath ?? defaultLockPath(db);
-
-  const result = options.autoSelect
-    ? await options.autoSelect({ metadataStore, contentType, lockPath })
-    : await autoSelectActiveEmbedder({
-      metadataStore,
-      contentType,
-      lockPath,
-    });
-
-  // Persist the winner explicitly. The real cascade also persists via
-  // `metadataStore.persistActiveEmbedder`, but doing it here makes the
-  // wiring obvious and keeps test mocks simple (they don't need to know
-  // about the metadataStore round-trip).
-  setActiveEmbedder(db, result.name, result.dim, result.provider);
-
-  return { name: result.name, dim: result.dim, provider: result.provider };
+  const provider = backendToProvider(manifest.backend);
+  setActiveEmbedder(db, manifest.name, manifest.dim, provider);
+  return { name: manifest.name, dim: manifest.dim, provider };
 }
 
 // ───────────────────────────────────────────────────────────────────

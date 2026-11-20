@@ -33,7 +33,7 @@ trigger_phrases:
   - "vibe advisor adapter"
 importance_tier: normal
 contextType: reference
-version: 3.6.22.0
+version: 3.6.25.0
 ---
 
 # Skill Advisor: Prompt Routing Context
@@ -54,7 +54,9 @@ The concern key is `skill-advisor`. Its switch is `SYSTEM_SKILL_ADVISOR_DISABLED
 
 The exported `handleClaudeUserPromptSubmit` accepts a prompt payload. It checks `skippedAdvisorResultFor` before calling `buildSkillAdvisorBriefFromCli`. `renderAdvisorBrief` formats a recommendation. `renderAdvisorFallbackDirective` supplies context when no brief is available.
 
-`decideDirectiveLifecycleDelivery` reduces repeated context for a known session. It keeps the brief head and drops the repeated `Directives:` block. The handler returns `hookSpecificOutput.additionalContext`. It returns `{}` when its switch is off. It also returns `{}` when input is invalid or an exception escapes.
+`stripLeadingPastedReply` removes a leading pasted advisor reply before the CLI fallback and lexical scoring use the prompt. The handler stores each session's last delivered confident route in `$TMPDIR/speckit-advisor/route-receipts` by default and can return the skipped result for a later weak follow-up whose top route only meets the confidence floor and differs from that receipt.
+
+`decideDirectiveLifecycleDelivery` reduces repeated context for a known session. It keeps the brief head and drops the repeated `Directives:` block. The handler returns `hookSpecificOutput.additionalContext`. It returns `{}` when its switch is off. It also returns `{}` when input is invalid. When its own code throws, it returns the outage fallback, or the skipped fallback for a skipped prompt; it returns `{}` only when the payload carries no prompt string or that fallback cannot be rendered.
 
 Pi calls the shared handler from its input extension. DSH calls it from the repo-guards adapter. Vibe's turn-start composer calls `buildAdvisorPart`. The OpenCode plugin handles its own `experimental.chat.system.transform` event.
 
@@ -64,7 +66,7 @@ Pi calls the shared handler from its input extension. DSH calls it from the repo
 
 | Runtime | Event | Entry in this folder | Real file | What the runtime shows |
 |---|---|---|---|---|
-| **Claude** | `UserPromptSubmit` | `.skilled/hooks/skill-advisor/claude/user-prompt-submit.js`, the compiled adapter the runtime runs | [Claude source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts) | `Advisor:` text in `hookSpecificOutput.additionalContext`, or `{}` when disabled or on error. |
+| **Claude** | `UserPromptSubmit` | `.skilled/hooks/skill-advisor/claude/user-prompt-submit.js`, the compiled adapter the runtime runs | [Claude source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts) | `Advisor:` text in `hookSpecificOutput.additionalContext`, or `{}` when disabled or when the shim itself fails. A crash inside the handler returns the outage fallback. |
 | **Codex** | `UserPromptSubmit` | `.skilled/hooks/skill-advisor/codex/user-prompt-submit.js`, the compiled adapter the runtime runs | [Codex source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts) | Advisor context in the hook response. No response is emitted when the child has no output. |
 | **Cursor** | `beforeSubmitPrompt` | `.skilled/hooks/skill-advisor/cursor/user-prompt-submit.js`, the compiled adapter the runtime runs | [Cursor source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts) | Advisor context in Cursor's response when the hook fires. Missing context returns `permission: allow`. Delivery is unconfirmed, because `beforeSubmitPrompt` did not fire under the tested Cursor CLI build. |
 | **Devin** | `UserPromptSubmit` | `.skilled/hooks/skill-advisor/devin/user-prompt-submit.js`, the compiled adapter the runtime runs | [Devin source shim, compiled to `dist/`](../../system-spec-kit/runtime/hooks/devin/user-prompt-submit.ts) | Advisor context in `hookSpecificOutput.additionalContext`. Invalid child output adds no context. |
@@ -112,6 +114,7 @@ The DSH bundle registers its adapter from `.dsh/plugins/repo-guards/index.mjs`. 
 |---|---|
 | `claude/user-prompt-submit.ts` | Shared prompt handler. |
 | `lib/skill-advisor-cli-fallback.ts` | Calls the advisor CLI for the shared handler. |
+| `lib/route-receipt.ts` | Stores and checks session route receipts for weak follow-ups. |
 | `.skilled/hooks/shared/hook-flags.cjs` | Resolves the concern switch and the master switch. |
 | `.opencode/plugins/system-skill-advisor.js` | Adds advisor context through OpenCode's system transform. |
 | `.pi/extensions/prompt-advisor.ts` | Re-exports the Pi advisor extension. |
@@ -149,6 +152,12 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime test -- tests/hooks/cl
 ```
 
 Expected result: the switch smoke test passes. The hook returns `{}` and does not call the producer.
+
+```bash
+npm --prefix .skilled/skills/system-skill-advisor/runtime test -- tests/hooks/route-receipt.vitest.ts
+```
+
+Expected result: the route-receipt checks pass.
 
 ---
 

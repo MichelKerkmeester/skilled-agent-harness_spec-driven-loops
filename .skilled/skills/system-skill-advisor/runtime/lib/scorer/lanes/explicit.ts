@@ -238,6 +238,14 @@ function push(
   scores.set(skillId, current);
 }
 
+const TRACKER_STATUS_REVIEW = /\b(?:in|to|into)\s+review\b|\bstatus\b[^.?!]*\breview\b/;
+const TRACKER_ITEM = /\b(?:ticket|tickets|issue|issues|task|tasks|card|story|clickup|jira|linear|kanban|column)\b/;
+// The design tools the MCP transports read. A dashboard pulled from one is a design
+// fetch, so the word names no code to write.
+const DESIGN_TOOL_SOURCE = /\b(?:figma|refero|mobbin)\b/;
+// A read verb ahead of one of those tools, such as "get the dashboard design
+// from figma" or "grab the figma frame".
+const DESIGN_TOOL_READ = /\b(?:get|fetch|pull|grab|read|download|export|copy|open|inspect)\b.{0,60}?\b(?:figma|refero|mobbin)\b/;
 const WORD_CHAR = /\w/;
 const WHITESPACE_CHAR = /\s/;
 // `changelog` alone names sk-doc's changelog mode; only its file forms count as
@@ -250,11 +258,18 @@ function hasPlainMention(text: string, phrase: string): boolean {
   const normalized = phrase.trim().toLowerCase();
   if (!normalized) return false;
   const skipPathRule = normalized.includes('/');
+  // A plain word joined to another by a hyphen is part of a compound name, such as
+  // a repository called `ai-speckit`, so it names that thing, not this phrase.
+  const plainWord = /^\w+$/.test(normalized);
   let index = text.indexOf(normalized);
   while (index !== -1) {
     const before = text[index - 1] ?? '';
     const after = text[index + normalized.length] ?? '';
-    const bounded = (before === '' || !WORD_CHAR.test(before)) && (after === '' || !WORD_CHAR.test(after));
+    const joinedBefore = plainWord && before === '-' && WORD_CHAR.test(text[index - 2] ?? '');
+    const joinedAfter = plainWord && after === '-'
+      && WORD_CHAR.test(text[index + normalized.length + 1] ?? '');
+    const bounded = (before === '' || !WORD_CHAR.test(before)) && (after === '' || !WORD_CHAR.test(after))
+      && !joinedBefore && !joinedAfter;
     if (bounded && !DOC_FILE_SUFFIX.test(text.slice(index + normalized.length))) {
       if (skipPathRule) return true;
       let tokenStart = index;
@@ -265,6 +280,30 @@ function hasPlainMention(text: string, phrase: string): boolean {
       if (token.indexOf('/', 1) === -1) return true;
     }
     index = text.indexOf(normalized, index + 1);
+  }
+  return false;
+}
+
+// A command phrase written with other small words between its own still names
+// that command: "re-pin the vendored skilled tree" asks for "re-pin my vendored
+// skilled". Only phrases of three or more content words qualify, and those words
+// must sit close together in the prompt, so a long prompt that happens to use
+// them apart does not match. The match scores below an exact one.
+const NEAR_PHRASE_MIN_WORDS = 3;
+const NEAR_PHRASE_EXTRA_WORDS = 2;
+const NEAR_PHRASE_FACTOR = 0.85;
+
+function hasCloseContentWords(promptContent: readonly string[], phrase: string, promptWords: ReadonlySet<string>): boolean {
+  const phraseContent = [...new Set(tokenize(phrase))];
+  if (phraseContent.length < NEAR_PHRASE_MIN_WORDS) return false;
+  // The leading word carries the phrase's verb or question ("which ... are stale"),
+  // so a prompt that only shares the later words is about something else.
+  const [leadingWord] = tokenize(phrase, true);
+  if (!leadingWord || !promptWords.has(leadingWord)) return false;
+  const window = phraseContent.length + NEAR_PHRASE_EXTRA_WORDS;
+  for (let start = 0; start < promptContent.length; start += 1) {
+    const slice = new Set(promptContent.slice(start, start + window));
+    if (phraseContent.every((word) => slice.has(word))) return true;
   }
   return false;
 }
@@ -327,13 +366,25 @@ export function scoreExplicitLane(
     }
   }
 
+  // "In review" on a ticket or card is a tracker column, not a request to review code.
+  const reviewIsStatus = TRACKER_STATUS_REVIEW.test(lower) && TRACKER_ITEM.test(lower);
+  const dashboardIsDesign = DESIGN_TOOL_SOURCE.test(lower);
   for (const token of tokens) {
+    if (token === 'review' && reviewIsStatus) continue;
+    if (token === 'dashboard' && dashboardIsDesign) continue;
     for (const [skillId, amount] of TOKEN_BOOSTS[token] ?? []) {
       push(scores, skillId, amount, `token:${token}`);
     }
   }
 
   const writes = WRITE_VERBS.test(affirmedWriteText(lower));
+  // Taking a frame out of a design tool is the MCP transport's read, so the
+  // code skill's design-to-code phrases ("from figma") do not claim it. A build
+  // verb makes it design-to-code work again.
+  if (!writes && DESIGN_TOOL_READ.test(lower)) {
+    push(scores, 'mcp-tooling', 0.9, 'design-tool-read');
+    push(scores, 'sk-code', -0.5, 'design-tool-read');
+  }
   if (writes && /\b(readme|docs|documentation|playbook|taxonomy|markdown|feature_catalog|skill\.md|router\.md)\b/.test(lower)) {
     push(scores, 'sk-doc', 0.7, 'write-doc-surface');
   }
@@ -380,6 +431,8 @@ export function scoreExplicitLane(
     push(scores, 'system-deep-loop', 0.45, 'ambiguous-code-problem');
   }
 
+  const promptContent = tokenize(lower);
+  const promptWords = new Set(tokenize(lower, true));
   const slashTargetPhrases = [...new Set(projection.skills.flatMap((skill) => [...skill.intentSignals, ...skill.keywords])
     .map((phrase) => phrase.trim().toLowerCase())
     .filter((phrase) => SLASH_TARGET_PHRASE.test(phrase)))];
@@ -415,6 +468,14 @@ export function scoreExplicitLane(
           skillId,
           phraseSpecificity(phrase),
           `author:${phrase}`,
+          options.includeProducerIdentity ? skillId : undefined,
+        );
+      } else if (skill.kind === 'command' && !bareSlash && hasCloseContentWords(promptContent, normalized, promptWords)) {
+        push(
+          scores,
+          skillId,
+          phraseSpecificity(phrase) * NEAR_PHRASE_FACTOR,
+          `author~:${phrase}`,
           options.includeProducerIdentity ? skillId : undefined,
         );
       }

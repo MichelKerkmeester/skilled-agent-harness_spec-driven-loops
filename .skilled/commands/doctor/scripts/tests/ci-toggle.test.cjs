@@ -24,6 +24,7 @@ const test = require('node:test');
 
 const SCRIPTS = path.resolve(__dirname, '..');
 const { REPO_PROFILE_FILE, REPO_ROOT } = require('../lib/ci-profile.cjs');
+const { MANIFEST_PATH, sourceStatus } = require('../agents-md-manifest.cjs');
 const SCRIPTS_RELATIVE = '.skilled/commands/doctor/scripts';
 // The toggle and every module the report it reads loads, so a copied fixture runs the
 // same code and never resolves a module from this worktree.
@@ -152,6 +153,15 @@ function repoFixture(t) {
 }
 
 const WRITES = /^variable (set|delete)\b/;
+
+// The last cases read this repository's .github workflows and README, which never ship
+// with the skills, so a host that vendors these files has nothing for them to read. They
+// are gated on the origin remote naming the shipped manifest's source repository, a signal
+// the toggle and the profile loader never read.
+const source = sourceStatus({ root: REPO_ROOT, manifest: JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8')) });
+const NOT_SOURCE = source.isSource
+  ? false
+  : `asserts the Skilled source repository's own workflows and profile; this host vendors Skilled (${source.reason})`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. A FOREIGN REPOSITORY
@@ -301,7 +311,7 @@ test('a skill-folder profile written for another repository is named and refuses
 // 3. THIS REPOSITORY
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('here SKILLED_CI_FRESHNESS off asks for a second named confirmation for the guards it skips', (t) => {
+test('here SKILLED_CI_FRESHNESS off asks for a second named confirmation for the guards it skips', { skip: NOT_SOURCE }, (t) => {
   const { run, calls } = repoFixture(t);
   const result = run(['--variable=SKILLED_CI_FRESHNESS', '--state=off', '--json']);
   assert.equal(result.code, 0, result.err);
@@ -318,7 +328,7 @@ test('here SKILLED_CI_FRESHNESS off asks for a second named confirmation for the
   assert.ok(!calls().some((call) => WRITES.test(call)));
 });
 
-test('here SKILLED_CI_REPORTS off asks for the second confirmation for the trigger index rebuild', (t) => {
+test('here SKILLED_CI_REPORTS off asks for the second confirmation for the trigger index rebuild', { skip: NOT_SOURCE }, (t) => {
   const { run } = repoFixture(t);
   const plan = run(['--variable=SKILLED_CI_REPORTS', '--state=off', '--json']).json;
   assert.deepEqual(plan.secondConfirmation.workflows.map((entry) => entry.file), ['trigger-index-rebuild.yml']);
@@ -326,7 +336,7 @@ test('here SKILLED_CI_REPORTS off asks for the second confirmation for the trigg
   assert.equal(tests.secondConfirmation, null);
 });
 
-test('here the message variable and the master switch keep their refusal wording', (t) => {
+test('here the message variable and the master switch keep their refusal wording', { skip: NOT_SOURCE }, (t) => {
   const { run } = repoFixture(t);
   const messages = run(['--variable=SKILLED_CI_MESSAGES', '--state=off']);
   assert.equal(messages.code, 1);

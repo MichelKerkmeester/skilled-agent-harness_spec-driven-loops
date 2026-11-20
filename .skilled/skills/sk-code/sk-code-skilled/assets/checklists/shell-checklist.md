@@ -2,7 +2,7 @@
 title: Shell Code Quality Checklist
 description: Quality validation checklist for Bash scripts in the OpenCode development environment.
 trigger_phrases:
-  - "opencode shell checklist"
+  - "skilled shell checklist"
   - "bash quality validation checklist"
   - "bash strict mode check"
   - "shell variable quoting check"

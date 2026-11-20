@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs",
+  "description": "Phase 10: sk-design-changelogs",
+  "keywords": [
+    "phase",
+    "sk-design-changelogs"
+  ],
+  "lastUpdated": "2026-11-18T04:58:12.372Z",
+  "specId": "010",
+  "folderSlug": "sk-design-changelogs",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "003-changelog-system",
+    "010-changelog-layout-retrofit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-11-26_05-58__rewrote-all-71-sk-design-changelogs-into-the.md"
+  ]
+}

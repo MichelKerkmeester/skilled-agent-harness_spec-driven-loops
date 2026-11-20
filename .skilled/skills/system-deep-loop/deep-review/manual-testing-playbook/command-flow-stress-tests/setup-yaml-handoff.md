@@ -1,7 +1,7 @@
 ---
 title: "CP-052 -- Deep-review setup-to-YAML handoff **(SANDBOXED)**"
 description: "Validate that /deep:review resolves setup inputs before loading the workflow in auto mode."
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # CP-052 -- Deep-review setup-to-YAML handoff **(SANDBOXED)**
@@ -47,6 +47,8 @@ Operators run the exact command sequence and judge only grep-checkable signals.
 
 ### Exact Runnable Command Sequence
 
+**OpenCode 2 status:** the only dispatch is a registered slash command, which `run` does not expand on OpenCode 2 (hard rule `v2-slash-prompt-route`). It is UNVERIFIED until a `session.command` runner is recorded, so this scenario cannot PASS on OpenCode 2 yet.
+
 ```bash
 set -uo pipefail
 rm -rf /tmp/cp-052-sandbox /tmp/cp-052-sandbox-baseline /tmp/cp-052-spec
@@ -56,7 +58,10 @@ cp -a /tmp/cp-052-sandbox /tmp/cp-052-sandbox-baseline
 cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-052-sandbox /tmp/cp-052-spec > /tmp/cp-052-pre.txt
 cd /tmp/cp-052-sandbox
-opencode run "/deep:review:auto \"agent:deep-review\" --spec-folder=/tmp/cp-052-spec --max-iterations=1 --convergence=0.10 --no-resource-map. Use target type agent and dimensions traceability. Do not ask follow-up setup questions." --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-052-sandbox </dev/null 2>&1 | tee /tmp/cp-052-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-052-B-exit.txt
+# Stage B is a registered slash command. OpenCode 2 `run` does not expand it (hard rule v2-slash-prompt-route),
+# so it needs the session.command route (POST /api/session/{id}/command). No verified request body for that route
+# is recorded in this repository, so this step is UNVERIFIED and is not run here.
+echo "EXIT_B=UNVERIFIED" | tee /tmp/cp-052-B-exit.txt
 cd "$(git rev-parse --show-toplevel)"
 find /tmp/cp-052-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-052-B-artifacts.txt 2>/dev/null || touch /tmp/cp-052-B-artifacts.txt
 cat /tmp/cp-052-B-command.txt /tmp/cp-052-B-artifacts.txt > /tmp/cp-052-B-combined.txt

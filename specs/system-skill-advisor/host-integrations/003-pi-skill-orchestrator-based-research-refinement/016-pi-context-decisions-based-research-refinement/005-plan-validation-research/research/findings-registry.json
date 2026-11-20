@@ -1,0 +1,605 @@
+{
+  "sessionId": "2026-11-18T12:01:37Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-rq1-phase-002-which-rule-strips-a-pasted-earlier-reply-before-the-task-without-t",
+      "inboxId": null,
+      "text": "RQ1 Phase 002: which rule strips a pasted earlier reply before the task without touching a real task, measured against the routing corpora, and is the dual placement (recommend handler plus scorer entry) the only correct one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-rq2-phase-003-after-commit-67782cf23f0-dropped-floor-only-ties-do-weak-follow-up",
+      "inboxId": null,
+      "text": "RQ2 Phase 003: after commit 67782cf23f0 dropped floor-only ties, do weak follow-ups still pass on the floor, is the planned ship rule sound, and what should the guard return?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-rq3-phase-004-is-the-nested-try-fallback-in-the-shared-claude-catch-the-smallest",
+      "inboxId": null,
+      "text": "RQ3 Phase 004: is the nested-try fallback in the shared Claude catch the smallest correct fix on all four runtimes, and what must the ENV-REFERENCE sentence say given the hook sends confidenceThreshold 0.8 per request?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-rq4-gaps-and-order-does-anything-in-the-advisor-or-the-extension-make-a-planned-",
+      "inboxId": null,
+      "text": "RQ4 Gaps and order: does anything in the advisor or the extension make a planned phase unnecessary, larger or riskier, change the order, or bring back a cut item on new evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-3-rq3-phase-004-is-the-nested-try-fallback-in-the-shared-claude-catch-the-smallest",
+      "inboxId": null,
+      "text": "RQ3 Phase 004: is the nested-try fallback in the shared Claude catch the smallest correct fix on all four runtimes, and what must the ENV-REFERENCE sentence say given the hook sends confidenceThreshold 0.8 per request?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-rq1-phase-002-which-rule-strips-a-pasted-earlier-reply-before-the-task-without-t",
+      "inboxId": null,
+      "text": "RQ1 Phase 002: which rule strips a pasted earlier reply before the task without touching a real task, measured against the routing corpora, and is the dual placement (recommend handler plus scorer entry) the only correct one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-rq2-phase-003-after-commit-67782cf23f0-dropped-floor-only-ties-do-weak-follow-up",
+      "inboxId": null,
+      "text": "RQ2 Phase 003: after commit 67782cf23f0 dropped floor-only ties, do weak follow-ups still pass on the floor, is the planned ship rule sound, and what should the guard return?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-rq4-gaps-and-order-does-anything-in-the-advisor-or-the-extension-make-a-planned-",
+      "inboxId": null,
+      "text": "RQ4 Gaps and order: does anything in the advisor or the extension make a planned phase unnecessary, larger or riskier, change the order, or bring back a cut item on new evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "RQ3: phase 004 nested-try fallback, and the ENV-REFERENCE sentence.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ2: phase 003 floor-only ties after `67782cf23f0`, the ship rule, and what the guard returns.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ4: gaps and order.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ2: phase 003 floor-only ties after `67782cf23f0`, the ship rule, and what the guard returns. Finding 2 here adds one input: the guard's policy check has to see the stripped prompt.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ3, not covered in this run: the phase 004 nested-try fallback and the `ENV-REFERENCE.md` sentence. Iteration 2's Recommended Next Focus names the anchors: `hooks/claude/user-prompt-submit.ts:468-480`, `hooks/pi/prompt-advisor.ts:285`, `hooks/lib/skill-advisor-cli-fallback.ts:245`. The run's iteration cap is 3, so synthesis must mark RQ3 as open, not answered.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "RQ3 Phase 004: is the nested-try fallback in the shared Claude catch the smallest correct fix on all four runtimes, and what must the ENV-REFERENCE sentence say given the hook sends confidenceThreshold 0.8 per request?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-corpus-false-match-count-is-0-but-that-is-weak-evidence-of-precision-confirmed-b",
+      "text": "**Corpus false-match count is 0, but that is weak evidence of precision.** Confirmed by rg. There are 701 prompt lines across 8 corpus files: command-prompts 224, labeled-prompts 195, doctor-prompts 78, holdout-prompts 63, regression-cases 42, gate2-golden 39, behaviour-fresh 36 and ambiguity-prompts 24 [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl:1] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:1]. `rg -i '(you|assistant|claude) (replied|said|wrote|answered|responded|told me)'` matched nothing in either corpus folder, and `rg -c -i '\\b(now|task|next|then) ?:'` matched nothing either. Every component the rule needs is absent, so REQ-004 passes trivially for any cue-plus-marker rule. The corpora hold no near-miss negatives, so the 0 says nothing about precision. I did not scan the policy gold-replay fixture behind `tests/prompt-policy-gold-replay.vitest.ts`. **Verdict: CHANGE.** Extend T002's one-liner check with 4 to 6 inline negative cases instead of new corpus rows, which would move more baselines. Examples: a task that opens with a quoted string (`\"Fix the bug where the bot prints \\\"you said:\\\" twice\"`), a task that contains `Now:` mid-sentence without a leading cue, and a cue with no task marker. Each must come back unchanged.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-5-rule-shape-inferred-the-execution-check-was-blocked-the-smallest-rule-that-fits-",
+      "text": "**Rule shape.** Inferred; the execution check was blocked. The smallest rule that fits the probe and the negatives:",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-dual-placement-is-required-and-the-tests-cannot-catch-a-regression-in-it-con",
+      "text": "**The dual placement is required, and the tests cannot catch a regression in it.** Confirmed from code. The handler embeds and scores the raw `input.prompt` [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:569]. The semantic lane uses the stored embedding only on exact string equality [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:249] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:328]. Off the fixture projection, a mismatch gives no vector and the lane returns `[]` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:251] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:252]. This part is new: under vitest, `withSemanticShadowPromptEmbedding` returns `run()` without embedding [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:145], and the lane falls back to `fixtureVector(prompt)` of whatever text the scorer holds [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:251]. So T004's in-process check, the `GATES` vitest run and the corpus gates all pass even with a scorer-only strip. Only the live daemon path shows the semantic lane going empty. **Verdict: CHANGE.** Add to T013 (the post-rebuild probe) a check that the stripped probe's output still has a non-empty semantic-lane contribution, or a lane-health field without `disabledReason`. That probe is the only check that catches a wrong placement.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-11-the-extension-s-way-of-separating-the-task-does-not-transfer-confirmed-from-code",
+      "text": "**The extension's way of separating the task does not transfer.** Confirmed from code. pi-context-decisions tells prompt from reply by the transcript message role (`entry.message.role === \"user\"` or `\"assistant\"`) [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22]. It walks back over consecutive user messages to find a prompt's start [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:77]. No text heuristic inside a single user message turned up in `skill-filter.ts` or `relevance.ts` (grep for latest/last-user/pasted/quote matched nothing there). The advisor gets one prompt string per request, and a reply pasted into that string has no role boundary, so a text rule is the only option. **Verdict: DROP** any extension-derived alternative for phase 002.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-handler-still-reads-the-raw-prompt-for-compiled-routes-confirmed-from-code-t",
+      "text": "**The handler still reads the raw prompt for compiled routes.** Confirmed from code; the risk is inferred. `enrichCompiledRoutes(..., input.prompt, ...)` runs at [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:563] and [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:638], and the raw prompt is passed again at :564, :582 and :639. The plan scopes these out because no failure has been shown (plan.md, data flow). If the pasted reply names a command (for example `/deep:research`), the compiled-route enrichment may still surface it after the strip. To confirm, run one probe with a pasted reply that names a slash command in front of a plain task, and compare the compiled-route field with and without the strip. **Verdict: CHANGE (probe only).** Add that probe to T013. If it shows leakage, open a follow-up; this phase makes no code change for it.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-placement-is-not-the-only-correct-one-but-it-is-the-best-one-inferred-from-c",
+      "text": "**The placement is not the only correct one, but it is the best one.** Inferred from code. One alternative also keeps the embedding key and the scored text equal: strip inside `withSemanticShadowPromptEmbedding` before `adapter.embed([prompt])` and `setSemanticShadowPromptEmbedding(prompt, ...)` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:186] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:202], and keep the scorer-entry strip. That puts a prompt-policy dependency inside a scorer lane, which is worse cohesion than one local variable in the handler. Stripping the cache key is optional. The key comes from `input.prompt.trim()` [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:536], and the output is a deterministic function of the raw prompt, so a raw key stays correct and only shares cache entries less often. **Verdict: KEEP** the plan's handler-plus-scorer-entry placement (plan.md \"Why the handler and the scorer entry\"). It also needs the rule to be idempotent, which T002 already checks.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-12-the-rule-s-effect-on-the-probe-pair-is-not-confirmed-by-execution-in-this-iterat",
+      "text": "**The rule's effect on the probe pair is not confirmed by execution in this iteration.** This is a missing dependency, not a finding about the plan. `node -e` and the `skill-advisor.cjs` probes were refused by the unattended session's permission layer, so the spec's Measured Behavior probes (sk-doc 0.9268 on the pasted prompt) could not be rerun here. [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/spec.md:70]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-10-idempotence-breaks-for-a-nested-paste-where-the-remainder-itself-starts-with-a-c",
+      "text": "Idempotence breaks for a nested paste, where the remainder itself starts with a cue and a marker. T002 should state that one pass is enough (no fixed-point loop) and test the nested case, so the second application is unchanged by design or the case is named as a known limit.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-8-if-the-remainder-is-empty-return-the-input-unchanged",
+      "text": "If the remainder is empty, return the input unchanged.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-9-keep-then-and-next-out-of-the-marker-set-they-show-up-inside-real-multi-step-tas",
+      "text": "Keep `then:` and `next:` out of the marker set. They show up inside real multi-step tasks, so a rule that included them would be more likely to cut task text. That is a judgment, since the corpora hold neither marker.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-6-match-only-at-the-very-start-an-optional-earlier-previously-above-word-then-you-",
+      "text": "Match only at the very start: an optional `earlier|previously|above` word, then `(you|the assistant|claude) (replied|said|wrote|answered|responded):`, or a leading quote character.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-1-7-strip-from-there-through-the-end-of-the-first-n-s-now-task-s-marker",
+      "text": "Strip from there through the end of the first `(?:^|[.!?\\n]\\s*)(now|task)\\s*:` marker.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md`, `plan.md`, `tasks.md` (T002 to T007, Data Flow, Risks)",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:515`, `:536`, `:563`, `:569`, `:638`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:144-223`, `:249-254`, `:328`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1274-1294`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/*.jsonl` and `runtime/scripts/fixtures/*.jsonl` (rg counts)",
+        "`specs/.../016-.../context/pi-context-decisions-main/src/extension/past-turn-summaries.ts:22`, `:77`"
+      ]
+    },
+    {
+      "id": "finding-2-6-no-cut-item-comes-back-keep-the-cut-list-confirmed-for-the-advisor-side-n4-stays",
+      "text": "**No cut item comes back. KEEP the cut list.** Confirmed for the advisor side. N4 stays deferred on phase 003's over-suppression outcome, which this check does not change [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md:108]. N6's reason, that the fixed detail string already makes the crash path countable, still holds, because phase 004 keeps `emitDiagnostic` with that string and counts it [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/spec.md:74]. Phase 003 already names the OpenCode gap for the guard [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:99], and rg agrees: the plugin calls neither `handleClaudeUserPromptSubmit` nor the flag, while Pi, DSH and Vibe call the shared handler [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:289] [SOURCE: .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:124] [SOURCE: .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:192]. That gap is known and accepted, so it is not new evidence. Nothing in this iteration's advisor reads touches R1, R6, R7, R8, N5 or N7.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/.../016-.../spec.md:98-150` (cut list, phase map, handoffs)",
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md:89`, `:109`, `:153`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:99`, `:111`, `:136`, `:162-163`, `:173`; `plan.md:60-83`",
+        "`specs/.../016-.../004-crash-path-fallback/spec.md:61`, `:74`, `:100-102`, `:117`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:305-332`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:105-109`, `:156-191`",
+        "`.skilled/skills/system-skill-advisor/hooks/{pi,dsh,vibe}/prompt-advisor.*` and `.opencode/plugins/system-skill-advisor.js` (rg)"
+      ]
+    },
+    {
+      "id": "finding-2-7-phase-003-still-has-a-target-on-current-evidence-but-whether-67782cf23f0-is-in-t",
+      "text": "**Phase 003 still has a target on current evidence, but whether 67782cf23f0 is in that build is not confirmed. Deferred to RQ2.** The probe at `655aa883009` shows `fix that too` passing sk-code, sk-doc and local-webflow at 0.82 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/spec.md:73]. Phase 003 says the planning probe on the merged source still passes at the floor [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:163]. `git show 67782cf23f0` was refused, so I could not confirm that the commit is an ancestor of `655aa883009` or read its tie rule. **No verdict here.** RQ2 should run `git merge-base --is-ancestor 67782cf23f0 655aa883009` and read `runtime/lib/scorer/ambiguity.ts:100-123`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/.../016-.../spec.md:98-150` (cut list, phase map, handoffs)",
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md:89`, `:109`, `:153`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:99`, `:111`, `:136`, `:162-163`, `:173`; `plan.md:60-83`",
+        "`specs/.../016-.../004-crash-path-fallback/spec.md:61`, `:74`, `:100-102`, `:117`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:305-332`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:105-109`, `:156-191`",
+        "`.skilled/skills/system-skill-advisor/hooks/{pi,dsh,vibe}/prompt-advisor.*` and `.opencode/plugins/system-skill-advisor.js` (rg)"
+      ]
+    },
+    {
+      "id": "finding-2-2-phase-003-s-guard-reads-the-raw-prompt-while-phase-002-makes-the-scorer-read-the",
+      "text": "**Phase 003's guard reads the raw prompt while phase 002 makes the scorer read the stripped one. CHANGE (phase 003, guard task and pair table).** The code paths are confirmed; the miss is inferred. The guard calls `shouldFireAdvisor(prompt)` again on the hook's prompt, and fires only when the reason is `work_intent_with_meaningful_tokens` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/plan.md:76]. Phase 002 strips in the recommend handler and the scorer entry only [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/spec.md:89], so the policy still sees the raw text. The policy checks the explicit marker before work intent [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:171] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:182], and a skill name anywhere in the text counts as a marker [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:106]. Take `Earlier you replied: I updated the README with sk-doc conventions. Now: fix that too`. After phase 002 the daemon scores `fix that too`, which passes on the floor. The raw prompt's policy reason is `explicit_skill_or_governance_marker`, so the guard lets the floored route through. Pasted replies name skills often, so this is the case where the two phases meet. **Exact change:** in phase 003, have the guard call `shouldFireAdvisor` on the output of phase 002's exported stripping function, and add a ninth inline pair to the plan.md pair table: the pasted-reply form of pair 1. To confirm: read `SKILL_NAME_PATTERN` to check it matches `sk-doc`, then run that pair through the bench once phase 002 has landed.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/.../016-.../spec.md:98-150` (cut list, phase map, handoffs)",
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md:89`, `:109`, `:153`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:99`, `:111`, `:136`, `:162-163`, `:173`; `plan.md:60-83`",
+        "`specs/.../016-.../004-crash-path-fallback/spec.md:61`, `:74`, `:100-102`, `:117`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:305-332`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:105-109`, `:156-191`",
+        "`.skilled/skills/system-skill-advisor/hooks/{pi,dsh,vibe}/prompt-advisor.*` and `.opencode/plugins/system-skill-advisor.js` (rg)"
+      ]
+    },
+    {
+      "id": "finding-2-5-phase-003-s-ship-branch-is-larger-than-a-pass-through-it-is-still-not-new-eviden",
+      "text": "**Phase 003's ship branch is larger than \"a pass-through\". It is still not new evidence for bringing back R4. KEEP 003's conditional design and the R4 cut. CHANGE 003's verification.** Confirmed from code, with the test scope inferred. `AdvisorRecommendationSchema` is `.strict()` [SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:332]. Today neither `advisor-recommend.ts` nor `subprocess.ts` carries `confidenceFloored` (rg found no hits in either file, the hooks or the OpenCode plugin). So the ship branch changes the public strict schema, which is part of the cost that got R4 cut [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md:104]. R4's main reason still holds: R4's fields would have no reader. The guard is the one reader for this flag and needs no other field. The plan copies the existing `heldBelow` and `needsMode` path [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/plan.md:73] [SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:331], which keeps the risk low. Its only proof on the ship branch is `npx vitest run tests/hooks` (SC-002) and the REQ-005 CLI probe, and neither runs any test that parses the daemon output against the schema. **Exact change:** add the schema or handler test folder to the ship-branch verification in phase 003's plan.md. To confirm the gap: `rg -l AdvisorRecommendationSchema runtime/tests`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/.../016-.../spec.md:98-150` (cut list, phase map, handoffs)",
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md:89`, `:109`, `:153`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:99`, `:111`, `:136`, `:162-163`, `:173`; `plan.md:60-83`",
+        "`specs/.../016-.../004-crash-path-fallback/spec.md:61`, `:74`, `:100-102`, `:117`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:305-332`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:105-109`, `:156-191`",
+        "`.skilled/skills/system-skill-advisor/hooks/{pi,dsh,vibe}/prompt-advisor.*` and `.opencode/plugins/system-skill-advisor.js` (rg)"
+      ]
+    },
+    {
+      "id": "finding-2-1-phase-004-should-move-ahead-of-phase-003-change-order-confirmed-from-the-plan-fi",
+      "text": "**Phase 004 should move ahead of phase 003. CHANGE (order).** Confirmed from the plan files; the anchor drift is inferred. Phase 004 shares no file with phase 002. It does share two files with phase 003's ship branch: `hooks/claude/user-prompt-submit.ts` and `runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:111] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/spec.md:100]. Phase 003's guard goes between `:375` and `:387` of the hook [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/plan.md:76]. Phase 004 pins exact lines below that point: the catch at `:468-480`, and the three `{}` tests at `:411`, `:432` and `:446` in its REQ-002 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/spec.md:117]. If the guard ships first, every one of those anchors moves, and the line-mismatch halt fires at phase 004's start. Phase 004 needs nothing that phase 003 produces. The parent handoff row 003 to 004 asks only that the bench prints `N`, `H` and `C` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md:149], which has nothing to do with the crash path. Running phase 004 first also means any throw from the new guard reaches a catch that already renders the outage fallback, not one that returns `{}`. **Exact change:** order the phases 002, 004, 003 (or 004 first, since it is independent of 002 as well). Rewrite the parent handoff rows to match, and set the predecessor and successor fields in the 003 and 004 specs. To confirm the drift: after a mock guard insert, run `rg -n 'Unhandled UserPromptSubmit hook exception'` on the hook and compare the line with `:469`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/.../016-.../spec.md:98-150` (cut list, phase map, handoffs)",
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md:89`, `:109`, `:153`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:99`, `:111`, `:136`, `:162-163`, `:173`; `plan.md:60-83`",
+        "`specs/.../016-.../004-crash-path-fallback/spec.md:61`, `:74`, `:100-102`, `:117`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:305-332`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:105-109`, `:156-191`",
+        "`.skilled/skills/system-skill-advisor/hooks/{pi,dsh,vibe}/prompt-advisor.*` and `.opencode/plugins/system-skill-advisor.js` (rg)"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-order-002-before-003-is-correct-keep-confirmed-from-the-plan-files-phase-002",
+      "text": "**The order 002 before 003 is correct. KEEP.** Confirmed from the plan files. Phase 002 rewrites `runtime/bench/scorer-calibration-baseline.json` for its new corpus row [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/spec.md:109]. Phase 003 forbids any change to that file [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:136], and it already names phase 002 as a dependency [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:162]. If phase 003 ran first, its floored counts would be measured on a corpus one row short and on a scorer without the strip.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/.../016-.../spec.md:98-150` (cut list, phase map, handoffs)",
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md:89`, `:109`, `:153`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:99`, `:111`, `:136`, `:162-163`, `:173`; `plan.md:60-83`",
+        "`specs/.../016-.../004-crash-path-fallback/spec.md:61`, `:74`, `:100-102`, `:117`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:305-332`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:105-109`, `:156-191`",
+        "`.skilled/skills/system-skill-advisor/hooks/{pi,dsh,vibe}/prompt-advisor.*` and `.opencode/plugins/system-skill-advisor.js` (rg)"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-parent-phase-map-contradicts-phase-002-s-own-placement-and-it-puts-phase-005",
+      "text": "**The parent phase map contradicts phase 002's own placement, and it puts phase 005 in the wrong slot. CHANGE (parent `spec.md`).** Confirmed from the files. Map row 2 says the strip goes \"at the entry of `scoreAdvisorPrompt`, so every runtime gets it\" [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md:131]. Phase 002 strips in the handler as well, and says a scorer-only strip empties the semantic lane [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/spec.md:153]. Iteration 1 Finding 1 showed that the vitest gates cannot catch that error. Anyone who reads only the map builds the wrong placement. The map also lists phase 5 as `[Phase 5 scope]`, `Pending`, after 004, with handoff criteria `[Criteria TBD]` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md:134] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md:150]. Phase 005's own spec says it runs before phases 002 to 004 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/spec.md:38]. **Exact change:** map row 2 should read \"in the recommend handler and at the entry of `scoreAdvisorPrompt`\". Fill in row 5's focus. Replace the 004 to 005 handoff row with a 005 to 002 row whose criterion is that `research/research.md` holds a verdict per phase.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/.../016-.../spec.md:98-150` (cut list, phase map, handoffs)",
+        "`specs/.../016-.../002-pasted-context-stripping/spec.md:89`, `:109`, `:153`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:99`, `:111`, `:136`, `:162-163`, `:173`; `plan.md:60-83`",
+        "`specs/.../016-.../004-crash-path-fallback/spec.md:61`, `:74`, `:100-102`, `:117`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:305-332`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:105-109`, `:156-191`",
+        "`.skilled/skills/system-skill-advisor/hooks/{pi,dsh,vibe}/prompt-advisor.*` and `.opencode/plugins/system-skill-advisor.js` (rg)"
+      ]
+    },
+    {
+      "id": "finding-3-5-emit-nothing-should-return-the-policy-s-skipped-result-as-the-plan-reads-it-keep",
+      "text": "**\"Emit nothing\" should return the policy's skipped result, as the plan reads it. KEEP the reading. CHANGE the guard test to pin both fields that select it.** Confirmed from the renderer. The renderer picks the `Advisor: prompt skipped.` head only when `status === 'skipped'` and `freshness === 'unavailable'`. Any other shape with no brief falls to `no-match` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:644-647]. Every head, skipped included, is followed by the directives label and the hygiene directive [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:656-663]. So the three candidates differ like this. `{}` drops the hygiene directive, as phase 003 already notes [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:173]. A no-match shape says \"no skill matched\", which is false for a prompt where three skills passed, and with setup wording it adds the setup hint [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:660-661]. The skipped shape is the only one that keeps the directive and makes no false claim. A guard that builds its own object and misses `freshness: 'unavailable'` would silently render \"no skill matched\". **Exact change:** the REQ-006 test asserts the exact `Advisor: prompt skipped.` head and the hygiene directive, and the guard reuses the policy's skipped builder rather than writing its own literal. The operator confirmation in the open question can then close as \"skipped shape\".",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:1-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:80`, `:455-506`, `:1321`, `:1487-1538`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:58`, `:105-191`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:636-663`",
+        "`specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md:73`, `:128`; `implementation-summary.md:70`, `:86`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:61-176`; `plan.md:58-77`",
+        "`specs/.../016-.../context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:3-28`; `scripts/benchmark-relevance-methods.ts:2-46`"
+      ]
+    },
+    {
+      "id": "finding-3-4-h-does-not-count-a-guarded-follow-up-that-matched-its-task-change-report-it-besi",
+      "text": "**`H` does not count a guarded follow-up that matched its task. CHANGE: report it beside `H`, but do not gate on it.** Inferred. The scorer sees only the follow-up text, so a follow-up's top-1 is the same whatever task it follows. `H` counts a pair only when that top-1 differs from the task's [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:123]. For \"fix that too\", sk-code, sk-doc and local-webflow all pass at 0.82 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:73], so which one is top-1 is decided by score order among floored peers. Whether pair 1 counts as harm depends on that order, not on the follow-up. A pair whose follow-up is floored and matches its task is a route the guard would also hide. Neither `H` nor `C` counts it. Hiding a same-skill route on a follow-up costs little, because that skill already led the session, so it should not block the ship. **Exact change:** add `Hsame`, the guarded pairs whose follow-up top-1 equals the task's, to the `advisor-follow-up-routing` line as a reported value. Also print each follow-up's full floored set, not only top-1, so a tie-order artifact can be seen.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:1-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:80`, `:455-506`, `:1321`, `:1487-1538`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:58`, `:105-191`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:636-663`",
+        "`specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md:73`, `:128`; `implementation-summary.md:70`, `:86`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:61-176`; `plan.md:58-77`",
+        "`specs/.../016-.../context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:3-28`; `scripts/benchmark-relevance-methods.ts:2-46`"
+      ]
+    },
+    {
+      "id": "finding-3-3-n-2-is-not-fixed-once-iteration-2-s-ninth-pair-is-added-and-two-pairs-can-never-",
+      "text": "**`N / 2` is not fixed once iteration 2's ninth pair is added, and two pairs can never count toward `H`. CHANGE the rule's wording.** Confirmed from the plan and the regex. Iteration 2 Finding 2 adds a ninth pair, the pasted-reply form of pair 1. With `N = 8` the bar is `H >= 4`. With `N = 9` the bar is `H >= 4.5`, so 5 [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:125]. `H` needs a floored top-1, and pairs 2 and 4 have no `TASK_INTENT` verb, so they cannot take the task-intent floor [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:80]. They can still floor through the direct-score path, so they are not certain zeros (inference), but they sit in the denominator with little chance of counting. That biases the rule toward no-ship, which is the safe side, but it should be a stated choice and not an accident. **Exact change:** write the bar as an integer in `spec.md` section 4, \"`H >= ceil(N / 2)`, with `N = 9` once the pasted pair is added, so `H >= 5`\". Keep pairs 2 and 4 as negative controls, and say so in the pair table.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:1-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:80`, `:455-506`, `:1321`, `:1487-1538`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:58`, `:105-191`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:636-663`",
+        "`specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md:73`, `:128`; `implementation-summary.md:70`, `:86`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:61-176`; `plan.md:58-77`",
+        "`specs/.../016-.../context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:3-28`; `scripts/benchmark-relevance-methods.ts:2-46`"
+      ]
+    },
+    {
+      "id": "finding-3-6-iteration-2-finding-2-s-precondition-is-confirmed-a-skill-name-in-the-pasted-rep",
+      "text": "**Iteration 2 Finding 2's precondition is confirmed: a skill name in the pasted reply turns the guard off. KEEP that change.** Confirmed from code. `SKILL_NAME_PATTERN` is `/\\b(?:sk|system|cli|mcp)-[a-z0-9][a-z0-9-]*\\b/g` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:58], so it matches `sk-doc`. `hasExplicitMarker` searches the whole canonical prompt with it [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:105-109], and the marker return comes before the work-intent return [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:171-191]. A raw prompt with a pasted reply that names any skill returns `explicit_skill_or_governance_marker`, and the guard, which fires only on `work_intent_with_meaningful_tokens` [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/plan.md:76], lets the floored route through. The same must hold in the bench: the floor counter calls `shouldFireAdvisor(row.prompt)` on the raw row [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/plan.md:58]. **Exact change:** the bench and the guard both call `shouldFireAdvisor` on phase 002's stripped text, so the measured policy reason is the one the guard will see.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:1-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:80`, `:455-506`, `:1321`, `:1487-1538`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:58`, `:105-191`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:636-663`",
+        "`specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md:73`, `:128`; `implementation-summary.md:70`, `:86`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:61-176`; `plan.md:58-77`",
+        "`specs/.../016-.../context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:3-28`; `scripts/benchmark-relevance-methods.ts:2-46`"
+      ]
+    },
+    {
+      "id": "finding-3-7-the-extension-s-single-winner-benchmark-does-not-fit-phase-003-keep-the-plan-s-m",
+      "text": "**The extension's single-winner benchmark does not fit phase 003. KEEP the plan's method.** Confirmed from the extension docs. The extension's benchmark is a live, billable run against model-backed decision calls over a 30-skill demo [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:3] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/scripts/benchmark-relevance-methods.ts:2]. Its single-winner arm is \"exploratory, not deployed\", and its recall is capped at one over the number of needed skills [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:19] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:28]. Each case carries gold `required` and `acceptable` sets [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/context/pi-context-decisions-main/scripts/benchmark-relevance-methods.ts:46]. Phase 003 measures a deterministic scorer with no model call, and it compares each follow-up to its task's measured top-1 so that it needs no hand label [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/plan.md:59]. Bringing in the extension's method would add billing and gold labels and answer a different question. Only the idea of an explicit `none` option carries over, and Finding 5's skipped result already plays that role.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:1-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:80`, `:455-506`, `:1321`, `:1487-1538`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:58`, `:105-191`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:636-663`",
+        "`specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md:73`, `:128`; `implementation-summary.md:70`, `:86`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:61-176`; `plan.md:58-77`",
+        "`specs/.../016-.../context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:3-28`; `scripts/benchmark-relevance-methods.ts:2-46`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-ship-branch-is-probably-unreachable-because-c-is-very-likely-above-zero-keep",
+      "text": "**The ship branch is probably unreachable, because `C` is very likely above zero. KEEP the rule. CHANGE the plan so it states this before the run and prints the `C` rows.** Inferred from the measured behavior. Collateral `C` counts corpus rows with work-intent policy, a floored top-1 and a correct gold [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:124-125]. The phase's own probe already shows a complete standalone task (\"Refactor the session store module…\") as work-intent, sk-code 0.82, floored [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:77]. The cause is structural: any work-intent prompt whose base is below 0.82 and whose direct score clears the task-intent floor gets `floored: true` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:478-496], and a second floor path does the same on direct score alone [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:499-503]. So \"floored\" marks a moderate real match as often as a weak follow-up. One such correct row in the labeled corpus makes `C > 0`, and the rule then closes without a guard and hands N4 to the operator. The rule is sound in that outcome: it refuses a guard that would hide correct routes, which is the plan's own high-severity risk [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:165]. But the plan should not read as if the ship branch were the expected path. **Exact change:** in `plan.md` section 3, add one sentence: \"The phase's own probe shows a correct standalone task floored under work intent, so `C = 0` is unlikely and the expected outcome is a close.\" Also make the `advisor-scorer-calibration` line list the ids of the `C` rows, so the operator who decides N4 can see which correct routes the guard would hide. I could not count `C` here: `runtime/bench/labeled-prompts.jsonl` is not at that path, and live probes are blocked. The orchestrator confirms by running the bench once phase 002 lands.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:1-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:80`, `:455-506`, `:1321`, `:1487-1538`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:58`, `:105-191`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:636-663`",
+        "`specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md:73`, `:128`; `implementation-summary.md:70`, `:86`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:61-176`; `plan.md:58-77`",
+        "`specs/.../016-.../context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:3-28`; `scripts/benchmark-relevance-methods.ts:2-46`"
+      ]
+    },
+    {
+      "id": "finding-3-1-weak-follow-ups-still-pass-on-the-floor-the-011-floor-change-cannot-reach-any-of",
+      "text": "**Weak follow-ups still pass on the floor. The 011 floor change cannot reach any of the eight planned pairs. KEEP phase 003's target. CHANGE its risk row.** Confirmed from code. The 011 change lives only in `wideAmbiguityMembers` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:100-123] [SOURCE: specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/implementation-summary.md:86]. Its only caller is the low-information abstention [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1503-1505], which runs only when `meaningfulTokenCount <= 3 && !hasTaskIntent` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1492-1497]. `hasTaskIntent` is the `TASK_INTENT` regex [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1321], and that regex includes `fix`, `add`, `update`, `change`, `run`, `create`, `write` and `refactor` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:80]. So \"fix that too\" skips the abstention branch entirely, before and after `67782cf23f0`. Its 0.82 is the task-intent floor, set `floored: true` when that floor lifts the base [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:478-496]. The six pairs that carry a `TASK_INTENT` verb have it in the follow-up. The other two, \"do the same for the other branch\" and \"make it a bit tighter\", have more than three meaningful tokens [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/plan.md:64] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/plan.md:66], so they are not low-information either. The 011 spec itself scopes the rule to \"a short low-information prompt\" [SOURCE: specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md:128]. This agrees with the planning probe at `655aa883009` and with phase 003's merged-source probe [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md:82]. That settles the open ancestry point from iteration 2 Finding 7 without git: whether or not the commit is in the probed build, it cannot change the pair results. **Exact change:** phase 003 risk row `spec.md:163` should say the 011 change touches only intent-less prompts of three or fewer meaningful tokens. It can move the corpus floored counts for such rows, but none of the follow-up pairs. Keep \"run on a build that includes it\", because the corpus counts still depend on it.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:1-139`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:80`, `:455-506`, `:1321`, `:1487-1538`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:58`, `:105-191`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:636-663`",
+        "`specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md:73`, `:128`; `implementation-summary.md:70`, `:86`",
+        "`specs/.../016-.../003-follow-up-routing-benchmark/spec.md:61-176`; `plan.md:58-77`",
+        "`specs/.../016-.../context/pi-context-decisions-main/docs/benchmarks/relevance-choice-vs-score.md:3-28`; `scripts/benchmark-relevance-methods.ts:2-46`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-1b29343a9c32",
+      "text": "Running `node -e` and live CLI probes from this unattended executor. Both need approval. Later iterations should use rg and Read for evidence and leave probes to the orchestrator.",
+      "contentHash": "1b29343a9c32",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-6f0c75d4814f",
+      "text": "Stripping only the advisor's own output lines. The plan already rules it out, and nothing here contradicts that.",
+      "contentHash": "6f0c75d4814f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bba5300e1ff5",
+      "text": "The extension's role-based separation, which has no input to work on in the advisor (Finding 6).",
+      "contentHash": "bba5300e1ff5",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bd6138a3b0ca",
+      "text": "`git show` from this unattended executor needs approval, the same as `node -e` in iteration 1. Commit-ancestry checks belong to the orchestrator, or to rg over the `011-surfacing-scorer-follow-ups` packet docs.",
+      "contentHash": "bd6138a3b0ca",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-516f7786992d",
+      "text": "Reviving R4 on the grounds that phase 003 already touches the strict schema. The flag has a reader and R4's fields do not (Finding 5).",
+      "contentHash": "516f7786992d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8fdc2c4e2e8d",
+      "text": "Treating the OpenCode guard gap as new evidence. Phase 003 already names it.",
+      "contentHash": "8fdc2c4e2e8d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e498e23208f2",
+      "text": "Adopting the extension's single-winner benchmark for phase 003 (Finding 7).",
+      "contentHash": "e498e23208f2",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5a5d11457b92",
+      "text": "Counting `C` from the corpus file. `runtime/bench/labeled-prompts.jsonl` is not at that path, and the remaining budget went to the scorer reads.",
+      "contentHash": "5a5d11457b92",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-1f35dc35ddfe",
+      "text": "None new. `node -e` and `git show` stay blocked, as recorded.",
+      "contentHash": "1f35dc35ddfe",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b2d04d91d4d7",
+      "text": "Placing `67782cf23f0` in the probed build through git. That approach is blocked, and Finding 1 makes the answer irrelevant to the pairs.",
+      "contentHash": "b2d04d91d4d7",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 1,
+    "resolvedQuestions": 3,
+    "carriedForwardOpenQuestions": 5,
+    "keyFindings": 26,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.79,
+    "coverageBySources": {
+      "code": 22,
+      "other": 13
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

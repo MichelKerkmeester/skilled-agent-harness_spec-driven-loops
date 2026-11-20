@@ -124,8 +124,8 @@ const EXECUTOR_SKILLS = new Map([
   ['vibe-rs', 'cli-mistral-vibe'],
   ['vibe-acp', 'cli-mistral-vibe'],
 ]);
-// OpenCode's basenames vary by major version (`opencode`, `opencode2`), so a pattern rather
-// than a map key owns its skill name.
+// An OpenCode install can sit behind a numbered launcher name, which must still reach its
+// own packet's rules, so a pattern rather than a map key owns its skill name.
 const OPENCODE_SKILL = 'cli-opencode';
 const PRINT_FLAGS = new Set(['-p', '--print']);
 const SEPARATORS = new Set(['&&', '||', ';', '|', '&']);

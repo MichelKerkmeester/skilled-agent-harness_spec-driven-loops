@@ -1,0 +1,148 @@
+---
+title: "Implementation Plan: Phase 3: v1-docs-and-playbooks-sweep"
+description: "Rewrites the v2-facing docs and playbooks, removes the --pure text, regenerates the derived artifacts, writes the changelog entry, and proves the live v2 checks."
+trigger_phrases:
+  - "v1 docs and playbooks sweep plan"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
+# Implementation Plan: Phase 3: v1-docs-and-playbooks-sweep
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Markdown, Bash, Node.js (CommonJS and ESM), TypeScript and JSON generators |
+| **Framework** | None. The sk-doc authoring modes route the docs; the generators own the derived files |
+| **Storage** | None. The trigger index and fixtures are generated JSON files |
+| **Testing** | `rg` zero-match checks; `node --test` for the models-form suite; `npx vitest run` for the branch-contract suite; live OpenCode 2.3.2 runs |
+
+### Overview
+This phase makes every operator-facing document describe OpenCode 2 only. It rewrites the cli-opencode skill, references and playbooks, the plugin and root docs and the cross-skill mentions, and it removes the `--pure` text from the protocol and presentation files. It regenerates the compiled contracts, the trigger index and the retrieval fixtures with their generators, and it writes the changelog entry through `/create:changelog`. The live checks on OpenCode 2.3.2 close the phase.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [ ] Problem statement clear and scope documented
+- [ ] Success criteria measurable
+- [ ] Dependencies identified
+
+### Definition of Done
+- [ ] Every requirement in `acceptance-criteria.md` is Met with the evidence it names
+- [ ] The final grep lists only the files in `scratch/justified.txt`
+- [ ] The widened branch-contract test reports 0 failed tests, and the live checks show success in `scratch/live.txt`
+- [ ] Docs updated (spec, plan and tasks agree on the REQ ids and the file list)
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+Sources first, then generated outputs. Each derived file is regenerated from its source and never edited by hand.
+
+### Key Components
+- **cli-opencode docs** (`SKILL.md`, `README.md`, `ROUTER.md`, `references/`, `assets/`): the operator-facing skill. `install-and-versions.md` gains the removal section.
+- **Playbooks** (`manual-testing-playbook/`): the step-by-step checks. `run-plugin-scenario.sh` drops its version argument.
+- **Deep-loop protocol and presentation files**: the source of the compiled contracts. The `--pure` text is removed here.
+- **Compiled contracts** (`compile-command-contracts.cjs`): regenerated from the protocol and presentation files.
+- **Derived index and fixtures** (`generate-trigger-index.mjs`, the fixture generator): regenerated from the docs.
+- **Changelog entry** (`/create:changelog`): records the removal for operators.
+
+### Data Flow
+The docs and presentation files are edited. The compiler regenerates the contracts from them, the trigger index generator reads the docs, and the fixture generator reads the corpus. The final grep then checks the result, and the live checks run the pinned binary.
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+N/A: this phase rewrites documentation and regenerates derived files, and it is not a fix. The consumers of the derived files are the trigger lookup, the compiled command contracts and the retrieval tests, and each one is re-run after its generator runs.
+<!-- /ANCHOR:affected-surfaces -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+Setup takes the baseline counts, inventories each doc, locates the generators and the mirror check, and confirms the live binary version.
+Implementation rewrites the docs and playbooks, removes the `--pure` text, regenerates the derived files, and writes the changelog entry.
+Verification runs the zero-match greps, the widened test and the live checks, and records the justified hits.
+
+The ordered task list is in `tasks.md`, which owns the Setup, Implementation and Verification checkboxes.
+
+### Files to Change
+- cli-opencode docs and playbooks: `SKILL.md`, `README.md`, `ROUTER.md`, `references/`, `assets/`, `manual-testing-playbook/` and `plugin-utilization/run-plugin-scenario.sh`.
+- Deep-loop protocol and presentation files: the two `loop-protocol.md` files and the two presentation `.txt` files. Their two compiled contracts are regenerated, not edited.
+- Feature catalog entries under `cli-external-orchestration/feature-catalog/` and the models-form test.
+- Plugin and root docs, and the cross-skill mentions in the spec's Files table.
+- Derived files regenerated by their generators: the trigger index and the retrieval fixtures.
+- The cli-opencode changelog entry, a new file written through `/create:changelog`.
+
+The full list with change types is the spec's Files to Change table.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | The models-form suite and the branch-contract suite | `node --test`; `npx vitest run` in the runtime folder |
+| Integration | The compiled contracts against their sources; the trigger index against the docs | The contract generator and the trigger-index generator, each run to exit 0 |
+| Manual | The live doctor battery, one dispatch, one deep-loop iteration and the plugin playbook scenario | `node` for the battery; `opencode run -m <model> ... </dev/null` for the dispatch; the playbook runner for the scenario |
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Phases 001 and 002 complete | Internal | Pending | The docs would describe code that still has v1 branches |
+| OpenCode 2.3.2 binary | External | Present: `opencode --version` reports `opencode v2.3.2` | The live checks cannot run |
+| The provider and model for live checks | External | Unknown until the operator names it | The dispatch and the iteration cannot run |
+| Fixture generator and runtime-mirror command | Internal | Unknown until T003 locates them | REQ-008 and REQ-011 stay open |
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: a generator fails, the compiled contract drifts from its source, or a live check fails on OpenCode 2.3.2.
+- **Procedure**: revert this phase's changes with `git revert` on the branch. Regenerate the derived files from the reverted sources; never patch them by hand.
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Setup ──► Implementation ──► Verification
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Setup | Phases 001 and 002 complete | Implementation (the locations and baseline are needed to edit and regenerate) |
+| Implementation | Setup (baseline, locations and the live binary recorded) | Verification |
+| Verification | Implementation (docs, playbooks and generated files changed) | Closing the packet |
+<!-- /ANCHOR:phase-deps -->
+
+---

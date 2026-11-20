@@ -94,7 +94,7 @@ Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default;
 
 **Lifecycle policy:** `lineage_mode=auto` preserves the existing classifier behavior, `lineage_mode=resume` continues a valid packet, and `lineage_mode=restart` archives the resolved `{artifact_dir}` before any config write, phase init, or fan-out spawn. In `:auto`, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization for this archive move, so do not ask for a second confirmation. Preserve rollback by moving the timestamped archive back to `research/` if needed. A restart request must never silently downgrade to resume; if the archive step cannot run, halt with `STATUS=FAIL`.
 
-**Fan-out default policy:** 0–1 `--executor` flags and no `--executors`, or an `--executors` matrix that expands to exactly one lineage → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, an `--executors` matrix that expands to two or more lineages, or any `--count > 1` → `config.fanout`. Native fan-out (count N for `native` executor) runs N sequential `@deep-research` agent dispatches with isolated dirs. CLI fan-out runs N headless subprocesses concurrently in the capped pool.
+**Fan-out default policy:** 0–1 `--executor` flags and no `--executors`, or an `--executors` matrix that expands to exactly one lineage → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, an `--executors` matrix that expands to two or more lineages, or any `--count > 1` → `config.fanout`. Every fan-out lineage needs a `cli-*` executor: CLI fan-out runs N headless subprocesses concurrently in the capped pool. A native fan-out lineage is refused before any lineage spawns, because OpenCode 2 `run` cannot start the registered `deep/research` command that adapter needed; `native` runs only as the single executor, and the default `native` executor with `--count > 1` is refused the same way.
 
 ### Consolidated Prompt Template
 
@@ -191,7 +191,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-research agent with Opus.
-     B) cli-opencode — OpenCode 2 (expected): `opencode run --standalone -m X[#Y] --format json [--auto] "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. OpenCode 1 (fallback): `opencode run --model X --format json --dir {repo_root} [--dangerously-skip-permissions] [--variant Y] "PROMPT"`. The bypass flag is added only under `danger-full-access`, the one explicit sandbox mode cli-opencode accepts. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
+     B) cli-opencode — `opencode run --standalone -m X[#Y] --format json [--auto] "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is added only under `danger-full-access`, the one explicit sandbox mode cli-opencode accepts. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
      C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`; the default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
      D) cli-codex — requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
@@ -392,9 +392,9 @@ For code review, see `deep-review` skill (`.skilled/skills/system-deep-loop/deep
   --executor=cli-claude-code --model=claude-opus-5-5 --label=claude \
   --concurrency=2
 
-# Fan-out: native (sequential agent dispatches) + CLI lineages mixed
+# Fan-out: mixed CLI kinds with replicas (a native lineage here is refused)
 /deep:research:auto "distributed systems consensus" \
-  --executor=native --count=1 --label=native \
+  --executor=cli-codex --count=1 --label=codex \
   --executor=cli-opencode --model=llmgateway/deepseek-v4.1-flash-1017 --count=2 --label=opencode \
   --concurrency=3
 
@@ -404,7 +404,7 @@ For code review, see `deep-review` skill (`.skilled/skills/system-deep-loop/deep
   --concurrency=4
 ```
 
-> **Note on native fan-out:** `--executor=native --count=N` dispatches N sequential `@deep-research` sub-agents with isolated artifact dirs. Not pooled. Best for count 1–3. For higher parallelism, use CLI executor kinds.
+> **Note on native fan-out:** `--executor=native --count=N` is refused before any lineage spawns. Fan-out needs a `cli-*` executor kind for every lineage; `native` runs only as the single executor.
 
 ### Next Steps
 

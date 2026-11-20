@@ -7,7 +7,7 @@ trigger_phrases:
   - "includeAttribution"
   - "laneBreakdown"
   - "why_recommended"
-version: 0.8.1.0
+version: 0.8.4.0
 id: SC-004
 category: scorer_fusion
 stage: routing
@@ -26,7 +26,7 @@ Prompt: Manual validation that includeAttribution: true returns per-lane contrib
 
 ## 1. OVERVIEW
 
-Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly` metadata plus a prompt-safe `why_recommended` string, and that no prompt text or prompt-derived evidence snippets appear in the attribution output.
+Validate that `includeAttribution: true` returns per-lane `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly` metadata plus a prompt-safe `why_recommended` explanation object, and that no prompt text or prompt-derived evidence snippets appear in the attribution output.
 
 ---
 
@@ -55,7 +55,8 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "review this pull
 
 - With `includeAttribution: true`, each lane entry carries exactly the documented fields: `lane`, `rawScore`, `weight`, `weightedScore`, `shadowOnly`.
 - With `includeAttribution: true`, the recommendation includes `why_recommended` as a short prompt-safe explanation that names contribution categories, not raw prompt phrases or tokens.
-- `semantic_shadow` reports `shadowOnly: false` (it is a live lane at registry weight 0.05; fusion derives the flag from lane liveness).
+- `semantic_shadow` reports `shadowOnly: false` because it remains registered as a live lane, even though its default live weight is 0.
+- When enabled, the lane requires current vectors for every embeddable skill and command. If prompt embedding fails, confirm the response marks `semantic_shadow` runtime-degraded and omits it from the live confidence total for that call.
 - With `includeAttribution: false`, `laneBreakdown` and `why_recommended` are absent or empty.
 - No raw prompt substring appears in attribution.
 
@@ -66,7 +67,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "review this pull
 | Extra fields in attribution | Evidence snippets or triggers present | Block release. Attribution is contribution-only. |
 | Prompt substring in attribution | Grep hits | Block release as privacy failure. |
 | `why_recommended` echoes the prompt | User words appear verbatim | Block release as prompt-safety failure. |
-| shadowOnly missing from semantic | `semantic_shadow` lacks flag | Audit `attribution.ts` lane tagging. |
+| shadowOnly missing from semantic | `semantic_shadow` lacks flag | Audit `fusion.ts` lane tagging (`isLiveScorerLane`). |
 
 ### Evidence
 
@@ -100,7 +101,7 @@ Advisor status precondition check:
       "lexical": 0.28,
       "graph_causal": 0.13,
       "derived_generated": 0.12,
-      "semantic_shadow": 0.05
+      "semantic_shadow": 0
     }
   }
 }

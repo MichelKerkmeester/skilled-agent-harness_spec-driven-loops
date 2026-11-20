@@ -9,7 +9,7 @@ trigger_phrases:
   - "readme review checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.7.0
 ---
 
 # README Quality and Pre-Publish Checklist
@@ -105,6 +105,8 @@ Apply these checks only to sections that fit the README audience and purpose.
 - [ ] Commands in fenced code blocks
 - [ ] Key terms bolded consistently
 - [ ] Emoji use matches the register: decorative section emoji only on the repository front-page README, semantic emoji (✅ ❌ ⚠️ 🔒 🚨) sparingly elsewhere
+- [ ] A `> [!WARNING]` alert marks only a step that loses work or breaks something, and a `<details>` fold holds only a lookup table of 15 rows or more, with its `<summary>` line followed by a blank line
+- [ ] A diagram is box-drawing text in a `text` fence, never a Mermaid fence
 
 ### HVR Compliance
 
@@ -113,7 +115,7 @@ Apply these checks only to sections that fit the README audience and purpose.
 - [ ] No Oxford commas. Remove comma before final "and/or" in lists.
 - [ ] No "not just X, but also Y" patterns
 - [ ] No exactly three-item inline lists. Use 2, 4 or 5 items (tables and bullet lists exempt).
-- [ ] No setup language ("Let's explore", "dive in", "when it comes to")
+- [ ] No setup language (`Let's explore`, `dive in`, `when it comes to`)
 - [ ] No banned words (see [hvr-rules.md](../../../sk-create-with-human-voice/references/hvr-rules.md) Section 6)
 - [ ] No banned phrases (see [hvr-rules.md](../../../sk-create-with-human-voice/references/hvr-rules.md) Section 7)
 - [ ] Active voice throughout. Direct address. Simple words.

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme",
+  "description": "Phase 9: repo-rules-readme",
+  "keywords": [
+    "phase",
+    "repo-rules-readme"
+  ],
+  "lastUpdated": "2026-11-18T08:48:50.678Z",
+  "specId": "009",
+  "folderSlug": "repo-rules-readme",
+  "parentChain": [
+    "sk-doc",
+    "document-standards",
+    "006-readme-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,7 +1,7 @@
 ---
 title: "PHASE-008 -- Spec-folder literal naming (CLI-driven slug proposal)"
 description: "Verify that external CLI agents presented with an ambiguous spec task propose phase names containing specific subject tokens, not generic placeholders, per the YAML 'Generate LITERAL phase names' activity in Packet 012 REQ-001 and REQ-002."
-version: 1.6.1.0
+version: 1.6.2.0
 id: tooling-and-scripts-spec-folder-literal-naming-cli-driven-slug
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -79,13 +79,10 @@ Do NOT execute create.sh. Do NOT scaffold the folder. Return only the JSON.
 #### cli-opencode
 
 ```bash
-opencode run \
-  --model "gpt-5.5" \
-  -c model_reasoning_effort="high" \
-  -c approval_policy=never \
-  -c service_tier="fast" \
-  --sandbox workspace-write \
-  - <<'PROMPT'
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "$(cat <<'PROMPT'
 You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /speckit:plan :with-phases (3 phases):
 
   TASK: "There's a singleton leak in the launcher that crashes the daemon after ~6 hours of uptime under load. The thread-local cache isn't being released on session teardown. Fix it, harden the teardown path, and add a smoke test."
@@ -101,20 +98,18 @@ Return ONLY a JSON object:
 
 Do NOT execute create.sh. Do NOT scaffold the folder. Return only the JSON.
 PROMPT
+)" </dev/null
 ```
 
 #### cli-opencode (alternate invocation)
 
-The `cli-opencode` block above is the primary dispatch path. For a second seat or parallel confirmation, reuse the same opencode invocation with a different `service_tier` or reasoning effort:
+The `cli-opencode` block above is the primary dispatch path. For a second seat or parallel confirmation, reuse the same opencode invocation with a different reasoning effort:
 
 ```bash
-opencode run \
-  --model "gpt-5.5" \
-  -c model_reasoning_effort="medium" \
-  -c approval_policy=never \
-  -c service_tier="fast" \
-  --sandbox workspace-write \
-  - <<'PROMPT'
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#high \
+  --format json \
+  "$(cat <<'PROMPT'
 You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /speckit:plan :with-phases (3 phases):
 
   TASK: "There's a singleton leak in the launcher that crashes the daemon after ~6 hours of uptime under load. The thread-local cache isn't being released on session teardown. Fix it, harden the teardown path, and add a smoke test."
@@ -130,15 +125,16 @@ Return ONLY a JSON object:
 
 Do NOT execute create.sh. Do NOT scaffold the folder. Return only the JSON.
 PROMPT
+)" </dev/null
 ```
 
 #### cli-opencode
 
 ```bash
-opencode run \
-  --model "deepseek/deepseek-v4-pro" \
-  --pure \
-  --prompt "You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /speckit:plan :with-phases (3 phases):
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#high \
+  --format json \
+  "You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /speckit:plan :with-phases (3 phases):
 
   TASK: \"There's a singleton leak in the launcher that crashes the daemon after ~6 hours of uptime under load. The thread-local cache isn't being released on session teardown. Fix it, harden the teardown path, and add a smoke test.\"
 
@@ -209,7 +205,7 @@ Capture, for every step in the Commands sequence above:
 - If a CLI returns generic stoplist slugs: confirm that CLI's MCP wiring surfaces the `spec_kit_plan_auto.yaml` activity. Run `grep -F "LITERAL phase names" .skilled/commands/speckit/assets/spec_kit_plan_auto.yaml` and confirm at least 1 match.
 - If the YAML is present but the CLI ignores it: re-run with explicit reference to `/speckit:plan :with-phases` in the user prompt. The YAML activity fires only when the command route is active.
 - If `cli-claude-code` blocks with a self-invocation error: this is expected behavior. Record the error as expected and substitute another CLI from the rotation.
-- If `cli-opencode` returns a direct-provider auth or quota error: verify the DeepSeek provider setup with `opencode providers list`, then rerun or substitute another configured direct provider.
+- If `cli-opencode` returns a direct-provider auth or quota error: verify the DeepSeek provider setup with `opencode auth list`, then rerun or substitute another configured direct provider.
 
 ---
 

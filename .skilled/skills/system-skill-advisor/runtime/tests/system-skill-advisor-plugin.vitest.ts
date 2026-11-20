@@ -21,7 +21,7 @@ import * as skillAdvisorRender from '../../../../../.opencode/plugins/lib/skill-
 import { renderAdvisorFallbackDirective } from '../lib/render.js';
 import { SETUP_WORDING as HOOK_SETUP_WORDING } from '../../hooks/claude/user-prompt-submit.js';
 
-const MkSkillAdvisorPlugin = skillAdvisorPlugin.default.server;
+const MkSkillAdvisorPlugin = skillAdvisorPlugin.default.factory;
 
 type PluginFallbackResult = NonNullable<Parameters<typeof renderAdvisorFallbackDirective>[1]>;
 type PluginFallbackRenderer = (
@@ -185,7 +185,7 @@ describe('system-skill-advisor OpenCode plugin', () => {
     const resetHooks = await MkSkillAdvisorPlugin({ directory: process.cwd() }, {});
     await resetHooks.event?.({
       event: {
-        type: 'server.instance.disposed',
+        type: 'global.disposed',
         properties: { directory: process.cwd() },
       } as never,
     });
@@ -197,7 +197,7 @@ describe('system-skill-advisor OpenCode plugin', () => {
     const resetHooks = await MkSkillAdvisorPlugin({ directory: process.cwd() }, {});
     await resetHooks.event?.({
       event: {
-        type: 'server.instance.disposed',
+        type: 'global.disposed',
         properties: { directory: process.cwd() },
       } as never,
     });
@@ -1050,7 +1050,7 @@ describe('system-skill-advisor OpenCode plugin', () => {
       }
       expect(observed, vector.name).toEqual(vector.expected);
       await hooks.event?.({
-        event: { type: 'server.instance.disposed', properties: {} } as never,
+        event: { type: 'global.disposed', properties: {} } as never,
       });
     }
   });

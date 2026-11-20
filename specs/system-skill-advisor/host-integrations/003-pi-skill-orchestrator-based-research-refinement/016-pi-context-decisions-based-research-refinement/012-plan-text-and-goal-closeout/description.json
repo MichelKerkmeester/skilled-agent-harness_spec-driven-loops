@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout",
+  "description": "Phase 12: plan-text-and-goal-closeout",
+  "keywords": [
+    "phase",
+    "plan-text-and-goal-closeout"
+  ],
+  "lastUpdated": "2026-11-18T22:31:45.788Z",
+  "specId": "012",
+  "folderSlug": "plan-text-and-goal-closeout",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-11-26_23-31__close-the-pi-context-decisions-packet-review.md"
+  ]
+}

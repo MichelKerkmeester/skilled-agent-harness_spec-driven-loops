@@ -307,9 +307,10 @@ function loadContext(root, rulesDir) {
   const routerLines = fs.readFileSync(path.join(root, ROUTER_FILE), 'utf8').split(/\r\n|\r|\n/u);
   const sections = splitRouterSections(routerLines);
 
+  // The folder's own README orients a reader and is never routed, so it is not a rule.
   const rules = fs
     .readdirSync(path.join(root, rulesDir))
-    .filter((name) => name.endsWith('.md'))
+    .filter((name) => name.endsWith('.md') && name.toLowerCase() !== 'readme.md')
     .sort()
     .map((name) => {
       const content = fs.readFileSync(path.join(root, rulesDir, name), 'utf8');

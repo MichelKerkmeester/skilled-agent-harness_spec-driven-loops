@@ -1,12 +1,12 @@
 # ─────────────────────────────────────────────────────────────────
-# OPENCODE CREATE: AGENT CREATION WORKFLOW (AUTO MODE)
+# SKILLED CREATE: AGENT CREATION WORKFLOW (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: autonomous (no user approval gates)
 # Note: This workflow executes all steps sequentially with
 #       continuous self-validation. Pauses only if confidence < 40%.
 # ─────────────────────────────────────────────────────────────────
 role: Expert Agent Creator using sk-doc skill
-purpose: Create production-ready OpenCode agents with 6-step workflow
+purpose: Create production-ready Skilled agents with 6-step workflow
 action: Guide agent creation from understanding through validation with YAML frontmatter verification and permission configuration
 
 # ─────────────────────────────────────────────────────────────────

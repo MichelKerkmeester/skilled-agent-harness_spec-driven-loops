@@ -7,7 +7,7 @@ trigger_phrases:
   - "extract design tokens"
   - "chart catalog"
   - "flowchart"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-design
@@ -73,12 +73,30 @@ The compiled front door is the default. Set `SPECKIT_COMPILED_ROUTING=0` to forc
 
 Routing runs in two stages. Stage one scores the request against `hub-router.json` and reads `mode-registry.json` to select a mode. Stage two reads [`ROUTER.md`](./ROUTER.md) and loads the leaf files that mode declares, so a chart request opens the catalog and the template contract rather than the whole hub.
 
-```mermaid
-flowchart TD
-  Request["Design request"] --> Stage1["hub-router.json scores the signal"]
-  Stage1 --> Registry["mode-registry.json names the mode"]
-  Registry --> Stage2["ROUTER.md maps the intent to leaf files"]
-  Stage2 --> Mode["The owning mode builds the artifact"]
+```text
+┌─────────────────────────────────────────┐
+│             Design request              │
+└─────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│    hub-router.json scores the signal    │
+└─────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│    mode-registry.json names the mode    │
+└─────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│ ROUTER.md maps the intent to leaf files │
+└─────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│   The owning mode builds the artifact   │
+└─────────────────────────────────────────┘
 ```
 
 A mode entry is loaded because the registry names it. The leaf map never loads a `SKILL.md` of its own.

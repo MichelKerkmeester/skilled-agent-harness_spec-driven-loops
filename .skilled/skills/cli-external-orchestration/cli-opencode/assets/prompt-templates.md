@@ -10,14 +10,14 @@ trigger_phrases:
   - "minimax dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.14.0
+version: 1.4.15.0
 ---
 
 # OpenCode CLI - Prompt Templates
 
-Copy-paste templates for `opencode run` dispatches. Each template names the use case it serves, the framework it applies, and the canonical invocation shape. Each rendered invocation is shown for OpenCode 2 (recommended, 2.0.32). Its OpenCode 1 (fallback, 1.19.3) form sits beside it. Where a flag has no OpenCode 2 form, the template says so and links `../references/install-and-versions.md`.
+Copy-paste templates for `opencode run` dispatches. Each template names the use case it serves, the framework it applies, and the canonical invocation shape. Each rendered invocation is shown for OpenCode 2 (2.3.2).
 
-> **⚠️ NON-INTERACTIVE DISPATCH RULE:** ANY automation that redirects stdout and/or stderr to files (e.g. `> stdout.log 2> stderr.log`) MUST also redirect stdin from `/dev/null`. opencode v1.14.39 reads stdin at startup, and without explicit closed stdin dispatches hang at 0% CPU after the `+60s snapshot prune cleanup` log line. The hang is unverified on OpenCode 2.0.32 and observed on OpenCode 1, so the redirect stays on both versions. Position: AFTER the prompt argument, BEFORE stdout/stderr redirects. The templates below show foreground patterns (terminal stdout, no redirect, which works as-is). When adapting any of these for automation/background dispatch (`> file 2> file`), append `</dev/null` after the prompt. See `../references/integration-patterns.md` §6 for full failure modes + fix matrix.
+> **⚠️ NON-INTERACTIVE DISPATCH RULE:** ANY automation that redirects stdout and/or stderr to files (e.g. `> stdout.log 2> stderr.log`) MUST also redirect stdin from `/dev/null`. Without explicit closed stdin a dispatch can hang at 0% CPU after the `+60s snapshot prune cleanup` log line. The recorded hang is from OpenCode 1 (v1.14.39), and no OpenCode 2 reproduction is recorded, so the redirect stays required. Position: AFTER the prompt argument, BEFORE stdout/stderr redirects. The templates below show foreground patterns (terminal stdout), and each one closes stdin with `</dev/null`, so it works as-is. When adapting any of these for automation/background dispatch (`> file 2> file`), append `</dev/null` after the prompt. See `../references/integration-patterns.md` §6 for full failure modes + fix matrix.
 
 ## 1. OVERVIEW
 
@@ -76,24 +76,14 @@ At the end of your response, include a structured handback inside delimiters:
 ```
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd "$REPO_ROOT" && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
-  "<prompt-from-template>" 2>&1
+  "<prompt-from-template>" </dev/null 2>&1
 ```
 
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
-  --format json \
-  --dir "$REPO_ROOT" \
-  "<prompt-from-template>" 2>&1
-```
-
-The default model is `llmgateway/deepseek-v4.1-flash-1017` (LLM Gateway, DevPass) on both versions, so one provider serves both: OpenCode 2 dispatches `llmgateway/deepseek-v4.1-flash-1017#max`, while OpenCode 1 dispatches it at `--variant max`. Confirm that `opencode models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first. `opencode-go` stays a selectable provider, but it is no longer the default, and a typical v2 install lists none, so that route needs its own login first (`opencode auth login opencode-go`) before `-m opencode-go/deepseek-v4.1-flash#max` resolves.
+The default model is `llmgateway/deepseek-v4.1-flash-1017` (LLM Gateway, DevPass), dispatched as `llmgateway/deepseek-v4.1-flash-1017#max`. Confirm that `opencode models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first. `opencode-go` stays a selectable provider, but it is not the default, and a typical install lists none, so that route needs its own login first (`opencode auth login opencode-go`) before `-m opencode-go/deepseek-v4.1-flash#max` resolves.
 
 ---
 
@@ -115,7 +105,7 @@ Context:
 Constraints:
 - This session must NOT modify the parent session's state.
 - Write results to <state file path>.
-- Do not pass `--share`: it is a deprecated no-op on OpenCode 1.19.3 and publishes nothing.
+- Do not pass `--share`: it is not a `run` flag and publishes nothing.
 - Do NOT delegate the same prompt back to OpenCode (cycle protection).
 
 Success criteria:
@@ -123,27 +113,16 @@ Success criteria:
 ```
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd "$REPO_ROOT" && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
-  "<prompt-from-template>" 2>&1
+  "<prompt-from-template>" </dev/null 2>&1
 ```
 
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --port 4096 \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
-  --format json \
-  --dir "$REPO_ROOT" \
-  "<prompt-from-template>" 2>&1
-```
+`run` has no port flag. A dispatch that must reach a specific server passes `--server <url>` against a server started with `opencode serve`.
 
-On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
-
-For an actual deep-research iteration, do not pass `--agent deep-research` (command-owned, and rejected the same way any other subagent slug is at the top level). Dispatch the real iterative loop via `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet instead. The command owns the packet-local JSONL/strategy/dashboard state that this template's "State file" / "Strategy file" context lines describe. This template's own bash block is for a generic parallel-detached worker, not a raw deep-research iteration.
+For an actual deep-research iteration, do not pass `--agent deep-research` (command-owned; the routing policy keeps it behind its command). Dispatch the real iterative loop via `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet instead. The command owns the packet-local JSONL/strategy/dashboard state that this template's "State file" / "Strategy file" context lines describe. This template's own bash block is for a generic parallel-detached worker, not a raw deep-research iteration.
 
 ---
 
@@ -178,21 +157,11 @@ Memory Epilogue: include MEMORY_HANDBACK delimiters as in Template 1.
 ```
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd "$REPO_ROOT" && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
-  "<prompt-from-template>" 2>&1
-```
-
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
-  --format json \
-  --dir "$REPO_ROOT" \
-  "<prompt-from-template>" 2>&1
+  "<prompt-from-template>" </dev/null 2>&1
 ```
 
 ---
@@ -202,31 +171,20 @@ opencode run \
 - **Framework:** RCAF
 - **Use case:** Any (1, 2, or 3)
 
-Dispatch a task to a specific agent slug. See `../references/agent-delegation.md` for the full routing matrix and the primary/subagent/command-owned dispatch classes below. `<slug>` in this template's bash block is valid ONLY for `orchestrate` (or `plan`, an OpenCode built-in), and every other slug routes a different way.
+Dispatch a task to a specific agent slug. See `../references/agent-delegation.md` for the full routing matrix and the primary/subagent/command-owned dispatch classes below. `<slug>` in this template's bash block is the slug the routing policy allows for this block: `orchestrate` (or `plan`, an OpenCode built-in). The binary accepts other subagent slugs too, but every other slug routes a different way.
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd /repo && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --agent orchestrate \
   --format json \
-  "Use the <slug> subagent: <prompt>" 2>&1
-```
-
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --agent orchestrate \
-  --variant max \
-  --format json \
-  --dir /repo \
-  "Use the <slug> subagent: <prompt>" 2>&1
+  "Use the <slug> subagent: <prompt>" </dev/null 2>&1
 ```
 
 On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
 
-- **Default / general**: omit `--agent` entirely, and never pass `--agent general` (OpenCode 2.0.32 accepts it, and OpenCode 1 rejects it at the top level, but the default agent covers that case on both).
+- **Default / general**: omit `--agent` entirely. The default agent covers that case, so `--agent general` adds nothing.
 - **Primary, directly `--agent`-dispatchable**: `orchestrate` (shown above), `plan` (OpenCode built-in).
 - **Subagents, routed via `--agent orchestrate`'s Task-dispatch (never direct)**: `context`, `markdown`, `review`, `debug`.
 - **`ai-council`**: command-only (`/speckit:ai-council`) or `--agent orchestrate` Task-dispatch, never direct `--agent ai-council` (`mode: subagent`).
@@ -264,21 +222,11 @@ Context: Spec folder: <path> (pre-approved, skip Gate 3).
 ```
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd /repo && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
-  "<prompt>" 2>&1
-```
-
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
-  --format json \
-  --dir /repo \
-  "<prompt>" 2>&1
+  "<prompt>" </dev/null 2>&1
 ```
 
 No `--agent` flag. `review` is a subagent, not directly invokable at the top level. The `As @review:` prompt prefix above carries the role instead (or route via `--agent orchestrate` and ask it to dispatch the review subagent).
@@ -304,20 +252,7 @@ Personality: rigorous, evidence-first, no speculation.
 Experiment: <list of files to read and queries to run>
 ```
 
-Do NOT dispatch this shape with a raw `opencode run --agent deep-research`. That flag is command-owned. OpenCode 2.0.32 would accept it but bypass the command that owns the loop, and OpenCode 1 rejects it at the top level the same way any other subagent slug is. Trigger a real iteration by invoking the owning command instead:
-
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --command deep/research \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
-  --format json \
-  --dir /repo \
-  "<prompt>" 2>&1
-```
-
-On OpenCode 2, `--command` has no `run` form (OpenCode 1 only). A registered command runs through the server API (`POST /api/session/{id}/command`). See `../references/install-and-versions.md`.
+Do NOT dispatch this shape with a raw `opencode run --agent deep-research`. That flag is command-owned. OpenCode 2.0.32 would accept it but bypass the command that owns the loop. Trigger a real iteration by invoking the owning command instead. `--command` has no `run` form: a registered command runs through the server API (`POST /api/session/{id}/command`). See `../references/install-and-versions.md`.
 
 ---
 
@@ -345,25 +280,14 @@ Input: <input data path>
 ```
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd /repo && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
-  "<prompt>" 2>&1
+  "<prompt>" </dev/null 2>&1
 ```
 
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --port 4097 \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
-  --format json \
-  --dir /repo \
-  "<prompt>" 2>&1
-```
-
-On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
+`run` has no port flag. A dispatch that must reach a specific server passes `--server <url>` against a server started with `opencode serve`.
 
 ---
 
@@ -387,7 +311,7 @@ Constraints:
 ```
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 for n in $(seq 1 8); do
   cd /repo && opencode run --standalone \
     -m llmgateway/deepseek-v4.1-flash-1017#max \
@@ -397,23 +321,7 @@ done
 wait
 ```
 
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-# Dispatch loop — note the </dev/null redirect (see integration-patterns.md §6)
-for n in $(seq 1 8); do
-  port=$((4100 + n))
-  opencode run \
-    --port "$port" \
-    --model llmgateway/deepseek-v4.1-flash-1017 \
-    --variant max \
-    --format json \
-    --dir /repo \
-    "Worker $n: <prompt>" > "logs/worker-$n.log" 2>&1 </dev/null &
-done
-wait
-```
-
-On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
+`run` has no port flag. A dispatch that must reach a specific server passes `--server <url>` against a server started with `opencode serve`.
 
 ---
 
@@ -438,21 +346,11 @@ Format: structured JSON event stream. Memory Epilogue at the end.
 ```
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd /repo && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
-  "<prompt>" 2>&1
-```
-
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
-  --format json \
-  --dir /repo \
-  "<prompt>" 2>&1
+  "<prompt>" </dev/null 2>&1
 ```
 
 ---
@@ -474,23 +372,12 @@ Target: an implementation-ready plan that another agent can execute.
 ```
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd /repo && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --agent orchestrate \
   --format json \
-  "Dispatch @ai-council: <prompt>" 2>&1
-```
-
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --agent orchestrate \
-  --variant max \
-  --format json \
-  --dir /repo \
-  "Dispatch @ai-council: <prompt>" 2>&1
+  "Dispatch @ai-council: <prompt>" </dev/null 2>&1
 ```
 
 ---
@@ -510,23 +397,12 @@ Format: markdown.
 ```
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd /repo && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --agent markdown \
   --format json \
-  "<prompt>" 2>&1
-```
-
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --agent markdown \
-  --variant max \
-  --format json \
-  --dir /repo \
-  "<prompt>" 2>&1
+  "<prompt>" </dev/null 2>&1
 ```
 
 ---
@@ -549,7 +425,7 @@ Options:
    to dispatch a different model.
 2. Open a fresh shell session (no OpenCode parent) and re-run from there.
 3. If you wanted a parallel detached session (different session id, separate
-   state directory), restate the request with explicit "parallel detached" /
+   session id), restate the request with explicit "parallel detached" /
    "ablation suite" / "worker farm" / "share URL" keywords, which triggers
    use case 2 instead of refusal.
 ```
@@ -608,23 +484,14 @@ Minimum viable payload: a specific `sessionSummary`, at least one meaningful `re
 
 ## 15. TEMPLATE 14: MINIMAX TOKEN PLAN (EMPIRICAL DEFAULT, TIDD-EC PLUS DENSE PRE-PLAN)
 
-**When**: dispatching to the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3` (pay-per-token alternative `minimax/MiniMax-M3` via the Direct API). The MiniMax M2.7 prompt-framework benchmark (real runs) found MiniMax diverges from the cross-model defaults: **TIDD-EC** framework plus **dense** pre-planning wins (RCAF plus medium is the fallback), so carry this contract forward to M3 until re-benchmarked. On OpenCode 2, a level rides the model string (`-m provider/model#level`), and whether the MiniMax plan accepts one is unverified on OpenCode 2.0.32. On OpenCode 1, `--variant` is omitted by default (unverified). **Omit `--agent`** (rejected on opencode 1.15.13).
+**When**: dispatching to the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3` (pay-per-token alternative `minimax/MiniMax-M3` via the Direct API). The MiniMax M2.7 prompt-framework benchmark (real runs) found MiniMax diverges from the cross-model defaults: **TIDD-EC** framework plus **dense** pre-planning wins (RCAF plus medium is the fallback), so carry this contract forward to M3 until re-benchmarked. A level rides the model string (`-m provider/model#level`), and whether the MiniMax plan accepts one is unverified on OpenCode 2.0.32. **Omit `--agent`**.
 
 **Invocation**:
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd "$REPO_ROOT" && opencode run --standalone \
   -m minimax-coding-plan/MiniMax-M3 \
-  "$(cat prompt.md)" \
-  </dev/null
-```
-
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --model minimax-coding-plan/MiniMax-M3 \
-  --dir "$REPO_ROOT" \
   "$(cat prompt.md)" \
   </dev/null
 ```
@@ -717,21 +584,11 @@ Output:
 ```
 
 ```bash
-# OpenCode 2 (recommended, 2.0.32):
+# OpenCode 2 (recommended, 2.3.2):
 cd "$REPO_ROOT" && opencode run --standalone \
   -m llmgateway/deepseek-v4.1-flash-1017#max \
   --format json \
-  "<prompt-from-template>" 2>&1
-```
-
-```bash
-# OpenCode 1 (fallback, 1.19.3):
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --variant max \
-  --format json \
-  --dir "$REPO_ROOT" \
-  "<prompt-from-template>" 2>&1
+  "<prompt-from-template>" </dev/null 2>&1
 ```
 
 ---

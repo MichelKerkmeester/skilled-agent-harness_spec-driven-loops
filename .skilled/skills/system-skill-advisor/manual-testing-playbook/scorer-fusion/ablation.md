@@ -6,7 +6,7 @@ trigger_phrases:
   - "ablation protocol"
   - "lane ablation"
   - "scorer ablation"
-version: 0.8.1.0
+version: 0.8.4.0
 id: SC-005
 category: scorer_fusion
 stage: routing
@@ -32,7 +32,7 @@ Validate that `lib/scorer/ablation.ts` supports ablation protocols where each la
 ## 2. SCENARIO CONTRACT
 
 - Repo root. Advisor runtime built.
-- `advisor_validate` exposes ablation slices or direct ablation entry is available via internal harness.
+- The internal ablation harness is available for per-lane scores.
 - Capture the canonical full-corpus baseline (80.5%).
 
 ---
@@ -47,7 +47,7 @@ Validate that `lib/scorer/ablation.ts` supports ablation protocols where each la
 node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":null}' --format json
 ```
 
-2. Inspect the ablation slice in the response (or run ablation harness).
+2. Run the ablation harness. `advisor_validate` returns no ablation slice.
 3. For each lane ablated to 0 weight in turn, record the resulting accuracy on the corpus.
 4. After ablation, call `advisor_status` and confirm live `laneWeights` are unchanged.
 
@@ -55,7 +55,9 @@ node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":
 
 - Baseline accuracy matches the documented baseline (within noise).
 - Disabling any non-zero lane degrades accuracy by a measurable amount.
-- Disabling `semantic_shadow` (a live lane at weight 0.05) measurably affects scoring.
+- The lane cost an Ollama call and a cold model load of about 540 ms. Each uncached prompt could wait up to 750 ms.
+- The default live weight is 0, so prompts skip that embed call. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable the lane.
+- The opt-in real-embedding ablation seeds skills and commands the same way as production. Two runs on the 196-row corpus gave identical results. The lane at `0.05` scored 156 correct. It scored 161 with the lane disabled. The runs had 7 flips and no new fire for a gold `none` row. The registry default stays at `0`. The opt-in test asserts the default follows this pass bar.
 - Post-ablation `laneWeights` equal pre-ablation values (ablation does not mutate live configuration).
 
 ### Failure Modes
@@ -82,11 +84,11 @@ Retry output:
 MCP error -32001: backend recycled; retry
 ```
 
-The required baseline and ablation slice were not returned, so steps 2-4 could not be executed. Missing/broken precondition: `advisor_validate` is not currently returning validation output; the MCP backend recycled on both real attempts.
+The baseline request did not return validation output, so the baseline could not be captured from these attempts. The ablation harness was not run.
 
 ### Pass/Fail
 
-BLOCKED — `advisor_validate({"skillSlug":null})` did not return the baseline or ablation slice; both real MCP attempts returned `MCP error -32001: backend recycled; retry`.
+BLOCKED: `advisor_validate({"skillSlug":null})` did not return a baseline because both attempts returned `MCP error -32001: backend recycled; retry`. The ablation harness was not run.
 
 ---
 

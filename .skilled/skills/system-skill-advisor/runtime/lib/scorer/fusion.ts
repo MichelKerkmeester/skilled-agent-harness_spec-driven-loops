@@ -49,6 +49,7 @@ import {
 } from './weights-config.js';
 import { isLiveScorerLane } from './lane-registry.js';
 import { isRouteExcludedSkillId } from '../route-exclusions.js';
+import { stripLeadingPastedReply } from '../prompt-policy.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from '../compat/contract.js';
 import type {
   AdvisorProjection,
@@ -995,6 +996,17 @@ export function isDoctorCommandTyped(promptLower: string): boolean {
   return findTypedDoctorCommandText(promptLower) !== null;
 }
 
+// A passing command row the explicit lane matched on one of its own full
+// multi-word phrases, word for word. Close wording and single words do not count.
+function isCommandNamedByOwnPhrase(recommendation: AdvisorScoredRecommendation): boolean {
+  return recommendation.kind === 'command'
+    && recommendation.passes_threshold
+    && recommendation.laneContributions.some((contribution) => (
+      contribution.lane === 'explicit_author'
+      && contribution.evidence.some((entry) => /^author:\S+\s/.test(entry))
+    ));
+}
+
 // A typed command or matching doctor lead phrase moves its passing bridge first; otherwise passing
 // bridges follow the second passing skill or the only passing skill, and other recommendations keep order.
 export function keepPassingSkillsAboveDoctorBridges(
@@ -1260,7 +1272,9 @@ export function rankTypedCommandOwnerFirst(
   ];
 }
 
-export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
+export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
+  // A reply pasted ahead of the task names skills the task never asked for, so it is scored without it.
+  const prompt = stripLeadingPastedReply(rawPrompt);
   const projection = projectionWithUsableSkillIds(
     options.projection ?? loadAdvisorProjection(options.workspaceRoot),
   );
@@ -1450,6 +1464,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   // Skill slots take their values from the pass with those bridges removed.
   const finishRanked = (
     sorted: readonly AdvisorScoredRecommendation[],
+    commandNamedElsewhere = false,
   ): AdvisorScoredRecommendation[] => {
     let finished = sorted.map((recommendation, index) => {
       const next = sorted[index + 1];
@@ -1484,7 +1499,13 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       && !promptLower.includes('/');
     if (lowInfoPrompt) {
       // Use the wider set: a floor-only skill must not top an under-specified prompt.
-      const wideMembers = wideAmbiguityMembers(finished);
+      // A passing command that the prompt names by one of its own full phrases is
+      // a sharper answer than any one-word skill match, so the floor ties still
+      // count and those skills step aside for it. The doctor-free pass sees no
+      // doctor command, so the full pass tells it when one was named.
+      const wideMembers = wideAmbiguityMembers(finished, {
+        floorTiesCount: commandNamedElsewhere || finished.some(isCommandNamedByOwnPhrase),
+      });
       const clusterMembers = finished.filter((recommendation) => (
         wideMembers.has(recommendation.skill)
       ));
@@ -1578,7 +1599,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const doctorFreeRun = finishRanked(ranked.filter((recommendation) => (
     recommendation.kind !== 'command'
     || !recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
-  )));
+  )), fullRun.some(isCommandNamedByOwnPhrase));
   let doctorFreeIndex = 0;
   ranked = fullRun.map((recommendation) => {
     if (

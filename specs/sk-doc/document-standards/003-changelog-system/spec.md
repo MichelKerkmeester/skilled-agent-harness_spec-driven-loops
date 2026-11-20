@@ -119,6 +119,7 @@ Each row identifies one child phase and its purpose.
 | 7 | `007-changelog-voice-rewrite/` | Rewrite the 1,571 skill and release changelogs to the Human Voice Rules with shorter sentences | Complete |
 | 8 | `008-spec-line-position-gates/` | Make the changelog checklists and the shape check enforce that the spec-folder line closes the entry | Complete |
 | 9 | `009-release-notes-layout-default/` | Make the v4.1.0.0 release-notes layout the default template and fix the old spec-folder lines | Complete |
+| 10 | `010-changelog-layout-retrofit/` | Rewrite every skill and release changelog and every GitHub release body into the v4.1.0.0 layout with free models | Planned |
 
 ### Phase Transition Rules
 
@@ -139,6 +140,7 @@ Each row identifies one child phase and its purpose.
 | 006-remove-release-size-limit | 007-changelog-voice-rewrite | 006-remove-release-size-limit validates on its own | validate.sh --strict on 006-remove-release-size-limit |
 | 007-changelog-voice-rewrite | 008-spec-line-position-gates | 007-changelog-voice-rewrite validates on its own | validate.sh --strict on 007-changelog-voice-rewrite |
 | 008-spec-line-position-gates | 009-release-notes-layout-default | 008-spec-line-position-gates validates on its own | validate.sh --strict on 008-spec-line-position-gates |
+| 009-release-notes-layout-default | 010-changelog-layout-retrofit | 009-release-notes-layout-default validates on its own | validate.sh --strict on 009-release-notes-layout-default |
 <!-- /ANCHOR:phase-map -->
 
 ---

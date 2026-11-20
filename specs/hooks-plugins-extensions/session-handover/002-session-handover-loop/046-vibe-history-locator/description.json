@@ -6,7 +6,7 @@
     "phase",
     "vibe-history-locator"
   ],
-  "lastUpdated": "2026-11-15T16:25:44.877Z",
+  "lastUpdated": "2026-11-19T17:47:53.000Z",
   "specId": "046",
   "folderSlug": "vibe-history-locator",
   "parentChain": [
@@ -14,8 +14,10 @@
     "session-handover",
     "002-session-handover-loop"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "15-11-26_17-25__built-the-vibe-branch-of-the-handover-locator.md"
+    "15-11-26_17-25__built-the-vibe-branch-of-the-handover-locator.md",
+    "19-11-26_18-36__manual-context-save.md",
+    "19-11-26_18-47__manual-context-save.md"
   ]
 }

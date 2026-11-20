@@ -44,6 +44,9 @@ export interface AdvisorRecommendation {
   readonly ownerSkillId?: string;
   // True when a hub held back its command because the prompt names no single mode.
   readonly needsMode?: boolean;
+  // True when the confidence sits on the task-intent floor rather than the
+  // recommendation's own evidence.
+  readonly confidenceFloored?: true;
   readonly confidence: number;
   readonly uncertainty: number;
   readonly passes_threshold?: boolean;
@@ -198,6 +201,7 @@ function parseRecommendations(stdout: string): AdvisorRecommendation[] {
       confidence: item.confidence,
       uncertainty: item.uncertainty,
       ...(typeof item.passes_threshold === 'boolean' ? { passes_threshold: item.passes_threshold } : {}),
+      ...(item.confidenceFloored === true ? { confidenceFloored: true as const } : {}),
       ...(typeof item.reason === 'string' ? { reason: item.reason } : {}),
       ...(compiledRouteSummary ? { compiledRouteSummary } : {}),
     };

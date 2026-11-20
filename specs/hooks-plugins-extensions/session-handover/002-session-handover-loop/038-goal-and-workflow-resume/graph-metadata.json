@@ -34,6 +34,7 @@
       "durable directive",
       "completion criteria",
       "goal binding",
+      "038-goal-and-workflow-resume operator decisions",
       "hand-over gap report verification",
       "running workers at hand-over",
       "session name across a hop",
@@ -53,11 +54,12 @@
       "criteria",
       "binding"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       "research/research.md",
       ".skilled/commands/speckit/handoff.md",
       ".skilled/hooks/goal/pi/goal-context.ts",
@@ -74,8 +76,7 @@
       "004-claude-start-claim/acceptance-criteria.md",
       "005-opencode-continuation-hop/acceptance-criteria.md",
       "006-skilled-loop-command/acceptance-criteria.md",
-      "review/review-report.md",
-      "009-nudge-note-lines/acceptance-criteria.md"
+      "review/review-report.md"
     ],
     "entities": [
       {
@@ -88,6 +89,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -215,31 +222,27 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "Executive Summary The",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A review of 2026-11-12, checked by a second reviewer, found that a session hop carries the goal on Claude Code, Pi and OpenCode but loses work around it",
     "created_at": "2026-11-12T22:42:00Z",
-    "last_save_at": "2026-11-15T14:28:42.435Z",
+    "last_save_at": "2026-11-19T17:47:43.433Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:874ff1e22fb6c1bae587a515927d077287038295e0fa62d6be08a6e269b68702",
+    "source_fingerprint": "sha256:2e0a4924758c8baeda6ddb2f341fdb90b40d2659e05e592751fb36f1e1faddcd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "490e6fb81b99cbaee1e0bf0118f611185331aba71a33b7811aa440efea68faaa",
+      "decision-record.md": "c2d40fc3097db908290792558812c7a4d40a8c02e930abd2a9d1be846187a6c6",
       "research/research.md": "92204b9299358f635ddc43598d35626ede62378b316b456c7c5c352fddfb8e71"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/008-review-advisories",
-    "last_active_at": "2026-11-13T08:36:01.556Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons",
+    "last_active_at": "2026-11-19T17:47:43.433Z"
   }
 }

@@ -1,0 +1,4 @@
+Baseline taken after the edits from the unchanged main checkout at HEAD (git grep HEAD), because the phase started before this file was written.
+cli-opencode files naming v1 at HEAD on main: 62
+cli-opencode files naming v1 in the worktree after the sweep: 11
+The 11 remaining files name OpenCode 1 on purpose: the remove-v1 mode and its docs, the unsupported-major refusal text, and observations dated to OpenCode 1 that the review required to keep their version.

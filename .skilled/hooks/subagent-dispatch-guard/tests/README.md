@@ -1,5 +1,5 @@
 ---
-title: "Task Dispatch Tests: DSH Adapter Suite"
+title: "Subagent Dispatch Tests: DSH Adapter Cases"
 description: "Node test suite for the DSH task dispatch adapter against the shared deep-loop policy core."
 trigger_phrases:
   - "task dispatch dsh tests"
@@ -8,33 +8,103 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# Task Dispatch Tests: DSH Adapter Suite
+# Subagent Dispatch Tests: DSH Adapter Cases
 
 ---
 
 ## 1. OVERVIEW
 
-`tests/` holds the `node --test` suite for the DSH Task Dispatch adapter. The suite imports `subagent-dispatch-guard.cjs` and drives the adapter through the fake plugin context in `.skilled/hooks/shared/tests/`. It checks core parity for an unknown hand-off identity and the `fail-open` throw policy.
+`.skilled/hooks/subagent-dispatch-guard/tests/` holds the `node --test` suite for the DSH task dispatch adapter. The suite registers the adapter on a fake plugin context, then calls the handler the adapter subscribes to `tools/pre-execute`. Nothing here starts a live runtime.
 
-The suite runs its cases against the adapter's `tools/pre-execute` handler. The parity case builds a request for an unregistered agent and calls `evaluateDispatch`. It asserts that the core allows the hand-off, then sends `subagent_fork` through the handler. The throw case checks `ERROR_POLICY` and sends `subagent` with a core that raises. It then asserts that the call is allowed and that one log line was written.
+The DSH guard bundle reaches this adapter through a link at `.dsh/plugins/repo-guards/adapters/task-dispatch-guard.mjs`, so the file under test is the one the bundle loads.
 
-DSH registers the adapter in `.dsh/plugins/repo-guards/index.mjs`, which imports `.dsh/plugins/repo-guards/adapters/task-dispatch-guard.mjs`. That file is a link to the adapter at `../dsh/task-dispatch-guard.mjs`. The adapter logs a failure through `ctx.logger.warn` and then calls the next handler, so the hand-off proceeds.
+Current state:
+
+- Registration passes an `isEnabled` that always returns true, so the suite exercises the handler rather than the kill switch.
+- The parity case drives a hand-off in a temporary project that has no registry file, so the core takes its no-registry allow path. The throw case drives a core that raises.
+
+Both cases assert that the handler result is an allow. The adapter calls `next()` on every path, so a hand-off proceeds even when its core fails.
 
 ---
 
-## 2. FILES
+## 2. ARCHITECTURE
+
+```text
+╭──────────────────────────────────────────╮
+│ node --test                              │
+╰──────────────────────────────────────────╯
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ dsh-task-dispatch-guard.test.mjs         │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ adapterHarness()                         │
+│ fake context, handler map and log lines  │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ registerTaskDispatchGuard(ctx, options)  │
+│ subscribes to tools/pre-execute          │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ core.evaluateDispatch(), or a core that  │
+│ raises and then next()                   │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+╭──────────────────────────────────────────╮
+│ result kind and recorded log lines       │
+╰──────────────────────────────────────────╯
+```
+
+The suite imports the production core and the production adapter. The fake context comes from the shared hook tests, so the suite asserts on what the adapter registers and on the lines it logs.
+
+Dependency direction: this folder imports from the sibling folders and no imported module reaches back into the suite.
+
+---
+
+## 3. FILES
 
 | File | Responsibility |
 |---|---|
-| `dsh-task-dispatch-guard.test.mjs` | The `node --test` suite for the DSH adapter. |
+| `dsh-task-dispatch-guard.test.mjs` | Runs the parity case and the throw-policy case against the DSH adapter. |
 
-The suite imports the core and the adapter, then registers it on a fake context. It passes an `isEnabled` that always returns true, so the kill switch never runs. Each case reads the handler that the adapter registered for `tools/pre-execute`.
-
-A failed assertion exits non-zero, so the runner reports the file as failed.
+The parity case builds a request for `unregistered-fixture-agent`, checks that the core answers allow, then sends `subagent_fork` through the registered handler. The throw case checks that the exported `ERROR_POLICY` is `fail-open` and sends `subagent` with a core that raises.
 
 ---
 
-## 3. VALIDATION
+## 4. BOUNDARIES AND FLOW
+
+| Boundary | Rule |
+|---|---|
+| Imports | The suite imports the core from `../lib/`, the adapter from `../dsh/` and the fake context helper from the shared tests. No test opens a runtime store or a transcript. |
+| Kill switch | The adapter returns without subscribing when `isEnabled('task-dispatch')` is false. The suite passes `enabled`, which always returns true. |
+| Temporary state | The parity case makes a project folder with `tempDir()` and removes it with `cleanup()` in a `finally` block. The adapter reads its registry and state paths from that folder. |
+| Logging | The throw case counts the warn lines the fake context recorded through `ctx.logger.warn`. |
+
+The parity target is not a loop executor, so the core records no count and writes no state file under the temporary folder.
+
+On a core error the adapter wraps the log call in its own `try` block and then calls `next()`. A logging failure therefore cannot block the hand-off. The suite asserts that the fake context recorded exactly one log line.
+
+---
+
+## 5. ENTRYPOINTS
+
+| Entrypoint | Type | Purpose |
+|---|---|---|
+| `node --test` | CLI | Runs the suite file. |
+| `dsh-task-dispatch-guard.test.mjs` | Module | Holds the parity and throw-policy cases. |
+| `registerTaskDispatchGuard` | Function | Builds the handler each case drives on the fake context. |
+
+---
+
+## 6. VALIDATION
 
 Run from the repository root.
 
@@ -42,13 +112,13 @@ Run from the repository root.
 node --test .skilled/hooks/subagent-dispatch-guard/tests/dsh-task-dispatch-guard.test.mjs
 ```
 
-Expected result: every test passes.
+Expected output: the summary reports `pass 2` and `fail 0`. A failed assertion exits non-zero, so the runner reports the file as failed.
 
 ---
 
-## 4. RELATED
+## 7. RELATED
 
-- [`../README.md`](../README.md): the Task Dispatch concern, its per-runtime table and its env flags.
-- [`../dsh/task-dispatch-guard.mjs`](../dsh/task-dispatch-guard.mjs): the DSH adapter the suite registers and drives.
-- [`../lib/subagent-dispatch-guard.cjs`](../lib/subagent-dispatch-guard.cjs): the shared policy core the parity case compares against.
-- [`../../shared/tests/`](../../shared/tests/): the shared test helpers, including the fake plugin context.
+- [the concern README](../README.md) covers the shared policy and the per-runtime table.
+- [the DSH adapter](../dsh/task-dispatch-guard.mjs) is the file each case registers.
+- [the shared policy core](../lib/subagent-dispatch-guard.cjs) holds `evaluateDispatch`.
+- [the shared hook tests](../../shared/tests/README.md) describe the fake context helper this suite imports.

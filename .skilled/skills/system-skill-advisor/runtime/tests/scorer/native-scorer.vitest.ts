@@ -232,7 +232,7 @@ describe('027/003 native scorer units', () => {
       skill({
         id: 'create:agent',
         kind: 'command',
-        description: 'Create command bridge for /create:agent OpenCode agent scaffolding.',
+        description: 'Create command bridge for /create:agent Skilled agent scaffolding.',
         keywords: ['/create:agent', 'create new agent', 'create agent'],
         domains: ['create', 'agent', 'command'],
         intentSignals: ['/create:agent', 'create new agent', 'create agent'],

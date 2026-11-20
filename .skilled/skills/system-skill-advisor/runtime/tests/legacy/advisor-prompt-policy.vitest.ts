@@ -3,10 +3,29 @@
 // ───────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import {
   extractMetalinguisticSkillMentions,
   shouldFireAdvisor,
+  stripLeadingPastedReply,
 } from '../../lib/prompt-policy.js';
+
+interface PastedReplyStripCase {
+  readonly id: string;
+  readonly input: string;
+  readonly expected: string;
+  readonly ideal?: string;
+}
+
+// The Python advisor test reads the same file, so both scorers drop the same text.
+const PASTED_REPLY_STRIP_CASES: readonly PastedReplyStripCase[] = (JSON.parse(
+  readFileSync(
+    resolve(dirname(fileURLToPath(import.meta.url)), '../fixtures/pasted-reply-strip-cases.json'),
+    'utf8',
+  ),
+) as { cases: PastedReplyStripCase[] }).cases;
 
 describe('skill advisor prompt policy', () => {
   it('skips empty, whitespace, and exact navigation commands', () => {
@@ -65,5 +84,31 @@ describe('skill advisor prompt policy', () => {
     expect(result.canonicalPrompt).not.toContain('\u200b');
     expect(result.metalinguisticMentions).toEqual(['sk-git']);
     expect(extractMetalinguisticSkillMentions(prompt)).toEqual(['sk-git']);
+  });
+});
+
+describe('pasted reply stripping', () => {
+  it.each(PASTED_REPLY_STRIP_CASES.map((row) => [row.id, row] as const))('%s', (_id, row) => {
+    const stripped = stripLeadingPastedReply(row.input);
+    expect(stripped).toBe(row.expected);
+    // The handler and the scorer both strip, so a second pass must return the same text.
+    expect(stripLeadingPastedReply(stripped)).toBe(stripped);
+  });
+
+  it('strips a 64K whitespace run with newlines in linear time', () => {
+    const input = `Claude replied: ok.${' \n'.repeat(32768)}x`;
+    const startedAt = performance.now();
+    const stripped = stripLeadingPastedReply(input);
+    const elapsedMs = performance.now() - startedAt;
+
+    expect(stripped).toBe(input);
+    expect(elapsedMs).toBeLessThan(50);
+  });
+
+  it.each([
+    ['an indented marker after a newline', 'Claude replied: done.\n   Now: refactor the store'],
+    ['a marker after a CRLF line break', 'Claude replied: done.\r\nNow: refactor the store'],
+  ])('keeps the task after %s', (_label, input) => {
+    expect(stripLeadingPastedReply(input)).toBe('refactor the store');
   });
 });

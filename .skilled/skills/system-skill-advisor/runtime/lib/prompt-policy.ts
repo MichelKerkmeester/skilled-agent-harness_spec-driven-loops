@@ -122,6 +122,24 @@ export function extractMetalinguisticSkillMentions(prompt: string): string[] {
   return [...new Set(canonicalLower.match(SKILL_NAME_PATTERN) ?? [])].sort();
 }
 
+/**
+ * Split a prompt into the policy's own tokens, the meaningful ones and the
+ * work-intent verbs among them, so callers that judge prompt shape count words
+ * exactly as the policy reason does.
+ */
+export function promptPolicyTokens(prompt: string): {
+  readonly tokens: string[];
+  readonly meaningful: string[];
+  readonly workVerbs: string[];
+} {
+  const tokens = tokenize(normalizePrompt(prompt));
+  return {
+    tokens,
+    meaningful: meaningfulTokens(tokens),
+    workVerbs: tokens.filter((token) => WORK_INTENT_VERBS.has(token)),
+  };
+}
+
 /** Decide whether a user prompt should invoke the advisor producer. */
 export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
   const canonicalPrompt = normalizePrompt(prompt);
@@ -220,4 +238,37 @@ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
     visibleCharCount,
     metalinguisticMentions,
   };
+}
+
+// A quote mark or `>` only shows that text is quoted, not that the assistant wrote it,
+// so a cue needs an attribution header such as "You said:" or "Assistant response:".
+const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)|(?:the\s+)?(?:assistant|claude)\s+(?:response|reply|answer))\s*:/i;
+// The whitespace after a boundary stops at a newline, which starts a match of its own.
+// Letting it cross newlines rescanned a long run of spaces and newlines once per newline.
+const TASK_MARKER = /(?:^|[.!?\n][^\S\n]*)(?:now|task)\s*:\s*/gi;
+
+// The last marker wins: a pasted reply can hold its own "Task:" line, and cutting there
+// would keep the reply's skill names in the scored text.
+function stripPastedReplyOnce(prompt: string): string {
+  if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
+  const markers = [...prompt.matchAll(TASK_MARKER)];
+  const marker = markers[markers.length - 1];
+  if (!marker) return prompt;
+  const task = prompt.slice((marker.index ?? 0) + marker[0].length).trim();
+  return task.length > 0 ? task : prompt;
+}
+
+/**
+ * Drop an earlier reply pasted ahead of the task, keeping the text after its task marker.
+ * The skill names in a pasted reply would otherwise steer routing away from the task.
+ * Repeats until nothing changes, so a second call returns the same text; the handler and
+ * the scorer both call it, and the semantic lane matches its embedding by exact text.
+ */
+export function stripLeadingPastedReply(prompt: string): string {
+  let current = prompt;
+  for (;;) {
+    const next = stripPastedReplyOnce(current);
+    if (next === current) return current;
+    current = next;
+  }
 }

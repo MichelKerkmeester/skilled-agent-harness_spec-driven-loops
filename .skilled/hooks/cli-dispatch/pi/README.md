@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `.skilled/hooks/cli-dispatch/pi/` holds the Pi adapters for the dispatch concern. The preflight checks that the operator's own request authorizes a `bash` dispatch, then checks the target skill's hard rules. The audit records a finished dispatch.
 
-Pi discovers the adapters through `.pi/extensions/dispatch-preflight-lint.ts` and `.pi/extensions/dispatch-audit.ts`. Each entry file re-exports the adapter from this folder on a single line. The preflight calls `pi.on('input', ...)` and `pi.on('tool_call', ...)`. The audit calls `pi.on('tool_result', ...)`.
+Pi discovers the adapters through `.pi/extensions/dispatch-preflight-lint.ts` and `.pi/extensions/dispatch-audit.ts`. Each entry file imports the adapter from this folder. The preflight calls `pi.on('input', ...)` and `pi.on('tool_call', ...)`. The audit calls `pi.on('tool_result', ...)`.
 
 Both adapters read their switch first and return at once when the concern is off. The preflight checks `dispatch-guard`, whose switch is `SYSTEM_DISPATCH_GUARD_DISABLED`. The audit checks `dispatch`, whose switch is `CLI_DISPATCH_AUDIT_DISABLED`. `SYSTEM_DISPATCH_DISABLED` turns off both concerns. `SYSTEM_HOOKS_DISABLED` is the master switch, and these adapters reach it through the shared resolver at `.skilled/hooks/shared/hook-flags.mjs`.
 

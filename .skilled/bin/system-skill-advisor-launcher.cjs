@@ -170,6 +170,10 @@ const CHILD_ENV_ALLOWLIST = new Set([
   // shadow lane-weight overrides are read by lane-registry.
   'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON',
   'SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON',
+  // Documented routing thresholds. The scorer reads both in the daemon, so
+  // without these keys an operator's override never reaches it.
+  'SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD',
+  'SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD',
   'SPECKIT_METRICS_ENABLED',
   'SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS',
   'SPECKIT_IPC_SOCKET_DIR',
@@ -177,6 +181,11 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN',
   'HF_EMBEDDINGS_MODEL',
   'HF_EMBED_SERVER_URL',
+  // The daemon's embedding adapter reads both settings.
+  'OLLAMA_BASE_URL',
+  'OLLAMA_REQUEST_TIMEOUT_MS',
+  // The daemon uses this setting to control its background vector refresh.
+  'SYSTEM_SKILL_ADVISOR_EMBED_REFRESH',
   'SPECKIT_LAUNCHER_BRIDGE_DISABLED',
   'SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN',
   'SPECKIT_MAX_SECONDARY_CLIENTS',
@@ -313,6 +322,10 @@ function createChildEnv(sourceEnv = process.env) {
   const filtered = Object.fromEntries(
     Object.entries(sourceEnv).filter(([key, value]) => CHILD_ENV_ALLOWLIST.has(key) && typeof value === 'string'),
   );
+  // The server must use the launcher's database directory so its heartbeat matches the watchdog's file.
+  if (filtered.SYSTEM_SKILL_ADVISOR_DB_DIR === undefined) {
+    filtered.SYSTEM_SKILL_ADVISOR_DB_DIR = resolvedAdvisorDbDir();
+  }
   // Without an explicit MEMORY_DB_PATH, shared/embeddings/factory.ts's
   // resolveConfiguredDatabaseCandidates() falls back to walking up from its own
   // on-disk realpath, which resolves through the @spec-kit/shared symlink to that
@@ -1099,14 +1112,12 @@ function clearAllLeaseFiles() {
 // 11. MODEL SERVER CONTROL
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The spawn defaults to on: since the memory launcher went away this launcher is
-// the only process that can arm the shared model server, so an unset flag arms
-// it. An explicit 0 (or any value other than 1) turns the spawner off. An
-// explicit 1 also makes a missing supervision library fatal, where the default
-// leaves embedding to the other providers (Ollama first) and says so in the log.
+// The spawner is opt-in because the advisor's prompt path cannot use hf-local
+// vectors. Setting the flag to 1 turns it on and makes a missing supervision
+// library fatal.
 function modelServerSetting() {
   const raw = (process.env.SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED ?? '').trim();
-  if (raw === '') return 'default-on';
+  if (raw === '') return 'off';
   if (raw === '1') return 'explicit-on';
   return 'off';
 }
@@ -1541,6 +1552,87 @@ async function acquireBootstrapLock(options = {}) {
 // 14. SERVER LAUNCH & SIGNAL HANDLING
 // ─────────────────────────────────────────────────────────────────────────────
 
+const HEARTBEAT_FILE_NAME = 'advisor-server.heartbeat';
+const HEARTBEAT_CHECK_INTERVAL_MS = 60_000;
+const HEARTBEAT_STARTUP_GRACE_MS = 300_000;
+const HEARTBEAT_STALE_MS = 180_000;
+const HEARTBEAT_KILL_GRACE_MS = 5_000;
+let childHeartbeatWatchdog = null;
+
+/**
+ * Classify whether the child has written a current heartbeat.
+ *
+ * @param {Object} heartbeat - Heartbeat and child timestamps in milliseconds.
+ * @param {number | null} heartbeat.mtimeMs - Heartbeat file modification time.
+ * @param {number} heartbeat.spawnedAtMs - Child spawn time.
+ * @param {number} heartbeat.nowMs - Current time.
+ * @returns {'not-armed' | 'stale' | 'fresh'} Heartbeat state.
+ */
+function heartbeatVerdict(heartbeat) {
+  const { mtimeMs, spawnedAtMs, nowMs } = heartbeat;
+  if (mtimeMs === null || mtimeMs < spawnedAtMs) {
+    return nowMs - spawnedAtMs > HEARTBEAT_STARTUP_GRACE_MS ? 'stale' : 'not-armed';
+  }
+  if (nowMs - mtimeMs > HEARTBEAT_STALE_MS) return 'stale';
+  return 'fresh';
+}
+
+/**
+ * Stop the child if its heartbeat stops advancing.
+ *
+ * @param {import('child_process').ChildProcess} child - Spawned advisor server.
+ * @param {Object} options - Heartbeat settings and optional clock and timer functions.
+ * @param {string} options.heartbeatPath - Heartbeat file path.
+ * @param {number} options.spawnedAtMs - Child spawn time in milliseconds.
+ * @returns {{stop: () => void}} Handle for stopping the watchdog interval.
+ */
+function startHeartbeatWatchdog(child, options) {
+  const {
+    heartbeatPath,
+    spawnedAtMs,
+    statMtimeMs = (filePath) => {
+      try {
+        return fs.statSync(filePath).mtimeMs;
+      } catch {
+        return null;
+      }
+    },
+    now = Date.now,
+    setIntervalFn = setInterval,
+    clearIntervalFn = clearInterval,
+    setTimeoutFn = setTimeout,
+  } = options;
+
+  let interval = null;
+  let stopped = false;
+  const stop = () => {
+    if (stopped) return;
+    stopped = true;
+    if (interval !== null) clearIntervalFn(interval);
+  };
+
+  interval = setIntervalFn(() => {
+    if (stopped) return;
+    const verdict = heartbeatVerdict({
+      mtimeMs: statMtimeMs(heartbeatPath),
+      spawnedAtMs,
+      nowMs: now(),
+    });
+    if (verdict !== 'stale') return;
+
+    stop();
+    log('advisor server heartbeat stale; sending SIGTERM');
+    child.kill('SIGTERM');
+    const killTimer = setTimeoutFn(() => {
+      if (isChildRunning(child)) child.kill('SIGKILL');
+    }, HEARTBEAT_KILL_GRACE_MS);
+    if (typeof killTimer?.unref === 'function') killTimer.unref();
+  }, HEARTBEAT_CHECK_INTERVAL_MS);
+  if (typeof interval?.unref === 'function') interval.unref();
+
+  return { stop };
+}
+
 function launchServer() {
   if (ownerLeaseRequired && !ownsOwnerLeaseFile(process.pid)) {
     log('launchServer skipped: skill-advisor owner lease is absent or owned by another launcher');
@@ -1553,7 +1645,14 @@ function launchServer() {
     stdio: 'inherit',
   });
 
+  childHeartbeatWatchdog = startHeartbeatWatchdog(childProcess, {
+    heartbeatPath: path.join(resolvedAdvisorDbDir(), HEARTBEAT_FILE_NAME),
+    spawnedAtMs: Date.now(),
+  });
+
   childProcess.on('exit', (code, signal) => {
+    childHeartbeatWatchdog?.stop();
+    childHeartbeatWatchdog = null;
     void (async () => {
       await shutdownModelServerForLauncherExit();
       if (signal) {
@@ -1760,6 +1859,12 @@ module.exports = {
   clearOwnerLeaseFile,
   configureLauncherPathsForTesting,
   createChildEnv,
+  heartbeatVerdict,
+  HEARTBEAT_CHECK_INTERVAL_MS,
+  HEARTBEAT_FILE_NAME,
+  HEARTBEAT_KILL_GRACE_MS,
+  HEARTBEAT_STARTUP_GRACE_MS,
+  HEARTBEAT_STALE_MS,
   installedTreeMatchesLockfile,
   isModelServerEnabled,
   latestSourceMtimeMs,
@@ -1773,6 +1878,7 @@ module.exports = {
   reapOwnerBeforeRespawn,
   removeStaleBootstrapLock,
   startOwnerLeaseHeartbeat,
+  startHeartbeatWatchdog,
   SKILL_ADVISOR_REPLAYABLE_TOOL_NAMES,
   SKILL_ADVISOR_UNSAFE_TOOL_NAMES,
 };

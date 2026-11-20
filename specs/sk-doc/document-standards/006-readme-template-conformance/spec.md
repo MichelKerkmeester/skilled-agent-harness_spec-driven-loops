@@ -57,7 +57,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-16 |
 | **Branch** | `main` |
 | **Parent Spec** | None, this is a phase parent in the `sk-doc/document-standards` sub-track |
@@ -130,11 +130,15 @@ Per-phase file lists and their baselines live in each child's `plan.md`.
 |-------|--------|-------|--------|
 | 1 | 001-skill-readmes/ | Rewrite the 13 skill READMEs to the skill README template and write one for `sk-design` | Complete |
 | 2 | 002-mode-packet-readmes/ | Rewrite the 41 mode packet READMEs to the skill README template | Complete |
-| 3 | 003-hook-folder-readmes/ | Rewrite the 26 hook folder READMEs around the runtime coverage table | Pending |
-| 4 | 004-hook-runtime-readmes/ | Rewrite the 47 runtime adapter READMEs to the runtime folder scaffold | Pending |
-| 5 | 005-runtime-plugin-readmes/ | Rewrite the 8 plugin, extension and hook mirror READMEs | Pending |
-| 6 | 006-runtime-folder-readmes/ | Rewrite 7 runtime folder READMEs and 8 SYNC docs, and write `.vibe/README.md` | Pending |
-| 7 | 007-hook-code-folder-readmes/ | Rewrite the 31 hook code folder READMEs and the hooks library README to the code-folder template | Pending |
+| 3 | 003-hook-folder-readmes/ | Rewrite the 26 hook folder READMEs around the runtime coverage table | Complete |
+| 4 | 004-hook-runtime-readmes/ | Rewrite the 47 runtime adapter READMEs to the runtime folder scaffold | Complete |
+| 5 | 005-runtime-plugin-readmes/ | Rewrite the 8 plugin, extension and hook mirror READMEs | Complete |
+| 6 | 006-runtime-folder-readmes/ | Rewrite 7 runtime folder READMEs and 8 SYNC docs, and write `.vibe/README.md` | Complete |
+| 7 | 007-hook-code-folder-readmes/ | Rewrite the 31 hook code folder READMEs and the hooks library README to the code-folder template | Complete |
+| 8 | 008-readme-html-conventions/ | Write the README rule for GitHub alerts and folded tables, block a broken fold in the validator and pilot both on four files | Complete |
+| 9 | 009-repo-rules-readme/ | Write the repo-rules folder README under the alert and fold rule, and make the repo-rules checker and card builder skip it | Complete |
+| 10 | 010-readme-text-diagrams/ | Redraw the 55 Mermaid diagrams in READMEs as box-drawing text, and make the skill README template ask for a text diagram | Complete |
+| 11 | 011-readme-guards/ | Remove Mermaid from the two sk-create-skill templates, block a Mermaid fence in a README, clear the checklist voice flag and the README checker failures | Complete |
 
 ### Phase Transition Rules
 
@@ -153,6 +157,10 @@ Per-phase file lists and their baselines live in each child's `plan.md`.
 | 004-hook-runtime-readmes | 005-runtime-plugin-readmes | All 47 runtime adapter READMEs meet the checks, and each names its real registration file | `validate.sh --strict` on 004 prints `RESULT: PASSED` |
 | 005-runtime-plugin-readmes | 006-runtime-folder-readmes | All 8 plugin and mirror READMEs meet the checks | `validate.sh --strict` on 005 prints `RESULT: PASSED` |
 | 006-runtime-folder-readmes | 007-hook-code-folder-readmes | All 16 runtime folder files meet the checks, including the new `.vibe/README.md` | `validate.sh --strict` on 006 prints `RESULT: PASSED` |
+| 007-hook-code-folder-readmes | 008-readme-html-conventions | Every README in the program is on its template, so a rule on top of the templates has a stable base | `validate.sh --strict` on 007 prints `RESULT: PASSED` |
+| 008-readme-html-conventions | 009-repo-rules-readme | The alert and fold rule is written and piloted, so a new README can follow it | `validate.sh --strict` on 008 prints `RESULT: PASSED` |
+| 009-repo-rules-readme | 010-readme-text-diagrams | The repo-rules README is pushed, so the next phase starts from a clean program | `validate.sh --strict` on 009 prints `RESULT: PASSED` |
+| 010-readme-text-diagrams | 011-readme-guards | No README holds a Mermaid fence, so a check that blocks one breaks nothing | `validate.sh --strict` on 010 prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---

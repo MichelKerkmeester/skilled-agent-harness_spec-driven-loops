@@ -1,14 +1,14 @@
 ---
-title: "OpenCode Commands"
-description: "OpenCode slash commands: component creation, deep loops, prompts, continuity and spec kit workflows."
+title: "Skilled Commands"
+description: "Skilled slash commands: component creation, deep loops, prompts, continuity and spec kit workflows."
 trigger_phrases:
-  - "opencode commands"
+  - "skilled commands"
   - "slash commands"
   - "command reference"
   - "available commands"
 ---
 
-# OpenCode Commands
+# Skilled Commands
 
 > Slash commands that provide structured workflows for component creation, deep loops, prompt improvement, packet continuity, and spec kit operations.
 
@@ -37,7 +37,7 @@ Each group's command count above is the number of command files in that folder. 
 
 ## 2. PURPOSE
 
-Use this document as the top-level routing reference for the OpenCode slash-command surface. It explains which command group owns which workflow and points readers to the canonical sub-index for deeper command-family detail.
+Use this document as the top-level routing reference for the Skilled slash-command surface. It explains which command group owns which workflow and points readers to the canonical sub-index for deeper command-family detail.
 
 This file is descriptive only. The executable contract for any workflow lives in the command entrypoint markdown file itself.
 
@@ -54,7 +54,7 @@ command/
 │   ├── agent.md              # Create new agent
 │   ├── benchmark.md          # Promote a curated MCP benchmark folder
 │   ├── changelog.md          # Create changelog entry
-│   ├── command.md            # Create or update OpenCode slash command set
+│   ├── command.md            # Create or update Skilled slash command set
 │   ├── diff.md               # Create a before/after document diff report
 │   ├── feature-catalog.md    # Create or update feature catalog package
 │   ├── goal.md               # Author or revise a packet goal.md
@@ -113,7 +113,7 @@ Scaffold Skilled components using the `sk-doc` skill. Each command supports `:au
 | Agent | `/create:agent <agent_name>` | Create agent with frontmatter, tool permissions, behavioral rules |
 | Benchmark | `/create:benchmark <skill-or-mode> <spec-packet> --family=<family>` | Author or update family-keyed benchmark packages |
 | Changelog | `/create:changelog <spec-folder-or-component>` | Create a global changelog entry in `.skilled/changelog/` from recent work |
-| Command | `/create:command <command_invocation> [command_request]` | Create or update an OpenCode slash command set |
+| Command | `/create:command <command_invocation> [command_request]` | Create or update a Skilled slash command set |
 | Diff | `/create:diff <document> [:auto\|:confirm]` | Create a self-contained before/after document diff report |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature-catalog/` package |
 | Folder README | `/create:readme <target>` | Folder README workflow |

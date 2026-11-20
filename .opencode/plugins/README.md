@@ -15,7 +15,7 @@ trigger_phrases:
 
 `.opencode/plugins/` holds the local plugins an OpenCode session loads. Each `.js` file at the top of the folder is one plugin. `opencode.json` names no plugin path, so the folder itself is the registration, and the subfolders hold no entries.
 
-Every entry default-exports the object that `dualPlugin(id, server)` builds in `lib/v2-bridge.js`. `server` is the unchanged OpenCode 1 factory and `setup` is the OpenCode 2 leg. The folder is an ES module package, because `.opencode/package.json` sets `"type": "module"`.
+Every entry default-exports the object that `dualPlugin(id, factory)` builds in `lib/v2-bridge.js`. `setup` is the OpenCode 2 entry, and the hook factory rides along as a non-enumerable `factory` property. The folder is an ES module package, because `.opencode/package.json` sets `"type": "module"`.
 
 An entry is a thin adapter that translates one OpenCode event into a call on a core outside this folder, with one exception. `opencode-goal.js` is a full plugin. It holds the goal state machine and its tools, and calls the goal helpers under `.opencode/hooks/goal/`.
 
@@ -35,7 +35,7 @@ The rule every entry keeps is silence on stdout, and on stderr outside two error
 └─────────────┬─────────────┘
               ▼
 ┌───────────────────────────┐
-│ the entry's v1 factory    │
+│ the entry's hook factory  │
 └─────────────┬─────────────┘
               ▼
 ┌───────────────────────────┐
@@ -47,11 +47,11 @@ The rule every entry keeps is silence on stdout, and on stderr outside two error
 ╰───────────────────────────╯
 ```
 
-Runtime direction: host ───▶ `setup` ───▶ `server` ───▶ core.
+Runtime direction: host ───▶ `setup` ───▶ `factory` ───▶ core.
 
-The bridge carries the transport for every entry. When an entry registers an event hook, the bridge subscribes to the session event stream for it, turns the rest of the v1 factory's hooks into OpenCode 2 registrations, and returns the cleanup function that disposes them. It also renames `shell` to `bash` and `subagent` to `task` before a v1 hook reads them, and it aliases `session.execution.succeeded` to `session.idle` and `session.compaction.ended` to `session.compacted`. A hook key it cannot map is listed in `cleanup.skippedKeys` rather than dropped in silence.
+The bridge carries the transport for every entry. When an entry registers an event hook, the bridge subscribes to the session event stream for it, turns the rest of the factory's hooks into OpenCode 2 registrations, and returns the cleanup function that disposes them. It also renames `shell` to `bash` and `subagent` to `task` before a hook reads them, and it aliases `session.execution.succeeded` to `session.idle` and `session.compaction.ended` to `session.compacted`. A hook key it cannot map is listed in `cleanup.skippedKeys` rather than dropped in silence.
 
-The architecture note covers the synthesized `session.created` and the message events the bridge fills for v1 plugins. It also lists the OpenCode 1 features with no OpenCode 2 equivalent. Read [the architecture note](./ARCHITECTURE.md) before changing the bridge.
+The architecture note covers the synthesized `session.created` and the message events the bridge fills for the factory. It also lists the capabilities the bridge cannot carry. Read [the architecture note](./ARCHITECTURE.md) before changing the bridge.
 
 ---
 
@@ -60,7 +60,7 @@ The architecture note covers the synthesized `session.created` and the message e
 ```text
 .opencode/plugins/
 +-- README.md                             # this index
-+-- ARCHITECTURE.md                       # the dual export and the bridge limits
++-- ARCHITECTURE.md                       # the export shape and the bridge limits
 +-- <plugin>.js                           # one entry file per row in the entry map
 +-- lib/                                  # helpers the entries import, never entries
 |   +-- classifier-injection-screen-core.js
@@ -176,7 +176,7 @@ Expected result: `ℹ fail 0` and exit status 0, on a stub host context. These s
 
 ## 8. RELATED
 
-- [`ARCHITECTURE.md`](./ARCHITECTURE.md): the dual export, the bridge and the known limits.
+- [`ARCHITECTURE.md`](./ARCHITECTURE.md): the export shape, the bridge and the known limits.
 - [`tests/README.md`](./tests/README.md): what each suite pins.
 - [`tests/helpers/README.md`](./tests/helpers/README.md): the shared fixtures.
 - [`../hooks/README.md`](../hooks/README.md): the hook cores, the switch index and the coverage matrix.

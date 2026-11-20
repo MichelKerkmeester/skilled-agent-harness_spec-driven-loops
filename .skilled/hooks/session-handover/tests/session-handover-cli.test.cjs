@@ -2131,6 +2131,28 @@ test('consume returns the handoff path and its spec folder', (t) => {
   assert.equal(fs.existsSync(filePath), false);
 });
 
+test('consume names the root that owns a note under another checkout', (t) => {
+  const sandbox = createSandbox(t);
+  const otherRoot = path.join(sandbox.root, 'other-checkout');
+  const outsidePath = path.join(
+    otherRoot, '.skilled', 'skills', '.state', 'session-handover', 'handoffs', 'handoff.md',
+  );
+  fs.mkdirSync(path.dirname(outsidePath), { recursive: true });
+  fs.writeFileSync(outsidePath, handoffText());
+  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: outsidePath });
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), {
+    handoff: '',
+    spec_folder: '',
+    note: 'outside-root',
+    repo_root: sandbox.repoRoot,
+    note_root: otherRoot,
+  });
+});
+
 test('consume refuses a handoff outside the handoffs directory', (t) => {
   const sandbox = createSandbox(t);
   writeHandoff(sandbox);
@@ -2146,10 +2168,12 @@ test('consume refuses a handoff outside the handoffs directory', (t) => {
   const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
 
   assert.equal(result.status, 0, result.stderr);
+  // The path is not shaped like a note under any root, so no note root is named.
   assert.deepEqual(JSON.parse(result.stdout), {
     handoff: '',
     spec_folder: '',
-    note: 'missing',
+    note: 'outside-root',
+    repo_root: sandbox.repoRoot,
   });
   assert.equal(fs.existsSync(filePath), false);
   assert.match(
@@ -3648,18 +3672,15 @@ function writeOpenCodeStore(sandbox, sessionId, { cwd }) {
   fs.mkdirSync(storeRoot, { recursive: true });
   const database = new DatabaseSync(path.join(storeRoot, 'opencode.db'));
   try {
-    database.exec('CREATE TABLE session (id TEXT, directory TEXT)');
-    database.exec('CREATE TABLE message (id TEXT, session_id TEXT, time_created INTEGER, data TEXT)');
-    database.exec('CREATE TABLE part (id TEXT, message_id TEXT, session_id TEXT, time_created INTEGER, data TEXT)');
-    database.prepare('INSERT INTO session VALUES (?, ?)').run(sessionId, cwd);
-    database.prepare('INSERT INTO message VALUES (?, ?, ?, ?)')
-      .run('m-user', sessionId, 1000, JSON.stringify({ role: 'user' }));
-    database.prepare('INSERT INTO message VALUES (?, ?, ?, ?)')
-      .run('m-model', sessionId, 2000, JSON.stringify({ role: 'assistant' }));
-    database.prepare('INSERT INTO part VALUES (?, ?, ?, ?, ?)')
-      .run('p-user', 'm-user', sessionId, 1000, JSON.stringify({ type: 'text', text: 'Say the probe word.' }));
-    database.prepare('INSERT INTO part VALUES (?, ?, ?, ?, ?)')
-      .run('p-model', 'm-model', sessionId, 2000, JSON.stringify({ type: 'text', text: 'probe-ok' }));
+    database.exec('CREATE TABLE session_v2 (id TEXT, directory TEXT)');
+    database.exec('CREATE TABLE session_message (id TEXT, session_id TEXT, type TEXT, seq INTEGER, data TEXT)');
+    database.prepare('INSERT INTO session_v2 VALUES (?, ?)').run(sessionId, cwd);
+    const insert = database.prepare('INSERT INTO session_message VALUES (?, ?, ?, ?, ?)');
+    insert.run('m-user', sessionId, 'user', 1, JSON.stringify({ text: 'Say the probe word.', time: { created: 1000 } }));
+    insert.run('m-model', sessionId, 'assistant', 2, JSON.stringify({
+      time: { created: 2000 },
+      content: [{ type: 'text', text: 'probe-ok' }],
+    }));
   } finally {
     database.close();
   }

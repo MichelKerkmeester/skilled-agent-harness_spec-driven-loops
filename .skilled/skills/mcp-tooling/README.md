@@ -9,7 +9,7 @@ trigger_phrases:
   - "notion mcp"
   - "figma cli"
   - "mcp tool bridge"
-version: 1.8.8.0
+version: 1.8.9.0
 ---
 
 # mcp-tooling
@@ -76,12 +76,34 @@ It prints one JSON line. For the request above, that line reports the `route` ac
 
 Routing runs in two stages. Stage one scores the request against `hub-router.json` and reads `mode-registry.json` to select a mode. Stage two reads `ROUTER.md` and loads the leaf files that mode declares, so a Chrome request opens the CDP pattern file and the session guide rather than the whole hub.
 
-```mermaid
-flowchart TD
-  Request["Tool request"] --> Stage1["hub-router.json scores the signal"]
-  Stage1 --> Registry["mode-registry.json names the packet"]
-  Registry --> Stage2["ROUTER.md selects the leaf files"]
-  Stage2 --> Packet["Selected packet runs the work"]
+```text
+┌──────────────────────┐
+│ Tool request         │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ hub-router.json      │
+│ scores the signal    │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ mode-registry.json   │
+│ names the packet     │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ ROUTER.md selects    │
+│ the leaf files       │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Selected packet runs │
+│ the work             │
+└──────────────────────┘
 ```
 
 ### Two Axes

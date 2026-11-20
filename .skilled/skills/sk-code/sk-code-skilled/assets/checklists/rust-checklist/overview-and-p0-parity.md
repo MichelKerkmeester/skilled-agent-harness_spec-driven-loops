@@ -2,7 +2,7 @@
 title: Rust Code Quality Checklist
 description: Quality validation checklist for Rust interop code in the OpenCode development environment.
 trigger_phrases:
-  - "opencode rust checklist"
+  - "skilled rust checklist"
   - "rust quality validation checklist"
   - "rust byte parity check"
   - "napi wasm rust review"

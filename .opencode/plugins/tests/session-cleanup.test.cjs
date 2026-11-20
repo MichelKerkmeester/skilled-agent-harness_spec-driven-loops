@@ -31,7 +31,7 @@ const GUARD_PATHS = [WORKTREE_GUARD_PATH, HOOK_GUARD_PATH, LIVE_FOLLOW_PATH];
 
 async function loadPlugin() {
   const moduleUrl = `${pathToFileURL(PLUGIN_PATH).href}?test=${Date.now()}-${Math.random()}`;
-  return (await import(moduleUrl)).default.server;
+  return (await import(moduleUrl)).default.factory;
 }
 
 function successfulResult(overrides = {}) {
@@ -78,7 +78,7 @@ describe('session-cleanup plugin lifecycle', () => {
       },
     });
 
-    await hooks.event({ event: { type: 'server.instance.disposed' } });
+    await hooks.event({ event: { type: 'global.disposed' } });
     await hooks.dispose();
     await hooks.dispose();
 

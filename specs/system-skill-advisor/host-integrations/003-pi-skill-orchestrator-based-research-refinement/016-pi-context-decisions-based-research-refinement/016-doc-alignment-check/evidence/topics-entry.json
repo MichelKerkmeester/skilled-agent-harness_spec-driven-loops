@@ -1,0 +1,37 @@
+{
+  "advisor-pasted-reply": {
+    "title": "Skill advisor pasted-reply strip, hook crash fallback and route receipts: a leading pasted earlier reply stripped before scoring in the recommend handler, the TypeScript scorer and the Python scorer, the outage fallback the Claude hook returns from its own catch, stored route receipts for weak follow-ups, and when the confidence threshold is read",
+    "terms": [
+      "pasted[- ](earlier[- ])?(reply|replies|context)",
+      "route[- ]receipts?",
+      "weak follow-?ups?",
+      "skill-advisor-cli-fallback",
+      "outage fallback",
+      "SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD",
+      "confidenceOnly"
+    ],
+    "codeRoots": [
+      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs",
+      ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts",
+      ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      ".skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"
+    ],
+    "lanes": 4,
+    "checks": [
+      {
+        "id": "advisor-hook-tests",
+        "cmd": "cd .skilled/skills/system-skill-advisor/runtime && npx vitest run tests/hooks tests/parity tests/handlers",
+        "severity": "P1"
+      }
+    ]
+  }
+}

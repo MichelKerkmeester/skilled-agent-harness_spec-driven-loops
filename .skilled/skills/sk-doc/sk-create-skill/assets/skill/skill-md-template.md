@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.9.0
+version: 1.2.11.0
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -431,7 +431,7 @@ Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md) when the skill has installat
     ├── scripts/          - Executable automation
     ├── references/       - Detailed documentation (flat or domain subfolders)
     └── assets/           - Templates and examples (subfolders OK)
-        ├── opencode/     - OpenCode component templates (skills, agents, commands)
+        ├── skilled/      - Skilled component templates (skills, agents, commands)
         └── readme/        - README-shaped scaffolds (README, install guide)
 ```
 
@@ -634,7 +634,7 @@ STEP 2: [Action]
 \`\`\`
 
 **Writing Tips**:
-- Use Mermaid for flow diagrams so a parser can read them.
+- Draw flow diagrams as box-drawing text in a `text` fence, never Mermaid, so they read the same in a terminal and an editor.
 - Show, don't just tell (include code examples)
 - Progressive detail: Overview → specifics → edge cases
 - Link to references for deep dives
@@ -946,7 +946,7 @@ Content - Routing Canon:
 □ `ROUTER.md` sits beside `SKILL.md`, and every path in it stays inside the skill folder
 □ Flowchart supplements added to complex logic blocks in Section 3 (where applicable)
 □ Python/YAML code preserved (supplements, not replacements)
-□ Mermaid diagrams use valid syntax (when used)
+□ Diagrams are box-drawing text in a `text` fence, never Mermaid (when used)
 
 Quality:
 □ SKILL.md within the Size Limits table in section 3

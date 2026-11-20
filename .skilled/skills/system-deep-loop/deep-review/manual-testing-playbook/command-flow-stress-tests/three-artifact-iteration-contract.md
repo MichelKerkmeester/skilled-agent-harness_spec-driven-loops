@@ -1,7 +1,7 @@
 ---
 title: "CP-053 -- Three-artifact iteration contract **(SANDBOXED)**"
 description: "Validate that command-flow dispatch produces iteration markdown, state-log JSONL, and per-iteration delta JSONL."
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # CP-053 -- Three-artifact iteration contract **(SANDBOXED)**
@@ -46,6 +46,8 @@ Operators run the exact command sequence and confirm the expected signals withou
 
 ### Exact Runnable Command Sequence
 
+**OpenCode 2 status:** the only dispatch is a registered slash command, which `run` does not expand on OpenCode 2 (hard rule `v2-slash-prompt-route`). It is UNVERIFIED until a `session.command` runner is recorded, so this scenario cannot PASS on OpenCode 2 yet.
+
 ```bash
 set -uo pipefail
 rm -rf /tmp/cp-053-sandbox /tmp/cp-053-sandbox-baseline /tmp/cp-053-spec
@@ -55,7 +57,10 @@ cp -a /tmp/cp-053-sandbox /tmp/cp-053-sandbox-baseline
 cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-053-sandbox /tmp/cp-053-spec > /tmp/cp-053-pre.txt
 cd /tmp/cp-053-sandbox
-opencode run "/deep:review:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-053-spec --max-iterations=1 --convergence=0.10 --no-resource-map. Use target type files and dimensions correctness. Produce durable artifacts; do not ask setup questions." --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-053-sandbox </dev/null 2>&1 | tee /tmp/cp-053-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-053-B-exit.txt
+# Stage B is a registered slash command. OpenCode 2 `run` does not expand it (hard rule v2-slash-prompt-route),
+# so it needs the session.command route (POST /api/session/{id}/command). No verified request body for that route
+# is recorded in this repository, so this step is UNVERIFIED and is not run here.
+echo "EXIT_B=UNVERIFIED" | tee /tmp/cp-053-B-exit.txt
 cd "$(git rev-parse --show-toplevel)"
 find /tmp/cp-053-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-053-B-artifacts.txt 2>/dev/null || touch /tmp/cp-053-B-artifacts.txt
 find /tmp/cp-053-spec -type f > /tmp/cp-053-B-files.txt 2>/dev/null || touch /tmp/cp-053-B-files.txt

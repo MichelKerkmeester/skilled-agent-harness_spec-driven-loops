@@ -659,12 +659,10 @@ function documentTails({ namespace, name }) {
   ];
 }
 
-// A command can be renamed while the confirm workflow it ships keeps the asset name
-// it had before. A name-only asset also has to be named here when its command sits in
-// a namespace folder but its workflow carries no namespace prefix, as the design
-// commands' workflows do.
+// A command whose confirm workflow does not take the default stem is named here. The
+// design commands sit in a namespace folder, but their workflows carry no namespace
+// prefix.
 const CONFIRM_STEMS = Object.freeze({
-  'create:sk-skill': 'create-skill',
   'design:chart': 'chart',
   'design:diagram': 'diagram',
   'design:extract': 'extract',
@@ -673,8 +671,8 @@ const CONFIRM_STEMS = Object.freeze({
 /**
  * Name the stem a command's confirm workflow uses.
  *
- * The default joins the namespace and the name, and a renamed command maps to the
- * stem its asset kept.
+ * The default joins the namespace and the name, and a command listed in the stem
+ * table maps to the stem its asset uses.
  *
  * @param {string} command - A command with or without its leading slash and mode
  *   suffix.

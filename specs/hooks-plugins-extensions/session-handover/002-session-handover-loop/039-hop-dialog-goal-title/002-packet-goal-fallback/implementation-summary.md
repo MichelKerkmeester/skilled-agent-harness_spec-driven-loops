@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/lib/relaunch-core.cjs", ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs", ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs", ".skilled/hooks/session-relaunch/README.md"]
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:08b997bf07d056b54f803ffd5433e37466b6e9c9bdda8de60f13f36c5853ac7b"
       session_id: "scaffold-002-packet-goal-fallback"
       parent_session_id: null
     completion_pct: 100

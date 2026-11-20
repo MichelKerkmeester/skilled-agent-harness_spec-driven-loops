@@ -2,19 +2,19 @@
 title: Directory & Test File Conventions
 description: Where skill, server and script files sit, how test files are named and placed, and where a test may write temporary files.
 trigger_phrases:
-  - "directory conventions opencode"
+  - "directory conventions skilled"
   - "test file conventions"
   - "mcp server structure"
   - "script directory structure"
   - "test temp folder isolation"
 importance_tier: normal
 contextType: implementation
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Directory & Test File Conventions
 
-Directory and test-file conventions for OpenCode skills, servers, scripts, and supported implementation languages.
+Directory and test-file conventions for Skilled skills, servers, scripts, and supported implementation languages.
 
 ---
 
@@ -22,7 +22,7 @@ Directory and test-file conventions for OpenCode skills, servers, scripts, and s
 
 ### Purpose
 
-Define predictable directory layouts and test-file conventions for OpenCode system-code packages.
+Define predictable directory layouts and test-file conventions for Skilled system-code packages.
 
 ### When to Use
 
@@ -36,7 +36,7 @@ Define predictable directory layouts and test-file conventions for OpenCode syst
 
 ## 2. DIRECTORY CONVENTIONS
 
-### OpenCode Skill Structure
+### Skilled Skill Structure
 
 ```
 .skilled/skills/{skill-name}/

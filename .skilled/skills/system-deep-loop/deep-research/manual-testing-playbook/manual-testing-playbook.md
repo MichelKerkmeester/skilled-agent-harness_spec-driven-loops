@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.9.0
+version: 1.16.10.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -942,7 +942,7 @@ Validate that command-dispatched `@deep-research` reads existing state and does 
 
 ## 14. FAN-OUT
 
-This category covers 4 scenarios validating the opt-in fan-out dispatch layer added in the research loop: CLI lineage pool dispatch, native sequential agent dispatch, single-executor parity, and the round-robin deal of seeded frontier nodes under the expansive mode.
+This category covers 4 scenarios validating the opt-in fan-out dispatch layer added in the research loop: CLI lineage pool dispatch, native lineage refusal, single-executor parity, and the round-robin deal of seeded frontier nodes under the expansive mode.
 
 ### DR-052 | Fan-out research with two CLI lineages
 
@@ -957,15 +957,15 @@ Expected signals: YAML steps present with `skip_when`; command docs show 2+ exec
 #### Test Execution
 > **Feature File:** [DR-052](../manual-testing-playbook/fanout/fanout-cli-lineages-research.md)
 
-### DR-053 | Fan-out native sequential research dispatch
+### DR-053 | Fan-out native lineage refusal
 
 #### Description
-Validate that native fan-out dispatches sequential `agent: deep-research` runs with per-lineage isolated artifact dirs via `config.fanout_lineage_artifact_dir`.
+Validate that a research fan-out whose lineage kind is `native` is refused before any lineage spawns, with a message containing `native fan-out lineages are not supported`, and that the same run with two `cli-*` executors is accepted.
 
 #### Scenario Contract
-Prompt summary: Validate native fan-out for deep-research: confirm `step_fanout_spawn_native` uses `agent: deep-research` and passes the correct lineage artifact dir override.
+Prompt summary: Validate native fan-out refusal for deep-research: confirm `fanout-run.cjs` refuses a native lineage before any spawn, and accepts the same run with two `cli-*` executors.
 
-Expected signals: `agent: deep-research` (not `deep-review`) in native dispatch block; `config.fanout_lineage_artifact_dir` in context; correct `skip_when`.
+Expected signals: `NATIVE_LINEAGE_REFUSAL` reads `native fan-out lineages are not supported`; the guard runs on `expandLineages` output before the pool starts and names the lineage labels; exit code 3; no `lineages/{label}/` directory created; the two-`cli-*` config reaches the pool.
 
 #### Test Execution
 > **Feature File:** [DR-053](../manual-testing-playbook/fanout/fanout-native-sequential-research.md)

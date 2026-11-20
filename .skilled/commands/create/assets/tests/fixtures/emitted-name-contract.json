@@ -30,12 +30,12 @@
     "create-repo-rule-auto.yaml",
     "create-repo-rule-confirm.yaml",
     "create-repo-rule-presentation.txt",
-    "create-skill-auto.yaml",
-    "create-skill-confirm.yaml",
+    "create-sk-skill-auto.yaml",
+    "create-sk-skill-confirm.yaml",
+    "create-sk-skill-presentation.txt",
     "create-skill-parent-auto.yaml",
     "create-skill-parent-confirm.yaml",
     "create-skill-parent-presentation.txt",
-    "create-skill-presentation.txt",
     "create-with-human-voice-auto.yaml",
     "create-with-human-voice-confirm.yaml",
     "create-with-human-voice-presentation.txt"
@@ -94,11 +94,11 @@
     "create-manual-testing-playbook-presentation.txt": [
       ".skilled/skills/system-spec-kit/manual-testing-playbook"
     ],
-    "create-skill-auto.yaml": [
+    "create-sk-skill-auto.yaml": [
       "filename_pattern: \"[topic]-workflow.md\"",
       "filename_pattern: \"quick-reference.md\""
     ],
-    "create-skill-confirm.yaml": [
+    "create-sk-skill-confirm.yaml": [
       "filename_pattern: \"[topic]-workflow.md\"",
       "filename_pattern: \"quick-reference.md\""
     ],
@@ -144,10 +144,10 @@
     "create-readme-confirm.yaml": [
       "prefix: \"MCP -\""
     ],
-    "create-skill-auto.yaml": [
+    "create-sk-skill-auto.yaml": [
       "filename_rule: \"snake_case"
     ],
-    "create-skill-confirm.yaml": [
+    "create-sk-skill-confirm.yaml": [
       "filename_rule: \"snake_case"
     ],
     "create-skill-parent-auto.yaml": [

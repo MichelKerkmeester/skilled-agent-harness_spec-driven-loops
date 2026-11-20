@@ -218,7 +218,7 @@ async function MkDistFreshnessGuardPlugin(ctx) {
           sessionWarned.delete(String(sessionIdFromEvent(input)));
           return;
         }
-        if (eventType === 'server.instance.disposed' || eventType === 'global.disposed') {
+        if (eventType === 'global.disposed') {
           sessionWarned.clear();
           diagnosticCache = null;
           diagnosticCheckedAt = 0;

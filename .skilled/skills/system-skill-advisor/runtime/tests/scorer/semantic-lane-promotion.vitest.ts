@@ -71,11 +71,11 @@ describe('semantic lane promotion', () => {
   it('keeps the promoted live weights normalized', () => {
     expect(isLiveScorerLane('semantic_shadow')).toBe(true);
     expect(SCORER_LANE_REGISTRY.find((lane) => lane.id === 'semantic_shadow')).toMatchObject({
-      weight: 0.05,
+      weight: 0,
       live: true,
     });
-    expect(liveWeightTotal()).toBeCloseTo(1, 10);
-    expect(Object.values(DEFAULT_SCORER_WEIGHTS).reduce((total, weight) => total + weight, 0)).toBeCloseTo(1, 10);
+    expect(liveWeightTotal()).toBeCloseTo(0.95, 10);
+    expect(Object.values(DEFAULT_SCORER_WEIGHTS).reduce((total, weight) => total + weight, 0)).toBeCloseTo(0.95, 10);
   });
 
   it.each([

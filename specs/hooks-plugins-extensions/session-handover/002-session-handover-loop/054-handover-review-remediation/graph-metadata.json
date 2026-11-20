@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Each runtime adapter carried its own copy of the code that withdraws a hand-over when the operator sends a prompt",
     "created_at": "2026-11-17T07:34:31Z",
-    "last_save_at": "2026-11-17T08:03:20.089Z",
+    "last_save_at": "2026-11-17T19:36:32.397Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89f474a029c4c9721e6f13a4a59d34bb5cb1125970be88eb682741b41fd239fb",
+    "source_fingerprint": "sha256:90f4e3dc8078219a01406a9a9a68293ca9fae2373ff1a042c92ce166552cea41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d1b4571cd76f4ab18f02fef586c01c968476438a1e9fea226768b44ea5c56895",
+      "spec.md": "57b09d8b54694d78d5d0f4dbdcb4d268b20dc900a7ce43f3415af1dea6139f7e",
       "plan.md": "51880058c1e15d43d037cd14ad55d1665b4eeb93ca0953b68ef7d73496831a9b",
       "tasks.md": "c4ce779d4cda38e4cc37ff475a6c2818569adc2ce83b8ae6a1510b2e1129e1dc",
       "decision-record.md": "07681221b336b538b4c7d7fbbbb47c2051b3c271105b29154f2534a62d2dcb38",

@@ -26,7 +26,8 @@
       "speckit command gates step order drift phase parent spec",
       "speckit command workflow logic fixes",
       "speckit workflow gates and step order",
-      "speckit command drift remediation"
+      "speckit command drift remediation",
+      "007-speckit-command-gates-step-order-drift operator decisions"
     ],
     "key_topics": [
       "speckit",
@@ -42,16 +43,23 @@
       "logic",
       "remediation"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -89,22 +97,60 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "origin",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "your",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/speckit:resume`, `/speckit:save`, `/speckit:search` and `/speckit:handoff` commands are executed by AI agents on every runtime, and an agent follows the workflow text literally",
     "created_at": "2026-11-14T11:33:17Z",
-    "last_save_at": "2026-11-15T16:19:07.678Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-19T17:49:13.306Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:884811609d18e608857dc28807fd6b3a019379d953625596cad109ce06f31eff",
+    "source_fingerprint": "sha256:1f1c539db64129f4a865c40e3762b7a1d8cd27e7805c244dedadb0e2b2fa9ebf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e438d0f543e1de657a1c1c9dd5f4a2e9e5de9c0479bb7c192e6cb6543c5fd08a"
+      "spec.md": "e438d0f543e1de657a1c1c9dd5f4a2e9e5de9c0479bb7c192e6cb6543c5fd08a",
+      "decision-record.md": "63b0c32b8cc2b46c1d82e8f5d623dcf7f5c6072d688d3fdbdc2d0ddb811e9057"
     },
-    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override",
-    "last_active_at": "2026-11-15T06:06:10.743Z"
+    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets",
+    "last_active_at": "2026-11-19T17:49:13.306Z"
   }
 }

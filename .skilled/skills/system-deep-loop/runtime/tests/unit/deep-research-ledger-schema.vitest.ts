@@ -1856,6 +1856,82 @@ describe('deep-research typed ledger schema', () => {
     expect(Object.keys(projected.rows[0])).toEqual(Object.keys(record));
   });
 
+
+  // The command's route-proof check reads these fields back from the state log,
+  // so a correct run must not lose them on the way through the ledger.
+  it('keeps the route-proof fields of a completed iteration in the state log', () => {
+    const record = {
+      type: 'iteration', mode: 'research', run: 7, status: 'complete',
+      sessionId: 'run-1', parentSessionId: 'lineage-1',
+      focus: 'verify production behavior', answeredQuestions: ['Does retry preserve the request id?'],
+      target_agent: 'deep-research', agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+      newInfoRatio: 0.6, ruledOut: [], timestamp: '2026-05-24T00:00:00Z',
+    };
+    const context = {
+      scope: { runId: 'run-1', lineageId: 'lineage-1', iteration: 7 },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-iteration'),
+    };
+    const result = upcastLegacyDeepResearchRecord(record, context);
+    if (result.status !== 'migrated') throw new Error(result.decision.reasonCode);
+
+    const prepared = prepareDeepResearchEvent({
+      stem: result.targetStem,
+      scope: result.scope,
+      prevEventHash: result.prevEventHash,
+      replay: result.replay,
+      data: result.data,
+      eventId: 'event-legacy-iteration',
+      streamId: 'deep-research-run-1',
+      streamSequence: 1,
+      occurredAt: result.occurredAt as string,
+      recordedAt: TIMESTAMP,
+      producer: { name: 'deep-research-shadow-schema', version: '1' },
+      authorityEpoch: 1,
+      correlationId: 'run-1',
+      causationId: null,
+      idempotencyKey: 'legacy-iteration',
+    } as DeepResearchEventInput<'deep_research.iteration_completed'>, createDeepResearchEventRegistry());
+    const contract = createDeepResearchProjectionContract();
+    const projected = contract.reduce(contract.base.state, {
+      effective: prepared,
+    } as unknown as EventReadResult);
+
+    expect(projected.rows[0]).toMatchObject({
+      type: 'iteration',
+      mode: 'research',
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+    });
+  });
+
+  // An earlier writer stored the route proof under camelCase names. A ledger it wrote
+  // must still validate and give the state log back the names the route check reads.
+  it('projects the route proof of a ledger written under the camelCase names', () => {
+    const input = eventInput('deep_research.iteration_completed', 8, '0'.repeat(64));
+    const prepared = prepareDeepResearchEvent({
+      ...input,
+      data: {
+        ...input.data,
+        targetAgent: 'deep-research',
+        agentDefinitionLoaded: true,
+        resolvedRoute: 'Resolved route: mode=research target_agent=deep-research',
+      } as DeepResearchPayloadMap['deep_research.iteration_completed'],
+    }, createDeepResearchEventRegistry());
+    const contract = createDeepResearchProjectionContract();
+    const projected = contract.reduce(contract.base.state, {
+      effective: prepared,
+    } as unknown as EventReadResult);
+
+    expect(projected.rows[0]).toMatchObject({
+      type: 'iteration',
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+    });
+  });
   it('refuses a reducer-read row it cannot carry losslessly, naming why', () => {
     const context = {
       scope: { runId: 'run-ideas-1', lineageId: 'lineage-ideas-1' },

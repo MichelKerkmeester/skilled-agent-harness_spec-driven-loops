@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.3.12.0
+version: 1.3.14.0
 ---
 
 # sk-code-quality
@@ -39,9 +39,9 @@ The mode routes by target path, so the checklists follow the files a change touc
 | Target | Checklist the verdict names |
 |---|---|
 | `.skilled/skills/` | `skill-authoring.md` under the SKILLED checklists |
-| `.skilled/agents/` and `.skilled/commands/` | `agent-authoring.md` or `command-authoring.md` |
+| `.skilled/agents/` and `.skilled/commands/` | `agent-authoring.md` or `command-authoring.md` under the SKILLED checklists |
 | `specs/` | The spec-folder authoring checklist that `system-spec-kit` owns, in this hub's own repository |
-| MCP server source | `mcp-server-authoring.md` |
+| MCP server source | `mcp-server-authoring.md` under the SKILLED checklists |
 | JavaScript, TypeScript, Python, Shell, Rust or config | The matching language checklist |
 | A path your own repository config names | The checklist its `checklists[]` row points at |
 
@@ -75,15 +75,45 @@ It prints a `code-quality-explain/v1` document and exits 2, because it runs noth
 
 The mode sits between implementation and verification. It resolves the surface of each changed file. It then runs the built-in checks and reads the gate before anything else. It loads the checklists the verdict names and applies the P0/P1/P2 tiers. P0 blocks completion. P1 is fixed unless the user accepts a documented risk. P2 is fixed when cheap or deferred with a stated reason.
 
-```mermaid
-flowchart TD
-  Change["Files change"] --> Run["Run scripts/quality-gate.cjs"]
-  Run --> Gate["Read the gate"]
-  Gate --> Load["Load the checklists the verdict names"]
-  Load --> Judge["Judge P0/P1/P2 and judgment_required"]
-  Judge --> Fix["Fix in place with Edit"]
-  Fix --> Envelope["Render the evidence envelope"]
-  Envelope --> Verify["Hand to verification"]
+```text
+┌────────────────────────────────────────┐
+│ Files change                           │
+└────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────┐
+│ Run scripts/quality-gate.cjs           │
+└────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────┐
+│ Read the gate                          │
+└────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────┐
+│ Load the checklists the verdict names  │
+└────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────┐
+│ Judge P0/P1/P2 and judgment_required   │
+└────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────┐
+│ Fix in place with Edit                 │
+└────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────┐
+│ Render the evidence envelope           │
+└────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────┐
+│ Hand to verification                   │
+└────────────────────────────────────────┘
 ```
 
 A run that ends `BLOCKED` stops the handoff. A run that ends `UNVERIFIED` leaves each named check or rule open. `NOTHING_CHECKED` says no check read a file as code, so it never reads as clean. `ERROR` stops the gate until its error is repaired.

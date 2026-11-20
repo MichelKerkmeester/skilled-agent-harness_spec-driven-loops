@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.18.0
+version: 1.4.19.0
 ---
 
 # Fan-out CLI lineage driver
@@ -17,8 +17,8 @@ version: 1.4.18.0
 ## 1. OVERVIEW
 
 `fanout-run.cjs` bridges the pool primitive and the actual CLI executor subprocesses. It
-parses the fanout config JSON, filters to CLI lineages (native lineages are handled by the
-YAML `step_fanout_spawn_native` agent dispatch), creates `{base}/lineages/{label}/` and
+parses the fanout config JSON, refuses any lineage whose kind is `native` before the pool
+starts, creates `{base}/lineages/{label}/` and
 `{label}/.executor-state/` directories per lineage, builds a "run the full loop" prompt,
 constructs the per-kind CLI command (`opencode run` + stdin, `claude -p`, `opencode run` +
 `</dev/null`), sets
@@ -58,7 +58,11 @@ sandbox, permission and web search, not the executable path or version), differ 
 the whole run is refused with exit 3 and reason `finished_lineage_mismatch`, before any spawn,
 ledger mark or summary write, with a message naming each mismatched lineage and `--restart`. One
 mismatch refuses every lineage, because the merge reads every lineage folder and a partial refusal
-would mix old results with new ones. A side that recorded no value is not judged on it.
+would mix old results with new ones. A side that recorded no value is not judged on it. A matrix that holds a `native`
+lineage is refused with exit 3 before any lineage directory or process exists, naming the
+offending labels: `native fan-out lineages are not supported`. `native` stays the single,
+in-session executor, so the default `native` executor with `--count` greater than 1 is
+refused the same way, and every fan-out lineage needs a `cli-*` kind.
 
 A `cli-deepseek-harness` lineage is built by `buildDshLineageCommand`. It first checks that
 `dsh --version` prints the pinned release, running that probe in a throwaway home outside the
@@ -166,8 +170,8 @@ The stdout summary and `orchestration-summary.json` carry `lineages`, one `{labe
 
 | File | Role |
 |---|---|
-| `tests/unit/fanout-run.vitest.ts` | Native-only config returns early (no pool spawn), bad JSON config exits 3, missing required args exits 3, 2-lineage pool creates distinct dirs + ledger + summary, same-kind replica state dirs are distinct |
-| `tests/unit/fanout-run.vitest.ts` | Expansive depth groups: `expansive depth frontier` (the round-robin deal, the reuse of the budget step's partition, the per-lineage node store, the `frontier_scope` binding, the recorded partition and `depthMode` propagation) and `per-lineage expansive budget` (the seed-share budget and the loop-default floor for a lineage dealt no seed node) |
+| `tests/unit/fanout-run.vitest.ts` | Native lineage refusal (exit 3, names the lineage, spawns nothing), bad JSON config exits 3, missing required args exits 3, 2-lineage pool creates distinct dirs + ledger + summary, same-kind replica state dirs are distinct |
+| `tests/unit/fanout-run.vitest.ts` | Expansive depth groups: `expansive depth frontier` (the round-robin deal, the reuse of the budget step's partition, the per-lineage node store, the `frontier_scope` binding, the recorded partition and `depthMode` propagation) and `per-lineage expansive budget` (the seed-share budget, the loop-default floor for a lineage dealt no seed node, and the refusal of an expansive matrix that holds a native lineage) |
 | `manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md` | DLR-066: the seed-share lineage budget, the loop-default floor and the stderr budget notes |
 
 ---

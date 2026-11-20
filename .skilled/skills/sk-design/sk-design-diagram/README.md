@@ -4,7 +4,7 @@ description: "Draw a self-contained HTML/SVG technical diagram across 27 types a
 trigger_phrases:
   - "create diagram"
   - "architecture diagram"
-version: 1.2.4.0
+version: 1.2.6.0
 ---
 
 # sk-design-diagram
@@ -84,14 +84,34 @@ Every request resolves its output format first. `html-svg` is the default. `asci
 
 A new diagram takes the generate path. An existing source takes the import path. A finished diagram takes the export path. Generate loads `references/foundations/style-guide.md` and the matching `references/types/type-<name>.md`, then draws inside the node and arrow budget. Import reads a structural digest and redraws from it. Export reads a finished `.html` and writes a diagram-only SVG or PNG. Every path ends at the taste gate in `SKILL.md` section 6. The markdown path ends at `validate-flowchart.sh`.
 
-```mermaid
-flowchart TD
-  Request["Diagram request"] --> Format["Resolve html-svg or ascii-markdown"]
-  Format -->|html-svg| Refs["Load the style guide and the type, import or export reference"]
-  Format -->|ascii-markdown| Pattern["Load pattern-selection.md and one pattern asset"]
-  Refs --> Build["Draw or redraw the diagram"]
-  Pattern --> Build
-  Build --> Gate["Run the taste gate or validate-flowchart.sh"]
+```text
+  ┌──────────────────────┐    ┌──────────────────────┐
+  │ Diagram request      │ ─▶ │ Resolve html-svg or  │
+  └──────────────────────┘    │ ascii-markdown       │
+                              └───────────┬──────────┘
+                                          │
+                          ┬───────────────┴─────────────────────────┬
+                 html-svg │                                         │ ascii-markdown
+                          ▼                                         ▼
+              ┌──────────────────────┐                  ┌──────────────────────┐
+              │ Load the style guide │                  │ Load                 │
+              │ and the type or      │                  │ pattern-selection.md │
+              │ import reference     │                  │ and one pattern asset│
+              └───────────┬──────────┘                  └───────────┬──────────┘
+                          │                                         │
+                          ┴────────────────────┬────────────────────┴
+                                               │
+                                               ▼
+                                   ┌──────────────────────┐
+                                   │ Draw or redraw the   │
+                                   │ diagram              │
+                                   └───────────┬──────────┘
+                                               │
+                                               ▼
+                                   ┌──────────────────────┐
+                                   │ Run the taste gate or│
+                                   │ validate-flowchart.sh│
+                                   └──────────────────────┘
 ```
 
 ### The Shared Design System
@@ -195,3 +215,7 @@ No. Export is manual. The packet writes the `.html` first, then `references/impo
 | [`assets/diagrams/README.md`](./assets/diagrams/README.md) | The 38-form library and what each file is for |
 | [`scripts/README.md`](./scripts/README.md) | Extractor and validator contract |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator scenarios for generation, import, export and capture review |
+
+<!-- readme-check
+allow-count 38 files | the corpus check prints 38 file runs and RESULT: PASSED
+-->

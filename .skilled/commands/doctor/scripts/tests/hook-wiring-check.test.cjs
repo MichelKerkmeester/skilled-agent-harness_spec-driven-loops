@@ -60,6 +60,18 @@ function vibeBlock(type, commandLine, match = 'match = "main"') {
   return lines.join('\n');
 }
 
+// A Pi adapter lives under .skilled/hooks/<name>/pi/ beside the shared flag file
+// it imports, so the import is right or wrong only by the directory it resolves from.
+function writePiAdapter(root, name, flagImport) {
+  const adapterDir = path.join(root, '.skilled', 'hooks', name, 'pi');
+  fs.mkdirSync(adapterDir, { recursive: true });
+  fs.mkdirSync(path.join(root, '.skilled', 'hooks', 'shared'), { recursive: true });
+  fs.writeFileSync(path.join(root, '.skilled', 'hooks', 'shared', 'hook-flags.mjs'), 'export const isHookEnabled = () => true;\n');
+  fs.writeFileSync(path.join(adapterDir, `${name}.ts`), `import { isHookEnabled } from "${flagImport}";\nexport default function register() { return isHookEnabled; }\n`);
+  fs.mkdirSync(path.join(root, '.pi', 'extensions'), { recursive: true });
+  return `../../.skilled/hooks/${name}/pi/${name}.ts`;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TESTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -394,6 +406,58 @@ test('skips a runtime whose folder is absent', (t) => {
   const json = f.run('--json');
   assert.equal(json.code, 0);
   assert.deepEqual(JSON.parse(json.out).checks.map((check) => check.status), ['skipped', 'skipped', 'skipped', 'skipped', 'skipped']);
+});
+
+test('passes a Pi entry that re-exports an adapter whose imports resolve', (t) => {
+  const f = fixture(t);
+  const target = writePiAdapter(f.root, 'mcp-route-guard', '../../shared/hook-flags.mjs');
+  fs.writeFileSync(path.join(f.root, '.pi', 'extensions', 'mcp-route-guard.ts'), `export { default } from '${target}';\n`);
+  const result = f.run();
+  assert.equal(result.code, 0, result.out);
+  assert.equal(result.out, '');
+});
+
+// A lazy entry names its adapter inside the factory, so the check has to follow
+// that import into the adapter to find the dependency an out-of-date tree lacks.
+test('follows a lazy-import Pi entry into its adapter imports', (t) => {
+  const f = fixture(t);
+  const lazyEntry = (target) => [
+    "import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';",
+    'export default async function piEntry(pi: ExtensionAPI): Promise<void> {',
+    '  let adapter: { default: (api: ExtensionAPI) => unknown };',
+    '  try {',
+    `    adapter = await import('${target}');`,
+    '  } catch {',
+    '    return;',
+    '  }',
+    '  await adapter.default(pi);',
+    '}',
+    '',
+  ].join('\n');
+  const good = writePiAdapter(f.root, 'mcp-route-guard', '../../shared/hook-flags.mjs');
+  fs.writeFileSync(path.join(f.root, '.pi', 'extensions', 'mcp-route-guard.ts'), lazyEntry(good));
+  const passing = f.run();
+  assert.equal(passing.code, 0, passing.out);
+  assert.equal(passing.out, '');
+
+  const stale = writePiAdapter(f.root, 'overlay-guard', '../../shared/missing-flags.mjs');
+  fs.writeFileSync(path.join(f.root, '.pi', 'extensions', 'overlay-guard.ts'), lazyEntry(stale));
+  const failing = f.run();
+  assert.equal(failing.code, 1);
+  assert.match(failing.out, /^pi-extension-broken overlay-guard\.ts: \.\.\/\.\.\/shared\/missing-flags\.mjs not found from \.skilled\/hooks\/overlay-guard\/pi\/overlay-guard\.ts$/m);
+  assert.doesNotMatch(failing.out, /mcp-route-guard/);
+});
+
+// The old layout symlinked each entry to its adapter, whose imports were written
+// from the entry's folder. Pi follows the link first, so they resolve nowhere.
+test('names a symlinked Pi entry whose adapter imports resolve from the wrong folder', (t) => {
+  const f = fixture(t);
+  const target = writePiAdapter(f.root, 'mcp-route-guard', '../../.skilled/hooks/shared/hook-flags.mjs');
+  fs.symlinkSync(target, path.join(f.root, '.pi', 'extensions', 'mcp-route-guard.ts'));
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^pi-extension-broken mcp-route-guard\.ts: \.\.\/\.\.\/\.skilled\/hooks\/shared\/hook-flags\.mjs not found from \.skilled\/hooks\/mcp-route-guard\/pi\/mcp-route-guard\.ts$/m);
+  assert.match(result.out, /^repair: .*git pull.*\/doctor:symlink check$/m);
 });
 
 // Launch shapes a shell runs, each with node standing where a command starts.

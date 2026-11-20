@@ -233,7 +233,7 @@
     ],
     "causal_summary": "Three gaps showed on 2026-11-13 in Claude Code sessions that hand over near the context limit",
     "created_at": "2026-11-13T18:47:10Z",
-    "last_save_at": "2026-11-15T14:28:42.724Z",
+    "last_save_at": "2026-11-19T17:47:50.735Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -242,14 +242,14 @@
       "decision-record.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:870923c355e08bf38db4d70aee3125e0f61120f04f5a835c974457effaee75cf",
+    "source_fingerprint": "sha256:f49d256387d3d51b5bb0c164b8bca45cc6d2dde81ae6f2ed1bcc5b868e6caab5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2eadb126aed750c7d5681c706c57430ec1446e5f1dfe19fe62884ce19fce379f",
-      "decision-record.md": "75080ec009de36b2e793f6a87d2667d9ef09eef440e6078fd3775c38ac15cbec",
+      "decision-record.md": "e81a1a654a6fcb7f2203e41de7b873b85818624a899b71fce98b6b3263af7e1b",
       "research/research.md": "1ec6df9dec64ce09adb908915ded5f354cfeceff247bd76904dee4314dfac87a"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes",
-    "last_active_at": "2026-11-14T18:51:05.146Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/002-packet-goal-fallback",
+    "last_active_at": "2026-11-19T17:47:50.735Z"
   }
 }

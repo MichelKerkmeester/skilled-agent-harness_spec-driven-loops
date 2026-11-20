@@ -663,7 +663,11 @@ def check_shell(path: str, lines: List[str]) -> List[Finding]:
     # A sourced library inherits strict mode from its caller; declaring `set -e` in
     # a sourced file leaks errexit into the caller and aborts it on a tolerated
     # non-zero, so a git-hook lib / shared / hooks fragment is exempt.
-    sourced_lib = any(seg in path for seg in ("/lib/", "/shared/", "/hooks/"))
+    # A file whose header gives `source` as its usage is sourced wherever it sits, such
+    # as a shell shim loaded from a startup file, so its own declaration exempts it.
+    sourced_lib = any(seg in path for seg in ("/lib/", "/shared/", "/hooks/")) or bool(
+        find_line(lines[:20], r"^\s*#\s*Usage:\s*source\s")
+    )
     if strict_line == 0 and not sourced_lib:
         findings.append(
             Finding(

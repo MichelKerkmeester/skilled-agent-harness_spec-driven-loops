@@ -10,7 +10,7 @@ const LANE_DEFINITIONS = [
   { id: 'lexical', defaultWeight: 0.28, defaultShadowWeight: 0.25, live: true },
   { id: 'graph_causal', defaultWeight: 0.13, defaultShadowWeight: 0.20, live: true },
   { id: 'derived_generated', defaultWeight: 0.12, defaultShadowWeight: 0.10, live: true },
-  { id: 'semantic_shadow', defaultWeight: 0.05, defaultShadowWeight: 0.05, live: true },
+  { id: 'semantic_shadow', defaultWeight: 0, defaultShadowWeight: 0.05, live: true },
 ] as const satisfies readonly {
   readonly id: string;
   readonly defaultWeight: number;

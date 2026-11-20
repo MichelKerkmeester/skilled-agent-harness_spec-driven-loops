@@ -52,6 +52,8 @@ Render one row per leg, in the workflow's order.
 |-----|---------|--------|--------|
 | [leg] | [check-only command] | [PASS|FAIL|SKIP|DEGRADED|ERROR] | [the doctor command that repairs it or shows why, or none] |
 
+Under the embedder row, show skill and command vector coverage and the backend state. Mark the leg PASS only when `coverageComplete` is true and the backend is reachable. Mark it DEGRADED when the backend is not reachable or `coverageComplete` is false or unread. For incomplete coverage, show stale and missing skill and command counts and say the daemon refreshes missing and stale vectors in the background on its next start or after a watcher reindex following a skill file change, with Ollama up. When the backend is not reachable, say routing continues on the other lanes and point to `/doctor:skill-advisor embedder`. Never fail because `laneEnabled` is false or the semantic lane weight is 0. Print the semantic lane weight on its own info line; with weight 0 and complete coverage, use `semantic lane weight 0: vectors ready, lane off by default`.
+
 | Leg | Repair when it fails |
 |-----|----------------------|
 | sk-code | `/doctor:sk-code setup` |
@@ -60,7 +62,7 @@ Render one row per leg, in the workflow's order.
 | runtime-mirrors | `/doctor:runtime-mirrors` |
 | advisor | Stale build: `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Other FAIL or DEGRADED results: `/doctor:skill-advisor rebuild`. |
 | embedder | `/doctor:skill-advisor embedder` |
-| delivery | Missing hook: /doctor:runtime-mirrors, or /doctor:symlink check in a linked project. Unapproved Codex hook: the repair line the check prints, which opens /hooks in a Codex session. Absent Codex advisor entry: the repair line the check prints |
+| delivery | Missing hook: /doctor:runtime-mirrors, or /doctor:symlink check in a linked project. Broken Pi extension: the repair line the check prints, which is git pull in the Skilled checkout this project uses, then /doctor:symlink check. Unapproved Codex hook: the repair line the check prints, which opens /hooks in a Codex session. Absent Codex advisor entry: the repair line the check prints |
 
 ## 4. Result Templates
 
@@ -100,9 +102,10 @@ STATUS=ERROR ERROR="[message]"
 | Situation | Suggested Action |
 |-----------|------------------|
 | A leg reports FAIL | Run the doctor command in that leg's Repair cell, then rerun `/doctor:setup` |
-| The advisor leg reports SKIP | Exit 75 has no `staleDistWarning` in stderr JSON. The advisor daemon is stopped because `--warm-only` does not start it |
+| The advisor leg reports SKIP | Exit 75 has no `staleDistWarning` in stderr JSON. It is another retryable failure: the daemon or backend may be absent or unavailable, the CLI or daemon launcher may fail to start, a connection or request may time out, the socket may close, JSON-RPC may return -32000 or -32001, SQLite may return SQLITE_BUSY, or transport may return ECONNREFUSED, ENOENT, ECONNRESET, EPIPE or ETIMEDOUT, or another error the CLI marks retryable. Read stderr for the cause; `--warm-only` never starts a daemon |
 | The advisor leg reports FAIL for a stale build | Exit 75 includes `staleDistWarning` in stderr JSON. Run `npm --prefix .skilled/skills/system-skill-advisor/runtime run build` |
 | The advisor leg reports DEGRADED | Exit 0 has `data.freshness` other than `live`. The skill graph is not live. Run `/doctor:skill-advisor rebuild` |
+| The embedder leg reports DEGRADED | The backend is unreachable or vectors are incomplete. Routing still works on the other lanes; run `/doctor:skill-advisor embedder` to inspect it. A false `laneEnabled` alone is not a failure |
 | The sk-git leg reports DEGRADED | No sk-git check failed, but one is unknown or a gate is saved off. Run `/doctor:git setup` to see which. On a runtime the battery cannot name, the AI-tool check stays unknown |
 | The trigger-index leg reports stale documents | Run `/doctor:speckit` to see which documents are stale |
 | The delivery leg reports DEGRADED | A runtime cannot receive the advisor brief. Run the repair the leg names, then rerun /doctor:setup. The install still works without it |

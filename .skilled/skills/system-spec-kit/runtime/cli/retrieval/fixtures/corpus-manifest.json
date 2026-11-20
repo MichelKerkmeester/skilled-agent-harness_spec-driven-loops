@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e77650cfe06dea993474e55ff3ebac5cccdff3757e6383d7d6f2e3a4dfb36c09",
+  "corpusHash": "49b4d2cfc49f21a8bc2a8bff7af198cfdfa0a65e64fcd058aaead63969334700",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28285,
+  "includedPathCount": 28670,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1640,6 +1640,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.7.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.8.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.9.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -1959,7 +1960,7 @@
     ".skilled/skills/cli-external-orchestration/feature-catalog/deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/mistral-vibe-dispatch-mode/mistral-vibe-dispatch-mode.md",
-    ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md",
+    ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/compiled-routing/ordered-bundle-cli-transport-compiled-routing.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/auth-failure.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/budget-rejection.md",
@@ -8153,6 +8154,9 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.9.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v1.0.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v1.1.1.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v1.2.0.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v1.3.0.0.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/anti-stuffing.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/derived-extraction.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/df-idf-corpus.md",
@@ -8171,6 +8175,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-scan.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-status.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-validate.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/background-vector-refresh.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/cache-invalidation.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/generation.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/lease.md",
@@ -8183,6 +8188,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/pi-prompt-advisor.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/weak-follow-up-route-receipt-guard.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/age-haircut.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/archive-handling.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/rollback.md",
@@ -8198,6 +8204,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/executor-delegation.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/five-lane-fusion.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/pasted-reply-stripping.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/projection.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/weights-config.md",
     ".skilled/skills/system-skill-advisor/hooks/claude/README.md",
@@ -8225,6 +8232,7 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/vibe-command-documents.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/weak-follow-up-route-receipt-guard.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/force-local-force-native.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md",
@@ -8259,6 +8267,7 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ambiguity.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/five-lane-fusion.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/pasted-reply-stripping.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/projection.md",
     ".skilled/skills/system-skill-advisor/references/config/db-path-policy.md",
     ".skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md",
@@ -8336,6 +8345,7 @@
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.5.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.6.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.7.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.8.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-an-unowned-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
@@ -9296,6 +9306,7 @@
     "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/plan.md",
     "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/spec.md",
     "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/tasks.md",
+    "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/011-decisions-rule-delivery/decision-record.md",
     "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/011-decisions-rule-delivery/implementation-summary.md",
     "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/011-decisions-rule-delivery/plan.md",
     "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/011-decisions-rule-delivery/spec.md",
@@ -9381,16 +9392,19 @@
     "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/plan.md",
     "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/spec.md",
     "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/decision-record.md",
     "specs/agents/006-agent-contract-and-registry-alignment/goal.md",
     "specs/agents/006-agent-contract-and-registry-alignment/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/spec.md",
@@ -9414,11 +9428,13 @@
     "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/spec.md",
@@ -9439,6 +9455,7 @@
     "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/spec.md",
@@ -10124,11 +10141,16 @@
     "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/plan.md",
     "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/spec.md",
     "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/tasks.md",
+    "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/decision-record.md",
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/goal.md",
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/implementation-summary.md",
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/plan.md",
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/spec.md",
     "specs/cli-external-orchestration/model-rosters/007-hy4-flash-free-opencode-roster/tasks.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/implementation-summary.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/plan.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/spec.md",
+    "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/tasks.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/implementation-summary.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/plan.md",
     "specs/cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline/spec.md",
@@ -10451,6 +10473,49 @@
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/069-opencode-v1-pin-1-19-4/plan.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/069-opencode-v1-pin-1-19-4/spec.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/069-opencode-v1-pin-1-19-4/tasks.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/acceptance-criteria.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/decision-record.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/implementation-summary.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/plan.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/review/deep-review-dashboard.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/review/deep-review-strategy.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/review/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/review/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/review/resource-map.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/review/review-report.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/spec.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/tasks.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/acceptance-criteria.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/decision-record.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/implementation-summary.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/plan.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/spec.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/tasks.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/decision-record.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/implementation-summary.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/plan.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/research.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/spec.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/tasks.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/decision-record.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review-archive/20261119T155645Z/deep-review-strategy.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review-archive/20261119T155645Z/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/deep-review-dashboard.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/deep-review-strategy.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/iterations/iteration-002.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/iterations/iteration-003.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/iterations/iteration-004.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/iterations/iteration-005.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/prompts/iteration-2.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/prompts/iteration-3.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/prompts/iteration-4.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/prompts/iteration-5.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/resource-map.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/review-report.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/research/research.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/review-archive/20261019T064206Z/deep-review-strategy.md",
@@ -10682,6 +10747,7 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/research.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/implementation-summary.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/spec.md",
@@ -10745,6 +10811,7 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/028-ci-red-checks-after-vibe-and-loop-counters/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -10763,6 +10830,7 @@
     "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research/goal.md",
@@ -11609,6 +11677,7 @@
     "specs/hooks-plugins-extensions/dist-freshness/002-dist-guard-skip-unprovisioned/spec.md",
     "specs/hooks-plugins-extensions/dist-freshness/002-dist-guard-skip-unprovisioned/tasks.md",
     "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/decision-record.md",
     "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/implementation-summary.md",
     "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/plan.md",
     "specs/hooks-plugins-extensions/env-secret-guard/001-env-secret-guard/spec.md",
@@ -11769,6 +11838,7 @@
     "specs/hooks-plugins-extensions/goal/003-goal-isolation/spec.md",
     "specs/hooks-plugins-extensions/goal/003-goal-isolation/tasks.md",
     "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/decision-record.md",
     "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/feature-overview.md",
     "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/goal.md",
     "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/implementation-summary.md",
@@ -11810,10 +11880,12 @@
     "specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/005-smart-rule-injection/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/decision-record.md",
     "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/implementation-summary.md",
     "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/006-file-relative-adapter-imports/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/decision-record.md",
     "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/implementation-summary.md",
     "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/007-hub-index-gap-links/spec.md",
@@ -11863,6 +11935,7 @@
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/plan.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/spec.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/008-claude-hook-tree-guard/tasks.md",
+    "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/decision-record.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/goal.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/deep-review-dashboard.md",
     "specs/hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite/review-archive/2026-11-16T11-20-15Z/deep-review-strategy.md",
@@ -12197,11 +12270,13 @@
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/decision-record.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/goal.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/goal.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/001-hop-recall-baseline/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/goal.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/002-history-core-relocation/plan.md",
@@ -12232,6 +12307,7 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/007-review-remediation/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/008-wider-hop-recall-measurement/tasks.md",
@@ -12240,6 +12316,7 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/009-deep-review-p2-remediation/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/010-history-secret-redaction/spec.md",
@@ -12260,6 +12337,7 @@
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/plan.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/spec.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/013-devin-compaction-fallback-budget/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/fanout-attribution.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review-archive/20261115T173303Z/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/001-history-lookup-handover-integration/review/deep-review-dashboard.md",
@@ -12641,12 +12719,14 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/009-nudge-note-lines/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/009-nudge-note-lines/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/011-permission-mode-carry/plan.md",
@@ -12659,12 +12739,14 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/012-session-name-carry/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/012-session-name-carry/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/013-opencode-child-and-title/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/plan.md",
@@ -12690,6 +12772,7 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/017-handover-docs-and-harness/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/017-handover-docs-and-harness/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/017-handover-docs-and-harness/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/review/deep-review-dashboard.md",
@@ -12704,6 +12787,7 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/review/review-report.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/038-goal-and-workflow-resume/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/plan.md",
@@ -12997,6 +13081,13 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/decision-record.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -14503,6 +14594,7 @@
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/spec.md",
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/tasks.md",
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/decision-record.md",
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/goal.md",
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/implementation-summary.md",
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/plan.md",
@@ -14553,9 +14645,11 @@
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/plan.md",
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/spec.md",
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/decision-record.md",
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/goal.md",
     "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/spec.md",
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/decision-record.md",
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/goal.md",
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/implementation-summary.md",
     "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/plan.md",
@@ -14806,6 +14900,7 @@
     "specs/sk-code/verification-guards/004-drift-guard-cleanup/plan.md",
     "specs/sk-code/verification-guards/004-drift-guard-cleanup/spec.md",
     "specs/sk-code/verification-guards/004-drift-guard-cleanup/tasks.md",
+    "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/decision-record.md",
     "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/implementation-summary.md",
     "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/plan.md",
     "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/spec.md",
@@ -16228,6 +16323,7 @@
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/tasks.md",
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/decision-record.md",
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/implementation-summary.md",
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/001-voice-rule-tooling-and-pilot/spec.md",
@@ -16287,6 +16383,7 @@
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/012-small-skill-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/decision-record.md",
     "specs/sk-doc/document-standards/003-changelog-system/007-changelog-voice-rewrite/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/decision-record.md",
     "specs/sk-doc/document-standards/003-changelog-system/008-spec-line-position-gates/implementation-summary.md",
@@ -16297,6 +16394,74 @@
     "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/plan.md",
     "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/009-release-notes-layout-default/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/decision-record.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/goal.md",
+    "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -16323,6 +16488,7 @@
     "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/002-mode-packet-readmes/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/decision-record.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/implementation-summary.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/003-hook-folder-readmes/plan.md",
@@ -16352,6 +16518,28 @@
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/plan.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/spec.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/goal.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/goal.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/acceptance-criteria.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/goal.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/tasks.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/goal.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/implementation-summary.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/plan.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/spec.md",
+    "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/tasks.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/decision-record.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/goal.md",
     "specs/sk-doc/document-standards/006-readme-template-conformance/spec.md",
@@ -16627,10 +16815,12 @@
     "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/tasks.md",
+    "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/decision-record.md",
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/implementation-summary.md",
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/tasks.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/decision-record.md",
     "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/implementation-summary.md",
     "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/spec.md",
@@ -16770,6 +16960,7 @@
     "specs/sk-git/commit-standards/006-standards-template-round-trip/plan.md",
     "specs/sk-git/commit-standards/006-standards-template-round-trip/spec.md",
     "specs/sk-git/commit-standards/006-standards-template-round-trip/tasks.md",
+    "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/decision-record.md",
     "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/implementation-summary.md",
     "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/plan.md",
     "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/spec.md",
@@ -18445,9 +18636,12 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/003-review-min-iterations-floor/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/005-prompt-pack-contract-alignment/tasks.md",
@@ -18457,6 +18651,8 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/006-state-log-leaf-fields/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/007-source-diversity-quality-class/tasks.md",
@@ -18471,11 +18667,14 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/009-fanout-review-coverage-merge/tasks.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md",
@@ -18486,11 +18685,17 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/decision-record.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/013-no-redispatch-landed-iteration/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/goal.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/plan.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/spec.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/tasks.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/research.md",
@@ -18667,6 +18872,11 @@
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/tasks.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/decision-record.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/spec.md",
+    "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/goal.md",
+    "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/plan.md",
+    "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/spec.md",
+    "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/tasks.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/acceptance-criteria.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/implementation-summary.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/plan.md",
@@ -19194,6 +19404,141 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/research/research.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/research/research.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/008-handler-scored-prompt-consumers/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/008-handler-scored-prompt-consumers/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/008-handler-scored-prompt-consumers/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/008-handler-scored-prompt-consumers/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/008-handler-scored-prompt-consumers/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/research/research.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/011-route-receipts-build/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/011-route-receipts-build/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/011-route-receipts-build/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/011-route-receipts-build/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/011-route-receipts-build/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/013-drift-guard-probe-script-errors/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/013-drift-guard-probe-script-errors/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/013-drift-guard-probe-script-errors/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/013-drift-guard-probe-script-errors/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/013-drift-guard-probe-script-errors/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/evidence/fix-plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/evidence/report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/evidence/fix-plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/evidence/report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/evidence/report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/evidence/doc-alignment/fix-plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/evidence/doc-alignment/report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/evidence/skilled-alignment/fix-plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/evidence/skilled-alignment/report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/delegation-strategy.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-dashboard.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-strategy.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-001.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-002.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-003.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-004.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/iterations/iteration-005.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-1.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-2.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-3.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-4.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/prompts/iteration-5.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/resource-map.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/review-report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/goal.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement/001-baseline-and-instrumentation/acceptance-criteria.md",
@@ -19371,6 +19716,7 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/spec.md",
@@ -19525,6 +19871,13 @@
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/010-baseline-capture-after-graph-scan/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/tasks.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/implementation-summary.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/spec.md",
@@ -19650,6 +20003,7 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/review/review-report.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/goal.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter-024.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/010-fix-barter-repin-handover-items-for-overlay-engine/handover-from-barter.md",
@@ -19681,18 +20035,26 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/013-fix-review-findings-in-json-entry-set-restore/timeline.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/goal.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/handover-to-barter.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/implementation-summary.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/014-harden-overlay-engine-from-fable-review/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/goal.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/handover-from-barter-032.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/implementation-summary.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/015-barter-overlay-upstream-intake/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
@@ -19709,6 +20071,17 @@
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/plan.md",
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/spec.md",
     "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/tasks.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/acceptance-criteria.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/decision-record.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/implementation-summary.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/plan.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/spec.md",
+    "specs/system-skilled-doctor/005-barter-upstream-fixes/tasks.md",
+    "specs/system-skilled-doctor/006-parent-skill-check-target-root/goal.md",
+    "specs/system-skilled-doctor/006-parent-skill-check-target-root/implementation-summary.md",
+    "specs/system-skilled-doctor/006-parent-skill-check-target-root/plan.md",
+    "specs/system-skilled-doctor/006-parent-skill-check-target-root/spec.md",
+    "specs/system-skilled-doctor/006-parent-skill-check-target-root/tasks.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -25971,6 +26344,7 @@
     "specs/system-speckit/repo-operations/003-orphan-sweep-temp-processes/spec.md",
     "specs/system-speckit/repo-operations/003-orphan-sweep-temp-processes/tasks.md",
     "specs/system-speckit/repo-operations/004-node-security-patch-update/acceptance-criteria.md",
+    "specs/system-speckit/repo-operations/004-node-security-patch-update/decision-record.md",
     "specs/system-speckit/repo-operations/004-node-security-patch-update/implementation-summary.md",
     "specs/system-speckit/repo-operations/004-node-security-patch-update/plan.md",
     "specs/system-speckit/repo-operations/004-node-security-patch-update/spec.md",
@@ -27139,6 +27513,7 @@
     "specs/system-speckit/runtime-and-release/002-align-runtime-code-with-sk-code-skilled/spec.md",
     "specs/system-speckit/runtime-and-release/002-align-runtime-code-with-sk-code-skilled/tasks.md",
     "specs/system-speckit/runtime-and-release/003-symlinked-runtime-root/acceptance-criteria.md",
+    "specs/system-speckit/runtime-and-release/003-symlinked-runtime-root/decision-record.md",
     "specs/system-speckit/runtime-and-release/003-symlinked-runtime-root/implementation-summary.md",
     "specs/system-speckit/runtime-and-release/003-symlinked-runtime-root/plan.md",
     "specs/system-speckit/runtime-and-release/003-symlinked-runtime-root/spec.md",
@@ -27295,6 +27670,7 @@
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/022-linked-project-host-index/spec.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/022-linked-project-host-index/tasks.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder/acceptance-criteria.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder/decision-record.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder/implementation-summary.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder/plan.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder/spec.md",
@@ -27303,6 +27679,7 @@
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/plan.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/spec.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment/tasks.md",
+    "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/decision-record.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/implementation-summary.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/plan.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/025-root-readme-rewrite/research/research.md",
@@ -27824,15 +28201,18 @@
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/decision-record.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/decision-record.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/decision-record.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/spec.md",
@@ -27847,6 +28227,7 @@
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/011-prerequisites-bound-folder-override/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/decision-record.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/plan.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/spec.md",
@@ -28201,14 +28582,17 @@
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/007-children-list-duplicates/spec.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/007-children-list-duplicates/tasks.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/acceptance-criteria.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/decision-record.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/implementation-summary.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/plan.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/spec.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/decision-record.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/implementation-summary.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/plan.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/spec.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/decision-record.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/implementation-summary.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/plan.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/spec.md",
@@ -28311,13 +28695,14 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/review-report.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md",
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/acceptance-criteria.md",
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/decision-record.md",
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/implementation-summary.md",
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/plan.md",
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/spec.md",
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "69345c91c6394ac1c55afd2ef9c1e65c194b0edfcc9ed4b85df90b110ebaad17",
+  "manifestHash": "dff204504d443ddc9e0b00cbaad8f9d7a65e71157406af0018fb86037b83e046",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30228,6 +30613,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/model-rosters/008-glm-5-3-opencode-go-roster/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/model-rosters/z_archive",
       "reason": "excluded directory"
     },
@@ -30645,6 +31034,46 @@
     },
     {
       "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/069-opencode-v1-pin-1-19-4/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch",
       "reason": "excluded directory"
     },
     {
@@ -32733,6 +33162,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/054-handover-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/scratch",
       "reason": "excluded directory"
     },
     {
@@ -35212,6 +35645,62 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/001-layout-tooling-and-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/002-skilled-release-line/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/003-sk-doc-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/004-cli-external-orchestration-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/005-sk-code-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/006-mcp-tooling-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/007-system-spec-kit-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/008-system-deep-loop-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/009-system-skill-advisor-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/010-sk-design-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/011-sk-git-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/012-small-skill-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/013-github-release-notes-sync/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/010-changelog-layout-retrofit/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/004-security-policy-alignment/scratch",
       "reason": "excluded directory"
     },
@@ -35245,6 +35734,22 @@
     },
     {
       "path": "specs/sk-doc/document-standards/006-readme-template-conformance/007-hook-code-folder-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/008-readme-html-conventions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/009-repo-rules-readme/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/010-readme-text-diagrams/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards/scratch",
       "reason": "excluded directory"
     },
     {
@@ -36252,6 +36757,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -36413,6 +36922,10 @@
     },
     {
       "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/scratch",
       "reason": "excluded directory"
     },
     {
@@ -36673,6 +37186,166 @@
     },
     {
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/005-plan-validation-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/008-handler-scored-prompt-consumers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/010-route-receipts-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/011-route-receipts-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/013-drift-guard-probe-script-errors/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/014-review-p2-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/015-skilled-alignment-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/016-doc-alignment-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/017-ollama-advisor-analysis/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
@@ -36944,6 +37617,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
       "reason": "excluded directory"
     },
@@ -37096,6 +37773,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/016-vendored-record-base-and-overlay-loss-reports/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
       "reason": "excluded directory"
     },
@@ -37105,6 +37786,14 @@
     },
     {
       "path": "specs/system-skilled-doctor/004-symlink-vibe-and-dsh-runtimes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/005-barter-upstream-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/006-parent-skill-check-target-root/scratch",
       "reason": "excluded directory"
     },
     {

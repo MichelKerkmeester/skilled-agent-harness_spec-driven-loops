@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone Skilled skills and two-a
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.11.0
+version: 1.2.13.0
 ---
 
 # create-skill
@@ -72,13 +72,13 @@ Expected output carries these two lines, then three numbered next steps:
 **Step 2: Fill the content, then run the gate.**
 
 ```bash
-python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/my-skill --strict
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/<skill-name> --strict
 ```
 
 Expected output for a standalone root:
 
 ```text
-Skill: .skilled/skills/my-skill
+Skill: .skilled/skills/<skill-name>
 Detected kind: standalone
 - package_skill.py --check --strict: PASS (exit 0)
 ```
@@ -88,7 +88,7 @@ A hub prints the same report with `Detected kind: parent`, plus one line each fo
 **Step 3: Package after the gate passes.**
 
 ```bash
-python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/my-skill <output-directory>
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/<skill-name> <output-directory>
 ```
 
 Expected output closes with:
@@ -109,13 +109,35 @@ On the standalone path, each piece of reusable content gets one home. Determinis
 
 On the parent path, the scaffolder writes the hub root and one `<hub>-primary` workflow packet. The registry holds a single `modes[]` array. Every mode names its `workflowMode` and `packetKind`, and the registry schema lists the rest of the required fields. `routerPolicy.tieBreak` lists each mode once, with workflow modes before surface packets. The root `ROUTER.md` starts at `stage1-only`, with empty stage-two maps. Promotion to `active` is an authored act that fills `INTENT_SIGNALS` and `RESOURCE_MAP` with paths that resolve on disk. No nested packet carries a `graph-metadata.json`.
 
-```mermaid
-flowchart TD
-  Request["Skill or hub request"] --> Mode["Choose create-skill or create-skill-parent"]
-  Mode --> Scaffold["init_skill.py writes the folder and its metadata"]
-  Scaffold --> Author["Replace the TODOs and author SKILL.md and ROUTER.md"]
-  Author --> Gate["validate_skill_package.py --strict"]
-  Gate --> Package["package_skill.py writes the zip"]
+```text
+┌──────────────────────────────────────────────────────┐
+│ Skill or hub request                                 │
+└──────────────────────────┬───────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────┐
+│ Choose create-skill or create-skill-parent           │
+└──────────────────────────┬───────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────┐
+│ init_skill.py writes the folder and its metadata     │
+└──────────────────────────┬───────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────┐
+│ Replace the TODOs and author SKILL.md and ROUTER.md  │
+└──────────────────────────┬───────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────┐
+│ validate_skill_package.py --strict                   │
+└──────────────────────────┬───────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────┐
+│ package_skill.py writes the zip                      │
+└──────────────────────────────────────────────────────┘
 ```
 
 ### What Each Mode Writes

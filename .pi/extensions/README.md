@@ -15,7 +15,7 @@ trigger_phrases:
 
 `.pi/extensions/` is where Pi finds the hook adapters this repository registers. Pi scans the top-level `*.ts` files in the folder and calls each file's default export with an `ExtensionAPI` handle. Nothing here needs a line in the `extensions` list of [`.pi/settings.json`](../settings.json).
 
-All 22 entries are real one-line files that re-export an adapter. The adapter holds the handlers. An entry edited in place changes only which adapter loads, so a behavior change belongs in the adapter or in the core it calls. The folder holds one symlink, `lib/claude-hook-adapter.ts`, and Pi never loads it as an entry. The two session bridges import the same adapter at its real path under `.skilled/`, so the link is there for browsing only.
+All 22 entries are plain files that `sync-hook-registrations.cjs` renders from one template. Each imports its adapter inside an async factory and hands Pi to it. The adapter holds the handlers, so a behavior change belongs in the adapter or in the core it calls, and a change to the entry belongs in the template. When the import fails, because the Skilled checkout is missing or out of date, the entry turns its hook off. Pi then shows one notice for the session that names every such entry and the first error, in place of one load error per entry. An adapter that throws while it registers is not caught, so Pi still reports it as a load error. The folder holds one symlink, `lib/claude-hook-adapter.ts`, and Pi never loads it as an entry. The two session bridges import the same adapter at its real path under `.skilled/`, so the link is there for browsing only.
 
 The adapters live with the concern that owns them. The guard adapters sit under `.skilled/hooks/<concern>/pi/`, and the rest sit in a `pi/` folder under the skill that owns them. The shared cores and the link folders are indexed in the [hook library README](../../.skilled/hooks/README.md).
 
@@ -33,7 +33,7 @@ Two local packages sit beside the entries. `pi-cache-optimizer/` and `pi-fast-mo
 Pi event (input, tool_call, tool_result, session_start, ...)
         |
         v
-.pi/extensions/<entry>.ts          one-line re-export
+.pi/extensions/<entry>.ts          rendered entry, imports the adapter
         |
         v
 .skilled/.../pi/<adapter>.ts       registers pi.on(event, handler)
@@ -191,7 +191,7 @@ The second command runs five of the Pi suites that sit under `.skilled/hooks/`, 
 
 Expected result: `Test Files 5 passed (5)` and `Tests 295 passed (295)`.
 
-The third command proves that every entry still resolves. It reads the hook registry, compares the Pi bindings with this folder and checks that each entry is a single re-export of an existing adapter.
+The third command proves that every entry still resolves. It reads the hook registry, compares the Pi bindings with this folder and checks that each entry matches the rendered template and names an existing adapter. Without `--check` it rewrites a drifted entry, an older one-line re-export included.
 
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
