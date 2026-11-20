@@ -27,7 +27,11 @@ const {
   resolve,
   sep,
 } = require('node:path');
-const { latestIterationRecords, findingKeys } = require('../lib/deep-loop/iteration-findings.cjs');
+const {
+  latestIterationRecords,
+  findingKeys,
+  normalizeFindingKey,
+} = require('../lib/deep-loop/iteration-findings.cjs');
 const { activeReviewSeverityCounts } = require('./review-verdict.cjs');
 
 // ───────────────────────────────────────────────────────────────────
@@ -198,14 +202,21 @@ function countIterationFindings(record, fields) {
   return 0;
 }
 
-function collectIterationFindingGroups(record, fields) {
+// A finding whose refinement target resolves is identified by that target first,
+// so it counts once with the finding it sharpens and is present wherever the
+// target is.
+function collectIterationFindingGroups(record, fields, refinedTarget) {
   if (!record || record.type !== 'iteration') return [];
   const structured = fields
     .map((field) => record[field])
     .find((value) => Array.isArray(value) && value.length > 0);
   if (!Array.isArray(structured)) return [];
   return structured
-    .map(findingKeys)
+    .map((finding) => {
+      const keys = findingKeys(finding);
+      const target = refinedTarget(finding);
+      return target ? [target, ...keys.filter((key) => key !== target)] : keys;
+    })
     .filter((keys) => keys.length > 0);
 }
 
@@ -343,10 +354,19 @@ function closeOut(args) {
     (sum, record) => sum + countIterationFindings(record, fields),
     0,
   );
-  const identifiableFindingGroups = stateRecords.flatMap(
-    (record) => collectIterationFindingGroups(record, fields),
-  );
   const registryFindingKeys = new Set(evidence.keys);
+  // The review reducer folds a refinement into the finding it names when that
+  // finding is already registered, leaving one registry entry for both. A target
+  // the registry lacks folds nothing, so the refinement still counts on its own
+  // and a lost finding still trips the invariants below.
+  const refinedTarget = (finding) => {
+    if (mode !== 'review' || !finding || typeof finding !== 'object') return null;
+    const target = normalizeFindingKey(finding.refines || finding.refinementOf);
+    return target && registryFindingKeys.has(target) ? target : null;
+  };
+  const identifiableFindingGroups = stateRecords.flatMap(
+    (record) => collectIterationFindingGroups(record, fields, refinedTarget),
+  );
   const missingStructuredFindingGroups = identifiableFindingGroups
     .filter((keys) => !keys.some((key) => registryFindingKeys.has(key)));
   const missingStructuredFindingCount = countDistinctFindings(
