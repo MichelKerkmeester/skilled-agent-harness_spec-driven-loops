@@ -692,6 +692,9 @@ export function upcastLegacyDeepResearchRecord(
           compatibility.sourceVersion,
         ),
       });
+      // A legacy row carries no trusted-evidence assessment, so its yield is zero
+      // by definition rather than lost: the trusted signal comes from the
+      // convergence evaluator, never from the row the model wrote.
       data = {
         status: stringValue(input.status, 'error'),
         rawNewInfoRatio: ratio(input.newInfoRatio),
@@ -711,7 +714,15 @@ export function upcastLegacyDeepResearchRecord(
           : {}),
         ...optionalLeafFields(input),
       };
-      warnings.push('Trusted evidence yield was absent and remains explicitly zero.');
+      // The model writes this row, so its stamp is a claim, not the row time:
+      // the gateway clock sets the occurrence time and the stamp travels beside it.
+      if (Object.hasOwn(input, 'timestamp')) {
+        if (isUtcTimestamp(input.timestamp)) {
+          data.claimedTimestamp = input.timestamp;
+        } else {
+          warnings.push('The row timestamp is not a UTC instant, so the event records the append time instead.');
+        }
+      }
       break;
     case 'deep_research.convergence_blocked':
       if (iteration === null) return Object.freeze({
@@ -908,7 +919,10 @@ export function upcastLegacyDeepResearchRecord(
   // Every projected row writes its timestamp from the event's occurrence time,
   // so a row that carries its own UTC instant keeps it rather than taking the
   // append time. A timestamp the envelope cannot carry is reported, not kept.
-  if (occurredAt === undefined && Object.hasOwn(input, 'timestamp')) {
+  // The completed iteration is the exception: its stamp was handled above.
+  if (occurredAt === undefined
+    && compatibility.targetStem !== 'deep_research.iteration_completed'
+    && Object.hasOwn(input, 'timestamp')) {
     if (isUtcTimestamp(input.timestamp)) {
       occurredAt = input.timestamp;
     } else {

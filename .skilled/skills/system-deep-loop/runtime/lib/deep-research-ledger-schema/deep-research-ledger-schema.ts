@@ -682,6 +682,8 @@ const OPTIONAL_DATA_FIELD_RULES: Readonly<
     targetAgent: 'prose',
     agentDefinitionLoaded: 'boolean',
     resolvedRoute: 'prose',
+    // The model-written stamp, kept beside the gateway's occurrence time.
+    claimedTimestamp: 'timestamp',
   }),
   // The idea rows are hand-written, so beyond the idea text they carry only the
   // fields their writer gave them; the projection writes back exactly those.

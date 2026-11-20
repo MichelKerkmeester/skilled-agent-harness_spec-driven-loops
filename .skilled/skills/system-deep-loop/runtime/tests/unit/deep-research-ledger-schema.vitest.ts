@@ -1787,7 +1787,7 @@ describe('deep-research typed ledger schema', () => {
       eventId: 'event-legacy-iteration',
       streamId: 'deep-research-run-1',
       streamSequence: 1,
-      occurredAt: result.occurredAt as string,
+      occurredAt: TIMESTAMP,
       recordedAt: TIMESTAMP,
       producer: { name: 'deep-research-shadow-schema', version: '1' },
       authorityEpoch: 1,
@@ -1810,8 +1810,9 @@ describe('deep-research typed ledger schema', () => {
       focus: 'verify production behavior',
       mode: 'research',
       answeredQuestions: ['Does retry preserve the request id?'],
-      timestamp: record.timestamp,
+      timestamp: TIMESTAMP,
     }]);
+    expect(prepared.envelope.payload.data).toMatchObject({ claimedTimestamp: record.timestamp });
   });
 
   it.each(reducerReadRows)('upcasts a legacy $record.event row to $stem and projects the same row back', ({ stem, record }) => {
@@ -1885,7 +1886,7 @@ describe('deep-research typed ledger schema', () => {
       eventId: 'event-legacy-iteration',
       streamId: 'deep-research-run-1',
       streamSequence: 1,
-      occurredAt: result.occurredAt as string,
+      occurredAt: TIMESTAMP,
       recordedAt: TIMESTAMP,
       producer: { name: 'deep-research-shadow-schema', version: '1' },
       authorityEpoch: 1,
@@ -1971,10 +1972,6 @@ describe('deep-research typed ledger schema', () => {
     ['config', {
       type: 'config', sessionId: 'run-time-1', lineageId: 'lineage-time-1', generation: 1, maxIterations: 3,
     }],
-    ['iteration', {
-      type: 'iteration', sessionId: 'run-time-1', parentSessionId: 'lineage-time-1', run: 2, status: 'complete',
-      newInfoRatio: 0.4, ruledOut: [],
-    }],
     ['resumed', {
       type: 'event', event: 'resumed', sessionId: 'run-time-1', parentSessionId: 'lineage-time-1', generation: 1,
     }],
@@ -2005,6 +2002,58 @@ describe('deep-research typed ledger schema', () => {
     expect(offset.warnings).toContain(
       'The row timestamp is not a UTC instant, so the event records the append time instead.',
     );
+  });
+
+  // The model writes the completed iteration, so its stamp is only a claim: the
+  // gateway clock sets the event time and the stamp travels in the event data.
+  it('keeps a completed iteration\'s own timestamp as a claim, not the event time', () => {
+    const row = {
+      type: 'iteration', sessionId: 'run-time-1', parentSessionId: 'lineage-time-1', run: 2, status: 'complete',
+      newInfoRatio: 0.4, ruledOut: [],
+    };
+    const context = {
+      scope: { runId: 'run-time-1', lineageId: 'lineage-time-1', iteration: 2 },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-row-time'),
+    };
+    const claimed = upcastLegacyDeepResearchRecord({ ...row, timestamp: '2099-01-01T00:00:00Z' }, context);
+    if (claimed.status !== 'migrated') throw new Error(claimed.decision.reasonCode);
+    expect(claimed.occurredAt).toBeUndefined();
+    expect(claimed.data).toMatchObject({ claimedTimestamp: '2099-01-01T00:00:00Z' });
+    expect(claimed.warnings).toEqual([]);
+
+    // A row with no stamp makes no claim, so older ledgers project the same bytes.
+    const absent = upcastLegacyDeepResearchRecord({ ...row }, context);
+    if (absent.status !== 'migrated') throw new Error(absent.decision.reasonCode);
+    expect(absent.occurredAt).toBeUndefined();
+    expect(Object.hasOwn(absent.data, 'claimedTimestamp')).toBe(false);
+
+    // A stamp the schema cannot carry is dropped with a warning, and the row still upcasts.
+    for (const timestamp of ['2026-05-24T05:04:05+02:00', 'yesterday', 42]) {
+      const dropped = upcastLegacyDeepResearchRecord({ ...row, timestamp }, context);
+      if (dropped.status !== 'migrated') throw new Error(dropped.decision.reasonCode);
+      expect(dropped.occurredAt).toBeUndefined();
+      expect(Object.hasOwn(dropped.data, 'claimedTimestamp')).toBe(false);
+      expect(dropped.warnings).toContain(
+        'The row timestamp is not a UTC instant, so the event records the append time instead.',
+      );
+    }
+  });
+
+  // A legacy row has no trusted-evidence assessment, so a zero yield is expected
+  // and an ordinary iteration upcasts without a warning.
+  it('upcasts a completed iteration without a trusted-evidence warning', () => {
+    const result = upcastLegacyDeepResearchRecord({
+      type: 'iteration', sessionId: 'run-yield-1', parentSessionId: 'lineage-yield-1', run: 1, status: 'complete',
+      newInfoRatio: 0.5, ruledOut: [], trustedEvidenceYield: 0.9, timestamp: '2026-05-24T03:04:05Z',
+    }, {
+      scope: { runId: 'run-yield-1', lineageId: 'lineage-yield-1', iteration: 1 },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-yield'),
+    });
+    if (result.status !== 'migrated') throw new Error(result.decision.reasonCode);
+    expect(result.data).toMatchObject({ trustedEvidenceYield: 0 });
+    expect(result.warnings).toEqual([]);
   });
 
   // A silently defaulted count would open the run with a budget or generation the

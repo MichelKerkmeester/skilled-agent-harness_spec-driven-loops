@@ -889,9 +889,9 @@ describe('deep-research reduce-state recovery gate', () => {
 
   // The pause, recovery and convergence-floor rows the workflows record, and an
   // operator's pivot override, were pinned to the legacy path, so a ledger-backed
-  // run lost them at the next projection replace. Every projected row also took
-  // the append time in place of its own timestamp.
-  it('keeps the workflow lifecycle rows and each row\'s own timestamp in a ledger-backed run', () => {
+  // run lost them at the next projection replace. Every workflow-written row also
+  // took the append time in place of its own timestamp.
+  it('keeps the workflow lifecycle rows and each workflow row\'s own timestamp in a ledger-backed run', () => {
     const here = dirname(fileURLToPath(import.meta.url));
     const repoRoot = resolve(here, '..', '..', '..', '..', '..', '..');
     const gatewayScript = resolve(here, '..', '..', 'scripts', 'append-mode-event.cjs');
@@ -946,8 +946,14 @@ describe('deep-research reduce-state recovery gate', () => {
       expect(records.filter((record) => record.event === row.event)).toEqual([row]);
     }
     expect(records.find((record) => record.type === 'config')?.timestamp).toBe('2026-10-19T12:00:00Z');
-    expect(records.filter((record) => record.type === 'iteration').map((record) => record.timestamp))
-      .toEqual(['2026-10-19T12:01:00Z', '2026-10-19T12:02:00Z']);
+    // The model writes the iteration rows, so the gateway clock times them and
+    // their own stamp is only a claim the state log does not take.
+    const iterationTimes = records.filter((record) => record.type === 'iteration')
+      .map((record) => record.timestamp as string);
+    expect(iterationTimes).toHaveLength(2);
+    expect(iterationTimes).not.toContain('2026-10-19T12:01:00Z');
+    expect(iterationTimes).not.toContain('2026-10-19T12:02:00Z');
+    expect(Date.parse(iterationTimes[0])).toBeLessThanOrEqual(Date.parse(iterationTimes[1]));
     expect(readdirSync(join(researchDir, 'deep-research-ledger', 'frames'))
       .filter((name) => name.endsWith('.frame'))).toHaveLength(7);
   });
