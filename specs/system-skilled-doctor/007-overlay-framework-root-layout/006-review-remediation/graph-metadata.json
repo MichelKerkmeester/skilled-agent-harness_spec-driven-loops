@@ -48,7 +48,8 @@
       ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
       ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
-      ".skilled/skills/system-skilled-doctor/references/overlays.md"
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml"
     ],
     "entities": [
       {
@@ -109,6 +110,12 @@
         "name": "overlays.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
         "source": "derived"
       },
       {
@@ -188,18 +195,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`apply --relayout` guards only the manifest plan",
     "created_at": "2026-11-20T14:33:58Z",
-    "last_save_at": "2026-11-20T15:28:04.385Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-20T15:34:51.696Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -208,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79393866106023636bd32592e48693566e11da2beb98d3a34a7133d79b5096eb",
+    "source_fingerprint": "sha256:c0a73b8257167add206e2f01fe6342749fa078df2332d3e526c0faf662db7ef7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9857620608ebb8bcb0a6900db986fa10eb30abfa5e5d46b2a2ba4f4e19de71a",
       "plan.md": "8322b5876b320e770cc71459b21db85cfd14bb46e037d0ea15eab7dfd4429b9d",
       "tasks.md": "e4fab3cb9f851b59cab5d48b0bd2f7cebd6293a27e5f38d90e5a1e84a0fd7422",
-      "implementation-summary.md": "5954362e73940598667c2c4c67b853fb50981c5b1c9e566a06855ae759a51bf6"
+      "implementation-summary.md": "121c00f7523d03c8a1c873bddc610f7359d63a95719d84753138d7ca34b53d82"
     },
     "last_active_at": null
   }

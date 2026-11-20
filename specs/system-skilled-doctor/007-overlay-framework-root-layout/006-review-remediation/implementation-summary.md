@@ -9,17 +9,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation"
-    last_updated_at: "2026-11-20T16:45:00Z"
-    last_updated_by: "orchestrator"
-    recent_action: "Merged the engine fixes into Skilled main and reran every gate there"
-    next_safe_action: "None in Skilled; the ai-speckit findings belong to the parallel ai-speckit session"
+    last_updated_at: "2026-11-20T15:34:36Z"
+    last_updated_by: "generate-context"
+    recent_action: "Merged the review fixes into Skilled main and reran every gate"
+    next_safe_action: "Verify the ai-speckit session closes its six findings"
+    packet_purpose: "Purpose: A failed relayout leaves the overlay folder as it found it, a sibling outside the repository is refused on every command, every remedy line names a step that works, and the packet record states what was actually measured."
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       - ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs"
       - ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs"
+      - ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:08817c31386f7357a53d5ea6efd54cd1cb1d150dd8837552db6009930e0a2cf9"
       session_id: "impl-006-review-remediation"
       parent_session_id: null
     completion_pct: 100
@@ -72,6 +74,7 @@ Each Skilled finding of `../review/review-report.md` was confirmed against the c
 | `.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs` | Modified | Six repository-boundary tests, the removed-path remedy test, three fixtures moved to a workspace repository |
 | `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt` | Modified | Both LAYOUT remedies and the overflow forms |
 | `.skilled/skills/system-skilled-doctor/references/overlays.md` | Modified | Both remedies, the relayout failure contract, the outside-repository refusal |
+| `.skilled/commands/doctor/assets/doctor-overlay-apply.yaml` | Modified | The apply workflow reads a failed relayout's `error:` line, reports undone moves as unchanged and names the backup when the restore failed |
 | `../002-engine-framework-root-source-layout/spec.md` | Modified | Re-derived pointers and call-site count |
 | `../005-barter-move-overlays-out-of-tree/acceptance-criteria.md` | Modified | AC-008 and AC-009 reworded to the measured bar |
 | `../004-barter-repin-and-relayout/implementation-summary.md` | Modified | The plugin regression it did not record |
@@ -82,7 +85,7 @@ Each Skilled finding of `../review/review-report.md` was confirmed against the c
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The baseline was recorded on the worktree branch after it was fast-forwarded to main. Three engine workers then ran one after another on `overlay-engine.cjs`: the rollback, the refusal with `overlayOutside`, and the remedies with the readability items. The two docs were written alongside by DeepSeek workers. `@review` approved the diff with four P2 notes. Three of them were fixed before the commit, and the fourth is recorded under Key Decisions. The branch got commits `3aab896957e` (engine and tests) and `4ee628578ed` (docs), rebased onto main `24749648b24`, and was merged into Skilled main as `f2a608297c9` with `--no-ff`. Every gate was then rerun on main.
+The baseline was recorded on the worktree branch after it was fast-forwarded to main. Three engine workers then ran one after another on `overlay-engine.cjs`: the rollback, the refusal with `overlayOutside`, and the remedies with the readability items. The two docs were written alongside by DeepSeek workers. `@review` approved the diff with four P2 notes. Three of them were fixed before the commit, and the fourth is recorded under Key Decisions. The branch got commits `3aab896957e` (engine and tests) and `4ee628578ed` (docs), rebased onto main `24749648b24`, and was merged into Skilled main as `f2a608297c9` with `--no-ff`. A check of the apply workflow then found it read a relayout's exit 2 only as a refusal before the first move, so branch commit `81f0ca4cade` adds a rule for the new failure line, merged as `468f1bb4762`. Every gate was then rerun on main.
 <!-- /ANCHOR:how-delivered -->
 
 ---
