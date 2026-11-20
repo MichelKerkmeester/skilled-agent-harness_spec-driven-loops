@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.19.0
+version: 1.4.20.0
 ---
 
 # Fan-out CLI lineage driver
@@ -80,6 +80,15 @@ long-running lineage stays operator-readable. The cadence comes from the
 `progressHeartbeatSeconds` config field, whose committed default is **60 seconds**, so the
 gauge is on unless a caller sets it to 0.
 
+Each `progress` row also carries the lineage's own progress, read by
+`readLineageProgressFields`: `iterations` (distinct iterations the gateway committed),
+`lastCommitAt`, `nodes: {answered, open, total}` from the lineage's `frontier-nodes.jsonl`
+(`open` counts `open` and `active` nodes) and `flaggedPasses`, the passes `passEvidence` in
+`fanout-salvage.cjs` marks `unexamined`, or null while any pass cannot be judged. An attempt's
+stdout reaches its log file only when it exits, so the row judges the running attempt from the
+stdout the runner has received so far. A beat whose fields cannot be read still writes its row
+without them.
+
 That default is load-bearing rather than cosmetic. The heartbeat appends to the
 orchestrator's own ledgers *while a lineage is dispatched*, which is what makes those
 files change inside every containment window — the reason they are named as
@@ -97,6 +106,49 @@ The workflow hands the research topic, review focus and review target to the run
 through `--research-topic-file`, `--review-focus-file` and `--review-target-file`, so shell
 characters in operator text never reach a shell. The inline flags still work, and passing both
 forms of one flag is refused with a usage error.
+
+A `cli-claude-code` lineage runs `claude -p` with `--output-format stream-json --verbose`, so its
+log is one JSON event per line: tool calls with their timestamps and the session cost. The
+pending-question and quota checks read that log's final answer, the last `result` event's text,
+so a completion marker or quota phrase quoted inside a tool result does not decide them.
+
+After a lineage exits, whatever its exit code, the runner writes the lineage block of that
+lineage's config from the root config: `generation` (the root's), `parentSessionId` (the root's
+`sessionId`) and `lineageMode: new`. A research config nests them under `lineage`, and a review
+config keeps them flat. Every other field, the lineage's own session id among them, is kept.
+The model writes that config from the workflow template, which knows nothing of the fan-out, so
+runtimes used to fill these fields differently. When the root config is missing or lacks a
+`generation` or `sessionId`, nothing is written.
+
+### Status and Stop
+
+`--status` is a read-only view of a run in flight or settled. It needs only
+`--base-artifact-dir`, reads that directory's `orchestration-status.log`, prints one table row
+per lineage and exits 0 before any config, lineage or ledger write. The columns are `lineage`,
+`status` (the latest status a ledger row maps to; a row that names no state, such as a
+containment notice, leaves the last known status in place), `iterations`,
+`last commit`, `nodes answered/open/total`, `flagged passes` and `updated`, from the latest
+progress row that carries the fields. A count the run could not read prints `unknown`, and a
+lineage with no such row prints `-`. A directory with no status ledger is refused with exit 3
+and nothing is created there.
+
+`--stop` ends a live run from a second process. Pass it with the run's own arguments, because it
+is handled after the run's inputs are validated and each lineage's rerun command is built from
+them; `--stop` takes no value. It reads the ledger's live lineages, the ones a rerun would refuse
+on, and signals nothing else. It sends SIGTERM to the runner that spawned them first, found
+through the kernel's parent link and only when that parent is running `fanout-run.cjs`, then to
+each live lineage's process group. It waits up to 10 seconds for them to stop. Each lineage that
+no longer answers gets a `stopped` ledger row with its `pid` and a `rerun_command`, the run's
+arguments without `--stop` plus `--only-lineage LABEL`. The command prints
+`{status, stopped, survivors}`, each entry `{label, pid}`, and exits 0 with `status: ok`, or 2
+with `status: partial` when a lineage still answers. The pool reads a `stopped` row as a closed
+lineage, so its rerun is not requeued as an orphan or charged a retry.
+
+The bootstrap forwards SIGHUP beside SIGINT and SIGTERM, the signal a closed terminal or a
+dropped SSH session sends. The runner stops its lineages and exits 129 on SIGHUP, 130 on SIGINT
+and 143 on SIGTERM. The TSX child also polls its parent pid every second: when the bootstrap dies,
+even by SIGKILL, which is never forwarded, the child stops its lineages as it would on a
+hangup.
 
 ### Expansive Depth
 
@@ -148,7 +200,7 @@ A fatally failed lineage prints one stderr line at once with its label and failu
 
 The stdout summary and `orchestration-summary.json` carry `lineages`, one `{label, status, failure_class, exit_code, rerun_command}` row per lineage. `status` is `succeeded`, `skipped_complete` or `failed`. A failed lineage's `failure_class` is its class, or `exit` when the failure names none, and its `rerun_command` is the run's own argv, with any earlier `--only-lineage` pair dropped, plus `--only-lineage LABEL`, so the lineage keeps its share of the matrix. The runner path in it is absolute and the other arguments stay as given, so run it from the original working directory. A succeeded or `skipped_complete` lineage has a null `failure_class` and no rerun command, because a rerun would skip it as finished. A failed lineage whose config is `complete` cannot be rerun in place either, so its `rerun_command` is null and a `rerun_note` says to archive its `lineages/<label>/` folder first and names the command to run after.
 
-`orchestration-summary.json` carries `provider_cost_usd: {total, by_lineage}`, each CLI lineage's provider cost in USD summed from the `step_finish` records of its live and rotated logs. A log with no cost record, such as a cli-claude-code lineage's text log, makes that lineage's cost null (unknown), and the total stays null while any lineage is unknown.
+`orchestration-summary.json` carries `provider_cost_usd: {total, by_lineage}`, each CLI lineage's provider cost in USD over its live and rotated logs: the sum of an opencode log's `step_finish` costs, or, for a cli-claude-code stream-json log, the last `result` event's `total_cost_usd`, which is already the attempt's whole spend. A log with no cost record, such as a cli-cursor lineage's text log, makes that lineage's cost null (unknown), and the total stays null while any lineage is unknown.
 
 ---
 
@@ -158,10 +210,11 @@ The stdout summary and `orchestration-summary.json` carry `lineages`, one `{labe
 
 | File | Role |
 |---|---|
-| `scripts/fanout-run.cjs` | Main entry: CLI arg parsing, per-kind command construction, pool orchestration, stdout capture and salvage call, plus the per-lineage progress heartbeat via `startLineageProgressHeartbeat`; expansive depth via `normalizeDepthMode`, `partitionFrontierNodes`, `writeLineageFrontierStore`, `expansiveLineageBudgets` and `expansiveLineageBudgetNotes`; per-lineage `DEEP_LOOP_COVERAGE_DB_DIR` |
-| `scripts/frontier-admit.cjs` | `readNodeStore`, `expansiveBudget` and `LOOP_DEFAULT_MAX_ITERATIONS` used for the frontier partition and lineage budgets |
-| `scripts/fanout-salvage.cjs` | Called post-subprocess for write-failure recovery |
-| `scripts/fanout-pool.cjs` | `runCappedPool` for concurrency cap + ledger |
+| `scripts/fanout-run.cjs` | Main entry: CLI arg parsing, per-kind command construction, pool orchestration, stdout capture and salvage call, plus the per-lineage progress heartbeat via `startLineageProgressHeartbeat`; expansive depth via `normalizeDepthMode`, `partitionFrontierNodes`, `writeLineageFrontierStore`, `expansiveLineageBudgets` and `expansiveLineageBudgetNotes`; per-lineage `DEEP_LOOP_COVERAGE_DB_DIR`; progress-row fields via `readLineageProgressFields`; `--status` via `formatFanoutStatusTable`; `--stop` via `stopLiveFanoutRun`; signal forwarding and `watchBootstrapParent`; the lineage block via `readRootLineageValues` and `writeLineageValues` |
+| `scripts/frontier-admit.cjs` | `readNodeStore`, `expansiveBudget` and `LOOP_DEFAULT_MAX_ITERATIONS` used for the frontier partition and lineage budgets, and the node counts on each progress row |
+| `scripts/fanout-salvage.cjs` | Called post-subprocess for write-failure recovery; `readLineagePassSummary` for the progress-row iterations, last commit and flagged passes; the provider cost readers |
+| `scripts/lib/cli-guards.cjs` | `readClaudeStreamFinalText`, which the pending-question and quota checks read a claude stream-json log through |
+| `scripts/fanout-pool.cjs` | `runCappedPool` for concurrency cap + ledger; reads a `stopped` row as a closed lineage |
 | `lib/deep-loop/executor-config.ts` | `parseFanoutConfig`, `expandLineages` imported via TSX |
 | `lib/deep-loop/lineage-timestamp-window.ts` | Post-attempt completion check, including the research stop-reason evidence |
 | `lib/deep-loop/executor-audit.ts` | `EXECUTOR_STATE_ENV_BY_KIND` constants for per-kind state dir naming |
@@ -172,6 +225,12 @@ The stdout summary and `orchestration-summary.json` carry `lineages`, one `{labe
 |---|---|
 | `tests/unit/fanout-run.vitest.ts` | Native lineage refusal (exit 3, names the lineage, spawns nothing), bad JSON config exits 3, missing required args exits 3, 2-lineage pool creates distinct dirs + ledger + summary, same-kind replica state dirs are distinct |
 | `tests/unit/fanout-run.vitest.ts` | Expansive depth groups: `expansive depth frontier` (the round-robin deal, the reuse of the budget step's partition, the per-lineage node store, the `frontier_scope` binding, the recorded partition and `depthMode` propagation) and `per-lineage expansive budget` (the seed-share budget, the loop-default floor for a lineage dealt no seed node, and the refusal of an expansive matrix that holds a native lineage) |
+| `tests/unit/fanout-status.vitest.ts` | Progress-row fields, the heartbeat that still beats when they cannot be read, live stdout handed to the output callback, and `--status` printing one row per lineage without writing or refusing a directory with no ledger |
+| `tests/unit/fanout-stop.vitest.ts` | SIGHUP stops the lineages and exits 129, a SIGKILL of the bootstrap stops them, `--stop` ends a live run from a second process with a rerun per stopped lineage, and leaves a process alone when its lineage is not live in the ledger |
+| `tests/unit/fanout-lineage-config.vitest.ts` | The lineage block written from the root config for research and review, after a non-zero exit too, and left alone without a root config |
+| `tests/unit/fanout-claude-stream-json.vitest.ts` | The claude stream-json argv, its last-result cost, and the pending-question and quota checks reading the final answer |
+| `tests/unit/fanout-pool.vitest.ts` | A `stopped` row closes a lineage rather than leaving it to be requeued as an orphan |
+| `manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md` | DLR-025: lineage spawn and isolation, plus the `--status` table and the `--stop` control |
 | `manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md` | DLR-066: the seed-share lineage budget, the loop-default floor and the stderr budget notes |
 
 ---

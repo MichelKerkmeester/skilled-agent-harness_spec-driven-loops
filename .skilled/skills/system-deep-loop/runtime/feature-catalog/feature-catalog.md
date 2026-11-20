@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.15.0
+version: 1.4.16.0
 ---
 
 # runtime/: Feature Catalog
@@ -665,7 +665,7 @@ Authorizes a mode event against the mode's durable authority record, appends it 
 
 #### How It Works
 
-The sanctioned way every canonical record reaches a mode's state log; it authorizes against the authority record, appends to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file.
+The sanctioned way every canonical record reaches a mode's state log; it authorizes against the authority record, appends to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file. A research or review iteration row is timed by the gateway clock, and a stamp the model wrote is kept beside it as `claimedTimestamp`.
 
 #### Source Files
 
@@ -773,6 +773,12 @@ recorded as `frontier_partition` in `orchestration-summary.json`. `expansiveLine
 sizes a lineage with no matrix `iterations` from its seed share, and a lineage dealt no seed
 node runs at its loop default: 12 native, 7 CLI review, 10 CLI research.
 
+Each progress row carries the lineage's committed iterations, `lastCommitAt`, frontier `nodes`
+and `flaggedPasses`, and `--status` prints them per lineage without writing. `--stop` ends a live
+run from a second process and records a `stopped` row with a rerun command for each lineage it
+ended. SIGHUP is forwarded with SIGINT and SIGTERM and exits 129, and a runner whose bootstrap
+parent dies stops its lineages as on a hangup.
+
 #### Source Files
 
 See [`fanout/fanout-run.md`](../feature-catalog/fanout/fanout-run.md) for full implementation and validation file listings.
@@ -785,6 +791,13 @@ See [`fanout/fanout-run.md`](../feature-catalog/fanout/fanout-run.md) for full i
 
 Post-subprocess salvage that recovers missing or empty iteration `.md` files from captured
 subprocess stdout (opencode `--format json` text parts or raw fallback).
+
+#### How It Works
+
+A claude `stream-json` log salvages its final answer rather than the raw event stream, and its
+cost is the last result event's `total_cost_usd`. `passEvidence` judges each committed pass
+from the lineage log against the gateway commits and flags it `unexamined` on a future stamp,
+no reads and no findings, or a batched commit; a count the log cannot give stays unknown, never zero.
 
 #### Source Files
 
