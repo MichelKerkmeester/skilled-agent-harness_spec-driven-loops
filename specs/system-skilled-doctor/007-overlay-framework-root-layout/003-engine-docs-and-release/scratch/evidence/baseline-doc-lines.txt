@@ -1,0 +1,13 @@
+.skilled/commands/doctor/_routes.yaml:699
+.skilled/commands/doctor/overlay.md:108
+.skilled/skills/system-skilled-doctor/references/overlays.md:92
+.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:115
+.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:273
+.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:557
+.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:34
+.skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-an-unowned-file.md:6
+.skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/relayout-moves-sources.md:3
+.skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-audit-lists-unowned-drift.md:4
+.skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md:5
+.skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/strict-guard-refuses-unowned-write.md:5
+exit=0

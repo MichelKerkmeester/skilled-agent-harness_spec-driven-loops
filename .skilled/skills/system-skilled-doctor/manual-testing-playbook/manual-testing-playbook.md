@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor playbook"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # system-skilled-doctor Manual Testing Playbook
@@ -92,7 +92,7 @@ Record each verdict under the skill's `benchmark/reports/` directory with the tr
 | 1 | Routing | `SKD-001`, `SKD-002` | Confirm integration requests route here and the owned commands kept their behavior. |
 | 2 | Overlays | `SKD-003`, `SKD-004` | Confirm the overlay check names a missing manifest and writes nothing, and that a directory entry refuses an unprotected token-named file. |
 | 3 | Overlays | `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009` | Confirm the guard refuses an unowned write and allows a generated or excluded path, that adopt and the commit check close the gap, that a stale lock is taken over, and that an off-layout source moves. |
-| 4 | Overlays | `SKD-010`, `SKD-011`, `SKD-012` | Confirm the audit lists the drift no overlay owns and fails, that an owned root file upstream changed after the pin fails status, and that a dropped appended item leaves the live file while a hand-edited one is refused. |
+| 4 | Overlays | `SKD-010`, `SKD-011`, `SKD-012`, `SKD-013` | Confirm the audit lists the drift no overlay owns and fails, that an owned root file upstream changed after the pin fails status, that a dropped appended item leaves the live file while a hand-edited one is refused, and that a sibling overlay folder's old-layout sources stop at 20 layout lines, list whole in `offLayout` and move in one run. |
 
 ---
 
@@ -198,6 +198,14 @@ Prompt: `an overlay item i appended is still in my registry file after i dropped
 
 > **Feature File:** [SKD-012](overlays/dropped-item-is-removed.md)
 
+### SKD-013 | Overlay relayout moves a sibling folder's old-layout sources onto their layout paths
+
+Verify `status` on a tree whose overlay folder sits beside it prints 20 `LAYOUT` lines and one overflow line and still passes, `status --json` lists all 21 sources in `offLayout`, and one `apply --relayout` backs them up beside the tree and moves them, after which `apply` and `status` both pass with no `LAYOUT` line.
+
+Prompt: `move the sources in the overlay folder beside my tree onto the layout paths`
+
+> **Feature File:** [SKD-013](overlays/sibling-folder-relayout.md)
+
 ---
 
 ## 9. AUTOMATED TEST CROSS-REFERENCE
@@ -206,4 +214,4 @@ Prompt: `an overlay item i appended is still in my registry file after i dropped
 |---|---|---|
 | Advisor routing | [Skill graph metadata](../graph-metadata.json) | `SKD-001` |
 | Doctor command contracts | `.skilled/commands/doctor/scripts/tests/` | `SKD-002` |
-| Overlay engine | `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` | `SKD-003`, `SKD-004`, `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009`, `SKD-010`, `SKD-011`, `SKD-012` |
+| Overlay engine | `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` | `SKD-003`, `SKD-004`, `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009`, `SKD-010`, `SKD-011`, `SKD-012`, `SKD-013` |

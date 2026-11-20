@@ -22,9 +22,9 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-20 |
-| **Branch** | `main` |
+| **Branch** | `worktrees/481-overlay-framework-root-layout` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 5 |
 | **Predecessor** | ../002-engine-framework-root-source-layout/spec.md |

@@ -26,6 +26,11 @@
   },
   {
     "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/sibling-folder-relayout.md",
+    "diskPath": "manual-testing-playbook/overlays/sibling-folder-relayout.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/overlays/stale-lock-takeover.md",
     "diskPath": "manual-testing-playbook/overlays/stale-lock-takeover.md"
   },
