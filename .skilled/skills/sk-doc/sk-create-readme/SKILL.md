@@ -25,7 +25,7 @@ Use this packet when the request involves:
 - Writing the README of a hook folder, a runtime plugin or extension folder, or a runtime folder and its `SYNC.md`.
 - Running `/create:readme`.
 
-Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `front-page overview`, `code folder readme`, `skill readme`, `contributing guide`, `security policy`, `sync.md`, `sync doc for the`.
+Keyword triggers: `create readme`, `/create:readme`, `readme`, `folder readme`, `write readme`, `README.md`, `front-page overview`, `code folder readme`, `skill readme`, `contributing guide`, `sync.md`, `sync doc for the`.
 
 ### When NOT to Use
 
