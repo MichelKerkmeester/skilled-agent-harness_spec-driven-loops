@@ -279,6 +279,8 @@ workflow:
       A halt at an earlier boundary step still prints default_halt_event. Under --restart this runs before the archive, so session_id
       and frontier_scope come from the current packet. Before step_frontier_seed every
       frontier_scope is empty and an expansive lineage shows its unseeded iteration default.
+      The preview's scope file is empty, so its prompts carry no review_scope_file line and
+      their digests differ from the real spawn's whenever step_fanout_scope_discovery finds files.
     command: |
       node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
         --spec-folder {spec_folder} \

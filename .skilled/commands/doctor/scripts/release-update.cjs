@@ -2433,8 +2433,9 @@ function recordBase(repo, options) {
           + ' nor remote ' + options.remote)
       : 'release tag could not be resolved: ' + release);
   }
-  // A commit of the project itself resolves locally too, but only a framework
-  // commit carries .skilled as a directory at its top level.
+  // A vendoring project keeps the framework below a subfolder, so its own commits
+  // resolve locally but carry no top-level .skilled directory. This refuses such a
+  // pin by name; a project that keeps .skilled at its root is not caught here.
   const skilledType = pinned ? gitTry(repo, ['cat-file', '-t', commit + ':.skilled']) : null;
   if (pinned && !(skilledType.ok && skilledType.value.trim() === 'tree')) {
     throw new Error('commit ' + commit + ' is not a framework commit: it has no top-level'
