@@ -834,42 +834,55 @@ test('a layout link path listed twice is refused before any write, even when onl
     { path: 'ext', target: 'real-dir' },
   ];
   writeManifest(fixture);
+  // A new file with its overlay copy in place, so adopt would otherwise write the entry.
+  writeFile(fixture.overlayDir, 'framework/skills/new/SKILL.md', 'new skill\n');
+  const manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+  const manifestBefore = fs.readFileSync(manifestPath);
   const before = treeDigest(fixture.tree);
 
-  for (const command of [['status'], ['apply'], ['apply', '--relayout']]) {
+  const adopt = ['apply', '--adopt', path.join(fixture.tree, '.skilled', 'skills', 'new', 'SKILL.md')];
+  for (const command of [['status'], ['apply'], ['apply', '--relayout'], adopt]) {
     const result = fixture.run(command);
     assert.equal(result.code, 2, command.join(' ') + ': ' + result.output);
     assert.ok(result.output.includes('layout link path is listed twice: ext'), command.join(' ') + ': ' + result.output);
     assert.equal(treeDigest(fixture.tree), before, command.join(' '));
+    assert.deepEqual(fs.readFileSync(manifestPath), manifestBefore, command.join(' '));
   }
   assert.throws(() => fs.lstatSync(path.join(fixture.tree, 'ext')), { code: 'ENOENT' });
   assert.deepEqual(fs.readdirSync(outside), []);
 });
 
-test('layout link paths are compared without a leading ./ or trailing slashes, and distinct paths still apply', (t) => {
+test('layout link paths are compared as the plan resolves them, and distinct paths still apply', async (t) => {
   const cases = [
     { links: [{ path: './a', target: 'real-dir' }, { path: 'a/', target: 'real-dir' }], duplicated: 'a' },
     { links: [{ path: 'a', target: 'real-dir' }, { path: './a//', target: 'real-dir' }], duplicated: 'a' },
     { links: [{ path: 'deep/a', target: '../real-dir' }, { path: './deep/a/', target: '../real-dir' }], duplicated: 'deep/a' },
+    { links: [{ path: 'ext', target: '../outside' }, { path: 'ext/.', target: 'real-dir' }], duplicated: 'ext' },
+    { links: [{ path: 'ext', target: '../outside' }, { path: 'x/../ext', target: 'real-dir' }], duplicated: 'ext' },
+    { links: [{ path: 'a/b', target: '../real-dir' }, { path: 'a//b', target: '../real-dir' }], duplicated: 'a/b' },
     { links: [{ path: 'a', target: 'real-dir' }, { path: 'ab', target: 'real-dir' }, { path: 'a/b', target: '../guarded.txt' }] },
   ];
   for (const { links, duplicated } of cases) {
-    const fixture = createSyncFixture(t);
-    fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
-    fixture.manifest.layoutLinks = links;
-    writeManifest(fixture);
-    const before = treeDigest(fixture.tree);
-    const applied = fixture.run(['apply']);
     const label = links.map((link) => link.path).join(', ');
-    if (duplicated) {
-      assert.equal(applied.code, 2, label + ': ' + applied.output);
-      assert.ok(applied.output.includes('layout link path is listed twice: ' + duplicated), label + ': ' + applied.output);
-      assert.equal(treeDigest(fixture.tree), before, label);
-    } else {
-      assert.equal(applied.code, 0, label + ': ' + applied.output);
-      assert.equal(fs.readlinkSync(path.join(fixture.tree, 'ab')), 'real-dir');
-      assert.equal(fs.readlinkSync(path.join(fixture.tree, 'real-dir', 'b')), '../guarded.txt');
-    }
+    await t.test(label, (st) => {
+      const fixture = createSyncFixture(st);
+      fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
+      fs.mkdirSync(path.resolve(fixture.tree, '../outside'));
+      fixture.manifest.layoutLinks = links;
+      writeManifest(fixture);
+      const before = treeDigest(fixture.tree);
+      const applied = fixture.run(['apply']);
+      if (duplicated) {
+        assert.equal(applied.code, 2, label + ': ' + applied.output);
+        assert.ok(applied.output.includes('layout link path is listed twice: ' + duplicated), label + ': ' + applied.output);
+        assert.equal(treeDigest(fixture.tree), before, label);
+        assert.deepEqual(fs.readdirSync(path.resolve(fixture.tree, '../outside')), [], label);
+      } else {
+        assert.equal(applied.code, 0, label + ': ' + applied.output);
+        assert.equal(fs.readlinkSync(path.join(fixture.tree, 'ab')), 'real-dir');
+        assert.equal(fs.readlinkSync(path.join(fixture.tree, 'real-dir', 'b')), '../guarded.txt');
+      }
+    });
   }
 });
 

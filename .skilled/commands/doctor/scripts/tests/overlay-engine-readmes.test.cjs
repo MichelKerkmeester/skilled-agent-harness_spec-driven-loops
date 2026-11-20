@@ -371,6 +371,62 @@ for (const placement of PLACEMENTS) {
     assert.doesNotMatch(audit.stdout, /\/empty$/m);
   });
 
+  test(`a folder whose path is too long to read changes neither RESULT nor the exit code, with ${placement.name}`, (t) => {
+    const fixture = createReadmeFixture(t, placement.options, { withReadmes: false });
+    assert.equal(fixture.run(['apply']).code, 0);
+    const baseFolders = auditJson(fixture).report.docs.folders;
+    // Each folder is created with a short name and renamed from the bottom up, so
+    // every call stays short while the deepest path outgrows what a call accepts.
+    const depth = 17;
+    const longName = 'n'.repeat(250);
+    const top = path.join(fixture.overlayDir, 'deep');
+    const chain = (count, last) => path.join(top, ...Array(count).fill('a'), ...(last ? [last] : []));
+    fs.mkdirSync(chain(depth), { recursive: true });
+    for (let level = depth; level >= 1; level -= 1) fs.renameSync(chain(level), chain(level - 1, longName));
+    let plain;
+    let audit;
+    let report;
+    try {
+      plain = fixture.run(['status']);
+      audit = fixture.run(['status', '--audit']);
+      report = auditJson(fixture).report;
+    } finally {
+      // Renamed back from the top down, so the fixture cleanup removes short paths.
+      for (let level = 1; level <= depth; level += 1) fs.renameSync(chain(level - 1, longName), chain(level));
+    }
+    assert.equal(plain.code, 0, plain.output);
+    assert.equal(audit.code, plain.code, audit.output);
+    assert.equal(resultLine(audit.stdout), resultLine(plain.stdout));
+    // The folders past the limit are left out of the count.
+    assert.ok(report.docs.folders > baseFolders && report.docs.folders < baseFolders + 1 + depth, String(report.docs.folders));
+  });
+
+  test(`a validator that does not finish is killed and its README reported, with ${placement.name}`, (t) => {
+    const fixture = createReadmeFixture(t, placement.options, { withReadmes: false });
+    writeFile(fixture.tree, '.skilled/skills/sk-doc/scripts/validate_document.py', 'import time\ntime.sleep(5)\n');
+    writeFile(fixture.overlayDir, 'README.md', VALID_README);
+    const env = { ...process.env, OVERLAY_DOCS_VALIDATOR_TIMEOUT_MS: '500' };
+    const startedAt = Date.now();
+    const result = fixture.run(['status', '--audit'], fixture.workspace, env);
+    assert.ok(Date.now() - startedAt < 4000, 'the validator was not killed at the timeout');
+    assert.match(result.stdout, new RegExp('^DOCS     invalid-readme ' + placement.label.replace(/\./g, '\\.') +
+      '/README\\.md: the validator did not finish in 0\\.5s$', 'm'));
+    assert.equal(result.code, fixture.run(['status']).code, result.output);
+  });
+
+  test(`relayout names a documentation-only README that sits at a layout path, and moves nothing, with ${placement.name}`, (t) => {
+    const fixture = createReadmeFixture(t, placement.options);
+    fixture.manifest.overlays.find((entry) => entry.id === 'notes').destination = 'README.md';
+    writeManifest(fixture);
+    writeFile(fixture.overlayDir, 'root/README.md', docOnlyBytes('root/README.md'));
+    const overlayBefore = overlayDigest(fixture);
+    const relayout = fixture.run(['apply', '--relayout']);
+    assert.equal(relayout.code, 2, relayout.output);
+    assert.ok(relayout.stdout.split('\n').includes(`refuse: a documentation-only README sits at ${placement.label}/root/README.md: ` +
+      'merge it into the overlay copy or move it, then relayout'), relayout.stdout);
+    assert.deepEqual(overlayDigest(fixture), overlayBefore);
+  });
+
   // ───────────────────────────────────────────────────────────────────────────
   // 4. DOCUMENTATION-ONLY READMES ACROSS THE ENGINE COMMANDS
   // ───────────────────────────────────────────────────────────────────────────

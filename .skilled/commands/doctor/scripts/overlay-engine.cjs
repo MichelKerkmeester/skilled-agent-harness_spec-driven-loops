@@ -2881,16 +2881,17 @@ function isUnderRootSkilled(value) {
 
 /**
  * Find the first layout link path the manifest lists more than once. Two
- * spellings name one path when they match after a leading `./` and trailing
- * slashes are removed, so `./a` and `a/` are the same link.
+ * spellings name one path when they normalize to the same path without
+ * trailing slashes, the way the plan resolves them, so `./a`, `a/`, `a/.` and
+ * `x/../a` are the same link, and so are `a//b` and `a/b`.
  * @param {object} manifest Loaded overlay manifest.
- * @returns {string|null} The duplicated path without `./` or trailing slashes, or null.
+ * @returns {string|null} The duplicated path, normalized and without trailing slashes, or null.
  */
 function duplicateLayoutLinkPath(manifest) {
   const seen = new Set();
   for (const link of manifest.layoutLinks || []) {
     if (!link || typeof link.path !== 'string') continue;
-    const key = link.path.replace(/^(?:\.\/+)+/, '').replace(/\/+$/, '');
+    const key = path.posix.normalize(link.path).replace(/\/+$/, '');
     if (seen.has(key)) return key;
     seen.add(key);
   }
@@ -5938,6 +5939,10 @@ function adoptUnderLock(ctx, manifest, inputPath) {
     console.log('refuse: ' + message);
     return EXIT_ERROR;
   };
+  // The apply that follows refuses these layout links, and by then the copy and
+  // the new entry would already be written, so they are refused before either.
+  const linkEscape = layoutLinkEscape(ctx.root, manifest);
+  if (linkEscape) return refuse(linkEscape);
   const root = canonicalPath(ctx.root);
   const settings = writeCheckSettings(manifest);
   // A path under repin.exclude would be vendored but for that list. A re-pin never
@@ -6388,7 +6393,15 @@ function auditVendoredTree(ctx, manifest) {
 const README_NAMES = ['README.md', 'README.markdown'];
 const SK_DOC_VALIDATOR = '.skilled/skills/sk-doc/scripts/validate_document.py';
 const VALIDATOR_MAX_BUFFER = 16 * 1024 * 1024;
-const DOCS_UNREADABLE_CODES = new Set(['ENOENT', 'ENOTDIR', 'EACCES', 'EPERM']);
+// A validator that never returns would hang the read-only run, so it is killed
+// after this long. OVERLAY_DOCS_VALIDATOR_TIMEOUT_MS shortens the wait, so the
+// tests can reach the kill without waiting the full 30 seconds.
+const VALIDATOR_TIMEOUT_MS = 30000;
+
+function validatorTimeoutMs() {
+  const value = Number(process.env.OVERLAY_DOCS_VALIDATOR_TIMEOUT_MS);
+  return Number.isInteger(value) && value > 0 ? value : VALIDATOR_TIMEOUT_MS;
+}
 
 function manifestFolderPath(value) {
   return path.posix.normalize(value).replace(/\/+$/, '');
@@ -6440,11 +6453,10 @@ function overlayDocFolders(overlayRoot) {
     let dirents;
     try {
       dirents = fs.readdirSync(absolute, { withFileTypes: true });
-    } catch (error) {
-      // A folder removed or locked while the walk runs is left out: the leg is
-      // advisory, and a folder it cannot read must not fail a read-only run.
-      if (error && DOCS_UNREADABLE_CODES.has(error.code)) continue;
-      throw error;
+    } catch {
+      // A folder the walk cannot read, whatever the reason, is left out and not
+      // counted: the leg is advisory, and it must not fail a read-only run.
+      continue;
     }
     // The name is compared exactly: a case-insensitive disk would also find readme.md.
     const readmeNames = README_NAMES.filter((name) => dirents.some((dirent) => dirent.name === name && dirent.isFile()));
@@ -6461,17 +6473,24 @@ function overlayDocFolders(overlayRoot) {
 /**
  * Run sk-doc's validator on one README. It is spawned with an argument list and
  * no shell, so a folder name cannot become a command, and Python is told to
- * write no bytecode, so validating a tree leaves nothing behind in it.
+ * write no bytecode, so validating a tree leaves nothing behind in it. A run
+ * that outlasts the timeout is killed and reported as a rejection of the README.
  * @param {string} validatorPath The validator script.
  * @param {string} filePath The README to validate.
  * @returns {{isPythonMissing?: boolean, errors: string[]}} The blocking error messages.
  */
 function validateReadme(validatorPath, filePath) {
+  const timeoutMs = validatorTimeoutMs();
   const result = spawnSync('python3', [validatorPath, filePath, '--json'], {
     encoding: 'utf8',
     maxBuffer: VALIDATOR_MAX_BUFFER,
+    timeout: timeoutMs,
+    killSignal: 'SIGKILL',
     env: { ...process.env, JEV_FEATURE_CITE_DRIFT: '0', PYTHONDONTWRITEBYTECODE: '1' },
   });
+  if (result.error && result.error.code === 'ETIMEDOUT') {
+    return { errors: [`the validator did not finish in ${timeoutMs / 1000}s`] };
+  }
   if (result.error && result.error.code === 'ENOENT') return { isPythonMissing: true, errors: [] };
   if (result.error) return { errors: [`the validator could not run: ${result.error.message}`] };
   let report;
@@ -6651,10 +6670,12 @@ function groupLayoutMoves(moves) {
  * Resolve every move into filesystem paths and collect what stops the run.
  * Nothing is written here, so a refusal leaves the tree as it stood.
  * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
  * @param {object[]} groups Groups from groupLayoutMoves.
  * @returns {{problems: string[], moves: object[], skipped: string[]}}
  */
-function planRelayout(ctx, groups) {
+function planRelayout(ctx, manifest, groups) {
+  const ships = readmeShipTest(manifest);
   const problems = [];
   const moves = [];
   const skipped = [];
@@ -6675,6 +6696,14 @@ function planRelayout(ctx, groups) {
       const ids = [...new Set(group.records.map((record) => record.overlay))].join(', ');
       problems.push(`refuse: ${ids}: ${group.from} belongs at ${group.to}, under root/skilled, which holds no copy; ` +
         'change the destination or remove the entry');
+      continue;
+    }
+    // A README no entry reaches only documents the folder, so the refusal names
+    // it as that rather than as a copy already in place.
+    if (pathExists(to.absolute) && README_NAMES.includes(path.posix.basename(to.relative)) &&
+      isFile(to.absolute) && !ships(to.relative)) {
+      problems.push(`refuse: a documentation-only README sits at ${ctx.overlayLabel}/${to.relative}: ` +
+        'merge it into the overlay copy or move it, then relayout');
       continue;
     }
     if (pathExists(to.absolute)) {
@@ -6945,7 +6974,7 @@ function relayoutUnderLock(ctx, manifest) {
     console.log('0 moved');
     return EXIT_OK;
   }
-  const plan = planRelayout(ctx, groups);
+  const plan = planRelayout(ctx, manifest, groups);
   if (plan.problems.length > 0) {
     for (const problem of plan.problems) console.log(problem);
     return EXIT_ERROR;
