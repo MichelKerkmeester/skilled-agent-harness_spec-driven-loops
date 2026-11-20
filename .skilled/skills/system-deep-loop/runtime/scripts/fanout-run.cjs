@@ -17,6 +17,7 @@ const { spawn, spawnSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
 
 const { resolveOpencodeBinary } = require('./opencode-version.cjs');
+const { STOP_REASONS } = require('../lib/deep-loop/lifecycle-taxonomy.cjs');
 
 const {
   classifyExitCode,
@@ -1251,6 +1252,24 @@ const TERMINAL_STOP_EVENTS_BY_LOOP_TYPE = {
   research: [...SYNTHESIS_EVENT_NAMES],
   review: ['terminal_gates'],
 };
+
+// Research writes no stop-check row, so its closeout row is the only stop evidence: it must
+// name a stop reason from the frozen enum the workflow writes, and a cap stop must have run
+// to the cap in the lineage's own config. A review stop is proved by its gate row instead.
+const RESEARCH_STOP_REASONS = Object.freeze(Object.values(STOP_REASONS));
+
+function lineageCompletionPolicy(loopType, lineageDir) {
+  const terminalEvents = TERMINAL_STOP_EVENTS_BY_LOOP_TYPE[loopType];
+  if (loopType !== 'research') return { terminalEvents };
+  let iterationCap = null;
+  try {
+    const config = JSON.parse(fs.readFileSync(path.join(lineageDir, LINEAGE_CONFIG_BY_LOOP_TYPE.research), 'utf8'));
+    if (Number.isInteger(config && config.maxIterations) && config.maxIterations > 0) iterationCap = config.maxIterations;
+  } catch {
+    // No readable config leaves the cap unknown, which fails a cap stop rather than passing it.
+  }
+  return { terminalEvents, stopReasons: RESEARCH_STOP_REASONS, iterationCap };
+}
 
 // Claude Code in print mode refuses every tool call that needs an approval, and still exits
 // 0, so a lineage below bypassPermissions cannot run the append gateway or the reducer.
@@ -4800,7 +4819,7 @@ async function main() {
             : `it landed no iteration state in ${lineageStateLogName(loopType)}`,
         }
         : checkLineageCompletion(stateRead.records, {
-          terminalEvents: TERMINAL_STOP_EVENTS_BY_LOOP_TYPE[loopType],
+          ...lineageCompletionPolicy(loopType, lineageDir),
           windowStart: slotWindowStartIso,
           windowEnd: new Date().toISOString(),
         });
@@ -5006,6 +5025,7 @@ module.exports = {
   readStoredLineageSessionId,
   finishedLineageSkipReason,
   TERMINAL_STOP_EVENTS_BY_LOOP_TYPE,
+  lineageCompletionPolicy,
   startLineageProgressHeartbeat,
   startLineageStallWatchdog,
   statusForLedgerEvent,

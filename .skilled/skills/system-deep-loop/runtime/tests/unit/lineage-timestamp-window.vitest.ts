@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
@@ -328,6 +329,78 @@ describe('checkLineageCompletion', () => {
       terminalEvents: REVIEW_TERMINAL_EVENTS,
       ...RESUMED_ATTEMPT_WINDOW,
     })).toMatchObject({ complete: false, failure: 'no_iteration_records' });
+  });
+});
+
+// Two research lineages copied from a real fan-out: one converged after five iterations, one
+// stopped at its ten-iteration cap. Research records no stop-check row, so the stop reason on
+// its closeout row, and for a cap stop the iteration count against the cap, are the evidence.
+const RESEARCH_TERMINAL_EVENTS = ['synthesis_complete', 'phase_synthesis_complete', 'synthesis'];
+const RESEARCH_STOP_REASONS = Object.values(
+  (createRequire(import.meta.url)('../../lib/deep-loop/lifecycle-taxonomy.cjs') as { STOP_REASONS: Record<string, string> })
+    .STOP_REASONS,
+);
+const RESEARCH_WINDOW = { windowStart: '2026-11-20T01:21:00.000Z', windowEnd: '2026-11-20T01:38:00.000Z' };
+
+function researchFixtureRows(label: string): Array<Record<string, unknown>> {
+  const statePath = resolve(runtimeRoot, 'tests', 'fixtures', 'research-stop-evidence', label, 'deep-research-state.jsonl');
+  return readFileSync(statePath, 'utf8')
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line) as Record<string, unknown>);
+}
+
+function withTerminal(rows: Array<Record<string, unknown>>, patch: Record<string, unknown>): Array<Record<string, unknown>> {
+  return rows.map((row) => (row.event === 'synthesis_complete' ? { ...row, ...patch } : row));
+}
+
+function checkResearch(rows: Array<Record<string, unknown>>, iterationCap: number | null = 10) {
+  return checkLineageCompletion(rows, {
+    terminalEvents: RESEARCH_TERMINAL_EVENTS,
+    stopReasons: RESEARCH_STOP_REASONS,
+    iterationCap,
+    ...RESEARCH_WINDOW,
+  });
+}
+
+describe('checkLineageCompletion — research stop evidence', () => {
+  it('passes a research lineage that converged early', () => {
+    expect(checkResearch(researchFixtureRows('opus'))).toEqual({ complete: true });
+  });
+
+  it('passes a research lineage that stopped at its iteration cap', () => {
+    expect(checkResearch(researchFixtureRows('deepseek'))).toEqual({ complete: true });
+  });
+
+  it('fails a closeout row that names no stop reason', () => {
+    const rows = researchFixtureRows('opus').map((row) => {
+      if (row.event !== 'synthesis_complete') return row;
+      const { stopReason: _dropped, ...rest } = row;
+      return rest;
+    });
+    expect(checkResearch(rows)).toMatchObject({ complete: false, failure: 'missing_stop_reason' });
+  });
+
+  it('fails a closeout row whose stop reason the research workflow never writes', () => {
+    expect(checkResearch(withTerminal(researchFixtureRows('opus'), { stopReason: 'legacy-blocked-stop' })))
+      .toMatchObject({ complete: false, failure: 'unknown_stop_reason' });
+  });
+
+  it('fails a cap stop that recorded fewer iterations than the cap', () => {
+    expect(checkResearch(withTerminal(researchFixtureRows('opus'), { stopReason: 'maxIterationsReached' })))
+      .toMatchObject({ complete: false, failure: 'max_iterations_unproven' });
+  });
+
+  it('fails a cap stop when the lineage has no iteration cap to check it against', () => {
+    expect(checkResearch(researchFixtureRows('deepseek'), null))
+      .toMatchObject({ complete: false, failure: 'max_iterations_unproven' });
+  });
+
+  it('leaves the stop reason unjudged when the caller passes no stop-reason set', () => {
+    expect(checkLineageCompletion(withTerminal(researchFixtureRows('opus'), { stopReason: undefined }), {
+      terminalEvents: RESEARCH_TERMINAL_EVENTS,
+      ...RESEARCH_WINDOW,
+    })).toEqual({ complete: true });
   });
 });
 

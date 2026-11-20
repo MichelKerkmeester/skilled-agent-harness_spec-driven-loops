@@ -7685,4 +7685,32 @@ describe('fanout-run.cjs — research post-attempt stop rows', () => {
     expect(checkLineageCompletion(rows, { terminalEvents: TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.research, ...window }))
       .toMatchObject({ complete: false, failure: 'no_terminal_event' });
   });
+
+  it('judges a research lineage on the stop reasons its workflow writes and the cap in its config', () => {
+    const { lineageCompletionPolicy } = requireCjs(fanoutRunScript) as {
+      lineageCompletionPolicy: (loopType: string, lineageDir: string) => Record<string, unknown>;
+    };
+    const { STOP_REASONS } = requireCjs(resolve(runtimeRoot, 'lib', 'deep-loop', 'lifecycle-taxonomy.cjs')) as {
+      STOP_REASONS: Record<string, string>;
+    };
+    const fixtureDir = resolve(runtimeRoot, 'tests', 'fixtures', 'research-stop-evidence', 'deepseek');
+    const policy = lineageCompletionPolicy('research', fixtureDir);
+    expect(policy).toEqual({
+      terminalEvents: TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.research,
+      stopReasons: Object.values(STOP_REASONS),
+      iterationCap: 10,
+    });
+    expect(lineageCompletionPolicy('research', makeTempDir('fanout-run-no-config-')))
+      .toMatchObject({ iterationCap: null });
+    // A review lineage records its stop on a gate row, so the old check stands unchanged.
+    expect(lineageCompletionPolicy('review', fixtureDir))
+      .toEqual({ terminalEvents: TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.review });
+
+    const rows = readFileSync(join(fixtureDir, 'deep-research-state.jsonl'), 'utf8')
+      .split('\n').filter(Boolean).map((line) => JSON.parse(line) as Record<string, unknown>);
+    const liveWindow = { windowStart: '2026-11-20T01:21:00.000Z', windowEnd: '2026-11-20T01:33:00.000Z' };
+    expect(checkLineageCompletion(rows, { ...policy, ...liveWindow })).toEqual({ complete: true });
+    expect(checkLineageCompletion(rows.slice(0, 5).concat(rows.slice(-1)), { ...policy, ...liveWindow }))
+      .toMatchObject({ complete: false, failure: 'max_iterations_unproven' });
+  });
 });

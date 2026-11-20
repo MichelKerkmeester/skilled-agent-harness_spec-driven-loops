@@ -149,13 +149,65 @@ export type LineageCompletionFailure =
   | 'no_terminal_event'
   | 'stale_terminal_event'
   | 'iteration_after_terminal'
-  | 'stamped_after_completion';
+  | 'stamped_after_completion'
+  | 'missing_stop_reason'
+  | 'unknown_stop_reason'
+  | 'max_iterations_unproven';
 
 export type LineageCompletionInput = {
   readonly terminalEvents: readonly string[];
   readonly windowStart: string | Date;
   readonly windowEnd: string | Date;
+  // When set, the terminal row must carry one of these stop reasons. A loop that records no
+  // separate stop-check row carries its stop on the terminal row, so this is its stop evidence.
+  readonly stopReasons?: readonly string[];
+  // The lineage's iteration cap, which a maxIterationsReached stop must have reached.
+  readonly iterationCap?: number | null;
 };
+
+const MAX_ITERATIONS_STOP_REASON = 'maxIterationsReached';
+
+function distinctIterationCount(iterations: readonly Record<string, unknown>[]): number {
+  const runs = new Set(iterations.map((record) => String(record.run ?? record.iteration)));
+  return runs.size;
+}
+
+function stopReasonFailure(
+  terminal: Record<string, unknown>,
+  iterations: readonly Record<string, unknown>[],
+  input: LineageCompletionInput,
+): LineageCompletionVerdict | null {
+  if (!input.stopReasons) return null;
+  const stopReason = terminal.stopReason;
+  if (typeof stopReason !== 'string' || stopReason === '') {
+    return { complete: false, failure: 'missing_stop_reason', detail: `the terminal stop row ${String(terminal.event)} names no stopReason` };
+  }
+  if (!input.stopReasons.includes(stopReason)) {
+    return {
+      complete: false,
+      failure: 'unknown_stop_reason',
+      detail: `the terminal stop row's stopReason ${stopReason} is not one the workflow writes (${input.stopReasons.join(', ')})`,
+    };
+  }
+  if (stopReason !== MAX_ITERATIONS_STOP_REASON) return null;
+  const cap = input.iterationCap;
+  if (typeof cap !== 'number' || !Number.isInteger(cap) || cap <= 0) {
+    return {
+      complete: false,
+      failure: 'max_iterations_unproven',
+      detail: `the lineage stopped on ${MAX_ITERATIONS_STOP_REASON} but its config holds no iteration cap to check it against`,
+    };
+  }
+  const recorded = distinctIterationCount(iterations);
+  if (recorded < cap) {
+    return {
+      complete: false,
+      failure: 'max_iterations_unproven',
+      detail: `the lineage stopped on ${MAX_ITERATIONS_STOP_REASON} after ${recorded} of its ${cap} iterations`,
+    };
+  }
+  return null;
+}
 
 export type LineageCompletionVerdict =
   | { readonly complete: true }
@@ -178,7 +230,9 @@ function describeRecord(record: Record<string, unknown>, index: number): string 
  * ended by more than the default tolerance. A stamp without a zone designator cannot be
  * placed on the host clock and is not judged. Rows from an earlier attempt sit before
  * the window and stay legal, so a resumed lineage passes once this attempt records its
- * own terminal row.
+ * own terminal row. When the caller names the stop reasons its loop writes, the terminal
+ * row must carry one of them, and a maxIterationsReached stop must have recorded as many
+ * distinct iterations as the lineage's cap.
  */
 export function checkLineageCompletion(
   records: readonly unknown[],
@@ -237,5 +291,5 @@ export function checkLineageCompletion(
       };
     }
   }
-  return { complete: true };
+  return stopReasonFailure(terminal, iterations, input) ?? { complete: true };
 }
