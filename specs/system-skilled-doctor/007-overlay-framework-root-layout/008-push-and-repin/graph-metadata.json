@@ -41,7 +41,8 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
     ],
     "entities": [
       {
@@ -72,6 +73,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
         "source": "derived"
       },
       {
@@ -181,17 +188,11 @@
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "every Barter",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006's engine fixes, the relayout rollback and the outside-repository refusal among them, exist only on local Skilled main, which is 10 commits ahead of and 34 behind `origin/main`",
     "created_at": "2026-11-20T15:37:53Z",
-    "last_save_at": "2026-11-20T15:44:30.590Z",
+    "last_save_at": "2026-11-20T15:48:33.512Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8be58a767b5913fbb1fec156ecd25c0809799a61efe9b23ec4a23c5311b40820",
+    "source_fingerprint": "sha256:ab70dcd807e2ba2115a0ae0276fdcb95cfa7c37f56689b3126153a23c2551933",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6b9a606e70b6162d7c6b415def6f19b213de07f38f9d60f7f7a123c52e25ba53",
       "plan.md": "7bd905271a8233d379b88c3f236392b5201d26c1f998a6f773bff2d131f6fd8d",
-      "tasks.md": "c92d783815f1ee03c8f463606933da98cf3e359ebbb02962d2abc739d9a47805",
-      "implementation-summary.md": "1cc98506a95616a0b0c3652b9838904de1d01896f4c839b28942a48d4d32de99"
+      "tasks.md": "b25aae49358b4aee7314bc63dbcc43308ed32c6e794ec3703536dbe7f8d21172",
+      "implementation-summary.md": "1bd0655b89ffe3f99b640622049a0c97359113e999a43766354ebcadee700c1a"
     },
     "last_active_at": null
   }

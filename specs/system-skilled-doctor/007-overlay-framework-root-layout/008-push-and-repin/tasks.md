@@ -34,7 +34,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Record the baseline gates on local main before the merge (`S`). Verify: engine 262/262, guard 20/20, contract 9/9, each exit 0, and `route-validate` exits 0 with 32 routes.
-- [ ] T002 Fetch origin and predict the merge (`S`). Verify: `git merge-tree --write-tree --name-only main origin/main` reports no conflict, and no path it changes is dirty in the working tree.
+- [B] T002 Fetch origin and predict the merge (`S`). Verify: `git merge-tree --write-tree --name-only main origin/main` reports no conflict, and no path it changes is dirty in the working tree. Blocked 2026-11-20: against `origin/main` `bbbec2ed55e` it exits 1 with `CONFLICT (content)` in `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and the three retrieval fixtures `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json` under `runtime/cli/retrieval/fixtures/`. No dirty path overlaps. The merge waits for the operator's choice of resolution.
 <!-- /ANCHOR:phase-1 -->
 
 ---

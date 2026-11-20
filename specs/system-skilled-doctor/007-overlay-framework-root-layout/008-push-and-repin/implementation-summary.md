@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin"
     last_updated_at: "2026-11-20T16:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded the baseline gates on local main before the merge with origin"
-    next_safe_action: "Fetch origin, merge it into main, gate the merged tree and push"
+    recent_action: "Stopped before the merge: generated trigger index files conflict with origin"
+    next_safe_action: "Operator picks the resolution for the four generated files, then merge, gate and push"
     blockers: []
     key_files:
       - "spec.md"
@@ -95,7 +95,8 @@ The baseline gates ran on local main at `0557b1b8b43` before the merge. The merg
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The re-pin is not done.** It needs an ai-speckit session, and pushing ai-speckit needs the operator's go-ahead in that session.
+1. **The merge with origin is blocked.** `git merge-tree` predicts content conflicts in `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and the three retrieval fixtures `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json` under `runtime/cli/retrieval/fixtures/`, which both sides regenerated. The session stopped before merging, as its brief requires, and nothing was pushed.
+2. **The re-pin is not done.** It needs an ai-speckit session, and pushing ai-speckit needs the operator's go-ahead in that session.
 <!-- /ANCHOR:limitations -->
 
 ---
