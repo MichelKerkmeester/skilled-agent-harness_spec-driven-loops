@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.11.0
+version: 1.4.12.0
 ---
 
 # Fan-out CLI lineage driver
@@ -121,7 +121,7 @@ warning when there are more lineages than open seed nodes.
 
 `--preview` builds every lineage command without writing: it prints the redacted argv (each prompt replaced by its digest), cwd, session id, iterations, frontier scope, the Claude config dir when set and the model, reasoning effort, sandbox and permission mode, then exits before any directory, ledger or store exists. A `cli-mistral-vibe` lineage prints no command, and a matrix the real run would refuse prints that refusal.
 
-A lineage counts as fulfilled only when its state log holds at least one iteration, a terminal stop row from this attempt (`terminal_gates` for review, a closeout synthesis row for research) and no iteration stamped after that row or after the process ended. Otherwise it fails even at exit 0. The executor-group `--sandbox-mode` maps to `sandboxMode`. A `cli-claude-code` lineage keeps `workspace-write`, which runs `acceptEdits` and cannot run Bash in `-p` mode, so the runner warns at launch, and if that lineage records nothing its failure names `--sandbox-mode=danger-full-access`; `cli-opencode` accepts only `danger-full-access` explicitly.
+A lineage counts as fulfilled only when its state log holds at least one iteration, a terminal stop row from this attempt (`terminal_gates` for review, a closeout synthesis row for research), every iteration row before that terminal row in the file, and no row whose stamp carries an explicit zone stamped more than two minutes after the lineage process ended; iteration stamps are written by the model, so they are never compared with the terminal row's stamp. Otherwise it fails even at exit 0. The executor-group `--sandbox-mode` maps to `sandboxMode`. A `cli-claude-code` lineage keeps `workspace-write`, which runs `acceptEdits` and cannot run Bash in `-p` mode, so the runner warns at launch, and if that lineage records nothing its failure names `--sandbox-mode=danger-full-access`; `cli-opencode` accepts only `danger-full-access` explicitly.
 
 A fatally failed lineage prints one stderr line at once with its label and failure class. Provider ids, URLs and emails are masked in the ledger, stderr, a rotated log and a fatally failed lineage's raw log. A rerun rotates the previous raw log to `logs/fanout-lineage.N.out` instead of overwriting it. A review fan-out never refreshes the packet's `description.json`; research does unless `--no-metadata-refresh` is set.
 
