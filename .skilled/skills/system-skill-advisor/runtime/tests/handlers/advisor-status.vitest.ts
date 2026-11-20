@@ -444,6 +444,23 @@ describe('advisor_status handler', () => {
       coverageComplete: false,
       dimMismatch: false,
       lastRefresh: '2026-04-20T00:00:00.000Z',
+      disabledReason: 'incomplete_skill_vectors',
+      laneEnabled: false,
+    }));
+  });
+
+  it('reports the semantic lane enabled once every skill has a current vector', async () => {
+    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', '{"semantic_shadow":0.05}');
+    vi.resetModules();
+    const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
+    const root = workspace('semantic-health-complete');
+    writeCoverageHealthDb(root, true);
+    writeGeneration(root, 'live', 8);
+
+    const detailed = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+
+    expect(detailed.semanticLaneHealth).toEqual(expect.objectContaining({
+      coverageComplete: true,
       disabledReason: null,
       laneEnabled: true,
     }));

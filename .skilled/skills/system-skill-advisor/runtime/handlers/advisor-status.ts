@@ -221,7 +221,11 @@ function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
                       ? 'adapter_unavailable'
                       : (!hasVecTable
                           ? 'vector_table_missing'
-                          : (total > 0 && currentSkillCount === 0 ? 'no_skill_vectors' : runtime.disabledReason))))));
+                          : (total > 0 && currentSkillCount === 0
+                              ? 'no_skill_vectors'
+                              // Mirrors the lane's own coverage gate, which refuses to
+                              // score until every skill and command has a current vector.
+                              : (coverageComplete === false ? 'incomplete_skill_vectors' : runtime.disabledReason)))))));
     return {
       activeEmbedder,
       vectorCoverage: {

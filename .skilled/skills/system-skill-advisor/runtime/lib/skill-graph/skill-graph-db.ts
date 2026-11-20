@@ -1431,6 +1431,9 @@ export function embeddingCoverage(database?: Database.Database): EmbeddingCovera
 }
 
 let backgroundEmbeddingRefresh: Promise<SkillEmbeddingRefreshResult | null> | null = null;
+// A request that lands while a run is in flight may follow a reindex the run's
+// pass has already read past, so the run makes one more pass for it.
+let backgroundEmbeddingRefreshRequested: { skillDir: string | undefined } | null = null;
 
 /**
  * Embedding coverage is index-time and only changed rows cost calls; the prompt
@@ -1440,6 +1443,7 @@ export async function refreshEmbeddingsInBackground(
   skillDir?: string,
 ): Promise<SkillEmbeddingRefreshResult | null> {
   if (backgroundEmbeddingRefresh) {
+    backgroundEmbeddingRefreshRequested = { skillDir };
     return backgroundEmbeddingRefresh;
   }
   if (process.env.SYSTEM_SKILL_ADVISOR_EMBED_REFRESH?.toLowerCase() === 'off') {
@@ -1447,43 +1451,57 @@ export async function refreshEmbeddingsInBackground(
   }
 
   const refresh = (async (): Promise<SkillEmbeddingRefreshResult | null> => {
-    const database = getDb();
-    const coverage = embeddingCoverage(database);
-    if (coverage.complete) {
-      return null;
-    }
-
-    if (hasActiveEmbedderPointer(database)) {
-      const active = getActiveEmbedder(database);
-      const manifest = getManifest(active.name);
-      if (manifest?.backend === 'ollama') {
-        const probe = await probeOllamaModel(
-          resolveOllamaBaseUrl(),
-          manifest.ollamaName ?? manifest.name,
-          500,
-        );
-        if (!probe.available) {
-          return {
-            embedded: 0,
-            skipped: 0,
-            failed: 0,
-            warnings: [`embedding backend unavailable: ${probe.reason ?? 'unknown reason'}`],
-          };
-        }
+    try {
+      let result = await refreshEmbeddingsOnce(skillDir);
+      while (backgroundEmbeddingRefreshRequested) {
+        const request = backgroundEmbeddingRefreshRequested;
+        backgroundEmbeddingRefreshRequested = null;
+        // A later pass that finds coverage complete keeps the result of the pass
+        // that did the work.
+        result = (await refreshEmbeddingsOnce(request.skillDir)) ?? result;
       }
+      return result;
+    } finally {
+      // Runs in the same turn as the last pending-request check, so a request
+      // either joins this run before it or starts a new run after it.
+      backgroundEmbeddingRefresh = null;
+      backgroundEmbeddingRefreshRequested = null;
     }
-
-    return await refreshSkillEmbeddings(skillDir);
   })();
   backgroundEmbeddingRefresh = refresh;
+  return refresh;
+}
 
-  try {
-    return await refresh;
-  } finally {
-    if (backgroundEmbeddingRefresh === refresh) {
-      backgroundEmbeddingRefresh = null;
+async function refreshEmbeddingsOnce(
+  skillDir: string | undefined,
+): Promise<SkillEmbeddingRefreshResult | null> {
+  const database = getDb();
+  const coverage = embeddingCoverage(database);
+  if (coverage.complete) {
+    return null;
+  }
+
+  if (hasActiveEmbedderPointer(database)) {
+    const active = getActiveEmbedder(database);
+    const manifest = getManifest(active.name);
+    if (manifest?.backend === 'ollama') {
+      const probe = await probeOllamaModel(
+        resolveOllamaBaseUrl(),
+        manifest.ollamaName ?? manifest.name,
+        500,
+      );
+      if (!probe.available) {
+        return {
+          embedded: 0,
+          skipped: 0,
+          failed: 0,
+          warnings: [`embedding backend unavailable: ${probe.reason ?? 'unknown reason'}`],
+        };
+      }
     }
   }
+
+  return await refreshSkillEmbeddings(skillDir);
 }
 
 // A dead or wedged embedding backend fails every row for the same reason, so a
