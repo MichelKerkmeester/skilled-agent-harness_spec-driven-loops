@@ -6,7 +6,7 @@ trigger_phrases:
   - "opencode version detection"
   - "resolveOpencodeBinary version probe"
   - "OpenCode 1 refusal"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # OpenCode Version Detection (cli-opencode)
@@ -31,7 +31,7 @@ The probe runs the resolved executable with `--version` under a bounded timeout 
 
 `buildLineageCommand` routes a lineage to its kind adapter, and the `cli-opencode` adapter composes the argv. It refuses with an input error when the executor cannot be resolved, so an absent binary is a refusal before the run rather than a spawn failure inside it.
 
-The argv is `run --standalone -m <model>#<effort> --format json`, with `--auto` added for a `danger-full-access` sandbox and the effort folded into the model selector when one is set. OpenCode 2 has no directory flag, so the builder sets the spawn `cwd` to the directory root instead.
+The argv is `run --standalone -m <model>#<effort> --format json --auto`, with the effort folded into the model selector when one is set. Under `workspace-write`, the default when no sandbox mode is set, the builder also hands the child an inline `OPENCODE_CONFIG_CONTENT` that denies `external_directory`; that stops the file tools at the working directory but not Bash, which can still write anywhere. `danger-full-access` adds no deny, and `read-only` is refused. OpenCode 2 has no directory flag, so the builder sets the spawn `cwd` to the directory root instead.
 
 The native lineage kind has no fan-out adapter. `buildLineageCommand` refuses a `native` lineage, and a fan-out that expands to one is refused before any spawn, because OpenCode 2 `run` cannot start a registered command. `native` remains the single-executor default, dispatched by the workflow.
 

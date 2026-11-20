@@ -399,11 +399,18 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
         + '  process.exit(0);\n'
         + '}\n'
         + `fs.writeFileSync(${JSON.stringify(recordPath)}, JSON.stringify(argv));\n`
+        + `fs.writeFileSync(${JSON.stringify(childEnvironmentPath(recordPath))}, `
+        + 'JSON.stringify({ opencodeConfigContent: process.env.OPENCODE_CONFIG_CONTENT ?? null }));\n'
         + 'process.exit(0);\n',
       'utf8',
     );
     chmodSync(shimPath, 0o755);
     return { root, repo, recordPath };
+  }
+
+  // Beside the argv record, the shim keeps the one environment value a builder may inject.
+  function childEnvironmentPath(recordPath: string): string {
+    return recordPath.replace(/\.json$/, '-child-environment.json');
   }
 
   function dispatchArgv(
@@ -412,7 +419,7 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
     version: string,
     sandboxMode: string,
     extraFlags: string[] = [],
-  ): { status: number | null; stderr: string; argv: string[] | null } {
+  ): { status: number | null; stderr: string; argv: string[] | null; fixture: SandboxFixture } {
     const fixture = createSandboxFixture(command, version);
     const result = spawnSync(process.execPath, [
       SCRIPT,
@@ -445,7 +452,7 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
     const argv = existsSync(fixture.recordPath)
       ? JSON.parse(readFileSync(fixture.recordPath, 'utf8')) as string[]
       : null;
-    return { status: result.status, stderr: result.stderr ?? '', argv };
+    return { status: result.status, stderr: result.stderr ?? '', argv, fixture };
   }
 
   function flagValue(argv: string[] | null, flag: string): string | undefined {
@@ -490,6 +497,112 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
     it('keeps workspace-write when no sandbox mode is set', () => {
       const run = dispatchArgv('cli-deepseek-harness', 'dsh', '0.2.2-rc.3', 'null', harnessFlags);
       expect(flagValue(run.argv, '--permission-mode')).toBe('workspace-write');
+    });
+  });
+
+  // OpenCode has no OS sandbox, so workspace-write reaches it only as an inline config that
+  // denies external_directory to its file tools. The deny exists only in the child's
+  // environment, so these cases read what the shim saw, not what the builder returned.
+  describe.skipIf(detectFromAncestry('cli-opencode'))('cli-opencode', () => {
+    const OPENCODE_VERSION = '2.3.2';
+
+    function childConfigContent(recordPath: string): string | null {
+      return (JSON.parse(readFileSync(childEnvironmentPath(recordPath), 'utf8')) as {
+        opencodeConfigContent: string | null;
+      }).opencodeConfigContent;
+    }
+
+    function receiptSandboxMode(packetDir: string, dispatchId: string): unknown {
+      const receipt = JSON.parse(readFileSync(
+        join(packetDir, 'dispatch-receipts', `dispatch-${dispatchId}.intent.json`),
+        'utf8',
+      )) as { facts: { executor: { sandboxMode: unknown } } };
+      return receipt.facts.executor.sandboxMode;
+    }
+
+    for (const sandboxMode of ['null', 'workspace-write']) {
+      it(`hands the child an external_directory deny under workspace-write (sandbox mode ${sandboxMode})`, () => {
+        const run = dispatchArgv('cli-opencode', 'opencode', OPENCODE_VERSION, sandboxMode);
+        expect(run.argv).toContain('--auto');
+        expect(JSON.parse(childConfigContent(run.fixture.recordPath) as string)).toEqual({
+          permission: { external_directory: 'deny' },
+        });
+        expect(receiptSandboxMode(join(run.fixture.repo, 'packet'), 'research-i1-g1')).toBe('workspace-write');
+      });
+    }
+
+    // Passes before and after the deny was wired through: it guards against the deny
+    // leaking into the one mode that asks for no path restriction.
+    it('injects no inline config for an explicit danger-full-access', () => {
+      const run = dispatchArgv('cli-opencode', 'opencode', OPENCODE_VERSION, 'danger-full-access');
+      expect(run.argv).toContain('--auto');
+      expect(childConfigContent(run.fixture.recordPath)).toBeNull();
+      expect(receiptSandboxMode(join(run.fixture.repo, 'packet'), 'research-i1-g1')).toBe('danger-full-access');
+    });
+
+    it('refuses a read-only dispatch before the child runs', () => {
+      const run = dispatchArgv('cli-opencode', 'opencode', OPENCODE_VERSION, 'read-only');
+      expect(run.status).not.toBe(0);
+      expect(run.stderr).toContain("cannot enforce sandbox mode 'read-only'");
+      expect(run.argv).toBeNull();
+    });
+
+    // The review branch dispatches only from a linked worktree whose primary checkout on
+    // main is clean, with a prompt that carries the write-containment sections.
+    it('hands the review child the same deny when no sandbox mode is set', () => {
+      const fixture = createSandboxFixture('opencode', OPENCODE_VERSION);
+      const root = realpathSync(fixture.root);
+      const primary = join(root, 'primary');
+      const worktree = join(root, 'worktree');
+      const git = (cwd: string, args: string[]) => {
+        const result = spawnSync('git', args, { cwd, encoding: 'utf8' });
+        expect(result.status, result.stderr).toBe(0);
+      };
+      mkdirSync(join(primary, '.skilled', 'agents'), { recursive: true });
+      writeFileSync(join(primary, '.skilled', 'agents', 'deep-review.md'), 'persona\n', 'utf8');
+      git(root, ['init', '-q', '-b', 'main', primary]);
+      git(primary, ['add', '.']);
+      git(primary, ['-c', 'user.name=t', '-c', 'user.email=t@example.invalid', 'commit', '-q', '-m', 'init']);
+      git(primary, ['worktree', 'add', '-q', '-b', 'review', worktree]);
+      const packetDir = join(worktree, 'packet');
+      mkdirSync(packetDir);
+      writeFileSync(
+        join(root, 'review-prompt.md'),
+        'BANNED OPERATIONS\nnone\nALLOWED WRITE PATHS\npacket\n',
+        'utf8',
+      );
+      const result = spawnSync(process.execPath, [
+        SCRIPT,
+        '--executor', 'cli-opencode',
+        '--loop-type', 'review',
+        '--repo-root', worktree,
+        '--prompt-file', join(root, 'review-prompt.md'),
+        '--state-log', join(root, 'state.jsonl'),
+        '--packet-dir', packetDir,
+        '--artifact-dir', packetDir,
+        '--iteration', '1',
+        '--generation', '1',
+        '--session-id', 's',
+        '--model', 'null',
+        '--reasoning-effort', 'null',
+        '--service-tier', 'null',
+        '--sandbox-mode', 'null',
+        '--timeout-seconds', '60',
+      ], {
+        cwd: worktree,
+        encoding: 'utf8',
+        timeout: 60_000,
+        env: {
+          PATH: `${join(root, 'bin')}:${process.env.PATH}`,
+          HOME: root,
+          TMPDIR: process.env.TMPDIR,
+        },
+      });
+      expect(existsSync(fixture.recordPath), result.stderr).toBe(true);
+      expect(JSON.parse(childConfigContent(fixture.recordPath) as string)).toEqual({
+        permission: { external_directory: 'deny' },
+      });
+      expect(receiptSandboxMode(packetDir, 'review-i1-g1')).toBe('workspace-write');
     });
   });
 });

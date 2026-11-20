@@ -2825,16 +2825,16 @@ function sandboxEnforcementFor(input) {
 }
 
 function finalizeLineageCommand(input) {
-  // cli-opencode exposes no OS-level sandbox or permission-scoping flag: read-only and
-  // workspace-write are indistinguishable at the command level (buildOpencodeLineageCommand
-  // only branches on danger-full-access), so recording either as the effective sandbox mode
-  // is a false guarantee. A caller that requested confinement must be told the request
-  // cannot be honored rather than silently downgraded to unconfined writes with an advisory
-  // label, so dispatch fails closed instead of proceeding.
-  if (input.kind === 'cli-opencode' && input.resolvedSandbox && input.resolvedSandbox !== 'danger-full-access') {
+  // cli-opencode has no OS-level sandbox. workspace-write is honoured only as a permission
+  // rule (external_directory denied for its file tools), and its Bash tool can still write
+  // anywhere, so no read-only boundary exists. A read-only request must be refused rather
+  // than recorded as a boundary the process never had, so dispatch fails closed.
+  if (input.kind === 'cli-opencode' && input.resolvedSandbox
+    && input.resolvedSandbox !== 'danger-full-access' && input.resolvedSandbox !== 'workspace-write') {
     throw inputError(
-      `cli-opencode cannot enforce sandbox mode '${input.resolvedSandbox}': the executor exposes `
-        + 'no confinement flag for it; use \'danger-full-access\' or a dispatch kind that can enforce this sandbox mode',
+      `cli-opencode cannot enforce sandbox mode '${input.resolvedSandbox}': its Bash tool can write anywhere, `
+        + 'so no read-only boundary exists; use \'workspace-write\' (file tools denied outside the working '
+        + 'directory, Bash not confined), \'danger-full-access\', or a dispatch kind that can enforce this sandbox mode',
     );
   }
   const effectiveConfig = {
@@ -2969,24 +2969,44 @@ function pinReasoningEffortForModel(model, reasoningEffort) {
   return isFlashMaxPinnedModel(model) ? 'max' : reasoningEffort;
 }
 
+// OpenCode reads OPENCODE_CONFIG_CONTENT as inline config that overrides the project's
+// opencode.json, so a workspace-write lineage gets its external_directory deny there. An
+// inherited value keeps every other key; one this cannot merge into is refused rather than
+// replaced, because replacing it would silently drop the caller's own settings.
+function opencodeWorkspaceWriteConfigContent(inherited) {
+  let config = {};
+  if (inherited !== undefined && inherited !== '') {
+    try {
+      config = JSON.parse(inherited);
+    } catch (error) {
+      throw inputError(`cli-opencode workspace-write cannot merge into OPENCODE_CONFIG_CONTENT: not valid JSON (${error.message})`);
+    }
+    if (!isRecord(config)) {
+      throw inputError('cli-opencode workspace-write cannot merge into OPENCODE_CONFIG_CONTENT: it is not a JSON object');
+    }
+  }
+  if (config.permission !== undefined && !isRecord(config.permission)) {
+    throw inputError('cli-opencode workspace-write cannot merge into OPENCODE_CONFIG_CONTENT: its permission key is not an object');
+  }
+  return JSON.stringify({ ...config, permission: { ...(config.permission || {}), external_directory: 'deny' } });
+}
+
 function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  const parentEnv = options.env || process.env;
   let opencode;
   try {
-    opencode = resolveOpencodeBinary(options.env || process.env);
+    opencode = resolveOpencodeBinary(parentEnv);
   } catch (error) {
     throw inputError(`cli-opencode executor unavailable: ${error.message}`);
   }
 
   const model = lineage.model || OPENCODE_DEFAULT_MODEL;
   const opencodeEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
-  const useDangerousBypass = resolvedSandbox === 'danger-full-access';
-  if (useDangerousBypass) {
-    process.stderr.write(
-      `WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --auto. `
-        + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
-    );
-  }
-
+  // Every headless mode runs with --auto, which approves any permission not explicitly
+  // denied. workspace-write adds an explicit external_directory deny, which stops the file
+  // tools (edit, write, read) at the working directory. Bash is not path-confined in either
+  // mode, so this is a compensating control, never a sandbox.
+  const workspaceWrite = resolvedSandbox === 'workspace-write';
   const args = [
     'run',
     '--standalone',
@@ -2994,11 +3014,11 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
     opencodeEffort ? `${model}#${opencodeEffort}` : model,
     '--format',
     'json',
+    '--auto',
+    prompt,
   ];
-  if (useDangerousBypass) args.push('--auto');
-  args.push(prompt);
 
-  return finalizeLineageCommand({
+  const built = finalizeLineageCommand({
     kind: lineage.kind,
     command: opencode.command,
     args,
@@ -3011,9 +3031,20 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission,
+    compensatingControl: workspaceWrite,
     webSearch: effectiveWebSearchPolicy(lineage),
     cwd: options.directoryRoot || process.cwd(),
+    ...(workspaceWrite
+      ? { env: { OPENCODE_CONFIG_CONTENT: opencodeWorkspaceWriteConfigContent(parentEnv.OPENCODE_CONFIG_CONTENT) } }
+      : {}),
   });
+  process.stderr.write(workspaceWrite
+    ? `WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --auto and external_directory denied: `
+      + 'file tools outside the working directory are refused, but Bash is not confined and can still '
+      + 'write anywhere, so the lineageDir write boundary is prompt-only for Bash.\n'
+    : `WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --auto and no path restriction. `
+      + 'The lineageDir write boundary is prompt-only, not sandbox-enforced.\n');
+  return built;
 }
 
 // Mirrors CURSOR_SUPPORTED_MODELS in executor-config.ts. Duplicated as a plain
@@ -4131,16 +4162,11 @@ async function main() {
     // workspace-write would be the stronger fix if the CLIs exposed one. Callers can still pass an
     // explicit sandboxMode to override.
     //
-    // cli-opencode has no OS-level sandbox flag at all, so the generic workspace-write
-    // default would silently ask it to honor a mode it can never enforce. An UNSPECIFIED
-    // sandboxMode for this kind resolves to danger-full-access instead -- the only mode it
-    // can honestly report as effective -- so ordinary dispatch proceeds normally. A caller
-    // that EXPLICITLY asks for read-only/workspace-write still reaches finalizeLineageCommand
-    // unmodified, where that genuine confinement request is rejected.
-    const effectiveSandbox = lineage.kind === 'cli-opencode'
-      && (lineage.sandboxMode === null || lineage.sandboxMode === undefined)
-      ? 'danger-full-access'
-      : resolveSandboxMode(lineage.sandboxMode);
+    // cli-opencode takes the same workspace-write default. It has no OS-level sandbox, so its
+    // builder honours workspace-write by denying external_directory to the file tools and
+    // records that as a compensating control: Bash can still write outside the working
+    // directory. An explicit read-only is refused in finalizeLineageCommand.
+    const effectiveSandbox = resolveSandboxMode(lineage.sandboxMode);
     const effectivePermission = resolveClaudePermissionMode(lineage.sandboxMode);
 
     const built = buildLineageCommand(lineage, prompt, effectiveSandbox, effectivePermission, {

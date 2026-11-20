@@ -7,7 +7,7 @@ trigger_phrases:
   - "select review executor"
   - "per-kind flag compatibility"
   - "native cli-opencode dispatch"
-version: 1.11.7.0
+version: 1.11.8.0
 ---
 
 # Executor Selection Contract
@@ -29,7 +29,7 @@ Before each dispatch, the workflow resolves the executor via `parseExecutorConfi
 | Kind | Dispatch |
 |---|---|
 | `native` | `@deep-review` agent with model Opus |
-| `cli-opencode` | the rendered prompt is passed as the `opencode run` message argument with stdin closed, using `run --standalone -m <model>#<effort> --format json`. `--auto` (auto-approve permissions) is added only for a `danger-full-access` sandbox. The executor exposes no sandbox flag, and `finalizeLineageCommand` refuses any other sandbox before dispatch, so a read-only request is refused rather than run unconfined. For a full-access lane, the only containment is the prompt-level "ALLOWED WRITE PATHS"/"BANNED OPERATIONS" contract (model-obeyed, not OS-enforced) plus post-dispatch validation. Review targets must be treated as potentially adversarial content. |
+| `cli-opencode` | the rendered prompt is passed as the `opencode run` message argument with stdin closed, using `run --standalone -m <model>#<effort> --format json`. `--auto` (auto-approve permissions) is always passed. The executor exposes no sandbox flag. An unset or `workspace-write` sandbox adds an inline `OPENCODE_CONFIG_CONTENT` that denies `external_directory`, which stops OpenCode's file tools at the working directory but does not confine Bash, so Bash can still write anywhere. `danger-full-access` adds no deny, and `finalizeLineageCommand` refuses `read-only` before dispatch rather than run it unconfined. Beyond that file-tool deny, the only containment is the prompt-level "ALLOWED WRITE PATHS"/"BANNED OPERATIONS" contract (model-obeyed, not OS-enforced) plus post-dispatch validation. Review targets must be treated as potentially adversarial content. |
 | `cli-claude-code` | `claude -p` with a permission mode resolved from `--sandbox-mode`, as on research: `acceptEdits` when it is unset or `workspace-write`, `plan` when it is `read-only`, and `bypassPermissions` when it is `danger-full-access`. The default cannot run Bash in `-p` mode, so a run that must record state through the append gateway needs `--sandbox-mode=danger-full-access`. |
 | `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` | the kind's own CLI, started by `dispatch-iteration.cjs` with the rendered prompt. The requested `--sandbox-mode` is mapped to the kind's own read-only or write surface: unset resolves to `workspace-write`, and a requested `read-only` is never widened, so an iteration that must write fails at the artifact gate instead of gaining write access. The deepseek harness narrows `danger-full-access` to `workspace-write` |
 | `cli-mistral-vibe` | none in a single-executor run, which refuses it. It runs only as a fan-out lineage |
