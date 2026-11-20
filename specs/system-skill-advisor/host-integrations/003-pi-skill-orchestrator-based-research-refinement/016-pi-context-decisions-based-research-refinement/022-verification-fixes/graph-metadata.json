@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The launcher judges the daemon's heartbeat file from one read and never notices that it was itself asleep, so on wake it can SIGTERM a healthy daemon",
     "created_at": "2026-11-20T15:31:23Z",
-    "last_save_at": "2026-11-20T16:09:55.519Z",
+    "last_save_at": "2026-11-20T16:21:44.268Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +219,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6228083c10951f4763e4bb07dc8bfeceaa31cf4384a88e8f2e1be1128b532789",
+    "source_fingerprint": "sha256:7462af998a0d75a85cc3e6df06641d3929b4b04778ae80ec723880422c9ee40b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dee269317910ce029837aa048bdd65b0d8bc08faab63f3f0b9a697071f1d1eb7",
+      "spec.md": "2d975bc6a63124ce51e12182ac00009cfae3af878d2ea3aa689cc4051f8d0a83",
       "plan.md": "ab6e014cc60ff796b1cdb49bc507275e3a4ed1c7a51b61282785dcb31b6bc584",
       "tasks.md": "d2414c1c3ac0a1bb051fd4e6dd86103e12112c3bd788b423fbbdf7c8a71d9738",
       "decision-record.md": "38b1c77f92b5af40a26bf1b9a6d9e5809e6406047bd398c3d8ed1ebcaddb74d7",

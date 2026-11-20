@@ -100,15 +100,15 @@ Commands run in the primary checkout at main `cb751e06e38`, which holds the pre-
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/bin/system-skill-advisor-launcher.cjs` | Modify | Skip a heartbeat check after a long gap between the watchdog's own checks |
-| `.skilled/skills/system-skill-advisor/runtime/lib/daemon/liveness.ts`, `runtime/advisor-server.ts` | Modify | Read the launcher PID before startup work and pass it to the watch |
+| `.skilled/bin/system-skill-advisor-launcher.cjs` | Modify | Skip a heartbeat check after a long gap between the watchdog's own checks, and pass the launcher's pid to the server at spawn |
+| `.skilled/skills/system-skill-advisor/runtime/lib/daemon/liveness.ts`, `runtime/advisor-server.ts` | Modify | Take the launcher PID from the spawn env, read before startup work, and pass it to the watch |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Modify | One coverage gate for the pre-embed check and both scoring paths, and no stale reason at weight 0 |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`, `runtime/handlers/advisor-recommend.ts` | Modify | No degraded lane at weight 0, and incomplete coverage leaves the live total |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`, `runtime/handlers/advisor-recommend.ts` | Modify | No degraded lane at weight 0, and every pre-score refusal leaves the live total |
 | `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts` | Modify | Per-pass catch in the refresh, corrected stale-vector comments |
 | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Modify | A disabled hook's crash returns `{}` |
 | `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` | Modify | Drop the route receipt at a boundary and hold the next turn until it finishes |
 | `.skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts` | Modify | Comment names the background refresh as a vector writer |
-| Tests under `.skilled/bin/`, `runtime/tests/` and `hooks/tests/`, and the shared strip fixture | Create/Modify | One test per behavior change |
+| Tests under `.skilled/bin/`, `runtime/tests/` and `hooks/tests/`, and the shared strip fixture | Create/Modify | One test per behavior change; `launcher-threshold-env.vitest.ts` and `launcher-bootstrap.vitest.ts` expect the launcher pid in the child env |
 | Catalog, reference and playbook pages under `.skilled/skills/system-skill-advisor/` | Modify | State the shipped behavior |
 <!-- /ANCHOR:scope -->
 
