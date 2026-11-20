@@ -15,7 +15,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 const here = fileURLToPath(new URL('.', import.meta.url));
 const scriptsDir = resolve(here, '..', '..', 'scripts');
 const requireCjs = createRequire(import.meta.url);
-const { mergeReviewRegistries, readLineageTrust } = requireCjs(join(scriptsDir, 'fanout-merge.cjs'));
+const { mergeResearchRegistries, mergeReviewRegistries, readLineageTrust } =requireCjs(join(scriptsDir, 'fanout-merge.cjs'));
 const { readLineagePassSummary } = requireCjs(join(scriptsDir, 'fanout-salvage.cjs'));
 
 const tempDirs: string[] = [];
@@ -124,5 +124,66 @@ describe('fan-out merge lineage trust', () => {
 
     // No summary entry is not a rejection: a merge over a hand-built tree stays accepted.
     expect(readLineageTrust({}, 'opus', lineageDir).runnerStatus).toBe('succeeded');
+  });
+});
+
+function researchFinding(id: string, addedAtIteration: number, text = `finding ${id}`) {
+  return { id, text, addedAtIteration };
+}
+
+function researchLineage(label: string, keyFindings: unknown[], resolved: string[], open: string[], trust?: unknown) {
+  return {
+    label,
+    stateRecords: [],
+    registry: {
+      keyFindings,
+      resolvedQuestions: resolved.map((id) => ({ id, text: `question ${id}`, resolved: true })),
+      openQuestions: open.map((id) => ({ id, text: `question ${id}`, resolved: false })),
+    },
+    ...(trust ? { trust } : {}),
+  };
+}
+
+describe('fan-out research merge lineage trust', () => {
+  it('merges an accepted research lineage with unflagged passes exactly as before', () => {
+    const merged = mergeResearchRegistries([
+      researchLineage('opus', [researchFinding('F1', 1)], ['Q1'], ['Q2'], { runnerStatus: 'succeeded', failureClass: null, unexaminedPasses: {} }),
+    ]);
+    expect(merged.keyFindings).toHaveLength(1);
+    expect(merged.keyFindings[0]).not.toHaveProperty('_untrusted');
+    expect(merged.resolvedQuestions.map((q: { id: string }) => q.id)).toEqual(['Q1']);
+    expect(merged.openQuestions.map((q: { id: string }) => q.id)).toEqual(['Q2']);
+    expect(merged).not.toHaveProperty('untrustedLineages');
+  });
+
+  it('labels a rejected lineage and a flagged pass, keeps their findings, and answers no question for them', () => {
+    const merged = mergeResearchRegistries([
+      researchLineage('deepseek', [researchFinding('B', 1)], ['Q-ONLY-REJECTED', 'Q-BOTH'], [], {
+        runnerStatus: 'failed', failureClass: 'exit', unexaminedPasses: {},
+      }),
+      researchLineage('opus', [researchFinding('A', 1), researchFinding('FLAGGED', 3)], ['Q-FLAGGED'], [], {
+        runnerStatus: 'succeeded', failureClass: null, unexaminedPasses: { 3: ['batched_commit'] },
+      }),
+      researchLineage('gpt', [researchFinding('C', 1)], ['Q-BOTH'], [], {
+        runnerStatus: 'succeeded', failureClass: null, unexaminedPasses: {},
+      }),
+    ]);
+
+    const byId = Object.fromEntries(merged.keyFindings.map((f: { id: string }) => [f.id, f]));
+    expect(merged.keyFindings).toHaveLength(4);
+    expect(byId.B._untrusted).toEqual([{ lineage: 'deepseek', reason: 'runner_failed:exit' }]);
+    // The flagged pass is matched through the research finding's own iteration field.
+    expect(byId.FLAGGED._untrusted).toEqual([{ lineage: 'opus', reason: 'unexamined_pass:3:batched_commit' }]);
+    expect(byId.A).not.toHaveProperty('_untrusted');
+    expect(byId.C).not.toHaveProperty('_untrusted');
+    // Only a trusted lineage answers a question; one answered only by untrusted lineages stays open.
+    expect(merged.resolvedQuestions.map((q: { id: string }) => q.id)).toEqual(['Q-BOTH']);
+    expect(merged.openQuestions.map((q: { id: string }) => q.id).sort()).toEqual(['Q-FLAGGED', 'Q-ONLY-REJECTED']);
+    expect(merged.metrics.resolvedQuestions).toBe(1);
+    expect(merged.metrics.openQuestions).toBe(2);
+    expect(merged.untrustedLineages).toEqual([
+      { lineage: 'deepseek', runnerStatus: 'failed', failureClass: 'exit', unexaminedPasses: [] },
+      { lineage: 'opus', runnerStatus: 'succeeded', failureClass: null, unexaminedPasses: [3] },
+    ]);
   });
 });

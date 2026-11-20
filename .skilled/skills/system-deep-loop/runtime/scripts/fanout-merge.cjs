@@ -820,8 +820,11 @@ function mergeResearchRegistries(lineageData, options = {}) {
   const mergeOptions = resolveMergeOptions(options);
   const findingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
   const schemaWarnings = [];
+  // lineage -> finding id -> untrust reason (null when trusted)
+  const untrustByLineage = new Map();
 
-  for (const { label, registry: rawRegistry } of lineageData) {
+  for (const lineage of lineageData) {
+    const { label, registry: rawRegistry } = lineage;
     const { registry, warnings } = normalizeRegistrySchema(rawRegistry, {
       canonicalKey: 'keyFindings',
       aliases: { findings: 'keyFindings' },
@@ -835,6 +838,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
     for (const finding of registry.keyFindings) {
       const id = finding.id || finding.title;
       if (!id) continue;
+      recordUntrustReason(untrustByLineage, label, id, findingUntrustReason(lineage, finding.addedAtIteration));
       if (mergeOptions.enableNearDuplicateDedup) {
         addResearchFinding(getFindingBucket(findingById, id, finding, true).records, finding, label, mergeOptions);
       } else {
@@ -847,12 +851,19 @@ function mergeResearchRegistries(lineageData, options = {}) {
   const mergedFindings = mergeOptions.enableNearDuplicateDedup
     ? flattenFindingBucketIndex(findingById, 'id', ['id', 'title'])
     : flattenFindingBuckets(findingById, 'id', ['id', 'title']);
+  labelUntrustedFindings(mergedFindings, lineageData, untrustByLineage, 'id');
+  const untrustedLineages = listUntrustedLineages(lineageData);
   const openQuestionsById = new Map();
   const resolvedQuestionsById = new Map();
   const ruledOutById = new Map();
+  const unvouchedAnswersById = new Map();
 
-  for (const { label, registry } of lineageData) {
+  for (const lineage of lineageData) {
+    const { label, registry } = lineage;
     if (!registry) continue;
+    // An answered question is a coverage claim, so only a lineage that vouches for coverage
+    // may make it. An untrusted lineage's answer leaves the question open.
+    const vouches = lineageVouchesForCoverage(lineage);
     for (const q of (Array.isArray(registry.openQuestions) ? registry.openQuestions : [])) {
       const id = q.id || q.question || q.text;
       if (!id) continue;
@@ -868,9 +879,10 @@ function mergeResearchRegistries(lineageData, options = {}) {
     for (const q of (Array.isArray(registry.resolvedQuestions) ? registry.resolvedQuestions : [])) {
       const id = q.id || q.question || q.text;
       if (!id) continue;
-      if (!resolvedQuestionsById.has(id)) resolvedQuestionsById.set(id, { ...q, _lineages: [label] });
+      const target = vouches ? resolvedQuestionsById : unvouchedAnswersById;
+      if (!target.has(id)) target.set(id, { ...q, _lineages: [label] });
       else {
-        const existing = resolvedQuestionsById.get(id);
+        const existing = target.get(id);
         addLineage(existing, label);
       }
     }
@@ -879,6 +891,11 @@ function mergeResearchRegistries(lineageData, options = {}) {
       if (!id) continue;
       if (!ruledOutById.has(id)) ruledOutById.set(id, { ...d, _lineages: [label] });
     }
+  }
+  for (const [id, answer] of unvouchedAnswersById) {
+    if (resolvedQuestionsById.has(id)) continue;
+    if (!openQuestionsById.has(id)) openQuestionsById.set(id, { ...answer, resolved: false });
+    else for (const label of answer._lineages) addLineage(openQuestionsById.get(id), label);
   }
 
   const totalIters = lineageData.reduce((sum, { registry }) => {
@@ -916,6 +933,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
       convergenceScore: Math.round(avgConvergence * 1000) / 1000,
       coverageBySources: {},
     },
+    ...(untrustedLineages.length > 0 ? { untrustedLineages } : {}),
     ...(schemaWarnings.length > 0 ? { schema_mismatch: schemaWarnings } : {}),
     ...(hasFrontier ? { frontier: mergeResearchFrontier(lineageData, options.frontierPartition) } : {}),
   };
@@ -1096,13 +1114,51 @@ function lineageVouchesForCoverage(lineage) {
   return lineage?.trust?.runnerStatus !== 'failed' && lineageUnexaminedIterations(lineage).length === 0;
 }
 
-// Why one lineage's report of a finding is untrusted, or null when it is trusted.
-function findingUntrustReason(lineage, finding) {
+// Why one lineage's report of a finding is untrusted, or null when it is trusted. The
+// iteration is the pass that first reported the finding, which each loop names differently.
+function findingUntrustReason(lineage, iteration) {
   const trust = lineage?.trust;
   if (!trust) return null;
   if (trust.runnerStatus === 'failed') return `runner_failed:${trust.failureClass ?? 'unknown'}`;
-  const reasons = trust.unexaminedPasses?.[finding?.firstSeen];
-  return reasons ? `unexamined_pass:${finding.firstSeen}:${reasons.join(',')}` : null;
+  const reasons = trust.unexaminedPasses?.[iteration];
+  return reasons ? `unexamined_pass:${iteration}:${reasons.join(',')}` : null;
+}
+
+function recordUntrustReason(untrustByLineage, label, id, reason) {
+  if (!untrustByLineage.has(label)) untrustByLineage.set(label, new Map());
+  untrustByLineage.get(label).set(id, reason);
+}
+
+// A merged finding is untrusted only when every lineage that reported it is: one accepted
+// lineage on an unflagged pass is enough to vouch for it. Untrusted findings stay in the
+// list and in every count. The reasons are read back after the merge because dedup keeps
+// one source's fields and would carry or drop a label by chance.
+function labelUntrustedFindings(mergedFindings, lineageData, untrustByLineage, idKey) {
+  const lineageByLabel = new Map(lineageData.map((lineage) => [lineage.label, lineage]));
+  for (const record of mergedFindings) {
+    const id = record._conflictOf || record[idKey] || record.title;
+    const reasons = (record._lineages || []).map((label) => {
+      const perId = untrustByLineage.get(label);
+      const reason = perId && perId.has(id)
+        ? perId.get(id)
+        : findingUntrustReason(lineageByLabel.get(label), undefined);
+      return { lineage: label, reason };
+    });
+    if (reasons.length > 0 && reasons.every((entry) => entry.reason !== null)) {
+      record._untrusted = reasons.sort((a, b) => compareText(a.lineage, b.lineage));
+    }
+  }
+}
+
+function listUntrustedLineages(lineageData) {
+  return lineagesByLabel(lineageData)
+    .filter((lineage) => !lineageVouchesForCoverage(lineage))
+    .map((lineage) => ({
+      lineage: lineage.label,
+      runnerStatus: lineage.trust.runnerStatus,
+      failureClass: lineage.trust.failureClass,
+      unexaminedPasses: lineageUnexaminedIterations(lineage),
+    }));
 }
 
 function mergeReviewCoverageSurfaces(lineageData) {
@@ -1156,8 +1212,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
       const id = finding.findingId || finding.title;
       if (!id) continue;
       activeFindingIds.add(id);
-      if (!untrustByLineage.has(label)) untrustByLineage.set(label, new Map());
-      untrustByLineage.get(label).set(id, findingUntrustReason(lineage, finding));
+      recordUntrustReason(untrustByLineage, label, id, findingUntrustReason(lineage, finding.firstSeen));
       if (mergeOptions.enableNearDuplicateDedup) {
         addReviewFinding(getFindingBucket(findingById, id, finding, true).records, finding, label, mergeOptions);
       } else {
@@ -1196,31 +1251,9 @@ function mergeReviewRegistries(lineageData, options = {}) {
   const mergedFindings = mergeOptions.enableNearDuplicateDedup
     ? flattenFindingBucketIndex(findingById, 'findingId', ['findingId', 'title'])
     : flattenFindingBuckets(findingById, 'findingId', ['findingId', 'title']);
-  // A merged finding is untrusted only when every lineage that reported it is: one accepted
-  // lineage on an unflagged pass is enough to vouch for it. Untrusted findings stay in the
-  // list and in the severity counts, so a rejected lineage's P1 still moves the verdict.
-  const lineageByLabel = new Map(lineageData.map((lineage) => [lineage.label, lineage]));
-  for (const record of mergedFindings) {
-    const id = record._conflictOf || record.findingId || record.title;
-    const reasons = (record._lineages || []).map((label) => {
-      const perId = untrustByLineage.get(label);
-      const reason = perId && perId.has(id)
-        ? perId.get(id)
-        : findingUntrustReason(lineageByLabel.get(label), {});
-      return { lineage: label, reason };
-    });
-    if (reasons.length > 0 && reasons.every((entry) => entry.reason !== null)) {
-      record._untrusted = reasons.sort((a, b) => compareText(a.lineage, b.lineage));
-    }
-  }
-  const untrustedLineages = lineagesByLabel(lineageData)
-    .filter((lineage) => !lineageVouchesForCoverage(lineage))
-    .map((lineage) => ({
-      lineage: lineage.label,
-      runnerStatus: lineage.trust.runnerStatus,
-      failureClass: lineage.trust.failureClass,
-      unexaminedPasses: lineageUnexaminedIterations(lineage),
-    }));
+  // Untrusted findings keep their severity, so a rejected lineage's P1 still moves the verdict.
+  labelUntrustedFindings(mergedFindings, lineageData, untrustByLineage, 'findingId');
+  const untrustedLineages = listUntrustedLineages(lineageData);
   const activeP0 = mergedFindings.filter((f) => f.severity === 'P0' && (f.disposition ?? f.status) === 'active').length;
   const activeP1 = mergedFindings.filter((f) => f.severity === 'P1' && (f.disposition ?? f.status) === 'active').length;
   const activeP2 = mergedFindings.filter((f) => f.severity === 'P2' && (f.disposition ?? f.status) === 'active').length;
@@ -1888,6 +1921,7 @@ async function main() {
       ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, active_p2: mergedRegistry.activeP2, search_debt: mergedRegistry.searchDebt.length, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds, ...(mergedRegistry.untrustedLineages ? { untrusted_lineages: mergedRegistry.untrustedLineages } : {}), ...(mergedRegistry.frontier?.partitionGuard ? { frontier_partition_guard: mergedRegistry.frontier.partitionGuard } : {}) }
       : {
         key_findings: mergedRegistry.keyFindings?.length ?? 0,
+        ...(mergedRegistry.untrustedLineages ? { untrusted_lineages: mergedRegistry.untrustedLineages } : {}),
         ...(mergedRegistry.frontier?.partitionGuard ? { frontier_partition_guard: mergedRegistry.frontier.partitionGuard } : {}),
       }),
   });
