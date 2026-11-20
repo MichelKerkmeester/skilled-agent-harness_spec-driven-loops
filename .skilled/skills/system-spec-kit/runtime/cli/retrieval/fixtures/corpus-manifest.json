@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e66fc2e501f17332a30fd5c701da2297d3cd8d5f739c4508c9b4cbfa70a22cdd",
+  "corpusHash": "788194c010706bc18323907097bb21ff52c956313a14d22397c74e838259ce65",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28871,
+  "includedPathCount": 28896,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19691,6 +19691,12 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/evidence/report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/delegation-strategy.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md",
@@ -20269,15 +20275,34 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/implementation-summary.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/acceptance-criteria.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/implementation-summary.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/fanout-attribution.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/review-report.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/spec.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
@@ -28903,7 +28928,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7d74a2db0aed3bb6c190361a7484f72edbf66e74fa85141c6d41523a4bc712e9",
+  "manifestHash": "c9ffa52a7efc10054ef43c04b60e8cfd10cd13ec058dda333514d79727d45891",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -37562,6 +37587,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/host-integrations/z_archive",
       "reason": "excluded directory"
     },
@@ -38027,6 +38056,22 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages",
       "reason": "excluded directory"
     },
     {
