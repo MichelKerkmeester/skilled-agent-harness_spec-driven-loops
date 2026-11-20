@@ -2052,6 +2052,21 @@ describe('mergeReviewRegistries — coverage surfaces', () => {
     expect(agree.graphCoverageMode).toBe('graph');
   });
 
+  it('keeps the agreed graph coverage mode when one lineage omits it', () => {
+    const { graphCoverageMode: _omitted, ...searchCoverage } = (lineageA.registry as { searchCoverage: Record<string, unknown> }).searchCoverage;
+    const silent: LineageDataFixture = {
+      label: 'lineage-silent',
+      registry: coverageRegistry({ searchCoverage: { ...searchCoverage, graphCoverageMode: null } }),
+    };
+    const absent: LineageDataFixture = { label: 'lineage-absent', registry: coverageRegistry({ searchCoverage }) };
+    const agreed = { ...lineageA, label: 'lineage-c' };
+    for (const order of [[lineageA, silent, agreed], [absent, agreed, lineageA]]) {
+      expect((mergeReviewRegistries(order).searchCoverage as Record<string, unknown>).graphCoverageMode).toBe('graph');
+    }
+    const disagree = mergeReviewRegistries([lineageA, silent, lineageB]).searchCoverage as Record<string, unknown>;
+    expect(disagree.graphCoverageMode).toBeNull();
+  });
+
   it('merges candidate coverage buckets and ORs a shared bug class with its lineages', () => {
     const candidate = mergeReviewRegistries([lineageA, lineageB]).candidateCoverage as Record<string, unknown>;
     expect(candidate.covered).toEqual(['injection']);

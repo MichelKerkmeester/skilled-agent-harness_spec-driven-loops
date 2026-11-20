@@ -1000,11 +1000,13 @@ function mergeSearchCoverage(lineages) {
   const coverages = lineages
     .map(({ registry }) => registry.searchCoverage)
     .filter((coverage) => coverage && typeof coverage === 'object');
-  const modes = [...new Set(coverages.map((coverage) => coverage.graphCoverageMode ?? null))];
+  // A lineage that never recorded a mode says nothing about it, the same way a
+  // missing list or flag is skipped above, so only recorded modes are compared.
+  const modes = [...new Set(coverages.map((coverage) => coverage.graphCoverageMode).filter(Boolean))];
   return {
     requiredBugClasses: sortedUnion(coverages.map((coverage) => coverage.requiredBugClasses)),
     ...Object.fromEntries(COVERAGE_BUCKETS.map((bucket) => [bucket, sortedUnion(coverages.map((coverage) => coverage[bucket]))])),
-    // A mode every lineage shares is still true of the merged run; disagreeing modes are not.
+    // A mode every recording lineage shares is still true of the merged run; disagreeing modes are not.
     graphCoverageMode: modes.length === 1 ? modes[0] : null,
   };
 }
