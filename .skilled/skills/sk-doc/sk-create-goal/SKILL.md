@@ -53,7 +53,7 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 ## 3. HOW IT WORKS
 
-1. Read the target packet's source specification and acceptance criteria. For a phase parent, read its phase map and inspect every direct phase-child directory on disk.
+1. Read the target packet's source specification and acceptance criteria. A Level 1 nested child carries no `acceptance-criteria.md`, so it takes its criteria from its own `spec.md` REQUIREMENTS and SUCCESS CRITERIA sections. For a phase parent, read its phase map and inspect every direct phase-child directory on disk.
 2. Apply the four routing decisions in [`ROUTER.md`](./ROUTER.md). For top-level, phase-parent, nested-child, retrofit, phase-add and amendment work, load and follow [`references/parent-and-nested-goals.md`](references/parent-and-nested-goals.md). Identify which goal files to add or revise and whether a child change requires a parent amendment first.
 3. Start each goal from the template for its kind: [`goal-top-level-template.md`](assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](assets/goal-phase-child-template.md).
    Each is a checked copy of system-spec-kit's [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) at that kind's level.

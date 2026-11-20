@@ -9,7 +9,7 @@ trigger_phrases:
   - "parent goal amendment"
 importance_tier: important
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 # Parent and Nested Goal Authoring
 
@@ -117,7 +117,7 @@ Verify with strict validation. For a phase parent, validate recursively, compare
 
 ### Add a phase binding
 
-Use phase-add only after the new phase appears in both the parent's Phase Documentation Map and the direct child directories on disk. Read the new child's own specification and acceptance criteria before writing its goal. If the map and disk do not agree, stop and reconcile the map first.
+Use phase-add only after the new phase appears in both the parent's Phase Documentation Map and the direct child directories on disk. Read the new child's own specification and acceptance criteria before writing its goal. A Level 1 nested child carries no `acceptance-criteria.md`, so it takes its criteria from its own `spec.md` REQUIREMENTS and SUCCESS CRITERIA sections. If the map and disk do not agree, stop and reconcile the map first.
 
 Add exactly one parent binding row with the new directory's backticked `NNN-slug/goal.md` target. Author the child's goal from its phase-local sources. Do not rewrite unrelated rows. Because the parent goal changed, print its updated chat slice for the operator to resend.
 
