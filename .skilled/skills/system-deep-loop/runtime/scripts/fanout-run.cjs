@@ -632,7 +632,7 @@ function statusForLedgerEvent(entry) {
   if (entry.event === 'started' || entry.event === 'progress' || entry.event === 'resume_waiting') return 'running';
   if (entry.event === 'completed' || entry.event === 'resume_waiting_complete') return 'completed';
   if (entry.event === 'failed') return entry.terminal === false ? 'retrying' : 'failed';
-  if (entry.event === 'stopped') return 'stopped';
+  if (entry.event === 'stopped' || entry.event === 'run_stopped') return 'stopped';
   if (entry.event === 'retry_scheduled' || entry.event === 'orphan_requeued') return 'retrying';
   // Lag-ceiling signals from the pool: a stall warning while work remains pending, or a
   // forced abort of the stalled attempt. Map both to typed statuses instead of 'unknown'.
@@ -1074,26 +1074,44 @@ async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
   }
 
   let survivors = live;
+  let runners = [...runnerPids];
   const deadline = Date.now() + STOP_CONFIRM_TIMEOUT_MS;
-  while (survivors.length > 0 && Date.now() < deadline) {
+  while ((survivors.length > 0 || runners.length > 0) && Date.now() < deadline) {
     await new Promise((resolvePromise) => setTimeout(resolvePromise, 100));
     survivors = survivors.filter((lineage) => isLineageAlive(lineage.pid));
+    runners = runners.filter((runnerPid) => isLineageAlive(runnerPid));
   }
 
+  // A runner that took the signal has already closed its lineages, so only the ones still
+  // open get a row here, and a lineage is never closed twice.
+  const stillOpen = new Set(detectLiveLineages(readLedgerRecords(ledgerPath), { isAlive: () => true })
+    .map((lineage) => lineage.label));
   const runArgv = argv.filter((token) => token !== '--stop');
   const stopped = live.filter((lineage) => !survivors.includes(lineage));
   for (const lineage of stopped) {
-    appendFanoutStatusLedger(ledgerPath, {
-      event: 'stopped',
-      status: 'stopped',
-      label: lineage.label,
-      pid: lineage.pid,
-      at: new Date().toISOString(),
-      rerun_command: rerunCommandFor(lineage.label, runArgv),
-    });
+    if (!stillOpen.has(lineage.label)) continue;
+    appendFanoutStatusLedger(ledgerPath, stoppedLineageRow({ label: lineage.label, pid: lineage.pid, argv: runArgv }));
   }
   const brief = ({ label, pid }) => ({ label, pid });
   return { stopped: stopped.map(brief), survivors: survivors.map(brief), refused };
+}
+
+/**
+ * The ledger row that closes a lineage a stop ended, with the command that reruns it alone.
+ *
+ * Both stop paths write this one shape: an operator's --stop from a second process, and the
+ * runner itself when a signal or its parent's death ends it.
+ */
+function stoppedLineageRow({ label, pid, argv, signal }) {
+  return {
+    event: 'stopped',
+    status: 'stopped',
+    label,
+    pid: Number.isInteger(pid) ? pid : null,
+    ...(signal ? { signal } : {}),
+    at: new Date().toISOString(),
+    rerun_command: rerunCommandFor(label, argv),
+  };
 }
 
 function expectedLineageArtifactPaths(loopType, lineageDir) {
@@ -1490,6 +1508,9 @@ function shellQuoteArg(value) {
 
 // The command that reruns one lineage of this run against the same matrix: the run's own
 // argv with any earlier --only-lineage pair replaced, so the lineage keeps its budget share.
+// Path values are resolved against this process's cwd, so the command runs from any directory.
+const RERUN_PATH_FLAGS = new Set(['baseArtifactDir', ...Object.keys(TEXT_FILE_FLAGS)]);
+
 function rerunCommandFor(label, argv = process.argv.slice(2)) {
   const kept = [];
   for (let index = 0; index < argv.length; index += 1) {
@@ -1498,6 +1519,12 @@ function rerunCommandFor(label, argv = process.argv.slice(2)) {
       continue;
     }
     kept.push(argv[index]);
+    const flag = argv[index].startsWith('--') ? argv[index].slice(2).replace(/-([a-z])/g, (_, c) => c.toUpperCase()) : null;
+    const value = argv[index + 1];
+    if (flag && RERUN_PATH_FLAGS.has(flag) && value !== undefined && !value.startsWith('--')) {
+      kept.push(path.resolve(value));
+      index += 1;
+    }
   }
   return [process.execPath, __filename, ...kept, '--only-lineage', label].map(shellQuoteArg).join(' ');
 }
@@ -4451,6 +4478,22 @@ async function main() {
     stoppedSummaryWritten = true;
     stopActiveLineageProcesses(signal);
     const stoppedAtIso = new Date().toISOString();
+    // Each lineage still running is closed with its own row, so the next run neither
+    // requeues it as an orphan nor charges it a retry, and the summary reads it as stopped.
+    const ledgerRecords = readLedgerRecords(ledgerPath);
+    for (const lineage of cliLineages) {
+      const snapshot = lineageSnapshots.get(lineage.label);
+      if (!snapshot || snapshot.status !== 'running') continue;
+      const spawnedRow = ledgerRecords.filter((record) => record
+        && record.event === 'spawned'
+        && record.label === lineage.label).at(-1);
+      appendFanoutStatusLedger(ledgerPath, stoppedLineageRow({
+        label: lineage.label,
+        pid: spawnedRow ? Number(spawnedRow.pid) : null,
+        signal,
+      }));
+      lineageSnapshots.set(lineage.label, { ...snapshot, status: 'stopped', stopped_at_iso: stoppedAtIso });
+    }
     const partial = summarizeSnapshots(cliLineages, lineageSnapshots);
     const gauges = {
       lag: latestGauges.lag,
@@ -4458,7 +4501,9 @@ async function main() {
       failed: Math.max(latestGauges.failed, partial.summary.failed),
     };
     appendFanoutStatusLedger(ledgerPath, {
-      event: 'stopped',
+      event: 'run_stopped',
+      status: 'stopped',
+      run_id: runId,
       signal,
       at: stoppedAtIso,
       gauges,

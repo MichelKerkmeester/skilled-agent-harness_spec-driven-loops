@@ -5349,7 +5349,7 @@ describe('fanout-run.cjs — graceful self-stop', () => {
     expect(summary.stopped).toBe(true);
     expect(summary.stopped_signal).toBe('SIGTERM');
     expect(summary.status).toBe('partial');
-    expect(summary.results).toEqual([expect.objectContaining({ label: 'slow', status: 'running' })]);
+    expect(summary.results).toEqual([expect.objectContaining({ label: 'slow', status: 'stopped' })]);
     expect(summary.gauges).toMatchObject({ failed: 0 });
   });
 });
