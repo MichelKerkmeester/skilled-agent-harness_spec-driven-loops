@@ -35,9 +35,7 @@
       "completion criteria",
       "goal binding",
       "007-expansive-depth-mode operator decisions",
-      "expansive depth mode implementation summary",
-      "depth-mode expansive",
-      "frontier veto"
+      "expansive depth mode implementation summary"
     ],
     "key_topics": [
       "expansive",
@@ -64,9 +62,7 @@
       "implementation-summary.md",
       "research/research.md",
       "research/inbox.jsonl",
-      "research/iterations/iteration-001.md",
       "research/resource-map.md",
-      "research/deep-research-strategy.md",
       "scratch/cross-phase-handoff.md",
       "research/deep-research-state.jsonl",
       "001-completed-run-extension/goal.md",
@@ -75,7 +71,9 @@
       "004-focus-hijack-fix/goal.md",
       "005-prompt-pack-contract-alignment/goal.md",
       "006-state-log-leaf-fields/goal.md",
-      "007-source-diversity-quality-class/goal.md"
+      "007-source-diversity-quality-class/goal.md",
+      "008-review-dimension-coverage/goal.md",
+      "009-fanout-review-coverage-merge/goal.md"
     ],
     "entities": [
       {
@@ -124,18 +122,6 @@
         "name": "inbox.jsonl",
         "kind": "file",
         "path": "research/inbox.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": "research/deep-research-strategy.md",
         "source": "derived"
       },
       {
@@ -221,11 +207,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
     "created_at": "2026-11-17T07:53:58Z",
-    "last_save_at": "2026-11-19T05:47:04.298Z",
+    "last_save_at": "2026-11-20T01:50:34.548Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -237,7 +235,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ac48a3cb92cfa29473347e98a44d110200a28f596e5fda7a9af653022b921b1c",
+    "source_fingerprint": "sha256:d540f51896aa5657d76d1744133a625ab49e93543eb71a7b4acc2a1ab7d6f736",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4f02d128953c00d63273ea03b0d08713d3928a61a4ff65dba73200127526a09a",
@@ -245,7 +243,7 @@
       "tasks.md": "2bd96d25454ae3e7bf9fea94cadc73dac0e5379c35aaeb83792afd7a17257727",
       "decision-record.md": "3412a35e38ba63aa2749a328052d083fadecbdffa74aa4aa6c0977af62beb05a",
       "implementation-summary.md": "2088c1e4437f3061bd63975059960c6ebb10e14588be75e53898d13f9a592446",
-      "research/research.md": "61dd84d418760ab868525bb8721fa08de577e7b052ac9e894296fe0ea9bf78d6"
+      "research/research.md": "262c96107e8720a9b17319e1a954a39a416b0073f6b32ee290318c01ddbbb965"
     },
     "last_active_child_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix",
     "last_active_at": "2026-11-17T18:12:41.938Z"

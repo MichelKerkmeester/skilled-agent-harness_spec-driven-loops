@@ -1,12 +1,22 @@
 {
-  "topic": "Generation 2 extension of the expansive-depth sub-mode research for system-deep-loop deep-research and deep-review. Generation 1 (7 iterations, archived at specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/research.md) designed an opt-in --depth-mode=expansive frontier sub-mode and registered defects D1-D9. This generation verifies and deepens it: (a) adversarially verify the design and D1-D9 against the code, correcting anything wrong; (b) close the generation-1 open questions: review-side pivot adapter divergent-review-pivot.ts and fanout-merge.cjs internals, whether a divergent pivot after all_questions_answered buys only about one iteration, and who should produce coverage-graph quality_class with what closed vocabulary; (c) find further reasons loops stay narrow that generation 1 missed (deep-review reducer, prompt packs, agent definitions, skill-advisor scorer df-idf.ts for example target 2); (d) refine the implementation plan into concrete, testable change slices with risks.",
-  "maxIterations": 5,
+  "topic": "What changes would make the expansive-depth deep-loop modes (research and review), and the deep-loop runtime behind them, simpler, cheaper, easier to operate and identical across CLI runtimes, ranked by value over effort?\n\nRead the code at HEAD d4420e9510d. The spec folder is specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode (SPEC below). Its fan-out review (SPEC/review/review-report.md) and the fix commits a424fb6cd8a..d4420e9510d already closed that review's findings: build on them and do not re-report them. Every recommendation names one concrete change, cites file:line (or a source URL for prior art), and states value, effort (S/M/L) and risk.\n\nQ1 Restraint: what can be deleted, merged or collapsed across runtime/scripts/frontier-admit.cjs, both reduce-state.cjs reducers, runtime/scripts/convergence.cjs, runtime/scripts/fanout-run.cjs and the two workflow YAMLs (.skilled/commands/deep/assets/deep-research.yaml and deep-review.yaml) while every promise stays kept? Name concrete deletions.\n\nQ2 Operator UX: flag discoverability, defaults, budget sizing, warnings, dashboards, reports, the dry-run preview, and recovery mid-run (provider quota, resume, extend, rerunning one failed lineage).\n\nQ3 Cross-CLI parity: where cli-claude-code, cli-opencode, cli-codex, cli-pi, cli-devin, cli-cursor, cli-deepseek-harness and cli-mistral-vibe still differ in permissions, effort flags, failure classes, resume and log shape (fanout-run.cjs LINEAGE_COMMAND_ADAPTERS, runtime/lib/deep-loop/executor-config.ts). What single contract would remove the differences?\n\nQ4 Cost and latency: the 8-11 minute setup, the cost per iteration, the 24-iteration ceiling and the 50/35/15 depth-band split, each checked against the measured runs in SPEC/review/, SPEC/review-archive/ and the live playbook logs.\n\nQ5 Open design questions. (a) Should research count stuck passes per frontier node, as review now does? Research still counts lineage-wide at deep-research.yaml:1488 and keeps its own node-marker regex. (b) The lineage completion check (fanout-run.cjs TERMINAL_STOP_EVENTS_BY_LOOP_TYPE and checkLineageCompletion) marks 3 of 12 older committed research lineages as failed, because they predate the closeout row. Is that a backward-compatibility break for resume and extend, and what is the right rule? (c) Pivot admission into the frontier was dropped for structural reasons (D-011-10 in SPEC/011-review-frontier-mode/decision-record.md). Is there a cheap design that makes it work?\n\nQ6 Prior art: how other agentic research and code-review systems handle frontier growth, stuck detection, stop rules and multi-executor fan-out. This is the only question that needs the web; cite source URLs, and never put personal data such as an email address in a search query or request.\n\nReport only: change no code or doc outside your own lineage directory.",
+  "maxIterations": 10,
   "convergenceThreshold": 0.05,
   "antiConvergence": {
     "minIterations": 3,
     "convergenceMode": "default",
-    "stopPolicy": "fail-closed",
-    "divergent": {}
+    "depthMode": "expansive",
+    "stopPolicy": "fail-closed"
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": {
+      "depth1": 0.5,
+      "depth2": 0.35,
+      "depth3": 0.15
+    },
+    "maxFrontierNodes": null
   },
   "stuckThreshold": 3,
   "maxDurationMinutes": 120,
@@ -14,31 +24,31 @@
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
   "specFolder": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode",
-  "createdAt": "2026-11-17T10:36:36.000Z",
+  "createdAt": "2026-11-20T01:19:42.000Z",
   "status": "complete",
   "executionMode": "auto",
   "executor": {
-    "kind": "cli-devin",
-    "model": "swe-2-max",
+    "kind": "native",
+    "model": null,
     "reasoningEffort": null,
     "serviceTier": null,
     "sandboxMode": null,
     "timeoutSeconds": 900
   },
   "lineage": {
-    "sessionId": "2026-11-17T10:36:36.000Z",
-    "parentSessionId": "2026-11-17T07:52:43.000Z",
+    "sessionId": "2026-11-20T01:19:42.000Z",
+    "parentSessionId": "2026-11-17T10:36:36.000Z",
     "lineageMode": "restart",
     "allowedModes": [
       "new",
       "resume",
-      "restart"
-    ],
-    "deferredModes": [
-      "fork",
+      "restart",
       "completed-continue"
     ],
-    "generation": 2,
+    "deferredModes": [
+      "fork"
+    ],
+    "generation": 3,
     "continuedFromRun": null
   },
   "reducer": {
@@ -89,17 +99,31 @@
       "sessionId",
       "status",
       "antiConvergence.convergenceMode",
+      "antiConvergence.depthMode",
       "antiConvergence.stopPolicy"
     ],
     "promotionMode": "advisory-only"
   },
-  "minIterations": 3,
-  "stopPolicy": "max-iterations",
-  "minIdeaObservations": 2,
-  "resource_map_present": false,
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-claude-code",
+        "model": "claude-opus-5-5",
+        "configDir": "/Users/michelkerkmeester/.claude-account2",
+        "reasoningEffort": "medium",
+        "sandboxMode": "danger-full-access",
+        "label": "opus"
+      },
+      {
+        "kind": "cli-opencode",
+        "model": "llmgateway/deepseek-v4.1-flash-1017",
+        "reasoningEffort": "max",
+        "label": "deepseek"
+      }
+    ],
+    "concurrency": 2
+  },
   "resource_map": {
     "emit": true
-  },
-  "nextRunAt": null,
-  "remainingDelayMs": null
+  }
 }
