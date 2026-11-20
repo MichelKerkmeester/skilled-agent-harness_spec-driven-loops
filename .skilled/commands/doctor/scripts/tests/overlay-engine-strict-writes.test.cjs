@@ -11,6 +11,7 @@
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 const { spawnSync } = require('node:child_process');
@@ -191,6 +192,38 @@ test('the guard refuses a new file under a vendored root and names where to crea
   assert.equal(inOwnedFolder.code, 1, inOwnedFolder.output);
   assert.ok(inOwnedFolder.stdout.includes('is a new file inside overlay own-skill; create it as ' +
     'skilled-overlays/skills/own/extra.md, then run ' + ENGINE_COMMAND + ' apply'), inOwnedFolder.stdout);
+});
+
+// Apply deletes a path a skill-root entry removes, so a new file there has to
+// move onto the replace list before the overlay can carry it.
+test('the guard sends a new file under a skill-root removed path to the replace list', (t) => {
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.overlayDir, 'hub-root/SKILL.md', 'project skill\n');
+  writeFile(fixture.overlayDir, 'hub-root/docs/a.md', 'project a\n');
+  fixture.manifest.overlays.push({
+    id: 'hub-root',
+    scope: 'skill-root',
+    source: 'hub-root',
+    destination: '.skilled/skills/hub',
+    replace: ['SKILL.md', 'docs'],
+    remove: ['old'],
+    retained: [],
+  });
+  writeManifest(fixture);
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+
+  const removed = fixture.run(['--guard', '.skilled/skills/hub/old/new.md']);
+  assert.equal(removed.code, 1, removed.output);
+  assert.equal(removed.stdout.trim(), 'refuse: .skilled/skills/hub/old/new.md is under old, which overlay hub-root ' +
+    'removes on every apply; take old off that entry\'s remove list, add old/new.md to its replace list, keep its ' +
+    'copy at skilled-overlays/hub-root/old/new.md, then run ' + ENGINE_COMMAND + ' apply', removed.stdout);
+
+  const replaced = fixture.run(['--guard', '.skilled/skills/hub/docs/extra.md']);
+  assert.equal(replaced.code, 1, replaced.output);
+  assert.equal(replaced.stdout.trim(), 'refuse: .skilled/skills/hub/docs/extra.md is a new file inside overlay ' +
+    'hub-root; create it as skilled-overlays/hub-root/docs/extra.md, then run ' + ENGINE_COMMAND + ' apply',
+  replaced.stdout);
 });
 
 test('the guard refuses an edit to a vendored file no overlay owns, and leaves the rest of the tree alone', (t) => {
@@ -675,7 +708,7 @@ const SIBLING_FOLDER = 'overlays';
 const SIBLING_LABEL = '../' + SIBLING_FOLDER;
 
 test('the guard names a sibling overlay folder for an owned path and allows a path inside that folder', (t) => {
-  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER });
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
 
   const owned = fixture.run(['--guard', '.skilled/skills/own/SKILL.md']);
   assert.equal(owned.code, 1, owned.output);
@@ -693,7 +726,7 @@ test('the guard names a sibling overlay folder for an owned path and allows a pa
 });
 
 test('the guard run from the workspace resolves paths there with a sibling overlay folder', (t) => {
-  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER });
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
 
   const owned = fixture.run(['--guard', 'tree/.skilled/skills/own/SKILL.md'], fixture.workspace);
   assert.equal(owned.code, 1, owned.output);
@@ -706,7 +739,7 @@ test('the guard run from the workspace resolves paths there with a sibling overl
 });
 
 test('adopt writes the copy and its entry into a sibling overlay folder and names it', (t) => {
-  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER });
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
   writeFile(fixture.tree, '.skilled/skills/brand/SKILL.md', 'brand skill\n');
 
   const adopted = fixture.run(['apply', '--adopt', '.skilled/skills/brand']);
@@ -760,6 +793,97 @@ test('pre-commit refuses to judge a tree whose sibling overlay folder is outside
 
   assert.equal(result.code, 2, result.output);
   assert.ok(result.output.split('\n').some((line) => /outside the git repository/.test(line)), result.output);
+});
+
+// A sibling overlay folder has to sit in the tree's own git repository, so every
+// command refuses one outside it before reading anything else.
+const OUTSIDE_REPOSITORY = 'outside the git repository at';
+
+function writeSetting(fixture, overlayDir) {
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir }) + '\n');
+}
+
+test('status refuses a sibling overlay folder outside the tree\'s git repository', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER });
+  assert.equal(fixture.gitRoot, fixture.tree);
+
+  const status = fixture.run(['status']);
+
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes(OUTSIDE_REPOSITORY), status.output);
+  assert.ok(status.output.includes(SIBLING_LABEL), status.output);
+});
+
+test('status refuses the repository\'s own .git folder named as a sibling overlay folder', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  assert.ok(fs.statSync(path.join(fixture.workspace, '.git')).isDirectory());
+  writeSetting(fixture, '../.git');
+
+  const status = fixture.run(['status']);
+
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes(OUTSIDE_REPOSITORY), status.output);
+});
+
+test('status refuses a sibling link inside the repository that points outside it', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  const outside = fs.mkdtempSync(path.join(os.tmpdir(), 'overlay-engine-outside-'));
+  t.after(() => fs.rmSync(outside, { recursive: true, force: true }));
+  fs.cpSync(fixture.overlayDir, outside, { recursive: true });
+  fs.symlinkSync(outside, path.join(fixture.workspace, 'linked'), 'dir');
+  writeSetting(fixture, '../linked');
+
+  const status = fixture.run(['status']);
+
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes(OUTSIDE_REPOSITORY), status.output);
+});
+
+test('a tree in no git repository keeps its sibling overlay folder', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-no-repository-', { siblingOverlayFolder: SIBLING_FOLDER });
+  const probe = spawnSync('git', ['-C', fixture.tree, 'rev-parse', '--show-toplevel'], { encoding: 'utf8' });
+  if (probe.status === 0) {
+    t.skip('the temporary folder sits inside a git repository at ' + probe.stdout.trim());
+    return;
+  }
+  const engine = require('../overlay-engine.cjs');
+  assert.equal(engine.resolveOverlayDir(fixture.tree), SIBLING_LABEL);
+
+  const status = runEngine(['status', '--root', fixture.tree], fixture.tree);
+  assert.ok(!status.output.includes(OUTSIDE_REPOSITORY), status.output);
+});
+
+// A git hook exports GIT_DIR without GIT_WORK_TREE, and git then reports the
+// working folder as the top level, so the repository check must not trust it.
+test('a sibling overlay folder inside the repository is kept when GIT_DIR comes from a hook', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  const env = { ...process.env, GIT_DIR: path.join(fixture.workspace, '.git') };
+  for (const name of ['GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_PREFIX']) delete env[name];
+
+  const probe = spawnSync('git', ['-C', fixture.tree, 'rev-parse', '--show-toplevel'], { env, encoding: 'utf8' });
+  assert.equal(probe.status, 0, probe.stderr);
+  assert.equal(fs.realpathSync(probe.stdout.trim()), fs.realpathSync(fixture.tree));
+
+  const engineFile = path.resolve(__dirname, '..', 'overlay-engine.cjs');
+  const status = spawnSync(process.execPath, [engineFile, 'status', '--root', fixture.tree],
+    { cwd: fixture.tree, env, encoding: 'utf8' });
+  const output = (status.stdout || '') + (status.stderr || '');
+  assert.ok(!output.includes(OUTSIDE_REPOSITORY), output);
+});
+
+test('pre-commit refuses a sibling overlay folder the repository boundary moved away from', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  const engine = require('../overlay-engine.cjs');
+  const ctx = engine.createContext(fixture.tree);
+  assert.equal(ctx.overlayOutside, true);
+
+  // A repository opened at the tree after the context was built leaves the
+  // sibling folder outside it, which only the commit check can still see.
+  git(fixture.tree, ['init', '-q']);
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', 'edited in place\n');
+  git(fixture.tree, ['add', '-A']);
+
+  assert.throws(() => engine.commandPreCommit(ctx), /the overlay folder must sit inside the same git repository as the tree/);
 });
 
 test('a manifest source under root/skilled is a blocked overlay for its entry', (t) => {
