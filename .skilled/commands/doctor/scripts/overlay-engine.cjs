@@ -84,6 +84,8 @@ const READABLE_STATE_VERSIONS = new Set([1, STATE_SCHEMA_VERSION]);
 const STATUS_NAMES = ['in-sync', 'overlay-edited', 'live-edited', 'both-changed', 'upstream-moved', 'cannot-apply'];
 const BLOCKING_STATES = new Set(['live-edited', 'both-changed', 'upstream-moved', 'cannot-apply']);
 const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
+// The most LAYOUT lines status prints; status --json keeps every move.
+const LAYOUT_SHOWN = 20;
 const EXIT_OK = 0;
 const EXIT_CONFLICT = 1;
 const EXIT_ERROR = 2;
@@ -444,12 +446,24 @@ function resolveOverlayDir(root) {
   // name is the tree root itself, so it is refused with the rest. The spelling check
   // misses a case variant on a case-insensitive disk and a link back to the tree, so an
   // existing folder is also compared by where it resolves; a missing one resolves beside it.
+  // A link whose target does not exist yet cannot be resolved, so it is refused until it can.
   const sibling = normalized.startsWith('../') ? normalized.slice(3) : null;
   if (sibling !== null && sibling !== '' && sibling !== '.' && sibling !== '..' && !sibling.includes('/') &&
     sibling !== path.basename(path.resolve(root))) {
-    const treeRoot = canonicalPath(root);
-    const target = canonicalPath(path.resolve(root, normalized));
-    if (!isWithin(treeRoot, target) && !isWithin(target, treeRoot)) return normalized;
+    const siblingPath = path.resolve(root, normalized);
+    // A link that loops never resolves either, so it is refused the same way
+    // before resolving it can fail with a raw error.
+    let isDanglingLink = false;
+    try {
+      isDanglingLink = fs.lstatSync(siblingPath).isSymbolicLink() && !fs.existsSync(siblingPath);
+    } catch (error) {
+      if (!error || error.code !== 'ENOENT') throw error;
+    }
+    if (!isDanglingLink) {
+      const treeRoot = canonicalPath(root);
+      const target = canonicalPath(siblingPath);
+      if (!isWithin(treeRoot, target) && !isWithin(target, treeRoot)) return normalized;
+    }
   }
   if (normalized === '.' || normalized === '' || normalized === '..' || normalized.startsWith('../')) {
     throw new Error(`${SETTING_FILE} names a folder outside the tree root: ${value}`);
@@ -2758,6 +2772,19 @@ function protectedPathProblem(ctx, entry, filePath, shownPath) {
   return problem + `; if the overlay owns it, add "${toPosix(path.relative(entryRoot, filePath))}" to this entry's protectedPaths`;
 }
 
+// root/skilled would read as the framework folder under its old name, so no copy
+// lives there: the framework's copies live under framework/ alone, which keeps one
+// destination from ever having two sources.
+function isUnderRootSkilled(value) {
+  if (typeof value !== 'string') return false;
+  const normalized = path.posix.normalize(value).replace(/\/+$/, '');
+  return normalized === 'root/skilled' || normalized.startsWith('root/skilled/');
+}
+
+function rootSkilledProblem(field, value) {
+  return `${field} ${value} sits under root/skilled, which holds no copy; the framework's copies live under framework/`;
+}
+
 /**
  * Refuse a manifest whose paths escape their roots, and find every entry that
  * would read a secret. A path escape means the manifest itself is wrong, so it
@@ -2793,6 +2820,11 @@ function assertSafeToPlan(ctx, manifest) {
           continue;
         }
       }
+    }
+    const misplacedKey = ['source', 'fragment', 'base'].find((key) => isUnderRootSkilled(entry[key]));
+    if (misplacedKey) {
+      refused.set(entry.id, rootSkilledProblem(misplacedKey, entry[misplacedKey]));
+      continue;
     }
     const named = candidates.find((candidate) => isProtectedReadPath(candidate, exact));
     if (named) {
@@ -3615,8 +3647,16 @@ function commandStatus(ctx, options = {}) {
     console.log(`STALE    root-file ${entry.path}: upstream changed it since overlay ${entry.overlay} was pinned; ` +
       'rebase the overlay, then update its pinnedSha256');
   }
-  for (const move of offLayout) {
-    console.log(`LAYOUT   ${move.overlay}: ${move.field} ${move.from} belongs at ${move.to}; run ${ENGINE_COMMAND} apply --relayout`);
+  // Relayout refuses a move into root/skilled, so that line names the fix the
+  // operator can make instead of a run that would stop.
+  for (const move of offLayout.slice(0, LAYOUT_SHOWN)) {
+    const remedy = isUnderRootSkilled(move.to)
+      ? 'change the destination or remove the entry'
+      : `run ${ENGINE_COMMAND} apply --relayout`;
+    console.log(`LAYOUT   ${move.overlay}: ${move.field} ${move.from} belongs at ${move.to}; ${remedy}`);
+  }
+  if (offLayout.length > LAYOUT_SHOWN) {
+    console.log(`LAYOUT   … ${offLayout.length - LAYOUT_SHOWN} more; run ${ENGINE_COMMAND} apply --relayout`);
   }
   for (const note of notes) console.log(`NOTE     ${note}`);
   if (audit) {
@@ -5438,9 +5478,18 @@ function shellPath(key) {
   return /^[A-Za-z0-9._\/-]+$/.test(key) ? key : '"' + key.replace(/(["\\$`])/g, '\\$1') + '"';
 }
 
-// Where adopt keeps a destination inside the overlay folder: the same path
-// with the leading dot dropped, so the copy is not a hidden folder.
+// Where adopt keeps a destination inside the overlay folder: the framework's
+// own tree under framework/, every other path under root/ with its leading
+// dots dropped, so no copy is a hidden folder.
 function adoptSource(key) {
+  if (key === '.skilled') return 'framework';
+  if (key.startsWith('.skilled/')) return 'framework/' + key.slice('.skilled/'.length);
+  return 'root/' + key.replace(/^\.+/, '');
+}
+
+// The earlier place for an adopted copy: the same path with the leading dots
+// dropped. Only an excluded path still reads a copy kept there.
+function legacyAdoptSource(key) {
   return key.replace(/^\.+/, '');
 }
 
@@ -5585,7 +5634,11 @@ function adoptUnderLock(ctx, manifest, inputPath) {
   // overlay folder to carry it. Adopt takes such a path only from that copy.
   const isExcludedVendoredKey = (key) => isUnderAny(key, settings.exclude) &&
     isVendoredKey(key, { ...settings, exclude: [] });
-  const hasOverlayCopy = (key) => pathExists(path.join(ctx.overlayRoot, ...adoptSource(key).split('/')));
+  // An excluded path's copy may still sit at its earlier dot-dropped place, so
+  // both are read, the current place first.
+  const overlayCopyOf = (key) => [adoptSource(key), legacyAdoptSource(key)]
+    .find((source) => pathExists(path.join(ctx.overlayRoot, ...source.split('/'))));
+  const hasOverlayCopy = (key) => overlayCopyOf(key) !== undefined;
   const candidates = captureCandidates(root, inputPath)
     .map((candidate) => canonicalPathWithoutLeaf(candidate))
     .filter((candidate) => isWithin(root, candidate) && candidate !== root);
@@ -5594,6 +5647,13 @@ function adoptUnderLock(ctx, manifest, inputPath) {
     return isVendoredKey(key, settings) || (isExcludedVendoredKey(key) && hasOverlayCopy(key));
   });
   const excludedPath = candidates.find((candidate) => isExcludedVendoredKey(relativeKey(root, candidate)));
+  const rootSkilledPath = (destinationPath ? [destinationPath] : candidates)
+    .find((candidate) => isUnderRootSkilled(adoptSource(relativeKey(root, candidate))));
+  if (rootSkilledPath) {
+    const key = relativeKey(root, rootSkilledPath);
+    return refuse(`${key} would keep its copy at ${ctx.overlayLabel}/${adoptSource(key)}, under root/skilled, ` +
+      'which holds no copy; the framework\'s own files sit under .skilled/ and adopt to framework/');
+  }
   if (!destinationPath && excludedPath) {
     const key = relativeKey(root, excludedPath);
     return refuse(`${key} is under repin.exclude, so adopt takes it only from its overlay copy at ` +
@@ -5604,7 +5664,7 @@ function adoptUnderLock(ctx, manifest, inputPath) {
       'named in repin.rootFiles');
   }
   const key = relativeKey(root, destinationPath);
-  const source = adoptSource(key);
+  const source = (isExcludedVendoredKey(key) && overlayCopyOf(key)) || adoptSource(key);
   const sourcePath = path.join(ctx.overlayRoot, ...source.split('/'));
   const shownSource = ctx.overlayLabel + '/' + source;
   // A link inside the overlay folder would take the copy somewhere the manifest
@@ -6072,6 +6132,12 @@ function planRelayout(ctx, groups) {
     const to = containedOverlayPath(ctx, group.to);
     if (from.problem || to.problem) {
       problems.push('refuse: ' + (from.problem || to.problem));
+      continue;
+    }
+    if (isUnderRootSkilled(group.to)) {
+      const ids = [...new Set(group.records.map((record) => record.overlay))].join(', ');
+      problems.push(`refuse: ${ids}: ${group.from} belongs at ${group.to}, under root/skilled, which holds no copy; ` +
+        'change the destination or remove the entry');
       continue;
     }
     if (pathExists(to.absolute)) {

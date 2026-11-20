@@ -39,15 +39,21 @@
       "overlay"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "implementation-summary.md",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
-      ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs"
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+      "scratch/evidence/after-per-criterion.txt",
+      "scratch/evidence/baseline.txt",
+      "scratch/evidence/negative-control.txt",
+      "scratch/evidence/after-engine-suite.txt"
     ],
     "entities": [
       {
@@ -75,6 +81,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "overlay-engine.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
@@ -90,6 +102,36 @@
         "name": "overlay-engine-strict-writes.test.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-fixes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "after-per-criterion.txt",
+        "kind": "file",
+        "path": "scratch/evidence/after-per-criterion.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/evidence/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "negative-control.txt",
+        "kind": "file",
+        "path": "scratch/evidence/negative-control.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-engine-suite.txt",
+        "kind": "file",
+        "path": "scratch/evidence/after-engine-suite.txt",
         "source": "derived"
       },
       {
@@ -157,61 +199,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The engine has one source naming rule",
     "created_at": "2026-11-20T09:32:54Z",
-    "last_save_at": "2026-11-20T10:39:10.162Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-20T12:19:40.727Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4524b2aba21d2344bb94e99c867e6e0899ea7d76e1510f3d1ed99a840558ca76",
+    "source_fingerprint": "sha256:ae049137343f806767e9938f458b16fce0f60cb62efda2176c4972ddf217d682",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b8696e0672fef229cbed9ab8ddc0e9e530e41ff9a5dc6cd02d07405a6827ea81",
+      "spec.md": "45c342a83e548a7e79f2f53d663852427cbd2d74006d6856a8f0ab9569241570",
       "plan.md": "a0437620d432afe146d5ecebf2db83d8868d9d905b6d3eea164ba08d99202e29",
-      "tasks.md": "4ff6667d3d47822916b1f49953bc90db87e1dedc7bf6efaf46243c5f2776e407"
+      "tasks.md": "258e1f2e9f368d687281b74dc247b887c948ca506519f6c72f73e4e4632853a0",
+      "implementation-summary.md": "b5229bd0104ad3df72fb156fe9a2b7b62fbd4cfb3d76ae4ed7bd965c07442dbe"
     },
     "last_active_at": null
   }

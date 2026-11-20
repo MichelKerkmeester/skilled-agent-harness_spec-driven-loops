@@ -1,0 +1,5 @@
+node --test --test-name-pattern 'old layout' .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs :: ℹ tests 1 ℹ pass 1 ℹ fail 0  exit=0
+node --test --test-name-pattern 'layout cap' .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs :: ℹ tests 2 ℹ pass 2 ℹ fail 0  exit=0
+node --test --test-name-pattern 'relayout moves every off-layout source' .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs :: ℹ tests 1 ℹ pass 1 ℹ fail 0  exit=0
+node --test --test-name-pattern 'root/skilled' .skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs :: ℹ tests 6 ℹ pass 6 ℹ fail 0  exit=0
+node --test --test-name-pattern 'excluded copy' .skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs :: ℹ tests 1 ℹ pass 1 ℹ fail 0  exit=0

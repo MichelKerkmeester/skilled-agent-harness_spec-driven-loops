@@ -899,12 +899,13 @@ test('status reports a marked-section overlay root file whose pinned copy upstre
 // 7. SOURCES KEPT OFF THE LAYOUT
 // ─────────────────────────────────────────────────────────────────────────────
 
-// An overlay's copy belongs inside the overlay folder at its destination path
-// with the leading dot dropped. A copy kept elsewhere still applies, so `status`
+// An overlay's copy belongs inside the overlay folder under framework/ for a
+// .skilled/ destination, and under root/ with the leading dots dropped for any
+// other. A copy kept elsewhere still applies, so `status`
 // names where it belongs while leaving the run's result alone.
 const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
 const PLACE_DESTINATION = '.skilled/skills/hub/place.md';
-const PLACE_LAYOUT = 'skilled/skills/hub/place.md';
+const PLACE_LAYOUT = 'framework/skills/hub/place.md';
 const UPSTREAM_PLACE = 'upstream place\n';
 const OVERLAY_PLACE = 'overlay place\n';
 
@@ -973,12 +974,12 @@ test('status names a source kept off the layout without failing the run', (t) =>
 // lands where the layout puts it, a path already holding something stops the run
 // before it writes, and a tree already on the layout is left alone.
 const DIR_DESTINATION = '.skilled/skills/hub/bundle';
-const DIR_LAYOUT = 'skilled/skills/hub/bundle';
+const DIR_LAYOUT = 'framework/skills/hub/bundle';
 const JSON_DESTINATION = '.claude/settings.json';
-const JSON_LAYOUT = 'claude/settings.json';
+const JSON_LAYOUT = 'root/claude/settings.json';
 const MARKED_DESTINATION = '.pi/AGENTS.md';
-const MARKED_LAYOUT = 'pi/AGENTS.md';
-const MARKED_BASE_LAYOUT = 'pi/AGENTS.base.md';
+const MARKED_LAYOUT = 'root/pi/AGENTS.md';
+const MARKED_BASE_LAYOUT = 'root/pi/AGENTS.base.md';
 const UPSTREAM_SETTINGS = '{"name": "widget"}\n';
 const UPSTREAM_MARKED = '# Header\n';
 const BLOCK_FRAGMENT = '\n<!-- BEGIN BLOCK -->\nold block\n<!-- END BLOCK -->\n';
@@ -1243,7 +1244,7 @@ test('relayout moves a source in a sibling overlay folder and backs it up inside
 const BUNDLE_LINK = 'bundle-view';
 const STRANGER_TARGET = 'elsewhere';
 const BUNDLE_LINK_TARGET = 'skilled-overlays/custom/bundle';
-const BUNDLE_RELINKED_TARGET = 'skilled-overlays/skilled/skills/hub/bundle';
+const BUNDLE_RELINKED_TARGET = 'skilled-overlays/framework/skills/hub/bundle';
 
 /**
  * Build a tree whose off-layout directory source stands behind a live link, in
@@ -1395,11 +1396,11 @@ test('relayout refuses a copy two entries would move to different paths', (t) =>
 
   assert.equal(relayout.code, 2, relayout.output);
   assert.equal(relayout.output.trim(), `refuse: custom/place.md is claimed by ${PLACE_LAYOUT} and ` +
-    'claude/skills/hub/place.md; one copy cannot move to both');
+    'root/claude/skills/hub/place.md; one copy cannot move to both');
   assert.deepEqual(movedLines(relayout.output), [], relayout.output);
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/place.md'), 'utf8'), OVERLAY_PLACE);
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, PLACE_LAYOUT)), false);
-  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'claude/skills/hub/place.md')), false);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'root/claude/skills/hub/place.md')), false);
   assert.deepEqual(fs.readFileSync(manifestPath), before);
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
 });
@@ -1432,11 +1433,11 @@ test('relayout refuses two copies whose destinations land on one layout path', (
   const relayout = run(['apply', '--relayout']);
 
   assert.equal(relayout.code, 2, relayout.output);
-  assert.equal(relayout.output.trim(), 'refuse: custom/a.md and custom/b.md both belong at skilled/skills/hub/a.md');
+  assert.equal(relayout.output.trim(), 'refuse: custom/a.md and custom/b.md both belong at framework/skills/hub/a.md');
   assert.deepEqual(movedLines(relayout.output), [], relayout.output);
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/a.md'), 'utf8'), first);
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/b.md'), 'utf8'), second);
-  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'skilled/skills/hub/a.md')), false);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'framework/skills/hub/a.md')), false);
   assert.deepEqual(fs.readFileSync(manifestPath), before);
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
 });
@@ -1471,9 +1472,258 @@ test('relayout refuses two copies that sit one inside the other', (t) => {
   assert.deepEqual(movedLines(relayout.output), [], relayout.output);
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/bundle/readme.md'), 'utf8'), README_TEXT);
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, DIR_LAYOUT)), false);
-  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'claude/readme.md')), false);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'root/claude/readme.md')), false);
   assert.deepEqual(fs.readFileSync(manifestPath), before);
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8a. TREES ON THE OLDER LAYOUT
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The layout puts a framework destination under `framework/` and every other
+// destination under `root/`, while an older tree keeps each copy at its
+// destination with the leading dot dropped. Such a tree still applies and its
+// status still passes, but every entry is off the layout, so status caps the
+// notice at twenty lines and one overflow line, and `--json` keeps every record.
+// These cases spell their paths out instead of reading the constants above, so
+// they keep describing the older layout whatever those constants say.
+const LAYOUT_CAP_SHOWN = 20;
+const OLD_SKILL_TEXT = 'skill copy\n';
+const UPSTREAM_SKILL_TEXT = 'upstream skill\n';
+
+function skillId(index) {
+  return 's' + String(index).padStart(2, '0');
+}
+
+/**
+ * Build and apply a tree with `count` file overlays, each kept at its
+ * destination with the leading dot dropped.
+ * @param {object} t The node:test context.
+ * @param {number} count How many overlays the manifest names.
+ * @returns {object} Fixture paths, its manifest and a `run` helper.
+ */
+function createOldLayoutSkillsFixture(t, count) {
+  const fixture = createWorkspace(t, 'overlay-engine-old-layout-cap-');
+  const overlays = [];
+  for (let index = 1; index <= count; index += 1) {
+    const id = skillId(index);
+    writeFile(fixture.overlayDir, `skilled/skills/${id}/SKILL.md`, OLD_SKILL_TEXT);
+    writeFile(fixture.tree, `.skilled/skills/${id}/SKILL.md`, UPSTREAM_SKILL_TEXT);
+    overlays.push({
+      id,
+      scope: 'file',
+      source: `skilled/skills/${id}/SKILL.md`,
+      destination: `.skilled/skills/${id}/SKILL.md`,
+      pinnedSha256: sha256(Buffer.from(UPSTREAM_SKILL_TEXT)),
+    });
+  }
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [],
+    overlays,
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  return fixture;
+}
+
+function oldSkillLayoutLine(index) {
+  const id = skillId(index);
+  return `LAYOUT   ${id}: source skilled/skills/${id}/SKILL.md belongs at framework/skills/${id}/SKILL.md; ` +
+    `run ${ENGINE_COMMAND} apply --relayout`;
+}
+
+test('layout cap: status names twenty off-layout entries and counts the rest in one line', (t) => {
+  const fixture = createOldLayoutSkillsFixture(t, 25);
+
+  const status = fixture.run(['status']);
+  const report = JSON.parse(fixture.run(['status', '--json']).stdout);
+
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /RESULT: PASSED/);
+  const expected = [];
+  for (let index = 1; index <= LAYOUT_CAP_SHOWN; index += 1) expected.push(oldSkillLayoutLine(index));
+  expected.push(`LAYOUT   … 5 more; run ${ENGINE_COMMAND} apply --relayout`);
+  assert.deepEqual(layoutLines(status.output), expected, status.output);
+  assert.equal(report.offLayout.length, 25);
+  assert.deepEqual(report.offLayout[24], {
+    overlay: 's25', field: 'source', from: 'skilled/skills/s25/SKILL.md', to: 'framework/skills/s25/SKILL.md',
+  });
+});
+
+test('layout cap: status prints twenty off-layout entries with no overflow line', (t) => {
+  const fixture = createOldLayoutSkillsFixture(t, LAYOUT_CAP_SHOWN);
+
+  const status = fixture.run(['status']);
+
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /RESULT: PASSED/);
+  const expected = [];
+  for (let index = 1; index <= LAYOUT_CAP_SHOWN; index += 1) expected.push(oldSkillLayoutLine(index));
+  assert.deepEqual(layoutLines(status.output), expected, status.output);
+});
+
+test('old layout: a tree with dot-dropped sources passes status and relayout moves it onto framework and root', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-old-layout-');
+  const upstreamNotes = 'upstream notes\n';
+  const overlayNotes = 'overlay notes\n';
+  writeFile(fixture.overlayDir, 'skilled/skills/hub/place.md', OVERLAY_PLACE);
+  writeFile(fixture.overlayDir, 'claude/notes.md', overlayNotes);
+  writeFile(fixture.tree, '.skilled/skills/hub/place.md', UPSTREAM_PLACE);
+  writeFile(fixture.tree, '.claude/notes.md', upstreamNotes);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [],
+    overlays: [
+      {
+        id: 'hub-place',
+        scope: 'file',
+        source: 'skilled/skills/hub/place.md',
+        destination: '.skilled/skills/hub/place.md',
+        pinnedSha256: sha256(Buffer.from(UPSTREAM_PLACE)),
+      },
+      {
+        id: 'claude-notes',
+        scope: 'file',
+        source: 'claude/notes.md',
+        destination: '.claude/notes.md',
+        pinnedSha256: sha256(Buffer.from(upstreamNotes)),
+      },
+    ],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  const run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+
+  const applied = run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  const status = run(['status']);
+
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /RESULT: PASSED/);
+  assert.deepEqual(layoutLines(status.output), [
+    'LAYOUT   hub-place: source skilled/skills/hub/place.md belongs at framework/skills/hub/place.md; ' +
+      `run ${ENGINE_COMMAND} apply --relayout`,
+    'LAYOUT   claude-notes: source claude/notes.md belongs at root/claude/notes.md; ' +
+      `run ${ENGINE_COMMAND} apply --relayout`,
+  ], status.output);
+
+  const relayout = run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 0, relayout.output);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'framework/skills/hub/place.md'), 'utf8'), OVERLAY_PLACE);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'root/claude/notes.md'), 'utf8'), overlayNotes);
+
+  const reapplied = run(['apply']);
+  const settled = run(['status']);
+
+  assert.equal(reapplied.code, 0, reapplied.output);
+  assert.equal(settled.code, 0, settled.output);
+  assert.deepEqual(layoutLines(settled.output), [], settled.output);
+});
+
+/**
+ * Every file under a folder, keyed by its path inside it, with its bytes.
+ * @param {string} root Folder to read.
+ * @returns {Object<string, Buffer>} Path to bytes, sorted by path.
+ */
+function snapshotFolder(root) {
+  const files = {};
+  const walk = (folder) => {
+    for (const entry of fs.readdirSync(folder, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+      const absolute = path.join(folder, entry.name);
+      if (entry.isDirectory()) walk(absolute);
+      else files[path.relative(root, absolute)] = fs.readFileSync(absolute);
+    }
+  };
+  walk(root);
+  return files;
+}
+
+// A destination under `skilled/` would land at `root/skilled/`, which reads as
+// the framework folder under its old name, so relayout refuses that entry by
+// id and moves nothing at all, the other entry's copy included.
+test('relayout refuses an entry whose layout path lands under root/skilled and moves nothing', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-relayout-root-skilled-');
+  writeFile(fixture.overlayDir, 'custom/notes.md', 'stray notes\n');
+  writeFile(fixture.overlayDir, 'custom/place.md', OVERLAY_PLACE);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [],
+    overlays: [
+      {
+        id: 'stray-entry',
+        scope: 'file',
+        source: 'custom/notes.md',
+        destination: 'skilled/notes.md',
+      },
+      {
+        id: 'hub-place',
+        scope: 'file',
+        source: 'custom/place.md',
+        destination: '.skilled/skills/hub/place.md',
+      },
+    ],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  const before = snapshotFolder(fixture.overlayDir);
+  const run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+
+  const relayout = run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 2, relayout.output);
+  assert.match(relayout.output, /stray-entry/);
+  assert.deepEqual(movedLines(relayout.output), [], relayout.output);
+  assert.deepEqual(snapshotFolder(fixture.overlayDir), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'root/skilled/notes.md')), false);
+});
+
+// Status still names such an entry as off the layout, but points at the manifest
+// rather than at a relayout that would refuse the whole run.
+test('status names an entry whose layout path lands under root/skilled without sending it to relayout', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-status-root-skilled-');
+  writeFile(fixture.overlayDir, 'custom/notes.md', 'stray notes\n');
+  writeFile(fixture.tree, 'skilled/notes.md', 'stray notes\n');
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [],
+    overlays: [
+      {
+        id: 'stray-entry',
+        scope: 'file',
+        source: 'custom/notes.md',
+        destination: 'skilled/notes.md',
+      },
+    ],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  const run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+
+  const status = run(['status']);
+  const report = JSON.parse(run(['status', '--json']).stdout);
+
+  assert.equal(status.code, 0, status.output);
+  assert.deepEqual(layoutLines(status.output), [
+    'LAYOUT   stray-entry: source custom/notes.md belongs at root/skilled/notes.md; ' +
+      'change the destination or remove the entry',
+  ], status.output);
+  assert.deepEqual(report.offLayout, [
+    { overlay: 'stray-entry', field: 'source', from: 'custom/notes.md', to: 'root/skilled/notes.md' },
+  ]);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

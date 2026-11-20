@@ -1,0 +1,13 @@
+commit 87de7f0fda7
+ℹ tests 238
+ℹ pass 238
+ℹ fail 0
+engine exit=0
+ℹ tests 20
+ℹ pass 20
+ℹ fail 0
+guard exit=0
+ℹ tests 36
+ℹ pass 36
+ℹ fail 0
+sk-create-goal exit=0

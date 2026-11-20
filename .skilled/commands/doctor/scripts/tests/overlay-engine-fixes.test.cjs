@@ -151,6 +151,32 @@ test('the setting file refuses a sibling link that points back at the tree root'
   assert.match(status.output, /\.skilled-overlays\.json/);
 });
 
+// A link whose target does not exist yet cannot be told apart from one into the
+// tree, so it is refused now rather than on the run after its target appears.
+test('the setting file refuses a dangling sibling link whose target lies inside the tree', (t) => {
+  const fixture = createSyncFixture(t);
+  fs.symlinkSync(path.join(fixture.tree, 'not-yet'), path.join(path.dirname(fixture.tree), 'dangling'));
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: '../dangling' }));
+  assert.throws(() => engine.resolveOverlayDir(fixture.tree), /names a folder outside the tree root/);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  assert.match(status.output, /\.skilled-overlays\.json/);
+});
+
+// A link to itself never resolves, so it is refused like a dangling one instead
+// of failing with a raw loop error.
+test('the setting file refuses a sibling link that loops back to itself', (t) => {
+  const fixture = createSyncFixture(t);
+  const loop = path.join(path.dirname(fixture.tree), 'loop');
+  fs.symlinkSync(loop, loop);
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: '../loop' }));
+  assert.throws(() => engine.resolveOverlayDir(fixture.tree),
+    /\.skilled-overlays\.json names a folder outside the tree root: \.\.\/loop/);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes('.skilled-overlays.json names a folder outside the tree root: ../loop'), status.output);
+});
+
 test('the setting file refuses a sibling spelled as a case variant of the tree folder on a case-insensitive disk', (t) => {
   const fixture = createSyncFixture(t);
   const variant = path.basename(fixture.tree).toUpperCase();

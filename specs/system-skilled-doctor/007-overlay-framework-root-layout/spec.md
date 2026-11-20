@@ -157,6 +157,15 @@ None open. The operator answered every question on 2026-11-20.
 - **Stage layout.** With a sibling folder, `repin --stage <dir>` holds `<dir>/<tree>` and `<dir>/<overlays>`, so a stage writes nothing live (phase 001).
 - **Setting file location.** `ai-speckit/skilled/.skilled-overlays.json` stays inside the vendored copy and names `../overlays`. No re-pin touches it, because it is not in `repin.rootFiles` (phase 005).
 - **Which Skilled commit Barter re-pins to.** Phase 004 records the commit that phase 003 produces, on its `Target Skilled commit:` line.
+
+### Resolved for building phases 002 and 003 (operator, 2026-11-20)
+
+- **Branch.** Phases 002 and 003 build on the worktree branch `worktrees/481-overlay-framework-root-layout`. Once both pass, the branch merges into Skilled `main` locally. Skilled is never pushed.
+- **Release.** Phase 003 writes the version bump and the release note in the repository only: no GitHub release, no tag, no push.
+- **Extra scope in phase 002.** It also closes phase 001's open P2 with a test: a broken sibling link pointing into the tree is accepted until its target exists. It updates the sk-create-goal docs left stale by the Level 1 goal fix (`SKILL.md`, `README.md`, the child template and the phase-add text), in a separate commit.
+- **Workers.** Claude workers run on Opus at medium effort. DeepSeek runs through cli-pi on `llmgateway/deepseek-v4.1-flash-1017`, at thinking `high` for simple tasks and `max` for hard ones. Devin is out of quota.
+- **Failure policy.** When a phase still fails its tests or checks after three fix attempts, work stops. Earlier phases stay committed, and the failing phase's work stays uncommitted in the worktree for the report.
+- **Phases 004 and 005** run from a separate ai-speckit session, pinned to the merged `main` commit.
 <!-- /ANCHOR:questions -->
 
 ---
