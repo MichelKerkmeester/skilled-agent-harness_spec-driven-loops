@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4c41cff2a01d183a90573369d5db417751b7792f6e8f582eea90202349750de6",
+  "corpusHash": "7b20c8fa8e53678ac0026e5d54e370b5b4fa5db1ea17e36fa3174986b85e18c5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28821,
+  "includedPathCount": 28800,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -20212,27 +20212,6 @@
     "specs/system-skilled-doctor/006-parent-skill-check-target-root/plan.md",
     "specs/system-skilled-doctor/006-parent-skill-check-target-root/spec.md",
     "specs/system-skilled-doctor/006-parent-skill-check-target-root/tasks.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/acceptance-criteria.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/plan.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/spec.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/tasks.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/plan.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/spec.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/tasks.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/plan.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/spec.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/tasks.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-onto-new-engine/plan.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-onto-new-engine/spec.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-onto-new-engine/tasks.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-relayout-in-tree/plan.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-relayout-in-tree/spec.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-relayout-in-tree/tasks.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-barter-move-overlays-out-of-tree/acceptance-criteria.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-barter-move-overlays-out-of-tree/plan.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-barter-move-overlays-out-of-tree/spec.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-barter-move-overlays-out-of-tree/tasks.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/spec.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -28853,7 +28832,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "218543419d56ca71580767faa6363ecfb6bd0ab9a7bf320398be7b5438fa04fb",
+  "manifestHash": "f5482a3e538831d58b100bbc2d0c4addb106ea92d831e67163046ee83043bee0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -37937,34 +37916,6 @@
     },
     {
       "path": "specs/system-skilled-doctor/006-parent-skill-check-target-root/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-onto-new-engine/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-relayout-in-tree/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-barter-move-overlays-out-of-tree/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/scratch",
       "reason": "excluded directory"
     },
     {

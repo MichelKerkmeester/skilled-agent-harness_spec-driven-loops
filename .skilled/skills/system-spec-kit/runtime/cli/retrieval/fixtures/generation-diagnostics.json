@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7062,
-    "ok": 20131,
+    "ok": 20110,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28821,
+  "documentsScanned": 28800,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "218543419d56ca71580767faa6363ecfb6bd0ab9a7bf320398be7b5438fa04fb",
+  "manifestHash": "f5482a3e538831d58b100bbc2d0c4addb106ea92d831e67163046ee83043bee0",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45633,
+      "ok": 45579,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -62897,34 +62897,6 @@
     },
     {
       "path": "specs/system-skilled-doctor/006-parent-skill-check-target-root/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-onto-new-engine/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-relayout-in-tree/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-barter-move-overlays-out-of-tree/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/scratch",
       "reason": "excluded directory"
     },
     {
