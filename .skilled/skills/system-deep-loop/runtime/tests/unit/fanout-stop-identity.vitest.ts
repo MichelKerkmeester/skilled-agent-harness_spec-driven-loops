@@ -225,4 +225,49 @@ describe('fanout-run.cjs --stop — lineage identity', () => {
     ]);
     expect(readLedger(fixture.baseDir).filter((row) => row.event === 'stopped')).toEqual([]);
   }, 40_000);
+
+  it('signals the members of an exited leader\'s group started since the spawn, and spares an older one', async () => {
+    const fixture = makeSleepingRun('fanout-stop-identity-exited-leader');
+    // The leader starts one member, waits past the one-second resolution of a start time,
+    // starts a second and exits, so its group lives on without it.
+    const leader = spawn('sh', ['-c', 'sleep 60 & echo $!; sleep 2; sleep 60 & echo $!; exit 0'], {
+      detached: true,
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
+    const leaderPid = leader.pid as number;
+    ownedGroups.push(leaderPid);
+    let leaderOut = '';
+    leader.stdout?.setEncoding('utf8');
+    leader.stdout?.on('data', (chunk) => { leaderOut += chunk; });
+    await new Promise((resolvePromise) => leader.on('exit', resolvePromise));
+    const [olderPid, newerPid] = await waitFor(() => {
+      const pids = leaderOut.trim().split('\n').filter(Boolean).map(Number);
+      return pids.length === 2 ? pids : null;
+    });
+    expect(processStart(leaderPid)).toBe('');
+    expect(groupAlive(leaderPid)).toBe(true);
+
+    // The recorded spawn time falls after the older member started, so it cannot be the lineage's.
+    const at = new Date().toISOString();
+    const rows = [
+      { event: 'started', label: 'headless', index: 0, at },
+      { event: 'spawned', label: 'headless', attempt: 1, pid: leaderPid, at, status: 'running', process_start: processStart(newerPid) },
+    ];
+    writeFileSync(join(fixture.baseDir, 'orchestration-status.log'), rows.map((row) => `${JSON.stringify(row)}\n`).join(''));
+
+    const stop = await runStop(fixture);
+
+    const pidAlive = (pid: number) => processStart(pid) !== '';
+    expect(pidAlive(newerPid)).toBe(false);
+    expect(pidAlive(olderPid)).toBe(true);
+    expect(stop.exitCode).toBe(0);
+    expect(lastJson(stop.stdout)).toMatchObject({
+      status: 'ok',
+      stopped: [{ label: 'headless', pid: leaderPid }],
+      survivors: [],
+      refused: [],
+      spared: [{ label: 'headless', pid: olderPid, process_start: processStart(olderPid) }],
+    });
+    expect(readLedger(fixture.baseDir).filter((row) => row.event === 'stopped').map((row) => row.label)).toEqual(['headless']);
+  }, 40_000);
 });
