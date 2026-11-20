@@ -2067,6 +2067,23 @@ describe('mergeReviewRegistries — coverage surfaces', () => {
     expect(disagree.graphCoverageMode).toBeNull();
   });
 
+  it('summarizes merged traceability with the reducer summary function', () => {
+    const { summarizeTraceabilityResults, buildTraceabilityRollup } = require('../../scripts/reduce-state.cjs') as {
+      summarizeTraceabilityResults: (results: unknown[]) => Record<string, number>;
+      buildTraceabilityRollup: (records: unknown[]) => { summary: Record<string, number>; results: unknown[] };
+    };
+    const traceability = mergeReviewRegistries([lineageA, lineageB]).traceability as {
+      results: unknown[];
+      summary: Record<string, number>;
+    };
+    expect(traceability.summary).toEqual(summarizeTraceabilityResults(traceability.results));
+    const rollup = buildTraceabilityRollup([{ traceabilityChecks: { results: [
+      { protocolId: 'spec_code', status: 'partial', applicable: true, gateClass: 'hard' },
+      { protocolId: 'feature_catalog_code', status: 'notApplicable', applicable: false, gateClass: 'advisory' },
+    ] } }]);
+    expect(rollup.summary).toEqual(summarizeTraceabilityResults(rollup.results));
+  });
+
   it('merges candidate coverage buckets and ORs a shared bug class with its lineages', () => {
     const candidate = mergeReviewRegistries([lineageA, lineageB]).candidateCoverage as Record<string, unknown>;
     expect(candidate.covered).toEqual(['injection']);

@@ -1651,24 +1651,32 @@ function buildTraceabilityRollup(iterationRecords) {
   }
 
   const results = [...latestByProtocol.values()];
+  return { summary: summarizeTraceabilityResults(results), results };
+}
+
+/**
+ * Count traceability results into the registry summary. The fan-out merge
+ * summarizes its merged results with this same function, so a merged registry
+ * and a single-lineage registry never count the same results differently.
+ *
+ * @param {Array<object>} results - One result per protocol.
+ * @returns {object} The summary counts.
+ */
+function summarizeTraceabilityResults(results) {
   const statuses = results.map((result) => result.status);
   const applicable = results.filter((result) => result.applicable !== false);
-
   return {
-    summary: {
-      required: applicable.length,
-      executed: applicable.filter(
-        (result) => !TRACEABILITY_UNDECIDED_STATUSES.has(result.status),
-      ).length,
-      pass: statuses.filter((status) => status === 'pass').length,
-      partial: statuses.filter((status) => status === 'partial').length,
-      fail: statuses.filter((status) => status === 'fail').length,
-      blocked: statuses.filter((status) => status === 'blocked').length,
-      notApplicable: statuses.filter((status) => status === 'notApplicable').length,
-      gatingFailures: applicable.filter((result) => result.gateClass === 'hard'
-        && ['partial', 'fail', 'blocked'].includes(result.status)).length,
-    },
-    results,
+    required: applicable.length,
+    executed: applicable.filter(
+      (result) => !TRACEABILITY_UNDECIDED_STATUSES.has(result.status),
+    ).length,
+    pass: statuses.filter((status) => status === 'pass').length,
+    partial: statuses.filter((status) => status === 'partial').length,
+    fail: statuses.filter((status) => status === 'fail').length,
+    blocked: statuses.filter((status) => status === 'blocked').length,
+    notApplicable: statuses.filter((status) => status === 'notApplicable').length,
+    gatingFailures: applicable.filter((result) => result.gateClass === 'hard'
+      && ['partial', 'fail', 'blocked'].includes(result.status)).length,
   };
 }
 
@@ -3063,5 +3071,6 @@ module.exports = {
   collapseFindingsByDedupKey,
   findingDedupKey,
   buildTraceabilityRollup,
+  summarizeTraceabilityResults,
   validateReviewRecordFields,
 };

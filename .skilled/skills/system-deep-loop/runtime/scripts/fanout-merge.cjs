@@ -27,6 +27,7 @@ const {
 } = require('../lib/deep-loop/iteration-findings.cjs');
 const { assertKnownFlags } = require('./lib/cli-guards.cjs');
 const { NODE_STATUSES } = require('./frontier-admit.cjs');
+const { summarizeTraceabilityResults } = require('./reduce-state.cjs');
 const {
   activeReviewSeverityCounts,
   deriveReviewVerdict,
@@ -962,7 +963,7 @@ function traceabilityRank(status) {
 
 // The strictest status wins per protocol, and an undecided status never replaces a
 // decided one; a tie keeps the first lineage in label order. The summary is then
-// recomputed from the merged results with the reducer's own counting rules.
+// recomputed from the merged results by the reducer's own summary function.
 function mergeTraceability(lineages) {
   const byProtocol = new Map();
   for (const { registry } of lineages) {
@@ -977,20 +978,8 @@ function mergeTraceability(lineages) {
     }
   }
   const results = [...byProtocol.keys()].sort(compareText).map((protocolId) => byProtocol.get(protocolId));
-  const statuses = results.map((result) => result.status);
-  const applicable = results.filter((result) => result.applicable !== false);
   return {
-    summary: {
-      required: applicable.length,
-      executed: applicable.filter((result) => !TRACEABILITY_UNDECIDED.has(result.status)).length,
-      pass: statuses.filter((status) => status === 'pass').length,
-      partial: statuses.filter((status) => status === 'partial').length,
-      fail: statuses.filter((status) => status === 'fail').length,
-      blocked: statuses.filter((status) => status === 'blocked').length,
-      notApplicable: statuses.filter((status) => status === 'notApplicable').length,
-      gatingFailures: applicable.filter((result) => result.gateClass === 'hard'
-        && ['partial', 'fail', 'blocked'].includes(result.status)).length,
-    },
+    summary: summarizeTraceabilityResults(results),
     results,
     unfinishedCoreProtocols: sortedUnion(lineages.map(({ registry }) => registry.traceability?.unfinishedCoreProtocols)),
   };
