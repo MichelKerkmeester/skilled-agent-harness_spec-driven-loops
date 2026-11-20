@@ -848,8 +848,10 @@ function computeStopSignals(args = {}) {
   };
 }
 
+// Only 'failed' blocks a stop. 'insufficient' means the evidence the guard
+// reads is absent, so it does not block, yet it must never read as a pass.
 function guardOutcome(status, violations) {
-  return { status, passed: status !== 'failed', violations };
+  return { status, passed: status === 'passed' || status === 'notEvaluated', violations };
 }
 
 // A leaf may label questions with their strategy id ("Q1: ...") while the
@@ -876,6 +878,8 @@ function evaluateResearchQualityGuards(args = {}) {
   let sourceDiversity;
   if (sourceCounts === null) {
     sourceDiversity = guardOutcome('notEvaluated', []);
+  } else if (Object.keys(sourceCounts).length === 0) {
+    sourceDiversity = guardOutcome('insufficient', []);
   } else {
     const violations = Object.keys(sourceCounts).filter((question) => {
       const count = sourceCounts[question];
@@ -1107,7 +1111,7 @@ function buildStopDecision(input) {
     })
     : null;
   const failedGuards = qualityGuards
-    ? Object.keys(qualityGuards.guards).filter((name) => !qualityGuards.guards[name].passed)
+    ? Object.keys(qualityGuards.guards).filter((name) => qualityGuards.guards[name].status === 'failed')
     : [];
 
   const gatesAt = (hardStop) => {
@@ -1511,8 +1515,8 @@ function stopDecisionConfig(config, loopType, args) {
 }
 
 // Distinct SOURCE nodes behind the FINDING nodes that answer each question.
-// The counts are null when the graph holds no answered QUESTION node, which
-// keeps the source-diversity guard unevaluated instead of failed.
+// A graph with no answered QUESTION node yields an empty object, which the
+// source-diversity guard reports as insufficient evidence rather than a pass.
 function answeredQuestionSourceCounts(nodes, edges) {
   const nodeList = Array.isArray(nodes) ? nodes : [];
   const edgeList = Array.isArray(edges) ? edges : [];
@@ -1524,7 +1528,7 @@ function answeredQuestionSourceCounts(nodes, edges) {
     .filter((node) => node?.kind === 'QUESTION' && answeringQuestionIds.has(node.id))
     .map((node) => node.id)
     .sort();
-  if (questionIds.length === 0) return null;
+  if (questionIds.length === 0) return {};
 
   const citedSourcesByFinding = new Map();
   for (const edge of edgeList) {
