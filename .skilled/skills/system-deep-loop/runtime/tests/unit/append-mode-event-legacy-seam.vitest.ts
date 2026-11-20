@@ -547,3 +547,121 @@ describe('append-mode-event legacy deep-research upcast seam', () => {
     expect(stateLog.at(-1).timestamp).toBe('2026-05-24T03:04:05Z');
   });
 });
+
+// The review gateway mints the identity of the rows the model writes the same
+// way the research one does, and a key two different events share is refused
+// out loud instead of the second event being dropped as a retry of the first.
+describe('append-mode-event review identity and reused keys', () => {
+  const modelIdentity = {
+    eventId: 'event-model-chosen',
+    idempotencyKey: 'model-chosen-key',
+    producer: { name: 'model', version: '9.9.9' },
+    authorityEpoch: 999,
+  };
+
+  function reviewIterationRow(iteration: number): Record<string, unknown> {
+    return {
+      type: 'iteration', iteration, run: iteration, mode: 'review', status: 'complete',
+      focus: 'correctness', sessionId: 'review-s1', generation: 1, findingsCount: 0,
+      newFindingsRatio: 0, timestamp: '2026-05-24T03:04:05Z', ...modelIdentity,
+    };
+  }
+
+  function ledgerEvents(runDir: string, ledgerId: string): Array<Record<string, unknown>> {
+    return readdirSync(framesDirectory(runDir, ledgerId)).sort().map((name) => {
+      const frame = JSON.parse(readFileSync(join(framesDirectory(runDir, ledgerId), name), 'utf8'));
+      return JSON.parse(Buffer.from(frame.canonical_event_bytes, 'base64').toString('utf8'));
+    });
+  }
+
+  function reviewStateRows(runDir: string): Array<Record<string, unknown>> {
+    return readFileSync(join(runDir, 'review', 'deep-review-state.jsonl'), 'utf8')
+      .split('\n').filter(Boolean).map((line) => JSON.parse(line));
+  }
+
+  it('mints the event id, idempotency key, producer and epoch of a model-written review row', () => {
+    const runDir = createTempDir('review-identity');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: createTempDir('review-identity-auth') };
+
+    for (const iteration of [1, 2]) {
+      const appended = runCli(
+        ['--mode', 'deep-review', '--run-directory', runDir, '--event-json', writeEvent(runDir, reviewIterationRow(iteration))],
+        env,
+      );
+      expect(appended.exitCode, appended.stderr + appended.rawStdout).toBe(0);
+      expect(appended.json.idempotentReplay).toBeUndefined();
+    }
+
+    const events = ledgerEvents(runDir, 'deep-review-ledger');
+    expect(events).toHaveLength(2);
+    for (const event of events) {
+      expect(event.event_id).not.toMatch(/model-chosen/);
+      expect(event.idempotency_key).toMatch(/^deep-review:input:[0-9a-f]{64}$/);
+      expect(event.producer).toEqual({ name: 'deep-loop-cli', version: '1.0.0' });
+      expect(event.authority_epoch).not.toBe(999);
+    }
+    expect(events[0].idempotency_key).not.toBe(events[1].idempotency_key);
+    expect(reviewStateRows(runDir).filter((row) => row.type === 'iteration')).toHaveLength(2);
+  });
+
+  it('stores an identical review row appended twice once', () => {
+    const runDir = createTempDir('review-retry');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: createTempDir('review-retry-auth') };
+    const eventJson = writeEvent(runDir, reviewIterationRow(1));
+
+    const first = runCli(['--mode', 'deep-review', '--run-directory', runDir, '--event-json', eventJson], env);
+    expect(first.exitCode, first.stderr + first.rawStdout).toBe(0);
+    const retry = runCli(['--mode', 'deep-review', '--run-directory', runDir, '--event-json', eventJson], env);
+    expect(retry.exitCode, retry.stderr + retry.rawStdout).toBe(0);
+    expect(retry.json.idempotentReplay).toBe(true);
+    expect(ledgerEvents(runDir, 'deep-review-ledger')).toHaveLength(1);
+    expect(reviewStateRows(runDir).filter((row) => row.type === 'iteration')).toHaveLength(1);
+  });
+
+  it('refuses a key reused on a different event out loud and stores only the first', () => {
+    const runDir = createTempDir('review-collision');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: createTempDir('review-collision-auth') };
+    const stemEvent = (focus: string) => ({
+      stem: 'deep_review.iteration_recorded',
+      scope: { runId: 'review-s1', sessionId: 'review-s1' },
+      data: { record: { ...reviewIterationRow(1), focus } },
+      idempotencyKey: 'caller-reused-key',
+    });
+
+    const first = runCli(
+      ['--mode', 'deep-review', '--run-directory', runDir, '--event-json', writeEvent(runDir, stemEvent('correctness'))],
+      env,
+    );
+    expect(first.exitCode, first.stderr + first.rawStdout).toBe(0);
+    const reused = runCli(
+      ['--mode', 'deep-review', '--run-directory', runDir, '--event-json', writeEvent(runDir, stemEvent('security'))],
+      env,
+    );
+    expect(reused.exitCode).toBe(2);
+    expect(reused.json.code).toBe('IDEMPOTENCY_CONFLICT');
+    expect(reused.stderr).toContain('caller-reused-key');
+    expect(ledgerEvents(runDir, 'deep-review-ledger')).toHaveLength(1);
+  });
+
+  // A resume row copies the head it was built on into its data, so a retry
+  // that reaches the gateway after the head moved differs only by that head.
+  it('still stores a retried research row that carries its head in its data once', () => {
+    const runDir = createTempDir('resume-retry');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: createTempDir('resume-retry-auth') };
+    const append = (row: Record<string, unknown>) => runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, row)],
+      env,
+    );
+    const resumed = {
+      type: 'event', event: 'resumed', sessionId: 's1', lineageId: 'l1', parentSessionId: 'l1', generation: 1,
+    };
+
+    expect(append(legacyConfigRow()).exitCode).toBe(0);
+    const first = append(resumed);
+    expect(first.exitCode, first.stderr + first.rawStdout).toBe(0);
+    const retry = append(resumed);
+    expect(retry.exitCode, retry.stderr + retry.rawStdout).toBe(0);
+    expect(retry.json.idempotentReplay).toBe(true);
+    expect(ledgerEvents(runDir, 'deep-research-ledger')).toHaveLength(2);
+  });
+});

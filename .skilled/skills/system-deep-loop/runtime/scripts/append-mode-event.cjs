@@ -101,6 +101,21 @@ function stableJson(value) {
   return JSON.stringify(value);
 }
 
+// A model-written row's own event id, idempotency key, producer and epoch are
+// dropped, not kept: neither mode's schema has a claim field for them, and a row
+// that named an earlier row's key or id would read as its retry or collide with
+// it. The builder's defaults then mint all four, and the key is derived from the
+// row as handed over, so a retried row is still stored once.
+const GATEWAY_IDENTITY_FIELDS = Object.freeze([
+  'eventId', 'event_id', 'idempotencyKey', 'idempotency_key', 'producer', 'authorityEpoch', 'authority_epoch',
+]);
+
+function withoutGatewayIdentity(row) {
+  return Object.fromEntries(
+    Object.entries(row).filter(([key]) => !GATEWAY_IDENTITY_FIELDS.includes(key)),
+  );
+}
+
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
@@ -414,17 +429,7 @@ async function main() {
         `Legacy deep-research record refused: ${upcast.decision.reasonCode}`,
       );
     }
-    // The row's own event id, idempotency key, producer and epoch are dropped,
-    // not kept: the schema has no claim field for them, and a row that named an
-    // earlier row's key or id would read as its retry or collide with it. The
-    // builder's defaults then mint all four, and the key is derived from the row
-    // as handed over, so a retried row is still stored once.
-    const gatewayIdentityFields = [
-      'eventId', 'event_id', 'idempotencyKey', 'idempotency_key', 'producer', 'authorityEpoch', 'authority_epoch',
-    ];
-    const rowMeta = Object.fromEntries(
-      Object.entries(rawEvent).filter(([key]) => !gatewayIdentityFields.includes(key)),
-    );
+    const rowMeta = withoutGatewayIdentity(rawEvent);
     // A row the projection writes back with its own timestamp hands that time
     // over as the event's occurrence time, so the row keeps it. A completed
     // iteration is written by the model, so only the gateway clock times it:
@@ -469,10 +474,12 @@ async function main() {
       : 'run-cli';
     // The model writes the iteration record, so only the gateway clock times it:
     // a time field on the record never sets the event time, and the projection
-    // keeps the record's own stamp as a claim.
+    // keeps the record's own stamp as a claim. The record still travels whole in
+    // the event data, so the projection writes back the row as it was handed over.
+    const rowMeta = withoutGatewayIdentity(rawEvent);
     const reviewMeta = rawEvent.type === 'iteration'
-      ? { ...rawEvent, occurredAt: nowIso, recordedAt: nowIso }
-      : rawEvent;
+      ? { ...rowMeta, occurredAt: nowIso, recordedAt: nowIso }
+      : rowMeta;
     const preparedInput = buildPreparedInput({
       stem: 'deep_review.iteration_recorded',
       scope: { runId: sessionId, sessionId },
@@ -523,6 +530,12 @@ async function main() {
     } catch {
       // The refusal record is best-effort and must not change the CLI result.
     }
+  }
+
+  // A reused key refuses the row, and that refusal must reach whoever reads the
+  // command's error stream, not only a caller that parses the JSON line.
+  if (outcome && outcome.ok === false && outcome.code === 'IDEMPOTENCY_CONFLICT') {
+    process.stderr.write(`${outcome.reason}\n`);
   }
 
   // Surface a lossy legacy migration instead of letting it pass silently. Only
