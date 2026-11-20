@@ -169,9 +169,9 @@ describe('withCommandDocuments', () => {
   });
 
   it('drops a second colon part and lists each command once', () => {
-    const both = 'Advisor: live; use x → /deep:research:auto, /local-skilled-alignment (start) 0.9/0.1 pass.';
+    const both = 'Advisor: live; use x → /deep:research:auto, /doctor:setup (start) 0.9/0.1 pass.';
     expect(vibeAdvisor.withCommandDocuments(both, repoRoot)).toBe(
-      `${both}\n${LEAD}/deep:research is .skilled/commands/deep/research.md, /local-skilled-alignment is .skilled/commands/local-skilled-alignment.md.`,
+      `${both}\n${LEAD}/deep:research is .skilled/commands/deep/research.md, /doctor:setup is .skilled/commands/doctor/setup.md.`,
     );
 
     const twice = 'Advisor: live; use sk-doc → /create:readme (start) 0.9/0.1 pass.\nAlso: /create:readme (start)';
