@@ -23,6 +23,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
@@ -78,6 +79,7 @@ const CONVERGENCE_FLAGS = [
   'observationThresholdGuard',
   'persistSnapshot',
   'readOnly',
+  'recordBlockedStop',
   'registryPath',
   'reportedNovelty',
   'reportedNoveltyThreshold',
@@ -1846,6 +1848,124 @@ function buildStopDecisionGraphFailurePayload(error, args, loopType, files) {
   };
 }
 
+// Iterations that recorded findings but left no FINDING node in the graph. The
+// usual cause is a graph upsert that never ran for them, which starves the
+// source and coverage guards. A FINDING node without an iteration number makes
+// the comparison meaningless, so none are named then.
+function iterationsWithoutGraphFindings(iterationRecords, nodes) {
+  const findingNodes = (Array.isArray(nodes) ? nodes : [])
+    .filter((node) => isPlainObject(node) && String(node.kind).toUpperCase() === 'FINDING');
+  if (findingNodes.some((node) => finiteNumberOrNull(node.iteration) === null)) return [];
+  const covered = new Set(findingNodes.map((node) => Number(node.iteration)));
+  return (Array.isArray(iterationRecords) ? iterationRecords : [])
+    .filter((record) => isEvidenceBearingIteration(record) && (finiteNumberOrNull(record.findingsCount) ?? 0) > 0)
+    .map(iterationRecordNumber)
+    .filter((iteration) => iteration !== null && !covered.has(iteration));
+}
+
+function blockedStopRecoveryStrategy(stopDecision, graphBlockers, missingIterations) {
+  const first = (Array.isArray(graphBlockers) ? graphBlockers : [])
+    .find((blocker) => blockerName(blocker) === stopDecision.blockedBy[0]);
+  const base = first && typeof first.description === 'string' && first.description !== ''
+    ? first.description
+    : 'Collect deeper graph evidence before stopping.';
+  if (missingIterations.length === 0) return base;
+  return `${base} Iteration(s) ${missingIterations.join(', ')} recorded findings but left no FINDING node in the graph; check that their graph upsert ran.`;
+}
+
+// The legacy row shape the research workflow has always sent for a blocked
+// stop, so it takes the same upcast path to the convergence-blocked event.
+function buildBlockedStopRow({ stopDecision, stopDecisionInput, graphBlockers, signals, score, iteration, sessionId, generation, recoveryStrategy }) {
+  const blocked = new Set(stopDecision.blockedBy);
+  const research = isPlainObject(stopDecisionInput.research) ? stopDecisionInput.research : {};
+  return {
+    type: 'event',
+    event: 'blocked_stop',
+    mode: 'research',
+    run: iteration,
+    blockedBy: stopDecision.blockedBy,
+    gateResults: {
+      convergence: { pass: stopDecision.graphDecision === 'STOP_ALLOWED', score: finiteNumberOrNull(score) ?? 0 },
+      keyQuestionCoverage: {
+        pass: !blocked.has('uncovered_questions'),
+        answered: finiteNumberOrNull(research.answeredCount) ?? 0,
+        total: finiteNumberOrNull(research.totalQuestions) ?? 0,
+      },
+      evidenceDensity: {
+        pass: !blocked.has('source_diversity_guard') && !blocked.has('evidence_depth_guard'),
+        sources: finiteNumberOrNull(signals?.sourceDiversity) ?? 0,
+      },
+      hotspotSaturation: { pass: true },
+    },
+    recoveryStrategy,
+    timestamp: new Date().toISOString(),
+    sessionId,
+    ...(generation === null ? {} : { generation }),
+  };
+}
+
+// A leaf can read the stop decision and move on without running the step that
+// records the block, so the command that computes a blocked research stop also
+// records it, through the same append gateway the workflow uses. A decision
+// recomputed for a run that already holds a row with the same blockers writes
+// nothing; a changed blocker set is a new attempt and gets its own row, so the
+// latest row is the block the next focus is steered by.
+function recordBlockedStop({ row, stateLogPath, stateRows }) {
+  const blockerKey = (list) => (Array.isArray(list) ? [...list].map(String).sort().join('\n') : '');
+  const already = stateRows.some((existing) => isPlainObject(existing)
+    && existing.type === 'event'
+    && existing.event === 'blocked_stop'
+    && finiteNumberOrNull(existing.run) === row.run
+    && blockerKey(existing.blockedBy) === blockerKey(row.blockedBy));
+  if (already) return { status: 'already_recorded', run: row.run, recoveryStrategy: row.recoveryStrategy };
+
+  const eventDir = fs.mkdtempSync(path.join(os.tmpdir(), 'deep-loop-blocked-stop-'));
+  try {
+    const eventPath = path.join(eventDir, 'blocked-stop.json');
+    fs.writeFileSync(eventPath, JSON.stringify(row));
+    // The gateway bootstraps its own loader only when this flag is absent, and
+    // this process runs under the flag.
+    const env = { ...process.env };
+    delete env.DEEP_LOOP_TSX_LOADED;
+    const result = spawnSync(
+      process.execPath,
+      [
+        path.join(__dirname, 'append-mode-event.cjs'),
+        '--mode', 'research',
+        '--run-directory', path.dirname(stateLogPath),
+        '--event-json', eventPath,
+      ],
+      { cwd: process.cwd(), env, encoding: 'utf8' },
+    );
+    const exitCode = result.status === null ? 1 : result.status;
+    let gateway = null;
+    try {
+      gateway = JSON.parse(String(result.stdout || '').trim().split('\n').pop() || 'null');
+    } catch {
+      gateway = null;
+    }
+    if (exitCode !== 0) {
+      return {
+        status: 'failed',
+        run: row.run,
+        exitCode,
+        reason: isPlainObject(gateway) && typeof gateway.reason === 'string'
+          ? gateway.reason
+          : String(result.stderr || '').trim() || 'append gateway failed',
+        recoveryStrategy: row.recoveryStrategy,
+      };
+    }
+    return {
+      status: 'recorded',
+      run: row.run,
+      recoveryStrategy: row.recoveryStrategy,
+      ...(isPlainObject(gateway) && isPlainObject(gateway.receipt) ? { eventId: gateway.receipt.event_id } : {}),
+    };
+  } finally {
+    fs.rmSync(eventDir, { recursive: true, force: true });
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1863,12 +1983,23 @@ async function main() {
   if (stopDecisionRequested && loopType !== 'research' && loopType !== 'review') {
     throw inputError('--stop-decision is supported only for "research" and "review" loop types');
   }
+  const readOnly = args.readOnly === true;
+  const recordBlockedStopRequested = asBoolean(args.recordBlockedStop);
+  if (recordBlockedStopRequested) {
+    if (!stopDecisionRequested || loopType !== 'research') {
+      throw inputError('--record-blocked-stop needs --stop-decision and loop type "research"');
+    }
+    if (readOnly) throw inputError('--record-blocked-stop cannot be combined with --read-only');
+    const iteration = Number(args.iteration);
+    if (!Number.isInteger(iteration) || iteration < 1) {
+      throw inputError('--record-blocked-stop needs --iteration as a positive integer');
+    }
+  }
   // Read the state files before the graph is opened so a bad request exits as
   // an input error instead of depending on graph availability.
   const stopDecisionFiles = stopDecisionRequested ? readStopDecisionFiles(args) : null;
 
   const ns = { specFolder, loopType, sessionId };
-  const readOnly = args.readOnly === true;
   let db = null;
 
   try {
@@ -2083,6 +2214,26 @@ async function main() {
         stuckCount: stopDecisionInput.stuckCount,
         consecutiveFailureCount: stopDecisionInput.consecutiveFailureCount,
       };
+      if (recordBlockedStopRequested && payload.stop_decision.decision === 'BLOCKED') {
+        const stateRows = stopDecisionFiles.stateLogRows;
+        const missingIterations = iterationsWithoutGraphFindings(orderedIterationRecords(stateRows), nodes);
+        const lineage = isPlainObject(stopDecisionFiles.config.lineage) ? stopDecisionFiles.config.lineage : {};
+        const row = buildBlockedStopRow({
+          stopDecision: payload.stop_decision,
+          stopDecisionInput,
+          graphBlockers: blockers,
+          signals,
+          score,
+          iteration: Number(args.iteration),
+          sessionId: typeof lineage.sessionId === 'string' ? lineage.sessionId : sessionId,
+          generation: finiteNumberOrNull(lineage.generation),
+          recoveryStrategy: blockedStopRecoveryStrategy(payload.stop_decision, blockers, missingIterations),
+        });
+        payload.blocked_stop_record = recordBlockedStop({ row, stateLogPath: args.stateLog, stateRows });
+        // A record the gateway refused fails the command the way the gateway
+        // fails, after the decision is printed.
+        if (payload.blocked_stop_record.status === 'failed') process.exitCode = payload.blocked_stop_record.exitCode;
+      }
     }
     if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
     jsonOut(payload);
@@ -2112,6 +2263,7 @@ module.exports = {
   evaluateReviewLegalStopGates,
   activeNodeByIteration,
   iterationBoundToNode,
+  iterationsWithoutGraphFindings,
   mapReviewThresholds,
   parseConvergenceModeValue,
   parseMinObservationsValue,
