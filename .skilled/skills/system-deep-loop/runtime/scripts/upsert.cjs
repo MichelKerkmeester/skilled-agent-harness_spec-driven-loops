@@ -326,7 +326,8 @@ function classifySourceLocation(value, classes) {
     return isDocHost ? classes.EXTERNAL_DOC : classes.EXTERNAL_OTHER;
   }
   if (/\s/.test(text)) return classes.UNCLASSIFIED;
-  const repoPath = text.replace(/^\.\//, '').replace(/:\d+(?:-\d+)?$/, '');
+  // A path written on Windows names the same location, so it gets the same class.
+  const repoPath = text.replace(/\\/g, '/').replace(/^\.\//, '').replace(/:\d+(?:-\d+)?$/, '');
   const segments = repoPath.split('/').filter(Boolean);
   const fileName = segments[segments.length - 1] || '';
   const extension = path.extname(fileName).toLowerCase();

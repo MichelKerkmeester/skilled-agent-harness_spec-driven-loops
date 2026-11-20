@@ -290,6 +290,26 @@ describe('upsert.cjs direct invocation', () => {
     });
   });
 
+  it('classifies a Windows-separated source path the same as its POSIX form', async () => {
+    const namespace = uniqueNamespace('upsert', 'research');
+    namespaces.push(namespace);
+    const sources = [
+      { id: 'src-win-spec', kind: 'SOURCE', name: 'demo spec', path: 'specs\\system-deep-loop\\demo\\spec.md' },
+      { id: 'src-win-test-dir', kind: 'SOURCE', name: 'test helper', path: '.\\runtime\\tests\\helpers\\spawn-cjs.ts:12' },
+      { id: 'src-win-test-file', kind: 'SOURCE', name: 'upsert suite', path: 'runtime\\scripts\\upsert.vitest.ts' },
+      { id: 'src-win-code', kind: 'SOURCE', name: 'upsert script', path: 'runtime\\scripts\\upsert.cjs' },
+    ];
+    const result = runScript('upsert', [...namespaceArgs(namespace), '--nodes', JSON.stringify(sources)]);
+    expect(result.exitCode).toBe(0);
+    const stored = await readStoredMetadata(namespace);
+    expect(Object.fromEntries(sources.map((source) => [source.id, stored.get(source.id)?.quality_class]))).toEqual({
+      'src-win-spec': 'repo-spec',
+      'src-win-test-dir': 'repo-test',
+      'src-win-test-file': 'repo-test',
+      'src-win-code': 'repo-code',
+    });
+  });
+
   it('keeps FINDING metadata and review node metadata exactly as given', async () => {
     const research = uniqueNamespace('upsert', 'research');
     namespaces.push(research);
