@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f5482a3e538831d58b100bbc2d0c4addb106ea92d831e67163046ee83043bee0",
+  "manifestHash": "bd67690ff3be89535fe18e420a0d98dd90ce6a3fcefb576bc954a357c0c345e9",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -4766,7 +4766,7 @@
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/tasks.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/decision-record.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review-archive/20261119T155645Z/deep-review-strategy.md",
-    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/deep-review-strategy.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review-archive/20261120T100738Z/deep-review-strategy.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/research/research.md",
