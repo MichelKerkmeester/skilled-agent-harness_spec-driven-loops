@@ -351,6 +351,80 @@ function deriveSourceQualityClass(node, classes) {
   return classes.UNCLASSIFIED;
 }
 
+// A research iteration's finding rows and the question texts it answered. The
+// delta is the source when it holds the iteration record; the state log record
+// stands in for a delta that lacks one.
+function readResearchIterationEvidence({ stateLog, deltaDir, iteration }) {
+  const findings = [];
+  let answeredQuestions = null;
+  if (typeof deltaDir === 'string') {
+    const deltaPath = path.join(deltaDir, `iter-${String(iteration).padStart(3, '0')}.jsonl`);
+    for (const row of readJsonlRows(deltaPath, 'iteration delta', false)) {
+      if (!row || (row.iteration !== undefined && Number(row.iteration) !== iteration)) continue;
+      if (row.type === 'finding' && typeof row.id === 'string' && row.id.trim()) findings.push(row);
+      if (row.type === 'iteration' && Array.isArray(row.answeredQuestions)) answeredQuestions = row.answeredQuestions;
+    }
+  }
+  if (answeredQuestions === null && typeof stateLog === 'string') {
+    for (const row of readJsonlRows(stateLog, 'state log', false)) {
+      if (row && row.type === 'iteration' && Number(row.iteration) === iteration && Array.isArray(row.answeredQuestions)) {
+        answeredQuestions = row.answeredQuestions;
+      }
+    }
+  }
+  return {
+    findings,
+    answeredQuestions: (answeredQuestions ?? []).filter((text) => typeof text === 'string' && text.trim()),
+  };
+}
+
+// The research stop guards read question -> finding -> source chains, and the
+// leaf contract makes finding rows and answeredQuestions mandatory while graph
+// events stay optional. Each finding row becomes a FINDING node that CITES one
+// SOURCE node per source and ANSWERS each question the iteration answered.
+function deriveResearchFindingEvidence(findings, questionIds, iteration, classes) {
+  const nodes = [];
+  const edges = [];
+  for (const finding of findings) {
+    const findingId = finding.id.trim();
+    const label = typeof finding.label === 'string' && finding.label.trim() ? finding.label.trim() : findingId;
+    nodes.push({ id: findingId, kind: 'FINDING', name: label, iteration, metadata: { derivedFrom: 'findingRow' } });
+    for (const source of Array.isArray(finding.sources) ? finding.sources : []) {
+      if (typeof source !== 'string' || !source.trim()) continue;
+      // Two line refs into one file name one source, so the line is dropped.
+      const ref = /^https?:\/\//i.test(source.trim()) ? source.trim() : source.trim().replace(/:\d+(?:[:-]\d+)?$/, '');
+      const sourceId = `source:${ref}`;
+      nodes.push({
+        id: sourceId,
+        kind: 'SOURCE',
+        name: ref,
+        iteration,
+        metadata: { path: ref, quality_class: deriveSourceQualityClass({ path: ref }, classes) },
+      });
+      edges.push({ id: `cites:${findingId}:${sourceId}`, relation: 'CITES', sourceId: findingId, targetId: sourceId });
+    }
+    for (const questionId of questionIds) {
+      edges.push({ id: `answers:${findingId}:${questionId}`, relation: 'ANSWERS', sourceId: findingId, targetId: questionId });
+    }
+  }
+  return { nodes, edges };
+}
+
+// The frontier mirror runs after the iteration upsert, so a node answered on a
+// lineage's first iteration is in the node store beside the state log and not
+// yet in the graph. Its QUESTION node is declared under the mirror's id, and
+// the mirror's own write right after replaces its kind, name and metadata.
+function frontierQuestionNodes(stateLog) {
+  if (typeof stateLog !== 'string') return [];
+  const latest = new Map();
+  for (const row of readJsonlRows(path.join(path.dirname(stateLog), 'frontier-nodes.jsonl'), 'frontier node store', false)) {
+    if (row && typeof row.nodeId === 'string' && typeof row.question === 'string') latest.set(row.nodeId, row);
+  }
+  return [...latest.values()]
+    .filter((row) => row.status !== 'pruned')
+    .map((row) => ({ id: `frontier-${row.nodeId}`, kind: 'QUESTION', name: row.question, iteration: row.iteration }));
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -388,12 +462,51 @@ async function main() {
     const knownFindings = new Map();
     const canonicalFindings = args.stateLog !== undefined || args.deltaDir !== undefined;
     if (canonicalFindings || args.iteration !== undefined) {
-      if (loopType !== 'review') throw inputError('--state-log, --delta-dir and --iteration are supported only for loop type "review"');
+      if (loopType === 'context') throw inputError('--state-log, --delta-dir and --iteration are supported only for loop types "review" and "research"');
       if (args.stateLog !== undefined && typeof args.stateLog !== 'string') throw inputError('--state-log requires a path');
       if (args.deltaDir !== undefined && typeof args.deltaDir !== 'string') throw inputError('--delta-dir requires a path');
       if (!canonicalFindings) throw inputError('--iteration needs --state-log or --delta-dir');
       const iteration = Number(args.iteration);
       if (!Number.isInteger(iteration) || iteration < 1) throw inputError('--iteration must be a positive integer');
+    }
+    if (canonicalFindings && loopType === 'research') {
+      const iteration = Number(args.iteration);
+      const evidence = readResearchIterationEvidence({ stateLog: args.stateLog, deltaDir: args.deltaDir, iteration });
+      // A leaf that declared its own FINDING nodes already linked its findings,
+      // under ids the rows do not share, so deriving them again would count one
+      // finding twice against the question it answers.
+      const leafDeclaredFindings = rawNodes.some((n) => String(n?.kind || n?.nodeKind || '').toUpperCase() === 'FINDING');
+      if (!leafDeclaredFindings && evidence.findings.length > 0 && evidence.answeredQuestions.length > 0) {
+        const questionIdByText = new Map();
+        const researchNs = { specFolder, loopType, sessionId };
+        for (const stored of db.getNodesByKind(researchNs, 'QUESTION')) {
+          if (typeof stored.name === 'string') questionIdByText.set(stored.name.trim(), stored.id);
+        }
+        for (const n of rawNodes) {
+          if (String(n?.kind || n?.nodeKind || '').toUpperCase() !== 'QUESTION' || typeof n.id !== 'string') continue;
+          const text = n.name || n.label;
+          if (typeof text === 'string') questionIdByText.set(text.trim(), n.id);
+        }
+        const pendingQuestions = [];
+        for (const node of frontierQuestionNodes(args.stateLog)) {
+          const text = node.name.trim();
+          if (questionIdByText.has(text) || !evidence.answeredQuestions.some((answered) => answered.trim() === text)) continue;
+          questionIdByText.set(text, node.id);
+          pendingQuestions.push(node);
+        }
+        const questionIds = [...new Set(evidence.answeredQuestions
+          .map((text) => questionIdByText.get(text.trim()))
+          .filter((id) => typeof id === 'string'))];
+        // A finding attaches to the guards only through a question, so with no
+        // question to answer nothing is derived and the graph stays as it was.
+        if (questionIds.length > 0) {
+          derived = deriveResearchFindingEvidence(evidence.findings, questionIds, iteration, SOURCE_QUALITY_CLASS);
+          derived.nodes.unshift(...pendingQuestions);
+        }
+      }
+    }
+    if (canonicalFindings && loopType === 'review') {
+      const iteration = Number(args.iteration);
       const findings = readReviewIterationFindings({ stateLog: args.stateLog, deltaDir: args.deltaDir, iteration });
       const findingNs = { specFolder, loopType, sessionId };
       derived = deriveReviewFindingEvidence(findings, iteration, (id) => db.getNode(findingNs, id));
@@ -414,6 +527,10 @@ async function main() {
       }
     }
     if (rawNodes.length === 0 && rawEdges.length === 0 && derived.nodes.length === 0) {
+      if (canonicalFindings && loopType === 'research') {
+        jsonOut({ status: 'ok', data: { insertedNodes: 0, insertedEdges: 0, skipped: 'no graph events and no finding attached to a stored question' } });
+        return;
+      }
       if (!seedOptions) throw inputError('At least one node or edge must be provided');
     }
 
@@ -447,7 +564,7 @@ async function main() {
         if (canonicalId !== n.id) reviewNodeIds.set(n.id, canonicalId);
         nodeId = canonicalId;
       }
-      if (canonicalFindings && kind === 'FINDING') {
+      if (canonicalFindings && loopType === 'review' && kind === 'FINDING') {
         const canonicalId = resolveReviewFindingId(n.id, knownFindings) ?? n.id;
         if (canonicalId !== n.id) reviewNodeIds.set(n.id, canonicalId);
         nodeId = canonicalId;
@@ -508,7 +625,16 @@ async function main() {
       }
       return canonicalReviewDimensionId(id);
     };
-    for (const e of [...rawEdges, ...derived.edges]) {
+    // A derived research edge between two nodes the leaf or an earlier pass
+    // already linked by the same relation would count that link twice.
+    const linked = new Set();
+    const linkKey = (sourceId, targetId, relation) => `${sourceId}\u0000${targetId}\u0000${relation}`;
+    if (loopType === 'research' && derived.edges.length > 0) {
+      for (const stored of db.getEdges(ns)) linked.add(linkKey(stored.sourceId, stored.targetId, stored.relation));
+      for (const e of rawEdges) linked.add(linkKey(e.sourceId || e.source, e.targetId || e.target, String(e.relation || '').toUpperCase()));
+    }
+    const derivedEdges = derived.edges.filter((e) => !linked.has(linkKey(e.sourceId, e.targetId, e.relation)));
+    for (const e of [...rawEdges, ...derivedEdges]) {
       const sourceId = canonicalEdgeEndpoint(e.sourceId || e.source);
       const targetId = canonicalEdgeEndpoint(e.targetId || e.target);
       const relation = String(e.relation || '').toUpperCase();

@@ -1785,7 +1785,7 @@ workflow:
         action: "Persist the latest iteration graph delta after the reducer refresh and after the iteration file exists"
         fanout_graph_store: 'When config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID is set, this run is a fan-out lineage and its coverage graph store is {artifact_dir}/graph-db, inside the lineage write surface. The fan-out runner exports DEEP_LOOP_COVERAGE_DB_DIR to that directory. Run this step against it and never skip it as a write outside the lineage; when DEEP_LOOP_COVERAGE_DB_DIR is absent from the environment, prefix the command with DEEP_LOOP_COVERAGE_DB_DIR="{artifact_dir}/graph-db".'
         dry_run_boundary: "state-mutation"
-        note: "Skips with an informational line and exit 0 when this iteration carries no graph events."
+        note: "Also derives FINDING, SOURCE, CITES and ANSWERS evidence from the delta finding rows and answeredQuestions when an answered question matches a QUESTION node. Skips with an informational line and exit 0 when this iteration carries no graph events and no finding rows."
         command: |
           node .skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs --delta-dir "{state_paths.delta_dir}" --state-log "{state_paths.state_log}" --iteration "{current_iteration}" --spec-folder "{spec_folder}" --session-id "{config.lineage.sessionId}"
 

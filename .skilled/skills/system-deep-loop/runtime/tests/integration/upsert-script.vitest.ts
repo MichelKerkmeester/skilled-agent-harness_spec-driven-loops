@@ -378,7 +378,7 @@ describe('upsert.cjs review finding evidence', () => {
   // Each usage guard on the review evidence inputs exits 3 with its own message,
   // before anything is written.
   it.each([
-    ['a non-review loop type', 'research', (file: string) => ['--state-log', file, '--iteration', '2'], 'supported only for loop type "review"'],
+    ['a context loop type', 'context', (file: string) => ['--state-log', file, '--iteration', '2'], 'supported only for loop types "review" and "research"'],
     ['a --state-log flag with no path', 'review', () => ['--state-log', '--iteration', '2'], '--state-log requires a path'],
     ['a --delta-dir flag with no path', 'review', () => ['--iteration', '2', '--delta-dir'], '--delta-dir requires a path'],
     ['--iteration with no source', 'review', () => ['--iteration', '2'], '--iteration needs --state-log or --delta-dir'],

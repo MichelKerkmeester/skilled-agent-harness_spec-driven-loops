@@ -4,11 +4,12 @@
 // MODULE: Deep Research Iteration Graph Upsert
 // ───────────────────────────────────────────────────────────────────
 //
-// Persists the graph events an iteration declared. The delta file is the
+// Persists the graph events an iteration declared, plus the evidence its
+// mandatory finding rows and answeredQuestions carry. The delta file is the
 // source when it exists: the state log is a gateway-refreshed projection that
 // does not carry the iteration's graphEvents, so an upsert driven from the log
-// alone never sees a node or an edge. A run with no graph events is a normal
-// outcome, not a failure.
+// alone never sees a node or an edge. A run with no graph events and no finding
+// rows is a normal outcome, not a failure.
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -171,6 +172,21 @@ function readGraphEvents({ deltaDir, stateLogPath, iteration }) {
 }
 
 /**
+ * The upsert entrypoint derives finding evidence from the delta's finding rows,
+ * so an iteration with rows but no graph events still has something to persist.
+ *
+ * @param {string} deltaDir - Delta directory.
+ * @param {number} iteration - Iteration number.
+ * @returns {boolean} True when this iteration's delta holds a finding row.
+ */
+function hasFindingRows(deltaDir, iteration) {
+  const deltaPath = path.join(deltaDir, `iter-${String(iteration).padStart(3, '0')}.jsonl`);
+  if (!existsSync(deltaPath)) return false;
+  return parseJsonLines(readFileSync(deltaPath, 'utf8'), deltaPath)
+    .some((record) => record && record.type === 'finding');
+}
+
+/**
  * Runs the upsert entrypoint. No `env` and no `cwd` are passed, so the child
  * inherits both: tests pin the coverage database through the environment, and
  * the entrypoint resolves its own TypeScript modules from its own directory.
@@ -187,7 +203,7 @@ function readGraphEvents({ deltaDir, stateLogPath, iteration }) {
 function runUpsert({ iteration, specFolder, sessionId, deltaDir, stateLogPath }) {
   const { nodes, edges } = splitGraphEvents(readGraphEvents({ deltaDir, stateLogPath, iteration }));
 
-  if (nodes.length === 0 && edges.length === 0) {
+  if (nodes.length === 0 && edges.length === 0 && !hasFindingRows(deltaDir, iteration)) {
     process.stdout.write(`deep-research graph upsert: no graph events for iteration ${iteration}; skipping\n`);
     return 0;
   }
@@ -201,6 +217,9 @@ function runUpsert({ iteration, specFolder, sessionId, deltaDir, stateLogPath })
       '--session-id', sessionId,
       '--nodes', JSON.stringify(nodes),
       '--edges', JSON.stringify(edges),
+      '--delta-dir', deltaDir,
+      '--state-log', stateLogPath,
+      '--iteration', String(iteration),
     ],
     { encoding: 'utf8' },
   );

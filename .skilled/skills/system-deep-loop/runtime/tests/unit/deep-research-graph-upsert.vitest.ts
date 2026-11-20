@@ -165,7 +165,11 @@ function runStepCommand(command: string, fixture: Fixture): CommandResult {
  * Writes the current iteration's delta file. Omitting graphEvents models an
  * iteration that produced no graph events.
  */
-function writeDeltaIteration(fixture: Fixture, graphEvents?: unknown[]): void {
+function writeDeltaIteration(
+  fixture: Fixture,
+  graphEvents?: unknown[],
+  extra: { answeredQuestions?: string[]; rows?: Array<Record<string, unknown>> } = {},
+): void {
   const record: Record<string, unknown> = {
     type: 'iteration',
     iteration: Number(ITERATION),
@@ -174,9 +178,60 @@ function writeDeltaIteration(fixture: Fixture, graphEvents?: unknown[]): void {
     focus: 'fixture focus',
   };
   if (graphEvents !== undefined) record.graphEvents = graphEvents;
+  if (extra.answeredQuestions !== undefined) record.answeredQuestions = extra.answeredQuestions;
 
   const deltaPath = join(fixture.deltaDir, `iter-${ITERATION.padStart(3, '0')}.jsonl`);
-  writeFileSync(deltaPath, `${JSON.stringify(record)}\n`, 'utf8');
+  const lines = [record, ...(extra.rows ?? [])].map((row) => JSON.stringify(row));
+  writeFileSync(deltaPath, `${lines.join('\n')}\n`, 'utf8');
+}
+
+const FRONTIER_QUESTION = 'Which module owns the stop decision?';
+
+/**
+ * Stores a frontier QUESTION node the way the frontier mirror does after an
+ * earlier iteration, so this iteration's answers have a node to attach to.
+ */
+function seedQuestionNode(fixture: Fixture): void {
+  const eventsPath = join(fixture.artifactDir, 'frontier-graph-events.json');
+  writeFileSync(eventsPath, JSON.stringify([
+    { type: 'node', id: 'frontier-F-1-001', kind: 'QUESTION', name: FRONTIER_QUESTION, iteration: 0 },
+  ]), 'utf8');
+  const result = spawnSync(process.execPath, [
+    resolve(runtimeRoot, 'scripts', 'upsert.cjs'),
+    '--spec-folder', SPEC_FOLDER, '--loop-type', LOOP_TYPE, '--session-id', SESSION_ID,
+    '--events', eventsPath,
+  ], { env: { ...process.env, DEEP_LOOP_COVERAGE_DB_DIR: fixture.coverageDbDir }, encoding: 'utf8' });
+  expect(result.status, result.stderr).toBe(0);
+}
+
+// The delta rows the prompt contract makes mandatory: a finding carries its
+// text in label and its sources, and none of it is a graph event.
+const FINDING_ROWS = [
+  {
+    type: 'finding', id: 'f-iter001-001', label: 'The stop decision lives in convergence.cjs', iteration: 1,
+    sources: ['.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs', 'specs/999-graph-upsert-fixture/spec.md'],
+  },
+  {
+    type: 'finding', id: 'f-iter001-002', label: 'The YAML only branches on the decision', iteration: 1,
+    sources: ['.skilled/commands/deep/assets/deep-research.yaml', '.skilled/skills/system-deep-loop/deep-research/references/loop.md'],
+  },
+];
+
+function graphBlockers(fixture: Fixture): string[] {
+  const result = spawnSync(process.execPath, [
+    resolve(runtimeRoot, 'scripts', 'convergence.cjs'),
+    '--spec-folder', SPEC_FOLDER, '--loop-type', LOOP_TYPE, '--session-id', SESSION_ID, '--read-only',
+  ], { env: { ...process.env, DEEP_LOOP_COVERAGE_DB_DIR: fixture.coverageDbDir }, encoding: 'utf8' });
+  expect(result.status, result.stderr).toBe(0);
+  const payload = JSON.parse(result.stdout) as { graph_blockers_json: Array<{ type: string }> };
+  return payload.graph_blockers_json.map((blocker) => blocker.type);
+}
+
+function countEdges(db: ReturnType<typeof openDatabase>, relation: string): number {
+  const row = db
+    .prepare('SELECT COUNT(*) AS count FROM coverage_edges WHERE spec_folder = ? AND loop_type = ? AND session_id = ? AND relation = ?')
+    .get(SPEC_FOLDER, LOOP_TYPE, SESSION_ID, relation) as { count: number };
+  return row.count;
 }
 
 function openDatabase(dbPath: string) {
@@ -251,5 +306,98 @@ describe.each(WORKFLOW_PATHS)('step_graph_upsert in %s', (workflowPath) => {
     expect(result.exitCode, result.stderr).toBe(0);
     expect(result.stdout).toContain('skipping');
     expect(existsSync(fixture.dbPath)).toBe(false);
+  });
+
+  // A leaf that keeps to the mandatory rows and emits no graph events must still
+  // give the stop guards their question -> finding -> source chains.
+  it('feeds the stop guards from finding rows and answeredQuestions', () => {
+    const fixture = createFixture('finding-rows');
+    seedQuestionNode(fixture);
+    expect(graphBlockers(fixture)).toEqual(
+      expect.arrayContaining(['source_diversity_guard', 'evidence_depth_guard', 'uncovered_questions']),
+    );
+    writeDeltaIteration(fixture, undefined, { answeredQuestions: [FRONTIER_QUESTION], rows: FINDING_ROWS });
+
+    const result = runStepCommand(renderStepCommand(command, fixture), fixture);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const db = openDatabase(fixture.dbPath);
+    try {
+      expect(countEdges(db, 'ANSWERS')).toBe(2);
+      expect(countEdges(db, 'CITES')).toBe(4);
+    } finally {
+      db.close();
+    }
+    const blockers = graphBlockers(fixture);
+    expect(blockers).not.toContain('source_diversity_guard');
+    expect(blockers).not.toContain('evidence_depth_guard');
+    expect(blockers).not.toContain('uncovered_questions');
+  });
+
+  // The frontier mirror runs after this step, so on a lineage's first iteration
+  // the answered node is only in the node store beside the state log.
+  it('attaches a first-iteration answer to the frontier node the mirror has not stored yet', () => {
+    const fixture = createFixture('finding-rows-first-iteration');
+    writeFileSync(join(fixture.artifactDir, 'frontier-nodes.jsonl'), `${JSON.stringify({
+      nodeId: 'F-1-001', parentId: 'root', depth: 1, question: FRONTIER_QUESTION, status: 'open', iteration: 0,
+    })}\n`, 'utf8');
+    const rows = [
+      FINDING_ROWS[0],
+      { ...FINDING_ROWS[1], sources: ['.skilled/commands/deep/assets/deep-research.yaml:10', '.skilled/commands/deep/assets/deep-research.yaml:20'] },
+    ];
+    writeDeltaIteration(fixture, undefined, { answeredQuestions: [FRONTIER_QUESTION], rows });
+
+    const result = runStepCommand(renderStepCommand(command, fixture), fixture);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const db = openDatabase(fixture.dbPath);
+    try {
+      expect(countEdges(db, 'ANSWERS')).toBe(2);
+      // Two line refs into one file name one source.
+      expect(countEdges(db, 'CITES')).toBe(3);
+    } finally {
+      db.close();
+    }
+  });
+
+  // A default run whose leaf declared no QUESTION node has nothing to answer:
+  // the graph stays empty, so the stop decision reads it exactly as before.
+  it('adds nothing when no QUESTION node matches an answered question', () => {
+    const fixture = createFixture('finding-rows-no-question');
+    writeDeltaIteration(fixture, undefined, { answeredQuestions: [FRONTIER_QUESTION], rows: FINDING_ROWS });
+
+    const result = runStepCommand(renderStepCommand(command, fixture), fixture);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    if (existsSync(fixture.dbPath)) {
+      const db = openDatabase(fixture.dbPath);
+      try {
+        expect(countRows(db, 'coverage_nodes')).toBe(0);
+        expect(countRows(db, 'coverage_edges')).toBe(0);
+      } finally {
+        db.close();
+      }
+    }
+  });
+
+  // A leaf that declared its own findings already linked them; the same finding
+  // through a row must not add a second answering edge to the question.
+  it('does not count a finding twice when the leaf also declared graph events', () => {
+    const fixture = createFixture('finding-rows-dedupe');
+    seedQuestionNode(fixture);
+    writeDeltaIteration(fixture, [
+      { type: 'node', id: 'leaf-f-stop', kind: 'FINDING', label: 'The stop decision lives in convergence.cjs' },
+      { type: 'edge', id: 'leaf-e-stop', source: 'leaf-f-stop', target: 'frontier-F-1-001', relation: 'ANSWERS' },
+    ], { answeredQuestions: [FRONTIER_QUESTION], rows: FINDING_ROWS.slice(0, 1) });
+
+    const result = runStepCommand(renderStepCommand(command, fixture), fixture);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const db = openDatabase(fixture.dbPath);
+    try {
+      expect(countEdges(db, 'ANSWERS')).toBe(1);
+    } finally {
+      db.close();
+    }
   });
 });
