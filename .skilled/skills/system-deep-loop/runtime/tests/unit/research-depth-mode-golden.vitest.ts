@@ -7,8 +7,9 @@
 // artifacts for one fixed research packet and compares them to baselines
 // captured before any depth-mode code existed. One exception: the lineage
 // prompt embeds the agent persona, whose leaf contract gained a paragraph that
-// applies only to expansive runs. That paragraph alone is stripped before the
-// lineage prompt is compared; see withoutExpansiveOnlyPersona below.
+// applies only to expansive runs, and its Next Focus line one such clause. Those
+// alone are stripped before the lineage prompt is compared; see
+// withoutExpansiveOnlyPersona below.
 //
 // Regenerate the baselines only on a tree that predates the depth-mode code:
 //   GOLDEN_UPDATE=1 npx vitest run research-depth-mode-golden.vitest
@@ -216,8 +217,14 @@ function normalize(text: string, specFolder: string): string {
 const EXPANSIVE_ONLY_PERSONA_PARAGRAPH =
   /\n\n\*\*Frontier proposals \(expansive depth runs only\)\.\*\*[^\n]*\n[^\n]*\nYou only propose\.[^\n]*/;
 
+// The Next Focus line of the persona's iteration template also carries one
+// clause about frontier node ids, which exist only under expansive depth. Only
+// that clause is removed; the rest of the line still has to match.
+const EXPANSIVE_ONLY_NEXT_FOCUS_CLAUSE =
+  '. Do not open with `Close F-<n>-<n>`: the reducer closes frontier nodes, so it ignores that focus and derives one instead';
+
 function withoutExpansiveOnlyPersona(prompt: string): string {
-  return prompt.replace(EXPANSIVE_ONLY_PERSONA_PARAGRAPH, '');
+  return prompt.replace(EXPANSIVE_ONLY_PERSONA_PARAGRAPH, '').split(EXPANSIVE_ONLY_NEXT_FOCUS_CLAUSE).join('');
 }
 
 function renderArtifacts(variant: Variant): Record<Artifact, string> {
