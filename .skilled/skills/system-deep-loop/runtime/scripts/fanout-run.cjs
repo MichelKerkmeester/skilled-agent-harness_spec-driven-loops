@@ -3659,12 +3659,14 @@ function isDshBinaryAvailable(env = process.env) {
 const SPEC_KIT_CLI_DIST_REL = path.join('.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist');
 
 /**
- * Metadata refresh defaults on for research; `--no-metadata-refresh` opts out. A review
- * run never refreshes: the review workflow holds its target read-only and writes only
- * under its review folder, so rewriting the packet's description.json breaks that contract.
+ * A research or review fan-out never refreshes the packet's metadata. Its lineages write only
+ * under their own loop folder, and the refresh rewrites description.json and
+ * graph-metadata.json outside it: a review holds its target read-only, and for research the
+ * auto-extracted description replaced the curated one and dropped its trigger phrases.
+ * `--no-metadata-refresh` still opts out for any other loop type.
  */
 function metadataRefreshRequested(args, loopType) {
-  if (loopType === 'review') return false;
+  if (ACTIVE_FANOUT_LOOP_TYPES.has(loopType)) return false;
   return args.noMetadataRefresh !== true;
 }
 
@@ -4955,8 +4957,8 @@ async function main() {
   });
 
   // Every lineage has settled, so the owning packet's generated metadata can
-  // be refreshed against the artifacts this run just wrote. On for research unless
-  // --no-metadata-refresh; never for review. Strictly non-fatal: the outcome is
+  // be refreshed against the artifacts this run just wrote. Never for a research or review
+  // fan-out, which keeps its writes inside its loop folder. Strictly non-fatal: the outcome is
   // reported through the status ledger and never changes the exit code.
   if (metadataRefreshRequested(args, loopType)) {
     runPacketMetadataRefresh({

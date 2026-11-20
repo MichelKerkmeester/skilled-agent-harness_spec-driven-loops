@@ -6184,7 +6184,11 @@ describe('fanout-run.cjs — post-run packet metadata refresh', () => {
     expect(metadataRefreshRequested({})).toBe(true);
     expect(metadataRefreshRequested({ specFolder: 'specs/x' })).toBe(true);
     expect(metadataRefreshRequested({ noMetadataRefresh: true })).toBe(false);
-    expect(metadataRefreshRequested({}, 'research')).toBe(true);
+  });
+
+  it('never refreshes the packet a research fan-out settles into, since its lineages write only under research', () => {
+    expect(metadataRefreshRequested({}, 'research')).toBe(false);
+    expect(metadataRefreshRequested({ specFolder: 'specs/x' }, 'research')).toBe(false);
   });
 
   it('never refreshes the packet a review run reads, since a review leaves its target untouched', () => {
