@@ -1,0 +1,22 @@
+# Gate baseline, taken in the worktree before the first edit (HEAD 0265f3ee538).
+# The prior gate's exact file list was not recorded; this gate is scratch/gate.sh, and the after run uses the same script.
+== node --test (43 files: .opencode/plugins/tests/*.test.cjs plus nine named opencode suites)
+ℹ tests 837
+ℹ pass 836
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+== vitest dispatch-audit
+ Test Files  1 passed (1)
+      Tests  133 passed (133)
+== vitest deep-loop runtime opencode subset (13 files, listed in gate.sh)
+ Test Files  13 passed (13)
+      Tests  484 passed | 3 skipped (487)
+== vitest deep-loop runtime, whole suite
+ Test Files  195 passed (195)
+      Tests  3716 passed | 11 skipped (3727)
+== node --test Vibe repo-guards
+ℹ tests 28
+ℹ pass 28
+ℹ fail 0
+ℹ skipped 0

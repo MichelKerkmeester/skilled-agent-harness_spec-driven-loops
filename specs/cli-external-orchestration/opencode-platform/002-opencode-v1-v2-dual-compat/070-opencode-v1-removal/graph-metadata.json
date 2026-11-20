@@ -6,7 +6,8 @@
   "children_ids": [
     "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests",
     "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins",
-    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep"
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -51,7 +52,8 @@
       ".opencode/package.json",
       ".skilled/package.json",
       ".skilled/CROSS-CLI.md",
-      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "review/review-report.md"
     ],
     "entities": [
       {
@@ -151,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -191,30 +199,24 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Operator Decisions",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode 2.3.2 is the only version in use",
     "created_at": "2026-11-19T09:04:20Z",
-    "last_save_at": "2026-11-20T10:31:40.236Z",
+    "last_save_at": "2026-11-20T11:59:49.907Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b310f5f971a1ee3054a3237ff6079970f94250421f6c646b0ab7d511e756af1f",
+    "source_fingerprint": "sha256:08eaec206fcb58438ef241face289fb657bc797e67eea048ba5c45f1c41da488",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b8be072330a833457ba7c05062be1110cfdba2ba8e701b12aece11c7437a0015",
+      "spec.md": "8bbb13f0631d7507d766af09a0d50687e974c27c581b181b5a6ffa56985e73db",
       "decision-record.md": "3a3e0993201bbcc60ea3d4d95395853749325a3a2558a67b289ff4048c6e80a8"
     },
-    "last_active_child_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep",
-    "last_active_at": "2026-11-20T10:31:40.236Z"
+    "last_active_child_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes",
+    "last_active_at": "2026-11-20T11:59:49.907Z"
   }
 }

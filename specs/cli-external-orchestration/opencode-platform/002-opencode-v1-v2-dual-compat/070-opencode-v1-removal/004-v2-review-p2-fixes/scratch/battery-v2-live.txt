@@ -1,0 +1,38 @@
+$ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2 </dev/null
+PASS v2 family-present: a v2 binary is installed
+  /Users/michelkerkmeester/.local/bin/opencode
+PASS v2 plugin-active: all 20 plugin files active
+  ask-surface-guard.js
+  classifier-injection-screen.js
+  cli-dispatch-audit.js
+  codex-hooks-watchdog.js
+  decision-capture.js
+  env-secret-guard.js
+  mcp-route-guard.js
+  opencode-goal.js
+  overlay-guard.js
+  session-cleanup.js
+  session-handover.js
+  sk-code-post-edit-quality.js
+  sk-git-message-gate.js
+  sk-git-preflight-advisory.js
+  system-completion-sentinel.js
+  system-deep-loop-guard.js
+  system-dist-freshness-guard.js
+  system-skill-advisor.js
+  system-spec-gate.js
+  system-speckit-completion.js
+PASS v2 skill-visible: 14 skill entries visible
+  entries: 30
+  visible: 14
+PASS v2 command-listed: all 92 command files listed
+  listed: 95
+  required: 92
+exit=0
+
+# TCP listeners sampled once a second while the battery ran (lsof -nP -iTCP -sTCP:LISTEN). Every opencode listener is on 127.0.0.1;
+# other sessions also run opencode servers, so which row was the battery's is not attributed.
+COMMAND     PID              USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+node      48645 michelkerkmeester  141u  IPv4 0x57ae18be2997204a      0t0  TCP 127.0.0.1:7265 (LISTEN)
+opencode. 40272 michelkerkmeester    7u  IPv4 0x40ed36aece0e3693      0t0  TCP 127.0.0.1:49374 (LISTEN)
+opencode. 66993 michelkerkmeester    7u  IPv4 0xe9e65fe9b765da2e      0t0  TCP 127.0.0.1:62987 (LISTEN)

@@ -17,7 +17,7 @@ _memory:
       - "scratch/after.txt"
       - "decision-record.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8c0fbe6024d84016f959e6a1aecdbfc726b1324d74a8658a5eb63b1e17265851"
       session_id: "closure-001-v1-runtime-code-and-tests"
       parent_session_id: null
     completion_pct: 100
