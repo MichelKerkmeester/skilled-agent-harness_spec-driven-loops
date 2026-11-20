@@ -1142,6 +1142,90 @@ test('relayout backs up no file its read rule refuses to open', (t) => {
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, DIR_LAYOUT, 'assets/api-token.js'), 'utf8'), secret);
 });
 
+/**
+ * Record every path under a folder with its type, mode and content.
+ * @param {string} root Folder to read.
+ * @returns {object[]} One record per path, folders included, in a stable order.
+ */
+function snapshotFolder(root) {
+  const records = [];
+  const walk = (dir) => {
+    for (const name of fs.readdirSync(dir).sort()) {
+      const full = path.join(dir, name);
+      const stats = fs.lstatSync(full);
+      const record = { path: path.relative(root, full), mode: stats.mode };
+      if (stats.isSymbolicLink()) {
+        records.push({ ...record, type: 'link', target: fs.readlinkSync(full) });
+      } else if (stats.isDirectory()) {
+        records.push({ ...record, type: 'dir' });
+        walk(full);
+      } else {
+        records.push({ ...record, type: 'file', bytes: fs.readFileSync(full).toString('base64') });
+      }
+    }
+  };
+  walk(root);
+  return records;
+}
+
+/**
+ * Run a relayout in-process with one rename failing, and capture its output.
+ * @param {object} t The node:test context.
+ * @param {object} fixture A relayout fixture.
+ * @param {function} isFailing Picks the rename call that throws.
+ * @returns {{code: number, lines: string[]}} Exit code and printed lines.
+ */
+function relayoutWithFailingRename(t, fixture, isFailing) {
+  const rename = fs.renameSync;
+  let calls = 0;
+  t.mock.method(fs, 'renameSync', (from, to) => {
+    calls += 1;
+    if (isFailing(calls, from, to)) throw new Error('injected rename failure');
+    return rename(from, to);
+  });
+  const lines = [];
+  t.mock.method(console, 'log', (line) => lines.push(String(line)));
+  const code = engine.commandRelayout(engine.createContext(fixture.tree));
+  t.mock.restoreAll();
+  return { code, lines };
+}
+
+// A relayout that stops after its first rename must leave the overlay folder as
+// it found it: half the copies moved behind a manifest naming the old paths is a
+// folder no later command can read, and no backup puts it back on its own.
+test('relayout that fails on a later move puts every copy back and keeps no backup', (t) => {
+  const fixture = createRelayoutFixture(t);
+  const before = snapshotFolder(fixture.overlayDir);
+
+  const { code, lines } = relayoutWithFailingRename(t, fixture, (calls) => calls === 2);
+
+  assert.equal(code, 2, lines.join('\n'));
+  assert.equal(movedLines(lines.join('\n')).length, 1, lines.join('\n'));
+  const errors = lines.filter((line) => line.startsWith('error: '));
+  assert.equal(errors.length, 1, lines.join('\n'));
+  assert.match(errors[0], /^error: relayout failed while moving \S+: injected rename failure; /);
+  assert.ok(errors[0].endsWith('back as they were'), errors[0]);
+  assert.deepEqual(snapshotFolder(fixture.overlayDir), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
+});
+
+test('relayout that fails writing the manifest puts every moved copy back', (t) => {
+  const fixture = createRelayoutFixture(t);
+  const before = snapshotFolder(fixture.overlayDir);
+
+  const { code, lines } = relayoutWithFailingRename(t, fixture, (calls, from, to) => to === fixture.manifestPath);
+
+  assert.equal(code, 2, lines.join('\n'));
+  assert.equal(movedLines(lines.join('\n')).length, 5, lines.join('\n'));
+  const errors = lines.filter((line) => line.startsWith('error: '));
+  assert.deepEqual(errors, [
+    'error: relayout failed while writing the manifest: injected rename failure; ' +
+      'every moved copy, the manifest and the links are back as they were',
+  ]);
+  assert.deepEqual(snapshotFolder(fixture.overlayDir), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
+});
+
 test('relayout refuses to move a source whose layout path is already taken', (t) => {
   const fixture = createWorkspace(t, 'overlay-engine-relayout-blocked-');
   writeFile(fixture.overlayDir, 'custom/place.md', OVERLAY_PLACE);
@@ -1305,6 +1389,32 @@ test('relayout retargets a live layout link whose target it moved', (t) => {
   assert.equal(status.code, 0, status.output);
   assert.match(status.output, /RESULT: PASSED/);
   assert.equal(fs.readlinkSync(fixture.linkPath), BUNDLE_RELINKED_TARGET);
+});
+
+test('relayout that fails while relinking puts the copies and the live link back', (t) => {
+  const fixture = createRelayoutLinkFixture(t);
+  const before = snapshotFolder(fixture.overlayDir);
+  const symlink = fs.symlinkSync;
+  let calls = 0;
+  t.mock.method(fs, 'symlinkSync', (...args) => {
+    calls += 1;
+    if (calls === 1) throw new Error('injected link failure');
+    return symlink(...args);
+  });
+  const lines = [];
+  t.mock.method(console, 'log', (line) => lines.push(String(line)));
+  const code = engine.commandRelayout(engine.createContext(fixture.tree));
+  t.mock.restoreAll();
+
+  assert.equal(code, 2, lines.join('\n'));
+  assert.deepEqual(lines.filter((line) => line.startsWith('error: ')), [
+    `error: relayout failed while relinking ${BUNDLE_LINK}: injected link failure; ` +
+      'every moved copy, the manifest and the links are back as they were',
+  ]);
+  assert.deepEqual(snapshotFolder(fixture.overlayDir), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
+  assert.ok(fs.lstatSync(fixture.linkPath).isSymbolicLink());
+  assert.equal(fs.readlinkSync(fixture.linkPath), BUNDLE_LINK_TARGET);
 });
 
 test('relayout leaves a live link that points somewhere of its own unchanged', (t) => {
@@ -1567,6 +1677,50 @@ test('layout cap: status prints twenty off-layout entries with no overflow line'
   const expected = [];
   for (let index = 1; index <= LAYOUT_CAP_SHOWN; index += 1) expected.push(oldSkillLayoutLine(index));
   assert.deepEqual(layoutLines(status.output), expected, status.output);
+});
+
+/**
+ * Add `count` file overlays whose layout path lands under root/skilled, after
+ * every entry the fixture already names, and apply them.
+ * @param {object} fixture A fixture from `createOldLayoutSkillsFixture`.
+ * @param {number} count How many such entries to add.
+ */
+function addRootSkilledEntries(fixture, count) {
+  for (let index = 1; index <= count; index += 1) {
+    const name = `stray${index}.md`;
+    writeFile(fixture.overlayDir, `custom/${name}`, 'stray notes\n');
+    writeFile(fixture.tree, `skilled/${name}`, 'stray notes\n');
+    fixture.manifest.overlays.push({ id: `stray-${index}`, scope: 'file', source: `custom/${name}`, destination: `skilled/${name}` });
+  }
+  writeManifest(fixture);
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+}
+
+// Relayout refuses a move into root/skilled, so the count of the moves past the
+// cap splits them by the fix each one needs.
+test('layout cap: the overflow line splits the hidden moves between relayout and root/skilled', (t) => {
+  const fixture = createOldLayoutSkillsFixture(t, LAYOUT_CAP_SHOWN + 2);
+  addRootSkilledEntries(fixture, 3);
+
+  const status = fixture.run(['status']);
+
+  const lines = layoutLines(status.output);
+  assert.equal(lines.length, LAYOUT_CAP_SHOWN + 1, status.output);
+  assert.equal(lines[LAYOUT_CAP_SHOWN], `LAYOUT   … 5 more; run ${ENGINE_COMMAND} apply --relayout for 2, and ` +
+    'change the destination or remove the entry for the 3 under root/skilled', status.output);
+});
+
+test('layout cap: the overflow line sends hidden moves all under root/skilled to the manifest', (t) => {
+  const fixture = createOldLayoutSkillsFixture(t, LAYOUT_CAP_SHOWN);
+  addRootSkilledEntries(fixture, 4);
+
+  const status = fixture.run(['status']);
+
+  const lines = layoutLines(status.output);
+  assert.equal(lines.length, LAYOUT_CAP_SHOWN + 1, status.output);
+  assert.equal(lines[LAYOUT_CAP_SHOWN],
+    'LAYOUT   … 4 more under root/skilled; change the destination or remove the entry', status.output);
 });
 
 test('old layout: a tree with dot-dropped sources passes status and relayout moves it onto framework and root', (t) => {

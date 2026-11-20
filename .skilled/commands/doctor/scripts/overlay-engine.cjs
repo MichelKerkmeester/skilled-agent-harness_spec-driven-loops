@@ -462,7 +462,20 @@ function resolveOverlayDir(root) {
     if (!isDanglingLink) {
       const treeRoot = canonicalPath(root);
       const target = canonicalPath(siblingPath);
-      if (!isWithin(treeRoot, target) && !isWithin(target, treeRoot)) return normalized;
+      if (!isWithin(treeRoot, target) && !isWithin(target, treeRoot)) {
+        // A folder beside the tree must stay in the tree's own git repository, or
+        // its overlays and pin are never committed with the tree, and the
+        // repository's own `.git` folder is never an overlay folder. A tree in no
+        // repository has nothing to compare against, so it keeps the folder.
+        const top = gitTopLevelOrNull(treeRoot);
+        if (top !== null) {
+          const relative = path.relative(top, target);
+          if (!isWithin(top, target) || relative.split(path.sep)[0] === '.git') {
+            throw new Error(`${SETTING_FILE} names a folder outside the git repository at ${top}: ${value}`);
+          }
+        }
+        return normalized;
+      }
     }
   }
   if (normalized === '.' || normalized === '' || normalized === '..' || normalized.startsWith('../')) {
@@ -472,10 +485,33 @@ function resolveOverlayDir(root) {
 }
 
 /**
+ * Read the canonical top level of the git repository holding a folder.
+ * @param {string} cwd Folder to ask from.
+ * @returns {string|null} The top level, or null when the folder is in no repository or git cannot run.
+ */
+function gitTopLevelOrNull(cwd) {
+  // A git hook exports GIT_DIR without GIT_WORK_TREE, which makes git report the
+  // working folder as the top level, so git has to find the repository from cwd.
+  const env = { ...process.env };
+  for (const name of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_PREFIX']) delete env[name];
+  let top;
+  try {
+    const result = spawnSync('git', ['-C', cwd, 'rev-parse', '--show-toplevel'], { env, encoding: 'utf8' });
+    if (result.error || result.status !== 0) return null;
+    top = result.stdout;
+  } catch {
+    return null;
+  }
+  if (typeof top !== 'string' || top.trim() === '') return null;
+  return canonicalPath(top.trim());
+}
+
+/**
  * Build the paths one engine run works against.
  * @param {string} root Vendored tree root.
- * @returns {{root: string, overlayLabel: string, overlayRoot: string,
- *   manifestPath: string, statePath: string, lockPath: string}}
+ * @returns {{root: string, overlayLabel: string, overlayRoot: string, overlayOutside: boolean,
+ *   hasSetting: boolean, manifestPath: string, statePath: string, lockPath: string}}
+ *   `overlayOutside` is true when the overlay folder sits beside the tree rather than under it.
  */
 function createContext(root) {
   const absoluteRoot = path.resolve(root);
@@ -485,6 +521,7 @@ function createContext(root) {
     root: absoluteRoot,
     overlayLabel,
     overlayRoot,
+    overlayOutside: !isWithin(absoluteRoot, overlayRoot),
     hasSetting: pathExists(path.join(absoluteRoot, SETTING_FILE)),
     manifestPath: path.join(overlayRoot, MANIFEST_FILE),
     statePath: path.join(overlayRoot, STATE_FILE),
@@ -3395,10 +3432,12 @@ function runCheck(ctx, manifest, state, plans) {
 }
 
 /**
- * Every source field an overlay keeps off the layout, where a copy sits inside
- * the overlay folder at its destination path with the leading dot dropped. A
- * copy kept elsewhere still applies, so this names where it belongs instead of
- * refusing the run.
+ * Every source field an overlay keeps off the layout. On the layout, a copy for
+ * a destination under `.skilled/` sits inside the overlay folder at `framework/`
+ * plus the rest of that path, and a copy for any other destination at `root/`
+ * plus the destination with its leading dots dropped; a marked-section base sits
+ * beside its fragment with `.base` before the extension. A copy kept elsewhere
+ * still applies, so this names where it belongs instead of refusing the run.
  * @param {object} manifest Loaded overlay manifest.
  * @returns {{overlay: string, field: string, from: string, to: string}[]} One
  *   record per field off the layout, in manifest order.
@@ -3647,8 +3686,9 @@ function commandStatus(ctx, options = {}) {
     console.log(`STALE    root-file ${entry.path}: upstream changed it since overlay ${entry.overlay} was pinned; ` +
       'rebase the overlay, then update its pinnedSha256');
   }
-  // Relayout refuses a move into root/skilled, so that line names the fix the
-  // operator can make instead of a run that would stop.
+  // Relayout refuses a move into root/skilled, so each line, and the count of the
+  // moves past the cap, names the fix the operator can make instead of a run
+  // that would stop.
   for (const move of offLayout.slice(0, LAYOUT_SHOWN)) {
     const remedy = isUnderRootSkilled(move.to)
       ? 'change the destination or remove the entry'
@@ -3656,7 +3696,16 @@ function commandStatus(ctx, options = {}) {
     console.log(`LAYOUT   ${move.overlay}: ${move.field} ${move.from} belongs at ${move.to}; ${remedy}`);
   }
   if (offLayout.length > LAYOUT_SHOWN) {
-    console.log(`LAYOUT   … ${offLayout.length - LAYOUT_SHOWN} more; run ${ENGINE_COMMAND} apply --relayout`);
+    const hidden = offLayout.slice(LAYOUT_SHOWN);
+    const blocked = hidden.filter((move) => isUnderRootSkilled(move.to)).length;
+    const movable = hidden.length - blocked;
+    const remedy = blocked === 0
+      ? `; run ${ENGINE_COMMAND} apply --relayout`
+      : movable === 0
+        ? ' under root/skilled; change the destination or remove the entry'
+        : `; run ${ENGINE_COMMAND} apply --relayout for ${movable}, and change the destination or remove the ` +
+          `entry for the ${blocked} under root/skilled`;
+    console.log(`LAYOUT   … ${hidden.length} more${remedy}`);
   }
   for (const note of notes) console.log(`NOTE     ${note}`);
   if (audit) {
@@ -4579,7 +4628,7 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
   for (const relativePath of touched.delete) if (!groups.has(relativePath)) groups.set(relativePath, 'delete');
   // A folder beside the tree keeps its own files under their own area, so no tree
   // path can collide with them and a rollback restores them against that folder.
-  const overlayOutside = !isWithin(root, ctx.overlayRoot);
+  const overlayOutside = ctx.overlayOutside;
   const overlayGroups = new Map();
   if (overlayOutside) {
     for (const filePath of [ctx.manifestPath, ctx.statePath]) overlayGroups.set(relativeKey(ctx.overlayRoot, filePath), 'engine');
@@ -4596,14 +4645,11 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
 
   const entries = [];
   const createdDirs = new Set();
-  const areas = [{ base: root, groups, backupDir: path.join(runDir, 'backup'), area: null }];
-  if (overlayOutside) {
-    areas.push({ base: ctx.overlayRoot, groups: overlayGroups, backupDir: path.join(runDir, 'overlay-backup'), area: 'overlay' });
-  }
-  for (const { base, groups: areaGroups, backupDir, area } of areas) for (const relativePath of [...areaGroups.keys()].sort()) {
+  // Record one path's backup entry, copying a file into backupDir, and say
+  // whether the path was missing.
+  const backUpEntry = (base, relativePath, group, backupDir, tag) => {
     const filePath = path.join(base, relativePath);
     relativeKey(base, filePath);
-    const tag = area ? { area } : {};
     let stats = null;
     if (!hasLinkedAncestor(base, relativePath)) {
       try {
@@ -4612,20 +4658,14 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
         if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
       }
     }
-    const group = areaGroups.get(relativePath);
     if (!stats) {
       entries.push({ path: relativePath, ...tag, group, existed: false });
-      if (area) continue;
-      for (let dir = path.dirname(filePath); dir !== root && isWithin(root, dir); dir = path.dirname(dir)) {
-        if (pathExists(dir)) break;
-        createdDirs.add(relativeKey(root, dir));
-      }
-      continue;
+      return true;
     }
     if (stats.isSymbolicLink()) {
       const target = fs.readlinkSync(filePath);
       entries.push({ path: relativePath, ...tag, group, existed: true, kind: 'symlink', target, sha256: sha256(Buffer.from(target)) });
-      continue;
+      return false;
     }
     if (isEnvName(relativePath) || !stats.isFile()) {
       throw new Error('refusing to back up ' + relativePath + (stats.isFile() ? ', a .env path' : ', which is not a file or a link'));
@@ -4633,6 +4673,24 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
     const buffer = fs.readFileSync(filePath);
     writeFile(path.join(backupDir, relativePath), buffer, 0o600);
     entries.push({ path: relativePath, ...tag, group, existed: true, kind: 'file', mode: stats.mode & 0o777, sha256: sha256(buffer) });
+    return false;
+  };
+  // Only the tree records the folders a missing path would need: a rollback
+  // prunes those from the tree, while the overlay folder's own files are only
+  // ever restored in place.
+  const treeBackupDir = path.join(runDir, 'backup');
+  for (const relativePath of [...groups.keys()].sort()) {
+    if (!backUpEntry(root, relativePath, groups.get(relativePath), treeBackupDir, {})) continue;
+    for (let dir = path.dirname(path.join(root, relativePath)); dir !== root && isWithin(root, dir); dir = path.dirname(dir)) {
+      if (pathExists(dir)) break;
+      createdDirs.add(relativeKey(root, dir));
+    }
+  }
+  if (overlayOutside) {
+    const overlayBackupDir = path.join(runDir, 'overlay-backup');
+    for (const relativePath of [...overlayGroups.keys()].sort()) {
+      backUpEntry(ctx.overlayRoot, relativePath, overlayGroups.get(relativePath), overlayBackupDir, { area: 'overlay' });
+    }
   }
   const backup = {
     schemaVersion: 1,
@@ -5225,7 +5283,7 @@ function repinRun(liveCtx, options, report) {
     const stageDir = path.resolve(options.stage);
     // A folder beside the tree is copied beside the tree copy, each under its own
     // name, so the staged setting file reaches the staged overlay folder.
-    const overlayOutside = !isWithin(liveCtx.root, liveCtx.overlayRoot);
+    const overlayOutside = liveCtx.overlayOutside;
     const problem = stageFolderProblem(liveCtx.root, stageDir, overlayOutside ? liveCtx.overlayRoot : null);
     if (problem) return refuseRepin([problem]);
     // Reading the tree while another run writes it would stage a torn copy, so a
@@ -5542,6 +5600,18 @@ function strictWriteRefusal(ctx, manifest, inputPath) {
     // A link or a regenerated output is written by apply, and an existing owned
     // file was refused before this ran. Only a new file in an owned folder is left.
     if (isLive || !holder) return null;
+    // A path a skill-root entry removes, and does not also replace, is deleted by
+    // every apply, so a copy in the overlay folder would never be installed.
+    const isUnder = (prefix) => holder.relative === prefix || holder.relative.startsWith(prefix + '/');
+    const normalizeList = (list) => (list || []).map((value) => path.posix.normalize(value).replace(/\/+$/, ''));
+    const removedBy = holder.entry.scope === 'skill-root' && !normalizeList(holder.entry.replace).some(isUnder)
+      ? normalizeList(holder.entry.remove).find(isUnder)
+      : undefined;
+    if (removedBy !== undefined) {
+      return `refuse: ${key} is under ${removedBy}, which overlay ${holder.entry.id} removes on every apply; ` +
+        `take ${removedBy} off that entry's remove list, add ${holder.relative} to its replace list, keep its copy ` +
+        `at ${overlay}${holder.entry.source}/${holder.relative}, then run ${ENGINE_COMMAND} apply`;
+    }
     return `refuse: ${key} is a new file inside overlay ${holder.entry.id}; create it as ` +
       `${overlay}${holder.entry.source}/${holder.relative}, then run ${ENGINE_COMMAND} apply`;
   }
@@ -5811,7 +5881,7 @@ function stagedUnownedChanges(ctx, manifest) {
   // A manifest beside the tree has no path under the tree's prefix, so its git path
   // comes from where it is. One outside the repository has no staged or HEAD pin.
   let manifestFile = path.posix.join(prefix, toPosix(path.relative(ctx.root, ctx.manifestPath)));
-  if (!isWithin(ctx.root, ctx.overlayRoot)) {
+  if (ctx.overlayOutside) {
     manifestFile = toPosix(path.relative(topLevel, canonicalPath(ctx.manifestPath)));
     if (manifestFile === '' || manifestFile === '..' || manifestFile.startsWith('../') || path.isAbsolute(manifestFile)) {
       throw new Error('the overlay folder must sit inside the same git repository as the tree; ' +
@@ -6304,23 +6374,73 @@ function writeRelayoutManifest(ctx, text) {
  * other path standing at a link entry is left alone, for the apply that follows
  * to report, because this run never takes a path it did not put there.
  * @param {object} ctx Engine context.
- * @param {{path: string, from: string, target: string}[]} changes Changes from
+ * @param {{path: string, from: string, target: string}} change One change from
  *   relayoutLinkTargets.
+ * @param {object[]} retargeted Receives the change once its old link is gone, so
+ *   a rollback re-points a link even when writing the new one failed.
  */
-function retargetRelayoutLinks(ctx, changes) {
-  for (const change of changes) {
-    const linkPath = path.join(ctx.root, change.path);
-    let stats = null;
-    try {
-      stats = fs.lstatSync(linkPath);
-    } catch (error) {
-      if (!error || error.code !== 'ENOENT') throw error;
-    }
-    if (!stats || !stats.isSymbolicLink() || fs.readlinkSync(linkPath) !== change.from) continue;
-    fs.unlinkSync(linkPath);
-    ensureSymlink(linkPath, change.target);
-    console.log(`relinked ${change.path} -> ${change.target}`);
+function retargetRelayoutLink(ctx, change, retargeted) {
+  const linkPath = path.join(ctx.root, change.path);
+  let stats = null;
+  try {
+    stats = fs.lstatSync(linkPath);
+  } catch (error) {
+    if (!error || error.code !== 'ENOENT') throw error;
   }
+  if (!stats || !stats.isSymbolicLink() || fs.readlinkSync(linkPath) !== change.from) return;
+  fs.unlinkSync(linkPath);
+  retargeted.push(change);
+  ensureSymlink(linkPath, change.target);
+  console.log(`relinked ${change.path} -> ${change.target}`);
+}
+
+/**
+ * The folders between the overlay root and a path that do not exist yet.
+ * @param {string} root Overlay root, never included.
+ * @param {string} filePath Path whose parent folders are about to be made.
+ * @returns {string[]} Missing folders, outermost first.
+ */
+function missingRelayoutParents(root, filePath) {
+  const missing = [];
+  for (let dir = path.dirname(filePath); dir !== root && isWithin(root, dir); dir = path.dirname(dir)) {
+    if (fs.existsSync(dir)) break;
+    missing.unshift(dir);
+  }
+  return missing;
+}
+
+/**
+ * Undo every step a failed relayout completed, newest first. A step that cannot
+ * be undone is recorded and the rest still run, so as much as possible is back.
+ * @param {object} ctx Engine context.
+ * @param {object} done What the run completed: `links`, `isManifestWritten`,
+ *   `manifestBytes`, `moves` and `createdDirs`.
+ * @returns {{path: string, message: string}|null} The first undo that failed.
+ */
+function rollbackRelayout(ctx, done) {
+  let failure = null;
+  const attempt = (label, undo) => {
+    try {
+      undo();
+    } catch (error) {
+      if (!failure) failure = { path: label, message: error.message };
+    }
+  };
+  for (const change of [...done.links].reverse()) {
+    attempt(change.path, () => ensureSymlink(path.join(ctx.root, change.path), change.from));
+  }
+  if (done.isManifestWritten) {
+    attempt(toPosix(path.relative(ctx.overlayRoot, ctx.manifestPath)), () => writeFileAtomic(ctx.manifestPath, done.manifestBytes));
+  }
+  for (const move of [...done.moves].reverse()) {
+    attempt(move.to.relative, () => fs.renameSync(move.to.absolute, move.from.absolute));
+  }
+  for (const dir of [...done.createdDirs].reverse()) {
+    attempt(toPosix(path.relative(ctx.overlayRoot, dir)), () => {
+      if (isDirectory(dir) && fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
+    });
+  }
+  return failure;
 }
 
 /**
@@ -6329,7 +6449,8 @@ function retargetRelayoutLinks(ctx, changes) {
  * beside the manifest that named it.
  * @param {object} ctx Engine context.
  * @param {object} manifest Loaded overlay manifest.
- * @returns {number} 0 when done or there was nothing to move, 2 on a refusal.
+ * @returns {number} 0 when done or there was nothing to move, 2 on a refusal or
+ *   a failed run.
  */
 function relayoutUnderLock(ctx, manifest) {
   const groups = groupLayoutMoves(layoutMoves(manifest));
@@ -6367,32 +6488,74 @@ function relayoutUnderLock(ctx, manifest) {
   }
 
   const stamp = new Date().toISOString().replace(/:/g, '-');
-  const runDir = path.join(ctx.overlayRoot, RELAYOUT_RUNS_FOLDER, stamp);
+  const runsDir = path.join(ctx.overlayRoot, RELAYOUT_RUNS_FOLDER);
+  const runDir = path.join(runsDir, stamp);
+  const isRunsDirNew = !fs.existsSync(runsDir);
+  // Read before anything is written, so a failed run can put back the exact bytes.
+  const manifestBytes = fs.readFileSync(ctx.manifestPath);
   const exact = exactManifestPaths(ctx, manifest);
   // A folder beside the tree has no tree path, so its backup is keyed from the
   // overlay root and the printed path uses the label the setting file gives.
-  const overlayOutside = !isWithin(ctx.root, ctx.overlayRoot);
+  const overlayOutside = ctx.overlayOutside;
   const backupBase = overlayOutside ? ctx.overlayRoot : ctx.root;
   for (const move of plan.moves) {
     copyForBackup(move.from.absolute, path.join(runDir, relativeKey(backupBase, move.from.absolute)), move.from.relative, exact);
   }
   copyForBackup(ctx.manifestPath, path.join(runDir, relativeKey(backupBase, ctx.manifestPath)), relativeKey(backupBase, ctx.manifestPath), exact);
-  console.log('backup ' + (overlayOutside
+  const backupLabel = overlayOutside
     ? ctx.overlayLabel + '/' + relativeKey(ctx.overlayRoot, runDir)
-    : relativeKey(ctx.root, runDir)));
+    : relativeKey(ctx.root, runDir);
+  console.log('backup ' + backupLabel);
 
-  for (const move of plan.moves) {
-    fs.mkdirSync(path.dirname(move.to.absolute), { recursive: true });
-    fs.renameSync(move.from.absolute, move.to.absolute);
-    pruneEmptyParents(ctx.overlayRoot, move.from.absolute);
-    console.log(`moved ${move.from.relative} -> ${move.to.relative}`);
+  // Every step from here is undone if a later one fails: copies at their layout
+  // paths behind a manifest naming the old ones is a folder no command can read.
+  const done = { links: [], isManifestWritten: false, manifestBytes, moves: [], createdDirs: [] };
+  let step = '';
+  try {
+    for (const move of plan.moves) {
+      step = `moving ${move.from.relative}`;
+      done.createdDirs.push(...missingRelayoutParents(ctx.overlayRoot, move.to.absolute));
+      fs.mkdirSync(path.dirname(move.to.absolute), { recursive: true });
+      fs.renameSync(move.from.absolute, move.to.absolute);
+      done.moves.push(move);
+      console.log(`moved ${move.from.relative} -> ${move.to.relative}`);
+    }
+    step = 'writing the manifest';
+    writeRelayoutManifest(ctx, manifestText);
+    done.isManifestWritten = manifestText !== null;
+    for (const change of linkEdits) {
+      step = `relinking ${change.path}`;
+      retargetRelayoutLink(ctx, change, done.links);
+    }
+  } catch (error) {
+    const cause = `error: relayout failed while ${step}: ${error.message}`;
+    const restoreFailure = rollbackRelayout(ctx, done);
+    if (restoreFailure) {
+      console.log(`${cause}; the restore also failed at ${restoreFailure.path}: ${restoreFailure.message}; ` +
+        `the backup at ${backupLabel} holds every moved copy and the manifest as it was`);
+      return EXIT_ERROR;
+    }
+    try {
+      fs.rmSync(runDir, { recursive: true, force: true });
+      if (isRunsDirNew && isDirectory(runsDir) && fs.readdirSync(runsDir).length === 0) fs.rmdirSync(runsDir);
+    } catch (cleanupError) {
+      // The rollback already put every copy back, so only the leftover backup
+      // needs the operator's attention.
+      console.log(`${cause}; every moved copy, the manifest and the links are back as they were, but the backup ` +
+        `at ${backupLabel} could not be removed: ${cleanupError.message}`);
+      return EXIT_ERROR;
+    }
+    console.log(`${cause}; every moved copy, the manifest and the links are back as they were`);
+    return EXIT_ERROR;
   }
 
-  writeRelayoutManifest(ctx, manifestText);
-  retargetRelayoutLinks(ctx, linkEdits);
+  // Emptied folders are pruned only once nothing can fail, so a rollback never
+  // has to recreate a folder this run removed.
+  for (const move of plan.moves) pruneEmptyParents(ctx.overlayRoot, move.from.absolute);
 
   console.log(`${plan.moves.length} moved`);
   console.log(`run ${ENGINE_COMMAND} apply`);
+  return EXIT_OK;
 }
 
 /**
