@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research",
+  "description": "Phase 23: ollama-deprecation-research",
+  "keywords": [
+    "phase",
+    "ollama-deprecation-research"
+  ],
+  "lastUpdated": "2026-11-20T20:18:24.143Z",
+  "specId": "023",
+  "folderSlug": "ollama-deprecation-research",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "20-11-26_20-55__five-deep-research-iterations-run-as-fable-5-2.md",
+    "20-11-26_21-18__the-operator-settled-the-seven-removal-decisions.md"
+  ]
+}

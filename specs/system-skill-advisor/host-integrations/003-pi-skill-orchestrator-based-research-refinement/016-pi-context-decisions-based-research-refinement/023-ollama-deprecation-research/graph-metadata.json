@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ollama deprecation research",
+      "phase 23 ollama deprecation research",
+      "remove ollama from skill advisor",
+      "delete semantic shadow lane",
+      "ollama deprecation research plan",
+      "ollama deprecation research tasks",
+      "023-ollama-deprecation-research operator decisions",
+      "ollama deprecation research implementation summary"
+    ],
+    "key_topics": [
+      "ollama",
+      "deprecation",
+      "research",
+      "phase",
+      "remove",
+      "skill",
+      "advisor",
+      "delete",
+      "semantic",
+      "shadow",
+      "lane",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "shared/types.ts",
+      "shared/chunking.ts",
+      "shared/utils/retry.ts",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/bin/launcher-threshold-env.vitest.ts",
+      ".skilled/bin/hf-model-server.cjs",
+      ".skilled/bin/lib/model-server-supervision.cjs",
+      "cli/tests/memory-pipeline-regressions.vitest.ts",
+      "references/memory/embedder-pluggability.md",
+      "references/config/environment-variables.md",
+      "runtime/tests/embedders/README.md",
+      "shared/embeddings/README.md",
+      "shared/embeddings/adapters/README.md",
+      "shared/embeddings/providers/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "chunking.ts",
+        "kind": "code",
+        "path": "shared/chunking.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry.ts",
+        "kind": "code",
+        "path": "shared/utils/retry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-threshold-env.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/launcher-threshold-env.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "memory-pipeline-regressions.vitest.ts",
+        "kind": "test",
+        "path": "cli/tests/memory-pipeline-regressions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-pluggability.md",
+        "kind": "doc",
+        "path": "references/memory/embedder-pluggability.md",
+        "source": "derived"
+      },
+      {
+        "name": "environment-variables.md",
+        "kind": "doc",
+        "path": "references/config/environment-variables.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/tests/embedders/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The semantic lane routed worse every time it was measured (156 of 196 top-1 with it, 161 without), so it ships at weight 0, but its code, vector refresh, doctor embedder route, coverage checks, env vars and docs all remain",
+    "created_at": "2026-11-20T18:47:34Z",
+    "last_save_at": "2026-11-20T20:18:24.143Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ab02a5998e405a50947906241788d543d39d2cbd78e856c2904987cae8458e4f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "33b453310ab6f428bb1fd72eac45c0716b2e7ec315eb3f7ac92fa6770f0854e5",
+      "plan.md": "693b25be7a056572bf15fc1ad74f546a86f4acdc88d5652c90853db5e4cd5907",
+      "tasks.md": "c0fa8a038d814b85652477e75c10eb0d13f9af22e896c784e8882a22656820b1",
+      "decision-record.md": "eb02924d9126db459979cf3e14da47d19cf8141976b48dc1c73bd7044506e493",
+      "implementation-summary.md": "75404b73cf3029ff4002a558e607f57441d51bf5db94b60ab4c64a8c8b507bca",
+      "research/research.md": "399ed1a836af2bf975863853071f0335775bdecf5d21c3f04f40b465e78ee232"
+    },
+    "last_active_at": null
+  }
+}
