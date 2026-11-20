@@ -31,6 +31,9 @@ interface ResearchFacts {
   answeredQuestionSourceCounts: Record<string, number> | null;
   iterationRecords: IterationRecord[];
   frontierOpen?: number;
+  frontierTotal?: number;
+  frontierAnswered?: number;
+  fanoutLineage?: boolean;
 }
 
 interface ReviewApplicability {
@@ -1359,5 +1362,76 @@ describe('review frontier_drained candidate', () => {
       stateLogRows: [],
     }, graph);
     expect(Object.prototype.hasOwnProperty.call(withoutFrontier.review ?? {}, 'frontierTotal')).toBe(false);
+  });
+});
+
+// A fan-out lineage owns only its share of the frontier, but its strategy lists
+// every topic question, so the topic coverage never completes inside one lineage.
+// Once its own share drains it has no work left that is its own.
+describe('research frontier_drained candidate for a fan-out lineage', () => {
+  const drained = (overrides: InputOverrides = {}): StopDecisionInput => researchInput({
+    ratios: [0.6, 0.5, 0.45],
+    ...overrides,
+    config: { depthMode: 'expansive', ...(overrides.config ?? {}) },
+    research: {
+      answeredCount: 2,
+      totalQuestions: 6,
+      frontierOpen: 0,
+      frontierTotal: 3,
+      frontierAnswered: 2,
+      fanoutLineage: true,
+      ...(overrides.research ?? {}),
+    },
+  });
+
+  it('stops a fan-out lineage whose partition is drained', () => {
+    const decision = buildStopDecision(drained());
+    expect(decision.decision).toBe('STOP');
+    expect(decision.stopReason).toBe('converged');
+    expect(decision.reasonDetail).toBe('frontier_drained');
+  });
+
+  const cases: Array<[string, InputOverrides, string, string]> = [
+    ['a single-executor expansive run keeps going', { research: { fanoutLineage: undefined } }, 'CONTINUE', 'noStopCandidate'],
+    ['a default run gets no candidate', { config: { depthMode: undefined } }, 'CONTINUE', 'noStopCandidate'],
+    ['an open node keeps the lineage running', { research: { frontierOpen: 1 } }, 'CONTINUE', 'noStopCandidate'],
+    ['an empty partition forms no candidate', { research: { frontierTotal: 0 } }, 'CONTINUE', 'noStopCandidate'],
+    ['a partition closed without an answer forms no candidate', { research: { frontierAnswered: 0 } }, 'CONTINUE', 'noStopCandidate'],
+    ['a blocked graph still blocks it', { graphDecision: 'STOP_BLOCKED', graphBlockers: [{ type: 'source_diversity_guard' }] }, 'BLOCKED', 'graphStopBlocked'],
+    ['the floor still comes first', { iterationCount: 1, config: { minIterations: 3 } }, 'CONTINUE', 'minIterationsNotReached'],
+    ['stuck recovery still comes first', { stuckCount: 3 }, 'STUCK_RECOVERY', 'stuckThresholdReached'],
+  ];
+
+  it.each(cases)('%s', (_label, overrides, decision, reasonDetail) => {
+    const result = buildStopDecision(drained(overrides));
+    expect(result.decision).toBe(decision);
+    expect(result.reasonDetail).toBe(reasonDetail);
+  });
+
+  it('marks a lineage by its config and counts its closed partition', () => {
+    const graph = { nodes: [], edges: [] };
+    const registry = {
+      metrics: { resolvedQuestions: 2, openQuestions: 4 },
+      frontier: { nodes: [{ status: 'answered' }, { status: 'answered' }, { status: 'exhausted' }] },
+    };
+    const lineage = buildStopDecisionInput({ depthMode: 'expansive' }, 'research', {
+      config: { maxIterations: 10, fanout_lineage_artifact_dir: 'research/lineages/deepseek' },
+      registry,
+      stateLogRows: [],
+    }, graph);
+    expect(lineage.research?.fanoutLineage).toBe(true);
+    expect(lineage.research?.frontierTotal).toBe(3);
+    expect(lineage.research?.frontierAnswered).toBe(2);
+    expect(buildStopDecision({ ...lineage, iterationCount: 5, ratios: [0.6, 0.5, 0.45], graphDecision: 'STOP_ALLOWED', graphBlockers: [] }).reasonDetail)
+      .toBe('frontier_drained');
+
+    const single = buildStopDecisionInput({ depthMode: 'expansive' }, 'research', {
+      config: { maxIterations: 10 },
+      registry,
+      stateLogRows: [],
+    }, graph);
+    expect(Object.prototype.hasOwnProperty.call(single.research ?? {}, 'fanoutLineage')).toBe(false);
+    expect(buildStopDecision({ ...single, iterationCount: 5, ratios: [0.6, 0.5, 0.45], graphDecision: 'STOP_ALLOWED', graphBlockers: [] }).reasonDetail)
+      .toBe('noStopCandidate');
   });
 });

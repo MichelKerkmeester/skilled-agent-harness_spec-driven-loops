@@ -1106,7 +1106,7 @@ workflow:
           2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
           3. if convergence_mode == "off": skip convergence stop candidates and continue.
           3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: the vote is telemetry only and the decision is CONTINUE.
-          4. a STOP candidate exists when every question is answered (all_questions_answered) or the weighted vote passes (composite_converged).
+          4. a STOP candidate exists when every question is answered (all_questions_answered) or the weighted vote passes (composite_converged). When neither forms and depth_mode == "expansive" in a fan-out lineage (its config carries fanout_lineage_artifact_dir), a lineage whose frontier share holds at least one answered node and none still open or active forms a hard candidate (frontier_drained), so it stops instead of working the topic questions other lineages own. A single-executor or default run never forms it.
           5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)
           5a. if depth_mode == "expansive" and the frontier still holds an open or active node: CONTINUE (frontierOpen). This veto never creates a stop.
           6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)

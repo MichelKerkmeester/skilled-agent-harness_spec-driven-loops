@@ -464,9 +464,12 @@ describe('deep-review stop-order prose names the drained-frontier candidate', ()
     expect(step.indexOf('legal-stop gates run on a candidate')).toBeGreaterThan(drained);
   });
 
-  it('leaves the research stop order without it', () => {
+  it('names it in the research stop order for a fan-out lineage only', () => {
     const research = stepText(readFileSync(resolve(ASSETS, 'deep-research.yaml'), 'utf8'), 'step_check_convergence');
-    expect(research).not.toContain('frontier_drained');
+    const drained = research.indexOf('frontier_drained');
+    expect(drained).toBeGreaterThan(research.indexOf('composite_converged'));
+    expect(research.indexOf('minIterationsNotReached')).toBeGreaterThan(drained);
+    expect(research).toContain('fanout_lineage_artifact_dir');
   });
 });
 

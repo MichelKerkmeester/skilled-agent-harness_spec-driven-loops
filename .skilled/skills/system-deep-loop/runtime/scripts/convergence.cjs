@@ -1193,6 +1193,19 @@ function buildStopDecision(input) {
     candidate = { reasonDetail: 'all_questions_answered', hardStop: false };
   } else if (signalResult.stopCandidate) {
     candidate = { reasonDetail: 'composite_converged', hardStop: false };
+  } else if (config.depthMode === 'expansive'
+    && research.fanoutLineage === true
+    && Number.isFinite(research.frontierTotal)
+    && research.frontierTotal >= 1
+    && research.frontierOpen === 0
+    && Number.isFinite(research.frontierAnswered)
+    && research.frontierAnswered >= 1) {
+    // A fan-out lineage owns only its share of the frontier while its strategy
+    // lists every topic question, so topic coverage never completes inside it.
+    // Once its share drains, the fallback focus would work questions the other
+    // lineages own. A single-executor run owns the whole frontier, so its topic
+    // coverage already decides the stop and it forms no such candidate.
+    candidate = { reasonDetail: 'frontier_drained', hardStop: true };
   }
 
   if (!candidate) {
@@ -1535,7 +1548,7 @@ function answeredQuestionSourceCounts(nodes, edges) {
   return counts;
 }
 
-function stopDecisionResearchFacts(registry, evidenceRecords, graph) {
+function stopDecisionResearchFacts(registry, evidenceRecords, graph, config = {}) {
   const metrics = isPlainObject(registry.metrics) ? registry.metrics : {};
   const resolvedQuestions = Array.isArray(registry.resolvedQuestions) ? registry.resolvedQuestions : [];
   const openQuestions = Array.isArray(registry.openQuestions) ? registry.openQuestions : [];
@@ -1556,7 +1569,16 @@ function stopDecisionResearchFacts(registry, evidenceRecords, graph) {
       ? null
       : answeredQuestionSourceCounts(graph?.nodes, graph?.edges),
     ...(isPlainObject(registry.frontier) && Array.isArray(registry.frontier.nodes)
-      ? { frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length }
+      ? {
+        frontierOpen: registry.frontier.nodes.filter((node) => node?.status === 'open' || node?.status === 'active').length,
+        frontierTotal: registry.frontier.nodes.length,
+        frontierAnswered: registry.frontier.nodes.filter((node) => node?.status === 'answered').length,
+      }
+      : {}),
+    // The fan-out runner writes the lineage's artifact dir into its config; a
+    // single-executor run never carries it.
+    ...(typeof config.fanout_lineage_artifact_dir === 'string' && config.fanout_lineage_artifact_dir !== ''
+      ? { fanoutLineage: true }
       : {}),
   };
 }
@@ -1791,7 +1813,7 @@ function buildStopDecisionInput(args, loopType, files, graph) {
     config: decisionConfig,
     ratios,
     research: loopType === 'research'
-      ? stopDecisionResearchFacts(registry, evidenceRecords, graph)
+      ? stopDecisionResearchFacts(registry, evidenceRecords, graph, config)
       : null,
     review: loopType === 'review'
       ? stopDecisionReviewFacts({
