@@ -265,6 +265,8 @@ describe('checkLineageCompletion', () => {
     const previousTz = process.env.TZ;
     process.env.TZ = 'America/Los_Angeles';
     try {
+      // The zone-less stamp below must read as after the process end on this clock.
+      expect(new Date('2026-11-20T10:04:00').toISOString()).toBe('2026-11-20T18:04:00.000Z');
       const rows: Array<Record<string, unknown>> = [
         { type: 'config', timestamp: '2026-11-20T10:00:00.000Z' },
         { type: 'iteration', iteration: 1, timestamp: '2026-11-20T10:04:00' },
