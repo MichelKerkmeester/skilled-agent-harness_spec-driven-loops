@@ -4014,6 +4014,10 @@ async function main() {
         args: built.redactedArgs,
         ...(typeof built.input === 'string' ? { stdin: built.input === built.prompt ? promptToken : '<input>' } : {}),
         cwd: built.cwd ?? process.cwd(),
+        // The Claude config dir reaches the child through its environment, not the argv.
+        ...(lineage.kind === 'cli-claude-code' && lineage.configDir
+          ? { config_dir: validateClaudeConfigDir(lineage.configDir) }
+          : {}),
         session_id: built.sessionId,
         iterations: lineage.iterations ?? null,
         frontier_scope: frontierScope,

@@ -7439,6 +7439,54 @@ describe('fanout-run.cjs — --preview builds every lineage command without writ
     expect(result.stderr).toContain('--sandbox-mode=danger-full-access');
     expect(treeDigest(baseDir)).toEqual(before);
   });
+
+  // The Claude config dir travels in the environment, not the argv, so the preview names it
+  // separately and resolves it the way the real run does.
+  async function previewClaude(executors: Array<Record<string, unknown>>) {
+    const binDir = makeTempDir('fanout-run-preview-config-bin-');
+    writeStubBinary(binDir, 'claude');
+    const hermetic = useHermeticEnv('preview-config');
+    const specFolder = 'specs/test-fanout-run-preview-config';
+    mkdirSync(join(hermetic.tmpDir, specFolder, 'review'), { recursive: true });
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'review',
+        '--fanout-config-json', JSON.stringify({ executors, concurrency: 2 }),
+        '--base-artifact-dir', join(hermetic.tmpDir, specFolder, 'review'),
+        '--review-focus', 'error handling',
+        '--preview',
+      ],
+      { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
+    );
+    return { result, cwd: realpathSync(hermetic.tmpDir) };
+  }
+
+  it('shows the resolved config dir only for a claude-code lineage that sets one', async () => {
+    const { result, cwd } = await previewClaude([
+      { label: 'alt', kind: 'cli-claude-code', model: 'claude-opus-4-8', configDir: '.claude-alt' },
+      { label: 'plain', kind: 'cli-claude-code', model: 'claude-opus-4-8' },
+    ]);
+
+    expect(result.exitCode).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      lineages?: Array<Record<string, unknown>>;
+    };
+    const [alt, plain] = payload.lineages ?? [];
+    expect(alt).toMatchObject({ label: 'alt', config_dir: join(cwd, '.claude-alt') });
+    expect(plain).toMatchObject({ label: 'plain' });
+    expect(plain).not.toHaveProperty('config_dir');
+  });
+
+  it('fails the preview on a config dir the real run would reject', async () => {
+    const { result } = await previewClaude([
+      { label: 'bad', kind: 'cli-claude-code', model: 'claude-opus-4-8', configDir: 'not-claude' },
+    ]);
+
+    expect(result.exitCode).not.toBe(0);
+    expect(`${result.stdout}${result.stderr}`).toContain('configDir must resolve under ~/.claude*');
+  });
 });
 
 describe('fanout-run.cjs — a terminal stop row does not prove completion on its own', () => {
