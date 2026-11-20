@@ -58,8 +58,8 @@ function readValue(argv, index, flag) {
 
 /**
  * Parse the command and reject flags the command does not own.
- * @param {string[]} argv
- * @returns {object}
+ * @param {string[]} argv - CLI arguments after the script name.
+ * @returns {object} The parsed options: command, root, source, runtimes, include and the mode flags.
  */
 function parseArgs(argv) {
   const options = {
@@ -216,8 +216,8 @@ function resolveInside(base, relative) {
 
 /**
  * Read and validate the shipped manifest.
- * @param {string} [manifestPath]
- * @returns {object}
+ * @param {string} [manifestPath] - Manifest file to read; defaults to the shipped manifest.
+ * @returns {object} The manifest, with its core, instructions, runtimes and extras entry groups.
  */
 function loadManifest(manifestPath = MANIFEST_PATH) {
   let manifest;
@@ -756,8 +756,8 @@ function buildContext(options) {
 
 /**
  * Return the check report for the selected entries and repository.
- * @param {object} options
- * @returns {object}
+ * @param {object} options - Parsed options, as parseArgs returns them.
+ * @returns {object} The check report: per-entry state, detected runtimes, tracked absolute links and warnings.
  */
 function inspect(options = {}) {
   const context = buildContext(options);
@@ -923,8 +923,8 @@ function sortActions(actions) {
 
 /**
  * Build the complete plan without changing the filesystem.
- * @param {object} options
- * @returns {object}
+ * @param {object} options - Parsed options, as parseArgs returns them.
+ * @returns {object} The check report extended with the ordered actions, refusals and plan digest.
  */
 function buildPlan(options = {}) {
   const context = buildContext(options);
@@ -1032,10 +1032,10 @@ function buildPlan(options = {}) {
 
 /**
  * Hash the canonical source, root and ordered actions.
- * @param {{source: string, root: string, actions: object[]}|string} plan
- * @param {string} [rootArg]
- * @param {object[]} [actionsArg]
- * @returns {string}
+ * @param {{source: string, root: string, actions: object[]}|string} plan - A plan, or its source path when the root and actions are passed separately.
+ * @param {string} [rootArg] - Repository root, read only when plan is a source path.
+ * @param {object[]} [actionsArg] - Ordered actions, read only when plan is a source path.
+ * @returns {string} The SHA-256 hex digest of the canonical source, root and actions.
  */
 function planDigest(plan, rootArg, actionsArg) {
   const source = typeof plan === 'string' ? plan : plan.source;
@@ -1845,6 +1845,10 @@ function main(argv) {
 if (require.main === module) {
   process.exitCode = main(process.argv.slice(2));
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   parseArgs,

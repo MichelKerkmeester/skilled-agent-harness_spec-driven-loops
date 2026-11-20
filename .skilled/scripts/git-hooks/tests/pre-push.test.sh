@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
-# Test harness for the pre-push hook's two independent gates (naming +
-# remote-push-permission), and for how its gates treat a pushed range under
-# .skilled/ and a gate script that is missing. Runs entirely inside a throwaway git repo
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: PRE-PUSH HOOK TESTS
+# ───────────────────────────────────────────────────────────────
+# Test harness for the pre-push hook's gates (remote-push permission, skill
+# metadata, compiled routing, track roots and Commit-Id), and for how its gates
+# treat a pushed range under .skilled/ and a gate script that is missing.
+# Runs entirely inside a throwaway git repo
 # (symlinking the real worktree-naming.sh and a fixture SKILL.md so owner
 # resolution works) so it never touches real refs, the real clone's hooks,
 # or the operator's global git config.
+#
+# Exit Codes:
+#   0 - every scenario passed
+#   1 - at least one scenario failed; each FAIL line names it
 set -uo pipefail
 
 # git resolves its repository from these variables in preference to -C/cwd. Clear them so the
@@ -58,7 +66,8 @@ _hook_rc() {
   printf '%s\n' "$line" | ( cd "$TMP" && env "$@" bash "$HOOK" ) \
     >"$TMP/last.out" 2>"$TMP/last.err"
 }
-expect_hook() { # expect_hook <desc> <expected-rc> <line> [env-assignment...]
+# expect_hook <desc> <expected-rc> <line> [env-assignment...]
+expect_hook() {
   local desc="$1" exp="$2" line="$3"; shift 3
   local rc=0
   _hook_rc "$line" "$@" || rc=$?
@@ -71,8 +80,8 @@ expect_hook() { # expect_hook <desc> <expected-rc> <line> [env-assignment...]
   fi
 }
 
-# ── naming-gate scenarios (unaffected by the permission gate: rejected before
-#    it, or exempted before the gate runs) ────────────────────────────────
+# ── branch-creation scenarios: each new branch is refused by the permission
+#    gate, and a release branch is exempted before that gate runs ──────────
 mkdir -p "$TMP/.opencode/skills/untracked-owner"
 printf 'name: untracked-owner\n' > "$TMP/.opencode/skills/untracked-owner/SKILL.md"
 expect_hook "branch under an untracked owner rejected (creation)" \
@@ -123,9 +132,9 @@ expect_hook "main push (update form) allowed with no env vars" \
   0 "refs/heads/main $SHA_A refs/heads/main $SHA_B"
 
 # ── operator-editable allowlist file extends the built-in exemptions ────────
-# Use an UPDATE ref (docs/foo doesn't match the owner-first grammar, so as a
-# NEW branch it would be rejected by Gate 1 before ever reaching Gate 2;
-# updates are naming-tolerant, so this isolates the allowlist-file check).
+# Use an UPDATE ref: the allowlist exempts an update and a creation alike, and an
+# update reaches the allowlist-file check without the creation-only refusal, so
+# this isolates that check.
 printf 'docs/*\n' > "$TMP/.opencode/skills/sk-git/scripts/remote-branch-allowlist.txt"
 expect_hook "custom allowlist-file pattern (docs/*) exempts an update push" \
   0 "refs/heads/docs/foo $SHA_A refs/heads/docs/foo $SHA_B"
@@ -158,7 +167,8 @@ ln -s "$REAL_NAMING" "$TMP/.opencode/skills/sk-git/scripts/worktree-naming.sh"
 # silence. These cases push real commits, because both gates read the pushed range
 # rather than the ref line. The spec-kit sentinel marks such a checkout; without it
 # the fixture stands in for any other repository the global hook runs in.
-expect_hook_says() { # expect_hook_says <desc> <expected-rc> <stderr substring> <line> [env-assignment...]
+# expect_hook_says <desc> <expected-rc> <stderr substring> <line> [env-assignment...]
+expect_hook_says() {
   local desc="$1" exp="$2" needle="$3" line="$4"; shift 4
   local rc=0
   _hook_rc "$line" "$@" || rc=$?
@@ -170,7 +180,8 @@ expect_hook_says() { # expect_hook_says <desc> <expected-rc> <stderr substring> 
     sed 's/^/    err> /' "$TMP/last.err" >&2 || true
   fi
 }
-expect_quiet() { # expect_quiet <desc> <substring the last run's stderr must not carry>
+# expect_quiet <desc> <substring the last run's stderr must not carry>
+expect_quiet() {
   if grep -qF -- "$2" "$TMP/last.err"; then
     FAIL=$((FAIL+1)); echo "FAIL: $1 (stderr carried '$2')"
   else
@@ -303,7 +314,8 @@ expect_quiet "...and the gate says nothing there" "track-roots"
 # go through `git push` from a worktree.
 PUSH_REMOTE="$TMP/.push-remote.git"; git init -q --bare "$PUSH_REMOTE"
 PUSH_HOOKS="$TMP/.push-hooks"; mkdir -p "$PUSH_HOOKS"; ln -s "$HOOK" "$PUSH_HOOKS/pre-push"
-push_from_worktree() { # push_from_worktree <sha>; returns git push's exit code, stderr in last.err
+# push_from_worktree <sha>; returns git push's exit code, stderr in last.err
+push_from_worktree() {
   local wt="$TMP/.push-wt" rc=0
   git -C "$TMP" worktree add -q --detach "$wt" "$1"
   mkdir -p "$wt/.opencode/skills/system-spec-kit/runtime/cli/spec" "$wt/.opencode/skills/system-spec-kit/runtime/cli/lib"
@@ -330,12 +342,14 @@ git -C "$CID" config core.hooksPath "$TMP/.nohooks"
 git -C "$CID" config user.email t@t.t
 git -C "$CID" config user.name t
 git -C "$CID" config skilled.commitId true
-cid_rc() { # cid_rc <stdin-line>; the hook's exit code, stderr in last.err
+# cid_rc <stdin-line>; the hook's exit code, stderr in last.err
+cid_rc() {
   local rc=0
   printf '%s\n' "$1" | ( cd "$CID" && bash "$HOOK" ) >"$TMP/last.out" 2>"$TMP/last.err" || rc=$?
   return $rc
 }
-cid_expect() { # cid_expect <desc> <expected-rc> <stdin-line> [<stderr substring>]
+# cid_expect <desc> <expected-rc> <stdin-line> [<stderr substring>]
+cid_expect() {
   local rc=0
   cid_rc "$3" || rc=$?
   if [ "$rc" = "$2" ] && { [ -z "${4:-}" ] || grep -qF "$4" "$TMP/last.err"; }; then PASS=$((PASS+1))

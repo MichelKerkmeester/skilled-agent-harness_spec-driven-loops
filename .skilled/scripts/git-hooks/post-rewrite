@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Post-Rewrite Hook — Autostash Orphan Guard
+# ───────────────────────────────────────────────────────────────
 # Post-rewrite hook — autostash orphan guard.
 #
 # Anchors and surfaces any --autostash entry so a conflicted (un-applied)

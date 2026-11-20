@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Pre-Commit Hook — Blocking Gates and Advisories
+# ───────────────────────────────────────────────────────────────
 # Pre-commit hook — blocking gates plus a few advisories.
 #
 # What runs here is what must run before the commit object exists. Checks that
@@ -8,6 +11,10 @@
 #
 # Install: bash .opencode/scripts/install-git-hooks.sh
 # Uninstall: rm .git/hooks/pre-commit
+#
+# Exit Codes:
+#   0 - every gate passed, or the ones that would block were skipped or bypassed
+#   1 - a gate blocked the commit; its message names the gate
 
 set -euo pipefail
 
@@ -56,7 +63,7 @@ if [[ "$SOURCE_ROOT" == "/dev/null/.skilled-untrusted" ]] \
   echo "Enable them: git config --local skilled.trustRepoHooks true" >&2
 fi
 
-# shared hook kill-switch (master + per-concern); fail-open if guard absent
+# Shared hook kill-switch (master + per-concern); fail-open if guard absent
 if [ -n "$REPO_ROOT" ] && [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
   set +e
   # shellcheck source=/dev/null
@@ -98,9 +105,11 @@ if [[ -r "$_bounded_git_lib" ]]; then
   git_bound_arm
 else
   echo "WARNING [gate:git-timeout]: $_bounded_git_lib is missing, so git calls here run without a time bound." >&2
+  # Unbounded fallbacks, used only when the bounded-git library is unreadable.
   git_bounded() { git -c core.fsmonitor=false "$@"; }
   git_bound_finish() { exit "$1"; }
 fi
+# EXIT trap: drop the staged-content hygiene mirror, then hand the real status to git_bound_finish.
 _pre_commit_exit() {
   local rc=$?
   rm -rf "${HYGIENE_DIR:-}"
@@ -1048,9 +1057,8 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
   fi
 fi
 
-# --- Tool ownership map gate (blocking) ---
-# Blocks commits when the committed generated map no longer matches TOOL_DEFINITIONS.
-# Manual-testing-playbook operator contract: enforced by CI only (pull request,
-# push to main, and a nightly cron), which is broader than this copy could be.
+# No tool ownership map gate runs here. The manual-testing-playbook operator contract
+# is checked in CI only (pull request, push to main, and a nightly cron), which covers
+# more than this hook could.
 
 exit 0
