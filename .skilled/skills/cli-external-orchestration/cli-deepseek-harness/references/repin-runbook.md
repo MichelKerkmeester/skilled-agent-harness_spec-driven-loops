@@ -7,7 +7,7 @@ trigger_phrases:
   - "deepseek harness live contract"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DeepSeek Harness Route Re-pin Runbook
@@ -150,7 +150,7 @@ if node "$REPO/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs" 
   --loop-type research \
   --fanout-config-json '<FANOUT_CONFIG_JSON>' \
   --base-artifact-dir "$ARTIFACT_DIR" \
-  --allow-single-lineage \
+  --only-lineage "<LINEAGE_LABEL>" \
   >"$EVIDENCE_DIR/$RUN_ID.stdout.txt" 2>"$EVIDENCE_DIR/$RUN_ID.stderr.txt"; then
   rc=0
 else
@@ -159,6 +159,6 @@ fi
 printf '%s\n' "$rc" >"$EVIDENCE_DIR/$RUN_ID.exit.txt"
 ```
 
-The JSON placeholder must resolve to one lineage with `kind` `cli-deepseek-harness`, model `deepseek-v4.1-flash-1017` and one iteration. Save the lineage completion and containment scan. A clean lineage reports completion with no out-of-lineage write.
+The JSON placeholder must resolve to one lineage with `kind` `cli-deepseek-harness`, model `deepseek-v4.1-flash-1017`, one iteration and the label that `<LINEAGE_LABEL>` names. The runner refuses a one-lineage matrix unless `--only-lineage` names that label, and it skips a lineage that already finished, so keep the artifact directory new. Save the lineage completion and containment scan. A clean lineage reports completion with no out-of-lineage write.
 
 After all probes, compare the operator's `~/.dsh` listing with the baseline, scan the evidence directory for credential values and update the route status. A route with no request stays untested on the new release.

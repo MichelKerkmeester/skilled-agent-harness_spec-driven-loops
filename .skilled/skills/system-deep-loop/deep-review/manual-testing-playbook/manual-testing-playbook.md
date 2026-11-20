@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.17.0
+version: 1.13.18.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -446,7 +446,7 @@ Verify that each failing admission check prunes a review proposal with that chec
 #### Scenario Contract
 Prompt: `Check that each failing deep-review admission check prunes its proposal with that check's own reason, and that a seed candidate with a prune reason is recorded as pruned with that reason. Return a PASS or FAIL verdict with the reason.`
 
-Expected signals: The seven per-check prune cases pass, the seed settlement case records one `merge-no-own-diff` row, and the workflow names `merge-no-own-diff` and `generated-artifact` as seed prune reasons. No case names `generated-artifact` itself.
+Expected signals: The seven per-check prune cases pass, the root-cap case prunes a child past the run-wide cap as `node-cap`, the seed settlement case records one `merge-no-own-diff` row, and the workflow names `merge-no-own-diff` and `generated-artifact` as seed prune reasons. No case names `generated-artifact` itself.
 
 #### Test Execution
 > **Feature File:** [DRV-078](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md)

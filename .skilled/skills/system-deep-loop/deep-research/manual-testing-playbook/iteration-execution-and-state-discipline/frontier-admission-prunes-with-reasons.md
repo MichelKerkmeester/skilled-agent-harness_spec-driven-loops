@@ -1,7 +1,7 @@
 ---
 title: "DR-070 -- Frontier admission prunes each proposal with its reason"
 description: "This scenario validates that each failing admission check prunes a leaf proposal with that check's own reason and that only an admitted proposal reaches the research inbox, for `DR-070`."
-version: 1.16.3.0
+version: 1.16.4.0
 ---
 
 # DR-070 -- Frontier admission prunes each proposal with its reason
@@ -22,15 +22,15 @@ Leaves over-propose. Admission is the gate that keeps the question set bounded, 
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact commands below and confirm the six reasons, the prune cases and the admit case.
+Operators run the exact commands below and confirm the seven reasons, the prune cases, the node-cap case and the admit case.
 
 - Objective: Confirm that each failing check prunes with its own reason, that the first failing check wins and that a pruned proposal never reaches the inbox.
 - Real user request: Show me why a proposed sub-question was rejected, and show me that a valid one was added.
 - Prompt: `Check that every frontier proposal that fails an admission check is pruned with that check's reason, and that only the admitted proposal reaches the research inbox with origin frontier. Return a PASS or FAIL verdict with the reason.`
-- Expected execution process: Read the reason returns in the admission helper, then run the prune rows, the admit case and the pruned-record case by file stem.
-- Expected signals: The helper returns the six reasons, `relevance`, `dedupe`, `depth`, `fanout`, `budget` and `cycle`. The seven prune rows pass. The admitted proposal writes exactly one inbox row with `origin: "frontier"`. The pruned proposal writes a store row and no inbox row.
+- Expected execution process: Read the reason returns in the admission helper, then run the prune rows, the node-cap case, the admit case and the pruned-record case by file stem.
+- Expected signals: The helper returns the seven reasons, `relevance`, `dedupe`, `depth`, `fanout`, `node-cap`, `budget` and `cycle`. The seven prune rows pass, and the node-cap case prunes the proposal past the run-wide cap as `node-cap`, not `fanout`. The admitted proposal writes exactly one inbox row with `origin: "frontier"`. The pruned proposal writes a store row and no inbox row.
 - Desired user-visible outcome: The operator can name the bound each rejected proposal hit, and can see the one proposal that entered the question set.
-- Pass/fail: PASS if the six reasons appear, all seven prune rows and both record cases pass; FAIL if a proposal is pruned with another check's reason, or a pruned proposal reaches the inbox.
+- Pass/fail: PASS if the seven reasons appear, all seven prune rows, the node-cap case and both record cases pass; FAIL if a proposal is pruned with another check's reason, or a pruned proposal reaches the inbox.
 
 ---
 
@@ -47,23 +47,24 @@ Operators run the exact commands below and confirm the six reasons, the prune ca
 
 ### Commands
 
-1. `rg -n "return '(relevance|dedupe|depth|fanout|budget|cycle)'" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs`
+1. `rg -n "return '(relevance|dedupe|depth|fanout|node-cap|budget|cycle)'" .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs`
 2. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run frontier-admit.vitest -t "prunes with" --reporter=verbose`
-3. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run frontier-admit.vitest -t "admits a valid proposal" --reporter=verbose`
-4. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run frontier-admit.vitest -t "records a pruned proposal" --reporter=verbose`
+3. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run frontier-admit.vitest -t "node-cap" --reporter=verbose`
+4. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run frontier-admit.vitest -t "admits a valid proposal" --reporter=verbose`
+5. `cd .skilled/skills/system-deep-loop/runtime && npx vitest run frontier-admit.vitest -t "records a pruned proposal" --reporter=verbose`
 
 ### Expected
 
-Command 1 prints one line per guarded return. Every one of the six reason strings appears, because some reasons are returned from more than one guard. Command 2 prints `Tests  7 passed` (the rest of the file skipped), with seven prune rows: two for `relevance`, and one each for `dedupe`, `depth`, `fanout`, `budget` and `cycle`. Command 3 prints `Tests  1 passed` (the rest of the file skipped), and that case asserts one inbox row with `origin: "frontier"` and one open store row. Command 4 prints `Tests  1 passed` (the rest of the file skipped), and that case asserts a store row with no inbox line.
+Command 1 prints one line per guarded return. Every one of the seven reason strings appears, because some reasons are returned from more than one guard. Command 2 prints `Tests  7 passed` (the rest of the file skipped), with seven prune rows: two for `relevance`, and one each for `dedupe`, `depth`, `fanout`, `budget` and `cycle`. Command 3 prints `Tests  1 passed` (the rest of the file skipped), and that case admits two of three growth proposals and prunes the third as `node-cap` while no parent is at its children cap. Command 4 prints `Tests  1 passed` (the rest of the file skipped), and that case asserts one inbox row with `origin: "frontier"` and one open store row. Command 5 prints `Tests  1 passed` (the rest of the file skipped), and that case asserts a store row with no inbox line.
 
 ### Evidence
 
-- The `rg` lines from command 1 and the verbose case lines from commands 2 to 4.
+- The `rg` lines from command 1 and the verbose case lines from commands 2 to 5.
 - The summary line and exit status for each command.
 
 ### Pass / Fail
 
-- **Pass**: All six reasons appear, every command exits 0 with the expected pass count and no failed count.
+- **Pass**: All seven reasons appear, every command exits 0 with the expected pass count and no failed count.
 - **Fail**: A proposal is pruned with another check's reason, a pruned proposal reaches the inbox, or any command fails.
 
 ### Failure Triage
@@ -86,7 +87,7 @@ Command 1 prints one line per guarded return. Every one of the six reason string
 
 | File | Role |
 |---|---|
-| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Six ordered checks in `checkProposal`, the admit path and the store row for each outcome |
+| `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` | Seven ordered checks in `checkProposal`, the admit path and the store row for each outcome |
 | `frontier-admit.vitest` | One row per failing check, first failure wins, one admitted row and one pruned row |
 
 ---

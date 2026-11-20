@@ -6,14 +6,14 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.15.0
+version: 1.0.16.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
 
 ## 1. OVERVIEW
 
-`--depth-mode` takes `default` or `expansive`. A run without the flag is unchanged. `expansive` turns on a research frontier: the run seeds depth-one nodes from the topic before iteration 1, admits leaf `frontier_proposal` rows as nodes under the relevance, dedupe, depth, fan-out, budget and cycle checks, in that order, and holds a convergence stop while frontier nodes stay open. This page describes the shipped code and its tests.
+`--depth-mode` takes `default` or `expansive`. A run without the flag is unchanged. `expansive` turns on a research frontier: the run seeds depth-one nodes from the topic before iteration 1, admits leaf `frontier_proposal` rows as nodes under the relevance, dedupe, depth, fan-out, run-wide node cap, budget and cycle checks, in that order, and holds a convergence stop while frontier nodes stay open. This page describes the shipped code and its tests.
 
 ---
 
@@ -21,7 +21,7 @@ version: 1.0.15.0
 
 ### Seeding And Admission
 
-The expansive run seeds depth-one nodes before iteration 1. Each iteration's leaf `frontier_proposal` rows go through `runtime/scripts/frontier-admit.cjs`, which admits each proposal into the node store. It applies the relevance, dedupe, depth, fan-out, budget and cycle checks in that order, and records the name of the first failing check as the reason for each prune.
+The expansive run seeds depth-one nodes before iteration 1. Each iteration's leaf `frontier_proposal` rows go through `runtime/scripts/frontier-admit.cjs`, which admits each proposal into the node store. It applies the relevance, dedupe, depth, fan-out, run-wide node cap, budget and cycle checks in that order, and records the name of the first failing check as the reason for each prune: `fanout` for a parent's children cap, `node-cap` for the run-wide cap.
 
 ### Configuration
 

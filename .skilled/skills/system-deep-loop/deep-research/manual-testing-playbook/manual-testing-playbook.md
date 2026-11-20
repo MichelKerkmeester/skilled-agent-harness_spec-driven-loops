@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.8.0
+version: 1.16.9.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -481,7 +481,7 @@ Verify that each failing admission check prunes a leaf proposal with that check'
 #### Scenario Contract
 Prompt summary: Check that every frontier proposal that fails an admission check is pruned with that check's reason, and that only the admitted proposal reaches the research inbox with origin frontier. Return a PASS or FAIL verdict with the reason.
 
-Expected signals: The helper returns the six reasons `relevance`, `dedupe`, `depth`, `fanout`, `budget` and `cycle`, the seven prune rows pass, the admitted proposal writes one inbox row with `origin: "frontier"`, and the pruned proposal writes a store row and no inbox row.
+Expected signals: The helper returns the seven reasons `relevance`, `dedupe`, `depth`, `fanout`, `node-cap`, `budget` and `cycle`, the seven prune rows pass, the node-cap case prunes past the run-wide cap as `node-cap`, the admitted proposal writes one inbox row with `origin: "frontier"`, and the pruned proposal writes a store row and no inbox row.
 
 #### Test Execution
 > **Feature File:** [DR-070](../manual-testing-playbook/iteration-execution-and-state-discipline/frontier-admission-prunes-with-reasons.md)

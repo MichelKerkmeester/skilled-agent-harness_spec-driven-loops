@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # Fan-out CLI lineage driver
@@ -43,7 +43,13 @@ timeoutSeconds * 2, 4h)`. TSX bootstrap (mirrors `convergence.cjs` pattern) ensu
 TypeScript imports (`parseFanoutConfig`, `expandLineages`) resolve in the CJS context. Exit
 codes: 0=all ok, 2=some failed, 3=all failed or refused before start. A research or review
 matrix that expands to one lineage is refused with exit 3 before any lineage directory or
-process exists, unless `--allow-single-lineage` is passed.
+process exists, unless `--only-lineage` names its label. `--only-lineage LABEL`, space-separated and not `=`, reruns one lineage of the
+unedited matrix and keeps the budget and frontier share it had in the full run; a label outside
+the matrix, or the flag with no label, is refused. Before spawning, the runner skips a lineage whose config is `complete` and
+whose report and iterations are on disk, records `skipped_complete` in the status ledger and
+spawns nothing for it, under `--only-lineage` too, so a forced rerun needs that lineage's
+`lineages/<label>/` folder archived first. This pre-spawn check needs only one iteration under the
+convergence policy and no closeout row; the post-attempt check stays strict.
 
 A `cli-deepseek-harness` lineage is built by `buildDshLineageCommand`. It first checks that
 `dsh --version` prints the pinned release, running that probe in a throwaway home outside the
@@ -121,9 +127,9 @@ warning when there are more lineages than open seed nodes.
 
 `--preview` builds every lineage command without writing: it prints the redacted argv (each prompt replaced by its digest), cwd, session id, iterations, frontier scope, the Claude config dir when set and the model, reasoning effort, sandbox and permission mode, then exits before any directory, ledger or store exists. A `cli-mistral-vibe` lineage prints no command, and a matrix the real run would refuse prints that refusal.
 
-A lineage counts as fulfilled only when its state log holds at least one iteration, a terminal stop row from this attempt (`terminal_gates` for review, a closeout synthesis row for research), every iteration row before that terminal row in the file, and no row whose stamp carries an explicit zone stamped more than two minutes after the lineage process ended; iteration stamps are written by the model, so they are never compared with the terminal row's stamp. Otherwise it fails even at exit 0. The executor-group `--sandbox-mode` maps to `sandboxMode`. A `cli-claude-code` lineage keeps `workspace-write`, which runs `acceptEdits` and cannot run Bash in `-p` mode, so the runner warns at launch, and if that lineage records nothing its failure names `--sandbox-mode=danger-full-access`; `cli-opencode` accepts only `danger-full-access` explicitly.
+A lineage counts as fulfilled only when its state log holds at least one iteration, a terminal stop row from this attempt (`terminal_gates` for review, a closeout synthesis row for research, where `synthesis_incomplete` does not count), every iteration row before that terminal row in the file, and no row whose stamp carries an explicit zone stamped more than two minutes after the lineage process ended; iteration stamps are written by the model, so they are never compared with the terminal row's stamp. Otherwise it fails even at exit 0. The executor-group `--sandbox-mode` maps to `sandboxMode`. A `cli-claude-code` lineage keeps `workspace-write`, which runs `acceptEdits` and cannot run Bash in `-p` mode, so the runner warns at launch, and if that lineage records nothing its failure names `--sandbox-mode=danger-full-access`; `cli-opencode` accepts only `danger-full-access` explicitly.
 
-A fatally failed lineage prints one stderr line at once with its label and failure class. Provider ids, URLs and emails are masked in the ledger, stderr, a rotated log and a fatally failed lineage's raw log. A rerun rotates the previous raw log to `logs/fanout-lineage.N.out` instead of overwriting it. A review fan-out never refreshes the packet's `description.json`; research does unless `--no-metadata-refresh` is set.
+A fatally failed lineage prints one stderr line at once with its label and failure class. Provider ids, URLs and emails are masked in the ledger, stderr, a rotated log and a fatally failed lineage's raw log. A rerun rotates the previous raw log to `logs/fanout-lineage.N.out` instead of overwriting it. A research or review fan-out never rewrites the packet's `description.json` or `graph-metadata.json` at settle.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.27.0
+version: 1.11.28.0
 ---
 
 # deep-review
@@ -159,7 +159,7 @@ Any new P0 forces another iteration. The override sets `newFindingsRatio` to at 
 
 `--depth-mode=expansive` changes the stop path so that a run grows its work instead of ending it. A seed step writes the depth-1 sub-target nodes before iteration 1. The active node's next uncovered dimension steers each iteration.
 
-An admission step runs before the reducer. It applies six checks in order: relevance, dedupe, depth, fan-out, budget and cycle. The first failure prunes the proposal. Node status lives in `review/frontier-nodes.jsonl`, which no default run creates. An open node is filed as open search debt, so the run spends the iteration that node still needs.
+An admission step runs before the reducer. It applies seven checks in order: relevance, dedupe, depth, fan-out, the run-wide node cap, budget and cycle. The first failure prunes the proposal. Node status lives in `review/frontier-nodes.jsonl`, which no default run creates. An open node is filed as open search debt, so the run spends the iteration that node still needs.
 
 The frontier veto never outranks the iteration cap, consecutive failures, stuck recovery, pause, the max-duration stop, `--convergence-mode=off`, `--stop-policy=max-iterations` or the floor above. Stuck recovery closes the active node as `exhausted`. Once every node is closed and at least one was answered, a run that forms no other stop candidate gets `frontier_drained`. The legal-stop gates still decide it, so a run whose frontier work is done stops before its cap.
 
@@ -167,7 +167,7 @@ The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget spli
 
 When D is four or more, the ceiling of 24 binds from the first seed. One run then cannot fund every node at every depth of a wide review. Split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead. That is 12 iterations for a native lineage and 7 for a CLI one or a single run.
 
-The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value. The seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap.
+The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value. The seed warns when it leaves no room past depth 1. Iteration time varies by executor and model: a measured fan-out run took 0.5 to 5 minutes an iteration and committed reviews 1.5 to 3.7 minutes, so a 24-iteration review on the slowest of those can reach `maxDurationMinutes` (120) before its iteration cap.
 
 ### Fan-out and Merged Verdicts
 

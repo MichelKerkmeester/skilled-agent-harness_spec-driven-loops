@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "parallel lineage execution"
   - "multi-executor research"
-version: 1.14.3.0
+version: 1.14.4.0
 ---
 
 # Fan-out loop dispatch
@@ -51,9 +51,11 @@ no single-executor regression. Command surface: `--executor` (repeatable, with
 `--model/--count/--label/--iters`), `--executors <json>` escape hatch, `--concurrency N`.
 Default policy: 0–1 executor, or an `--executors` matrix that expands to exactly one lineage →
 `config.executor`; 2+ executors, an `--executors` matrix that expands to two or more lineages,
-or `count>1` → `config.fanout`. A direct runner call that expands to one research or review lineage is refused unless the caller passes
-`--allow-single-lineage` as a bare flag or with the value `true` or `1`; all other supplied values are refused. The opt-in runs only the lineage, without packet init, synthesis or save.
-The refusal message names the single-executor workflow instead, and never the opt-in flag.
+or `count>1` → `config.fanout`. A direct runner call whose matrix expands to one research or review lineage is refused unless `--only-lineage` names its label,
+and the refusal message names the single-executor workflow. `--only-lineage LABEL`, space-separated and not `=`, reruns
+one lineage of the unedited matrix, without packet init, synthesis or save. A lineage whose config is `complete` and whose
+artifacts pass the completion check is skipped before spawn and recorded as `skipped_complete`, under `--only-lineage`
+too, so a forced rerun needs that lineage's `lineages/<label>/` folder archived first.
 
 ---
 

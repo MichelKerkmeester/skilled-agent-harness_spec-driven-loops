@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.24.0
+version: 1.14.25.0
 ---
 
 # deep-research
@@ -130,7 +130,7 @@ The shipped config floors convergence at 3 rounds, sets `stuckThreshold` to 3 an
 
 `--depth-mode=expansive` lets a run grow its own questions. A seed step writes 3 to 6 depth-1 nodes before iteration 1. The leaf may propose children only when its prompt carries a frontier block. The nodes live in `research/frontier-nodes.jsonl`, which a default run never creates.
 
-An admission step runs before the reducer. It applies six checks in order: relevance, dedupe, depth, fan-out, budget and cycle. The first failure prunes the proposal. Next Focus reads the shallowest open node first and writes it as a frontier line, so visiting a node does not read as answering it.
+An admission step runs before the reducer. It applies seven checks in order: relevance, dedupe, depth, fan-out, the run-wide node cap, budget and cycle. The first failure prunes the proposal. Next Focus reads the shallowest open node first and writes it as a frontier line, so visiting a node does not read as answering it.
 
 While a node stays open, the frontier vetoes a soft convergence stop. The veto never outranks the iteration cap or the other hard stops. The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`, which defaults to half of `maxIterations`.
 

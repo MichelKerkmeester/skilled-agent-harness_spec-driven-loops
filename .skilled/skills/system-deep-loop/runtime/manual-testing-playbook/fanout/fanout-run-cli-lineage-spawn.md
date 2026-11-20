@@ -1,7 +1,7 @@
 ---
 title: "DLR-025 -- Fan-out CLI lineage driver spawn and isolation"
 description: "Validate fanout-run.cjs creates per-lineage dirs with isolated .executor-state paths, saves stdout to logs/, writes orchestration summary and ledger, and returns early for native-only configs."
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # DLR-025 -- Fan-out CLI lineage driver spawn and isolation
@@ -50,11 +50,11 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 2. Verify `extraEnv` in the worker sets both `SPECKIT_FANOUT_LINEAGE_ID` and the kind-specific state dir var.
 3. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-run.vitest.ts -t "creates two isolated lineage dirs|for each same-kind replica|emits ok JSON for native fanout"`
 4. Confirm every selected case passes. The filter selects three cases: `creates two isolated lineage dirs and writes orchestration summary for 2 cli-opencode lineages`, `sets distinct SPECKIT_OPENCODE_STATE_DIR for each same-kind replica to prevent lockfile collisions` and `exits 0 and emits ok JSON for native fanout through opencode command dispatch`. The first verifies dirs, ledger and summary; the second verifies `.executor-state` paths are distinct for same-kind replicas; the third verifies the early return.
-5. Run the runner on a one-lineage research matrix with a throwaway `--spec-folder` and `--base-artifact-dir` and no `--allow-single-lineage`. Confirm exit 3, a message that names the single-executor `/deep:research` workflow and not the opt-in flag, and no lineage directory, ledger or summary under the base directory. Rerun with `--allow-single-lineage` and confirm the lineage starts.
+5. Run the runner on a one-lineage research matrix with a throwaway `--spec-folder` and `--base-artifact-dir` and no `--only-lineage`. Confirm exit 3, a message that names the single-executor `/deep:research` workflow, and no lineage directory, ledger or summary under the base directory. Rerun with `--only-lineage <label>`, naming the matrix entry's label, and confirm the lineage starts.
 
 ### Expected Outcome
 
-Every selected case passes. Lineage dirs created, `.executor-state` dirs distinct, `orchestration-summary.json` with `total_cli_lineages=2`, JSONL ledger written, native-only config returns early without spawning. Step 5 exits 3 with no side effect, and the opted-in rerun starts its one lineage.
+Every selected case passes. Lineage dirs created, `.executor-state` dirs distinct, `orchestration-summary.json` with `total_cli_lineages=2`, JSONL ledger written, native-only config returns early without spawning. Step 5 exits 3 with no side effect, and the `--only-lineage` rerun starts its one lineage.
 
 ### Evidence
 
