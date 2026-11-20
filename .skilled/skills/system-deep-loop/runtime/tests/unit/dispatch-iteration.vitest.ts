@@ -10,6 +10,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import {
   chmodSync,
   existsSync,
@@ -29,6 +30,14 @@ import { detectFromAncestry } from '../../lib/deep-loop/executor-audit.js';
 const here = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(here, '..', '..', '..', '..', '..', '..');
 const SCRIPT = resolve(here, '..', '..', 'scripts', 'dispatch-iteration.cjs');
+const dispatcher = createRequire(import.meta.url)(SCRIPT) as {
+  buildClaudeInvocation: (
+    context: Record<string, unknown>,
+    configDir: string,
+    promptBody: string,
+  ) => { executor: { sandboxMode: string | null }; args: string[] };
+  buildContext: (values: Record<string, string>) => Record<string, unknown>;
+};
 
 const EXECUTOR_KINDS = [
   'native',
@@ -279,4 +288,58 @@ describe('dispatch-iteration --claude-config-dir', () => {
     expect(result.status).toBe(64);
     expect(result.stderr).toContain('only valid with --executor cli-claude-code');
   });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Dispatch Iteration Claude Permission Mode
+// ───────────────────────────────────────────────────────────────────
+//
+// The review leaf records its own state through node every iteration, which
+// acceptEdits cannot run in -p mode, so --sandbox-mode must reach the Claude
+// permission mode on review exactly as it does on research. Built in-process
+// because a spawned Claude dispatch is refused under a Claude process tree.
+
+describe('dispatch-iteration Claude permission mode', () => {
+  function permissionFor(loopType: 'research' | 'review', sandboxMode: string): {
+    permission: string;
+    executorSandbox: string | null;
+  } {
+    const context = dispatcher.buildContext({
+      executor: 'cli-claude-code',
+      loopType,
+      model: 'sonnet',
+      reasoningEffort: 'null',
+      serviceTier: 'null',
+      sandboxMode,
+      iteration: '1',
+      generation: '1',
+      timeoutSeconds: '60',
+      packetDir: '/tmp/packet',
+    });
+    const { executor, args } = dispatcher.buildClaudeInvocation(context, '', 'prompt');
+    return {
+      permission: args[args.indexOf('--permission-mode') + 1],
+      executorSandbox: executor.sandboxMode,
+    };
+  }
+
+  for (const loopType of ['research', 'review'] as const) {
+    it(`keeps acceptEdits as the ${loopType} default when no sandbox mode is set`, () => {
+      expect(permissionFor(loopType, 'null')).toEqual({
+        permission: 'acceptEdits',
+        executorSandbox: null,
+      });
+    });
+
+    it(`maps danger-full-access to bypassPermissions on ${loopType}`, () => {
+      expect(permissionFor(loopType, 'danger-full-access')).toEqual({
+        permission: 'bypassPermissions',
+        executorSandbox: 'danger-full-access',
+      });
+    });
+
+    it(`maps read-only to plan on ${loopType}`, () => {
+      expect(permissionFor(loopType, 'read-only').permission).toBe('plan');
+    });
+  }
 });

@@ -1890,7 +1890,8 @@ workflow:
           notes:
             - "Routed through runAuditedExecutorCommand so claude-code produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
             - "CLAUDE_CONFIG_DIR is forwarded through guardContext.env (CLAUDE_ prefix is allowlisted) so account-specific Claude Code routing is preserved"
-            - "permission-mode stays acceptEdits (review's existing iteration-write behavior); claude-code has no serviceTier flag"
+            - "sandboxMode maps to permission-mode: read-only -> plan, workspace-write or unset -> acceptEdits, danger-full-access -> bypassPermissions"
+            - "claude-code has no serviceTier flag"
             - "claude-code supports --effort for reasoning depth"
         if_cli_opencode:
           command: |

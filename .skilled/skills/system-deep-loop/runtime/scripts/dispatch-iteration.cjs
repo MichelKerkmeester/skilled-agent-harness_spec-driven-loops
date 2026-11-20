@@ -351,70 +351,20 @@ function dispatchWithContainment({
 // 5. EXECUTOR HANDLERS
 // ───────────────────────────────────────────────────────────────────
 
-function runClaude(context) {
-  // Both loops validate the config dir before the prompt is read, so an unusable
-  // config directory fails before any prompt or persona file is touched.
-  const configDir = context.claudeConfigDir
-    ? validateClaudeConfigDir(context.claudeConfigDir)
-    : '';
-  const promptBody = readPrompt(context);
-
-  if (context.loopType === 'review') {
-    const executor = {
-      kind: 'cli-claude-code',
-      model: context.model,
-      configDir: configDir || null,
-      reasoningEffort: context.reasoningEffort,
-      serviceTier: null,
-      sandboxMode: null,
-      timeoutSeconds: context.timeoutSeconds,
-      governor: null,
-    };
-    const args = [
-      '-p',
-      promptBody,
-      '--model',
-      executor.model,
-      '--permission-mode',
-      'acceptEdits',
-      '--output-format',
-      'text',
-    ];
-    if (executor.reasoningEffort) {
-      args.push('--effort', executor.reasoningEffort);
-    }
-
-    // CLAUDE_CONFIG_DIR rides through guardContext.env; the CLAUDE_ prefix is on the
-    // cli-claude-code env allowlist so buildExecutorDispatchEnv admits it.
-    const parentEnv = { ...process.env };
-    if (configDir) {
-      parentEnv.CLAUDE_CONFIG_DIR = configDir;
-    }
-
-    return runAuditedExecutorCommand({
-      command: 'claude',
-      args,
-      cwd: context.repoRoot,
-      timeoutSeconds: executor.timeoutSeconds,
-      stateLogPath: context.stateLogPath,
-      executor,
-      iteration: context.iteration,
-      guardContext: { env: parentEnv },
-      receiptDir: context.receiptDir,
-      dispatchId: context.dispatchId,
-      sessionId: context.sessionId,
-    });
-  }
-
+// The executor record and argv for one Claude iteration. Both loops build them here so the
+// permission mode is derived the same way on each.
+function buildClaudeInvocation(context, configDir, promptBody) {
+  const isReview = context.loopType === 'review';
   const executor = {
     kind: 'cli-claude-code',
     model: context.model,
     configDir: configDir || null,
     reasoningEffort: context.reasoningEffort,
-    serviceTier: context.serviceTier,
+    serviceTier: isReview ? null : context.serviceTier,
     sandboxMode: context.sandboxMode,
     timeoutSeconds: context.timeoutSeconds,
   };
+  if (isReview) executor.governor = null;
   const args = [
     '-p',
     promptBody,
@@ -428,6 +378,16 @@ function runClaude(context) {
   if (executor.reasoningEffort) {
     args.push('--effort', executor.reasoningEffort);
   }
+  return { executor, args };
+}
+
+function runClaude(context) {
+  // Both loops validate the config dir before the prompt is read, so an unusable
+  // config directory fails before any prompt or persona file is touched.
+  const configDir = context.claudeConfigDir
+    ? validateClaudeConfigDir(context.claudeConfigDir)
+    : '';
+  const { executor, args } = buildClaudeInvocation(context, configDir, readPrompt(context));
 
   // CLAUDE_CONFIG_DIR rides through guardContext.env; the CLAUDE_ prefix is on the
   // cli-claude-code env allowlist so buildExecutorDispatchEnv admits it.
@@ -1057,6 +1017,8 @@ if (require.main === module) {
 // ───────────────────────────────────────────────────────────────────
 
 module.exports = {
+  buildClaudeInvocation,
+  buildContext,
   drainStagedEvents,
   main,
   parseArgs,
