@@ -247,8 +247,8 @@ describe('deep-research wires the expansive frontier steps', () => {
 
     const stuck = wf.phase_loop.steps.step_handle_convergence.if_stuck_recovery;
     const extract = JSON.stringify(stuck.if_expansive_open_node.extract);
-    expect(extract).toContain('registry.frontier.nodes');
-    expect(extract).toMatch(/never the text/);
+    expect(extract).toContain('registry.frontier.activeNodeId');
+    expect(String(stuck.if_expansive_open_node.when)).not.toContain('focus');
 
     expect(yamlText).not.toMatch(/--focus \\?"\{next_focus\}/);
   });

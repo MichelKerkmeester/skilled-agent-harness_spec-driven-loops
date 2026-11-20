@@ -780,3 +780,55 @@ describe('per-node stuck accounting under expansive depth', () => {
     expect(defaulted.stuckCount).toBe(2);
   });
 });
+
+// Research rotates breadth first through its open nodes too, so its stuck count
+// follows the node the stop decision would close, the same way review's does.
+describe('per-node stuck accounting for expansive research', () => {
+  const convergence = requireCjs('../../scripts/convergence.cjs') as {
+    buildStopDecisionInput: (
+      args: Record<string, unknown>,
+      loopType: LoopType,
+      files: Record<string, unknown>,
+      graph: Record<string, unknown> | null,
+    ) => StopDecisionInput;
+  };
+
+  function lowPass(iteration: number, nodeId: string): Record<string, unknown> {
+    return {
+      type: 'iteration',
+      iteration,
+      run: iteration,
+      status: 'complete',
+      focus: `Frontier node ${nodeId} (depth 1, scope runtime/lib): Which module owns ${nodeId}?`,
+      newInfoRatio: 0.01,
+      findingsCount: 0,
+    };
+  }
+
+  const expansiveConfig = { stuckThreshold: 3, antiConvergence: { depthMode: 'expansive' } };
+  const registry = { frontier: { activeNodeId: 'F-1-003', nodes: [] } };
+
+  it('does not close the third node after one low pass on each of three nodes', () => {
+    const rows = [lowPass(1, 'F-1-001'), lowPass(2, 'F-1-002'), lowPass(3, 'F-1-003')];
+    const input = convergence.buildStopDecisionInput({}, 'research', {
+      config: expansiveConfig, registry, stateLogRows: rows,
+    }, null);
+    expect(input.stuckCount).toBe(1);
+  });
+
+  it('closes a node after three low passes on that same node', () => {
+    const rows = [lowPass(1, 'F-1-003'), lowPass(2, 'F-1-003'), lowPass(3, 'F-1-003')];
+    const input = convergence.buildStopDecisionInput({}, 'research', {
+      config: expansiveConfig, registry, stateLogRows: rows,
+    }, null);
+    expect(input.stuckCount).toBe(3);
+  });
+
+  it('keeps the lineage-wide count on a default research run', () => {
+    const rows = [lowPass(1, 'F-1-001'), lowPass(2, 'F-1-002'), lowPass(3, 'F-1-003')];
+    const input = convergence.buildStopDecisionInput({}, 'research', {
+      config: { stuckThreshold: 3 }, registry, stateLogRows: rows,
+    }, null);
+    expect(input.stuckCount).toBe(3);
+  });
+});

@@ -1772,7 +1772,7 @@ function buildStopDecisionInput(args, loopType, files, graph) {
   // the count it acts on is that node's own; with no active node the branch falls
   // through to global recovery and the lineage count stands.
   const activeNodeId = isPlainObject(registry.frontier) ? registry.frontier.activeNodeId : null;
-  const nodeScoped = loopType === 'review'
+  const nodeScoped = (loopType === 'review' || loopType === 'research')
     && decisionConfig.depthMode === 'expansive'
     && typeof activeNodeId === 'string'
     && activeNodeId !== '';

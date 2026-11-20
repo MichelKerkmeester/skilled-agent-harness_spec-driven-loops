@@ -2451,8 +2451,9 @@ function readFrontierNodeStore(storePath, warnings = []) {
 
 // A node the store still holds open is answered once its question resolves in
 // the registry. The status is derived here, and a writing reduce then records
-// that answer in the store.
-function buildFrontierProjection(frontierInput, keyedQuestions) {
+// that answer in the store. The active node is the one the next focus picks, so
+// the stuck branch closes the node the stalled passes worked on.
+function buildFrontierProjection(frontierInput, keyedQuestions, iterationRecords = []) {
   const resolvedByNode = new Map();
   for (const question of keyedQuestions) {
     if (question.inboxId) resolvedByNode.set(question.inboxId, question.resolved);
@@ -2473,9 +2474,11 @@ function buildFrontierProjection(frontierInput, keyedQuestions) {
   });
   const stats = { total: nodes.length };
   for (const status of NODE_STATUSES) stats[status] = nodes.filter((node) => node.status === status).length;
+  const active = chooseFrontierNode(nodes, iterationRecords);
   return {
     nodes,
     stats,
+    activeNodeId: active ? active.nodeId : null,
     ...(frontierInput.budget ? { budget: frontierInput.budget } : {}),
     ...(Array.isArray(frontierInput.warnings) && frontierInput.warnings.length > 0 ? { warnings: frontierInput.warnings } : {}),
   };
@@ -2524,10 +2527,10 @@ function frontierNodeVisits(nodeId, iterationRecords) {
   return frontierNodeVisitRecords(nodeId, iterationRecords).length;
 }
 
-function pickFrontierFocus(frontier, iterationRecords) {
-  const open = (Array.isArray(frontier?.nodes) ? frontier.nodes : [])
+function chooseFrontierNode(nodes, iterationRecords) {
+  const open = (Array.isArray(nodes) ? nodes : [])
     .filter((node) => node.status === 'open' || node.status === 'active');
-  if (open.length === 0) return '';
+  if (open.length === 0) return null;
   // Breadth first: the shallowest node, then one not yet visited, then the oldest.
   const ranked = open
     .map((node) => ({ node, visits: frontierNodeVisits(node.nodeId, iterationRecords) }))
@@ -2535,7 +2538,12 @@ function pickFrontierFocus(frontier, iterationRecords) {
       || (left.visits - right.visits)
       || ((left.node.iteration ?? 0) - (right.node.iteration ?? 0))
       || compareCodeUnit(left.node.nodeId, right.node.nodeId));
-  const chosen = ranked[0].node;
+  return ranked[0].node;
+}
+
+function pickFrontierFocus(frontier, iterationRecords) {
+  const chosen = chooseFrontierNode(frontier?.nodes, iterationRecords);
+  if (!chosen) return '';
   const scope = Array.isArray(chosen.scope) ? chosen.scope.join(', ') : (chosen.scope || 'unscoped');
   return `Frontier node ${chosen.nodeId} (depth ${chosen.depth}, scope ${scope}): ${chosen.question}`;
 }
@@ -2853,7 +2861,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       failedPivots: divergence.failed.length,
       pivotOverrides: divergence.overrides.length,
     },
-    ...(frontierState ? { frontier: buildFrontierProjection(frontierState, keyedQuestions) } : {}),
+    ...(frontierState ? { frontier: buildFrontierProjection(frontierState, keyedQuestions, iterationRecords) } : {}),
   };
 }
 

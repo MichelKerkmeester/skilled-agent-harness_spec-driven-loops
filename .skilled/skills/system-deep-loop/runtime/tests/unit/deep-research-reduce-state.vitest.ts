@@ -2392,6 +2392,42 @@ describe('frontier focus visit counting', () => {
   });
 });
 
+// The stuck branch closes the node the projection names, so the projection must
+// name the node the next focus is about to work on, not a second pick of its own.
+describe('frontier projection active node', () => {
+  const { buildFrontierProjection, pickFrontierFocus } = nodeRequire('../../../deep-research/scripts/reduce-state.cjs') as {
+    buildFrontierProjection: (
+      input: { nodes: Array<Record<string, unknown>> },
+      keyedQuestions: Array<Record<string, unknown>>,
+      records: Array<Record<string, unknown>>,
+    ) => { activeNodeId: string | null; nodes: Array<Record<string, unknown>> };
+    pickFrontierFocus: (frontier: { nodes: Array<Record<string, unknown>> }, records: Array<Record<string, unknown>>) => string;
+  };
+  const nodes = [
+    { nodeId: 'F-1-001', depth: 1, status: 'open', iteration: 0, scope: ['runtime/lib'], question: 'Which module owns admission?' },
+    { nodeId: 'F-1-002', depth: 1, status: 'open', iteration: 0, scope: ['runtime/lib'], question: 'Which module owns the stop?' },
+  ];
+
+  it('publishes the node the next focus picks', () => {
+    const records = [
+      { type: 'iteration', iteration: 1, status: 'complete', focus: 'Frontier node F-1-001 (depth 1, scope runtime/lib): Which module owns admission?' },
+    ];
+    const projection = buildFrontierProjection({ nodes }, [], records);
+    expect(projection.activeNodeId).toBe('F-1-002');
+    expect(pickFrontierFocus(projection, records)).toMatch(/^Frontier node F-1-002 /);
+  });
+
+  it('publishes no active node once every node is closed or answered', () => {
+    const closed = nodes.map((node) => ({ ...node, status: 'exhausted' }));
+    expect(buildFrontierProjection({ nodes: closed }, [], []).activeNodeId).toBeNull();
+    const answered = buildFrontierProjection({ nodes }, [
+      { inboxId: 'F-1-001', resolved: true },
+      { inboxId: 'F-1-002', resolved: true },
+    ], []);
+    expect(answered.activeNodeId).toBeNull();
+  });
+});
+
 // The fan-out merge and the runner order node ids by code unit, so both reducers
 // must too: locale collation would deal and steer ids that differ only in case or
 // accent in a different order on a different host.

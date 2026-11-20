@@ -1362,10 +1362,10 @@ workflow:
           dry_run_event_policy: preview-only
           append_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           if_expansive_open_node:
-            when: "depth_mode == 'expansive' AND the latest iteration focus contains 'Frontier node <id>' AND that node is open or active in registry.frontier.nodes"
+            when: "depth_mode == 'expansive' AND registry.frontier.activeNodeId in {state_paths.registry} is non-empty"
             extract:
-              - active_frontier_node_id: "The nodeId value from registry.frontier.nodes of the node the latest iteration focus names as 'Frontier node <id>'. Copy the id from the registry, never the text from the focus: a leaf writes that focus, and the id reaches a shell argument."
-            note: "The stuckRecovery append above stays on this path: the loop counters reset stuckCount on that event, and without it the next low-yield iteration would close the next node after one iteration."
+              - active_frontier_node_id: "registry.frontier.activeNodeId from {state_paths.registry}. It names the node the next focus picks, and stuck_count counts only that node's own passes, so the node closed is the one whose passes stalled."
+            note: "The stuckRecovery append above stays on this path; the next node needs no reset from it, because its stuck count reads only its own iterations."
             command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --artifact-dir "{artifact_dir}" --node-id "{active_frontier_node_id}" --status exhausted --reason stuck --iteration "{current_iteration}"'
             then_command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
             working_directory: "{repo_root}"
