@@ -1281,7 +1281,9 @@ function rerunCommandFor(label, argv = process.argv.slice(2)) {
 
 // One row per lineage so a reader sees which lineage failed and how to rerun it alone. A
 // succeeded or skipped lineage gets no rerun command: a rerun would skip it as finished.
-function buildLineageOutcomes(results, argv) {
+// Nor does a failed lineage whose config is complete: the workflow halts at its
+// completed-session check in that folder, so the folder must be archived before a rerun.
+function buildLineageOutcomes(results, { loopType, lineagesDir, argv } = {}) {
   return results.filter(Boolean).map((result) => {
     if (result.status === 'fulfilled') {
       const output = result.output || {};
@@ -1294,14 +1296,32 @@ function buildLineageOutcomes(results, argv) {
       };
     }
     const error = result.error || {};
-    return {
+    const outcome = {
       label: result.label,
       status: 'failed',
       failure_class: typeof error.failure_class === 'string' ? error.failure_class : 'exit',
       exit_code: Number.isInteger(error.exit_code) ? error.exit_code : null,
       rerun_command: rerunCommandFor(result.label, argv),
     };
+    const lineageDir = lineagesDir ? path.join(lineagesDir, result.label) : null;
+    if (lineageDir && lineageConfigStatus(loopType, lineageDir) === 'complete') {
+      outcome.rerun_note = `archive ${lineageDir} first: its config is complete, so a rerun in place `
+        + `cannot run it again; then rerun it with ${outcome.rerun_command}`;
+      outcome.rerun_command = null;
+    }
+    return outcome;
   });
+}
+
+function lineageConfigStatus(loopType, lineageDir) {
+  const configName = LINEAGE_CONFIG_BY_LOOP_TYPE[loopType];
+  if (!configName) return null;
+  try {
+    const config = JSON.parse(fs.readFileSync(path.join(lineageDir, configName), 'utf8'));
+    return config && typeof config.status === 'string' ? config.status : null;
+  } catch {
+    return null;
+  }
 }
 
 function lineageCompletionPolicy(loopType, lineageDir) {
@@ -1385,20 +1405,14 @@ function completionFromArtifacts({ lineageDir, lineage, records, loopType, force
  *
  * A finished lineage re-dispatched under its label would start a new session, halt at the
  * workflow's completed-session check without recording a stop, and fail the post-attempt
- * completion check. So the runner skips it. This check is deliberately looser than the
- * post-attempt one: older lineages finished without the closeout row that check now demands,
- * and their config and artifacts are the evidence they ran to a stop.
+ * completion check. So the runner skips it. A lineage that recorded a terminal stop row must
+ * pass the same stop-reason and cap checks the post-attempt check applies to that row, or a
+ * lineage that run rejected would be skipped as finished on its rerun. Only an older lineage
+ * with no terminal row is judged more loosely: it finished before that row was demanded, and
+ * its config and artifacts are the evidence it ran to a stop.
  */
 function finishedLineageSkipReason({ loopType, lineageDir, lineage, stopPolicy }) {
-  const configName = LINEAGE_CONFIG_BY_LOOP_TYPE[loopType];
-  if (!configName) return null;
-  let config;
-  try {
-    config = JSON.parse(fs.readFileSync(path.join(lineageDir, configName), 'utf8'));
-  } catch {
-    return null;
-  }
-  if (!config || config.status !== 'complete') return null;
+  if (lineageConfigStatus(loopType, lineageDir) !== 'complete') return null;
   const stateRead = readLineageStateRecords(loopType, lineageDir);
   if (stateRead.parseError) return null;
   const evidence = completionFromArtifacts({
@@ -1408,7 +1422,11 @@ function finishedLineageSkipReason({ loopType, lineageDir, lineage, stopPolicy }
     loopType,
     forcedDepth: stopPolicy === 'max-iterations',
   });
-  return evidence.complete ? `${configName} is complete and its artifacts are on disk` : null;
+  if (!evidence.complete) return null;
+  const { checkLineageStopEvidence } = require('../lib/deep-loop/lineage-timestamp-window.ts');
+  const stop = checkLineageStopEvidence(stateRead.records, lineageCompletionPolicy(loopType, lineageDir));
+  if (!stop.complete && stop.failure !== 'no_terminal_event') return null;
+  return `${LINEAGE_CONFIG_BY_LOOP_TYPE[loopType]} is complete and its artifacts are on disk`;
 }
 
 function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPolicy, lineageDir }) {
@@ -5014,7 +5032,7 @@ async function main() {
   const timestampAnomalies = collectTimestampAnomalies(results);
   const finalSummary = {
     ...summary,
-    lineages: buildLineageOutcomes(results),
+    lineages: buildLineageOutcomes(results, { loopType, lineagesDir }),
     ...(timestampAnomalies.length > 0 ? { timestamp_anomalies: timestampAnomalies } : {}),
     provider_cost_usd: summarizeProviderCost(Object.fromEntries(cliLineages.map((lineage) => (
       [lineage.label, readLineageProviderCostUsd(path.join(lineagesDir, lineage.label))]

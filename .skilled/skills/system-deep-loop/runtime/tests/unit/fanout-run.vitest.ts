@@ -3199,6 +3199,54 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     }
   });
 
+  it('does not skip a finished lineage whose closeout row fails the stop-reason check', () => {
+    const { finishedLineageSkipReason } = requireCjs(fanoutRunScript) as {
+      finishedLineageSkipReason: (input: Record<string, unknown>) => string | null;
+    };
+    const lineageDir = makeTempDir('fanout-run-skip-stop-reason-');
+    seedFinishedResearchLineage(lineageDir, { closeoutRow: true });
+    const statePath = join(lineageDir, 'deep-research-state.jsonl');
+    const lineage = { label: 'done-seat', iterations: 1 };
+    expect(finishedLineageSkipReason({ loopType: 'research', lineageDir, lineage })).not.toBeNull();
+    writeFileSync(statePath, readFileSync(statePath, 'utf8').replace('"converged"', '"all_questions_answered"'), 'utf8');
+    expect(finishedLineageSkipReason({ loopType: 'research', lineageDir, lineage })).toBeNull();
+  });
+
+  it('names no rerun command for a failed lineage whose config is complete, and says to archive it', async () => {
+    const binDir = makeTempDir('fanout-run-rerun-finished-bin-');
+    const hermetic = useHermeticEnv('rerun-finished');
+    const specFolder = 'specs/test-fanout-rerun-finished';
+    const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+    writeReentrantStubBinary(binDir);
+    const doneDir = join(baseDir, 'lineages', 'done-seat');
+    seedFinishedResearchLineage(doneDir, { closeoutRow: true });
+    const statePath = join(doneDir, 'deep-research-state.jsonl');
+    writeFileSync(statePath, readFileSync(statePath, 'utf8').replace('"converged"', '"all_questions_answered"'), 'utf8');
+    const fanoutConfig = JSON.stringify({
+      executors: [
+        { label: 'done-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1' },
+        { label: 'new-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1' },
+      ],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+
+    const result = await rawSpawnCjs(fanoutRunScript, [
+      '--spec-folder', specFolder, '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
+      '--only-lineage', 'done-seat',
+    ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 60_000 });
+
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      summary?: { lineages?: Array<Record<string, unknown>> };
+    };
+    const [done] = payload.summary?.lineages ?? [];
+    expect(done, result.stdout).toMatchObject({ label: 'done-seat', status: 'failed', rerun_command: null });
+    expect(String(done?.rerun_note)).toContain(doneDir);
+    expect(String(done?.rerun_note)).toMatch(/archive/i);
+    expect(result.exitCode).not.toBe(0);
+  });
+
   it('retries a lineage that wrote its completed config and then timed out, rather than skipping it', async () => {
     const binDir = makeTempDir('fanout-run-reentrant-retry-bin-');
     const hermetic = useHermeticEnv('reentrant-retry');

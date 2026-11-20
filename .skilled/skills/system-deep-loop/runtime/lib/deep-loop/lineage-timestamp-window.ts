@@ -154,15 +154,18 @@ export type LineageCompletionFailure =
   | 'unknown_stop_reason'
   | 'max_iterations_unproven';
 
-export type LineageCompletionInput = {
+export type LineageStopPolicy = {
   readonly terminalEvents: readonly string[];
-  readonly windowStart: string | Date;
-  readonly windowEnd: string | Date;
   // When set, the terminal row must carry one of these stop reasons. A loop that records no
   // separate stop-check row carries its stop on the terminal row, so this is its stop evidence.
   readonly stopReasons?: readonly string[];
   // The lineage's iteration cap, which a maxIterationsReached stop must have reached.
   readonly iterationCap?: number | null;
+};
+
+export type LineageCompletionInput = LineageStopPolicy & {
+  readonly windowStart: string | Date;
+  readonly windowEnd: string | Date;
 };
 
 const MAX_ITERATIONS_STOP_REASON = 'maxIterationsReached';
@@ -179,7 +182,7 @@ function distinctIterationCount(iterations: readonly Record<string, unknown>[]):
 function stopReasonFailure(
   terminal: Record<string, unknown>,
   iterations: readonly Record<string, unknown>[],
-  input: LineageCompletionInput,
+  input: LineageStopPolicy,
 ): LineageCompletionVerdict | null {
   if (!input.stopReasons) return null;
   const stopReason = terminal.stopReason;
@@ -217,6 +220,42 @@ export type LineageCompletionVerdict =
   | { readonly complete: true }
   | { readonly complete: false; readonly failure: LineageCompletionFailure; readonly detail: string };
 
+function lastTerminalIndex(rows: readonly Record<string, unknown>[], terminalEvents: readonly string[]): number {
+  const names = new Set(terminalEvents);
+  let terminalIndex = -1;
+  rows.forEach((record, index) => {
+    if (record.type === 'event' && typeof record.event === 'string' && names.has(record.event)) {
+      terminalIndex = index;
+    }
+  });
+  return terminalIndex;
+}
+
+function noTerminalVerdict(terminalEvents: readonly string[]): LineageCompletionVerdict {
+  return {
+    complete: false,
+    failure: 'no_terminal_event',
+    detail: `the state log holds no terminal stop row (${terminalEvents.join(' or ')})`,
+  };
+}
+
+/**
+ * Judge only the stop a lineage's last terminal row records: its stop reason and, for a cap
+ * stop, the iterations behind it. This is the part of the completion check that still holds
+ * for an earlier attempt, so a runner deciding whether a finished lineage needs no new
+ * attempt applies the same stop rules the post-attempt check applies.
+ */
+export function checkLineageStopEvidence(
+  records: readonly unknown[],
+  policy: LineageStopPolicy,
+): LineageCompletionVerdict {
+  const rows = records.filter(isRecord);
+  const terminalIndex = lastTerminalIndex(rows, policy.terminalEvents);
+  if (terminalIndex === -1) return noTerminalVerdict(policy.terminalEvents);
+  const iterations = rows.filter((record) => record.type === 'iteration');
+  return stopReasonFailure(rows[terminalIndex], iterations, policy) ?? { complete: true };
+}
+
 function describeRecord(record: Record<string, unknown>, index: number): string {
   const name = record.type === 'iteration' ? `iteration ${String(record.iteration)}` : `${String(record.event ?? record.type)} row`;
   return `${name} (line ${index + 1}, ${String(record.timestamp)})`;
@@ -244,26 +283,14 @@ export function checkLineageCompletion(
 ): LineageCompletionVerdict {
   const windowStart = parseIsoBoundary(input.windowStart, 'windowStart');
   const windowEnd = parseIsoBoundary(input.windowEnd, 'windowEnd');
-  const terminalEvents = new Set(input.terminalEvents);
   const rows = records.filter(isRecord);
   const iterations = rows.filter((record) => record.type === 'iteration');
   if (iterations.length === 0) {
     return { complete: false, failure: 'no_iteration_records', detail: 'the state log holds no iteration record' };
   }
 
-  let terminalIndex = -1;
-  rows.forEach((record, index) => {
-    if (record.type === 'event' && typeof record.event === 'string' && terminalEvents.has(record.event)) {
-      terminalIndex = index;
-    }
-  });
-  if (terminalIndex === -1) {
-    return {
-      complete: false,
-      failure: 'no_terminal_event',
-      detail: `the state log holds no terminal stop row (${[...terminalEvents].join(' or ')})`,
-    };
-  }
+  const terminalIndex = lastTerminalIndex(rows, input.terminalEvents);
+  if (terminalIndex === -1) return noTerminalVerdict(input.terminalEvents);
 
   const terminal = rows[terminalIndex];
   const terminalMs = parseRecordTimestamp(terminal.timestamp);
@@ -295,5 +322,5 @@ export function checkLineageCompletion(
       };
     }
   }
-  return stopReasonFailure(terminal, iterations, input) ?? { complete: true };
+  return checkLineageStopEvidence(rows, input);
 }
