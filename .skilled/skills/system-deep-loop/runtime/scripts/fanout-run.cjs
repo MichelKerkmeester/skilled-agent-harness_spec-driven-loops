@@ -2593,6 +2593,24 @@ function buildInvocationFingerprintPayload(input) {
   };
 }
 
+// The value the command passes to --permission-mode, or null when it passes none. Each kind
+// owns its own vocabulary, so the resolved Claude mode is never reported for another kind.
+function emittedPermissionMode(input) {
+  const promptIndexes = new Set(input.promptArgIndexes || []);
+  const flagIndex = input.args.findIndex((arg, index) => arg === '--permission-mode' && !promptIndexes.has(index));
+  return flagIndex >= 0 && flagIndex + 1 < input.args.length ? input.args[flagIndex + 1] : null;
+}
+
+// preventive: the executor's own confinement is on in this command. compensating: the builder
+// emitted a non-OS restriction (an approval mode or a tool allowlist). none: neither.
+function sandboxEnforcementFor(input) {
+  const { EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY } = require('../lib/deep-loop/executor-config.ts');
+  const confines = input.confines ?? (input.resolvedSandbox !== 'danger-full-access'
+    && input.resolvedPermission !== 'bypassPermissions');
+  if (EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY[input.kind] === true && confines) return 'preventive';
+  return input.compensatingControl === true ? 'compensating' : 'none';
+}
+
 function finalizeLineageCommand(input) {
   // cli-opencode exposes no OS-level sandbox or permission-scoping flag: read-only and
   // workspace-write are indistinguishable at the command level (buildOpencodeLineageCommand
@@ -2614,9 +2632,13 @@ function finalizeLineageCommand(input) {
     reasoningEffort: input.reasoningEffort,
     serviceTier: input.serviceTier,
     sandboxMode: input.resolvedSandbox,
-    permissionMode: input.resolvedPermission,
+    permissionMode: emittedPermissionMode(input),
+    sandboxEnforcement: sandboxEnforcementFor(input),
+    effortApplied: input.effortApplied ?? (input.reasoningEffort ? 'flag' : 'none'),
     webSearch: input.webSearch,
   };
+  // The fingerprint keeps the resolved permission so a lineage's invocation identity
+  // stays stable across runs; effectiveConfig reports what the command actually passes.
   const fingerprintPayload = buildInvocationFingerprintPayload(input);
   const invocationFingerprint = `inv:${digestText(JSON.stringify(fingerprintPayload))}`;
   return {
@@ -3038,6 +3060,9 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission,
+    // Only --sandbox enabled is OS confinement; read-only's plan mode is an approval mode.
+    confines: args[args.indexOf('--sandbox') + 1] === 'enabled',
+    compensatingControl: args.includes('--mode'),
     webSearch,
   });
 }
@@ -3148,6 +3173,7 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission,
+    compensatingControl: resolvedSandbox === 'read-only',
     webSearch,
   });
 }
@@ -3255,6 +3281,7 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission,
+    compensatingControl: args.includes('--tools'),
     webSearch: effectiveWebSearchPolicy(lineage),
   });
 }
@@ -3428,6 +3455,8 @@ function buildDshLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermis
     executableVersion: resolveExecutableVersion('dsh', options),
     model,
     reasoningEffort,
+    // The route patch sets the effort; no flag carries it.
+    effortApplied: 'baked',
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission: permissionMode,
