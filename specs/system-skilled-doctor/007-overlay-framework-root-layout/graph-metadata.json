@@ -14,7 +14,8 @@
     "system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin",
     "system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items",
     "system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items",
-    "system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items"
+    "system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items",
+    "system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -175,17 +176,17 @@
     ],
     "causal_summary": "The doctor overlay engine refuses an overlay folder outside the vendored tree",
     "created_at": "2026-11-20T09:31:32Z",
-    "last_save_at": "2026-11-20T17:30:08.568Z",
+    "last_save_at": "2026-11-20T20:13:05.750Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b70ccb02ef722c0864e8ed2bc135a8f7aca7f0bdc64308695eec2f90042f847a",
+    "source_fingerprint": "sha256:01035cc842b70ce313af622844f62e343121626677bf4715cf7e999b4fe6347e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1123a41929e0c4490c2efe137c7ca0b47ce93ece60f2875fe8ece2c58a009f99"
+      "spec.md": "ae73435fe9c7080e425cb1993c32a6c2a1915551a411ace959e910255f70b014"
     },
     "last_active_child_id": "system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items",
     "last_active_at": "2026-11-20T17:30:08.568Z"

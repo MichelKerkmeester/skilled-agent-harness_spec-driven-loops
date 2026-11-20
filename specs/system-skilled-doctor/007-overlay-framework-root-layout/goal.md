@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 | D1 | Flag day: the `framework/` + `root/` rule is every consumer's default, with no opt-in field. Old-layout trees keep applying, with a capped LAYOUT notice until one `apply --relayout`. |
 | D2 | `overlayDir` may name only a direct sibling, `../<name>`. Deeper paths and a folder outside the git repository are refused. |
 | D3 | With a sibling folder, `repin --stage <dir>` holds `<dir>/<tree>` and `<dir>/<overlays>`, writing nothing live. |
-| D4 | `ai-speckit/skilled/.skilled-overlays.json` stays inside the vendored copy and names `../overlays`. |
+| D4 | `ai-speckit/skilled/.skilled-overlays.json` stays in the vendored copy and names `../overlays`. |
 | D5 | Phase 004 re-pins Barter onto phase 003's Skilled commit and relays every source in one session. |
 | D6 | Out of scope: removing old-layout or in-tree support, non-path overlay content changes, and spec history under `ai-speckit/specs/`. |
 
@@ -90,7 +90,7 @@ string, not these files.
 - [ ] In `ai-speckit/skilled`, `cat .skilled-overlays.json` prints `{ "overlayDir": "../overlays" }`, and `ls -d barter-overlays` fails.
 - [ ] In `ai-speckit/skilled`, `node .skilled/commands/doctor/scripts/overlay-engine.cjs status --json` reports `PASSED` and an empty `offLayout`.
 - [ ] In `ai-speckit/skilled`, `node .skilled/commands/doctor/scripts/overlay-engine.cjs --guard .skilled/skills/sk-git/sk-git-skilled/SKILL.md` exits 1 and names a source under `../overlays/framework/`.
-- [ ] `validate.sh --recursive --strict` on this packet and its six phases prints `RESULT: PASSED`.
+- [ ] `validate.sh --recursive --strict` on this packet and every phase child prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---

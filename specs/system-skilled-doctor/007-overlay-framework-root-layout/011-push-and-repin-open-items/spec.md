@@ -24,7 +24,7 @@ contextType: "implementation"
 | **Created** | 2026-11-20 |
 | **Branch** | `main` in Skilled, then `main` in ai-speckit |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 11 of 11 |
+| **Phase** | 11 of 12 |
 | **Predecessor** | 010-barter-open-items |
 | **Successor** | None |
 | **Handoff Criteria** | Barter is pinned to the pushed Skilled commit and its `base.json` records that commit |
@@ -37,11 +37,13 @@ contextType: "implementation"
 
 This is **Phase 11** of the overlay framework/root layout packet. The push runs from the operator, and the re-pin from an ai-speckit session.
 
-**Scope Boundary**: pushing Skilled main with phase 009's fixes, re-pinning Barter onto the pushed commit, and recording the base. No new fixes.
+**Scope Boundary**: pushing Skilled main with the fixes of phases 009 and 012, re-pinning Barter onto the pushed commit, and recording the base. No new fixes.
 
 **Dependencies**:
 - Phase 009 merged into local Skilled main.
+- Phase 012 merged into local Skilled main. This phase's push and re-pin run after phase 012, so the push carries the second review's Skilled fixes too.
 - Phase 010's ai-speckit commits, so the re-pin starts from a clean ai-speckit.
+- Barter's `fanout-run.cjs` overlay rebased onto the new upstream copy before the re-pin, because a stage to Skilled `HEAD` blocks on it until then, as ai-speckit's record 039 reports. With Barter's sibling `../overlays` folder, run `status --root` on the stage's `staged tree root:` path, not on the stage folder itself.
 
 **Deliverables**:
 - The pushed Skilled commit id, Barter's re-pin commit, and a `base.json` that records the pin.

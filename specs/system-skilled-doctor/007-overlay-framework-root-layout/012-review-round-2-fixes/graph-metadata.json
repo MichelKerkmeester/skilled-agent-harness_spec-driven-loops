@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes",
+  "spec_folder": "system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes",
+  "parent_id": "system-skilled-doctor/007-overlay-framework-root-layout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review round 2 fixes",
+      "phase 12 review round 2 fixes",
+      "overlay layout second review fixes",
+      "relayout backup failure contract",
+      "layout link path escapes the tree root",
+      "review round 2 fixes plan",
+      "review round 2 fixes tasks",
+      "review round 2 fixes goal",
+      "review round 2 fixes implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "round",
+      "phase",
+      "overlay",
+      "layout",
+      "second",
+      "relayout",
+      "backup",
+      "failure",
+      "contract",
+      "link",
+      "path"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-fixes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-follow-up.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-repin.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-strict-writes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The second review found that a relayout can fail outside its error contract, with a raw error or a misreported completed run, and that its restore-failed line overstates what the backup holds",
+    "created_at": "2026-11-20T17:47:01Z",
+    "last_save_at": "2026-11-20T20:13:05.748Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:412be7345af0c3264d7b9a3708e40cc8ec478bee8a94b8d85eba369b9f8da807",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ebd311f99bec7336436faaea8fe1000d903fa4f2f6de3d9c3077c4659fee07f4",
+      "plan.md": "3ecea239c75068bc9edd59c81e6424f77ae9ef5c23e9a36ad863b5bed9f6c6b8",
+      "tasks.md": "22eccc60a119f86883e3fa4455ca61c37505db3972a1afa736c10efaed69216f",
+      "implementation-summary.md": "3bc036d8b9c7f0dd537aa62b1f2d41d9c00a5cf6e520fcb412a34a3c8cdbd34d"
+    },
+    "last_active_at": null
+  }
+}

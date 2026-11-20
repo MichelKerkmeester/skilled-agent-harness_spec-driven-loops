@@ -95,7 +95,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Phase",
+        "name": "With Barter",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 009's fixes exist only on local Skilled main, and Barter's `base.json` still records an older commit because `record-base` could not resolve the pin",
     "created_at": "2026-11-20T16:45:57Z",
-    "last_save_at": "2026-11-20T16:56:51.112Z",
+    "last_save_at": "2026-11-20T20:13:45.287Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,10 +196,10 @@
       "tasks.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:54dd8bde1c3f77d9aad05654c3019d2ba75345a75c890632538228dc3921e922",
+    "source_fingerprint": "sha256:e173af894094a00735fdb87f891ea7b133caa5b4ee58e63d66e80a2080849c71",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "700a0b227f75b421ae7336cd9329ea74245971f9bd0e11d97eec7bddf0ecf941",
+      "spec.md": "6761a01348a42b35be0c5693a8adafcadc79f5f37720e4c254ad54a940ebda9a",
       "plan.md": "d4ea82c2b98a35ca22266116e6122ebb4dac0a864f379c0bf0a61f029f3d5370",
       "tasks.md": "99c8cca483f19ae90e0e885e87d585e73b6cbb8e19f2b1c6d81063be38b08d8a"
     },

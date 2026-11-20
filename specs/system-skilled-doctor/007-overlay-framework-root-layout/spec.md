@@ -125,7 +125,8 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 8 | 008-push-and-repin/ | Runs in Skilled, then ai-speckit. Merges origin into Skilled main, pushes it with every fix after the gates pass and records the pushed id; an ai-speckit session then re-pins Barter onto that id | In Progress |
 | 9 | 009-skilled-open-items/ | Runs in Skilled, on the worktree branch, then merges into local main. Fixes four Skilled-side open items: `record-base` taking a stale `FETCH_HEAD` for a pin, the fan-out review scope left empty, the pre-commit probe misreading a hook-exported `GIT_DIR`, and the playbook's `generate-context.js` line. Merged on local main as `1ac1fba6a25` | Complete |
 | 10 | 010-barter-open-items/ | Runs in ai-speckit from a parallel session and is recorded here. Fixes the Barter-side open items listed in ai-speckit's record 039 | Planned |
-| 11 | 011-push-and-repin-open-items/ | The operator pushes Skilled main with phase 009's merge, then an ai-speckit session re-pins Barter onto the pushed commit and records its base | Planned |
+| 11 | 011-push-and-repin-open-items/ | The operator pushes Skilled main with the merges of phases 009 and 012, then an ai-speckit session re-pins Barter onto the pushed commit and records its base. Runs after phase 012 | Planned |
+| 12 | 012-review-round-2-fixes/ | Runs in Skilled, on a worktree branch, then merges into local main before phase 011 pushes. Fixes the Skilled-side findings of the second review: the relayout error contract, overlay-folder and layout-link containment, the git option guard, doc drift and four packet records. The Barter half is recorded in ai-speckit's record 039. Merged on local main as `7ededf2efb1` | Complete |
 
 ### Phase Transition Rules
 
@@ -152,6 +153,7 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 008-push-and-repin | 009-skilled-open-items | Barter is re-pinned onto phase 008's pushed commit, and its record names the open items left | `rg -n 'record-base' 008-push-and-repin/implementation-summary.md` prints the Known Limitations line |
 | 009-skilled-open-items | 010-barter-open-items | Phase 009's fixes are merged on local Skilled main with every gate in its plan green | `git merge-base --is-ancestor <phase 009 merge> main` exits 0 in Skilled |
 | 010-barter-open-items | 011-push-and-repin-open-items | ai-speckit's record 039 names a commit or a deferral for each Barter-side item | `git -C <ai-speckit> show --stat <id>` exits 0 for each commit phase 010 lists |
+| 012-review-round-2-fixes | 011-push-and-repin-open-items | Phase 012's fixes are merged on local Skilled main with every gate in its plan green, so phase 011's push carries them | `git merge-base --is-ancestor <phase 012 merge> main` exits 0 in Skilled |
 <!-- /ANCHOR:phase-map -->
 
 ---
