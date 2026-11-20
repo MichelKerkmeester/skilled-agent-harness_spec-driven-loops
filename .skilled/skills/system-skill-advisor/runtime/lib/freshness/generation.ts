@@ -7,7 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { randomBytes } from 'node:crypto';
-import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, realpathSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { GenerationMetadataSchema, type GenerationMetadata } from '../../schemas/generation-metadata.js';
 import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
@@ -20,6 +20,7 @@ import type { SkillGraphTrustState } from './trust-state.js';
 
 const GENERATION_FILE_NAME = 'skill-graph-generation.json';
 const GENERATION_RELATIVE_PATH = join('.skilled', 'skills', '.state', 'advisor', GENERATION_FILE_NAME);
+const DEFAULT_DB_RELATIVE_DIR = join('.skilled', 'skills', 'system-skill-advisor', 'runtime', 'database');
 const GENERATION_LOCK_STALE_MS = 30_000;
 const GENERATION_LOCK_WAIT_MS = 250;
 
@@ -51,15 +52,30 @@ export function getSkillGraphGenerationPath(workspaceRoot: string): string {
   // would mark the live advisor unavailable when it shuts down. The override
   // is read on every call, like the database resolver, so the writer and
   // every reader agree on one file.
+  // The launcher always passes its database directory to the daemon, so an
+  // override naming the workspace's default directory is not a sandbox and
+  // keeps the shared counter every other reader uses.
+  const anchoredRoot = findAdvisorWorkspaceRoot(workspaceRoot);
   const overrideDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
-  if (overrideDbDir) {
+  if (overrideDbDir && !sameDirectory(overrideDbDir, join(anchoredRoot, DEFAULT_DB_RELATIVE_DIR))) {
     return join(resolve(overrideDbDir), GENERATION_FILE_NAME);
   }
   // Anchor to the real repo root before joining the state-relative path. A
   // caller passing a specs/<packet> cwd would otherwise write its counter into
   // that packet, leaving a stray .state/advisor tree behind; the anchored
   // resolver structurally can never return a directory inside an .skilled tree.
-  return join(findAdvisorWorkspaceRoot(workspaceRoot), GENERATION_RELATIVE_PATH);
+  return join(anchoredRoot, GENERATION_RELATIVE_PATH);
+}
+
+function sameDirectory(left: string, right: string): boolean {
+  const canonical = (dirPath: string): string => {
+    try {
+      return realpathSync(dirPath);
+    } catch {
+      return resolve(dirPath);
+    }
+  };
+  return canonical(left) === canonical(right);
 }
 
 function fsyncPath(filePath: string): void {
