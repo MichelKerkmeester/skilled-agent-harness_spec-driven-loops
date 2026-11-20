@@ -7,7 +7,7 @@ trigger_phrases:
   - "merge fanout lineages"
   - "strongest-restriction review merge"
   - "cross-model finding attribution"
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # Fan-out cross-lineage merge
@@ -41,6 +41,16 @@ required gate in `failedRequiredGateIds`, CONDITIONAL if `activeP1 > 0` or open 
 PASS otherwise). The merge also unions `searchDebt` across lineages, one entry per bug class. Non-active
 findings (resolved,
 `resolved_false_positive`) are excluded from counts.
+
+**Lineage trust**: a lineage is untrusted when the runner's `orchestration-summary.json` rejected
+it, or when its log flags a pass `unexamined: true`. A lineage with no summary entry is not
+rejected, and a pass that cannot be judged is not flagged. Both merges keep an untrusted
+lineage's findings in the list and in the severity counts, so its P1 still moves the verdict, and
+label a merged finding `_untrusted` with the reasons only when every lineage that reported it is
+untrusted. An untrusted lineage claims no coverage: the review merge builds `dimensionCoverage`,
+`searchCoverage` and `candidateCoverage` from trusted lineages only, and in the research merge only
+a trusted lineage's answer resolves a question. The merged registry lists them as
+`untrustedLineages` and stdout as `untrusted_lineages`, both omitted when every lineage is trusted.
 
 **Review coverage surfaces**: the review merge also spreads the result of
 `mergeReviewCoverageSurfaces` into the merged registry: `dimensionCoverage`, `traceability`,

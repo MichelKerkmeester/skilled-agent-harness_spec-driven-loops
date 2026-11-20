@@ -7,7 +7,7 @@ trigger_phrases:
   - "frontier-nodes.jsonl"
   - "frontier admission checks"
   - "expansive frontier seed budget"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # frontier-admit.cjs
@@ -28,7 +28,7 @@ This feature belongs to the script entry points group. The orchestrating workflo
 
 The CLI takes one command and value flags. The commands are `seed`, `admit`, `close`, `graph`, `block`, `budget` and `scope`. Every command needs `--artifact-dir`. `--target research|review` picks the loop, and it defaults to `research`. Research reads `deep-research-config.json` and review reads `deep-review-config.json`. A missing config means the defaults apply. A config that exists but cannot be read or parsed is an error.
 
-- `seed --input <file>` reads a JSON array of candidates and places each one at depth 1 under the synthetic `root`. `--max-iterations-source` says where the run's budget came from, and it defaults to `default`.
+- `seed --input <file>` reads a JSON array of candidates and places each one at depth 1 under the synthetic `root`. `--max-iterations-source` says where the run's budget came from, and it defaults to `default`. `--max-iterations <N>`, a positive integer, is the bound budget and wins over the root config's `maxIterations`, because a fan-out seed runs before its root config is written.
 - `admit --input <file>` reads the `frontier_proposal` rows of an iteration delta and runs them through admission.
 - `close --node-id <id> --status <status>` appends a new row for that node with the given status and an optional `--reason`. The status must be `active`, `answered`, `blocked`, `exhausted`, `abstained` or `pruned`. A node admission pruned can be closed only as `pruned`, since it never reached the inbox. A node already closed as `answered`, `blocked`, `exhausted` or `abstained` accepts only a repeat of that status, so a settled node never reopens through `close`.
 - `graph --output <file>` writes the graph projection of the store.

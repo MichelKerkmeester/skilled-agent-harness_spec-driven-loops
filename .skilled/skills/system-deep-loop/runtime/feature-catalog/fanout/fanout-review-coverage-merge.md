@@ -6,7 +6,7 @@ trigger_phrases:
   - "mergeReviewRegistries coverage"
   - "review fan-out merged coverage"
   - "candidate dimension search coverage merge"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Fan-out review coverage merge
@@ -32,7 +32,7 @@ A review fan-out runs its lineages in parallel and merges their registries into 
 
 ### Merge Behavior
 
-The surfaces are combined across lineages rather than read from one lineage alone, so the merged registry reflects coverage from every lineage in the fan-out. Every merge walks lineages in label order and sorts its output, so arrival order never changes the merged registry.
+The surfaces are combined across lineages rather than read from one lineage alone, so the merged registry reflects coverage from every lineage in the fan-out, except that `dimensionCoverage`, `searchCoverage` and `candidateCoverage` take only lineages the runner accepted and whose log flags no pass `unexamined`. Every merge walks lineages in label order and sorts its output, so arrival order never changes the merged registry.
 
 ---
 

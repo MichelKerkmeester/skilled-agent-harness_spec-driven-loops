@@ -9,7 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.9.0
+version: 1.11.10.0
 ---
 
 # Deep Review State Log Records
@@ -209,7 +209,9 @@ When the review legal-stop decision tree returns `blocked`, `convergence.cjs` re
     "dimensionCoverageGate": {
       "pass": false,
       "covered": ["correctness", "security"],
-      "missing": ["traceability", "maintainability"]
+      "missing": ["traceability", "maintainability"],
+      "traceabilityCovered": false,
+      "coverageAge": 1
     },
     "p0ResolutionGate": { "pass": false, "activeP0": 1 },
     "evidenceDensityGate": { "pass": true, "avgEvidencePerFinding": 1.5 },

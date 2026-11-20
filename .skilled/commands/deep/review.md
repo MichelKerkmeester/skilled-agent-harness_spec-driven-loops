@@ -94,7 +94,7 @@ into `config`.
 | Flag | Value | Effect |
 |------|-------|--------|
 | `--spec-folder` | `PATH` | Binds the packet that owns this run's writes. |
-| `--max-iterations` | `N` | Hard ceiling on loop iterations. |
+| `--max-iterations` | `N` | Hard ceiling on loop iterations. With fan-out it binds every lineage the matrix gives no `iterations` value, in either depth mode. |
 | `--convergence` | `N` | Threshold the loop must clear before convergence may stop it. |
 | `--convergence-mode` | `default` \| `off` \| `sliding-window` \| `divergent` | `default` keeps the anti-convergence `minIterations` floor. `off` disables convergence-driven STOP while max-iterations, pause and halt stay active. `sliding-window` scores novelty over a bounded window, five snapshots by default. `divergent` routes an eligible convergence stop into a Council pivot rather than ending the run. |
 | `--depth-mode` | `default` \| `expansive` | `default` runs exactly as before. `expansive` seeds depth-1 sub-target nodes and works their next uncovered dimension, vetoing a stop while any node stays open. The frontier caps apply to a single-executor run only. See [Expansive Depth Frontier](../../skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md#expansive-depth-frontier-opt-in). |

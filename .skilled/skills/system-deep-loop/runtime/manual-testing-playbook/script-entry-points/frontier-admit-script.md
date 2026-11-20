@@ -1,7 +1,7 @@
 ---
 title: "DLR-065 -- frontier-admit.cjs"
 description: "This scenario validates the frontier-admit.cjs CLI: seed writes depth-1 nodes and reports the budget, admit prunes a proposal with its reason, close appends a status row, and a pruned node cannot be closed as live, for `DLR-065`."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DLR-065 -- frontier-admit.cjs
@@ -67,15 +67,16 @@ Operators run the exact commands below against a scratch directory and confirm e
 3. `node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs admit --artifact-dir <tmp> --input <tmp>/delta.jsonl --iteration 1`
 4. `node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --artifact-dir <tmp> --node-id F-2-003 --status answered --iteration 2`
 5. `node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs close --artifact-dir <tmp> --node-id F-2-004 --status answered --iteration 2`
+6. In a second scratch directory `<tmp2>` holding `seed.json` and a `deep-research-config.json` of `{"maxIterations":5}`, run `node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir <tmp2> --input <tmp2>/seed.json --iteration 0 --max-iterations 20 --max-iterations-source flag`
 
 ### Expected
 
-Command 1 exits 0 with every case passing. Command 2 prints the budget notice on stderr and `{"admitted":["F-1-001","F-1-002"],"pruned":[],"derivedMaxIterations":10,"growthSlots":3}` on stdout, exit 0. Command 3 prints `{"admitted":["F-2-003"],"pruned":[{"nodeId":"F-2-004","reason":"relevance"}]}`, exit 0. Command 4 prints the `F-2-003` row with `"status":"answered"`, exit 0. Command 5 prints the pruned-node refusal on stderr and exits 2. `<tmp>/frontier-nodes.jsonl` then holds five rows: two seeds, the admitted node, the pruned node and the close.
+Command 1 exits 0 with every case passing. Command 2 prints the budget notice on stderr and `{"admitted":["F-1-001","F-1-002"],"pruned":[],"derivedMaxIterations":10,"growthSlots":3}` on stdout, exit 0. Command 3 prints `{"admitted":["F-2-003"],"pruned":[{"nodeId":"F-2-004","reason":"relevance"}]}`, exit 0. Command 4 prints the `F-2-003` row with `"status":"answered"`, exit 0. Command 5 prints the pruned-node refusal on stderr and exits 2. `<tmp>/frontier-nodes.jsonl` then holds five rows: two seeds, the admitted node, the pruned node and the close. Command 6 prints `[frontier-admit] budget after seed 20 iterations, 8 growth slots` on stderr and `{"admitted":["F-1-001","F-1-002"],"pruned":[],"derivedMaxIterations":20,"growthSlots":8}` on stdout, exit 0: the bound budget wins over the config's 5.
 
 ### Evidence
 
 - The vitest summary line and exit status for command 1.
-- The stdout, stderr and exit status of commands 2 to 5.
+- The stdout, stderr and exit status of commands 2 to 6.
 - The row count of `<tmp>/frontier-nodes.jsonl` after command 5.
 
 ### Pass / Fail

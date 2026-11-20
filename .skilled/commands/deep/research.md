@@ -101,7 +101,7 @@ into `config`.
 | Flag | Value | Effect |
 |------|-------|--------|
 | `--spec-folder` | `PATH` | Binds the packet that owns this run's writes. |
-| `--max-iterations` | `N` | Hard ceiling on loop iterations. |
+| `--max-iterations` | `N` | Hard ceiling on loop iterations. With fan-out it binds every lineage the matrix gives no `iterations` value, in either depth mode. |
 | `--convergence` | `N` | Threshold the loop must clear before convergence may stop it. |
 | `--convergence-mode` | `default` \| `off` \| `sliding-window` \| `divergent` | `default` keeps the anti-convergence `minIterations` floor. `off` disables convergence-driven STOP while max-iterations, pause and halt stay active. `sliding-window` scores novelty over a bounded window, five snapshots by default, on the ordinary legal-stop path. `divergent` sends a `composite_converged` or `all_questions_answered` stop into a one-round three-seat Council pivot instead of ending the run, at proportionally higher cost. |
 | `--depth-mode` | `default` \| `expansive` | `default`, the value when the flag is absent, runs exactly as before. `expansive` seeds depth-1 frontier nodes from the topic, admits follow-up questions under the frontier caps, and vetoes a convergence stop while any node stays open. With `--max-iterations` left at its default, the run sizes its budget from the seed. See [Expansive Depth Frontier](../../skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md#expansive-depth-frontier-opt-in) and, for the stop veto, [Expansive Depth Mode](../../skills/system-deep-loop/deep-research/references/convergence/convergence.md#expansive-depth-mode). |
