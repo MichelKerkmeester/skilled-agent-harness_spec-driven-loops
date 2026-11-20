@@ -145,12 +145,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -172,6 +166,12 @@
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Focus",
+        "kind": "proper_noun",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -225,7 +225,7 @@
     ],
     "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
     "created_at": "2026-11-17T07:53:58Z",
-    "last_save_at": "2026-11-20T06:01:11.682Z",
+    "last_save_at": "2026-11-20T08:44:14.757Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -237,13 +237,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:34d97c080a703a6c0f156e709ee0e6db9dc59e93e916efcf184f3eada2d09e97",
+    "source_fingerprint": "sha256:ee74227e1ba34579f6b1d6451fb43d346adef594414733126631dd255b2ec79e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65536f6e4ebbc7af63012b667ebadd33b80a71ec98fd35bed16055ac968d2368",
+      "spec.md": "4d621eb6239408072e0894b025463c8c3b4db65709c7ab74f8a951a4a3664fac",
       "plan.md": "6a56a3aaa01f0331b6c583bb878c61d031938abfeddad6ebb39c9e3ea0cac9fd",
       "tasks.md": "2bd96d25454ae3e7bf9fea94cadc73dac0e5379c35aaeb83792afd7a17257727",
-      "decision-record.md": "3412a35e38ba63aa2749a328052d083fadecbdffa74aa4aa6c0977af62beb05a",
+      "decision-record.md": "c2dc20f9b0759e820235c4c7330b1c06bf798c2a321c0d483e52362a7e951510",
       "implementation-summary.md": "2088c1e4437f3061bd63975059960c6ebb10e14588be75e53898d13f9a592446",
       "research/research.md": "262c96107e8720a9b17319e1a954a39a416b0073f6b32ee290318c01ddbbb965"
     },
