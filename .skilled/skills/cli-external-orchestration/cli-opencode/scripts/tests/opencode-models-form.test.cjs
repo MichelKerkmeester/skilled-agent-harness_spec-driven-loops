@@ -12,8 +12,7 @@
 // command must therefore carry `--standalone` or `--server <url>` and no positional
 // argument; a provider check filters the listing, for example
 // `opencode models --standalone 2>/dev/null | grep '^opencode-go/' >/dev/null`.
-// The scan reads every `opencode2 models` command and every `opencode models`
-// command that carries a server form.
+// The scan reads every `opencode models` command that carries a server form.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS AND PATHS
@@ -47,10 +46,8 @@ function read(file) {
 }
 
 // A hyphen or word character before the binary makes a different command, so the
-// lookbehind keeps a longer token from being read as this one. OpenCode 2 answers to
-// `opencode` on the recommended layout and to `opencode2` where its package left that
-// name, so both binaries are matched and the form decides which version a command is.
-const COMMAND_PATTERN = /(?<![\w-])(opencode2?)\s+models\b/g;
+// lookbehind keeps a longer token from being read as this one.
+const COMMAND_PATTERN = /(?<![\w-])opencode\s+models\b/g;
 const SERVER_FORM_PATTERN = /(?:^|\s)--(?:standalone|server)\b/;
 
 // The remainder ends at the first shell metacharacter, so a pipeline, redirect,
@@ -60,8 +57,8 @@ const SERVER_FORM_PATTERN = /(?:^|\s)--(?:standalone|server)\b/;
 const REMAINDER_END_PATTERN = /[`|&;)]|(?:^|\s)\d*>/;
 
 function commandsIn(markdown) {
-  // A bare `opencode models` with no server form is out of scope here, so only
-  // `opencode2` and the server forms are read as commands.
+  // A bare `opencode models` with no server form is left alone: the docs quote that form
+  // only in dated OpenCode 1 observations, which keep the command as it was run then.
   return [...markdown.matchAll(COMMAND_PATTERN)].flatMap((match) => {
     const lineEnd = markdown.indexOf('\n', match.index + match[0].length);
     const restOfLine = markdown.slice(
@@ -72,9 +69,9 @@ function commandsIn(markdown) {
     // A continued line leaves a run of spaces where the line break was, so the quoted
     // command collapses every run to one space and the binary and subcommand read as the
     // single command they are.
-    if (match[1] === 'opencode' && !SERVER_FORM_PATTERN.test(remainder)) return [];
+    if (!SERVER_FORM_PATTERN.test(remainder)) return [];
     return [{
-      text: `${match[1]} models${remainder}`.replace(/\s+/g, ' ').trim(),
+      text: `opencode models${remainder}`.replace(/\s+/g, ' ').trim(),
       args: remainder.split(/\s+/).filter(Boolean),
     }];
   });
@@ -143,7 +140,7 @@ function clauseRanges(line) {
 // fenced-block scan, so it must be quoted like every runnable example. The match is
 // case-sensitive, because the capitalised "OpenCode models" is the product name rather
 // than a command.
-const UNQUOTED_LISTING_PATTERN = /(?<![\w-])opencode2?\s+models\b/g;
+const UNQUOTED_LISTING_PATTERN = /(?<![\w-])opencode\s+models\b/g;
 
 function unquotedListingCommands(markdown) {
   const offenders = [];
@@ -170,7 +167,7 @@ function unquotedListingCommands(markdown) {
 // A note that sends a reader to the standalone listing is only useful when it says what
 // to look for. OpenCode 2 prints ids as `<provider>/<model>`, so the note has to name
 // the prefix, filter or grep for it, or quote a span ending in `/`.
-const LISTING_NOTE_PATTERN = /opencode2? models --standalone\b/;
+const LISTING_NOTE_PATTERN = /opencode models --standalone\b/;
 const CHECK_WORD_PATTERN = /\b(check|checks|checking|confirm|confirms|confirmed|confirming)\b/i;
 const PREFIX_WORD_PATTERN = /\bprefix(?:es)?\b/i;
 const FILTER_WORD_PATTERN = /\bfilter(?:ed)?\b/i;
@@ -202,7 +199,7 @@ function unprefixedListingNotes(markdown) {
       const spans = [...clause.matchAll(INLINE_CODE_SPAN_PATTERN)].map((match) => match[1]);
       if (spans.some((span) => span.endsWith('/'))) continue;
       // A span carrying both the listing and its grep is the filtered command itself.
-      if (spans.some((span) => /opencode2? models --standalone/.test(span) && GREP_WORD_PATTERN.test(span))) {
+      if (spans.some((span) => /opencode models --standalone/.test(span) && GREP_WORD_PATTERN.test(span))) {
         continue;
       }
 
@@ -437,7 +434,7 @@ const GREP_PATTERN = /^grep(?:\s+-[^\s]+)*\s+(['"])\^([^/'"\s]+)\/\1(?:\s*\d*(?:
 const OK_VARIABLE_PATTERN = /^([A-Za-z_][A-Za-z0-9_]*_OK)=1$/;
 
 function listingSource(text) {
-  if (/^opencode2?\s+models\s+--standalone(?:\s|$)/.test(text)) return { direct: true };
+  if (/^opencode\s+models\s+--standalone(?:\s|$)/.test(text)) return { direct: true };
   if (!/^(?:printf|echo)\b/.test(text)) return null;
 
   const words = shellWords(text)
@@ -504,7 +501,7 @@ function lastAssignedValue(lines, beforeIndex, name) {
 // substitution of the standalone listing with only redirects inside, optionally quoted.
 // A second command or pipeline in the substitution changes what the grep reads.
 const STANDALONE_LISTING_VALUE_PATTERN =
-  /^\$\(\s*opencode2?\s+models\s+--standalone(?:\s+\d*(?:>>?|<)\s*\S+)*\s*\)$/;
+  /^\$\(\s*opencode\s+models\s+--standalone(?:\s+\d*(?:>>?|<)\s*\S+)*\s*\)$/;
 const QUOTED_VALUE_PATTERN = /^"([^"]*)"$/;
 
 function holdsStandaloneListing(value) {
@@ -514,24 +511,24 @@ function holdsStandaloneListing(value) {
 
 // A provider check is only meaningful against the standalone listing. The matching grep
 // can pipe that listing in directly, or pipe a variable whose last assignment came from
-// `opencode2 models --standalone`. Returns null when it does, or the reason it does not,
+// `opencode models --standalone`. Returns null when it does, or the reason it does not,
 // naming the variable that has to hold the listing.
 function standaloneListingProblem(lines, grepIndex) {
   const check = providerCheck(lines[grepIndex]);
   if (check === null) {
-    return 'the grep must filter output piped from "opencode2 models --standalone"';
+    return 'the grep must filter output piped from "opencode models --standalone"';
   }
 
   const source = listingSource(check.source);
   if (source === null) {
-    return 'the grep must filter output piped from "opencode2 models --standalone"';
+    return 'the grep must filter output piped from "opencode models --standalone"';
   }
   if (source.direct) return null;
 
   const value = lastAssignedValue(lines, grepIndex, source.name);
   return value !== null && holdsStandaloneListing(value)
     ? null
-    : `"$${source.name}" must come from "opencode2 models --standalone" earlier in the block`;
+    : `"$${source.name}" must come from "opencode models --standalone" earlier in the block`;
 }
 
 // Every document the skill tree ships, minus the historical and installed trees.
@@ -581,24 +578,26 @@ test('problemsWith classifies the forms OpenCode 2 accepts and rejects', () => {
 
 test("commandsIn keeps a redirect's file descriptor out of the arguments", () => {
   const filtered = commandsIn(
-    "opencode2 models --standalone 2>/dev/null | grep '^opencode-go/' >/dev/null",
+    "opencode models --standalone 2>/dev/null | grep '^opencode-go/' >/dev/null",
   );
   assert.equal(filtered.length, 1, 'the filtered listing must read as one command');
   assert.deepEqual(filtered[0].args, ['--standalone']);
 
-  const positional = commandsIn('opencode2 models opencode-go');
-  assert.equal(positional.length, 1, 'the bare form must read as one command');
-  assert.deepEqual(positional[0].args, ['opencode-go']);
+  const positional = commandsIn('opencode models --standalone opencode-go');
+  assert.equal(positional.length, 1, 'the positional form must read as one command');
+  assert.deepEqual(positional[0].args, ['--standalone', 'opencode-go']);
+
+  assert.deepEqual(commandsIn('opencode models opencode-go'), [], 'a bare form with no server form is not read');
 });
 
 test('a command continued with a backslash is read as one command', () => {
-  const joined = joinContinuations(['opencode2 models \\', '  opencode-go']);
+  const joined = joinContinuations(['opencode models --standalone \\', '  opencode-go']);
   assert.equal(joined.length, 1, 'the continuation must read as one line');
   assert.equal(joined[0].lineNumber, 1, 'the joined line reports its first physical line');
 
   const commands = commandsIn(joined[0].text);
   assert.equal(commands.length, 1, 'the continued command must read as one command');
-  assert.deepEqual(commands[0].args, ['opencode-go']);
+  assert.deepEqual(commands[0].args, ['--standalone', 'opencode-go']);
 
   assert.ok(
     problemsWith(commands[0].args).some((problem) => problem.startsWith('positional argument')),
@@ -607,13 +606,13 @@ test('a command continued with a backslash is read as one command', () => {
 });
 
 test('a continuation between the binary and models is still one command', () => {
-  const joined = joinContinuations(['opencode2 \\', '  models opencode-go']);
+  const joined = joinContinuations(['opencode \\', '  models --standalone opencode-go']);
   assert.equal(joined.length, 1, 'the split binary and subcommand must read as one line');
 
   const commands = commandsIn(joined[0].text);
   assert.equal(commands.length, 1, 'the split binary and subcommand must read as one command');
-  assert.equal(commands[0].text, 'opencode2 models opencode-go', 'the gap collapses to one space');
-  assert.deepEqual(commands[0].args, ['opencode-go']);
+  assert.equal(commands[0].text, 'opencode models --standalone opencode-go', 'the gap collapses to one space');
+  assert.deepEqual(commands[0].args, ['--standalone', 'opencode-go']);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -674,10 +673,10 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
 
   const standalone = blocks
     .map(activeBlockLines)
-    .find((fenced) => fenced.some((line) => /opencode2? models --standalone\b/.test(line)));
+    .find((fenced) => fenced.some((line) => /opencode models --standalone\b/.test(line)));
   assert.ok(
     standalone !== undefined,
-    'the provider pre-flight section has no fenced bash block with an "opencode2 models --standalone" command',
+    'the provider pre-flight section has no fenced bash block with an "opencode models --standalone" command',
   );
 
   // Each provider is checked against its own anchored prefix into its own variable, so a check
@@ -694,7 +693,7 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
   assert.equal(
     goProblem,
     null,
-    `the OpenCode 2 pre-flight block must set OPENCODE_GO_OK from the standalone "opencode2 models --standalone" listing filtered for the anchored ^opencode-go/ prefix; ${goProblem}:\n${standalone[goIndex]}`,
+    `the OpenCode 2 pre-flight block must set OPENCODE_GO_OK from the standalone "opencode models --standalone" listing filtered for the anchored ^opencode-go/ prefix; ${goProblem}:\n${standalone[goIndex]}`,
   );
 
   const llmIndex = providerCheckIndex(standalone, 'llmgateway', 'LLMGATEWAY_OK');
@@ -707,7 +706,7 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
   assert.equal(
     llmProblem,
     null,
-    `the OpenCode 2 pre-flight block must set LLMGATEWAY_OK from the standalone "opencode2 models --standalone" listing filtered for the anchored ^llmgateway/ prefix; ${llmProblem}:\n${standalone[llmIndex]}`,
+    `the OpenCode 2 pre-flight block must set LLMGATEWAY_OK from the standalone "opencode models --standalone" listing filtered for the anchored ^llmgateway/ prefix; ${llmProblem}:\n${standalone[llmIndex]}`,
   );
 });
 
@@ -747,7 +746,7 @@ test('the shell comment stripper is quote-aware', () => {
     'a # inside a word is not a comment',
   );
 
-  const substitution = 'V2=$(opencode2 models --standalone)#x; printf \'%s\\n\' "$V2" | grep \'^llmgateway/\' >/dev/null && LLMGATEWAY_OK=1';
+  const substitution = 'V2=$(opencode models --standalone)#x; printf \'%s\\n\' "$V2" | grep \'^llmgateway/\' >/dev/null && LLMGATEWAY_OK=1';
   assert.deepEqual(
     stripped(substitution),
     [substitution],
@@ -762,7 +761,7 @@ test('the shell comment stripper is quote-aware', () => {
 
 test('a prefix grep that reads another listing does not count', () => {
   const fromStandalone = [
-    'V2_MODELS=$(opencode2 models --standalone 2>/dev/null)',
+    'V2_MODELS=$(opencode models --standalone 2>/dev/null)',
     "printf '%s\\n' \"$V2_MODELS\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
   ];
   assert.equal(
@@ -777,12 +776,12 @@ test('a prefix grep that reads another listing does not count', () => {
   ];
   assert.match(
     standaloneListingProblem(fromProviders, 1),
-    /"\$OTHER" must come from "opencode2 models --standalone"/,
+    /"\$OTHER" must come from "opencode models --standalone"/,
     'a grep over another listing must name the variable that has to hold the standalone listing',
   );
 
   const direct = [
-    "opencode2 models --standalone 2>/dev/null | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+    "opencode models --standalone 2>/dev/null | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
   ];
   assert.equal(
     standaloneListingProblem(direct, 0),
@@ -791,7 +790,7 @@ test('a prefix grep that reads another listing does not count', () => {
   );
 
   const quotedPipe = [
-    'V2=$(opencode2 models --standalone 2>/dev/null)',
+    'V2=$(opencode models --standalone 2>/dev/null)',
     "printf '%s|\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
   ];
   assert.equal(
@@ -801,7 +800,7 @@ test('a prefix grep that reads another listing does not count', () => {
   );
 
   const directDoubleQuotedPattern = [
-    'opencode2 models --standalone 2>/dev/null | grep "^opencode-go/" >/dev/null && OPENCODE_GO_OK=1',
+    'opencode models --standalone 2>/dev/null | grep "^opencode-go/" >/dev/null && OPENCODE_GO_OK=1',
   ];
   assert.equal(
     standaloneListingProblem(directDoubleQuotedPattern, 0),
@@ -810,7 +809,7 @@ test('a prefix grep that reads another listing does not count', () => {
   );
 
   const quotedEcho = [
-    'V2_MODELS=$(opencode2 models --standalone 2>/dev/null)',
+    'V2_MODELS=$(opencode models --standalone 2>/dev/null)',
     'echo "printf x | grep \'^llmgateway/\' >/dev/null && LLMGATEWAY_OK=1"',
   ];
   assert.notEqual(
@@ -820,28 +819,28 @@ test('a prefix grep that reads another listing does not count', () => {
   );
 
   const reassigned = [
-    'V2_MODELS=$(opencode2 models --standalone 2>/dev/null)',
+    'V2_MODELS=$(opencode models --standalone 2>/dev/null)',
     'V2_MODELS=$(opencode providers list)',
     'printf \'%s\\n\' "$V2_MODELS" | grep \'^llmgateway/\' >/dev/null && LLMGATEWAY_OK=1',
   ];
   assert.match(
     standaloneListingProblem(reassigned, 2),
-    /"\$V2_MODELS" must come from "opencode2 models --standalone"/,
+    /"\$V2_MODELS" must come from "opencode models --standalone"/,
     'a later reassignment from another listing must fail and name the variable',
   );
 
   const fakeListing = [
-    "V2=$(opencode2 models --standalone 2>/dev/null; printf 'opencode-go/fake\\n')",
+    "V2=$(opencode models --standalone 2>/dev/null; printf 'opencode-go/fake\\n')",
     "printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
   ];
   assert.match(
     standaloneListingProblem(fakeListing, 1),
-    /"\$V2" must come from "opencode2 models --standalone"/,
+    /"\$V2" must come from "opencode models --standalone"/,
     'a listing value carrying a second command must fail and name the variable',
   );
 
   const quotedListing = [
-    'V2="$(opencode2 models --standalone 2>/dev/null)"',
+    'V2="$(opencode models --standalone 2>/dev/null)"',
     "printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
   ];
   assert.equal(
@@ -853,7 +852,7 @@ test('a prefix grep that reads another listing does not count', () => {
 
 test('a backslash-newline pair joins two words with nothing in between', () => {
   const continued = [
-    'V2=$(opencode2 models --standalone 2>/dev/null)',
+    'V2=$(opencode models --standalone 2>/dev/null)',
     'echo x\\',
     "#y; printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
   ];
@@ -862,7 +861,7 @@ test('a backslash-newline pair joins two words with nothing in between', () => {
   assert.deepEqual(
     active,
     [
-      'V2=$(opencode2 models --standalone 2>/dev/null)',
+      'V2=$(opencode models --standalone 2>/dev/null)',
       "echo x#y; printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
     ],
     'a `#` joined onto the previous word is not a comment, so its line stays active',
@@ -875,7 +874,7 @@ test('a backslash-newline pair joins two words with nothing in between', () => {
 
 test('a continued assignment is stripped after its lines are joined', () => {
   const continued = [
-    'V2=$(opencode2 models --standalone 2>/dev/null) \\',
+    'V2=$(opencode models --standalone 2>/dev/null) \\',
     '#suffix',
     "printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
   ];
@@ -884,7 +883,7 @@ test('a continued assignment is stripped after its lines are joined', () => {
   assert.deepEqual(
     active,
     [
-      'V2=$(opencode2 models --standalone 2>/dev/null)',
+      'V2=$(opencode models --standalone 2>/dev/null)',
       "printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
     ],
     'a comment on the continued line must not be read as the start of a physical line',
@@ -902,12 +901,12 @@ test('a continued assignment is stripped after its lines are joined', () => {
 
 test('unquotedListingCommands flags prose forms and accepts quoted or fenced ones', () => {
   assert.deepEqual(
-    unquotedListingCommands('Run opencode2 models --standalone first.').map((hit) => hit.lineNumber),
+    unquotedListingCommands('Run opencode models --standalone first.').map((hit) => hit.lineNumber),
     [1],
     'a prose listing command must be flagged',
   );
   assert.deepEqual(
-    unquotedListingCommands('Run `opencode2 models --standalone` first.'),
+    unquotedListingCommands('Run `opencode models --standalone` first.'),
     [],
     'an inline code span is the place for a prose command',
   );
@@ -925,7 +924,7 @@ test('unquotedListingCommands flags prose forms and accepts quoted or fenced one
 
 test('unprefixedListingNotes flags a note that omits what to look for', () => {
   assert.deepEqual(
-    unprefixedListingNotes('Confirm the provider in `opencode2 models --standalone` first.').map(
+    unprefixedListingNotes('Confirm the provider in `opencode models --standalone` first.').map(
       (hit) => hit.lineNumber,
     ),
     [1],
@@ -933,18 +932,18 @@ test('unprefixedListingNotes flags a note that omits what to look for', () => {
   );
   assert.deepEqual(
     unprefixedListingNotes(
-      'Confirm that `opencode2 models --standalone` lists ids under the `<provider>/` prefix first.',
+      'Confirm that `opencode models --standalone` lists ids under the `<provider>/` prefix first.',
     ),
     [],
     'a note naming the prefix must pass',
   );
   assert.deepEqual(
-    unprefixedListingNotes('Once the provider is confirmed in `opencode2 models --standalone`.'),
-    [{ lineNumber: 1, text: 'Once the provider is confirmed in `opencode2 models --standalone`' }],
+    unprefixedListingNotes('Once the provider is confirmed in `opencode models --standalone`.'),
+    [{ lineNumber: 1, text: 'Once the provider is confirmed in `opencode models --standalone`' }],
     'the clause text is reported so the reader can find it',
   );
   assert.deepEqual(
-    unprefixedListingNotes('Confirming the provider in `opencode2 models --standalone` first.').map(
+    unprefixedListingNotes('Confirming the provider in `opencode models --standalone` first.').map(
       (hit) => hit.lineNumber,
     ),
     [1],
@@ -952,13 +951,13 @@ test('unprefixedListingNotes flags a note that omits what to look for', () => {
   );
   assert.deepEqual(
     unprefixedListingNotes(
-      '`jq -r .x | grep y` once the provider is confirmed in `opencode2 models --standalone`.',
+      '`jq -r .x | grep y` once the provider is confirmed in `opencode models --standalone`.',
     ).map((hit) => hit.lineNumber),
     [1],
     'a grep in an unrelated span must not clear the note',
   );
   assert.deepEqual(
-    unprefixedListingNotes("`opencode2 models --standalone | grep '^llmgateway/'` confirms it."),
+    unprefixedListingNotes("`opencode models --standalone | grep '^llmgateway/'` confirms it."),
     [],
     'a span holding the filtered listing is the check itself',
   );
@@ -996,6 +995,6 @@ test('a note that sends a reader to the standalone listing names the prefix', ()
   assert.equal(
     offenders.join('\n'),
     '',
-    `a note that sends a reader to "opencode2 models --standalone" must name the <provider>/ prefix the listing prints, but these do not:\n${offenders.join('\n')}`,
+    `a note that sends a reader to "opencode models --standalone" must name the <provider>/ prefix the listing prints, but these do not:\n${offenders.join('\n')}`,
   );
 });

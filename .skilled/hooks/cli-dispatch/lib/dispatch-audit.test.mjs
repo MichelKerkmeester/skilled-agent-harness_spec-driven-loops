@@ -669,7 +669,8 @@ describe('executorSkill', () => {
       ['codex', 'cli-codex'],
       ['cli-codex', 'cli-codex'],
       ['opencode', 'cli-opencode'],
-      ['opencode2', 'cli-opencode'],
+      // Any `opencode<digits>` basename stays the OpenCode executor, so a renamed launcher is audited.
+      ['opencode9', 'cli-opencode'],
       ['cli-opencode', 'cli-opencode'],
       ['devin', 'cli-devin'],
       ['pi', 'cli-pi'],

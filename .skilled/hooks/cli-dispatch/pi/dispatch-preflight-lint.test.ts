@@ -407,7 +407,7 @@ describe('Pi reset forms across executor aliases', () => {
     ['claude -p "task"', 'not claude, use cli-claude-code', true],
     ['codex exec "task"', 'not codex, use cli-codex', true],
     ['opencode run "task"', 'not opencode, use cli-opencode', true],
-    ['opencode run "task"', 'not opencode2, use cli-opencode', true],
+    ['opencode run "task"', 'not opencode9, use cli-opencode', true],
     ['devin -p "task"', 'not devin, use cli-devin', true],
     ['devin -p "task"', 'not Devin, use cli-devin', true],
     ['pi -p "task"', 'not pi, use cli-pi', true],
@@ -427,7 +427,7 @@ describe('Pi next-sentence retraction across aliases', () => {
   it.each([
     ['claude -p "task"', 'Use cli-claude-code. Never use claude.', true],
     ['codex exec "task"', 'Use cli-codex. Avoid codex.', true],
-    ['opencode run "task"', 'Use cli-opencode. Skip opencode2.', true],
+    ['opencode run "task"', 'Use cli-opencode. Skip opencode9.', true],
     ['cursor-agent -p "task"', 'Use cli-cursor. Never use cursor-agent.', true],
     ['devin -p "task"', 'Use cli-devin. Never use codex.', false],
   ])('%s', (command, rawText, expected) => {

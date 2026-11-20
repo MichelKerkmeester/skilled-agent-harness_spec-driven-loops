@@ -51,7 +51,7 @@ const EXECUTOR_NAME_SOURCE = '(?:cli-[\\w-]+|cursor-agent|opencode|claude|codex|
 // The only sentences that both refuse and still authorize: `not <other>, use <executor>` and
 // `not <other> but <executor>`, matched whole so a further clause or list item refuses again.
 // The refused name is any single word, because the registry below decides which words are
-// executor spellings (`opencode2`, `cli-jev`) and which are not.
+// executor spellings (a numbered `opencode<digits>` launcher, `cli-jev`) and which are not.
 const RESET_FORM_PATTERN = new RegExp(`^not\\s+(\\S+)\\s*(?:,\\s*use\\s+|but\\s+)(\\S.*)$`, 'i');
 // A mention authorizes the name its token ends with: a `/deep:` phrase ends with the `cli-*`
 // its `--executor` value names.
