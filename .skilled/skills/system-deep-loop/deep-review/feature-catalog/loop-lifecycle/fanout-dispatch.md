@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "strongest-restriction verdict"
   - "multi-executor review"
-version: 1.11.8.0
+version: 1.11.9.0
 ---
 
 # Fan-out loop dispatch
@@ -26,8 +26,12 @@ original `resolveArtifactRoot` command — zero behavior change for single-execu
 
 **`step_fanout_spawn`** (`skip_when: config.fanout is absent`) spawns CLI lineages via
 `fanout-run.cjs` (pool-capped headless subprocesses) with per-lineage isolated artifact dirs.
-Its first sub-step, `step_fanout_root_config`, writes the root config from `step_create_config`'s
-template and the fan-out matrix before any lineage spawns. A lineage whose kind is `native` is
+Its first sub-step, `step_fanout_scope_discovery`, runs `step_scope_discovery`'s resolve rule once
+at the root and writes the files to `fanout-review-scope.txt`. The next, `step_fanout_root_config`,
+writes the root config from `step_create_config`'s template, that scope as `reviewScopeFiles` and
+the fan-out matrix before any lineage spawns. `fanout-run.cjs --review-scope-file` validates the
+list, binds it in each lineage as `review_scope_file` and writes it into each lineage config, so
+the terminal scope gate inside every lineage reads the run's scope rather than an empty one. A lineage whose kind is `native` is
 refused before any lineage spawns, because OpenCode 2 `run` cannot start the registered
 `deep/review` command that adapter needed; `native` runs only as the single executor. When
 complete, control jumps directly to `phase_synthesis`, skipping `phase_init` and `phase_main_loop`.

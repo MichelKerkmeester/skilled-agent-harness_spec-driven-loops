@@ -262,7 +262,8 @@ workflow:
       first fan-out step otherwise, before any lineage command exists, so this step shows
       the commands first. Run `mktemp -d` and bind preview_input_dir to the directory it
       prints. Write {review_focus} verbatim to {preview_input_dir}/fanout-review-focus.txt,
-      {review_target} verbatim to {preview_input_dir}/fanout-review-target.txt and
+      {review_target} verbatim to {preview_input_dir}/fanout-review-target.txt, an empty
+      {preview_input_dir}/fanout-review-scope.txt (empty means no seeded scope) and
       {config.fanout_json} verbatim to {preview_input_dir}/fanout-config.json with the
       file-write tool, never through a shell, under the same rules step_fanout_spawn
       states, so nothing lands in {artifact_dir}. The command is step_fanout_spawn_cli's
@@ -285,6 +286,7 @@ workflow:
         --review-focus-file "{preview_input_dir}/fanout-review-focus.txt" \
         --review-target-file "{preview_input_dir}/fanout-review-target.txt" \
         --review-target-type {review_target_type} \
+        --review-scope-file "{preview_input_dir}/fanout-review-scope.txt" \
         --fanout-config-json-file "{preview_input_dir}/fanout-config.json" \
         --base-artifact-dir {artifact_dir} \
         --convergence-threshold {convergence_threshold} \
@@ -409,6 +411,19 @@ workflow:
       phase_main_loop entirely (those are the single-executor path). The merge step in
       phase_synthesis will consolidate results across all lineages.
     sub_steps:
+      step_fanout_scope_discovery:
+        description: "Discover the review scope once at the fan-out root, before the root config and any lineage"
+        instructions: |
+          Fan-out never reaches phase_init, so step_scope_discovery would never run at the
+          root, and the terminal scope gate inside each lineage would read an empty scope.
+          Run step_scope_discovery's resolve rule for {review_target_type} here and bind
+          review_scope_files to the repo-relative files it sets. Write them, one per line in
+          order, to {artifact_dir}/fanout-review-scope.txt with the file-write tool, never
+          through a shell. Write an empty file when discovery finds no file; the runner reads
+          an empty file as no seeded scope. fanout-run.cjs validates every line, hands the list
+          to each lineage as review_scope_file and writes it into each lineage config.
+        outputs:
+          - review_scope_files: "The discovered files, also written to {artifact_dir}/fanout-review-scope.txt"
       step_fanout_root_config:
         description: "Write the root config before any lineage spawns"
         dry_run_boundary: "state-mutation"
@@ -420,7 +435,8 @@ workflow:
           here. When lineage_mode is not restart and {state_paths.config} already holds a
           non-empty sessionId, keep sessionId, parentSessionId, lineageMode, generation and
           createdAt, so a rerun of the same fan-out stays in its session and generation.
-          fanout-run.cjs never reads this file; it reads each lineage's own config.
+          fanout-run.cjs reads the lineage values below from this file and copies them into
+          each lineage's own config.
         template: .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json
         session_id_init: "{session_id} when bound, else {ISO_8601_NOW}"
         lineage_values:
@@ -431,7 +447,7 @@ workflow:
         populate:
           reviewDimensions: ["correctness", "security", "traceability", "maintainability"]
           reviewFocus: "{review_focus} on one line, or null when it is empty"
-          reviewScopeFiles: []
+          reviewScopeFiles: "{review_scope_files}"
           resource_map_present: "true when {spec_folder}/resource-map.md exists, else false"
           fanout: "{config.fanout_json}"
         output: "{state_paths.config}"
@@ -445,6 +461,7 @@ workflow:
             --review-focus-file "{artifact_dir}/fanout-review-focus.txt" \
             --review-target-file "{artifact_dir}/fanout-review-target.txt" \
             --review-target-type {review_target_type} \
+            --review-scope-file "{artifact_dir}/fanout-review-scope.txt" \
             --fanout-config-json-file "{artifact_dir}/fanout-config.json" \
             --base-artifact-dir {artifact_dir} \
             --convergence-threshold {convergence_threshold} \
@@ -712,6 +729,7 @@ workflow:
 
       step_scope_discovery:
         action: "Resolve review target to a concrete file list based on target type"
+        pre_bound: "When review_scope_file is bound, as a fan-out lineage's setup binds it, set review_scope_files to that file's lines in order and skip the resolve rules below: the fan-out root already discovered the scope every lineage shares."
         resolve:
           spec-folder: |
             1. Inspect spec.md, plan.md, tasks.md, acceptance-criteria.md, implementation-summary.md, and goal-file-manifest.txt when present
