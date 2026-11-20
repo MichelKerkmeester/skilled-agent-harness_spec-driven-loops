@@ -343,3 +343,153 @@ describe('dispatch-iteration Claude permission mode', () => {
     });
   }
 });
+
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Dispatch Iteration Sandbox Mode Per Executor Kind
+// ───────────────────────────────────────────────────────────────────
+//
+// A requested read-only dispatch must reach the child as read-only, never be
+// widened to a write-capable mode, while an unset mode keeps the write-capable
+// default the iteration needs to record its own files. Each case asserts the
+// argv a recorder shim on PATH actually received, inside a throwaway git
+// repository so the write-containment pass never scans a real checkout.
+
+describe('dispatch-iteration sandbox mode per executor kind', () => {
+  const tempDirs: string[] = [];
+
+  afterEach(() => {
+    for (const dir of tempDirs.splice(0)) {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  type SandboxFixture = { root: string; repo: string; recordPath: string };
+
+  // The shim answers the version probes the builders run, then records the argv of
+  // the real dispatch and exits without producing an iteration.
+  function createSandboxFixture(command: string, version: string): SandboxFixture {
+    const root = mkdtempSync(join(tmpdir(), 'dispatch-sandbox-'));
+    tempDirs.push(root);
+    const repo = join(root, 'repo');
+    const binDir = join(root, 'bin');
+    mkdirSync(binDir);
+    mkdirSync(join(repo, '.skilled', 'agents'), { recursive: true });
+    mkdirSync(join(repo, '.dsh', 'patches'), { recursive: true });
+    mkdirSync(join(repo, 'packet'));
+    writeFileSync(join(repo, '.skilled', 'agents', 'deep-research.md'), 'persona\n', 'utf8');
+    for (const patch of [
+      'route-llmgateway-deepseek.patch.yml',
+      'lineage.patch.yml',
+      'guards.patch.yml',
+    ]) {
+      writeFileSync(join(repo, '.dsh', 'patches', patch), '', 'utf8');
+    }
+    writeFileSync(join(root, 'prompt.md'), 'fixture prompt\n', 'utf8');
+    writeFileSync(join(root, 'state.jsonl'), '', 'utf8');
+    spawnSync('git', ['init', '-q', repo], { encoding: 'utf8' });
+    const recordPath = join(root, 'record.json');
+    const shimPath = join(binDir, command);
+    writeFileSync(
+      shimPath,
+      '#!/usr/bin/env node\n'
+        + "const fs = require('node:fs');\n"
+        + 'const argv = process.argv.slice(2);\n'
+        + "if (argv[0] === '--version') {\n"
+        + `  process.stdout.write(${JSON.stringify(version)} + '\\n');\n`
+        + '  process.exit(0);\n'
+        + '}\n'
+        + `fs.writeFileSync(${JSON.stringify(recordPath)}, JSON.stringify(argv));\n`
+        + 'process.exit(0);\n',
+      'utf8',
+    );
+    chmodSync(shimPath, 0o755);
+    return { root, repo, recordPath };
+  }
+
+  function dispatchArgv(
+    executor: string,
+    command: string,
+    version: string,
+    sandboxMode: string,
+    extraFlags: string[] = [],
+  ): { status: number | null; stderr: string; argv: string[] | null } {
+    const fixture = createSandboxFixture(command, version);
+    const result = spawnSync(process.execPath, [
+      SCRIPT,
+      '--executor', executor,
+      '--loop-type', 'research',
+      '--repo-root', fixture.repo,
+      '--prompt-file', join(fixture.root, 'prompt.md'),
+      '--state-log', join(fixture.root, 'state.jsonl'),
+      '--packet-dir', join(fixture.repo, 'packet'),
+      '--artifact-dir', join(fixture.repo, 'packet'),
+      '--iteration', '1',
+      '--generation', '1',
+      '--session-id', 's',
+      '--model', 'null',
+      '--reasoning-effort', 'null',
+      '--service-tier', 'null',
+      '--sandbox-mode', sandboxMode,
+      '--timeout-seconds', '60',
+      ...extraFlags,
+    ], {
+      cwd: fixture.repo,
+      encoding: 'utf8',
+      timeout: 60_000,
+      env: {
+        PATH: `${join(fixture.root, 'bin')}:${process.env.PATH}`,
+        HOME: fixture.root,
+        TMPDIR: process.env.TMPDIR,
+      },
+    });
+    const argv = existsSync(fixture.recordPath)
+      ? JSON.parse(readFileSync(fixture.recordPath, 'utf8')) as string[]
+      : null;
+    return { status: result.status, stderr: result.stderr ?? '', argv };
+  }
+
+  function flagValue(argv: string[] | null, flag: string): string | undefined {
+    expect(argv).not.toBeNull();
+    const list = argv as string[];
+    const index = list.indexOf(flag);
+    return index === -1 ? undefined : list[index + 1];
+  }
+
+  describe.skipIf(detectFromAncestry('cli-codex'))('cli-codex', () => {
+    it('hands a requested read-only sandbox to codex', () => {
+      const run = dispatchArgv('cli-codex', 'codex', 'codex 0.0.0', 'read-only');
+      expect(flagValue(run.argv, '--sandbox')).toBe('read-only');
+    });
+
+    it('keeps workspace-write when no sandbox mode is set', () => {
+      const run = dispatchArgv('cli-codex', 'codex', 'codex 0.0.0', 'null');
+      expect(flagValue(run.argv, '--sandbox')).toBe('workspace-write');
+    });
+  });
+
+  describe.skipIf(detectFromAncestry('cli-devin'))('cli-devin', () => {
+    it('runs a requested read-only lineage under the non-writing permission mode', () => {
+      const run = dispatchArgv('cli-devin', 'devin', 'devin 0.0.0', 'read-only');
+      expect(flagValue(run.argv, '--permission-mode')).toBe('auto');
+    });
+
+    it('keeps the write-approving permission mode when no sandbox mode is set', () => {
+      const run = dispatchArgv('cli-devin', 'devin', 'devin 0.0.0', 'null');
+      expect(flagValue(run.argv, '--permission-mode')).toBe('dangerous');
+    });
+  });
+
+  describe.skipIf(detectFromAncestry('cli-deepseek-harness'))('cli-deepseek-harness', () => {
+    const harnessFlags = ['--spec-folder', 'specs/fixture'];
+
+    it('hands a requested read-only permission mode to the harness', () => {
+      const run = dispatchArgv('cli-deepseek-harness', 'dsh', '0.2.2-rc.3', 'read-only', harnessFlags);
+      expect(flagValue(run.argv, '--permission-mode')).toBe('read-only');
+    });
+
+    it('keeps workspace-write when no sandbox mode is set', () => {
+      const run = dispatchArgv('cli-deepseek-harness', 'dsh', '0.2.2-rc.3', 'null', harnessFlags);
+      expect(flagValue(run.argv, '--permission-mode')).toBe('workspace-write');
+    });
+  });
+});

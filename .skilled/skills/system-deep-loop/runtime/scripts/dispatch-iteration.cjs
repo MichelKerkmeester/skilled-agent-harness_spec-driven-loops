@@ -415,10 +415,11 @@ function runLineageBuiltin(context) {
   const kind = context.executorKind;
   const model = nullable(context.model);
   const timeoutSeconds = context.timeoutSeconds;
-  // The iteration must write its own iteration file, delta and state record, so the leaf
-  // runs workspace-write; the builder maps that to each CLI's real write-permitting
-  // headless flags.
-  const sandboxMode = 'workspace-write';
+  // The iteration writes its own iteration file, delta and state record, so an unset mode
+  // resolves to workspace-write. An explicit read-only reaches the builder unchanged, which
+  // maps it to each CLI's read-only surface: the iteration then fails at the artifact gate
+  // instead of silently gaining write access.
+  const sandboxMode = resolveSandboxMode(context.sandboxMode);
   const reasoningEffort = kind === 'cli-pi' ? context.reasoningEffort : null;
   const lineage = { kind, model, sandboxMode };
   if (kind === 'cli-pi') {
@@ -533,9 +534,9 @@ function runDeepseekHarness(context) {
   const kind = 'cli-deepseek-harness';
   const model = nullable(context.model);
   const timeoutSeconds = context.timeoutSeconds;
-  // The iteration must write its own iteration file, delta and state record,
-  // so the leaf runs workspace-write.
-  const sandboxMode = 'workspace-write';
+  // The iteration writes its own iteration file, delta and state record, so an unset mode
+  // resolves to workspace-write. An explicit read-only is passed through, never widened.
+  const sandboxMode = resolveSandboxMode(context.sandboxMode);
   const reasoningEffort = context.reasoningEffort;
   const lineage = { kind, model, sandboxMode, reasoningEffort };
   const resolvedSandbox = resolveSandboxMode(sandboxMode);
@@ -899,7 +900,7 @@ function runCodex(context) {
     configDir: null,
     reasoningEffort: context.reasoningEffort,
     serviceTier: context.serviceTier,
-    sandboxMode: 'workspace-write',
+    sandboxMode: resolveSandboxMode(context.sandboxMode),
     timeoutSeconds: context.timeoutSeconds,
     governor: null,
   };
@@ -915,8 +916,9 @@ function runCodex(context) {
 
   const promptBody = readPrompt(context);
   // codex reads the iteration prompt from stdin via the trailing '-'. The iteration must
-  // WRITE its own iteration file, delta and state record, so the sandbox is
-  // workspace-write. Read-only would block those required writes. approval_policy=never
+  // WRITE its own iteration file, delta and state record, so an unset sandbox resolves to
+  // workspace-write. An explicit read-only is forwarded as read-only and the iteration
+  // fails at the artifact gate rather than gaining write access. approval_policy=never
   // keeps the run non-interactive.
   const args = ['exec'];
   if (executor.model) {
