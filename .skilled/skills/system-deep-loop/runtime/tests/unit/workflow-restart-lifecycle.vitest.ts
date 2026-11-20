@@ -1459,3 +1459,41 @@ describe('expansive frontier graph mirror', () => {
     expect(String(block.stdout)).toContain('F-1-001');
   });
 });
+
+// A fan-out lineage owns its artifact directory, so the single-loop resource-map
+// command must carry the reducer artifact binding: without it the reducer resolves
+// the root config, which a lineage run never writes, and fails. A run that is not a
+// fan-out lineage binds the argument empty and renders the command as before.
+describe('single-loop resource map artifact dir', () => {
+  function resourceMapCommand(file: string): string {
+    const step = phaseStep(fileText(file), 'step_emit_resource_map');
+    const absentAt = step.indexOf('if_absent:');
+    const scope = absentAt === -1 ? step : step.slice(absentAt);
+    return /command: "([^"]+)"/u.exec(scope)?.[1] ?? '';
+  }
+
+  function reducerArgBinding(file: string): { lineage: string; root: string } {
+    const step = topLevelStep(fileText(file), 'step_bind_reducer_artifact_arg');
+    const values = [...step.matchAll(/reducer_artifact_arg: "([^"]*)"/gu)].map((match) => match[1]);
+    return { lineage: values[0] ?? '', root: values[1] ?? '' };
+  }
+
+  for (const { label, file } of FILES) {
+    it(`${label} renders the lineage artifact dir on a fan-out lineage and nothing otherwise`, () => {
+      const command = resourceMapCommand(file);
+      expect(command).toContain('--emit-resource-map');
+      const binding = reducerArgBinding(file);
+      const lineageDir = '/packet/lineages/opus';
+
+      const onLineage = render(command, {
+        '{spec_folder}': 'specs/x',
+        '{reducer_artifact_arg}': render(binding.lineage, { '{artifact_dir}': lineageDir }),
+      });
+      expect(onLineage).toContain(`--artifact-dir ${lineageDir}`);
+
+      const onRoot = render(command, { '{spec_folder}': 'specs/x', '{reducer_artifact_arg}': binding.root });
+      expect(onRoot).not.toContain('--artifact-dir');
+      expect(onRoot).not.toContain('{');
+    });
+  }
+});

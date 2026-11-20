@@ -2152,7 +2152,7 @@ workflow:
             - "{state_paths.delta_dir}/iter-*.jsonl"
             - "{state_paths.packet_dir}/lineages/*/deltas/iter-*.jsonl"
         if_absent:
-          command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+          command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --emit-resource-map"
           read:
             - "{state_paths.config}"
             - "{state_paths.delta_dir}/iter-*.jsonl"
