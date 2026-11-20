@@ -100,7 +100,7 @@ test('readInventory reports an unlisted file, a missing manifest file and a brid
     fs.writeFileSync(
       path.join(tempDir, 'tests', 'plugin-inventory.json'),
       JSON.stringify({
-        nativeDual: [
+        selfRegistered: [
           { file: 'gone.js', reason: 'x' },
           { file: 'both.js', reason: 'x' },
         ],
@@ -118,9 +118,9 @@ test('readInventory reports an unlisted file, a missing manifest file and a brid
 
     const inventory = readInventory(tempDir);
     const expected = [
-      'probe.js is not bridged and not listed as a native-dual exception',
-      'gone.js is listed as native-dual but has no file',
-      'both.js is bridged and also listed as native-dual',
+      'probe.js is not bridged and not listed as a self-registered exception',
+      'gone.js is listed as self-registered but has no file',
+      'both.js is bridged and also listed as self-registered',
     ];
 
     assert.equal(inventory.problems.length, 3);

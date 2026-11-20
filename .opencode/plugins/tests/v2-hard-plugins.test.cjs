@@ -348,18 +348,18 @@ for (const pluginCase of PLUGINS) {
   });
 }
 
-test('every native-dual exception has a hard-plugin case', () => {
-  for (const stem of readInventory().nativeDual) {
+test('every self-registered exception has a hard-plugin case', () => {
+  for (const stem of readInventory().selfRegistered) {
     assert.ok(
       PLUGINS.some((pluginCase) => pluginCase.name === stem),
-      stem + ' is a native-dual exception without a v2 registration case',
+      stem + ' is a self-registered exception without a v2 registration case',
     );
   }
 });
 
 test('every hard-plugin case names a plugin in the inventory', () => {
   const inventory = readInventory();
-  const knownPlugins = [...inventory.bridged, ...inventory.nativeDual];
+  const knownPlugins = [...inventory.bridged, ...inventory.selfRegistered];
   for (const pluginCase of PLUGINS) {
     assert.ok(
       knownPlugins.includes(pluginCase.name),
