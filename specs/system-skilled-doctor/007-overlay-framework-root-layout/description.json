@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout",
   "description": "Move a consumer's overlays out of the vendored tree into a sibling overlays folder with framework and root source roots",
   "keywords": [
@@ -14,13 +15,14 @@
     "source",
     "roots"
   ],
-  "lastUpdated": "2026-11-20T09:31:32.637Z",
+  "lastUpdated": "2026-11-20T12:31:34.953Z",
   "specId": "007",
   "folderSlug": "overlay-framework-root-layout",
   "parentChain": [
     "system-skilled-doctor"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-11-26_13-31__merged-phases-001-003-into-main-as.md"
+  ]
 }

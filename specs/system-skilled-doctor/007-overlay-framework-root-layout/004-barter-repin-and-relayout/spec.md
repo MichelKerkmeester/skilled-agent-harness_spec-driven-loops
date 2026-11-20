@@ -41,7 +41,7 @@ contextType: "implementation"
 
 This is **Phase 4** of the parent packet that moves a consumer's overlays out of the vendored tree into a sibling folder with framework and root source roots. It merges the earlier re-pin phase and the earlier relayout phase into one.
 
-Target Skilled commit: <C>
+Target Skilled commit: 063daaee2c19a7a8c9a0fb67f84903894bc08043
 
 `<C>` stays a placeholder until phase 3 commits phases 1-3 and writes the 40-hex id into the line above. Do not start this phase while that line still reads `<C>`.
 

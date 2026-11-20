@@ -39,7 +39,7 @@
       "consumers"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phases 001 and 002 every engine consumer gets a new default naming rule on its next re-pin, but no doc tells them, and the operator-facing text still states the old rule and still refuses a folder beside the tree",
     "created_at": "2026-11-20T09:32:56Z",
-    "last_save_at": "2026-11-20T12:28:10.010Z",
+    "last_save_at": "2026-11-20T12:32:08.691Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d57db8375c99a5f545ae6c2d752c59588bcd3f7a650b869cc3cecc88211e255c",
+    "source_fingerprint": "sha256:2402cf035eefe6c89d4214f75792132ce0b987749045562bf63078f3e0f38a1e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cba7993665c1841f493d184f016876ca2cdeee9f35870667b94cb427f9ab3e44",
       "plan.md": "5528c97deec628e5ab6b04af84bb3cc77b98b2316cef92031bb71367caf2a1da",
-      "tasks.md": "be2439a12d6b4364968818f5e709d2d9ad81da39d1c54863c03996397d60d024",
-      "implementation-summary.md": "20fe45943f90af84d7c67c5f2769d7c989d1d02ce0bdca8ad5ba60eabb72bac0"
+      "tasks.md": "d6c61e3f61a4ed24393f9c87909c188358022495bbfe7330251d7cc7d423057f",
+      "implementation-summary.md": "30a36b067d7cdeaf059ef243c8288ee36204338c441cc99a375e5e78cee5c819"
     },
     "last_active_at": null
   }

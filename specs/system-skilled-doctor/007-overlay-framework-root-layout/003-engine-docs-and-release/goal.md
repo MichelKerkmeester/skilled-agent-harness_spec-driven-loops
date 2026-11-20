@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-003-engine-docs-and-release"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -65,7 +65,7 @@ Frozen choices. Changing one is an amendment.
 - [x] In Skilled, `rg -c 'skilled-overlays/skilled|belongs at skilled|-> skilled/|source\\?":\\?"skilled/' .skilled/skills/system-skilled-doctor/manual-testing-playbook` prints nothing, and `rg -c 'SKD-013' .skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md` prints `4`.
 - [x] In Skilled, `sed -n 5p .skilled/skills/system-skilled-doctor/SKILL.md` prints `version: 1.2.0.0`, and `awk '/^# v1.2.0.0/{f=1;next} /^## /{exit} f' .skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md` prints an intro that names `framework/`, `root/` and `/doctor:overlay apply --relayout`.
 - [x] In Skilled, `node --test .skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs` prints `# fail 0`, and `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0.
-- [ ] In Skilled, `rg -n 'Target Skilled commit: [0-9a-f]{40}' specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md` prints one line, and `git show --name-only --format= <that id>` lists `.skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md`.
+- [x] In Skilled, `rg -n 'Target Skilled commit: [0-9a-f]{40}' specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md` prints one line, and `git show --name-only --format= <that id>` lists `.skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -84,7 +84,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase goal authored | Done | `/create:goal ... child :auto` from `goal-phase-child-template.md`, sourced from this phase's `spec.md`, `plan.md` and `tasks.md` |
 | T001-T046 | Done | Contract 9/9, `route-validate` exit 0, the residual searches, every doc-task verify and all six scenarios passed (`scratch/evidence/`) |
-| T047-T048 | Pending | The docs commit, then the merged `main` commit on phase 004's `Target Skilled commit:` line |
+| T047-T048 | Done | Docs committed as `d42bafc`, merged into `main` as `063daaee2c1`, and that id written on phase 004's `Target Skilled commit:` line |
 
 ### Deviations and findings
 

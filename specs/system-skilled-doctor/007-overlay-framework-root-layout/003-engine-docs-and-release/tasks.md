@@ -100,8 +100,8 @@ The new rule, as phase 002 ships it: destination `.skilled/X` has its source at 
 - [x] T044 Run scenario `SKD-009` on a `mktemp -d` tree (`$O/relayout-moves-sources.md`). Verify: step 7 prints `belongs at framework/skills/hub/bundle` and `RESULT: PASSED`, and step 14 prints `RESULT: PASSED` with no `LAYOUT` line. Evidence: PASS.
 - [x] T045 Run scenario `SKD-010` on a `mktemp -d` tree (`$O/status-audit-lists-unowned-drift.md`). Verify: every step prints the expected signals the file names and plain status prints no `LAYOUT` line. Evidence: PASS after the quoting fix.
 - [x] T046 Run scenario `SKD-013` on a `mktemp -d` tree (`$O/sibling-folder-relayout.md`). Verify: the first status prints 20 `LAYOUT` lines plus the overflow line and `RESULT: PASSED`, `status --json` lists 21 `offLayout` items, and the last status prints `RESULT: PASSED`, no line starting `LAYOUT`, and exits 0. Evidence: PASS: 20 LAYOUT lines, the overflow line, 21 `offLayout` items, a clean final status.
-- [ ] T047 Commit the docs as the last commit of phases 1-3 through `sk-git` (Skilled checkout, files in the spec Files to Change table). Verify: `git log -1 --format=%H` prints a 40-hex id, and `git status --porcelain -- $D $S` prints nothing.
-- [ ] T048 Replace the slot line `Target Skilled commit: <C>` with the id T047 printed (`specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md`). Verify: `rg -n 'Target Skilled commit: [0-9a-f]{40}' specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md` prints one line with that id.
+- [x] T047 Commit the docs as the last commit of phases 1-3 through `sk-git` (Skilled checkout, files in the spec Files to Change table). Verify: `git log -1 --format=%H` prints a 40-hex id, and `git status --porcelain -- $D $S` prints nothing. Evidence: committed as `d42bafc` on the worktree branch, merged into `main` as `063daaee2c1`; `git status --porcelain -- .skilled/commands/doctor .skilled/skills/system-skilled-doctor` on `main` prints nothing.
+- [x] T048 Replace the slot line `Target Skilled commit: <C>` with the id T047 printed (`specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md`). Verify: `rg -n 'Target Skilled commit: [0-9a-f]{40}' specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md` prints one line with that id. Evidence: the line holds the merged `main` commit `063daaee2c19a7a8c9a0fb67f84903894bc08043`, the pin the operator named; `git show -m --first-parent --name-only --format= 063daaee2c1` lists `changelog/v1.2.0.0.md`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -110,10 +110,10 @@ The new rule, as phase 002 ships it: destination `.skilled/X` has its source at 
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
-- [ ] Phase 4's spec names the commit id, and `git -C <Skilled> log -1 --format=%H` printed that id right after T047
+- [x] Phase 4's spec names the commit id, and `git -C <Skilled> log -1 --format=%H` printed that id right after T047
 <!-- /ANCHOR:completion -->
 
 ---

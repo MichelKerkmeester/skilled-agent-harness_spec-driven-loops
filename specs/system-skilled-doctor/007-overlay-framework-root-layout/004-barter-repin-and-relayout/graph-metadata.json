@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Barter's vendored tree is pinned to Skilled `b0a3b9f2edbf0dde902929b69c6db5afd051f418` (`BO/overlay-manifest.json:6`), whose engine refuses any `overlayDir` that climbs out of the tree (`names a folder outside the tree root`, vendored `overlay-engine.cjs:443`)",
     "created_at": "2026-11-20T10:11:41Z",
-    "last_save_at": "2026-11-20T10:39:10.163Z",
+    "last_save_at": "2026-11-20T12:32:11.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:28fc082e29bebcce8b09d739292091974aef5a7a7b6edcbb0140e519c654673e",
+    "source_fingerprint": "sha256:e9656957b9ef316ffbfd87aec93968955fbef527b4476a2e1c1da5d0d89566f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e81efaedb00200565fb723cd1baf930fee67438c32b1c02a7d82c0bf8dc0f0a9",
+      "spec.md": "c32ffe47528775057522d32e7645ae831c28ee3c84f0c0bddec9c4efaa733cd9",
       "plan.md": "bb1a6f950cddfac8ff19a790cc635a6087973ab12b242a09bbd5dcd6fd420ac8",
       "tasks.md": "2797eb1bfa6ce7bd10ba14bfd5a1ef25d1c50386d91695c3bfb58466af2f1167"
     },

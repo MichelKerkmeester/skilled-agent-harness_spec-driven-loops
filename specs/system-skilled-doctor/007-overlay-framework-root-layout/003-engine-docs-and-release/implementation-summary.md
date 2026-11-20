@@ -9,26 +9,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release"
-    last_updated_at: "2026-11-20T12:28:10Z"
+    last_updated_at: "2026-11-20T12:32:08Z"
     last_updated_by: "generate-context"
-    recent_action: "Documented the layout default and the release"
-    next_safe_action: "Start the merge into main"
+    recent_action: "Merged into main and recorded the pin"
+    next_safe_action: "Start phase 004 from an ai-speckit session"
     packet_purpose: "Purpose: A consumer who re-pins onto this engine reads, in the release note and the overlay reference, that the default changed, that nothing is refused, and that the one action is `/doctor:overlay apply --relayout` once."
     blockers: []
     key_files:
       - ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md"
     session_dedup:
-      fingerprint: "sha256:2b0bde859a26f36135de3f9205431d76605495f7ef59605fece4ecf968e27040"
+      fingerprint: "sha256:bb9b190ce71735e6cb0ebf879d20d5c4e529803c9afed20b76e1638ebead8d4b"
       session_id: "impl-003-engine-docs-and-release"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0bdae7d5-3bdf-4448-b239-f0e7616d298a"
-      workspace: "/Users/michelkerkmeester/worktrees/public/481-overlay-framework-root-layout"
-      savedAt: "2026-11-20T12:28:10Z"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-20T12:32:08Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
