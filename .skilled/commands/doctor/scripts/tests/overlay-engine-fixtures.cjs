@@ -24,7 +24,11 @@ const { spawnSync } = require('node:child_process');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const ENGINE = path.resolve(__dirname, '..', 'overlay-engine.cjs');
+// OVERLAY_ENGINE_UNDER_TEST points the suites at another copy of the engine, so a
+// new test can be shown to fail against the engine as it stood before a change.
+const ENGINE = process.env.OVERLAY_ENGINE_UNDER_TEST
+  ? path.resolve(process.env.OVERLAY_ENGINE_UNDER_TEST)
+  : path.resolve(__dirname, '..', 'overlay-engine.cjs');
 const DEFAULT_OVERLAY_FOLDER = 'skilled-overlays';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -94,10 +98,11 @@ function writeManifest(fixture) {
  * Run the engine and return its exit code and combined output.
  * @param {string[]} args Engine arguments.
  * @param {string} cwd Working folder for the run.
+ * @param {object} [env] Environment for the run; the test's own by default.
  * @returns {{code: number, output: string, stdout: string}}
  */
-function runEngine(args, cwd) {
-  const result = spawnSync(process.execPath, [ENGINE, ...args], { cwd, encoding: 'utf8' });
+function runEngine(args, cwd, env = process.env) {
+  const result = spawnSync(process.execPath, [ENGINE, ...args], { cwd, encoding: 'utf8', env });
   if (result.error) throw result.error;
   return {
     code: result.status,

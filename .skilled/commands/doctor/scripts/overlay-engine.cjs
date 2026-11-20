@@ -24,6 +24,8 @@
 //   node overlay-engine.cjs status [--root <tree>] [--json] [--audit]
 //     Read-only. One line per destination not in sync, then the full check.
 //     Exit 0 when everything is in sync, 1 when anything is not, 2 on error.
+//     --audit also reports the overlay folder's missing and rejected READMEs,
+//     which never change the result or the exit code.
 //   node overlay-engine.cjs apply [--root <tree>]
 //     Apply overlay edits, regenerate, verify. Exit 0, 1 on conflict, 2 on error.
 //   node overlay-engine.cjs apply --capture <path> [--root <tree>]
@@ -3848,6 +3850,8 @@ function commandStatus(ctx, options = {}) {
   const analysis = analyze(ctx, manifest, state);
   const check = runCheck(ctx, manifest, state, analysis.plans);
   const audit = options.isAudit ? auditVendoredTree(ctx, manifest) : null;
+  // The docs leg stays out of isInSync below: it reports, it never fails the run.
+  const docs = options.isAudit ? auditOverlayDocs(ctx, manifest) : null;
   const outOfSync = analysis.records.filter((record) => record.state !== 'in-sync');
   const stale = staleRootFiles(manifest);
   const offLayout = layoutMoves(manifest);
@@ -3875,6 +3879,7 @@ function commandStatus(ctx, options = {}) {
       check,
     };
     if (audit) report.audit = audit;
+    if (docs) report.docs = docs;
     console.log(JSON.stringify(report, null, 2));
     return isInSync ? EXIT_OK : EXIT_CONFLICT;
   }
@@ -3915,6 +3920,11 @@ function commandStatus(ctx, options = {}) {
     for (const finding of audit.findings) console.log(`AUDIT    ${finding.kind} ${finding.path}`);
     if (!audit.isAvailable) console.log('AUDIT    skipped: no upstream checkout at the pin');
     console.log(`audit=${audit.findings.length}`);
+  }
+  if (docs) {
+    for (const finding of docs.findings) console.log(docsFindingLine(finding));
+    if (docs.skipped) console.log(`DOCS     skipped: ${docs.skipped}`);
+    console.log(`docs=${docs.findings.length}`);
   }
   console.log(`checked=${check.checked} ok=${check.ok} miss=${check.miss}`);
   console.log(isInSync ? 'RESULT: PASSED' : 'RESULT: FAILED');
@@ -5957,6 +5967,20 @@ function adoptUnderLock(ctx, manifest, inputPath) {
 
   const isLive = pathExists(destinationPath);
   const hasSource = pathExists(sourcePath);
+  // A README that only documents the overlay folder would start shipping once an
+  // entry named it, so adopt leaves the choice to whoever wrote it.
+  const docOnly = hasSource ? documentationOnlyReadmesAt(manifest, source, sourcePath) : [];
+  if (docOnly.length > 0 && isFile(sourcePath)) {
+    return refuse(`${shownSource} is a documentation-only README, and adopting ${key} would make it the overlay ` +
+      'copy that ships; move it out of the way, or name it as a source in the manifest by hand if it should ship');
+  }
+  if (docOnly.length > 0) {
+    const more = docOnly.length > 1 ? ` and ${docOnly.length - 1} more` : '';
+    const them = docOnly.length > 1 ? 'them' : 'it';
+    return refuse(`adopting ${key} would make ${shownSource} a directory entry and ship the documentation-only ` +
+      `README ${ctx.overlayLabel}/${docOnly[0]}${more}; move ${them} out of the folder, ` +
+      `adopt again, then put ${them} back if ${them === 'it' ? 'it' : 'they'} should ship with the folder`);
+  }
   if (isLive && hasSource) return refuse(`both ${key} and ${shownSource} exist; keep one, then adopt again`);
   if (!isLive && !hasSource) return refuse(`nothing to adopt; create ${shownSource} first`);
 
@@ -6323,6 +6347,211 @@ function auditVendoredTree(ctx, manifest) {
   return { isAvailable: true, findings };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 18. OVERLAY FOLDER READMES
+//
+// Every folder of the overlay folder may carry a README.md that explains it.
+// Only a README the manifest reaches is overlay content; every other one is
+// documentation for whoever reads the overlay folder, and no command applies,
+// adopts or reports it. The docs leg of `status --audit` is the one place such
+// a file is read, and it is advisory: a missing or rejected README never
+// changes the status result, so an adopter with no READMEs keeps its exit.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const README_NAME = 'README.md';
+const SK_DOC_VALIDATOR = '.skilled/skills/sk-doc/scripts/validate_document.py';
+const VALIDATOR_MAX_BUFFER = 16 * 1024 * 1024;
+const DOCS_UNREADABLE_CODES = new Set(['ENOENT', 'ENOTDIR', 'EACCES', 'EPERM']);
+
+function manifestFolderPath(value) {
+  return path.posix.normalize(value).replace(/\/+$/, '');
+}
+
+/**
+ * Build the test for whether a README in the overlay folder ships. It ships
+ * when an entry names it as a copy the engine reads, when it sits inside a
+ * directory entry's folder, or when it sits on a path a skill-root entry's
+ * replace list names; nothing else in the overlay folder is ever applied.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {(relativePath: string) => boolean} Takes a path relative to the overlay folder.
+ */
+function readmeShipTest(manifest) {
+  const exact = new Set();
+  const folders = [];
+  for (const entry of manifest.overlays || []) {
+    // A marked-section entry reads its fragment and base as well as its source,
+    // so a README named by either is applied content too.
+    for (const field of ['source', 'fragment', 'base']) {
+      if (typeof entry[field] === 'string') exact.add(manifestFolderPath(entry[field]));
+    }
+    if (typeof entry.source !== 'string') continue;
+    const source = manifestFolderPath(entry.source);
+    if (entry.scope === 'directory') folders.push(source);
+    if (entry.scope === 'skill-root') {
+      for (const replaced of entry.replace || []) {
+        if (typeof replaced === 'string') folders.push(path.posix.join(source, manifestFolderPath(replaced)));
+      }
+    }
+  }
+  return (relativePath) => exact.has(relativePath) || isUnderAny(relativePath, folders);
+}
+
+/**
+ * List every folder the docs leg reads, in sorted order. The engine's own run
+ * folders, dot folders and node_modules hold no overlay content, and a link is
+ * never followed, so a loop or a link out of the folder cannot widen the walk.
+ * @param {string} overlayRoot The overlay folder.
+ * @returns {{relative: string, hasReadme: boolean}[]} `relative` is '' for the overlay folder itself.
+ */
+function overlayDocFolders(overlayRoot) {
+  const folders = [];
+  const pending = [''];
+  while (pending.length > 0) {
+    const relative = pending.pop();
+    const absolute = relative ? path.join(overlayRoot, ...relative.split('/')) : overlayRoot;
+    let dirents;
+    try {
+      dirents = fs.readdirSync(absolute, { withFileTypes: true });
+    } catch (error) {
+      // A folder removed or locked while the walk runs is left out: the leg is
+      // advisory, and a folder it cannot read must not fail a read-only run.
+      if (error && DOCS_UNREADABLE_CODES.has(error.code)) continue;
+      throw error;
+    }
+    // The name is compared exactly: a case-insensitive disk would also find readme.md.
+    folders.push({ relative, hasReadme: dirents.some((dirent) => dirent.name === README_NAME && dirent.isFile()) });
+    for (const dirent of dirents) {
+      if (!dirent.isDirectory() || dirent.name.startsWith('.') || dirent.name === 'node_modules') continue;
+      if (relative === '' && (dirent.name === RUNS_FOLDER || dirent.name === RELAYOUT_RUNS_FOLDER)) continue;
+      pending.push(relative ? relative + '/' + dirent.name : dirent.name);
+    }
+  }
+  return folders.sort((left, right) => (left.relative < right.relative ? -1 : left.relative > right.relative ? 1 : 0));
+}
+
+/**
+ * Run sk-doc's validator on one README. It is spawned with an argument list and
+ * no shell, so a folder name cannot become a command, and Python is told to
+ * write no bytecode, so validating a tree leaves nothing behind in it.
+ * @param {string} validatorPath The validator script.
+ * @param {string} filePath The README to validate.
+ * @returns {{isPythonMissing?: boolean, errors: string[]}} The blocking error messages.
+ */
+function validateReadme(validatorPath, filePath) {
+  const result = spawnSync('python3', [validatorPath, filePath, '--json'], {
+    encoding: 'utf8',
+    maxBuffer: VALIDATOR_MAX_BUFFER,
+    env: { ...process.env, JEV_FEATURE_CITE_DRIFT: '0', PYTHONDONTWRITEBYTECODE: '1' },
+  });
+  if (result.error && result.error.code === 'ENOENT') return { isPythonMissing: true, errors: [] };
+  if (result.error) return { errors: [`the validator could not run: ${result.error.message}`] };
+  let report;
+  try {
+    report = JSON.parse(result.stdout);
+  } catch {
+    return { errors: [`the validator printed no JSON report (exit ${result.status})`] };
+  }
+  if (report && Array.isArray(report.blocking_errors)) {
+    return {
+      errors: report.blocking_errors.map((error) => (error && typeof error.message === 'string'
+        ? error.message
+        : JSON.stringify(error))),
+    };
+  }
+  // A file the validator cannot read or parse has no blocking list, and a README
+  // sk-doc could not check is not one it accepted.
+  const reason = report && typeof report.error === 'string'
+    ? report.error
+    : `the validator returned no blocking_errors (exit ${result.status})`;
+  return { errors: [reason] };
+}
+
+/**
+ * Report the folders of the overlay folder that carry no README and the READMEs
+ * sk-doc rejects. It reads only the overlay folder, so it runs whether or not
+ * the pin can be read.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{isValidated: boolean, skipped: string|null, folders: number, readmes: number,
+ *   shipping: number, docOnly: number, findings: object[]}} Findings sorted by path.
+ */
+function auditOverlayDocs(ctx, manifest) {
+  const ships = readmeShipTest(manifest);
+  const folders = overlayDocFolders(ctx.overlayRoot);
+  const shown = (relative) => (relative ? ctx.overlayLabel + '/' + relative : ctx.overlayLabel);
+  let findings = [];
+  const readmes = [];
+  for (const folder of folders) {
+    if (folder.hasReadme) {
+      readmes.push(folder.relative ? folder.relative + '/' + README_NAME : README_NAME);
+    } else {
+      findings.push({ kind: 'missing-readme', path: shown(folder.relative) });
+    }
+  }
+  const shipping = readmes.filter(ships).length;
+
+  // The validator in the tree is reached through a link, so its presence is
+  // read through that link.
+  const validatorPath = path.join(ctx.root, ...SK_DOC_VALIDATOR.split('/'));
+  let skipped = null;
+  try {
+    if (!fs.statSync(validatorPath).isFile()) skipped = `no sk-doc validator at ${SK_DOC_VALIDATOR}`;
+  } catch {
+    skipped = `no sk-doc validator at ${SK_DOC_VALIDATOR}`;
+  }
+  if (skipped === null) {
+    for (const readme of readmes) {
+      const outcome = validateReadme(validatorPath, path.join(ctx.overlayRoot, ...readme.split('/')));
+      if (outcome.isPythonMissing) {
+        skipped = 'python3 is not on PATH, so no README was validated';
+        findings = findings.filter((finding) => finding.kind === 'missing-readme');
+        break;
+      }
+      if (outcome.errors.length > 0) {
+        findings.push({ kind: 'invalid-readme', path: ctx.overlayLabel + '/' + readme, errors: outcome.errors });
+      }
+    }
+  }
+  findings.sort((left, right) => (left.path < right.path ? -1 : left.path > right.path ? 1 : 0));
+  return {
+    isValidated: skipped === null,
+    skipped,
+    folders: folders.length,
+    readmes: readmes.length,
+    shipping,
+    docOnly: readmes.length - shipping,
+    findings,
+  };
+}
+
+function docsFindingLine(finding) {
+  if (finding.kind !== 'invalid-readme') return `DOCS     ${finding.kind} ${finding.path}`;
+  const more = finding.errors.length > 1 ? ` (+${finding.errors.length - 1} more)` : '';
+  return `DOCS     invalid-readme ${finding.path}: ${finding.errors[0]}${more}`;
+}
+
+/**
+ * List the READMEs an adopt would turn into overlay content that ship today as
+ * nothing: the source itself when it is such a README, or any inside a source
+ * folder that would become a directory entry.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} source The adopt source, relative to the overlay folder.
+ * @param {string} sourcePath The adopt source, absolute.
+ * @returns {string[]} Sorted paths relative to the overlay folder.
+ */
+function documentationOnlyReadmesAt(manifest, source, sourcePath) {
+  const ships = readmeShipTest(manifest);
+  if (isFile(sourcePath)) {
+    return path.posix.basename(source) === README_NAME && !ships(source) ? [source] : [];
+  }
+  if (!isDirectory(sourcePath)) return [];
+  return listTreePaths(sourcePath)
+    .filter((filePath) => path.basename(filePath) === README_NAME && isFile(filePath))
+    .map((filePath) => path.posix.join(source, toPosix(path.relative(sourcePath, filePath))))
+    .filter((relative) => !ships(relative))
+    .sort();
+}
+
 /**
  * Refuse a commit that stages a vendored change no overlay owns. Never writes.
  * @param {object} ctx Engine context.
@@ -6348,7 +6577,7 @@ function commandPreCommit(ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 18. RELAYOUT
+// 19. RELAYOUT
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -6828,7 +7057,7 @@ function commandRelayout(ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 19. COMMAND ENTRY POINT
+// 20. COMMAND ENTRY POINT
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -6931,7 +7160,7 @@ if (require.main === module) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 20. EXPORTS
+// 21. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
