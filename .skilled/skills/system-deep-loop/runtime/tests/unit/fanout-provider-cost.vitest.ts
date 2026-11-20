@@ -77,6 +77,12 @@ describe('fanout-salvage.cjs — provider cost', () => {
     expect(readLineageProviderCostUsd(lineageWithLogs({}))).toBeNull();
   });
 
+  it('reads an unreadable attempt log as unknown instead of throwing', () => {
+    const lineage = lineageWithLogs({ 'fanout-lineage.1.out': stepFinish(0.1) });
+    mkdirSync(join(lineage, 'logs', 'fanout-lineage.out'));
+    expect(readLineageProviderCostUsd(lineage)).toBeNull();
+  });
+
   it('keeps the total unknown while any lineage cost is unknown', () => {
     expect(summarizeProviderCost({ opus: null, deepseek: 0.326 })).toEqual({
       total: null,

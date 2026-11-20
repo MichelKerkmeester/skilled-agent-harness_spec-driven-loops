@@ -113,7 +113,14 @@ function readLineageProviderCostUsd(lineageDir) {
   let total = 0;
   let counted = 0;
   for (const name of names.filter((entry) => /^fanout-lineage(\.\d+)?\.out$/.test(entry))) {
-    const text = fs.readFileSync(path.join(logsDir, name), 'utf8');
+    // This runs after every lineage has settled, so an unreadable log makes the cost
+    // unknown rather than crashing the run before its summary is written.
+    let text;
+    try {
+      text = fs.readFileSync(path.join(logsDir, name), 'utf8');
+    } catch {
+      return null;
+    }
     if (text.trim() === '') continue;
     const cost = sumProviderCostFromLog(text);
     if (cost === null) return null;
