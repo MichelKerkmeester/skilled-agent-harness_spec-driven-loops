@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.18.0
+version: 1.4.19.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -277,18 +277,7 @@ Options:
 
 ## 6. STDIN HANDLING: `</dev/null` IS REQUIRED FOR ALL NON-INTERACTIVE DISPATCH
 
-**`stdin-redirect-required` (error).** Ad-hoc `opencode run` MUST close or redirect stdin (`</dev/null`). Without an explicit closed stdin, ANY non-interactive automation that redirects stdout/stderr can hang indefinitely at 0% CPU with zero output, even with a clean tool registry and a valid model. The recorded hang is from OpenCode 1 (v1.14.39), and no OpenCode 2 reproduction is recorded, so the redirect stays required. See memory `feedback_opencode_run_requires_dev_null_stdin.md`.
-
-### Hang symptom (diagnostic)
-
-If you see ALL of:
-- Process at 0% CPU after >60s
-- `~/.local/share/opencode/log/<timestamp>.log` last entry is `service=snapshot prune=7.days cleanup`
-- 0 bytes stdout, 0 bytes stderr
-- No TCP connections to provider
-- 12-min timeout fires, exit code 124
-
-…it's the stdin-startup-deadlock. Append `</dev/null`.
+**`stdin-redirect-required` (error).** Ad-hoc `opencode run` MUST close or redirect stdin (`</dev/null`). Without an explicit closed stdin, ANY non-interactive automation that redirects stdout/stderr can hang indefinitely at 0% CPU with zero output, even with a clean tool registry and a valid model. No OpenCode 2 reproduction of the hang is recorded, and the redirect stays required. See memory `feedback_opencode_run_requires_dev_null_stdin.md`.
 
 ### Failure patterns (all hang)
 

@@ -1,7 +1,7 @@
 ---
 title: "CO-005 -- Verbose logs (--print-logs / --log-level) and the removed plugin-disable flag"
 description: "This scenario validates `--print-logs` and `--log-level` for `CO-005`, and confirms the plugin-disable flag is not a `run` flag. It focuses on confirming verbose logs surface to stderr without contaminating the JSON event stream on stdout."
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # CO-005 -- Verbose logs (--print-logs / --log-level) and the removed plugin-disable flag
@@ -18,7 +18,7 @@ This scenario validates verbose logs and the absent plugin-disable flag for `CO-
 
 ### Why This Matters
 
-`--print-logs` plus `--log-level` are the two operator-facing diagnostic flags for failure triage. If either malfunctions, operators lose the canonical debugging surface and every other scenario's failure triage step becomes harder. The plugin-disable escape hatch that earlier major versions offered no longer exists, so an operator who reaches for it needs to learn that from this test rather than from a failed dispatch. This test proves both diagnostic surfaces work and that the removed flag is gone.
+`--print-logs` plus `--log-level` are the two operator-facing diagnostic flags for failure triage. If either malfunctions, operators lose the canonical debugging surface and every other scenario's failure triage step becomes harder. `run` has no plugin-disable flag, so an operator who reaches for one needs to learn that from this test rather than from a failed dispatch. This test proves both diagnostic surfaces work and that the removed flag is gone.
 
 ---
 

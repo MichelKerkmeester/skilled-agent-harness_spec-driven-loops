@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-handover-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.31.0
+version: 1.0.32.0
 id: session-handover-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -128,21 +128,21 @@ The 2026-10-19 benchmark reports for this scenario hold the outcomes, operator i
 
 #### Recorded Results, 2026-10-22
 
-Pi 1.3.0 and OpenCode 1.19.3 with `openai/gpt-6-luna`, live in tmux at a 0.05 threshold against a 200,000-token window. The live runs found three defects, each fixed with a failing test first and then rerun: OpenCode sessions started in the same second planned the same note, and on both runtimes a turn started just after the arm was signalled mid-turn. The full matrix, commits and evidence paths are in the [runtime-certainty implementation summary](../../../../../specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md). After Pi moved to 1.4.0 the same day, S1, S3 and S6 were rerun on it and passed.
+Pi 1.3.0 with `openai/gpt-6-luna`, live in tmux at a 0.05 threshold against a 200,000-token window. The live runs found a defect, fixed with a failing test first and then rerun: a turn started just after the arm was signalled mid-turn. The full matrix, commits and evidence paths are in the [runtime-certainty implementation summary](../../../../../specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md). After Pi moved to 1.4.0 the same day, S1, S3 and S6 were rerun on it and passed.
 
-| Situation | Pi | OpenCode |
-|---|---|---|
-| Full hop with model carry and spec folder | Pass | Pass |
-| One nudge and one re-nudge | Pass | Pass |
-| Keep, `/compact`, claim, complete | Pass, `compact-pointer` on `session_compact` | Pass, `compact-pointer` on `session.compacted` |
-| Hop cap, stale record, kill switch | Pass | Pass |
-| Busy at arm time | Pass after the `agent_start` withdrawal | Pass after the user-message withdrawal |
-| Live shell child at prepare | Pass | Pass for a compound command; a single exec'd command is not detected |
-| Sub-agent | Not applicable, Pi has none | Pass, the `task` child session got no state |
-| Two loops at once | Pass | Pass |
-| Started from a subdirectory, and through the shim in a linked repository | Pass | Pass |
-| Interrupt after relaunch, before claim | Pass, wrapper exit 130 | Pass, wrapper exit 0 |
-| Nested run inside a loop | Pass, `loop-nested-run` logged | Not run: the model refused to start OpenCode nested |
+| Situation | Pi |
+|---|---|
+| Full hop with model carry and spec folder | Pass |
+| One nudge and one re-nudge | Pass |
+| Keep, `/compact`, claim, complete | Pass, `compact-pointer` on `session_compact` |
+| Hop cap, stale record, kill switch | Pass |
+| Busy at arm time | Pass after the `agent_start` withdrawal |
+| Live shell child at prepare | Pass |
+| Sub-agent | Not applicable, Pi has none |
+| Two loops at once | Pass |
+| Started from a subdirectory, and through the shim in a linked repository | Pass |
+| Interrupt after relaunch, before claim | Pass, wrapper exit 130 |
+| Nested run inside a loop | Pass, `loop-nested-run` logged |
 
 #### Live Pi hop in tmux (Live)
 

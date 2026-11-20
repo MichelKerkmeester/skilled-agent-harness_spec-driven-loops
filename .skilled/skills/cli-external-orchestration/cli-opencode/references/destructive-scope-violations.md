@@ -9,7 +9,7 @@ trigger_phrases:
   - "rm-8 prevention playbook"
 importance_tier: important
 contextType: implementation
-version: 1.4.11.0
+version: 1.4.12.0
 ---
 
 # Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
@@ -41,7 +41,7 @@ An instruction-only scope guard layered on `--auto` is the root cause. Neither l
 Source-of-truth: local destructive-scope violation policy.
 
 - **What ran**: `/deep:review:auto` against a phase parent across two of its phase children.
-- **Executor**: On OpenCode 1, cli-opencode (`opencode run`) with `--model opencode-go/deepseek-v4-pro --variant high --dangerously-skip-permissions --pure --dir <repo-root>`. On OpenCode 2 the effort level rides on `-m` as a `#high` suffix, the working directory moves into a `cd`, and `run` has no `--pure` ([install reference](./install-and-versions.md)).
+- **Executor**: cli-opencode (`opencode run`) with `opencode-go/deepseek-v4-pro` at high effort and permission prompts skipped. On OpenCode 2 the effort level rides on `-m` as a `#high` suffix and the working directory is set with a `cd` ([install reference](./install-and-versions.md)).
 - **Damage**: **44 files deleted** across the two phase children. Spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`) **and** the `review/` packet subtrees were physically removed.
 - **Recovery**: `git restore` from commit `7beb80769` (a pre-dispatch "bundled session sync"), a single command. **No findings lost**, but ≈30 minutes of recovery time and trust damage.
 

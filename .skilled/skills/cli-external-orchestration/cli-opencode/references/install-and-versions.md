@@ -1,21 +1,20 @@
 ---
 title: "OpenCode CLI - Install and Versions"
-description: "Install reference for OpenCode 2: the pinned @opencode/cli 2.3.2 target, the setup helper's v2 mode, version detection, upgrade, uninstall and the cleanup of an older install."
+description: "Install reference for OpenCode 2: the pinned @opencode/cli 2.3.2 target, the setup helper's v2 mode, version detection, upgrade and uninstall."
 trigger_phrases:
   - "opencode install"
   - "opencode version detection"
   - "opencode upgrade"
   - "opencode uninstall"
-  - "remove old opencode install"
   - "opencode setup helper"
 importance_tier: important
 contextType: implementation
-version: 1.0.16.0
+version: 1.0.17.0
 ---
 
 # OpenCode CLI - Install and Versions
 
-How to put OpenCode 2 on a machine, confirm which version a name runs, and clear an older install off the machine.
+How to put OpenCode 2 on a machine and confirm which version a name runs.
 
 ---
 
@@ -28,10 +27,9 @@ This reference is the skill's install guidance. OpenCode 2 is the only supported
 ### When to Use
 
 - Installing OpenCode 2 with the setup helper or with npm
-- Confirming that `opencode` runs OpenCode 2 and not an older install
-- Working out why a binary is reported as `unsupported`
+- Confirming that `opencode` runs OpenCode 2
+- Working out why a binary is reported as `unknown`
 - Upgrading the pin or uninstalling the package
-- Removing an older install and the launcher an earlier layout left behind
 
 ### Claim Labels
 
@@ -48,7 +46,7 @@ Claims in the prose carry one of three labels.
 | Source | What it gives you |
 |--------|-------------------|
 | [https://opencode.ai/v2/docs/](https://opencode.ai/v2/docs/) | The official install channels and the platform docs |
-| `../scripts/opencode-setup.sh` | The helper that installs OpenCode 2, removes an older install and reports what each name resolves to |
+| `../scripts/opencode-setup.sh` | The helper that installs OpenCode 2 and reports what each name resolves to |
 | `./cli-reference.md` | Subcommands, `run` flags and the version-drift section |
 
 **Pinned target.** The repository pins `@opencode/cli` at 2.3.2, and the helper installs exactly that pin. The binary it writes is named `opencode`, and `opencode --version` prints `opencode v2.3.2`. Flag observations that name 2.0.32 were read on that release and have not been re-read on 2.3.2.
@@ -72,7 +70,7 @@ Claims in the prose carry one of three labels.
 |---------|---------|-----|--------|
 | v2 (only supported) | `@opencode/cli` | `2.3.2` | `opencode` |
 
-The pin is what the helper installs and what the resolvers accept. A binary that reports major 1 is `unsupported`, and the deep-loop resolver refuses it. A binary that reports any other major is `unknown`.
+The pin is what the helper installs and what the resolvers accept. A binary that reports any major other than 2 is `unknown`, and the deep-loop resolver refuses it.
 
 ---
 
@@ -80,12 +78,11 @@ The pin is what the helper installs and what the resolvers accept. A binary that
 
 ### The Setup Helper
 
-`../scripts/opencode-setup.sh <v2|remove-v1|check>` is the supported path. Every mode is idempotent, every mutating step prints its rollback line, and the helper never runs a rollback. It changes no data file.
+`../scripts/opencode-setup.sh <v2|check>` is the supported path. Every mode is idempotent, every mutating step prints its rollback line, and the helper never runs a rollback. It changes no data file.
 
 | Mode | What it does |
 |------|--------------|
 | `v2` | Installs `@opencode/cli@2.3.2` into `$HOME/.local`, then verifies that `$HOME/.local/bin/opencode` reports a v2 shape. Skips the install when the pinned version is already present. |
-| `remove-v1` | Uninstalls the old `opencode-ai` package from `$HOME/.local` and deletes the `opencode1` launcher. npm deletes `$HOME/.local/bin/opencode` by name on that uninstall, so when the entry resolves outside `opencode-ai` (an OpenCode 2 link), the helper moves it aside first, restores it afterwards and checks it resolves to the same target. Database files are listed and left in place. |
 | `check` | Changes nothing. Reports the resolved path and the version shape for each name, and lists the database files. |
 
 Exit codes are 0 for success, 1 for a refusal or failure, and 2 for a usage error.
@@ -130,8 +127,7 @@ The dispatch resolver probes `opencode` on `PATH` [documented: the cli-opencode 
 The probe reads `--version` and classifies the output by shape, not by the name that produced it:
 
 - a major-2 token is `v2`
-- a major-1 token is `unsupported`, and the deep-loop resolver refuses it
-- anything else, including empty output, is `unknown`
+- anything else, including any other major and empty output, is `unknown`, and the deep-loop resolver refuses it
 
 ### The Config Directory
 
@@ -150,8 +146,7 @@ opencode --version    # opencode v2.3.2   -> v2
 That line is the shape the helper verifies after an install. Classify by what the binary prints, not by the name it answers to:
 
 - an `opencode v2.3.2` shape, a word before the number, is v2
-- a bare three-part number whose major is 1 is an older major, which is `unsupported`
-- anything else is `unknown`
+- anything else, including a three-part number with another major, is `unknown`
 
 Anchor the pattern. A string like `2.3.2garbage` must not pass as a version, and the committed resolver rejects it [documented: the resolver's anchored pattern].
 
@@ -187,7 +182,7 @@ The helper skips the install when the pinned version is already present, so reru
 
 ### A Major Change Is a Reinstall
 
-A binary that reports major 1 is reported as `unsupported`: a deep-loop lineage refuses it, and the dispatch guard checks it against every rule without treating it as OpenCode 2. There is no in-place path from an older major to OpenCode 2. Remove the old install with `remove-v1`, then install with `v2`.
+A binary that reports any major other than 2 is `unknown`: a deep-loop lineage refuses it, and the dispatch guard checks it against every rule without treating it as OpenCode 2. Install the pinned release with `v2`.
 
 ---
 
@@ -215,31 +210,12 @@ Whether the background service outlives the uninstall was not probed [unknown]. 
 
 ---
 
-## 8. REMOVING AN OLD OPENCODE 1 INSTALL
-
-An earlier layout installed `opencode-ai` and wrote an `opencode1` launcher beside it. Neither is supported now, and one mode removes both:
-
-```bash
-../scripts/opencode-setup.sh remove-v1
-```
-
-The mode uninstalls `opencode-ai` from `$HOME/.local` and deletes `$HOME/.local/bin/opencode1`. It removes the launcher only when it is the regular file the helper wrote; a symlink, a folder or a file that does not run the old package is refused, and nothing is changed. Every refusal runs before the first write. When `$HOME/.local/bin/opencode` resolves outside `opencode-ai`, the mode moves it aside before the uninstall and restores the same entry afterwards, because npm otherwise deletes it by name. The rollback it prints reinstalls `opencode-ai` and then restores that link, so OpenCode 1 never keeps the name.
-
-The user's old data files are listed and left in place. An `opencode-v1.db` holds only OpenCode 1 history, so it is the user's to keep or delete. The helper never removes a database file.
-
-When nothing answers to `opencode` afterwards, the helper says so and points at the `v2` mode.
-
----
-
-## 9. TROUBLESHOOTING
+## 8. TROUBLESHOOTING
 
 ### Symptoms
 
 | Symptom | Cause | Fix |
 |---------|-------|-----|
-| `opencode --version` prints a 1.x line | An older install still answers to the name | Run `opencode-setup.sh remove-v1`, then `opencode-setup.sh v2` |
-| A binary is reported as `unsupported`, or a deep-loop lineage refuses it | The resolved binary reports major 1 | Same fix: remove the old install, then install OpenCode 2 |
-| `opencode1` prints `No such file or directory` and exits 126 [confirmed: a launcher whose target is missing, run on this machine] | The old package was uninstalled and the launcher was left behind | `opencode-setup.sh remove-v1` removes the launcher |
 | `provider/model not found` | The provider is not listed on this machine | Confirm that `opencode models --standalone` lists the `<provider>/` prefix before the dispatch |
 | `npm` aborts with a dyld `Library not loaded` error | The node that npm runs cannot start [confirmed: Homebrew node 26.11.1 on this machine] | Put a working node earlier on `PATH` |
 
@@ -259,9 +235,9 @@ When nothing answers to `opencode` afterwards, the helper says so and points at 
 
 ---
 
-## 10. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 - [`./cli-reference.md`](./cli-reference.md) for the subcommand map, the `run` flag surface and the version-drift section
 - [`./providers-and-models.md`](./providers-and-models.md) for the provider roster and the per-provider effort map
-- [`../scripts/opencode-setup.sh`](../scripts/opencode-setup.sh) for the `v2`, `remove-v1` and `check` modes
+- [`../scripts/opencode-setup.sh`](../scripts/opencode-setup.sh) for the `v2` and `check` modes
 - [https://opencode.ai/v2/docs/](https://opencode.ai/v2/docs/) for the official channels and the platform documentation

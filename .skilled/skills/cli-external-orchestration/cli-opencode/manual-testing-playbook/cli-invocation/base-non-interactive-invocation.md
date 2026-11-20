@@ -1,12 +1,12 @@
 ---
 title: "CO-001 -- Base non-interactive invocation"
 description: "This scenario validates the canonical opencode run dispatch for `CO-001`. It focuses on confirming the default skill shape (model + effort + format) returns a coherent JSON event stream and exits cleanly."
-version: 1.4.14.0
+version: 1.4.15.0
 ---
 
 # CO-001 -- Base non-interactive invocation
 
-**Version note.** These commands target OpenCode 2 (2.3.2). Check that `opencode models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first; `llmgateway/deepseek-v4.1-flash-1017` is the default, while `opencode-go/` stays selectable and needs its own login (`opencode auth login opencode-go`). A machine that still carries the earlier major version needs one run of `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh remove-v1`.
+**Version note.** These commands target OpenCode 2 (2.3.2). Check that `opencode models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first; `llmgateway/deepseek-v4.1-flash-1017` is the default, while `opencode-go/` stays selectable and needs its own login (`opencode auth login opencode-go`).
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-001`.
 

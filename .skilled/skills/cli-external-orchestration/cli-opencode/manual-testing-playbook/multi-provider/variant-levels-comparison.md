@@ -1,7 +1,7 @@
 ---
 title: "CO-012 -- Effort levels (minimal/low/medium/high)"
 description: "This scenario validates the `#<level>` effort suffix for `CO-012`. It focuses on confirming the `llmgateway/deepseek-v4.1-flash-1017` effort range (minimal through the skill-verified `high` default) maps to reasoning effort and produces materially different response depth between extremes."
-version: 1.4.13.0
+version: 1.4.14.0
 ---
 
 # CO-012 -- Effort levels (minimal/low/medium/high)
@@ -52,12 +52,12 @@ Operators run the exact prompt and command sequence for `CO-012` and confirm the
 
 ### Optional Supplemental Checks
 
-For full-spectrum validation on a provider whose full range was observed on OpenCode 1, run the low/medium/high/xhigh sweep against `openai/gpt-6-sol` and confirm byte counts increase monotonically. This catches regressions where two adjacent levels produce identical responses (effectively halving the operator's tuning surface). No range in the table below has been re-verified on OpenCode 2.3.2, so whether a given provider accepts a level there is unverified. Per-provider ranges to exercise (sourced from `references/cli-reference.md` §5, so re-verify against a live `opencode run -m llmgateway/deepseek-v4.1-flash-1017 --help </dev/null` before relying on an unlisted value):
+For full-spectrum validation, run the low/medium/high/xhigh sweep against `openai/gpt-6-sol` and confirm byte counts increase monotonically. This catches regressions where two adjacent levels produce identical responses (effectively halving the operator's tuning surface). No range in the table below has been re-verified on OpenCode 2.3.2, so whether a given provider accepts a level there is unverified. Per-provider ranges to exercise (sourced from `references/cli-reference.md` §5, so re-verify against a live `opencode run -m llmgateway/deepseek-v4.1-flash-1017 --help </dev/null` before relying on an unlisted value):
 
 | Model | Effort range to sweep |
 |---|---|
 | `llmgateway/deepseek-v4.1-flash-1017` | Reasoning model pinned to `#max` (its top thinking tier) by policy, and the default. Treat any other value as unverified until smoke-tested. The reader confirms that `opencode models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first. The `opencode-go/` route stays selectable but needs its own login first (`opencode auth login opencode-go`) |
-| `openai/gpt-6-sol` | The level rides on the model id (`-m openai/gpt-6-sol#<level>`), mapping to OpenAI reasoning effort (`none`/`low`/`medium`/`high`/`xhigh`). That range was observed on OpenCode 1 and is unverified on 2.3.2 |
+| `openai/gpt-6-sol` | The level rides on the model id (`-m openai/gpt-6-sol#<level>`), mapping to OpenAI reasoning effort. Which levels it accepts is unverified on 2.3.2 |
 
 
 ---
