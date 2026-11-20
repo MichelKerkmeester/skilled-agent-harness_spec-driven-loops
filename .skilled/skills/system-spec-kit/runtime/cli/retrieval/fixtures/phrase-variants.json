@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fe4224d8d4559879ef7ed45489b2bc98575e7945d3b17bd7bbda0bf760b55457",
+  "manifestHash": "19bfb57eaf9f7c14b481f5a0445ead12ced27365e09efb0404ac4a2e0dcba8f6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4790,6 +4790,9 @@
     "020 resource map": [
       "020 resource map"
     ],
+    "020 review p1 fixes operator decisions": [
+      "020-review-p1-fixes operator decisions"
+    ],
     "020 review report": [
       "020 review report"
     ],
@@ -8750,6 +8753,12 @@
     "adoption sequencing": [
       "adoption sequencing"
     ],
+    "adoptsource default rule change plan": [
+      "adoptSource default rule change plan"
+    ],
+    "adoptsource framework root naming rule": [
+      "adoptSource framework root naming rule"
+    ],
     "adr 001 cocoindex embedder choice": [
       "ADR-001 cocoindex embedder choice"
     ],
@@ -10078,6 +10087,9 @@
     ],
     "advisor status handler": [
       "advisor status handler"
+    ],
+    "advisor status incomplete skill vectors": [
+      "advisor_status incomplete_skill_vectors"
     ],
     "advisor status rebuild playbook": [
       "advisor status rebuild playbook"
@@ -11463,6 +11475,9 @@
     ],
     "ai session child cli rule summary": [
       "AI_SESSION_CHILD cli rule summary"
+    ],
+    "ai speckit re pin and relayout task list": [
+      "ai-speckit re-pin and relayout task list"
     ],
     "ai systems battery rerun": [
       "ai systems battery rerun"
@@ -14656,6 +14671,9 @@
     "backticked playbook path check": [
       "backticked playbook path check"
     ],
+    "backup area overlay entries": [
+      "backup area overlay entries"
+    ],
     "backup file removal audit": [
       "backup file removal audit"
     ],
@@ -14737,6 +14755,18 @@
     "barter host capture file command routing baseline": [
       "barter host capture file command routing baseline"
     ],
+    "barter move overlays out of tree": [
+      "barter move overlays out of tree"
+    ],
+    "barter move overlays out of tree acceptance criteria": [
+      "barter move overlays out of tree acceptance criteria"
+    ],
+    "barter move overlays out of tree plan": [
+      "barter move overlays out of tree plan"
+    ],
+    "barter move overlays out of tree tasks": [
+      "barter move overlays out of tree tasks"
+    ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
     ],
@@ -14757,6 +14787,24 @@
     ],
     "barter overlay upstream intake tasks": [
       "barter overlay upstream intake tasks"
+    ],
+    "barter overlays folder ai speckit overlays": [
+      "barter overlays folder ai-speckit/overlays"
+    ],
+    "barter overlays framework root relayout": [
+      "barter overlays framework root relayout"
+    ],
+    "barter overlays move closure gate": [
+      "barter overlays move closure gate"
+    ],
+    "barter overlays move hook ordering": [
+      "barter overlays move hook ordering"
+    ],
+    "barter overlays move task list": [
+      "barter overlays move task list"
+    ],
+    "barter overlays out of the vendored tree": [
+      "barter overlays out of the vendored tree"
     ],
     "barter parity": [
       "barter parity"
@@ -14781,6 +14829,15 @@
     ],
     "barter remove set operations after sets record": [
       "barter remove set operations after sets record"
+    ],
+    "barter repin and relayout": [
+      "barter repin and relayout"
+    ],
+    "barter repin and relayout plan": [
+      "barter repin and relayout plan"
+    ],
+    "barter repin and relayout tasks": [
+      "barter repin and relayout tasks"
     ],
     "barter state schema version 2": [
       "barter state schema version 2"
@@ -44327,8 +44384,20 @@
     "doctor overlay build": [
       "doctor overlay build"
     ],
+    "doctor overlay docs framework root default": [
+      "doctor overlay docs framework root default"
+    ],
+    "doctor overlay docs rewrite plan": [
+      "doctor overlay docs rewrite plan"
+    ],
+    "doctor overlay docs task list": [
+      "doctor overlay docs task list"
+    ],
     "doctor overlay repin rollback": [
       "doctor overlay repin rollback"
+    ],
+    "doctor overlay repin then apply relayout": [
+      "doctor overlay repin then apply relayout"
     ],
     "doctor overlay status": [
       "doctor overlay status"
@@ -47975,8 +48044,38 @@
     "enforcerelationwindowcap": [
       "enforceRelationWindowCap"
     ],
+    "engine docs and release plan": [
+      "engine docs and release plan"
+    ],
+    "engine docs and release tasks": [
+      "engine docs and release tasks"
+    ],
+    "engine framework root source layout": [
+      "engine framework root source layout"
+    ],
+    "engine framework root source layout plan": [
+      "engine framework root source layout plan"
+    ],
+    "engine framework root source layout tasks": [
+      "engine framework root source layout tasks"
+    ],
     "engine named in output": [
       "engine named in output"
+    ],
+    "engine out of tree overlay folder": [
+      "engine out of tree overlay folder"
+    ],
+    "engine out of tree overlay folder acceptance criteria": [
+      "engine out of tree overlay folder acceptance criteria"
+    ],
+    "engine out of tree overlay folder evidence": [
+      "engine out of tree overlay folder evidence"
+    ],
+    "engine out of tree overlay folder plan": [
+      "engine out of tree overlay folder plan"
+    ],
+    "engine out of tree overlay folder tasks": [
+      "engine out of tree overlay folder tasks"
     ],
     "engine selection verdict identical": [
       "engine selection verdict identical"
@@ -54110,6 +54209,9 @@
     "framework": [
       "framework"
     ],
+    "framework and root overlay sources default": [
+      "framework and root overlay sources default"
+    ],
     "framework capability layer": [
       "framework capability layer"
     ],
@@ -54142,6 +54244,15 @@
     ],
     "framework release notes folder": [
       "framework release notes folder"
+    ],
+    "framework root default rule task list": [
+      "framework root default rule task list"
+    ],
+    "framework root naming rule default": [
+      "framework root naming rule default"
+    ],
+    "framework root source layout shipped": [
+      "framework root source layout shipped"
     ],
     "framework selection matrix": [
       "framework selection matrix"
@@ -65627,6 +65738,12 @@
     ],
     "layered skill docs": [
       "layered skill docs"
+    ],
+    "layout cap and relayout evidence": [
+      "layout cap and relayout evidence"
+    ],
+    "layout notice cap relayout migration plan": [
+      "layout notice cap relayout migration plan"
     ],
     "layout probe completion criteria": [
       "layout probe completion criteria"
@@ -78462,6 +78579,9 @@
     "old hook deprecation banners": [
       "old hook deprecation banners"
     ],
+    "old layout overlay migration relayout": [
+      "old layout overlay migration relayout"
+    ],
     "old path residue scan": [
       "old path residue scan"
     ],
@@ -81144,6 +81264,9 @@
     "overlay apply failure state record": [
       "overlay apply failure state record"
     ],
+    "overlay docs and release shipped": [
+      "overlay docs and release shipped"
+    ],
     "overlay engine": [
       "overlay engine"
     ],
@@ -81201,6 +81324,12 @@
     "overlay follow up review synthesis": [
       "overlay follow up review synthesis"
     ],
+    "overlay framework and root layout": [
+      "overlay framework and root layout"
+    ],
+    "overlay framework root layout phase parent spec": [
+      "overlay framework root layout phase parent spec"
+    ],
     "overlay guard": [
       "overlay guard"
     ],
@@ -81243,6 +81372,9 @@
     "overlay pinned copy cross check": [
       "overlay pinned copy cross check"
     ],
+    "overlay relayout migration step consumers": [
+      "overlay relayout migration step consumers"
+    ],
     "overlay repin": [
       "overlay repin"
     ],
@@ -81284,6 +81416,12 @@
     ],
     "overlay write checks follow up tasks": [
       "overlay write checks follow up tasks"
+    ],
+    "overlaydir overlays barter hooks": [
+      "overlayDir ../overlays barter hooks"
+    ],
+    "overlays folder beside the vendored tree": [
+      "overlays folder beside the vendored tree"
     ],
     "overlays for vendored copies": [
       "overlays for vendored copies"
@@ -83747,6 +83885,9 @@
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
+    "phase 1 engine out of tree overlay folder": [
+      "phase 1 engine out of tree overlay folder"
+    ],
     "phase 1 fanout persona tool mapping": [
       "phase 1 fanout persona tool mapping"
     ],
@@ -84758,6 +84899,9 @@
     "phase 2 dsh offline contract pin": [
       "phase 2 dsh offline contract pin"
     ],
+    "phase 2 engine framework root source layout": [
+      "phase 2 engine framework root source layout"
+    ],
     "phase 2 exempt and rewrite guard": [
       "phase 2 exempt and rewrite guard"
     ],
@@ -84976,6 +85120,9 @@
     ],
     "phase 20 rename plan": [
       "phase 20 rename plan"
+    ],
+    "phase 20 review p1 fixes": [
+      "phase 20 review p1 fixes"
     ],
     "phase 20 sk code rename": [
       "phase 20 sk-code rename"
@@ -93209,6 +93356,9 @@
     "re pin after frontmatter move": [
       "re-pin after frontmatter move"
     ],
+    "re pin ai speckit skilled and apply relayout": [
+      "re-pin ai-speckit skilled and apply --relayout"
+    ],
     "re pin not copied list": [
       "re-pin not-copied list"
     ],
@@ -93331,6 +93481,9 @@
     ],
     "read only corpus backup retrieval class": [
       "read-only corpus backup retrieval class"
+    ],
+    "read only coverage check on the recommend path": [
+      "read-only coverage check on the recommend path"
     ],
     "read only decision capture routing": [
       "read-only decision capture routing"
@@ -95334,6 +95487,9 @@
     ],
     "refresh index false decision": [
       "refresh_index false decision"
+    ],
+    "refresh rerun after mid refresh reindex": [
+      "refresh rerun after mid-refresh reindex"
     ],
     "refresh run": [
       "refresh run"
@@ -98058,6 +98214,12 @@
     ],
     "repin stage report": [
       "repin stage report"
+    ],
+    "repin stage with a sibling overlay folder": [
+      "repin stage with a sibling overlay folder"
+    ],
+    "repin stage writes nothing live acceptance": [
+      "repin stage writes nothing live acceptance"
     ],
     "repin tasks": [
       "repin tasks"
@@ -101620,6 +101782,24 @@
     ],
     "review output additions tasks": [
       "review output additions tasks"
+    ],
+    "review p1 fixes": [
+      "review p1 fixes"
+    ],
+    "review p1 fixes acceptance criteria": [
+      "review p1 fixes acceptance criteria"
+    ],
+    "review p1 fixes goal": [
+      "review p1 fixes goal"
+    ],
+    "review p1 fixes implementation summary": [
+      "review p1 fixes implementation summary"
+    ],
+    "review p1 fixes plan": [
+      "review p1 fixes plan"
+    ],
+    "review p1 fixes tasks": [
+      "review p1 fixes tasks"
     ],
     "review p2 findings triage": [
       "review p2 findings triage"
@@ -109242,6 +109422,24 @@
     ],
     "sibling listing tasks": [
       "sibling listing tasks"
+    ],
+    "sibling overlay folder": [
+      "sibling overlay folder"
+    ],
+    "sibling overlay folder acceptance rows": [
+      "sibling overlay folder acceptance rows"
+    ],
+    "sibling overlay folder backup area plan": [
+      "sibling overlay folder backup area plan"
+    ],
+    "sibling overlay folder overlaydir overlays": [
+      "sibling overlay folder overlayDir ../overlays"
+    ],
+    "sibling overlay folder shipped": [
+      "sibling overlay folder shipped"
+    ],
+    "sibling overlay folder task list": [
+      "sibling overlay folder task list"
     ],
     "sibling relative path rewrite": [
       "sibling relative path rewrite"
@@ -126629,6 +126827,12 @@
     "system skilled doctor 1 1 8 0": [
       "system-skilled-doctor 1.1.8.0"
     ],
+    "system skilled doctor 1 2 0 0": [
+      "system-skilled-doctor 1.2.0.0"
+    ],
+    "system skilled doctor 1 2 0 0 release evidence": [
+      "system-skilled-doctor 1.2.0.0 release evidence"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -126691,6 +126895,12 @@
     ],
     "system skilled doctor v1 1 8 0": [
       "system-skilled-doctor v1.1.8.0"
+    ],
+    "system skilled doctor v1 2 0 0": [
+      "system-skilled-doctor v1.2.0.0"
+    ],
+    "system skilled doctor v1 2 0 0 release": [
+      "system-skilled-doctor v1.2.0.0 release"
     ],
     "system spec gate": [
       "system-spec-gate"
