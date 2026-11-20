@@ -7440,3 +7440,56 @@ describe('fanout-run.cjs — --preview builds every lineage command without writ
     expect(treeDigest(baseDir)).toEqual(before);
   });
 });
+
+describe('fanout-run.cjs — a terminal stop row does not prove completion on its own', () => {
+  // A lineage that records its terminal stop row and then keeps iterating never ran the
+  // stop gates its last iteration claims, so the runner must fail it even though it
+  // exited 0 with its report on disk.
+  it('fails a lineage whose iteration is stamped after its terminal stop row', async () => {
+    const binDir = makeTempDir('fanout-run-late-iteration-bin-');
+    const lateIteration = `${shellQuote(process.execPath)} -e ${shellQuote([
+      'const fs = require("node:fs");',
+      'const path = require("node:path");',
+      'const dir = process.argv[1];',
+      'const row = { type: "iteration", iteration: 2, run: 2, status: "complete", timestamp: new Date(Date.now() + 5).toISOString() };',
+      'fs.appendFileSync(path.join(dir, "deep-research-state.jsonl"), JSON.stringify(row) + "\\n");',
+      'fs.writeFileSync(path.join(dir, "iterations", "iteration-002.md"), "# Iteration 2\\n");',
+    ].join(' '))} "$lineage_dir"`;
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
+        writeFanoutArtifactsShell(),
+        `[ -n "$lineage_dir" ] && ${lateIteration}`,
+        'sleep 0.05',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+    const baseDir = makeTempDir('fanout-run-late-iteration-base-');
+    const hermetic = useHermeticEnv('late-iteration');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', 'specs/test-fanout-run-late-iteration',
+        '--loop-type', 'research',
+        '--fanout-config-json', JSON.stringify({
+          executors: [{ label: 'late', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+          concurrency: 1,
+          maxRetries: 0,
+        }),
+        '--base-artifact-dir', baseDir,
+        '--allow-single-lineage',
+      ],
+      { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
+    );
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ status?: string; error?: { message?: string } }>;
+    };
+    expect(payload.results?.[0]?.status).toBe('rejected');
+    expect(payload.results?.[0]?.error?.message).toContain('comes after the terminal stop row');
+    expect(result.exitCode).toBe(3);
+  });
+});
