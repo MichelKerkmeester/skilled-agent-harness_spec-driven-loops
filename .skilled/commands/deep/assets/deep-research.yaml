@@ -91,6 +91,7 @@ dry_run_control:
     - "Resolve setup inputs and artifact roots."
     - "Read current state, strategy, focus, and convergence signals."
     - "Render the next prompt to terminal preview without writing prompt files."
+    - "Print each fan-out lineage's command with fanout-run.cjs --preview, which builds the commands and writes nothing."
   forbidden_operations:
     - "Executor dispatch."
     - "Persistent state, queue, lock, git index, memory, or graph mutation."
@@ -273,6 +274,43 @@ workflow:
     if_absent:
       bind:
         reducer_artifact_arg: ""
+
+  step_fanout_dry_run_preview:
+    description: "Print every fan-out lineage's command on a dry run, before anything is archived or spawned"
+    enabled_when: "dry_run == true"
+    skip_when: "config.fanout is absent or no entries in config.fanout.executors"
+    dry_run_event_policy: preview-only
+    instructions: |
+      A fan-out dry run halts at step_apply_lifecycle_request under --restart and at the
+      first fan-out step otherwise, before any lineage command exists, so this step shows
+      the commands first. Run `mktemp -d` and bind preview_input_dir to the directory it
+      prints. Write {research_topic} verbatim to {preview_input_dir}/fanout-research-topic.txt
+      and {config.fanout_json} verbatim to {preview_input_dir}/fanout-config.json with the
+      file-write tool, never through a shell, under the same rules step_fanout_spawn
+      states, so nothing lands in {artifact_dir}. The command is step_fanout_spawn_cli's
+      command with those input paths and --preview; apply its optional_flags the same way.
+      The runner builds each lineage's command exactly as a real run would and writes
+      nothing. Per lineage it prints the argv with every prompt replaced by its digest,
+      cwd, session_id, iterations, frontier_scope and effective_config: model, reasoning
+      effort, sandbox and permission mode. Print its JSON line and any stderr warnings,
+      remove {preview_input_dir} and continue; the dry-run halt at the next boundary step
+      stops the run as before. Under --restart this runs before the archive, so session_id
+      and frontier_scope come from the current packet. Before step_frontier_seed every
+      frontier_scope is empty and an expansive lineage shows its unseeded iteration default.
+    command: |
+      node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
+        --spec-folder {spec_folder} \
+        --loop-type research \
+        --research-topic-file "{preview_input_dir}/fanout-research-topic.txt" \
+        --fanout-config-json-file "{preview_input_dir}/fanout-config.json" \
+        --base-artifact-dir {artifact_dir} \
+        --convergence-threshold {convergence_threshold} \
+        --stop-policy {stop_policy} \
+        --convergence-mode {convergence_mode} \
+        --depth-mode {depth_mode} \
+        --preview
+    working_directory: "{repo_root}"
+    on_failure: "Print the runner's error JSON line as the preview result, remove {preview_input_dir} and continue to the dry-run halt. A refusal here, such as a matrix that expands to one lineage, is the refusal the real run would raise."
 
   step_apply_lifecycle_request:
     description: "Honor an explicit restart request before fan-out or normal initialization"

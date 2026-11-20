@@ -259,6 +259,28 @@ describe('workflow restart lifecycle', () => {
     });
   }
 
+  // A fan-out dry run halts at the first boundary step, which is the archive under
+  // --restart, so the lineage preview has to run before it to show anything.
+  for (const { label, file } of FILES) {
+    it(`${label} fan-out dry run: the runner preview runs before the archive and spawns nothing`, () => {
+      const text = fileText(file);
+      const reducerArgAt = text.indexOf('\n  step_bind_reducer_artifact_arg:\n');
+      const previewAt = text.indexOf('\n  step_fanout_dry_run_preview:\n');
+      const archiveAt = text.indexOf('\n  step_apply_lifecycle_request:\n');
+      expect(previewAt).toBeGreaterThan(reducerArgAt);
+      expect(previewAt).toBeLessThan(archiveAt);
+
+      const preview = topLevelStep(text, 'step_fanout_dry_run_preview');
+      expect(preview).toContain('enabled_when: "dry_run == true"');
+      expect(preview).toContain(
+        'skip_when: "config.fanout is absent or no entries in config.fanout.executors"',
+      );
+      expect(preview).toContain('dry_run_event_policy: preview-only');
+      expect(preview).not.toContain('dry_run_boundary');
+      expect(blockScalar(preview, 'command')).toMatch(/--preview\s*$/u);
+    });
+  }
+
   for (const entry of FILES) {
     it(`no post-lock move: ${entry.label} restart never moves the packet after the lock`, () => {
       const text = fileText(entry.file);

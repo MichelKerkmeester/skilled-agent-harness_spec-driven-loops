@@ -174,6 +174,56 @@ describe.each(FANOUT_CASES)('$file fan-out config JSON', ({ file, flags }) => {
   });
 });
 
+// The dry-run preview must hand the runner the same arguments a real spawn does, so the
+// commands it prints are the ones a run would start. Only the input files move, to a
+// temporary directory, so the preview writes nothing into the artifact directory.
+describe.each(FANOUT_CASES)('$file fan-out dry-run preview step', ({ file, flags }) => {
+  it('runs the spawn command from a temporary input directory with --preview', () => {
+    const wf = loadWorkflow(file).workflow;
+    const spawnCommand = wf.step_fanout_spawn.sub_steps.step_fanout_spawn_cli.command as string;
+    const previewStep = wf.step_fanout_dry_run_preview;
+    const dir = makeTempDir('operator-text-preview-');
+    const artifactDir = join(dir, 'artifacts');
+    const inputDir = join(dir, 'input');
+    mkdirSync(artifactDir);
+    mkdirSync(inputDir);
+    for (const { fileName } of flags) writeFileSync(join(inputDir, fileName), OPERATOR_TEXT, 'utf8');
+    writeFileSync(join(inputDir, 'fanout-config.json'), '{}', 'utf8');
+    const capture = join(dir, 'argv.bin');
+    const binDir = argvCaptureBin(dir, capture);
+    const values = {
+      spec_folder: 'specs/example',
+      review_target_type: 'files',
+      artifact_dir: artifactDir,
+      preview_input_dir: inputDir,
+      convergence_threshold: '0.05',
+      stop_policy: 'convergence',
+      convergence_mode: 'on',
+      depth_mode: 'default',
+    };
+    const result = runBash(render(previewStep.command as string, values), dir, {
+      ...process.env,
+      PATH: `${binDir}:${process.env.PATH ?? ''}`,
+    });
+    expect(result.status, result.stderr).toBe(0);
+    for (const marker of MARKERS) expect(existsSync(join(dir, marker)), marker).toBe(false);
+
+    const argv = readFileSync(capture, 'utf8').split('\0').slice(0, -1);
+    const expected = render(spawnCommand, values)
+      .split(`${artifactDir}/fanout-`)
+      .join(`${inputDir}/fanout-`)
+      .replace(/\\\n\s*/gu, ' ')
+      .trim()
+      .split(/\s+/u)
+      .slice(1)
+      .map((token) => token.replace(/^"(.*)"$/u, '$1'));
+    expect(argv).toEqual([...expected, '--preview']);
+    for (const { flag } of flags) expect(deliveredText(argv, flag), flag).toBe(OPERATOR_TEXT);
+    expect(previewStep.instructions).toContain('never through a shell');
+    expect(previewStep.instructions).toContain('mktemp -d');
+  });
+});
+
 const RECIPE_CASES = [
   { file: 'deep-research.yaml', textKey: 'research_topic' },
   { file: 'deep-review.yaml', textKey: 'review_target' },
