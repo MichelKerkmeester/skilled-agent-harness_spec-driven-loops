@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 46,
-    "missing-frontmatter": 6973,
-    "ok": 20000,
+    "missing-frontmatter": 6977,
+    "ok": 20065,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28600,
+  "documentsScanned": 28669,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a74c700f3d27b9a3b58e9eb7c20d6eeb6dff587a284387fd571692964d51c771",
+  "manifestHash": "87b33b33a966db926f2cb902b7486fe99b1e611a5b5dbd4bed141611e4fc866f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -35,7 +35,7 @@
       "folder-token-fallback": 47,
       "generic-workflow-word": 71,
       "numeric-only": 38,
-      "prose-sentence": 13,
+      "prose-sentence": 14,
       "single-token": 341,
       "stop-word-only": 9,
       "template-default": 22
@@ -45,8 +45,8 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45387,
-      "prose-sentence": 22,
+      "ok": 45460,
+      "prose-sentence": 23,
       "single-token": 150,
       "stop-word-only": 1,
       "template-default": 19
@@ -42042,6 +42042,30 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/evidence/doc-alignment/fix-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/evidence/doc-alignment/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/evidence/skilled-alignment/fix-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/evidence/skilled-alignment/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -61912,6 +61936,10 @@
     },
     {
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {

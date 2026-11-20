@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a74c700f3d27b9a3b58e9eb7c20d6eeb6dff587a284387fd571692964d51c771",
+  "manifestHash": "87b33b33a966db926f2cb902b7486fe99b1e611a5b5dbd4bed141611e4fc866f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -113,8 +113,14 @@
     "001 deterministic stop decision operator decisions": [
       "001-deterministic-stop-decision operator decisions"
     ],
+    "001 env secret guard operator decisions": [
+      "001-env-secret-guard operator decisions"
+    ],
     "001 eval benchmark fidelity implementation summary": [
       "001-eval-benchmark-fidelity implementation summary"
+    ],
+    "001 feature subtrack restructure operator decisions": [
+      "001-feature-subtrack-restructure operator decisions"
     ],
     "001 fix agent contract contradictions operator decisions": [
       "001-fix-agent-contract-contradictions operator decisions"
@@ -137,6 +143,9 @@
     "001 flag routing fix": [
       "001 flag routing fix"
     ],
+    "001 history lookup handover integration operator decisions": [
+      "001-history-lookup-handover-integration operator decisions"
+    ],
     "001 hook parity changelog index": [
       "001-hook-parity changelog index"
     ],
@@ -145,6 +154,9 @@
     ],
     "001 hook parity rollup": [
       "001-hook-parity rollup"
+    ],
+    "001 hop recall baseline operator decisions": [
+      "001-hop-recall-baseline operator decisions"
     ],
     "001 implement initial doctor command set": [
       "001-implement-initial-doctor-command-set"
@@ -254,6 +266,9 @@
     "001 search scenario design changelog": [
       "001-search-scenario-design changelog"
     ],
+    "001 sender dialog after prepare operator decisions": [
+      "001-sender-dialog-after-prepare operator decisions"
+    ],
     "001 skill graph changelog index": [
       "001-skill-graph changelog index"
     ],
@@ -274,6 +289,9 @@
     ],
     "001 tasks flag routing": [
       "001 tasks flag routing"
+    ],
+    "001 voice rule tooling and pilot operator decisions": [
+      "001-voice-rule-tooling-and-pilot operator decisions"
     ],
     "002": [
       "002"
@@ -434,6 +452,9 @@
     "002 causal graph channel routing rollup": [
       "002-causal-graph-channel-routing rollup"
     ],
+    "002 cli deepseek harness creation operator decisions": [
+      "002-cli-deepseek-harness-creation operator decisions"
+    ],
     "002 cli help aliases errors plan": [
       "002-cli-help-aliases-errors plan"
     ],
@@ -488,6 +509,9 @@
     "002 copilot custom instructions hook parity": [
       "002-copilot-custom-instructions-hook-parity"
     ],
+    "002 deepseek harness persona probe operator decisions": [
+      "002-deepseek-harness-persona-probe operator decisions"
+    ],
     "002 deprecate coco index changelog index": [
       "002-deprecate-coco-index changelog index"
     ],
@@ -518,6 +542,12 @@
     "002 fix memory quality": [
       "002-fix-memory-quality"
     ],
+    "002 frontend reach operator decisions": [
+      "002-frontend-reach operator decisions"
+    ],
+    "002 history core relocation operator decisions": [
+      "002-history-core-relocation operator decisions"
+    ],
     "002 implementation summary": [
       "002 implementation summary"
     ],
@@ -537,6 +567,9 @@
     "002 model installation": [
       "002 model installation"
     ],
+    "002 pasted context stripping operator decisions": [
+      "002-pasted-context-stripping operator decisions"
+    ],
     "002 plan sidecar skill": [
       "002 plan sidecar skill"
     ],
@@ -554,6 +587,9 @@
     ],
     "002 search scenario execution changelog": [
       "002-search-scenario-execution changelog"
+    ],
+    "002 session handover loop operator decisions": [
+      "002-session-handover-loop operator decisions"
     ],
     "002 sidecar skill": [
       "002 sidecar skill"
@@ -687,6 +723,9 @@
     "003 causal reducer": [
       "003 causal reducer"
     ],
+    "003 cli hermes deprecation operator decisions": [
+      "003-cli-hermes-deprecation operator decisions"
+    ],
     "003 cli reference and skill docs plan": [
       "003-cli-reference-and-skill-docs plan"
     ],
@@ -766,6 +805,9 @@
     "003 fix mcp runtime stress findings rollup": [
       "003-fix-mcp-runtime-stress-findings rollup"
     ],
+    "003 hook folder readmes operator decisions": [
+      "003-hook-folder-readmes operator decisions"
+    ],
     "003 implementation summary": [
       "003 implementation summary"
     ],
@@ -798,6 +840,9 @@
     ],
     "003 memory context truncation telemetry contract": [
       "003-memory-context-truncation-telemetry-contract"
+    ],
+    "003 orchestrate task package agent names operator decisions": [
+      "003-orchestrate-task-package-agent-names operator decisions"
     ],
     "003 plain chat command reach operator decisions": [
       "003-plain-chat-command-reach operator decisions"
@@ -894,6 +939,9 @@
     ],
     "003 skill references assets and skillmd implementation summary": [
       "003-skill-references-assets-and-skillmd implementation summary"
+    ],
+    "003 symlinked runtime root operator decisions": [
+      "003-symlinked-runtime-root operator decisions"
     ],
     "003 system bug improvement research": [
       "003-system-bug-improvement-research"
@@ -1146,6 +1194,9 @@
     ],
     "004 memory save rewrite": [
       "004-memory-save-rewrite"
+    ],
+    "004 node security patch update operator decisions": [
+      "004-node-security-patch-update operator decisions"
     ],
     "004 p2 triage implementation summary": [
       "004-p2-triage implementation summary"
@@ -1558,6 +1609,9 @@
     "005 subtrack proposal and archive reach operator decisions": [
       "005-subtrack-proposal-and-archive-reach operator decisions"
     ],
+    "005 surface intent fold declaration operator decisions": [
+      "005-surface-intent-fold-declaration operator decisions"
+    ],
     "005 tasks promote qwen": [
       "005 tasks promote qwen"
     ],
@@ -1599,6 +1653,9 @@
     ],
     "006 advisor native node resolution operator decisions": [
       "006-advisor-native-node-resolution operator decisions"
+    ],
+    "006 agent contract and registry alignment operator decisions": [
+      "006-agent-contract-and-registry-alignment operator decisions"
     ],
     "006 append lock stale reclaim operator decisions": [
       "006-append-lock-stale-reclaim operator decisions"
@@ -1647,6 +1704,9 @@
     ],
     "006 extraction and isolation rollup": [
       "006-extraction-and-isolation rollup"
+    ],
+    "006 file relative adapter imports operator decisions": [
+      "006-file-relative-adapter-imports operator decisions"
     ],
     "006 fix stress test coverage gap": [
       "006-fix-stress-test-coverage-gap"
@@ -1735,6 +1795,9 @@
     "006 remediation summary": [
       "006 remediation summary"
     ],
+    "006 remove nested changelog operator decisions": [
+      "006-remove-nested-changelog operator decisions"
+    ],
     "006 remove release size limit operator decisions": [
       "006-remove-release-size-limit operator decisions"
     ],
@@ -1785,6 +1848,9 @@
     ],
     "006 setup guide operator decisions": [
       "006-setup-guide operator decisions"
+    ],
+    "006 sk code audit remediation operator decisions": [
+      "006-sk-code-audit-remediation operator decisions"
     ],
     "006 stale documentation readme fixes": [
       "006-stale-documentation-readme-fixes"
@@ -1840,6 +1906,12 @@
     "007 agents implementation summary": [
       "007-agents implementation summary"
     ],
+    "007 changelog voice rewrite operator decisions": [
+      "007-changelog-voice-rewrite operator decisions"
+    ],
+    "007 ci vocabulary single source operator decisions": [
+      "007-ci-vocabulary-single-source operator decisions"
+    ],
     "007 copilot writer wiring": [
       "007-copilot-writer-wiring"
     ],
@@ -1884,6 +1956,15 @@
     ],
     "007 hook parity resource map": [
       "007-hook-parity resource map"
+    ],
+    "007 host spec tree readers operator decisions": [
+      "007-host-spec-tree-readers operator decisions"
+    ],
+    "007 hub index gap links operator decisions": [
+      "007-hub-index-gap-links operator decisions"
+    ],
+    "007 hy4 flash free opencode roster operator decisions": [
+      "007-hy4-flash-free-opencode-roster operator decisions"
     ],
     "007 intent classifier stability": [
       "007 intent classifier stability"
@@ -1963,6 +2044,9 @@
     "007 search rag measurement driven implementation": [
       "007 search rag measurement driven implementation"
     ],
+    "007 shared blocks and retired mechanisms operator decisions": [
+      "007-shared-blocks-and-retired-mechanisms operator decisions"
+    ],
     "007 sk prompt parent": [
       "007-sk-prompt-parent"
     ],
@@ -1971,6 +2055,9 @@
     ],
     "007 source diversity quality class operator decisions": [
       "007-source-diversity-quality-class operator decisions"
+    ],
+    "007 speckit command gates step order drift operator decisions": [
+      "007-speckit-command-gates-step-order-drift operator decisions"
     ],
     "007 tasks voyage cleanup": [
       "007 tasks voyage cleanup"
@@ -2080,6 +2167,9 @@
     "008 docs impact remediation": [
       "008-docs-impact-remediation"
     ],
+    "008 doctor host hook acceptance operator decisions": [
+      "008-doctor-host-hook-acceptance operator decisions"
+    ],
     "008 feedback reducers": [
       "008 feedback reducers"
     ],
@@ -2104,8 +2194,14 @@
     "008 handover": [
       "008 handover"
     ],
+    "008 hook library cleanup and readme rewrite operator decisions": [
+      "008-hook-library-cleanup-and-readme-rewrite operator decisions"
+    ],
     "008 host surface hint and score window operator decisions": [
       "008-host-surface-hint-and-score-window operator decisions"
+    ],
+    "008 hub vocabulary drift operator decisions": [
+      "008-hub-vocabulary-drift operator decisions"
     ],
     "008 implementation plan": [
       "008 implementation plan"
@@ -2116,6 +2212,9 @@
     "008 mcp daemon rebuild protocol": [
       "008 mcp daemon rebuild protocol",
       "008-mcp-daemon-rebuild-protocol"
+    ],
+    "008 orchestrate routing and retry operator decisions": [
+      "008-orchestrate-routing-and-retry operator decisions"
     ],
     "008 phase 001": [
       "008 phase 001"
@@ -2270,6 +2369,9 @@
     "008 review advisories operator decisions": [
       "008-review-advisories operator decisions"
     ],
+    "008 router readme presentation alignment operator decisions": [
+      "008-router-readme-presentation-alignment operator decisions"
+    ],
     "008 routing and release alignment operator decisions": [
       "008-routing-and-release-alignment operator decisions"
     ],
@@ -2315,6 +2417,9 @@
     "008 tier d changelog": [
       "008 tier d changelog"
     ],
+    "008 track subtrack regrouping operator decisions": [
+      "008-track-subtrack-regrouping operator decisions"
+    ],
     "008 vitest baseline": [
       "008 vitest baseline"
     ],
@@ -2333,8 +2438,14 @@
     "008 w3 w7 runtime wiring and audit": [
       "008 w3 w7 runtime wiring and audit"
     ],
+    "008 wider hop recall measurement operator decisions": [
+      "008-wider-hop-recall-measurement operator decisions"
+    ],
     "009": [
       "009"
+    ],
+    "009 ai council writer and round model operator decisions": [
+      "009-ai-council-writer-and-round-model operator decisions"
     ],
     "009 causal graph channel routing": [
       "009-causal-graph-channel-routing"
@@ -2477,6 +2588,12 @@
     "009 plan eperm": [
       "009 plan eperm"
     ],
+    "009 rename rule and test root fixes operator decisions": [
+      "009-rename-rule-and-test-root-fixes operator decisions"
+    ],
+    "009 resume contract owned assets operator decisions": [
+      "009-resume-contract-owned-assets operator decisions"
+    ],
     "009 retention reducer": [
       "009 retention reducer"
     ],
@@ -2594,6 +2711,9 @@
     "010 embedding consolidation hf local server rollup": [
       "010-embedding-consolidation-hf-local-server rollup"
     ],
+    "010 fanout orphan liveness operator decisions": [
+      "010-fanout-orphan-liveness operator decisions"
+    ],
     "010 fine tune plan": [
       "010 fine-tune plan"
     ],
@@ -2603,17 +2723,26 @@
     "010 fine tune tasks": [
       "010 fine-tune tasks"
     ],
+    "010 fix barter repin handover items for overlay engine operator decisions": [
+      "010-fix-barter-repin-handover-items-for-overlay-engine operator decisions"
+    ],
     "010 half auto upgrade doc alignment": [
       "010-half-auto-upgrade-doc-alignment"
     ],
     "010 half auto upgrade doc alignment resource map": [
       "010-half-auto-upgrade-doc-alignment resource map"
     ],
+    "010 history secret redaction operator decisions": [
+      "010-history-secret-redaction operator decisions"
+    ],
     "010 implementation summary": [
       "010 implementation summary"
     ],
     "010 memory implications": [
       "010 memory implications"
+    ],
+    "010 mixed track sweep guard operator decisions": [
+      "010-mixed-track-sweep-guard operator decisions"
     ],
     "010 p0 p1 p2 aggregate": [
       "010 P0 P1 P2 aggregate"
@@ -2644,6 +2773,9 @@
     ],
     "010 review remediation": [
       "010 review remediation"
+    ],
+    "010 route receipts research operator decisions": [
+      "010-route-receipts-research operator decisions"
     ],
     "010 scouted bugfix train changelog index": [
       "010-scouted-bugfix-train changelog index"
@@ -2744,6 +2876,9 @@
     "011 cli matrix adapter runners resource map": [
       "011-cli-matrix-adapter-runners resource map"
     ],
+    "011 decisions rule delivery operator decisions": [
+      "011-decisions-rule-delivery operator decisions"
+    ],
     "011 deep review f 001 f 002 f 004 f 006": [
       "011 deep-review F-001 F-002 F-004 F-006"
     ],
@@ -2770,6 +2905,9 @@
     ],
     "011 opencode pi handover parity operator decisions": [
       "011-opencode-pi-handover-parity operator decisions"
+    ],
+    "011 permission mode carry operator decisions": [
+      "011-permission-mode-carry operator decisions"
     ],
     "011 pi fast mode w subagent support": [
       "011-pi-fast-mode-w-subagent-support"
@@ -3194,6 +3332,9 @@
     "013 no redispatch landed iteration operator decisions": [
       "013-no-redispatch-landed-iteration operator decisions"
     ],
+    "013 opencode child and title operator decisions": [
+      "013-opencode-child-and-title operator decisions"
+    ],
     "013 p1 1 remediation": [
       "013 P1-1 remediation"
     ],
@@ -3326,6 +3467,9 @@
     "014 bundled commit plan": [
       "014 bundled commit plan"
     ],
+    "014 claude stop notice and crons operator decisions": [
+      "014-claude-stop-notice-and-crons operator decisions"
+    ],
     "014 code graph status readiness snapshot": [
       "014 code graph status readiness snapshot"
     ],
@@ -3352,6 +3496,9 @@
     ],
     "014 handover": [
       "014 handover"
+    ],
+    "014 harden overlay engine from fable review operator decisions": [
+      "014-harden-overlay-engine-from-fable-review operator decisions"
     ],
     "014 infra memory db and graph churn changelog index": [
       "014-infra-memory-db-and-graph-churn changelog index"
@@ -3398,6 +3545,9 @@
     "014 pre existing failure remediation": [
       "014 pre-existing failure remediation"
     ],
+    "014 prompt improver model eligibility operator decisions": [
+      "014-prompt-improver-model-eligibility operator decisions"
+    ],
     "014 resource map memory finalization": [
       "014-resource-map-memory-finalization"
     ],
@@ -3418,6 +3568,9 @@
     ],
     "015 004 deferred followups cleanup": [
       "015 004 deferred followups cleanup"
+    ],
+    "015 barter overlay upstream intake operator decisions": [
+      "015-barter-overlay-upstream-intake operator decisions"
     ],
     "015 cocoindex seed telemetry passthrough": [
       "015-cocoindex-seed-telemetry-passthrough"
@@ -3892,6 +4045,9 @@
       "016 llama cpp retrieval quality probe",
       "016 llama-cpp retrieval quality probe"
     ],
+    "016 pi context decisions based research refinement operator decisions": [
+      "016-pi-context-decisions-based-research-refinement operator decisions"
+    ],
     "016 plan": [
       "016 plan"
     ],
@@ -3996,6 +4152,9 @@
     ],
     "017 default flip plan": [
       "017 default flip plan"
+    ],
+    "017 dsh rc3 repin operator decisions": [
+      "017-dsh-rc3-repin operator decisions"
     ],
     "017 enrichment reconsolidation default on": [
       "017 enrichment reconsolidation default on"
@@ -4462,6 +4621,9 @@
     ],
     "019 tasks": [
       "019 tasks"
+    ],
+    "019 workflow outcome measure operator decisions": [
+      "019-workflow-outcome-measure operator decisions"
     ],
     "020 001 adr": [
       "020 001 ADR"
@@ -5064,6 +5226,9 @@
     "023 008 vec0 migration": [
       "023/008 vec0 migration"
     ],
+    "023 configurable host index folder operator decisions": [
+      "023-configurable-host-index-folder operator decisions"
+    ],
     "023 deep research arc blind spots changelog index": [
       "023-deep-research-arc-blind-spots changelog index"
     ],
@@ -5198,6 +5363,9 @@
     ],
     "025 readme architecture diagrams topology": [
       "025-readme-architecture-diagrams-topology"
+    ],
+    "025 root readme rewrite operator decisions": [
+      "025-root-readme-rewrite operator decisions"
     ],
     "025 tool layer map unlink": [
       "025-tool-layer-map-unlink"
@@ -7000,6 +7168,9 @@
     ],
     "038 embedding error propagation tasks": [
       "038 embedding error propagation tasks"
+    ],
+    "038 goal and workflow resume operator decisions": [
+      "038-goal-and-workflow-resume operator decisions"
     ],
     "038 review and cli lineage number map": [
       "038-review-and-cli-lineage number map"
@@ -8804,6 +8975,9 @@
     ],
     "advisor auth helper": [
       "advisor auth helper"
+    ],
+    "advisor background vector refresh": [
+      "advisor background vector refresh"
     ],
     "advisor baseline": [
       "advisor baseline"
@@ -14445,6 +14619,9 @@
     ],
     "background sleeptime agent memory": [
       "background sleeptime agent memory"
+    ],
+    "background vector refresh": [
+      "background vector refresh"
     ],
     "backgrounded reconcile drift marker": [
       "backgrounded reconcile drift marker"
@@ -28855,6 +29032,9 @@
     ],
     "command txt rename tasks": [
       "command txt rename tasks"
+    ],
+    "command vector refresh": [
+      "command vector refresh"
     ],
     "command vs skill vs agent": [
       "command vs skill vs agent"
@@ -47072,6 +47252,9 @@
     ],
     "embedding context version tasks": [
       "embedding context version tasks"
+    ],
+    "embedding coverage": [
+      "embedding coverage"
     ],
     "embedding coverage changelog": [
       "embedding coverage changelog"
@@ -78165,6 +78348,24 @@
     "ollama jina bug fix circuit breaker": [
       "ollama jina bug fix circuit breaker"
     ],
+    "ollama lane honest and closeout": [
+      "ollama lane honest and closeout"
+    ],
+    "ollama lane honest and closeout acceptance criteria": [
+      "ollama lane honest and closeout acceptance criteria"
+    ],
+    "ollama lane honest and closeout goal": [
+      "ollama lane honest and closeout goal"
+    ],
+    "ollama lane honest and closeout implementation summary": [
+      "ollama lane honest and closeout implementation summary"
+    ],
+    "ollama lane honest and closeout plan": [
+      "ollama lane honest and closeout plan"
+    ],
+    "ollama lane honest and closeout tasks": [
+      "ollama lane honest and closeout tasks"
+    ],
     "ollama lane off and daemon liveness": [
       "ollama lane off and daemon liveness"
     ],
@@ -78206,6 +78407,9 @@
     ],
     "ollama tier 1 embedder": [
       "ollama tier 1 embedder"
+    ],
+    "ollama vector coverage": [
+      "Ollama vector coverage"
     ],
     "ollamaprovider shared factory": [
       "OllamaProvider shared factory"
@@ -80258,6 +80462,9 @@
     ],
     "orphan only mcp sweeper delegation": [
       "orphan-only MCP sweeper delegation"
+    ],
+    "orphan operator answers": [
+      "orphan operator answers"
     ],
     "orphan predicate existing heartbeat": [
       "orphan predicate existing heartbeat"
@@ -84214,6 +84421,9 @@
     ],
     "phase 19 local test speedups": [
       "phase 19 local test speedups"
+    ],
+    "phase 19 ollama lane honest and closeout": [
+      "phase 19 ollama lane honest and closeout"
     ],
     "phase 19 plan": [
       "phase 19 plan"
@@ -106651,11 +106861,17 @@
     "semantic intent tags": [
       "semantic intent tags"
     ],
+    "semantic lane coverage gate": [
+      "semantic lane coverage gate"
+    ],
     "semantic lane enablement": [
       "semantic lane enablement"
     ],
     "semantic lane health": [
       "semantic lane health"
+    ],
+    "semantic lane real ablation": [
+      "semantic lane real ablation"
     ],
     "semantic lane weight zero": [
       "semantic lane weight zero"
@@ -125653,6 +125869,9 @@
     "system skill advisor 1 2 0 0": [
       "system-skill-advisor 1.2.0.0"
     ],
+    "system skill advisor 1 3 0 0": [
+      "system-skill-advisor 1.3.0.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -126003,6 +126222,9 @@
     ],
     "system skill advisor v1 2 0 0": [
       "system-skill-advisor v1.2.0.0"
+    ],
+    "system skill advisor v1 3 0 0": [
+      "system-skill-advisor v1.3.0.0"
     ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
