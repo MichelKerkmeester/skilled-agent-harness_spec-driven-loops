@@ -1973,10 +1973,12 @@ function reviewBlockedStopGateResults(stopDecision, graphBlockers) {
   const gates = isPlainObject(stopDecision.gates) ? stopDecision.gates : {};
   const rows = REVIEW_LEGAL_STOP_GATES.map((gateId) => {
     const gate = isPlainObject(gates[gateId]) ? gates[gateId] : {};
+    // A gate that did not apply never ran, so its row says unknown rather than claim a pass.
+    if (gate.skipped === true) {
+      return { gateId, status: 'unknown', reasonCode: 'gate-skipped', evidenceDigest: sha256Json(gate) };
+    }
     const pass = gate.pass === true;
-    let reasonCode = 'gate-failed';
-    if (pass) reasonCode = gate.skipped === true ? 'gate-skipped' : 'gate-passed';
-    return { gateId, status: pass ? 'pass' : 'fail', reasonCode, evidenceDigest: sha256Json(gate) };
+    return { gateId, status: pass ? 'pass' : 'fail', reasonCode: pass ? 'gate-passed' : 'gate-failed', evidenceDigest: sha256Json(gate) };
   });
   const reported = new Set(REVIEW_LEGAL_STOP_GATES);
   for (const blockedId of stopDecision.blockedBy) {

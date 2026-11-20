@@ -269,6 +269,8 @@ describe('convergence.cjs --record-blocked-stop for review', () => {
     const gateResults = data.gateResults as Array<{ gateId: string; status: string }>;
     expect(gateResults.map((row) => row.gateId)).toEqual(NINE_GATES);
     expect(gateResults.filter((row) => row.status === 'fail').map((row) => row.gateId)).toEqual(['hotspotSaturationGate']);
+    expect(gateResults.filter((row) => row.status === 'unknown').map((row) => row.gateId))
+      .toEqual(['candidateCoverageGate', 'graphlessFallbackGate']);
     expect(String(data.recoveryHint)).not.toBe('');
 
     const projected = projectedBlockedStops(run);
