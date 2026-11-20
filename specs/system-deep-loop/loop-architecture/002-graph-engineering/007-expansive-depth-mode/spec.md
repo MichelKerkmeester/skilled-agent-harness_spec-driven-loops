@@ -175,3 +175,4 @@ Build order: 001 merges first; 005 before 004; 012 before 010 and 011; 010 after
 | 12 | `012-pivot-hygiene/` | Complete | Slice L: council seat cap of 3 per council attempt with at most one quorum retry per pivot (6 seats at most), dead pivot guard retired |
 | 13 | `013-no-redispatch-landed-iteration/` | Complete | Slice M (D14): no redispatch of an iteration that already landed |
 | 14 | `014-docs-playbooks-alignment/` | Complete | Playbook coverage check (each phase writes its own scenarios), feature catalogs and doc/skilled alignment for the features and fixes of 001-013; needs 001-013 |
+| 15 | `015-reducer-test-focus-contract/` | Complete | Follow-up to 004: align the spec-kit CLI deep-research reducer test with the leaf-first Next Focus contract |

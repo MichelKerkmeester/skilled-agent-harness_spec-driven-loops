@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract",
+  "description": "Phase 15: reducer-test-focus-contract",
+  "keywords": [
+    "phase",
+    "reducer-test-focus-contract"
+  ],
+  "lastUpdated": "2026-11-20T14:48:15.956Z",
+  "specId": "015",
+  "folderSlug": "reducer-test-focus-contract",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "002-graph-engineering",
+    "007-expansive-depth-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
