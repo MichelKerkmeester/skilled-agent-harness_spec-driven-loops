@@ -456,13 +456,19 @@ async function main() {
     const sessionId = typeof rawEvent.sessionId === 'string' && rawEvent.sessionId
       ? rawEvent.sessionId
       : 'run-cli';
+    // The model writes the iteration record, so only the gateway clock times it:
+    // a time field on the record never sets the event time, and the projection
+    // keeps the record's own stamp as a claim.
+    const reviewMeta = rawEvent.type === 'iteration'
+      ? { ...rawEvent, occurredAt: nowIso, recordedAt: nowIso }
+      : rawEvent;
     const preparedInput = buildPreparedInput({
       stem: 'deep_review.iteration_recorded',
       scope: { runId: sessionId, sessionId },
       data: { record: rawEvent },
       prevEventHash: currentHead.recordHash,
       replay: defaultReplay,
-    }, rawEvent);
+    }, reviewMeta);
     eventRecord = adapter.prepareEvent(preparedInput, registry);
   } else {
     throw new Error('Unrecognized event format: expected object with stem or event_type');

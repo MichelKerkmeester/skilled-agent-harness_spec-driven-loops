@@ -432,6 +432,7 @@ describe('append-mode-event legacy deep-research upcast seam', () => {
       .map((line) => JSON.parse(line));
     const row = stateLog.find((entry) => entry.type === 'iteration');
     expect(row.timestamp).toBe(event.occurred_at);
+    expect(row.claimedTimestamp).toBe('2099-01-01T00:00:00Z');
   });
 
   // The completed-iteration override must not reach the rows that keep their own

@@ -1811,8 +1811,36 @@ describe('deep-research typed ledger schema', () => {
       mode: 'research',
       answeredQuestions: ['Does retry preserve the request id?'],
       timestamp: TIMESTAMP,
+      claimedTimestamp: record.timestamp,
     }]);
     expect(prepared.envelope.payload.data).toMatchObject({ claimedTimestamp: record.timestamp });
+
+    // A row the model wrote without a stamp makes no claim, so the projected row
+    // keeps the bytes an older ledger always produced.
+    const { timestamp: _stamp, ...unstamped } = record;
+    const bare = upcastLegacyDeepResearchRecord(unstamped, context);
+    if (bare.status !== 'migrated') throw new Error(bare.decision.reasonCode);
+    const bareProjected = contract.reduce(contract.base.state, {
+      effective: prepareDeepResearchEvent({
+        stem: bare.targetStem,
+        scope: bare.scope,
+        prevEventHash: bare.prevEventHash,
+        replay: bare.replay,
+        data: bare.data,
+        eventId: 'event-legacy-iteration-bare',
+        streamId: 'deep-research-run-1',
+        streamSequence: 1,
+        occurredAt: TIMESTAMP,
+        recordedAt: TIMESTAMP,
+        producer: { name: 'deep-research-shadow-schema', version: '1' },
+        authorityEpoch: 1,
+        correlationId: 'run-1',
+        causationId: null,
+        idempotencyKey: 'legacy-iteration-bare',
+      } as DeepResearchEventInput<'deep_research.iteration_completed'>, createDeepResearchEventRegistry()),
+    } as unknown as EventReadResult);
+    expect(bareProjected.rows[0]).toMatchObject({ type: 'iteration', timestamp: TIMESTAMP });
+    expect(Object.hasOwn(bareProjected.rows[0], 'claimedTimestamp')).toBe(false);
   });
 
   it.each(reducerReadRows)('upcasts a legacy $record.event row to $stem and projects the same row back', ({ stem, record }) => {

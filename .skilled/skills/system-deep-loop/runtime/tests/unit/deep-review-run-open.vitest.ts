@@ -192,6 +192,22 @@ function iterationRecord(): Record<string, unknown> {
   };
 }
 
+// The gateway clock times an iteration row, so the row matches its source in
+// every field but the time, and the source's own stamp rides beside it as a claim.
+function expectGatewayTimed(
+  row: Record<string, unknown>,
+  source: Record<string, unknown>,
+  before: number,
+  after: number,
+): void {
+  const { timestamp: rowTime, claimedTimestamp, ...rest } = row;
+  const { timestamp: sourceTime, ...sourceRest } = source;
+  expect(rest).toEqual(sourceRest);
+  expect(claimedTimestamp).toBe(sourceTime);
+  expect(Date.parse(String(rowTime))).toBeGreaterThanOrEqual(before);
+  expect(Date.parse(String(rowTime))).toBeLessThanOrEqual(after);
+}
+
 function stateRows(dir: string): Array<Record<string, unknown>> {
   return readFileSync(join(dir, 'deep-review-state.jsonl'), 'utf8')
     .split('\n').filter(Boolean).map((line) => JSON.parse(line));
@@ -247,6 +263,7 @@ describe('deep-review run open', () => {
     expect(setAside.status, setAside.stdout + setAside.stderr).toBe(0);
     const open = bash(render(initStepCommand(), specFolder));
     expect(open.status, open.stdout + open.stderr).toBe(0);
+    const before = Date.now();
     const replay = bash(render(blockScalar(adopt, 'replay_command'), specFolder));
     expect(replay.status, replay.stdout + replay.stderr).toBe(0);
     expect(JSON.parse(replay.stdout.trim().split('\n').at(-1) ?? '{}')).toMatchObject({
@@ -262,18 +279,19 @@ describe('deep-review run open', () => {
     // A later append replaces the projection, and every carried row survives it.
     const later = { ...iterationRecord(), run: 3, iteration: 3, timestamp: '2026-10-02T12:00:00Z' };
     expect(gateway(dir, later).status).toBe(0);
+    const after = Date.now();
     const rows = stateRows(dir);
     const legacyRows = legacyLog.trim().split('\n').map((line) => JSON.parse(line));
     expect(rows.map((row) => row.type)).toEqual(['config', 'iteration', 'iteration', 'event', 'iteration']);
-    expect(rows[1]).toEqual(legacyRows[1]);
-    expect(rows[2]).toEqual(legacyRows[3]);
+    expectGatewayTimed(rows[1], legacyRows[1], before, after);
+    expectGatewayTimed(rows[2], legacyRows[3], before, after);
     expect(rows[3]).toMatchObject({
       type: 'event',
       event: 'migration',
       stem: 'deep_review.migration',
       legacyArtifacts: ['deep-research-config.json', 'deep-research-state.jsonl', '.deep-research-pause'],
     });
-    expect(rows[4]).toEqual(later);
+    expectGatewayTimed(rows[4], later, before, after);
   });
 
   it('the init step opens the run so later appends project', () => {
@@ -285,11 +303,13 @@ describe('deep-review run open', () => {
     expect(init.status, init.stdout + init.stderr).toBe(0);
     expect(stateRows(dir)[0]).toMatchObject({ type: 'config', maxIterations: 3, generation: 1 });
 
+    const before = Date.now();
     const append = gateway(dir, iterationRecord());
+    const after = Date.now();
     expect(append.status, append.stdout).toBe(0);
     const rows = stateRows(dir);
     expect(rows.map((row) => row.type)).toEqual(['config', 'iteration']);
-    expect(rows[1]).toEqual(iterationRecord());
+    expectGatewayTimed(rows[1], iterationRecord(), before, after);
   });
 
   it('the init step projects the configured topic into the config row', () => {
