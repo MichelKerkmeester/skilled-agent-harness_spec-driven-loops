@@ -40,9 +40,9 @@ The Skilled session brings `origin/main` into local main with a merge commit, pr
 - [x] The operator's go-ahead to push Skilled main
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `git rev-parse origin/main` equals `git rev-parse main`, and ai-speckit's `pin.commit` equals the Target Skilled commit line
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `git rev-parse origin/main` equals `git rev-parse main`, and ai-speckit's `pin.commit` equals the Target Skilled commit line
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

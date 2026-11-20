@@ -35,7 +35,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -88,12 +88,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -113,6 +107,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,8 +192,8 @@
     ],
     "causal_summary": "Phase 006's engine fixes, the relayout rollback and the outside-repository refusal among them, exist only on local Skilled main, which is 10 commits ahead of and 34 behind `origin/main`",
     "created_at": "2026-11-20T15:37:53Z",
-    "last_save_at": "2026-11-20T16:01:56.955Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-20T16:27:18.997Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -202,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:975b8dd01594103daf2f5f2923295d2fd901b00a6e91513e0882b1a5cdc09158",
+    "source_fingerprint": "sha256:331134d5d64ea2b00caea79ec5c8a5c387949e2ddf98abab8f5fa45bc60f18e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6abe5321b4d32378322d3c065b758342a93409108ffde058466525123115d253",
-      "plan.md": "7bd905271a8233d379b88c3f236392b5201d26c1f998a6f773bff2d131f6fd8d",
-      "tasks.md": "5316ff4f0be4436748f297c5ede1ef62631304c9c84174896baf6e0302bcd150",
-      "implementation-summary.md": "3725343f2a80e1dabe455b969687b5fd61afbc9b68f30dd37d8a4afdb363f216"
+      "spec.md": "c00b0573ba2c29e0f01e6f8563efbd104b99f1b90779f12f7d8c8b599e0018c6",
+      "plan.md": "07d64fe010d6522cae06d46dcab3108e2329c8cf7b9a06db188736b164d76e1d",
+      "tasks.md": "d953cf1830308ce8bd880cf5ab8af3ae9e07aa304d9e8a15da373bdfbfaf587c",
+      "implementation-summary.md": "ea4abcdd2c85e9afc9c5ada2378923faec57c799970452032394be3176919a4d"
     },
     "last_active_at": null
   }
