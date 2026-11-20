@@ -21,8 +21,56 @@
 
 // Reads the session id, generation and state-log tail digest of a packet that
 // is about to be archived. Shared by both workflows' restart paths.
+//
+// A packet can lack its root config: an older fan-out root never wrote one. The
+// chain is then rebuilt from what the packet does hold, in this order:
+//   1. the lineage configs beside it (lineages/*/<config name>). Each fan-out
+//      lineage names the root session as its parent and runs in the root's
+//      generation, so one shared parent is the prior session and the highest
+//      lineage generation is its generation. Disagreeing parents name no session.
+//   2. the state log's session ids, less the packet folder name, which older runs
+//      wrote as a placeholder. Exactly one remaining id is the prior session; its
+//      generation is the highest one its rows carry, else 1, since it ran once.
+// Anything else reports no prior session, as before.
+function priorLineageFallback(fs, path, configPath, stateLogPath) {
+  const packetDir = path.dirname(configPath);
+  const readJson = (file) => {
+    try { return JSON.parse(fs.readFileSync(file, "utf8")); } catch { return null; }
+  };
+  const lineageOf = (config) => (config && typeof config === "object" ? (config.lineage || config) : null);
+  const parents = new Set();
+  let lineageGeneration = 0;
+  let entries = [];
+  try { entries = fs.readdirSync(path.join(packetDir, "lineages"), { withFileTypes: true }); } catch { entries = []; }
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const lineage = lineageOf(readJson(path.join(packetDir, "lineages", entry.name, path.basename(configPath))));
+    if (!lineage || typeof lineage.parentSessionId !== "string" || lineage.parentSessionId.trim() === "") continue;
+    parents.add(lineage.parentSessionId);
+    if (Number.isInteger(lineage.generation)) lineageGeneration = Math.max(lineageGeneration, lineage.generation);
+  }
+  if (parents.size === 1) return { sessionId: [...parents][0], generation: Math.max(1, lineageGeneration) };
+  if (parents.size > 1) return null;
+
+  let lines = [];
+  try { lines = fs.readFileSync(stateLogPath, "utf8").split("\n"); } catch { lines = []; }
+  const placeholder = path.basename(packetDir);
+  const generations = new Map();
+  for (const line of lines) {
+    let row;
+    try { row = JSON.parse(line); } catch { continue; }
+    if (!row || typeof row.sessionId !== "string" || row.sessionId.trim() === "" || row.sessionId === placeholder) continue;
+    const seen = generations.get(row.sessionId) || 0;
+    generations.set(row.sessionId, Number.isInteger(row.generation) ? Math.max(seen, row.generation) : seen);
+  }
+  if (generations.size !== 1) return null;
+  const [[sessionId, generation]] = [...generations];
+  return { sessionId, generation: Math.max(1, generation) };
+}
+
 function priorLineage() {
   const fs = require("fs");
+  const path = require("path");
   const crypto = require("crypto");
   let priorSessionId = null;
   let priorGeneration = 0;
@@ -35,6 +83,11 @@ function priorLineage() {
     if (error.code !== "ENOENT") {
       console.error("The old config cannot be read: " + error.message);
       process.exit(1);
+    }
+    const fallback = priorLineageFallback(fs, path, process.argv[1], process.argv[2]);
+    if (fallback) {
+      priorSessionId = fallback.sessionId;
+      priorGeneration = fallback.generation;
     }
   }
   let priorTailDigest = crypto.createHash("sha256").update("").digest("hex");

@@ -344,8 +344,8 @@ workflow:
       command: |
         node .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs prior-lineage "{state_paths.config}" "{state_paths.state_log}"
       outputs:
-        - prior_session_id: "priorSessionId from the JSON output, null when no old config exists"
-        - prior_generation: "priorGeneration from the JSON output, 0 when no old config exists"
+        - prior_session_id: "priorSessionId from the JSON output: the old config's, else the one parent its lineage configs share, else the one real session id in its state log, else null"
+        - prior_generation: "priorGeneration from the JSON output, 0 when no prior session is found"
         - prior_tail_digest: "priorTailDigest from the JSON output: the sha256 of the old state log bytes, or of zero bytes when no old state log exists"
       on_fail: "Halt with STATUS=FAIL. The old config is unreadable, so repair or archive the packet by hand."
     command: |
@@ -403,6 +403,7 @@ workflow:
       lineage it deals a node to before it spawns; never write either file by hand.
     command: 'node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir "{artifact_dir}" --iteration 0 --input "{artifact_dir}/frontier-seed.json" --max-iterations-source "{max_iterations_source}"'
     working_directory: "{repo_root}"
+    optional_flags: "When max_iterations_source != 'default', append `--max-iterations {max_iterations}`: this seed runs before step_fanout_root_config writes the root config, so without it the budget line reads the loop default instead of the bound value. When max_iterations_source == 'default', append nothing."
     outputs:
       - frontier_seed_json: "The JSON line the command prints: admitted node ids and pruned {nodeId, reason} rows"
     on_failure: "Halt with the command's stderr line. A run that asked for expansive depth must not start without its seeded frontier."
@@ -468,7 +469,7 @@ workflow:
         working_directory: "{repo_root}"
         wait_for_completion: true
         on_fail: "When the runner exits 3 with status error (it refused the run before start and spawned nothing, for example a finished lineage that differs from this run), halt and print its error; do not continue to phase_synthesis, because the lineage folders still hold the earlier run. Rerun with --restart to start fresh. Any other exit keeps the path below."
-        optional_flags: "When lineage_timeout_hours is bound, append `--lineage-timeout-hours {lineage_timeout_hours}` to the command. When it is unset, append nothing, which keeps the 4 hour ceiling."
+        optional_flags: "When lineage_timeout_hours is bound, append `--lineage-timeout-hours {lineage_timeout_hours}` to the command. When it is unset, append nothing, which keeps the 4 hour ceiling. When max_iterations_source != 'default', append `--max-iterations {max_iterations}`, which binds every lineage the matrix gives no iterations value. When max_iterations_source == 'default', append no --max-iterations, so each lineage keeps its derived or loop-default budget."
 
   # ════════
   # PHASE 1: INITIALIZATION
@@ -629,8 +630,8 @@ workflow:
                 command: |
                   node .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs prior-lineage "{state_paths.config}" "{state_paths.state_log}"
                 outputs:
-                  - prior_session_id: "priorSessionId from the JSON output, null when no old config exists"
-                  - prior_generation: "priorGeneration from the JSON output, 0 when no old config exists"
+                  - prior_session_id: "priorSessionId from the JSON output: the old config's, else the one parent its lineage configs share, else the one real session id in its state log, else null"
+                  - prior_generation: "priorGeneration from the JSON output, 0 when no prior session is found"
                   - prior_tail_digest: "priorTailDigest from the JSON output: the sha256 of the old state log bytes, or of zero bytes when no old state log exists"
                 on_fail: "Halt with STATUS=FAIL through step_release_lock. The old config is unreadable, so repair or archive the packet by hand."
               command: |
@@ -1947,6 +1948,7 @@ workflow:
           - "{state_paths.strategy}"
         read_patterns:
           - "{state_paths.packet_dir}/lineages/*/deep-research-state.jsonl"
+          - "{state_paths.packet_dir}/orchestration-summary.json"
           - "{state_paths.packet_dir}/lineages/*/deep-research-strategy.md"
         extract:
           - iteration_count: "When direct lineage state logs exist, count distinct run values (run, else iteration) across those logs in stable lineage order; otherwise count distinct run values (run, else iteration) across the root state log. Never add root compatibility records to lineage records."
@@ -1962,7 +1964,7 @@ workflow:
           - total_questions: "Count total questions tracked in strategy.md"
           - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
           - divergence_summary: "Read registry.divergence and summarize saturated directions, completed pivots, failures, overrides, Council artifact refs, and remaining frontier; else 'no divergent pivots recorded'"
-          - reason: "Use the latest synthesis/recovery stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
+          - reason: "Use the latest synthesis/recovery stop reason in {state_paths.state_log} if present. On a fan-out root (direct lineage state logs exist and the root state log holds no such stop row): take each lineage that {state_paths.packet_dir}/orchestration-summary.json lists with status succeeded, and read the stopReason of the last row carrying a stopReason in {state_paths.packet_dir}/lineages/<label>/deep-research-state.jsonl; when they agree use it, when they differ use the one whose row has the latest timestamp, since the run ended when that lineage stopped. Only when neither yields a reason, the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
 
       # ─── APPROVAL GATE: Pre-Synthesis ───
       gate_pre_synthesis:

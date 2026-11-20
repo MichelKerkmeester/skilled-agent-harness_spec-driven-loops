@@ -78,6 +78,38 @@ describe('workflow-steps prior-lineage', () => {
     });
   });
 
+  it('falls back to the session the archived lineages name when the root has no config', () => {
+    const dir = tempDir();
+    const packet = join(dir, 'review');
+    for (const [label, generation] of [['opus', 2], ['deepseek', 2]] as const) {
+      mkdirSync(join(packet, 'lineages', label), { recursive: true });
+      writeFileSync(join(packet, 'lineages', label, 'deep-review-config.json'), JSON.stringify({
+        sessionId: `fanout-${label}-1`, parentSessionId: 'root-session', generation,
+      }));
+    }
+    writeFileSync(join(packet, 'deep-review-state.jsonl'), '{"type":"event","sessionId":"review"}\n');
+    const result = run('prior-lineage', join(packet, 'deep-review-config.json'), join(packet, 'deep-review-state.jsonl'));
+    expect(result.status).toBe(0);
+    expect(json(result.stdout)).toMatchObject({ priorSessionId: 'root-session', priorGeneration: 2 });
+  });
+
+  it('falls back to a real state-log session and ignores the packet folder name', () => {
+    const dir = tempDir();
+    const packet = join(dir, 'review');
+    mkdirSync(packet, { recursive: true });
+    const state = [
+      '{"type":"event","sessionId":"review"}',
+      '{"type":"iteration","sessionId":"s-real","generation":3}',
+    ].join('\n') + '\n';
+    writeFileSync(join(packet, 'deep-review-state.jsonl'), state);
+    expect(json(run('prior-lineage', join(packet, 'deep-review-config.json'), join(packet, 'deep-review-state.jsonl')).stdout))
+      .toEqual({ priorSessionId: 's-real', priorGeneration: 3, priorTailDigest: sha(state) });
+
+    writeFileSync(join(packet, 'deep-review-state.jsonl'), '{"type":"event","sessionId":"review"}\n');
+    expect(json(run('prior-lineage', join(packet, 'deep-review-config.json'), join(packet, 'deep-review-state.jsonl')).stdout))
+      .toMatchObject({ priorSessionId: null, priorGeneration: 0 });
+  });
+
   it('exits 1 on an unreadable config', () => {
     const dir = tempDir();
     writeFileSync(join(dir, 'config.json'), '{not json');
