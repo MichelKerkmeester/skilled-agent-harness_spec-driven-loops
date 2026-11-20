@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "c0799299fc776c656227ec458e0b48ac58abac522bf13ab1bf49e88b40ed3a0a",
+      "sha256": "884b0fa1fc98700c7f8d151cccb001e7f8cfb3433cf1ab025ab339f806cc4f1b",
       "section": "full"
     },
     {

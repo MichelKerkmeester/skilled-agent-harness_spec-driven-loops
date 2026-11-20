@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "dcc9c4af4c80702679d00c3019e2e5cde4f3371e1454aa2263ecc5b2fe63a42f",
+      "sha256": "19394855c70d7af8a05e5a371a2c7c0f5b90a2b8392c523992c25213da7095f1",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "2bce63ba91c7d87cc2577f142c79f5ab0fac0ad7271a2db4c0b42d7f3fe034a6"
+  "compiledBodyDigest": "5c490539d92e27960222d49e32c6f37f8fc1e184437b6fd5fc114cdb2a260f5e"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -172,7 +172,7 @@ Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-
 `--dry-run` binds `dry_run=true` in both execution modes.
 With fan-out executors, `--dry-run` first runs `fanout-run.cjs --preview`. For each lineage it prints the command a real run would start: the argv with every prompt replaced by its digest, plus cwd, session id, iterations, frontier scope, the Claude config dir when set, and the model, reasoning effort and sandbox mode. Its `permissionMode` is the value the command passes after `--permission-mode` (a Claude mode, Devin's `auto` or `dangerous`, dsh's `read-only` or `workspace-write`), or null for a kind that passes none, `sandboxEnforcement` is `preventive`, `compensating` or `none`, and `effortApplied` is `flag`, `baked` or `none`. Runner warnings are printed too. Nothing is written to the packet. The run then halts at the first side-effect step as before. The preview JSON carries `dry_run_halt`, the runner's halt event for `step_fanout_spawn` (boundary `child-spawn`): when the halt lands there the workflow prints that line, and a halt at an earlier boundary step prints the workflow's own. Its `topic_digest` is the SHA-256 of the research topic with whitespace collapsed and trimmed, the form the prompts embed.
 Under `--restart`, session ids come from the packet about to be archived. With `--depth-mode=expansive`, frontier scopes are empty and iterations show the unseeded default because seeding happens after the preview. A `cli-mistral-vibe` lineage shows no command. A matrix the real run would refuse prints that refusal instead. Single-executor runs and runs without `--dry-run` are unchanged.
-Setup then binds its values in memory and skips the Tier 1 config persist, so no `deep-research-config.json` is written.
+Setup then binds its values in memory only. The config is written by `step_create_config`, or by `step_fanout_root_config` on a fan-out run, and the dry run halts before either, so no `deep-research-config.json` is written.
 The workflow then prints `dry_run_halt` preview lines and stops before any dispatch or state write.
 Show the operator the halt line and say that nothing was written.
 Both execution modes run the telemetry heartbeat and the run-now check.
