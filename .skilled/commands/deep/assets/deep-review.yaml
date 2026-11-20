@@ -428,6 +428,32 @@ workflow:
       phase_main_loop entirely (those are the single-executor path). The merge step in
       phase_synthesis will consolidate results across all lineages.
     sub_steps:
+      step_fanout_root_config:
+        description: "Write the root config before any lineage spawns"
+        dry_run_boundary: "state-mutation"
+        instructions: |
+          Fan-out never reaches phase_init, so step_create_config never runs here, yet
+          step_update_config_status and a later --restart both read the root config. Write
+          it with step_create_config's template and populate map, the lineage_values below
+          and the fan-out matrix. Bindings that only phase_init makes are resolved as listed
+          here. When lineage_mode is not restart and {state_paths.config} already holds a
+          non-empty sessionId, keep sessionId, parentSessionId, lineageMode, generation and
+          createdAt, so a rerun of the same fan-out stays in its session and generation.
+          fanout-run.cjs never reads this file; it reads each lineage's own config.
+        template: .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json
+        session_id_init: "{session_id} when bound, else {ISO_8601_NOW}"
+        lineage_values:
+          generation_init: "{prior_generation + 1} when lineage_mode == 'restart', else 1"
+          lineage_mode_init: "restart when lineage_mode == 'restart', else new"
+          parent_session_id_init: "{prior_session_id} when lineage_mode == 'restart', else null"
+        populate_from: step_create_config
+        populate:
+          reviewDimensions: ["correctness", "security", "traceability", "maintainability"]
+          reviewFocus: "{review_focus} on one line, or null when it is empty"
+          reviewScopeFiles: []
+          resource_map_present: "true when {spec_folder}/resource-map.md exists, else false"
+          fanout: "{config.fanout_json}"
+        output: "{state_paths.config}"
       step_fanout_spawn_cli:
         description: "Spawn all native and CLI lineages in capped worker pool"
         skip_when: "no entries in config.fanout.executors"

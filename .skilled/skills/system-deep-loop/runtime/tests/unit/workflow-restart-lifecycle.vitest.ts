@@ -1497,3 +1497,37 @@ describe('single-loop resource map artifact dir', () => {
     });
   }
 });
+
+describe('fan-out root config', () => {
+  // A fan-out run never reaches phase_init, so the root config the resource map, the status
+  // update and a later restart read has to be written on the fan-out branch itself.
+  function rootConfigStep(text: string): string {
+    return phaseStep(keyBlock(topLevelStep(text, 'step_fanout_spawn'), 'sub_steps'), 'step_fanout_root_config');
+  }
+
+  for (const entry of FILES) {
+    it(`${entry.label} writes the root config before any lineage spawns, from the single-loop template`, () => {
+      const text = fileText(entry.file);
+      const spawn = topLevelStep(text, 'step_fanout_spawn');
+      const step = rootConfigStep(text);
+      expect(step).not.toBe('');
+      // The default single-executor run skips the whole branch and keeps step_create_config.
+      expect(spawn).toContain('    skip_when: "config.fanout is absent"');
+      expect(spawn.indexOf('      step_fanout_root_config:\n')).toBeLessThan(
+        spawn.indexOf('      step_fanout_spawn_cli:\n'),
+      );
+
+      const templateLine = (block: string) => block.split('\n').find((line) => line.trim().startsWith('template:'));
+      expect(templateLine(step)).toBeDefined();
+      expect(templateLine(step)).toBe(templateLine(phaseStep(text, 'step_create_config')));
+      expect(step).toContain('        dry_run_boundary: "state-mutation"');
+      expect(step).toContain('        populate_from: step_create_config');
+      expect(step).toContain('          fanout: "{config.fanout_json}"');
+      expect(step).toContain('        session_id_init: "{session_id} when bound, else {ISO_8601_NOW}"');
+      expect(step).toContain('        output: "{state_paths.config}"');
+      for (const line of LINEAGE_VALUES_LINES) {
+        expect(step).toContain(line);
+      }
+    });
+  }
+});

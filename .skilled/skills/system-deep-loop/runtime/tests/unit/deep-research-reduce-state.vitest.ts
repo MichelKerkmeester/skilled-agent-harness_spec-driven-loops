@@ -326,6 +326,41 @@ describe('deep-research reduce-state recovery gate', () => {
     expect(readFileSync(compatibilityRegistry, 'utf8')).toBe(registryBytes);
   });
 
+  it('emits the fan-out root resource map from the root config the fan-out branch writes', () => {
+    const workflow = readFileSync(resolve(runtimeRoot, '../../../commands/deep/assets/deep-research.yaml'), 'utf8');
+    const spawnAt = workflow.indexOf('\n  step_fanout_spawn:\n');
+    const stepAt = workflow.indexOf('      step_fanout_root_config:\n', spawnAt);
+    expect(spawnAt).not.toBe(-1);
+    expect(stepAt).not.toBe(-1);
+    const template = /\n {8}template: (\S+)/u.exec(workflow.slice(stepAt))?.[1] ?? '';
+    expect(template).toMatch(/deep-research-config\.json$/u);
+
+    const specFolder = makeTempSpec();
+    const researchDir = join(specFolder, 'research');
+    const config = JSON.parse(readFileSync(resolve(runtimeRoot, '../../../..', template), 'utf8'));
+    config.topic = 'Fan-out root config';
+    config.specFolder = specFolder;
+    config.resource_map = { emit: true };
+    config.fanout = { executors: [{ kind: 'cli-claude-code', label: 'alpha' }, { kind: 'cli-codex', label: 'beta' }] };
+    config.lineage = { ...config.lineage, sessionId: 'gen-3', parentSessionId: 'gen-2', lineageMode: 'restart', generation: 3 };
+    writeFileSync(join(researchDir, 'deep-research-config.json'), `${JSON.stringify(config, null, 2)}\n`, 'utf8');
+    for (const label of ['alpha', 'beta']) {
+      const deltaDir = join(researchDir, 'lineages', label, 'deltas');
+      mkdirSync(deltaDir, { recursive: true });
+      writeFileSync(
+        join(deltaDir, 'iter-001.jsonl'),
+        `${JSON.stringify({ type: 'iteration', iteration: 1, sourcesQueried: [`${label}-source.md`] })}\n`,
+        'utf8',
+      );
+    }
+
+    const result = emitFanoutResourceMap(specFolder, { write: true });
+
+    expect(result.resourceMapSkipped).toBe(false);
+    expect(result.deltaSourceCount).toBe(2);
+    expect(readFileSync(join(researchDir, 'resource-map.md'), 'utf8')).toContain('| beta | lineages/beta/deltas/iter-001.jsonl |');
+  });
+
   it('rejects symlinked lineage delta files before reading external evidence', () => {
     const specFolder = makeTempSpec();
     const researchDir = join(specFolder, 'research');
