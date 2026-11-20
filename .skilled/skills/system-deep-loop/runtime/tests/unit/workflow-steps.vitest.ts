@@ -184,7 +184,7 @@ describe('workflow-steps run-open', () => {
     });
   });
 
-  it('run-open-review digests the workflow file it is given', () => {
+  it('run-open-review digests the workflow file it is given together with the step programs', () => {
     const dir = tempDir();
     const raw = JSON.stringify({ sessionId: 'v-2', generation: 1, reviewTargetType: 'track', reviewTarget: 'x', maxIterations: 3, lineageMode: 'new' });
     writeFileSync(join(dir, 'config.json'), raw);
@@ -197,7 +197,9 @@ describe('workflow-steps run-open', () => {
       data: {
         target: { targetType: 'directory', sourceDigest: sha('x'), contentDigest: sha(raw) },
         lineageMode: 'fresh',
-        reviewModeContractDigest: sha('workflow: {}\n'),
+        reviewModeContractDigest: createHash('sha256')
+          .update(Buffer.concat([Buffer.from('workflow: {}\n'), readFileSync(SCRIPT)]))
+          .digest('hex'),
       },
     });
   });

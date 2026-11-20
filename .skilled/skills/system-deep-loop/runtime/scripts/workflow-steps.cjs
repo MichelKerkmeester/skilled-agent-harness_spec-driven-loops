@@ -277,8 +277,9 @@ function runOpenResearch() {
   process.stdout.write(JSON.stringify(event));
 }
 
-// Prints the deep_review.run_initialized event for the config, with the digest
-// of the workflow file named by the second argument.
+// Prints the deep_review.run_initialized event for the config. The contract digest
+// covers the workflow file named by the second argument and this file, since the
+// step programs the workflow once ran inline now live here.
 function runOpenReview() {
   const fs = require("fs"), crypto = require("crypto");
   const [configPath, workflowPath] = process.argv.slice(1);
@@ -306,7 +307,7 @@ function runOpenReview() {
       lineageMode: lineageModes[config.lineageMode] || "fresh",
       maxIterations: Number(config.maxIterations),
       convergencePolicyVersion: "convergence-policy@" + ((config.antiConvergence && config.antiConvergence.convergenceMode) || "default"),
-      reviewModeContractDigest: sha(fs.readFileSync(workflowPath)),
+      reviewModeContractDigest: sha(Buffer.concat([fs.readFileSync(workflowPath), fs.readFileSync(__filename)])),
       initialReleaseReadinessState: "not-assessed",
       ...(topic === null ? {} : { topic }),
     },
