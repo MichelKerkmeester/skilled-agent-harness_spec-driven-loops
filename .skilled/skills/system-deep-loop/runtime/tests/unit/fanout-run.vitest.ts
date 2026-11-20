@@ -135,6 +135,22 @@ function isPathInside(childPath: string, parentPath: string): boolean {
   return rel === '' || (!rel.startsWith('..') && !isAbsolute(rel));
 }
 
+function withOnlyLineage(callerArgs: string[]): string[] {
+  if (callerArgs.includes('--only-lineage')) return callerArgs;
+  const configIndex = callerArgs.indexOf('--fanout-config-json');
+  if (configIndex < 0) return callerArgs;
+  let executors: Array<{ label?: unknown; count?: unknown }> = [];
+  try {
+    const parsed = JSON.parse(callerArgs[configIndex + 1] ?? '') as { executors?: unknown };
+    if (Array.isArray(parsed.executors)) executors = parsed.executors as typeof executors;
+  } catch {
+    return callerArgs;
+  }
+  const [only] = executors;
+  if (executors.length !== 1 || typeof only?.label !== 'string' || (only.count ?? 1) !== 1) return callerArgs;
+  return [...callerArgs, '--only-lineage', only.label];
+}
+
 function canonicalizeFanoutArgs(
   scriptPath: string,
   callerArgs: string[],
@@ -142,11 +158,9 @@ function canonicalizeFanoutArgs(
 ): string[] {
   if (scriptPath !== fanoutRunScript) return callerArgs;
   // The cases in this file drive the runner with one lineage on purpose, so every
-  // launch that passes through here opts in. The refusal case calls rawSpawnCjs
-  // and never reaches this helper.
-  const args = callerArgs.includes('--allow-single-lineage')
-    ? callerArgs
-    : [...callerArgs, '--allow-single-lineage'];
+  // launch that passes through here names that lineage as the one to run. The refusal
+  // case calls rawSpawnCjs and never reaches this helper.
+  const args = withOnlyLineage(callerArgs);
   const specIndex = args.indexOf('--spec-folder');
   const loopIndex = args.indexOf('--loop-type');
   const baseIndex = args.indexOf('--base-artifact-dir');
@@ -2957,33 +2971,35 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     }
   });
 
-  it('allows an explicitly opted-in single-lineage research or review run', async () => {
+  it('reruns only the lineage --only-lineage names, from the unedited matrix', async () => {
     for (const loopType of ['research', 'review'] as const) {
-      const binDir = makeTempDir(`fanout-run-single-lineage-allowed-${loopType}-bin-`);
-      const hermetic = useHermeticEnv(`single-lineage-allowed-${loopType}`);
-      const specFolder = `specs/test-fanout-single-lineage-allowed-${loopType}`;
+      const binDir = makeTempDir(`fanout-run-only-lineage-${loopType}-bin-`);
+      const hermetic = useHermeticEnv(`only-lineage-${loopType}`);
+      const specFolder = `specs/test-fanout-only-lineage-${loopType}`;
       const baseDir = makeBaseArtifactDir(hermetic, specFolder, loopType);
       const markerPath = join(baseDir, 'spawned.marker');
       writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
       const fanoutConfig = JSON.stringify({
-        executors: [{ label: 'only-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
+        executors: [
+          { label: 'seat-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 },
+          { label: 'seat-b', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 },
+        ],
         concurrency: 1,
       });
 
       const result = await rawSpawnCjs(fanoutRunScript, [
-        '--spec-folder',
-        specFolder,
-        '--loop-type',
-        loopType,
-        '--fanout-config-json',
-        fanoutConfig,
-        '--base-artifact-dir',
-        baseDir,
-        '--allow-single-lineage',
+        '--spec-folder', specFolder, '--loop-type', loopType,
+        '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
+        '--only-lineage', 'seat-b',
       ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
 
-      expect(existsSync(markerPath)).toBe(true);
+      const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+        results?: Array<{ label?: string }>;
+      };
       expect(result.stdout).not.toContain('Run the single-executor');
+      expect(existsSync(markerPath)).toBe(true);
+      expect(payload.results?.map((entry) => entry.label)).toEqual(['seat-b']);
+      expect(existsSync(join(baseDir, 'lineages', 'seat-a'))).toBe(false);
     }
   });
 
@@ -3021,37 +3037,38 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     }
   });
 
-  it('accepts explicit true and 1 values for the single-lineage opt-in', async () => {
-    for (const loopType of ['research', 'review'] as const) {
-      for (const value of ['true', '1']) {
-        const binDir = makeTempDir(`fanout-run-single-lineage-value-${loopType}-${value}-bin-`);
-        const hermetic = useHermeticEnv(`single-lineage-value-${loopType}-${value}`);
-        const specFolder = `specs/test-fanout-single-lineage-value-${loopType}-${value}`;
-        const baseDir = makeBaseArtifactDir(hermetic, specFolder, loopType);
-        const markerPath = join(baseDir, 'spawned.marker');
-        writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
-        const fanoutConfig = JSON.stringify({
-          executors: [{ label: 'only-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
-          concurrency: 1,
-        });
-        const result = await rawSpawnCjs(fanoutRunScript, [
-          '--spec-folder', specFolder, '--loop-type', loopType,
-          '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
-          '--allow-single-lineage', value,
-        ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
-        expect(existsSync(markerPath)).toBe(true);
-        expect(result.stdout).not.toContain('Run the single-executor');
-      }
+  it('rejects an --only-lineage label outside the matrix, or none, before side effects', async () => {
+    for (const onlyArgs of [['--only-lineage', 'no-such-seat'], ['--only-lineage']]) {
+      const binDir = makeTempDir('fanout-run-only-lineage-unknown-bin-');
+      const hermetic = useHermeticEnv(`only-lineage-unknown-${onlyArgs.length}`);
+      const specFolder = `specs/test-fanout-only-lineage-unknown-${onlyArgs.length}`;
+      const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+      const markerPath = join(baseDir, 'spawned.marker');
+      writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+      const fanoutConfig = JSON.stringify({
+        executors: [
+          { label: 'seat-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 },
+          { label: 'seat-b', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 },
+        ],
+        concurrency: 1,
+      });
+      const result = await rawSpawnCjs(fanoutRunScript, [
+        '--spec-folder', specFolder, '--loop-type', 'research',
+        '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
+        ...onlyArgs,
+      ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
+      const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as { error?: string };
+      expect(result.exitCode).toBe(3);
+      expect(payload.error).toContain('--only-lineage must name a lineage of this executor matrix (seat-a, seat-b)');
+      expect(existsSync(markerPath)).toBe(false);
+      expect(existsSync(join(baseDir, 'lineages'))).toBe(false);
     }
   });
 
-  it('rejects unsupported single-lineage opt-in values before side effects', async () => {
-    const binDir = makeTempDir('fanout-run-single-lineage-false-bin-');
-    const hermetic = useHermeticEnv('single-lineage-false');
-    const specFolder = 'specs/test-fanout-single-lineage-false';
+  it('refuses the retired single-lineage opt-in as an unknown flag', async () => {
+    const hermetic = useHermeticEnv('single-lineage-retired');
+    const specFolder = 'specs/test-fanout-single-lineage-retired';
     const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
-    const markerPath = join(baseDir, 'spawned.marker');
-    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
     const fanoutConfig = JSON.stringify({
       executors: [{ label: 'only-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
       concurrency: 1,
@@ -3059,12 +3076,143 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     const result = await rawSpawnCjs(fanoutRunScript, [
       '--spec-folder', specFolder, '--loop-type', 'research',
       '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
-      '--allow-single-lineage', 'false',
-    ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
-    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as { error?: string };
+      '--allow-single-lineage',
+    ], { cwd: hermetic.tmpDir, env: hermetic.env, timeoutMs: 30_000 });
     expect(result.exitCode).toBe(3);
-    expect(payload.error).toContain('Run the single-executor /deep:research workflow instead');
-    expect(existsSync(markerPath)).toBe(false);
+    expect(result.stdout).toContain('Unknown option: --allow-single-lineage');
+  });
+
+  // A stub that stands in for the research workflow: a lineage whose config is already
+  // complete halts at its completed-session check and records nothing, which is what the
+  // workflow does; any other lineage runs to completion.
+  function writeReentrantStubBinary(binDir: string): string {
+    const stubPath = join(binDir, 'opencode');
+    writeFileSync(
+      stubPath,
+      [
+        '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
+        'lineage_dir=$(dirname "$SPECKIT_OPENCODE_STATE_DIR")',
+        'mkdir -p "$lineage_dir"',
+        'printf "%s\\n" "$*" > "$lineage_dir/spawned.marker"',
+        'if grep -q \'"status": *"complete"\' "$lineage_dir/deep-research-config.json" 2>/dev/null; then',
+        '  exit 0',
+        'fi',
+        writeFanoutArtifactsShell(),
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+    return stubPath;
+  }
+
+  function seedFinishedResearchLineage(lineageDir: string, { closeoutRow }: { closeoutRow: boolean }): void {
+    mkdirSync(join(lineageDir, 'iterations'), { recursive: true });
+    mkdirSync(join(lineageDir, 'deep-research-ledger', 'frames'), { recursive: true });
+    writeFileSync(join(lineageDir, 'deep-research-ledger', 'frames', 'prior.frame'), '', 'utf8');
+    writeFileSync(join(lineageDir, 'iterations', 'iteration-001.md'), '# Iteration 1\n', 'utf8');
+    writeFileSync(join(lineageDir, 'research.md'), '# Research\n', 'utf8');
+    writeFileSync(join(lineageDir, 'deep-research-config.json'), JSON.stringify({
+      status: 'complete',
+      lineage: { sessionId: 'prior-session', generation: 1 },
+    }, null, 2), 'utf8');
+    const rows: Array<Record<string, unknown>> = [
+      { type: 'config', timestamp: '2026-01-01T00:00:00.000Z' },
+      { type: 'iteration', iteration: 1, run: 1, status: 'complete', timestamp: '2026-01-01T00:01:00.000Z' },
+    ];
+    if (closeoutRow) {
+      rows.push({ type: 'event', event: 'synthesis_complete', stopReason: 'converged', timestamp: '2026-01-01T00:02:00.000Z' });
+    }
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      rows.map((row) => `${JSON.stringify(row)}\n`).join(''),
+      'utf8',
+    );
+  }
+
+  it('skips a finished research lineage on re-dispatch instead of respawning it, with or without its closeout row', async () => {
+    for (const closeoutRow of [true, false]) {
+      const binDir = makeTempDir(`fanout-run-reentrant-${closeoutRow}-bin-`);
+      const hermetic = useHermeticEnv(`reentrant-${closeoutRow}`);
+      const specFolder = `specs/test-fanout-reentrant-${closeoutRow}`;
+      const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+      writeReentrantStubBinary(binDir);
+      const doneDir = join(baseDir, 'lineages', 'done-seat');
+      seedFinishedResearchLineage(doneDir, { closeoutRow });
+      const fanoutConfig = JSON.stringify({
+        executors: [
+          { label: 'done-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1' },
+          { label: 'new-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1' },
+        ],
+        concurrency: 1,
+      });
+
+      const result = await rawSpawnCjs(fanoutRunScript, [
+        '--spec-folder', specFolder, '--loop-type', 'research',
+        '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
+        '--no-metadata-refresh',
+      ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 60_000 });
+
+      const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+        results?: Array<{ label?: string; status?: string; output?: { skipped?: boolean }; error?: unknown }>;
+      };
+      const done = payload.results?.find((entry) => entry.label === 'done-seat');
+      expect(existsSync(join(doneDir, 'spawned.marker')), JSON.stringify(done)).toBe(false);
+      expect(done?.status, JSON.stringify(done)).toBe('fulfilled');
+      expect(done?.output?.skipped).toBe(true);
+      expect(existsSync(join(baseDir, 'lineages', 'new-seat', 'spawned.marker'))).toBe(true);
+      expect(result.exitCode, result.stdout).toBe(0);
+      const ledger = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8');
+      expect(ledger).toMatch(/"event":"skipped_complete"[^\n]*"label":"done-seat"|"label":"done-seat"[^\n]*"event":"skipped_complete"/);
+    }
+  });
+
+  it('retries a lineage that wrote its completed config and then timed out, rather than skipping it', async () => {
+    const binDir = makeTempDir('fanout-run-reentrant-retry-bin-');
+    const hermetic = useHermeticEnv('reentrant-retry');
+    const specFolder = 'specs/test-fanout-reentrant-retry';
+    const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
+        'lineage_dir=$(dirname "$SPECKIT_OPENCODE_STATE_DIR")',
+        'mkdir -p "$lineage_dir/iterations"',
+        'echo spawn >> "$lineage_dir/spawns.log"',
+        'printf \'{"status": "complete"}\\n\' > "$lineage_dir/deep-research-config.json"',
+        'printf "ok\\n" > "$lineage_dir/research.md"',
+        'printf "ok\\n" > "$lineage_dir/iterations/iteration-001.md"',
+        'sleep 4',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+    const fanoutConfig = JSON.stringify({
+      executors: [
+        { label: 'slow-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1, timeoutSeconds: 1 },
+        { label: 'other-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1, timeoutSeconds: 1 },
+      ],
+      concurrency: 2,
+      maxRetries: 1,
+    });
+
+    const result = await rawSpawnCjs(fanoutRunScript, [
+      '--spec-folder', specFolder, '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
+      '--no-metadata-refresh',
+    ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 60_000 });
+
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ label?: string; status?: string; output?: { skipped?: boolean } }>;
+    };
+    const slow = payload.results?.find((entry) => entry.label === 'slow-seat');
+    expect(slow?.output?.skipped, JSON.stringify(slow)).not.toBe(true);
+    expect(slow?.status).toBe('rejected');
+    const spawns = readFileSync(join(baseDir, 'lineages', 'slow-seat', 'spawns.log'), 'utf8').trim().split('\n');
+    expect(spawns).toHaveLength(2);
   });
 
   it('accepts only Claude config roots under home or the repository', () => {
@@ -3528,7 +3676,7 @@ describe('fanout-run.cjs — module basics', () => {
       fanoutConfig,
       '--base-artifact-dir',
       baseDir,
-      '--allow-single-lineage',
+      '--only-lineage', 'native-a',
     ];
     const options = {
       cassetteDir,
@@ -3555,7 +3703,7 @@ describe('fanout-run.cjs — module basics', () => {
         fanoutConfig,
         '--base-artifact-dir',
         '<BASE_ARTIFACT_DIR>',
-        '--allow-single-lineage',
+        '--only-lineage', 'native-a',
       ],
       exitCode: 0,
       signal: null,
@@ -6130,7 +6278,7 @@ describe('fanout-run.cjs — cli-claude-code configDir env', () => {
           maxRetries: 0,
         }),
         '--base-artifact-dir', baseDir,
-        '--allow-single-lineage',
+        '--only-lineage', 'fable',
       ],
       { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
     );
@@ -7140,6 +7288,7 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       '--base-artifact-dir', baseDir,
       '--research-topic', 'config from a file',
       '--no-metadata-refresh',
+      '--only-lineage', 'vibe-config',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
     const promptFile = join(baseDir, 'lineages', 'vibe-config', 'vibe-prompt.txt');
@@ -7275,7 +7424,7 @@ describe('fanout-run.cjs — a fatal provider refusal is announced and redacted'
           maxRetries: 0,
         }),
         '--base-artifact-dir', baseDir,
-        '--allow-single-lineage',
+        '--only-lineage', 'quota',
       ],
       { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
     );
@@ -7533,7 +7682,7 @@ describe('fanout-run.cjs — a terminal stop row does not prove completion on it
           maxRetries: 0,
         }),
         '--base-artifact-dir', baseDir,
-        '--allow-single-lineage',
+        '--only-lineage', 'late',
       ],
       { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
     );
@@ -7543,5 +7692,38 @@ describe('fanout-run.cjs — a terminal stop row does not prove completion on it
     expect(payload.results?.[0]?.status).toBe('rejected');
     expect(payload.results?.[0]?.error?.message).toContain('comes after the terminal stop row');
     expect(result.exitCode).toBe(3);
+  });
+});
+
+describe('fanout-run.cjs — research post-attempt stop rows', () => {
+  const { TERMINAL_STOP_EVENTS_BY_LOOP_TYPE } = requireCjs(fanoutRunScript) as {
+    TERMINAL_STOP_EVENTS_BY_LOOP_TYPE: Record<string, string[]>;
+  };
+  const { checkLineageCompletion } = requireCjs(resolve(runtimeRoot, 'lib', 'deep-loop', 'lineage-timestamp-window.ts')) as {
+    checkLineageCompletion: (records: unknown[], input: Record<string, unknown>) => { complete: boolean; failure?: string };
+  };
+  const window = { windowStart: '2026-11-20T01:00:00.000Z', windowEnd: '2026-11-20T02:00:00.000Z' };
+  const iterations = Array.from({ length: 10 }, (_, index) => ({
+    type: 'iteration', iteration: index + 1, timestamp: `2026-11-20T01:${String(10 + index).padStart(2, '0')}:00.000Z`,
+  }));
+
+  it('passes a research lineage that stopped on its iteration cap and closed out', () => {
+    const rows = [
+      { type: 'config', timestamp: '2026-11-20T01:01:00.000Z' },
+      ...iterations,
+      { type: 'event', event: 'synthesis_complete', stopReason: 'maxIterationsReached', totalIterations: 10, timestamp: '2026-11-20T01:32:00.471Z' },
+    ];
+    expect(checkLineageCompletion(rows, { terminalEvents: TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.research, ...window }))
+      .toEqual({ complete: true });
+  });
+
+  it('fails a research lineage whose closeout reported its synthesis incomplete', () => {
+    const rows = [
+      { type: 'config', timestamp: '2026-11-20T01:01:00.000Z' },
+      ...iterations,
+      { type: 'event', event: 'synthesis_incomplete', stopReason: 'converged', timestamp: '2026-11-20T01:32:00.471Z' },
+    ];
+    expect(checkLineageCompletion(rows, { terminalEvents: TERMINAL_STOP_EVENTS_BY_LOOP_TYPE.research, ...window }))
+      .toMatchObject({ complete: false, failure: 'no_terminal_event' });
   });
 });

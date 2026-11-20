@@ -256,7 +256,7 @@ describe('cli-mistral-vibe command and export contracts', () => {
       '--loop-type', 'research',
       '--fanout-config-json', fanoutConfig,
       '--base-artifact-dir', baseArtifactDir,
-      '--allow-single-lineage',
+      '--only-lineage', 'partial',
     ], {
       cwd: fixture.root,
       env: { ...fixture.env, VIBE_SHIM_EXIT: '3' },

@@ -206,7 +206,7 @@ export async function runAdapterFanout(
     '--loop-type', 'research',
     '--fanout-config-json', fanoutConfig,
     '--base-artifact-dir', baseArtifactDir,
-    '--allow-single-lineage',
+    ...(executor.count === 1 ? ['--only-lineage', label] : []),
   ], {
     cwd: fixture.root,
     env,

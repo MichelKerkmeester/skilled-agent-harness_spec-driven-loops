@@ -123,7 +123,8 @@ async function runFanoutWithRecords(
       fanoutConfig,
       '--base-artifact-dir',
       baseDir,
-      '--allow-single-lineage',
+      '--only-lineage',
+      'seat-a',
     ],
     {
       cwd: hermetic.tmpDir,

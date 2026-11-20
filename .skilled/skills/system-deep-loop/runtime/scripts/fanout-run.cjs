@@ -33,7 +33,7 @@ const FANOUT_FLAGS = [
   'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'depthMode', 'containmentMode',
   'noMetadataRefresh', 'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
-  'costUnitsPerIteration', 'estimatedTokensPerIteration', 'allowSingleLineage', 'preview',
+  'costUnitsPerIteration', 'estimatedTokensPerIteration', 'onlyLineage', 'preview',
 ];
 
 const {
@@ -1243,10 +1243,12 @@ const SYNTHESIS_EVENT_NAMES = new Set(['synthesis_complete', 'phase_synthesis_co
 // The state-log row that proves a lineage reached a legal stop. A review loop runs its
 // terminal gates on every path into synthesis, so that row and not a synthesis row is the
 // stop; a synthesis row alone can be written by a lineage that skipped every stop gate.
-// The research loop has no gate step, and its closeout always records a synthesis row,
-// complete or incomplete, once the loop has stopped.
+// The research loop has no gate step: its closeout records a synthesis row carrying the stop
+// reason once the loop has stopped, on a cap stop and a converged stop alike. A
+// `synthesis_incomplete` row is the closeout reporting the synthesis failed its invariants,
+// so it proves a stop but not a finished lineage.
 const TERMINAL_STOP_EVENTS_BY_LOOP_TYPE = {
-  research: [...SYNTHESIS_EVENT_NAMES, 'synthesis_incomplete'],
+  research: [...SYNTHESIS_EVENT_NAMES],
   review: ['terminal_gates'],
 };
 
@@ -1276,10 +1278,13 @@ function findSynthesisRecord(records) {
  * iteration count must still meet the cap: a lineage that stopped early is
  * genuinely a policy violation, not a naming mishap.
  *
+ * Without a forced depth there is no cap to meet, so one recorded iteration beside the report
+ * is enough: a lineage that converged early stopped legally.
+ *
  * @param {Object} params - Validation inputs.
  * @returns {{complete: boolean, reason: string}} Verdict and, when incomplete, why.
  */
-function completionFromArtifacts({ lineageDir, lineage, records, loopType }) {
+function completionFromArtifacts({ lineageDir, lineage, records, loopType, forcedDepth = true }) {
   if (!lineageDir) return { complete: false, reason: 'no lineage artifact directory to check' };
   const dir = lineageDir;
 
@@ -1294,6 +1299,9 @@ function completionFromArtifacts({ lineageDir, lineage, records, loopType }) {
   const diskNumbers = iterationNumbersOnDisk(dir);
   const recordCount = records.filter((r) => r && r.type === 'iteration').length;
   const observed = Math.max(diskNumbers.length, recordCount);
+  if (!forcedDepth) {
+    return observed > 0 ? { complete: true, reason: '' } : { complete: false, reason: 'no iteration on disk' };
+  }
   if (observed < lineage.iterations) {
     return { complete: false, reason: `only ${observed} of ${lineage.iterations} iterations on disk` };
   }
@@ -1305,6 +1313,37 @@ function completionFromArtifacts({ lineageDir, lineage, records, loopType }) {
   });
   if (violation) return { complete: false, reason: violation };
   return { complete: true, reason: '' };
+}
+
+/**
+ * Why a lineage is already finished and needs no new attempt, or null when it should run.
+ *
+ * A finished lineage re-dispatched under its label would start a new session, halt at the
+ * workflow's completed-session check without recording a stop, and fail the post-attempt
+ * completion check. So the runner skips it. This check is deliberately looser than the
+ * post-attempt one: older lineages finished without the closeout row that check now demands,
+ * and their config and artifacts are the evidence they ran to a stop.
+ */
+function finishedLineageSkipReason({ loopType, lineageDir, lineage, stopPolicy }) {
+  const configName = LINEAGE_CONFIG_BY_LOOP_TYPE[loopType];
+  if (!configName) return null;
+  let config;
+  try {
+    config = JSON.parse(fs.readFileSync(path.join(lineageDir, configName), 'utf8'));
+  } catch {
+    return null;
+  }
+  if (!config || config.status !== 'complete') return null;
+  const stateRead = readLineageStateRecords(loopType, lineageDir);
+  if (stateRead.parseError) return null;
+  const evidence = completionFromArtifacts({
+    lineageDir,
+    lineage,
+    records: stateRead.records,
+    loopType,
+    forcedDepth: stopPolicy === 'max-iterations',
+  });
+  return evidence.complete ? `${configName} is complete and its artifacts are on disk` : null;
 }
 
 function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPolicy, lineageDir }) {
@@ -3878,22 +3917,32 @@ async function main() {
   const budgetPartition = expansiveBudgets
     ? partitionFrontierNodes(baseArtifactDir, expandedLineages.map((lineage) => lineage.label))
     : null;
-  const allLineages = expansiveBudgets
+  const matrixLineages = expansiveBudgets
     ? expansiveLineageBudgets(expandedLineages, { loopType, partition: budgetPartition })
     : expandedLineages;
   if (expansiveBudgets) {
-    for (const note of expansiveLineageBudgetNotes(expandedLineages, allLineages, budgetPartition)) {
+    for (const note of expansiveLineageBudgetNotes(expandedLineages, matrixLineages, budgetPartition)) {
       process.stderr.write(`${note}\n`);
     }
   }
+  // A rerun of one lineage names it against the same matrix, so the lineage keeps the
+  // budget and frontier share it had in the full run and nobody edits the matrix by hand.
+  if (args.onlyLineage !== undefined
+    && (typeof args.onlyLineage !== 'string'
+      || !matrixLineages.some((lineage) => lineage.label === args.onlyLineage))) {
+    throw inputError(
+      `--only-lineage must name a lineage of this executor matrix (${matrixLineages.map((lineage) => lineage.label).join(', ')})`,
+    );
+  }
+  const allLineages = args.onlyLineage === undefined
+    ? matrixLineages
+    : matrixLineages.filter((lineage) => lineage.label === args.onlyLineage);
   // One lineage is not a fan-out. A caller who lands here with one lineage has left the
   // workflow that owns the packet init, synthesis and save phases, and a CLI lineage
   // would then run every iteration in one process.
   if (ACTIVE_FANOUT_LOOP_TYPES.has(loopType)
-    && allLineages.length === 1
-    && args.allowSingleLineage !== true
-    && args.allowSingleLineage !== 'true'
-    && args.allowSingleLineage !== '1') {
+    && matrixLineages.length === 1
+    && args.onlyLineage === undefined) {
     throw inputError(
       `fan-out refused: this ${loopType} executor matrix expands to one lineage. `
         + `Run the single-executor /deep:${loopType} workflow instead; it runs the packet `
@@ -4173,6 +4222,18 @@ async function main() {
 
   installFanoutSignalHandlers(writeStoppedSummary);
 
+  // Judged once, before any attempt: a retry of a lineage that failed after writing its
+  // completed config must meet the strict check again, not be waved through as finished.
+  const finishedLineageSkipReasons = new Map();
+  for (const lineage of cliLineages) {
+    const skipReason = finishedLineageSkipReason({
+      loopType,
+      lineageDir: path.join(lineagesDir, lineage.label),
+      lineage,
+      stopPolicy,
+    });
+    if (skipReason) finishedLineageSkipReasons.set(lineage.label, skipReason);
+  }
   const { results, summary } = await runCappedPool({
     items: cliLineages,
     concurrency: fanoutConfig.concurrency,
@@ -4203,6 +4264,20 @@ async function main() {
       const attempt = Number.isFinite(Number(context.attempt)) ? Number(context.attempt) : 1;
       const livenessKey = `${lineage.label}:${attempt}`;
       const lineageDir = path.join(lineagesDir, lineage.label);
+      const skipReason = finishedLineageSkipReasons.get(lineage.label);
+      if (skipReason) {
+        appendFanoutStatusLedger(ledgerPath, {
+          event: 'skipped_complete',
+          status: 'skipped',
+          label: lineage.label,
+          attempt,
+          run_id: runId,
+          reason: skipReason,
+          at: new Date().toISOString(),
+        });
+        process.stderr.write(`[fanout-run] lineage ${lineage.label} skipped: ${skipReason}\n`);
+        return { label: lineage.label, exitCode: 0, timedOut: false, skipped: true, skipReason };
+      }
       if (frontierPartition) writeLineageFrontierStore(lineageDir, frontierPartition[lineage.label] || [], { inbox: loopType !== 'review' });
       const frontierScope = frontierPartition ? (frontierPartition[lineage.label] || []).map((node) => node.nodeId) : [];
 
@@ -5053,6 +5128,8 @@ module.exports = {
   decorateSlotAccountingEvent,
   discoverForeignLiveRunDirs,
   readStoredLineageSessionId,
+  finishedLineageSkipReason,
+  TERMINAL_STOP_EVENTS_BY_LOOP_TYPE,
   startLineageProgressHeartbeat,
   startLineageStallWatchdog,
   statusForLedgerEvent,

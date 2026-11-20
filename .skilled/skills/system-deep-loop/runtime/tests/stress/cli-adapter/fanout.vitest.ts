@@ -71,6 +71,14 @@ interface FanoutInvocation {
   readonly args: readonly string[];
 }
 
+// A one-lineage matrix runs only when the caller names that lineage as the one to rerun.
+function onlyLineageArgs(config: Record<string, unknown>): string[] {
+  const executors = Array.isArray(config.executors) ? config.executors as Array<Record<string, unknown>> : [];
+  const [only] = executors;
+  if (executors.length !== 1 || typeof only?.label !== 'string' || (only.count ?? 1) !== 1) return [];
+  return ['--only-lineage', only.label];
+}
+
 function useShim(mode: string): AdapterShimFixture {
   const fixture = createAdapterShim('cli-opencode', mode);
   fixtures.push(fixture);
@@ -94,7 +102,7 @@ function fanoutInvocation(
     '--loop-type', 'research',
     '--fanout-config-json', JSON.stringify(config),
     '--base-artifact-dir', baseArtifactDir,
-    '--allow-single-lineage',
+    ...onlyLineageArgs(config),
   ];
   if (options.stopPolicy) args.push('--stop-policy', options.stopPolicy);
   if (options.convergenceThreshold !== undefined) {
@@ -138,7 +146,7 @@ async function runReviewFanoutConfig(
     '--loop-type', 'review',
     '--fanout-config-json', JSON.stringify(config),
     '--base-artifact-dir', baseArtifactDir,
-    '--allow-single-lineage',
+    ...onlyLineageArgs(config),
   ];
   if (options.stopPolicy) args.push('--stop-policy', options.stopPolicy);
   if (options.convergenceThreshold !== undefined) {
@@ -175,7 +183,7 @@ async function runFanoutFromCwd(
       maxRetries: 0,
     }),
     '--base-artifact-dir', baseArtifactDir,
-    '--allow-single-lineage',
+    '--only-lineage', suffix,
   ];
   const result = await spawnCjs(fanoutScript, args, {
     cwd,
