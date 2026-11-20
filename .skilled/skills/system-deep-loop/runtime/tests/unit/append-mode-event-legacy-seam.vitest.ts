@@ -435,6 +435,90 @@ describe('append-mode-event legacy deep-research upcast seam', () => {
     expect(row.claimedTimestamp).toBe('2099-01-01T00:00:00Z');
   });
 
+  // The identity fields on a model-written row are not claims the schema keeps,
+  // so the gateway mints all four. A key reused across two different rows must
+  // not make the second one read as a retry of the first.
+  it('mints the event id, idempotency key, producer and epoch of a model-written row', () => {
+    const runDir = createTempDir('iteration-identity');
+    const authorityRoot = createTempDir('iteration-identity-auth');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot };
+
+    expect(runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, legacyConfigRow())],
+      env,
+    ).exitCode).toBe(0);
+
+    const modelIdentity = {
+      eventId: 'event-model-chosen',
+      event_id: 'event-model-chosen-snake',
+      idempotencyKey: 'model-chosen-key',
+      idempotency_key: 'model-chosen-key-snake',
+      producer: { name: 'model', version: '9.9.9' },
+      authorityEpoch: 999,
+      authority_epoch: 998,
+    };
+    for (const iteration of [1, 2]) {
+      const appended = runCli(
+        ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, {
+          type: 'iteration', iteration, sessionId: 's1', lineageId: 'l1', run: iteration, status: 'complete',
+          newInfoRatio: 0.5, ruledOut: [], ...modelIdentity,
+        })],
+        env,
+      );
+      expect(appended.exitCode, appended.stderr + appended.rawStdout).toBe(0);
+      expect(appended.json.idempotentReplay).toBeUndefined();
+    }
+
+    const events = readdirSync(framesDirectory(runDir)).sort().map((name) => {
+      const frame = JSON.parse(readFileSync(join(framesDirectory(runDir), name), 'utf8'));
+      return JSON.parse(Buffer.from(frame.canonical_event_bytes, 'base64').toString('utf8'));
+    });
+    const [opening, ...iterations] = events;
+    expect(iterations).toHaveLength(2);
+    for (const event of iterations) {
+      expect(event.event_id).not.toMatch(/model-chosen/);
+      expect(event.idempotency_key).toMatch(/^deep-research:input:[0-9a-f]{64}$/);
+      expect(event.producer).toEqual(opening.producer);
+      expect(event.authority_epoch).toBe(opening.authority_epoch);
+    }
+    expect(iterations[0].idempotency_key).not.toBe(iterations[1].idempotency_key);
+  });
+
+  it('stores an identical model-written row appended twice once', () => {
+    const runDir = createTempDir('iteration-retry');
+    const authorityRoot = createTempDir('iteration-retry-auth');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: authorityRoot };
+
+    expect(runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, legacyConfigRow())],
+      env,
+    ).exitCode).toBe(0);
+
+    const row = {
+      type: 'iteration', iteration: 1, sessionId: 's1', lineageId: 'l1', run: 1, status: 'complete',
+      newInfoRatio: 0.5, ruledOut: [], timestamp: '2026-05-24T03:04:05Z',
+      eventId: 'event-model-chosen', idempotencyKey: 'model-chosen-key',
+    };
+    const first = runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, row)],
+      env,
+    );
+    expect(first.exitCode, first.stderr + first.rawStdout).toBe(0);
+    const retry = runCli(
+      ['--mode', 'deep-research', '--run-directory', runDir, '--event-json', writeEvent(runDir, row)],
+      env,
+    );
+    expect(retry.exitCode, retry.stderr + retry.rawStdout).toBe(0);
+    expect(retry.json.idempotentReplay).toBe(true);
+    expect(readdirSync(framesDirectory(runDir))).toHaveLength(2);
+
+    const stateLog = readFileSync(join(runDir, 'research', 'deep-research-state.jsonl'), 'utf8')
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => JSON.parse(line));
+    expect(stateLog.filter((entry) => entry.type === 'iteration')).toHaveLength(1);
+  });
+
   // The completed-iteration override must not reach the rows that keep their own
   // time: a lifecycle row written by the workflow still keeps its timestamp.
   it('still keeps a legacy reducer-read row\'s own timestamp as the event time', () => {

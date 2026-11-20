@@ -414,14 +414,25 @@ async function main() {
         `Legacy deep-research record refused: ${upcast.decision.reasonCode}`,
       );
     }
+    // The row's own event id, idempotency key, producer and epoch are dropped,
+    // not kept: the schema has no claim field for them, and a row that named an
+    // earlier row's key or id would read as its retry or collide with it. The
+    // builder's defaults then mint all four, and the key is derived from the row
+    // as handed over, so a retried row is still stored once.
+    const gatewayIdentityFields = [
+      'eventId', 'event_id', 'idempotencyKey', 'idempotency_key', 'producer', 'authorityEpoch', 'authority_epoch',
+    ];
+    const rowMeta = Object.fromEntries(
+      Object.entries(rawEvent).filter(([key]) => !gatewayIdentityFields.includes(key)),
+    );
     // A row the projection writes back with its own timestamp hands that time
     // over as the event's occurrence time, so the row keeps it. A completed
     // iteration is written by the model, so only the gateway clock times it:
     // any time field on the row is ignored, and the upcaster keeps its stamp
     // as a claim in the event data.
-    let legacyMeta = upcast.occurredAt ? { occurredAt: upcast.occurredAt, ...rawEvent } : rawEvent;
+    let legacyMeta = upcast.occurredAt ? { occurredAt: upcast.occurredAt, ...rowMeta } : rowMeta;
     if (upcast.targetStem === 'deep_research.iteration_completed') {
-      legacyMeta = { ...rawEvent, occurredAt: nowIso, recordedAt: nowIso };
+      legacyMeta = { ...rowMeta, occurredAt: nowIso, recordedAt: nowIso };
     }
     const preparedInput = buildPreparedInput({
       stem: upcast.targetStem,
