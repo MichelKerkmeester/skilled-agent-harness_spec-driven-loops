@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.17.0
+version: 1.11.18.0
 ---
 
 # Deep Review State Format
@@ -35,7 +35,7 @@ The deep review loop uses 9 state files under the resolved `{artifact_dir}/` own
 
 | File | Format | Mutability |
 |------|--------|------------|
-| `deep-review-config.json` | JSON | Immutable after init, except the terminal `status: complete` flip, the `--extend=N` rewrite, which resets `status` to `initialized` and sets `maxIterations`, `maxDurationMinutes`, `lineageMode` and `continuedFromRun`, `step_frontier_scope`, which writes `reviewScopeFiles` for a commit-range target, and `step_frontier_budget`, which sets `maxIterations` for an expansive run with a defaulted budget |
+| `deep-review-config.json` | JSON | Created at init, or on a fan-out run by `step_fanout_root_config` before any lineage spawns. Immutable after init, except the terminal `status: complete` flip, the `--extend=N` rewrite, which resets `status` to `initialized` and sets `maxIterations`, `maxDurationMinutes`, `lineageMode` and `continuedFromRun`, `step_frontier_scope`, which writes `reviewScopeFiles` for a commit-range target, and `step_frontier_budget`, which sets `maxIterations` for an expansive run with a defaulted budget |
 | `deep-review-state.jsonl` | JSON Lines | Append-only |
 | `deep-review-findings-registry.json` | JSON | Auto-generated reducer state |
 | `deep-review-strategy.md` | Markdown | Updated each iteration |
@@ -72,7 +72,7 @@ Example (subsequent run with prior content for a different target): `003-gate-c-
 
 ## 2. CONFIG FILE (deep-review-config.json)
 
-Created during initialization. After that only the terminal `status: complete` flip, an `--extend=N` extension, `step_frontier_scope` for a commit-range target and `step_frontier_budget` on a defaulted expansive budget rewrite it.
+Created during initialization, or on a fan-out run by `step_fanout_root_config` before any lineage spawns. After that only the terminal `status: complete` flip, an `--extend=N` extension, `step_frontier_scope` for a commit-range target and `step_frontier_budget` on a defaulted expansive budget rewrite it.
 
 ```json
 {
@@ -159,7 +159,7 @@ Created during initialization. After that only the terminal `status: complete` f
 
 | Level | Meaning |
 |-------|---------|
-| immutable | Cannot be modified after creation (config: the workflow's own writes are the permitted ones, the terminal status flip, an `--extend=N` rewrite, `step_frontier_scope` and the derived expansive budget) |
+| immutable | Cannot be modified after creation (config: the workflow's own writes are the permitted ones, the terminal status flip, an `--extend=N` rewrite, `step_frontier_scope`, the derived expansive budget and a fan-out rerun's `step_fanout_root_config`) |
 | append-only | New content added at end only |
 | mutable | Can be read, edited, overwritten |
 | write-once | Created once, never modified |

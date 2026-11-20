@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.28.0
+version: 1.11.29.0
 ---
 
 # deep-review
@@ -128,7 +128,7 @@ The packet lives under `{spec_folder}/review/`. A root-spec target writes there 
 
 | File under `{spec_folder}/review/` | Role |
 |---|---|
-| `deep-review-config.json` | Run settings. Immutable after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget |
+| `deep-review-config.json` | Run settings. Immutable after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget. A fan-out run writes it in `step_fanout_root_config` |
 | `deep-review-state.jsonl` | Append-only log of iterations, events and stop decisions |
 | `deep-review-findings-registry.json` | Reducer-owned index of every finding and its state |
 | `deep-review-strategy.md` | Dimension coverage, findings and the next audit focus |

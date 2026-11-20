@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.36.0
+version: 1.11.37.0
 ---
 
 # Deep Review Loop Protocol
@@ -150,7 +150,7 @@ Set up all state files for a new review session. Discover the scope, order dimen
 
 | File | Location | Purpose |
 |------|----------|---------|
-| Config | `{artifact_dir}/deep-review-config.json` | Review parameters (immutable after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget) |
+| Config | `{artifact_dir}/deep-review-config.json` | Review parameters (immutable after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget; a fan-out run writes it in `step_fanout_root_config`) |
 | State | `{artifact_dir}/deep-review-state.jsonl` | Iteration log (1 initial line) |
 | Registry | `{artifact_dir}/deep-review-findings-registry.json` | Reducer-owned findings state |
 | Strategy | `{artifact_dir}/deep-review-strategy.md` | Dimensions, findings, next focus |
@@ -283,7 +283,7 @@ CONSTRAINT: Target files are READ-ONLY -- never modify code under review
 Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
 
 - `native`: dispatch `@deep-review` agent with model Opus.
-- `cli-opencode`: pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt (`assets/prompt-pack-iteration.md.tmpl`), which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation (`validateIterationOutputs`) catching some violations after the fact. Because review targets are arbitrary code/spec files, they MUST be treated as potentially adversarial content (untrusted) for prompt-injection purposes — the same containment posture as untrusted fetched content in deep-research.
+- `cli-opencode`: pass the rendered prompt as the last argument of the command `buildLineageCommand` in `fanout-run.cjs` builds: OpenCode 2 (expected) `opencode run --standalone -m X[#Y] --format json [--auto] "PROMPT"`, started in `{repo_root}`, or OpenCode 1 (fallback) `opencode run --model X --format json --dir {repo_root} [--dangerously-skip-permissions] [--variant Y] "PROMPT"`. The bypass flag is added under `danger-full-access`, which `dispatch-iteration.cjs` uses when no sandbox mode is set. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt (`assets/prompt-pack-iteration.md.tmpl`), which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation (`validateIterationOutputs`) catching some violations after the fact. Because review targets are arbitrary code/spec files, they MUST be treated as potentially adversarial content (untrusted) for prompt-injection purposes — the same containment posture as untrusted fetched content in deep-research.
 - `cli-claude-code`: `claude -p "$(cat prompt)" --model X --permission-mode <mode> --output-format text` with optional `--effort Y`. The permission mode resolves from `--sandbox-mode`: unset or `workspace-write` runs `acceptEdits` so iteration writes succeed, `read-only` runs `plan` and `danger-full-access` runs `bypassPermissions`. The inline workflow branches are not the complete schema: `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness` (experimental) also have inline branches that run `dispatch-iteration.cjs`, and `cli-mistral-vibe` runs only as a fan-out lineage. The executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
 
 All branches share:

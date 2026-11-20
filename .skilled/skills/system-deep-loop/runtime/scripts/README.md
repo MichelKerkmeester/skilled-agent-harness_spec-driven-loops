@@ -58,6 +58,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `status.cjs` | Reports session-scoped graph health and stored row counts. |
 | `synthesis-closeout.cjs` | Checks a finished research or review synthesis against its iteration state, including lineage logs, and stages the completion event for the gateway. |
 | `upsert.cjs` | Stores graph nodes, edges and iteration events. |
+| `workflow-steps.cjs` | Carries the multi-line step programs the research and review workflows once ran inline as `node -e` bodies, one subcommand each, so a workflow step makes one plain call: `prior-lineage`, `extend-research`, `extend-review`, `generation`, `run-open-research`, `run-open-review`, `max-duration`, `replay-legacy-review` and `refuse-single-vibe`. |
 | `verify-iteration.cjs` | Validates iteration artifacts and their required evidence. |
 
 ---

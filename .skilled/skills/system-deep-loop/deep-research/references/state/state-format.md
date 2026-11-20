@@ -9,7 +9,7 @@ trigger_phrases:
   - "research packet location"
 importance_tier: important
 contextType: implementation
-version: 1.14.8.0
+version: 1.14.9.0
 ---
 
 # State Format Reference
@@ -42,7 +42,7 @@ The deep-research loop persists continuity in packet files so each iteration can
 
 | File | Format | Purpose | Mutability |
 |------|--------|---------|------------|
-| `deep-research-config.json` | JSON | Loop parameters and lineage | Created at init; afterwards only the workflow writes it, through the terminal status flip, an `--extend=N` rewrite and the derived expansive budget |
+| `deep-research-config.json` | JSON | Loop parameters and lineage | Created at init, or on a fan-out run by `step_fanout_root_config` before any lineage spawns; afterwards only the workflow writes it, through the terminal status flip, an `--extend=N` rewrite and the derived expansive budget |
 | `deep-research-state.jsonl` | JSONL | Append-only structured log | Append-only |
 | `deep-research-strategy.md` | Markdown | Current research plan and next focus | Reducer-managed sections |
 | `deep-research-findings-registry.json` / `findings-registry.json` | JSON | Reducer-owned findings and question state | Auto-generated |
@@ -78,11 +78,11 @@ This avoids an unnecessary `pt-01` wrapper on first runs.
 
 ### Frontier Node Store (expansive depth only)
 
-`research/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`. A default run never creates it, nor the seed step's input `research/frontier-seed.json`, the JSON array of depth-1 sub-questions that `frontier-admit.cjs seed --input` reads. The workflow also writes `research/frontier-focus.txt`, the one-line focus it passes as `--focus-file` to `frontier-admit.cjs block` before each dispatch, and a default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`, plus an optional `budget` on an admitted row whose proposal named one. The last row for a node wins, so a status change is one more row rather than an edit. `runtime/scripts/frontier-admit.cjs` writes it for seed, admit and close, and `runtime/scripts/fanout-run.cjs` writes the starting store of each fan-out lineage dealt at least one node before the lineage spawns, unless the lineage already has one; a lineage dealt no node gets no store. Each expansive iteration also writes `research/frontier-graph-events.json`, the event file `step_frontier_graph_upsert` passes to `upsert.cjs` for the coverage graph, and a default run never creates it.
+`research/frontier-nodes.jsonl` is the node-status store for a run started with `--depth-mode=expansive`. A default run never creates it, nor the seed step's input `research/frontier-seed.json`, the JSON array of depth-1 sub-questions that `frontier-admit.cjs seed --input` reads. The workflow also writes `research/frontier-focus.txt`, the one-line focus it passes as `--focus-file` to `frontier-admit.cjs block` before each dispatch, and a default run never creates it. Rows are append-only and carry `{nodeId, parentId, depth, scope, question, status, reason, iteration, dedupeKey}`, plus an optional `budget` on an admitted row whose proposal named one. The last row for a node wins, so a status change is one more row rather than an edit. `runtime/scripts/frontier-admit.cjs` writes it for seed, admit and close, a writing reduce appends an `answered` close for each node it derives as answered while the store still holds it `open` or `active`, and `runtime/scripts/fanout-run.cjs` writes the starting store of each fan-out lineage dealt at least one node before the lineage spawns, unless the lineage already has one; a lineage dealt no node gets no store. Each expansive iteration also writes `research/frontier-graph-events.json`, the event file `step_frontier_graph_upsert` passes to `upsert.cjs` for the coverage graph, and a default run never creates it.
 
 Statuses are `open`, `active`, `answered`, `blocked`, `exhausted`, `abstained` and `pruned`. A frontier question resolves when its node reaches a terminal status. The reducer mirrors that resolution into `findings-registry.json`, where the question carries a `frontierStatus` field holding one of `answered`, `blocked`, `exhausted`, `abstained` or `pruned`. It derives `resolvedAtIteration` from the node's `closedAtIteration` when no iteration evidence names one.
 
-The reducer projects the store as `registry.frontier {nodes, stats, budget}`, applies the depth budget so an unspent share rolls down to the next depth only, closes a spent band's open nodes as `exhausted` with reason `budget`, and adds a `## 6B. FRONTIER` dashboard section.
+The reducer projects the store as `registry.frontier {nodes, stats, budget}`, applies the depth budget so an unspent share rolls down to the next depth only, closes a spent band's open nodes as `exhausted` with reason `budget`, and adds a `## 6B. FRONTIER` dashboard section. Budget closes stay in the projection and are recomputed on every reduce, because an extension or a band roll-down can reopen them, so the store never carries them.
 
 ---
 
@@ -103,7 +103,7 @@ The reducer is the source of truth for derived state. Manual edits to reducer-ow
 
 | Protection | Meaning |
 |------------|---------|
-| `immutable` | Created once; no agent or reducer modifies it after init (the config still takes the workflow's own writes: the terminal status flip, an `--extend=N` rewrite and the derived expansive budget) |
+| `immutable` | Created once; no agent or reducer modifies it after init (the config still takes the workflow's own writes: the terminal status flip, an `--extend=N` rewrite, the derived expansive budget and a fan-out rerun's `step_fanout_root_config`) |
 | `append-only` | New JSONL records may be appended; existing records are not rewritten |
 | `write-once` | Each iteration artifact is created once |
 | `mutable` | Workflow may update the file under defined ownership rules |

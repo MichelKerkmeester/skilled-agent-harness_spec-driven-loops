@@ -245,7 +245,7 @@ Each pass also compares `maxDurationMinutes` with the config `createdAt`. When t
 3. **Exceed TCB**, Stay within `config.maxToolCallsPerIteration` tool calls per iteration. Breadth over depth per cycle.
 4. **Ask the user**, The leaf agent never asks. It makes best-judgment decisions without pausing. The workflow asks only in `:confirm` mode, at its approval gates.
 5. **Skip convergence checks**, Every iteration must be evaluated against convergence criteria before the next dispatch.
-6. **Modify config after init**, review parameters in `deep-review-config.json` are read-only after initialization, apart from the workflow's own writes that `references/state/state-format.md` lists: the terminal status flip, `--extend=N`, `step_frontier_scope` and `step_frontier_budget`.
+6. **Modify config after init**, review parameters in `deep-review-config.json` are read-only after initialization, apart from the workflow's own writes that `references/state/state-format.md` lists: the terminal status flip, `--extend=N`, `step_frontier_scope`, `step_frontier_budget` and a fan-out rerun's `step_fanout_root_config`.
 7. **Modify files under review**, The review loop is observation-only. No code changes during audit.
 8. **Use WebFetch**, Review is code-only. No external resource fetching is permitted.
 9. **Implement fixes during review**, Report findings only. Implementation is a separate follow-up step.

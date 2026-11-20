@@ -210,7 +210,7 @@
       - What I would do differently: [specific next adjustment]
       
       ## Recommended Next Focus
-      [What to investigate next, based on gaps discovered]
+      [What to investigate next, based on gaps discovered. Do not open with `Close F-<n>-<n>`: the reducer closes frontier nodes, so it ignores that focus and derives one instead]
       ```
       
       Do not write a placeholder iteration file. If findings are sparse because a tool failed, write the failure and recovery attempts with citations to tool outputs, consulted source paths, or prior packet evidence.

@@ -10,7 +10,7 @@ trigger_phrases:
   - "spec anchoring output"
 importance_tier: normal
 contextType: implementation
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # Deep Research Output Files Reference
@@ -83,7 +83,7 @@ Required shape:
 | `Sources Consulted` section | Files, URLs, memory hits, or commands used |
 | `Assessment` section | `newInfoRatio`, novelty justification, and confidence notes |
 | `Reflection` section | What worked, failed, or was ruled out |
-| `Recommended Next Focus` section | One concrete next focus |
+| `Recommended Next Focus` section | One concrete next focus. The reducer ignores one that opens with `Close F-<n>-<n>` and derives the focus instead, because it closes frontier nodes itself; a focus such as `Close the <gap>` is kept |
 
 Every finding must cite a source such as `[SOURCE: file:path:line]` or `[SOURCE: https://example.test]`.
 

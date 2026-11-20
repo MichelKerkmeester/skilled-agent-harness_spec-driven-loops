@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "parallel lineage execution"
   - "multi-executor research"
-version: 1.14.4.0
+version: 1.14.5.0
 ---
 
 # Fan-out loop dispatch
@@ -25,7 +25,9 @@ original `resolveArtifactRoot` command — zero behavior change for single-execu
 
 **`step_fanout_spawn`** (`skip_when: config.fanout is absent`) spawns CLI lineages via
 `fanout-run.cjs` (pool-capped headless subprocesses) and dispatches native lineages as
-sequential `agent: deep-research` runs with per-lineage isolated artifact dirs. When
+sequential `agent: deep-research` runs with per-lineage isolated artifact dirs. Its first
+sub-step, `step_fanout_root_config`, writes the root config from `step_create_config`'s
+template and the fan-out matrix before any lineage spawns. When
 complete, control jumps directly to `phase_synthesis`, skipping `phase_init` and
 `phase_main_loop`.
 
@@ -56,6 +58,10 @@ and the refusal message names the single-executor workflow. `--only-lineage LABE
 one lineage of the unedited matrix, without packet init, synthesis or save. A lineage whose config is `complete` and whose
 artifacts pass the completion check is skipped before spawn and recorded as `skipped_complete`, under `--only-lineage`
 too, so a forced rerun needs that lineage's `lineages/<label>/` folder archived first.
+The runner's stdout summary and `orchestration-summary.json` list each lineage as
+`{label, status, failure_class, exit_code, rerun_command}`; only a failed lineage gets a
+`rerun_command`, the run's own argv with `--only-lineage LABEL`, to run from the original
+working directory.
 
 ---
 

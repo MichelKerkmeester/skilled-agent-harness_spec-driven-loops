@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.25.0
+version: 1.14.26.0
 ---
 
 # deep-research
@@ -95,7 +95,7 @@ Every run keeps continuity under `{spec_folder}/research/`. A root spec writes t
 
 | File | Owner | What it holds |
 |---|---|---|
-| `deep-research-config.json` | Workflow | Loop parameters and lineage. Read-only after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget |
+| `deep-research-config.json` | Workflow | Loop parameters and lineage. Read-only after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget. A fan-out run writes it in `step_fanout_root_config` |
 | `deep-research-state.jsonl` | Append gateway | Config record, iteration records and typed events |
 | `deep-research-strategy.md` | Reducer | Key questions, next focus, what worked and what failed |
 | `findings-registry.json` | Reducer | Question state, key findings, ruled-out directions and blocked-stop history |

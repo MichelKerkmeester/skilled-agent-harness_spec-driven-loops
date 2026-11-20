@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "b5713ee1dd4636b9ab7868997087cb609035bca0a42fbbf5686cd683a069cefc",
+      "sha256": "749e2d973c36144f10b48e272b160a82e34c1acf6f1875f89bd46ada82963b9b",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "1790d3bf24f9d72f061a02e0f6ddc26e6f0a271b2a8b691ad7c9330974ef4204",
+      "sha256": "757a2b1d7e9e7387905d9fb53c335aa26e9a031fd2e2800ddceb47a3dd86ddb6",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "a59a900b7b5a3064ee7d651abcc836d023437982602e16806249ef6ccc196371",
+      "sha256": "c4496bdd70a09bfbbf0af8fd7144c4e7005d30b9fd0a19d9f75c1dec5cc77a3c",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "13ecd2b25122ad8ba60f22a99cba58a7d00ca625dd2886087d3b245c82360523",
+      "sha256": "2da0a9c3a228c5783b6a117c87abfca37f999a83488ac61ac585634eb9dcdb11",
       "section": "full"
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/state/state-format.md",
-      "sha256": "14c925a3bd3fc97113e51360678de01634731de5c48b53d338d67a20538fe7f4",
+      "sha256": "123097d366db6fe00089eeccabdca58c3318d5a74c08c538c5c28047f55fb2f2",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/agents/deep-research.md",
-      "sha256": "440ebcab69a60e55a771bc001a591eff3e3090409a9e9143eeea79f62151afe7",
+      "sha256": "1531867a1f529ca22da8cf89dd524254187f9aee412d00ad199cacfdc69ae4aa",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "a035f8c396fe975e31cd437c9e309945382fe2c37444363569fb7c8f73ac2d25"
+  "compiledBodyDigest": "d7da4f1a3fe5ab854e0e263fedf4e5e96c9cf014d2436f749d8c2faabd63676e"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -159,7 +159,7 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `topic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `minIterations`, `antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `expansiveDepth.*` (`maxDepth`, `maxChildrenPerNode`, `budgetSplit`, `maxFrontierNodes`), reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, bind the values the workflow writes to `{artifact_dir}/deep-research-config.json` in `step_create_config`, or in `step_fanout_root_config` on a fan-out run (shape: `topic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `minIterations`, `antiConvergence.convergenceMode`, `antiConvergence.depthMode`, `expansiveDepth.*` (`maxDepth`, `maxChildrenPerNode`, `budgetSplit`, `maxFrontierNodes`), reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 

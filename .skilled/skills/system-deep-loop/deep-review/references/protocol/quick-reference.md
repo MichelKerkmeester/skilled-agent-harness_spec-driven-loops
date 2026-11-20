@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.20.0
+version: 1.11.21.0
 ---
 
 # Deep Review Quick Reference
@@ -90,7 +90,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 
 | File | Location | Format | Purpose |
 |------|----------|--------|---------|
-| Config | `review/deep-review-config.json` | JSON | Review parameters (immutable after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget) |
+| Config | `review/deep-review-config.json` | JSON | Review parameters (immutable after init, apart from the terminal status flip, an `--extend=N` rewrite and the derived expansive budget; a fan-out run writes it in `step_fanout_root_config`) |
 | State | `review/deep-review-state.jsonl` | JSONL | Iteration log (append-only) |
 | Registry | `review/deep-review-findings-registry.json` | JSON | Reducer-owned finding registry |
 | Strategy | `review/deep-review-strategy.md` | Markdown | Dimensions, findings, next focus |

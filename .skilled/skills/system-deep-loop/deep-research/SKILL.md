@@ -88,7 +88,7 @@ Carrying threshold expectations across siblings will cause unexpected iteration 
 
 ### Expansive Depth Mode
 
-- `--depth-mode=expansive` keeps a depth-capped frontier of follow-up questions beside the seeded key questions. An absent flag means `default`, which keeps the default behavior. The one byte change is the expansive-only persona paragraph in the CLI lineage prompt, which the golden test strips before it compares.
+- `--depth-mode=expansive` keeps a depth-capped frontier of follow-up questions. When the inbox already holds frontier seed rows, the strategy's Key Questions start empty and the frontier rows are the only question intake; a fan-out lineage dealt no seed share derives its own key questions. An absent flag means `default`, which keeps the default behavior. The one byte change is the expansive-only persona paragraph in the CLI lineage prompt, which the golden test strips before it compares.
 - `step_frontier_seed` writes 3 to 6 depth-1 nodes before iteration 1 through `runtime/scripts/frontier-admit.cjs seed`, after `step_create_config`, or before `step_fanout_spawn` on a fan-out run.
 - A defaulted `--max-iterations` is derived from the seed, up to 24, and an explicit value always wins. The caps, the budget arithmetic and the fan-out lineage budgets are in [loop-protocol.md](references/protocol/loop-protocol.md) §Expansive Depth Frontier.
 - `step_frontier_admit` runs before `step_reduce_state` and prunes a `frontier_proposal` on the first failed check among relevance, dedupe, depth, fan-out, the run-wide node cap, budget and cycle. Node status lives in `research/frontier-nodes.jsonl`. Admitted nodes also land in `research/inbox.jsonl` with `origin: "frontier"`.
@@ -174,7 +174,7 @@ Each agent dispatch gets a fresh context window. State continuity comes from fil
 
 ### Data Flow
 
-Init creates config, strategy, and state logs. Each loop reads state, checks convergence, dispatches `@deep-research`, writes iteration markdown and JSONL deltas, refreshes reducer-owned state, and either continues or synthesizes and saves continuity.
+Init creates config, strategy, and state logs; a fan-out run skips init and writes the root config in `step_fanout_root_config` before any lineage spawns. Each loop reads state, checks convergence, dispatches `@deep-research`, writes iteration markdown and JSONL deltas, refreshes reducer-owned state, and either continues or synthesizes and saves continuity.
 
 Late-INIT can also anchor the research run to `spec.md`, and `research/research.md` stays canonical throughout.
 The workflow then:
@@ -225,7 +225,7 @@ Convergence uses newInfoRatio/stuck/question signals; JSONL state remains append
 3. **Exceed TCB** -- Stay within `config.maxToolCallsPerIteration` tool calls per iteration
 4. **Ask the user** -- The leaf agent never asks. `:confirm` mode is the workflow's ask point at its approval gates
 5. **Skip convergence checks** -- Every iteration must be evaluated
-6. **Modify config after init** -- Research parameters are read-only after initialization. The workflow makes three permitted writes: the terminal `step_update_config_status` flip to `status: complete`, the `--extend=N` rewrite, and `step_frontier_budget` setting `maxIterations` from the seed for an expansive run with a defaulted budget
+6. **Modify config after init** -- Research parameters are read-only after initialization. The workflow makes four permitted writes: the terminal `step_update_config_status` flip to `status: complete`, the `--extend=N` rewrite, `step_frontier_budget` setting `maxIterations` from the seed for an expansive run with a defaulted budget, and a fan-out rerun's `step_fanout_root_config`
 7. **Overwrite prior findings** -- The leaf agent writes findings to its own iteration file and never rewrites an earlier iteration. It adds to `research/research.md` only when `progressiveSynthesis` is true, and the workflow still owns that file through synthesis
 8. **Implement fixes during research** -- Report findings only; implementation is a separate follow-up step.
 9. **Simulate loop dispatch** -- Do not write custom shell loops, nested CLI loops, `/tmp` prompt dispatchers, or direct Task loops for `@deep-research`. Command-driven fan-out via `step_fanout_spawn` (`--executor`/`--executors`/`--concurrency` flags) IS SUPPORTED; ad-hoc shell fan-out and intra-lineage wave orchestration remain forbidden.

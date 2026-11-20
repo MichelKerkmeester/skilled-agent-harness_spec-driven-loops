@@ -7,7 +7,7 @@ trigger_phrases:
   - "select review executor"
   - "per-kind flag compatibility"
   - "native cli-opencode dispatch"
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # Executor Selection Contract
@@ -29,7 +29,7 @@ Before each dispatch, the workflow resolves the executor via `parseExecutorConfi
 | Kind | Dispatch |
 |---|---|
 | `native` | `@deep-review` agent with model Opus |
-| `cli-opencode` | rendered prompt piped via stdin to `opencode run --dangerously-skip-permissions`, granting full OS-level workspace write access. There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT honored. The only real containment is the prompt-level "ALLOWED WRITE PATHS"/"BANNED OPERATIONS" contract (model-obeyed, not OS-enforced) plus post-dispatch validation. Review targets must be treated as potentially adversarial content. |
+| `cli-opencode` | rendered prompt passed as the last argument to `opencode run`, with `--auto` on OpenCode 2 or `--dangerously-skip-permissions` on OpenCode 1 under `danger-full-access`, the default when no sandbox mode is set, granting full OS-level workspace write access. There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT honored. The only real containment is the prompt-level "ALLOWED WRITE PATHS"/"BANNED OPERATIONS" contract (model-obeyed, not OS-enforced) plus post-dispatch validation. Review targets must be treated as potentially adversarial content. |
 | `cli-claude-code` | `claude -p` with a permission mode resolved from `--sandbox-mode`, as on research: `acceptEdits` when it is unset or `workspace-write`, `plan` when it is `read-only`, and `bypassPermissions` when it is `danger-full-access`. The default cannot run Bash in `-p` mode, so a run that must record state through the append gateway needs `--sandbox-mode=danger-full-access`. |
 | `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` | the kind's own CLI, started by `dispatch-iteration.cjs` with the rendered prompt |
 | `cli-mistral-vibe` | none in a single-executor run, which refuses it. It runs only as a fan-out lineage |

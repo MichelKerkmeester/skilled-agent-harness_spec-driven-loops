@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "strongest-restriction verdict"
   - "multi-executor review"
-version: 1.11.4.0
+version: 1.11.5.0
 ---
 
 # Fan-out loop dispatch
@@ -26,7 +26,9 @@ original `resolveArtifactRoot` command — zero behavior change for single-execu
 
 **`step_fanout_spawn`** (`skip_when: config.fanout is absent`) spawns CLI lineages via
 `fanout-run.cjs` (pool-capped headless subprocesses) and dispatches native lineages as
-sequential `agent: deep-review` runs with per-lineage isolated artifact dirs. When complete,
+sequential `agent: deep-review` runs with per-lineage isolated artifact dirs. Its first
+sub-step, `step_fanout_root_config`, writes the root config from `step_create_config`'s
+template and the fan-out matrix before any lineage spawns. When complete,
 control jumps directly to `phase_synthesis`, skipping `phase_init` and `phase_main_loop`.
 
 **`step_fanout_merge`** (`skip_when: config.fanout is absent`) sits at the top of
@@ -53,6 +55,10 @@ zero behavioral change for single-executor mode. Full vitest suite (197/197) con
 single-executor regression. Command surface: `--executor` (repeatable), `--executors <json>`,
 `--concurrency N`. Review fan-out verdict note: strongest-restriction means any lineage
 active P0, or any lineage required gate still failing at its stop → merged FAIL.
+The runner's stdout summary and `orchestration-summary.json` list each lineage as
+`{label, status, failure_class, exit_code, rerun_command}`; only a failed lineage gets a
+`rerun_command`, the run's own argv with `--only-lineage LABEL`, to run from the original
+working directory.
 
 An optional `--review-focus "TEXT"` (or a pre-bound `review_focus` answer) carries the
 operator's focus to every lineage. `step_fanout_spawn_cli` writes it to a file with the

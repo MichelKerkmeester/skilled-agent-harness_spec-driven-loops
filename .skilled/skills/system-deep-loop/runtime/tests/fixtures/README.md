@@ -1,6 +1,6 @@
 ---
 title: "runtime test fixtures"
-description: "Shared event, ledger and default-run golden fixtures for runtime tests."
+description: "Shared event, ledger, default-run golden and research stop-evidence fixtures for runtime tests."
 trigger_phrases:
   - "runtime test fixtures"
   - "authorized ledger fixtures"
@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder contains reusable inputs and child-process workers for runtime tests. The fixtures build validated event envelopes and authorized-ledger requests without changing production state. Two golden folders hold the byte-for-byte default-run output that the depth-mode golden suites compare against.
+This folder contains reusable inputs and child-process workers for runtime tests. The fixtures build validated event envelopes and authorized-ledger requests without changing production state. Two golden folders hold the byte-for-byte default-run output that the depth-mode golden suites compare against, and a third folder holds two recorded research lineages whose closeout rows serve as stop evidence.
 
 The fixture surface is test-only. Each consumer suite owns the assertion that gives a fixture meaning.
 
@@ -33,14 +33,21 @@ fixtures/
 │   ├── prompt-pack.md
 │   ├── registry.json
 │   └── stop-decision-config.json
-└── golden-review-default/
-    ├── dashboard.md
-    ├── lineage-prompt.txt
-    ├── next-focus.txt
-    ├── pivot-seeds.json
-    ├── prompt-pack.md
-    ├── registry.json
-    └── stop-decision-config.json
+├── golden-review-default/
+│   ├── dashboard.md
+│   ├── lineage-prompt.txt
+│   ├── next-focus.txt
+│   ├── pivot-seeds.json
+│   ├── prompt-pack.md
+│   ├── registry.json
+│   └── stop-decision-config.json
+└── research-stop-evidence/
+    ├── deepseek/
+    │   ├── deep-research-config.json
+    │   └── deep-research-state.jsonl
+    └── opus/
+        ├── deep-research-config.json
+        └── deep-research-state.jsonl
 ```
 
 ---
@@ -55,6 +62,7 @@ fixtures/
 | `event-envelope-producers.ts` | Provides representative payloads for real event-producer families. |
 | `golden-research-default/` | Holds the six baseline artifacts a default research run renders, compared by `research-depth-mode-golden.vitest.ts`. |
 | `golden-review-default/` | Holds the seven baseline artifacts a default review run renders, compared by `review-depth-mode-golden.vitest.ts`. |
+| `research-stop-evidence/` | Holds the config and state log of two live research lineages, `opus` converged after five iterations and `deepseek` stopped on `maxIterationsReached` at its cap of ten, read by `lineage-timestamp-window.vitest.ts` and `fanout-run.vitest.ts` to check the closeout stop-reason evidence. |
 
 ---
 
@@ -66,6 +74,7 @@ fixtures/
 | Worker fixtures | `authorized-ledger-worker.ts` |
 | Event fixtures | `event-envelope-producers.ts` |
 | Golden default-run baselines | `golden-research-default/`, `golden-review-default/` |
+| Research stop evidence | `research-stop-evidence/` |
 
 These files are imported by tests and are not runtime production entry points.
 
