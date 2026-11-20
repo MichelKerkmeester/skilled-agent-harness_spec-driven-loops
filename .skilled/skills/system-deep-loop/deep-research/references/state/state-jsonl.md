@@ -10,7 +10,7 @@ trigger_phrases:
   - "research event records"
 importance_tier: normal
 contextType: implementation
-version: 1.14.4.0
+version: 1.14.5.0
 ---
 
 # Deep Research JSONL State Reference
@@ -260,7 +260,7 @@ The gateway keeps the blocker ids and the recovery strategy, so the row the stat
 }
 ```
 
-`convergence.cjs` writes this row itself. The workflow's convergence step passes `--record-blocked-stop` with `--stop-decision` (live run only; a dry run withholds it, so it appends no blocked-stop row), and on a `BLOCKED` decision the script appends the row through the append gateway. It writes once per run and blocker set: a recomputed decision for a run whose state log already holds a row with the same `run` and `blockedBy` writes nothing, and a changed blocker set writes a new row. `recoveryStrategy` is the first blocker's description, or "Collect deeper graph evidence before stopping." when that blocker has none. When iterations recorded findings but left no FINDING node in the graph, it also names them, which points at a graph upsert that did not run for them. `generation` is omitted when the config lineage has none. The flag needs loop type `research`, `--stop-decision` and a positive `--iteration`, and it is refused with `--read-only`.
+`convergence.cjs` writes this row itself. The workflow's convergence step passes `--record-blocked-stop` with `--stop-decision` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event), and on a `BLOCKED` decision the script appends the row through the append gateway. It writes once per run and blocker set: a recomputed decision for a run whose state log already holds a row with the same `run` and `blockedBy` writes nothing, and a changed blocker set writes a new row. `recoveryStrategy` is the first blocker's description, or "Collect deeper graph evidence before stopping." when that blocker has none. When iterations recorded findings but left no FINDING node in the graph, it also names them, which points at a graph upsert that did not run for them. `generation` is omitted when the config lineage has none. The flag needs loop type `research`, `--stop-decision` and a positive `--iteration`, and it is refused with `--read-only`.
 
 Pause event:
 

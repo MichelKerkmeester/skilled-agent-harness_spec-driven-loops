@@ -8,7 +8,7 @@ trigger_phrases:
   - "review iteration status enum"
 importance_tier: normal
 contextType: implementation
-version: 1.11.5.0
+version: 1.11.6.0
 ---
 
 # Deep Review State Transitions and Quality Gates
@@ -155,7 +155,7 @@ function checkReviewQualityGates(state, config, coverage):
   return { passed: true }
 ```
 
-The contract-level check above is illustrative; it is the review-specific 9-gate bundle that actually gates STOP. When that bundle fails, the workflow does not silently override STOP to CONTINUE -- `convergence.cjs`, run with `--record-blocked-stop` (live run only; a dry run withholds it, so it appends no blocked-stop row), persists a first-class `blocked_stop` event through the append gateway with the failing gate names and the full `gateResults` bundle:
+The contract-level check above is illustrative; it is the review-specific 9-gate bundle that actually gates STOP. When that bundle fails, the workflow does not silently override STOP to CONTINUE -- `convergence.cjs`, run with `--record-blocked-stop` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event), persists a first-class `blocked_stop` event through the append gateway with the failing gate names and the full `gateResults` bundle:
 
 ```json
 {"type":"event","event":"blocked_stop","mode":"review","run":N,"blockedBy":["<gate-name>", "..."],"gateResults":{"...":"..."},"recoveryStrategy":"<reason>","timestamp":"<ISO-8601>","sessionId":"<session-id>","generation":N}

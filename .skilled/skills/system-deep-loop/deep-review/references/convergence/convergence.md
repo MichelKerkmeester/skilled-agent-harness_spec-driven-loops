@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.27.0
+version: 1.11.28.0
 ---
 
 # Deep Review Convergence
@@ -137,7 +137,7 @@ Every pivot dispatches three seats, or six when its first attempt misses quorum,
 
 #### blocked_stop Event (canonical, persisted)
 
-`convergence.cjs` records the following row in `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. `step_graph_convergence` in `deep-review.yaml` runs it with `--record-blocked-stop` (live run only; a dry run withholds it, so it appends no blocked-stop row), and on a BLOCKED decision it appends a `deep_review.blocked_stop_recorded` event through the append gateway, which projects to this row. The workflow never writes it by hand. The gate names and their shapes are load-bearing, the reducer reads them verbatim:
+`convergence.cjs` records the following row in `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. `step_graph_convergence` in `deep-review.yaml` runs it with `--record-blocked-stop` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event), and on a BLOCKED decision it appends a `deep_review.blocked_stop_recorded` event through the append gateway, which projects to this row. The workflow never writes it by hand. The gate names and their shapes are load-bearing, the reducer reads them verbatim:
 
 ```json
 {
@@ -453,7 +453,7 @@ A new critical finding always signals significant remaining work. The 0.50 floor
 
 ## 6. LEGAL-STOP GATE BUNDLE
 
-> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `convergence.cjs`, which the `step_graph_convergence` step in `deep-review.yaml` runs with `--record-blocked-stop` (live run only; a dry run withholds it, so it appends no blocked-stop row) and which records **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §1 event shape mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) has been reconciled.
+> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `convergence.cjs`, which the `step_graph_convergence` step in `deep-review.yaml` runs with `--record-blocked-stop` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event) and which records **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §1 event shape mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) has been reconciled.
 
 Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 9 gates and persist a blocked-stop event when any gate fails.
 
