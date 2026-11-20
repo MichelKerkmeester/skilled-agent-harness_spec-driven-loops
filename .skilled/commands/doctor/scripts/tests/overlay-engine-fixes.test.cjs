@@ -196,6 +196,25 @@ test('the setting file keeps an in-tree link to a folder inside the tree', (t) =
   assert.equal(engine.resolveOverlayDir(fixture.tree), 'aliased-overlays');
 });
 
+// The tree root is never its own overlay folder, however the path is spelled:
+// a link that lands back on the root passes the inside-the-tree check because
+// a path is always within itself.
+test('the setting file refuses an in-tree link that resolves to the tree root', (t) => {
+  const fixture = createSyncFixture(t);
+  fs.symlinkSync('.', path.join(fixture.tree, 'self'));
+  fs.mkdirSync(path.join(fixture.tree, 'sub'));
+  fs.symlinkSync('..', path.join(fixture.tree, 'sub', 'back'));
+  for (const value of ['self', 'sub/back']) {
+    writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir: value }));
+    assert.throws(() => engine.resolveOverlayDir(fixture.tree), (error) => error.message ===
+      `.skilled-overlays.json names a folder inside the tree that resolves to the tree root: ${value}`);
+  }
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes(
+    '.skilled-overlays.json names a folder inside the tree that resolves to the tree root: sub/back'), status.output);
+});
+
 // A link whose target does not exist yet cannot be told apart from one into the
 // tree, so it is refused now rather than on the run after its target appears.
 test('the setting file refuses a dangling sibling link whose target lies inside the tree', (t) => {
@@ -603,6 +622,64 @@ test('apply refuses a layout link whose path leaves the tree and creates nothing
   assert.equal(applied.code, 2, applied.output);
   assert.ok(applied.output.includes('layout link path escapes the tree root: ../outside/link'), applied.output);
   assert.equal(fs.existsSync(path.join(fixture.workspace, 'outside')), false);
+  assert.equal(treeDigest(fixture.tree), before);
+});
+
+// A link path spelled inside the tree can still land outside it when a folder
+// on its way is an in-tree link pointing out, so the path is judged by where
+// its parent resolves.
+test('apply refuses a layout link whose parent folder is an in-tree link out of the tree', (t) => {
+  const fixture = createSyncFixture(t);
+  const outside = path.join(fixture.workspace, 'outside');
+  fs.mkdirSync(outside);
+  fs.symlinkSync(outside, path.join(fixture.tree, 'out'));
+  fixture.manifest.layoutLinks = [{ path: 'out/victim', target: 'guarded.txt' }];
+  writeManifest(fixture);
+  const before = treeDigest(fixture.tree);
+
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 2, applied.output);
+  assert.ok(applied.output.includes('layout link path escapes the tree root: out/victim'), applied.output);
+  assert.deepEqual(fs.readdirSync(outside), []);
+  assert.equal(treeDigest(fixture.tree), before);
+});
+
+test('apply refuses a layout link whose parent folder is a dangling or looping link', (t) => {
+  const fixture = createSyncFixture(t);
+  fs.symlinkSync(path.join(fixture.workspace, 'not-yet'), path.join(fixture.tree, 'pending'));
+  fs.symlinkSync('loop', path.join(fixture.tree, 'loop'));
+  for (const linkPath of ['pending/victim', 'loop/victim']) {
+    fixture.manifest.layoutLinks = [{ path: linkPath, target: 'guarded.txt' }];
+    writeManifest(fixture);
+    const before = treeDigest(fixture.tree);
+
+    const applied = fixture.run(['apply']);
+
+    assert.equal(applied.code, 2, applied.output);
+    assert.ok(applied.output.includes(`layout link path escapes the tree root: ${linkPath}`), applied.output);
+    assert.equal(fs.existsSync(path.join(fixture.workspace, 'not-yet')), false);
+    assert.equal(treeDigest(fixture.tree), before);
+  }
+});
+
+// Apply would unlink a replaced upstream link before writing below it, but a
+// relayout relinks without replacing it first, so a replaced link that resolves
+// out of the tree is refused like any other parent link.
+test('apply refuses a layout link below a replaced upstream link that resolves out of the tree', (t) => {
+  const fixture = createSyncFixture(t);
+  const outside = path.join(fixture.workspace, 'outside');
+  fs.mkdirSync(outside);
+  fs.symlinkSync(outside, path.join(fixture.tree, 'up'));
+  fixture.manifest.layoutLinks = [{ path: 'up/victim', target: 'guarded.txt', replaces: { path: 'up', target: outside } }];
+  writeManifest(fixture);
+  const before = treeDigest(fixture.tree);
+
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 2, applied.output);
+  assert.ok(applied.output.includes('layout link path escapes the tree root: up/victim'), applied.output);
+  assert.deepEqual(fs.readdirSync(outside), []);
   assert.equal(treeDigest(fixture.tree), before);
 });
 

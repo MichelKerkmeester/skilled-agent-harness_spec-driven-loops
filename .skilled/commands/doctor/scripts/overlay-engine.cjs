@@ -505,8 +505,15 @@ function resolveOverlayDir(root) {
       throw new Error(`${SETTING_FILE} names a folder inside the tree that resolves outside it: ${value}`);
     }
   }
-  if (!isWithin(canonicalPath(root), canonicalPath(inside))) {
+  const treeRoot = canonicalPath(root);
+  const landed = canonicalPath(inside);
+  if (!isWithin(treeRoot, landed)) {
     throw new Error(`${SETTING_FILE} names a folder inside the tree that resolves outside it: ${value}`);
+  }
+  // A path is always within itself, so a link back to the root passes the check
+  // above, and the root holds the framework, not the overlays.
+  if (landed === treeRoot) {
+    throw new Error(`${SETTING_FILE} names a folder inside the tree that resolves to the tree root: ${value}`);
   }
   return normalized;
 }
@@ -2861,19 +2868,52 @@ function rootSkilledProblem(field, value) {
  * Find the first layout link path that would land outside the tree. Every link
  * write and its rollback joins these paths onto the root, and a link write
  * unlinks whatever stands there, so a path that leaves the root is refused
- * before anything reads or writes through it.
+ * before anything reads or writes through it. A path spelled inside the tree
+ * still leaves it when a folder on its way is a link pointing out, so the
+ * parent is judged by where it resolves. The leaf is left unresolved: it is
+ * the link the write replaces, never a folder written through.
  * @param {string} root Destination tree root.
  * @param {object} manifest Loaded overlay manifest.
  * @returns {string|null} The refusal, or null when every path stays inside.
  */
 function layoutLinkEscape(root, manifest) {
+  // A parent link that dangles or loops cannot be resolved, so where it lands
+  // is unknown and the path is refused until it can be. The one exception is the
+  // upstream link the entry replaces: apply unlinks it before the write and
+  // makes the folders below it fresh, and nothing else can reach through a link
+  // that resolves nowhere. A replaced link that does resolve is judged like any
+  // other, since a command that does not replace it would write through it.
+  const parentStaysInTree = (treeRoot, linkPath, replacedPath) => {
+    const absolute = path.resolve(treeRoot, linkPath);
+    const replaced = typeof replacedPath === 'string' ? path.resolve(treeRoot, replacedPath) : null;
+    const parts = path.relative(path.resolve(treeRoot), absolute).split(path.sep).slice(0, -1);
+    let current = path.resolve(treeRoot);
+    for (const part of parts) {
+      current = path.join(current, part);
+      let stats;
+      try {
+        stats = fs.lstatSync(current);
+      } catch (error) {
+        if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+        break;
+      }
+      if (stats.isSymbolicLink() && !fs.existsSync(current)) {
+        if (current !== replaced) return false;
+        const landed = path.join(canonicalPathWithoutLeaf(current), path.relative(current, absolute));
+        return isWithin(canonicalPath(treeRoot), landed);
+      }
+    }
+    return isWithin(canonicalPath(treeRoot), canonicalPathWithoutLeaf(absolute));
+  };
   for (const link of manifest.layoutLinks || []) {
     if (!link) continue;
-    const paths = [link.path];
-    if (link.replaces && typeof link.replaces.path === 'string') paths.push(link.replaces.path);
-    for (const p of paths) {
+    const replacedPath = link.replaces && typeof link.replaces.path === 'string' ? link.replaces.path : null;
+    const paths = [[link.path, replacedPath]];
+    if (replacedPath !== null) paths.push([replacedPath, null]);
+    for (const [p, replaced] of paths) {
       if (typeof p !== 'string') continue;
-      if (path.isAbsolute(p) || path.win32.isAbsolute(p) || !isWithin(root, path.resolve(root, p))) {
+      if (path.isAbsolute(p) || path.win32.isAbsolute(p) || !isWithin(root, path.resolve(root, p)) ||
+        !parentStaysInTree(root, p, replaced)) {
         return `layout link path escapes the tree root: ${p}`;
       }
     }
@@ -6637,7 +6677,7 @@ function relayoutUnderLock(ctx, manifest) {
       // A skipped file was never copied, so the backup cannot be promised to hold it.
       const holds = backupSkipped.length === 0
         ? 'holds every moved copy and the manifest as it was'
-        : `holds the manifest as it was and every moved copy except the ${backupSkipped.length} printed as skipped`;
+        : `holds the manifest as it was and every moved copy except these files it skipped: ${backupSkipped.join(', ')}`;
       console.log(`${cause}; the restore also failed at ${restoreFailure.path}: ${restoreFailure.message}; ` +
         `the backup at ${backupLabel} ${holds}`);
       return EXIT_ERROR;

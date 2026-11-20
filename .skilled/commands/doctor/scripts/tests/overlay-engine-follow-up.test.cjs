@@ -1268,20 +1268,31 @@ test('relayout whose rollback also fails names the backup it keeps', (t) => {
 
 // A backup that skipped a read-protected file does not hold that file, so the
 // restore-failed line must not promise it does.
+// A credential-named standalone copy is skipped too, but it never moves, so the
+// line names only what the backup itself left out.
 test('relayout whose rollback also fails says which copies the backup lacks', (t) => {
   const fixture = createRelayoutFixture(t);
   writeFile(fixture.overlayDir, 'custom/bundle/assets/api-token.js', 'SECRET-BYTES-123\n');
+  writeFile(fixture.overlayDir, 'custom/.env.sample', 'KEY=value\n');
+  fixture.manifest.overlays.push({
+    id: 'hub-env',
+    scope: 'file',
+    source: 'custom/.env.sample',
+    destination: '.skilled/skills/hub/.env.sample',
+  });
+  writeManifest(fixture);
 
   const { code, lines } = relayoutWithFailingRename(t, fixture, (calls) => calls >= 2);
 
   assert.equal(code, 2, lines.join('\n'));
   assert.ok(lines.includes('skipped custom/bundle/assets/api-token.js'), lines.join('\n'));
+  assert.ok(lines.includes('skipped custom/.env.sample'), lines.join('\n'));
   const errors = lines.filter((line) => line.startsWith('error: '));
   assert.equal(errors.length, 1, lines.join('\n'));
+  assert.equal(errors[0].includes('.env.sample'), false, errors[0]);
   const backupLabel = lines.find((line) => line.startsWith('backup ')).slice('backup '.length);
-  assert.ok(errors[0].endsWith(
-    `the backup at ${backupLabel} holds the manifest as it was and every moved copy except the 1 printed as skipped`,
-  ), errors[0]);
+  assert.ok(errors[0].endsWith(`the backup at ${backupLabel} holds the manifest as it was and every moved copy ` +
+    'except these files it skipped: custom/bundle/assets/api-token.js'), errors[0]);
 });
 
 test('relayout that rolls back but cannot remove its backup says so', (t) => {
@@ -1379,6 +1390,30 @@ test('relayout refuses a layout link whose path leaves the tree and moves nothin
   assert.deepEqual(snapshotFolder(fixture.overlayDir), before);
   assert.deepEqual(fs.readdirSync(path.join(fixture.workspace, 'outside')), ['link']);
   assert.equal(fs.readlinkSync(path.join(fixture.workspace, 'outside', 'link')), '../tree/skilled-overlays/custom/place.md');
+});
+
+// A parent folder that is an in-tree link out of the tree carries a relink
+// outside it, so relayout refuses before touching anything behind that link.
+test('relayout refuses a layout link whose parent folder is an in-tree link out of the tree', (t) => {
+  const fixture = createRelayoutFixture(t);
+  const outside = path.join(fixture.workspace, 'outside');
+  fs.mkdirSync(outside);
+  fs.symlinkSync('../skilled-overlays/custom/place.md', path.join(outside, 'victim'));
+  fs.symlinkSync(outside, path.join(fixture.tree, 'out'));
+  fixture.manifest.layoutLinks = [{ path: 'out/victim', target: '../skilled-overlays/custom/place.md' }];
+  writeManifest(fixture);
+  const before = snapshotFolder(fixture.overlayDir);
+
+  const lines = [];
+  t.mock.method(console, 'log', (line) => lines.push(String(line)));
+  const code = engine.commandRelayout(engine.createContext(fixture.tree));
+  t.mock.restoreAll();
+
+  assert.equal(code, 2, lines.join('\n'));
+  assert.deepEqual(lines, ['refuse: layout link path escapes the tree root: out/victim']);
+  assert.deepEqual(snapshotFolder(fixture.overlayDir), before);
+  assert.deepEqual(fs.readdirSync(outside), ['victim']);
+  assert.equal(fs.readlinkSync(path.join(outside, 'victim')), '../skilled-overlays/custom/place.md');
 });
 
 // Pruning runs after every copy has moved and the manifest names the new paths,
