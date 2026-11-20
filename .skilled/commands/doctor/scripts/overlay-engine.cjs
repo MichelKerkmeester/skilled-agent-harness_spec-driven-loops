@@ -476,10 +476,44 @@ function resolveOverlayDir(root) {
         }
         return normalized;
       }
+      // A sibling that lands on the tree, or on a folder around it, is not beside
+      // the tree at all, so the refusal says where it really points.
+      if (isWithin(treeRoot, target)) {
+        throw new Error(`${SETTING_FILE} names a sibling that resolves into the tree root: ${value}`);
+      }
+      throw new Error(`${SETTING_FILE} names a sibling that resolves to a folder holding the tree root: ${value}`);
     }
   }
   if (normalized === '.' || normalized === '' || normalized === '..' || normalized.startsWith('../')) {
     throw new Error(`${SETTING_FILE} names a folder outside the tree root: ${value}`);
+  }
+  // A folder inside the tree is still read through any link on its path, so it is
+  // judged by where that path lands. A link whose target is missing, or that
+  // loops, cannot be resolved, so it is refused until it can.
+  const inside = path.resolve(root, normalized);
+  let current = path.resolve(root);
+  for (const part of normalized.split('/')) {
+    current = path.join(current, part);
+    let stats;
+    try {
+      stats = fs.lstatSync(current);
+    } catch (error) {
+      if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+      break;
+    }
+    if (stats.isSymbolicLink() && !fs.existsSync(current)) {
+      throw new Error(`${SETTING_FILE} names a folder inside the tree that resolves outside it: ${value}`);
+    }
+  }
+  const treeRoot = canonicalPath(root);
+  const landed = canonicalPath(inside);
+  if (!isWithin(treeRoot, landed)) {
+    throw new Error(`${SETTING_FILE} names a folder inside the tree that resolves outside it: ${value}`);
+  }
+  // A path is always within itself, so a link back to the root passes the check
+  // above, and the root holds the framework, not the overlays.
+  if (landed === treeRoot) {
+    throw new Error(`${SETTING_FILE} names a folder inside the tree that resolves to the tree root: ${value}`);
   }
   return normalized;
 }
@@ -2563,9 +2597,26 @@ function planLayoutLinks(manifest, root, state) {
  *   this path as the engine's own, which permits pointing it at a new target.
  */
 function applyLayoutLink(root, link, isRetarget) {
+  // The plan judges the tree as it stood, so each write is judged again where
+  // its parent resolves now: every unlink and link below acts through it. The
+  // link path is judged after the replaced link is gone, since that link may be
+  // its parent and may resolve nowhere until it is removed. A parent that cannot
+  // be resolved at all is refused like one that leaves the tree.
+  const assertParentInTree = (linkPath) => {
+    if (typeof linkPath !== 'string') return;
+    let inside = false;
+    try {
+      inside = isWithin(canonicalPath(root), canonicalPath(path.dirname(path.resolve(root, linkPath))));
+    } catch {
+      inside = false;
+    }
+    if (!inside) throw new Error('layout link path escapes the tree root: ' + linkPath);
+  };
+  assertParentInTree(link.replaces && link.replaces.path);
   const replacement = replacedLinkState(root, link);
   if (replacement.state === 'refused') throw new Error(replacement.reason);
   if (replacement.state === 'pinned') fs.unlinkSync(replacement.replacedPath);
+  assertParentInTree(link.path);
   if (isRetarget === true) {
     // The link is removed only while it is still a link: a path that became a
     // real file or folder since planning is someone else's work, and unlinking
@@ -2831,6 +2882,148 @@ function rootSkilledProblem(field, value) {
 }
 
 /**
+ * Find the first layout link path that would land outside the tree. Every link
+ * write and its rollback joins these paths onto the root, and a link write
+ * unlinks whatever stands there, so a path that leaves the root is refused
+ * before anything reads or writes through it. A path spelled inside the tree
+ * still leaves it when a folder on its way is a link pointing out, so the
+ * parent is judged by where it resolves. The leaf is left unresolved: it is
+ * the link the write replaces, never a folder written through.
+ * @param {string} root Destination tree root.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {string|null} The refusal, or null when every path stays inside.
+ */
+function layoutLinkEscape(root, manifest) {
+  // A parent link that dangles or loops cannot be resolved, so where it lands
+  // is unknown and the path is refused until it can be. The one exception is the
+  // upstream link the entry replaces: apply unlinks it before the write and
+  // makes the folders below it fresh, and nothing else can reach through a link
+  // that resolves nowhere. A replaced link that does resolve is judged like any
+  // other, since a command that does not replace it would write through it.
+  // A dangling link that an earlier entry names is also let through here, since
+  // the planned links still judge where the path lands, and the writer checks
+  // each parent again before it writes below it.
+  //
+  // A path is judged twice, once by the disk as it stands and once by the links
+  // the run will write, and refused when either judgement refuses. The run
+  // writes the entries in manifest order, so a nested entry may be written
+  // while its parent is still the link on disk, or after an earlier entry has
+  // made it a planned link. Neither judgement alone can know which.
+  const layoutLinks = manifest.layoutLinks || [];
+  const writtenBefore = (treeRoot, at, entryIndex) => layoutLinks.slice(0, entryIndex)
+    .some((link) => link && typeof link.path === 'string' && path.resolve(treeRoot, link.path) === at);
+  const parentStaysOnDisk = (treeRoot, linkPath, replacedPath, entryIndex) => {
+    const absolute = path.resolve(treeRoot, linkPath);
+    const replaced = typeof replacedPath === 'string' ? path.resolve(treeRoot, replacedPath) : null;
+    const parts = path.relative(path.resolve(treeRoot), absolute).split(path.sep).slice(0, -1);
+    let current = path.resolve(treeRoot);
+    for (const part of parts) {
+      current = path.join(current, part);
+      let stats;
+      try {
+        stats = fs.lstatSync(current);
+      } catch (error) {
+        if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+        break;
+      }
+      if (stats.isSymbolicLink() && !fs.existsSync(current)) {
+        if (current !== replaced) return writtenBefore(treeRoot, current, entryIndex);
+        const landed = path.join(canonicalPathWithoutLeaf(current), path.relative(current, absolute));
+        return isWithin(canonicalPath(treeRoot), landed);
+      }
+    }
+    return isWithin(canonicalPath(treeRoot), canonicalPathWithoutLeaf(absolute));
+  };
+  // A parent folder another entry turns into a link is judged as that link,
+  // because a later entry is written through the link an earlier one made. A
+  // planned link is matched by where it will physically sit, so one written
+  // below an earlier planned link is found inside that link's target, and its
+  // own target resolves from there. Following the planned links ends at the
+  // first one met twice, since a cycle among them resolves nowhere and is
+  // refused. The walk runs on canonical paths, so a planned link reached through
+  // an on-disk link or spelled through another name of the tree is still found.
+  // A path that cannot be resolved adds no spelling: the disk judgement refuses
+  // it unless it is the replaced link.
+  const canonicalOrNull = (resolve, filePath) => {
+    try {
+      return resolve(filePath);
+    } catch {
+      return null;
+    }
+  };
+  const canonicalRoot = canonicalPath(root);
+  const planned = new Map();
+  for (const link of manifest.layoutLinks || []) {
+    if (!link || typeof link.path !== 'string' || typeof link.target !== 'string') continue;
+    planned.set(path.resolve(canonicalRoot, link.path), link.target);
+    const onDiskAt = canonicalOrNull(canonicalPathWithoutLeaf, path.resolve(root, link.path));
+    if (onDiskAt !== null) planned.set(onDiskAt, link.target);
+  }
+  const parentStaysInTree = (treeRoot, linkPath, replacedPath, followed = new Set(), followedInto = []) => {
+    const top = path.resolve(treeRoot);
+    const absolute = path.resolve(treeRoot, linkPath);
+    const replaced = typeof replacedPath === 'string' ? path.resolve(treeRoot, replacedPath) : null;
+    const parts = path.relative(top, absolute).split(path.sep).slice(0, -1);
+    let current = top;
+    let onDisk = true;
+    for (let index = 0; index < parts.length; index += 1) {
+      current = path.join(current, parts[index]);
+      const spelled = [current];
+      for (const [into, linkAt] of followedInto) {
+        if (current !== into && isWithin(into, current)) spelled.push(path.join(linkAt, path.relative(into, current)));
+      }
+      const onDiskAt = canonicalOrNull(canonicalPath, current);
+      if (onDiskAt !== null) spelled.push(onDiskAt);
+      const plannedAt = spelled.find((candidate) => planned.has(candidate));
+      if (plannedAt !== undefined) {
+        if (followed.has(plannedAt)) return false;
+        followed.add(plannedAt);
+        // A relative target resolves from the folder the link physically sits in.
+        const from = canonicalOrNull(canonicalPath, path.dirname(current)) || path.dirname(current);
+        const into = path.resolve(from, planned.get(plannedAt));
+        const landed = path.join(into, ...parts.slice(index + 1), path.basename(absolute));
+        if (!isWithin(top, landed)) {
+          // Outside the tree a looping link resolves nowhere, so it is refused.
+          const outside = canonicalOrNull(canonicalPathWithoutLeaf, landed);
+          return outside !== null && isWithin(canonicalPath(treeRoot), outside);
+        }
+        return parentStaysInTree(treeRoot, path.relative(top, landed), null, followed, [...followedInto, [into, plannedAt]]);
+      }
+      // A missing folder is made fresh, but a planned link may still sit below it.
+      if (!onDisk) continue;
+      let stats;
+      try {
+        stats = fs.lstatSync(current);
+      } catch (error) {
+        if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+        onDisk = false;
+        continue;
+      }
+      if (stats.isSymbolicLink() && !fs.existsSync(current)) {
+        if (current !== replaced) return false;
+        const landed = path.join(canonicalPathWithoutLeaf(current), path.relative(current, absolute));
+        return isWithin(canonicalPath(treeRoot), landed);
+      }
+    }
+    return isWithin(canonicalPath(treeRoot), canonicalPathWithoutLeaf(absolute));
+  };
+  for (const [entryIndex, link] of layoutLinks.entries()) {
+    if (!link) continue;
+    const replacedPath = link.replaces && typeof link.replaces.path === 'string' ? link.replaces.path : null;
+    const paths = [[link.path, replacedPath]];
+    if (replacedPath !== null) paths.push([replacedPath, null]);
+    for (const [p, replaced] of paths) {
+      if (typeof p !== 'string') continue;
+      if (path.isAbsolute(p) || path.win32.isAbsolute(p) || !isWithin(root, path.resolve(root, p)) ||
+        !parentStaysOnDisk(root, p, replaced, entryIndex) || !parentStaysInTree(canonicalRoot, p, replaced)) {
+        return `layout link path escapes the tree root: ${p}`;
+      }
+    }
+  }
+  return null;
+}
+
+/**
  * Refuse a manifest whose paths escape their roots, and find every entry that
  * would read a secret. A path escape means the manifest itself is wrong, so it
  * stops the run. A protected path blocks only its own entry: the report still
@@ -2842,6 +3035,8 @@ function rootSkilledProblem(field, value) {
  */
 function assertSafeToPlan(ctx, manifest) {
   const root = ctx.root;
+  const linkEscape = layoutLinkEscape(root, manifest);
+  if (linkEscape) throw new Error(linkEscape);
   const exact = exactManifestPaths(ctx, manifest);
   const refused = new Map();
   for (const entry of manifest.overlays) {
@@ -4246,7 +4441,7 @@ function runGit(upstream, args, env) {
  */
 function commitBytesReader(upstream, commit) {
   return (key) => {
-    const result = runGit(upstream, ['cat-file', 'blob', `${commit}:${key}`]);
+    const result = runGit(upstream, ['cat-file', 'blob', '--end-of-options', `${commit}:${key}`]);
     return result.status === 0 ? result.stdout : null;
   };
 }
@@ -5313,8 +5508,12 @@ function repinRun(liveCtx, options, report) {
       skipped += copyTreeForStage(liveCtx.overlayRoot, path.join(stageDir, path.basename(liveCtx.overlayRoot)), liveCtx.lockPath);
     }
     console.log('staged a copy of the tree in ' + stageDir + (skipped > 0 ? ` (${skipped} .env file(s) left out)` : ''));
+    // The stage folder then holds two copies and no setting file, so a later
+    // --root has to name the tree copy, where the staged setting file sits.
+    if (overlayOutside) console.log('staged tree root: ' + stagedRoot);
     ctx = createContext(stagedRoot);
     report.stage = stageDir;
+    report.stagedRoot = stagedRoot;
   }
   return withLock(ctx, 'overlay-engine repin', () => repinUnderLock(ctx, job, report));
 }
@@ -5910,7 +6109,7 @@ function stagedUnownedChanges(ctx, manifest) {
   return changes.filter((change) => {
     if (isManaged(change.key) || settings.isGenerated(change.key)) return false;
     if (!hasCheckout) return true;
-    const upstreamBlob = gitTextOrNull(pin.checkout, ['rev-parse', '--verify', '--quiet', `${pin.commit}:${change.key}`], upstreamEnv);
+    const upstreamBlob = gitTextOrNull(pin.checkout, ['rev-parse', '--verify', '--quiet', '--end-of-options', `${pin.commit}:${change.key}`], upstreamEnv);
     // Deleting a file upstream never shipped removes the project's own stray file.
     if (change.status === 'D') return upstreamBlob !== null;
     const stagedBlob = gitTextOrNull(topLevel, ['rev-parse', '--verify', '--quiet', ':' + change.file]);
@@ -5919,7 +6118,7 @@ function stagedUnownedChanges(ctx, manifest) {
     // A project may normalise line endings on commit, so the same text can reach
     // the index as different bytes than upstream stored. Compare the contents
     // before calling a staged copy a change.
-    const upstreamBytes = gitBytesOrNull(pin.checkout, ['cat-file', 'blob', `${pin.commit}:${change.key}`], upstreamEnv);
+    const upstreamBytes = gitBytesOrNull(pin.checkout, ['cat-file', 'blob', '--end-of-options', `${pin.commit}:${change.key}`], upstreamEnv);
     const stagedBytes = gitBytesOrNull(topLevel, ['cat-file', 'blob', ':' + change.file]);
     return !(upstreamBytes !== null && stagedBytes !== null && isSameText(upstreamBytes, stagedBytes));
   }).map(({ status, key }) => ({ status, key }));
@@ -5937,7 +6136,7 @@ function stagedUnownedChanges(ctx, manifest) {
  */
 function lsTreeBlobs(upstream, commit, pathspecs) {
   const blobs = new Map();
-  for (const record of gitText(upstream, ['ls-tree', '-r', '-z', commit, '--', ...pathspecs]).split('\0')) {
+  for (const record of gitText(upstream, ['ls-tree', '-r', '-z', '--end-of-options', commit, '--', ...pathspecs]).split('\0')) {
     const tab = record.indexOf('\t');
     if (tab < 0) continue;
     const [mode, type, object] = record.slice(0, tab).split(' ');
@@ -6263,8 +6462,10 @@ function planRelayout(ctx, groups) {
  * @param {string} targetPath Where the copy goes.
  * @param {string} relativePath Position of the copy, for the `skipped` line.
  * @param {Set<string>} exact Absolute paths a manifest entry names exactly.
+ * @param {string[]} [skipped] Collects every position skipped, so a caller can
+ *   say what the backup lacks.
  */
-function copyForBackup(sourcePath, targetPath, relativePath, exact) {
+function copyForBackup(sourcePath, targetPath, relativePath, exact, skipped) {
   let stats;
   try {
     stats = fs.lstatSync(sourcePath);
@@ -6282,12 +6483,13 @@ function copyForBackup(sourcePath, targetPath, relativePath, exact) {
   if (stats.isDirectory()) {
     fs.mkdirSync(targetPath, { recursive: true });
     for (const name of fs.readdirSync(sourcePath).sort()) {
-      copyForBackup(path.join(sourcePath, name), path.join(targetPath, name), relativePath + '/' + name, exact);
+      copyForBackup(path.join(sourcePath, name), path.join(targetPath, name), relativePath + '/' + name, exact, skipped);
     }
     return;
   }
   if (isProtectedReadPath(sourcePath, exact)) {
     console.log(`skipped ${relativePath}`);
+    if (skipped) skipped.push(relativePath);
     return;
   }
   writeFile(targetPath, fs.readFileSync(sourcePath), stats.mode & 0o777);
@@ -6455,6 +6657,18 @@ function rollbackRelayout(ctx, done) {
 }
 
 /**
+ * Remove one relayout run's backup, and the runs folder when this run made it
+ * and nothing else is in it.
+ * @param {string} runDir This run's backup folder.
+ * @param {string} runsDir Folder holding every run's backup.
+ * @param {boolean} isRunsDirNew True when this run created `runsDir`.
+ */
+function removeRelayoutBackup(runDir, runsDir, isRunsDirNew) {
+  fs.rmSync(runDir, { recursive: true, force: true });
+  if (isRunsDirNew && isDirectory(runsDir) && fs.readdirSync(runsDir).length === 0) fs.rmdirSync(runsDir);
+}
+
+/**
  * Move every copy the manifest keeps off the layout onto its layout path.
  * The backup stays inside the overlay folder, so the old copy is recoverable
  * beside the manifest that named it.
@@ -6464,6 +6678,11 @@ function rollbackRelayout(ctx, done) {
  *   a failed run.
  */
 function relayoutUnderLock(ctx, manifest) {
+  const linkEscape = layoutLinkEscape(ctx.root, manifest);
+  if (linkEscape) {
+    console.log('refuse: ' + linkEscape);
+    return EXIT_ERROR;
+  }
   const groups = groupLayoutMoves(layoutMoves(manifest));
   if (groups.length === 0) {
     console.log('0 moved');
@@ -6502,20 +6721,39 @@ function relayoutUnderLock(ctx, manifest) {
   const runsDir = path.join(ctx.overlayRoot, RELAYOUT_RUNS_FOLDER);
   const runDir = path.join(runsDir, stamp);
   const isRunsDirNew = !fs.existsSync(runsDir);
-  // Read before anything is written, so a failed run can put back the exact bytes.
-  const manifestBytes = fs.readFileSync(ctx.manifestPath);
-  const exact = exactManifestPaths(ctx, manifest);
   // A folder beside the tree has no tree path, so its backup is keyed from the
   // overlay root and the printed path uses the label the setting file gives.
   const overlayOutside = ctx.overlayOutside;
   const backupBase = overlayOutside ? ctx.overlayRoot : ctx.root;
-  for (const move of plan.moves) {
-    copyForBackup(move.from.absolute, path.join(runDir, relativeKey(backupBase, move.from.absolute)), move.from.relative, exact);
-  }
-  copyForBackup(ctx.manifestPath, path.join(runDir, relativeKey(backupBase, ctx.manifestPath)), relativeKey(backupBase, ctx.manifestPath), exact);
   const backupLabel = overlayOutside
     ? ctx.overlayLabel + '/' + relativeKey(ctx.overlayRoot, runDir)
     : relativeKey(ctx.root, runDir);
+  const backupSkipped = [];
+  let manifestBytes;
+  // Nothing has moved yet, so a backup that cannot be written only has to take
+  // its own partial copy away: a half backup left beside the folder reads as one
+  // a later restore could trust.
+  try {
+    // Read before anything is written, so a failed run can put back the exact bytes.
+    manifestBytes = fs.readFileSync(ctx.manifestPath);
+    const exact = exactManifestPaths(ctx, manifest);
+    for (const move of plan.moves) {
+      copyForBackup(move.from.absolute, path.join(runDir, relativeKey(backupBase, move.from.absolute)), move.from.relative,
+        exact, backupSkipped);
+    }
+    copyForBackup(ctx.manifestPath, path.join(runDir, relativeKey(backupBase, ctx.manifestPath)),
+      relativeKey(backupBase, ctx.manifestPath), exact, backupSkipped);
+  } catch (error) {
+    const cause = `error: relayout failed while writing the backup: ${error.message}; nothing was moved`;
+    try {
+      removeRelayoutBackup(runDir, runsDir, isRunsDirNew);
+    } catch (cleanupError) {
+      console.log(`${cause}, but the partial backup at ${backupLabel} could not be removed: ${cleanupError.message}`);
+      return EXIT_ERROR;
+    }
+    console.log(`${cause} and the partial backup was removed`);
+    return EXIT_ERROR;
+  }
   console.log('backup ' + backupLabel);
 
   // Every step from here is undone if a later one fails: copies at their layout
@@ -6542,13 +6780,16 @@ function relayoutUnderLock(ctx, manifest) {
     const cause = `error: relayout failed while ${step}: ${error.message}`;
     const restoreFailure = rollbackRelayout(ctx, done);
     if (restoreFailure) {
+      // A skipped file was never copied, so the backup cannot be promised to hold it.
+      const holds = backupSkipped.length === 0
+        ? 'holds every moved copy and the manifest as it was'
+        : `holds the manifest as it was and every moved copy except these files it skipped: ${backupSkipped.join(', ')}`;
       console.log(`${cause}; the restore also failed at ${restoreFailure.path}: ${restoreFailure.message}; ` +
-        `the backup at ${backupLabel} holds every moved copy and the manifest as it was`);
+        `the backup at ${backupLabel} ${holds}`);
       return EXIT_ERROR;
     }
     try {
-      fs.rmSync(runDir, { recursive: true, force: true });
-      if (isRunsDirNew && isDirectory(runsDir) && fs.readdirSync(runsDir).length === 0) fs.rmdirSync(runsDir);
+      removeRelayoutBackup(runDir, runsDir, isRunsDirNew);
     } catch (cleanupError) {
       // The rollback already put every copy back, so only the leftover backup
       // needs the operator's attention.
@@ -6561,8 +6802,16 @@ function relayoutUnderLock(ctx, manifest) {
   }
 
   // Emptied folders are pruned only once nothing can fail, so a rollback never
-  // has to recreate a folder this run removed.
-  for (const move of plan.moves) pruneEmptyParents(ctx.overlayRoot, move.from.absolute);
+  // has to recreate a folder this run removed. Every copy has moved and the
+  // manifest names the new paths by now, so a folder that will not go is only
+  // reported: failing here would call a finished relayout a failed one.
+  for (const move of plan.moves) {
+    try {
+      pruneEmptyParents(ctx.overlayRoot, move.from.absolute);
+    } catch (error) {
+      console.log(`note: relayout left an emptied folder in place after moving ${move.from.relative}: ${error.message}`);
+    }
+  }
 
   console.log(`${plan.moves.length} moved`);
   console.log(`run ${ENGINE_COMMAND} apply`);

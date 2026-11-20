@@ -1242,6 +1242,57 @@ test('repin --stage with a sibling overlay folder stages both folders and writes
   assert.equal(treeDigest(fixture.overlayDir), overlayBefore);
 });
 
+// The path a stage names for the staged tree is what a later status takes as
+// --root, so it has to be the folder holding the staged setting file.
+function stagedTreeLine(output) {
+  const match = /^staged tree root: (.+)$/m.exec(output);
+  return match ? match[1] : null;
+}
+
+// A staged copy has no project install, so its generated checks can still miss.
+// What matters here is that status found the staged manifest and judged every
+// overlay against it.
+function assertStatusReadsStage(root, cwd) {
+  const result = runEngine(['status', '--root', root], cwd);
+  assert.doesNotMatch(result.output, /no overlay manifest/, result.output);
+  assert.match(result.output, /^in-sync=\d+ /m, result.output);
+  assert.notEqual(result.code, 2, result.output);
+}
+
+test('repin --stage with a sibling overlay folder names a staged tree root that status reads', (t) => {
+  const fixture = createRepinFixture(t, SIBLING);
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+  assert.equal(staged.code, 0, staged.output);
+  const roots = stagedRoots(fixture, stageDir);
+  assert.ok(staged.output.includes('staged a copy of the tree in ' + stageDir), staged.output);
+  const printed = stagedTreeLine(staged.output);
+  assert.equal(printed, roots.tree, staged.output);
+  assertStatusReadsStage(printed, fixture.workspace);
+
+  const jsonStage = path.join(fixture.workspace, 'stage-json');
+  const jsonRun = fixture.repin(['--stage', jsonStage, '--json']);
+  assert.equal(jsonRun.code, 0, jsonRun.output);
+  const report = JSON.parse(jsonRun.stdout);
+  assert.equal(report.stage, jsonStage);
+  assert.equal(report.stagedRoot, stagedRoots(fixture, jsonStage).tree);
+  assertStatusReadsStage(report.stagedRoot, fixture.workspace);
+});
+
+test('repin --stage with an in-tree overlay folder reports the stage folder as the staged tree root', (t) => {
+  const fixture = createRepinFixture(t);
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+  assert.equal(staged.code, 0, staged.output);
+  assert.equal(stagedTreeLine(staged.output), null, staged.output);
+  assertStatusReadsStage(stageDir, fixture.workspace);
+
+  const jsonStage = path.join(fixture.workspace, 'stage-json');
+  const report = JSON.parse(fixture.repin(['--stage', jsonStage, '--json']).stdout);
+  assert.equal(report.stage, jsonStage);
+  assert.equal(report.stagedRoot, report.stage);
+});
+
 test('repin --stage refuses a stage folder inside the live sibling overlay folder', (t) => {
   const fixture = createRepinFixture(t, SIBLING);
   const stageDir = path.join(fixture.overlayDir, 'stage');
