@@ -147,7 +147,7 @@ contextType: "implementation"
 <!-- FILL: Write this section when the packet fixes a reported finding. Delete it otherwise. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
 
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Evidence: Vector deletion on failure is `class-of-bug`.
-- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Evidence: All four failure-path deletes removed; the two intended deletes remain.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Evidence: all four failure-path deletes removed; the two intended deletes remain. For the database-directory pin, every reader of the override was checked: the generation counter treated it as a sandbox and is fixed; the skill-graph database, lease and projection resolve the same directory either way; the quarantine store has one writer and reader inside the daemon.
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Evidence: Status, gate, doctor and docs consumers updated.
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Evidence: N/A: no path, parser or redaction change.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: Ablation axes: two seedings by two weights, two runs each.

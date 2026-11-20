@@ -123,6 +123,8 @@ For the ablation, `ollama serve` (pid 85898) was started and warmed: a cold embe
 | Main after merge `519b2b1ef8e` and push, Ollama up | The daemon recycled onto the new build; 8/15 and 0/47 at start, then 15/15 skills and 47/47 commands current, `coverageComplete: true`, within 5 s, at weight 0 |
 | Outage on main | Stopped only `ollama serve` pid 85898; port 11434 refused. A changed `sk-prompt` description read stale 1, missing 0 (vector kept), backend `unreachable`; restoring the text read 15/15 current again |
 | Generation counter after the database-directory pin | Found on main after the merge: the pinned daemon wrote `skill-graph-generation.json` into `runtime/database/` instead of the shared `.state/advisor/` file. `generation.ts` now treats an override naming the default database directory as no sandbox. The new containment test failed before and passes after |
+| CI on main after the merges | Skill Advisor Stress Tests had failed on every run since the lane weight moved to 0, because one stress test still expected 0.05; fixed in `86038dfba80`, 65/65 locally. Routing Registry Drift Guard now passes its skill-root metadata step and stops at the sk-doc hub vocabulary check, which also fails at the base `f2f03c90fb6`. Hook Vitest Suites fails one Pi session-handover test, identically before and after these merges |
+| Battery over the final range (`--full-diff` from `f2f03c90fb6`) | 324 pass; S13 lists only `VITEST` (accepted); two spec-kit package checks could not run without `node_modules` in the worktree, and Spec-Kit Check passed in CI on the merges |
 
 ### Alignment findings
 
@@ -138,7 +140,7 @@ For the ablation, `ollama serve` (pid 85898) was started and warmed: a cold embe
 | SK A3 | Fixed: source-order checks for the early heartbeat, the startup refresh after IPC and the watcher refresh after reindex |
 | SK D-01, SK PRB-01, SK PRB-02, SK PRB-03, SK PRB-04, SK PRB-06, SK PRB-07, SK PRB-09, SK PRB-11 | Fixed for P01, P02, P03, P04, P06, P07, P09 and P12: ten intent signals added to the skill's `graph-metadata.json`; each now routes `system-skill-advisor` first after a reindex, and the six control probes are unchanged |
 | SK PRB-05 | Accepted: "explain which lane contributed" still returns no recommendation even with the new signal. It asks about one recommendation's attribution, which `advisor_recommend` returns as an option, not a skill to route to |
-| SK PRB-08, SK PRB-10 | Accepted: P08 and P11 route to `/doctor:helper`, which names `/doctor:skill-advisor` for status and Ollama diagnosis, a correct path for an operator |
+| SK PRB-08, SK PRB-10 | Accepted: P08 and P11 route to `/doctor:helper`, and the helper's matcher picks `/doctor:skill-advisor embedder` for both prompts (`doctor-helper-match.cjs` run on each), a correct path for an operator |
 | SK C-01, SK ENV-01 | Fixed: `.env.example` lists `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH` |
 | SK ENV-02 | Accepted: `VITEST` is set by the test runner, not by an operator |
 | SK B-01 | Fixed: the freshness contract says the daemon writes vectors itself |
@@ -178,4 +180,6 @@ For the ablation, `ollama serve` (pid 85898) was started and warmed: a cold embe
 - **Two answers held.** One is a CLI update question asked before any spec folder was bound. The other is a routing-label rename with no packet of its own. No packet records either, so both stay pending for the operator.
 - **Writer defect.** A decisions-only `--full-auto` save with `--session-id` mints a `session_ref` into the target packet. The proposed fix is in `system-spec-kit/runtime/cli/core/workflow.ts` near line 2010: mint the pointer only when the payload carries continuity fields.
 - **Generation counter for a shared checkout.** When a daemon's database directory is not its workspace's default, as when one Skilled checkout serves another repository, the counter stays beside that database, as it did for any sandboxed daemon before.
+- **Gate cost not measured.** With the lane above weight 0, each prompt runs the coverage check, which reads every skill's `SKILL.md`. At the shipped weight 0 it never runs.
+- **Two CI failures outside this work.** The sk-doc hub vocabulary drift and the Pi session-handover test fail on main before and after these merges.
 <!-- /ANCHOR:limitations -->

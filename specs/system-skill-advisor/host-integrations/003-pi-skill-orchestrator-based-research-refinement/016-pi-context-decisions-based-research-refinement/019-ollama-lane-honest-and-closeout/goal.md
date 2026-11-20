@@ -59,13 +59,13 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `npx vitest run` exits 0 from `.skilled/skills/system-skill-advisor/runtime`, and from `.skilled` with `--config vitest.config.bin.ts`
-- [ ] `implementation-summary.md` records two matching ablation summaries and the default weight that follows from them
-- [ ] `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --scan-orphans` lists no ended session that was not skipped with a reason
-- [ ] `ls specs/system-skill-advisor/*/003-pi-*/016-pi-*/019-*/evidence/{skilled,doc}-alignment/report.md` lists two files, and `implementation-summary.md` names each finding in both reports as fixed or accepted with a reason
-- [ ] `git merge-base --is-ancestor worktrees/480-ollama-lane-honest-and-closeout origin/main` exits 0
-- [ ] On main, `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --include-semantic-health true --format json` shows `coverageComplete: true`, with `embedded` equal to `total` for skills and for commands
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-*/019-* --strict` prints `RESULT: PASSED`, and `acceptance-criteria.md` there has no `Unmet` row
+- [x] `npx vitest run` exits 0 from `.skilled/skills/system-skill-advisor/runtime`, and from `.skilled` with `--config vitest.config.bin.ts`
+- [x] `implementation-summary.md` records two matching ablation summaries and the default weight that follows from them
+- [x] `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --scan-orphans` lists no ended session that was not skipped with a reason
+- [x] `ls specs/system-skill-advisor/*/003-pi-*/016-pi-*/019-*/evidence/{skilled,doc}-alignment/report.md` lists two files, and `implementation-summary.md` names each finding in both reports as fixed or accepted with a reason
+- [x] `git merge-base --is-ancestor worktrees/480-ollama-lane-honest-and-closeout origin/main` exits 0
+- [x] On main, `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --include-semantic-health true --format json` shows `coverageComplete: true`, with `embedded` equal to `total` for skills and for commands
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/*/003-pi-*/016-pi-*/019-* --strict` prints `RESULT: PASSED`, and `acceptance-criteria.md` there has no `Unmet` row
 <!-- /ANCHOR:completion -->
 
 ---
@@ -83,6 +83,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Spec docs | Done | written 2026-11-19 |
+| Criteria evidence | Done | 1: runtime 2555 passed 8 skipped, bin 94, on main; 2: runs 8 and 9 match runs 3 to 7, weight 0; 3: only held answers and live session 91021a9f; 4: two reports, ALL_IDS_PRESENT; 5: exit 0 at 63b338c07ff; 6: 15/15 and 47/47, coverageComplete true; 7: RESULT PASSED, no Unmet row |
 | Build, ablation, docs, orphan answers | Done | All five suites green on the final tree: runtime 2553 passed 6 skipped, Python 122, bin 94, spec-kit 202, DSH 18 |
 | Finalization | Done | merged 519b2b1ef8e and 71acd3069ef, pushed; main 15/15 and 47/47 current; both alignment runs closed; suites green with and without Ollama |
 
