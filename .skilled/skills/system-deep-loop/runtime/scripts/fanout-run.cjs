@@ -1011,19 +1011,62 @@ function fanoutRunnerPidOf(lineagePid) {
 }
 
 /**
+ * The kernel's start time for a pid, or '' when it cannot be read.
+ *
+ * A pid is reused once its process exits; the start time is not, so the pair names one
+ * process. The locale and zone are pinned so the runner and a later --stop, run from
+ * different shells, render the same process the same way.
+ */
+function processStartOf(pid) {
+  if (process.platform === 'win32') return '';
+  const result = spawnSync('ps', ['-o', 'lstart=', '-p', String(pid)], {
+    encoding: 'utf8',
+    env: { ...process.env, LC_ALL: 'C', TZ: 'UTC' },
+  });
+  return result.status === 0 ? result.stdout.trim() : '';
+}
+
+/**
+ * Why a live ledger pid may not be signalled, or null when it is still its lineage.
+ *
+ * Fails closed: a row with no recorded start time, as an older runner wrote, or a pid whose
+ * start time cannot be read, is refused like a mismatch.
+ */
+function lineageIdentityRefusal(records, lineage) {
+  const spawnedRow = records.filter((record) => record
+    && record.event === 'spawned'
+    && record.label === lineage.label
+    && Number(record.pid) === lineage.pid).at(-1);
+  const recorded = spawnedRow && typeof spawnedRow.process_start === 'string' ? spawnedRow.process_start : '';
+  if (!recorded) return 'no_recorded_identity';
+  const current = processStartOf(lineage.pid);
+  if (!current) return 'identity_unreadable';
+  return current === recorded ? null : 'identity_mismatch';
+}
+
+/**
  * Stop the lineages the ledger shows as live, from a process other than their runner.
  *
  * Live means what a re-run refuses on: a spawned row after the lineage's latest start, no
- * terminal row since, and a group or pid that still answers. Nothing else is signalled.
+ * terminal row since, and a group or pid that still answers. A live pid is signalled only
+ * when its process start time still matches the one recorded at spawn, since the number
+ * alone may now belong to an unrelated process group; the others are reported as refused.
  * The runner goes first: it stops its own lineages, and once it is gone it cannot retry
  * the ones stopped here. A lineage is recorded as stopped only once it no longer answers.
  *
  * @param {string} ledgerPath - The run's orchestration-status.log.
  * @param {string[]} argv - The run's own argv plus --stop, which the rerun command drops.
- * @returns {Promise<{stopped: Array<{label: string, pid: number}>, survivors: Array<{label: string, pid: number}>}>}
+ * @returns {Promise<{stopped: Array<{label: string, pid: number}>, survivors: Array<{label: string, pid: number}>, refused: Array<{label: string, pid: number, reason: string}>}>}
  */
 async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
-  const live = detectLiveLineages(readLedgerRecords(ledgerPath));
+  const records = readLedgerRecords(ledgerPath);
+  const live = [];
+  const refused = [];
+  for (const lineage of detectLiveLineages(records)) {
+    const reason = lineageIdentityRefusal(records, lineage);
+    if (reason) refused.push({ label: lineage.label, pid: lineage.pid, reason });
+    else live.push(lineage);
+  }
   const runnerPids = new Set(live.map((lineage) => fanoutRunnerPidOf(lineage.pid)).filter(Boolean));
   for (const runnerPid of runnerPids) signalIfPresent(runnerPid, 'SIGTERM');
   for (const lineage of live) {
@@ -1050,7 +1093,7 @@ async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
     });
   }
   const brief = ({ label, pid }) => ({ label, pid });
-  return { stopped: stopped.map(brief), survivors: survivors.map(brief) };
+  return { stopped: stopped.map(brief), survivors: survivors.map(brief), refused };
 }
 
 function expectedLineageArtifactPaths(loopType, lineageDir) {
@@ -4023,7 +4066,7 @@ async function main() {
   if (args.stop !== undefined) {
     if (args.stop !== true) throw inputError('--stop takes no value');
     const stopOutcome = await stopLiveFanoutRun(ledgerPath);
-    const stopExitCode = stopOutcome.survivors.length > 0 ? 2 : 0;
+    const stopExitCode = stopOutcome.survivors.length > 0 || stopOutcome.refused.length > 0 ? 2 : 0;
     jsonOut({ status: stopExitCode === 0 ? 'ok' : 'partial', ...stopOutcome });
     process.exit(stopExitCode);
   }
@@ -4798,6 +4841,8 @@ async function main() {
             lineageProcessLiveness.set(livenessKey, { alive: true, pid });
             // The in-memory map dies with this runner, so the pid a later run needs
             // to prove this lineage is still alive has to reach the durable ledger.
+            // The start time lets a later --stop tell this process from a reuse of its pid.
+            const processStart = processStartOf(pid);
             appendFanoutStatusLedger(ledgerPath, {
               event: 'spawned',
               label: lineage.label,
@@ -4805,6 +4850,7 @@ async function main() {
               pid,
               at: new Date().toISOString(),
               status: 'running',
+              ...(processStart ? { process_start: processStart } : {}),
             });
           },
           onExit: ({ pid, exitedAtMs }) => {
