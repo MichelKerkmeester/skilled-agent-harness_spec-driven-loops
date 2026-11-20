@@ -881,12 +881,28 @@ function requiredLineageStateLogPath(loopType, lineageDir) {
 }
 
 // A failed attempt's log moves to the first free numbered name instead of being replaced.
+// The artifact directory is committed, so the kept copy is masked like a ledger row.
 function rotateLineageLog(logPath) {
   if (!hasNonEmptyFile(logPath)) return;
   const { dir, name, ext } = path.parse(logPath);
   let index = 1;
   while (fs.existsSync(path.join(dir, `${name}.${index}${ext}`))) index += 1;
-  fs.renameSync(logPath, path.join(dir, `${name}.${index}${ext}`));
+  writeRedactedLineageLog(logPath, path.join(dir, `${name}.${index}${ext}`));
+  fs.unlinkSync(logPath);
+}
+
+function writeRedactedLineageLog(fromPath, toPath) {
+  fs.writeFileSync(toPath, redactProviderText(fs.readFileSync(fromPath, 'utf8')), 'utf8');
+}
+
+// A lineage that failed with no retry left keeps its last raw log in the committed
+// artifact directory, so that log is masked once its process has exited. A lineage that
+// succeeds keeps its log byte for byte.
+function redactTerminalLineageLogs(lineageDir) {
+  for (const name of ['fanout-lineage.out', 'fanout-lineage.err']) {
+    const logPath = path.join(lineageDir, 'logs', name);
+    if (hasNonEmptyFile(logPath)) writeRedactedLineageLog(logPath, logPath);
+  }
 }
 
 // A provider's refusal body names the account it refused: workspace, organisation and
@@ -4167,6 +4183,7 @@ async function main() {
       // Only the pool knows when a failure has no retry left. Said the moment it settles,
       // so an operator watching the run learns a lineage is gone before the run ends.
       if (enrichedEvent.event === 'failed' && enrichedEvent.terminal === true) {
+        if (enrichedEvent.label) redactTerminalLineageLogs(path.join(lineagesDir, enrichedEvent.label));
         const error = enrichedEvent.error || {};
         process.stderr.write(
           `[fanout-run] lineage ${enrichedEvent.label} failed (${error.failure_class || 'unknown'}): `

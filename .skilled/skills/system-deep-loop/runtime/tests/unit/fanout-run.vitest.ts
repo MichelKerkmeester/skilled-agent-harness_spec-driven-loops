@@ -7320,6 +7320,55 @@ describe('fanout-run.cjs — a fatal provider refusal is announced and redacted'
     expect(readFileSync(join(logsDir, 'fanout-lineage.1.out'), 'utf8')).toContain('attempt-one');
     expect(existsSync(join(logsDir, 'fanout-lineage.1.err'))).toBe(false);
   });
+
+  // The artifact directory is staged for commit, so a failed attempt's kept log and the
+  // log of a lineage that failed for good carry the same masking as the ledger rows.
+  it('masks the account in the rotated log and in a terminally failed lineage log', async () => {
+    const binDir = makeTempDir('fanout-run-refusal-logs-bin-');
+    const hermetic = useHermeticEnv('refusal-logs');
+    const baseDir = join(hermetic.tmpDir, 'specs', 'test-fanout-run-refusal', 'research');
+    mkdirSync(baseDir, { recursive: true });
+    writeRefusingStub(binDir, 'attempt-one');
+    await runRefusal(hermetic, binDir, baseDir);
+    writeRefusingStub(binDir, 'attempt-two');
+    await runRefusal(hermetic, binDir, baseDir);
+
+    const lineageDir = join(baseDir, 'lineages', 'quota');
+    const logsDir = join(lineageDir, 'logs');
+    expect(readdirSync(logsDir).sort()).toEqual(['fanout-lineage.1.out', 'fanout-lineage.err', 'fanout-lineage.out']);
+    const files: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = join(dir, entry.name);
+        if (entry.isDirectory()) walk(full);
+        else files.push(full);
+      }
+    };
+    walk(lineageDir);
+    for (const file of files) {
+      const text = readFileSync(file, 'utf8');
+      expect(text, file).not.toContain(workspaceId);
+      expect(text, file).not.toContain('opencode.ai/workspace');
+      expect(text, file).not.toContain('ses_e0aeFAKESESSION');
+    }
+    expect(readFileSync(join(logsDir, 'fanout-lineage.1.out'), 'utf8')).toContain('provider.go-limit');
+    expect(readFileSync(join(logsDir, 'fanout-lineage.out'), 'utf8')).toContain('attempt-two');
+  });
+
+  it('leaves the log of a lineage that succeeds byte for byte', async () => {
+    const binDir = makeTempDir('fanout-run-success-log-bin-');
+    const baseDir = makeTempDir('fanout-run-success-log-base-');
+    writeFileSync(
+      join(binDir, 'opencode'),
+      `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\necho ${shellQuote(refusalBody)}\n${writeFanoutArtifactsShell()}\nexit 0\n`,
+      { mode: 0o755 },
+    );
+    const hermetic = useHermeticEnv('success-log');
+    const result = await runRefusal(hermetic, binDir, baseDir);
+    expect(result.stdout).toContain('"status":"fulfilled"');
+    expect(readFileSync(join(baseDir, 'lineages', 'quota', 'logs', 'fanout-lineage.out'), 'utf8'))
+      .toContain(refusalBody);
+  });
 });
 
 describe('fanout-run.cjs — --preview builds every lineage command without writing', () => {
