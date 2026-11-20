@@ -3283,20 +3283,28 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     expect(outcomes(same.stdout).map((row) => row.status), same.stdout).toEqual(['skipped_complete', 'skipped_complete']);
     expect(same.exitCode).toBe(0);
 
+    // A refusal is for the whole run: the merge reads every lineage folder, so refusing only the
+    // mismatched lineage would still merge its old results beside the fresh ones.
+    const refusal = (stdout: string) => JSON.parse(stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      status?: string; error?: string;
+    };
+    const summaryPath = join(baseDir, 'orchestration-summary.json');
+    const summaryBefore = readFileSync(summaryPath, 'utf8');
+
     const newTopic = await run('NEW topic');
+    expect(newTopic.exitCode, newTopic.stdout).toBe(3);
     expect(spawned()).toEqual([]);
-    expect(outcomes(newTopic.stdout).map((row) => row.status), newTopic.stdout).toEqual(['failed', 'failed']);
-    for (const row of outcomes(newTopic.stdout)) {
-      expect(row.rerun_command).toBeNull();
-      expect(String(row.rerun_note)).toContain('--restart');
-    }
-    expect(newTopic.stderr).toMatch(/seat-a[^\n]*topic[^\n]*--restart/);
-    expect(newTopic.exitCode).toBe(3);
+    expect(refusal(newTopic.stdout).status).toBe('error');
+    expect(refusal(newTopic.stdout).error).toMatch(/finished_lineage_mismatch[^\n]*seat-a[^\n]*topic[^\n]*--restart/);
+    expect(readFileSync(summaryPath, 'utf8')).toBe(summaryBefore);
 
     const newModel = await run('OLD topic', 'opencode-go/kimi-k2.5');
+    expect(newModel.exitCode, newModel.stdout).toBe(3);
     expect(spawned()).toEqual([]);
-    expect(outcomes(newModel.stdout).map((row) => row.status), newModel.stdout).toEqual(['skipped_complete', 'failed']);
-    expect(newModel.stderr).toMatch(/seat-b[^\n]*executor[^\n]*--restart[^\n]*model "opencode-go\/glm-5.1" -> "opencode-go\/kimi-k2.5"/);
+    const modelError = String(refusal(newModel.stdout).error);
+    expect(modelError).toMatch(/seat-b[^\n]*executor[^\n]*--restart[^\n]*model "opencode-go\/glm-5.1" -> "opencode-go\/kimi-k2.5"/);
+    expect(modelError).not.toContain('lineage seat-a');
+    expect(readFileSync(summaryPath, 'utf8')).toBe(summaryBefore);
   });
 
   it('retries a lineage that wrote its completed config and then timed out, rather than skipping it', async () => {

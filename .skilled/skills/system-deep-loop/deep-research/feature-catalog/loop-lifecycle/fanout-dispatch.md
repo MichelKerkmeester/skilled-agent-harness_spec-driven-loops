@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "parallel lineage execution"
   - "multi-executor research"
-version: 1.14.7.0
+version: 1.14.8.0
 ---
 
 # Fan-out loop dispatch
@@ -59,12 +59,13 @@ one lineage of the unedited matrix, without packet init, synthesis or save. A li
 artifacts pass the completion check is skipped before spawn and recorded as `skipped_complete`, under `--only-lineage`
 too, so a forced rerun needs that lineage's `lineages/<label>/` folder archived first. A lineage that recorded a
 terminal stop row is skipped only when that row also passes the post-attempt stop-reason and cap checks. A finished
-lineage whose recorded topic or executor differs from this run's is refused before spawn, with a message naming `--restart`.
+lineage whose recorded topic or executor differs from this run's refuses the whole run before spawn (exit 3), with a
+message naming `--restart`, so old and new lineages are never merged together.
 The runner's stdout summary and `orchestration-summary.json` list each lineage as
 `{label, status, failure_class, exit_code, rerun_command}`; only a failed lineage gets a
 `rerun_command`, the run's own argv with `--only-lineage LABEL`, to run from the original
 working directory. A failed lineage whose config is `complete` gets a null `rerun_command` and a
-`rerun_note` that says to archive its folder first, or to rerun with `--restart` when it was refused for a different topic or executor.
+`rerun_note` that says to archive its folder first.
 
 ---
 

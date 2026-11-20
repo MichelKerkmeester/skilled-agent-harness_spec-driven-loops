@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.17.0
+version: 1.4.18.0
 ---
 
 # Fan-out CLI lineage driver
@@ -55,8 +55,10 @@ skipped on its config and artifacts alone. The post-attempt check stays strict. 
 is skipped only for the run it finished under: when its recorded `topic` (research) or `reviewTarget`
 (review), or the executor fields in its `invocation-metadata.json` (kind, model, effort, tier,
 sandbox, permission and web search, not the executable path or version), differ from this run's,
-it is refused before spawn with reason `finished_lineage_mismatch` and a message naming `--restart`.
-A side that recorded no value is not judged on it.
+the whole run is refused with exit 3 and reason `finished_lineage_mismatch`, before any spawn,
+ledger mark or summary write, with a message naming each mismatched lineage and `--restart`. One
+mismatch refuses every lineage, because the merge reads every lineage folder and a partial refusal
+would mix old results with new ones. A side that recorded no value is not judged on it.
 
 A `cli-deepseek-harness` lineage is built by `buildDshLineageCommand`. It first checks that
 `dsh --version` prints the pinned release, running that probe in a throwaway home outside the
@@ -140,7 +142,7 @@ A lineage counts as fulfilled only when its state log holds at least one iterati
 
 A fatally failed lineage prints one stderr line at once with its label and failure class. Provider ids, URLs and emails are masked in the ledger, stderr, a rotated log and a fatally failed lineage's raw log. A rerun rotates the previous raw log to `logs/fanout-lineage.N.out` instead of overwriting it. The runner has no settle-time metadata refresh, so a research or review fan-out never rewrites the packet's `description.json` or `graph-metadata.json`, and `--no-metadata-refresh` is refused as an unknown option.
 
-The stdout summary and `orchestration-summary.json` carry `lineages`, one `{label, status, failure_class, exit_code, rerun_command}` row per lineage. `status` is `succeeded`, `skipped_complete` or `failed`. A failed lineage's `failure_class` is its class, or `exit` when the failure names none, and its `rerun_command` is the run's own argv, with any earlier `--only-lineage` pair dropped, plus `--only-lineage LABEL`, so the lineage keeps its share of the matrix. The runner path in it is absolute and the other arguments stay as given, so run it from the original working directory. A succeeded or `skipped_complete` lineage has a null `failure_class` and no rerun command, because a rerun would skip it as finished. A failed lineage whose config is `complete` cannot be rerun in place either, so its `rerun_command` is null and a `rerun_note` says to archive its `lineages/<label>/` folder first and names the command to run after. A lineage refused as `finished_lineage_mismatch` gets a `rerun_note` naming `--restart` instead.
+The stdout summary and `orchestration-summary.json` carry `lineages`, one `{label, status, failure_class, exit_code, rerun_command}` row per lineage. `status` is `succeeded`, `skipped_complete` or `failed`. A failed lineage's `failure_class` is its class, or `exit` when the failure names none, and its `rerun_command` is the run's own argv, with any earlier `--only-lineage` pair dropped, plus `--only-lineage LABEL`, so the lineage keeps its share of the matrix. The runner path in it is absolute and the other arguments stay as given, so run it from the original working directory. A succeeded or `skipped_complete` lineage has a null `failure_class` and no rerun command, because a rerun would skip it as finished. A failed lineage whose config is `complete` cannot be rerun in place either, so its `rerun_command` is null and a `rerun_note` says to archive its `lineages/<label>/` folder first and names the command to run after.
 
 `orchestration-summary.json` carries `provider_cost_usd: {total, by_lineage}`, each CLI lineage's provider cost in USD summed from the `step_finish` records of its live and rotated logs. A log with no cost record, such as a cli-claude-code lineage's text log, makes that lineage's cost null (unknown), and the total stays null while any lineage is unknown.
 

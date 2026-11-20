@@ -1304,11 +1304,7 @@ function buildLineageOutcomes(results, { loopType, lineagesDir, argv } = {}) {
       rerun_command: rerunCommandFor(result.label, argv),
     };
     const lineageDir = lineagesDir ? path.join(lineagesDir, result.label) : null;
-    if (error.reason === FINISHED_LINEAGE_MISMATCH_REASON) {
-      outcome.rerun_note = 'this lineage finished for a different topic, target or executor; rerun the '
-        + 'whole fan-out with --restart, which archives this packet and starts a fresh session';
-      outcome.rerun_command = null;
-    } else if (lineageDir && lineageConfigStatus(loopType, lineageDir) === 'complete') {
+    if (lineageDir && lineageConfigStatus(loopType, lineageDir) === 'complete') {
       outcome.rerun_note = `archive ${lineageDir} first: its config is complete, so a rerun in place `
         + `cannot run it again; then rerun it with ${outcome.rerun_command}`;
       outcome.rerun_command = null;
@@ -4249,6 +4245,41 @@ async function main() {
         + 'Stop it before re-running.',
     );
   }
+  // Judged once, before any attempt: a retry of a lineage that failed after writing its
+  // completed config must meet the strict check again, not be waved through as finished.
+  const finishedLineageSkipReasons = new Map();
+  const finishedLineageRefusals = [];
+  // A vibe command writes its home and prompt file into the lineage folder while it is built,
+  // so a finished vibe lineage is matched on its kind alone instead of being built in place.
+  const currentEffectiveConfig = (lineage, lineageDir) => {
+    if (lineage.kind === 'cli-mistral-vibe') return { kind: lineage.kind };
+    const frontierScope = frontierPartition ? (frontierPartition[lineage.label] || []).map((node) => node.nodeId) : [];
+    try {
+      return buildLineageDispatch(lineage, lineageDir, frontierScope).effectiveConfig;
+    } catch {
+      return null;
+    }
+  };
+  for (const lineage of cliLineages) {
+    const lineageDir = path.join(lineagesDir, lineage.label);
+    const skipReason = finishedLineageSkipReason({ loopType, lineageDir, lineage, stopPolicy });
+    if (!skipReason) continue;
+    const mismatch = finishedLineageMismatch({
+      loopType,
+      lineageDir,
+      label: lineage.label,
+      binding: loopType === 'review' ? reviewTargetBinding.target : researchTopic,
+      effectiveConfig: currentEffectiveConfig(lineage, lineageDir),
+    });
+    if (mismatch) finishedLineageRefusals.push(mismatch);
+    else finishedLineageSkipReasons.set(lineage.label, skipReason);
+  }
+  // A skipped lineage hands its old results to the merge, which reads every lineage folder.
+  // Refusing only the mismatched ones would still merge them beside the fresh ones, so one
+  // mismatch refuses the whole run before any orphan mark, spawn or summary write.
+  if (finishedLineageRefusals.length > 0) {
+    throw inputError(`fan-out refused (${FINISHED_LINEAGE_MISMATCH_REASON}): ${finishedLineageRefusals.join('; ')}`);
+  }
   const orphanedLineages = markOrphanedLineages(ledgerPath);
   const initialRetryCounts = readRetryCountsFromLedger(ledgerPath);
 
@@ -4294,35 +4325,6 @@ async function main() {
 
   installFanoutSignalHandlers(writeStoppedSummary);
 
-  // Judged once, before any attempt: a retry of a lineage that failed after writing its
-  // completed config must meet the strict check again, not be waved through as finished.
-  const finishedLineageSkipReasons = new Map();
-  const finishedLineageRefusals = new Map();
-  // A vibe command writes its home and prompt file into the lineage folder while it is built,
-  // so a finished vibe lineage is matched on its kind alone instead of being built in place.
-  const currentEffectiveConfig = (lineage, lineageDir) => {
-    if (lineage.kind === 'cli-mistral-vibe') return { kind: lineage.kind };
-    const frontierScope = frontierPartition ? (frontierPartition[lineage.label] || []).map((node) => node.nodeId) : [];
-    try {
-      return buildLineageDispatch(lineage, lineageDir, frontierScope).effectiveConfig;
-    } catch {
-      return null;
-    }
-  };
-  for (const lineage of cliLineages) {
-    const lineageDir = path.join(lineagesDir, lineage.label);
-    const skipReason = finishedLineageSkipReason({ loopType, lineageDir, lineage, stopPolicy });
-    if (!skipReason) continue;
-    const mismatch = finishedLineageMismatch({
-      loopType,
-      lineageDir,
-      label: lineage.label,
-      binding: loopType === 'review' ? reviewTargetBinding.target : researchTopic,
-      effectiveConfig: currentEffectiveConfig(lineage, lineageDir),
-    });
-    if (mismatch) finishedLineageRefusals.set(lineage.label, mismatch);
-    else finishedLineageSkipReasons.set(lineage.label, skipReason);
-  }
   const { results, summary } = await runCappedPool({
     items: cliLineages,
     concurrency: fanoutConfig.concurrency,
@@ -4366,15 +4368,6 @@ async function main() {
         });
         process.stderr.write(`[fanout-run] lineage ${lineage.label} skipped: ${skipReason}\n`);
         return { label: lineage.label, exitCode: 0, timedOut: false, skipped: true, skipReason };
-      }
-      const refusal = finishedLineageRefusals.get(lineage.label);
-      if (refusal) {
-        const failure = new Error(refusal);
-        failure.label = lineage.label;
-        failure.exitCode = null;
-        failure.timedOut = false;
-        failure.reason = FINISHED_LINEAGE_MISMATCH_REASON;
-        throw failure;
       }
       if (frontierPartition) writeLineageFrontierStore(lineageDir, frontierPartition[lineage.label] || [], { inbox: loopType !== 'review' });
       const frontierScope = frontierPartition ? (frontierPartition[lineage.label] || []).map((node) => node.nodeId) : [];
