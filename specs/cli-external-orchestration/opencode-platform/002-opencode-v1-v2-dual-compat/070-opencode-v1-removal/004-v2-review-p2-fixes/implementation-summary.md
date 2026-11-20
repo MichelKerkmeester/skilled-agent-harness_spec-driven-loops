@@ -21,7 +21,7 @@ _memory:
       - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/scratch/gate-after.txt"
       - ".opencode/plugins/lib/v2-bridge.js"
     session_dedup:
-      fingerprint: "sha256:08b8208b56890fd3711241f5d3a24293c62196f654b1cf540551efcb55244f0b"
+      fingerprint: "sha256:894369b01217fec776de3a2fe5c8fc63d089b349b574f25b96d06e3c4f857a3d"
       session_id: "scaffold-004-v2-review-p2-fixes"
       parent_session_id: null
     completion_pct: 100
@@ -126,7 +126,7 @@ The gate in `scratch/gate.sh` ran before the first edit, with the output in `scr
 ## Known Limitations
 
 1. **The gate is a reconstruction.** The prior gate's file lists were never recorded, so `scratch/gate.sh` rebuilds them from the CI workflows. Its node total matches the prior 837, and the deep-loop subset differs from the prior 411-test set. The "Claude source clamps prompts" test that failed before did not fail in this worktree, either at baseline or after.
-2. **A bare `opencode models <provider>` in a new doc is not caught.** The scan reads only server-form commands, as it did before this phase. The workaround is review.
+2. **A bare `opencode models <provider>` in a new doc is not caught.** Before this phase the scan flagged a bare `opencode2 models <provider>`. It now reads only server-form commands, so that coverage narrowed. The workaround is review.
 3. **The listener sample cannot name the battery's own socket.** Every `opencode` listener sampled during the live leg was on 127.0.0.1, but other sessions also run servers, so which row was the battery's is inferred, not shown.
 4. **The hooks vitest tree, git-setup-check and Pi lint have no pre-edit baseline.** They were run after the change only.
 <!-- /ANCHOR:limitations -->

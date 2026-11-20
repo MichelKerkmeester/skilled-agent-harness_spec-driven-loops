@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Remove OpenCode v1 support from the repository"
-description: "Removes OpenCode 1.x support from the skilled repository so OpenCode 2.3.2 is the only supported version, in three child phases, with the Mac cleanup as a separate gated step."
+description: "Removes OpenCode 1.x support from the skilled repository so OpenCode 2.3.2 is the only supported version, in three child phases plus a fourth that closes the review advisories, with the Mac cleanup as a separate gated step."
 trigger_phrases:
   - "opencode v1 removal phase parent spec"
 importance_tier: "important"
@@ -52,7 +52,7 @@ _memory:
 | **Parent Packet** | scaffold/070-opencode-v1-removal |
 | **Predecessor** | `../069-opencode-v1-pin-1-19-4/` |
 | **Successor** | None |
-| **Handoff Criteria** | All three child phases pass strict validation, the repo-side final grep returns only the justified hits listed in phase 003, and the Mac cleanup waits for a separate operator yes |
+| **Handoff Criteria** | All four child phases pass strict validation, the repo-side final grep returns only the justified hits listed in phase 003, and the Mac cleanup waits for a separate operator yes |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -87,7 +87,7 @@ The review found that tests still presented `opencode2` as a v2 launcher spellin
 - The guard-breadth tests say what they test.
 
 **What it costs**:
-- A future doc that quotes a bare `opencode models <provider>` is not caught by the scan. Mitigation: the scan still catches every server-form command, and the bare form was out of scope before this change too.
+- The scan's coverage narrows. Before this change a bare `opencode2 models <provider>` was read and flagged, and now no bare form is read, so a future doc that quotes a bare `opencode models <provider>` is not caught. Mitigation: the scan still catches every server-form command, and no live doc quotes a bare v2 form today.
 
 **Risks**:
 
