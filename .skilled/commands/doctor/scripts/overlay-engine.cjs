@@ -6263,8 +6263,10 @@ function planRelayout(ctx, groups) {
  * @param {string} targetPath Where the copy goes.
  * @param {string} relativePath Position of the copy, for the `skipped` line.
  * @param {Set<string>} exact Absolute paths a manifest entry names exactly.
+ * @param {string[]} [skipped] Collects every position skipped, so a caller can
+ *   say what the backup lacks.
  */
-function copyForBackup(sourcePath, targetPath, relativePath, exact) {
+function copyForBackup(sourcePath, targetPath, relativePath, exact, skipped) {
   let stats;
   try {
     stats = fs.lstatSync(sourcePath);
@@ -6282,12 +6284,13 @@ function copyForBackup(sourcePath, targetPath, relativePath, exact) {
   if (stats.isDirectory()) {
     fs.mkdirSync(targetPath, { recursive: true });
     for (const name of fs.readdirSync(sourcePath).sort()) {
-      copyForBackup(path.join(sourcePath, name), path.join(targetPath, name), relativePath + '/' + name, exact);
+      copyForBackup(path.join(sourcePath, name), path.join(targetPath, name), relativePath + '/' + name, exact, skipped);
     }
     return;
   }
   if (isProtectedReadPath(sourcePath, exact)) {
     console.log(`skipped ${relativePath}`);
+    if (skipped) skipped.push(relativePath);
     return;
   }
   writeFile(targetPath, fs.readFileSync(sourcePath), stats.mode & 0o777);
@@ -6455,6 +6458,18 @@ function rollbackRelayout(ctx, done) {
 }
 
 /**
+ * Remove one relayout run's backup, and the runs folder when this run made it
+ * and nothing else is in it.
+ * @param {string} runDir This run's backup folder.
+ * @param {string} runsDir Folder holding every run's backup.
+ * @param {boolean} isRunsDirNew True when this run created `runsDir`.
+ */
+function removeRelayoutBackup(runDir, runsDir, isRunsDirNew) {
+  fs.rmSync(runDir, { recursive: true, force: true });
+  if (isRunsDirNew && isDirectory(runsDir) && fs.readdirSync(runsDir).length === 0) fs.rmdirSync(runsDir);
+}
+
+/**
  * Move every copy the manifest keeps off the layout onto its layout path.
  * The backup stays inside the overlay folder, so the old copy is recoverable
  * beside the manifest that named it.
@@ -6502,20 +6517,39 @@ function relayoutUnderLock(ctx, manifest) {
   const runsDir = path.join(ctx.overlayRoot, RELAYOUT_RUNS_FOLDER);
   const runDir = path.join(runsDir, stamp);
   const isRunsDirNew = !fs.existsSync(runsDir);
-  // Read before anything is written, so a failed run can put back the exact bytes.
-  const manifestBytes = fs.readFileSync(ctx.manifestPath);
-  const exact = exactManifestPaths(ctx, manifest);
   // A folder beside the tree has no tree path, so its backup is keyed from the
   // overlay root and the printed path uses the label the setting file gives.
   const overlayOutside = ctx.overlayOutside;
   const backupBase = overlayOutside ? ctx.overlayRoot : ctx.root;
-  for (const move of plan.moves) {
-    copyForBackup(move.from.absolute, path.join(runDir, relativeKey(backupBase, move.from.absolute)), move.from.relative, exact);
-  }
-  copyForBackup(ctx.manifestPath, path.join(runDir, relativeKey(backupBase, ctx.manifestPath)), relativeKey(backupBase, ctx.manifestPath), exact);
   const backupLabel = overlayOutside
     ? ctx.overlayLabel + '/' + relativeKey(ctx.overlayRoot, runDir)
     : relativeKey(ctx.root, runDir);
+  const backupSkipped = [];
+  let manifestBytes;
+  // Nothing has moved yet, so a backup that cannot be written only has to take
+  // its own partial copy away: a half backup left beside the folder reads as one
+  // a later restore could trust.
+  try {
+    // Read before anything is written, so a failed run can put back the exact bytes.
+    manifestBytes = fs.readFileSync(ctx.manifestPath);
+    const exact = exactManifestPaths(ctx, manifest);
+    for (const move of plan.moves) {
+      copyForBackup(move.from.absolute, path.join(runDir, relativeKey(backupBase, move.from.absolute)), move.from.relative,
+        exact, backupSkipped);
+    }
+    copyForBackup(ctx.manifestPath, path.join(runDir, relativeKey(backupBase, ctx.manifestPath)),
+      relativeKey(backupBase, ctx.manifestPath), exact, backupSkipped);
+  } catch (error) {
+    const cause = `error: relayout failed while writing the backup: ${error.message}; nothing was moved`;
+    try {
+      removeRelayoutBackup(runDir, runsDir, isRunsDirNew);
+    } catch (cleanupError) {
+      console.log(`${cause}, but the partial backup at ${backupLabel} could not be removed: ${cleanupError.message}`);
+      return EXIT_ERROR;
+    }
+    console.log(`${cause} and the partial backup was removed`);
+    return EXIT_ERROR;
+  }
   console.log('backup ' + backupLabel);
 
   // Every step from here is undone if a later one fails: copies at their layout
@@ -6542,13 +6576,16 @@ function relayoutUnderLock(ctx, manifest) {
     const cause = `error: relayout failed while ${step}: ${error.message}`;
     const restoreFailure = rollbackRelayout(ctx, done);
     if (restoreFailure) {
+      // A skipped file was never copied, so the backup cannot be promised to hold it.
+      const holds = backupSkipped.length === 0
+        ? 'holds every moved copy and the manifest as it was'
+        : `holds the manifest as it was and every moved copy except the ${backupSkipped.length} printed as skipped`;
       console.log(`${cause}; the restore also failed at ${restoreFailure.path}: ${restoreFailure.message}; ` +
-        `the backup at ${backupLabel} holds every moved copy and the manifest as it was`);
+        `the backup at ${backupLabel} ${holds}`);
       return EXIT_ERROR;
     }
     try {
-      fs.rmSync(runDir, { recursive: true, force: true });
-      if (isRunsDirNew && isDirectory(runsDir) && fs.readdirSync(runsDir).length === 0) fs.rmdirSync(runsDir);
+      removeRelayoutBackup(runDir, runsDir, isRunsDirNew);
     } catch (cleanupError) {
       // The rollback already put every copy back, so only the leftover backup
       // needs the operator's attention.
@@ -6561,8 +6598,16 @@ function relayoutUnderLock(ctx, manifest) {
   }
 
   // Emptied folders are pruned only once nothing can fail, so a rollback never
-  // has to recreate a folder this run removed.
-  for (const move of plan.moves) pruneEmptyParents(ctx.overlayRoot, move.from.absolute);
+  // has to recreate a folder this run removed. Every copy has moved and the
+  // manifest names the new paths by now, so a folder that will not go is only
+  // reported: failing here would call a finished relayout a failed one.
+  for (const move of plan.moves) {
+    try {
+      pruneEmptyParents(ctx.overlayRoot, move.from.absolute);
+    } catch (error) {
+      console.log(`note: relayout left an emptied folder in place after moving ${move.from.relative}: ${error.message}`);
+    }
+  }
 
   console.log(`${plan.moves.length} moved`);
   console.log(`run ${ENGINE_COMMAND} apply`);
