@@ -1050,22 +1050,26 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
     expect(llmgatewayIds).not.toContain('deepseek-v4.1-flash');
   });
 
-  it('makes its default model the default of a pi run that names no model', () => {
+  // The shipped Pi settings name no private provider, so a vendoring project runs Pi on its
+  // own provider without an overlay; the default model stays first among the enabled ones.
+  it('ships no default provider and keeps its default model first among the enabled models', () => {
     const settings = JSON.parse(readFileSync(resolve(REPO_ROOT, '.pi', 'settings.json'), 'utf8')) as {
       defaultProvider?: string;
       defaultModel?: string;
       enabledModels?: string[];
     };
-    expect(settings.defaultProvider).toBe('llmgateway');
-    expect(settings.defaultModel).toBe(PI_DEFAULT_MODEL);
+    expect(settings.defaultProvider).toBeUndefined();
+    expect(settings.defaultModel).toBeUndefined();
     expect(settings.enabledModels?.[0]).toBe(`llmgateway/${PI_DEFAULT_MODEL}`);
   });
 
-  it('runs the pi-blackhole workers on its default model at a thinking level the model supports', () => {
+  it('lets the pi-blackhole workers fall back to the session model, which supports the high thinking level', () => {
     const blackhole = JSON.parse(readFileSync(resolve(REPO_ROOT, '.pi', 'pi-blackhole-config.json'), 'utf8')) as {
-      model?: { provider?: string; id?: string; thinking?: string };
+      model?: unknown;
+      sessionFallback?: boolean;
     };
-    expect(blackhole.model).toEqual({ provider: 'llmgateway', id: PI_DEFAULT_MODEL, thinking: 'high' });
+    expect(blackhole.model).toBeUndefined();
+    expect(blackhole.sessionFallback).toBe(true);
     const config = JSON.parse(readFileSync(resolve(REPO_ROOT, '.pi', 'models.json'), 'utf8')) as {
       providers?: { llmgateway?: { models?: { id?: string; thinkingLevelMap?: Record<string, string | null> }[] } };
     };
