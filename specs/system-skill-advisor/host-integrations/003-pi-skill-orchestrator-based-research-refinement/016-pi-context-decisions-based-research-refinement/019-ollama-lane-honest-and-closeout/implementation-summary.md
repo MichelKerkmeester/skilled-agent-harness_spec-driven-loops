@@ -21,7 +21,7 @@ _memory:
       - ".skilled/commands/doctor/assets/doctor-setup.yaml"
       - ".skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:8178270e1349f9c2debebdac8aa53ab73eaf5ac84da2d706d1049747d8beacd1"
+      fingerprint: "sha256:e7846ac5362362bd14bd5ad417884c82fad86dac139b5aef950bb80852af768b"
       session_id: "scaffold-019-ollama-lane-honest-and-closeout"
       parent_session_id: null
     session_ref:
@@ -124,6 +124,7 @@ For the ablation, `ollama serve` (pid 85898) was started and warmed: a cold embe
 | Outage on main | Stopped only `ollama serve` pid 85898; port 11434 refused. A changed `sk-prompt` description read stale 1, missing 0 (vector kept), backend `unreachable`; restoring the text read 15/15 current again |
 | Generation counter after the database-directory pin | Found on main after the merge: the pinned daemon wrote `skill-graph-generation.json` into `runtime/database/` instead of the shared `.state/advisor/` file. `generation.ts` now treats an override naming the default database directory as no sandbox. The new containment test failed before and passes after |
 | CI on main after the merges | Skill Advisor Stress Tests had failed on every run since the lane weight moved to 0, because one stress test still expected 0.05; fixed in `86038dfba80`, 65/65 locally. Routing Registry Drift Guard now passes its skill-root metadata step and stops at the sk-doc hub vocabulary check, which also fails at the base `f2f03c90fb6`. Hook Vitest Suites fails one Pi session-handover test, identically before and after these merges |
+| Vibe document test in CI | Its case named a gitignored local command, so it failed in every CI checkout once the stress step stopped failing first. It now names `/doctor:setup` (`c74042fd559`): fails with the old fixture when the local doc is absent, passes with the new one; runtime 2555 passed. Skill Advisor Stress Tests passed in CI on `c8874dd6ef3` |
 | Battery over the final range (`--full-diff` from `f2f03c90fb6`) | 324 pass; S13 lists only `VITEST` (accepted); two spec-kit package checks could not run without `node_modules` in the worktree, and Spec-Kit Check passed in CI on the merges |
 
 ### Alignment findings
