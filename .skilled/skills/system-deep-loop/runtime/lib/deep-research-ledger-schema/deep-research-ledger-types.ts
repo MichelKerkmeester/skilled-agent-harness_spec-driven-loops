@@ -795,10 +795,10 @@ export type DeepResearchStemProducerStatus =
   | { readonly status: 'reserved'; readonly reason: string };
 
 export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
-  'deep_research.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research.yaml'] },
+  'deep_research.run_initialized': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs'] },
   'deep_research.run_resumed': { status: 'reserved', reason: 'No writer emits it today: resume rebuilds the flat config and state in place. The resume step would speak it once a resumed run records its compatibility decision as an event.' },
   'deep_research.run_restarted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research.yaml'] },
-  'deep_research.run_extended': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research.yaml'] },
+  'deep_research.run_extended': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs'] },
   'deep_research.question_registered': { status: 'reserved', reason: 'No writer emits it today: questions are flat rows in the state log. A question step would speak it once registration appends its dependency and source-class contract.' },
   'deep_research.branch_planned': { status: 'reserved', reason: 'No writer emits it today: branch plans live in strategy prose. A branch step would speak it once a planned branch and its budget are appended.' },
   'deep_research.branch_selected': { status: 'reserved', reason: 'No writer emits it today: selection is a strategy update. A branch step would speak it once the selected branch and its rationale are appended.' },

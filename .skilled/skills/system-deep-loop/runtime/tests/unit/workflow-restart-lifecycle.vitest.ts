@@ -644,7 +644,8 @@ describe('workflow restart lifecycle', () => {
 
     const command = blockScalar(keyBlock(block, 'bind_prior_lineage'), 'command');
     expect(command).not.toBe('');
-    expect(command).toContain('error.code !== "ENOENT"');
+    expect(command).toContain('workflow-steps.cjs prior-lineage "{state_paths.config}" "{state_paths.state_log}"');
+    expect(readFileSync(resolve(RUNTIME_ROOT, 'scripts', 'workflow-steps.cjs'), 'utf8')).toContain('error.code !== "ENOENT"');
     expect(keyBlock(block, 'bind_prior_lineage')).toContain(
       'on_fail: "Halt with STATUS=FAIL. The old config is unreadable, so repair or archive the packet by hand."',
     );

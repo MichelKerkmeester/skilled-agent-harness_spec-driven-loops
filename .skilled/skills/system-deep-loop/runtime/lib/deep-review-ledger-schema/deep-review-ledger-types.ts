@@ -638,10 +638,10 @@ export type DeepReviewStemProducerStatus =
   | { readonly status: 'reserved'; readonly reason: string };
 
 export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
-  'deep_review.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.run_initialized': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs'] },
   'deep_review.run_resumed': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.run_restarted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
-  'deep_review.run_extended': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.run_extended': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs'] },
   'deep_review.scope_resolved': { status: 'reserved', reason: 'No writer emits it today: scope lives in workflow step text. A scope step would speak it once selected and omitted targets are appended with their digests.' },
   'deep_review.dimension_ordered': { status: 'reserved', reason: 'No writer emits it today: dimension order is computed in the workflow. An ordering step would speak it once the order and its policy version are appended.' },
   'deep_review.protocol_plan_recorded': { status: 'reserved', reason: 'No writer emits it today: the protocol plan is an operator-facing asset. A plan step would speak it once protocol selection and its contract digest are appended.' },

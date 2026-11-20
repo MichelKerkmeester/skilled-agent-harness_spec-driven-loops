@@ -326,30 +326,7 @@ workflow:
     bind_prior_lineage:
       action: "Read the session id and generation of the packet that is about to be archived"
       command: |
-        node -e '
-          const fs = require("fs");
-          const crypto = require("crypto");
-          let priorSessionId = null;
-          let priorGeneration = 0;
-          try {
-            const config = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
-            const lineage = config.lineage || config;
-            priorSessionId = typeof lineage.sessionId === "string" ? lineage.sessionId : null;
-            priorGeneration = Number(lineage.generation) || 0;
-          } catch (error) {
-            if (error.code !== "ENOENT") {
-              console.error("The old config cannot be read: " + error.message);
-              process.exit(1);
-            }
-          }
-          let priorTailDigest = crypto.createHash("sha256").update("").digest("hex");
-          try {
-            priorTailDigest = crypto.createHash("sha256").update(fs.readFileSync(process.argv[2])).digest("hex");
-          } catch (error) {
-            if (error.code !== "ENOENT") throw error;
-          }
-          console.log(JSON.stringify({ priorSessionId, priorGeneration, priorTailDigest }));
-        ' "{state_paths.config}" "{state_paths.state_log}"
+        node .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs prior-lineage "{state_paths.config}" "{state_paths.state_log}"
       outputs:
         - prior_session_id: "priorSessionId from the JSON output, null when no old config exists"
         - prior_generation: "priorGeneration from the JSON output, 0 when no old config exists"
@@ -559,95 +536,7 @@ workflow:
           GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
           [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
           WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-research-extend.XXXXXX")"
-          node -e '
-            const fs = require("fs"), crypto = require("crypto"), path = require("path");
-            const [configPath, stateLogPath, inboxPath, extendRaw, extendMinutesRaw, workDir] = process.argv.slice(1);
-            const fail = (message) => { console.error(message); process.exit(2); };
-            const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
-            // The preflight check refuses these first; this keeps a bad value from reaching the config.
-            if (!/^[1-9][0-9]*$/.test(String(extendRaw))) {
-              fail("--extend needs a positive integer, and got " + JSON.stringify(String(extendRaw)) + ".");
-            }
-            const minutesRaw = String(extendMinutesRaw);
-            if (minutesRaw !== "" && !minutesRaw.startsWith("{") && !/^[1-9][0-9]*$/.test(minutesRaw)) {
-              fail("--extend-minutes needs a positive integer, and got " + JSON.stringify(minutesRaw) + ".");
-            }
-            if (config.status !== "complete") {
-              fail("--extend needs a completed run, and this run has status " + config.status + ". Use --lineage-mode=resume to continue an unfinished run.");
-            }
-            const stateBytes = fs.readFileSync(stateLogPath);
-            const rows = stateBytes.toString("utf8").split("\n").filter(Boolean).flatMap((line) => {
-              try { return [JSON.parse(line)]; } catch { return []; }
-            });
-            // One run per iteration number, error and timeout rows included. The integer
-            // iteration counts first and a numeric run is the fallback, as the state reader
-            // counts them, because a leaf may write its run id string in run.
-            const continuedFromRun = new Set(rows
-              .filter((row) => row && row.type === "iteration")
-              .map((row) => (Number.isInteger(row.iteration) ? row.iteration : Number(row.run)))
-              .filter((run) => Number.isInteger(run))).size;
-            const addedIterations = Number(extendRaw);
-            const priorMaxIterations = Number(config.maxIterations) || 0;
-            const priorMaxDurationMinutes = Number(config.maxDurationMinutes) || 0;
-            const createdMs = Date.parse(config.createdAt);
-            const elapsedMinutesAtExtension = Number.isFinite(createdMs)
-              ? Math.max(0, Math.floor((Date.now() - createdMs) / 60000))
-              : 0;
-            // An unset flag renders as an empty or unexpanded value, never as digits.
-            const hasMinutes = /^[1-9][0-9]*$/.test(String(extendMinutesRaw));
-            const addedMinutes = hasMinutes ? Number(extendMinutesRaw) : priorMaxDurationMinutes;
-            // A run with no duration budget keeps none unless --extend-minutes asks for one.
-            const newMaxDurationMinutes = priorMaxDurationMinutes > 0 || hasMinutes
-              ? Math.max(priorMaxDurationMinutes, elapsedMinutesAtExtension) + addedMinutes
-              : priorMaxDurationMinutes;
-            const newMaxIterations = continuedFromRun + addedIterations;
-            const lineage = config.lineage || {};
-            const sessionId = lineage.sessionId;
-            const lineageId = lineage.parentSessionId || sessionId;
-            const generation = Number(lineage.generation) || 1;
-            const event = {
-              stem: "deep_research.run_extended",
-              scope: { runId: sessionId, lineageId },
-              data: {
-                priorTailDigest: crypto.createHash("sha256").update(stateBytes).digest("hex"),
-                sessionId,
-                generation,
-                continuedFromRun,
-                extension: {
-                  addedIterations,
-                  priorMaxIterations,
-                  newMaxIterations,
-                  priorMaxDurationMinutes,
-                  newMaxDurationMinutes,
-                  elapsedMinutesAtExtension,
-                },
-              },
-            };
-            const next = {
-              ...config,
-              status: "initialized",
-              maxIterations: newMaxIterations,
-              maxDurationMinutes: newMaxDurationMinutes,
-              lineage: { ...lineage, lineageMode: "completed-continue", continuedFromRun },
-            };
-            fs.writeFileSync(path.join(workDir, "event.json"), JSON.stringify(event));
-            fs.writeFileSync(path.join(workDir, "config.json"), JSON.stringify(next, null, 2) + "\n");
-            let pendingInbox = 0;
-            try {
-              pendingInbox = fs.readFileSync(inboxPath, "utf8").split("\n").filter((line) => line.trim() !== "").length;
-            } catch (error) {
-              if (error.code !== "ENOENT") throw error;
-            }
-            // Config creation writes the stop policy at the top level, beside maxIterations.
-            const stopPolicy = config.stopPolicy || "convergence";
-            // With convergence mode off the stop decision continues before it forms any
-            // candidate, so the run cannot re-stop on all_questions_answered.
-            const convergenceOff = (config.antiConvergence && config.antiConvergence.convergenceMode) === "off";
-            const warning = stopPolicy === "convergence" && !convergenceOff && pendingInbox === 0
-              ? "This run stops on convergence and has no pending inbox question, so it may re-stop on all_questions_answered right away. An extension keeps the stop policy and convergence mode it was created with, and a flag passed beside --extend does not change them. Add questions to research/inbox.jsonl before you extend to keep it running."
-              : null;
-            console.log(JSON.stringify({ continuedFromRun, newMaxIterations, newMaxDurationMinutes, warning }));
-          ' "{state_paths.config}" "{state_paths.state_log}" "{state_paths.packet_dir}/inbox.jsonl" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { STATUS=$?; rm -rf "$WORK_DIR"; exit "$STATUS"; }
+          node "$(dirname "$GATEWAY")/workflow-steps.cjs" extend-research "{state_paths.config}" "{state_paths.state_log}" "{state_paths.packet_dir}/inbox.jsonl" "{extend}" "{extend_minutes}" "$WORK_DIR" > "$WORK_DIR/result.json" || { STATUS=$?; rm -rf "$WORK_DIR"; exit "$STATUS"; }
           node "$GATEWAY" --mode research --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$WORK_DIR/event.json" || { rm -rf "$WORK_DIR"; exit 1; }
           mv "$WORK_DIR/config.json" "{state_paths.config}" || { rm -rf "$WORK_DIR"; exit 1; }
           cat "$WORK_DIR/result.json"
@@ -665,7 +554,7 @@ workflow:
         skip_when: "extension_pending != true"
         dry_run_boundary: "state-mutation"
         command: |
-          GENERATION="$(node -p 'const c = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8")); Number((c.lineage || c).generation) || 1' "{state_paths.config}")" || exit 1
+          GENERATION="$(node .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs generation "{state_paths.config}")" || exit 1
           SNAPSHOT="{state_paths.packet_dir}/synthesis-v${GENERATION}-r{continued_from_run}.md"
           if [ -e "$SNAPSHOT" ]; then
             echo "The synthesis snapshot $SNAPSHOT is already there." >&2
@@ -720,30 +609,7 @@ workflow:
               bind_prior_lineage:
                 action: "Read the session id and generation of the packet that is about to be archived"
                 command: |
-                  node -e '
-                    const fs = require("fs");
-                    const crypto = require("crypto");
-                    let priorSessionId = null;
-                    let priorGeneration = 0;
-                    try {
-                      const config = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
-                      const lineage = config.lineage || config;
-                      priorSessionId = typeof lineage.sessionId === "string" ? lineage.sessionId : null;
-                      priorGeneration = Number(lineage.generation) || 0;
-                    } catch (error) {
-                      if (error.code !== "ENOENT") {
-                        console.error("The old config cannot be read: " + error.message);
-                        process.exit(1);
-                      }
-                    }
-                    let priorTailDigest = crypto.createHash("sha256").update("").digest("hex");
-                    try {
-                      priorTailDigest = crypto.createHash("sha256").update(fs.readFileSync(process.argv[2])).digest("hex");
-                    } catch (error) {
-                      if (error.code !== "ENOENT") throw error;
-                    }
-                    console.log(JSON.stringify({ priorSessionId, priorGeneration, priorTailDigest }));
-                  ' "{state_paths.config}" "{state_paths.state_log}"
+                  node .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs prior-lineage "{state_paths.config}" "{state_paths.state_log}"
                 outputs:
                   - prior_session_id: "priorSessionId from the JSON output, null when no old config exists"
                   - prior_generation: "priorGeneration from the JSON output, 0 when no old config exists"
@@ -889,48 +755,7 @@ workflow:
           GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
           [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
           EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-research-run-open.XXXXXX")"
-          node -e '
-            const fs = require("fs"), crypto = require("crypto");
-            const [configPath] = process.argv.slice(1);
-            const raw = fs.readFileSync(configPath);
-            const config = JSON.parse(raw);
-            const sha = (value) => crypto.createHash("sha256").update(value).digest("hex");
-            const lineage = config.lineage || {};
-            const sessionId = lineage.sessionId;
-            const lineageId = lineage.parentSessionId || sessionId;
-            const generation = Number(lineage.generation) || 1;
-            const configDigest = sha(raw);
-            // The projected config row shows this topic; one the schema cannot hold is left out,
-            // and the row falls back to the run id rather than the run failing to open.
-            const topic = typeof config.topic === "string" && config.topic.trim() !== "" && config.topic.length <= 4096
-              ? config.topic
-              : null;
-            const event = {
-              stem: "deep_research.run_initialized",
-              scope: { runId: sessionId, lineageId },
-              data: {
-                generation,
-                ...(topic === null ? {} : { topic }),
-                charterDigest: sha(Buffer.from(JSON.stringify({
-                  topic: config.topic,
-                  specFolder: config.specFolder || "",
-                }))),
-                configDigest,
-                executorFingerprint: sha(Buffer.from(JSON.stringify(config.executor || {}))),
-                replayFingerprint: sha(Buffer.from(JSON.stringify({
-                  runId: sessionId,
-                  lineageId,
-                  generation,
-                  configDigest,
-                }))),
-                maxIterations: Number(config.maxIterations),
-                convergencePolicyVersion: "convergence-policy@" + (
-                  (config.antiConvergence && config.antiConvergence.convergenceMode) || "default"
-                ),
-              },
-            };
-            process.stdout.write(JSON.stringify(event));
-          ' "{state_paths.config}" > "$EVENT_FILE" || { rm -f "$EVENT_FILE"; exit 1; }
+          node "$(dirname "$GATEWAY")/workflow-steps.cjs" run-open-research "{state_paths.config}" > "$EVENT_FILE" || { rm -f "$EVENT_FILE"; exit 1; }
           node "$GATEWAY" --mode research --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
           STATUS=$?
           rm -f "$EVENT_FILE"
@@ -1199,15 +1024,7 @@ workflow:
       step_check_max_duration:
         action: "Stop the loop when the run has used its wall-clock budget, and still synthesize"
         command: |
-          node -e '
-            const config = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
-            const maxDurationMinutes = Number(config.maxDurationMinutes);
-            const startedMs = Date.parse(config.createdAt);
-            const elapsedMinutes = Math.floor((Date.now() - startedMs) / 60000);
-            const reached = Number.isFinite(maxDurationMinutes) && maxDurationMinutes > 0
-              && Number.isFinite(startedMs) && elapsedMinutes >= maxDurationMinutes;
-            console.log(JSON.stringify({ elapsedMinutes, maxDurationMinutes, reached }));
-          ' "{state_paths.config}"
+          node .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs max-duration "{state_paths.config}"
         outputs:
           - duration_reached: "reached from the JSON output"
           - elapsed_minutes: "elapsedMinutes from the JSON output"
@@ -1775,10 +1592,7 @@ workflow:
             - "The command text never names the harness binary as a bare word, because the ancestry recursion guard reads the parent shell's command line"
         if_cli_mistral_vibe:
           command: |
-            node --input-type=module <<'EOF'
-            console.error('cli-mistral-vibe runs only as a fan-out lineage; rerun with --count=2 or a second --executor group, or choose another executor kind');
-            process.exit(2);
-            EOF
+            node .skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs refuse-single-vibe
           working_directory: "{repo_root}"
           wait_for_completion: true
           notes:

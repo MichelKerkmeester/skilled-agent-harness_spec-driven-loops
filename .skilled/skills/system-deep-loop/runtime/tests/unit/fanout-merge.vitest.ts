@@ -1218,7 +1218,8 @@ describe('research synthesis lineage evidence', () => {
       workflow.indexOf('      step_create_state_log:\n'),
       workflow.indexOf('      step_create_strategy:\n'),
     );
-    expect(runOpenStep).toContain('fs.readFileSync(configPath)');
+    expect(runOpenStep).toContain('workflow-steps.cjs" run-open-research "{state_paths.config}"');
+    expect(readFileSync(join(runtimeRoot, 'scripts', 'workflow-steps.cjs'), 'utf8')).toContain('fs.readFileSync(configPath)');
     expect(workflow).not.toContain('resource_map.emit: true');
   });
 });

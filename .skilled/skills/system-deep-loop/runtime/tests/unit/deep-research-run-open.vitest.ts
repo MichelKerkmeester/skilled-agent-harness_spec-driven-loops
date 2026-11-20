@@ -267,11 +267,11 @@ describe('deep-research run open', () => {
     expect(stateRows(dir).map((row) => row.type)).toEqual(['config', 'iteration']);
   });
 
-  it('declares initialization as spoken by the research workflow', () => {
+  it('declares initialization as spoken by the step program the research workflow calls', () => {
     expect(DEEP_RESEARCH_STEM_PRODUCERS['deep_research.run_initialized']).toEqual({
       status: 'spoken',
       producers: [
-        '.skilled/commands/deep/assets/deep-research.yaml',
+        '.skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs',
       ],
     });
   });

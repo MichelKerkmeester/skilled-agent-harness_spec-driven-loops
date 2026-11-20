@@ -271,8 +271,9 @@ const SINGLE_CONTRACTS = [
     gatewaySteps: ['step_evaluate_results', 'step_post_iteration_claim_adjudication', 'step_convergence_report'],
     configBindings: ['stopPolicy: "{stop_policy}"'],
     // Review opens its run as a gateway event built from the config file, so the
-    // record step binds the event stem and the config it reads, not a flat row.
-    recordBindings: ['stem: "deep_review.run_initialized"', '"{state_paths.config}"'],
+    // record step calls the step program that builds the event from the config it
+    // reads, not a flat row.
+    recordBindings: ['workflow-steps.cjs" run-open-review "{state_paths.config}"'],
   },
   {
     command: 'deep/research',
@@ -280,8 +281,9 @@ const SINGLE_CONTRACTS = [
     gatewaySteps: ['step_convergence_report'],
     configBindings: ['lineage.sessionId: "{session_id_init}"'],
     // Research opens its run as a gateway event built from the config file, so the
-    // record step binds the event stem and the config it reads, not a flat row.
-    recordBindings: ['stem: "deep_research.run_initialized"', '"{state_paths.config}"'],
+    // record step calls the step program that builds the event from the config it
+    // reads, not a flat row.
+    recordBindings: ['workflow-steps.cjs" run-open-research "{state_paths.config}"'],
   },
 ] as const;
 
