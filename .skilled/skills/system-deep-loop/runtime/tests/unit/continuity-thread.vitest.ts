@@ -187,6 +187,29 @@ describe('continuity threading helpers', () => {
     expect(focus).toBe('Old thread?');
   });
 
+  // A leaf that ends its pass by asking to close a frontier node has written a
+  // bookkeeping step, not research to do; working it would spend an iteration on it.
+  it('skips a leaf recommendation that only closes a frontier node', () => {
+    const focus = deriveNextFocusFromContinuity({
+      carriedForwardOpenQuestions: [
+        { text: 'Old thread?', addedAtIteration: 1, source: 'iteration-markdown' },
+      ],
+      machineOpenQuestions: [{ text: 'Open question?' }],
+      leafNextFocus: 'Close F-2-008 as answered; the frontier is then terminal. Next: Q1 restraint.',
+    });
+
+    expect(focus).toBe('Old thread?');
+  });
+
+  it('keeps an imperative leaf recommendation that closes a gap rather than a node', () => {
+    const focus = deriveNextFocusFromContinuity({
+      machineOpenQuestions: [{ text: 'Open question?' }],
+      leafNextFocus: 'Close the projection-surface gap so the report sees everything the advisor scores.',
+    });
+
+    expect(focus).toBe('Close the projection-surface gap so the report sees everything the advisor scores.');
+  });
+
   it('returns the terminal sentinel with no open machine question even when the leaf recommends a focus', () => {
     const focus = deriveNextFocusFromContinuity({
       machineOpenQuestions: [],

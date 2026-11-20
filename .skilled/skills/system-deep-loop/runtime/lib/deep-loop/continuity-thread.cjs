@@ -16,6 +16,10 @@ const crypto = require('node:crypto');
 
 const DEFAULT_TERMINAL_NEXT_FOCUS = '[All tracked questions are resolved]';
 const MAX_DERIVED_FOCUS_LENGTH = 220;
+// A leaf recommendation that opens by closing a frontier node is a bookkeeping
+// step: the reducer, not the next iteration, settles node status. Only a node id
+// right after the verb matches, so "Close the coverage gap" stays a real focus.
+const FRONTIER_CLOSE_FOCUS = /^close\s+F-\d+-\d+(?![\w-])/i;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -161,7 +165,9 @@ function deriveNextFocusFromContinuity({
   // must not reopen settled work, and it never overrides the terminal sentinel.
   const leafFocus = normalizeText(leafNextFocus);
   const resolvedQuestionKeys = new Set(toTextArray(resolvedQuestions).map(normalizeKey));
-  if (leafFocus && !resolvedQuestionKeys.has(normalizeKey(leafFocus))) {
+  if (leafFocus
+    && !FRONTIER_CLOSE_FOCUS.test(leafFocus)
+    && !resolvedQuestionKeys.has(normalizeKey(leafFocus))) {
     return truncateFocus(leafFocus);
   }
 
