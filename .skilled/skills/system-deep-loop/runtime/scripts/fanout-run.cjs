@@ -2499,11 +2499,25 @@ function decorateSlotAccountingEvent(event, accountingByLabel) {
 function readLineageProgressFields(lineageDir, liveStdout = '') {
   const { readNodeStore } = require('./frontier-admit.cjs');
   const { iterations, lastCommitAt, flaggedPasses } = readLineagePassSummary(lineageDir, liveStdout);
+  // A review node's answered status is derived by the reducer into its registry
+  // frontier and never written back to the store, so that derived status wins
+  // where the registry has the node; a node admitted after the last reduce keeps
+  // its stored status.
+  const derivedStatus = new Map();
+  try {
+    const registry = JSON.parse(fs.readFileSync(path.join(lineageDir, 'deep-review-findings-registry.json'), 'utf8'));
+    for (const node of Array.isArray(registry?.frontier?.nodes) ? registry.frontier.nodes : []) {
+      if (node && typeof node.nodeId === 'string') derivedStatus.set(node.nodeId, node.status);
+    }
+  } catch {
+    // No reduced frontier yet, or a torn write: the store's own statuses stand.
+  }
   const nodes = { answered: 0, open: 0, total: 0 };
   for (const node of readNodeStore(path.join(lineageDir, 'frontier-nodes.jsonl'), { warnings: [] }).values()) {
+    const status = derivedStatus.has(node.nodeId) ? derivedStatus.get(node.nodeId) : node.status;
     nodes.total += 1;
-    if (node.status === 'answered') nodes.answered += 1;
-    else if (node.status === 'open' || node.status === 'active') nodes.open += 1;
+    if (status === 'answered') nodes.answered += 1;
+    else if (status === 'open' || status === 'active') nodes.open += 1;
   }
   return { iterations, lastCommitAt, nodes, flaggedPasses };
 }
