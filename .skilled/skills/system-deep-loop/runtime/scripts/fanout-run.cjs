@@ -35,12 +35,14 @@ const FANOUT_FLAGS = [
   'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
   'costUnitsPerIteration', 'estimatedTokensPerIteration', 'onlyLineage', 'preview',
+  'stop',
 ];
 
 const {
   runCappedPool,
   appendStatusLedger,
   detectLiveLineages,
+  isLineageAlive,
   markOrphanedLineages,
   readLedgerRecords,
   readRetryCountsFromLedger,
@@ -66,6 +68,12 @@ const {
 
 const TSX_LOADER = require.resolve('tsx');
 const isTsxLoaded = process.env.DEEP_LOOP_TSX_LOADED === '1';
+// A hangup is how a closed terminal or a dropped SSH session ends the run, so it is
+// forwarded beside the two signals an operator sends by hand.
+const FORWARDED_SIGNALS = ['SIGINT', 'SIGTERM', 'SIGHUP'];
+// The bootstrap parent as the child first saw it. Read at load, before main() spends
+// seconds on imports, so a parent that dies during them is still noticed.
+const BOOTSTRAP_PARENT_PID = isTsxLoaded ? process.ppid : null;
 
 function runTsxBootstrap() {
   const child = spawn(
@@ -86,7 +94,7 @@ function runTsxBootstrap() {
   child.stdout?.pipe(process.stdout);
   child.stderr?.pipe(process.stderr);
 
-  for (const signal of ['SIGINT', 'SIGTERM']) {
+  for (const signal of FORWARDED_SIGNALS) {
     process.once(signal, () => {
       child.kill(signal);
     });
@@ -96,7 +104,7 @@ function runTsxBootstrap() {
     if (status !== null) {
       process.exit(status);
     }
-    process.exit(signal === 'SIGINT' ? 130 : signal === 'SIGTERM' ? 143 : 1);
+    process.exit(FORWARDED_SIGNALS.includes(signal) ? signalExitCode(signal) : 1);
   });
 }
 
@@ -466,7 +474,29 @@ function jsonOut(payload) {
 }
 
 function signalExitCode(signal) {
-  return signal === 'SIGINT' ? 130 : 143;
+  if (signal === 'SIGINT') return 130;
+  if (signal === 'SIGHUP') return 129;
+  return 143;
+}
+
+const PARENT_DEATH_POLL_MS = 1000;
+
+/**
+ * Call onParentDeath once the bootstrap parent is gone.
+ *
+ * A SIGKILL of the bootstrap is never forwarded, and the lineage groups are detached, so
+ * without this the runner and every lineage outlive it. The child's ppid changes when its
+ * parent dies, which holds for every launch. Its stdin closing does not: the bootstrap
+ * hands the child an ignored stdin when its own stdin is a terminal.
+ */
+function watchBootstrapParent(onParentDeath, parentPid = BOOTSTRAP_PARENT_PID) {
+  if (!parentPid) return;
+  const timer = setInterval(() => {
+    if (process.ppid === parentPid) return;
+    clearInterval(timer);
+    onParentDeath();
+  }, PARENT_DEATH_POLL_MS);
+  timer.unref();
 }
 
 let fanoutSignalHandlersInstalled = false;
@@ -475,15 +505,18 @@ function installFanoutSignalHandlers(onStop) {
   if (fanoutSignalHandlersInstalled) return;
   fanoutSignalHandlersInstalled = true;
 
-  for (const signal of ['SIGINT', 'SIGTERM']) {
-    process.once(signal, () => {
-      try {
-        onStop(signal);
-      } finally {
-        process.exit(signalExitCode(signal));
-      }
-    });
+  const stopAndExit = (signal) => {
+    try {
+      onStop(signal);
+    } finally {
+      process.exit(signalExitCode(signal));
+    }
+  };
+  for (const signal of FORWARDED_SIGNALS) {
+    process.once(signal, () => stopAndExit(signal));
   }
+  // A dead parent is the hangup the terminal would have sent, so it is recorded as one.
+  watchBootstrapParent(() => stopAndExit('SIGHUP'));
 }
 
 function updateLineageSnapshot(snapshots, event) {
@@ -779,6 +812,45 @@ function readStoredLineageSessionId(loopType, lineageDir) {
   return storedId;
 }
 
+// A research config nests its lineage fields under `lineage`; a review config keeps them flat.
+function lineageFieldsOf(loopType, config) {
+  if (loopType === 'review') return config;
+  return isRecord(config.lineage) ? config.lineage : null;
+}
+
+/**
+ * The lineage values every lineage of this run inherits from the root config, or null.
+ *
+ * Each lineage is a new session one level under the root session, in the root's generation.
+ * A missing or partial root config yields null, so nothing is invented in its place.
+ */
+function readRootLineageValues(loopType, baseArtifactDir) {
+  const config = readJsonRecord(path.join(baseArtifactDir, LINEAGE_CONFIG_BY_LOOP_TYPE[loopType]));
+  const fields = config ? lineageFieldsOf(loopType, config) : null;
+  if (!fields || !Number.isInteger(fields.generation)) return null;
+  if (typeof fields.sessionId !== 'string' || fields.sessionId.trim() === '') return null;
+  return { generation: fields.generation, parentSessionId: fields.sessionId, lineageMode: 'new' };
+}
+
+/**
+ * Write the root's lineage values into the config a lineage's model created.
+ *
+ * The model writes the config from the workflow template, which knows nothing of the
+ * fan-out, so runtimes have filled these fields differently. The runner cannot write the
+ * config before the lineage starts: the workflow reads a config with no state log beside it
+ * as a broken session and halts. Every other field, the session id among them, is kept.
+ */
+function writeLineageValues(loopType, lineageDir, rootValues) {
+  if (!rootValues) return;
+  const configPath = path.join(lineageDir, LINEAGE_CONFIG_BY_LOOP_TYPE[loopType]);
+  const config = readJsonRecord(configPath);
+  if (!config) return;
+  const next = loopType === 'review'
+    ? { ...config, ...rootValues }
+    : { ...config, lineage: { ...(lineageFieldsOf(loopType, config) || {}), ...rootValues } };
+  atomicWriteJson(configPath, next);
+}
+
 /**
  * Artifact directories under this packet owned by a DIFFERENT deep-loop run that is still live.
  *
@@ -868,6 +940,76 @@ function terminateLineageProcess(child, signal) {
   } catch {
     // The process may have already exited.
   }
+}
+
+const STOP_CONFIRM_TIMEOUT_MS = 10_000;
+
+function signalIfPresent(target, signal) {
+  try {
+    process.kill(target, signal);
+  } catch {
+    // Gone already, which is the outcome a stop wants.
+  }
+}
+
+/**
+ * The runner that spawned a live lineage, or null.
+ *
+ * Read from the kernel's parent link, not from a pid written down earlier, which may since
+ * belong to an unrelated process. Only a parent running this script is returned.
+ */
+function fanoutRunnerPidOf(lineagePid) {
+  if (process.platform === 'win32') return null;
+  const psField = (field, pid) => {
+    const result = spawnSync('ps', ['-o', `${field}=`, '-p', String(pid)], { encoding: 'utf8' });
+    return result.status === 0 ? result.stdout.trim() : '';
+  };
+  const parentPid = Number(psField('ppid', lineagePid));
+  if (!Number.isInteger(parentPid) || parentPid <= 1) return null;
+  return psField('command', parentPid).includes(path.basename(__filename)) ? parentPid : null;
+}
+
+/**
+ * Stop the lineages the ledger shows as live, from a process other than their runner.
+ *
+ * Live means what a re-run refuses on: a spawned row after the lineage's latest start, no
+ * terminal row since, and a group or pid that still answers. Nothing else is signalled.
+ * The runner goes first: it stops its own lineages, and once it is gone it cannot retry
+ * the ones stopped here. A lineage is recorded as stopped only once it no longer answers.
+ *
+ * @param {string} ledgerPath - The run's orchestration-status.log.
+ * @param {string[]} argv - The run's own argv plus --stop, which the rerun command drops.
+ * @returns {Promise<{stopped: Array<{label: string, pid: number}>, survivors: Array<{label: string, pid: number}>}>}
+ */
+async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
+  const live = detectLiveLineages(readLedgerRecords(ledgerPath));
+  const runnerPids = new Set(live.map((lineage) => fanoutRunnerPidOf(lineage.pid)).filter(Boolean));
+  for (const runnerPid of runnerPids) signalIfPresent(runnerPid, 'SIGTERM');
+  for (const lineage of live) {
+    signalIfPresent(process.platform === 'win32' ? lineage.pid : -lineage.pid, 'SIGTERM');
+  }
+
+  let survivors = live;
+  const deadline = Date.now() + STOP_CONFIRM_TIMEOUT_MS;
+  while (survivors.length > 0 && Date.now() < deadline) {
+    await new Promise((resolvePromise) => setTimeout(resolvePromise, 100));
+    survivors = survivors.filter((lineage) => isLineageAlive(lineage.pid));
+  }
+
+  const runArgv = argv.filter((token) => token !== '--stop');
+  const stopped = live.filter((lineage) => !survivors.includes(lineage));
+  for (const lineage of stopped) {
+    appendFanoutStatusLedger(ledgerPath, {
+      event: 'stopped',
+      status: 'stopped',
+      label: lineage.label,
+      pid: lineage.pid,
+      at: new Date().toISOString(),
+      rerun_command: rerunCommandFor(lineage.label, runArgv),
+    });
+  }
+  const brief = ({ label, pid }) => ({ label, pid });
+  return { stopped: stopped.map(brief), survivors: survivors.map(brief) };
 }
 
 function expectedLineageArtifactPaths(loopType, lineageDir) {
@@ -3765,6 +3907,14 @@ async function main() {
 
   const lineagesDir = path.join(baseArtifactDir, 'lineages');
   const ledgerPath = path.join(baseArtifactDir, 'orchestration-status.log');
+  // Placed before the live-lineage refusal, which throws in exactly the state a stop is for.
+  if (args.stop !== undefined) {
+    if (args.stop !== true) throw inputError('--stop takes no value');
+    const stopOutcome = await stopLiveFanoutRun(ledgerPath);
+    const stopExitCode = stopOutcome.survivors.length > 0 ? 2 : 0;
+    jsonOut({ status: stopExitCode === 0 ? 'ok' : 'partial', ...stopOutcome });
+    process.exit(stopExitCode);
+  }
   const summaryPath = path.join(baseArtifactDir, 'orchestration-summary.json');
   // This process appends to its own ledgers throughout every lineage's dispatch —
   // a heartbeat on a timer, plus each start and settle. They sit above every
@@ -4138,6 +4288,7 @@ async function main() {
   }
   const orphanedLineages = markOrphanedLineages(ledgerPath);
   const initialRetryCounts = readRetryCountsFromLedger(ledgerPath);
+  const rootLineageValues = readRootLineageValues(loopType, baseArtifactDir);
 
   const lineageSnapshots = new Map();
   const lineageSlotAccounting = new Map();
@@ -4654,6 +4805,9 @@ async function main() {
           containmentQuarantinePath = containment.quarantinePath;
         }
       }
+
+      // After the containment snapshot, so the runner's own write is never charged to the lane.
+      writeLineageValues(loopType, lineageDir, rootLineageValues);
 
       // Save subprocess stdout for salvage sweep (write failures in weak CLI executors).
       // An earlier attempt's log is kept beside this one, since it may be the only
