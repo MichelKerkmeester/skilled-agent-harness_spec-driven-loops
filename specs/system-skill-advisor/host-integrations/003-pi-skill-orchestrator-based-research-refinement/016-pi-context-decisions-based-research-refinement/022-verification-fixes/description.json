@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes",
+  "description": "Phase 22: verification-fixes",
+  "keywords": [
+    "phase",
+    "verification-fixes"
+  ],
+  "lastUpdated": "2026-11-20T16:06:27.327Z",
+  "specId": "022",
+  "folderSlug": "verification-fixes",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-11-26_17-06__verification-fixes-for-phase-022-the-epic.md"
+  ]
+}

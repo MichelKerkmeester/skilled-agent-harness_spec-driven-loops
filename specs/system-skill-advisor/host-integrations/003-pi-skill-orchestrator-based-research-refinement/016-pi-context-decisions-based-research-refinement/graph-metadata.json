@@ -24,7 +24,8 @@
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/018-ollama-lane-off-and-daemon-liveness",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/019-ollama-lane-honest-and-closeout",
     "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/020-review-p1-fixes",
-    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification"
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -205,7 +206,7 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-20T15:17:06.877Z",
+    "last_save_at": "2026-11-20T16:06:27.427Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +214,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:bf72f3a3d37d4d1e68b51a28427ee31575cfd707b89dfbcd317117f4027dd21a",
+    "source_fingerprint": "sha256:93a29816d1eea9f2726dc11f17ccbf80b31c3ede69f7db4ffb4d021c2dab802d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e4f1acce0762d48a6eee7ee19469895dc2068e03c1e67970767910df6d9df822",
+      "spec.md": "d9835315f7249913bb5e902b05b4118f913076d8687d02cb824c2e6cb2706ccf",
       "decision-record.md": "9efcaf1024dee7424460dd801bed42db50bebcdfaf89f1514231d5e91922ba16"
     },
-    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification",
-    "last_active_at": "2026-11-20T14:59:24.397Z"
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes",
+    "last_active_at": "2026-11-20T16:06:27.427Z"
   }
 }
