@@ -31,7 +31,7 @@ const FANOUT_FLAGS = [
   'specFolder', 'loopType', 'researchTopic', 'reviewFocus', 'reviewTarget', 'reviewTargetType', 'fanoutConfigJson', 'baseArtifactDir',
   'researchTopicFile', 'reviewFocusFile', 'reviewTargetFile', 'fanoutConfigJsonFile',
   'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'depthMode', 'containmentMode',
-  'noMetadataRefresh', 'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
+  'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
   'costUnitsPerIteration', 'estimatedTokensPerIteration', 'onlyLineage', 'preview',
 ];
@@ -3685,133 +3685,7 @@ function isDshBinaryAvailable(env = process.env) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. POST-RUN PACKET METADATA REFRESH
-// ─────────────────────────────────────────────────────────────────────────────
-
-// A run's artifacts only become retrievable once the owning packet's generated
-// metadata (description.json, graph-metadata.json) is refreshed; leaving that
-// to a manual backfill meant every autonomous run ended with stale retrieval
-// data. The refresh runs the spec-kit generators against the run's spec folder
-// after all lineages settle, and is strictly non-fatal: it never changes the
-// run's exit code, it only reports through the ledger and stderr.
-
-const SPEC_KIT_CLI_DIST_REL = path.join('.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist');
-
-/**
- * A research or review fan-out never refreshes the packet's metadata. Its lineages write only
- * under their own loop folder, and the refresh rewrites description.json and
- * graph-metadata.json outside it: a review holds its target read-only, and for research the
- * auto-extracted description replaced the curated one and dropped its trigger phrases.
- * `--no-metadata-refresh` still opts out for any other loop type.
- */
-function metadataRefreshRequested(args, loopType) {
-  if (ACTIVE_FANOUT_LOOP_TYPES.has(loopType)) return false;
-  return args.noMetadataRefresh !== true;
-}
-
-/**
- * The node invocations that refresh one packet's generated metadata, resolved
- * against `repoRoot`, or `commands: null` with the missing dist files listed
- * when the spec-kit CLI has not been built on this checkout.
- */
-/**
- * The canonical spelling of a generator's path, or the path unchanged when it has none.
- *
- * These generators do their work behind a guard comparing the script path they were invoked
- * with against the location they derive from their own module. Node canonicalizes the second
- * and not the first, so invoking one through any non-canonical path - a linked build directory,
- * or merely a root reached through a symlinked parent - makes the two disagree. The guard then
- * reads false, the work never runs, and the process still exits 0, which the caller records as
- * a successful refresh of metadata that was never written.
- *
- * Canonicalizing here makes the two agree. The generator still writes into the checkout it is
- * told about, because the root travels in the argument vector rather than in this path.
- */
-function canonicalGeneratorPath(generatorFile) {
-  try {
-    return fs.realpathSync(generatorFile);
-  } catch {
-    return generatorFile;
-  }
-}
-
-function buildMetadataRefreshCommands(specFolder, repoRoot, cliDistDirOverride) {
-  const distDir = cliDistDirOverride || path.join(repoRoot, SPEC_KIT_CLI_DIST_REL);
-  const planned = [
-    { file: canonicalGeneratorPath(path.join(distDir, 'spec-folder', 'generate-description.js')), args: [specFolder, repoRoot] },
-    { file: canonicalGeneratorPath(path.join(distDir, 'graph', 'backfill-graph-metadata.js')), args: [specFolder] },
-  ];
-  const missing = planned
-    .filter((generator) => !fs.existsSync(generator.file))
-    .map((generator) => generator.file);
-  return { commands: missing.length === 0 ? planned : null, missing };
-}
-
-function appendMetadataRefreshLedgerEvent(ledgerPath, entry) {
-  try {
-    appendFanoutStatusLedger(ledgerPath, entry);
-  } catch {
-    // Ledger availability must never make the refresh fatal.
-  }
-}
-
-function runPacketMetadataRefresh(input) {
-  const { specFolder, repoRoot, ledgerPath } = input;
-  const { commands, missing } = buildMetadataRefreshCommands(specFolder, repoRoot);
-
-  if (!commands) {
-    process.stderr.write(
-      `[fanout-run] metadata refresh skipped for ${specFolder}: spec-kit CLI dist missing (${missing.join(', ')}); run the spec-kit build to restore it\n`,
-    );
-    appendMetadataRefreshLedgerEvent(ledgerPath, {
-      event: 'metadata_refresh_skipped',
-      status: 'warning',
-      spec_folder: specFolder,
-      at: new Date().toISOString(),
-      missing,
-    });
-    return { skipped: true, reason: 'missing_dist', missing };
-  }
-
-  const outcomes = [];
-  for (const generator of commands) {
-    const at = new Date().toISOString();
-    let result = null;
-    let spawnError = null;
-    try {
-      result = spawnSync(process.execPath, [generator.file, ...generator.args], {
-        cwd: repoRoot,
-        encoding: 'utf8',
-      });
-    } catch (error) {
-      spawnError = error;
-    }
-    const generatorName = path.basename(generator.file);
-    const failed = spawnError !== null || !result || result.status !== 0;
-    const stderrLines = result && typeof result.stderr === 'string'
-      ? result.stderr.split('\n').map((line) => line.trim()).filter(Boolean)
-      : [];
-    appendMetadataRefreshLedgerEvent(ledgerPath, {
-      event: failed ? 'metadata_refresh_failed' : 'metadata_refresh_ok',
-      status: failed ? 'warning' : 'ok',
-      spec_folder: specFolder,
-      at,
-      generator: generatorName,
-      ...(failed
-        ? {
-            exit_code: result ? result.status : null,
-            spawn_error: spawnError ? String(spawnError.message || spawnError) : undefined,
-            stderr_tail: stderrLines.slice(-3).join(' | '),
-          }
-        : {}),
-    });
-    outcomes.push({ generator: generatorName, ok: !failed });
-  }
-  return { skipped: false, outcomes };
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 5. CORE LOGIC
+// 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -5031,18 +4905,6 @@ async function main() {
     ...finalSummary,
   });
 
-  // Every lineage has settled, so the owning packet's generated metadata can
-  // be refreshed against the artifacts this run just wrote. Never for a research or review
-  // fan-out, which keeps its writes inside its loop folder. Strictly non-fatal: the outcome is
-  // reported through the status ledger and never changes the exit code.
-  if (metadataRefreshRequested(args, loopType)) {
-    runPacketMetadataRefresh({
-      specFolder,
-      repoRoot: containmentRepoRoot,
-      ledgerPath,
-    });
-  }
-
   const exitCode = finalSummary.all_failed ? 3 : finalSummary.failed > 0 ? 2 : 0;
   jsonOut({ status: exitCode === 0 ? 'ok' : 'partial', run_id: runId, results, summary: finalSummary });
   process.exit(exitCode);
@@ -5135,6 +4997,4 @@ module.exports = {
   statusForLedgerEvent,
   updateLineageSnapshot,
   applyFlatPoolAssignmentGuard,
-  metadataRefreshRequested,
-  buildMetadataRefreshCommands,
 };

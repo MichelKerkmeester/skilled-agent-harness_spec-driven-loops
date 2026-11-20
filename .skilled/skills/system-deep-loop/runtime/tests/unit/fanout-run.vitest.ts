@@ -2133,7 +2133,6 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
       '--loop-type', 'research',
       '--fanout-config-json', fanoutConfig,
       '--base-artifact-dir', baseDir,
-      '--no-metadata-refresh',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
     expect(result.exitCode).toBe(0);
@@ -2166,7 +2165,6 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
       '--loop-type', 'research',
       '--fanout-config-json', fanoutConfig,
       '--base-artifact-dir', baseDir,
-      '--no-metadata-refresh',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}`, TMPDIR: tempRoot } });
 
     expect(result.exitCode).not.toBe(0);
@@ -2421,7 +2419,6 @@ describe('fanout-run.cjs — cli-mistral-vibe adapter', () => {
       '--loop-type', 'research',
       '--fanout-config-json', fanoutConfig,
       '--base-artifact-dir', baseDir,
-      '--no-metadata-refresh',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
     expect(result.exitCode).toBe(3);
@@ -2473,7 +2470,6 @@ describe('fanout-run.cjs — cli-mistral-vibe adapter', () => {
       '--loop-type', 'research',
       '--fanout-config-json', fanoutConfig,
       '--base-artifact-dir', baseDir,
-      '--no-metadata-refresh',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
     expect(result.exitCode).toBe(0);
@@ -3151,7 +3147,6 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
       const result = await rawSpawnCjs(fanoutRunScript, [
         '--spec-folder', specFolder, '--loop-type', 'research',
         '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
-        '--no-metadata-refresh',
       ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 60_000 });
 
       const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
@@ -3202,7 +3197,6 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     const result = await rawSpawnCjs(fanoutRunScript, [
       '--spec-folder', specFolder, '--loop-type', 'research',
       '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
-      '--no-metadata-refresh',
     ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 60_000 });
 
     const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
@@ -4587,7 +4581,6 @@ describe('fanout-run.cjs — a containment finding does not fail a lineage that 
         // The finding has to stay fatal for this case to study the driver's advisory-status
         // path, and under the default preserve remedy an untracked path is an advisory.
         '--containment-mode', 'restore',
-        '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env, timeoutMs: 20_000 },
     );
@@ -4672,7 +4665,6 @@ describe('fanout-run.cjs — an out-of-packet untracked write settles as an advi
         '--loop-type', 'research',
         '--fanout-config-json', fanoutConfig,
         '--base-artifact-dir', baseDir,
-        '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env, timeoutMs: 20_000 },
     );
@@ -4758,7 +4750,6 @@ describe('fanout-run.cjs — a concurrent operator edit is reported as contested
         '--loop-type', 'research',
         '--fanout-config-json', fanoutConfig,
         '--base-artifact-dir', baseDir,
-        '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env, timeoutMs: 30_000 },
     );
@@ -4867,7 +4858,6 @@ describe('fanout-run.cjs — containment mode is an explicit opt-in', () => {
           '--loop-type', 'research',
           '--fanout-config-json', fanoutConfig,
           '--base-artifact-dir', baseDir,
-          '--no-metadata-refresh',
           ...extraArgs,
         ],
         { cwd: repoRoot, env, timeoutMs: 20_000 },
@@ -4970,7 +4960,6 @@ describe('fanout-run.cjs — containment runs for failed lanes', () => {
         // 'restore' makes an untracked stray path outside the packet a fatal finding rather
         // than a preserve advisory, so the ledger event under test is the violation one.
         '--containment-mode', 'restore',
-        '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env, timeoutMs: 20_000 },
     );
@@ -5127,7 +5116,6 @@ describe('fanout-run.cjs — shared-checkout churn forces preserve', () => {
         '--loop-type', 'research',
         '--fanout-config-json', fanoutConfig,
         '--base-artifact-dir', baseDir,
-        '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env, timeoutMs: 30_000 },
     );
@@ -6053,7 +6041,6 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
           '--loop-type', 'research',
           '--fanout-config-json', fanoutConfig,
           '--base-artifact-dir', baseDir,
-          '--no-metadata-refresh',
         ],
         { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
       );
@@ -6318,96 +6305,31 @@ describe('fanout-run.cjs — cli-claude-code configDir env', () => {
   });
 });
 
-describe('fanout-run.cjs — post-run packet metadata refresh', () => {
-  const { metadataRefreshRequested, buildMetadataRefreshCommands } = requireCjs(fanoutRunScript) as {
-    metadataRefreshRequested: (args: Record<string, unknown>, loopType?: string) => boolean;
-    buildMetadataRefreshCommands: (
-      specFolder: string,
-      repoRoot: string,
-      cliDistDirOverride?: string,
-    ) => { commands: Array<{ file: string; args: string[] }> | null; missing: string[] };
-  };
-
-  it('defaults on and is disabled only by --no-metadata-refresh', () => {
-    expect(metadataRefreshRequested({})).toBe(true);
-    expect(metadataRefreshRequested({ specFolder: 'specs/x' })).toBe(true);
-    expect(metadataRefreshRequested({ noMetadataRefresh: true })).toBe(false);
+describe('fanout-run.cjs — no packet metadata refresh', () => {
+  it('refuses the retired metadata-refresh opt-out as an unknown flag', async () => {
+    const hermetic = useHermeticEnv('metadata-refresh-retired');
+    const specFolder = 'specs/test-fanout-metadata-refresh-retired';
+    const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+    const fanoutConfig = JSON.stringify({
+      executors: [
+        { label: 'seat-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 },
+        { label: 'seat-b', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 },
+      ],
+      concurrency: 1,
+    });
+    const result = await rawSpawnCjs(fanoutRunScript, [
+      '--spec-folder', specFolder, '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
+      '--no-metadata-refresh',
+    ], { cwd: hermetic.tmpDir, env: hermetic.env, timeoutMs: 30_000 });
+    expect(result.exitCode).toBe(3);
+    expect(result.stdout).toContain('Unknown option: --no-metadata-refresh');
   });
 
-  it('never refreshes the packet a research fan-out settles into, since its lineages write only under research', () => {
-    expect(metadataRefreshRequested({}, 'research')).toBe(false);
-    expect(metadataRefreshRequested({ specFolder: 'specs/x' }, 'research')).toBe(false);
-  });
-
-  it('never refreshes the packet a review run reads, since a review leaves its target untouched', () => {
-    expect(metadataRefreshRequested({}, 'review')).toBe(false);
-    expect(metadataRefreshRequested({ specFolder: 'specs/x' }, 'review')).toBe(false);
-  });
-
-  it('builds the refresh command list for the run\'s spec folder against the repo root', () => {
-    const distDir = makeTempDir('fanout-metadata-dist-');
-    mkdirSync(join(distDir, 'spec-folder'), { recursive: true });
-    mkdirSync(join(distDir, 'graph'), { recursive: true });
-    writeFileSync(join(distDir, 'spec-folder', 'generate-description.js'), '// stub\n');
-    writeFileSync(join(distDir, 'graph', 'backfill-graph-metadata.js'), '// stub\n');
-
-    const repoRoot = makeTempDir('fanout-metadata-repo-');
-    const specFolder = 'specs/system-speckit/056-fixture';
-    const plan = buildMetadataRefreshCommands(specFolder, repoRoot, distDir);
-
-    expect(plan.commands).toHaveLength(2);
-    const [description, backfill] = plan.commands ?? [];
-    // Canonical, because that is what the generators' own entry-point guard compares against.
-    expect(description.file).toBe(realpathSync(join(distDir, 'spec-folder', 'generate-description.js')));
-    expect(description.args).toEqual([specFolder, repoRoot]);
-    expect(backfill.file).toBe(realpathSync(join(distDir, 'graph', 'backfill-graph-metadata.js')));
-    expect(backfill.args).toEqual([specFolder]);
-  });
-
-  it('canonicalizes the generator path, so a build reached through a link still runs', () => {
-    const realDist = makeTempDir('fanout-metadata-realdist-');
-    mkdirSync(join(realDist, 'spec-folder'), { recursive: true });
-    mkdirSync(join(realDist, 'graph'), { recursive: true });
-    writeFileSync(join(realDist, 'spec-folder', 'generate-description.js'), '// stub\n');
-    writeFileSync(join(realDist, 'graph', 'backfill-graph-metadata.js'), '// stub\n');
-
-    // A checkout that shares another's build directory rather than holding its own. Invoked by
-    // the linked spelling, these generators decide they are not the entry point and exit 0
-    // without doing anything, which is indistinguishable from success at the call site.
-    const linkedRoot = makeTempDir('fanout-metadata-linked-');
-    const linkedDist = join(linkedRoot, 'dist-link');
-    symlinkSync(realDist, linkedDist, 'dir');
-
-    const plan = buildMetadataRefreshCommands('specs/pkg', linkedRoot, linkedDist);
-    expect(plan.commands).toHaveLength(2);
-    expect(plan.commands?.[0]?.file).toBe(realpathSync(join(realDist, 'spec-folder', 'generate-description.js')));
-    expect(plan.commands?.[0]?.file.startsWith(linkedDist)).toBe(false);
-    // The checkout to act on travels in the arguments, so canonicalizing the script path
-    // cannot redirect the write to the checkout that owns the build.
-    expect(plan.commands?.[0]?.args).toEqual(['specs/pkg', linkedRoot]);
-  });
-
-  it('resolves the generator dist paths from the repo root when no override is given', () => {
-    const repoRoot = makeTempDir('fanout-metadata-repo2-');
-    const distDir = join(repoRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'dist');
-    mkdirSync(join(distDir, 'spec-folder'), { recursive: true });
-    mkdirSync(join(distDir, 'graph'), { recursive: true });
-    writeFileSync(join(distDir, 'spec-folder', 'generate-description.js'), '// stub\n');
-    writeFileSync(join(distDir, 'graph', 'backfill-graph-metadata.js'), '// stub\n');
-
-    const plan = buildMetadataRefreshCommands('specs/pkg', repoRoot);
-    expect(plan.commands).not.toBeNull();
-    expect(plan.commands?.[0]?.file).toBe(realpathSync(join(distDir, 'spec-folder', 'generate-description.js')));
-  });
-
-  it('reports the missing dist files instead of building commands when the CLI is unbuilt', () => {
-    const emptyDist = makeTempDir('fanout-metadata-missing-');
-    const plan = buildMetadataRefreshCommands('specs/pkg', makeTempDir('fanout-metadata-repo3-'), emptyDist);
-    expect(plan.commands).toBeNull();
-    expect(plan.missing).toEqual([
-      join(emptyDist, 'spec-folder', 'generate-description.js'),
-      join(emptyDist, 'graph', 'backfill-graph-metadata.js'),
-    ]);
+  it('exports no metadata refresh path', () => {
+    const exported = requireCjs(fanoutRunScript) as Record<string, unknown>;
+    expect(exported.metadataRefreshRequested).toBeUndefined();
+    expect(exported.buildMetadataRefreshCommands).toBeUndefined();
   });
 });
 
@@ -6505,7 +6427,6 @@ describe('fanout-run.cjs — a containment snapshot that loses to index.lock is 
         '--loop-type', 'research',
         '--fanout-config-json', fanoutConfig,
         '--base-artifact-dir', baseDir,
-        '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env, timeoutMs: 30_000 },
     );
@@ -6578,7 +6499,6 @@ describe('fanout-run.cjs — a fulfilled lane whose deltas carry findings but wh
         '--loop-type', 'research',
         '--fanout-config-json', fanoutConfig,
         '--base-artifact-dir', baseDir,
-        '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env: envWithBin(hermetic, binDir), timeoutMs: 20_000 },
     );
@@ -6652,7 +6572,6 @@ describe('fanout-run.cjs — the empty-registry advisory reads the registry shap
         '--loop-type', 'review',
         '--fanout-config-json', fanoutConfig,
         '--base-artifact-dir', baseDir,
-        '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env: envWithBin(hermetic, binDir), timeoutMs: 20_000 },
     );
@@ -6717,7 +6636,6 @@ describe('fanout-run.cjs — the empty-registry advisory reads the registry shap
         '--loop-type', 'research',
         '--fanout-config-json', fanoutConfig,
         '--base-artifact-dir', baseDir,
-        '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env: envWithBin(hermetic, binDir), timeoutMs: 20_000 },
     );
@@ -6993,7 +6911,6 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       '--fanout-config-json', fanoutConfig,
       '--base-artifact-dir', baseDir,
       '--research-topic', 'Topic',
-      '--no-metadata-refresh',
       '--depth-mode', 'expansive',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
@@ -7033,7 +6950,6 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       '--fanout-config-json', fanoutConfig,
       '--base-artifact-dir', baseDir,
       '--research-topic', 'Topic',
-      '--no-metadata-refresh',
       '--depth-mode', 'default',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
@@ -7185,7 +7101,6 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       '--fanout-config-json', fanoutConfig,
       '--base-artifact-dir', baseDir,
       '--research-topic-file', topicFile,
-      '--no-metadata-refresh',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
     const prompt = readFileSync(join(baseDir, 'lineages', 'vibe-topic', 'vibe-prompt.txt'), 'utf8');
@@ -7210,7 +7125,6 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       '--fanout-config-json', fanoutConfig,
       '--base-artifact-dir', baseDir,
       '--research-topic-file', topicFile,
-      '--no-metadata-refresh',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
     const prompt = readFileSync(join(baseDir, 'lineages', 'vibe-forge', 'vibe-prompt.txt'), 'utf8');
@@ -7244,7 +7158,6 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       '--base-artifact-dir', baseDir,
       '--review-focus-file', focusFile,
       '--review-target-file', targetFile,
-      '--no-metadata-refresh',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
     const prompt = readFileSync(join(baseDir, 'lineages', 'vibe-review', 'vibe-prompt.txt'), 'utf8');
@@ -7263,7 +7176,6 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       '--base-artifact-dir', makeTempDir('fanout-run-topic-both-base-'),
       '--research-topic', 'inline',
       '--research-topic-file', topicFile,
-      '--no-metadata-refresh',
     ]);
 
     expect(result.exitCode).toBe(3);
@@ -7287,7 +7199,6 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       '--fanout-config-json-file', configFile,
       '--base-artifact-dir', baseDir,
       '--research-topic', 'config from a file',
-      '--no-metadata-refresh',
       '--only-lineage', 'vibe-config',
     ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
 
@@ -7307,7 +7218,6 @@ describe('fanout-run.cjs — expansive depth frontier', () => {
       '--fanout-config-json-file', configFile,
       '--base-artifact-dir', makeTempDir('fanout-run-config-both-base-'),
       '--research-topic', 'inline',
-      '--no-metadata-refresh',
     ]);
 
     expect(result.exitCode).toBe(3);
