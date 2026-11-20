@@ -1,17 +1,25 @@
-# Iteration 9 - F-1-007 traceability: pivot retry, continuity and quality class against the packet
+# Review Iteration 009
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-007, dimension traceability. Node scope: the pivot library and mode scripts, `continuity-thread.cjs` and `runtime/lib/coverage-graph`, with packet docs, catalogs and playbooks as evidence.
-- Operator review focus covered in this iteration: overengineering (one rule restated across catalog, playbook and reference), operator UX (pivot refusal and retry text), cross-CLI/OS parity (the pivot path and event contract shared by both loops).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 9 of 24
+- Focus: **Frontier node F-1-006: traceability**
+- Dimension: traceability
+- Frontier node: F-1-006 (depth 1 of 3), scope `.skilled/commands/deep`, `.skilled/skills/system-deep-loop/deep-review/references`, `.skilled/skills/system-deep-loop/deep-research/references`, `.skilled/skills/system-deep-loop/runtime/feature-catalog`
+- Convergence before dispatch: `CONTINUE` / `noStopCandidate`, stuck 1, consecutive failures 0.
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, both compiled contracts, `runtime/feature-catalog/feature-catalog.md`, both manual-testing playbook indexes.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts`, `deep-review/scripts/divergent-review-pivot.ts`, `deep-research/scripts/divergent-research-pivot.ts` -- the requirement surfaces for this node.
-- `.skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md` and `loop-lifecycle/expansive-depth-mode.md` -- the retry and pivot claims.
-- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph/source-quality-class-derivation.md` and `council/divergent-council-quorum-retry.md` -- the DLR-061 and DLR-062 scenarios.
-- Traceability sources: `012-pivot-hygiene` REQ-001..REQ-009, `010-research-frontier-mode` REQ-005/REQ-008, `007-source-diversity-quality-class` REQ-001..REQ-007.
+- `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown:1-90` (header, 15 source digests)
+- `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:1-90` (header, 16 source digests)
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md:56,608,672,784,804` (index entries for the changed catalog files)
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:717,990` (DLR-025 entry)
+- `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:523,888` (DRV-018 entry)
+- `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-quality-guards-block-premature-stop.md`
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md`
 
 ## Findings - New
 
@@ -25,48 +33,53 @@ None.
 
 ### P2 Findings
 
-None.
+None. This pass produced no new finding.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | `012` REQ-001..REQ-009 match the pivot code, the retry event and the scoped seat count; `010` REQ-005/REQ-008 match the close rule and band budget; `007` REQ-001..REQ-007 match the classifier, the constant and the signal. The iteration 3 REQ-007 admission claim remains the only partial. |
-| `checklist_evidence` | partial | The 012 retry, agreement and seat-scope cases exist by name; the 007 eight-class and signal cases exist; AC-008 remains outstanding. |
-| `feature_catalog_code` | partial | The pivot section states "an accepted candidate becomes the next review direction through `restoredFocus`. The pivot writes no frontier node." That matches the code and confirms R3-P1-001 is a packet-text defect. The expansive-depth page's produced-evidence sentence remains the R2-P1-001 doc side. |
-| `playbook_capability` | pass | DLR-061 names the path-first classifier, the eight classes, the unclassified parity pin and the signal threshold; DLR-062 names the retry scenario. Both match the code and the tests they cite. |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | pass | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown:1-90`, `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:1-90` | Every source digest in both compiled contracts resolves to the current bytes of the file it names: 15 of 15 for review, 16 of 16 for research, zero mismatches. |
+| `checklist_evidence` | notApplicable | - | No spec checklist for a commit-range target. |
+| `skill_agent` | notApplicable | - | No agent definition in the range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in the range. |
+| `feature_catalog_code` | pass | `.skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md:56,608,672,784,804` | Every catalog file the range touched is linked from the index, and each link resolves to an existing file. |
+| `playbook_capability` | pass | `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:990`, `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:888` | Both playbooks the range touched are indexed (DLR-025, DRV-018) and the index links resolve. |
 
 ## Integration Evidence
 
-- `.skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:44` is the shipped-behavior sentence that contradicts AC-008 and agrees with `deep-review.yaml:1429`.
-- `.skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md:22` states the sixth frontier-revisit source, the one-time quorum retry and the six-output ceiling, which match `divergent-pivot.ts:1507-1540` and `:1589`.
-- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph/source-quality-class-derivation.md:30-65` cites the classifier order and the signal cases; the order matches `upsert.cjs:343-351`.
-- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md` covers the one-time retry the pivot branch implements.
+- `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` carries `sourceDigests` for `review.md`, `deep-review-presentation.txt`, `deep-review.yaml`, `deep-review/references/protocol/loop-protocol.md`, `deep-review/references/convergence/convergence.md` and ten more; all fifteen hashes match the current files, so the compiled body is not stale relative to its sources.
+- `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown` carries sixteen digests and all sixteen match, so the research contract was regenerated with its sources in the same commit.
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md:56,608,672,784,804` links `executor-config.md`, `convergence-script.md`, `append-mode-event-script.md`, `fanout-run.md` and `fanout-salvage.md`, the five catalog files the range edited.
 
 ## Edge Cases
 
-- The command presentation's `--depth-mode` flag row is a single contract paragraph that restates the reference; that operator-UX cost belongs to the command-presentation node outside this lineage's partition (F-1-002/F-1-004), so it is recorded here as a deferred observation rather than a finding.
-- The catalog's pivot sentence and AC-008 cannot both be true; the code and catalog agree, so R3-P1-001's remediation is an AC/plan amendment unless the operator chooses the admission behavior.
-- The quality-class playbook does not address a Windows path shape; that is the R5-P2-001 advisory's documentation side.
+- **Digest match proves freshness, not correctness.** A regenerated contract whose body restates a stale claim would still match its sources. The body was compared claim-by-claim in iterations 3 and 6, so this pass adds the freshness proof those passes could not.
+- **The playbook index names feature files, not scenario files.** DLR-025 and DRV-018 resolve to the feature catalog, and each row also links its scenario file; both scenario files exist.
+- **A clean pass does not prove absence.** This pass checked cross-reference integrity only; it did not re-read every reference paragraph, which iterations 3 and 6 did.
 
 ## Confirmed-Clean Surfaces
 
-- Every 012 requirement resolves to a named test or a matching branch, including the attempt-scoped ids and the one-time retry.
-- The 007 classifier order, the frozen vocabulary and the unclassified exclusion each have a playbook case and an integration case.
-- The catalogs' retry and revisit claims match the code and the YAML gate.
-- Both loop-specific pivot scripts derive the same identity and count only their own pivot's seat returns.
+- **Compiled review contract.** Fifteen source digests, zero mismatches.
+- **Compiled research contract.** Sixteen source digests, zero mismatches.
+- **Feature catalog index.** All five changed catalog files are linked and resolvable.
+- **Playbook indexes.** Both changed playbooks are indexed and their scenario files exist.
 
 ## Ruled Out
 
-- A new catalog finding for the pivot sentence: it matches the code and is the evidence that R3-P1-001 is stale packet text.
-- A Windows path finding for the playbook: the code advisory R5-P2-001 already carries it; the playbook omission is its doc side.
-- A retry-parity finding between the two loops: both YAMLs and both scripts carry the same one-time rule.
+- **A stale compiled contract.** Ruled out by digest comparison against the current file bytes.
+- **An orphaned catalog file.** Ruled out: every changed catalog file is linked from the index.
+- **An unindexed playbook.** Ruled out: DLR-025 and DRV-018 both resolve.
 
 ## Next Focus
 
-- Dimension: maintainability on F-1-003 (fan-out runner and merge clarity, duplication and change cost).
-- Reason: traceability is covered on all three nodes; maintainability is the last dimension and the fan-out merge carries the most cross-consumer machinery.
-- Required evidence: the merge's repeated rollup helpers, the prompt builders' duplicated pre-bound blocks, and the dashboards/report text the merge emits.
-- Rotation status: correctness, security and traceability covered on all nodes; maintainability uncovered on all three.
+- Dimension: maintainability
+- Frontier node: F-1-002 (active; the reducer's breadth-first rule selects the shallowest node with the fewest visits)
+- Focus area: the executor config and fan-out builder for maintainability: duplicated per-kind literals that must stay in sync (model allowlists, provider maps, default models), comment accuracy after the range's edits, and whether the capability record's hand-maintained duplication is bounded.
+- Reason: F-1-006 traceability is clean; all three depth-1 nodes have three dimensions covered, and maintainability is the last canonical dimension before the depth-2 child.
+- Rotation status: F-1-006 correctness, security and traceability covered; F-1-002 maintainability next.
+- Blocked/productive carry-forward: productive (digest comparison is a cheap, decisive freshness check); no blocked approaches.
+- Required evidence: `executor-config.ts` allowlists and their `fanout-run.cjs` mirrors, and the comment blocks the range rewrote.
+- Recovery note: stuck count is 1; a second no-progress pass on this node may enter stuck recovery and close it as exhausted. That is a legal path.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

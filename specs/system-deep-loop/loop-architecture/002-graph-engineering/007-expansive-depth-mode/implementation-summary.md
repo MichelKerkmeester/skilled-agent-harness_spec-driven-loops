@@ -19,7 +19,7 @@ _memory:
       - "research/resource-map.md"
       - "spec.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:2088c1e4437f3061bd63975059960c6ebb10e14588be75e53898d13f9a592446"
       session_id: "scaffold-007-expansive-depth-mode"
       parent_session_id: null
     completion_pct: 0

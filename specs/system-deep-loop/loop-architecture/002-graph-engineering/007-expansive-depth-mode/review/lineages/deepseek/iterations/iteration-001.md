@@ -1,19 +1,27 @@
-# Iteration 1 - F-1-003 correctness: fan-out frontier partition, lineage prompt and merged coverage
+# Review Iteration 001
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-003, dimension correctness. Node scope: `fanout-run.cjs`, `fanout-merge.cjs` and their unit suites.
-- Operator review focus covered in this iteration: overengineering (duplicated traceability arithmetic), operator UX (a leaf contract that names a block the detached prompt never renders) and cross-CLI/OS parity (locale-dependent node ordering).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 1 of 24
+- Focus: **Frontier node F-1-002: correctness**
+- Dimension: correctness
+- Frontier node: F-1-002 (depth 1 of 3), scope `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`, `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`, `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, the three node files, `executor-adapter-capabilities.vitest.ts`, `dispatch-iteration.cjs`, `deep-review/references/protocol/loop-protocol.md` (opencode paragraph).
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` -- partition, per-lineage budget, lineage store, lineage prompt and the pass-through of `depthMode`.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` -- merged coverage surfaces, merged review frontier and the partition guard.
-- `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl` -- `{frontier_block}` placement.
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` -- traceability rollup the merge copies.
-- `.skilled/commands/deep/assets/deep-review.yaml` -- `step_fanout_spawn`, `step_frontier_seed`, `step_findings` claims.
-- Traceability sources: `specs/.../007-expansive-depth-mode/009-fanout-review-coverage-merge/plan.md` section 3 and `011-review-frontier-mode/spec.md` REQ-008, REQ-019.
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112-307` (flag support, adapter capability record, preventive-sandbox record)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2809-2840` (`emittedPermissionMode`, `sandboxEnforcementFor`, `finalizeLineageCommand`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2870-3048` (codex, claude, opencode builders)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3392-3448` (pi builder)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3560-3626` (dsh builder)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4142-4188` (sandbox default resolution for a lineage)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4532-4620` (dispatch env assembly)
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1404-1425` (`DISPATCH_ENV_KEYS`, `assertDispatchEnvAllowed`)
+- `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:439-523,761-792` (single-executor opencode dispatch env)
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-adapter-capabilities.vitest.ts:212-348` (conformance test)
 
 ## Findings - New
 
@@ -27,65 +35,64 @@ None.
 
 ### P2 Findings
 
-1. **Detached lineage contract names a FRONTIER block the CLI prompt never renders** -- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1791 -- The leaf contract tells a CLI lineage to work "one node and its next uncovered dimension per iteration as the FRONTIER block names it" and caps proposals by "the slots its FRONTIER block allows", but `buildLoopPrompt` only binds `frontier_scope: F-1-003, F-1-005, F-1-007` and never interpolates `{frontier_block}` (the placeholder lives in `prompt-pack-iteration.md.tmpl:28`, which detached lineages do not receive per iteration). The leaf therefore has no per-iteration node, no dimension steering and no proposal-slot count. The code's own comment at `fanout-run.cjs:415` says review nodes "reach the leaf through the FRONTIER block", which is true only for the native prompt path.
-Finding class: class-of-bug
-Scope proof: `grep -n "frontier_block" .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl` returns the template placeholder, while `grep -n "frontier_block" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` returns no interpolation; the detached prompt lines are the only frontier steering a CLI leaf receives.
-Affected surface hints: ["fanout-run.cjs buildLoopPrompt", "prompt-pack-iteration.md.tmpl", "deep-review leaf contract"]
-Case: a CLI lineage reads its contract, looks for the FRONTIER block that is supposed to name the active node and dimension, finds none, and must guess whether to start at F-1-003 or F-1-005 and whether it may emit proposals at all.
+1. **dsh `danger-full-access` is narrowed to `workspace-write` while provenance records the requested mode and `none` enforcement** -- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3605` -- The dsh builder maps every non-`read-only` mode onto `--permission-mode workspace-write`, so a lineage that asked for `danger-full-access` runs confined to the workspace. `finalizeLineageCommand` then records `sandboxMode: "danger-full-access"` from the request and, because `sandboxEnforcementFor` treats `danger-full-access` as unconfined (`fanout-run.cjs:2821-2824`), records `sandboxEnforcement: "none"`. The emitted argv and the recorded provenance therefore disagree in both directions: the child is more confined than requested, and the record claims less confinement than the child has. `EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY['cli-deepseek-harness']` is `true` (`executor-config.ts:305`), which is the record the label contradicts.
+   - Finding class: class-of-bug
+   - Scope proof: `rg -n "permission-mode" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` shows one dsh emission site (3605) and one claude emission site (2919); the dsh collapse exists only at 3605. `rg -n "sandboxEnforcementFor" ...` shows the single label site (2819-2825). The conformance test that is supposed to catch drift (`executor-adapter-capabilities.vitest.ts:308-312`) asserts only that `read-only` differs from `danger-full-access`, so the `workspace-write` == `danger-full-access` collapse is invisible to it.
+   - Affected surface hints: ["dsh command builder", "sandboxEnforcementFor", "invocation-metadata effectiveConfig", "executor adapter conformance test"]
+   - Case: an `--executors` matrix row sets `sandboxMode: "danger-full-access"` for a `cli-deepseek-harness` lineage. The child runs under `--permission-mode workspace-write` with `--approval-policy never`, while `invocation-metadata.json` reports `sandboxMode: "danger-full-access"` and `sandboxEnforcement: "none"`. An operator or the merge reading that record concludes the lineage ran unconfined when it did not, and a lineage that needs to write outside the workspace fails with no recorded reason.
 
-2. **Frontier partition order depends on locale collation while the merge orders by code unit** -- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:357 -- `partitionFrontierNodes` sorts dealt nodes with `left.nodeId.localeCompare(right.nodeId)`, whose result depends on the host locale and ICU build. The merge and reducer compare the same ids with code-unit ordering (`fanout-merge.cjs:928` `compareText`, used for every merged list). The assignment of a node to a lineage is therefore reproducible only on a host with the same collation; two hosts can deal the same seed differently while the recorded partition keeps the merge self-consistent, so the drift surfaces as a different distribution rather than an error.
-Finding class: class-of-bug
-Scope proof: the only ordering call in the partition path is `localeCompare` at `fanout-run.cjs:357`; every other node-id sort in the range (`fanout-merge.cjs:928-936`, `frontier-admit.cjs` store ordering) uses code-unit comparison.
-Affected surface hints: ["fanout-run.cjs partitionFrontierNodes", "fanout-merge.cjs compareText", "orchestration-summary frontier_partition"]
-Case: the same seed is replayed on a host whose `LANG` collation orders `F-1-003` and `F-1-005` differently, and the same two lineages receive opposite shares even though nothing in the config changed.
-
-3. **A single lineage that omits graphCoverageMode erases the mode the others agree on** -- .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1003 -- `mergeSearchCoverage` collects `coverage.graphCoverageMode ?? null` and keeps a mode only when `modes.length === 1`. A lineage that ran graphless and recorded `graphless_fallback`, plus a lineage that recorded `graph`, merge to `null`; a lineage that predates the field (absent, mapped to `null`) has the same effect. The merged registry then claims no coverage mode at all, which is weaker than both inputs and hides a real disagreement from the report's coverage section.
-Finding class: class-of-bug
-Scope proof: `mergeSearchCoverage` is the only producer of the merged mode (`fanout-merge.cjs:999-1009`); `grep -n "graphCoverageMode" .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` shows the single write, and no test asserts the absent-versus-disagreeing distinction.
-Affected surface hints: ["fanout-merge.cjs mergeSearchCoverage", "merged review-report searchCoverage section"]
-Case: lineage A records `graphCoverageMode: "graph"` and lineage B never writes the key; the merged report renders no mode, so a reader cannot tell that B ran without a graph.
-
-4. **The merge re-implements the reducer's traceability summary arithmetic** -- .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:982 -- `mergeTraceability` recomputes `required`, `executed`, `pass`, `partial`, `fail`, `blocked`, `notApplicable` and `gatingFailures` from merged results with an eight-line block that duplicates `reduce-state.cjs:1652-1665` verbatim, including the `gateClass === 'hard'` predicate. Two copies of one counting rule drift the moment either side adds a status or a gate class; the merged registry is exactly the surface a release report reads.
-Finding class: instance-only
-Scope proof: the two blocks are textually identical apart from the undecided-set constant name (`TRACEABILITY_UNDECIDED` versus `TRACEABILITY_UNDECIDED_STATUSES`); `reduce-state.cjs` exports `buildTraceabilityRollup`, so the merge could call it instead of copying it.
-Affected surface hints: ["fanout-merge.cjs mergeTraceability", "reduce-state.cjs buildTraceabilityRollup"]
-Case: a future status is added to `TRACEABILITY_UNDECIDED_STATUSES` only; the reducer stops counting it as executed while the merge keeps counting it, and the same run reports two different executed totals.
+2. **The `auto-approve-flag` sandbox surface now describes a flag that is no longer mode-discriminating** -- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-170` -- The `ExecutorSandboxSurface` doc defines `auto-approve-flag` as "an auto-approve flag that only the unconfined mode turns on". This range moved `--auto` into the unconditional argv of the opencode builder (`fanout-run.cjs:3010-3019`), so `workspace-write` now carries `--auto` as well, and the record still labels the surface `auto-approve-flag` (`executor-config.ts:246-252`). A reader who uses the union's doc to infer that `--auto` implies `danger-full-access` gets the wrong answer for every opencode lineage.
+   - Finding class: instance-only
+   - Scope proof: `rg -n "\-\-auto" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` shows a single push site reached by both write modes; `rg -n "auto-approve-flag" .skilled/` shows the union member and its one record row only, so no other kind depends on the old meaning.
+   - Affected surface hints: ["ExecutorSandboxSurface doc", "cli-opencode capability record", "opencode command builder"]
+   - Case: a maintainer reads `ExecutorSandboxSurface` to decide whether an `--auto` in a captured argv proves the lineage ran unconfined. Under `workspace-write` the argv also contains `--auto`, so the inference is wrong and the reader either over-trusts or over-fears the flag depending on the direction they read it.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | 009 `plan.md` section 3 lists the six merge rules and the code matches each: dimension OR (`fanout-merge.cjs:946`), strongest-restriction traceability (`:966`), sorted-union search coverage (`:999`), per-bug-class candidate merge (`:1014`), per-lineage divergence (`:1039`), lineage-qualified ruled-out rows (`:1047`). 011 REQ-008's round-robin partition, `frontier_scope:` binding and `frontier_partition` summary are present (`fanout-run.cjs:347`, `:1826`, `:3896`); REQ-019's per-share budget with D 4 and the 12/7 floors is implemented (`:378`, `:381`). |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | partial | `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:294` | The protocol's opencode paragraph matches the builder: `--auto` always, inline `external_directory` deny under `workspace-write`, read-only refused. No drift found in that paragraph. The dsh sandbox paragraph was not located in this iteration, so the protocol is recorded `partial` rather than `pass`. |
+| `checklist_evidence` | notApplicable | - | The review target is a commit range of implementation, docs and tests, not a spec packet with a checklist. Recorded `notApplicable` with `applicable: false`. |
+| `skill_agent` | notApplicable | - | No agent definition is in the commit range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror is in the commit range. |
+| `feature_catalog_code` | pending | - | The runtime feature catalog is in scope (`runtime/feature-catalog/executor/executor-config.md`) but belongs to node F-1-006, not this node. Deferred there rather than recorded as run. |
+| `playbook_capability` | pending | - | Manual-testing playbooks are in scope but belong to F-1-006. Deferred there. |
 
 ## Integration Evidence
 
-- `.skilled/commands/deep/assets/deep-review.yaml:363-416` (`step_fanout_spawn`) passes `--review-focus-file`, `--review-target-file`, `--fanout-config-json-file` and `--depth-mode`, which are the flags this iteration read.
-- `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl:28` owns `{frontier_block}` for the native per-iteration prompt; the detached CLI lineage prompt is built by `fanout-run.cjs:1791` and carries no such block.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:928` (`compareText`) is the ordering helper the merged lists use.
+- `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:504-523,761-792` forwards `buildLineageCommand`'s `env` as `dispatchEnv`, and `executor-audit.ts:1413` admits `OPENCODE_CONFIG_CONTENT` for `cli-opencode`, so the workspace-write deny reaches the child in the single-executor path as well as the fan-out path (`fanout-run.cjs:4532,4580`). Verified as a matched pair, not assumed.
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2642` merges the built command's env over the dispatch env only when `cwd` is set; the opencode builder always sets `cwd` (`fanout-run.cjs:3036`), so the deny is not dropped by the spawn path.
 
 ## Edge Cases
 
-- The fan-out config labels are unique per run, so the partition map cannot collide on a label; the round-robin index still depends on the order of `expandedLineages`, which follows the config's executor order.
-- A lineage dealt no node is accepted by design (the runner warns and runs it at the loop default); this iteration did not treat that as a defect.
-- The review target is a commit range, so `partitionFrontierNodes` reads the seeded store rather than the diff; an empty store yields an empty partition and no `frontier_scope` line, which the runner tolerates.
+- **Commit-range target.** `reviewScopeFiles` is the 88-file `git diff --name-only` list, not a glob expansion; `frontier-admit.cjs scope` confirmed 88 touched files. Files deleted by the range have nothing to review and were not counted.
+- **`danger-full-access` for dsh may be intentional narrowing.** The builder comment does not say so, and no test asserts it. Recorded as a provenance mismatch (P2) rather than a security regression, because the narrowing is fail-safe.
+- **`sandboxEnforcementFor`'s `confines` heuristic is shared.** The same expression decides `preventive` for codex, claude, cursor and dsh. Only dsh can emit a mode other than the requested one, so the heuristic is correct for the other kinds; the finding is scoped to dsh rather than to the helper.
 
 ## Confirmed-Clean Surfaces
 
-- `expansiveLineageBudgets` keeps an explicit matrix `iterations` value (`Number.isInteger` is safe because `executor-config.ts:865` validates `z.number().int().positive().nullable()`), and it uses the documented D 4 and 12/7 floors.
-- `writeLineageFrontierStore` refuses to overwrite an existing store, so a resumed lineage keeps the nodes it already closed, and a review lineage correctly gets no inbox.
-- `mergeResearchFrontier` qualifies child ids with the lineage label, so two lineages' `F-2-002` children cannot collide, and the guard compares only the globally unique depth-1 ids.
+- **codex sandbox argv.** `fanout-run.cjs:2891` passes `--sandbox <resolvedSandbox>` verbatim, and the capability record's `sandbox-flag`/preventive `true` pair matches it.
+- **pi read-only allowlist.** `fanout-run.cjs:3418-3420` adds `--tools read,grep,find,ls --no-extensions --no-skills --no-prompt-templates` only for `read-only`, and `compensatingControl` is derived from that same argv, so the label cannot drift from the command.
+- **opencode read-only refusal.** `fanout-run.cjs:2832-2839` fails closed for any mode other than `workspace-write`/`danger-full-access`, matching the capability comment that no read-only boundary exists.
+- **opencode inline-config merge.** `fanout-run.cjs:2976-2992` refuses an unparseable or non-object inherited `OPENCODE_CONFIG_CONTENT` instead of replacing it, and preserves unrelated keys.
+- **Adapter capability record shape.** `executor-config.ts:197-279` holds one frozen record per kind, and `executor-adapter-capabilities.vitest.ts:213-220` asserts the key set and frozen-ness.
 
 ## Ruled Out
 
-- Flat partition-guard set collision: a missing depth-1 node cannot be masked by another lineage's node because depth-1 ids are minted once by the shared seed; only child ids repeat per lineage, and those are qualified before the set is built.
-- Duplicate `node -e` extend scripts across the two YAML assets: the duplication predates the range and the copies track real config-shape differences (research nests lineage fields and has an inbox), so it is not a range-introduced overengineering finding.
-- Locale-dependent ordering of merged lists: the merge sorts with code-unit `compareText` everywhere, so only the partition assignment (finding 2) is exposed.
+- **`--auto` on opencode as a privilege regression.** Ruled out: `read-only` is refused before spawn, and `workspace-write` pairs `--auto` with an `external_directory` deny that is covered by `dispatch-iteration.vitest.ts:504-528` and `fanout-run.vitest.ts:3826-3914`. The residual Bash write path is documented in the builder warning and in `loop-protocol.md:294`.
+- **A separate finding for the conformance test's weak `permission-mode` assertion.** Ruled out as a duplicate: it is the reason P2-1 escaped, and it is recorded in that finding's scope proof rather than counted twice.
+- **`emittedPermissionMode` misreporting another kind's flag.** Ruled out: it reads the argv it was given and each builder emits its own vocabulary; no cross-kind value is reused.
+- **`DISPATCH_ENV_KEYS` blocking the fan-out merge.** Ruled out: `assertDispatchEnvAllowed` runs only in `runAuditedExecutorCommand`, and the fan-out path assembles `extraEnv` itself.
 
 ## Next Focus
 
-- Dimension: correctness on F-1-005 (reducers, convergence, verification and the ledger/projection layer).
-- Reason: iteration 1 cleared the fan-out runner/merge surface at the P2 level; the reducer and convergence path decides node status, dimension coverage and the stop decision, so it carries the next correctness risk.
-- Required evidence: `reduce-state.cjs` node-status and frontier projection, `convergence.cjs` stop arithmetic, `verify-iteration.cjs` and `dispatch-iteration.cjs` guards.
-- Rotation status: F-1-003 remains open with correctness covered; F-1-005 and F-1-007 have no dimension covered yet.
+- Dimension: security
+- Frontier node: F-1-002 (still active; correctness covered, security next)
+- Focus area: the same three files, read for trust boundaries rather than mode plumbing: whether the opencode `external_directory` deny can be bypassed by an inherited `OPENCODE_CONFIG_CONTENT` key ordering, whether `buildExecutorDispatchEnv`'s per-kind allowlist admits a secret-bearing variable for any kind, and whether the dsh persona patch path can escape `.dsh/agents`.
+- Reason: correctness on this node produced two P2 provenance findings and no P0/P1; the node's remaining risk is the trust boundary between the parent environment and the child process, which correctness did not examine.
+- Rotation status: F-1-002 correctness complete; security next.
+- Blocked/productive carry-forward: productive (direct builder-to-record comparison found both findings); no blocked approaches.
+- Required evidence: `executor-audit.ts` env allowlist table, `buildExecutorDispatchEnv`, and the dsh patch path resolution.
+- Recovery note: none.
 
 Review verdict: PASS

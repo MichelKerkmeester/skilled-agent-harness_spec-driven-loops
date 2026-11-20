@@ -1,33 +1,35 @@
 {
-  "run_id": "1795115164143-vzmqcd",
+  "run_id": "1795201537192-sq1ivw",
   "loop_type": "review",
   "spec_folder": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode",
   "base_artifact_dir": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review",
-  "total_cli_lineages": 1,
+  "total_cli_lineages": 2,
   "frontier_partition": {
+    "opus": [
+      "F-1-001",
+      "F-1-003",
+      "F-1-005"
+    ],
     "deepseek": [
       "F-1-002",
-      "F-1-003",
       "F-1-004",
-      "F-1-005",
-      "F-1-006",
-      "F-1-007"
+      "F-1-006"
     ]
   },
   "orphaned_lineages": [],
-  "total": 1,
+  "total": 2,
   "succeeded": 1,
-  "failed": 0,
+  "failed": 1,
   "all_failed": false,
   "completed_with_containment_advisory": 0,
   "gauges": {
     "lag": 0,
     "pending": 0,
-    "failed": 0
+    "failed": 1
   },
   "failure_classes": {
     "timeout": 0,
-    "exit": 0,
+    "exit": 1,
     "salvage_miss": 0,
     "artifact_miss": 0,
     "projection_refusal": 0,
@@ -35,35 +37,28 @@
     "needs_input": 0,
     "quota": 0
   },
-  "timestamp_anomalies": [
+  "lineages": [
+    {
+      "label": "opus",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
     {
       "label": "deepseek",
-      "state_log": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/deepseek/deep-review-state.jsonl",
-      "window": {
-        "start_at_iso": "2026-11-19T19:06:04.152Z",
-        "end_at_iso": "2026-11-19T19:25:56.635Z",
-        "tolerance_ms": 120000
-      },
-      "counts": {
-        "anomalous": 2,
-        "untimestamped": 0,
-        "unparseable": 0,
-        "total": 14
-      },
-      "sample": [
-        {
-          "index": 0,
-          "reason": "before_window",
-          "timestamp": "2026-11-19T18:41:56.397Z",
-          "deltaMs": 1327755
-        },
-        {
-          "index": 1,
-          "reason": "before_window",
-          "timestamp": "2026-11-19T18:45:15.000Z",
-          "deltaMs": 1129152
-        }
-      ]
+      "status": "failed",
+      "failure_class": "exit",
+      "exit_code": 0,
+      "rerun_command": null,
+      "rerun_note": "archive specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/deepseek first: its config is complete, so a rerun in place cannot run it again; then rerun it with /Users/michelkerkmeester/.nvm/versions/node/v26.13.0/bin/node /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode --loop-type review --review-focus-file specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-review-focus.txt --review-target-file specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-review-target.txt --review-target-type files --fanout-config-json-file specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-config.json --base-artifact-dir specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review --convergence-threshold 0.10 --stop-policy convergence --convergence-mode default --depth-mode expansive --only-lineage deepseek"
     }
-  ]
+  ],
+  "provider_cost_usd": {
+    "total": 20.96305,
+    "by_lineage": {
+      "opus": 20.507748,
+      "deepseek": 0.455302
+    }
+  }
 }

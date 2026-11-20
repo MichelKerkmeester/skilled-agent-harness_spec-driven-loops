@@ -1,18 +1,30 @@
-# Iteration 4 - F-1-003 security: fan-out runner command construction, env and merge trust boundaries
+# Review Iteration 004
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-003, dimension security. Node scope: `fanout-run.cjs`, `fanout-merge.cjs` and their unit suites.
-- Operator review focus covered in this iteration: overengineering (native and CLI PRE-BOUND blocks compared, two instances ruled out as a pattern), operator UX (review-focus control stripping and length bound, partition and merge warning text), cross-CLI/OS parity (all nine executor adapters, per-kind env filtering, Windows-safe spawn and path handling).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 4 of 24
+- Focus: **Frontier node F-1-002: security**
+- Dimension: security
+- Frontier node: F-1-002 (depth 1 of 3), scope `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`, `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`, `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
+- Convergence before dispatch: `CONTINUE` / `noStopCandidate`, stuck 0, consecutive failures 0.
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, the three node files, both presentation assets, both compiled contracts.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` -- `normalizeReviewFocus`, native command input, detached lineage prompt, spawn wrapper and timeout/stderr caps, all nine executor adapters, per-lineage env assembly.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` -- real-file/containment readers, lineage directory enumeration, frontier merge and partition guard, review finding/traceability merge.
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` -- lineage label grammar and config validation (context for path safety).
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` -- per-kind env allowlist applied before the lineage env overlay (context).
-- Traceability sources: `011-review-frontier-mode` REQ-008 and `009-fanout-review-coverage-merge` REQ-001..REQ-006.
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:100-200` (common env allowlist, per-kind prefixes, per-kind single keys, deny keys, state-dir keys, default homes)
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1078-1102` (`buildExecutorDispatchEnv`)
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1404-1425` (`DISPATCH_ENV_KEYS`, `assertDispatchEnvAllowed`)
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112-143` (flag support, including the new pi and dsh `sandboxMode` entries)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2976-2992` (opencode inline-config merge)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3392-3448` (pi builder, read-only tool allowlist)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3456,3574-3585` (dsh persona name grammar and patch path)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4532-4620` (dispatch env assembly and the post-filter merge)
+- `.skilled/commands/deep/assets/deep-review-presentation.txt:226`
+- `.skilled/commands/deep/assets/deep-research-presentation.txt:199`
+- `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown:371`
+- `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:350`
 
 ## Findings - New
 
@@ -26,51 +38,58 @@ None.
 
 ### P2 Findings
 
-None.
+1. **Both presentations and both compiled contracts still say `cli-pi` has "no sandbox flag" while the config now accepts `sandboxMode` for it** -- `.skilled/commands/deep/assets/deep-review-presentation.txt:226` -- This range added `sandboxMode` to `EXECUTOR_KIND_FLAG_SUPPORT['cli-pi']` (`executor-config.ts:134`) and the builder maps `read-only` onto `--tools read,grep,find,ls --no-extensions --no-skills --no-prompt-templates` (`fanout-run.cjs:3418-3420`). The per-kind help line still reads "No `--service-tier`, no sandbox flag", and the same sentence is carried into `deep-research-presentation.txt:199` and both compiled contracts. An operator who reads the shipped help concludes `--sandbox-mode` is unsupported for pi and does not request `read-only`, which is the only restriction a pi lineage has.
+   - Finding class: cross-consumer
+   - Scope proof: `rg -n "cli-pi —" .skilled/commands/deep` returns the four occurrences named above and no others; `rg -n "'cli-pi'" executor-config.ts` shows the single flag-support row that now includes `sandboxMode`. The sentence is defensible as "pi has no OS sandbox flag", which is why this is P2 rather than P1: the config field is accepted and the capability record calls the surface `tool-allowlist`, so the code's own contract is accurate.
+   - Affected surface hints: ["deep-review-presentation.txt", "deep-research-presentation.txt", "compiled deep-review contract", "compiled deep-research contract", "EXECUTOR_KIND_FLAG_SUPPORT"]
+   - Case: an operator wants a read-only pi lineage for a review that must not write. The help says pi has no sandbox flag, so they leave `--sandbox-mode` unset; the lineage runs at the `workspace-write` default, which for pi emits no restriction at all, and the leaf keeps write-capable tools.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | `011` REQ-008's depth-1 seed before spawn, `depthMode` passthrough, round-robin partition, `frontier_scope:` binding, `frontier_partition` record, per-lineage stores and the merge guard are implemented as written. The only outstanding partial remains iteration 3's REQ-007 admission gap; this iteration found no new contradiction. |
-| `checklist_evidence` | partial | `009` REQ-001..REQ-006 merge rules and `011` AC-010/AC-011 fan-out criteria match the code; AC-008's admission claim remains the outstanding partial. |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | partial | `.skilled/commands/deep/assets/deep-review-presentation.txt:226`, `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:134` | The shipped help contradicts the flag-support table for pi; the rest of the executor help matches the schema. |
+| `checklist_evidence` | notApplicable | - | No spec checklist for a commit-range target. |
+| `skill_agent` | notApplicable | - | No agent definition in the range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in the range. |
+| `feature_catalog_code` | pending | - | Owned by F-1-006; not re-run here. |
 
 ## Integration Evidence
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4193-4206` builds each child env as `buildExecutorDispatchEnv(lineage, process.env)` and overlays only the named `SPECKIT_*`, gate-off, graph-store and adapter env keys after the allowlist filter.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4171-4186` re-injects `AI_SESSION_CHILD`, `SYSTEM_SPEC_GATE_DISABLED`, `DEEP_LOOP_COVERAGE_DB_DIR` and the per-kind state dir because the allowlist drops them; these are the values the detached contract depends on.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1592-1617` enumerates lineage directories from disk and rejects symlinked entries; every read goes through `resolveOptionalRealFile`/`assertSafeOutputPath` with realpath containment.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:778-805` qualifies every merged node id with its lineage label, sorts by label then id, and compares the dealt depth-1 ids against reported local ids so a missing lineage is named.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3492-3515` maps all nine `EXECUTOR_KINDS` to an adapter and throws on an unknown kind.
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4532,4580` spreads the built command's `env` into `extraEnv` after `buildExecutorDispatchEnv`'s per-kind filter, so the opencode `external_directory` deny is the value the child sees even when the parent set its own `OPENCODE_CONFIG_CONTENT`.
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2991` applies the deny last (`external_directory: 'deny'` after the spread of the inherited `permission` object), so an inherited `permission.external_directory: 'allow'` cannot win.
+- `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:504-523` forwards the same `env` as `dispatchEnv`, and `executor-audit.ts:1413` admits `OPENCODE_CONFIG_CONTENT` for `cli-opencode`, so the single-executor path carries the deny too.
 
 ## Edge Cases
 
-- `cli-opencode` defaults to `danger-full-access` because the CLI exposes no enforceable sandbox flag (`fanout-run.cjs:4079-4088`); the lineage-only write boundary is carried by the prompt and the post-hoc containment guard, a tradeoff the range records in its own comment rather than hiding.
-- A multi-line or control-bearing review focus is collapsed to one bounded line before it reaches the `review_focus:` binding (`fanout-run.cjs:232-247`), so it cannot end the binding early; the focus is also embedded twice for CLI lineages, once as a flag and once as a binding.
-- `spawnSync('/bin/sh', ['-c', 'command -v codex ...'])` is used only for binary detection in `isCodexBinaryAvailable` and the sibling checks; the command string is static, so no lineage/config value reaches a shell.
-- The merge throws on the first unreadable or invalid lineage registry/state log rather than degrading that lineage; this reader predates the range, so it is recorded as context and not as a range finding.
+- **`HOME` reaches every child.** The common allowlist admits `HOME`, `USER` and `LOGNAME` so CLI auth can find the operator's credentials. That is the intended trust boundary: the child runs as the operator. Recorded as a boundary, not a finding.
+- **`OPENCODE_` is a broad prefix.** It admits `OPENCODE_CONFIG_CONTENT` (needed) and `OPENCODE_HOME` (needed for state isolation) and any other `OPENCODE_*` value the operator exports. The deny merge makes the config key safe; no other `OPENCODE_*` key was found to weaken confinement.
+- **dsh persona path.** `DSH_PERSONA_NAME` is `^[a-z0-9][a-z0-9-]{0,63}$` (`fanout-run.cjs:3456`), so a persona name cannot carry `/`, `.` or `..`; the patch path is built from a validated segment. No traversal path found.
+- **pi `workspace-write` is a no-op.** The builder emits the same argv for `workspace-write` and `danger-full-access`, and `sandboxEnforcementFor` reports `none` for both. The capability record says `tool-allowlist`, which is accurate. The doc drift in P2-1 is the operator-facing consequence.
 
 ## Confirmed-Clean Surfaces
 
-- No executor adapter uses `shell: true`; every argument is built as an argv array, with prompts passed on stdin or as a single argv element.
-- Lineage labels are validated to `^[a-z0-9][a-z0-9-]*$` before they become directory names (`executor-config.ts:889`), and the merge enumerates real directories rather than trusting a label from the summary.
-- The merge rejects symlinked artifact and lineage directories and confirms every read path resolves inside the artifact root.
-- The review-focus and review-target normalizers strip control characters, collapse whitespace and cap length, closing the setup-binding injection path the code documents.
-- Per-kind env allowlists are applied before the fan-out overlay, so credentials for one executor kind do not reach another kind's child by default.
-- The recursion guard requires both an inherited fan-out lineage id and the same kind on the dispatch stack, so a seat cannot silently re-fan-out its own executor.
+- **Opencode deny cannot be re-enabled by inheritance.** The merge sets `external_directory: 'deny'` after spreading the inherited permission object, and an unparseable or non-object inherited value fails the build rather than being replaced.
+- **Dispatch env allowlist is per-kind.** `buildExecutorDispatchEnv` filters the parent environment to the common allowlist plus the kind's prefixes and single keys, then appends the dispatch stack. No kind admits another kind's credential prefix.
+- **Deny keys override prefixes.** `EXECUTOR_ENV_DENY_KEYS_BY_KIND` removes the state-home variables a broad prefix would otherwise admit (`VIBE_HOME`, `DSH_HOME`), so a lineage cannot inherit the operator's harness state.
+- **`assertDispatchEnvAllowed` fails closed.** A caller-named dispatch env key outside `DISPATCH_ENV_KEYS` throws before a receipt is written or a child is spawned.
 
 ## Ruled Out
 
-- Shell injection through model, focus, target or node text: no adapter shells out, and the two static `/bin/sh -c command -v` probes carry no input.
-- Prompt injection from an admitted frontier node into a sibling lineage: post-spawn admissions stay in the lineage's own store and prompt; the shared seed questions come from the orchestrator.
-- Treating the whole-merge abort on one corrupt lineage log as a security finding: the throwing readers predate the range and the behavior is fail-closed rather than silently merging a corrupt registry.
-- Extracting the duplicated PRE-BOUND block from `buildNativeCommandInput` and `buildLoopPrompt`: two instances with different delivery surfaces, and `prevent-overengineering.md` section 4 keeps them separate until a third caller appears.
+- **An inherited `OPENCODE_CONFIG_CONTENT` bypassing the deny.** Ruled out: the deny is applied last and an unparseable inherited value is refused.
+- **dsh persona path traversal.** Ruled out by the name grammar, which admits no path separator or dot.
+- **A P1 for the pi help drift.** Ruled out: the sentence is defensible as "no OS sandbox flag", the config field is accepted, and the capability record states the real surface. Kept at P2 with that reasoning recorded.
+- **A secret-leak finding from the per-kind env prefixes.** Ruled out: each prefix is the kind's own credential namespace, and the deny table removes the state-home names a prefix would otherwise carry.
 
 ## Next Focus
 
-- Dimension: security on F-1-005 (reducers, convergence, upsert and dispatch).
-- Reason: F-1-003 security is clear; the reducer and gateway path handles lineage state, extension events and finding evidence, so it carries the next security risk.
-- Required evidence: `append-mode-event.cjs` authorization/fencing surface, `reduce-state.cjs` path echo and file writes, `upsert.cjs` JSON parsing and graph namespace isolation, `dispatch-iteration.cjs` env propagation.
-- Rotation status: correctness covered on all three nodes; security covered on F-1-003 only.
+- Dimension: security
+- Frontier node: F-1-004 (active, correctness covered; the reducer's breadth-first rule selects the shallowest node with the fewest visits)
+- Focus area: the gateway's trust boundary: whether a caller-supplied `stem` or `event_type` can name an event the mode's authority does not allow, whether the `--run-directory` binding can be pointed at another run, and whether the projection can be made to write outside the run directory.
+- Reason: F-1-002 security produced one P2 doc drift and no P0/P1; the gateway is the next trust boundary and has had only a correctness pass.
+- Rotation status: F-1-002 correctness and security covered; F-1-004 security next.
+- Blocked/productive carry-forward: productive (help-to-schema comparison found the pi drift); no blocked approaches.
+- Required evidence: `append-mode-event.cjs` binding resolution, the ledger's run-directory validation, and the projection writer's path construction.
+- Recovery note: none.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

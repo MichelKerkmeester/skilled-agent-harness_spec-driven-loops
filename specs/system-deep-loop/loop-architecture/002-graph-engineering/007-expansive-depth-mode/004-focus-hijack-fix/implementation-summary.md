@@ -10,15 +10,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix"
-    last_updated_at: "2026-11-17T21:00:00Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Focus chain fixed on both loops; playbook scenarios DR-066 and DRV-073 and changelog v2.1.3.0 written at integration"
+    last_updated_at: "2026-11-20T20:01:08Z"
+    last_updated_by: "generate-context"
+    recent_action: "Fixed the focus chain on both loops; DR-066, DRV-073 and the phase changelog written"
     next_safe_action: "None for this phase; the full runtime suite runs at the integration merge gate"
+    packet_purpose: "Purpose: Next Focus on both loops comes from an open, unanswered question or an uncovered dimension, and the leaf's recommendation is read at one stated place in each chain instead of leaking in through free text."
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs"
       - ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs"
       - ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+    session_ref:
+      runtime: "claude"
+      sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
+      workspace: "/Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration"
+      savedAt: "2026-11-20T20:01:08Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

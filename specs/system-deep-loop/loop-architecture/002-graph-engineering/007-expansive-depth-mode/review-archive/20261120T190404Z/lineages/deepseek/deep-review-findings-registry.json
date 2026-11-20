@@ -1,0 +1,612 @@
+{
+  "sessionId": "fanout-deepseek-1795113418367-pvzn7z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "A thought iteration covers a frontier dimension and spends node depth",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "line": 1971,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "REQ-007 and AC-008 promise pivot-candidate admission the pivot branch never performs",
+      "file": ".skilled/commands/deep/assets/deep-review.yaml",
+      "line": 1429,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Detached lineage contract names a FRONTIER block the CLI prompt never renders",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 1791,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Frontier steering and projection order by locale collation while the merge orders by code unit",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 357,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "A single lineage that omits graphCoverageMode erases the mode the others agree on",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      "line": 1003,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "The merge re-implements the reducer's traceability summary arithmetic",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      "line": 982,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R12-P2-001",
+      "severity": "P2",
+      "title": "The attempt-1 to attempt-2 config transition writes the config twice and the second write bypasses the conflict check",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      "line": 1296,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 12,
+      "lastSeen": 12,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 12,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Source-quality classification assumes POSIX separators, so Windows-separated paths lose their spec and test classes",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+      "line": 330,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Frontier steering and projection order by locale collation while the merge orders by code unit",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 357,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Frontier steering and projection order by locale collation while the merge orders by code unit",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 357,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 6
+  },
+  "openFindingsCount": 8,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.95,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "frontier:F-1-003",
+      "frontier:F-1-005",
+      "frontier:F-1-007"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "frontier:F-1-003": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          0
+        ]
+      },
+      "frontier:F-1-005": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          0
+        ]
+      },
+      "frontier:F-1-007": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          0
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "frontier": {
+    "nodes": [
+      {
+        "nodeId": "F-1-003",
+        "parentId": "root",
+        "depth": 1,
+        "scope": [
+          ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+          ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+          ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+          ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts"
+        ],
+        "question": "Do the fan-out runner and merge handle expansive depth the same way for every executor kind: the round-robin frontier partition, per-lineage derived budgets, lineage prompts carrying focus and frontier scope, lineage command builders and the review coverage merge?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 0,
+        "coveredDimensions": [
+          "correctness",
+          "security",
+          "traceability",
+          "maintainability"
+        ],
+        "nextDimension": null,
+        "visits": 4
+      },
+      {
+        "nodeId": "F-1-005",
+        "parentId": "root",
+        "depth": 1,
+        "scope": [
+          ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+          ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+          ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
+          ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+          ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+          ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs",
+          ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema",
+          ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema",
+          ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections",
+          ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers",
+          ".skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers"
+        ],
+        "question": "Are the state reducers, upsert, convergence and iteration verification changes correct and free of duplicated logic: node status derivation, dimension coverage, extension bookkeeping, frontier_drained stops and the ledger schema and projection changes?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 0,
+        "coveredDimensions": [
+          "correctness",
+          "security",
+          "traceability",
+          "maintainability"
+        ],
+        "nextDimension": null,
+        "visits": 4
+      },
+      {
+        "nodeId": "F-1-007",
+        "parentId": "root",
+        "depth": 1,
+        "scope": [
+          ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+          ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
+          ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
+          ".skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs",
+          ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
+          ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph"
+        ],
+        "question": "Are the divergent pivot, continuity thread and coverage-graph query and signal changes correct and restrained: pivot hygiene, seat scope, quorum retry and the graph signals the stop gates read?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 0,
+        "coveredDimensions": [
+          "correctness",
+          "security",
+          "traceability",
+          "maintainability"
+        ],
+        "nextDimension": null,
+        "visits": 4
+      }
+    ],
+    "stats": {
+      "total": 3,
+      "open": 0,
+      "active": 0,
+      "answered": 3,
+      "blocked": 0,
+      "exhausted": 0,
+      "abstained": 0,
+      "pruned": 0
+    },
+    "budget": {
+      "depth1": {
+        "allotted": 12,
+        "spent": 12
+      },
+      "depth2": {
+        "allotted": 8.4,
+        "spent": 0
+      },
+      "depth3": {
+        "allotted": 12,
+        "spent": 0
+      }
+    },
+    "activeNodeId": null,
+    "activeNextDimension": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 6,
+      "executed": 6,
+      "pass": 3,
+      "partial": 3,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1296-1309",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/spec.md:116"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "012 REQ-007 attempt identity matches; the double write is outside the REQ text. REQ-007 admission remains the only partial."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/tasks.md:48",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md:63"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "012 checklist rows match; AC-008 remains outstanding."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/agents/deep-review.md",
+          ".skilled/skills/system-deep-loop/deep-review/SKILL.md"
+        ],
+        "gateClass": "soft",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "Skill and agent definition carry the same depth-mode and frontier contract."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".claude/agents/deep-review.md",
+          ".codex/agents/deep-review.toml",
+          ".pi/agents/deep-review.md",
+          ".dsh/agents/deep-review.patch.yml",
+          ".vibe/agents/deep-review.toml"
+        ],
+        "gateClass": "soft",
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "summary": "All mirrors carry the new frontier contract; differences are runtime frontmatter and path convention."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:44",
+          ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md:22",
+          ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:28"
+        ],
+        "gateClass": "soft",
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "summary": "Pivot and retry claims match the code and confirm R3-P1-001 is stale packet text; the produced-evidence sentence remains the R2-P1-001 doc side."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph/source-quality-class-derivation.md:30-65",
+          ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md"
+        ],
+        "gateClass": "soft",
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "DLR-061 and DLR-062 name the classifier order, signal cases and retry scenario that match the code."
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code",
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

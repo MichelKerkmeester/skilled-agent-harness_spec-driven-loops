@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop .skilled/commands/deep .skilled/agents .claude/agents .codex/agents .pi/agents .dsh/agents .vibe/agents (the expansive-depth program: runtime code and tests, command YAML and presentation, agents and their runtime mirrors, skill docs, playbooks and catalogs; specs/ evidence and spec-packet artifacts excluded)"
+title: "Resource Map — 17a9ddbcb68..555487146e2 -- .skilled/skills/system-deep-loop .skilled/commands/deep"
 description: "Auto-generated review resource map from convergence evidence."
 ---
 # Resource Map
@@ -10,26 +10,14 @@ description: "Auto-generated review resource map from convergence evidence."
 
 ## Summary
 
-- **Total references**: 9
-- **By category**: READMEs=0, Documents=0, Commands=3, Agents=0, Skills=6, Specs=0, Scripts=0, Tests=0, Config=0, Meta=0
+- **Total references**: 6
+- **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=5, Specs=1, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 0
 - **Scope**: review convergence output for 007-expansive-depth-mode
-- **Generated**: 2026-11-19T19:01:46.277Z
+- **Generated**: 2026-11-20T19:41:04.941Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
 > **Status vocabulary**: `OK` · `MISSING` · `PLANNED`.
-
-## 3. Commands
-
-> `.skilled/commands/**` and any runtime-specific command surfaces.
-
-| Path | Action | Status | Note |
-|------|--------|--------|------|
-| .skilled/commands/deep/assets/deep-review-presentation.txt | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
-| .skilled/commands/deep/assets/deep-review.yaml | Analyzed | OK | Findings P0=0 P1=1 P2=1; Iterations=2 |
-| .skilled/commands/deep/review.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
-
----
 
 ## 5. Skills
 
@@ -37,11 +25,20 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
-| .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 | .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
-| .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
-| .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs | Analyzed | OK | Findings P0=0 P1=2 P2=2; Iterations=4 |
-| .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=5; Iterations=3 |
+| .skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts | Analyzed | OK | Findings P0=0 P1=0 P2=2; Iterations=2 |
+| .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=2; Iterations=2 |
+| .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs | Analyzed | OK | Findings P0=0 P1=2 P2=3; Iterations=5 |
+| .skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=2; Iterations=2 |
+
+---
+
+## 6. Specs
+
+> `.opencode/specs/**` and `specs/**`. Takes precedence over `Config` for spec-folder JSON metadata.
+
+| Path | Action | Status | Note |
+|------|--------|--------|------|
+| specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/implementation-summary.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 
 ---

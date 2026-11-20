@@ -15,18 +15,20 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop .skilled/commands/deep .skilled/agents .claude/agents .codex/agents .pi/agents .dsh/agents .vibe/agents (the expansive-depth program: runtime code and tests, command YAML and presentation, agents and their runtime mirrors, skill docs, playbooks and catalogs; specs/ evidence and spec-packet artifacts excluded) (files)
-- Started: 2026-11-19T18:38:12.356Z
+- Review Target: 17a9ddbcb68..555487146e2 -- .skilled/skills/system-deep-loop .skilled/commands/deep (files)
+- Started: 2026-11-20T19:07:06.514Z
 - Status: COMPLETE
-- Iteration: 14 of 24
-- Provisional Verdict: CONDITIONAL
+- Iteration: 24 of 24
+- Provisional Verdict: FAIL
+- Failed required gates at stop: scope, coverage
 - hasSearchDebt: false
 - hasAdvisories: false
-- Session ID: fanout-opus-1795113418367-pvzn7z
+- Session ID: fanout-opus-1795201537192-sq1ivw
 - Parent Session: none
 - Lifecycle Mode: new
 - Generation: 1
 - continuedFromRun: none
+- stopReason: maxIterationsReached
 
 <!-- /ANCHOR:status -->
 <!-- ANCHOR:dimension-expansion -->
@@ -46,8 +48,8 @@ Reducer-generated observability surface for the active review packet.
 |----------|------:|
 | P0 (Blockers) | 0 |
 | P1 (Required) | 2 |
-| P2 (Suggestions) | 12 |
-| Resolved | 0 |
+| P2 (Suggestions) | 10 |
+| Resolved | 1 |
 
 <!-- /ANCHOR:findings-summary -->
 <!-- ANCHOR:progress -->
@@ -55,20 +57,30 @@ Reducer-generated observability surface for the active review packet.
 
 | # | Focus | Dimensions | Ratio | P0/P1/P2 | Status |
 |---|-------|------------|-------|----------|--------|
-| 1 | Frontier node F-1-002: correctness | correctness | 1.00 | 0/0/2 | complete |
-| 2 | Frontier node F-1-004: correctness | correctness | 0.50 | 0/0/2 | complete |
-| 3 | Frontier node F-1-006: correctness | correctness | 0.20 | 0/0/1 | complete |
-| 4 | Frontier node F-1-002: security | security | 0.29 | 0/0/2 | complete |
-| 5 | Frontier node F-1-004: security | security | 0.00 | 0/0/0 | complete |
-| 6 | Frontier node F-1-006: security | security | 0.13 | 0/0/1 | complete |
-| 7 | Frontier node F-1-004: traceability | traceability | 0.25 | 0/1/1 | complete |
-| 8 | Frontier node F-1-002: traceability | traceability | 0.00 | 0/0/0 | complete |
-| 9 | Frontier node F-1-006: traceability | traceability | 0.04 | 0/0/1 | complete |
-| 10 | Frontier node F-1-002: maintainability | maintainability | 0.30 | 0/1/1 | complete |
-| 11 | Frontier node F-1-006: maintainability | maintainability | 0.00 | 0/0/0 | complete |
-| 12 | Frontier node F-2-007: correctness | correctness | 0.05 | 0/0/1 | complete |
-| 13 | RECOVERY: escalate severity review; least-covered dimension maintainability | maintainability | 0.14 | 0/1/1 | complete |
-| 14 | Blocked-stop recovery: graphless fallback evidence | correctness | 0.04 | 0/0/1 | complete |
+| 1 | Frontier node F-1-001: correctness | correctness | 1.00 | 0/0/2 | complete |
+| 2 | Frontier node F-1-003: correctness | correctness | 0.71 | 0/1/0 | complete |
+| 3 | Frontier node F-1-005: correctness | correctness | 0.13 | 0/0/1 | complete |
+| 4 | Frontier node F-2-006: correctness | correctness | 0.11 | 0/0/1 | complete |
+| 5 | Frontier node F-1-001: security | security | 0.10 | 0/0/1 | complete |
+| 6 | Frontier node F-1-003: security | security | 0.33 | 0/1/0 | complete |
+| 7 | Frontier node F-1-005: security | security | 0.00 | 0/0/0 | complete |
+| 8 | Frontier node F-2-006: security | security | 0.06 | 0/0/1 | complete |
+| 9 | Frontier node F-1-001: traceability | traceability | 0.06 | 0/0/1 | complete |
+| 10 | Frontier node F-1-003: traceability | traceability | 0.00 | 0/0/0 | complete |
+| 11 | Frontier node F-1-005: traceability | traceability | 0.05 | 0/0/1 | complete |
+| 12 | Frontier node F-2-006: traceability | traceability | 0.00 | 0/0/0 | complete |
+| 13 | Frontier node F-1-001: maintainability | maintainability | 0.05 | 0/0/1 | complete |
+| 14 | Frontier node F-1-003: maintainability | maintainability | 0.05 | 0/0/1 | complete |
+| 15 | Frontier node F-1-005: maintainability | maintainability | 0.05 | 0/0/1 | complete |
+| 16 | Frontier node F-2-006: maintainability | maintainability | 0.00 | 0/0/0 | complete |
+| 17 | Recovery: traceability protocol replay (spec_code) | traceability | 0.00 | 0/0/0 | complete |
+| 18 | Recovery: live confirmation of blocked-stop findings | correctness | 0.00 | 0/0/0 | complete |
+| 19 | Recovery: line-level reread of the pid-reuse path | security | 0.00 | 0/0/0 | complete |
+| 20 | Recovery: primary evidence for the claude stream-json event shape | correctness | 0.00 | 0/0/0 | complete |
+| 21 | Recovery: severity check on the stamp-omission finding | security | 0.00 | 0/0/0 | complete |
+| 22 | Recovery: sizing the 20 MB stdout cap against a real run | security | 0.00 | 0/0/0 | complete |
+| 23 | Recovery: checklist_evidence replay across the child phases | traceability | 0.00 | 0/0/0 | complete |
+| 24 | Recovery: anchor check of every open finding | maintainability | 0.00 | 0/0/0 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -76,35 +88,50 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 7 |
+| correctness | covered | 4 |
 | security | covered | 3 |
-| traceability | covered | 1 |
+| traceability | covered | 2 |
 | maintainability | covered | 3 |
 
 <!-- /ANCHOR:dimension-coverage -->
 <!-- ANCHOR:blocked-stops -->
 ## 6. BLOCKED STOPS
-### Iteration 14 — blocked by [graphlessFallbackGate]
-- Recovery: Add cited graphless fallback ledger rows (direct_read or exact_grep with row-level evidenceRefs) for state_transition and contract_drift before STOP.
-- Gate results: 0: ?, 1: ?, 2: ?, 3: ?, 4: ?, 5: ?, 6: ?, 7: ?, 8: ?
-- Timestamp: 2026-11-19T18:59:44.393Z
+### Iteration 17 — blocked by [dimensionCoverageGate]
+- Recovery: Clear the failed legal-stop gates before stopping: dimensionCoverageGate.
+- Gate results: candidateCoverageGate: true, claimAdjudicationGate: true, convergenceGate: true, dimensionCoverageGate: false, evidenceDensityGate: true, fixCompletenessReplayGate: true, graphlessFallbackGate: true, hotspotSaturationGate: true, p0ResolutionGate: true
+- Timestamp: 2026-11-20T19:33:55.361Z
+
+### Iteration 19 — blocked by [dimensionCoverageGate]
+- Recovery: Clear the failed legal-stop gates before stopping: dimensionCoverageGate.
+- Gate results: candidateCoverageGate: true, claimAdjudicationGate: true, convergenceGate: true, dimensionCoverageGate: false, evidenceDensityGate: true, fixCompletenessReplayGate: true, graphlessFallbackGate: true, hotspotSaturationGate: true, p0ResolutionGate: true
+- Timestamp: 2026-11-20T19:35:44.789Z
+
+### Iteration 21 — blocked by [dimensionCoverageGate]
+- Recovery: Clear the failed legal-stop gates before stopping: dimensionCoverageGate.
+- Gate results: candidateCoverageGate: true, claimAdjudicationGate: true, convergenceGate: true, dimensionCoverageGate: false, evidenceDensityGate: true, fixCompletenessReplayGate: true, graphlessFallbackGate: true, hotspotSaturationGate: true, p0ResolutionGate: true
+- Timestamp: 2026-11-20T19:37:57.895Z
+
+### Iteration 22 — blocked by [dimensionCoverageGate]
+- Recovery: Clear the failed legal-stop gates before stopping: dimensionCoverageGate.
+- Gate results: candidateCoverageGate: true, claimAdjudicationGate: true, convergenceGate: true, dimensionCoverageGate: false, evidenceDensityGate: true, fixCompletenessReplayGate: true, graphlessFallbackGate: true, hotspotSaturationGate: true, p0ResolutionGate: true
+- Timestamp: 2026-11-20T19:38:34.211Z
 
 <!-- /ANCHOR:blocked-stops -->
 <!-- ANCHOR:graph-convergence -->
 ## 7. GRAPH CONVERGENCE
-- graphConvergenceScore: 0.00
-- graphDecision: none
+- graphConvergenceScore: 1.00
+- graphDecision: STOP_ALLOWED
 - graphBlockers: none
 
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.05 -> 0.14 -> 0.04
-- convergenceScore: 0.95
-- openFindings: 14
-- persistentSameSeverity: 2
-- severityChanged: 1
-- repeatedFindings (deprecated combined bucket): 3
+- Last 3 ratios: 0.00 -> 0.00 -> 0.00
+- convergenceScore: 1.00
+- openFindings: 12
+- persistentSameSeverity: 0
+- severityChanged: 0
+- repeatedFindings (deprecated combined bucket): 0
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:corruption-warnings -->
@@ -115,65 +142,89 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=9, ruledOut=14, deferred=0, blocked=0
+- candidateCoverage: covered=15, ruledOut=16, deferred=0, blocked=0
 
 ### Search Debt
 [None yet]
 
 ### Ruled-Out Candidates
-- iteration 1 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:895
-- iteration 2 input_validation (ruled_out): verified by direct read; evidence=.skilled/commands/deep/assets/deep-review.yaml:535
-- iteration 3 runtime_parity (ruled_out): verified by occurrence count; evidence=.vibe/agents/deep-review.toml:4
-- iteration 4 path_traversal (ruled_out): operator/workflow-controlled argument; evidence=.skilled/commands/deep/assets/deep-research.yaml:1923
-- iteration 4 prototype_pollution (ruled_out): language semantics; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:151
-- iteration 5 shell_injection (ruled_out): verified by diff read; evidence=.skilled/commands/deep/assets/deep-review.yaml:425, .skilled/commands/deep/assets/deep-review.yaml:395
-- iteration 5 dry_run_boundary (ruled_out): verified by direct read; evidence=.skilled/commands/deep/assets/deep-review.yaml:957
-- iteration 6 permission_widening (ruled_out): verified by diff; evidence=.codex/agents/deep-review.toml:5
-- iteration 6 destructive_command (ruled_out): pattern scan clean; evidence=.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:49
-- iteration 8 spec_code_alignment (ruled_out): verified against requirements; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:656
-- iteration 8 test_coverage (ruled_out): coverage map; evidence=.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts:333
-- iteration 11 duplication (ruled_out): measured overlap; evidence=.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md:1
-- iteration 11 portability (ruled_out): pattern scan clean; evidence=.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:1
-- iteration 12 boundary_condition (ruled_out): verified; evidence=.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts:534
-- iteration 14 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:895
+- iteration 1 boundary_condition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:101
+- iteration 2 process_lifecycle (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:321
+- iteration 3 idempotency (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:221
+- iteration 3 dry_run_side_effect (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:2361
+- iteration 4 input_validation (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1097
+- iteration 5 path_traversal (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1908
+- iteration 5 injection (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs:100
+- iteration 6 side_effect (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3957
+- iteration 7 injection (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:2205
+- iteration 7 dry_run_side_effect (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:404
+- iteration 8 input_validation (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:195
+- iteration 9 doc_drift (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-salvage.md:84
+- iteration 10 doc_drift (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:135
+- iteration 11 doc_drift (ruled_out): verified by search; evidence=.skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md:66
+- iteration 12 doc_drift (ruled_out): verified by search and read; evidence=.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pass-evidence.vitest.ts:162
+- iteration 13 complexity (ruled_out): no failure tied to size; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1
+- iteration 14 duplication (ruled_out): behaviorally equal; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1030
+- iteration 15 duplication (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:62
+- iteration 16 duplication (ruled_out): restraint rule: two is not a pattern; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:33
+- iteration 17 spec_drift (ruled_out): 011 hits concern Next Focus only; evidence=specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md:146
+- iteration 18 state_transition (ruled_out): live case does not involve claimAdjudicationGate; evidence=specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/opus/deep-review-state.jsonl:20
+- iteration 19 pid_reuse (ruled_out): harm needs pid reuse plus operator --stop; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4357
+- iteration 20 input_validation (ruled_out): installed CLI emits the key; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:207
+- iteration 21 trust_boundary (ruled_out): finding stands at P2; evidence=.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:470
+- iteration 22 resource_exhaustion (ruled_out): about 5x measured headroom; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4791
+- iteration 23 spec_drift (ruled_out): rows cover other features; evidence=specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md:64
+- iteration 24 doc_drift (ruled_out): one anchor corrected in narrative; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:384
 
 ### Clean Search Proof
-- iteration 1 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:895
-- iteration 2 input_validation (ruled_out): verified by direct read; evidence=.skilled/commands/deep/assets/deep-review.yaml:535
-- iteration 3 runtime_parity (ruled_out): verified by occurrence count; evidence=.vibe/agents/deep-review.toml:4
-- iteration 4 path_traversal (ruled_out): operator/workflow-controlled argument; evidence=.skilled/commands/deep/assets/deep-research.yaml:1923
-- iteration 4 prototype_pollution (ruled_out): language semantics; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:151
-- iteration 5 shell_injection (ruled_out): verified by diff read; evidence=.skilled/commands/deep/assets/deep-review.yaml:425, .skilled/commands/deep/assets/deep-review.yaml:395
-- iteration 5 dry_run_boundary (ruled_out): verified by direct read; evidence=.skilled/commands/deep/assets/deep-review.yaml:957
-- iteration 6 permission_widening (ruled_out): verified by diff; evidence=.codex/agents/deep-review.toml:5
-- iteration 6 destructive_command (ruled_out): pattern scan clean; evidence=.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:49
-- iteration 8 spec_code_alignment (ruled_out): verified against requirements; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:656
-- iteration 8 test_coverage (ruled_out): coverage map; evidence=.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts:333
-- iteration 11 duplication (ruled_out): measured overlap; evidence=.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md:1
-- iteration 11 portability (ruled_out): pattern scan clean; evidence=.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:1
-- iteration 12 boundary_condition (ruled_out): verified; evidence=.skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts:534
-- iteration 14 state_transition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:895
+- iteration 1 boundary_condition (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:101
+- iteration 2 process_lifecycle (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:321
+- iteration 3 idempotency (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:221
+- iteration 3 dry_run_side_effect (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:2361
+- iteration 4 input_validation (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1097
+- iteration 5 path_traversal (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1908
+- iteration 5 injection (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs:100
+- iteration 6 side_effect (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3957
+- iteration 7 injection (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:2205
+- iteration 7 dry_run_side_effect (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:404
+- iteration 8 input_validation (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:195
+- iteration 9 doc_drift (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-salvage.md:84
+- iteration 10 doc_drift (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:135
+- iteration 11 doc_drift (ruled_out): verified by search; evidence=.skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md:66
+- iteration 12 doc_drift (ruled_out): verified by search and read; evidence=.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pass-evidence.vitest.ts:162
+- iteration 13 complexity (ruled_out): no failure tied to size; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1
+- iteration 14 duplication (ruled_out): behaviorally equal; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1030
+- iteration 15 duplication (ruled_out): verified by direct read; evidence=.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:62
+- iteration 16 duplication (ruled_out): restraint rule: two is not a pattern; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:33
+- iteration 17 spec_drift (ruled_out): 011 hits concern Next Focus only; evidence=specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md:146
+- iteration 18 state_transition (ruled_out): live case does not involve claimAdjudicationGate; evidence=specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/opus/deep-review-state.jsonl:20
+- iteration 19 pid_reuse (ruled_out): harm needs pid reuse plus operator --stop; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4357
+- iteration 20 input_validation (ruled_out): installed CLI emits the key; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:207
+- iteration 21 trust_boundary (ruled_out): finding stands at P2; evidence=.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:470
+- iteration 22 resource_exhaustion (ruled_out): about 5x measured headroom; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4791
+- iteration 23 spec_drift (ruled_out): rows cover other features; evidence=specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md:64
+- iteration 24 doc_drift (ruled_out): one anchor corrected in narrative; evidence=.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:384
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:frontier -->
 ## 10B. FRONTIER
-- Frontier size: 4 nodes (0 open, 0 active, 2 answered, 2 exhausted, 0 blocked, 0 abstained)
+- Frontier size: 4 nodes (0 open, 0 active, 4 answered, 0 exhausted, 0 blocked, 0 abstained)
 - Pruned nodes: 0
 - Revisits: 0
 - Budget depth1: 12 of 12 iterations spent
-- Budget depth2: 1 of 8.4 iterations spent
-- Budget depth3: 0 of 11 iterations spent
+- Budget depth2: 4 of 8.4 iterations spent
+- Budget depth3: 0 of 8 iterations spent
 - Active node: none
 
 <!-- /ANCHOR:frontier -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: correctness - Focus area: stop check; synthesis when the gate passes - Reason: blocked-stop recovery evidence recorded - Rotation status: frontier closed; all dimensions covered - Required evidence: convergence.cjs gate output Review verdict: CONDITIONAL
+- Dimension: none; the iteration cap is reached - Focus area: synthesis - Reason: maxIterations 24 - Rotation status: frontier drained; legal convergence is blocked by the hard spec_code fail, so the stop is maxIterationsReached - Required evidence: terminal gates and review report Review verdict: CONDITIONAL
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
 - 2 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
-- Latest blocked_stop at run 14: graphlessFallbackGate. Recovery: Add cited graphless fallback ledger rows (direct_read or exact_grep with row-level evidenceRefs) for state_transition and contract_drift before STOP..
+- Latest blocked_stop at run 22: dimensionCoverageGate. Recovery: Clear the failed legal-stop gates before stopping: dimensionCoverageGate..
 
 <!-- /ANCHOR:active-risks -->

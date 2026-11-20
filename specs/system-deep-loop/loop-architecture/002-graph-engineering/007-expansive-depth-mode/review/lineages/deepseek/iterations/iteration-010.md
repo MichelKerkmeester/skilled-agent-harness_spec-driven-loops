@@ -1,16 +1,22 @@
-# Iteration 10 - F-1-003 maintainability: fan-out runner and merge change cost
+# Review Iteration 010
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-003, dimension maintainability. Node scope: `fanout-run.cjs`, `fanout-merge.cjs` and their unit suites.
-- Operator review focus covered in this iteration: overengineering (every duplicated helper named and judged against the two-instance rule), operator UX (merged warnings and attribution text), cross-CLI/OS parity (the adapter switch and its fallback).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 10 of 24
+- Focus: **Frontier node F-1-002: maintainability**
+- Dimension: maintainability
+- Frontier node: F-1-002 (depth 1 of 3), scope `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`, `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`, `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
+- Convergence before dispatch: `CONTINUE` / `noStopCandidate`, stuck 1, consecutive failures 0.
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, the three node files, `executor-config.vitest.ts`, `combo-matrix.vitest.ts`.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` -- prompt builders, adapter switch, budget and watchdogs.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` -- merge helpers, warning text and attribution output.
-- Traceability sources: `009-fanout-review-coverage-merge` REQ-001..REQ-006.
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112-143,197-307,379-430,524-562,620-659` (flag support, capability record, allowlists)
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3050-3070,3109-3130,3231-3245,3350-3390,3450-3456` (mirrored allowlists and provider maps)
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:966-1118` (allowlist content assertions)
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts:66-110` (per-model command construction)
 
 ## Findings - New
 
@@ -24,45 +30,51 @@ None.
 
 ### P2 Findings
 
-None.
+None. This pass produced no new finding.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | The merge helpers restate the reducer rollup as R1-P2-004 records; no new maintainability contradiction. The iteration 3 REQ-007 admission claim remains the only partial. |
-| `checklist_evidence` | partial | AC-010/AC-011 match; AC-008 remains outstanding. |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | pass | `.skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts:66-74` | The hand-duplicated allowlists are covered by a parity check in the direction that matters: every model in the TypeScript list is built through the fan-out builder, so a model missing from the fan-out set fails the suite. |
+| `checklist_evidence` | notApplicable | - | No spec checklist for a commit-range target. |
+| `skill_agent` | notApplicable | - | No agent definition in the range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in the range. |
 
 ## Integration Evidence
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3492-3515` keeps one adapter per executor kind and fails closed on an unknown kind, so a new kind has one registration point.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:946-1009` keeps each merge surface in its own function; the only duplicated arithmetic is the traceability rollup already recorded as R1-P2-004.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1780-1800` writes the partition warning and the merge summary with named fields, so an operator can tell a missing node from an open one.
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts:70-74` maps `CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`, `DSH_SUPPORTED_MODELS` and `VIBE_SUPPORTED_MODELS` into the per-kind model matrix, and the suite builds a command for each entry. A model present in the TypeScript list but absent from the fan-out set throws "not in the enforced allowlist" and fails the test, so the duplication is guarded in the fail-closed direction.
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:966-1118` pins each allowlist's exact contents, so an accidental removal is caught even before the builder runs.
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:191-196` states that the capability record is checked against the builders by a conformance test rather than read by them, which is the documented design for the duplication.
 
 ## Edge Cases
 
-- The native and CLI prompt builders carry two PRE-BOUND lists; they differ only in the surfaces each delivery path needs (`review_target_type`, the lineage artifact dir), and two instances do not earn a shared builder under `prevent-overengineering.md` section 4.
-- `fanout-run.cjs` is a large file because it owns adapters, prompt rendering, budget derivation, containment and watchdogs; no single change in this range required touching more than one of those groups, so it is not reported as a cohesion defect.
-- The review and research YAML retry blocks are literal twins; the per-loop workflow split is deliberate and the compiled-contract check is the existing drift guard.
+- **The reverse parity direction is untested.** A model present in the fan-out set but absent from the TypeScript list would not fail a test. That direction is fail-open only in the sense that the fan-out would accept a model the config rejects; the config is the gate, so the entry is unreachable. Not a finding.
+- **`EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY` and `EXECUTOR_ADAPTER_CAPABILITIES[].sandboxSurface` are parallel records.** They are not derivable from each other — claude's `permission-mode` is preventive, devin's is not — so the duplication is intentional and documented at `executor-config.ts:281-296`.
+- **The capability record is documentation-as-code.** It is read by the conformance test and the catalog, not by the builders, which the record's own comment states. A reader expecting runtime enforcement from it is reading it wrong.
 
 ## Confirmed-Clean Surfaces
 
-- One adapter map covers all nine executor kinds and throws on an unknown one.
-- The merge's helpers are separated by rule, and the only duplicated rule is already a finding.
-- Warning and summary text names the missing, open or failed item instead of printing a generic failure.
-- The per-lineage budget note names the lineage and its derived share, so an operator can trace a budget without reading the config.
+- **Allowlist duplication is bounded and tested.** Four mirrored lists, each pinned by content assertions and exercised through the builder.
+- **Comment accuracy after the range.** The comments the range rewrote (`executor-config.ts:117-142,281-306`, `fanout-run.cjs:2973-2975,3005-3008`) describe the code beside them.
+- **No dead exports.** Every exported allowlist and predicate has a test or a builder consumer.
+- **Capability record shape.** One frozen record per kind, with a table-driven conformance test, so a new kind cannot be added without a record.
 
 ## Ruled Out
 
-- Extracting the PRE-BOUND block into a shared builder: two delivery paths, two lists, no third caller.
-- Reporting file size or file count as a maintainability defect: no concrete change in this range paid a cost for it.
-- A lint-style duplication finding for the two YAML retry blocks: the workflows are separate contracts and the contract-drift check is the existing guard.
+- **A maintainability finding for the mirrored allowlists.** Ruled out: the fail-closed direction is tested through the builder, and the fail-open direction is unreachable because the config gates first.
+- **A finding for the single-member `ExecutorResumeMode` union.** Ruled out: it documents the contract that no builder resumes a provider session, and the conformance test asserts it for every kind.
+- **A finding for the lazy `require` inside `sandboxEnforcementFor`.** Ruled out: it is the documented way a CJS script loads the TypeScript record, and Node caches the module.
 
 ## Next Focus
 
-- Dimension: maintainability on F-1-005 (reducer and upsert clarity, duplication and change cost).
-- Reason: F-1-003 is complete across all four dimensions; F-1-005 carries the shared reducer helpers and the evidence derivation that later changes will touch.
-- Required evidence: the two reducers' parallel frontier helpers, the upsert's derived-evidence helpers, and the strategy/dashboard rendering paths.
-- Rotation status: F-1-003 complete; F-1-005 and F-1-007 have maintainability left.
+- Dimension: maintainability
+- Frontier node: F-1-004 (active; the reducer's breadth-first rule selects the shallowest node with the fewest visits)
+- Focus area: the gateway's maintainability: whether `GATEWAY_IDENTITY_FIELDS` is a denylist that a future identity field would slip past, whether `eventContentDigest`'s head-nulling is explained where a maintainer will find it, and whether the conflict path's stderr write duplicates the JSON line.
+- Reason: F-1-002 maintainability is clean; the gateway node has three dimensions covered and maintainability is its last.
+- Rotation status: F-1-002 all four dimensions covered; F-1-004 maintainability next.
+- Blocked/productive carry-forward: productive (parity-test tracing closed the duplication question); no blocked approaches.
+- Required evidence: `GATEWAY_IDENTITY_FIELDS`, `eventContentDigest`, and the conflict stderr path.
+- Recovery note: none.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

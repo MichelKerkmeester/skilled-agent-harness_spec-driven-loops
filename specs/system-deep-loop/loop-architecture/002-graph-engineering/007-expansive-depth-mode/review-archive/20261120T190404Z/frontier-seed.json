@@ -1,0 +1,38 @@
+[
+  {
+    "question": "Are the generated artifacts the range rebuilt (compiled routing manifest, skill graph, graph metadata and description, compiled command contracts) worth a review pass of their own?",
+    "scope": [".skilled/bin/lib/compiled-routing", ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json", ".skilled/skills/system-deep-loop/graph-metadata.json", ".skilled/skills/system-deep-loop/description.json", ".skilled/commands/deep/assets/compiled"],
+    "evidence": "compile-command-contracts.cjs and the advisor graph rebuild regenerate these from their sources",
+    "pruneReason": "generated-artifact"
+  },
+  {
+    "question": "Is the frontier admission engine correct, minimal and portable: seed, admit, close, block and budget commands, the six admission checks, band budgets, the derived iteration budget and the commit-range relevance test?",
+    "scope": [".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs", ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts", ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts"],
+    "evidence": "git diff 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs (1300 added lines)"
+  },
+  {
+    "question": "Do the fan-out runner and merge handle expansive depth the same way for every executor kind: the round-robin frontier partition, per-lineage derived budgets, lineage prompts carrying focus and frontier scope, lineage command builders and the review coverage merge?",
+    "scope": [".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs", ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts", ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts"],
+    "evidence": "git diff 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+  },
+  {
+    "question": "Is the operator-facing command surface for /deep:review and /deep:research clear and consistent: the flag table, --extend, --depth-mode=expansive and the frontier cap flags, setup resolution, dry-run, usage errors and the YAML steps that run them?",
+    "scope": [".skilled/commands/deep/review.md", ".skilled/commands/deep/research.md", ".skilled/commands/deep/assets/deep-review.yaml", ".skilled/commands/deep/assets/deep-research.yaml", ".skilled/commands/deep/assets/deep-review-presentation.txt", ".skilled/commands/deep/assets/deep-research-presentation.txt"],
+    "evidence": "git diff 21c4b325b5a..de32abbb74d -- .skilled/commands/deep (714 added YAML lines)"
+  },
+  {
+    "question": "Are the state reducers, upsert, convergence and iteration verification changes correct and free of duplicated logic: node status derivation, dimension coverage, extension bookkeeping, frontier_drained stops and the ledger schema and projection changes?",
+    "scope": [".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs", ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs", ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema", ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema", ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections", ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers", ".skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers"],
+    "evidence": "git diff 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+  },
+  {
+    "question": "Do the skill docs, references, playbooks, feature catalogs and the deep-review and deep-research agent definitions with their .claude, .codex, .pi, .dsh and .vibe mirrors describe what the code does, the same way on every runtime?",
+    "scope": [".skilled/skills/system-deep-loop/deep-review", ".skilled/skills/system-deep-loop/deep-research", ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook", ".skilled/skills/system-deep-loop/runtime/feature-catalog", ".skilled/agents/deep-review.md", ".skilled/agents/deep-research.md", ".claude/agents/deep-review.md", ".claude/agents/deep-research.md", ".codex/agents/deep-review.toml", ".codex/agents/deep-research.toml", ".pi/agents/deep-review.md", ".pi/agents/deep-research.md", ".dsh/agents/deep-review.patch.yml", ".dsh/agents/deep-research.patch.yml", ".vibe/agents/deep-review.toml", ".vibe/agents/deep-research.toml"],
+    "evidence": "git diff --stat 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop/deep-review .skilled/skills/system-deep-loop/deep-research .skilled/agents .claude/agents .codex/agents .pi/agents .dsh/agents .vibe/agents"
+  },
+  {
+    "question": "Are the divergent pivot, continuity thread and coverage-graph query and signal changes correct and restrained: pivot hygiene, seat scope, quorum retry and the graph signals the stop gates read?",
+    "scope": [".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts", ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts", ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts", ".skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs", ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs", ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph"],
+    "evidence": "git diff 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts (202 added lines)"
+  }
+]

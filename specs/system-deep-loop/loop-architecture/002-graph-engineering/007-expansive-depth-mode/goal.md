@@ -119,6 +119,7 @@ and findings belong here.
 | Stop-integrity defects outside this packet (review pilot run 2) | Open, for a follow-up packet | (1) a leaf's stop reason is never checked against a stop-decision row: synthesis-closeout.cjs:104 only requires --stop-reason, the gateway took pi-1 converged and pi-3 maxDurationReached with no row (deep-review.yaml:1168), and fanout-merge.cjs:1771 checks node coverage only; (2) a leaf can skip step_check_max_duration (deep-review.yaml:1149), and the timestamp_anomaly flags lead to no refusal;... |
 | Final gate 2026-11-19 | Done | Integration tip 1d2b49e4306: vitest 190 files, 3520 passed, 11 skipped, 0 failed; ledger-stem, projection-coverage and contract drift exit 0; spec-kit parity 18 of 18; validate --strict --recursive 15 of 15 PASSED; check-goal PASSED on parent and 14 phases; no open criterion and no Unmet row; review snapshot --check OK. Phase 014 criterion 5 closed on doc run-11 and skilled run-17 under the ame... |
 | Operator routing 2026-11-18 | Recorded | Chat rulings: use cli vibe with deepseek flash max; do all remaining work with opus medium agents natively; testing, playbook and busy work on deepseek flash via cli-vibe or opencode-go, implementation and review on native Opus; increase parallelism; continue autonomously until perfection |
+| Post-program dogfood and fix rounds 4-6 | done | gen 3-4 research, gen 3 live review 90b12e8b176, rounds landed on main through 8170db46079; gate 3845 passed, 0 failed |
 
 ### Deviations and findings
 

@@ -1,18 +1,22 @@
 {
-  "sessionId": "fanout-opus-1795113418367-pvzn7z",
+  "sessionId": "fanout-opus-1795201537192-sq1ivw",
   "parentSessionId": null,
   "generation": 1,
   "lineageMode": "new",
   "continuedFromRun": null,
-  "terminalStop": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 24,
+    "timestamp": "2026-11-20T19:42:42.069Z"
+  },
   "status": "COMPLETE",
   "openFindings": [
     {
-      "findingId": "OPUS-F002-P2-002",
+      "findingId": "OPUS-F003-P1-001",
       "severity": "P1",
-      "title": "No workflow step records the files a commit-range target touches, so documented touched-file relevance narrowing never engages and admission keeps any scope",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
-      "line": 618,
+      "title": "A SIGHUP, SIGTERM or parent-death stop leaves every lineage open in the ledger, so the next run requeues each as an orphan and charges it a retry",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 4418,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -21,21 +25,15 @@
       "contentHash": null,
       "refines": null,
       "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 7,
+      "firstSeen": 2,
+      "lastSeen": 2,
       "status": "active",
       "transitions": [
         {
-          "iteration": 1,
+          "iteration": 2,
           "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 7,
-          "from": "P2",
           "to": "P1",
-          "reason": "Refinement of an earlier finding"
+          "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
@@ -44,11 +42,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "OPUS-F004-P1-002",
+      "findingId": "OPUS-F003-P1-002",
       "severity": "P1",
-      "title": "The review novelty ratio divides by the accumulated weighted total, so late in an expansive run even an iteration that finds a new issue reads as no progress and exhausts the node",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
-      "line": 1389,
+      "title": "--stop signals the process group of whatever process now holds a ledger pid, with no check it is still a lineage",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 1030,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -56,35 +54,29 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "maintainability",
-      "firstSeen": 10,
-      "lastSeen": 13,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
       "status": "active",
       "transitions": [
         {
-          "iteration": 10,
+          "iteration": 6,
           "from": null,
           "to": "P1",
           "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 13,
-          "from": "P1",
-          "to": "P1",
-          "reason": "Refinement of an earlier finding"
         }
       ],
       "dimensions": [
-        "maintainability"
+        "security"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "OPUS-F002-P2-001",
+      "findingId": "OPUS-F001-P2-002",
       "severity": "P2",
-      "title": "dedupeKey drops every non-ASCII letter, so a non-Latin question is pruned as a duplicate and accented questions collide",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
-      "line": 248,
+      "title": "Lineage block written only after the lineage exits, so a resumed research lineage scopes events under a second lineage id",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 4924,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -110,11 +102,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "OPUS-F002-P2-003",
+      "findingId": "OPUS-F001-P2-003",
       "severity": "P2",
-      "title": "Proposal scope is only prefix-checked, so free text after an in-target path passes relevance and reaches later FRONTIER blocks outside the untrusted-content guard",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
-      "line": 620,
+      "title": "A lineage that omits timestamp on its iteration records escapes every stamp check the fan-out runs",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts",
+      "line": 101,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -123,12 +115,12 @@
       "contentHash": null,
       "refines": null,
       "dimension": "security",
-      "firstSeen": 4,
-      "lastSeen": 4,
+      "firstSeen": 5,
+      "lastSeen": 5,
       "status": "active",
       "transitions": [
         {
-          "iteration": 4,
+          "iteration": 5,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
@@ -140,101 +132,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "OPUS-F002-P2-004",
+      "findingId": "OPUS-F001-P2-004",
       "severity": "P2",
-      "title": "Proposal budget accepts any finite number, so a negative or fractional budget is stored and prunes every later child that names a positive one",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
-      "line": 706,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "security",
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "security"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "OPUS-F004-P2-001",
-      "severity": "P2",
-      "title": "Review presentation still counts the four canonical dimensions in the expansive budget and node universe after the universe was narrowed",
-      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "line": 83,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "OPUS-F004-P2-002",
-      "severity": "P2",
-      "title": "The --extend warning names only all_dimensions_clean, but an expansive run with a drained frontier re-stops at once on frontier_drained",
-      "file": ".skilled/commands/deep/assets/deep-review.yaml",
-      "line": 599,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "OPUS-F004-P2-003",
-      "severity": "P2",
-      "title": "Comment claims a node is never held open for a dimension the stop does not owe, false for a canonical subset, and excluded dimensions are dispatched per node",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
-      "line": 1505,
+      "title": "The packet every range commit cites records none of the fan-out trust, stop or blocked-stop work",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/implementation-summary.md",
+      "line": 78,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -243,12 +145,12 @@
       "contentHash": null,
       "refines": null,
       "dimension": "traceability",
-      "firstSeen": 7,
-      "lastSeen": 7,
+      "firstSeen": 9,
+      "lastSeen": 9,
       "status": "active",
       "transitions": [
         {
-          "iteration": 7,
+          "iteration": 9,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
@@ -260,137 +162,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "OPUS-F004-P2-004",
+      "findingId": "OPUS-F001-P2-005",
       "severity": "P2",
-      "title": "The --depth-mode flag row is a 486-word table cell restating rules kept elsewhere, and the seed step is written out twice in the review YAML",
-      "file": ".skilled/commands/deep/review.md",
-      "line": 100,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "maintainability",
-      "firstSeen": 10,
-      "lastSeen": 10,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 10,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "OPUS-F006-P2-001",
-      "severity": "P2",
-      "title": "The traceability-narrowed node universe reached only review.md, the YAML and the reducer comment; nine other live surfaces still say the four canonical dimensions plus any custom name",
-      "file": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "line": 305,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 3,
-      "lastSeen": 9,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 9,
-          "from": "P2",
-          "to": "P2",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "OPUS-F006-P2-002",
-      "severity": "P2",
-      "title": "Both live two-node frontier playbooks wait for a confirm-mode stop before the frontier seed step that the workflow does not have",
-      "file": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md",
-      "line": 49,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "security",
-      "firstSeen": 6,
-      "lastSeen": 6,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 6,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "security"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "OPUS-F007-P2-001",
-      "severity": "P2",
-      "title": "An open-ended git range (main.., ..HEAD, origin/main...) is read as a path, so on a single-executor run the seed and every proposal are pruned as relevance",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
-      "line": 592,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 12,
-      "lastSeen": 12,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 12,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "OPUS-REC-P2-001",
-      "severity": "P2",
-      "title": "Stuck pseudo-code in the review convergence reference uses a strict comparison while the code is inclusive; the 0.05 boundary decided a node close in this run",
-      "file": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "line": 227,
+      "title": "Three copies of the claimed-stamp choice use two different predicates",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts",
+      "line": 101,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -416,11 +192,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "OPUS-REC-P2-002",
+      "findingId": "OPUS-F003-P2-003",
       "severity": "P2",
-      "title": "Graphless fallback gate counts a ledger row only with row-level evidenceRefs and five method names, but the prompt pack contract and example put evidence only inside searchActions and name exact_search",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
-      "line": 1581,
+      "title": "One ledger event name, stopped, carries two shapes and only the label tells them apart, so --status shows a SIGHUP-stopped run as running",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 4418,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -428,7 +204,7 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "correctness",
+      "dimension": "maintainability",
       "firstSeen": 14,
       "lastSeen": 14,
       "status": "active",
@@ -441,306 +217,410 @@
         }
       ],
       "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "OPUS-F005-P2-001",
+      "severity": "P2",
+      "title": "Blocked-stop event reports every active finding as adjudicated, even when the claim-adjudication gate is the blocker",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "line": 2031,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "OPUS-F005-P2-002",
+      "severity": "P2",
+      "title": "The documented review blocked_stop row is not the projected row, and the skipped-gate unknown never reaches the state log",
+      "file": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+      "line": 142,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 11,
+      "lastSeen": 11,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 11,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "OPUS-F005-P2-003",
+      "severity": "P2",
+      "title": "Research blocked-stop row hard-codes hotspotSaturation pass:true while the review side reports an unevaluated gate as unknown",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "line": 1912,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 15,
+      "lastSeen": 15,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 15,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "OPUS-F006-P2-001",
+      "severity": "P2",
+      "title": "One attempt log with no timed event turns every pass of the lineage to unknown, including a later timed attempt's passes",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
+      "line": 273,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "OPUS-F006-P2-002",
+      "severity": "P2",
+      "title": "The 20 MB stdout cap that kills a lineage now counts the full claude stream-json transcript, tool results included",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 2686,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "OPUS-F001-P2-001",
+      "severity": "P2",
+      "title": "Claude pass timing rests on a timestamp key no captured stream-json log shows",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
+      "line": 207,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
         "correctness"
       ],
       "mergedFindingIds": []
     }
   ],
-  "resolvedFindings": [],
   "blockedStopHistory": [
     {
-      "run": 14,
+      "run": 17,
       "blockedBy": [
-        "graphlessFallbackGate"
+        "dimensionCoverageGate"
       ],
       "graphBlockerDetail": [],
-      "gateResults": [
-        {
-          "evidenceDigest": "e06844562cc7b680c96cdefe9711f7b706b49b8daf26f74647660d64d4df87bb",
-          "gateId": "convergenceGate",
-          "reasonCode": "gate-passed",
-          "status": "pass"
+      "gateResults": {
+        "candidateCoverageGate": {
+          "pass": true,
+          "skipped": false
         },
-        {
-          "evidenceDigest": "b80a7bcac4b7f5596b3a421d02d519f169ff69c68aca290d9a12877aee1c3c4a",
-          "gateId": "dimensionCoverageGate",
-          "reasonCode": "gate-passed",
-          "status": "pass"
+        "claimAdjudicationGate": {
+          "pass": true,
+          "skipped": false
         },
-        {
-          "evidenceDigest": "c9d04cb4941fd7b51785121edde459ebeff48a76a4cf455cfc752c2ff9292682",
-          "gateId": "p0ResolutionGate",
-          "reasonCode": "gate-passed",
-          "status": "pass"
+        "convergenceGate": {
+          "hardStop": true,
+          "pass": true,
+          "score": 0.55,
+          "skipped": false
         },
-        {
-          "evidenceDigest": "0dc7a00a28cd740a8210ecb9c5e8b8c4071b84cec2962e6b77e0269477572e7e",
-          "gateId": "evidenceDensityGate",
-          "reasonCode": "gate-passed",
-          "status": "pass"
+        "dimensionCoverageGate": {
+          "missing": [],
+          "pass": false,
+          "skipped": false
         },
-        {
-          "evidenceDigest": "61e6ed4a3d69a989b177eb1904a3d1d37590fa2bfdca5843ec9fa788d55c55b6",
-          "gateId": "hotspotSaturationGate",
-          "reasonCode": "gate-passed",
-          "status": "pass"
+        "evidenceDensityGate": {
+          "pass": true,
+          "skipped": false
         },
-        {
-          "evidenceDigest": "b09a4b24c9405af6d386e61f078fc9b37b56ce65a9f4e4f027e8c59ae2124c17",
-          "gateId": "claimAdjudicationGate",
-          "reasonCode": "gate-passed",
-          "status": "pass"
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "skipped": false
         },
-        {
-          "evidenceDigest": "f3d38c98cd84ae4c04cb97395ee6c3afb1315397cfb07c28634af39d9e8ee985",
-          "gateId": "fixCompletenessReplayGate",
-          "reasonCode": "gate-passed",
-          "status": "pass"
+        "graphlessFallbackGate": {
+          "pass": true,
+          "skipped": false
         },
-        {
-          "evidenceDigest": "7bfe47e9f0c80a99c0d6c892e438c095e47decb36582740ae19576c44e77c99d",
-          "gateId": "candidateCoverageGate",
-          "reasonCode": "gate-passed",
-          "status": "pass"
+        "hotspotSaturationGate": {
+          "pass": true,
+          "skipped": false
         },
-        {
-          "evidenceDigest": "1ea28bee266d93fac7db47fbaf7b5ec19f8caea7128104da7581d03b24bc1f3a",
-          "gateId": "graphlessFallbackGate",
-          "reasonCode": "fallback-ledger-rows-missing",
-          "status": "fail"
+        "p0ResolutionGate": {
+          "activeP0": 0,
+          "pass": true,
+          "skipped": false
         }
+      },
+      "recoveryStrategy": "Clear the failed legal-stop gates before stopping: dimensionCoverageGate.",
+      "timestamp": "2026-11-20T19:33:55.361Z"
+    },
+    {
+      "run": 19,
+      "blockedBy": [
+        "dimensionCoverageGate"
       ],
-      "recoveryStrategy": "Add cited graphless fallback ledger rows (direct_read or exact_grep with row-level evidenceRefs) for state_transition and contract_drift before STOP.",
-      "timestamp": "2026-11-19T18:59:44.393Z"
+      "graphBlockerDetail": [],
+      "gateResults": {
+        "candidateCoverageGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "claimAdjudicationGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "convergenceGate": {
+          "hardStop": true,
+          "pass": true,
+          "score": 0.55,
+          "skipped": false
+        },
+        "dimensionCoverageGate": {
+          "missing": [],
+          "pass": false,
+          "skipped": false
+        },
+        "evidenceDensityGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "graphlessFallbackGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "hotspotSaturationGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "p0ResolutionGate": {
+          "activeP0": 0,
+          "pass": true,
+          "skipped": false
+        }
+      },
+      "recoveryStrategy": "Clear the failed legal-stop gates before stopping: dimensionCoverageGate.",
+      "timestamp": "2026-11-20T19:35:44.789Z"
+    },
+    {
+      "run": 21,
+      "blockedBy": [
+        "dimensionCoverageGate"
+      ],
+      "graphBlockerDetail": [],
+      "gateResults": {
+        "candidateCoverageGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "claimAdjudicationGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "convergenceGate": {
+          "hardStop": true,
+          "pass": true,
+          "score": 0.55,
+          "skipped": false
+        },
+        "dimensionCoverageGate": {
+          "missing": [],
+          "pass": false,
+          "skipped": false
+        },
+        "evidenceDensityGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "graphlessFallbackGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "hotspotSaturationGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "p0ResolutionGate": {
+          "activeP0": 0,
+          "pass": true,
+          "skipped": false
+        }
+      },
+      "recoveryStrategy": "Clear the failed legal-stop gates before stopping: dimensionCoverageGate.",
+      "timestamp": "2026-11-20T19:37:57.895Z"
+    },
+    {
+      "run": 22,
+      "blockedBy": [
+        "dimensionCoverageGate"
+      ],
+      "graphBlockerDetail": [],
+      "gateResults": {
+        "candidateCoverageGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "claimAdjudicationGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "convergenceGate": {
+          "hardStop": true,
+          "pass": true,
+          "score": 0.55,
+          "skipped": false
+        },
+        "dimensionCoverageGate": {
+          "missing": [],
+          "pass": false,
+          "skipped": false
+        },
+        "evidenceDensityGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "graphlessFallbackGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "hotspotSaturationGate": {
+          "pass": true,
+          "skipped": false
+        },
+        "p0ResolutionGate": {
+          "activeP0": 0,
+          "pass": true,
+          "skipped": false
+        }
+      },
+      "recoveryStrategy": "Clear the failed legal-stop gates before stopping: dimensionCoverageGate.",
+      "timestamp": "2026-11-20T19:38:34.211Z"
     }
   ],
   "terminalGates": {
-    "run": 15,
-    "stopReason": "converged",
-    "failedRequiredGateIds": []
+    "run": 25,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "scope",
+      "coverage"
+    ]
   },
-  "persistentSameSeverity": [
-    {
-      "findingId": "OPUS-F004-P1-002",
-      "severity": "P1",
-      "title": "The review novelty ratio divides by the accumulated weighted total, so late in an expansive run even an iteration that finds a new issue reads as no progress and exhausts the node",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
-      "line": 1389,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "maintainability",
-      "firstSeen": 10,
-      "lastSeen": 13,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 10,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 13,
-          "from": "P1",
-          "to": "P1",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "OPUS-F006-P2-001",
-      "severity": "P2",
-      "title": "The traceability-narrowed node universe reached only review.md, the YAML and the reducer comment; nine other live surfaces still say the four canonical dimensions plus any custom name",
-      "file": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "line": 305,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 3,
-      "lastSeen": 9,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 9,
-          "from": "P2",
-          "to": "P2",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
-  "severityChanged": [
-    {
-      "findingId": "OPUS-F002-P2-002",
-      "severity": "P1",
-      "title": "No workflow step records the files a commit-range target touches, so documented touched-file relevance narrowing never engages and admission keeps any scope",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
-      "line": 618,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 7,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 7,
-          "from": "P2",
-          "to": "P1",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
-  "repeatedFindings": [
-    {
-      "findingId": "OPUS-F002-P2-002",
-      "severity": "P1",
-      "title": "No workflow step records the files a commit-range target touches, so documented touched-file relevance narrowing never engages and admission keeps any scope",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
-      "line": 618,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 7,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 7,
-          "from": "P2",
-          "to": "P1",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "OPUS-F004-P1-002",
-      "severity": "P1",
-      "title": "The review novelty ratio divides by the accumulated weighted total, so late in an expansive run even an iteration that finds a new issue reads as no progress and exhausts the node",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
-      "line": 1389,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "maintainability",
-      "firstSeen": 10,
-      "lastSeen": 13,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 10,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 13,
-          "from": "P1",
-          "to": "P1",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "OPUS-F006-P2-001",
-      "severity": "P2",
-      "title": "The traceability-narrowed node universe reached only review.md, the YAML and the reducer comment; nine other live surfaces still say the four canonical dimensions plus any custom name",
-      "file": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "line": 305,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 3,
-      "lastSeen": 9,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 9,
-          "from": "P2",
-          "to": "P2",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
   "dimensionCoverage": {
     "correctness": true,
     "security": true,
@@ -750,42 +630,57 @@
   "findingsBySeverity": {
     "P0": 0,
     "P1": 2,
-    "P2": 12
+    "P2": 10
   },
-  "openFindingsCount": 14,
-  "resolvedFindingsCount": 0,
-  "convergenceScore": 0.955,
-  "graphConvergenceScore": 0,
-  "graphDecision": null,
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 1,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
   "graphBlockers": [],
-  "graphSignals": {},
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 1,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 1
+  },
   "candidateCoverage": {
     "covered": [
-      "boundary_condition",
-      "contract_drift",
+      "contract_ambiguity",
+      "doc_drift",
       "duplication",
-      "frontier:F-1-002",
-      "frontier:F-1-006",
+      "frontier:F-1-001",
+      "frontier:F-1-003",
+      "frontier:F-1-005",
+      "frontier:F-2-006",
+      "inconsistency",
       "input_validation",
-      "prompt_injection",
-      "spec_code_alignment",
-      "state_transition"
+      "pid_reuse",
+      "process_lifecycle",
+      "resource_exhaustion",
+      "spec_drift",
+      "state_transition",
+      "trust_boundary"
     ],
     "ruledOut": [
       "boundary_condition",
-      "destructive_command",
-      "dry_run_boundary",
+      "complexity",
+      "doc_drift",
+      "dry_run_side_effect",
       "duplication",
+      "idempotency",
+      "injection",
       "input_validation",
       "path_traversal",
-      "permission_widening",
-      "portability",
-      "prototype_pollution",
-      "runtime_parity",
-      "shell_injection",
-      "spec_code_alignment",
+      "pid_reuse",
+      "process_lifecycle",
+      "resource_exhaustion",
+      "side_effect",
+      "spec_drift",
       "state_transition",
-      "test_coverage"
+      "trust_boundary"
     ],
     "deferred": [],
     "blocked": [],
@@ -797,19 +692,9 @@
         "blocked": false,
         "iterations": [
           1,
-          2,
           4,
-          12
-        ]
-      },
-      "boundary_condition": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1,
-          12
+          8,
+          20
         ]
       },
       "state_transition": {
@@ -819,27 +704,31 @@
         "blocked": false,
         "iterations": [
           1,
-          10,
-          13,
-          14
+          2,
+          3,
+          4,
+          18
         ]
       },
-      "contract_drift": {
-        "covered": true,
-        "ruledOut": false,
+      "boundary_condition": {
+        "covered": false,
+        "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          2,
-          3,
-          6,
-          7,
-          9,
-          13,
-          14
+          1
         ]
       },
-      "runtime_parity": {
+      "process_lifecycle": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "idempotency": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -848,13 +737,24 @@
           3
         ]
       },
-      "prompt_injection": {
-        "covered": true,
-        "ruledOut": false,
+      "dry_run_side_effect": {
+        "covered": false,
+        "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          4
+          3,
+          7
+        ]
+      },
+      "trust_boundary": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5,
+          21
         ]
       },
       "path_traversal": {
@@ -863,71 +763,70 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          4
-        ]
-      },
-      "prototype_pollution": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "shell_injection": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
           5
         ]
       },
-      "dry_run_boundary": {
+      "injection": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          5
+          5,
+          7
         ]
       },
-      "permission_widening": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          6
-        ]
-      },
-      "destructive_command": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          6
-        ]
-      },
-      "spec_code_alignment": {
+      "pid_reuse": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          7,
-          8
+          6,
+          19
         ]
       },
-      "test_coverage": {
+      "side_effect": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          8
+          6
+        ]
+      },
+      "resource_exhaustion": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8,
+          22
+        ]
+      },
+      "spec_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          17,
+          23
+        ]
+      },
+      "doc_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          10,
+          11,
+          12,
+          24
         ]
       },
       "duplication": {
@@ -936,35 +835,73 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          10,
-          11
+          13,
+          14,
+          15,
+          16
         ]
       },
-      "portability": {
+      "complexity": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          11
+          13
         ]
       },
-      "frontier:F-1-002": {
+      "contract_ambiguity": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          10
+          14
         ]
       },
-      "frontier:F-1-006": {
+      "inconsistency": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          11
+          15
+        ]
+      },
+      "frontier:F-1-001": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "frontier:F-1-003": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "frontier:F-1-005": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "frontier:F-2-006": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
         ]
       }
     }
@@ -973,475 +910,824 @@
   "ruledOutCandidates": [
     {
       "iteration": 1,
-      "id": "SL-001-03",
+      "id": "SL-001-3",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts"
       ],
-      "bugClass": "state_transition",
+      "bugClass": "boundary_condition",
       "disposition": "ruled_out",
-      "rationale": "both guards throw before append",
+      "rationale": "both checks read claimedTimestamp",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:895"
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:101"
       ],
       "reason": "verified by direct read"
     },
     {
       "iteration": 2,
-      "id": "SL-002-03",
+      "id": "SL-002-2",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs"
       ],
-      "bugClass": "input_validation",
+      "bugClass": "process_lifecycle",
       "disposition": "ruled_out",
-      "rationale": "both values are digit-checked",
+      "rationale": "group liveness checked",
       "evidenceRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml:535"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:321"
       ],
       "reason": "verified by direct read"
     },
     {
       "iteration": 3,
-      "id": "SL-003-02",
+      "id": "SL-003-2",
       "dimension": "correctness",
       "targetRefs": [
-        ".vibe/agents/deep-review.toml",
-        ".codex/agents/deep-review.toml"
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts"
       ],
-      "bugClass": "runtime_parity",
+      "bugClass": "idempotency",
       "disposition": "ruled_out",
-      "rationale": "counts equal",
+      "rationale": "repeat check fields present",
       "evidenceRefs": [
-        ".vibe/agents/deep-review.toml:4"
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:221"
       ],
-      "reason": "verified by occurrence count"
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-3",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-research.yaml"
+      ],
+      "bugClass": "dry_run_side_effect",
+      "disposition": "ruled_out",
+      "rationale": "persist-snapshot overridden",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:2361"
+      ],
+      "reason": "verified by direct read"
     },
     {
       "iteration": 4,
-      "id": "SL-004-03",
+      "id": "SL-004-2",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "input_validation",
+      "disposition": "ruled_out",
+      "rationale": "JSON stays valid",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1097"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-2",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       ],
       "bugClass": "path_traversal",
       "disposition": "ruled_out",
-      "rationale": "not leaf reachable",
+      "rationale": "atomic rename",
       "evidenceRefs": [
-        ".skilled/commands/deep/assets/deep-research.yaml:1923"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1908"
       ],
-      "reason": "operator/workflow-controlled argument"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-004-04",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
-      ],
-      "bugClass": "prototype_pollution",
-      "disposition": "ruled_out",
-      "rationale": "spread uses CreateDataProperty",
-      "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:151"
-      ],
-      "reason": "language semantics"
+      "reason": "verified by direct read"
     },
     {
       "iteration": 5,
-      "id": "SL-005-01",
+      "id": "SL-005-3",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml"
+        ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs"
       ],
-      "bugClass": "shell_injection",
+      "bugClass": "injection",
       "disposition": "ruled_out",
-      "rationale": "every operator string is file-passed or validated",
+      "rationale": "nested text skipped",
       "evidenceRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml:425",
-        ".skilled/commands/deep/assets/deep-review.yaml:395"
-      ],
-      "reason": "verified by diff read"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-005-02",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml"
-      ],
-      "bugClass": "dry_run_boundary",
-      "disposition": "ruled_out",
-      "rationale": "boundaries present",
-      "evidenceRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml:957"
+        ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs:100"
       ],
       "reason": "verified by direct read"
     },
     {
       "iteration": 6,
-      "id": "SL-006-01",
+      "id": "SL-006-2",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/agents/deep-review.md",
-        ".claude/agents/deep-review.md",
-        ".codex/agents/deep-review.toml"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       ],
-      "bugClass": "permission_widening",
+      "bugClass": "side_effect",
       "disposition": "ruled_out",
-      "rationale": "body-only diffs",
+      "rationale": "read-only",
       "evidenceRefs": [
-        ".codex/agents/deep-review.toml:5"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3957"
       ],
-      "reason": "verified by diff"
+      "reason": "verified by direct read"
     },
     {
-      "iteration": 6,
-      "id": "SL-006-02",
+      "iteration": 7,
+      "id": "SL-007-1",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook"
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
       ],
-      "bugClass": "destructive_command",
+      "bugClass": "injection",
       "disposition": "ruled_out",
-      "rationale": "no match",
+      "rationale": "no shell",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:49"
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:2205"
       ],
-      "reason": "pattern scan clean"
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-2",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts"
+      ],
+      "bugClass": "dry_run_side_effect",
+      "disposition": "ruled_out",
+      "rationale": "no wal/shm",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:404"
+      ],
+      "reason": "verified by direct read"
     },
     {
       "iteration": 8,
-      "id": "SL-008-01",
-      "dimension": "traceability",
+      "id": "SL-008-2",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
       ],
-      "bugClass": "spec_code_alignment",
+      "bugClass": "input_validation",
       "disposition": "ruled_out",
-      "rationale": "matches",
+      "rationale": "guarded parse",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:656"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:195"
       ],
-      "reason": "verified against requirements"
+      "reason": "verified by direct read"
     },
     {
-      "iteration": 8,
-      "id": "SL-008-02",
+      "iteration": 9,
+      "id": "SL-009-2",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts"
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-salvage.md"
       ],
-      "bugClass": "test_coverage",
+      "bugClass": "doc_drift",
       "disposition": "ruled_out",
-      "rationale": "commands covered; edge gaps tracked under open findings",
+      "rationale": "no drift",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts:333"
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-salvage.md:84"
       ],
-      "reason": "coverage map"
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-1",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md"
+      ],
+      "bugClass": "doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "no drift",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:135"
+      ],
+      "reason": "verified by direct read"
     },
     {
       "iteration": 11,
-      "id": "SL-011-01",
-      "dimension": "maintainability",
+      "id": "SL-011-2",
+      "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook"
+        ".skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md"
       ],
-      "bugClass": "duplication",
+      "bugClass": "doc_drift",
       "disposition": "ruled_out",
-      "rationale": "shared lines are template",
+      "rationale": "consistent",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md:1"
+        ".skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md:66"
       ],
-      "reason": "measured overlap"
-    },
-    {
-      "iteration": 11,
-      "id": "SL-011-02",
-      "dimension": "maintainability",
-      "targetRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook"
-      ],
-      "bugClass": "portability",
-      "disposition": "ruled_out",
-      "rationale": "no match",
-      "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:1"
-      ],
-      "reason": "pattern scan clean"
+      "reason": "verified by search"
     },
     {
       "iteration": 12,
-      "id": "SL-012-02",
-      "dimension": "correctness",
+      "id": "SL-012-1",
+      "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pass-evidence.vitest.ts"
       ],
-      "bugClass": "boundary_condition",
+      "bugClass": "doc_drift",
       "disposition": "ruled_out",
-      "rationale": "guarded and tested",
+      "rationale": "agreement",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts:534"
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pass-evidence.vitest.ts:162"
       ],
-      "reason": "verified"
+      "reason": "verified by search and read"
+    },
+    {
+      "iteration": 13,
+      "id": "SL-013-2",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "complexity",
+      "disposition": "ruled_out",
+      "rationale": "no concrete failure",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1"
+      ],
+      "reason": "no failure tied to size"
     },
     {
       "iteration": 14,
-      "id": "SL-014-01",
+      "id": "SL-014-2",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "short and equal",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1030"
+      ],
+      "reason": "behaviorally equal"
+    },
+    {
+      "iteration": 15,
+      "id": "SL-015-2",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "one constant",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:62"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 16,
+      "id": "SL-016-1",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "two instances only",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:33"
+      ],
+      "reason": "restraint rule: two is not a pattern"
+    },
+    {
+      "iteration": 17,
+      "id": "SL-017-1",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md"
+      ],
+      "bugClass": "spec_drift",
+      "disposition": "ruled_out",
+      "rationale": "no governing child requirement",
+      "evidenceRefs": [
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md:146"
+      ],
+      "reason": "011 hits concern Next Focus only"
+    },
+    {
+      "iteration": 18,
+      "id": "SL-018-1",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
       ],
       "bugClass": "state_transition",
       "disposition": "ruled_out",
-      "rationale": "guards verified",
+      "rationale": "confirms existing findings, no escalation",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:895"
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/opus/deep-review-state.jsonl:20"
       ],
-      "reason": "verified by direct read"
+      "reason": "live case does not involve claimAdjudicationGate"
+    },
+    {
+      "iteration": 19,
+      "id": "SL-019-1",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "pid_reuse",
+      "disposition": "ruled_out",
+      "rationale": "confirms OPUS-F003-P1-002; no P0 escalation",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4357"
+      ],
+      "reason": "harm needs pid reuse plus operator --stop"
+    },
+    {
+      "iteration": 20,
+      "id": "SL-020-1",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
+      ],
+      "bugClass": "input_validation",
+      "disposition": "ruled_out",
+      "rationale": "premise of OPUS-F001-P2-001 cleared",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:207"
+      ],
+      "reason": "installed CLI emits the key"
+    },
+    {
+      "iteration": 21,
+      "id": "SL-021-1",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
+      ],
+      "bugClass": "trust_boundary",
+      "disposition": "ruled_out",
+      "rationale": "no downgrade; no escalation",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:470"
+      ],
+      "reason": "finding stands at P2"
+    },
+    {
+      "iteration": 22,
+      "id": "SL-022-1",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "resource_exhaustion",
+      "disposition": "ruled_out",
+      "rationale": "no escalation",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4791"
+      ],
+      "reason": "about 5x measured headroom"
+    },
+    {
+      "iteration": 23,
+      "id": "SL-023-1",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md"
+      ],
+      "bugClass": "spec_drift",
+      "disposition": "ruled_out",
+      "rationale": "no governing row",
+      "evidenceRefs": [
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md:64"
+      ],
+      "reason": "rows cover other features"
+    },
+    {
+      "iteration": 24,
+      "id": "SL-024-1",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
+      ],
+      "bugClass": "doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "anchors verified",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:384"
+      ],
+      "reason": "one anchor corrected in narrative"
     }
   ],
   "cleanSearchProof": [
     {
       "iteration": 1,
-      "id": "SL-001-03",
+      "id": "SL-001-3",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts"
       ],
-      "bugClass": "state_transition",
+      "bugClass": "boundary_condition",
       "disposition": "ruled_out",
-      "rationale": "both guards throw before append",
+      "rationale": "both checks read claimedTimestamp",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:895"
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:101"
       ],
       "proof": "verified by direct read"
     },
     {
       "iteration": 2,
-      "id": "SL-002-03",
+      "id": "SL-002-2",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs"
       ],
-      "bugClass": "input_validation",
+      "bugClass": "process_lifecycle",
       "disposition": "ruled_out",
-      "rationale": "both values are digit-checked",
+      "rationale": "group liveness checked",
       "evidenceRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml:535"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:321"
       ],
       "proof": "verified by direct read"
     },
     {
       "iteration": 3,
-      "id": "SL-003-02",
+      "id": "SL-003-2",
       "dimension": "correctness",
       "targetRefs": [
-        ".vibe/agents/deep-review.toml",
-        ".codex/agents/deep-review.toml"
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts"
       ],
-      "bugClass": "runtime_parity",
+      "bugClass": "idempotency",
       "disposition": "ruled_out",
-      "rationale": "counts equal",
+      "rationale": "repeat check fields present",
       "evidenceRefs": [
-        ".vibe/agents/deep-review.toml:4"
+        ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:221"
       ],
-      "proof": "verified by occurrence count"
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-3",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-research.yaml"
+      ],
+      "bugClass": "dry_run_side_effect",
+      "disposition": "ruled_out",
+      "rationale": "persist-snapshot overridden",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:2361"
+      ],
+      "proof": "verified by direct read"
     },
     {
       "iteration": 4,
-      "id": "SL-004-03",
+      "id": "SL-004-2",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "input_validation",
+      "disposition": "ruled_out",
+      "rationale": "JSON stays valid",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1097"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-2",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       ],
       "bugClass": "path_traversal",
       "disposition": "ruled_out",
-      "rationale": "not leaf reachable",
+      "rationale": "atomic rename",
       "evidenceRefs": [
-        ".skilled/commands/deep/assets/deep-research.yaml:1923"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1908"
       ],
-      "proof": "operator/workflow-controlled argument"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-004-04",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
-      ],
-      "bugClass": "prototype_pollution",
-      "disposition": "ruled_out",
-      "rationale": "spread uses CreateDataProperty",
-      "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:151"
-      ],
-      "proof": "language semantics"
+      "proof": "verified by direct read"
     },
     {
       "iteration": 5,
-      "id": "SL-005-01",
+      "id": "SL-005-3",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml"
+        ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs"
       ],
-      "bugClass": "shell_injection",
+      "bugClass": "injection",
       "disposition": "ruled_out",
-      "rationale": "every operator string is file-passed or validated",
+      "rationale": "nested text skipped",
       "evidenceRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml:425",
-        ".skilled/commands/deep/assets/deep-review.yaml:395"
-      ],
-      "proof": "verified by diff read"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-005-02",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml"
-      ],
-      "bugClass": "dry_run_boundary",
-      "disposition": "ruled_out",
-      "rationale": "boundaries present",
-      "evidenceRefs": [
-        ".skilled/commands/deep/assets/deep-review.yaml:957"
+        ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs:100"
       ],
       "proof": "verified by direct read"
     },
     {
       "iteration": 6,
-      "id": "SL-006-01",
+      "id": "SL-006-2",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/agents/deep-review.md",
-        ".claude/agents/deep-review.md",
-        ".codex/agents/deep-review.toml"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       ],
-      "bugClass": "permission_widening",
+      "bugClass": "side_effect",
       "disposition": "ruled_out",
-      "rationale": "body-only diffs",
+      "rationale": "read-only",
       "evidenceRefs": [
-        ".codex/agents/deep-review.toml:5"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3957"
       ],
-      "proof": "verified by diff"
+      "proof": "verified by direct read"
     },
     {
-      "iteration": 6,
-      "id": "SL-006-02",
+      "iteration": 7,
+      "id": "SL-007-1",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook"
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
       ],
-      "bugClass": "destructive_command",
+      "bugClass": "injection",
       "disposition": "ruled_out",
-      "rationale": "no match",
+      "rationale": "no shell",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:49"
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:2205"
       ],
-      "proof": "pattern scan clean"
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-2",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts"
+      ],
+      "bugClass": "dry_run_side_effect",
+      "disposition": "ruled_out",
+      "rationale": "no wal/shm",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:404"
+      ],
+      "proof": "verified by direct read"
     },
     {
       "iteration": 8,
-      "id": "SL-008-01",
-      "dimension": "traceability",
+      "id": "SL-008-2",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
       ],
-      "bugClass": "spec_code_alignment",
+      "bugClass": "input_validation",
       "disposition": "ruled_out",
-      "rationale": "matches",
+      "rationale": "guarded parse",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:656"
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:195"
       ],
-      "proof": "verified against requirements"
+      "proof": "verified by direct read"
     },
     {
-      "iteration": 8,
-      "id": "SL-008-02",
+      "iteration": 9,
+      "id": "SL-009-2",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts"
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-salvage.md"
       ],
-      "bugClass": "test_coverage",
+      "bugClass": "doc_drift",
       "disposition": "ruled_out",
-      "rationale": "commands covered; edge gaps tracked under open findings",
+      "rationale": "no drift",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts:333"
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-salvage.md:84"
       ],
-      "proof": "coverage map"
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-1",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md"
+      ],
+      "bugClass": "doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "no drift",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:135"
+      ],
+      "proof": "verified by direct read"
     },
     {
       "iteration": 11,
-      "id": "SL-011-01",
-      "dimension": "maintainability",
+      "id": "SL-011-2",
+      "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook"
+        ".skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md"
       ],
-      "bugClass": "duplication",
+      "bugClass": "doc_drift",
       "disposition": "ruled_out",
-      "rationale": "shared lines are template",
+      "rationale": "consistent",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/expansive-depth-flag-and-default-identity.md:1"
+        ".skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md:66"
       ],
-      "proof": "measured overlap"
-    },
-    {
-      "iteration": 11,
-      "id": "SL-011-02",
-      "dimension": "maintainability",
-      "targetRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook"
-      ],
-      "bugClass": "portability",
-      "disposition": "ruled_out",
-      "rationale": "no match",
-      "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:1"
-      ],
-      "proof": "pattern scan clean"
+      "proof": "verified by search"
     },
     {
       "iteration": 12,
-      "id": "SL-012-02",
-      "dimension": "correctness",
+      "id": "SL-012-1",
+      "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pass-evidence.vitest.ts"
       ],
-      "bugClass": "boundary_condition",
+      "bugClass": "doc_drift",
       "disposition": "ruled_out",
-      "rationale": "guarded and tested",
+      "rationale": "agreement",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts:534"
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pass-evidence.vitest.ts:162"
       ],
-      "proof": "verified"
+      "proof": "verified by search and read"
+    },
+    {
+      "iteration": 13,
+      "id": "SL-013-2",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "complexity",
+      "disposition": "ruled_out",
+      "rationale": "no concrete failure",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1"
+      ],
+      "proof": "no failure tied to size"
     },
     {
       "iteration": 14,
-      "id": "SL-014-01",
+      "id": "SL-014-2",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "short and equal",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1030"
+      ],
+      "proof": "behaviorally equal"
+    },
+    {
+      "iteration": 15,
+      "id": "SL-015-2",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "one constant",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:62"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 16,
+      "id": "SL-016-1",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "two instances only",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:33"
+      ],
+      "proof": "restraint rule: two is not a pattern"
+    },
+    {
+      "iteration": 17,
+      "id": "SL-017-1",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md"
+      ],
+      "bugClass": "spec_drift",
+      "disposition": "ruled_out",
+      "rationale": "no governing child requirement",
+      "evidenceRefs": [
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md:146"
+      ],
+      "proof": "011 hits concern Next Focus only"
+    },
+    {
+      "iteration": 18,
+      "id": "SL-018-1",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs"
+        ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
       ],
       "bugClass": "state_transition",
       "disposition": "ruled_out",
-      "rationale": "guards verified",
+      "rationale": "confirms existing findings, no escalation",
       "evidenceRefs": [
-        ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:895"
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages/opus/deep-review-state.jsonl:20"
       ],
-      "proof": "verified by direct read"
+      "proof": "live case does not involve claimAdjudicationGate"
+    },
+    {
+      "iteration": 19,
+      "id": "SL-019-1",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "pid_reuse",
+      "disposition": "ruled_out",
+      "rationale": "confirms OPUS-F003-P1-002; no P0 escalation",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4357"
+      ],
+      "proof": "harm needs pid reuse plus operator --stop"
+    },
+    {
+      "iteration": 20,
+      "id": "SL-020-1",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
+      ],
+      "bugClass": "input_validation",
+      "disposition": "ruled_out",
+      "rationale": "premise of OPUS-F001-P2-001 cleared",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:207"
+      ],
+      "proof": "installed CLI emits the key"
+    },
+    {
+      "iteration": 21,
+      "id": "SL-021-1",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
+      ],
+      "bugClass": "trust_boundary",
+      "disposition": "ruled_out",
+      "rationale": "no downgrade; no escalation",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:470"
+      ],
+      "proof": "finding stands at P2"
+    },
+    {
+      "iteration": 22,
+      "id": "SL-022-1",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "resource_exhaustion",
+      "disposition": "ruled_out",
+      "rationale": "no escalation",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4791"
+      ],
+      "proof": "about 5x measured headroom"
+    },
+    {
+      "iteration": 23,
+      "id": "SL-023-1",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md"
+      ],
+      "bugClass": "spec_drift",
+      "disposition": "ruled_out",
+      "rationale": "no governing row",
+      "evidenceRefs": [
+        "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md:64"
+      ],
+      "proof": "rows cover other features"
+    },
+    {
+      "iteration": 24,
+      "id": "SL-024-1",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
+      ],
+      "bugClass": "doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "anchors verified",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:384"
+      ],
+      "proof": "one anchor corrected in narrative"
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "state_transition",
-      "contract_drift"
+      "doc_drift"
     ],
-    "covered": [
-      "contract_drift"
-    ],
+    "covered": [],
     "ruledOut": [
-      "state_transition"
+      "doc_drift"
     ],
     "deferred": [],
     "blocked": [],
@@ -1450,18 +1736,14 @@
   "frontier": {
     "nodes": [
       {
-        "nodeId": "F-1-002",
+        "nodeId": "F-1-001",
         "parentId": "root",
         "depth": 1,
-        "scope": [
-          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
-          ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts",
-          ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts"
-        ],
-        "question": "Is the frontier admission engine correct, minimal and portable: seed, admit, close, block and budget commands, the six admission checks, band budgets, the derived iteration budget and the commit-range relevance test?",
+        "scope": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs .skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts",
+        "question": "Fan-out trust: does the per-pass evidence (examined/unexamined flags) judge a lineage pass correctly, does the lineage timestamp window use the gateway clock and claimedTimestamp, and is the runner-written lineage block in each lineage config right?",
         "status": "answered",
         "reason": null,
-        "iteration": 10,
+        "iteration": 1,
         "coveredDimensions": [
           "correctness",
           "security",
@@ -1472,56 +1754,14 @@
         "visits": 4
       },
       {
-        "nodeId": "F-1-004",
+        "nodeId": "F-1-003",
         "parentId": "root",
         "depth": 1,
-        "scope": [
-          ".skilled/commands/deep/review.md",
-          ".skilled/commands/deep/research.md",
-          ".skilled/commands/deep/assets/deep-review.yaml",
-          ".skilled/commands/deep/assets/deep-research.yaml",
-          ".skilled/commands/deep/assets/deep-review-presentation.txt",
-          ".skilled/commands/deep/assets/deep-research-presentation.txt"
-        ],
-        "question": "Is the operator-facing command surface for /deep:review and /deep:research clear and consistent: the flag table, --extend, --depth-mode=expansive and the frontier cap flags, setup resolution, dry-run, usage errors and the YAML steps that run them?",
-        "status": "exhausted",
-        "reason": "stuck",
-        "iteration": 10,
-        "coveredDimensions": [
-          "correctness",
-          "security",
-          "traceability",
-          "maintainability"
-        ],
-        "nextDimension": null,
-        "visits": 4
-      },
-      {
-        "nodeId": "F-1-006",
-        "parentId": "root",
-        "depth": 1,
-        "scope": [
-          ".skilled/skills/system-deep-loop/deep-review",
-          ".skilled/skills/system-deep-loop/deep-research",
-          ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook",
-          ".skilled/skills/system-deep-loop/runtime/feature-catalog",
-          ".skilled/agents/deep-review.md",
-          ".skilled/agents/deep-research.md",
-          ".claude/agents/deep-review.md",
-          ".claude/agents/deep-research.md",
-          ".codex/agents/deep-review.toml",
-          ".codex/agents/deep-research.toml",
-          ".pi/agents/deep-review.md",
-          ".pi/agents/deep-research.md",
-          ".dsh/agents/deep-review.patch.yml",
-          ".dsh/agents/deep-research.patch.yml",
-          ".vibe/agents/deep-review.toml",
-          ".vibe/agents/deep-research.toml"
-        ],
-        "question": "Do the skill docs, references, playbooks, feature catalogs and the deep-review and deep-research agent definitions with their .claude, .codex, .pi, .dsh and .vibe mirrors describe what the code does, the same way on every runtime?",
+        "scope": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+        "question": "Stop and kill: do --stop, SIGHUP and parent death stop every lineage process and record a stopped outcome with a rerun command, and does --status show live progress rows read-only?",
         "status": "answered",
         "reason": null,
-        "iteration": 11,
+        "iteration": 2,
         "coveredDimensions": [
           "correctness",
           "security",
@@ -1532,31 +1772,49 @@
         "visits": 4
       },
       {
-        "nodeId": "F-2-007",
-        "parentId": "F-1-002",
+        "nodeId": "F-1-005",
+        "parentId": "root",
+        "depth": 1,
+        "scope": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs .skilled/commands/deep/assets/deep-review.yaml .skilled/commands/deep/assets/deep-research.yaml",
+        "question": "Blocked stop and dry run: does convergence.cjs record a blocked stop from the script with skipped gates as unknown, and do both workflows keep that call read-only on a dry run?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 3,
+        "coveredDimensions": [
+          "correctness",
+          "security",
+          "traceability",
+          "maintainability"
+        ],
+        "nextDimension": null,
+        "visits": 4
+      },
+      {
+        "nodeId": "F-2-006",
+        "parentId": "F-1-001",
         "depth": 2,
-        "scope": [
-          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs",
-          ".skilled/commands/deep/assets/deep-review.yaml"
-        ],
-        "question": "Does any workflow step give a commit-range review target its touched-file list before frontier admission reads reviewScopeFiles, and do the range-token heuristics hold for the targets operators actually write?",
-        "status": "exhausted",
-        "reason": "stuck",
-        "iteration": 13,
+        "scope": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
+        "question": "Do rotated lineage logs (fanout-lineage.N.out) mixing a timed and an untimed attempt leave pass windows judged against the wrong attempt's calls?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 4,
         "coveredDimensions": [
-          "correctness"
+          "correctness",
+          "security",
+          "traceability",
+          "maintainability"
         ],
-        "nextDimension": "security",
-        "visits": 1
+        "nextDimension": null,
+        "visits": 4
       }
     ],
     "stats": {
       "total": 4,
       "open": 0,
       "active": 0,
-      "answered": 2,
+      "answered": 4,
       "blocked": 0,
-      "exhausted": 2,
+      "exhausted": 0,
       "abstained": 0,
       "pruned": 0
     },
@@ -1567,10 +1825,10 @@
       },
       "depth2": {
         "allotted": 8.4,
-        "spent": 1
+        "spent": 4
       },
       "depth3": {
-        "allotted": 11,
+        "allotted": 8,
         "spent": 0
       }
     },
@@ -1579,100 +1837,73 @@
   },
   "traceability": {
     "summary": {
-      "required": 6,
-      "executed": 6,
-      "pass": 4,
-      "partial": 2,
-      "fail": 0,
+      "required": 3,
+      "executed": 3,
+      "pass": 1,
+      "partial": 1,
+      "fail": 1,
       "blocked": 0,
-      "notApplicable": 0,
-      "gatingFailures": 0
+      "notApplicable": 1,
+      "gatingFailures": 1
     },
     "results": [
       {
         "applicable": true,
         "evidence": [
-          ".skilled/agents/deep-review.md:170",
-          ".vibe/agents/deep-review.toml:4"
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/implementation-summary.md:78",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md:146",
+          ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4418"
         ],
         "evidenceRefs": [
-          ".skilled/agents/deep-review.md:170"
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md:146",
+          ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1030"
         ],
-        "gateClass": "advisory",
-        "protocolId": "agent_cross_runtime",
-        "status": "pass",
-        "summary": "new agent sentences present once in all five mirrors"
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "fail",
+        "summary": "Complete search: no packet or child requirement governs the range's fan-out and blocked-stop code; finding OPUS-F001-P2-004"
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md:64",
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/acceptance-criteria.md:67"
+        ],
+        "evidenceRefs": [
+          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/001-completed-run-extension/acceptance-criteria.md:67"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "summary": "Complete replay: no acceptance row exists for the range's fan-out stop, trust or blocked-stop work"
       },
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:30",
-          ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1225"
+          ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-salvage.md:90",
+          ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pass-evidence.vitest.ts:162"
         ],
         "evidenceRefs": [
-          ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1225"
+          ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-salvage.md:90",
+          ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pass-evidence.vitest.ts:162"
         ],
         "gateClass": "advisory",
         "protocolId": "feature_catalog_code",
-        "status": "partial",
-        "summary": "catalog matches code except the node universe paragraph"
+        "status": "pass",
+        "summary": "Catalog, test and code agree on the untimed-attempt rule"
       },
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:49",
-          ".skilled/commands/deep/assets/deep-review.yaml:1104"
+          ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md:58"
         ],
         "evidenceRefs": [
-          ".skilled/commands/deep/assets/deep-review.yaml:1104"
+          ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md:58"
         ],
         "gateClass": "advisory",
         "protocolId": "playbook_capability",
         "status": "partial",
-        "summary": "two live frontier scenarios rely on a pause the workflow lacks"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:656",
-          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:361"
-        ],
-        "evidenceRefs": [
-          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:656",
-          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:363"
-        ],
-        "gateClass": "hard",
-        "protocolId": "spec_code",
-        "status": "pass",
-        "summary": "six-check order, band shares and roll-down, store writes match REQ-002/008/011/014"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:470",
-          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:788"
-        ],
-        "evidenceRefs": [
-          ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:470"
-        ],
-        "gateClass": "hard",
-        "protocolId": "checklist_evidence",
-        "status": "pass",
-        "summary": "loop-protocol admission and seed paragraphs backed by code lines"
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          ".skilled/agents/deep-review.md:170",
-          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:656"
-        ],
-        "evidenceRefs": [
-          ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:656"
-        ],
-        "gateClass": "advisory",
-        "protocolId": "skill_agent",
-        "status": "pass",
-        "summary": "agent frontier proposal paragraph matches the admission engine"
+        "summary": "No scenario checks a rerun after a SIGHUP stop for orphan charges"
       }
     ],
     "unfinishedCoreProtocols": []
