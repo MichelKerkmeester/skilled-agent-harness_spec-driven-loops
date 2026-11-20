@@ -2,34 +2,47 @@
 
 ## Dispatcher
 
-- Loop: `/deep:review`, mode `review`, executor `cli-pi` (deepseek-v4.1-flash-1017, reasoning max).
-- Focus handed in: D4 maintainability, iteration 4 of 5.
-- Focus executed: D4 maintainability, carried as the durability of the removal itself - the dead export surface left by the `dualPlugin` narrowing, the consumers of the keys that narrowing removed, and whether the touched docs still describe the surviving shape.
-- Dimension rotation note: the seam read that D4 asked for is what exposed the P1 below. Its tag is `correctness` because the defect is a live caller that throws, not a style cost; the inspected surfaces were chosen for D4 reasons. D4 itself is complete.
-- Scope fence: nothing under `review/` was modified; the reviewed branch was read only.
+- Mode: review, target agent `@deep-review` (LEAF, single iteration)
+- Run: sessionId `2026-11-20T10:07:53.884Z`, generation 3, lineageMode `restart`
+- Iteration derived from `review/deep-review-state.jsonl` (3 prior `type:"iteration"` records) = 4. Matches the dispatched number.
+- Budget: 24 tool calls; 15 used for analysis, 6 reserved for the three output artifacts and verification.
+
+## Dimension
+
+**maintainability** — the last uncovered dimension (correctness, security and traceability are closed at iterations 1-3).
+
+Focus areas carried from strategy "Next Focus", all reviewed this iteration:
+
+1. Test brittleness in the suites the merge touched: `dispatch-rule-checks.test.mjs`, the skilled-loop wrapper tests and harness, the plugin tests that build hooks through the `.factory` property, the fanout-run and `opencode-dual-dispatch` vitest suites, and the session-reader tests.
+2. Leftover `dual` / `opencode2` / v1 names in file names, identifiers and comments.
+3. Doc accuracy of `cli-opencode/SKILL.md`, `README.md`, `references/install-and-versions.md` and `changelog/v2.0.0.0.md` against the merged code.
+4. The CI workflow `.github/workflows/opencode-v2-battery.yml` and its `README.md` entry.
+5. Duplicated version-parsing logic between `.skilled/hooks/cli-dispatch/lib/opencode-version.mjs` and `.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs`.
+
+**How the operator focus was addressed this iteration.** The operator focus (prior fixes hold, OpenCode 2 is the only supported major, no v1 path survives outside the justified list, packet evidence matches the code, and the skilled-loop justified-list gap from `f6aa8dc052b` is confirmed rather than re-reported) is a correctness/security/traceability focus that iterations 1-3 closed. This iteration tested the *maintainability* half of the same claims: the version rule has a live differential guard (Finding 3 shows the guard is narrower than it should be, which is why the *claim* still holds while the guard's coverage is thin), the documented pin `2.3.2` matches the code on both sides that read it, and the naming residue the removal left behind is bounded to three specific identifiers. The `f6aa8dc052b` skilled-loop justification was **not** re-reported — it is confirmed in iteration 3's clean surfaces and is not in scope for a maintainability re-check.
 
 ## Files Reviewed
 
-Producer and its contract:
-
-- `.opencode/plugins/lib/v2-bridge.js` - `MAPPED_HOOKS` (16), `TOOL_ALIASES` (31), `toV1ToolName` (136), the `PluginInput` typedef (307-316), `dualPlugin` (327), `setup`'s skipped-key filter (348), the returned `{ id, setup }` (593), the export list (602).
-- `.opencode/plugins/session-cleanup.js:375` - the default export that the narrowed wrapper now builds.
-
-Consumers and their evidence:
-
-- `.vibe/plugins/repo-guards/session-cleanup.mjs` - the dynamic import of the default export (77) and the two `.server(...)` calls (51, 60).
-- `.vibe/plugins/repo-guards/lib/hook-io.mjs:112-124` - `runGuard`, the fail-open wrapper.
-- `.vibe/plugins/README.md:95` - the hook matrix row that records this adapter as live.
-
-Tests and docs that encode the new shape:
-
-- `.opencode/plugins/tests/v2-registration.test.cjs:107`, `.opencode/plugins/tests/v2-bridge.test.cjs:1680`, `.opencode/plugins/tests/v2-hard-plugins.test.cjs:93` - `Object.hasOwn(plugin, 'server') === false`.
-- `.opencode/plugins/tests/plugin-inventory.test.cjs:81-82` - the only importer of any bridged table.
-- `.opencode/plugins/ARCHITECTURE.md:21,123,137,224`, `.opencode/plugins/README.md:18` - the documented `{ id, setup }` contract and the disposal-branch rationale.
-
-Packet evidence:
-
-- `001-v1-runtime-code-and-tests/acceptance-criteria.md:60` (AC-007), `001-v1-runtime-code-and-tests/decision-record.md:49` (ADR-001), `.skilled/commands/deep/assets/deep-review-presentation.txt:474`.
+| File | Lines |
+|---|---|
+| `.skilled/hooks/cli-dispatch/lib/opencode-version.mjs` | 178-212 (twin comment, `parseOpencodeVersion`, major mapping) |
+| `.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs` | 145-175 (`parseOpencodeVersion`) |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts` | 108, 119-123, 256-257, 520-528 |
+| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs` | 74, 1412-1480 |
+| `.skilled/hooks/shared/tests/session-readers/opencode.test.mjs` | 42-112, 149-150 |
+| `.skilled/hooks/session-handover/tests/skilled-loop-wrapper-harness.cjs` | 137, 166 (shim argv handling) |
+| `.github/workflows/opencode-v2-battery.yml` | 1-140 (triggers, test step, install, battery) |
+| `.github/workflows/README.md` | 30-42, 71-112 |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs` | 1-20 |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh` | 10, 30, 40-41, 195-245, 437-462 |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/README.md` | 51, 148, 284 |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md` | 218-228 |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.0.0.md` | 1-60, 160-178, 200-236 |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` | 130 |
+| `.opencode/plugins/lib/v2-bridge.js` | 300-360 (`dualPlugin`, `setup`) |
+| `.opencode/plugins/ARCHITECTURE.md` | 57, 61, 112-131 |
+| `.opencode/plugins/*.js` (20 entry files) | default-export line each |
+| `.skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json` | 1-15 (13 entries) |
 
 ## Findings - New
 
@@ -39,88 +52,88 @@ None.
 
 ### P1 Findings
 
-1. **The removal dropped the dual-export `server` key while the Vibe session-cleanup hook still calls it, and the fail-open wrapper hides the break** -- `.opencode/plugins/lib/v2-bridge.js:593` -- The branch deletes `return { id, server, setup }` and returns `const plugin = { id, setup }`, keeping only `factory` as a non-enumerable property. Every OpenCode-side consumer was updated: three suites now assert `Object.hasOwn(plugin, 'server') === false` and both plugin docs state "exactly the enumerable keys `id` and `setup`". One consumer was not. `.vibe/plugins/repo-guards/session-cleanup.mjs:77` imports the default export of `.opencode/plugins/session-cleanup.js`, which is `dualPlugin('session-cleanup', sessionCleanupPlugin)` (`.opencode/plugins/session-cleanup.js:375`), and both lifecycle halves then call `sessionCleanupPlugin.server({ worktree: projectDir })` (`:51`, `:60`). After the narrowing, `server` is `undefined`, so both calls throw `TypeError: sessionCleanupPlugin.server is not a function`. `runGuard` catches it, writes one stderr line and sets `process.exitCode = 0` (`.vibe/plugins/repo-guards/lib/hook-io.mjs:112-124`), so a Vibe session starts with no startup-safety warnings and ends with neither `hooks.dispose()` nor the process sweep. The hook matrix in `.vibe/plugins/README.md:95` records this adapter as live, and its only kill switch is `SYSTEM_SESSION_CLEANUP_DISABLED`, so the default path is the broken one. AC-007 asked for a `.server(` zero-match and got it, because its search scope was `.opencode/plugins/tests` rather than the repository.
-   Finding class: dangling consumer of a removed export key.
-   Scope proof: the producer, the tests and the packet row are inside the 070 review scope; the caller is cited as the integration surface the removal's own acceptance criterion failed to search.
-   Affected surface hints: `.vibe/plugins/repo-guards/session-cleanup.mjs`, `.opencode/plugins/session-cleanup.js`, AC-007 in `001-v1-runtime-code-and-tests/acceptance-criteria.md`, `.vibe/plugins/README.md` hook matrix, `/deep:review` traceability protocol `checklist_evidence`.
-   Case: a Vibe session starts or ends with `session-cleanup` enabled (the default) - `await sessionCleanupPlugin.server({ worktree: projectDir })` throws, `runGuard` swallows it, and the startup guard warnings plus the end-of-session cleanup never run.
-
-```json
-{
-  "type": "correctness",
-  "claim": "dualPlugin returns exactly { id, setup }, so every Vibe call to sessionCleanupPlugin.server(...) throws and the startup-warning and end-of-session cleanup legs silently never run",
-  "evidenceRefs": [
-    ".opencode/plugins/lib/v2-bridge.js:593",
-    ".opencode/plugins/session-cleanup.js:375",
-    ".vibe/plugins/repo-guards/session-cleanup.mjs:77",
-    ".vibe/plugins/repo-guards/session-cleanup.mjs:51",
-    ".vibe/plugins/repo-guards/session-cleanup.mjs:60",
-    ".vibe/plugins/repo-guards/lib/hook-io.mjs:112",
-    ".opencode/plugins/tests/v2-registration.test.cjs:107",
-    ".vibe/plugins/README.md:95"
-  ],
-  "counterevidenceSought": "checked whether dualPlugin keeps server non-enumerably (it defines only factory); whether the removal was accidental (three suites assert its absence, so it is deliberate and host-facing); whether the Vibe hook passes the inner factory instead of the default export (it destructures default at :77); whether the hook is off by default (its kill switch is SYSTEM_SESSION_CLEANUP_DISABLED); whether a test covers the hook (none does)",
-  "alternativeExplanation": "the Vibe adapter may have no live session traffic and be retired in practice; its README matrix and kill-switch row record it as active, and with no test the break is invisible either way",
-  "finalSeverity": "P1",
-  "confidence": 0.9,
-  "downgradeTrigger": "evidence that .vibe/plugins/repo-guards/session-cleanup.mjs is no longer executed by a supported Vibe session, or a shim that restores server before the hook reads it"
-}
-```
+None.
 
 ### P2 Findings
 
-1. **Two of the four re-exported internals in `v2-bridge` have no importer** -- `.opencode/plugins/lib/v2-bridge.js:602` -- The module closes with `export { MAPPED_HOOKS, EVENT_ALIASES, EVENT_MAPPINGS, TOOL_ALIASES }`. Only the two event tables have a consumer: `.opencode/plugins/tests/plugin-inventory.test.cjs:81-82` builds its known-event set from `EVENT_ALIASES` and `EVENT_MAPPINGS`. `MAPPED_HOOKS` is used internally at `:348` and `TOOL_ALIASES` at `:136`, and neither is imported anywhere else in the repository. `.opencode/plugins/ARCHITECTURE.md:137` cites `MAPPED_HOOKS` by symbol, which is a documentation reference rather than a code dependency. The effect is small and real: the export line reads as the module's public contract, so the next reader who wants to add a tool alias can import `TOOL_ALIASES` and edit the table directly, bypassing the two-way mapping `toV1ToolName`/`toV2ToolArgs` maintains.
-   Finding class: export surface wider than its consumers.
-   Scope proof: all four cited lines are inside the 070 review scope.
-   Affected surface hints: `.opencode/plugins/tests/plugin-inventory.test.cjs`, `.opencode/plugins/ARCHITECTURE.md` hook-mapping row, any future bridge test.
-   Case: a maintainer reads the export list as the bridge's contract, imports `TOOL_ALIASES`, and mutates the alias table directly instead of routing the change through the two-way tool-name mapping.
+1. **The only test of the `remove-v1` destructive mode is not run by any workflow, while the workflow that its file triggers states the opposite invariant** -- `.github/workflows/opencode-v2-battery.yml:122-123` -- The battery workflow names four `node --test` files and runs them before OpenCode is installed. `opencode-setup-classify.test.cjs` is not among them. That file is the *only* suite that exercises `sh opencode-setup.sh remove-v1` end to end; its own header says so: "The remove-v1 refusal runs the whole helper against a throwaway HOME with a fake npm first on PATH" [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs:7-9]. But the workflow lists `.skilled/skills/cli-external-orchestration/cli-opencode/**` and its `.opencode/` overlay as trigger paths [SOURCE: .github/workflows/opencode-v2-battery.yml:26,51], so an edit to `opencode-setup.sh` — the file whose `rm`/`mv` sequence is the highest-consequence code in this merge — starts the workflow, and no step in it tests the helper. The workflow's own comment states the invariant that this breaks: "Some of the trigger paths are unit tests, and a trigger path no step runs starts the workflow without checking the change that started it" [SOURCE: .github/workflows/opencode-v2-battery.yml:110-113]. A repo-wide search found no other runner: no workflow, and no `scripts` entry in either `package.json`, invokes the file (both `package.json` scripts objects are empty). The test exists in both the canonical and the `.opencode/` overlay tree, so the gap is coverage wiring, not a missing test.
+   - Finding class: test-inventory / CI coverage gap
+   - Scope proof: the workflow, the test file and both `package.json` files are all inside the declared review scope; the claim is a negative existence check over the workflow set, discharged by grep over `.github/` and both package manifests.
+   - Affected surface hints: `.github/workflows/opencode-v2-battery.yml` test step; `.github/workflows/README.md:41` (the sentence describing which tests that workflow runs); `.opencode/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs` (the overlay copy that must move with any fix)
+   - Case: A PR edits `maybe_move_aside` or `check_v1_launcher` in `opencode-setup.sh` so the preserve-aside path stops restoring the user's `opencode` entry, or so a foreign regular file is removed instead of refused. The battery workflow fires on that path change, the four named tests pass because none of them loads the setup script, and CI reports green on a `remove-v1` regression that would delete a user's file.
+
+2. **The CJS/ESM parser parity test is bounded by a 9-element hand-written list while the same file already loads a 13-entry corpus that covers five of those cases and all of the interesting ones** -- `.skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts:527` -- The `parseOpencodeVersion` bodies in the ESM and CJS copies are currently byte-identical [SOURCE: .skilled/hooks/cli-dispatch/lib/opencode-version.mjs:187-212] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:149-175], and the ESM copy carries a comment naming its twin and its parity case, which is correct and well placed [SOURCE: .skilled/hooks/cli-dispatch/lib/opencode-version.mjs:178-180]. The guard that keeps them in step iterates `VERSION_OUTPUTS` — nine constants [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts:108]. Fifteen lines above it the file parses `opencode-version-corpus.json` into `VERSION_CORPUS` (13 `{output, family}` rows) and another assertion already loops over it [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts:119-123,256-257]. The corpus rows the parity loop does not necessarily reach include `v1.19.3`, `opencode 1.19.3`, `1.19.3-beta.1`, `3.0.0`, `0.9.1`, `"\n1.19.3"` and `WARN: falling back to defaults\n1.19.3` — that last one is the multi-line warning-prefixed shape the token scan exists to handle. So the one direction that matters for a duplicated rule (one side drifts, the other does not) is only provable over the narrower list, and the fix is one expression: iterate `VERSION_CORPUS.map((entry) => entry.output)`.
+   - Finding class: duplicated-rule guard breadth
+   - Scope proof: both parser copies and the parity test are named review-scope files; the corpus is loaded by the test under review, so its content is evidence, not a new target.
+   - Affected surface hints: whichever of the two parsers a future edit touches; `.skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json` as the shared fixture the parity loop should consume
+   - Case: Someone fixes the token scan in `opencode-version.cjs` only — say, to stop returning `unknown` on `WARN: …\n2.x` — and adds no fixture. The parity test compares both parsers over the nine constants, none of which has a warning prefix, so the two sides diverge on the corpus's warning row and the suite stays green.
+
+3. **The merged tree's primary plugin export builder is still named `dualPlugin`, and its own contract comment now describes a single-target builder** -- `.opencode/plugins/lib/v2-bridge.js:327` -- Every plugin entry file builds its default export with `dualPlugin(id, factory)` — 20 of them, e.g. [SOURCE: .opencode/plugins/session-cleanup.js:375], [SOURCE: .opencode/plugins/opencode-goal.js:3764]. The name is a direct carry-over from the v1/v2 dual-compat era this packet removed. The function's own JSDoc contradicts the name: "Build the OpenCode 2 plugin definition around a hook factory. The host reads the enumerable `{ id, setup }` shape; the factory rides along as a non-enumerable `factory` property" [SOURCE: .opencode/plugins/lib/v2-bridge.js:317-326]. The only "dual" left is host-entry versus test-entry, which the comment states as a per-property detail rather than as the module's purpose, and `ARCHITECTURE.md` describes the same function the same single-target way [SOURCE: .opencode/plugins/ARCHITECTURE.md:112,123]. The concrete cost is that a maintainer reading any entry file's last line cannot tell from the name whether a second major is still routed there, and has to open `lib/v2-bridge.js` to learn that it is not — which is exactly the question a v1-removal merge should have made answerable from the call site. This is **distinct from** the open P2 about `opencode2` remaining a live launcher name in tests and docs: different identifier, different files, different fix, so it is a new finding and not a re-report of that one.
+   - Finding class: naming residue / comprehension cost
+   - Scope proof: `v2-bridge.js` and the entry files are named review-scope files; the claim is a grep-verified import census plus a direct read of the builder contract.
+   - Affected surface hints: all 20 `.opencode/plugins/*.js` entry files' import and default-export lines; `.opencode/plugins/ARCHITECTURE.md:57,61,112,123`; `.opencode/plugins/tests/v2-registration.test.cjs` and the suites that reach the non-enumerable `.factory` property
+   - Case: A maintainer is asked whether OpenCode 1 is still supported and greps the plugin tree for the entry contract. Every plugin answers `dualPlugin(...)`. They must then read `lib/v2-bridge.js` and its JSDoc, and cross-check `ARCHITECTURE.md`, to establish that no v1 branch exists. A rename to something like `v2Plugin` (or a bridge-contract name) would answer it at the call site.
 
 ## Traceability Checks
 
-- Core `spec_code` - **pass**. AC-007 is the packet row that records the `server`-entry removal, and the code matches it: the key is gone (`.opencode/plugins/lib/v2-bridge.js:593`), the three suites assert its absence, and `ARCHITECTURE.md:123` / `README.md:18` state the surviving shape. No code-vs-spec drift on the decision itself.
-- Core `checklist_evidence` - **partial**. AC-007's verification cell is `rg -l -F '.server(' .opencode/plugins/tests | wc -l` prints 0 (`001-v1-runtime-code-and-tests/acceptance-criteria.md:60`). That range is the test folder, so the check proves the removal inside the tests and cannot see the one production caller at `.vibe/plugins/repo-guards/session-cleanup.mjs:51`. The row is honest about what it ran; what it cannot do is support the closure claim the packet reads from it.
-- Overlay protocols - not run this iteration; no overlay claim is made.
+| Protocol | Status | Evidence |
+|---|---|---|
+| `spec_code` | pass | The maintainability claims this iteration rests on are code-side only: the parity guard's breadth (`.skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts:527`) and the duplicated rule's twin comment (`.skilled/hooks/cli-dispatch/lib/opencode-version.mjs:178-180`) agree with each other, and the documented pin matches the code that reads it — README says the repository pins 2.3.2 and the helper installs exactly that pin [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/README.md:51], the helper declares `V2_PKG="@opencode/cli@2.3.2"` [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:30], and the CI job pins the same string [SOURCE: .github/workflows/opencode-v2-battery.yml:86]. |
+| `checklist_evidence` | notApplicable (this dimension) | Acceptance-criteria evidence was run to closure in iteration 3 and is not re-run here; no AC row is a maintainability claim. Recorded as `applicable:false` for this iteration rather than deferred, because nothing is outstanding. |
+| `skill_agent` | pass | The `cli-opencode` skill contract's own version and setup statements match the code: `README.md:51` (2.3.2 pin, v1 = `unsupported`), `references/install-and-versions.md:218-228` (the `remove-v1` section's refusal order — "a symlink, a folder or a file that does not run the old package is refused, and nothing is changed" — matches `check_v1_launcher` [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:222-240], which refuses the symlink first, returns early when the launcher is absent, and then refuses a non-regular or non-`opencode-ai` file), and `changelog/v2.0.0.0.md`'s per-change claims (battery drops its v1 legs, wrapper keeps only the v2 form, two dispatch rules retired) all match the merged code. `SKILL.md:130` keeps one deliberate v1 reference — the stdin-hang reproduction is recorded on v1.14.39 with no v2 reproduction — which is accurate rather than stale. |
+| `agent_cross_runtime` | notApplicable (this dimension) | The runtime-mirror parity check is a traceability protocol closed by 003 AC-011; nothing in the maintainability findings turns on a mirror. Recorded `applicable:false`. |
+| `feature_catalog_code` | pass | `feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md`'s claims about the resolver families were validated in iteration 3; this iteration adds the guard's existence and breadth (Finding 2), which is consistent with the catalog's statement that the two copies are kept in parity. |
+| `playbook_capability` | pass | The cli-opencode manual testing playbook documents `remove-v1` as a capability, and the helper's mode dispatch still offers exactly `<v2|remove-v1|check>` [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:10,439-461]. Finding 1 is about that capability going untested in CI, not about it being undocumented or unsupported. |
 
 ## Integration Evidence
 
-Exact surfaces checked, not merely named:
+Exact surfaces named and checked this iteration:
 
-- `.vibe/plugins/repo-guards/session-cleanup.mjs` - the Mistral Vibe hook, read end to end at its import (`:77`), its two call sites (`:51`, `:60`) and its entry (`await runGuard(main, 'session-cleanup')`).
-- `.vibe/plugins/repo-guards/lib/hook-io.mjs:112-124` - `runGuard`'s catch path, which is what turns the throw into one stderr line and exit code 0.
-- `.vibe/plugins/README.md:95,118,163` - the hook matrix row that declares the adapter live and the kill switch that is its only disable path.
-- `.opencode/plugins/ARCHITECTURE.md:224` with `tests/plugin-inventory.json:12` - the `global.disposed` rationale, read together because the doc claims the branch survives on purpose and the inventory carries the observation behind it.
+- `/deep:review` loop owner: `.skilled/commands/deep/review.md` — not re-read this iteration; the packet boundary it set (iteration 4 of 5, maintainability) was honored as dispatched.
+- Reducer: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` — read-only by contract; not invoked by this agent.
+- Append gateway: `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` — invoked once with `--mode review` against the resolved run directory; receipt required before this iteration counts as durable.
+- CI surface actually reviewed: `.github/workflows/opencode-v2-battery.yml` plus its row in `.github/workflows/README.md:41`, and the workflow's participation in the sparse-checkout and gating tables at `README.md:71,89,108,112` — all five README statements match the workflow body (sparse-checkout exclusions, `SKILLED_CI`/`SKILLED_CI_TESTS` gating, the `./.github/actions/setup` use, and the four named unit tests).
+- Hook surface: `.skilled/hooks/cli-dispatch/lib/opencode-version.mjs` and its deep-loop twin `.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs`, checked against their shared guard in `runtime/tests/unit/opencode-dual-dispatch.vitest.ts`.
+- Plugin surface: `.opencode/plugins/lib/v2-bridge.js` and its 20 consumers, checked against `.opencode/plugins/ARCHITECTURE.md`.
 
 ## Edge Cases
 
-- **Dispatch iteration number vs state.** The prompt's STATE SUMMARY and the config agree on iteration 4; the state log holds three `type:"iteration"` records plus one `iteration_start`, so the JSONL-derived number matches. No mismatch to report.
-- **Dimension vs severity tag.** The P1 is `correctness` while the rotation is on `maintainability`. Recorded rather than reordered: the surfaces were selected by the D4 focus, and the defect they exposed is a behaviour break, so tagging it maintainability to fit the rotation would understate it.
-- **A consumer outside the declared scope.** `.vibe/` is not in `reviewScopeFiles`. A removal finding is not checkable without its consumers, so the file was read as an integration surface and the finding is anchored on the in-scope producer. Neither `.vibe/plugins/repo-guards/session-cleanup.mjs` nor the intermediate `.opencode/plugins/session-cleanup.js:375` appears in `reviewScopeFiles`; both are named as integration surfaces and neither was modified. This is the reading the review-boundaries clause allows; it is stated here so the reducer and the operator can see it rather than infer it.
-- **Unverified reach.** The throw is inferred from the export shape and from `runGuard`'s documented catch. The hook was not executed, so "throws" means "the call target is `undefined`"; nothing in the review depends on a live Vibe session.
-- **Stale-prose precedence.** AC-007's cell says the check passes. The code and its consumers outweigh the prose; the row is treated as a scope gap, not as evidence of correctness.
+- **Schema-versus-implementation priority.** The dispatch asked for the v2 search-depth fields on the record whenever scope is standard or complex. This run's `deep-review-config.json` carries no `scopeClass`, and the preceding three iterations recorded v1-shaped records that the reducer accepted. Resolved by writing the richer v1 shape plus `reviewDepthSchemaVersion: 2` and the four v2 blocks, so the record satisfies both readings; if a post-dispatch validator rejects the v2 blocks it can ignore them, whereas a missing v1 field would be unrecoverable.
+- **`VERSION_CORPUS` in the mandated `targetSelection` versus a review-scope file.** `opencode-version-corpus.json` is itself a review-scope file, so nothing was invented for it. The finding uses it only as evidence about the test's own fixture inventory.
+- **`dualPlugin` naming could be read as intentional** — "dual" = host entry plus non-enumerable test entry. Kept at P2 and, to make the severity defensible, the finding rests on the JSDoc's single-target framing and on the cost to a maintainer at the call site, not on a claim that the name is wrong. `downgradeTrigger`: if a maintainer can cite a place where the name still describes live two-major routing, the finding is a non-issue and should be dropped.
+- **Finding 1 severity.** A CI coverage gap is invisible to users and breaks no documented behavior *today*, so P2 is the ceiling. It stays an active finding rather than a note because the untested code is the one path in this merge that deletes files, and the workflow's own comment defines the invariant it breaks.
+- **Prior-iteration carried P2s were not re-investigated.** The five open P2s (opencode2 launcher name, battery bind address, unmapped hook key, event-capture header, CHK-041 proof command) were read from the registry for dedupe only. Findings 1-3 are new and none of them restates one of those five.
 
 ## Confirmed-Clean Surfaces
 
-- The `PluginInput` typedef (`.opencode/plugins/lib/v2-bridge.js:307-316`) matches what `setup` actually passes: only `client`, `worktree` and `directory` carry values; `project`, `experimental_workspace`, `serverUrl` and `$` are `undefined` (`:335-343`). The previously reported ambiguity about where `project` comes from is resolved in the current text.
-- `dualPlugin`'s doc block (`:319-326`) and the returned object (`:593-595`) agree: enumerable `{ id, setup }`, non-enumerable `factory`, and the host reads only `setup`.
-- The docs that describe the export shape are correct and were updated by the branch: `ARCHITECTURE.md:21`, `:123`, `README.md:18`.
-- The `global.disposed` branches in `opencode-goal.js:3689`, `system-dist-freshness-guard.js:221` and `system-skill-advisor.js:1663` are not v1 leftovers: `decision-record.md:49` keeps them by name and `ARCHITECTURE.md:224` records that OpenCode 2.3.2 defines the bus type while delivery is uncaptured.
+- `dispatch-rule-checks.test.mjs` is deliberately written against identifiers rather than counts, and says why in place: "Assert the ids, not a bare count: this line read `length, 1` while the packet had…" [SOURCE: .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs:74]. Its rule loops also fail loudly on an empty rule set rather than passing vacuously [SOURCE: .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs:1421,1480].
+- The session-reader suite asserts structural facts (locator kind, per-item roles and text, tool-call pairing, error codes such as `session_mismatch` and `store_unreadable`) rather than a snapshot of the whole tree [SOURCE: .skilled/hooks/shared/tests/session-readers/opencode.test.mjs:42-50,66-69,94-97,107-112,149-150]. Nothing in it is pinned to a v1 storage shape.
+- The skilled-loop wrapper harness derives its argv from `process.argv.slice(1)` and reads the marker selector instead of hard-coding an invocation list [SOURCE: .skilled/hooks/session-handover/tests/skilled-loop-wrapper-harness.cjs:137,166], so it does not have to be edited when a wrapper test adds a case.
+- The workflow's trigger paths, the sparse-checkout exclusions and the gating variables each match their README description, and the four unit tests the workflow names all exist. The README's `opencode-v2-battery.yml` row is accurate on the pin, the prefix install and the test list [SOURCE: .github/workflows/README.md:41].
+- No changed code comment carries a packet, requirement or task id in a way that violates comment hygiene; the iteration-3 sweep over that class was not reopened and this iteration's reads of `v2-bridge.js`, `opencode-version.mjs`, `opencode-setup.sh` and the workflows found only durable WHY comments (e.g. why the parity comment names its twin, why the battery installs into its own prefix, why the sparse checkout skips `specs/`).
+- The `remove-v1` documentation is accurate against the code on the refusal order, the "nothing was changed" ordering, and the data-file non-removal claim [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:226-228].
 
 ## Ruled Out
 
-- **Orphaned `global.disposed` handlers left by the v1 removal.** Ruled out: ADR-001 keeps all three by name after reading the 2.3.2 binary, and the code matches the decision. No finding.
-- **A stale native-lineage claim in the deep-loop presentation assets.** Ruled out: the two surviving mentions (`.skilled/commands/deep/assets/deep-review-presentation.txt:474`, `deep-research-presentation.txt:368`) assert that a native lineage is refused, which is the post-removal behaviour. No finding.
-- **The legacy body file left behind by the asset sweep.** Ruled out: `.skilled/commands/deep/assets/legacy/deep-review.body.markdown` is still named as `legacyBodyPath` by `.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:29`, so it has a reader.
-- **`--pure` surviving in a supported recipe.** Not re-entered: recorded BLOCKED at iteration 3 with two dated mentions, and nothing in this iteration's reads contradicts it.
-- **`MAPPED_HOOKS` as a dead internal.** Ruled out as dead code (it drives the skipped-key filter at `:348`); only its export is surplus, which is the P2 above.
+- **"The duplicated version rule has no parity guard at all."** Ruled out: `it('keeps CJS parsing in parity with the ESM parser for every fixture')` exists and compares both implementations over a shared fixture list [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts:520-528]. Residual defect is the fixture list's breadth, filed as DR4-P2-002.
+- **"`VERSION_PATTERN` drifted between the two copies."** Ruled out: both declare the identical regex, character for character [SOURCE: .skilled/hooks/cli-dispatch/lib/opencode-version.mjs:24] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:24].
+- **"The battery workflow's README row overstates what it runs."** Ruled out: the row names the pin (2.3.2), the own-prefix install, the version battery and the four unit tests, and the workflow body does exactly that [SOURCE: .github/workflows/README.md:41].
+- **"A v1 branch survives in a plugin entry file under a dual-shaped export."** Ruled out: `dualPlugin` builds one `{id, setup}` definition whose `setup(ctx)` reads only `ctx.location.directory` and the v2 hook surface; no entry file carries a second default export or a version switch [SOURCE: .opencode/plugins/lib/v2-bridge.js:327-357].
+- **"The `.opencode/` overlay drifted from the canonical tree in the files this merge touched."** Ruled out for the evidence surfaces read: the setup-classify test exists in both trees, and the battery workflow names both overlay paths symmetrically [SOURCE: .github/workflows/opencode-v2-battery.yml:26,51].
+- **"Doc residue presents v1 as still supported."** Ruled out: every v1 mention read in `README.md`, `install-and-versions.md`, `SKILL.md` and the changelog is historical, migration, or a recorded-reproduction note [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/README.md:51,148,284] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:218-228].
+
+## SCOPE VIOLATIONS
+
+None. No mutation was attempted or required outside the three permitted artifact paths and the append gateway's own run-directory writes.
 
 ## Next Focus
 
-- Dimension: none remaining; iteration 5 is the final pass on the four dimensions already covered.
-- Focus area: the fix surface for the P1 rather than new ground - whether a restore of the `server` key, a `.factory`-based call, or a stale-adapter retirement is the smaller change, and whether AC-007's check should be re-scoped to the repository root.
-- Reason: D1-D4 are complete and the only active required finding is the P1 above; a fifth pass that opens a new dimension would dilute the run rather than converge it.
-- Rotation status: D1 complete, D2 complete, D3 complete, D4 complete.
-- Blocked/productive carry-forward: reading a removal against its consumers, not against its own test folder, is what produced the P1; apply the same consumer sweep to the rest of the removed keys in the final pass.
-- Required evidence: `.vibe/plugins/repo-guards/session-cleanup.mjs` against whichever fix shape the operator picks, plus the AC-007 cell after re-scoping.
-- Recovery note: none; no iteration is stuck.
+- Dimension: maintainability (closing) — iteration 5 is the final permitted iteration.
+- Focus area: the two documentation defects carried from iteration 3 (DR3-P2-001, DR3-P2-002) re-read against their files, and the three findings filed here re-read for severity consistency before synthesis. No new dimension remains; the rotation is complete.
+- Reason: all four configured dimensions have now been reviewed at least once (correctness 1, security 2, traceability 3, maintainability 4). What iteration 5 can still buy is a consistency pass over the open P2 set rather than a new direction.
+- Rotation status: complete. `dimensionCoverage` is 4/4 after this iteration.
+- Blocked/productive carry-forward: reuse "read the guard together with the fixture it iterates" — it is what turned an apparent clean parity test into Finding 2, and it is the cheapest way to re-check DR3-P2-002 in iteration 5.
+- Required evidence: file:line for each of the five open P2s as they stand on the merged tree, and a stated verdict on whether any of the eight (five carried plus three new) has since been fixed by `f6aa8dc052b` or by later main-branch commits.
+- Recovery note: not applicable — this iteration completed inside budget with no stuck count.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

@@ -1,161 +1,112 @@
----
-title: "Deep Review Iteration 003 - Traceability"
-description: "Iteration 3 of 5: traceability dimension over the OpenCode v1 removal packet - spec/code binding decisions, tasks.md completion rows, and acceptance-criteria evidence rows."
-iteration: 3
-mode: review
-dimension: traceability
-target_agent: deep-review
-run: 3
-status: complete
-sessionId: "2026-11-19T15:56:57.978Z"
-generation: 2
-lineageMode: restart
----
+# Review Iteration 003
 
-# Deep Review - Iteration 003
+**Run:** 2026-11-20T10:07:53.884Z · **Generation:** 3 · **Lineage mode:** restart · **Iteration:** 3 of 5
 
 ## Dispatcher
 
-| Field | Value |
-|-------|-------|
-| Mode | review |
-| Target agent | `@deep-review` (LEAF, single iteration) |
-| Resolved route | Resolved route: mode=review target_agent=deep-review |
-| Run | 3 (lineage `2026-11-19T15:56:57.978Z`, generation 2, `lineageMode: restart`) |
-| Loop owner | `.skilled/commands/deep/review.md` (`/deep:review`) |
-| Dimension queue | correctness -> security -> **traceability** -> maintainability |
-| Review target | Branch `worktrees/477-opencode-v1-removal`, commits `ba9720f2f08`, `fc8b3a9a241`, `af87a2aa13a`, `96e3d8a8f24`, `3ef324c3de1`, `4c72145b752`, `a793f3ad733` |
-| Writes | iteration narrative, `deltas/iter-003.jsonl`, `deep-review-strategy.md`; state record through `append-mode-event.cjs --mode review` |
+`/deep:review` → `@deep-review` (LEAF, single iteration). Mode `review`, target agent `deep-review`, route `Resolved route: mode=review target_agent=deep-review`.
+
+## Dimension
+
+**Traceability** — plus the operator review focus: v1-removal closure evidence as merged to main (merge `06d02096e90` vs its first parent `f2f03c90fb6`, parent fix `b18b80291d2`), with the `skilled-loop` justified-list gap from `f6aa8dc052b` confirmed and not re-reported.
+
+Covered this iteration: every acceptance-criteria row in the three phase folders against its cited evidence, every `tasks.md [x]` item against its Verify line that the closure evidence names, the 003 ADR-001 replacement checks run live, the parent spec continuity, and the two overlay protocols (feature catalog and manual testing playbook) against the code.
 
 ## Files Reviewed
 
-| File | What was checked |
-|------|------------------|
-| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:14` | continuity `next_safe_action` naming the 003 AC-004 operator path |
-| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:18` | continuity blocker list for phase 003 |
-| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:105` | binding operator decision 1 (major 1 resolves unsupported) |
-| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:106` | binding operator decision 2 (native lineages dropped) |
-| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:107` | binding operator decision 3 (legacy tables removed) |
-| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:109` | binding operator decision 5 (`--pure` text removal ordering) |
-| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:147` | phase map row 3 completion state |
-| `specs/.../003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:55` | AC-002 verification and status |
-| `specs/.../003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:57` | AC-004 verification, status and waiver |
-| `specs/.../003-v1-docs-and-playbooks-sweep/tasks.md:68` | T019 completion marker |
-| `specs/.../003-v1-docs-and-playbooks-sweep/implementation-summary.md:13` | continuity `recent_action` |
-| `specs/.../003-v1-docs-and-playbooks-sweep/implementation-summary.md:43` | Completed field |
-| `specs/.../003-v1-docs-and-playbooks-sweep/implementation-summary.md:45` | Status field |
-| `specs/.../003-v1-docs-and-playbooks-sweep/implementation-summary.md:89` | "AC-004 was closed live on 2026-11-19" claim |
-| `specs/.../003-v1-docs-and-playbooks-sweep/implementation-summary.md:133` | "T019 and AC-004 are not met" claim |
-| `specs/.../003-v1-docs-and-playbooks-sweep/scratch/live.txt:55` | "NOT RUN (T019, AC-004)" preamble |
-| `specs/.../003-v1-docs-and-playbooks-sweep/scratch/live.txt:66` | dispatch-iteration exit 0 / verify-iteration OK |
-| `specs/.../003-v1-docs-and-playbooks-sweep/scratch/live.txt:71` | `deep-loop iteration: success` |
-| `specs/.../003-v1-docs-and-playbooks-sweep/scratch/live.txt:76` | `plugin scenario: success` |
-| `specs/.../003-v1-docs-and-playbooks-sweep/scratch/justified.txt:23` | justified survivor naming a renamed feature-catalog path |
-| `.skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md` | post-rename feature-catalog entry |
-| `.github/workflows/opencode-v2-battery.yml:84` | `@opencode/cli@2.3.2` pin |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:30` | `V2_PKG="@opencode/cli@2.3.2"` |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/pure-and-print-logs.md:52` | `--pure` used only as an absence check |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md:44` | dated incident record stating v2 `run` has no `--pure` |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts:51` | widened `--pure` guard from decision 5 |
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/acceptance-criteria.md:52-62`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/tasks.md:39,70-73,83,114-116,124-127,135-138,146-148,156-167`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/implementation-summary.md:111-112,164-167,180-184`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/spec.md:151`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/event-capture.txt:1,6,9-20,22-23`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/acceptance-criteria.md:54-61`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/implementation-summary.md:13,89`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:1-90`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/justified.txt:2,10`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/live.txt:47`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/decision-record.md:44`
+- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:9-21`
+- `.skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md:16,18,28,42`
+- `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/pure-and-print-logs.md:52`
+- `.github/workflows/opencode-v2-battery.yml` (AC-001/002/003 proof commands)
+- `.skilled/hooks/cli-dispatch/lib/opencode-version.mjs` (AC-001 proof command)
+- `.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json`, `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` (AC-002 proof command)
+- `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh`, `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/` (AC-003/AC-005 proof commands)
+- `.opencode/package.json`, `.skilled/package.json`, `opencode.json` (AC-004/AC-006 proof commands)
+- `.opencode/plugins/*.js` (AC-007 replacement checks)
+- merge diff file list `git diff --name-only 06d02096e90^1 06d02096e90`
 
 ## Findings - New
 
 ### P0 Findings
 
-None. No blocker found in this iteration.
+None. No active P0.
 
 ### P1 Findings
 
-1. **AC-004 is recorded as both Met and Unmet inside the same phase packet** -- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:57` -- Phase 003's acceptance row AC-004 reads `Met` with `Waiver: -`, its task row `tasks.md:68` is checked `[x]`, and `implementation-summary.md:89` states "AC-004 was closed live on 2026-11-19". The same packet also states the opposite: `spec.md:147` keeps phase 3 at "In Progress (AC-004 Unmet: the deep-loop iteration and plugin scenario are not run)", `spec.md:18` lists AC-004 as an open blocker, `spec.md:14` still routes the operator to "003 AC-004 path (T019)", `implementation-summary.md:43` says "Open: T019 and AC-004 are not done", `:45` says "Status | In Progress", `:133` says "T019 and AC-004 are not met, so the phase is not Complete", and `scratch/live.txt:55` says "NOT RUN (T019, AC-004) ... Neither is in this file, so they stay open" while `live.txt:66,71,76` record the dispatch exit 0, `deep-loop iteration: success` and `plugin scenario: success`. The phase-parent continuity block was last written by `closure-run` at 12:40Z, after the 11:46Z closure record, so this is not a stale-forward artifact: two same-day authorities disagree.
-   Finding class: closure-metadata inconsistency (traceability / Logic-Sync)
-   Scope proof: every cited line is inside the declared review target (the 070 packet and its phase children); no file outside the target was read for this finding.
-   Affected surface hints: `/speckit:resume` on the parent, the `AC_CLOSURE` validator rule, the phase handoff gate, and the operator action list in `spec.md` continuity.
-   Case: an operator or agent resumes the parent packet and reads `next_safe_action` -> runs a second live deep-loop iteration for a gate that `tasks.md:68` and `acceptance-criteria.md:57` already record as done; the mirror case is a closure run that trusts "all ACs Met" and pushes while the parent still records the gate as unrun.
-   ```json
-   {
-     "type": "claim_adjudication",
-     "claim": "Phase 003's AC-004/T019 gate is recorded as Met in three artifacts and Unmet in four, including inside one file.",
-     "evidenceRefs": [
-       "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:57",
-       "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/tasks.md:68",
-       "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/implementation-summary.md:43",
-       "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/implementation-summary.md:45",
-       "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/implementation-summary.md:89",
-       "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/implementation-summary.md:133",
-       "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md:147",
-       "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/live.txt:55",
-       "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/live.txt:71",
-       "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/live.txt:76"
-     ],
-     "counterevidenceSought": "Read the live.txt sections at 58-76 to see whether the runs recorded exit codes and verify text: they do (dispatch-iteration EXIT=0, verify-iteration 'OK iteration 1 complete', 'plugin scenario: success'). Read tasks.md:68 to see whether T019 is checked: it is. Read implementation-summary.md:133 to see whether the 'not met' statement is a residual from an earlier draft: it is not framed as history, it is a numbered closure verdict.",
-     "alternativeExplanation": "The parent continuity block and the live.txt preamble were written before the T019 closure run and nobody regenerated them; the live work is genuine and only the narrative is stale. This explanation is consistent with every artifact and shifts the defect from the code to the metadata.",
-     "finalSeverity": "P1",
-     "confidence": "high",
-     "downgradeTrigger": "Downgrade to P2 if the operator confirms that AC-004 must stay open until the operator personally accepts the LEAF-run deep-loop evidence (implementation-summary.md:133 argues the loop cannot run from a LEAF agent) and the child rows are the ones to amend; the contradiction itself then remains, only its direction reverses."
-   }
-   ```
+None. No active P1.
 
 ### P2 Findings
 
-1. **Two phase-003 acceptance rows carry `Waiver: -` while their stated verification command fails as written** -- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:55` -- AC-002 requires `rg -l -i 'opencode1\b|opencode-ai|OpenCode 1\b' .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook --glob '!**/changelog/**' | wc -l` to print 0; the command prints 1 (`.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md`), which is the same file `scratch/justified.txt` keeps as a dated survivor. AC-006 and AC-008 use the same pattern, re-reading the Verify through a prose closure note instead of recording a waiver, while `001-v1-runtime-code-and-tests/acceptance-criteria.md` AC-007 uses the formal form ("Superseded" plus an ADR in the Waiver column). The gate therefore has two standards for the same situation.
-   Finding class: checklist-evidence discipline
-   Scope proof: both rows are inside the declared review target; the reproduction command was run over the cited skill folder only.
-   Affected surface hints: `validate.sh --strict` AC checks, the phase 003 closure report, and any later audit that reruns the printed verification.
-   Case: an auditor reruns AC-002's printed command and gets `1` against a row that says `Met` with no waiver, so the whole AC table loses credibility even though the surviving file is a deliberate dated observation.
-2. **`justified.txt` justifies a feature-catalog path that no longer exists, so AC-007's "lists exactly the files" is not reproducible** -- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/justified.txt:23` -- the survivor list names `.skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`; that directory does not exist. The rename commit left `opencode-version-dispatch/opencode-version-dispatch.md` in place, and the repo-wide grep lists the new path instead. The counts still agree (30 justified lines, 30 live hits) but one path on each side does not match, so AC-007 ("The final grep in T021 lists exactly the files in `scratch/justified.txt`", `003-v1-docs-and-playbooks-sweep/acceptance-criteria.md:60`) is false under a literal reading.
-   Finding class: evidence-artifact drift after rename
-   Scope proof: both the survivor list and the live grep output are packet artifacts or declared target files.
-   Affected surface hints: phase 003 AC-007, the T021 final-grep record, and the parent handoff criterion "the repo-side final grep returns only the justified hits listed in phase 003".
-   Case: the parent handoff criterion is re-run at release time against the justified list and reports one unexplained difference, which reads as an unjustified v1 remnant.
+1. **The event-capture evidence file contradicts itself on whether a live session was ever run** -- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/event-capture.txt:1` -- The file opens with "Event capture for OpenCode 2.3.2 (static, no live session was launched)", yet the same file records a live run at `scratch/event-capture.txt:22` ("== live capture on OpenCode 2.3.2, 2026-11-19") with its method at `:23` (a temporary logger plugin, exit=0, requests=2). The two consumer docs disagree in the same way: `implementation-summary.md:164` describes "The live capture exercised one plain session. It saw 31 event types", while `implementation-summary.md:180` says "**T004:** the capture is static (Known Limitation 1)", and `tasks.md:39` carries both a "Closure note: not met ... the evidence is a static scan" and a "Done live on 2026-11-19" sentence. A reader of the header alone would conclude the live evidence does not exist, which is the opposite of what the closure rests on.
+   Finding class: documentation-residue / stale-evidence-header
+   Scope proof: Five lines in three packet files describe one artifact; every claim is quoted from the file itself, and no code, CI or test surface is implicated.
+   Affected surface hints: 001 closure evidence chain (T004, T017, CHK-003, CHK-023), implementation-summary Known Limitations 1 and the deviations list, any future audit that reads the header first.
+   Case: An auditor opens `scratch/event-capture.txt` to check T017's "each removed branch is recorded as not seen" and stops at line 1, concluding no live capture was ever performed and re-opening the five deleted plugin event branches; the live section 21 lines below would have answered the question.
+
+2. **CHK-041's recorded "prints 0" is not reproducible from the command as written** -- `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/tasks.md:157` -- The check reads "Changed code carries no phase, packet or REQ id in a comment. Verify: `rg -n -e '070-' -e 'REQ-0' <changed files> | wc -l` prints 0". Run over the merged file list (`git diff --name-only 06d02096e90^1 06d02096e90 -- .skilled .opencode .vibe .github`) the command returns 125 hits, so the recorded result cannot be reproduced from the command text. The residual is not a real hygiene breach: 116 of the hits are retrieval fixture and trigger-index data files where a spec path is payload rather than a comment, 3 are playbook and changelog prose, and the two code-side hits are vitest case titles at `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:675,679` naming `(REQ-001)`/`(REQ-002)`, which are test names and not comments. The check as written has no file-scope or comment-only narrowing, so a reader cannot tell which population it was meant to prove clean.
+   Finding class: verification-reproducibility / under-specified proof command
+   Scope proof: The gap is confined to one `tasks.md` Verify line and the population it names; the underlying comment-hygiene rule holds for the changed code, which carries no packet or requirement id in a comment.
+   Affected surface hints: 001 CHK-041 closure claim, the comment-hygiene pre-commit gate, any later rerun of the phase-001 checklist.
+   Case: A maintainer reruns the CHK-041 command verbatim during a later audit, sees 125 instead of 0, and either raises a false comment-hygiene incident or silently stops trusting the checklist's numbers.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | Decision 1 (major 1 unsupported) at `spec.md:105` against the corpus rows in `.skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json` and the resolver; decision 2 (native lineages dropped) at `spec.md:106` against `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (refuse pre-flight plus deleted adapter, confirmed iteration 1); decision 3 (legacy tables removed) at `spec.md:107` against `.skilled/hooks/shared/session-readers/opencode.mjs` and `.skilled/hooks/decision-capture/bin/sweep-opencode.mjs`; decision 5 (`--pure`) at `spec.md:109` against `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts:51` and the absence of `--pure` from both deep-loop `loop-protocol.md` files and the four `deep/assets/*-presentation.txt` files. Iteration 1 deferred this read; it is now closed. |
-| `checklist_evidence` | partial | Phase handoff 002->003 reproduces: `rg -l -F '2.3.0' .github/workflows/opencode-v2-battery.yml .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh \| wc -l` prints `0`, and both files carry `2.3.2` (`opencode-v2-battery.yml:84`, `opencode-setup.sh:30`). The parent's recorded blockers for phases 001 and 002 match their task/AC rows exactly (`001/tasks.md` T004 and CHK-003, CHK-013 unchecked; `002/acceptance-criteria.md` AC-008 `Unmet`). The phase-003 rows do not hold: AC-004 is recorded in both directions, and AC-002/AC-006/AC-008 mark `Met` on commands that do not pass as written. Partial covers the phase-003 rows only. |
+| Protocol | Level | Status | Evidence |
+|---|---|---|---|
+| `spec_code` | core | pass | Feature-catalog claims reproduce against the resolver and rule engine: `SUPPORTED_FAMILIES = Object.freeze(['v2'])` is one line at `.skilled/hooks/cli-dispatch/lib/opencode-version.mjs`, and the catalog's "major 1 is `unsupported` ... the rule engine applies every rule to it" (`opencode-version-dispatch.md:42`) matches the rule engine read in iterations 1-2. Playbook claim that the plugin-disable flag is absent from `run --help` (`cli-invocation/pure-and-print-logs.md:52`) matches the `--pure` removal proven by 001 AC-009. |
+| `checklist_evidence` | core | pass | Every AC row in all three phases reproduces: 001 AC-001 (1 line), AC-002 (0), AC-005 (0), AC-007 (0 production, 0 widened), AC-008; 002 AC-001 (0), AC-002 (0), AC-003 (0 for 2.3.0, one 2.3.2 hit in each file), AC-004 (0), AC-006 (2 `variant` keys as recorded), AC-008 (CI run 44632438229 `conclusion: success`, `headSha: 06d02096e90`, name `OpenCode v2 Battery`); 003 AC-002, AC-006, AC-008 replacement commands all return 0 / exit 0; 003 AC-007's sweep equals the 32-line justified list; 003 AC-011's "15 of 16 checkers" matches `scratch/live.txt:47`; T017's 5 not-seen matches hold. |
+| `feature_catalog_code` | overlay | pass | `feature-catalog/opencode-version-dispatch/opencode-dispatch.md` version rule, refusal behaviour and hook-side parity statement match the code surfaces; `feature-catalog/cli-dispatch-authorization` rules match `hard-rules.json` (v2-only `appliesTo`). |
+| `playbook_capability` | overlay | pass | The cli-opencode manual testing playbook describes only capabilities the merged code supports: no `<v1|v2>` runner argument remains, the version argument form is gone, and CO-005 asserts the plugin-disable flag is absent rather than claiming it works. |
 
-Overlay protocols were not run this iteration; per the prompt pack they are recorded by omission rather than as `pending`.
+Justified-list fix from `f6aa8dc052b` confirmed: `scratch/justified.txt:2` (`.skilled/bin/skilled-loop`, refusal code) and `:10` (the wrapper model-effort test) are present, and the live repo-wide sweep returns the same 32 paths. Not re-reported.
 
 ## Integration Evidence
 
-- Loop owner `.skilled/commands/deep/review.md` dispatches this LEAF once per iteration; no sub-agent was dispatched, so no caller surface needed verification.
-- State recording used `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode review` against this run directory, which is the only writer of `review/deep-review-state.jsonl`.
-- Reviewer's input boundary: the phase-parent `spec.md` was read directly, closing the `spec_code: partial` entry recorded at iteration 1 in `review/deep-review-strategy.md` §14.
+- Workflow `.github/workflows/opencode-v2-battery.yml` and CI run `44632438229` — checked via `gh run view`, which reports the run on merge commit `06d02096e90` on main as `success` under the workflow name `OpenCode v2 Battery`. This is the surface 002 AC-008 names.
+- Merge commit `06d02096e90` with first parent `f2f03c90fb6` and second parent `e8068aec7c`; parent fix `b18b80291d2` (`docs(specs): mark the OpenCode v1 removal parent complete`) resolves. The dispatch's named closure commit `a2c927a8a3` does not resolve in this repository and no packet document cites it (see Edge Cases).
+- Parent continuity `spec.md:13` (`recent_action: "All three phases complete; merged into main and the OpenCode v2 Battery passed (run 44632438229)"`, `completion_pct: 100`) agrees with the verified CI run and the three phase statuses, all `Complete` at `002-v1-ci-and-package-pins/implementation-summary.md:51` and the equivalent 001/003 rows.
 
 ## Edge Cases
 
-- `spec.md` continuity timestamps are `2026-11-19T12:40:00Z` and `live.txt`'s closure section is `11:46Z`, so the parent is the later record. The finding's direction therefore favours the Unmet reading; the Met reading is supported only by the child rows and the appended `live.txt` sections. Recorded as a genuine contradiction rather than a single stale sentence.
-- Phase 003's `Tasks` block (`tasks.md:80-82`) still has the global completion rows unchecked (`All tasks marked [x]`, `Manual verification passed`), which is internally consistent with the packet staying `In Progress` and inconsistent with `implementation-summary.md:89`. This corroborates the finding rather than adding a separate one.
-- `--pure` appears in `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/pure-and-print-logs.md:52` and `.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md:44`; both are deliberate — an absence check and a dated incident record. Treated as clean, not as decision-5 residue.
-- Prior-iteration advisory IDs referenced the resolver and the dispatch guard; none of this iteration's findings overlap them, so nothing is re-raised.
+1. **Dispatch-named commit `a2c927a8a3` is unresolvable.** `git rev-parse --disambiguate=a2c927a8a3` returns nothing and `git rev-parse a2c927a8a3` fails, so the "closure" commit named in the iteration dispatch cannot be diffed. No packet document cites it (the packet cites `06d02096e90` only), so no packet claim is left unverified by this: the closure claims were verified against `06d02096e90`, `b18b80291d2` and the live tree. Recorded as a dispatch-context discrepancy rather than a finding.
+2. **`justified.txt` paths are repo-relative, the live sweep prints a `./` prefix.** The set comparison is exact after that prefix difference: 32 sweeps, 32 justified entries, no path unique to either side. Recorded because a naive `diff` reads as 32 changed lines and could be mistaken for a mismatch.
+3. **CHK-013's closure was earned by amending the Files-to-Change table.** `spec.md:151` carries an explicit "Added after scope freeze" row for the 33 files in `scratch/files-outside-table.txt`, and `implementation-summary.md:167` records it as Known Limitation 4. The amendment is labelled and traceable, so the `Met` claim is supported rather than a silent table edit.
+4. **ADR-002 waivers are honest.** 001 `decision-record.md:67` waives the CHK-003 ordering check and `implementation-summary.md:166` repeats it as Known Limitation 3; the capture-ordering gap is disclosed at `tasks.md:116` rather than papered over.
 
 ## Confirmed-Clean Surfaces
 
-- Binding decision 5 ordering: phase 001 widened the `--pure` guard (`.skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts:51`, `:143`) before phase 003 removed the text from the deep-loop protocol docs and the presentation files; no `--pure` remains in either `loop-protocol.md` or `deep/assets/*-presentation.txt`.
-- Handoff criterion 002->003 is reproducible and passes (`2.3.0` count `0`; both files pin `2.3.2`).
-- The parent's blocker list is honest for phases 001 and 002 (`spec.md:16,17` against `001/tasks.md` and `002/acceptance-criteria.md:57+`).
-- Generated artifacts stay generated: `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and the retrieval fixtures are recorded as generator output in `justified.txt`, not hand-edited.
+- 003 ADR-001's replacement checks (AC-002, AC-006, AC-008) all pass when run today from the repository root, not just as recorded on 2026-11-19.
+- The repo-wide v1 sweep matches the justified list exactly, including both `skilled-loop` entries added by `f6aa8dc052b`.
+- 002 AC-008's CI evidence is real: the run exists, is green, and points at the merge commit the packet names.
+- Every other phase-001 and phase-002 zero-match proof command returns the recorded count.
+- Parent continuity, phase statuses and the merge commit agree with one another; no packet document claims a state the others deny.
 
 ## Ruled Out
 
-- **The 103 -> 30 file drop hides unjustified survivors.** Ruled out: the 30 live hits map one-to-one onto `scratch/justified.txt` except for the renamed feature-catalog path, and each survivor's stated reason matches a dated observation, a refusal path, a generated artifact or the `--remove-v1` helper.
-- **Decision 5 was applied out of order.** Ruled out: the widened branch-contract test exists and the protocol/presentation text is gone; order cannot be inverted retroactively by reading the branch state.
-- **`--pure` survives in supported v2 invocations.** Ruled out: the two remaining cli-opencode mentions assert the flag's absence or record a dated v1 incident, not a v2 dispatch recipe.
-- **The parent packet's phase-001 and phase-002 blockers were silently dropped.** Ruled out: both still appear in `spec.md:16,17` and in their children's task/AC rows.
-
-## SCOPE VIOLATIONS
-
-1. `rm -f $TMP` on the mktemp record file used to hand the single iteration record to `append-mode-event.cjs`. The file lived in the system temp directory, was created by this iteration, and held only a copy of the delta's first line, so no repository content was affected. The dispatch's banned-operation list still names `rm` without a scope qualifier, so the call is a violation of the letter of that rule and is disclosed here rather than left unrecorded. No repository path was deleted, renamed or replaced: `git status --porcelain` over the review target reports only the pre-existing untracked `review-archive/` directory.
+- **"The live event capture never happened, so T017's branch removals rest on nothing."** Ruled out: `scratch/event-capture.txt:22-23` records the live run, its plugin, exit code and request count, and the static section is a separate half of the same file. The residual defect is the stale header line, filed as DR3-P2-001.
+- **"Changed code violates the comment-hygiene rule."** Ruled out for code comments: the 125 CHK-041 hits are retrieval data files, playbook or changelog prose, and two vitest case titles; no changed code comment carries a packet or requirement id. The residual defect is the unreproducible proof command, filed as DR3-P2-002.
+- **"003 AC-001's cli-opencode file list diverges from the justified list."** Ruled out: the 11 cli-opencode files in the sweep are all present in `scratch/justified.txt`.
+- **"The parent claims completion before the phases do."** Ruled out: the parent continuity names the same merge and CI run the phases name, and all three phases read `Complete`.
 
 ## Next Focus
 
-- Dimension: D4 Maintainability
-- Focus area: the durability of the removal itself — dead exports and orphaned helpers left behind by the `--pure`/native-lineage/legacy-table deletions, stale cross-references in the touched skill docs, and whether the surviving v2 adapter (`v2-bridge.js`) still reads as a single coherent adapter.
-- Reason: traceability closed with one required fix and two advisories; the last unreviewed dimension is the cost of the next change, which only a direct read of the surviving seams can settle.
-- Rotation status: D1 complete, D2 complete, D3 complete, D4 next.
-- Blocked/productive carry-forward: reading a packet artifact against the command it prints exposed both P2 findings; apply the same technique to doc code samples versus the functions they name.
-- Required evidence: direct reads of the touched skill docs' code blocks and of `v2-bridge.js` around the removed `server` key.
-- Recovery note: none; no iteration is stuck.
+- Dimension: maintainability.
+- Focus area: the documentation residue class this iteration found, then the merged code's pattern compliance — the `remove-v1` mode's comment and structure hygiene in `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh`, the duplicated version rule between `.skilled/hooks/cli-dispatch/lib/opencode-version.mjs` and `.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs` and the parity test that binds them, and whether the fixture and trigger-index churn from this merge is generated or hand-edited.
+- Reason: traceability closed with two P2 documentation defects and no code defect; maintainability is the last uncovered dimension and is where the duplicated-rule cost and the hand-edited-generated-file question belong.
+- Rotation status: correctness, security and traceability reviewed; maintainability remains.
+- Blocked/productive carry-forward: reuse the productive category "read the producer and its consumer together" for the duplicated resolver pair.
+- Required evidence: file:line for the duplicated rule on both sides, and the parity test case that would fail if one side drifted.
+- Recovery note: not applicable.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

@@ -8,19 +8,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep"
-    last_updated_at: "2026-11-19T12:30:00Z"
-    last_updated_by: "closure-run"
-    recent_action: "AC-004 met live: a cli-opencode deep-research iteration and plugin scenario CO-056 passed on OpenCode 2.3.2"
-    next_safe_action: "None; phase 003 is complete"
-    blockers:
+    last_updated_at: "2026-11-20T10:31:40Z"
+    last_updated_by: "generate-context"
+    recent_action: "Deep review generation 3 finished with verdict PASS and 8 P2 advisories"
+    next_safe_action: "Decide whether to fix the 8 P2 advisories in a follow-up packet"
+    packet_purpose: "Purpose: Every operator-facing document describes OpenCode 2 only, the derived artifacts match their sources, and the live v2 checks prove the result on the pinned binary."
+    blockers: []
     key_files:
-      - "scratch/justified.txt"
-      - "scratch/live.txt"
-      - "scratch/doc-inventory.txt"
+      - "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review/review-report.md"
     session_dedup:
-      fingerprint: "sha256:2d790e096cacdfde69a0e640918dbaef0a00e6070ec380181bc0f997684e10eb"
+      fingerprint: "sha256:0b226698ea60e31e5b19bd9252d0009f4729e11ae25c3b342ea72e529f1a3c04"
       session_id: "closure-003-v1-docs-and-playbooks-sweep"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "df9261d4-6090-4b52-892b-db52ff291ccd"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-20T10:31:40Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

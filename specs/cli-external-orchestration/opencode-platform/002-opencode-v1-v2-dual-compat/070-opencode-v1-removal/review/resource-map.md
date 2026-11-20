@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — Branch worktrees/477-opencode-v1-removal, its own commits since origin/main: ba9720f2f08 (runtime code), fc8b3a9a241 (CI and packages), af87a2aa13a (docs), 96e3d8a8f24 (spec packet), 3ef324c3de1 (renames), 4c72145b752 (live evidence), plus the a793f3ad733 merge conflict resolution in cli-opencode/references/providers-and-models.md. The work removes OpenCode 1 support; OpenCode 2 (@opencode/cli 2.3.2) is the only supported major."
+title: "Resource Map — specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal"
 description: "Auto-generated review resource map from convergence evidence."
 ---
 # Resource Map
@@ -10,11 +10,11 @@ description: "Auto-generated review resource map from convergence evidence."
 
 ## Summary
 
-- **Total references**: 16
-- **By category**: READMEs=0, Documents=11, Commands=0, Agents=0, Skills=1, Specs=2, Scripts=2, Tests=0, Config=0, Meta=0
-- **Missing on disk**: 10
+- **Total references**: 15
+- **By category**: READMEs=0, Documents=8, Commands=1, Agents=0, Skills=1, Specs=2, Scripts=2, Tests=0, Config=1, Meta=0
+- **Missing on disk**: 8
 - **Scope**: review convergence output for 070-opencode-v1-removal
-- **Generated**: 2026-11-19T16:18:44.872Z
+- **Generated**: 2026-11-20T10:27:35.951Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
 > **Status vocabulary**: `OK` · `MISSING` · `PLANNED`.
@@ -25,17 +25,24 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .skilled/bin/skilled-loop | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
-| CONSUMER-vibe-session-cleanup | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
-| DIM-MAINTAINABILITY | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
-| F-DR4-P1-001 | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
-| file-opencode-version-cjs | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
-| file-opencode-version-mjs | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
-| file-skilled-loop | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
-| FILE-v2-bridge | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=2 |
-| finding-dr1-p2-001 | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
-| finding-dr1-p2-002 | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
-| finding-dr1-p2-003 | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
+| G5-DIM-CORR | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=2 |
+| G5-P1-DR4 | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=2 |
+| n-battery-wf | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
+| n-corpus | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
+| n-dualplugin | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
+| n-iter4-maint | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=2 |
+| n-parity-test | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
+| n-setup-test | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
+
+---
+
+## 3. Commands
+
+> `.skilled/commands/**` and any runtime-specific command surfaces.
+
+| Path | Action | Status | Note |
+|------|--------|--------|------|
+| .skilled/commands/doctor/scripts/opencode-version-battery.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 
 ---
 
@@ -45,7 +52,7 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 
 ---
 
@@ -55,8 +62,8 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md | Analyzed | OK | Findings P0=0 P1=2 P2=1; Iterations=2 |
-| specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/justified.txt | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/event-capture.txt | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/tasks.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 
 ---
 
@@ -66,7 +73,17 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/plugins/lib/v2-bridge.js | Analyzed | OK | Findings P0=0 P1=2 P2=1; Iterations=2 |
-| .skilled/hooks/cli-dispatch/lib/opencode-version.mjs | Analyzed | OK | Findings P0=0 P1=0 P2=2; Iterations=2 |
+| .opencode/plugins/lib/v2-bridge.js | Analyzed | OK | Findings P0=0 P1=0 P2=2; Iterations=2 |
+| .skilled/hooks/cli-dispatch/lib/opencode-version.mjs | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+
+---
+
+## 9. Config
+
+> Machine-readable configuration: `.json`, `.jsonc`, `.yaml`, `.yml`, `.toml`, `.env.example`.
+
+| Path | Action | Status | Note |
+|------|--------|--------|------|
+| .github/workflows/opencode-v2-battery.yml | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 
 ---

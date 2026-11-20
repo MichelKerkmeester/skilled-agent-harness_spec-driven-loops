@@ -1,40 +1,32 @@
-# Deep Review Iteration 001
+# Iteration 001: Correctness (inventory pass)
 
 ## Dispatcher
 
-- Command: `/deep:review` (route: mode=review, target_agent=@deep-review, single iteration)
-- Generation 2, lineage mode `restart`; session `2026-11-19T15:56:57.978Z`
-- Dimension: D1 Correctness (inventory pass first)
-- Review target: the branch's own runtime commit `ba9720f2f08` and its tests
-
-BINDING: target=Branch worktrees/477-opencode-v1-removal, commits since origin/main (ba9720f2f08 runtime code, fc8b3a9a241 CI and packages, af87a2aa13a docs, 96e3d8a8f24 spec packet, 3ef324c3de1 renames, 4c72145b752 live evidence, a793f3ad733 merge resolution)
-BINDING: maxIterations=5
-BINDING: convergence=0.1
-BINDING: mode=review
-BINDING: dimensions=correctness,security,traceability,maintainability
-BINDING: specFolder=specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal
+- Mode: review, target agent `@deep-review`, single iteration (1 of 5).
+- Run: `2026-11-20T10:07:53.884Z`, generation 3, lineage `restart`, continuedFromRun `null`.
+- Review target: `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal` (spec-folder), plus the merged code/CI/doc surfaces named in the review focus.
+- Operator focus addressed in this iteration: prior-review fixes (DR4-P1-001, DR3-P1-001) re-verified; OpenCode 2 shown to be the only supported major in the shipped parsers and gates; the T021 repo sweep re-run and diffed against the justified list (including the `skilled-loop` gap fixed in `f6aa8dc052b`).
 
 ## Files Reviewed
 
-| File | Lines read | What was checked |
-|------|-----------|------------------|
-| `.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs` | full | parser, probe, cache, refusal paths |
-| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | diff + 2345-2440, 3490-3530 | native lineage removal, opencode argv, refusal ordering |
-| `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs` | diff | worktree refusal message |
-| `.skilled/hooks/cli-dispatch/lib/opencode-version.mjs` | full | parser, trusted-executable path, async probe race |
-| `.skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json` | full | parser expectations |
-| `.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs` | 1-80, 1085-1176 | `evaluate` version filtering, `UNRESOLVED_FAMILIES` |
-| `.skilled/hooks/shared/session-readers/opencode.mjs` | diff + 95-260 | legacy table removal, role derivation, tool dedup |
-| `.skilled/hooks/decision-capture/bin/sweep-opencode.mjs` | diff | part-table removal, latest-session routing |
-| `.opencode/plugins/lib/v2-bridge.js` | full + diff | `{ id, setup }` export, hidden factory, cleanup |
-| `.opencode/plugins/opencode-goal.js` | diff | disposed / question branches |
-| `.opencode/plugins/system-spec-gate.js` | diff | lifecycle epoch narrowing |
-| `.opencode/plugins/system-dist-freshness-guard.js` | diff | disposed branch narrowing |
-| `.skilled/bin/skilled-loop` | diff + 750-830, 1205-1225 | `--standalone` handling, model carry |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json` | full | 4 rules, all `appliesTo: ["v2"]` |
-| `.opencode/plugins/tests/plugin-inventory.json` | 1-20 | event evidence after the branch narrowing |
-
-Evidence commands run: `git show ba9720f2f08 --stat`, per-file `git show`, `node --check` on every touched runtime module (exit 0), `grep` for removed symbols (`thinkingBlock`, `partEntries`, `messageRoles`, `PART_TABLE`, `LEGACY_MESSAGE_TABLE`, `SESSION_TABLES`) in the session reader (clean no-hit), `grep -rn UNRESOLVED_FAMILIES` (locally defined at `dispatch-rule-checks.mjs:50`, not a dangling import).
+- .skilled/hooks/cli-dispatch/lib/opencode-version.mjs:22,187-213,225-294
+- .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:22,53,1091-1152
+- .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:119-136,151-177,191-216
+- .skilled/bin/skilled-loop:1218-1238
+- .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:184-240,327-366
+- .skilled/commands/doctor/scripts/opencode-version-battery.cjs:9-12,52,359-391,468-482
+- .vibe/plugins/repo-guards/session-cleanup.mjs:50-63
+- .vibe/plugins/repo-guards/tests/session-cleanup.test.mjs:36-38
+- .opencode/plugins/lib/v2-bridge.js:318-346,594
+- .opencode/plugins/ARCHITECTURE.md:112-133
+- .skilled/hooks/shared/session-readers/opencode.mjs:43-58
+- .skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json:1-28
+- .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:190,240-242
+- .skilled/skills/cli-external-orchestration/cli-opencode/README.md:51,267
+- specs/.../003-v1-docs-and-playbooks-sweep/acceptance-criteria.md AC-001, AC-004, AC-007
+- specs/.../003-v1-docs-and-playbooks-sweep/implementation-summary.md:3,13,84-88,113
+- specs/.../003-v1-docs-and-playbooks-sweep/tasks.md:70,125-126,137
+- specs/.../003-v1-docs-and-playbooks-sweep/scratch/justified.txt (32 rows)
 
 ## Findings - New
 
@@ -48,74 +40,55 @@ None.
 
 ### P2 Findings
 
-1. **Retired-major comment promises a token the parser never returns** -- .skilled/hooks/cli-dispatch/lib/opencode-version.mjs:17 -- The `SUPPORTED_FAMILIES` comment states that "a recognised major outside it resolves to 'unsupported', which names a retired install but does not refuse the dispatch". `parseOpencodeVersion` returns `'unsupported'` only for major 1 (.skilled/hooks/cli-dispatch/lib/opencode-version.mjs:201) and `'unknown'` for every other major, which the module's own corpus records for `3.0.0` (.skilled/hooks/cli-dispatch/lib/opencode-version-corpus.json:9).
-   Finding class: documentation-accuracy (maintainability)
-   Scope proof: both files are in the reviewed commit's own diff (`git show ba9720f2f08 --stat`) and were read in full this iteration; the claim and the behaviour sit three lines apart in one module.
-   Affected surface hints: `evaluate` version filtering at .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1120, the cli-opencode packet's `appliesTo` rows, and any future consumer that branches on `'unsupported'` to name a retired install.
-   Case: a maintainer reads the comment and writes a test or branch expecting `resolveOpencodeVersion` to answer `'unsupported'` for an OpenCode 3 binary; it answers `'unknown'`, so a caller that wants to tell "retired install" apart from "unreadable probe" classifies a future major as unreadable.
-   Confidence: high. Downgrade trigger: none at P2; this is already the lowest tier.
-
-2. **Two byte-identical version parsers with divergent failure semantics** -- .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:148 -- `parseOpencodeVersion` exists twice with the same body and the same `VERSION_PATTERN`: the deep-loop resolver throws `E_OPENCODE_UNRESOLVED` on `'unsupported'` (:120) while the cli-dispatch resolver returns the token and lets `evaluate` downgrade severity (.skilled/hooks/cli-dispatch/lib/opencode-version.mjs:183). One parser decides whether a fan-out lineage starts; the other decides whether a hard rule blocks, warns, or is skipped.
-   Finding class: duplicate-implementation (maintainability)
-   Scope proof: both files are part of the removal commit, each exports the function independently, and each has its own tests; nothing in the repository links the two copies.
-   Affected surface hints: cli-opencode hard-rule severity at .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1120, fan-out start at .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2351, and the two version corpora that pin the parser independently.
-   Case: a future change teaches one copy to accept a new major, or to read a semver prerelease-with-build form. The guard and the loop runtime then disagree about the same binary, and only the copy whose tests moved stays green.
-   Confidence: high on the duplication. The extraction is constrained because the copies live in different module systems (CJS runtime, ESM hooks), so the actionable fix is a shared fixture or a parity test rather than a plain import. Downgrade trigger: none at P2.
-
-3. **Wrapper drops the capability probe and now passes `--standalone` to any `opencode`** -- .skilled/bin/skilled-loop:1217 -- The commit deletes the `--help` probe that set `opencode_two` and now always prepends `--standalone` for the opencode runtime (:825, :1217). The wrapper never calls the version resolver, so an OpenCode 1 binary on PATH is launched with a flag it does not have.
-   Finding class: error-reporting (correctness, diagnosability)
-   Scope proof: the whole probe block and the `opencode_two` variable are removed in `ba9720f2f08`; the replacement conditions at :1213 and :1217 no longer test a capability, only `opencode_server_seen` and `opencode_standalone_seen`.
-   Affected surface hints: the runtime refusal message at .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:120, and the relaunch path at .skilled/bin/skilled-loop:825.
-   Case: an operator whose PATH still resolves `opencode` 1.19.3 runs the loop wrapper. The hop now dies with the CLI's own "unknown option: --standalone" usage error instead of the resolver's "is OpenCode 1, which is no longer supported; install OpenCode 2", because the wrapper never asks the resolver and the deleted probe was its only capability signal.
-   Confidence: high on the mechanism. Severity stays P2 because the launch fails either way; what regresses is the diagnosis, not the outcome. Downgrade trigger: if the wrapper is documented as the sole supported entry point for OpenCode launches, this raises to P1.
+1. **`opencode2` is still a live v2 launcher name in tests and docs, but the version probe no longer trusts it** -- .skilled/hooks/cli-dispatch/lib/opencode-version.mjs:121-133 -- `trustedExecutables()` now resolves only `opencode` plus `OPENCODE_BIN`; the merge removed `opencode2` (diff `06d02096e90^1..06d02096e90`). A path-qualified `.../opencode2 run ...` therefore fails `trustedExecutableFor` and resolves to `unknown` instead of `v2`. Other tracked surfaces still treat `opencode2` as a legitimate v2 spelling: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-models-form.test.cjs:51-53 ("`opencode` on the recommended layout and to `opencode2` where its package left that [name]"), .opencode/plugins/tests/system-dist-freshness-guard.test.cjs:196-208, .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs:267,672. The dispatch consequence is currently latent: `unknown` and `v2` both take every rule at its declared severity while `SUPPORTED_FAMILIES` is `['v2']` and every rule declares `appliesTo: ["v2"]`, so no rule outcome changes today.
+   Finding class: latent-correctness / vocabulary-drift
+   Scope proof: both cited names sit inside the declared review scope (runtime hook lib, cli-opencode tests, opencode plugin tests); the behavior difference is confined to the path-qualified branch of `resolveOpencodeVersionSync` because a bare name is resolved by `resolveOnPath` without the trust comparison (opencode-version.mjs:240-243, 275-277).
+   Affected surface hints: cli-dispatch preflight hook (`evaluate`), any dispatch that spells a path-qualified `opencode2`, and the models-form test's `COMMAND_PATTERN` vocabulary.
+   Case: an operator runs `/opt/opencode/bin/opencode2 run -m provider/model "task" </dev/null` with `OPENCODE_BIN` unset. The probe reports `unknown`; the rules still apply at declared severity, so nothing breaks until a rule declares an `appliesTo` that excludes `v2` — then the legitimate v2 binary would be held to a rule it was meant to skip.
+   ```json
+   {"type":"finding-adjudication","claim":"The removal of `opencode2` from `trustedExecutables()` makes a path-qualified v2 launcher named `opencode2` resolve to `unknown`, diverging from the test and doc vocabulary that still calls it a v2 spelling.","evidenceRefs":[".skilled/hooks/cli-dispatch/lib/opencode-version.mjs:121",".skilled/hooks/cli-dispatch/lib/opencode-version.mjs:140",".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-models-form.test.cjs:51",".opencode/plugins/tests/system-dist-freshness-guard.test.cjs:196",".skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs:672"],"counterevidenceSought":"Checked whether any current hard rule distinguishes `unknown` from `v2`: dispatch-rule-checks.mjs:1119-1136 gives both every rule at declared severity because SUPPORTED_FAMILIES is ['v2'] and all four rules declare appliesTo ['v2'] (hard-rules.json:7,14,21,28). Checked whether a bare `opencode2` also fails: it does not, resolveOnPath is used without the trust comparison.","alternativeExplanation":"The name `opencode2` may have been retired together with the v1 line, and the surviving test strings may be inert fixtures. The models-form comment describing where a package 'left that name' argues against full retirement but does not prove a live install.","finalSeverity":"P2","confidence":0.6,"downgradeTrigger":"Downgrade to a note if `opencode2` is confirmed retired as a launcher name (no setup-helper mode writes it); escalate to P1 if a rule ever declares an `appliesTo` that excludes `v2`, which would turn this latent drift into a false positive on a supported binary."}
+   ```
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` (core) | partial | The phase parent's binding decisions are known only through the strategy's spec.md summary: major 1 resolves unsupported, native deep-loop lineages dropped, legacy session/message branches removed, `EVENT_ALIASES` and the v2 bridge kept. Each was checked against code this iteration (resolver :201, `fanout-run.cjs:3190-3211` and :3505, the session reader's `SESSION_TABLE`, `v2-bridge.js` `EVENT_ALIASES` intact). A direct `spec.md` read was not performed, so alignment is recorded as partial rather than pass. |
-| `checklist_evidence` (core) | not run | Correctness iteration; the `tasks.md` and `acceptance-criteria.md` evidence rows belong to the traceability dimension (iteration 3). Omitted rather than recorded as pending. |
+- Core `spec_code` -- status: pass. Claimed behavior checked against implementation: "major 1 is `unsupported`, a deep-loop lineage refuses it, the dispatch guard checks it against every rule" (install-and-versions.md:190, README.md:51). Verified in .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:120-125 (throws `E_OPENCODE_UNRESOLVED` naming OpenCode 1), .skilled/hooks/cli-dispatch/lib/opencode-version.mjs:205 (returns `unsupported`), and dispatch-rule-checks.mjs:1123-1136 (unresolved families take every rule, preserving `error` severity for all four `appliesTo:["v2"]` rules). "OpenCode 2 is the only supported major" verified at opencode-version.mjs:22 (`['v2']`), opencode-version.cjs:169-171, and opencode-version-battery.cjs:52 (`FAMILIES = ['v2']`).
+- Core `checklist_evidence` -- status: pass. AC-007/T021 re-run with the recorded exclusions produces exactly 32 files, and `comm` shows no file in either difference: the sweep equals `scratch/justified.txt`. The `skilled-loop` entry (justified.txt:2) and its wrapper test (justified.txt:10) are present, confirming `f6aa8dc052b`; not re-reported. AC-004 "Met" (acceptance-criteria.md AC-004) now matches implementation-summary.md:13,88 ("AC-004 met live ... on OpenCode 2.3.2"), closing prior DR3-P1-001.
 
 ## Integration Evidence
 
-- `.skilled/bin/skilled-loop` — the loop relaunch owner; checked the argv it builds for the opencode runtime (`--standalone`, `--prompt`, carried model via `OPENCODE_CONFIG_CONTENT`).
-- `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs` — the per-iteration executor; its worktree refusal changed only in wording (`--dir` becomes `--repo-root`).
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` — the fan-out runner; both the pre-flight refusal (:3505) and the command builder (:3211) refuse `kind: 'native'` with the same message, and `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:1110` plus :3162 assert both.
-- `.opencode/plugins/lib/v2-bridge.js` — the plugin host contract; the module now exports the enumerable `{ id, setup }` shape and keeps the factory non-enumerable, and every entry point under `.opencode/plugins/*.js` calls `dualPlugin('<id>', <factory>)`.
-- `.skilled/hooks/shared/session-readers/opencode.mjs` — the read path the handover hook uses; `session_v2` is the only session table and `session_message` the only message table.
+- `@deep-review` dispatcher contract: `.skilled/commands/deep/review.md` route resolved by the prompt pack; no nested dispatch performed.
+- Append gateway: `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` (`--mode review`) is the only writer of `review/deep-review-state.jsonl` for this iteration.
+- Prior P1 DR4-P1-001 re-verified: .vibe/plugins/repo-guards/session-cleanup.mjs:51,60 call `sessionCleanupPlugin.factory(...)`; the factory is the non-enumerable property defined at .opencode/plugins/lib/v2-bridge.js:594, and .vibe/plugins/repo-guards/tests/session-cleanup.test.mjs:38 builds hooks through `plugin.factory`. No `.server(` caller remains under `.vibe/plugins/` or `.opencode/plugins/`.
 
 ## Edge Cases
 
-- **`UNRESOLVED_FAMILIES` looked like a dangling import.** `dispatch-rule-checks.mjs:1098` and :1120 use it while importing only `resolveOpencodeVersionSync` and `SUPPORTED_FAMILIES` from the resolver. Confirmed locally defined at :50; the severity behaviour holds: a rule whose `appliesTo` covers `SUPPORTED_FAMILIES` keeps its blocking severity for an unresolved binary, so an unreadable probe cannot silently downgrade `stdin-redirect-required`.
-- **`nativeDual: []` in `.opencode/plugins/tests/plugin-inventory.json:2`** can no longer be populated now that the dual server export is gone. Recorded as an observation, not a finding: the field is inert in every test read, and no consumer was found that it would mislead.
-- **Event-branch narrowing** (`opencode-goal.js` suffix match becomes `=== 'global.disposed'`, `system-dist-freshness-guard.js` dropping `server.instance.disposed`, `system-spec-gate.js` dropping `session.resumed`) is evidence-backed rather than assumed: `.opencode/plugins/ARCHITECTURE.md:224` records that the 2.3.2 binary strings hold no `server.instance.disposed`, and `plugin-inventory.json:12` records that `global.disposed` delivery on 2.3.2 is uncaptured. Both were read before the narrowing was ruled out.
-- **`durationMs` in the state record** is derived from the durable `iteration_start` timestamp (`2026-11-19T15:57:51.766Z`), clamped to the configured 120-minute ceiling, because the sandbox clock and the packet's recorded timestamps are not guaranteed to share an epoch.
+- The operator focus names a merge, a closure commit and a parent fix; this iteration read the merged working tree plus targeted `git diff 06d02096e90^1 06d02096e90` slices, not the full 458-file diff. Merge-wide coverage stays open for later dimensions.
+- `.skilled/output`, `.skilled/logs`, `.skilled/skills/.state` and `barter/` contain v1 spellings but are untracked/gitignored or vendored copies; the T021 sweep respects `.gitignore`, so they are outside the recorded criterion rather than unlisted survivors.
+- The dispatch-instruction mismatch noted by the state summary (default `lineageMode: new` example versus config `restart`) was resolved from config: all records carry `restart`, generation 3.
+- A widened personal grep (`1.19.3`, `v1.14.39`) matches .opencode/plugins/ARCHITECTURE.md, but the canonical T021 term set does not; not treated as a gap.
 
 ## Confirmed-Clean Surfaces
 
-- `parseOpencodeVersion` boundary rows: the corpus covers `v1.19.3`, a prefixed `1.19.3`, `1.19.3-beta.1`, `2.0.32`, `3.0.0`, `0.9.1`, empty output, a leading blank line, and a warning line before the version; the token-plus-pair candidate loop answers every row as the corpus declares.
-- `resolveOpencodeBinary` refusal path: `'unsupported'` and `'unknown'` both throw `E_OPENCODE_UNRESOLVED` with the probe output attached, so no caller can observe a v1 binary as a usable resolution.
-- Session reader role derivation after the part-table removal: `row.type` alone decides user versus assistant (`opencode.mjs:109-124`), and the tool-call dedup set is now local to `messageEntries` (:102), which is correct because the part rows that shared it no longer exist.
-- `v2-bridge.js` setup and cleanup: the factory failure path still disposes every registration before rethrowing, and `setup(ctx, options)` forwards options only to the factory.
-- Native lineage removal completeness: no path reaches a native command build — the pre-flight refuses before any lineage starts, the builder refuses as a second barrier, and the `--command deep/<loop>` adapter and its input composer are deleted rather than orphaned.
-- Syntax: `node --check` on the cli-dispatch resolver, the rule engine, the deep-loop resolver, the fan-out runner, the session reader, and the plugin bridge — all exit 0.
+- Both version parsers agree byte-for-byte on `VERSION_PATTERN` and the major mapping (`1 -> unsupported`, `2 -> v2`, else `unknown`); the parity test named in both comments exists at .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts.
+- Fail-open/fail-closed split is real and documented: the hook resolver returns `unknown` on any failure (opencode-version.mjs:291-293), the deep-loop resolver throws for `unsupported` and `unknown` (opencode-version.cjs:120-131).
+- `skilled-loop`'s new OpenCode 1 guard reads the version through the deep-loop parser and refuses only the `unsupported` verdict, leaving a failed or timed-out probe non-blocking (.skilled/bin/skilled-loop:1225-1237).
+- `opencode-setup.sh` `remove-v1` refuses a symlinked or foreign launcher before the first write (opencode-setup.sh:222-239) and preserves a v2 link that npm would delete by name.
+- The session reader defaults to `opencode.db` (.skilled/hooks/shared/session-readers/opencode.mjs:58); the v1-era `opencode-v1.db` is not read.
 
 ## Ruled Out
 
-- **The `server.instance.disposed` and `app.disposed` removal is a shutdown regression.** Ruled out: `.opencode/plugins/ARCHITECTURE.md:224` records that the 2.3.2 binary defines neither, and the cleanup the bridge returns still runs the v1 `dispose` hook.
-- **Removing the question-event branches leaves blocked-prompt state set.** Ruled out: `toV1ToolContext` throws `ask is not available on OpenCode 2` (`v2-bridge.js`), so no v2 question event exists to clear it.
-- **The v1 `part` table removal loses answers the sweeper used to find.** Ruled out by decision: the phase removes the legacy table branches, and on a 1.x database the reader reports `store_unreadable` instead of half-reading a legacy layout.
-- **Rule-engine fail-open through `UNRESOLVED_FAMILIES`.** Ruled out by reading `evaluate` end to end: an unresolved family keeps every rule and keeps blocking severity for any rule whose `appliesTo` covers `SUPPORTED_FAMILIES`.
-- **The surviving `-m <model>#<effort>` argv is a v1 leftover.** Ruled out: the v2 argv is `run --standalone -m ... --format json`, with `--auto` only under `danger-full-access`, and the bypass warning now names `--auto` rather than a v1-only flag.
+- "An OpenCode 1 binary still passes the dispatch guard unchanged": ruled out. `unsupported` is in `UNRESOLVED_FAMILIES`, and because `SUPPORTED_FAMILIES` is `['v2']`, `appliesToAll` is true for every current rule, so the two `error` rules still block.
+- "The `unknown` verdict lets a dispatch slip the version filter": ruled out for the same reason; unresolved families take every rule rather than none.
+- "`opencode2` removal breaks bare-name probes": ruled out; the trust comparison runs only on the path-qualified branch.
 
 ## Next Focus
 
-- Dimension: D2 Security
-- Focus area: the plugin trust boundary and the dispatch guard — `v2-bridge.js` tool-argument translation, the `toV1ToolContext.ask` refusal, `trustedExecutableFor` and `trustedExecutables` path trust in `opencode-version.mjs`, and the `env-secret-guard`, `mcp-route-guard`, and `classifier-injection-screen` plugins after the export-shape change.
-- Reason: D1 is swept; the removal touched executable-trust code and a whole host bridge that widens what a plugin can reach, neither of which a correctness pass over argv and table names can settle.
-- Rotation status: D1 complete, D2 next in the queue.
-- Blocked/productive carry-forward: the static-read-plus-corpus technique was productive; carry it to the guard's path-trust tests.
-- Required evidence: the removal commit's diff for the cli-dispatch resolver, the guard tests, and a direct read of every `trustedExecutableFor` caller.
-- Recovery note: none; no iteration is stuck.
+- Dimension: security.
+- Focus area: the v1-removal trust seam and the live-dispatch surfaces — `trustedExecutableFor` symlink/identity handling, the `OPENCODE_BIN` override path, the `remove-v1` launcher guards, and secret handling in the doctor battery and setup helper.
+- Reason: iteration 1 exhausted the correctness inventory of the version gate; the same files carry the privilege and destructive-action surfaces.
+- Rotation status: correctness reviewed (score: clean, 1 latent P2); security, traceability, maintainability remain.
+- Blocked/productive carry-forward: productive category "read the producer and its consumer together" (parser + rule engine + callers) should be reused for the security pass; no blocked approaches.
+- Required evidence: file:line for every claim about the trust comparison, the setup helper's refusal order, and any credential surface.
+- Recovery note: not applicable.
 
 Review verdict: PASS

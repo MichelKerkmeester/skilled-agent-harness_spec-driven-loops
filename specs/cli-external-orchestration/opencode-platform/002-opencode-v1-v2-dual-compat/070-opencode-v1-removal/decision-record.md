@@ -42,6 +42,8 @@ _memory:
 | Q006 | Run the deep review on cli-pi with DeepSeek V4.1 Flash at max, since cli-opencode refused a dirty primary checkout. | Not stated. | None | 070 review/review-report.md |
 | Q007 | Approve the full review-fix plan, closing A5 as intended and waiving the after-the-fact ordering checks by ADR. | Not stated. Evidence: yes_no, option false, overlap 0, imperative false, shift false. | None | 001 ADR-002, 002 ADR-001, 003 ADR-002 |
 | Q008 | Merge the branch straight into main with no pull request, following sk-git, so the v2 battery runs on main. | Not stated. | None | 002 T015, AC-008, merge commit 06d02096e90 |
+| Q009 | Restore the archived review folder over the halted run, and list the wrapper refusal and its test as justified OpenCode 1 survivors. | Not stated. | None | 003-v1-docs-and-playbooks-sweep/scratch/justified.txt, 003 tasks.md CHK-012 and CHK-023, 003 implementation-summary.md |
+| Q010 | Run the five-iteration deep review through cli-pi with deepseek-v4.1-flash-1017 at max, because cli-opencode refuses dispatch from the primary checkout. | Not stated. | None | review/deep-review-config.json, review/review-report.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -204,6 +206,46 @@ Stop here
 Answer:
 ```text
 just commit push merge no pr check sk git
+```
+
+### Q009
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_014XoUCDK7mM7o5eEntRU1yR:1 -->
+
+Question:
+```text
+What should I do with the half-run review state in the primary checkout (old review/ archived, new partial files showing as tracked changes), and with the justified.txt gap (skilled-loop and its wrapper test carry OpenCode 1 refusal text but aren't listed)?
+```
+
+Options:
+```text
+Restore + fix list (Recommended)
+Restore only
+Leave as is
+```
+
+Answer:
+```text
+Restore + fix list (Recommended)
+```
+
+### Q010
+<!-- source: claude:df9261d4-6090-4b52-892b-db52ff291ccd:toolu_01LDbDetpUVbnbkhVUmuFPTm:0 -->
+
+Question:
+```text
+The DeepSeek Flash max rerun can't use cli-opencode: dispatch-iteration.cjs refuses it outside a linked worktree (line 684) and while the primary checkout has uncommitted paths (line 702; 6 paths now, owned by other sessions). How should I run the 5 iterations?
+```
+
+Options:
+```text
+cli-pi, same model (Recommended)
+cli-deepseek-harness
+Wait for clean main
+```
+
+Answer:
+```text
+cli-pi, same model (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

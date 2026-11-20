@@ -22,26 +22,74 @@ Coverage Age: 0
 Last 2 ratios: N/A -> N/A
 Stuck count: 0
 Provisional Verdict: PENDING hasAdvisories=false
-Focus this iteration: the runtime code commit ba9720f2f08 (opencode-version.cjs, dispatch-iteration.cjs, fanout-run.cjs, the cli-dispatch hook lib, the plugins and v2-bridge.js, the session readers) and its tests. Use `git show ba9720f2f08` and `git diff` for the branch's own changes.
+Focus this iteration: Inventory the scope, then check correctness of the runtime code the merge changed: .skilled/hooks/cli-dispatch/lib/opencode-version.mjs and dispatch-rule-checks.mjs, .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs, fanout-run.cjs and dispatch-iteration.cjs, .skilled/bin/skilled-loop, .opencode/plugins/lib/v2-bridge.js and the plugins, .vibe/plugins/repo-guards, the session readers, the doctor battery and the setup helper. Use git diff 06d02096e90^1 06d02096e90 -- <path> for the merge's own changes. Confirm the prior P1s are fixed (dualPlugin .server callers in .vibe; version probe refusing major 1). Write the iteration file and delta before your budget runs out.
 
 Review Iteration: 1 of 5
 Mode: review
-Dimension: correctness
-Review Target: Branch worktrees/477-opencode-v1-removal, its own commits since origin/main: ba9720f2f08 (runtime code), fc8b3a9a241 (CI and packages), af87a2aa13a (docs), 96e3d8a8f24 (spec packet), 3ef324c3de1 (renames), 4c72145b752 (live evidence), plus the a793f3ad733 merge conflict resolution in cli-opencode/references/providers-and-models.md. The work removes OpenCode 1 support; OpenCode 2 (@opencode/cli 2.3.2) is the only supported major.
+Dimension: correctness (inventory pass first)
+Review Target: specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal
 Review Scope Files: 
-- .github/workflows/opencode-v2-battery.yml
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/acceptance-criteria.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/decision-record.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/implementation-summary.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/plan.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/.gitkeep
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/after.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/baseline.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/consumers.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/event-capture.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/files-outside-table.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/justified.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/spec.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/tasks.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/acceptance-criteria.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/decision-record.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/implementation-summary.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/plan.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/.gitkeep
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/after.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/files-outside-table.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/gated-suites.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/lockfile-regen.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/sdk-usage.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/variant.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/versions.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/spec.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/tasks.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/decision-record.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/implementation-summary.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/plan.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/.gitkeep
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/baseline.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/changelog-baseline.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/check-index-v1.py
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/doc-inventory.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/files-outside-table.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/justified.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/live-version.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/live.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/locations.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/mac-cleanup.txt
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/spec.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/tasks.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/decision-record.md
+- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md
 - .github/workflows/README.md
+- .github/workflows/opencode-v2-battery.yml
+- .opencode/README.md
 - .opencode/package-lock.json
 - .opencode/package.json
 - .opencode/plugins/ARCHITECTURE.md
+- .opencode/plugins/README.md
 - .opencode/plugins/lib/opencode-goal-core.js
 - .opencode/plugins/lib/v2-bridge.js
 - .opencode/plugins/opencode-goal.js
-- .opencode/plugins/README.md
 - .opencode/plugins/system-dist-freshness-guard.js
 - .opencode/plugins/system-skill-advisor.js
 - .opencode/plugins/system-spec-gate.js
 - .opencode/plugins/system-speckit-completion.js
+- .opencode/plugins/tests/README.md
 - .opencode/plugins/tests/classifier-injection-screen.test.cjs
 - .opencode/plugins/tests/decision-capture.test.cjs
 - .opencode/plugins/tests/env-secret-guard.test.cjs
@@ -56,7 +104,6 @@ Review Scope Files:
 - .opencode/plugins/tests/opencode-goal-supervisor.test.cjs
 - .opencode/plugins/tests/opencode-goal-tool-path.test.cjs
 - .opencode/plugins/tests/plugin-inventory.json
-- .opencode/plugins/tests/README.md
 - .opencode/plugins/tests/session-cleanup.test.cjs
 - .opencode/plugins/tests/session-handover.test.cjs
 - .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs
@@ -71,7 +118,7 @@ Review Scope Files:
 - .opencode/plugins/tests/v2-bridge.test.cjs
 - .opencode/plugins/tests/v2-hard-plugins.test.cjs
 - .opencode/plugins/tests/v2-registration.test.cjs
-- .opencode/README.md
+- .skilled/CROSS-CLI.md
 - .skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json
 - .skilled/bin/skilled-loop
 - .skilled/bin/tests/opencode-compat-layout.test.cjs
@@ -84,12 +131,11 @@ Review Scope Files:
 - .skilled/commands/deep/assets/deep-review-presentation.txt
 - .skilled/commands/deep/assets/deep-review.yaml
 - .skilled/commands/deep/assets/legacy/deep-review.body.markdown
+- .skilled/commands/doctor/scripts/README.markdown
 - .skilled/commands/doctor/scripts/git-setup-check.cjs
 - .skilled/commands/doctor/scripts/opencode-version-battery.cjs
-- .skilled/commands/doctor/scripts/README.markdown
-- .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
 - .skilled/commands/doctor/scripts/tests/README.markdown
-- .skilled/CROSS-CLI.md
+- .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
 - .skilled/hooks/cli-dispatch/codex/codex-shell-tool.test.mjs
 - .skilled/hooks/cli-dispatch/lib/dispatch-audit.mjs
 - .skilled/hooks/cli-dispatch/lib/dispatch-audit.test.mjs
@@ -100,6 +146,7 @@ Review Scope Files:
 - .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
 - .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
 - .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+- .skilled/hooks/dist-freshness/README.md
 - .skilled/hooks/injection-contract.md
 - .skilled/hooks/overlay-guard/tests/opencode-overlay-guard.test.mjs
 - .skilled/hooks/session-cleanup/README.md
@@ -120,6 +167,9 @@ Review Scope Files:
 - .skilled/package.json
 - .skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md
 - .skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/README.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/ROUTER.md
+- .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.0.0.md
@@ -171,7 +221,6 @@ Review Scope Files:
 - .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/sandbox-permission.md
-- .skilled/skills/cli-external-orchestration/cli-opencode/README.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md
@@ -181,12 +230,10 @@ Review Scope Files:
 - .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/references/self-invocation-guard.md
-- .skilled/skills/cli-external-orchestration/cli-opencode/ROUTER.md
 - .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh
 - .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs
 - .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-models-form.test.cjs
 - .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs
-- .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
 - .skilled/skills/cli-external-orchestration/feature-catalog/cli-dispatch-authorization/cli-dispatch-authorization.md
 - .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md
 - .skilled/skills/cli-external-orchestration/feature-catalog/opencode-version-dispatch/opencode-version-dispatch.md
@@ -222,11 +269,11 @@ Review Scope Files:
 - .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md
 - .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md
 - .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md
+- .skilled/skills/system-deep-loop/runtime/scripts/README.md
 - .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs
 - .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs
 - .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
 - .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs
-- .skilled/skills/system-deep-loop/runtime/scripts/README.md
 - .skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts
 - .skilled/skills/system-deep-loop/runtime/tests/fanout-loop-prompt-in-process.test.ts
 - .skilled/skills/system-deep-loop/runtime/tests/fanout-review-focus.vitest.ts
@@ -256,90 +303,13 @@ Review Scope Files:
 - .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md
 - .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/comment-hygiene-opencode-plugin.md
 - .skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md
-- .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
-- .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
-- .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
 - .skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts
-- .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+- .skilled/skills/system-spec-kit/runtime/hooks/opencode/README.md
 - .skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts
+- .vibe/plugins/repo-guards/session-cleanup.mjs
+- .vibe/plugins/repo-guards/tests/session-cleanup.test.mjs
 - README.md
 - SECURITY.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/acceptance-criteria.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/decision-record.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/description.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/graph-metadata.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/implementation-summary.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/plan.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/.gitkeep
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/after.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/baseline.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/consumers.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/event-capture.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/scratch/justified.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/spec.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/001-v1-runtime-code-and-tests/tasks.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/acceptance-criteria.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/description.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/graph-metadata.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/implementation-summary.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/plan.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/.gitkeep
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/after.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/gated-suites.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/sdk-usage.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/variant.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/scratch/versions.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/spec.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/002-v1-ci-and-package-pins/tasks.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/acceptance-criteria.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/description.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/graph-metadata.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/implementation-summary.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/plan.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-audit-ledger/frames/0000000000000001.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-audit-ledger/frames/0000000000000002.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-audit-ledger/frames/0000000000000003.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-audit-ledger/frames/0000000000000004.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-audit-ledger/frames/0000000000000005.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-audit-ledger/frames/0000000000000006.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-audit-ledger/frames/0000000000000007.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-config.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-dashboard.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-ledger/frames/0000000000000001.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-ledger/frames/0000000000000002.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-ledger/frames/0000000000000003.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-ledger/frames/0000000000000004.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-ledger/frames/0000000000000005.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-ledger/frames/0000000000000006.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-ledger/frames/0000000000000007.frame
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-state.jsonl
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deep-research-strategy.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/deltas/iter-001.jsonl
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/dispatch-receipts/dispatch-research-i1-g1.completion.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/dispatch-receipts/dispatch-research-i1-g1.intent.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/findings-registry.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/iterations/iteration-001.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/locks-and-fencing-v1/3068150e6d888ae96b4387058ce2a375a706fb9aa66f593dd212a4db0fd55ca6/coordinator-state.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/locks-and-fencing-v1/3068150e6d888ae96b4387058ce2a375a706fb9aa66f593dd212a4db0fd55ca6/grant-journal.jsonl
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/observability-events.jsonl
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/prompts/iteration-1.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/research.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/research/resource-map.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/.gitkeep
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/baseline.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/changelog-baseline.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/doc-inventory.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/justified.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/live-version.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/live.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/locations.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/scratch/mac-cleanup.txt
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/spec.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/003-v1-docs-and-playbooks-sweep/tasks.md
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/description.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/graph-metadata.json
-- specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/spec.md
-- specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json
 Prior Findings: P0=0 P1=0 P2=0
 
 ## PIVOT LINEAGE
@@ -358,7 +328,7 @@ Load `.skilled/skills/sk-code/sk-code-review/references/review-core.md` before f
 ## REVIEW DIMENSIONS
 
 correctness, security, traceability, maintainability
-
+Operator review focus (cover it in addition to the dimension of this iteration, and say in the narrative how you addressed it): Review the OpenCode v1 removal as merged to main: the code, test, CI and doc changes in merge 06d02096e90 (diff against its first parent), closure a2dc927a8a3 and parent fix b18b80291d2. Verify the prior review's fixes hold, OpenCode 2 is the only supported major, no v1 path survives outside the justified list, and packet evidence matches the code. The justified-list gap for skilled-loop was fixed in f6aa8dc052b; confirm it, don't re-report it.
 
 ## TRACEABILITY PROTOCOLS
 

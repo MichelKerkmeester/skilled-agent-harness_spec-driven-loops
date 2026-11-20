@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The cli-opencode skill, its references and playbooks, the plugin docs and several cross-skill docs still describe the v1 install, the v1 launcher and the v1 dispatch",
     "created_at": "2026-11-19T09:04:23Z",
-    "last_save_at": "2026-11-20T09:59:10.003Z",
+    "last_save_at": "2026-11-20T10:31:40.185Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a106e6f49b52c428d39e3221ce0d8d6bd1f0416b06ed1409bc40050c4d7f86b5",
+    "source_fingerprint": "sha256:5b1d2a1d13aa6b904ba12c9bef1c5b63610b72d960a2c10e81de6ee46f97f00a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "974848e67397103669bb464ada9fc6c8b1da5002068e04288f1b4c92b0c6b1fd",
       "plan.md": "5de7ebe9ee57e350f54837eb45fd0b767be0aad43ccc335a2a0122dfc608759c",
       "tasks.md": "6ceecae8c7f2d739c91bd76430f6e8be910f7b89f698f61381a2780c667aee7b",
       "decision-record.md": "87b9a2cee7d6f9e9bdb379b062edfcfb931f9a7cda0bc99c51c3b8e969418df3",
-      "implementation-summary.md": "fe1c8cb7d61e0f0707dc889d24d9f66655614fb8771610f047b346b7eedc05cd",
+      "implementation-summary.md": "6fe03a08a5ed39275e6cc7ce210cdfa0ea97f7a218a1e13023afb41e0f382d79",
       "research/research.md": "afc5b3fe4f84b16e5321be659d9a5cb7edcf568cbd34f0e7097f73635449cc76"
     },
     "last_active_at": null
