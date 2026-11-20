@@ -166,7 +166,7 @@ A blocked task is marked `[B]` with the failing command and its output on the ta
 - [x] CHK-FIX-004 [P0] The `resolveOverlayDir` table holds the adversarial cases: a backslash value, joined input `a/../../outside`, outside-root `../../x`, no-op `.`, and the fallback with no setting file resolving to `skilled-overlays`. Done: `C:\overlays` (backslash), `a/../../outside`, `../../x`, `.`, and the `skilled-overlays` default at `overlay-engine-fixes.test.cjs:67`.
 - [x] CHK-FIX-005 [P1] Each of the 22 matrix rows in `plan.md` FIX ADDENDUM maps to a passing test, with the in-tree rows covered by the existing suite. Done: the sibling rows map to the sync, repin, strict-writes, follow-up and guard sibling cases; the in-tree rows are the existing suite.
 - [x] CHK-FIX-006 [P1] A guard case runs with `process.cwd()` outside the tree, since `strictWriteRefusal` resolves its input against the working folder (`overlay-engine.cjs:5438`). Done: the strict-writes guard case run from the workspace.
-- [ ] CHK-FIX-007 [P1] The T017 and T018 evidence names the phase commit SHA.
+- [x] CHK-FIX-007 [P1] The T017 and T018 evidence names the phase commit SHA. Done: `scratch/evidence/at-phase-commit.txt` reruns both at `d2d2e839456`: 238/238 and 20/20, each exit 0.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -210,7 +210,7 @@ A blocked task is marked `[B]` with the failing command and its output on the ta
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 12/13 (CHK-FIX-007 waits for the phase commit) |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-20
