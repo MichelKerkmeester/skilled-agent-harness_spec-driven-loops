@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5f27ace86648d3b859d9fec324fede03f8594f5598656d7213edd267eea6f621",
+  "manifestHash": "a9b220fc7d7f3ee3ac927af402e71e9e151b39bcdf96d17d68fd3394aa1044e7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5213,6 +5213,9 @@
     ],
     "022 transitive re verify": [
       "022 transitive re-verify"
+    ],
+    "022 verification fixes operator decisions": [
+      "022-verification-fixes operator decisions"
     ],
     "022 vibe hook playbook and live scenarios operator decisions": [
       "022-vibe-hook-playbook-and-live-scenarios operator decisions"
@@ -46408,6 +46411,9 @@
     "dsh route re pin": [
       "dsh route re-pin"
     ],
+    "dsh route receipt at compaction": [
+      "dsh route receipt at compaction"
+    ],
     "dsh route verification": [
       "dsh route verification"
     ],
@@ -59982,6 +59988,9 @@
     ],
     "heartbeat staleness detection owner lease": [
       "heartbeat staleness detection owner lease"
+    ],
+    "heartbeat watchdog after sleep": [
+      "heartbeat watchdog after sleep"
     ],
     "heat matrix band defect": [
       "heat matrix band defect"
@@ -85307,6 +85316,9 @@
     "phase 22 tasks": [
       "phase 22 tasks"
     ],
+    "phase 22 verification fixes": [
+      "phase 22 verification fixes"
+    ],
     "phase 22 vibe hook playbook and live scenarios": [
       "phase 22 vibe hook playbook and live scenarios"
     ],
@@ -107491,6 +107503,9 @@
     ],
     "semantic intent tags": [
       "semantic intent tags"
+    ],
+    "semantic lane coverage before embed": [
+      "semantic lane coverage before embed"
     ],
     "semantic lane coverage gate": [
       "semantic lane coverage gate"
@@ -134706,6 +134721,24 @@
     ],
     "verification evidence": [
       "verification evidence"
+    ],
+    "verification fixes": [
+      "verification fixes"
+    ],
+    "verification fixes acceptance criteria": [
+      "verification fixes acceptance criteria"
+    ],
+    "verification fixes goal": [
+      "verification fixes goal"
+    ],
+    "verification fixes implementation summary": [
+      "verification fixes implementation summary"
+    ],
+    "verification fixes plan": [
+      "verification fixes plan"
+    ],
+    "verification fixes tasks": [
+      "verification fixes tasks"
     ],
     "verification implementation summary": [
       "verification implementation summary"

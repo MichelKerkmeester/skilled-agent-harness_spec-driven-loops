@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7086,
-    "ok": 20182,
+    "ok": 20189,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28896,
+  "documentsScanned": 28903,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5f27ace86648d3b859d9fec324fede03f8594f5598656d7213edd267eea6f621",
+  "manifestHash": "a9b220fc7d7f3ee3ac927af402e71e9e151b39bcdf96d17d68fd3394aa1044e7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45707,
+      "ok": 45718,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -62617,6 +62617,10 @@
     },
     {
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/021-epic-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/scratch",
       "reason": "excluded directory"
     },
     {
