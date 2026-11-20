@@ -1,5 +1,5 @@
 {
-  "manifestHash": "422537aebebfcbc7b47dd6519603a12a9d33d7cee5ec7c64eac4c3ab1cf41b70",
+  "manifestHash": "073f9be7b452ad9992ff75e2a973763b24702cb1ac03007de1d98007c1163645",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24268,6 +24268,9 @@
     "cli opencode 2 0 1 0": [
       "cli-opencode 2.0.1.0"
     ],
+    "cli opencode 2 0 2 0": [
+      "cli-opencode 2.0.2.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -24540,6 +24543,9 @@
     ],
     "cli opencode v2 0 1 0": [
       "cli-opencode v2.0.1.0"
+    ],
+    "cli opencode v2 0 2 0": [
+      "cli-opencode v2.0.2.0"
     ],
     "cli opencode version detection": [
       "cli-opencode version detection"
@@ -49807,6 +49813,9 @@
     "extend a completed deep loop run": [
       "extend a completed deep loop run"
     ],
+    "extend a finished deep loop run": [
+      "extend a finished deep loop run"
+    ],
     "extend completed deep research run": [
       "extend completed deep research run"
     ],
@@ -50947,6 +50956,9 @@
     ],
     "fan out lineage executor missing": [
       "fan-out lineage executor_missing"
+    ],
+    "fan out lineage preview": [
+      "fan-out lineage preview"
     ],
     "fan out lineage pwd": [
       "fan-out lineage pwd"
@@ -68572,6 +68584,9 @@
     "maintenance script headers": [
       "maintenance-script headers"
     ],
+    "major 1 opencode reads as unknown": [
+      "major-1 opencode reads as unknown"
+    ],
     "major minor patch build changelog": [
       "major minor patch build changelog"
     ],
@@ -79202,6 +79217,9 @@
     ],
     "opencode 2 ancestor opencode folder": [
       "opencode 2 ancestor opencode folder"
+    ],
+    "opencode 2 only": [
+      "opencode 2 only"
     ],
     "opencode 2 plugin support": [
       "opencode 2 plugin support"
@@ -97913,6 +97931,9 @@
     ],
     "remove track narrowing scorer": [
       "remove track narrowing scorer"
+    ],
+    "remove v1 mode removed": [
+      "remove-v1 mode removed"
     ],
     "remove voyage cohere reranker": [
       "remove voyage cohere reranker"
@@ -119561,6 +119582,9 @@
     "skilled v4 1 0 0": [
       "skilled v4.1.0.0"
     ],
+    "skilled v4 2 0 0": [
+      "skilled v4.2.0.0"
+    ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
     ],
@@ -133640,6 +133664,9 @@
     ],
     "v4 1 0 0 release notes": [
       "v4.1.0.0 release notes"
+    ],
+    "v4 2 0 0 release notes": [
+      "v4.2.0.0 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

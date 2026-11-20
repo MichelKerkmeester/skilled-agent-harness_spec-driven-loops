@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a0c94ad69ad1b4fa0bdbdf59aed56695aee561ff3bccb101f18fe1cacfcb1416",
+  "corpusHash": "a96e50530cd870ca81ab87daabeb1277bfc16d943027ed427e05f84fb7d7944b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28911,
+  "includedPathCount": 28913,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -93,6 +93,7 @@
     ".skilled/changelog/skilled/v4.0.1.0.md",
     ".skilled/changelog/skilled/v4.0.2.0.md",
     ".skilled/changelog/skilled/v4.1.0.0.md",
+    ".skilled/changelog/skilled/v4.2.0.0.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/ask-surface-guard/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
@@ -1642,6 +1643,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.9.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -28943,7 +28945,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "422537aebebfcbc7b47dd6519603a12a9d33d7cee5ec7c64eac4c3ab1cf41b70",
+  "manifestHash": "073f9be7b452ad9992ff75e2a973763b24702cb1ac03007de1d98007c1163645",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
