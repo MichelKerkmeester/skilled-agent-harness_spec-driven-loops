@@ -95,7 +95,7 @@ dry_run_control:
     optional_fields: [run, sessionId, generation, detail]
     default_halt_event: '{"type":"event","event":"dry_run_halt","mode":"review","boundary":"{dry_run_boundary}","step":"{step_name}","timestamp":"{ISO_8601_NOW}"}'
     preview_only: "A step or branch marked dry_run_event_policy: preview-only still runs its read and classify work. It prints the event it would append as a terminal JSONL preview line and appends nothing."
-  halt_hook_rule: "Before executing any command, dispatch, edit, output, template write, append_to_jsonl, append_jsonl, log_event, mcp_tool, write, or git-index mutation in a step tagged with dry_run_boundary, emit event_policy.default_halt_event with that step's name and boundary to the terminal and halt. This holds in both execution modes."
+  halt_hook_rule: "Before executing any command, dispatch, edit, output, template write, append_to_jsonl, append_jsonl, log_event, mcp_tool, write, or git-index mutation in a step tagged with dry_run_boundary, emit event_policy.default_halt_event with that step's name and boundary to the terminal and halt; at step_fanout_spawn print the dry_run_halt the fan-out preview returned instead, when it returned one. This holds in both execution modes."
   boundary_labels:
     child_spawn: "child-spawn"
     state_mutation: "state-mutation"
@@ -270,9 +270,12 @@ workflow:
       The runner builds each lineage's command exactly as a real run would and writes
       nothing. Per lineage it prints the argv with every prompt replaced by its digest,
       cwd, session_id, iterations, frontier_scope and effective_config: model, reasoning
-      effort, sandbox and permission mode. Print its JSON line and any stderr warnings,
-      remove {preview_input_dir} and continue; the dry-run halt at the next boundary step
-      stops the run as before. Under --restart this runs before the archive, so session_id
+      effort, sandbox and permission mode, sandbox enforcement and effort applied. Print its
+      JSON line and any stderr warnings, remove {preview_input_dir} and continue; the dry-run
+      halt at the next boundary step stops the run as before. The JSON line's dry_run_halt
+      is the runner's halt event for step_fanout_spawn: when the halt lands there, print that
+      object verbatim as the halt line instead of composing event_policy.default_halt_event.
+      A halt at an earlier boundary step still prints default_halt_event. Under --restart this runs before the archive, so session_id
       and frontier_scope come from the current packet. Before step_frontier_seed every
       frontier_scope is empty and an expansive lineage shows its unseeded iteration default.
     command: |

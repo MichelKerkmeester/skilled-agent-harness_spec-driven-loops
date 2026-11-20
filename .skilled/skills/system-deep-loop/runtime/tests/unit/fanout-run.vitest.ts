@@ -7557,6 +7557,48 @@ describe('fanout-run.cjs — --preview builds every lineage command without writ
     ]);
     expect(budget?.units?.['upper_bound.estimated_cost_units']).toContain('one attempt');
     expect(budget?.units?.['upper_bound.per_lineage[].estimated_cost_units']).toContain('every retry');
+    // The runner, not the conductor, writes the halt line for the spawn it withheld.
+    expect((payload as Record<string, unknown>).dry_run_halt).toMatchObject({
+      type: 'event',
+      event: 'dry_run_halt',
+      mode: 'review',
+      boundary: 'child-spawn',
+      step: 'step_fanout_spawn',
+    });
+    expect((payload as Record<string, unknown>).topic_digest).toBeNull();
+  });
+
+  it('prints the research topic digest beside the prompt digests', async () => {
+    const binDir = makeTempDir('fanout-run-preview-topic-bin-');
+    writeStubBinary(binDir, 'opencode');
+    const hermetic = useHermeticEnv('preview-topic');
+    const specFolder = 'specs/test-fanout-run-preview-topic';
+    const baseDir = join(hermetic.tmpDir, specFolder, 'research');
+    mkdirSync(baseDir, { recursive: true });
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', JSON.stringify({
+          executors: [
+            { label: 'a', kind: 'cli-opencode', model: 'llmgateway/deepseek-v4.1-flash-1017' },
+            { label: 'b', kind: 'cli-opencode', model: 'llmgateway/deepseek-v4.1-flash-1017' },
+          ],
+          concurrency: 2,
+        }),
+        '--base-artifact-dir', baseDir,
+        '--research-topic', '  How   does the\nrunner  halt? ',
+        '--preview',
+      ],
+      { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 15_000 },
+    );
+    expect(result.exitCode).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
+    // The digest covers the topic as the prompt embeds it, whitespace collapsed and trimmed.
+    expect(payload.topic_digest).toBe(createHash('sha256').update('How does the runner halt?').digest('hex'));
+    expect(payload.dry_run_halt).toMatchObject({ mode: 'research', boundary: 'child-spawn', step: 'step_fanout_spawn' });
+    expect(String((payload.dry_run_halt as Record<string, unknown>).detail)).toContain('a, b');
   });
 
   // The Claude config dir travels in the environment, not the argv, so the preview names it

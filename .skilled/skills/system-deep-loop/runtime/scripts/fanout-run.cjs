@@ -4058,7 +4058,22 @@ async function main() {
           'base_cost_units x (retries + 1): the worst case if every retry runs; reported, never gated',
       },
     };
-    jsonOut({ status: 'preview', lineages, aggregate_budget: aggregateBudget });
+    // The halt line a dry run prints for the spawn this preview withheld, written here so it
+    // does not depend on the conductor composing it.
+    const dryRunHalt = {
+      type: 'event',
+      event: 'dry_run_halt',
+      mode: loopType,
+      boundary: 'child-spawn',
+      step: 'step_fanout_spawn',
+      timestamp: new Date().toISOString(),
+      detail: `fanout-run --preview previewed ${lineages.length} lineage(s) `
+        + `(${lineages.map((lineage) => lineage.label).join(', ')}), spawned none and wrote nothing`,
+    };
+    const topicDigest = researchTopic ? digestText(researchTopic) : null;
+    jsonOut({
+      status: 'preview', topic_digest: topicDigest, dry_run_halt: dryRunHalt, lineages, aggregate_budget: aggregateBudget,
+    });
     return;
   }
   if (!aggregateBudgetDecision.continue_allowed) {
