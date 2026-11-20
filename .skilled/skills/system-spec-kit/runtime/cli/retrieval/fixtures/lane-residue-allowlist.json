@@ -1,0 +1,113 @@
+{
+  "description": "Exact tracked paths sweep-lane-residue.mjs repo mode may report without failing. Every row names one file, never a folder or glob, and says why each of its matches is not part of the skill advisor's retired semantic lane. A row whose file stops matching is listed as unused, never as an error.",
+  "entries": [
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+      "reason": "The check itself. Its vocabulary is the thing being searched for."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json",
+      "reason": "This allowlist. Its reasons name the terms each exempted file matches."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts",
+      "reason": "The check's test. It plants lane terms in fixtures to prove the check fails."
+    },
+    {
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-task-completion/auto-note.md",
+      "reason": "Line 19 names Ollama as a future ClickUp note provider. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md",
+      "reason": "Codex's own --oss mode runs local models through Ollama (lines 105, 173, 549). Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md",
+      "reason": "Line 64 describes Codex's own --oss mode with local Ollama models. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md",
+      "reason": "Line 92 says the Figma CLI supports local LLMs via LM Studio or Ollama. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
+      "reason": "sqlite-vec is a teaching example of typing an untyped module (lines 79, 81). Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md",
+      "reason": "sqlite-vec is a teaching example of a permitted any (lines 130, 136). Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md",
+      "reason": "Line 103 is a TSDoc example class that uses sqlite-vec. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
+      "reason": "Lines 320 and 322 are an optional-require example with sqlite-vec. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/lib/database/indexer.mjs",
+      "reason": "sk-design's own style vector store takes an embedder callback parameter. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/lib/database/vectors.mjs",
+      "reason": "sk-design's own style vector store takes an embedder callback parameter. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/database/retrieval.test.mjs",
+      "reason": "Tests of sk-design's own vector store pass stub embedder callbacks. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/database/telemetry.test.mjs",
+      "reason": "Tests of sk-design's own vector store pass stub embedder callbacks. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/oracle/differential-oracle.mjs",
+      "reason": "sk-design's own oracle uses a deterministic embedder and vector coverage of its style corpus. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/oracle/query-set.mjs",
+      "reason": "sk-design's own oracle defines a deterministic embedder for its style corpus. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/oracle/replay-fixtures.mjs",
+      "reason": "sk-design's own oracle defines a scaled deterministic embedder. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/neverhack/DESIGN.md",
+      "reason": "Line 195 uses semantic lanes for colour roles in a design system. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/neverhack/neverhack-canonical.json",
+      "reason": "Line 36 uses semantic lanes for colour roles in a design system. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-deep-loop/runtime/lib/semantic-communities/community-projection.ts",
+      "reason": "semantic_shadow_only (line 747) is a deep-loop coverage metric that shares the name. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts",
+      "reason": "semantic_shadow_only (line 1035) asserts the deep-loop coverage metric of the same name. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md",
+      "reason": "Teaching case studies of past embedder bake-offs for the retired memory server and a code index. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+      "reason": "Lines 25 and 64 point to the embedder bake-off case studies. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+      "reason": "Line 53 names an embedder as one example of a promoted default. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+      "reason": "Line 103 is a worked changelog example about the retired memory database and its embedder. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
+      "reason": "Old-to-new spec folder path pairs whose folder names contain embedder. Spec paths, not the advisor lane."
+    }
+  ]
+}

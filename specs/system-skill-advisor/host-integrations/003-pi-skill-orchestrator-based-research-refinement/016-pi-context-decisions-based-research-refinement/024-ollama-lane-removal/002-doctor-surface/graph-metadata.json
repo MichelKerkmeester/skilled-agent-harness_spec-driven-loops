@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/002-doctor-surface",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/002-doctor-surface",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor surface",
+      "phase 2 doctor surface",
+      "remove the doctor embedder route",
+      "doctor semantic health flag removal",
+      "doctor surface plan",
+      "doctor surface tasks",
+      "doctor surface acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "doctor surface implementation summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "surface",
+      "phase",
+      "remove",
+      "embedder",
+      "route",
+      "semantic",
+      "health",
+      "flag",
+      "removal",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+      ".skilled/commands/doctor/skill-advisor.md",
+      ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+      ".skilled/commands/doctor/setup.md",
+      ".skilled/commands/doctor/assets/doctor-install.yaml",
+      ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+      ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-advisor-embedder.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/skill-advisor.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-advisor-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "setup.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/setup.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-route-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The lane ships at weight 0, yet the doctor still sets it up, checks it and reports its vectors: 18 files under `.skilled/commands/doctor/` name it and 8 pass `--include-semantic-health`",
+    "created_at": "2026-11-20T21:51:19Z",
+    "last_save_at": "2026-11-20T22:34:37.016Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9305787ebaa9d3a358fe83ee0810583d39455f8b441dd3804ef79976c36aaf8b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "62d78fc1ddb254160bb93a055b22e5c009d9278fc7597b6ce3055b59c687b78c",
+      "plan.md": "f0b816f899811bab59442b8cf9162c92ef830d067da38aae075e96ee7bda07bf",
+      "tasks.md": "f49b9d2f50e8046b00de5dd565b05a6dde8deb1a7ced1dad78739f9a5ec63123",
+      "implementation-summary.md": "3cc539ebe783c50175d6a78b138af573b78ca8f80559e2603186c5d3308d31e6"
+    },
+    "last_active_at": null
+  }
+}
