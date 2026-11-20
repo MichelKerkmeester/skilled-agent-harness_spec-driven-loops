@@ -2,7 +2,7 @@
 name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 2.0.1.0
+version: 2.0.2.0
 ---
 
 # OpenCode CLI Orchestrator - Full-Runtime Cross-AI Dispatch
