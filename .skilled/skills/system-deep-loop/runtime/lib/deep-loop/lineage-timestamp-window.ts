@@ -96,12 +96,17 @@ export function checkLineageTimestampWindow(
   let unparseable = 0;
 
   records.forEach((record, index) => {
-    if (!isRecord(record) || !Object.prototype.hasOwnProperty.call(record, 'timestamp')) {
+    // The gateway times iteration rows itself and keeps the model's stamp as
+    // claimedTimestamp; that claim is what this check exists to judge.
+    const stampField = isRecord(record) && Object.prototype.hasOwnProperty.call(record, 'claimedTimestamp')
+      ? 'claimedTimestamp'
+      : 'timestamp';
+    if (!isRecord(record) || !Object.prototype.hasOwnProperty.call(record, stampField)) {
       untimestamped += 1;
       return;
     }
 
-    const timestamp = record.timestamp;
+    const timestamp = record[stampField];
     const timestampMs = parseRecordTimestamp(timestamp);
     if (timestampMs === null) {
       anomalous += 1;
@@ -305,7 +310,8 @@ export function checkLineageCompletion(
   const latestAllowedMs = windowEnd.ms + DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS;
   for (let index = 0; index < rows.length; index += 1) {
     const record = rows[index];
-    const timestampMs = hasZoneDesignator(record.timestamp) ? parseRecordTimestamp(record.timestamp) : null;
+    const stamp = typeof record.claimedTimestamp === 'string' ? record.claimedTimestamp : record.timestamp;
+    const timestampMs = hasZoneDesignator(stamp) ? parseRecordTimestamp(stamp) : null;
     if (timestampMs !== null && timestampMs > latestAllowedMs) {
       return {
         complete: false,
