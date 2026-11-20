@@ -1417,6 +1417,37 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     }
   });
 
+  it('warns, without calling it fatal, that an opencode lineage runs unsandboxed', () => {
+    const binDir = makeTempDir('fanout-run-opencode-warning-');
+    writeStubBinary(binDir, 'opencode');
+    const written: string[] = [];
+    const originalWrite = process.stderr.write.bind(process.stderr);
+    process.stderr.write = ((chunk: string | Uint8Array) => {
+      written.push(String(chunk));
+      return true;
+    }) as typeof process.stderr.write;
+    try {
+      buildLineageCommand(
+        { kind: 'cli-opencode', label: 'opencode', model: 'opencode-go/glm-5.1' },
+        'contract prompt',
+        'danger-full-access',
+        'acceptEdits',
+        {
+          env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` },
+          executableVersion: 'fixture 1.0.0',
+          loopType: 'research',
+          specFolder: 'specs/adapter-contract',
+          lineageDir: '/tmp/adapter-contract',
+        } as never,
+      );
+    } finally {
+      process.stderr.write = originalWrite;
+    }
+    const banner = written.join('');
+    expect(banner).toContain('WARN: lineage opencode runs with');
+    expect(banner).not.toContain('FATAL');
+  });
+
   it('fingerprints only the effective allowlist and prompt digest', () => {
     const binDir = makeTempDir('fanout-run-fingerprint-codex-');
     writeStubBinary(binDir, 'codex');

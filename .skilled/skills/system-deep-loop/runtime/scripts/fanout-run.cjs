@@ -2735,7 +2735,7 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
     : '--auto';
   if (useDangerousBypass) {
     process.stderr.write(
-      `FATAL WARN: lineage ${lineage.label || '(cli-opencode)'} runs with ${dangerousBypassFlag}. `
+      `WARN: lineage ${lineage.label || '(cli-opencode)'} runs with ${dangerousBypassFlag}. `
         + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
     );
   }
