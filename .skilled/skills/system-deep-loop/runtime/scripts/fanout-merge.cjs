@@ -27,7 +27,7 @@ const {
 } = require('../lib/deep-loop/iteration-findings.cjs');
 const { assertKnownFlags } = require('./lib/cli-guards.cjs');
 const { NODE_STATUSES } = require('./frontier-admit.cjs');
-const { summarizeTraceabilityResults } = require('./reduce-state.cjs');
+const { compareCodeUnit: compareText, summarizeTraceabilityResults } = require('./reduce-state.cjs');
 const {
   activeReviewSeverityCounts,
   deriveReviewVerdict,
@@ -925,13 +925,6 @@ function mergeResearchRegistries(lineageData, options = {}) {
 const TRACEABILITY_STATUS_RANK = { fail: 5, blocked: 4, partial: 3, pass: 2, notApplicable: 1 };
 const TRACEABILITY_UNDECIDED = new Set(['pending', 'deferred', 'skipped']);
 const COVERAGE_BUCKETS = ['covered', 'ruledOut', 'deferred', 'blocked'];
-
-function compareText(a, b) {
-  const left = String(a);
-  const right = String(b);
-  if (left < right) return -1;
-  return left > right ? 1 : 0;
-}
 
 function sortedUnion(lists) {
   return [...new Set(lists.flatMap((list) => (Array.isArray(list) ? list : [])))].sort(compareText);

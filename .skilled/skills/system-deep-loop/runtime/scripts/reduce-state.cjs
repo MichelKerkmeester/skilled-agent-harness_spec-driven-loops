@@ -1923,6 +1923,16 @@ function buildSearchLedgerState(iterationRecords) {
   };
 }
 
+// Frontier ids are ordered by UTF-16 code unit, never by locale collation, so the
+// reducers, the fan-out merge and the runner deal and steer ids that differ only in
+// case or accent in one order on every host.
+function compareCodeUnit(left, right) {
+  const a = String(left);
+  const b = String(right);
+  if (a < b) return -1;
+  return a > b ? 1 : 0;
+}
+
 // The frontier node store is append-only and the last row per node wins, so a
 // reduce rebuilds the same node list every time it reads the same file. The
 // history keeps every valid row in file order: a status a node has since left
@@ -1934,7 +1944,7 @@ function readReviewFrontierStore(storePath) {
   const warnings = [];
   const byId = readNodeStore(storePath, { history, warnings });
   return {
-    nodes: [...byId.values()].sort((left, right) => left.nodeId.localeCompare(right.nodeId)),
+    nodes: [...byId.values()].sort((left, right) => compareCodeUnit(left.nodeId, right.nodeId)),
     history,
     warnings,
   };
@@ -2008,7 +2018,7 @@ function buildReviewFrontier(storeData, iterationRecords, config) {
     .sort((left, right) => ((left.depth ?? 0) - (right.depth ?? 0))
       || (left.visits - right.visits)
       || ((left.iteration ?? 0) - (right.iteration ?? 0))
-      || left.nodeId.localeCompare(right.nodeId))[0] ?? null;
+      || compareCodeUnit(left.nodeId, right.nodeId))[0] ?? null;
   return {
     nodes: projected,
     stats,
@@ -3071,6 +3081,7 @@ module.exports = {
   collapseFindingsByDedupKey,
   findingDedupKey,
   buildTraceabilityRollup,
+  compareCodeUnit,
   summarizeTraceabilityResults,
   validateReviewRecordFields,
 };

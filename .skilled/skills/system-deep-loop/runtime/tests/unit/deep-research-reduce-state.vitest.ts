@@ -2321,6 +2321,42 @@ describe('frontier focus visit counting', () => {
   });
 });
 
+// The fan-out merge and the runner order node ids by code unit, so both reducers
+// must too: locale collation would deal and steer ids that differ only in case or
+// accent in a different order on a different host.
+describe('frontier node order is code-unit order in both reducers', () => {
+  const research = nodeRequire('../../../deep-research/scripts/reduce-state.cjs') as {
+    readFrontierNodeStore: (storePath: string) => Array<{ nodeId: string }>;
+    pickFrontierFocus: (frontier: { nodes: Array<Record<string, unknown>> }, records: unknown[]) => string;
+  };
+  const review = nodeRequire('../../scripts/reduce-state.cjs') as {
+    readReviewFrontierStore: (storePath: string) => { nodes: Array<Record<string, unknown>> };
+    buildReviewFrontier: (store: unknown, records: unknown[], config: unknown) => { activeNodeId: string | null };
+  };
+  const ids = ['node-a', 'node-é', 'node-f', 'node-B'];
+  const codeUnitOrder = ['node-B', 'node-a', 'node-f', 'node-é'];
+  const nodes = ids.map((nodeId) => ({ nodeId, depth: 1, status: 'open', iteration: 1, scope: ['runtime'], question: `Q ${nodeId}` }));
+
+  const { mkdtempSync, rmSync } = nodeRequire('node:fs') as typeof import('node:fs');
+  const { tmpdir } = nodeRequire('node:os') as typeof import('node:os');
+  let storeDir = '';
+  afterEach(() => {
+    if (storeDir) rmSync(storeDir, { recursive: true, force: true });
+    storeDir = '';
+  });
+
+  it('reads the store and picks the tied focus in code-unit order', () => {
+    storeDir = mkdtempSync(join(tmpdir(), 'frontier-order-'));
+    const storePath = join(storeDir, 'frontier-nodes.jsonl');
+    writeFileSync(storePath, `${nodes.map((node) => JSON.stringify(node)).join('\n')}\n`);
+    expect(research.readFrontierNodeStore(storePath).map((node) => node.nodeId)).toEqual(codeUnitOrder);
+    expect(research.pickFrontierFocus({ nodes }, [])).toMatch(/^Frontier node node-B /);
+    const store = review.readReviewFrontierStore(storePath);
+    expect(store.nodes.map((node) => node.nodeId)).toEqual(codeUnitOrder);
+    expect(review.buildReviewFrontier(store, [], { maxIterations: 10 }).activeNodeId).toBe('node-B');
+  });
+});
+
 describe('single-executor closeout over count-only state rows', () => {
   const closeoutScript = resolve(
     dirname(fileURLToPath(import.meta.url)), '..', '..', 'scripts', 'synthesis-closeout.cjs',

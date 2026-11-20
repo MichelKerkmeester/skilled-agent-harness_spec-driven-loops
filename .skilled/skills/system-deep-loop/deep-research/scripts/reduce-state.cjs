@@ -22,6 +22,7 @@ const {
 } = require('../../runtime/lib/deep-loop/continuity-thread.cjs');
 const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
 const { deriveLoopCounters } = require('../../runtime/scripts/convergence.cjs');
+const { compareCodeUnit } = require('../../runtime/scripts/reduce-state.cjs');
 const {
   NODE_STATUSES,
   isEvidenceBearingIteration,
@@ -2444,7 +2445,7 @@ function getTimestampValue(timestamp) {
 // row, the node leaves the frontier, and the warning is the one trace of it.
 function readFrontierNodeStore(storePath, warnings = []) {
   const byId = readNodeStore(storePath, { warnings });
-  return [...byId.values()].sort((left, right) => left.nodeId.localeCompare(right.nodeId));
+  return [...byId.values()].sort((left, right) => compareCodeUnit(left.nodeId, right.nodeId));
 }
 
 // A node the store still holds open is answered once its question resolves in
@@ -2509,7 +2510,7 @@ function pickFrontierFocus(frontier, iterationRecords) {
     .sort((left, right) => (left.node.depth - right.node.depth)
       || (left.visits - right.visits)
       || ((left.node.iteration ?? 0) - (right.node.iteration ?? 0))
-      || left.node.nodeId.localeCompare(right.node.nodeId));
+      || compareCodeUnit(left.node.nodeId, right.node.nodeId));
   const chosen = ranked[0].node;
   const scope = Array.isArray(chosen.scope) ? chosen.scope.join(', ') : (chosen.scope || 'unscoped');
   return `Frontier node ${chosen.nodeId} (depth ${chosen.depth}, scope ${scope}): ${chosen.question}`;
