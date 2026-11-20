@@ -1,5 +1,5 @@
 {
-  "corpusHash": "25ec172b0d5435a460f8ec1e39dc1164ef8efb8a88caa7c98c0eeb12ff0be768",
+  "corpusHash": "1d224c94892897047e2ccb6689dc351cbb9bc85f5641cce6619d3af8cf66f9c1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28862,
+  "includedPathCount": 28863,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1641,6 +1641,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.8.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.9.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.0.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -28894,7 +28895,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ad258281235e550b20a35c705516e63b67187882612a58ca46920e35c062ae20",
+  "manifestHash": "57ea049a7eb8bfc3bd0ccb86149a2c729a82e8872d2a384d48922bd004a198b8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

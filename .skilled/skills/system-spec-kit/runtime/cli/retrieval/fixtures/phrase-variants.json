@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ad258281235e550b20a35c705516e63b67187882612a58ca46920e35c062ae20",
+  "manifestHash": "57ea049a7eb8bfc3bd0ccb86149a2c729a82e8872d2a384d48922bd004a198b8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15106,6 +15106,9 @@
     "battery misses tasks": [
       "battery misses tasks"
     ],
+    "battery private server loopback": [
+      "battery private server loopback"
+    ],
     "bayesian scorer": [
       "bayesian scorer"
     ],
@@ -24223,6 +24226,9 @@
     "cli opencode 2 0 0 0": [
       "cli-opencode 2.0.0.0"
     ],
+    "cli opencode 2 0 1 0": [
+      "cli-opencode 2.0.1.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -24492,6 +24498,9 @@
     ],
     "cli opencode v2 0 0 0": [
       "cli-opencode v2.0.0.0"
+    ],
+    "cli opencode v2 0 1 0": [
+      "cli-opencode v2.0.1.0"
     ],
     "cli opencode version detection": [
       "cli-opencode version detection"
