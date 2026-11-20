@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.19.0
+version: 1.11.20.0
 ---
 
 # Deep Review Quick Reference
@@ -45,7 +45,7 @@ Use this quick reference when you need the command shape, artifact names, conver
 |-----------|---------|-------------|
 | `--max-iterations` | 7 | Maximum review iterations |
 | `--convergence` | 0.10 | Base sensitivity for review convergence |
-| `--depth-mode` | default | `expansive` seeds depth-1 sub-target nodes, reviews the active node's next uncovered dimension, vetoes a stop while nodes stay open, and forms the `frontier_drained` stop candidate once no node is open or active and at least one was answered. Set the caps with `--frontier-max-depth` and `--frontier-max-nodes`. A defaulted `--max-iterations` is sized from the seed and the review's dimensions, the canonical four plus any custom name, up to 24; an explicit one always wins |
+| `--depth-mode` | default | `expansive` seeds depth-1 sub-target nodes, reviews the active node's next uncovered dimension, vetoes a stop while nodes stay open, and forms the `frontier_drained` stop candidate once no node is open or active and at least one was answered. Set the caps with `--frontier-max-depth` and `--frontier-max-nodes`. A defaulted `--max-iterations` is sized from the seed and the review's dimensions, the four canonical dimensions less traceability when the `reviewDimensions` list leaves it out, plus each custom name, up to 24; an explicit one always wins |
 | `--stop-policy` | convergence | Use `max-iterations` when convergence must not end the run before the iteration ceiling |
 | `--extend` | off | Reopen a completed run in place for N more iterations in the same session and generation, as `--extend=N`. The run must be complete, and a fan-out run is refused, so an extension is single-executor only. The extension keeps the stop policy and convergence mode the run was created with, so under `stopPolicy: convergence` an extension with nothing new can re-stop at its first convergence check |
 | `--extend-minutes` | prior duration budget | Minutes added to the duration budget on an extension, as `--extend-minutes=M`. The new budget is the later of the prior budget and the time already elapsed, plus M. Valid only with `--extend` |

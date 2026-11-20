@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "8d7a4ac87a1c8190368c9d958862edb1fd65ea8839b5dc8a9dc24f354a7e5e5d",
+      "sha256": "97ad9709606f569be1075313994a1caef481043ce41f89a9cfd0da8322e74933",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "91777efb9bfb398aa32f4e5fff36a10836ef176560f861f428ac20c0130f00cf",
+      "sha256": "73454fd1a09d647ba352736c53999bf3558592aac6194d9f552e1080472f3c5a",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "a9ceaa80138b7125e7a5abf8c48d47abb8cff3316716d1e2f59f991eb1081534",
+      "sha256": "4135b1f6d71468445d92c09cdc6b79f1d577e788ed8b74789ce71e7ca6a27974",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "0997ee15556dd50f7654dcbb96c2d97634213a65d30a427d7e30575d0ebcb870"
+  "compiledBodyDigest": "6b89c82e25d7c427164aa6b2ebe8307f3035e167f71bb64d56cc7ff3b0500dae"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -170,6 +170,8 @@ Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-
 ### Dry-Run Halt
 
 `--dry-run` binds `dry_run=true` in both execution modes.
+With fan-out executors, `--dry-run` first runs `fanout-run.cjs --preview`. For each lineage it prints the command a real run would start: the argv with every prompt replaced by its digest, plus cwd, session id, iterations, frontier scope, the Claude config dir when set, and the model, reasoning effort, sandbox and permission mode. Runner warnings are printed too. Nothing is written to the packet. The run then halts at the first side-effect step as before.
+Under `--restart`, session ids come from the packet about to be archived. With `--depth-mode=expansive`, frontier scopes are empty and iterations show the unseeded default because seeding happens after the preview. A `cli-mistral-vibe` lineage shows no command. A matrix the real run would refuse prints that refusal instead. Single-executor runs and runs without `--dry-run` are unchanged.
 Setup then binds its values in memory and skips the Tier 1 config persist, so no `deep-research-config.json` is written.
 The workflow then prints `dry_run_halt` preview lines and stops before any dispatch or state write.
 Show the operator the halt line and say that nothing was written.
@@ -277,18 +279,19 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness` | `cli-mistral-vibe`, `cli-deepseek-harness` as a single lineage or a fan-out and `cli-mistral-vibe` only as a fan-out lineage. `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
+   |-- --sandbox-mode=<mode> -> config.executor.sandboxMode (`read-only` / `workspace-write` / `danger-full-access`; default `workspace-write`; cli-opencode accepts only `danger-full-access` as an explicit value)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
    |-- --service-tier=<tier> -> config.executor.serviceTier (`priority` | `standard` | `fast`)
    |-- --executor-timeout=<seconds> -> config.executor.timeoutSeconds (positive integer, default `900`)
    |-- --no-resource-map -> config.resource_map.emit = false
-   |-- --executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=Y] [--service-tier=Z] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
+   |-- --executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=Y] [--service-tier=Z] [--sandbox-mode=MODE] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
    |     (repeatable; one occurrence binds config.executor, two or more add one entry each to config.fanout.executors; route by lineage count below)
    |-- --executors=<json> -> parse(json), then route by lineage count below: one lineage -> config.executor, two or more -> config.fanout.executors
    |-- --concurrency=N -> config.fanout.concurrency (default 2)
    |
    |   Fan-out default policy:
    |   - 0 or 1 --executor (no --executors, no count>1): write config.executor (single, unchanged)
-   |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, timeoutSeconds); its iterations value binds to config.maxIterations with max_iterations_source = matrix, and leave config.fanout unset
+   |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, sandboxMode, timeoutSeconds); its iterations value binds to config.maxIterations with max_iterations_source = matrix, and leave config.fanout unset
    |   - 2+ --executor flags, an --executors matrix that expands to two or more lineages, or any count>1: write config.fanout
    |
    +-- Defaults: maxIterations=10 (max_iterations_source=`default`), convergenceThreshold=0.05, minIterations=3, antiConvergence.convergenceMode=`default`, antiConvergence.depthMode=`default`, antiConvergence.divergent=`{}`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
@@ -340,7 +343,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-research agent with Opus.
      B) cli-opencode — `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null` (no `--agent`: current opencode rejects top-level `--agent general` — default agent runs; required for MiniMax token-plan models). `reasoningEffort` maps to `--variant`. No service-tier.
-     C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
+     C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`; the default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
      D) cli-codex — requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.

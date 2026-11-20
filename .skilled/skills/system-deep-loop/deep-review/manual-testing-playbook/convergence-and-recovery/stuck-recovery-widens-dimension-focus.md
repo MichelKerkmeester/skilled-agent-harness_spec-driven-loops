@@ -1,7 +1,7 @@
 ---
 title: "DRV-019 -- Stuck recovery widens dimension focus"
 description: "Verify that stuck recovery switches the review loop to the least-covered dimension when progress stalls."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # DRV-019 -- Stuck recovery widens dimension focus
@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate deep-review stuck recovery and report whether the loop switches to the least-covered dimension.`
 - Expected execution process: Inspect the convergence reference for stuck detection and recovery rules, then the `convergence.cjs` recovery decision, then the strategy template and quick reference for user-facing documentation.
 - Desired user-facing outcome: The user is told that the review automatically pivots to underexplored dimensions when it gets stuck, and that this is visible in the strategy file.
-- Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
+- Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress with an inclusive cutoff, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
 - Pass/fail posture: PASS if stuck detection and dimension-widening recovery are enforced and documented. FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing.
 
 ---

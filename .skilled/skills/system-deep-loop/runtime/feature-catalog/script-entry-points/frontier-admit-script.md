@@ -7,7 +7,7 @@ trigger_phrases:
   - "frontier-nodes.jsonl"
   - "frontier admission checks"
   - "expansive frontier seed budget"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # frontier-admit.cjs
@@ -26,7 +26,7 @@ This feature belongs to the script entry points group. The orchestrating workflo
 
 ### Commands
 
-The CLI takes one command and value flags. The commands are `seed`, `admit`, `close`, `graph`, `block` and `budget`. Every command needs `--artifact-dir`. `--target research|review` picks the loop, and it defaults to `research`. Research reads `deep-research-config.json` and review reads `deep-review-config.json`. A missing config means the defaults apply. A config that exists but cannot be read or parsed is an error.
+The CLI takes one command and value flags. The commands are `seed`, `admit`, `close`, `graph`, `block`, `budget` and `scope`. Every command needs `--artifact-dir`. `--target research|review` picks the loop, and it defaults to `research`. Research reads `deep-research-config.json` and review reads `deep-review-config.json`. A missing config means the defaults apply. A config that exists but cannot be read or parsed is an error.
 
 - `seed --input <file>` reads a JSON array of candidates and places each one at depth 1 under the synthetic `root`. `--max-iterations-source` says where the run's budget came from, and it defaults to `default`.
 - `admit --input <file>` reads the `frontier_proposal` rows of an iteration delta and runs them through admission.
@@ -34,6 +34,7 @@ The CLI takes one command and value flags. The commands are `seed`, `admit`, `cl
 - `graph --output <file>` writes the graph projection of the store.
 - `block` prints the frontier prompt block. Research needs `--focus-file <file>`, a file holding the focus line. The workflow writes it with its file tool, so the focus text, which can carry a question a leaf proposed, never reaches a shell argument. `--focus` is gone. Review needs `--node-id` and takes an optional `--dimension`.
 - `budget` sizes a defaulted expansive budget from the seed (`seedBudget` with source `default`), writes `maxIterations` into the target's config by temp-file rename when it differs, and prints `{derivedMaxIterations, growthSlots, warning?}`. A missing config exits 2. `step_frontier_budget` in both workflows runs it.
+- `scope` writes `git diff --name-only <range> -- <pathspec>` into `reviewScopeFiles` for a commit-range review target and prints `{touchedFiles, range, pathspec}` or `{skipped}`. `step_frontier_scope` runs it right after config creation, on every fan-out lineage too; a target that is not a commit range is left untouched.
 
 `seed`, `admit` and `close` also take `--iteration`, a non-negative integer. `seed` and `admit` take `--known-texts`, a file that must hold a JSON array of question texts that count for dedupe. The record commands print one JSON result, and so does `budget`. `block` prints raw prompt text. Any error goes to stderr, prefixed `[frontier-admit]`, and exits 2. Warnings also go to stderr with the same prefix and leave the exit at 0. `seed` reports its budget line there. `admit` reports each delta line it could not parse and skipped. `readNodeStore` reports each node-store line it could not parse and skipped as `[frontier-admit] warning: skipped frontier-nodes.jsonl line N: ...`.
 
@@ -47,11 +48,11 @@ A research admission also appends one row to `inbox.jsonl` with `origin` `fronti
 
 `checkProposal` runs six checks in a fixed order. The first one that fails prunes the proposal, and its name becomes the prune reason.
 
-1. `relevance` fails a proposal with no question, no evidence or no usable scope. It also fails a parent that is not in the store or was pruned, and a question, or any scope entry, longer than 500 characters. Before the checks run, admission replaces every control character (U+0000-U+001F, U+007F) in the question and scope with a space and collapses repeated spaces, so the stored row, the focus line and the inbox text never carry a newline. On review, a file-list target narrows relevance to scopes inside that target, and a target that holds a revision range (`base..tip` or `base...tip`) anywhere, even with a label around it such as `commit range base..tip (label)`, narrows it to the files the range touches, read from `reviewScopeFiles` as one list or as named lists by kind. A token with a `../` or `/..` path segment is never read as a range. A token that names a file or directory on disk, resolved against the working directory, is a path, so an existing `docs/notes..v2.md` is not a range, while slashed refs such as `origin/main..HEAD` or `feature/x...main` still are. A missing path of that shape reads as a range. A `.` or `./` target names the repo root, which holds every path that does not climb out of it, and a glob entry such as `src/**/*.ts` is bounded by the directory before its first glob segment.
-2. `dedupe` fails a question whose normalized key matches any stored node, in any status, or any known text. A leading id such as `Q3:` is dropped before the match.
+1. `relevance` fails a proposal with no question, no evidence or no usable scope. It also fails a parent that is not in the store or was pruned, and a question, or any scope entry, longer than 500 characters. Before the checks run, admission replaces every control character (U+0000-U+001F, U+007F) in the question and scope with a space and collapses repeated spaces, so the stored row, the focus line and the inbox text never carry a newline. On review, a file-list target narrows relevance to scopes inside that target: every word of a scope entry must lie inside, so free text after an in-target path fails. A target that holds a revision range (`base..tip` or `base...tip`) anywhere, even with a label around it such as `commit range base..tip (label)`, narrows it to the files the range touches, read from `reviewScopeFiles` as one list or as named lists by kind. An open-ended range such as `main..`, `..HEAD` or `origin/main...` reads as a range. A token with a `../` or `/..` path segment is never read as a range. A token that names a file or directory on disk, resolved against the working directory, is a path, so an existing `docs/notes..v2.md` is not a range, while slashed refs such as `origin/main..HEAD` or `feature/x...main` still are. A missing path of that shape reads as a range. A `.` or `./` target names the repo root, which holds every path that does not climb out of it, and a glob entry such as `src/**/*.ts` is bounded by the directory before its first glob segment.
+2. `dedupe` fails a question whose normalized key matches any stored node, in any status, or any known text. The key is NFKC-normalized and lowercased, keeps the letters, digits and combining marks of every script, and collapses every other run to one space. A leading id such as `Q3:` or `F-1-001:` is dropped before the match.
 3. `depth` fails a proposal past `maxDepth`.
 4. `fanout` fails a parent that already holds its child cap. It also fails when the live node count has reached the run-wide node cap.
-5. `budget` fails a proposal whose `budget` is above the budget its parent recorded. An admitted proposal keeps its `budget` on the row for that reason. The root records no budget, so a depth-1 proposal is never budget-checked.
+5. `budget` fails a proposal whose `budget` is above the budget its parent recorded. A proposal budget must be a positive whole number; anything else reads as no budget. An admitted proposal keeps its `budget` on the row for that reason. The root records no budget, so a depth-1 proposal is never budget-checked.
 6. `cycle` fails a proposal whose parent chain loops or runs past the depth cap.
 
 A pruned proposal is still written to the store with status `pruned` and its reason. It never reaches the inbox.

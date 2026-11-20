@@ -211,7 +211,7 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
 
 `runtime/scripts/convergence.cjs` computes the whole stop decision once per pass from the config, the state log, the findings registry and the coverage graph. `deep-review.yaml` renders no stop arithmetic of its own. The frozen stop reasons are `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`, `userPaused` and `maxDurationReached`. A missing graph decision blocks every non-terminal STOP.
 
-The stuck count and the consecutive failure count are rebuilt from the state log on every pass, so a resumed run counts the same as one that never paused. Failed iterations stay out of the ratio signals. Three trailing failed iterations stop the loop with stop reason `error`. In confirm mode only, the workflow first asks the operator Retry, Skip or Cancel. Auto mode has no such question.
+The stuck count and the consecutive failure count are rebuilt from the state log on every pass, so a resumed run counts the same as one that never paused. Under expansive depth with an active frontier node, the stuck count reads only that node's bound rows, and a bound pass that recorded a new finding is progress whatever its ratio. Failed iterations stay out of the ratio signals. Three trailing failed iterations stop the loop with stop reason `error`. In confirm mode only, the workflow first asks the operator Retry, Skip or Cancel. Auto mode has no such question.
 
 Each pass also compares `maxDurationMinutes` with the config `createdAt`. When the limit is reached the loop skips the dispatch and goes to synthesis with stop reason `maxDurationReached`.
 
@@ -245,7 +245,7 @@ Each pass also compares `maxDurationMinutes` with the config `createdAt`. When t
 3. **Exceed TCB**, Stay within `config.maxToolCallsPerIteration` tool calls per iteration. Breadth over depth per cycle.
 4. **Ask the user**, The leaf agent never asks. It makes best-judgment decisions without pausing. The workflow asks only in `:confirm` mode, at its approval gates.
 5. **Skip convergence checks**, Every iteration must be evaluated against convergence criteria before the next dispatch.
-6. **Modify config after init**, review parameters in `deep-review-config.json` are read-only after initialization, apart from the workflow's own writes that `references/state/state-format.md` lists.
+6. **Modify config after init**, review parameters in `deep-review-config.json` are read-only after initialization, apart from the workflow's own writes that `references/state/state-format.md` lists: the terminal status flip, `--extend=N`, `step_frontier_scope` and `step_frontier_budget`.
 7. **Modify files under review**, The review loop is observation-only. No code changes during audit.
 8. **Use WebFetch**, Review is code-only. No external resource fetching is permitted.
 9. **Implement fixes during review**, Report findings only. Implementation is a separate follow-up step.

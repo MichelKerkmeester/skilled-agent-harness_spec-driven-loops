@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.12.0
+version: 1.14.13.0
 ---
 
 # deep-research: Feature Catalog
@@ -420,7 +420,7 @@ Detects consecutive no-progress runs and switches the loop into recovery mode.
 
 #### How It Works
 
-The loop increments `stuckCount` when evidence iterations fall below the configured threshold or self-report `stuck`, while `insight` resets the counter and `thought` is ignored. Once the threshold is reached, the recovery protocol classifies the failure mode, injects a targeted recovery prompt, and either resets the loop on renewed progress or exits to synthesis with gaps documented.
+The loop increments `stuckCount` when an evidence iteration's ratio falls below the configured threshold, while `insight` resets the counter, `thought` is ignored as non-evidence and a self-reported `stuck` status is evidence-bearing but does not increment by itself. Once the threshold is reached, the recovery protocol classifies the failure mode, injects a targeted recovery prompt, and either resets the loop on renewed progress or exits to synthesis with gaps documented.
 
 #### Source Files
 

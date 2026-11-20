@@ -9,7 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.4.0
+version: 1.11.5.0
 ---
 
 # Deep Review State Log Records
@@ -429,6 +429,8 @@ Trivial-scope exemption: when `reviewDepthApplicability.scopeClass === 'trivial'
 | `deferred` | `deferredReason` | Must explain why later search is acceptable. |
 | `blocked` | `blockedReason` | Must name the blocker and expected recovery path. |
 | `not_applicable` | `notApplicableReason` | Must explain why the bug class does not apply to this target. |
+
+The graphless fallback gate counts a ledger row only when one `searchActions` entry names an evidence method, one of `direct_read`, `exact_search`, `exact_grep`, `semantic_search`, `producer_consumer_trace` or `negative_test_inspection`, and `evidenceRefs` sit on that action or on the row.
 
 Representative v2 record:
 

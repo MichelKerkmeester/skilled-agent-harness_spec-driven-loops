@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.23.0
+version: 1.11.24.0
 ---
 
 # Deep Review Convergence
@@ -102,9 +102,13 @@ The shared convergence runtime accepts four values. Review legality, security ga
 
 #### Expansive Depth Mode
 
-`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a review root up to 8 depth-1 children because the seed asks for 3 to 8 sub-targets, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. Two flags set the caps when the config is created: `--frontier-max-depth=N` writes `maxDepth` and `--frontier-max-nodes=N` writes `maxFrontierNodes`; both take a positive integer, need `--depth-mode=expansive` on a single-executor run, and are refused on a fan-out config. Once a band's spend reaches its `budgetSplit` share of `maxIterations`, the reducer closes every open or active node in that band as `exhausted` with reason `budget`, and an unspent share rolls down to the next band only after its own band holds no open node. The run cap never prunes a depth-1 seed, which only the root-children cap bounds, but every seed that is not pruned, answered ones included, counts toward the live total that later admissions are checked against. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions plus each custom name the config's `reviewDimensions` list adds, each counted once, and the seed step prints the derived budget. Since D is never below four, the ceiling of 24 binds from the first seed, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead: 12 iterations for a native lineage and 7 for a CLI one or a single run. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap. A fan-out parent seeds before any config exists, so its cap falls back to 10. The mode is locked against the optimizer; the `expansiveDepth` block is in neither its tunable nor its locked list. An absent flag means `default`, which runs exactly as before.
+`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a review root up to 8 depth-1 children because the seed asks for 3 to 8 sub-targets, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. Two flags set the caps when the config is created: `--frontier-max-depth=N` writes `maxDepth` and `--frontier-max-nodes=N` writes `maxFrontierNodes`; both take a positive integer, need `--depth-mode=expansive` on a single-executor run, and are refused on a fan-out config. Once a band's spend reaches its `budgetSplit` share of `maxIterations`, the reducer closes every open or active node in that band as `exhausted` with reason `budget`, and an unspent share rolls down to the next band only after its own band holds no open node. The run cap never prunes a depth-1 seed, which only the root-children cap bounds, but every seed that is not pruned, answered ones included, counts toward the live total that later admissions are checked against. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions less traceability when the config's `reviewDimensions` list leaves it out, plus each custom name it adds, each counted once, and the seed step prints the derived budget. Since D is never below three, the ceiling of 24 binds from the second seed at three and from the first at four or more, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead: 12 iterations for a native lineage and 7 for a CLI one or a single run. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. At about seven to eight minutes an iteration, a 24-iteration review can reach `maxDurationMinutes` (120) before its iteration cap. A fan-out parent seeds before any config exists, so its cap falls back to 10. The mode is locked against the optimizer; the `expansiveDepth` block is in neither its tunable nor its locked list. An absent flag means `default`, which runs exactly as before.
 
 After the review floor, an expansive run that still holds an open or active node turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`, whichever candidate it was, `all_dimensions_clean` or a composite convergence vote. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, pause, the max-duration stop, `--convergence-mode=off`, `--stop-policy=max-iterations` or the `minIterations` floor. Under stuck recovery the handler closes the active node as `exhausted` with reason `stuck`, so a node the run cannot fund stops holding the veto open.
+
+Only an evidence-bearing iteration counts as a visit and covers a dimension: `complete`, `insight`, `stuck` or a legacy row with no status. A `thought`, `error` or `timeout` row spends no band share and covers nothing. Under expansive depth with an active node, the stuck count is that node's own: it reads only the rows bound to the node by `frontierNodeId`, the `Frontier node <id>` focus marker or the store's `active` row for the iteration, and a bound pass that recorded a new finding is progress whatever its ratio. A recovery pass bound to no node credits no node coverage. With no active node the count is run-wide.
+
+An open node files deferred debt. A node closed `exhausted` or `blocked` short of its dimension universe files blocked debt, so the verdict reads CONDITIONAL, and `candidateCoverageGate` does not hold the stop on that debt because no further pass may pay it.
 
 When the frontier holds at least one answered node and none is open or active, and neither `all_dimensions_clean` nor the composite vote forms, an expansive run gets the hard candidate `frontier_drained`. It ranks after the other two, so the floor, the legal-stop gates and the graph decision run on it as on any candidate: a failed gate gives `BLOCKED`, and a stop records `converged` with reasonDetail `frontier_drained`. A fan-out lineage reads only its own partition, so one whose nodes are answered stops rather than running to its cap. A frontier that closed with nothing answered, every node exhausted or pruned, forms no candidate, and a default run never forms it.
 
@@ -222,20 +226,24 @@ Identifies when the review loop makes no meaningful progress across consecutive 
 function countConsecutiveStuck_review(evidenceIterations, noProgressThreshold):
   count = 0
   for i in reversed(evidenceIterations):
-    if i.status == "thought":   continue    // invisible to stuck counter
     if i.status == "insight":   break       // resets stuck counter (genuine progress)
-    if i.newFindingsRatio < noProgressThreshold or i.status == "stuck":
+    if i.newFindingsRatio <= noProgressThreshold:
       count += 1
     else:
       break
   return count
 ```
 
-**Threshold:** `stuckThreshold = 2` consecutive no-progress iterations (using `noProgressThreshold = 0.05`).
+**Threshold:** `stuckThreshold = 2` consecutive no-progress iterations, with `noProgressThreshold = 0.5 x convergenceThreshold`, 0.05 at the default 0.10. The cutoff is inclusive: a ratio equal to the cutoff counts as no progress.
 
-**Status exclusions:**
+**Which iterations count:** `evidenceIterations` holds only evidence-bearing rows, an allow-list of `complete`, `insight`, `stuck` and a legacy row with no status. `thought`, `error` and `timeout` are not evidence, so none spends a visit or covers a dimension.
+
+**Per-node count:** Under expansive depth with an active frontier node, the count reads only the rows bound to that node, by `frontierNodeId`, the `Frontier node <id>` focus marker or the store's `active` row. A bound pass that recorded a new finding is progress whatever its ratio. With no active node the count is run-wide.
+
+**Status handling:**
 - `insight`: Resets stuck counter -- a conceptual breakthrough counts as progress even with a low ratio.
-- `thought`: Skipped entirely -- analytical iterations produce no evidence to measure.
+- `stuck`: Evidence-bearing, but not no-progress by itself; its ratio decides, as for any other evidence row.
+- `thought`: Excluded as non-evidence -- analytical iterations produce no evidence to measure.
 
 When `stuckCount >= stuckThreshold`, the orchestrator invokes the recovery protocol (Section 8) before deciding whether to continue or stop.
 
@@ -458,8 +466,8 @@ Deep review treats STOP as legal only when the full review-specific gate bundle 
 | **hotspotSaturation** | `hotspotSaturationGate` | Review hotspots must be revisited enough times to satisfy the saturation heuristic | Block STOP, persist `blockedStop` |
 | (no §6 counterpart) | `claimAdjudicationGate` | Each new P0/P1 finding must carry a typed adjudication packet, missing or failing packets veto STOP | Block STOP, persist `blockedStop` |
 | **fixCompletenessReplay** | `fixCompletenessReplayGate` | Security-sensitive fix reruns must replay previously closed P0/P1 gates and validate producer/consumer/matrix coverage from the remediation packet | Block STOP, persist `blockedStop` |
-| **candidateCoverage** (v2 rollout) | `candidateCoverageGate` | Search debt must be cleared and every required bug class must have candidate coverage before STOP, passes trivially when the v2 search path is inactive | Block STOP, persist `blockedStop` |
-| **graphlessFallback** (v2 rollout) | `graphlessFallbackGate` | When the code graph is unavailable, required bug classes must carry cited fallback ledger rows, passes trivially when the graph is available | Block STOP, persist `blockedStop` |
+| **candidateCoverage** (v2 rollout) | `candidateCoverageGate` | Search debt must be cleared, except blocked debt from a frontier node closed `exhausted` or `blocked` short of its universe, and every required bug class must have candidate coverage before STOP, passes trivially when the v2 search path is inactive | Block STOP, persist `blockedStop` |
+| **graphlessFallback** (v2 rollout) | `graphlessFallbackGate` | When the code graph is unavailable, required bug classes must carry cited fallback ledger rows whose `searchActions` name `direct_read`, `exact_search`, `exact_grep`, `semantic_search`, `producer_consumer_trace` or `negative_test_inspection`, with `evidenceRefs` on that action or the row, passes trivially when the graph is available | Block STOP, persist `blockedStop` |
 
 ### Gate Evaluation
 
@@ -493,8 +501,9 @@ function buildReviewLegalStop(state, config, coverage):
       detail: "Security-sensitive fix reruns include closed-gate replay evidence and producer/consumer/matrix coverage before STOP."
     },
     candidateCoverage: {
+      // searchDebtCleared exempts blocked debt a closed frontier node filed, which no further pass may pay.
       pass: not isReviewDepthV2Active(state, config) or (searchDebtCleared(state) and allRequiredBugClassesCovered(state)),
-      detail: "Search debt is cleared and every required bug class has candidate coverage. Passes trivially when the v2 search path is inactive."
+      detail: "Search debt is cleared, blocked debt from a frontier node closed short of its dimensions aside, and every required bug class has candidate coverage. Passes trivially when the v2 search path is inactive."
     },
     graphlessFallback: {
       pass: state.searchCoverage.graphCoverageMode == "graph_available" or allRequiredBugClassesHaveFallbackRows(state),
@@ -522,8 +531,8 @@ When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it retur
 | `evidenceDensity` | Re-read weakly supported findings and add concrete `file:line` citations before they count toward a stop decision. |
 | `hotspotSaturation` | Revisit undersampled hotspots or adjacent call sites until the saturation heuristic passes. |
 | `fixCompletenessReplay` | Replay prior active or remediated P0/P1 gates, then record producer, consumer, and matrix coverage evidence before re-checking STOP. |
-| `candidateCoverage` | Clear outstanding search debt and run candidate discovery for the missing bug classes before re-checking STOP. |
-| `graphlessFallback` | Add cited fallback ledger rows for the required bug classes, or restore graph availability, before re-checking STOP. |
+| `candidateCoverage` | Clear the payable search debt and run candidate discovery for the missing bug classes before re-checking STOP. Debt from a frontier node closed `exhausted` or `blocked` is not payable and stays named in the verdict. |
+| `graphlessFallback` | Add cited fallback ledger rows whose `searchActions` name `direct_read`, `exact_search`, `exact_grep`, `semantic_search`, `producer_consumer_trace` or `negative_test_inspection`, or restore graph availability, before re-checking STOP. |
 
 ### Legacy Stop-Reason Mapping
 
@@ -553,7 +562,7 @@ The provisional verdict is determined from active findings at the time the loop 
 | Verdict | Condition | Meaning |
 |---------|-----------|---------|
 | **FAIL** | `activeP0 > 0` OR a required quality gate (evidence, scope, coverage) still fails at terminal stop time, as the `deep_review.terminal_gates_recorded` event records | Does not meet quality standards. Blocks release. |
-| **CONDITIONAL** | `activeP0 == 0` AND (`activeP1 > 0` OR open search debt remains) | Meets threshold but has required fixes before release. |
+| **CONDITIONAL** | `activeP0 == 0` AND (`activeP1 > 0` OR open search debt remains, including blocked debt from a frontier node closed `exhausted` or `blocked` short of its dimensions) | Meets threshold but has required fixes before release. |
 | **PASS** | `activeP0 == 0` AND `activeP1 == 0` AND no open search debt | Shippable. Set `hasAdvisories: true` when `activeP2 > 0`. |
 
 ### Determination
@@ -566,7 +575,7 @@ function determineVerdict(state, gateResult):
 
   if activeP0 > 0 or not gateResult.passed:
     return { verdict: "FAIL", nextCommand: "/speckit:plan" }
-  if activeP1 > 0:
+  if activeP1 > 0 or state.searchDebt.length > 0:
     return { verdict: "CONDITIONAL", nextCommand: "/speckit:plan" }
 
   hasAdvisories = activeP2 > 0

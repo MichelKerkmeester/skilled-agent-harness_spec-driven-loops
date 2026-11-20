@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 # Fan-out CLI lineage driver
@@ -85,8 +85,8 @@ forms of one flag is refused with a usage error.
 with exit 3. A run without the flag is unchanged.
 
 Under `expansive`, `partitionFrontierNodes` reads `frontier-nodes.jsonl` in the base artifact
-dir, keeps the depth-1 nodes that are `open` or `active`, sorts them by node id and deals them
-round-robin across the lineage labels. The same seed therefore always gives each lineage the
+dir, keeps the depth-1 nodes that are `open` or `active`, sorts them by node id by UTF-16 code
+unit rather than locale collation, and deals them round-robin across the lineage labels. The same seed therefore always gives each lineage the
 same share. The split is written to `orchestration-summary.json` as `frontier_partition`, a map
 from lineage label to node ids, which the merge's partition guard reads.
 
@@ -116,6 +116,14 @@ dealt no seed node runs at that floor. A lineage with a share runs
 (the canonical four dimensions) and 1 for research, and `share + 2` comes from the default
 `maxDepth` of 3. `expansiveLineageBudgetNotes` writes one stderr line per derived budget and a
 warning when there are more lineages than open seed nodes.
+
+### Completion, Preview and Diagnostics
+
+`--preview` builds every lineage command without writing: it prints the redacted argv (each prompt replaced by its digest), cwd, session id, iterations, frontier scope, the Claude config dir when set and the model, reasoning effort, sandbox and permission mode, then exits before any directory, ledger or store exists. A `cli-mistral-vibe` lineage prints no command, and a matrix the real run would refuse prints that refusal.
+
+A lineage counts as fulfilled only when its state log holds at least one iteration, a terminal stop row from this attempt (`terminal_gates` for review, a closeout synthesis row for research) and no iteration stamped after that row or after the process ended. Otherwise it fails even at exit 0. The executor-group `--sandbox-mode` maps to `sandboxMode`. A `cli-claude-code` lineage keeps `workspace-write`, which runs `acceptEdits` and cannot run Bash in `-p` mode, so the runner warns at launch, and if that lineage records nothing its failure names `--sandbox-mode=danger-full-access`; `cli-opencode` accepts only `danger-full-access` explicitly.
+
+A fatally failed lineage prints one stderr line at once with its label and failure class. Provider ids, URLs and emails are masked in the ledger, stderr, a rotated log and a fatally failed lineage's raw log. A rerun rotates the previous raw log to `logs/fanout-lineage.N.out` instead of overwriting it. A review fan-out never refreshes the packet's `description.json`; research does unless `--no-metadata-refresh` is set.
 
 ---
 

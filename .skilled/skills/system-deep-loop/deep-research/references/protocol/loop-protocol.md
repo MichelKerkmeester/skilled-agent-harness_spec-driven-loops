@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.24.0
+version: 1.14.25.0
 ---
 
 # Loop Protocol Reference
@@ -416,7 +416,7 @@ Next Focus picks the shallowest open node first, then the least visited, then th
 
 Under stuck recovery the handler takes the node id from `registry.frontier.nodes`, not from the focus text, closes that node as `exhausted` with reason `stuck` through `frontier-admit.cjs close`, keeps the `stuckRecovery` event, and moves to the next open node. When the latest iteration's focus names no open or active frontier node, as after a blocked-stop recovery or a pivot focus, global recovery runs even while other nodes stay open.
 
-On a fan-out run, `fanout-run.cjs --depth-mode expansive` deals the seeded open depth-1 nodes round-robin in node-id order across lineages, writes the `frontier-nodes.jsonl` and inbox rows of each lineage dealt at least one node that has no store yet before it spawns (a lineage dealt no node gets neither and runs at its loop default), binds `frontier_scope:` in the lineage prompt and records `frontier_partition` in `orchestration-summary.json`. `fanout-merge.cjs` merges the lineage frontiers, each node keeping its lineage label, and records a partition guard that names any dealt node no lineage reports.
+On a fan-out run, `fanout-run.cjs --depth-mode expansive` deals the seeded open depth-1 nodes round-robin in node-id order, by UTF-16 code unit rather than locale collation, across lineages, writes the `frontier-nodes.jsonl` and inbox rows of each lineage dealt at least one node that has no store yet before it spawns (a lineage dealt no node gets neither and runs at its loop default), binds `frontier_scope:` in the lineage prompt and records `frontier_partition` in `orchestration-summary.json`. `fanout-merge.cjs` merges the lineage frontiers, each node keeping its lineage label, and records a partition guard that names any dealt node no lineage reports.
 
 ### Ideas Backlog Convention
 

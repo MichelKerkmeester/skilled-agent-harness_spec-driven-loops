@@ -1,7 +1,7 @@
 ---
 title: "DRV-062 -- graphlessFallbackGate STOP blocker"
 description: "Verify the legal-stop decision tree blocks STOP with named gate graphlessFallbackGate when graphCoverageMode is graphless_fallback but the searchLedger has no fallback evidence."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # DRV-062 -- graphlessFallbackGate STOP blocker
@@ -23,7 +23,7 @@ Empty graph CONTINUE has historically meant "no graph data, proceed to inline vo
 - Objective: Confirm legal-stop decision tree emits `blocked_stop` with `graphlessFallbackGate` in `blocked_gates[]` when `graphCoverageMode: 'graphless_fallback'` is paired with empty `searchLedger` on non-trivial scope.
 - Layer partition: workflow YAML (`deep-review.yaml` step `step_check_convergence`) + iteration record `searchCoverage.graphCoverageMode`.
 - Real user request: `Run a standard-scope v2 review iteration with graphCoverageMode set to graphless_fallback and empty searchLedger. Confirm STOP is blocked by graphlessFallbackGate.`
-- Expected signals: blocked_stop event with `blocked_gates[]` containing `graphlessFallbackGate`. Recovery_strategy mentions adding cited fallback ledger rows (direct_read / exact_grep / semantic_search / producer_consumer_trace / negative_test_inspection methods).
+- Expected signals: blocked_stop event with `blocked_gates[]` containing `graphlessFallbackGate`. Recovery_strategy mentions adding cited fallback ledger rows (direct_read / exact_search / exact_grep / semantic_search / producer_consumer_trace / negative_test_inspection methods).
 - Pass/fail: PASS if `blocked_gates[]` contains `graphlessFallbackGate` AND the recovery message names fallback methods. FAIL if STOP succeeds OR the gate is reported as a generic graph error.
 
 ---

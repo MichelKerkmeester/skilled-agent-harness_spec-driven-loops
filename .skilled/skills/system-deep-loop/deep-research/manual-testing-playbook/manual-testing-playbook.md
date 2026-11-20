@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.7.0
+version: 1.16.8.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -55,7 +55,7 @@ This playbook provides 76 deterministic scenarios across 9 categories validating
 - Run one lineage. Fan-out multiplies the iteration budget and is not needed for a live check.
 - Use the DeepSeek flash executor with `--executor=cli-opencode --model='opencode-go/deepseek-v4.1-flash#max'`. The cli-opencode self-invocation guard refuses it when the command is driven from inside an OpenCode session, so use the default native executor with the session model set instead.
 - Reuse a finished run with `--extend=1` rather than paying for a fresh run and a new frontier. An extension creates no config, so a cap flag there has no effect and the run keeps the caps of the run it extends.
-- In `:confirm` mode, hold the run after the config is written so you can confirm both caps before the seed step.
+- Name the two sub-targets in the prompt. The workflow does not pause between config creation and the seed step: a single-executor research run seeds in `phase_init` after `step_create_config`.
 
 ---
 

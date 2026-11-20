@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth research"
   - "research frontier mode"
   - "frontier admission research"
-version: 1.0.14.0
+version: 1.0.15.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -39,7 +39,7 @@ While a frontier node is open, a stop candidate, whether `all_questions_answered
 
 ### Budget And Dashboard
 
-The reducer splits `maxIterations` 50/35/15 across the depth bands. Once a band's visits reach its share, it closes the band's open and active nodes as `exhausted` with reason `budget`. A node already answered stays answered. Only a record that produced evidence counts as a visit, so a record with status `error`, `failed`, `failure` or `timeout` spends no band share, and the focus pick and the dashboard count visits the same way. A band's unspent share rolls down to the next band only once the band holds no open node, and it never rolls up. The dashboard adds a `## 6B. FRONTIER` section on an expansive run only: the frontier size by status, the pruned count, the revisits and each band's spent and allotted iterations. A store row that does not parse is skipped, and the reducer reports it on stderr and in the projection's `warnings` with its file and line.
+The reducer splits `maxIterations` 50/35/15 across the depth bands. Once a band's visits reach its share, it closes the band's open and active nodes as `exhausted` with reason `budget`. A node already answered stays answered. Only an evidence-bearing record counts as a visit: `complete`, `insight`, `stuck` or a legacy row with no status. A `thought`, `error` or `timeout` record spends no band share, and the focus pick and the dashboard count visits the same way. A band's unspent share rolls down to the next band only once the band holds no open node, and it never rolls up. The dashboard adds a `## 6B. FRONTIER` section on an expansive run only: the frontier size by status, the pruned count, the revisits and each band's spent and allotted iterations. A store row that does not parse is skipped, and the reducer reports it on stderr and in the projection's `warnings` with its file and line.
 
 ### Fan-Out
 

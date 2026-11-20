@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.13.16.0
+version: 1.13.17.0
 ---
 
 # deep-review: Manual Testing Playbook
@@ -57,7 +57,7 @@ This playbook provides 72 deterministic scenarios across 10 categories validatin
 - Run one lineage. Fan-out multiplies the iteration budget and is not needed for a live check.
 - Use the DeepSeek flash executor with `--executor=cli-opencode --model='opencode-go/deepseek-v4.1-flash#max'`. The cli-opencode self-invocation guard refuses it when the command is driven from inside an OpenCode session, so use the default native executor with the session model set instead.
 - Reuse a finished run with `--extend=1` rather than paying for a fresh run and a new frontier. An extension creates no config, so a cap flag there has no effect and the run keeps the caps of the run it extends.
-- In `:confirm` mode, hold the run after the config is written so you can confirm both caps before the seed step.
+- Name the two sub-targets in the prompt. The workflow does not pause between config creation and the seed step: a single-executor review runs `step_create_config`, `step_frontier_scope` and `step_frontier_seed` in that order.
 
 ---
 
@@ -530,7 +530,7 @@ Verify stuck recovery switches to least-covered dimension.
 #### Scenario Contract
 Prompt: `Validate deep-review stuck recovery and report whether the loop switches to the least-covered dimension.`
 
-Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
+Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress with an inclusive cutoff, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
 
 #### Test Execution
 > **Feature File:** [DRV-019](../manual-testing-playbook/convergence-and-recovery/stuck-recovery-widens-dimension-focus.md)

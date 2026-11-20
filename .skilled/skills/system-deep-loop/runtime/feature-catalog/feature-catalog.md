@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # runtime/: Feature Catalog
@@ -767,7 +767,7 @@ sub-packet, with per-kind state-dir isolation and a post-subprocess salvage swee
 Each lineage keeps its coverage graph in `graph-db/` inside its own directory through
 `DEEP_LOOP_COVERAGE_DB_DIR`. Under `--depth-mode expansive` (the script takes the flag and its
 value as two arguments and rejects `--depth-mode=expansive`), `partitionFrontierNodes` deals the
-open depth-1 frontier nodes round-robin in node-id order, `writeLineageFrontierStore` writes
+open depth-1 frontier nodes round-robin in node-id order by UTF-16 code unit, `writeLineageFrontierStore` writes
 the share of each lineage dealt a node that has no store yet, the prompt binds `depthMode` and `frontier_scope`, and the split is
 recorded as `frontier_partition` in `orchestration-summary.json`. `expansiveLineageBudgets`
 sizes a lineage with no matrix `iterations` from its seed share, and a lineage dealt no seed
