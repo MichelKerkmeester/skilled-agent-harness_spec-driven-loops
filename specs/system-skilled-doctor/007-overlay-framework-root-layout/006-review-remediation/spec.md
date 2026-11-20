@@ -26,9 +26,9 @@ contextType: "implementation"
 | **Created** | 2026-11-20 |
 | **Branch** | `worktrees/481-overlay-framework-root-layout` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 6 |
+| **Phase** | 6 of 8 |
 | **Predecessor** | 005-barter-move-overlays-out-of-tree |
-| **Successor** | None |
+| **Successor** | 007-barter-review-fixes |
 | **Handoff Criteria** | The engine suite, the guard suite, the presentation contract test and `route-validate` pass on Skilled main after the merge, and this phase, phases 002 and 005 and the parent validate strict |
 <!-- /ANCHOR:metadata -->
 

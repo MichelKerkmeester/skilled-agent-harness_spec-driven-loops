@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`apply --relayout` guards only the manifest plan",
     "created_at": "2026-11-20T14:33:58Z",
-    "last_save_at": "2026-11-20T15:34:51.696Z",
+    "last_save_at": "2026-11-20T15:45:24.469Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0a73b8257167add206e2f01fe6342749fa078df2332d3e526c0faf662db7ef7",
+    "source_fingerprint": "sha256:b4e331b2818153513a95431272fa90be966fee35e4b6fe5b626b79eb28dc0ba8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d9857620608ebb8bcb0a6900db986fa10eb30abfa5e5d46b2a2ba4f4e19de71a",
+      "spec.md": "e473f653ed2d80ba7ba023f532843309a746946681cf9f9c09d3e266d7300a64",
       "plan.md": "8322b5876b320e770cc71459b21db85cfd14bb46e037d0ea15eab7dfd4429b9d",
       "tasks.md": "e4fab3cb9f851b59cab5d48b0bd2f7cebd6293a27e5f38d90e5a1e84a0fd7422",
       "implementation-summary.md": "121c00f7523d03c8a1c873bddc610f7359d63a95719d84753138d7ca34b53d82"
