@@ -52,9 +52,20 @@ if (require.main === module && !isTsxLoaded) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. MAIN IMPLEMENTATION (under tsx)
+// 2. MAIN IMPLEMENTATION
 // ─────────────────────────────────────────────────────────────────────────────
 
+// This half runs only inside the tsx child process.
+
+/**
+ * Parse `--flag value` pairs into a camelCase-keyed object.
+ *
+ * A flag with no value after it is recorded as `true`.
+ *
+ * @param {string[]} [argv=process.argv.slice(2)] - Command-line tokens to parse
+ * @returns {Object<string, string|boolean>} Parsed flags keyed by camelCase name
+ * @throws {Error} On a positional token, or on an unknown flag with code INPUT_VALIDATION
+ */
 function parseArgs(argv = process.argv.slice(2)) {
   const knownFlags = ['mode', 'runDirectory', 'runDir', 'specFolder', 'eventJson', 'eventJsonPath', 'policyId'];
   const args = {};
@@ -89,8 +100,13 @@ function requireString(args, ...keys) {
   throw new Error(`${keys[0]} is required`);
 }
 
-// Key order carries no meaning in an event the caller hands over, so the
-// digest sorts keys before hashing.
+/**
+ * Key order carries no meaning in an event the caller hands over, so the
+ * digest sorts keys before hashing.
+ *
+ * @param {*} value - JSON-serializable value
+ * @returns {string} JSON text with object keys sorted at every depth
+ */
 function stableJson(value) {
   if (Array.isArray(value)) return `[${value.map(stableJson).join(',')}]`;
   if (value !== null && typeof value === 'object') {
@@ -105,6 +121,13 @@ function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
 
+/**
+ * Map a mode alias to its canonical deep-loop mode name.
+ *
+ * @param {*} mode - Mode name as given, such as `research` or `deep-review`
+ * @returns {string} `deep-research` or `deep-review` for a known alias, the trimmed input
+ *   otherwise, or an empty string for a missing or non-string mode
+ */
 function normalizeMode(mode) {
   if (!mode || typeof mode !== 'string') return '';
   const trimmed = mode.trim();
@@ -113,6 +136,14 @@ function normalizeMode(mode) {
   return trimmed;
 }
 
+/**
+ * Load the ledger-schema adapter for a mode.
+ *
+ * @param {string} mode - Mode name or alias
+ * @returns {Promise<{normalizedMode: string, createRegistry: Function, prepareEvent: Function,
+ *   isEventStem: Function}>} The mode's registry factory, event preparer and stem check
+ * @throws {Error} When the mode is neither deep-research nor deep-review
+ */
 async function resolveModeAdapter(mode) {
   const normalized = normalizeMode(mode);
   switch (normalized) {
@@ -139,6 +170,16 @@ async function resolveModeAdapter(mode) {
   }
 }
 
+/**
+ * Append one event to a mode's authorized ledger through the mode append gateway.
+ *
+ * Reads the flags from argv, writes one JSON result line to stdout and exits the
+ * process: 0 on success, 1 on an unreadable event file, 2 on an authority, binding or append
+ * refusal. A thrown error rejects instead, and the caller exits 3 for an unknown flag
+ * (INPUT_VALIDATION) and 1 for any other.
+ *
+ * @returns {Promise<void>} Rejects on a thrown error; otherwise the process exits before it settles
+ */
 async function main() {
   const fs = require('node:fs');
   const path = require('node:path');
@@ -536,6 +577,10 @@ if (require.main === module && isTsxLoaded) {
     process.exit(error && error.code === 'INPUT_VALIDATION' ? 3 : 1);
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   stableJson,

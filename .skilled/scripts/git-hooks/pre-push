@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Pre-Push Hook — Safety and Consistency Gates
+# ───────────────────────────────────────────────────────────────
 # Pre-push hook — independent safety and consistency gates run before a push:
 #
 #   Mass deletion:     blocks a push that deletes more tracked files than
@@ -42,6 +45,11 @@
 # Allowlist file:         .skilled/skills/sk-git/scripts/remote-branch-allowlist.txt
 # Install:   bash .skilled/scripts/install-git-hooks.sh
 # Uninstall: bash .skilled/scripts/install-git-hooks.sh --uninstall
+#
+# Exit Codes:
+#   0 - every gate passed, or the ones that would block were skipped or bypassed
+#   1 - a gate blocked the push; its message on stderr names the gate
+#   other - an unexpected command failure aborted the hook under set -e; its status passes through
 
 set -euo pipefail
 
@@ -98,9 +106,11 @@ if [[ -r "$_bounded_git_lib" ]]; then
   git_bound_arm
 else
   echo "WARNING [gate:git-timeout]: $_bounded_git_lib is missing, so git calls here run without a time bound." >&2
+  # Unbounded fallbacks, used only when the bounded-git library is unreadable.
   git_bounded() { git -c core.fsmonitor=false "$@"; }
   git_bound_finish() { exit "$1"; }
 fi
+# EXIT trap: hand the hook's real status to git_bound_finish.
 _pre_push_exit() {
   local rc=$?
   git_bound_finish "$rc"
@@ -216,7 +226,8 @@ while read -r _ local_sha remote_ref remote_sha; do
 
   case "$remote_ref" in
     refs/heads/*) branch_name="${remote_ref#refs/heads/}" ;;
-    *) continue ;;   # tags and other ref types sit outside both gates
+    # Tags and other ref types sit outside both gates.
+    *) continue ;;
   esac
 
   is_autosync_live=0

@@ -12,6 +12,11 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
+// Resolved through the shared sentinel-file resolver so every package agrees on the root.
+// __dirname-relative anchor rather than a hardcoded absolute path.
+const { findRepoRoot } = require('./workspace/repo-root.mjs');
+const REPO_ROOT = findRepoRoot(__dirname);
+
 const MODE_CONFIG_FILE = {
   research: 'deep-research-config.json',
   review: 'deep-review-config.json',
@@ -31,13 +36,13 @@ const MODE_STATE_FILE = {
  * using the {phaseSlug}-pt-{NN} naming convention.
  *
  * The phase slug is the FULL first-segment folder name under the spec tree
- * root (e.g. "019-system-hardening").  NN is a two-digit zero-padded counter:
+ * root (e.g. "NNN-phase-name").  NN is a two-digit zero-padded counter:
  * 1 + the number of existing pt-folders whose slug prefix matches the requested
  * phase, so repeated calls produce sequential names without any stored counter.
  *
  * @param {string} rootDir   - Absolute path to the artifact root (research/ or review/)
- * @param {string} phaseSlug - Full phase folder name (e.g. "019-system-hardening")
- * @returns {string} Subfolder name, e.g. "019-system-hardening-pt-03"
+ * @param {string} phaseSlug - Full phase folder name (e.g. "NNN-phase-name")
+ * @returns {string} Subfolder name, e.g. "NNN-phase-name-pt-03"
  */
 function allocateShortSubfolder(rootDir, phaseSlug) {
   let existingCount = 0;
@@ -53,6 +58,12 @@ function allocateShortSubfolder(rootDir, phaseSlug) {
   return `${phaseSlug}-pt-${nn}`;
 }
 
+/**
+ * Reduce a spec folder reference to its path below the spec tree root.
+ *
+ * @param {*} specFolder - Absolute or relative spec folder reference
+ * @returns {string|null} The forward-slash path below `specs/` or `.opencode/specs/`, or null when empty
+ */
 function normalizeSpecFolderReference(specFolder) {
   if (!specFolder) {
     return null;
@@ -164,11 +175,6 @@ function findExistingPacket(rootDir, specFolder, mode) {
   return matches.at(-1) || null;
 }
 
-// Resolved through the shared sentinel-file resolver so every package agrees on the root.
-// __dirname-relative anchor rather than a hardcoded absolute path.
-const { findRepoRoot } = require('./workspace/repo-root.mjs');
-const REPO_ROOT = findRepoRoot(__dirname);
-
 /**
  * Canonicalize a path via realpath when possible, falling back to the plain
  * resolved value when the path does not exist yet or cannot be canonicalized.
@@ -226,6 +232,13 @@ function readRegisteredWorktreeRoot(registrationDir) {
   }
 }
 
+/**
+ * List the roots of the worktrees registered under the repository's `.git/worktrees`,
+ * keeping only registrations whose `.git` file links back to them.
+ *
+ * @param {string} [repoRoot=REPO_ROOT] - Repository root that holds `.git/worktrees`
+ * @returns {string[]} Canonical worktree roots in registration-name order, or an empty array
+ */
 function getRegisteredWorktreeRoots(repoRoot = REPO_ROOT) {
   const registrationsRoot = path.join(repoRoot, '.git', 'worktrees');
   try {
@@ -273,6 +286,13 @@ function getApprovedArtifactRoots(repoRoot = REPO_ROOT) {
   return [...roots];
 }
 
+/**
+ * Whether a resolved spec folder sits inside one of the approved artifact roots.
+ *
+ * @param {string} resolvedSpecFolder - Resolved spec folder path
+ * @param {string} [repoRoot=REPO_ROOT] - Repository root the approved roots derive from
+ * @returns {boolean} True when the canonical path is an approved root or below one
+ */
 function isWithinApprovedArtifactRoot(resolvedSpecFolder, repoRoot = REPO_ROOT) {
   const candidate = canonicalizeForContainment(resolvedSpecFolder);
   return getApprovedArtifactRoots(repoRoot).some((root) => isWithinRoot(root, candidate));
@@ -298,7 +318,7 @@ function assertSafeArtifactDirectory(specRoot, candidate, label) {
 /**
  * Resolve the canonical artifact directory for review or research output.
  *
- * Conventions (post-028 contract fix):
+ * Conventions:
  *   - Root specs ALWAYS use flat: {spec_folder}/{mode}/
  *   - Child phases use FLAT-FIRST:
  *       (a) First run with empty {mode}/ directory → flat (subfolder=null)
@@ -308,7 +328,7 @@ function assertSafeArtifactDirectory(specRoot, candidate, label) {
  *
  * Subfolder naming convention (when pt-NN allocation kicks in): {phaseSlug}-pt-{NN}
  *   - phaseSlug: the FULL immediate child phase segment under the spec tree
- *     root (e.g. "019-system-hardening")
+ *     root (e.g. "NNN-phase-name")
  *   - NN: sequential two-digit counter scoped to that phase within the
  *     artifact root directory; allocated by counting existing same-prefix
  *     entries at call time
@@ -435,6 +455,10 @@ function resolveArtifactRoot(specFolder, mode = 'review', repoRoot = REPO_ROOT) 
     artifactArchiveRoot: path.join(artifactArchiveRoot, subfolder),
   });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 module.exports = {
   resolveArtifactRoot,

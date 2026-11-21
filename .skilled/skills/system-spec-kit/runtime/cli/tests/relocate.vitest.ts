@@ -8,11 +8,19 @@
 // no-op stubs, because their own behavior has separate coverage and this suite
 // is about the move and the references it leaves behind.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 const CLI_DIR = path.resolve(__dirname, '..');
 const SOURCE_SCRIPT = path.join(CLI_DIR, 'spec', 'relocate.mjs');
@@ -122,8 +130,11 @@ function relocate(args: string[]) {
 // parsed value typed without restating the whole generated document.
 interface FixtureMetadata {
   specFolder: string;
+  // Maps to the generated graph-metadata.json key packet_id
   packet_id: string;
+  // Maps to the generated graph-metadata.json key spec_folder
   spec_folder: string;
+  // Maps to the generated graph-metadata.json key children_ids
   children_ids: string[];
 }
 
@@ -293,6 +304,10 @@ function volumeFoldsCase(dir: string): boolean {
     fs.rmSync(probe, { force: true });
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TESTS
+// ───────────────────────────────────────────────────────────────────
 
 describe('relocate move and renumber', () => {
   it('moves a packet into a sub-track and records the new path in both generated files', () => {

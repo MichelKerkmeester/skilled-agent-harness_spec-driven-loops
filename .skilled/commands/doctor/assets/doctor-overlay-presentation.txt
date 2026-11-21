@@ -89,6 +89,10 @@ LAYOUT   [overlay]: [field] [from] belongs at [to]; change the destination or re
 NOTE     [one line per note: a check the run skipped, a value no record covers, an operation path through an array index, an insert anchor that matched nothing, or unowned upstream paths missing from the tree]
 AUDIT    [kind] [path], with --audit only
 audit=[n], with --audit only
+DOCS     missing-readme [overlay label]/[folder], with --audit only
+DOCS     invalid-readme [overlay label]/[folder]/[README.md or README.markdown]: [first blocking error][ (+N more)], with --audit only
+DOCS     skipped: [reason], with --audit only
+docs=[n], with --audit only
 checked=[n] ok=[n] miss=[n]
 RESULT: [PASSED|FAILED]
 ```
@@ -110,7 +114,7 @@ The `fix:` text the engine prints names the engine command itself. Show it as pr
 
 ### Status Lines Beyond The Destinations
 
-The engine prints four more kinds of line after the counts, and the report tells them apart:
+The engine prints five more kinds of line after the counts, and the report tells them apart:
 
 | Line | When it prints | What it means | Status |
 |------|----------------|---------------|--------|
@@ -118,10 +122,15 @@ The engine prints four more kinds of line after the counts, and the report tells
 | `LAYOUT` | An overlay source sits off the layout path its destination maps to, such as a copy kept under `<overlay folder>/skilled/skills/...` that belongs under `<overlay folder>/framework/skills/...` | The copy still applies, so the tree is not broken and nothing is lost. `/doctor:overlay apply --relayout` moves it to its layout path and points the manifest there: a `.skilled/X` destination maps to `framework/X`, and any other destination `X` maps to `root/` plus `X` with its leading dots dropped. Status prints at most 20 of these lines, then one overflow line, in one of three forms, where N is the hidden lines, M the ones relayout can move and B the ones under root/skilled: `LAYOUT   … N more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout` when none is under root/skilled, `LAYOUT   … N more under root/skilled; change the destination or remove the entry` when all are, and `LAYOUT   … N more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout for M, and change the destination or remove the entry for the B under root/skilled` when they mix. A LAYOUT line whose [to] sits under root/skilled names `change the destination or remove the entry` instead of the relayout, because relayout refuses a move under root/skilled. `status --json` keeps every move in its `offLayout` array | does not fail the status |
 | `NOTE` | The state file is schema version 1, a check was skipped because no checkout at the pin could be read, an operation's path goes through an array index, an insert's `before` or `beforeKey` anchor matches nothing so its items or keys go at the end, an in-sync json-entry destination differs from its entry set applied to the pinned copy (`cross-check`), or unowned upstream paths at the pin are missing from the tree | Each line names its own fix. A `cross-check` line on a file a `regenerate` step writes means the step does not list that file in its `outputs` | does not fail the status |
 | `AUDIT` | Only with `--audit`. A vendored path that no overlay owns and no `generated` glob matches is `differs` from upstream at the pin, `missing` from the tree while upstream has it, or `extra` in the tree while upstream never had it | Nothing else reports a path like this, so the drift would otherwise go unseen until a re-pin or a strict write refused it | fails the status |
+| `DOCS` | Only with `--audit`. A folder in the overlay folder has neither a `README.md` nor a `README.markdown` (`missing-readme`), or a README there fails sk-doc's validator with a blocking error (`invalid-readme`), and the line names the file it read. Only a regular file counts, so a README that is a link counts as missing, and a folder the walk cannot read is skipped and not counted. The walk skips `repin-runs/` and `relayout-runs/` directly under the overlay folder, any folder whose name starts with a dot, any `node_modules` folder and any folder reached through a link | The overlay folder's own documentation is incomplete. Shipping and documentation-only READMEs are both checked, under either name. The line is advisory: show it as a finding to fix, never as a failure, and never let it change the Status line. `docs=[n]` counts the findings | does not fail the status |
 
 `AUDIT    skipped: no upstream checkout at the pin` means the comparison could not run on this machine, because the manifest names no checkout that holds the pinned commit. Show it as printed and treat the audit as not run rather than as clean.
 
-With `--json`, print the engine's JSON and nothing around it. The JSON carries the state counts and one entry per destination not in sync, beside the full check, the stale root files, the off-layout sources, the notes under `notes`, and, with `--audit`, the audit findings.
+`DOCS     skipped: [reason]` means python3 or sk-doc's validator is missing, so no README was validated. The `missing-readme` lines still print. The skipped line is not a finding and `docs=` does not count it. Show it as printed and treat README validation as not run rather than as clean. The `DOCS` leg reads only the overlay folder, so it still runs when `AUDIT    skipped` printed.
+
+With `--audit` the `DOCS` lines and `docs=` never change `RESULT:` or the exit. A report can end `RESULT: PASSED` with exit 0 and still carry `DOCS` lines, so show them under an OK status too.
+
+With `--json`, print the engine's JSON and nothing around it. The JSON carries the state counts and one entry per destination not in sync, beside the full check, the stale root files, the off-layout sources, the notes under `notes`, and, with `--audit`, the audit findings and a `docs` key with the README counts and the `DOCS` findings, sorted by path.
 
 ### Status Summary
 
@@ -131,7 +140,7 @@ Target: status
 Status: [OK|FINDINGS|ERROR]
 Mutation class: read-only
 Scope: [the root the engine read]
-Evidence: [the engine's state counts line] / [the engine's checked line] / [the engine's audit count, with --audit only]
+Evidence: [the engine's state counts line] / [the engine's checked line] / [the engine's audit count and docs count, with --audit only]
 Recommendation: [the fix for each line not in sync, or none]
 STATUS=[status]
 ```
@@ -563,7 +572,10 @@ What each engine exit means for `Changed:`:
 | A `LAYOUT` line in a status report | Run `/doctor:overlay apply --relayout`, which moves each off-layout source and then applies. The copy still applies while it sits off its layout path. A line whose path sits under `root/skilled` ends `change the destination or remove the entry` instead. Change that entry's destination or remove it, because relayout refuses that move |
 | A `STALE` line in a status report | Upstream changed a root file a `repin.rootFiles` overlay owns. Rebase the overlay onto the new bytes, then set its `pinnedSha256` to theirs and rerun `/doctor:overlay status` |
 | A relayout printed `skipped` for a path | The backup did not copy that file because the read rule protects it. A source on its own stayed where it was, so move it by hand to the path its `offLayout` item named. One inside a moved folder already sits on that path, and only the backup lacks it |
+| `layout link path is listed twice: <path>` | The manifest's `layoutLinks` lists one `path` twice, compared as normalized paths, so `ext/`, `./ext`, `ext/.` and `x/../ext` are one path, and on a filesystem that ignores letter case so are `ext` and `EXT`. It is refused where the escape below is: `status` and `apply` exit 2 with that message, and `apply --relayout` and `apply --adopt` print it after `refuse:` and exit 2. Nothing was written. List each link once, then rerun `/doctor:overlay status` |
+| `refuse: a documentation-only README sits at <path>: merge it into the overlay copy or move it, then relayout` | A relayout move would land on a README that no manifest entry ships. Nothing was moved. Merge that README's text into the overlay copy and delete it, or move it, then rerun `/doctor:overlay apply --relayout` |
 | `layout link path escapes the tree root: <path>` | A manifest `layoutLinks` entry names a `path` or `replaces.path` that leaves the tree, as text or through a linked folder on its way. `status` and `apply` exit 2 with that message, and `apply --relayout` prints it after `refuse:` and exits 2. Nothing was written. Point the link at a path inside the tree, then rerun `/doctor:overlay status` |
+| A manifest that lists one layout link path twice is refused | The engine compares layout link paths after normalizing them, and refuses a manifest where two entries name one path before it writes anything. Keep one entry for that path, then rerun `/doctor:overlay status` |
 | A relayout refused because the target exists | The overlay folder holds both the old copy and the path it belongs at. Keep one of them, then rerun |
 | `error: relayout failed while writing the backup` | The run stopped before it moved anything. Read the rest of the line: `nothing was moved and the partial backup was removed` means the run removed its own partial backup, while `nothing was moved, but the partial backup at <backup> could not be removed: <message>` names a backup to delete by hand. Fix the cause the message names, then rerun `/doctor:overlay apply --relayout` |
 | `note: relayout left an emptied folder in place after moving` | Nothing failed. The copy moved to its layout path and the run could not remove the folder it emptied. The moved count and the apply line are still printed, and the run exits 0. Remove the empty folder by hand if you want it gone |
@@ -572,6 +584,9 @@ What each engine exit means for `Changed:`:
 | `AUDIT    missing <path>` | Upstream has the file at the pin and the tree lacks it. Restore it from the checkout the manifest names, or take it through a re-pin |
 | `AUDIT    extra <path>` | The tree tracks a file upstream never had at the pin. Move it into an overlay, adopt it, or remove it |
 | `AUDIT    skipped: no upstream checkout at the pin` | The comparison needs the checkout `pin.checkout` names with the pinned commit fetched. The audit did not run here, so read nothing into its silence |
+| `DOCS     missing-readme <path>` | That folder in the overlay folder has neither a `README.md` nor a `README.markdown` as a regular file. Add one, named `README.markdown` in a folder under a `commands/` path, because sk-doc reads a `README.md` there as a command document. A README in a folder a `directory` entry covers, or inside a skill-root entry's `replace` folder, ships into the tree on the next `/doctor:overlay apply`. Any other README is documentation only and the engine never applies it. The status result does not change |
+| `DOCS     invalid-readme <path>: <message>` | sk-doc's validator found a blocking error in that README, and `(+N more)` counts the rest. Run `JEV_FEATURE_CITE_DRIFT=0 python3 .skilled/skills/sk-doc/scripts/validate_document.py <README> --json` for the full list, the same way the engine runs it, fix the README, then rerun `/doctor:overlay status --audit`. The status result does not change |
+| `DOCS     skipped: <reason>` | python3 or sk-doc's validator is missing on this machine, so no README was validated. The `missing-readme` lines still count. Install what the reason names, then rerun `/doctor:overlay status --audit` |
 | The guard refuses a write with `is a vendored file no overlay owns` | The manifest has `strictWrites` on. Run `/doctor:overlay apply --adopt <path>` for that file, then edit its copy in the overlay folder and run `/doctor:overlay apply` |
 | The guard refuses a write with `is a new file in the vendored tree` or `is a new file inside overlay` | Create the file at the overlay path the line names. Then run `/doctor:overlay apply --adopt <path>` with the path it names, or `/doctor:overlay apply` when the line says an overlay already holds the folder |
 | The guard refuses a file a generator writes | Add a glob for it to the manifest's `generated` list |
@@ -599,6 +614,7 @@ What each engine exit means for `Changed:`:
 | A relayout just ran | `/doctor:overlay status` | The re-read confirms the tree is in sync |
 | The status report shows a `STALE` line | Rebase the overlay, then update its `pinnedSha256` and run `/doctor:overlay status` | A re-pin never copies a root file, so the overlay has to catch up by hand |
 | The audit reports a path no overlay owns | `/doctor:overlay apply --adopt <path>` | The path gets an overlay entry, and the next re-pin reports it instead of overwriting it |
+| The audit prints `DOCS` lines | Add or fix the named README, then `/doctor:overlay status --audit` | The overlay folder's documentation is incomplete, though the status result does not depend on it |
 | A write was refused as an unowned vendored file | `/doctor:overlay apply --adopt <path>` | The file gets an overlay entry, and the next re-pin reports it instead of overwriting it |
 | A capture just ran | `/doctor:overlay apply` | The captured source is now canonical, and the generated files catch up on apply |
 | An apply, a capture, an adopt or a relayout just ran | `/doctor:overlay status` | The re-read confirms the tree is in sync |

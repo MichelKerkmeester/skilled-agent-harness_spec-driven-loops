@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.28.0
+version: 1.0.33.0
 ---
 
 # Vendored Skilled Overlays
@@ -63,6 +63,30 @@ The setting lives outside `.skilled` because a re-copy overwrites that folder, a
 
 The engine reads a version 1 state file and the next `apply` rewrites it as version 2. An engine older than version 2 refuses to read a version 2 file. A record without a valid path is refused, and the error names the record and the fix. The engine writes `sync-state.json` and `overlay-manifest.json` through a temporary file and a rename, so an interrupted run leaves the old file whole. `apply` records the state right after it writes the destinations, before any `regenerate` step runs. When a step fails, the state says so, and the next `apply` runs the steps again even when every destination is already in sync. The first `apply` after an upgrade to an engine that records `setKeyOnItem` and `insertObjectKeys` rewrites `sync-state.json` even when it prints `0 changed`, because it records the operations the entry sets still list. Commit that change with the upgrade. An older engine ignores the `keys` record and drops it on its next write, so a `setKeyOnItem` dropped after that is not taken back. It also reads the inserted object keys in `sets` as dropped sets: it deletes each one and the `insertObjectKeys` puts it back, so the file ends the same.
 
+### READMEs in the Overlay Folder
+
+Every folder in the overlay folder needs a README: the overlay folder itself, `framework/`, `root/`, `checks/` and `tests/`, and every folder under them. A folder's README is `README.md` or `README.markdown`, and either name meets the need. In a folder under a `commands/` path, name it `README.markdown`, because sk-doc reads a `README.md` there as a command document. Only a regular file counts: a README that is a link counts as missing. A README either ships into the tree or is documentation only. The manifest entries decide which, and no manifest field marks it.
+
+With `F` as a folder's path relative to the overlay folder, `F/README.md` or `F/README.markdown` ships when any one of these is true:
+
+1. It is the `source` of a manifest entry of any scope, or a `marked-section` entry's `fragment` or `base`, because `apply` reads all three. A `file` entry is the usual case.
+2. `F` is the `source` folder of a `directory` entry, or sits under it. Everything inside a whole-folder entry ships.
+3. `F` is the `source` folder of a `skill-root` entry, or sits under it, and the README's path relative to that source is listed in the entry's `replace`, or sits under a folder `replace` lists. A skill-root entry ships only what `replace` names.
+
+Every other README is documentation only. These rules apply to both names alike.
+
+A new README inside a directory entry ships. Adding one to a folder inside a `directory` entry, or inside a folder a `skill-root` entry's `replace` lists, changes the vendored tree on the next `apply`. It is overlay content like any other file in that folder.
+
+The engine never applies, adopts, captures, stages or flags a documentation-only README:
+
+- `apply` never writes it to the tree.
+- `apply --adopt` never takes it over as a source. An adopt that would place a source onto an existing documentation-only README, or would turn one into content by making its folder a `directory` entry, refuses and writes nothing.
+- `apply --capture` never writes into it.
+- `repin --stage` never puts it into the staged tree.
+- No status line, `--json` field, audit finding, `pre-commit` refusal, guard refusal, `LAYOUT` line or relayout move names it as drift, extra, stray, unowned or off-layout. It shows up only in the README check `status --audit` runs, described under [README Checks](#readme-checks).
+
+All of this holds the same way for an overlay folder inside the tree, the default `skilled-overlays/`.
+
 ---
 
 ## 3. WHAT EACH STATE MEANS
@@ -93,7 +117,7 @@ Two more `status` lines name work no destination state covers.
 
 `STALE` names a root file owned by a `file` or a `marked-section` overlay that carries `pinnedSha256`. Both scopes pin upstream's copy of the destination. A `file` entry copies that file whole, and a `marked-section` entry keeps it as its `base`. One comparison against the pinned commit therefore catches an upstream move for either one. The line prints even while the entry itself still applies cleanly, which is why it is the only sign the pin is out of date. Without a readable checkout at the pin the check cannot run, and `status` prints a `NOTE` line saying it skipped the check.
 
-`apply --relayout` moves each off-layout copy onto its layout path, `framework/` for a destination under `.skilled/` and `root/` for any other, and with it a `marked-section` entry's `fragment` and `base`. It refuses, before it writes anything, a manifest whose layout link `path` or `replaces.path` escapes the tree root, as text or through a linked folder on its way: it prints `refuse: layout link path escapes the tree root: <path>` and exits 2. `status` and `apply` refuse the same manifest with exit 2 and `layout link path escapes the tree root: <path>`. It copies every path it moves into `<overlayDir>/relayout-runs/<stamp>/` first, inside the overlay folder and keyed from its root, so a sibling folder keeps its own backup, then points the entry's fields and the manifest's layout links at the new path. When writing that backup fails before the first move, the run exits 2 with `error: relayout failed while writing the backup: <message>; nothing was moved and the partial backup was removed`, or, when that removal fails too, with `error: relayout failed while writing the backup: <message>; nothing was moved, but the partial backup at <backup> could not be removed: <message>`. It refuses rather than overwrite a path that already exists, and then it writes nothing. It refuses a move to a path under `root/skilled/` too, such as one for a destination named `skilled/...` at the tree root, because that folder holds no copy: the framework's copies live under `framework/` alone, so one destination never has two sources. A manifest whose `source`, `fragment` or `base` already sits there is a blocked overlay. The run retargets each live link that still named a moved copy and prints a `relinked` line for it. The plain `apply` that follows writes the destinations from the moved copies. When a move, the manifest write or a relink fails part way, the run puts back every copy it moved, the manifest and every link it retargeted, removes its own `relayout-runs/<stamp>/` folder, prints `error: relayout failed while <step>: <message>; every moved copy, the manifest and the links are back as they were` and exits 2. If that restore fails too, the line names the path it could not restore, keeps the backup, names `relayout-runs/<stamp>` as the place that holds every moved copy and the manifest as it was, and the run exits 2. When the backup skipped read-protected token-named files, that line ends instead `the backup at <backup> holds the manifest as it was and every moved copy except these files it skipped: <paths>`. Those skipped files are not in the backup, and they sit wherever the failed restore left them. If everything is back but the backup folder cannot be removed, the line says so, names the backup and the reason, and the run exits 2. When a run finishes but cannot remove an emptied source folder, it prints `note: relayout left an emptied folder in place after moving <path>: <message>`, still prints its moved count and its apply line, and exits 0. Nothing failed, and the empty folder can be removed by hand.
+`apply --relayout` moves each off-layout copy onto its layout path, `framework/` for a destination under `.skilled/` and `root/` for any other, and with it a `marked-section` entry's `fragment` and `base`. It refuses, before it writes anything, a manifest whose layout link `path` or `replaces.path` escapes the tree root, as text or through a linked folder on its way: it prints `refuse: layout link path escapes the tree root: <path>` and exits 2. `status` and `apply` refuse the same manifest with exit 2 and `layout link path escapes the tree root: <path>`. The engine also refuses a manifest that lists one layout link `path` twice, before it writes anything: `status` and `apply` exit 2 with `layout link path is listed twice: <path>`, and `apply --relayout` prints `refuse: layout link path is listed twice: <path>` and exits 2. `apply --adopt` checks the layout links the same way before it writes the manifest, and refuses with the same `refuse:` line. It compares normalized paths, with `.` and `..` segments resolved, repeated slashes collapsed and a leading `./` and trailing slashes removed, so `./framework/x/`, `framework//x` and `framework/y/../x` all count as `framework/x`. On a filesystem that ignores letter case, such as macOS's default volume, paths that differ only in case count as one path too, under full Unicode case folding, so `STRASSE` and `straße` are one path there. The composed and decomposed forms of an accented name count as one path on every filesystem. The plan compares each nested link with the links above it the same way, so `EXT` pointing out of the tree with `ext/planted` below it is refused before anything is written. List each link once. When a move would land on a documentation-only README, the relayout refuses with `refuse: a documentation-only README sits at <overlay label>/<path>: merge it into the overlay copy or move it, then relayout`. The relayout copies every path it moves into `<overlayDir>/relayout-runs/<stamp>/` first, inside the overlay folder and keyed from its root, so a sibling folder keeps its own backup, then points the entry's fields and the manifest's layout links at the new path. When writing that backup fails before the first move, the run exits 2 with `error: relayout failed while writing the backup: <message>; nothing was moved and the partial backup was removed`, or, when that removal fails too, with `error: relayout failed while writing the backup: <message>; nothing was moved, but the partial backup at <backup> could not be removed: <message>`. It refuses rather than overwrite a path that already exists, and then it writes nothing. It refuses a move to a path under `root/skilled/` too, such as one for a destination named `skilled/...` at the tree root, because that folder holds no copy: the framework's copies live under `framework/` alone, so one destination never has two sources. A manifest whose `source`, `fragment` or `base` already sits there is a blocked overlay. The run retargets each live link that still named a moved copy and prints a `relinked` line for it. The plain `apply` that follows writes the destinations from the moved copies. When a move, the manifest write or a relink fails part way, the run puts back every copy it moved, the manifest and every link it retargeted, removes its own `relayout-runs/<stamp>/` folder, prints `error: relayout failed while <step>: <message>; every moved copy, the manifest and the links are back as they were` and exits 2. If that restore fails too, the line names the path it could not restore, keeps the backup, names `relayout-runs/<stamp>` as the place that holds every moved copy and the manifest as it was, and the run exits 2. When the backup skipped read-protected token-named files, that line ends instead `the backup at <backup> holds the manifest as it was and every moved copy except these files it skipped: <paths>`. Those skipped files are not in the backup, and they sit wherever the failed restore left them. If everything is back but the backup folder cannot be removed, the line says so, names the backup and the reason, and the run exits 2. When a run finishes but cannot remove an emptied source folder, it prints `note: relayout left an emptied folder in place after moving <path>: <message>`, still prints its moved count and its apply line, and exits 0. Nothing failed, and the empty folder can be removed by hand.
 
 ### Placing a Marked Block
 
@@ -206,6 +230,30 @@ The write checks judge a write as it is made. A vendored file that already diffe
 - `extra`: the tree tracks the path and upstream never had it.
 
 A generated path, a path an overlay owns, a path under a `repin.exclude` folder and a `.env` name are not judged. `audit=<n>` counts the findings and any finding fails the status. With no checkout at the pin the run prints `AUDIT    skipped: no upstream checkout at the pin` and judges nothing. The audit compares bytes, so a file that differs from upstream only by line endings is a `differs` finding. The commit check is the one place that reads CRLF as LF.
+
+### README Checks
+
+`status --audit` also checks the READMEs in the overlay folder, described under [READMEs in the Overlay Folder](#readmes-in-the-overlay-folder). This leg reads only the overlay folder, so it runs even when no checkout at the pin can be read. It walks every folder there and skips these, with everything under them:
+
+- `repin-runs/` and `relayout-runs/` directly under the overlay folder, which hold the engine's runtime state and its backups.
+- A folder whose name starts with a dot.
+- A folder named `node_modules`.
+- A folder reached through a symbolic link. The walk never follows a link.
+
+Every walked folder needs a `README.md` or a `README.markdown`, and only a regular file counts, so a README that is a link counts as missing. A folder the walk cannot read is skipped and not counted. Every README there, under either name and shipping or documentation only, goes through sk-doc's own validator, and a folder with both names has both checked. The engine runs `python3 <tree>/.skilled/skills/sk-doc/scripts/validate_document.py <README> --json` once per README, with `JEV_FEATURE_CITE_DRIFT=0` set, and lets the validator detect the document type. A README with any `blocking_errors` is invalid, and so is one the validator answers without a `blocking_errors` list, for example with an `error` key or output that is not JSON. The lines print after the `AUDIT` lines and before `checked=`:
+
+```text
+DOCS     missing-readme <overlay label>/<F>
+DOCS     invalid-readme <overlay label>/<F>/<README name>: <first blocking error message>[ (+N more)]
+DOCS     skipped: <reason>
+docs=<number of DOCS findings>
+```
+
+`<overlay label>` is the label the `source` fields already use, such as `../overlays`, and the overlay folder itself prints as the label alone. `missing-readme` means the folder has neither name, and `<README name>` is the file the validator read, `README.md` or `README.markdown`. When python3 or the validator is missing, one `skipped` line takes the place of the validation, and the `missing-readme` findings still print. A `skipped` line is not a finding and does not count toward `docs=`.
+
+The leg is advisory. Unlike an `AUDIT` finding, a `DOCS` finding never changes `RESULT:`, the `result` field of `--json` or the exit code, so a project whose overlay folder has no READMEs keeps the status result and the exit it had before. No manifest field turns the leg on or off.
+
+`status --audit --json` adds a `docs` key beside `audit`. It holds `isValidated`, `skipped` with the reason or `null`, the counts `folders`, `readmes`, `shipping` and `docOnly`, and `findings`, one item per finding with its `kind` and `path`, sorted by `path`. An `invalid-readme` item also carries its `errors`. Without `--audit` the key is absent.
 
 ---
 

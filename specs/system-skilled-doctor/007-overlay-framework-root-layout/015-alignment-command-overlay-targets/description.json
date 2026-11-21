@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets",
+  "description": "Phase 15: alignment-command-overlay-targets",
+  "keywords": [
+    "phase",
+    "alignment-command-overlay-targets"
+  ],
+  "lastUpdated": "2026-11-21T00:25:54.752Z",
+  "specId": "015",
+  "folderSlug": "alignment-command-overlay-targets",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "20-11-26_23-26__scaffolded-and-planned-the-phase-on-the-worktree.md",
+    "21-11-26_00-52__closed-the-phase-work-verified-reviewed-and.md",
+    "21-11-26_00-53__overlays-target-and-overlay-layout-topic-built.md",
+    "21-11-26_01-25__wrote-the-implementation-description-so-it-states.md"
+  ]
+}

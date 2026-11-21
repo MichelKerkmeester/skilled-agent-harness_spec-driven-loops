@@ -24,6 +24,8 @@
 //   node overlay-engine.cjs status [--root <tree>] [--json] [--audit]
 //     Read-only. One line per destination not in sync, then the full check.
 //     Exit 0 when everything is in sync, 1 when anything is not, 2 on error.
+//     --audit also reports the overlay folder's missing and rejected READMEs,
+//     which never change the result or the exit code.
 //   node overlay-engine.cjs apply [--root <tree>]
 //     Apply overlay edits, regenerate, verify. Exit 0, 1 on conflict, 2 on error.
 //   node overlay-engine.cjs apply --capture <path> [--root <tree>]
@@ -2877,6 +2879,127 @@ function isUnderRootSkilled(value) {
   return normalized === 'root/skilled' || normalized.startsWith('root/skilled/');
 }
 
+const caseInsensitiveDirs = new Map();
+
+/**
+ * Tell whether the filesystem holding a folder ignores letter case in names.
+ * The answer comes from the disk, never from the platform, since one platform
+ * can mount both kinds. The folder's own entries are read first, since they sit
+ * on the folder's filesystem: the first name with a letter is spelled with its
+ * case flipped, and the filesystem ignores case when that spelling opens the
+ * same entry. Nothing is created to probe. Only a folder with no such entry
+ * falls back to the nearest name on its real path that has a letter, which may
+ * sit on the filesystem of a folder above it. A path with no letter anywhere
+ * cannot be probed, and is taken as case-sensitive. The answer is kept per
+ * folder, so a run probes each folder once.
+ * @param {string} dir Existing folder.
+ * @returns {boolean} Whether two names differing only in case name one entry there.
+ */
+function isCaseInsensitiveDir(dir) {
+  if (caseInsensitiveDirs.has(dir)) return caseInsensitiveDirs.get(dir);
+  let answer = false;
+  try {
+    const real = fs.realpathSync.native(dir);
+    const flip = (name) => [...name].map((ch) => {
+      const lower = ch.toLowerCase();
+      return ch === lower ? ch.toUpperCase() : lower;
+    }).join('');
+    const sameEntry = (spelled, flipped) => {
+      const original = fs.lstatSync(spelled);
+      let other = null;
+      try {
+        other = fs.lstatSync(flipped);
+      } catch {
+        other = null;
+      }
+      return other !== null && other.dev === original.dev && other.ino === original.ino;
+    };
+    // A name whose flipped spelling does not flip back, such as a dotless i,
+    // can fold to another entry, so only a name that round-trips is a fair probe.
+    const inside = fs.readdirSync(real).find((name) => flip(name) !== name && flip(flip(name)) === name);
+    if (inside !== undefined) {
+      answer = sameEntry(path.join(real, inside), path.join(real, flip(inside)));
+      caseInsensitiveDirs.set(dir, answer);
+      return answer;
+    }
+    let current = real;
+    let suffix = [];
+    while (path.dirname(current) !== current) {
+      const name = path.basename(current);
+      const flipped = flip(name);
+      if (flipped !== name) {
+        const probe = path.join(path.dirname(current), flipped, ...suffix);
+        const original = fs.statSync(real);
+        let other = null;
+        try {
+          other = fs.statSync(probe);
+        } catch {
+          other = null;
+        }
+        answer = other !== null && other.dev === original.dev && other.ino === original.ino;
+        break;
+      }
+      suffix = [name, ...suffix];
+      current = path.dirname(current);
+    }
+  } catch {
+    answer = false;
+  }
+  caseInsensitiveDirs.set(dir, answer);
+  return answer;
+}
+
+/**
+ * Spell a layout link path the way the destination filesystem compares names,
+ * so every check that asks whether two paths are one entry asks the same way.
+ * The path is normalized without trailing slashes, and composed to Unicode NFC,
+ * since a filesystem that stores the composed and decomposed forms of a name
+ * apart still lets two such names look alike in a manifest. Where the tree root
+ * sits on a filesystem that ignores case, case is folded too, with full case
+ * mapping rather than toLowerCase alone, because such a filesystem treats
+ * `STRASSE` and `straße`, or `OFF` and a ligature spelling, as one name. The
+ * first lower-casing turns the capital sharp s into `ß`, which upper-casing then
+ * expands, so `STRAẞE` folds with them. Folding a little more than the disk does
+ * only adds refusals.
+ * @param {string} p Path, relative or absolute.
+ * @param {boolean} foldCase Whether the tree root's filesystem ignores case.
+ * @returns {string} The comparison key, never a path to read or write.
+ */
+function layoutPathKey(p, foldCase) {
+  const composed = path.normalize(p).replace(/(.)[\\/]+$/, '$1').normalize('NFC');
+  return foldCase ? composed.toLowerCase().toUpperCase().toLowerCase().normalize('NFC') : composed;
+}
+
+/**
+ * Find the first layout link path the manifest lists more than once. Two
+ * spellings name one path when they normalize to the same path without
+ * trailing slashes, the way the plan resolves them, so `./a`, `a/`, `a/.` and
+ * `x/../a` are the same link, and so are `a//b` and `a/b`. The composed and
+ * decomposed Unicode forms of one name are the same link too. Where the tree
+ * root sits on a filesystem that ignores case, `ext` and `EXT` are one entry
+ * on disk, so they are compared with case folded too.
+ * Two spellings that reach one place through a folder link, like `alias/a` and
+ * `a` beside `alias -> .`, are not compared here, and the plan does not catch
+ * them either: it joins each path onto the root without resolving the folders
+ * the run itself links. The writer catches such a path at write time, when it
+ * judges where the parent resolves before it writes below it.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} [root] Destination tree root, probed for case handling.
+ * @returns {string|null} The later copy's path, normalized and without trailing slashes, or null.
+ */
+function duplicateLayoutLinkPath(manifest, root) {
+  const foldCase = typeof root === 'string' && isCaseInsensitiveDir(root);
+  const seen = new Set();
+  for (const link of manifest.layoutLinks || []) {
+    if (!link || typeof link.path !== 'string') continue;
+    const normalized = path.posix.normalize(link.path).replace(/\/+$/, '');
+    const key = layoutPathKey(normalized, foldCase);
+    if (seen.has(key)) return normalized;
+    seen.add(key);
+  }
+  return null;
+}
+
 function rootSkilledProblem(field, value) {
   return `${field} ${value} sits under root/skilled, which holds no copy; the framework's copies live under framework/`;
 }
@@ -2889,11 +3012,17 @@ function rootSkilledProblem(field, value) {
  * still leaves it when a folder on its way is a link pointing out, so the
  * parent is judged by where it resolves. The leaf is left unresolved: it is
  * the link the write replaces, never a folder written through.
+ * A path listed twice is refused first. The run writes both copies in order,
+ * while the plan judges a nested path by the last copy only, so an earlier copy
+ * pointing out of the tree would be written before the writer refused the
+ * nested entry, and the run would stop half applied.
  * @param {string} root Destination tree root.
  * @param {object} manifest Loaded overlay manifest.
- * @returns {string|null} The refusal, or null when every path stays inside.
+ * @returns {string|null} The refusal, or null when every path is listed once and stays inside.
  */
 function layoutLinkEscape(root, manifest) {
+  const duplicated = duplicateLayoutLinkPath(manifest, root);
+  if (duplicated !== null) return `layout link path is listed twice: ${duplicated}`;
   // A parent link that dangles or loops cannot be resolved, so where it lands
   // is unknown and the path is refused until it can be. The one exception is the
   // upstream link the entry replaces: apply unlinks it before the write and
@@ -2910,8 +3039,12 @@ function layoutLinkEscape(root, manifest) {
   // while its parent is still the link on disk, or after an earlier entry has
   // made it a planned link. Neither judgement alone can know which.
   const layoutLinks = manifest.layoutLinks || [];
+  // Paths are matched by their comparison key, so two spellings the tree's
+  // filesystem treats as one entry are one planned link.
+  const foldCase = isCaseInsensitiveDir(root);
+  const keyOf = (p) => layoutPathKey(p, foldCase);
   const writtenBefore = (treeRoot, at, entryIndex) => layoutLinks.slice(0, entryIndex)
-    .some((link) => link && typeof link.path === 'string' && path.resolve(treeRoot, link.path) === at);
+    .some((link) => link && typeof link.path === 'string' && keyOf(path.resolve(treeRoot, link.path)) === keyOf(at));
   const parentStaysOnDisk = (treeRoot, linkPath, replacedPath, entryIndex) => {
     const absolute = path.resolve(treeRoot, linkPath);
     const replaced = typeof replacedPath === 'string' ? path.resolve(treeRoot, replacedPath) : null;
@@ -2955,9 +3088,9 @@ function layoutLinkEscape(root, manifest) {
   const planned = new Map();
   for (const link of manifest.layoutLinks || []) {
     if (!link || typeof link.path !== 'string' || typeof link.target !== 'string') continue;
-    planned.set(path.resolve(canonicalRoot, link.path), link.target);
+    planned.set(keyOf(path.resolve(canonicalRoot, link.path)), link.target);
     const onDiskAt = canonicalOrNull(canonicalPathWithoutLeaf, path.resolve(root, link.path));
-    if (onDiskAt !== null) planned.set(onDiskAt, link.target);
+    if (onDiskAt !== null) planned.set(keyOf(onDiskAt), link.target);
   }
   const parentStaysInTree = (treeRoot, linkPath, replacedPath, followed = new Set(), followedInto = []) => {
     const top = path.resolve(treeRoot);
@@ -2974,13 +3107,13 @@ function layoutLinkEscape(root, manifest) {
       }
       const onDiskAt = canonicalOrNull(canonicalPath, current);
       if (onDiskAt !== null) spelled.push(onDiskAt);
-      const plannedAt = spelled.find((candidate) => planned.has(candidate));
+      const plannedAt = spelled.find((candidate) => planned.has(keyOf(candidate)));
       if (plannedAt !== undefined) {
-        if (followed.has(plannedAt)) return false;
-        followed.add(plannedAt);
+        if (followed.has(keyOf(plannedAt))) return false;
+        followed.add(keyOf(plannedAt));
         // A relative target resolves from the folder the link physically sits in.
         const from = canonicalOrNull(canonicalPath, path.dirname(current)) || path.dirname(current);
-        const into = path.resolve(from, planned.get(plannedAt));
+        const into = path.resolve(from, planned.get(keyOf(plannedAt)));
         const landed = path.join(into, ...parts.slice(index + 1), path.basename(absolute));
         if (!isWithin(top, landed)) {
           // Outside the tree a looping link resolves nowhere, so it is refused.
@@ -3848,6 +3981,8 @@ function commandStatus(ctx, options = {}) {
   const analysis = analyze(ctx, manifest, state);
   const check = runCheck(ctx, manifest, state, analysis.plans);
   const audit = options.isAudit ? auditVendoredTree(ctx, manifest) : null;
+  // The docs leg stays out of isInSync below: it reports, it never fails the run.
+  const docs = options.isAudit ? auditOverlayDocs(ctx, manifest) : null;
   const outOfSync = analysis.records.filter((record) => record.state !== 'in-sync');
   const stale = staleRootFiles(manifest);
   const offLayout = layoutMoves(manifest);
@@ -3875,6 +4010,7 @@ function commandStatus(ctx, options = {}) {
       check,
     };
     if (audit) report.audit = audit;
+    if (docs) report.docs = docs;
     console.log(JSON.stringify(report, null, 2));
     return isInSync ? EXIT_OK : EXIT_CONFLICT;
   }
@@ -3915,6 +4051,11 @@ function commandStatus(ctx, options = {}) {
     for (const finding of audit.findings) console.log(`AUDIT    ${finding.kind} ${finding.path}`);
     if (!audit.isAvailable) console.log('AUDIT    skipped: no upstream checkout at the pin');
     console.log(`audit=${audit.findings.length}`);
+  }
+  if (docs) {
+    for (const finding of docs.findings) console.log(docsFindingLine(finding));
+    if (docs.skipped) console.log(`DOCS     skipped: ${docs.skipped}`);
+    console.log(`docs=${docs.findings.length}`);
   }
   console.log(`checked=${check.checked} ok=${check.ok} miss=${check.miss}`);
   console.log(isInSync ? 'RESULT: PASSED' : 'RESULT: FAILED');
@@ -5904,6 +6045,10 @@ function adoptUnderLock(ctx, manifest, inputPath) {
     console.log('refuse: ' + message);
     return EXIT_ERROR;
   };
+  // The apply that follows refuses these layout links, and by then the copy and
+  // the new entry would already be written, so they are refused before either.
+  const linkEscape = layoutLinkEscape(ctx.root, manifest);
+  if (linkEscape) return refuse(linkEscape);
   const root = canonicalPath(ctx.root);
   const settings = writeCheckSettings(manifest);
   // A path under repin.exclude would be vendored but for that list. A re-pin never
@@ -5957,6 +6102,20 @@ function adoptUnderLock(ctx, manifest, inputPath) {
 
   const isLive = pathExists(destinationPath);
   const hasSource = pathExists(sourcePath);
+  // A README that only documents the overlay folder would start shipping once an
+  // entry named it, so adopt leaves the choice to whoever wrote it.
+  const docOnly = hasSource ? documentationOnlyReadmesAt(manifest, source, sourcePath) : [];
+  if (docOnly.length > 0 && isFile(sourcePath)) {
+    return refuse(`${shownSource} is a documentation-only README, and adopting ${key} would make it the overlay ` +
+      'copy that ships; move it out of the way, or name it as a source in the manifest by hand if it should ship');
+  }
+  if (docOnly.length > 0) {
+    const more = docOnly.length > 1 ? ` and ${docOnly.length - 1} more` : '';
+    const them = docOnly.length > 1 ? 'them' : 'it';
+    return refuse(`adopting ${key} would make ${shownSource} a directory entry and ship the documentation-only ` +
+      `README ${ctx.overlayLabel}/${docOnly[0]}${more}; move ${them} out of the folder, ` +
+      `adopt again, then put ${them} back if ${them === 'it' ? 'it' : 'they'} should ship with the folder`);
+  }
   if (isLive && hasSource) return refuse(`both ${key} and ${shownSource} exist; keep one, then adopt again`);
   if (!isLive && !hasSource) return refuse(`nothing to adopt; create ${shownSource} first`);
 
@@ -6323,6 +6482,229 @@ function auditVendoredTree(ctx, manifest) {
   return { isAvailable: true, findings };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 18. OVERLAY FOLDER READMES
+//
+// Every folder of the overlay folder may carry a README.md or a README.markdown
+// that explains it; either name is the folder's README, and a folder may hold
+// both. sk-doc reads a README.md under a commands folder as a command document,
+// so a commands folder takes the README.markdown name.
+// Only a README the manifest reaches is overlay content; every other one is
+// documentation for whoever reads the overlay folder, and no command applies,
+// adopts or reports it. The docs leg of `status --audit` is the one place such
+// a file is read, and it is advisory: a missing or rejected README never
+// changes the status result, so an adopter with no READMEs keeps its exit.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const README_NAMES = ['README.md', 'README.markdown'];
+const SK_DOC_VALIDATOR = '.skilled/skills/sk-doc/scripts/validate_document.py';
+const VALIDATOR_MAX_BUFFER = 16 * 1024 * 1024;
+// A validator that never returns would hang the read-only run, so it is killed
+// after this long. OVERLAY_DOCS_VALIDATOR_TIMEOUT_MS shortens the wait, so the
+// tests can reach the kill without waiting the full 30 seconds.
+const VALIDATOR_TIMEOUT_MS = 30000;
+
+function validatorTimeoutMs() {
+  const value = Number(process.env.OVERLAY_DOCS_VALIDATOR_TIMEOUT_MS);
+  return Number.isInteger(value) && value > 0 ? value : VALIDATOR_TIMEOUT_MS;
+}
+
+function manifestFolderPath(value) {
+  return path.posix.normalize(value).replace(/\/+$/, '');
+}
+
+/**
+ * Build the test for whether a README in the overlay folder ships. It ships
+ * when an entry names it as a copy the engine reads, when it sits inside a
+ * directory entry's folder, or when it sits on a path a skill-root entry's
+ * replace list names; nothing else in the overlay folder is ever applied.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {(relativePath: string) => boolean} Takes a path relative to the overlay folder.
+ */
+function readmeShipTest(manifest) {
+  const exact = new Set();
+  const folders = [];
+  for (const entry of manifest.overlays || []) {
+    // A marked-section entry reads its fragment and base as well as its source,
+    // so a README named by either is applied content too.
+    for (const field of ['source', 'fragment', 'base']) {
+      if (typeof entry[field] === 'string') exact.add(manifestFolderPath(entry[field]));
+    }
+    if (typeof entry.source !== 'string') continue;
+    const source = manifestFolderPath(entry.source);
+    if (entry.scope === 'directory') folders.push(source);
+    if (entry.scope === 'skill-root') {
+      for (const replaced of entry.replace || []) {
+        if (typeof replaced === 'string') folders.push(path.posix.join(source, manifestFolderPath(replaced)));
+      }
+    }
+  }
+  return (relativePath) => exact.has(relativePath) || isUnderAny(relativePath, folders);
+}
+
+/**
+ * List every folder the docs leg reads, in sorted order. The engine's own run
+ * folders, dot folders and node_modules hold no overlay content, and a link is
+ * never followed, so a loop or a link out of the folder cannot widen the walk.
+ * @param {string} overlayRoot The overlay folder.
+ * @returns {{relative: string, readmeNames: string[]}[]} `relative` is '' for the overlay folder
+ *   itself; `readmeNames` lists the README names present as regular files, in README_NAMES order.
+ */
+function overlayDocFolders(overlayRoot) {
+  const folders = [];
+  const pending = [''];
+  while (pending.length > 0) {
+    const relative = pending.pop();
+    const absolute = relative ? path.join(overlayRoot, ...relative.split('/')) : overlayRoot;
+    let dirents;
+    try {
+      dirents = fs.readdirSync(absolute, { withFileTypes: true });
+    } catch {
+      // A folder the walk cannot read, whatever the reason, is left out and not
+      // counted: the leg is advisory, and it must not fail a read-only run.
+      continue;
+    }
+    // The name is compared exactly: a case-insensitive disk would also find readme.md.
+    const readmeNames = README_NAMES.filter((name) => dirents.some((dirent) => dirent.name === name && dirent.isFile()));
+    folders.push({ relative, readmeNames });
+    for (const dirent of dirents) {
+      if (!dirent.isDirectory() || dirent.name.startsWith('.') || dirent.name === 'node_modules') continue;
+      if (relative === '' && (dirent.name === RUNS_FOLDER || dirent.name === RELAYOUT_RUNS_FOLDER)) continue;
+      pending.push(relative ? relative + '/' + dirent.name : dirent.name);
+    }
+  }
+  return folders.sort((left, right) => (left.relative < right.relative ? -1 : left.relative > right.relative ? 1 : 0));
+}
+
+/**
+ * Run sk-doc's validator on one README. It is spawned with an argument list and
+ * no shell, so a folder name cannot become a command, and Python is told to
+ * write no bytecode, so validating a tree leaves nothing behind in it. A run
+ * that outlasts the timeout is killed and reported as a rejection of the README.
+ * @param {string} validatorPath The validator script.
+ * @param {string} filePath The README to validate.
+ * @returns {{isPythonMissing?: boolean, errors: string[]}} The blocking error messages.
+ */
+function validateReadme(validatorPath, filePath) {
+  const timeoutMs = validatorTimeoutMs();
+  const result = spawnSync('python3', [validatorPath, filePath, '--json'], {
+    encoding: 'utf8',
+    maxBuffer: VALIDATOR_MAX_BUFFER,
+    timeout: timeoutMs,
+    killSignal: 'SIGKILL',
+    env: { ...process.env, JEV_FEATURE_CITE_DRIFT: '0', PYTHONDONTWRITEBYTECODE: '1' },
+  });
+  if (result.error && result.error.code === 'ETIMEDOUT') {
+    return { errors: [`the validator did not finish in ${timeoutMs / 1000}s`] };
+  }
+  if (result.error && result.error.code === 'ENOENT') return { isPythonMissing: true, errors: [] };
+  if (result.error) return { errors: [`the validator could not run: ${result.error.message}`] };
+  let report;
+  try {
+    report = JSON.parse(result.stdout);
+  } catch {
+    return { errors: [`the validator printed no JSON report (exit ${result.status})`] };
+  }
+  if (report && Array.isArray(report.blocking_errors)) {
+    return {
+      errors: report.blocking_errors.map((error) => (error && typeof error.message === 'string'
+        ? error.message
+        : JSON.stringify(error))),
+    };
+  }
+  // A file the validator cannot read or parse has no blocking list, and a README
+  // sk-doc could not check is not one it accepted.
+  const reason = report && typeof report.error === 'string'
+    ? report.error
+    : `the validator returned no blocking_errors (exit ${result.status})`;
+  return { errors: [reason] };
+}
+
+/**
+ * Report the folders of the overlay folder that carry no README and the READMEs
+ * sk-doc rejects. It reads only the overlay folder, so it runs whether or not
+ * the pin can be read.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{isValidated: boolean, skipped: string|null, folders: number, readmes: number,
+ *   shipping: number, docOnly: number, findings: object[]}} Findings sorted by path.
+ */
+function auditOverlayDocs(ctx, manifest) {
+  const ships = readmeShipTest(manifest);
+  const folders = overlayDocFolders(ctx.overlayRoot);
+  const shown = (relative) => (relative ? ctx.overlayLabel + '/' + relative : ctx.overlayLabel);
+  let findings = [];
+  const readmes = [];
+  for (const folder of folders) {
+    if (folder.readmeNames.length === 0) {
+      findings.push({ kind: 'missing-readme', path: shown(folder.relative) });
+    }
+    for (const name of folder.readmeNames) readmes.push(folder.relative ? folder.relative + '/' + name : name);
+  }
+  const shipping = readmes.filter(ships).length;
+
+  // The validator in the tree is reached through a link, so its presence is
+  // read through that link.
+  const validatorPath = path.join(ctx.root, ...SK_DOC_VALIDATOR.split('/'));
+  let skipped = null;
+  try {
+    if (!fs.statSync(validatorPath).isFile()) skipped = `no sk-doc validator at ${SK_DOC_VALIDATOR}`;
+  } catch {
+    skipped = `no sk-doc validator at ${SK_DOC_VALIDATOR}`;
+  }
+  if (skipped === null) {
+    for (const readme of readmes) {
+      const outcome = validateReadme(validatorPath, path.join(ctx.overlayRoot, ...readme.split('/')));
+      if (outcome.isPythonMissing) {
+        skipped = 'python3 is not on PATH, so no README was validated';
+        findings = findings.filter((finding) => finding.kind === 'missing-readme');
+        break;
+      }
+      if (outcome.errors.length > 0) {
+        findings.push({ kind: 'invalid-readme', path: ctx.overlayLabel + '/' + readme, errors: outcome.errors });
+      }
+    }
+  }
+  findings.sort((left, right) => (left.path < right.path ? -1 : left.path > right.path ? 1 : 0));
+  return {
+    isValidated: skipped === null,
+    skipped,
+    folders: folders.length,
+    readmes: readmes.length,
+    shipping,
+    docOnly: readmes.length - shipping,
+    findings,
+  };
+}
+
+function docsFindingLine(finding) {
+  if (finding.kind !== 'invalid-readme') return `DOCS     ${finding.kind} ${finding.path}`;
+  const more = finding.errors.length > 1 ? ` (+${finding.errors.length - 1} more)` : '';
+  return `DOCS     invalid-readme ${finding.path}: ${finding.errors[0]}${more}`;
+}
+
+/**
+ * List the READMEs an adopt would turn into overlay content that ship today as
+ * nothing: the source itself when it is such a README, or any inside a source
+ * folder that would become a directory entry.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} source The adopt source, relative to the overlay folder.
+ * @param {string} sourcePath The adopt source, absolute.
+ * @returns {string[]} Sorted paths relative to the overlay folder.
+ */
+function documentationOnlyReadmesAt(manifest, source, sourcePath) {
+  const ships = readmeShipTest(manifest);
+  if (isFile(sourcePath)) {
+    return README_NAMES.includes(path.posix.basename(source)) && !ships(source) ? [source] : [];
+  }
+  if (!isDirectory(sourcePath)) return [];
+  return listTreePaths(sourcePath)
+    .filter((filePath) => README_NAMES.includes(path.basename(filePath)) && isFile(filePath))
+    .map((filePath) => path.posix.join(source, toPosix(path.relative(sourcePath, filePath))))
+    .filter((relative) => !ships(relative))
+    .sort();
+}
+
 /**
  * Refuse a commit that stages a vendored change no overlay owns. Never writes.
  * @param {object} ctx Engine context.
@@ -6348,7 +6730,7 @@ function commandPreCommit(ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 18. RELAYOUT
+// 19. RELAYOUT
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -6394,10 +6776,12 @@ function groupLayoutMoves(moves) {
  * Resolve every move into filesystem paths and collect what stops the run.
  * Nothing is written here, so a refusal leaves the tree as it stood.
  * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
  * @param {object[]} groups Groups from groupLayoutMoves.
  * @returns {{problems: string[], moves: object[], skipped: string[]}}
  */
-function planRelayout(ctx, groups) {
+function planRelayout(ctx, manifest, groups) {
+  const ships = readmeShipTest(manifest);
   const problems = [];
   const moves = [];
   const skipped = [];
@@ -6418,6 +6802,14 @@ function planRelayout(ctx, groups) {
       const ids = [...new Set(group.records.map((record) => record.overlay))].join(', ');
       problems.push(`refuse: ${ids}: ${group.from} belongs at ${group.to}, under root/skilled, which holds no copy; ` +
         'change the destination or remove the entry');
+      continue;
+    }
+    // A README no entry reaches only documents the folder, so the refusal names
+    // it as that rather than as a copy already in place.
+    if (pathExists(to.absolute) && README_NAMES.includes(path.posix.basename(to.relative)) &&
+      isFile(to.absolute) && !ships(to.relative)) {
+      problems.push(`refuse: a documentation-only README sits at ${ctx.overlayLabel}/${to.relative}: ` +
+        'merge it into the overlay copy or move it, then relayout');
       continue;
     }
     if (pathExists(to.absolute)) {
@@ -6688,7 +7080,7 @@ function relayoutUnderLock(ctx, manifest) {
     console.log('0 moved');
     return EXIT_OK;
   }
-  const plan = planRelayout(ctx, groups);
+  const plan = planRelayout(ctx, manifest, groups);
   if (plan.problems.length > 0) {
     for (const problem of plan.problems) console.log(problem);
     return EXIT_ERROR;
@@ -6828,7 +7220,7 @@ function commandRelayout(ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 19. COMMAND ENTRY POINT
+// 20. COMMAND ENTRY POINT
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -6931,7 +7323,7 @@ if (require.main === module) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 20. EXPORTS
+// 21. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {

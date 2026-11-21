@@ -201,6 +201,14 @@ function agentPersonaBlock(agentName, repoRoot) {
   ].join('\n');
 }
 
+/**
+ * Prepend an agent's persona block to a lineage prompt.
+ *
+ * @param {string} agentName - The agent whose definition is embedded.
+ * @param {string} prompt - The lineage prompt.
+ * @param {string} repoRoot - The repository root the agent file is read from.
+ * @returns {string} The persona block, a blank line, then the prompt.
+ */
 function withAgentPersona(agentName, prompt, repoRoot) {
   return `${agentPersonaBlock(agentName, repoRoot)}\n\n${prompt}`;
 }
@@ -423,14 +431,27 @@ function normalizeConvergenceMode(raw) {
   return raw;
 }
 
+/**
+ * Validate the depthMode option.
+ *
+ * @param {*} raw - The raw depthMode value.
+ * @returns {string|null} `expansive`, or null for an unset or `default` value.
+ * @throws {Error} An input error for any other value.
+ */
 function normalizeDepthMode(raw) {
   if (raw === undefined || raw === false || raw === null || raw === '' || raw === 'default') return null;
   if (raw !== 'expansive') throw inputError('depthMode must be one of: default, expansive');
   return raw;
 }
 
-// Open depth-1 nodes are dealt round-robin in node-id order, so the same seed
-// always gives each lineage the same share and the merge guard can check it.
+/**
+ * Open depth-1 nodes are dealt round-robin in node-id order, so the same seed
+ * always gives each lineage the same share and the merge guard can check it.
+ *
+ * @param {string} baseArtifactDir - The run's artifact directory holding the node store.
+ * @param {string[]} labels - The lineage labels, in deal order.
+ * @returns {Object<string, Object[]>} The nodes dealt to each label.
+ */
 function partitionFrontierNodes(baseArtifactDir, labels) {
   const { readNodeStore } = require('./frontier-admit.cjs');
   const nodes = [...readNodeStore(path.join(baseArtifactDir, 'frontier-nodes.jsonl')).values()]
@@ -441,20 +462,38 @@ function partitionFrontierNodes(baseArtifactDir, labels) {
   return partition;
 }
 
-// The spawn step needs the same deal the budget step already made, so it reuses that
-// partition and reads the node store again only when no budget step ran, as for a
-// loop type the budget step does not size.
+/**
+ * The spawn step needs the same deal the budget step already made, so it reuses that
+ * partition and reads the node store again only when no budget step ran, as for a
+ * loop type the budget step does not size.
+ *
+ * @param {Object} params - Partition inputs.
+ * @param {string|null} params.depthMode - The run's depth mode.
+ * @param {Object<string, Object[]>|null} params.budgetPartition - The budget step's partition, if it ran.
+ * @param {string} params.baseArtifactDir - The run's artifact directory holding the node store.
+ * @param {string[]} params.labels - The lineage labels.
+ * @returns {Object<string, Object[]>|null} The partition, or null outside expansive depth.
+ */
 function resolveFrontierPartition({ depthMode, budgetPartition, baseArtifactDir, labels }) {
   if (depthMode !== 'expansive') return null;
   return budgetPartition || partitionFrontierNodes(baseArtifactDir, labels);
 }
 
-// Under expansive depth a lineage the matrix gave no iterations is sized from its own
-// share of the seed, the way a single-executor run is sized after its seed step. The
-// floor is the budget that lineage would otherwise have run, the workflow default for
-// its loop, and a lineage dealt no seed node runs at that floor. Every such lineage gets an explicit iteration count, so a max-iterations
-// stop policy never finds it uncapped. A review lineage reviews the canonical four
-// dimensions. A matrix iterations value is explicit and always kept.
+/**
+ * Under expansive depth a lineage the matrix gave no iterations is sized from its own
+ * share of the seed, the way a single-executor run is sized after its seed step. The
+ * floor is the budget that lineage would otherwise have run, the workflow default for
+ * its loop, and a lineage dealt no seed node runs at that floor. Every such lineage gets
+ * an explicit iteration count, so a max-iterations stop policy never finds it uncapped.
+ * A review lineage reviews the canonical four dimensions. A matrix iterations value is
+ * explicit and always kept.
+ *
+ * @param {Object[]} lineages - The expanded lineages.
+ * @param {Object} params - Budget inputs.
+ * @param {string} params.loopType - The fan-out loop type.
+ * @param {Object<string, Object[]>|null} params.partition - The seed nodes dealt per lineage label.
+ * @returns {Object[]} The lineages, each with a positive iteration count.
+ */
 function expansiveLineageBudgets(lineages, { loopType, partition }) {
   const { expansiveBudget, LOOP_DEFAULT_MAX_ITERATIONS } = require('./frontier-admit.cjs');
   return lineages.map((lineage) => {
@@ -469,9 +508,16 @@ function expansiveLineageBudgets(lineages, { loopType, partition }) {
   });
 }
 
-// The stderr lines that explain each derived lineage budget. A lineage dealt no seed
-// node is named as such, and one warning says when there are more lineages than open
-// seed nodes, since the extra lineages have no frontier to work.
+/**
+ * The stderr lines that explain each derived lineage budget. A lineage dealt no seed
+ * node is named as such, and one warning says when there are more lineages than open
+ * seed nodes, since the extra lineages have no frontier to work.
+ *
+ * @param {Object[]} expanded - The lineages before budgeting.
+ * @param {Object[]} budgeted - The same lineages after expansiveLineageBudgets.
+ * @param {Object<string, Object[]>|null} partition - The seed nodes dealt per lineage label.
+ * @returns {string[]} The note lines, prefixed `[fanout-run]`.
+ */
 function expansiveLineageBudgetNotes(expanded, budgeted, partition) {
   const shareOf = (label) => (partition && Array.isArray(partition[label]) ? partition[label].length : 0);
   const seedCount = expanded.reduce((total, lineage) => total + shareOf(lineage.label), 0);
@@ -490,13 +536,20 @@ function expansiveLineageBudgetNotes(expanded, budgeted, partition) {
   return notes;
 }
 
-// A lineage starts from its own store and inbox. They are written only when the
-// lineage has no store yet, so a resumed lineage keeps the nodes it already closed.
-// Review carries no inbox: its nodes reach the leaf through the FRONTIER block, so
-// a seeded inbox would only hand the finding pipeline a file nothing reads.
-// The store is the seeded marker, so it is written last: a failed inbox write leaves
-// no store, and the next spawn attempt seeds both. A retry after the inbox landed but
-// the store did not appends the rows again, which the research reducer folds by text.
+/**
+ * A lineage starts from its own store and inbox. They are written only when the
+ * lineage has no store yet, so a resumed lineage keeps the nodes it already closed.
+ * Review carries no inbox: its nodes reach the leaf through the FRONTIER block, so
+ * a seeded inbox would only hand the finding pipeline a file nothing reads.
+ * The store is the seeded marker, so it is written last: a failed inbox write leaves
+ * no store, and the next spawn attempt seeds both. A retry after the inbox landed but
+ * the store did not appends the rows again, which the research reducer folds by text.
+ *
+ * @param {string} lineageDir - The lineage's artifact directory.
+ * @param {Object[]} nodes - The frontier nodes dealt to this lineage.
+ * @param {Object} [options={}] - `{ inbox }`; `inbox: false` skips the inbox rows.
+ * @returns {boolean} True when the store was written, false when it existed or no node was dealt.
+ */
 function writeLineageFrontierStore(lineageDir, nodes, options = {}) {
   const storePath = path.join(lineageDir, 'frontier-nodes.jsonl');
   if (fs.existsSync(storePath) || nodes.length === 0) return false;
@@ -589,6 +642,13 @@ function installFanoutSignalHandlers(onStop) {
   watchBootstrapParent(() => stopAndExit('SIGHUP'));
 }
 
+/**
+ * Fold one lineage lifecycle event into the per-lineage snapshot map, in place.
+ *
+ * @param {Map<string, Object>} snapshots - The latest snapshot per lineage label.
+ * @param {Object} event - A status ledger event; one without a string label is ignored.
+ * @returns {void}
+ */
 function updateLineageSnapshot(snapshots, event) {
   if (!event || typeof event.label !== 'string') return;
   const existing = snapshots.get(event.label) || { label: event.label };
@@ -693,6 +753,12 @@ function observabilityPathForLedger(ledgerPath) {
   return path.join(path.dirname(ledgerPath), OBSERVABILITY_EVENTS_FILENAME);
 }
 
+/**
+ * Map a status ledger row to the lineage status it implies.
+ *
+ * @param {Object} entry - A status ledger row.
+ * @returns {string} The row's own status, else the status its event implies, else `unknown`.
+ */
 function statusForLedgerEvent(entry) {
   if (entry && typeof entry.status === 'string' && entry.status.trim() !== '') {
     return entry.status;
@@ -1008,6 +1074,13 @@ function validateBaseArtifactDir(baseArtifactDir, specFolder, loopType) {
   return baseArtifactDir;
 }
 
+/**
+ * Resolve a Claude Code config directory and confine it to a `.claude*` root.
+ *
+ * @param {*} configDir - The configured directory, absolute, home-relative or repo-relative.
+ * @returns {string} The resolved directory under `~/.claude*` or a repo-local `.claude*`.
+ * @throws {Error} An input error for an empty value, a bad path or a directory outside those roots.
+ */
 function validateClaudeConfigDir(configDir) {
   if (typeof configDir !== 'string' || configDir.trim() === '') {
     throw inputError('configDir must be a non-empty string when set');
@@ -1198,6 +1271,12 @@ function hasNonEmptyFile(filePath) {
   }
 }
 
+/**
+ * List the iteration numbers of the `iterations/iteration-NNN.md` files in a lineage.
+ *
+ * @param {string} lineageDir - The lineage's artifact directory.
+ * @returns {number[]} The numbers in ascending order, duplicates kept, or an empty array.
+ */
 function iterationNumbersOnDisk(lineageDir) {
   try {
     const iterDir = path.join(lineageDir, 'iterations');
@@ -1215,6 +1294,13 @@ function iterationNumbersOnDisk(lineageDir) {
 function countIterationFiles(lineageDir) {
   return iterationNumbersOnDisk(lineageDir).length;
 }
+
+/**
+ * Keep one state record per iteration number.
+ *
+ * @param {Object[]} records - The lineage state log records.
+ * @returns {Map<number, Object>} The retained iteration record per iteration number.
+ */
 function retainIterationRecords(records) {
   // Collapse repeated iteration numbers to one record each, preferring the copy the
   // append gateway wrote over a bare direct-write copy of the same iteration.
@@ -1231,25 +1317,34 @@ function retainIterationRecords(records) {
   return retained;
 }
 
-// A count alone lets a gapped or out-of-range set pass for a full run: files 1, 2
-// and 4 count as three, and a stray iteration-099 fills in for a missing one.
-// Forced depth means every iteration from 1 to the cap ran once, so the set on
-// disk and the set the state log recorded both have to be exactly 1..cap.
-//
-// A repeated state record is not that failure. Two independent executor models
-// recorded every iteration twice, once by writing the state log directly and once
-// through the append gateway, so the contract this validator would enforce is one
-// the leaves already broke. Duplicates collapse to one record per iteration,
-// preferring the copy that carries the gateway's route-proof fields and the first
-// copy when neither does. A duplicate iteration file on disk stays a violation:
-// that is an extra artifact, not one artifact recorded twice.
-//
-// A log that names its iteration under another key is a different failure, and the
-// quieter one: those records collapse to nothing, so the set check below passes
-// vacuously and a lane with a full set of iteration files and not one usable record
-// is reported complete. Zero usable records is therefore a violation in its own
-// right — the state log has to prove the depth the artifact files suggest, and a log
-// that never numbered an iteration proves nothing about it.
+/**
+ * A count alone lets a gapped or out-of-range set pass for a full run: files 1, 2
+ * and 4 count as three, and a stray iteration-099 fills in for a missing one.
+ * Forced depth means every iteration from 1 to the cap ran once, so the set on
+ * disk and the set the state log recorded both have to be exactly 1..cap.
+ *
+ * A repeated state record is not that failure. Two independent executor models
+ * recorded every iteration twice, once by writing the state log directly and once
+ * through the append gateway, so the contract this validator would enforce is one
+ * the leaves already broke. Duplicates collapse to one record per iteration,
+ * preferring the copy that carries the gateway's route-proof fields and the first
+ * copy when neither does. A duplicate iteration file on disk stays a violation:
+ * that is an extra artifact, not one artifact recorded twice.
+ *
+ * A log that names its iteration under another key is a different failure, and the
+ * quieter one: those records collapse to nothing, so the set check below passes
+ * vacuously and a lane with a full set of iteration files and not one usable record
+ * is reported complete. Zero usable records is therefore a violation in its own
+ * right — the state log has to prove the depth the artifact files suggest, and a log
+ * that never numbered an iteration proves nothing about it.
+ *
+ * @param {Object} params - The sets to compare.
+ * @param {number[]|null} params.diskNumbers - Iteration numbers on disk, or null to skip the disk check.
+ * @param {Object[]} params.records - The lineage state log records.
+ * @param {number} params.cap - The iteration cap.
+ * @param {string|null} params.stateLogPath - The state log path named in a violation.
+ * @returns {string|null} The violation, or null when both sets are exactly 1..cap.
+ */
 function forcedDepthIterationViolation({ diskNumbers, records, cap, stateLogPath }) {
   const expected = Array.from({ length: cap }, (_, index) => index + 1);
   const describe = (numbers) => (numbers.length === 0 ? 'none' : numbers.join(','));
@@ -1478,8 +1573,14 @@ function hasLineageRegisteredFindings(loopType, lineageDir) {
   return false;
 }
 
-// The warning payload for a lane that fulfilled with fragments the merge cannot aggregate,
-// or null when the lane either recorded no findings or registered some.
+/**
+ * The warning payload for a lane that fulfilled with fragments the merge cannot aggregate,
+ * or null when the lane either recorded no findings or registered some.
+ *
+ * @param {string} loopType - The fan-out loop type.
+ * @param {string} lineageDir - The lineage's artifact directory.
+ * @returns {{delta_finding_count:number}|null} The delta finding count, or null.
+ */
 function findEmptyLineageRegistry(loopType, lineageDir) {
   const deltaFindingCount = countDeltaFindingRecords(lineageDir);
   if (deltaFindingCount === 0 || hasLineageRegisteredFindings(loopType, lineageDir)) {
@@ -1488,11 +1589,16 @@ function findEmptyLineageRegistry(loopType, lineageDir) {
   return { delta_finding_count: deltaFindingCount };
 }
 
-// A lineage's synthesis stopReason is written by its model and cannot be held to an exact
-// spelling. The iteration-count check above already proves the lineage ran every iteration,
-// so this only needs to confirm the reason belongs to the max-iterations family (e.g.
-// "maxIterationsReached", "max-iterations (10/10)") and is not a genuinely different outcome
-// such as convergence, a manual stop, or an error.
+/**
+ * A lineage's synthesis stopReason is written by its model and cannot be held to an exact
+ * spelling. The iteration-count check above already proves the lineage ran every iteration,
+ * so this only needs to confirm the reason belongs to the max-iterations family (e.g.
+ * "maxIterationsReached", "max-iterations (10/10)") and is not a genuinely different outcome
+ * such as convergence, a manual stop, or an error.
+ *
+ * @param {*} stopReason - The synthesis record's stopReason.
+ * @returns {boolean} True when the letters of the reason start with `maxiteration`.
+ */
 function isMaxIterationsStopReason(stopReason) {
   if (typeof stopReason !== 'string') return false;
   return stopReason.toLowerCase().replace(/[^a-z]/g, '').startsWith('maxiteration');
@@ -1586,6 +1692,14 @@ function lineageConfigStatus(loopType, lineageDir) {
   }
 }
 
+/**
+ * The stop evidence a lineage of this loop type must leave to count as complete.
+ *
+ * @param {string} loopType - `review` or `research`.
+ * @param {string} lineageDir - The lineage's artifact directory.
+ * @returns {{terminalEvents:string[]|undefined, stopReasons?:string[], iterationCap?:number|null}}
+ *   The terminal events, plus for research the allowed stop reasons and the config's iteration cap.
+ */
 function lineageCompletionPolicy(loopType, lineageDir) {
   const terminalEvents = TERMINAL_STOP_EVENTS_BY_LOOP_TYPE[loopType];
   if (loopType !== 'research') return { terminalEvents };
@@ -1744,6 +1858,17 @@ function finishedLineageMismatch({ loopType, lineageDir, label, binding, effecti
     + changed.map((name) => `${name} ${JSON.stringify(prior[name] ?? null)} -> ${JSON.stringify(effectiveConfig[name] ?? null)}`).join(', ');
 }
 
+/**
+ * Check that a lineage under stopPolicy=max-iterations ran every iteration and completed.
+ *
+ * @param {Object} params - The lineage under check.
+ * @param {string} params.loopType - `review` or `research`; any other type is not checked.
+ * @param {Object} params.stateRead - The parsed lineage state log.
+ * @param {Object} params.lineage - The lineage config, carrying its iteration cap.
+ * @param {string} params.stopPolicy - The run's stop policy.
+ * @param {string} [params.lineageDir] - The lineage's artifact directory.
+ * @returns {string|null} The violation, or null when the policy is met or does not apply.
+ */
 function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPolicy, lineageDir }) {
   // Forced-depth validation applies to both loop types: stopPolicy=max-iterations means the
   // lineage must run every iteration and convergence before the cap is telemetry only. The
@@ -1803,6 +1928,13 @@ function isRecord(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
+/**
+ * Read the stall watchdog threshold from raw config.
+ *
+ * @param {Object} rawConfig - The raw fan-out config.
+ * @returns {number} The configured threshold in ms, or 300000 when unset.
+ * @throws {Error} An input error when the threshold is 0 or not a non-negative number.
+ */
 function normalizeStallWatchdogMs(rawConfig) {
   // Defaults ON (mirrors the fan-out lagCeilingMs default): without a watchdog a stalled
   // lineage hangs silently until the hours-scale timeout. Read through the raw alias set
@@ -1822,6 +1954,12 @@ function normalizeStallWatchdogMs(rawConfig) {
 
 const DEFAULT_MAX_COST_UNITS_PER_LINEAGE = 72;
 
+/**
+ * Read the per-lineage cost cap and per-iteration cost from raw config through their alias sets.
+ *
+ * @param {Object} [rawConfig={}] - The raw fan-out config.
+ * @returns {{max_cost_units_per_lineage:number, cost_units_per_iteration:number}} The guards, with defaults filled in.
+ */
 function normalizeLineageBudgetGuards(rawConfig = {}) {
   return {
     max_cost_units_per_lineage: readRawConfigNumber(rawConfig, [
@@ -1845,6 +1983,14 @@ function normalizeLineageBudgetGuards(rawConfig = {}) {
   };
 }
 
+/**
+ * Compute a lineage's guaranteed and worst-case cost units.
+ *
+ * @param {Object} lineage - The lineage; its `iterations` falls back to the default.
+ * @param {Object} [guardsInput={}] - Raw config carrying the budget knobs.
+ * @param {number} [maxRetries=0] - Retries allowed after the first attempt.
+ * @returns {Object} The guards plus iterations, total_attempts, base_cost_units and estimated_cost_units.
+ */
 function computeLineageBudgetUpperBound(lineage, guardsInput = {}, maxRetries = 0) {
   const guards = normalizeLineageBudgetGuards(guardsInput);
   const rawIterations = Number(lineage && lineage.iterations);
@@ -1869,6 +2015,13 @@ function computeLineageBudgetUpperBound(lineage, guardsInput = {}, maxRetries = 
   };
 }
 
+/**
+ * Decide whether one lineage's guaranteed spend fits the per-lineage cost cap.
+ *
+ * @param {Object} [input={}] - `{ lineage, guards, maxRetries }`; without `guards` the input
+ *   itself is read as the guards.
+ * @returns {{continue_allowed:boolean, stop_reasons:string[], upper_bound:Object}} The verdict and the bound it used.
+ */
 function evaluateLineageBudgetCap(input = {}) {
   const upperBound = computeLineageBudgetUpperBound(
     input.lineage || {},
@@ -1890,6 +2043,12 @@ function evaluateLineageBudgetCap(input = {}) {
 // (a run may pass one and still fail the other).
 const DEFAULT_MAX_AGGREGATE_COST_UNITS = 288;
 
+/**
+ * Read the aggregate cost cap from raw config through its alias set.
+ *
+ * @param {Object} [rawConfig={}] - The raw fan-out config.
+ * @returns {{max_aggregate_cost_units:number}} The configured cap, or the default.
+ */
 function normalizeAggregateBudgetGuards(rawConfig = {}) {
   return {
     max_aggregate_cost_units: readRawConfigNumber(rawConfig, [
@@ -1901,6 +2060,15 @@ function normalizeAggregateBudgetGuards(rawConfig = {}) {
   };
 }
 
+/**
+ * Sum the guaranteed cost units of every lineage in a run.
+ *
+ * @param {Object[]} lineages - The expanded lineages.
+ * @param {Object} [guardsInput={}] - Raw config carrying the budget knobs.
+ * @param {number} [maxRetries=0] - Retries per lineage, used for each lineage's worst case.
+ * @returns {{max_aggregate_cost_units:number, estimated_cost_units:number, lineage_count:number,
+ *   per_lineage:Object[]}} The aggregate cap, summed base spend and per-lineage figures.
+ */
 function computeAggregateBudgetUpperBound(lineages, guardsInput = {}, maxRetries = 0) {
   const aggregateGuards = normalizeAggregateBudgetGuards(guardsInput);
   const lineageGuards = normalizeLineageBudgetGuards(guardsInput);
@@ -1924,6 +2092,13 @@ function computeAggregateBudgetUpperBound(lineages, guardsInput = {}, maxRetries
   };
 }
 
+/**
+ * Decide whether a run's summed guaranteed spend fits the aggregate cost cap.
+ *
+ * @param {Object} [input={}] - `{ lineages, guards, maxRetries }`; without `guards` the input
+ *   itself is read as the guards.
+ * @returns {{continue_allowed:boolean, stop_reasons:string[], upper_bound:Object}} The verdict and the bound it used.
+ */
 function evaluateAggregateBudgetCap(input = {}) {
   const upperBound = computeAggregateBudgetUpperBound(
     input.lineages || [],
@@ -2398,6 +2573,12 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
 // ceiling and a positive override may only narrow it, never widen past it.
 const LINEAGE_LIFETIME_HARD_MAX_HOURS = 4;
 
+/**
+ * Refuse a lineage lifetime override above the hard ceiling.
+ *
+ * @param {number} ceilingHoursOverride - The caller's lifetime override in hours.
+ * @throws {Error} An input error when the override exceeds LINEAGE_LIFETIME_HARD_MAX_HOURS.
+ */
 function assertLineageTimeoutHoursOverrideWithinCeiling(ceilingHoursOverride) {
   if (Number.isFinite(ceilingHoursOverride) && ceilingHoursOverride > LINEAGE_LIFETIME_HARD_MAX_HOURS) {
     throw inputError(
@@ -2423,12 +2604,25 @@ function computeLineageTimeoutMs(lineage, ceilingHoursOverride) {
   return Math.min(iters * perIterSecs * 2 * 1000, ceilingMs);
 }
 
+/**
+ * Convert a heartbeat cadence in seconds to milliseconds.
+ *
+ * @param {*} seconds - Cadence in seconds.
+ * @returns {number} At least 1 ms, or 0 (disabled) for a non-finite or non-positive value.
+ */
 function normalizeProgressHeartbeatMs(seconds) {
   const value = Number(seconds);
   if (!Number.isFinite(value) || value <= 0) return 0;
   return Math.max(1, Math.floor(value * 1000));
 }
 
+/**
+ * Resolve the grace period after a lineage subprocess exits.
+ *
+ * @param {Object} rawConfig - The raw fan-out config.
+ * @param {number} [progressHeartbeatMs=0] - The heartbeat cadence, doubled for the derived floor.
+ * @returns {number} The configured grace, else the larger of the default and twice the heartbeat.
+ */
 function normalizePostExitGraceMs(rawConfig, progressHeartbeatMs = 0) {
   const explicit = readRawConfigNumber(rawConfig, [
     'postExitGraceMs',
@@ -2451,6 +2645,13 @@ function slotDurationMsFromHrtime(hrStart) {
   return Math.max(0, (seconds * 1000) + (nanoseconds / 1e6));
 }
 
+/**
+ * Count the whole intervals a slot overran beyond its first.
+ *
+ * @param {number} slotDurationMs - How long the slot ran.
+ * @param {number} intervalMs - The interval being counted.
+ * @returns {number} The skipped intervals, or 0 for a non-finite or non-positive input.
+ */
 function computeSkippedCount(slotDurationMs, intervalMs) {
   const elapsed = Number(slotDurationMs);
   const interval = Number(intervalMs);
@@ -2468,6 +2669,13 @@ function buildSlotAccounting(hrStart, intervalMs) {
   };
 }
 
+/**
+ * Add slot accounting to a lineage's `completed` or `failed` event.
+ *
+ * @param {Object} event - A status ledger event.
+ * @param {Map<string, {skippedCount:number, slotDurationMs:number}>} accountingByLabel - Accounting per lineage label.
+ * @returns {Object} The event with skippedCount and slotDurationMs, or the event unchanged.
+ */
 function decorateSlotAccountingEvent(event, accountingByLabel) {
   if (!event || typeof event.label !== 'string') return event;
   if (event.event !== 'completed' && event.event !== 'failed') return event;
@@ -2502,6 +2710,18 @@ function readLineageProgressFields(lineageDir, liveStdout = '') {
   return { iterations, lastCommitAt, nodes, flaggedPasses };
 }
 
+/**
+ * Append a `progress` row to the status ledger on every heartbeat of a running lineage.
+ *
+ * @param {Object} params - Heartbeat settings.
+ * @param {number} params.cadenceMs - Heartbeat interval; 0 or less disables it.
+ * @param {string} params.label - The lineage label written on each row.
+ * @param {string} params.ledgerPath - The fan-out status ledger path.
+ * @param {Function} params.getGauges - Returns the gauges written on each row.
+ * @param {Function} [params.onProgress] - Called after each row is written.
+ * @param {Function} [params.getProgress] - Returns extra progress fields for the row.
+ * @returns {Function} Stops the heartbeat.
+ */
 function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges, onProgress, getProgress }) {
   if (!Number.isFinite(cadenceMs) || cadenceMs <= 0) {
     return () => {};
@@ -2587,6 +2807,18 @@ function startSharedCheckoutChurnDetector({
   };
 }
 
+/**
+ * Append one `stall_detected` warning to the status ledger once a lineage stays
+ * quiet for the threshold.
+ *
+ * @param {Object} params - Watchdog settings.
+ * @param {number} params.thresholdMs - Quiet time that counts as a stall; 0 or less disables it.
+ * @param {string} params.label - The lineage label written on the ledger row.
+ * @param {string} params.ledgerPath - The fan-out status ledger path.
+ * @param {Function} params.getLastEventAtMs - Returns the epoch ms of the lineage's last event.
+ * @param {Function} params.getGauges - Returns the gauges written on the ledger row.
+ * @returns {Function} Stops the watchdog.
+ */
 function startLineageStallWatchdog({ thresholdMs, label, ledgerPath, getLastEventAtMs, getGauges }) {
   if (!Number.isFinite(thresholdMs) || thresholdMs <= 0) {
     return () => {};
@@ -2705,6 +2937,8 @@ function startLineageArtifactProgressPoller({ lineageDir, cadenceMs, onArtifactP
   return () => clearInterval(timer);
 }
 
+const LINEAGE_STDERR_CAP_BYTES = 256 * 1024;
+
 /**
  * Run a lineage subprocess without blocking the Node event loop.
  *
@@ -2721,8 +2955,6 @@ function startLineageArtifactProgressPoller({ lineageDir, cadenceMs, onArtifactP
  * @param {Object} opts - { cwd, env, timeoutMs, maxBuffer, input? }.
  * @returns {Promise<{status:number|null, signal:string|null, stdout:string, error?:Error}>}
  */
-const LINEAGE_STDERR_CAP_BYTES = 256 * 1024;
-
 function runLineageProcess(command, cmdArgs, opts) {
   const { cwd, env, timeoutMs, maxBuffer } = opts;
   const hasInput = typeof opts.input === 'string';
@@ -3692,6 +3924,14 @@ function buildDshLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermis
 // A plugin that fails to load only prints this line and the run carries on unguarded.
 const DSH_INACTIVE_PLUGIN = /\bdid not activate\b/;
 
+/**
+ * Judge whether a dsh run completed, from its exit code and JSON-lines output.
+ *
+ * @param {number} exitCode - The dsh process exit code.
+ * @param {string} stdout - The JSON-lines event stream dsh wrote.
+ * @param {string} [stderr=''] - The dsh stderr text.
+ * @returns {string|null} The reason the run did not complete, or null when its final event completed.
+ */
 function validateDshCompletion(exitCode, stdout, stderr = '') {
   if (exitCode !== 0) return `exited with code ${exitCode}`;
   if (DSH_INACTIVE_PLUGIN.test(String(stderr || ''))) return 'reported a plugin that did not activate';
@@ -3944,6 +4184,12 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
   return adapter(lineage, prompt, resolvedSandbox, resolvedPermission, options);
 }
 
+/**
+ * Whether `codex` resolves on the PATH of the given environment.
+ *
+ * @param {Object} [env=process.env] - Environment the lookup shell runs with.
+ * @returns {boolean} True when `command -v codex` succeeds.
+ */
 function isCodexBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v codex >/dev/null 2>&1'], {
     env,
@@ -3962,6 +4208,12 @@ function isClaudeBinaryAvailable(env = process.env) {
   return result.status === 0;
 }
 
+/**
+ * Whether an OpenCode binary resolves for the given environment.
+ *
+ * @param {Object} [env=process.env] - Environment the binary is resolved against.
+ * @returns {boolean} True when resolveOpencodeBinary does not throw.
+ */
 function isOpencodeBinaryAvailable(env = process.env) {
   try {
     resolveOpencodeBinary(env);
@@ -3971,9 +4223,14 @@ function isOpencodeBinaryAvailable(env = process.env) {
   }
 }
 
-// `cursor-agent -p` exits 0 even on an auth failure, so this PATH preflight is
-// the only availability signal buildCursorLineageCommand may use — never the
-// dispatch exit code.
+/**
+ * `cursor-agent -p` exits 0 even on an auth failure, so this PATH preflight is
+ * the only availability signal buildCursorLineageCommand may use — never the
+ * dispatch exit code.
+ *
+ * @param {Object} [env=process.env] - Environment the lookup shell runs with.
+ * @returns {boolean} True when `command -v cursor-agent` succeeds.
+ */
 function isCursorBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v cursor-agent >/dev/null 2>&1'], {
     env,
@@ -3982,10 +4239,15 @@ function isCursorBinaryAvailable(env = process.env) {
   return result.status === 0;
 }
 
-// PATH preflight only. Devin auth lives in a credentials file rather than the
-// environment, so an authenticated shell and an unauthenticated one look
-// identical here — `devin auth status` is the operator-facing check, not
-// something this builder can meaningfully gate on.
+/**
+ * PATH preflight only. Devin auth lives in a credentials file rather than the
+ * environment, so an authenticated shell and an unauthenticated one look
+ * identical here — `devin auth status` is the operator-facing check, not
+ * something this builder can meaningfully gate on.
+ *
+ * @param {Object} [env=process.env] - Environment the lookup shell runs with.
+ * @returns {boolean} True when `command -v devin` succeeds.
+ */
 function isDevinBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v devin >/dev/null 2>&1'], {
     env,
@@ -3994,6 +4256,12 @@ function isDevinBinaryAvailable(env = process.env) {
   return result.status === 0;
 }
 
+/**
+ * Whether `pi` resolves on the PATH of the given environment.
+ *
+ * @param {Object} [env=process.env] - Environment the lookup shell runs with.
+ * @returns {boolean} True when `command -v pi` succeeds.
+ */
 function isPiBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v pi >/dev/null 2>&1'], {
     env,
@@ -4002,6 +4270,12 @@ function isPiBinaryAvailable(env = process.env) {
   return result.status === 0;
 }
 
+/**
+ * Whether `dsh` resolves on the PATH of the given environment.
+ *
+ * @param {Object} [env=process.env] - Environment the lookup shell runs with.
+ * @returns {boolean} True when `command -v dsh` succeeds.
+ */
 function isDshBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v dsh >/dev/null 2>&1'], {
     env,
@@ -5356,6 +5630,10 @@ if (require.main === module && isTsxLoaded) {
     process.exit(code);
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   expansiveLineageBudgets,
