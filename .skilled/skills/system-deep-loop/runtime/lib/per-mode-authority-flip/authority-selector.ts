@@ -45,10 +45,12 @@ export function isValidAuthorityRecord(value: unknown): value is AuthorityRecord
     || typeof record.state !== 'string'
     || !AuthorityFlipStates.has(record.state)
     || !Number.isSafeInteger(record.epoch)
+    // The isSafeInteger operand above short-circuits, so epoch is a number here.
     || record.epoch! <= 0
     || (record.selectedWriter !== 'legacy' && record.selectedWriter !== 'dark')
     || !(record.candidateSha === null || typeof record.candidateSha === 'string')
     || !Number.isSafeInteger(record.policyVersion)
+    // The isSafeInteger operand above short-circuits, so policyVersion is a number here.
     || record.policyVersion! < 0
     || !(record.cutoverCertificateDigest === null || typeof record.cutoverCertificateDigest === 'string')
     || !(record.lastTransitionDigest === null || typeof record.lastTransitionDigest === 'string')

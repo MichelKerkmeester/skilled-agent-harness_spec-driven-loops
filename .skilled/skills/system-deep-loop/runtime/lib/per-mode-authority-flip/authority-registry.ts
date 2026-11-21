@@ -99,6 +99,10 @@ function defaultRecord(mode: CutoverCertificateMode, now: string): AuthorityReco
 // 6. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * An authority transition out of `cutover_ready` at an expected epoch, naming the next writer and the certificate and
+ * transition digests it rests on.
+ */
 export interface AuthorityCompareAndSwapInput {
   readonly mode: CutoverCertificateMode;
   readonly expectedState: 'cutover_ready';

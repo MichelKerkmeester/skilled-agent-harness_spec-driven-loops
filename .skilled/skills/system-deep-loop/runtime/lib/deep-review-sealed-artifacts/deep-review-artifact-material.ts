@@ -626,6 +626,10 @@ function parseResumeMaterial(
   });
 }
 
+/**
+ * Parse untrusted input into the closed material shape registered for a Deep Review artifact kind, throwing a
+ * SealedArtifactError when it violates that shape.
+ */
 export function parseDeepReviewArtifactMaterial(
   artifactKind: DeepReviewArtifactKind,
   input: unknown,
@@ -673,7 +677,10 @@ function canonicalizeDeepReviewMaterial(
   return Uint8Array.from(canonicalBytes({ artifactKind, material }));
 }
 
-// Register closed mode profiles while leaving digest, storage, and verification to the shared store.
+/**
+ * Register the closed Deep Review profiles plus the shared initial kinds, leaving digest, storage, and verification to
+ * the shared store.
+ */
 export function createDeepReviewArtifactCanonicalizerRegistry(): ArtifactCanonicalizerRegistry {
   const definitions: ArtifactCanonicalizerDefinition[] =
     DEEP_REVIEW_ARTIFACT_KIND_REGISTRY.map((entry) => ({
@@ -709,6 +716,10 @@ export function createDeepReviewArtifactCanonicalizerRegistry(): ArtifactCanonic
   return new ArtifactCanonicalizerRegistry([...definitions, ...sharedDefinitions]);
 }
 
+/**
+ * Decode canonical bytes back into Deep Review material, throwing when they do not parse, name another kind, or fail to
+ * re-canonicalize to the same bytes.
+ */
 export function deepReviewMaterialFromCanonicalBytes(
   artifactKind: DeepReviewArtifactKind,
   bytes: readonly number[],

@@ -14,6 +14,7 @@ import {
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/** A node returned by `findCoverageGaps` with the reason it lacks a required edge. */
 export interface CoverageGap {
   nodeId: string;
   kind: string;
@@ -21,6 +22,7 @@ export interface CoverageGap {
   reason: string;
 }
 
+/** An edge returned by `findContradictions`, with the names of both endpoints, its weight and optional metadata. */
 export interface ContradictionPair {
   edgeId: string;
   sourceId: string;
@@ -31,6 +33,7 @@ export interface ContradictionPair {
   metadata?: Record<string, unknown>;
 }
 
+/** One node reached by `findProvenanceChain`, with its depth and the product of edge weights along the path to it. */
 export interface ProvenanceStep {
   nodeId: string;
   kind: string;
@@ -40,6 +43,7 @@ export interface ProvenanceStep {
   cumulativeWeight: number;
 }
 
+/** A node ranked by `rankHotNodes`, scored as its edge count plus half its edge weight sum. */
 export interface HotNode {
   nodeId: string;
   kind: string;
