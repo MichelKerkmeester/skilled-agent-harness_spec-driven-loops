@@ -49,7 +49,8 @@ function gitTopLevel(): string | null {
  * Resolve the durable mode-global authority root directory.
  *
  * `DEEP_LOOP_AUTHORITY_ROOT` wins when set; a relative value resolves against
- * the repository root. Otherwise an explicitly supplied repository root is
+ * the repository root. It is a trusted operator setting and is not contained
+ * to the repository by design, so it may point outside the checkout. Otherwise an explicitly supplied repository root is
  * used, and failing that the checkout is discovered from the working
  * directory. `process.cwd()` is the last resort so the function always
  * returns an absolute path rather than throwing at a write boundary.

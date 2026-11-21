@@ -33,14 +33,16 @@ deep-loop/
 |---|---|
 | `artifact-root.cjs` | Resolves the canonical artifact topology root. |
 | `atomic-state.ts` | Writes state atomically across the runtime state boundary. |
-| `bayesian-scorer.ts` | Computes a Laplace-smoothed success score and checks it against the demotion threshold. |
+| `bayesian-scorer.ts` | Computes a Laplace-smoothed success score and checks it against the demotion threshold. It has no production caller and is exercised only by its unit test. |
 | `continuity-thread.cjs` | Reads and writes continuity-thread compatibility data. |
 | `divergent-pivot.ts` | Coordinates divergent-pivot transaction and quorum behavior. |
+| `divergent-pivot-io.ts` | Holds the mode-neutral JSON, JSONL, text and candidate helpers the research and review pivot input builders share. |
 | `evidence-contract.ts` | Validates dispatch-boundary evidence metadata. |
 | `executor-audit.ts` | Records executor provenance and dispatch failure evidence. |
 | `executor-config.ts` | Parses executor configuration, kinds and sandbox mappings. |
 | `fallback-router.ts` | Routes execution to the configured fallback executor. |
 | `fanout-effect-dispatch.ts` | Routes each fan-out executor spawn through the effect gateway, recording an intent before the subprocess runs and a confirmation after. A resumed lineage gets a fresh `:redispatch-<n>` effect id, so it never collides with the first dispatch. |
+| `fs-durability.ts` | Holds `fsyncPath` and `makeTempPath` for the atomic writers in `atomic-state.ts` and `jsonl-repair.ts`. `loop-lock.ts` keeps its own copies because it also loads under native type stripping. |
 | `iteration-findings.cjs` | Extracts Markdown findings from iteration files so iteration verification and registry rebuild count the same entries. |
 | `jsonl-repair.ts` | Repairs recoverable trailing corruption in state logs. |
 | `lifecycle-taxonomy.cjs` | Defines terminal lifecycle and session outcome values. |

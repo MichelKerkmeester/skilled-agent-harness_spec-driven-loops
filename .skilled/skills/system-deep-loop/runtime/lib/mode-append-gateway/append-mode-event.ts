@@ -469,7 +469,7 @@ export async function appendModeEvent(
 ): Promise<AppendModeEventOutcome> {
   const now = options.now ?? (() => new Date());
 
-  // Phase 1: Bind execution-time facts from the environment
+  // Stage `binding`: bind execution-time facts from the environment
   let binding: ResolvedCutoverBinding;
   try {
     binding = options.binding ?? resolveCutoverBinding({
@@ -487,7 +487,7 @@ export async function appendModeEvent(
     };
   }
 
-  // Phase 2: Resolve and verify authority admission from the durable root
+  // Stage `authority`: resolve and verify authority admission from the durable root
   const authorityRoot = options.authorityRoot ?? resolveAuthorityRoot();
 
   if (!AUTHORITY_FLIP_MODE_ORDER.includes(options.mode as CutoverCertificateMode)) {
@@ -532,7 +532,9 @@ export async function appendModeEvent(
     };
   }
 
-  // Phase 3: Event Preflight / Envelope verification
+  // Stage `provenance`: event preflight before the append, whose refusals report
+  // as `provenance` (unattributed state log) or `append` (unreadable ledger,
+  // idempotency conflict)
   const event = options.eventRecord;
 
   // Resolve exact registered policy digest if available from policy registry
@@ -588,7 +590,8 @@ export async function appendModeEvent(
   }
   const idempotentReplay = idempotency.kind === 'replay';
 
-  // Phase 4 & 5: Authorize and Append with bounded retry for concurrent writers
+  // Stages `authorization` and `append`: authorize, then append with bounded
+  // retry for concurrent writers
   const maxRetries = idempotentReplay ? 0 : 10;
   let receipt: DurableAppendReceipt | null = idempotency.kind === 'replay' ? idempotency.receipt : null;
 
@@ -668,7 +671,7 @@ export async function appendModeEvent(
     };
   }
 
-  // Phase 5: Refresh the legacy projection
+  // Stage `projection`: refresh the legacy projection
   let projectionRefreshed = false;
   let projectionError: string | null = null;
   // Distinguishes "the projection engine ran and did not succeed" (a real

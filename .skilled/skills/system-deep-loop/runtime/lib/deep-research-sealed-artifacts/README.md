@@ -28,6 +28,8 @@ Callers should use the exported API in `index.ts`. Filesystem, ledger and workfl
 | `deep-research-sealed-artifacts.ts` | Sealing, parsing, storage and verification helpers. |
 | `index.ts` | Public barrel for artifact construction, sealing and parsing. |
 
+`deep-research-artifact-set.ts` mirrors `deep-review-artifact-set.ts` in [`../deep-review-sealed-artifacts/`](../deep-review-sealed-artifacts/README.md) almost line for line. The duplication is accepted as per-mode isolation: each mode owns its sealed-artifact boundary, module layout and exports. Consolidate the two only when a third mode needs the same set logic.
+
 ---
 
 ## 3. PUBLIC SURFACE

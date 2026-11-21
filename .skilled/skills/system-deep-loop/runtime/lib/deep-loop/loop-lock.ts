@@ -140,6 +140,9 @@ function normalizeLoopLockData(data: LoopLockData): LoopLockData {
   return normalized;
 }
 
+// Kept local rather than imported from fs-durability: this module also loads
+// under native type stripping, which cannot resolve a `.js` sibling specifier,
+// so it carries no relative runtime imports.
 function fsyncPath(path: string): void {
   let fd: number | undefined;
   try {

@@ -61,6 +61,11 @@ void import('./executor-audit.js').then(
   () => undefined,
 );
 
+// A null gateway is an accepted degraded mode: when neither path can load the
+// module, the failure row skips the gateway and falls back to a plain JSONL
+// append, and containment itself still runs. The rejection and the failed
+// require stay silent so a loader that cannot require `.ts` does not add
+// stderr to every run.
 function loadGatewayAppend(): GatewayAppendModule | null {
   if (gatewayAppendModule !== null || gatewayRequireFailed) return gatewayAppendModule;
   try {

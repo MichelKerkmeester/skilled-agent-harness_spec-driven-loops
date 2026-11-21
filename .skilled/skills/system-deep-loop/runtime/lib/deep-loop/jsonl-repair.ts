@@ -8,11 +8,8 @@
 
 import {
   appendFileSync,
-  closeSync,
   existsSync,
-  fsyncSync,
   mkdirSync,
-  openSync,
   readFileSync,
   renameSync,
   rmSync,
@@ -21,6 +18,8 @@ import {
 import { createRequire } from 'node:module';
 import { dirname } from 'node:path';
 import { randomUUID } from 'node:crypto';
+
+import { fsyncPath } from './fs-durability.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -180,18 +179,6 @@ function dedupeRecords(records: JsonlRecord[]): JsonlRecord[] {
 
 function mergeRecords(existingRecords: JsonlRecord[], incomingRecords: JsonlRecord[]): JsonlRecord[] {
   return dedupeRecords([...existingRecords, ...incomingRecords]);
-}
-
-function fsyncPath(path: string): void {
-  let fd: number | undefined;
-  try {
-    fd = openSync(path, 'r');
-    fsyncSync(fd);
-  } finally {
-    if (typeof fd === 'number') {
-      closeSync(fd);
-    }
-  }
 }
 
 function writeRawContentAtomic(path: string, content: string): void {

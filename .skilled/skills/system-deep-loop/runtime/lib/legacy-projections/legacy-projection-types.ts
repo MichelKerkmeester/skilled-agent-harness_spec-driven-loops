@@ -76,11 +76,14 @@ export interface LegacyProjectionContract<TState extends LegacyProjectionJsonObj
   readonly readers: readonly string[];
   readonly base: LegacyProjectionBase<TState>;
   readonly acceptedEventVersions: Readonly<Record<string, readonly number[]>>;
-  readonly reduce: (
+  // Method syntax keeps the parameters bivariant, so a contract over a
+  // narrower state still fits the surface-level LegacyProjectionContract
+  // array without widening the state type to `any`.
+  reduce(
     state: Readonly<TState>,
     event: Readonly<EventReadResult>,
-  ) => TState;
-  readonly serialize: (state: Readonly<TState>) => Uint8Array | string;
+  ): TState;
+  serialize(state: Readonly<TState>): Uint8Array | string;
 }
 
 /**
@@ -96,7 +99,7 @@ export interface LegacyProjectionSurfaceContract {
   readonly ledgerId: string;
   readonly buildArtifacts: (
     events: readonly EventReadResult[],
-  ) => readonly LegacyProjectionContract<any>[];
+  ) => readonly LegacyProjectionContract<LegacyProjectionJsonObject>[];
 }
 
 /** Exact immutable oracle and replay binding for one requested shadow refresh. */

@@ -343,7 +343,7 @@ export function createDeepResearchProjectionsProjectionContract(
   return {
     surfaceId: 'research-projections',
     ledgerId,
-    buildArtifacts(_events: readonly EventReadResult[]): readonly LegacyProjectionContract<any>[] {
+    buildArtifacts(_events: readonly EventReadResult[]): readonly LegacyProjectionContract<LegacyProjectionJsonObject>[] {
       // The findings registry is a single lifecycle-replacement JSON
       // artifact; the three prose files in the mixed surface are omitted
       // (see the premise check above), so the surface projects exactly
