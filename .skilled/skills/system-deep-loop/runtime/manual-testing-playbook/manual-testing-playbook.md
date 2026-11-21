@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -632,7 +632,7 @@ Expected signals: stdout JSON with `"ok":true` and a receipt carrying `ledger_id
 ### DLR-065 | frontier-admit.cjs
 
 #### Description
-Owns the expansive frontier node store: seeds depth-1 nodes and reports the budget, admits or prunes leaf proposals through six ordered checks, closes nodes, and refuses to close a pruned node as live.
+Owns the expansive frontier node store: seeds depth-1 nodes and reports the budget, admits or prunes leaf proposals through seven ordered checks, closes nodes, and refuses to close a pruned node as live.
 
 #### Scenario Contract
 Prompt: `Validate frontier-admit.cjs: seed two nodes, admit one proposal and prune one, close the admitted node, and try to close the pruned one. Return a PASS or FAIL verdict with the reason.`

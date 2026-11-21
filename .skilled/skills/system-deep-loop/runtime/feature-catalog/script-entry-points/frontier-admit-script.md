@@ -1,13 +1,13 @@
 ---
 title: "frontier-admit.cjs"
-description: "Owns the expansive frontier node store: seeds depth-1 nodes, admits or prunes leaf proposals through six ordered checks, closes nodes, renders the frontier prompt block and projects the store to graph events."
+description: "Owns the expansive frontier node store: seeds depth-1 nodes, admits or prunes leaf proposals through seven ordered checks, closes nodes, renders the frontier prompt block and projects the store to graph events."
 trigger_phrases:
   - "frontier-admit.cjs"
   - "frontier node store"
   - "frontier-nodes.jsonl"
   - "frontier admission checks"
   - "expansive frontier seed budget"
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # frontier-admit.cjs
@@ -16,7 +16,7 @@ version: 1.0.10.0
 
 ## 1. OVERVIEW
 
-Owns the expansive frontier node store: seeds depth-1 nodes, admits or prunes leaf proposals through six ordered checks, closes nodes, renders the frontier prompt block and projects the store to graph events.
+Owns the expansive frontier node store: seeds depth-1 nodes, admits or prunes leaf proposals through seven ordered checks, closes nodes, renders the frontier prompt block and projects the store to graph events.
 
 This feature belongs to the script entry points group. The orchestrating workflow calls it. Leaves only propose, and they never call it.
 

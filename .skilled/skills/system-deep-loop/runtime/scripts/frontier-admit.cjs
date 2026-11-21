@@ -13,7 +13,8 @@
 // writer is fanout-run.cjs, which writes the starting store of each lineage it
 // deals a node to before the lineage spawns. The admission checks run in one fixed order so the workflow steps
 // have a single deterministic implementation rather than prose the orchestrating
-// model executes: relevance, dedupe, depth, fan-out, monotone budget, acyclicity.
+// model executes: relevance, dedupe, depth, fan-out, node cap, monotone budget,
+// acyclicity.
 // The first failing check prunes the proposal with that check's name as the
 // reason.
 //

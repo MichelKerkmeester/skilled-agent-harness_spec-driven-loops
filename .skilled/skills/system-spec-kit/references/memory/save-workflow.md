@@ -8,7 +8,7 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.11.0
+version: 1.6.12.0
 ---
 
 # Memory Save Workflow - Context Preservation Methods
@@ -258,7 +258,7 @@ The writer sets `packet_pointer`, `last_updated_at` and `last_updated_by` itself
 
 ### Session Reference
 
-`session_ref` is writer-owned and is never a payload field. On a `--full-auto` save that receives an explicit `--session-id` and a `--runtime`, the writer mints it from those inputs, the resolved project root and the save time. The generated `SESSION_ID` fallback names no runtime session, so a save without the explicit flag omits the object, and plan-only or hybrid saves never write it.
+`session_ref` is writer-owned and is never a payload field. On a `--full-auto` save that receives an explicit `--session-id` and a `--runtime`, the writer mints it from those inputs, the resolved project root and the save time. The generated `SESSION_ID` fallback names no runtime session, so a save without the explicit flag omits the object, and plan-only or hybrid saves never write it. A minted reference counts as a continuity field: a `--full-auto` save with `--session-id` and `--runtime` and no other continuity field still rewrites the leaf's block, with a fresh `session_ref.savedAt`, rewritten `packet_pointer`, `last_updated_at` and `last_updated_by` values and the completion fingerprint stamp when the packet carries a completion claim.
 
 | Key | Type | Rule |
 | --- | --- | --- |
@@ -307,12 +307,12 @@ If that explicit CLI argument resolves to a phase folder, the command keeps that
 
 ### Planner Modes
 
-Every planner mode refreshes `description.json`, `graph-metadata.json` and the phase-parent pointers. Only `--full-auto` writes the continuity fields.
+Every planner mode refreshes `description.json`, `graph-metadata.json` and the phase-parent pointers. Only `--full-auto` writes the continuity fields, with one exception every mode shares: the completion fingerprint stamp. Before the graph refresh, each save rewrites `_memory.continuity.session_dedup.fingerprint` in the target's `implementation-summary.md` when the packet carries a completion claim, the block holds a fingerprint line and the stored value differs from the recomputed one. A plan-only or hybrid save changes nothing else in the block, and at a phase parent, which holds no summary, it stamps nothing. A `--full-auto` save that routes to a leaf stamps that leaf after writing its block. Logic: `stampCompletionFingerprintIfNeeded` in `.skilled/skills/system-spec-kit/runtime/cli/core/memory-metadata.ts`.
 
 | Mode | Metadata and pointers | Continuity fields |
 |------|-----------------------|-------------------|
-| `plan-only` (default) | Refreshed | Not written |
-| `hybrid` | Refreshed | Not written; behaves like `plan-only` |
+| `plan-only` (default) | Refreshed | Not written, except the completion fingerprint stamp |
+| `hybrid` | Refreshed | Not written, except the completion fingerprint stamp. Behaves like `plan-only` |
 | `full-auto` | Refreshed | Written into the leaf's `implementation-summary.md`, or a research record's `spec.md` |
 
 ### Validation Checkpoints
@@ -380,7 +380,7 @@ specs/###-feature-name/
 
 When the save target is a phase parent (detected via `isPhaseParent()` from `.skilled/skills/system-spec-kit/runtime/cli/dist/spec/is-phase-parent.js`), the generator follows a different routing contract that matches the lean trio policy:
 
-- **At a phase parent**: the parent holds no `implementation-summary.md`, so a `--full-auto` save carrying continuity fields resolves the leaf that holds the work and writes there. At each level, payload paths (`filesModified` and `key_files`) that lie inside a child choose that child when they all name the same one. A level with no such path follows its `derived.last_active_child_id` pointer when the pointer names an existing child packet. Payload paths spread across two children, or no path and no usable pointer, resolve nothing: the save writes no continuity, names the candidate children, and leaves every pointer unchanged. The routed leaf is written under its own `.canonical-save.lock` and its graph metadata is refreshed in the same save. Logic: `resolveContinuityLeaf` in `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts`.
+- **At a phase parent**: the parent holds no `implementation-summary.md`, so a `--full-auto` save carrying continuity fields, a minted `session_ref` included, resolves the leaf that holds the work and writes there. At each level, payload paths (`filesModified` and `key_files`) that lie inside a child choose that child when they all name the same one. A level with no such path follows its `derived.last_active_child_id` pointer when the pointer names an existing child packet. Payload paths spread across two children, or no path and no usable pointer, resolve nothing: the save writes no continuity, names the candidate children, and leaves every pointer unchanged. The routed leaf is written under its own `.canonical-save.lock` and its graph metadata is refreshed in the same save. Logic: `resolveContinuityLeaf` in `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts`.
 - **At a leaf**: write the leaf's `_memory.continuity`, then walk up and point every phase-parent ancestor one level down toward it, each with a fresh `last_active_at`, up to five levels. The walk stops below a specs root, so a save never rewrites `specs/graph-metadata.json`. A track root, the folder with no `spec.md` directly under `specs/`, keeps its pointer in the telemetry store only, so its tracked `graph-metadata.json` is not rewritten on every save. An ancestor whose metadata fails to parse is skipped with a warning. A save that wrote into no child moves no pointer. Logic: `updatePhaseParentPointersAfterSave` in the same file.
 - **Atomic write**: same-directory temp file + `fs.renameSync` (POSIX-atomic). Prevents torn JSON state under concurrent saves.
 - **Resume integration**: `/speckit:resume` reads a phase parent's pointer first, from the telemetry store and then from `derived.last_active_child_id`. When the pointer names an existing child packet inside the parent, resume follows it at any age and reports the child and its `last_active_at`; confirm mode asks before following a pointer older than 24 hours. A missing, malformed or escaping pointer, or one whose child is gone, falls back to listing children with statuses. `--no-redirect` bypasses the pointer entirely. Logic: `resolvePhaseParentPointerHop` in `.skilled/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts`.

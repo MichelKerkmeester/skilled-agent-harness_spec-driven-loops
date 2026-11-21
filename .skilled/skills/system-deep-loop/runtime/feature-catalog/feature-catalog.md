@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.18.0
+version: 1.4.19.0
 ---
 
 # runtime/: Feature Catalog
@@ -677,11 +677,11 @@ See [`script-entry-points/append-mode-event-script.md`](../feature-catalog/scrip
 
 #### Description
 
-Owns the expansive frontier node store: seeds depth-1 nodes, admits or prunes leaf proposals through six ordered checks, closes nodes, renders the frontier prompt block and projects the store to graph events.
+Owns the expansive frontier node store: seeds depth-1 nodes, admits or prunes leaf proposals through seven ordered checks, closes nodes, renders the frontier prompt block and projects the store to graph events.
 
 #### How It Works
 
-The CLI commands are `seed`, `admit`, `close`, `graph`, `block` and `budget`, and `--target research|review` picks the loop. The store `frontier-nodes.jsonl` is append-only, and the last row per `nodeId` wins. Admission runs relevance, dedupe, depth, fan-out, the run-wide node cap, budget and cycle in that order, and the first failure is the prune reason: `fanout` for a parent's children cap, `node-cap` for the run-wide cap. The seed pass is exempt from the run-wide node cap. For a defaulted budget, `seedBudget` derives the run's budget from the seed through `expansiveBudget`, and the `budget` command writes it into the config. `buildFrontierGraphEvents` re-kinds exhausted, blocked and abstained nodes to a closed CLAIM and writes no pruned node.
+The CLI commands are `seed`, `admit`, `close`, `graph`, `block`, `budget` and `scope`, and `--target research|review` picks the loop. The store `frontier-nodes.jsonl` is append-only, and the last row per `nodeId` wins. Admission runs relevance, dedupe, depth, fan-out, the run-wide node cap, budget and cycle in that order, and the first failure is the prune reason: `fanout` for a parent's children cap, `node-cap` for the run-wide cap. The seed pass is exempt from the run-wide node cap. For a defaulted budget, `seedBudget` derives the run's budget from the seed through `expansiveBudget`, and the `budget` command writes it into the config. `buildFrontierGraphEvents` re-kinds exhausted, blocked and abstained nodes to a closed CLAIM and writes no pruned node.
 
 #### Source Files
 
