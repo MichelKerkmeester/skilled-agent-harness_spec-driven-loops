@@ -3231,7 +3231,67 @@ function applyLayoutLink(root, link, isRetarget, replacesOwned = null) {
     }
     removePath(linkPath);
   }
+  // Only a link is ever replaced here: a real file or folder standing at the
+  // path now was not planned for, and unlinking it fails or deletes its work.
+  let standing = null;
+  try {
+    standing = fs.lstatSync(path.join(root, link.path));
+  } catch (error) {
+    if (!error || error.code !== 'ENOENT') throw error;
+  }
+  if (standing && !standing.isSymbolicLink()) {
+    throw new Error(withRemedy(`${link.path} is a ${standing.isDirectory() ? 'folder' : 'file'}, not the layout link ` +
+      `to ${link.target}; refusing to replace it`,
+    'a real file or folder stands there now, and replacing it would delete that work',
+    keepAsideRemedy(root, link.path)));
+  }
   ensureSymlink(path.join(root, link.path), link.target);
+}
+
+// A layout link the tree lacks outright, with an overlay destination at or
+// below it. Its entry's writes belong through the link, so the link is made
+// before they are planned again; made after them, it would find their folder in
+// its place. A link that replaces, retargets or takes the place of something is
+// left to its usual turn, after the writes.
+function linksAboveOverlays(manifest, root, layoutRecords) {
+  const destinations = (manifest.overlays || [])
+    .filter((entry) => typeof entry.destination === 'string')
+    .map((entry) => path.posix.normalize(entry.destination).replace(/\/+$/, ''));
+  return layoutRecords.filter((record) => {
+    if (record.isRetarget || record.replacesOwned || replacedLinkState(root, record.link).state !== 'none') return false;
+    if (pathExists(path.join(root, record.link.path))) return false;
+    const key = path.posix.normalize(record.link.path).replace(/\/+$/, '');
+    return destinations.some((destination) => destination === key || destination.startsWith(key + '/'));
+  });
+}
+
+// Make the links above overlays, each with the folders it needs, and say how to
+// take every one back, so a run that stops before any overlay write leaves the
+// tree as it found it.
+function makeLinksFirst(root, records) {
+  const made = [];
+  const undo = () => {
+    for (const { linkPath, firstMadeFolder } of made.reverse()) {
+      fs.rmSync(linkPath, { force: true });
+      if (firstMadeFolder) fs.rmSync(firstMadeFolder, { recursive: true, force: true });
+    }
+  };
+  try {
+    for (const record of records) {
+      const linkPath = path.join(root, record.link.path);
+      let firstMadeFolder = null;
+      for (let folder = path.dirname(linkPath); isWithin(root, folder) && folder !== path.resolve(root); folder = path.dirname(folder)) {
+        if (pathExists(folder)) break;
+        firstMadeFolder = folder;
+      }
+      applyLayoutLink(root, record.link, record.isRetarget, record.replacesOwned);
+      made.push({ linkPath, firstMadeFolder });
+    }
+  } catch (error) {
+    undo();
+    throw error;
+  }
+  return undo;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -4797,21 +4857,13 @@ function stateAfterWrites(root, manifest, records, plans) {
   return { pin: manifest.pin.commit, files, links, ...listedRecords(plans) };
 }
 
-/**
- * Apply every overlay edit; the caller holds the lock.
- * @param {object} ctx Engine context.
- * @param {object} manifest Loaded overlay manifest.
- * @param {{isRegenerateForced?: boolean, outcome?: object,
- *   upstreamBytes?: ((key: string) => Buffer|null)|null}} [options] A re-pin
- *   regenerates even when no overlay wrote, because the copy changed the inputs;
- *   `outcome.changed` receives the count printed on the last line;
- *   `upstreamBytes` reads the pin this run compares against.
- * @returns {number} 0 when applied, 1 on conflict or a failed step.
- */
-function applyUnderLock(ctx, manifest, options = {}) {
-  const root = ctx.root;
-  const state = loadState(ctx, manifest);
-  const analysis = analyze(ctx, manifest, state, options.upstreamBytes);
+function isApplyBlocked(analysis) {
+  return analysis.records.some((record) => BLOCKING_STATES.has(record.state)) ||
+    analysis.blocked.length > 0 || analysis.layout.problems.length > 0;
+}
+
+// Print why an apply cannot run, and say whether it stops before any write.
+function reportApplyBlocked(ctx, analysis) {
   const blockers = analysis.records.filter((record) => BLOCKING_STATES.has(record.state));
   const layoutProblems = analysis.layout.problems;
   if (blockers.length > 0 || analysis.blocked.length > 0 || layoutProblems.length > 0) {
@@ -4834,7 +4886,46 @@ function applyUnderLock(ctx, manifest, options = {}) {
       console.log('  this apply wrote nothing: a blocked overlay stops it before any write');
       console.log('  ' + nextEngine(ctx.root, 'apply') + ', after fixing each BLOCKED line above');
     }
-    return EXIT_CONFLICT;
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Apply every overlay edit; the caller holds the lock.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {{isRegenerateForced?: boolean, outcome?: object,
+ *   upstreamBytes?: ((key: string) => Buffer|null)|null}} [options] A re-pin
+ *   regenerates even when no overlay wrote, because the copy changed the inputs;
+ *   `outcome.changed` receives the count printed on the last line;
+ *   `upstreamBytes` reads the pin this run compares against.
+ * @returns {number} 0 when applied, 1 on conflict or a failed step.
+ */
+function applyUnderLock(ctx, manifest, options = {}) {
+  const root = ctx.root;
+  const state = loadState(ctx, manifest);
+  let analysis = analyze(ctx, manifest, state, options.upstreamBytes);
+  if (reportApplyBlocked(ctx, analysis)) return EXIT_CONFLICT;
+
+  // The entries under a layout link the tree lacks were planned with no link
+  // there, so they are planned again through it once it is made, and judged
+  // there like any write through a link. When that plan blocks, the links are
+  // taken back before anything else is written.
+  const linkedFirst = linksAboveOverlays(manifest, root, analysis.records.filter((record) => record.layout));
+  if (linkedFirst.length > 0) {
+    const undoLinks = makeLinksFirst(root, linkedFirst);
+    try {
+      analysis = analyze(ctx, manifest, state, options.upstreamBytes);
+    } catch (error) {
+      undoLinks();
+      throw error;
+    }
+    if (isApplyBlocked(analysis)) {
+      undoLinks();
+      reportApplyBlocked(ctx, analysis);
+      return EXIT_CONFLICT;
+    }
   }
 
   const changedRecords = analysis.records.filter((record) => record.state === 'overlay-edited' && !record.layout);
@@ -4842,6 +4933,7 @@ function applyUnderLock(ctx, manifest, options = {}) {
   const plansToApply = new Set(changedRecords.map((record) => record.plan));
   let written = 0;
   const cacheNotices = [];
+  for (const record of linkedFirst) console.log('linked ' + record.key + ' -> ' + record.target);
   for (const plan of plansToApply) written += applyOnePlan(plan, root, ctx.overlayRoot, cacheNotices);
   for (const notice of cacheNotices) console.log(`NOTE     ${notice}`);
 
@@ -4900,7 +4992,7 @@ function applyUnderLock(ctx, manifest, options = {}) {
   // are in sync, whatever the generators' own checks say next.
   const generatedProblems = isRegenerated ? verifyGenerated(manifest, root) : [];
   for (const problem of generatedProblems) console.log(`MISS     generated: ${problem}`);
-  const changed = changedRecords.length + layoutRecords.length;
+  const changed = changedRecords.length + layoutRecords.length + linkedFirst.length;
   if (options.outcome) options.outcome.changed = changed;
   console.log(changed + ' changed');
   return generatedProblems.length > 0 ? EXIT_CONFLICT : EXIT_OK;

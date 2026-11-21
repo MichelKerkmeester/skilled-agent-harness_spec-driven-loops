@@ -414,6 +414,58 @@ test('a layout link inside the tree whose target became a link outside it is ref
   assert.equal(fs.existsSync(path.join(outside, 'tool')), false);
 });
 
+// A layout link not made yet that an entry writes under is made first, so a
+// fresh tree ends the way it would had the link stood before the apply, and the
+// entry is judged through the link like any other write.
+test('a layout link not made yet above a directory entry is made first, and the entry writes through it', (t) => {
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'up/tool' }], [{ path: 'up', target: 'target' }]);
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 0, result.output);
+  assert.equal(result.output.includes('EPERM'), false, result.output);
+  assert.match(result.output, /linked up -> target/, result.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'up')), 'target');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool', 'deep', 'b.md'), 'utf8'), 'bundle b\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'inside.md'), 'utf8'), 'link target\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+});
+
+test('a layout link not made yet at a directory entry\'s own path is made first, and the entry writes through it', (t) => {
+  const fixture = createShapeFixture(t, [DIRECTORY_ENTRY], [LINK]);
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 0, result.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'tool')), 'target');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'a.md'), 'utf8'), 'bundle a\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'inside.md'), 'utf8'), 'link target\n');
+});
+
+test('a layout link not made yet whose target leads outside the tree is refused, and the link is not left behind', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'up/tool' }], [{ path: 'up', target: 'target' }]);
+  fs.rmSync(path.join(fixture.tree, 'target'), { recursive: true });
+  fs.symlinkSync(outside, path.join(fixture.tree, 'target'));
+  const before = fs.readdirSync(outside).sort();
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 1, result.output);
+  assert.match(result.output, /target is a link that leads outside the tree/, result.output);
+  assert.match(result.output, /this apply wrote nothing/, result.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  assert.deepEqual(fs.readdirSync(outside).sort(), before);
+});
+
+test('a layout link not made yet whose target holds a project file where the entry writes a folder is refused, and the file stays', (t) => {
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'up/tool' }], [{ path: 'up', target: 'target' }]);
+  writeFile(fixture.tree, 'target/tool', 'project file\n');
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 1, result.output);
+  assert.equal(result.output.includes('EPERM'), false, result.output);
+  assert.match(result.output, /up\/tool is a file that does not match what apply last wrote there/, result.output);
+  assert.match(result.output, /this apply wrote nothing/, result.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool'), 'utf8'), 'project file\n');
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+});
+
 // A dangling link's target is read from the folder the link really sits in, as
 // the operating system reads it, never from the path as written.
 test('a dangling link whose target climbs out of the tree from its real folder is refused', (t) => {
