@@ -85,6 +85,8 @@ rm "$T/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh"
 printf 'base\n' > "$T/f.txt"; git -C "$T" add f.txt
 git -C "$T" commit -qm base 2>"$T/err.txt"
 chk "$(grep -c 'guard library is missing.*(post-commit)' "$T/err.txt")" "1" "post-commit warns when the guard library is missing"
+chk "$(grep -cF "Next: from $(cd "$T" && pwd -P): bash .opencode/scripts/install-git-hooks.sh" "$T/err.txt")" "1" \
+  "post-commit names the installer under the fixture's source root, from the repository root"
 git -C "$T" commit -q --amend -m amended 2>"$T/err.txt"
 chk "$(grep -c 'guard library is missing.*(post-rewrite)' "$T/err.txt")" "1" "post-rewrite warns when the guard library is missing"
 git -C "$T" checkout -q -b side

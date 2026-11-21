@@ -88,6 +88,8 @@ setup
 commit "feat(sk-git): add a thing"
 push_rc main main; RC=$?
 check "a commit that skipped commit-msg is blocked at push" 1 "$RC" "gate:message-contract"
+check "the reword names the commit the pushed range starts from" 1 "$RC" \
+  "Next: git rebase -i $(git -C "$TMP/repo" rev-parse origin/main)"
 
 # ── 3. every commit in the range is checked, not only the tip ───────────────
 setup
@@ -108,6 +110,8 @@ git -C "$TMP/repo" checkout -q -b feature/oops
 commit "feat(sk-git): add a thing" "Explains why the thing was added."
 push_rc feature/oops feature/oops SPECKIT_ALLOW_REMOTE_PUSH=feature/oops; RC=$?
 check "a new branch with a non-contract name is blocked" 1 "$RC" "branch.name"
+check "the rename says the new name is the operator's to choose" 1 "$RC" \
+  "Replace <new-name> with a name you choose that those rules accept."
 
 # ── 6. a new branch inside the naming contract passes ───────────────────────
 setup

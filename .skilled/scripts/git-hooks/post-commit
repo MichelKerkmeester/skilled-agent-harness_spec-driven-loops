@@ -59,7 +59,7 @@ if [[ -f "$SOURCE_ROOT/scripts/git-hooks/lib/autostash-orphan-guard.sh" ]]; then
   autostash_orphan_guard || true
 elif _in_toolchain_repo; then
   echo "WARNING [gate:autostash-guard]: guard library is missing: $SOURCE_ROOT/scripts/git-hooks/lib/autostash-orphan-guard.sh (post-commit)" >&2
-  echo "  Next: bash .skilled/scripts/install-git-hooks.sh" >&2
+  printf '  Next: from %q: bash %q\n' "$REPO_ROOT" "${SOURCE_ROOT#"$REPO_ROOT"/}/scripts/install-git-hooks.sh" >&2
 fi
 
 # Continuous-integration autosync: publish this commit to the shared "live" branch

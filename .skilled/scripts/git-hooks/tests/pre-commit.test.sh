@@ -1001,7 +1001,9 @@ CHECKER
 stage_new ".opencode/agents/probe.md" "agent"
 run_hook; RC=$?
 check "a not-checkable mirror checker warns and skips" 0 "$RC" "agent mirror-sync is not checkable"
-check "the not-checkable warning names the build" 0 "$RC" "npm --prefix .skilled/skills/system-spec-kit run build"
+# The fixture's source root is .opencode, and the build runs from the repository root.
+check "the not-checkable warning names the build under the fixture's source root" 0 "$RC" \
+  "Next: from $(cd "$TMP" && pwd -P): npm --prefix .opencode/skills/system-spec-kit run build"
 
 # ── 65. a mirror checker that reports drift still blocks ──
 setup_gate_fixture
@@ -1064,6 +1066,18 @@ docv_doc 1.2.0.0 "Unstaged body." > "$TMP/$DOCV_REF"
 SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
 check "a doc staged and unstaged at once is refused" 1 "$RC" "staged and unstaged at once"
 check "the refusal names its bypass" 1 "$RC" "SPECKIT_SKIP_DOC_VERSION_BUMP=1"
+
+# An engine that refuses a partial doc without naming it leaves the hook no path to
+# quote, so the placeholder Next line must say why it is a placeholder.
+setup_docv_fixture
+rm "$TMP/.opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+printf 'process.exit(3);\n' > "$TMP/.opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+docv_doc 1.2.0.0 "Staged body." > "$TMP/$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"
+docv_doc 1.2.0.0 "Unstaged body." > "$TMP/$DOCV_REF"
+SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
+check "a partial refusal that names no path is still refused" 1 "$RC" "staged and unstaged at once"
+check "the unnamed-path placeholder says the report named no path" 1 "$RC" \
+  "The report named no path this hook could read, so add each doc it lists by hand:"
 
 setup_docv_fixture
 docv_doc 1.2 "Changed body." > "$TMP/$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"

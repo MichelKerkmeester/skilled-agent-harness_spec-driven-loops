@@ -206,6 +206,14 @@ if grep -q called "$TMP/skill-gate-calls.log" 2>/dev/null; then PASS=$((PASS+1))
 else FAIL=$((FAIL+1)); echo "FAIL: a range under .skilled/skills never reached the skill-root metadata checker"; fi
 rm -f "$SKILL_CHECKER" "$TMP/skill-gate-calls.log"
 
+# The fix runs from the repository root, under the fixture's .opencode source root.
+mkdir -p "$(dirname "$SKILL_CHECKER")"
+printf '%s\n' "process.exit(1);" > "$SKILL_CHECKER"
+expect_hook_says "stale skill metadata names the fix under the source root it was found in" \
+  0 "Next: from $(cd "$TMP" && pwd -P): node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix" \
+  "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA"
+rm -f "$SKILL_CHECKER"
+
 mkdir -p "$(dirname "$SENTINEL")"; printf 'name: system-spec-kit\n' > "$SENTINEL"
 expect_hook_says "a missing skill checker warns with its path where the toolchain ships" \
   0 "checker is missing: " "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA" \
@@ -362,10 +370,18 @@ git -C "$CID" commit -q --allow-empty -m "chore(x): unstamped base" -m "Body."
 CID_BASE="$(git -C "$CID" rev-parse HEAD)"
 cid_expect "a pushed commit without a Commit-Id is blocked" 1 \
   "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA" "[gate:commit-id]"
+cid_expect "a range that starts at the root commit rebases from --root" 1 \
+  "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA" \
+  "Next: git rebase -x 'git commit --amend --no-edit' --root"
 git -C "$CID" commit -q --allow-empty -m "chore(x): stamped" -m "Body." -m "Commit-Id: 0000001"
 CID_STAMPED="$(git -C "$CID" rev-parse HEAD)"
 cid_expect "an update adding only stamped commits passes" 0 \
   "refs/heads/main $CID_STAMPED refs/heads/main $CID_BASE"
+git -C "$CID" commit -q --allow-empty -m "chore(x): unstamped on top" -m "Body."
+cid_expect "an update rebases from the commit the pushed range starts after" 1 \
+  "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_STAMPED" \
+  "Next: git rebase -x 'git commit --amend --no-edit' $CID_STAMPED"
+git -C "$CID" reset -q --hard "$CID_STAMPED"
 git -C "$CID" checkout -q -b side "$CID_BASE"
 git -C "$CID" commit -q --allow-empty -m "chore(x): side" -m "Body." -m "Commit-Id: 0000002"
 git -C "$CID" checkout -q main
