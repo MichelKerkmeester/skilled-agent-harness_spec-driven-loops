@@ -1,7 +1,7 @@
 ---
 title: "473 -- Template phrase lint blocked commit"
 description: "This scenario validates the template phrase lint gate for `473` in a throwaway git repository. It focuses on the gate refusing a commit that stages an editor-fallback trigger phrase, the message it prints and the guarantee that a refused commit leaves history unchanged."
-version: 1.0.2.0
+version: 1.0.3.0
 id: tooling-and-scripts-template-phrase-lint-blocked-commit
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -113,7 +113,7 @@ git log --oneline
 
 ### Expected
 
-Step 1 prints the notice `pre-commit: the mirrorParity gate is off (git config speckit.hooks.mirrorParity in local config).` and then `template-phrase-lint: checked 1 staged Markdown file(s), 1 new phrase(s)` for the baseline commit. The notice comes from the fixture's mirror switch, which step 1 sets. The hook prints it on every commit while that switch is off, so it is expected and ignorable, and it changes neither the exit code nor the verdict. Step 2 prints one error line for `$FIXTURE/specs/legacy-track/001-phrase-demo/spec.md`. That line carries `[gate:template-phrase-lint]`, the phrase `"session"`, the class `[editor-fallback]` and the reason that the phrase is a terminal fallback of the frontmatter editor. The linter then prints `lint_exit=1`. Step 3 prints `commit_exit=1`. Its stderr starts with the same ignorable mirrorParity notice, then repeats the phrase line, then the gate closing line `staged trigger phrases contain a template or editor fallback.`, the line `Next: fix the phrase named above, git add its file, then re-check with: node .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs` and the hint `Fix the phrase, or bypass with SPECKIT_SKIP_PHRASE_LINT=1 git commit ...`. The history lists only `phrase baseline` and `baseline`.
+Step 1 prints the notice `pre-commit: the mirrorParity gate is off (git config speckit.hooks.mirrorParity in local config).` and then `template-phrase-lint: checked 1 staged Markdown file(s), 1 new phrase(s)` for the baseline commit. The notice comes from the fixture's mirror switch, which step 1 sets. The hook prints it on every commit while that switch is off, so it is expected and ignorable, and it changes neither the exit code nor the verdict. Step 2 prints one error line for `$FIXTURE/specs/legacy-track/001-phrase-demo/spec.md`. That line carries `[gate:template-phrase-lint]`, the phrase `"session"`, the class `[editor-fallback]` and the reason that the phrase is a terminal fallback of the frontmatter editor. The linter then prints `lint_exit=1`. Step 3 prints `commit_exit=1`. Its stderr starts with the same ignorable mirrorParity notice, then repeats the phrase line, then the gate closing line `staged trigger phrases contain a template or editor fallback.`, the two lines `Fix the phrase named above and git add its file, then re-check with:` and `Next: node .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs`, and the hint `Fix the phrase, or bypass with SPECKIT_SKIP_PHRASE_LINT=1 git commit ...`. The history lists only `phrase baseline` and `baseline`.
 
 ### Evidence
 
