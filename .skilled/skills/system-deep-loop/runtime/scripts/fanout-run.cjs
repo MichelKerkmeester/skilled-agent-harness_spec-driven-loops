@@ -3489,17 +3489,36 @@ function resolveExecutableVersion(command, options = {}) {
   const pathEntries = String(env.PATH || '').split(path.delimiter).filter(Boolean);
   for (const entry of pathEntries) {
     const candidate = path.join(entry, command);
+    // An entry that does not resolve or is not a regular file holds no binary,
+    // so the search moves on to the next entry as the shell does.
+    let executablePath;
+    let stat;
     try {
-      const executablePath = fs.realpathSync(candidate);
-      const stat = fs.statSync(executablePath);
-      if (!stat.isFile()) continue;
-      const cacheKey = `${executablePath}:${stat.size}:${stat.mtimeMs}`;
-      const cached = executableIdentityCache.get(cacheKey);
-      if (cached) return cached;
-      const identity = `sha256:${createHash('sha256').update(fs.readFileSync(executablePath)).digest('hex')}`;
-      executableIdentityCache.set(cacheKey, identity);
-      return identity;
-    } catch {}
+      executablePath = fs.realpathSync(candidate);
+      stat = fs.statSync(executablePath);
+    } catch {
+      continue;
+    }
+    if (!stat.isFile()) continue;
+    const cacheKey = `${executablePath}:${stat.size}:${stat.mtimeMs}`;
+    const cached = executableIdentityCache.get(cacheKey);
+    if (cached) return cached;
+    let bytes;
+    try {
+      bytes = fs.readFileSync(executablePath);
+    } catch {
+      // An executable the hash cannot read is still the one the shell runs, so a
+      // later match must not stand in for it. One the shell cannot run is passed over.
+      try {
+        fs.accessSync(executablePath, fs.constants.X_OK);
+      } catch {
+        continue;
+      }
+      return 'unknown';
+    }
+    const identity = `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
+    executableIdentityCache.set(cacheKey, identity);
+    return identity;
   }
   return 'unknown';
 }

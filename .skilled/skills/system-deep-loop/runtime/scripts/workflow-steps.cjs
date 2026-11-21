@@ -19,6 +19,20 @@
 // 1. STEP PROGRAMS
 // ───────────────────────────────────────────────────────────────────
 
+// A torn or hand-edited state-log line is skipped so one bad row cannot halt a
+// restart or extension, but it is reported, because every count and session the
+// step derives silently excludes it.
+function warnSkippedLine(logPath, lineNumber, error) {
+  const message = error instanceof Error ? error.message : String(error);
+  process.stderr.write(`[workflow-steps] warning: skipped ${require("path").basename(logPath)} line ${lineNumber}: ${message}\n`);
+}
+
+// A missing file is an expected absence; any other read failure (EACCES, EISDIR)
+// would make a present file read as missing, so it is rethrown.
+function rethrowUnlessMissing(error) {
+  if (!error || error.code !== "ENOENT") throw error;
+}
+
 // Reads the session id, generation and state-log tail digest of a packet that
 // is about to be archived. Shared by both workflows' restart paths.
 //
@@ -35,13 +49,15 @@
 function priorLineageFallback(fs, path, configPath, stateLogPath) {
   const packetDir = path.dirname(configPath);
   const readJson = (file) => {
-    try { return JSON.parse(fs.readFileSync(file, "utf8")); } catch { return null; }
+    let text;
+    try { text = fs.readFileSync(file, "utf8"); } catch (error) { rethrowUnlessMissing(error); return null; }
+    try { return JSON.parse(text); } catch { return null; }
   };
   const lineageOf = (config) => (config && typeof config === "object" ? (config.lineage || config) : null);
   const parents = new Set();
   let lineageGeneration = 0;
   let entries = [];
-  try { entries = fs.readdirSync(path.join(packetDir, "lineages"), { withFileTypes: true }); } catch { entries = []; }
+  try { entries = fs.readdirSync(path.join(packetDir, "lineages"), { withFileTypes: true }); } catch (error) { rethrowUnlessMissing(error); entries = []; }
   for (const entry of entries) {
     if (!entry.isDirectory()) continue;
     const lineage = lineageOf(readJson(path.join(packetDir, "lineages", entry.name, path.basename(configPath))));
@@ -53,12 +69,13 @@ function priorLineageFallback(fs, path, configPath, stateLogPath) {
   if (parents.size > 1) return null;
 
   let lines = [];
-  try { lines = fs.readFileSync(stateLogPath, "utf8").split("\n"); } catch { lines = []; }
+  try { lines = fs.readFileSync(stateLogPath, "utf8").split("\n"); } catch (error) { rethrowUnlessMissing(error); lines = []; }
   const placeholder = path.basename(packetDir);
   const generations = new Map();
-  for (const line of lines) {
+  for (const [index, line] of lines.entries()) {
+    if (line.trim() === "") continue;
     let row;
-    try { row = JSON.parse(line); } catch { continue; }
+    try { row = JSON.parse(line); } catch (error) { warnSkippedLine(stateLogPath, index + 1, error); continue; }
     if (!row || typeof row.sessionId !== "string" || row.sessionId.trim() === "" || row.sessionId === placeholder) continue;
     const seen = generations.get(row.sessionId) || 0;
     generations.set(row.sessionId, Number.isInteger(row.generation) ? Math.max(seen, row.generation) : seen);
@@ -118,8 +135,9 @@ function extendResearch() {
     fail("--extend needs a completed run, and this run has status " + config.status + ". Use --lineage-mode=resume to continue an unfinished run.");
   }
   const stateBytes = fs.readFileSync(stateLogPath);
-  const rows = stateBytes.toString("utf8").split("\n").filter(Boolean).flatMap((line) => {
-    try { return [JSON.parse(line)]; } catch { return []; }
+  const rows = stateBytes.toString("utf8").split("\n").flatMap((line, index) => {
+    if (line.trim() === "") return [];
+    try { return [JSON.parse(line)]; } catch (error) { warnSkippedLine(stateLogPath, index + 1, error); return []; }
   });
   // One run per iteration number, error and timeout rows included. The integer
   // iteration counts first and a numeric run is the fallback, as the state reader
@@ -209,8 +227,9 @@ function extendReview() {
     fail("--extend needs a completed run, and this run has status " + config.status + ". Use --lineage-mode=resume to continue an unfinished run.");
   }
   const stateBytes = fs.readFileSync(stateLogPath);
-  const rows = stateBytes.toString("utf8").split("\n").filter(Boolean).flatMap((line) => {
-    try { return [JSON.parse(line)]; } catch { return []; }
+  const rows = stateBytes.toString("utf8").split("\n").flatMap((line, index) => {
+    if (line.trim() === "") return [];
+    try { return [JSON.parse(line)]; } catch (error) { warnSkippedLine(stateLogPath, index + 1, error); return []; }
   });
   // One run per iteration number, error and timeout rows included. The integer
   // iteration counts first and a numeric run is the fallback, as the state reader

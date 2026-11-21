@@ -8,7 +8,7 @@
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -286,5 +286,55 @@ describe('workflow-steps dispatch', () => {
     const result = run('no-such-step');
     expect(result.status).toBe(2);
     expect(result.stderr).toContain('Usage: workflow-steps.cjs <prior-lineage|');
+  });
+});
+
+describe('workflow-steps state-log damage is reported, not hidden', () => {
+  const iterations = ['{"type":"iteration","iteration":1}', 'bad', '{"type":"iteration","iteration":2}'].join('\n') + '\n';
+
+  it.each(['extend-research', 'extend-review'])('%s warns on stderr for each malformed line it skips', (subcommand) => {
+    const dir = tempDir();
+    writeFileSync(join(dir, 'config.json'), JSON.stringify({
+      status: 'complete', maxIterations: 2, maxDurationMinutes: 0, createdAt: new Date().toISOString(),
+      sessionId: 'v-1', generation: 1, lineage: { sessionId: 'v-1', generation: 1 },
+    }));
+    writeFileSync(join(dir, 'state.jsonl'), iterations);
+    const args = subcommand === 'extend-research'
+      ? [join(dir, 'config.json'), join(dir, 'state.jsonl'), join(dir, 'inbox.jsonl'), '1', '', dir]
+      : [join(dir, 'config.json'), join(dir, 'state.jsonl'), '1', '', dir];
+    const result = run(subcommand, ...args);
+    expect(result.status).toBe(0);
+    expect(json(result.stdout).continuedFromRun).toBe(2);
+    expect(result.stderr).toMatch(/^\[workflow-steps\] warning: skipped state\.jsonl line 2: /m);
+    expect(result.stderr.match(/warning: skipped/g)).toHaveLength(1);
+  });
+
+  it('prior-lineage warns for a malformed state-log line but not for the trailing newline', () => {
+    const dir = tempDir();
+    const packet = join(dir, 'review');
+    mkdirSync(packet, { recursive: true });
+    writeFileSync(join(packet, 'deep-review-state.jsonl'), '{"type":"iteration","sessionId":"s-real","generation":3}\n{torn\n');
+    const result = run('prior-lineage', join(packet, 'deep-review-config.json'), join(packet, 'deep-review-state.jsonl'));
+    expect(result.status).toBe(0);
+    expect(json(result.stdout)).toMatchObject({ priorSessionId: 's-real', priorGeneration: 3 });
+    expect(result.stderr).toMatch(/^\[workflow-steps\] warning: skipped deep-review-state\.jsonl line 2: /m);
+    expect(result.stderr.match(/warning: skipped/g)).toHaveLength(1);
+  });
+
+  it.skipIf(process.getuid?.() === 0)('prior-lineage fails on an unreadable lineage config instead of reading it as absent', () => {
+    const dir = tempDir();
+    const packet = join(dir, 'review');
+    const lineageConfig = join(packet, 'lineages', 'opus', 'deep-review-config.json');
+    mkdirSync(join(packet, 'lineages', 'opus'), { recursive: true });
+    writeFileSync(lineageConfig, JSON.stringify({ sessionId: 'fanout-opus-1', parentSessionId: 'root-session', generation: 2 }));
+    chmodSync(lineageConfig, 0o000);
+    try {
+      const result = run('prior-lineage', join(packet, 'deep-review-config.json'), join(packet, 'deep-review-state.jsonl'));
+      expect(result.status).not.toBe(0);
+      expect(result.stdout).toBe('');
+      expect(result.stderr).toContain('EACCES');
+    } finally {
+      chmodSync(lineageConfig, 0o644);
+    }
   });
 });

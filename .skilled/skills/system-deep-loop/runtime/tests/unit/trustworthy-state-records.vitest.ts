@@ -35,14 +35,14 @@ function tempDir(prefix: string): string {
 afterAll(() => { for (const d of temps) fs.rmSync(d, { recursive: true, force: true }); });
 
 function append(logPath: string, record: unknown): void {
-  execFileSync('node', [APPENDER, logPath], { input: JSON.stringify(record), encoding: 'utf8' });
+  execFileSync('node', [APPENDER, logPath], { cwd: path.dirname(logPath), input: JSON.stringify(record), encoding: 'utf8' });
 }
 function readRecords(logPath: string): Record<string, unknown>[] {
   return fs.readFileSync(logPath, 'utf8').trim().split('\n').map((l) => JSON.parse(l));
 }
 
 function appendExpectingRefusal(logPath: string, record: unknown): { status: number | null; stderr: string } {
-  const result = spawnSync('node', [APPENDER, logPath], { input: JSON.stringify(record), encoding: 'utf8' });
+  const result = spawnSync('node', [APPENDER, logPath], { cwd: path.dirname(logPath), input: JSON.stringify(record), encoding: 'utf8' });
   return { status: result.status, stderr: result.stderr };
 }
 
