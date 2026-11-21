@@ -11,7 +11,7 @@
     "unverified": [
       { "event": "global.disposed", "reason": "OpenCode 2.3.2 defines this bus type; OpenCode 2.0.32 did not deliver it to a plugin on 2026-10-20, and delivery on 2.3.2 is not captured." },
       { "event": "session.status", "reason": "Needs a model turn; not observed on OpenCode 2." },
-      { "event": "session.updated", "reason": "Carries info.parentID for a task sub-agent on OpenCode 1.19.3; not observed on OpenCode 2." },
+      { "event": "session.updated", "reason": "Not observed on OpenCode 2." },
       { "event": "permission.asked", "reason": "Needs a model turn; not observed on OpenCode 2." },
       { "event": "permission.replied", "reason": "Needs a model turn; not observed on OpenCode 2." }
     ]

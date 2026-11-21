@@ -7,7 +7,7 @@ trigger_phrases:
   - "premature stop prevention"
   - "dimensionCoverageGate"
   - "blocked-stop event"
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Quality gates
@@ -24,7 +24,7 @@ The quality-gate system turns convergence from a simple score threshold into a l
 
 ### Quality Gates & Validation
 
-The gate model is split across two layers. The contract-level binary gates are Evidence, Scope, and Coverage. The review-specific legal-stop bundle expands that into nine concrete stop checks emitted by `step_emit_blocked_stop` in `deep-review.yaml`:
+The gate model is split across two layers. The contract-level binary gates are Evidence, Scope, and Coverage. The review-specific legal-stop bundle expands that into nine concrete stop checks that `convergence.cjs` evaluates and records:
 
 | Gate | Checks |
 |---|---|
@@ -38,7 +38,7 @@ The gate model is split across two layers. The contract-level binary gates are E
 | `candidateCoverageGate` | Search debt cleared and required bug classes covered (v2 rollout, passes trivially when inactive) |
 | `graphlessFallbackGate` | Required bug classes carry fallback ledger rows when the graph is unavailable (v2 rollout) |
 
-If any required gate fails, STOP is vetoed and the loop appends a `blocked_stop` event with the failing gates and a recovery hint. See `references/convergence/convergence.md` §Section-1 for the authoritative event shape.
+If any required gate fails, STOP is vetoed and `convergence.cjs` appends a `blocked_stop` event through the append gateway with the failing gates and a recovery hint. See `references/convergence/convergence.md` §Section-1 for the authoritative event shape.
 
 ### Edge Cases & Caveats
 

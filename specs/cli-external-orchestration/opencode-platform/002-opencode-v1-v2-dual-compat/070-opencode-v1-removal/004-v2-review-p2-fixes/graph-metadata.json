@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The review left eight P2 advisories open on the merged removal",
     "created_at": "2026-11-20T11:31:33Z",
-    "last_save_at": "2026-11-20T15:52:36.935Z",
+    "last_save_at": "2026-11-20T16:26:13.059Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d33d4961397618945e3f4c72f827be512b4b5f6a82dcdfe82696ab1fe147c5cf",
+    "source_fingerprint": "sha256:fb85fbb22bd0fe928c53077a3d39eaf8b65cba6828065cd45314c09fa86081a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "06bfda474ebaf4c06591a7195eeeecb55f1b0152cb469a8a9668ee24f1d417f6",
       "plan.md": "59f776e1eb21d2e91dba5f66be760c67bf2e92b1ac4869889ecfc57eab304810",
       "tasks.md": "816a4091b217ea87e37066f1a803f9e01df2083b81eda6b710c997b0cba39e12",
       "decision-record.md": "bbdf1a0c579ca68d5cfb1ab6ecff4d1ecc740c61d8507d2bedeaafe1193c1e12",
-      "implementation-summary.md": "76f7027b96005514955b7f6e403633ad97beb60e936b83451fa8dbffbaace3b0"
+      "implementation-summary.md": "7991d121b1bfc635bd283817c3db10a1a5698f2d554d879425088239c68b5797"
     },
     "last_active_at": null
   }

@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "f294cd132901b610bed73a1d4face3af7351e1579a7f300866ac36329be53c3c",
+      "sha256": "6bbed8b897c103f52568967358cab76727c3d7da79535ef6c8c3bea608337cc2",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "ebbe814e1f8dc9340d8585868b1e4f2b9cf9735177d8424e91c9dddf94f016ea",
+      "sha256": "a406f5993e23a6000e61976da9725e2df48643a657c1335c6caa485b9de3b938",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "6666a7e44d9b9a36e2c96ebd9e5302aac5dcd12c1f37885c09af523f73ec11f7",
+      "sha256": "17460734fe9d818b231ae167d03ee4ae9ad90a93b66a56c8bbb83513b2632e1f",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "dfcb223c4f04911ea7d9d46cf314c98c8787feb9e4bc41989941d64b961b8249",
+      "sha256": "f51ef29cc427ff1b4dd9d3d165d1dd4c12dec0b44051610d8bfdcaadb8367202",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "cce24cf3e1536e5b4cf71cc62b897423c0ebad2bda2a691749827e1626e1e996",
+      "sha256": "9887babf5cc60028ff8c0f8a36298be42b3e832b2e5206896730e1fc985cadec",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "03fa107803e109884442858fa531c8137f4df1e9050a6d0eb228b9f631ed9882"
+  "compiledBodyDigest": "5f0926b34520c369bc1b744a7b6c84a5f02c5218feab0e312fa3900bbf4669df"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -217,7 +217,7 @@ Rules:
 | `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
 | `frontier_max_depth` | N | flag `--frontier-max-depth=N` or marker `frontier_max_depth` (positive integer), valid only with `--depth-mode=expansive` on a single-executor run; written to `expansiveDepth.maxDepth` | `3` | N |
 | `frontier_max_nodes` | N | flag `--frontier-max-nodes=N` or marker `frontier_max_nodes` (positive integer), valid only with `--depth-mode=expansive` on a single-executor run; written to `expansiveDepth.maxFrontierNodes` | `null`, half the iteration budget | N |
-| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the four canonical dimensions less traceability when the configured `reviewDimensions` list leaves it out, plus each custom name, each counted once, and kept at `7` when S is 0. That is the single-executor budget: a fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at four, 24 once it is dealt a node and its loop default of 12 native or 7 CLI when it is dealt none; any other source is kept as given | `7` | N |
+| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the four canonical dimensions less traceability when the configured `reviewDimensions` list leaves it out, plus each custom name, each counted once, and kept at `7` when S is 0. That is the single-executor budget: a fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at four, 24 once it is dealt a node and its loop default of 12 native or 7 CLI when it is dealt none, but only when the source is `default`: any other source is kept as given, and in a fan-out it reaches the runner as `--max-iterations`, which binds every lineage the matrix gives no `iterations` value in either depth mode | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
 | `convergence_mode` | Y | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default | `default` | N |
 | `depth_mode` | Y | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default` | `default` | N |
@@ -284,7 +284,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness` | `cli-mistral-vibe`. Every kind runs in `:auto` and `:confirm`, `cli-deepseek-harness` as a single lineage or a fan-out and `cli-mistral-vibe` only as a fan-out lineage. `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
-   |-- --sandbox-mode=<mode> -> config.executor.sandboxMode (`read-only` / `workspace-write` / `danger-full-access`; default `workspace-write`; cli-opencode accepts only `danger-full-access` as an explicit value)
+   |-- --sandbox-mode=<mode> -> config.executor.sandboxMode (`read-only` / `workspace-write` / `danger-full-access`; default `workspace-write`; cli-opencode also defaults to `workspace-write`, which denies its file tools outside the working directory but not Bash; `read-only` is refused)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
    |-- --service-tier=<tier> -> config.executor.serviceTier (`priority` | `standard` | `fast`)
    |-- --executor-timeout=<seconds> -> config.executor.timeoutSeconds (positive integer, default `900`)
@@ -363,7 +363,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-review agent with Opus.
-     B) cli-opencode — `opencode run --standalone -m X[#Y] --format json [--auto] "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is added only under `danger-full-access`, the one explicit sandbox mode cli-opencode accepts. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
+     B) cli-opencode — `opencode run --standalone -m X[#Y] --format json --auto "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is always passed; under `workspace-write` (the default) an inline `OPENCODE_CONFIG_CONTENT` denies `external_directory` to the file tools, Bash is not confined, and `read-only` is refused. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
       C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`. The default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
      D) cli-codex — requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.

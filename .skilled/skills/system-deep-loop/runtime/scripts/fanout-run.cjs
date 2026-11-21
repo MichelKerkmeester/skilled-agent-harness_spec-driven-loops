@@ -35,7 +35,7 @@ const FANOUT_FLAGS = [
   'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
   'costUnitsPerIteration', 'estimatedTokensPerIteration', 'onlyLineage', 'preview', 'status',
-  'stop',
+  'stop', 'maxIterations',
 ];
 
 const {
@@ -479,6 +479,35 @@ function resolveFrontierPartition({ depthMode, budgetPartition, baseArtifactDir,
   return budgetPartition || partitionFrontierNodes(baseArtifactDir, labels);
 }
 
+// The root config cannot tell an operator's explicit iteration count from the workflow
+// default, so an explicit count arrives as --max-iterations. It binds every lineage the
+// matrix gave no iterations, in either depth mode, ahead of any seed-share derivation.
+// A matrix iterations value is still kept as given.
+function parseMaxIterationsFlag(args) {
+  const raw = args.maxIterations;
+  if (raw === undefined) return null;
+  const value = typeof raw === 'string' && /^\d+$/.test(raw) ? Number(raw) : NaN;
+  if (!Number.isSafeInteger(value) || value <= 0) {
+    throw inputError('maxIterations must be a positive integer');
+  }
+  return value;
+}
+
+function flagLineageBudgets(lineages, maxIterations) {
+  if (maxIterations === null) return lineages;
+  return lineages.map((lineage) => (
+    Number.isInteger(lineage.iterations) && lineage.iterations > 0
+      ? lineage
+      : { ...lineage, iterations: maxIterations }
+  ));
+}
+
+function flagLineageBudgetNotes(expanded, budgeted) {
+  return budgeted.flatMap((lineage, index) => (lineage === expanded[index]
+    ? []
+    : [`[fanout-run] lineage ${lineage.label} budget ${lineage.iterations} iterations, from --max-iterations`]));
+}
+
 /**
  * Under expansive depth a lineage the matrix gave no iterations is sized from its own
  * share of the seed, the way a single-executor run is sized after its seed step. The
@@ -767,7 +796,7 @@ function statusForLedgerEvent(entry) {
   if (entry.event === 'started' || entry.event === 'progress' || entry.event === 'resume_waiting') return 'running';
   if (entry.event === 'completed' || entry.event === 'resume_waiting_complete') return 'completed';
   if (entry.event === 'failed') return entry.terminal === false ? 'retrying' : 'failed';
-  if (entry.event === 'stopped') return 'stopped';
+  if (entry.event === 'stopped' || entry.event === 'run_stopped') return 'stopped';
   if (entry.event === 'retry_scheduled' || entry.event === 'orphan_requeued') return 'retrying';
   // Lag-ceiling signals from the pool: a stall warning while work remains pending, or a
   // forced abort of the stalled attempt. Map both to typed statuses instead of 'unknown'.
@@ -1166,19 +1195,62 @@ function fanoutRunnerPidOf(lineagePid) {
 }
 
 /**
+ * The kernel's start time for a pid, or '' when it cannot be read.
+ *
+ * A pid is reused once its process exits; the start time is not, so the pair names one
+ * process. The locale and zone are pinned so the runner and a later --stop, run from
+ * different shells, render the same process the same way.
+ */
+function processStartOf(pid) {
+  if (process.platform === 'win32') return '';
+  const result = spawnSync('ps', ['-o', 'lstart=', '-p', String(pid)], {
+    encoding: 'utf8',
+    env: { ...process.env, LC_ALL: 'C', TZ: 'UTC' },
+  });
+  return result.status === 0 ? result.stdout.trim() : '';
+}
+
+/**
+ * Why a live ledger pid may not be signalled, or null when it is still its lineage.
+ *
+ * Fails closed: a row with no recorded start time, as an older runner wrote, or a pid whose
+ * start time cannot be read, is refused like a mismatch.
+ */
+function lineageIdentityRefusal(records, lineage) {
+  const spawnedRow = records.filter((record) => record
+    && record.event === 'spawned'
+    && record.label === lineage.label
+    && Number(record.pid) === lineage.pid).at(-1);
+  const recorded = spawnedRow && typeof spawnedRow.process_start === 'string' ? spawnedRow.process_start : '';
+  if (!recorded) return 'no_recorded_identity';
+  const current = processStartOf(lineage.pid);
+  if (!current) return 'identity_unreadable';
+  return current === recorded ? null : 'identity_mismatch';
+}
+
+/**
  * Stop the lineages the ledger shows as live, from a process other than their runner.
  *
  * Live means what a re-run refuses on: a spawned row after the lineage's latest start, no
- * terminal row since, and a group or pid that still answers. Nothing else is signalled.
+ * terminal row since, and a group or pid that still answers. A live pid is signalled only
+ * when its process start time still matches the one recorded at spawn, since the number
+ * alone may now belong to an unrelated process group; the others are reported as refused.
  * The runner goes first: it stops its own lineages, and once it is gone it cannot retry
  * the ones stopped here. A lineage is recorded as stopped only once it no longer answers.
  *
  * @param {string} ledgerPath - The run's orchestration-status.log.
  * @param {string[]} argv - The run's own argv plus --stop, which the rerun command drops.
- * @returns {Promise<{stopped: Array<{label: string, pid: number}>, survivors: Array<{label: string, pid: number}>}>}
+ * @returns {Promise<{stopped: Array<{label: string, pid: number}>, survivors: Array<{label: string, pid: number}>, refused: Array<{label: string, pid: number, reason: string}>}>}
  */
 async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
-  const live = detectLiveLineages(readLedgerRecords(ledgerPath));
+  const records = readLedgerRecords(ledgerPath);
+  const live = [];
+  const refused = [];
+  for (const lineage of detectLiveLineages(records)) {
+    const reason = lineageIdentityRefusal(records, lineage);
+    if (reason) refused.push({ label: lineage.label, pid: lineage.pid, reason });
+    else live.push(lineage);
+  }
   const runnerPids = new Set(live.map((lineage) => fanoutRunnerPidOf(lineage.pid)).filter(Boolean));
   for (const runnerPid of runnerPids) signalIfPresent(runnerPid, 'SIGTERM');
   for (const lineage of live) {
@@ -1186,26 +1258,47 @@ async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
   }
 
   let survivors = live;
+  let runners = [...runnerPids];
   const deadline = Date.now() + STOP_CONFIRM_TIMEOUT_MS;
-  while (survivors.length > 0 && Date.now() < deadline) {
+  while ((survivors.length > 0 || runners.length > 0) && Date.now() < deadline) {
     await new Promise((resolvePromise) => setTimeout(resolvePromise, 100));
     survivors = survivors.filter((lineage) => isLineageAlive(lineage.pid));
+    runners = runners.filter((runnerPid) => isLineageAlive(runnerPid));
   }
 
+  // A runner that took the signal has already closed its lineages, so only the ones still
+  // open get a row here, and a lineage is never closed twice.
+  const stillOpen = new Set(detectLiveLineages(readLedgerRecords(ledgerPath), { isAlive: () => true })
+    .map((lineage) => lineage.label));
   const runArgv = argv.filter((token) => token !== '--stop');
   const stopped = live.filter((lineage) => !survivors.includes(lineage));
+  // The ledger sits in the base artifact directory, beside the lineages directory.
+  const lineagesDir = path.join(path.dirname(ledgerPath), 'lineages');
   for (const lineage of stopped) {
-    appendFanoutStatusLedger(ledgerPath, {
-      event: 'stopped',
-      status: 'stopped',
-      label: lineage.label,
-      pid: lineage.pid,
-      at: new Date().toISOString(),
-      rerun_command: rerunCommandFor(lineage.label, runArgv),
-    });
+    if (!stillOpen.has(lineage.label)) continue;
+    appendFanoutStatusLedger(ledgerPath, stoppedLineageRow({ label: lineage.label, pid: lineage.pid, argv: runArgv }));
+    redactTerminalLineageLogs(path.join(lineagesDir, lineage.label));
   }
   const brief = ({ label, pid }) => ({ label, pid });
-  return { stopped: stopped.map(brief), survivors: survivors.map(brief) };
+  return { stopped: stopped.map(brief), survivors: survivors.map(brief), refused };
+}
+
+/**
+ * The ledger row that closes a lineage a stop ended, with the command that reruns it alone.
+ *
+ * Both stop paths write this one shape: an operator's --stop from a second process, and the
+ * runner itself when a signal or its parent's death ends it.
+ */
+function stoppedLineageRow({ label, pid, argv, signal }) {
+  return {
+    event: 'stopped',
+    status: 'stopped',
+    label,
+    pid: Number.isInteger(pid) ? pid : null,
+    ...(signal ? { signal } : {}),
+    at: new Date().toISOString(),
+    rerun_command: rerunCommandFor(label, argv),
+  };
 }
 
 function expectedLineageArtifactPaths(loopType, lineageDir) {
@@ -1235,9 +1328,11 @@ function writeRedactedLineageLog(fromPath, toPath) {
   fs.writeFileSync(toPath, redactProviderText(fs.readFileSync(fromPath, 'utf8')), 'utf8');
 }
 
-// A lineage that failed with no retry left keeps its last raw log in the committed
-// artifact directory, so that log is masked once its process has exited. A lineage that
-// succeeds keeps its log byte for byte.
+// Every lineage keeps its last log in the committed artifact directory, whether it
+// succeeded, failed with no retry left or was stopped, and a provider echoes account
+// ids and the repository author's email into that log. So the log is masked once the
+// lineage has settled, after the worker's own reads of the raw text. Masking is
+// idempotent, so a log masked by an earlier run is left as it is.
 function redactTerminalLineageLogs(lineageDir) {
   for (const name of ['fanout-lineage.out', 'fanout-lineage.err']) {
     const logPath = path.join(lineageDir, 'logs', name);
@@ -1635,6 +1730,9 @@ function shellQuoteArg(value) {
 
 // The command that reruns one lineage of this run against the same matrix: the run's own
 // argv with any earlier --only-lineage pair replaced, so the lineage keeps its budget share.
+// Path values are resolved against this process's cwd, so the command runs from any directory.
+const RERUN_PATH_FLAGS = new Set(['baseArtifactDir', ...Object.keys(TEXT_FILE_FLAGS)]);
+
 function rerunCommandFor(label, argv = process.argv.slice(2)) {
   const kept = [];
   for (let index = 0; index < argv.length; index += 1) {
@@ -1643,6 +1741,12 @@ function rerunCommandFor(label, argv = process.argv.slice(2)) {
       continue;
     }
     kept.push(argv[index]);
+    const flag = argv[index].startsWith('--') ? argv[index].slice(2).replace(/-([a-z])/g, (_, c) => c.toUpperCase()) : null;
+    const value = argv[index + 1];
+    if (flag && RERUN_PATH_FLAGS.has(flag) && value !== undefined && !value.startsWith('--')) {
+      kept.push(path.resolve(value));
+      index += 1;
+    }
   }
   return [process.execPath, __filename, ...kept, '--only-lineage', label].map(shellQuoteArg).join(' ');
 }
@@ -2701,11 +2805,25 @@ function decorateSlotAccountingEvent(event, accountingByLabel) {
 function readLineageProgressFields(lineageDir, liveStdout = '') {
   const { readNodeStore } = require('./frontier-admit.cjs');
   const { iterations, lastCommitAt, flaggedPasses } = readLineagePassSummary(lineageDir, liveStdout);
+  // A review node's answered status is derived by the reducer into its registry
+  // frontier and never written back to the store, so that derived status wins
+  // where the registry has the node; a node admitted after the last reduce keeps
+  // its stored status.
+  const derivedStatus = new Map();
+  try {
+    const registry = JSON.parse(fs.readFileSync(path.join(lineageDir, 'deep-review-findings-registry.json'), 'utf8'));
+    for (const node of Array.isArray(registry?.frontier?.nodes) ? registry.frontier.nodes : []) {
+      if (node && typeof node.nodeId === 'string') derivedStatus.set(node.nodeId, node.status);
+    }
+  } catch {
+    // No reduced frontier yet, or a torn write: the store's own statuses stand.
+  }
   const nodes = { answered: 0, open: 0, total: 0 };
   for (const node of readNodeStore(path.join(lineageDir, 'frontier-nodes.jsonl'), { warnings: [] }).values()) {
+    const status = derivedStatus.has(node.nodeId) ? derivedStatus.get(node.nodeId) : node.status;
     nodes.total += 1;
-    if (node.status === 'answered') nodes.answered += 1;
-    else if (node.status === 'open' || node.status === 'active') nodes.open += 1;
+    if (status === 'answered') nodes.answered += 1;
+    else if (status === 'open' || status === 'active') nodes.open += 1;
   }
   return { iterations, lastCommitAt, nodes, flaggedPasses };
 }
@@ -3152,16 +3270,16 @@ function sandboxEnforcementFor(input) {
 }
 
 function finalizeLineageCommand(input) {
-  // cli-opencode exposes no OS-level sandbox or permission-scoping flag: read-only and
-  // workspace-write are indistinguishable at the command level (buildOpencodeLineageCommand
-  // only branches on danger-full-access), so recording either as the effective sandbox mode
-  // is a false guarantee. A caller that requested confinement must be told the request
-  // cannot be honored rather than silently downgraded to unconfined writes with an advisory
-  // label, so dispatch fails closed instead of proceeding.
-  if (input.kind === 'cli-opencode' && input.resolvedSandbox && input.resolvedSandbox !== 'danger-full-access') {
+  // cli-opencode has no OS-level sandbox. workspace-write is honoured only as a permission
+  // rule (external_directory denied for its file tools), and its Bash tool can still write
+  // anywhere, so no read-only boundary exists. A read-only request must be refused rather
+  // than recorded as a boundary the process never had, so dispatch fails closed.
+  if (input.kind === 'cli-opencode' && input.resolvedSandbox
+    && input.resolvedSandbox !== 'danger-full-access' && input.resolvedSandbox !== 'workspace-write') {
     throw inputError(
-      `cli-opencode cannot enforce sandbox mode '${input.resolvedSandbox}': the executor exposes `
-        + 'no confinement flag for it; use \'danger-full-access\' or a dispatch kind that can enforce this sandbox mode',
+      `cli-opencode cannot enforce sandbox mode '${input.resolvedSandbox}': its Bash tool can write anywhere, `
+        + 'so no read-only boundary exists; use \'workspace-write\' (file tools denied outside the working '
+        + 'directory, Bash not confined), \'danger-full-access\', or a dispatch kind that can enforce this sandbox mode',
     );
   }
   const effectiveConfig = {
@@ -3296,24 +3414,44 @@ function pinReasoningEffortForModel(model, reasoningEffort) {
   return isFlashMaxPinnedModel(model) ? 'max' : reasoningEffort;
 }
 
+// OpenCode reads OPENCODE_CONFIG_CONTENT as inline config that overrides the project's
+// opencode.json, so a workspace-write lineage gets its external_directory deny there. An
+// inherited value keeps every other key; one this cannot merge into is refused rather than
+// replaced, because replacing it would silently drop the caller's own settings.
+function opencodeWorkspaceWriteConfigContent(inherited) {
+  let config = {};
+  if (inherited !== undefined && inherited !== '') {
+    try {
+      config = JSON.parse(inherited);
+    } catch (error) {
+      throw inputError(`cli-opencode workspace-write cannot merge into OPENCODE_CONFIG_CONTENT: not valid JSON (${error.message})`);
+    }
+    if (!isRecord(config)) {
+      throw inputError('cli-opencode workspace-write cannot merge into OPENCODE_CONFIG_CONTENT: it is not a JSON object');
+    }
+  }
+  if (config.permission !== undefined && !isRecord(config.permission)) {
+    throw inputError('cli-opencode workspace-write cannot merge into OPENCODE_CONFIG_CONTENT: its permission key is not an object');
+  }
+  return JSON.stringify({ ...config, permission: { ...(config.permission || {}), external_directory: 'deny' } });
+}
+
 function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  const parentEnv = options.env || process.env;
   let opencode;
   try {
-    opencode = resolveOpencodeBinary(options.env || process.env);
+    opencode = resolveOpencodeBinary(parentEnv);
   } catch (error) {
     throw inputError(`cli-opencode executor unavailable: ${error.message}`);
   }
 
   const model = lineage.model || OPENCODE_DEFAULT_MODEL;
   const opencodeEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
-  const useDangerousBypass = resolvedSandbox === 'danger-full-access';
-  if (useDangerousBypass) {
-    process.stderr.write(
-      `WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --auto. `
-        + `The lineageDir write boundary is prompt-only, not sandbox-enforced.\n`,
-    );
-  }
-
+  // Every headless mode runs with --auto, which approves any permission not explicitly
+  // denied. workspace-write adds an explicit external_directory deny, which stops the file
+  // tools (edit, write, read) at the working directory. Bash is not path-confined in either
+  // mode, so this is a compensating control, never a sandbox.
+  const workspaceWrite = resolvedSandbox === 'workspace-write';
   const args = [
     'run',
     '--standalone',
@@ -3321,11 +3459,11 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
     opencodeEffort ? `${model}#${opencodeEffort}` : model,
     '--format',
     'json',
+    '--auto',
+    prompt,
   ];
-  if (useDangerousBypass) args.push('--auto');
-  args.push(prompt);
 
-  return finalizeLineageCommand({
+  const built = finalizeLineageCommand({
     kind: lineage.kind,
     command: opencode.command,
     args,
@@ -3338,9 +3476,20 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission,
+    compensatingControl: workspaceWrite,
     webSearch: effectiveWebSearchPolicy(lineage),
     cwd: options.directoryRoot || process.cwd(),
+    ...(workspaceWrite
+      ? { env: { OPENCODE_CONFIG_CONTENT: opencodeWorkspaceWriteConfigContent(parentEnv.OPENCODE_CONFIG_CONTENT) } }
+      : {}),
   });
+  process.stderr.write(workspaceWrite
+    ? `WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --auto and external_directory denied: `
+      + 'file tools outside the working directory are refused, but Bash is not confined and can still '
+      + 'write anywhere, so the lineageDir write boundary is prompt-only for Bash.\n'
+    : `WARN: lineage ${lineage.label || '(cli-opencode)'} runs with --auto and no path restriction. `
+      + 'The lineageDir write boundary is prompt-only, not sandbox-enforced.\n');
+  return built;
 }
 
 // Mirrors CURSOR_SUPPORTED_MODELS in executor-config.ts. Duplicated as a plain
@@ -4325,6 +4474,7 @@ async function main() {
   const baseArtifactDir = validateBaseArtifactDir(ensureString(args, 'baseArtifactDir'), specFolder, loopType);
   const convergenceThreshold = parseOptionalNumber(args, 'convergenceThreshold');
   const lineageTimeoutHoursOverride = parseOptionalNumber(args, 'lineageTimeoutHours');
+  const maxIterationsFlag = parseMaxIterationsFlag(args);
   assertLineageTimeoutHoursOverrideWithinCeiling(lineageTimeoutHoursOverride);
   const stopPolicy = normalizeStopPolicy(args.stopPolicy);
   const convergenceMode = normalizeConvergenceMode(args.convergenceMode);
@@ -4365,7 +4515,7 @@ async function main() {
   if (args.stop !== undefined) {
     if (args.stop !== true) throw inputError('--stop takes no value');
     const stopOutcome = await stopLiveFanoutRun(ledgerPath);
-    const stopExitCode = stopOutcome.survivors.length > 0 ? 2 : 0;
+    const stopExitCode = stopOutcome.survivors.length > 0 || stopOutcome.refused.length > 0 ? 2 : 0;
     jsonOut({ status: stopExitCode === 0 ? 'ok' : 'partial', ...stopOutcome });
     process.exit(stopExitCode);
   }
@@ -4406,7 +4556,11 @@ async function main() {
   const lineageBudgetGuards = normalizeLineageBudgetGuards(rawGuardConfig);
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
-  const expandedLineages = expandLineages(fanoutConfig);
+  const matrixExpandedLineages = expandLineages(fanoutConfig);
+  const expandedLineages = flagLineageBudgets(matrixExpandedLineages, maxIterationsFlag);
+  for (const note of flagLineageBudgetNotes(matrixExpandedLineages, expandedLineages)) {
+    process.stderr.write(`${note}\n`);
+  }
   const nativeLineages = expandedLineages.filter((lineage) => lineage.kind === 'native');
   if (nativeLineages.length > 0) {
     const labels = nativeLineages.map((lineage) => lineage.label).join(', ');
@@ -4505,16 +4659,11 @@ async function main() {
     // workspace-write would be the stronger fix if the CLIs exposed one. Callers can still pass an
     // explicit sandboxMode to override.
     //
-    // cli-opencode has no OS-level sandbox flag at all, so the generic workspace-write
-    // default would silently ask it to honor a mode it can never enforce. An UNSPECIFIED
-    // sandboxMode for this kind resolves to danger-full-access instead -- the only mode it
-    // can honestly report as effective -- so ordinary dispatch proceeds normally. A caller
-    // that EXPLICITLY asks for read-only/workspace-write still reaches finalizeLineageCommand
-    // unmodified, where that genuine confinement request is rejected.
-    const effectiveSandbox = lineage.kind === 'cli-opencode'
-      && (lineage.sandboxMode === null || lineage.sandboxMode === undefined)
-      ? 'danger-full-access'
-      : resolveSandboxMode(lineage.sandboxMode);
+    // cli-opencode takes the same workspace-write default. It has no OS-level sandbox, so its
+    // builder honours workspace-write by denying external_directory to the file tools and
+    // records that as a compensating control: Bash can still write outside the working
+    // directory. An explicit read-only is refused in finalizeLineageCommand.
+    const effectiveSandbox = resolveSandboxMode(lineage.sandboxMode);
     const effectivePermission = resolveClaudePermissionMode(lineage.sandboxMode);
 
     const built = buildLineageCommand(lineage, prompt, effectiveSandbox, effectivePermission, {
@@ -4756,6 +4905,23 @@ async function main() {
     stoppedSummaryWritten = true;
     stopActiveLineageProcesses(signal);
     const stoppedAtIso = new Date().toISOString();
+    // Each lineage still running is closed with its own row, so the next run neither
+    // requeues it as an orphan nor charges it a retry, and the summary reads it as stopped.
+    const ledgerRecords = readLedgerRecords(ledgerPath);
+    for (const lineage of cliLineages) {
+      const snapshot = lineageSnapshots.get(lineage.label);
+      if (!snapshot || snapshot.status !== 'running') continue;
+      const spawnedRow = ledgerRecords.filter((record) => record
+        && record.event === 'spawned'
+        && record.label === lineage.label).at(-1);
+      appendFanoutStatusLedger(ledgerPath, stoppedLineageRow({
+        label: lineage.label,
+        pid: spawnedRow ? Number(spawnedRow.pid) : null,
+        signal,
+      }));
+      redactTerminalLineageLogs(path.join(lineagesDir, lineage.label));
+      lineageSnapshots.set(lineage.label, { ...snapshot, status: 'stopped', stopped_at_iso: stoppedAtIso });
+    }
     const partial = summarizeSnapshots(cliLineages, lineageSnapshots);
     const gauges = {
       lag: latestGauges.lag,
@@ -4763,7 +4929,9 @@ async function main() {
       failed: Math.max(latestGauges.failed, partial.summary.failed),
     };
     appendFanoutStatusLedger(ledgerPath, {
-      event: 'stopped',
+      event: 'run_stopped',
+      status: 'stopped',
+      run_id: runId,
       signal,
       at: stoppedAtIso,
       gauges,
@@ -4800,6 +4968,9 @@ async function main() {
       updateLineageSnapshot(lineageSnapshots, enrichedEvent);
       if (enrichedEvent.gauges) latestGauges = enrichedEvent.gauges;
       appendFanoutStatusLedger(ledgerPath, enrichedEvent);
+      if (enrichedEvent.event === 'completed' && enrichedEvent.label) {
+        redactTerminalLineageLogs(path.join(lineagesDir, enrichedEvent.label));
+      }
       // Only the pool knows when a failure has no retry left. Said the moment it settles,
       // so an operator watching the run learns a lineage is gone before the run ends.
       if (enrichedEvent.event === 'failed' && enrichedEvent.terminal === true) {
@@ -5157,6 +5328,8 @@ async function main() {
             lineageProcessLiveness.set(livenessKey, { alive: true, pid });
             // The in-memory map dies with this runner, so the pid a later run needs
             // to prove this lineage is still alive has to reach the durable ledger.
+            // The start time lets a later --stop tell this process from a reuse of its pid.
+            const processStart = processStartOf(pid);
             appendFanoutStatusLedger(ledgerPath, {
               event: 'spawned',
               label: lineage.label,
@@ -5164,6 +5337,7 @@ async function main() {
               pid,
               at: new Date().toISOString(),
               status: 'running',
+              ...(processStart ? { process_start: processStart } : {}),
             });
           },
           onExit: ({ pid, exitedAtMs }) => {
@@ -5637,6 +5811,9 @@ if (require.main === module && isTsxLoaded) {
 
 module.exports = {
   expansiveLineageBudgets,
+  flagLineageBudgets,
+  redactProviderText,
+  rerunCommandFor,
   expansiveLineageBudgetNotes,
   runLineageProcess,
   forcedDepthIterationViolation,

@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.11.0
+version: 1.4.12.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -637,7 +637,7 @@ Owns the expansive frontier node store: seeds depth-1 nodes and reports the budg
 #### Scenario Contract
 Prompt: `Validate frontier-admit.cjs: seed two nodes, admit one proposal and prune one, close the admitted node, and try to close the pruned one. Return a PASS or FAIL verdict with the reason.`
 
-Expected signals: `seed` prints `[frontier-admit] budget after seed 10 iterations, 3 growth slots` and admits `F-1-001` and `F-1-002`; `admit` admits `F-2-003` and prunes `F-2-004` with reason `relevance`; `close` appends the `F-2-003` row as `answered`; closing `F-2-004` as `answered` exits 2 with the pruned-node refusal.
+Expected signals: `seed` prints `[frontier-admit] budget after seed 10 iterations, 3 growth slots` and admits `F-1-001` and `F-1-002`; `admit` admits `F-2-003` and prunes `F-2-004` with reason `relevance`; `close` appends the `F-2-003` row as `answered`; closing `F-2-004` as `answered` exits 2 with the pruned-node refusal; a seed with `--max-iterations 20` beside a config of 5 prints `budget after seed 20 iterations, 8 growth slots`.
 
 #### Test Execution
 > **Feature File:** [DLR-065](../manual-testing-playbook/script-entry-points/frontier-admit-script.md)

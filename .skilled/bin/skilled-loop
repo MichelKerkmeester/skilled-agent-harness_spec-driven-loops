@@ -4,8 +4,7 @@
 # ───────────────────────────────────────────────────────────────
 # Relaunch a supported runtime with a fresh handoff seed when state is armed.
 # Exit codes preserve the runtime result, except invalid relaunch state returns 1, and
-# so does a clean exit whose manual command cannot repeat the launch options, and an
-# OpenCode 1 binary the wrapper refuses to launch.
+# so does a clean exit whose manual command cannot repeat the launch options.
 set -euo pipefail
 
 resolve_script_path() {
@@ -1216,26 +1215,6 @@ if [[ "$runtime" == 'opencode' ]] && ((opencode_server_seen == 1)); then
     'warning: --server attaches to a shared server, so the loop cannot arm and no relaunch follows' >&2
 fi
 if [[ "$runtime" == 'opencode' ]] && ((opencode_server_seen == 0 && opencode_standalone_seen == 0)); then
-  # OpenCode 1 has no --standalone flag, so a leftover install would end the launch with a
-  # bare usage error. The version is read with the parser the deep loop uses, and only its
-  # OpenCode 1 verdict refuses: a probe that fails, times out or reads any other version
-  # leaves the launch as it was, so it never blocks OpenCode 2.
-  opencode_version_family=$(node -e '
-    const { spawnSync } = require("node:child_process");
-    const { parseOpencodeVersion } = require(process.argv[1]);
-    const probe = spawnSync(process.argv[2], ["--version"], {
-      encoding: "utf8",
-      timeout: 3000,
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-    if (probe.error || probe.status !== 0) process.exit(0);
-    process.stdout.write(parseOpencodeVersion([probe.stdout, probe.stderr].join("\n")));
-  ' -- "$script_directory/../skills/system-deep-loop/runtime/scripts/opencode-version.cjs" \
-    "$runtime_command" 2>/dev/null) || opencode_version_family=''
-  if [[ "$opencode_version_family" == 'unsupported' ]]; then
-    printf '%s\n' 'skilled-loop: OpenCode 1 is unsupported; remove it with .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh remove-v1, then install with its v2 mode' >&2
-    exit 1
-  fi
   if ((original_argument_count > 0)); then
     launch_arguments=(--standalone "${launch_arguments[@]}")
   else

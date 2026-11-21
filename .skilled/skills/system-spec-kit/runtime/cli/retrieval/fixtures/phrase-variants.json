@@ -1,5 +1,5 @@
 {
-  "manifestHash": "541bad0cc79b0c53b45e511b7a17ba78f149e800c7b1c1a0cac0ff863a29fbc1",
+  "manifestHash": "75f82f1c9e0ce019dbdbab32a3cf789731917731f193c4baa610cabc0abed357",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5258,6 +5258,9 @@
     ],
     "023 live handler envelope capture interface resource map": [
       "023-live-handler-envelope-capture-interface resource map"
+    ],
+    "023 ollama deprecation research operator decisions": [
+      "023-ollama-deprecation-research operator decisions"
     ],
     "023 post remediation re review": [
       "023 post-remediation re-review"
@@ -11829,6 +11832,21 @@
     ],
     "alignment cli opencode result": [
       "alignment cli opencode result"
+    ],
+    "alignment command overlay targets": [
+      "alignment command overlay targets"
+    ],
+    "alignment command overlay targets goal": [
+      "alignment command overlay targets goal"
+    ],
+    "alignment command overlay targets implementation summary": [
+      "alignment command overlay targets implementation summary"
+    ],
+    "alignment command overlay targets plan": [
+      "alignment command overlay targets plan"
+    ],
+    "alignment command overlay targets tasks": [
+      "alignment command overlay targets tasks"
     ],
     "alignment convergence mode off": [
       "alignment convergence mode off"
@@ -24280,6 +24298,9 @@
     "cli opencode 2 0 1 0": [
       "cli-opencode 2.0.1.0"
     ],
+    "cli opencode 2 0 2 0": [
+      "cli-opencode 2.0.2.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -24552,6 +24573,9 @@
     ],
     "cli opencode v2 0 1 0": [
       "cli-opencode v2.0.1.0"
+    ],
+    "cli opencode v2 0 2 0": [
+      "cli-opencode v2.0.2.0"
     ],
     "cli opencode version detection": [
       "cli-opencode version detection"
@@ -40609,6 +40633,9 @@
     "delete pending rescan workaround": [
       "DELETE pending rescan workaround"
     ],
+    "delete semantic shadow lane": [
+      "delete semantic shadow lane"
+    ],
     "delete system spec kit smoke test": [
       "delete system-spec-kit smoke test"
     ],
@@ -45386,6 +45413,9 @@
     "documentation matches shipped state": [
       "documentation matches shipped state"
     ],
+    "documentation only readme overlay": [
+      "documentation only readme overlay"
+    ],
     "documentation quality refactor": [
       "documentation quality refactor"
     ],
@@ -49819,6 +49849,9 @@
     "extend a completed deep loop run": [
       "extend a completed deep loop run"
     ],
+    "extend a finished deep loop run": [
+      "extend a finished deep loop run"
+    ],
     "extend completed deep research run": [
       "extend completed deep research run"
     ],
@@ -50959,6 +50992,9 @@
     ],
     "fan out lineage executor missing": [
       "fan-out lineage executor_missing"
+    ],
+    "fan out lineage preview": [
+      "fan-out lineage preview"
     ],
     "fan out lineage pwd": [
       "fan-out lineage pwd"
@@ -65838,6 +65874,12 @@
     "layout cap and relayout evidence": [
       "layout cap and relayout evidence"
     ],
+    "layout link listed twice": [
+      "layout link listed twice"
+    ],
+    "layout link path escapes the tree root": [
+      "layout link path escapes the tree root"
+    ],
     "layout notice cap relayout migration plan": [
       "layout notice cap relayout migration plan"
     ],
@@ -68022,6 +68064,9 @@
     "local skilled alignment advisor": [
       "local skilled alignment advisor"
     ],
+    "local skilled alignment overlays target": [
+      "local skilled alignment overlays target"
+    ],
     "local test speedups": [
       "local test speedups"
     ],
@@ -68586,6 +68631,9 @@
     ],
     "maintenance script headers": [
       "maintenance-script headers"
+    ],
+    "major 1 opencode reads as unknown": [
+      "major-1 opencode reads as unknown"
     ],
     "major minor patch build changelog": [
       "major minor patch build changelog"
@@ -78756,6 +78804,18 @@
     "ollama default embedder shipped": [
       "ollama default embedder shipped"
     ],
+    "ollama deprecation research": [
+      "ollama deprecation research"
+    ],
+    "ollama deprecation research implementation summary": [
+      "ollama deprecation research implementation summary"
+    ],
+    "ollama deprecation research plan": [
+      "ollama deprecation research plan"
+    ],
+    "ollama deprecation research tasks": [
+      "ollama deprecation research tasks"
+    ],
     "ollama detection null startup fix": [
       "ollama detection null startup fix"
     ],
@@ -79215,11 +79275,11 @@
     "opencode": [
       "opencode"
     ],
-    "opencode 1 refusal": [
-      "OpenCode 1 refusal"
-    ],
     "opencode 2 ancestor opencode folder": [
       "opencode 2 ancestor opencode folder"
+    ],
+    "opencode 2 only": [
+      "opencode 2 only"
     ],
     "opencode 2 plugin support": [
       "opencode 2 plugin support"
@@ -79979,6 +80039,9 @@
     ],
     "opencode version drift": [
       "opencode version drift"
+    ],
+    "opencode version families v2 unknown": [
+      "opencode version families v2 unknown"
     ],
     "opencode version resolver": [
       "opencode version resolver"
@@ -81351,8 +81414,26 @@
     "overengineering simplification summary": [
       "overengineering simplification summary"
     ],
+    "overlaid file sk code alignment": [
+      "overlaid file sk-code alignment"
+    ],
     "overlay adoption closure gate": [
       "overlay adoption closure gate"
+    ],
+    "overlay alignment follow ups": [
+      "overlay alignment follow ups"
+    ],
+    "overlay alignment follow ups goal": [
+      "overlay alignment follow ups goal"
+    ],
+    "overlay alignment follow ups implementation summary": [
+      "overlay alignment follow ups implementation summary"
+    ],
+    "overlay alignment follow ups plan": [
+      "overlay alignment follow ups plan"
+    ],
+    "overlay alignment follow ups tasks": [
+      "overlay alignment follow ups tasks"
     ],
     "overlay apply adopt": [
       "overlay apply adopt"
@@ -81393,6 +81474,9 @@
     "overlay engine plan": [
       "overlay engine plan"
     ],
+    "overlay engine pycache": [
+      "overlay engine pycache"
+    ],
     "overlay engine relayout target": [
       "overlay engine relayout target"
     ],
@@ -81417,6 +81501,24 @@
     "overlay first write checks tasks": [
       "overlay first write checks tasks"
     ],
+    "overlay folder readmes": [
+      "overlay folder readmes"
+    ],
+    "overlay folder readmes acceptance criteria": [
+      "overlay folder readmes acceptance criteria"
+    ],
+    "overlay folder readmes goal": [
+      "overlay folder readmes goal"
+    ],
+    "overlay folder readmes implementation summary": [
+      "overlay folder readmes implementation summary"
+    ],
+    "overlay folder readmes plan": [
+      "overlay folder readmes plan"
+    ],
+    "overlay folder readmes tasks": [
+      "overlay folder readmes tasks"
+    ],
     "overlay follow up review synthesis": [
       "overlay follow up review synthesis"
     ],
@@ -81437,6 +81539,12 @@
     ],
     "overlay guard test": [
       "overlay guard test"
+    ],
+    "overlay layout doc alignment topic": [
+      "overlay layout doc alignment topic"
+    ],
+    "overlay layout second review fixes": [
+      "overlay layout second review fixes"
     ],
     "overlay legacy cleanup message": [
       "overlay legacy cleanup message"
@@ -81494,6 +81602,9 @@
     ],
     "overlay sync repin failure modes": [
       "overlay sync repin failure modes"
+    ],
+    "overlay upstream handoff": [
+      "overlay upstream handoff"
     ],
     "overlay write checks follow up": [
       "overlay write checks follow up"
@@ -84434,6 +84545,9 @@
     "phase 12 review findings tasks": [
       "phase 12 review findings tasks"
     ],
+    "phase 12 review round 2 fixes": [
+      "phase 12 review round 2 fixes"
+    ],
     "phase 12 session name carry": [
       "phase 12 session name carry"
     ],
@@ -84584,6 +84698,9 @@
     "phase 14 harden overlay engine from fable review": [
       "phase 14 harden overlay engine from fable review"
     ],
+    "phase 14 overlay folder readmes": [
+      "phase 14 overlay folder readmes"
+    ],
     "phase 14 playbook docs and closeout": [
       "phase 14 playbook docs and closeout"
     ],
@@ -84634,6 +84751,9 @@
     ],
     "phase 15 align sk code": [
       "phase 15 align sk code"
+    ],
+    "phase 15 alignment command overlay targets": [
+      "phase 15 alignment command overlay targets"
     ],
     "phase 15 archive current location and ignored files": [
       "phase 15 archive current location and ignored files"
@@ -84770,6 +84890,9 @@
     "phase 16 tasks": [
       "phase 16 tasks"
     ],
+    "phase 16 upstream code alignment": [
+      "phase 16 upstream code alignment"
+    ],
     "phase 16 vibe turn end guards": [
       "phase 16 vibe turn end guards"
     ],
@@ -84805,6 +84928,9 @@
     ],
     "phase 17 over engineering cuts": [
       "phase 17 over engineering cuts"
+    ],
+    "phase 17 overlay alignment follow ups": [
+      "phase 17 overlay alignment follow ups"
     ],
     "phase 17 plan": [
       "phase 17 plan"
@@ -85360,6 +85486,9 @@
     ],
     "phase 23 epic review doc fixes": [
       "phase 23 epic review doc fixes"
+    ],
+    "phase 23 ollama deprecation research": [
+      "phase 23 ollama deprecation research"
     ],
     "phase 23 readme freshness research": [
       "phase 23 readme freshness research"
@@ -86320,6 +86449,9 @@
     ],
     "phase 5 trim duplicated and dead agent text": [
       "phase 5 trim duplicated and dead agent text"
+    ],
+    "phase 5 v1 reference purge": [
+      "phase 5 v1 reference purge"
     ],
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
@@ -92354,6 +92486,9 @@
     "pull request template": [
       "pull request template"
     ],
+    "purge opencode 1 references": [
+      "purge opencode 1 references"
+    ],
     "purge qwen3 embeddings": [
       "purge qwen3 embeddings"
     ],
@@ -96353,6 +96488,9 @@
     "relaunch test speed tasks": [
       "relaunch test speed tasks"
     ],
+    "relayout backup failure contract": [
+      "relayout backup failure contract"
+    ],
     "relayout rollback design": [
       "relayout rollback design"
     ],
@@ -97860,8 +97998,8 @@
     "remove obsidian plugin support": [
       "remove obsidian plugin support"
     ],
-    "remove old opencode install": [
-      "remove old opencode install"
+    "remove ollama from skill advisor": [
+      "remove ollama from skill advisor"
     ],
     "remove predecessor hard block": [
       "remove predecessor hard block"
@@ -97952,6 +98090,9 @@
     ],
     "remove track narrowing scorer": [
       "remove track narrowing scorer"
+    ],
+    "remove v1 mode removed": [
+      "remove-v1 mode removed"
     ],
     "remove voyage cohere reranker": [
       "remove voyage cohere reranker"
@@ -102312,6 +102453,21 @@
     "review rollback followup": [
       "review rollback followup"
     ],
+    "review round 2 fixes": [
+      "review round 2 fixes"
+    ],
+    "review round 2 fixes goal": [
+      "review round 2 fixes goal"
+    ],
+    "review round 2 fixes implementation summary": [
+      "review round 2 fixes implementation summary"
+    ],
+    "review round 2 fixes plan": [
+      "review round 2 fixes plan"
+    ],
+    "review round 2 fixes tasks": [
+      "review round 2 fixes tasks"
+    ],
     "review routing canon shape": [
       "review routing canon shape"
     ],
@@ -103636,6 +103792,9 @@
     ],
     "router sync orphan check": [
       "router sync orphan check"
+    ],
+    "router sync readme orphan": [
+      "router sync readme orphan"
     ],
     "router sync verifier header": [
       "router sync verifier header"
@@ -119615,6 +119774,9 @@
     "skilled v4 1 0 0": [
       "skilled v4.1.0.0"
     ],
+    "skilled v4 2 0 0": [
+      "skilled v4.2.0.0"
+    ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
     ],
@@ -123916,6 +124078,9 @@
     ],
     "status and cleanup": [
       "status and cleanup"
+    ],
+    "status audit docs leg": [
+      "status audit docs leg"
     ],
     "status cjs": [
       "status.cjs"
@@ -132963,6 +133128,21 @@
     "upstream cocoindex delta classification": [
       "upstream cocoindex delta classification"
     ],
+    "upstream code alignment": [
+      "upstream code alignment"
+    ],
+    "upstream code alignment goal": [
+      "upstream code alignment goal"
+    ],
+    "upstream code alignment implementation summary": [
+      "upstream code alignment implementation summary"
+    ],
+    "upstream code alignment plan": [
+      "upstream code alignment plan"
+    ],
+    "upstream code alignment tasks": [
+      "upstream code alignment tasks"
+    ],
     "upstream delta tasks": [
       "upstream delta tasks"
     ],
@@ -133259,6 +133439,24 @@
     ],
     "v1 docs and playbooks sweep tasks": [
       "v1 docs and playbooks sweep tasks"
+    ],
+    "v1 reference purge": [
+      "v1 reference purge"
+    ],
+    "v1 reference purge acceptance criteria": [
+      "v1 reference purge acceptance criteria"
+    ],
+    "v1 reference purge decision record": [
+      "v1 reference purge decision record"
+    ],
+    "v1 reference purge implementation summary": [
+      "v1 reference purge implementation summary"
+    ],
+    "v1 reference purge plan": [
+      "v1 reference purge plan"
+    ],
+    "v1 reference purge tasks": [
+      "v1 reference purge tasks"
     ],
     "v1 runtime code and tests": [
       "v1 runtime code and tests"
@@ -133676,6 +133874,9 @@
     ],
     "v4 1 0 0 release notes": [
       "v4.1.0.0 release notes"
+    ],
+    "v4 2 0 0 release notes": [
+      "v4.2.0.0 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"

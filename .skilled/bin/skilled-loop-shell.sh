@@ -11,8 +11,8 @@
 # Defines claude, pi, opencode, codex, devin, cursor-agent and vibe, plus the `skilled-loop`
 # command the wrapper prints for a manual claim. Each runtime function runs
 # `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when stdin and stdout are a
-# terminal, no loop is running yet, the arguments open an interactive session, and a
-# wrapper sits in $PWD or a parent; otherwise it runs the binary itself. A linked
+# terminal, no loop is running yet, the arguments open an interactive session the
+# wrapper can relaunch, and a wrapper sits in $PWD or a parent; otherwise it runs the binary itself. A linked
 # `.skilled` counts, so a repository that links another checkout's `.skilled` hops too.
 #
 # The file is sourced into the operator's own shell, so it sets no option there and
@@ -114,10 +114,12 @@ skilled_loop_resolve() (
 # 2. INVOCATION CLASSIFIERS
 # ───────────────────────────────────────────────────────────────
 
-# Succeeds when the first argument is a subcommand that does not open a session in
-# this terminal. Each list is copied by hand from that runtime's own --help, so a
-# release that adds or drops a subcommand needs its list updated here. Devin needs no
-# list, because its terminal prompt only follows `--`.
+# Succeeds when the first argument is a subcommand the wrapper cannot relaunch. Most
+# open no session in this terminal. Claude's attach and OpenCode's mini do open one, but
+# a hop rebuilds the runtime's root command, so it cannot reattach a background session
+# or return to the minimal interface. Each list is copied by hand from that runtime's own
+# --help, so a release that adds or drops a subcommand needs its list updated here. Devin
+# needs no list, because its terminal prompt only follows `--`.
 skilled_loop_first_word_passes() {
   case "$1:$2" in
     claude:agents|claude:attach|claude:auth|claude:auto-mode|claude:doctor|\
@@ -184,7 +186,8 @@ skilled_loop_flag_passes() {
       pi:--blackhole-export|pi:--blackhole-export=*)
       return 0
       ;;
-    opencode:-v|opencode:--version|opencode:-h|opencode:--help)
+    opencode:-v|opencode:--version|opencode:-h|opencode:--help|\
+      opencode:--completions|opencode:--completions=*)
       return 0
       ;;
     codex:-V|codex:--version|codex:-h|codex:--help)

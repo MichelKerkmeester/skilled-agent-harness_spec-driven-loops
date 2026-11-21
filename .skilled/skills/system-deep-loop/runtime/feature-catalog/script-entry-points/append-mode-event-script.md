@@ -7,7 +7,7 @@ trigger_phrases:
   - "mode append gateway"
   - "typed ledger append"
   - "legacy projection refresh"
-version: 1.4.0.5
+version: 1.4.2.0
 ---
 
 # append-mode-event.cjs
@@ -25,6 +25,8 @@ This feature belongs to the script entry points group and is catalogued as F055 
 ## 2. HOW IT WORKS
 
 The append gateway is the sanctioned way every canonical record reaches a mode's state log. It authorizes a mode event against the mode's durable authority record, appends it to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file. This path writes no authority record — authority is moved separately by the flip — so the gateway behaves identically before a cutover and after modes reach `new_authoritative_final`; each append authorizes against whatever durable record the mode already holds. In review mode it also takes the bare canonical iteration record a review worker hands over (`"type":"iteration"`, no `stem`), records it whole under `deep_review.iteration_recorded`, and the refreshed state log carries it back as the same row with one change: its `timestamp`.
+
+A legacy research row or legacy review row (`type` of `iteration`, `iteration_start` or `event`), the shape a model writes, does not choose its own identity. The gateway drops the row's `eventId`, `idempotencyKey`, `producer` and `authorityEpoch` (and their snake_case forms) and mints all four: an `event-<uuid>` id, the key `deep-research:input:<sha256>` derived from the row as sent, producer `deep-loop-cli` and the admission epoch. None of the four is kept as a claim, because `claimedTimestamp` is the only claim field. A row that reused an earlier row's key or id therefore cannot pass as its retry or collide with it, and an identical row appended twice is still stored once. A row with a `stem` or an `event_type`, and a canonical envelope, still keep the identity the caller names.
 
 ### Iteration Rows Are Timed by the Gateway Clock
 
@@ -47,7 +49,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 | File | Type | Role |
 |---|---|---|
 | `tests/unit/mode-append-gateway.vitest.ts` | Automated test | Primary regression coverage for append-mode-event.cjs (11 tests; its fixture pins authority at `legacy_authoritative` and asserts the legacy projection is refreshed). |
-| `tests/unit/append-mode-event-legacy-seam.vitest.ts` | Automated test | Research iteration rows timed by the gateway clock, with the model's stamp kept as `claimedTimestamp`. |
+| `tests/unit/append-mode-event-legacy-seam.vitest.ts` | Automated test | Research iteration rows timed by the gateway clock, with the model's stamp kept as `claimedTimestamp`; a model-written research or review row's event id, idempotency key, producer and epoch minted by the gateway, an identical model-written row appended twice stored once, and a reused key with other content refused as `IDEMPOTENCY_CONFLICT`. |
 | `tests/unit/append-mode-event-cli.vitest.ts` | Automated test | Review iteration records timed by the gateway clock, with the model's stamp kept as `claimedTimestamp`. |
 | `scripts/check-protocol-append-sites.cjs` | Automated test | Fails any workflow asset whose appends are undeclared or uncounted. |
 

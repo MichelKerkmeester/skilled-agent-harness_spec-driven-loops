@@ -22,6 +22,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+const { createHash } = require('node:crypto');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -56,6 +57,26 @@ const MIN_OBSERVATIONS_CEILING = 10;
 const CONSECUTIVE_FAILURE_LIMIT = 3;
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 const VALID_CONVERGENCE_MODES = new Set(['default', 'off', 'sliding-window', 'divergent']);
+// The nine review legal-stop gates in evaluation order. A blocked review stop
+// reports one gate row for each, in this order.
+const REVIEW_LEGAL_STOP_GATES = Object.freeze([
+  'convergenceGate',
+  'dimensionCoverageGate',
+  'p0ResolutionGate',
+  'evidenceDensityGate',
+  'hotspotSaturationGate',
+  'claimAdjudicationGate',
+  'fixCompletenessReplayGate',
+  'candidateCoverageGate',
+  'graphlessFallbackGate',
+]);
+// The ledger needs a dimension identifier on every blocked review stop, so a
+// run with no dimension left to steer to names that state instead.
+const ALL_DIMENSIONS_COVERED = 'all-dimensions-covered';
+// The longest code token the review ledger accepts.
+const LEDGER_CODE_MAX_LENGTH = 128;
+const REVIEW_CLAIM_ADJUDICATION_HINT = 'Reviewer must add typed claim-adjudication packets (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) for every active P0/P1 finding before STOP is allowed.';
+const REVIEW_GRAPH_BLOCKED_HINT = 'Resolve review coverage-graph blockers before stopping.';
 // Every key this entrypoint reads from the parsed arguments. A flag missing
 // here is treated as an unknown option, so this list is the accepted set.
 const CONVERGENCE_FLAGS = [
@@ -950,6 +971,9 @@ function evaluateReviewLegalStopGates(review, options = {}) {
         && facts.coverageAge >= 1,
       skipped: false,
       missing: missingDimensions,
+      // The gate's other two inputs, so a block with nothing missing still names its cause.
+      traceabilityCovered: facts.traceabilityCovered === true,
+      coverageAge: typeof facts.coverageAge === 'number' ? facts.coverageAge : null,
     },
     p0ResolutionGate: {
       pass: activeP0 === 0,
@@ -1012,18 +1036,7 @@ function evaluateReviewLegalStopGates(review, options = {}) {
     }
   }
 
-  const gateOrder = [
-    'convergenceGate',
-    'dimensionCoverageGate',
-    'p0ResolutionGate',
-    'evidenceDensityGate',
-    'hotspotSaturationGate',
-    'claimAdjudicationGate',
-    'fixCompletenessReplayGate',
-    'candidateCoverageGate',
-    'graphlessFallbackGate',
-  ];
-  const failed = gateOrder.filter((name) => gates[name].pass !== true);
+  const failed = REVIEW_LEGAL_STOP_GATES.filter((name) => gates[name].pass !== true);
   return { passed: failed.length === 0, gates, failed };
 }
 
@@ -1908,25 +1921,153 @@ function buildBlockedStopRow({ stopDecision, stopDecisionInput, graphBlockers, s
   };
 }
 
+function sha256Json(value) {
+  return createHash('sha256').update(JSON.stringify(value)).digest('hex');
+}
+
+function uint32OrZero(value) {
+  const number = finiteNumberOrNull(value);
+  return number === null || number < 0 ? 0 : Math.trunc(number);
+}
+
+// A gate or blocker name in the kebab spelling the ledger's code fields accept.
+function ledgerCodeSlug(value, fallback) {
+  const slug = String(value)
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/[^A-Za-z0-9]+/g, '-')
+    .toLowerCase()
+    .slice(0, LEDGER_CODE_MAX_LENGTH)
+    .replace(/^-+|-+$/g, '');
+  return slug === '' ? fallback : slug;
+}
+
+// The dimension the next review iteration is steered to, in the order the
+// workflow binds it: the last iteration under the cap goes to traceability while
+// core protocols are unfinished, an expansive run follows its active frontier
+// node, and otherwise the first configured dimension still uncovered.
+function reviewBlockedStopTargetDimension({ input, registry, config, iteration }) {
+  const decisionConfig = isPlainObject(input?.config) ? input.config : {};
+  const facts = isPlainObject(input?.review) ? input.review : {};
+  const unfinished = Array.isArray(facts.unfinishedCoreProtocols) ? facts.unfinishedCoreProtocols : [];
+  const maxIterations = finiteNumberOrNull(decisionConfig.maxIterations);
+  if (maxIterations !== null
+    && maxIterations >= 2
+    && iteration === maxIterations
+    && unfinished.length > 0
+    && !reviewOmitsTraceability(config)) {
+    return 'traceability';
+  }
+  const frontier = isPlainObject(registry?.frontier) ? registry.frontier : {};
+  if (decisionConfig.depthMode === 'expansive'
+    && typeof frontier.activeNextDimension === 'string'
+    && frontier.activeNextDimension !== '') {
+    return frontier.activeNextDimension;
+  }
+  const missing = (Array.isArray(facts.missingDimensions) ? facts.missingDimensions : [])
+    .filter((dimension) => typeof dimension === 'string' && dimension !== '');
+  return missing.length > 0 ? missing[0] : ALL_DIMENSIONS_COVERED;
+}
+
+// One row per legal-stop gate, then one failing row per graph blocker, since a
+// stop only the graph blocks passes every gate and the ledger requires a
+// failing row on a blocked stop. Each row's digest is taken over the detail it
+// was decided from.
+function reviewBlockedStopGateResults(stopDecision, graphBlockers) {
+  const gates = isPlainObject(stopDecision.gates) ? stopDecision.gates : {};
+  const rows = REVIEW_LEGAL_STOP_GATES.map((gateId) => {
+    const gate = isPlainObject(gates[gateId]) ? gates[gateId] : {};
+    // A gate that did not apply never ran, so its row says unknown rather than claim a pass.
+    if (gate.skipped === true) {
+      return { gateId, status: 'unknown', reasonCode: 'gate-skipped', evidenceDigest: sha256Json(gate) };
+    }
+    const pass = gate.pass === true;
+    return { gateId, status: pass ? 'pass' : 'fail', reasonCode: pass ? 'gate-passed' : 'gate-failed', evidenceDigest: sha256Json(gate) };
+  });
+  const reported = new Set(REVIEW_LEGAL_STOP_GATES);
+  for (const blockedId of stopDecision.blockedBy) {
+    if (reported.has(blockedId)) continue;
+    reported.add(blockedId);
+    rows.push({
+      gateId: blockedId,
+      status: 'fail',
+      reasonCode: 'graph-stop-blocked',
+      evidenceDigest: sha256Json(graphBlockers.filter((blocker) => blockerName(blocker) === blockedId)),
+    });
+  }
+  return rows;
+}
+
+function reviewBlockedStopRecoveryHint(stopDecision, config) {
+  const facts = isPlainObject(stopDecision.inputs?.review) ? stopDecision.inputs.review : {};
+  const parts = [];
+  if (stopDecision.reasonDetail === 'graphStopBlocked') {
+    parts.push(REVIEW_GRAPH_BLOCKED_HINT);
+  } else {
+    if (stopDecision.blockedBy.includes('claimAdjudicationGate')) parts.push(REVIEW_CLAIM_ADJUDICATION_HINT);
+    const others = stopDecision.blockedBy.filter((gateId) => gateId !== 'claimAdjudicationGate');
+    if (others.length > 0) parts.push(`Clear the failed legal-stop gates before stopping: ${others.join(', ')}.`);
+  }
+  const unfinished = Array.isArray(facts.unfinishedCoreProtocols) ? facts.unfinishedCoreProtocols : [];
+  if (unfinished.length > 0) {
+    parts.push(`Unfinished core protocols: ${unfinished.join(', ')}.`);
+    if (!reviewOmitsTraceability(config)) {
+      parts.push('The last iteration under the cap is reserved for them, each needing file:line evidence.');
+    }
+  }
+  return parts.join(' ');
+}
+
+// The review ledger event for a blocked stop. Its identity comes from the
+// review config, which names the run the gateway opened, and the convergence
+// event it names is the one the workflow appends for the same iteration.
+function buildReviewBlockedStopEvent({ stopDecision, graphBlockers, registry, config, sessionId, generation, iteration }) {
+  const counts = isPlainObject(registry.findingsBySeverity) ? registry.findingsBySeverity : {};
+  const p0 = uint32OrZero(counts.P0);
+  const p1 = uint32OrZero(counts.P1);
+  const p2 = uint32OrZero(counts.P2);
+  return {
+    stem: 'deep_review.blocked_stop_recorded',
+    scope: { runId: sessionId, sessionId, generation, iterationId: `iteration-${iteration}` },
+    data: {
+      blockedGateIds: stopDecision.blockedBy,
+      gateResults: reviewBlockedStopGateResults(stopDecision, graphBlockers),
+      activeFindingCounts: { candidates: p0 + p1 + p2, adjudicated: p0 + p1 + p2, p0, p1, p2 },
+      recoveryStrategy: ledgerCodeSlug(stopDecision.blockedBy[0], 'blocked-stop'),
+      targetDimensionId: reviewBlockedStopTargetDimension({
+        input: stopDecision.inputs,
+        registry,
+        config,
+        iteration,
+      }),
+      originatingConvergenceEventId: `graph-${sessionId}-g${generation}-i${iteration}`,
+      appendPosition: iteration,
+      gateDetail: isPlainObject(stopDecision.gates) ? stopDecision.gates : {},
+      graphBlockerDetail: graphBlockers,
+      recoveryHint: reviewBlockedStopRecoveryHint(stopDecision, config),
+    },
+  };
+}
+
 // A leaf can read the stop decision and move on without running the step that
-// records the block, so the command that computes a blocked research stop also
-// records it, through the same append gateway the workflow uses. A decision
-// recomputed for a run that already holds a row with the same blockers writes
-// nothing; a changed blocker set is a new attempt and gets its own row, so the
-// latest row is the block the next focus is steered by.
-function recordBlockedStop({ row, stateLogPath, stateRows }) {
+// records the block, so the command that computes a blocked stop also records
+// it, through the same append gateway the workflow uses. A decision recomputed
+// for a run that already holds a row with the same blockers writes nothing; a
+// changed blocker set is a new attempt and gets its own row, so the latest row
+// is the block the next focus is steered by. Both modes project the record to
+// a blocked_stop state row, which is what the repeat check reads.
+function recordBlockedStop({ event, mode, run, blockedBy, summary, stateLogPath, stateRows }) {
   const blockerKey = (list) => (Array.isArray(list) ? [...list].map(String).sort().join('\n') : '');
   const already = stateRows.some((existing) => isPlainObject(existing)
     && existing.type === 'event'
     && existing.event === 'blocked_stop'
-    && finiteNumberOrNull(existing.run) === row.run
-    && blockerKey(existing.blockedBy) === blockerKey(row.blockedBy));
-  if (already) return { status: 'already_recorded', run: row.run, recoveryStrategy: row.recoveryStrategy };
+    && finiteNumberOrNull(existing.run) === run
+    && blockerKey(existing.blockedBy) === blockerKey(blockedBy));
+  if (already) return { status: 'already_recorded', run, ...summary };
 
   const eventDir = fs.mkdtempSync(path.join(os.tmpdir(), 'deep-loop-blocked-stop-'));
   try {
     const eventPath = path.join(eventDir, 'blocked-stop.json');
-    fs.writeFileSync(eventPath, JSON.stringify(row));
+    fs.writeFileSync(eventPath, JSON.stringify(event));
     // The gateway bootstraps its own loader only when this flag is absent, and
     // this process runs under the flag.
     const env = { ...process.env };
@@ -1935,7 +2076,7 @@ function recordBlockedStop({ row, stateLogPath, stateRows }) {
       process.execPath,
       [
         path.join(__dirname, 'append-mode-event.cjs'),
-        '--mode', 'research',
+        '--mode', mode,
         '--run-directory', path.dirname(stateLogPath),
         '--event-json', eventPath,
       ],
@@ -1951,23 +2092,94 @@ function recordBlockedStop({ row, stateLogPath, stateRows }) {
     if (exitCode !== 0) {
       return {
         status: 'failed',
-        run: row.run,
+        run,
         exitCode,
         reason: isPlainObject(gateway) && typeof gateway.reason === 'string'
           ? gateway.reason
           : String(result.stderr || '').trim() || 'append gateway failed',
-        recoveryStrategy: row.recoveryStrategy,
+        ...summary,
       };
     }
     return {
       status: 'recorded',
-      run: row.run,
-      recoveryStrategy: row.recoveryStrategy,
+      run,
+      ...summary,
       ...(isPlainObject(gateway) && isPlainObject(gateway.receipt) ? { eventId: gateway.receipt.event_id } : {}),
     };
   } finally {
     fs.rmSync(eventDir, { recursive: true, force: true });
   }
+}
+
+// Records a BLOCKED decision on the payload before it is printed. Every path
+// that computes a stop decision calls it: a graph with nodes, an empty graph,
+// and a graph that cannot be read, since the review legal-stop gates can block
+// on all three. A record that cannot be written fails the command the way the
+// gateway fails, after the decision is printed, and never reaches the graph
+// failure path, which would compute and record the decision a second time.
+function recordBlockedStopDecision(payload, { args, loopType, files, sessionId, graphBlockers, nodes, signals, score }) {
+  if (!isPlainObject(payload.stop_decision) || payload.stop_decision.decision !== 'BLOCKED') return;
+  const stopDecision = payload.stop_decision;
+  const iteration = Number(args.iteration);
+  const stateRows = files.stateLogRows;
+  let record;
+  try {
+    if (loopType === 'review') {
+      const config = files.config;
+      const reviewSessionId = typeof config.sessionId === 'string' && config.sessionId !== ''
+        ? config.sessionId
+        : sessionId;
+      const event = buildReviewBlockedStopEvent({
+        stopDecision,
+        graphBlockers,
+        registry: files.registry,
+        config,
+        sessionId: reviewSessionId,
+        generation: finiteNumberOrNull(config.generation) ?? 1,
+        iteration,
+      });
+      record = recordBlockedStop({
+        event,
+        mode: 'review',
+        run: iteration,
+        blockedBy: stopDecision.blockedBy,
+        summary: {
+          recoveryStrategy: event.data.recoveryStrategy,
+          recoveryHint: event.data.recoveryHint,
+          gateResults: event.data.gateResults,
+        },
+        stateLogPath: args.stateLog,
+        stateRows,
+      });
+    } else {
+      const missingIterations = iterationsWithoutGraphFindings(orderedIterationRecords(stateRows), nodes);
+      const lineage = isPlainObject(files.config.lineage) ? files.config.lineage : {};
+      const row = buildBlockedStopRow({
+        stopDecision,
+        stopDecisionInput: stopDecision.inputs,
+        graphBlockers,
+        signals,
+        score,
+        iteration,
+        sessionId: typeof lineage.sessionId === 'string' ? lineage.sessionId : sessionId,
+        generation: finiteNumberOrNull(lineage.generation),
+        recoveryStrategy: blockedStopRecoveryStrategy(stopDecision, graphBlockers, missingIterations),
+      });
+      record = recordBlockedStop({
+        event: row,
+        mode: 'research',
+        run: row.run,
+        blockedBy: row.blockedBy,
+        summary: { recoveryStrategy: row.recoveryStrategy },
+        stateLogPath: args.stateLog,
+        stateRows,
+      });
+    }
+  } catch (error) {
+    record = { status: 'failed', run: iteration, exitCode: 1, reason: error instanceof Error ? error.message : String(error) };
+  }
+  payload.blocked_stop_record = record;
+  if (record.status === 'failed') process.exitCode = record.exitCode;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1990,8 +2202,8 @@ async function main() {
   const readOnly = args.readOnly === true;
   const recordBlockedStopRequested = asBoolean(args.recordBlockedStop);
   if (recordBlockedStopRequested) {
-    if (!stopDecisionRequested || loopType !== 'research') {
-      throw inputError('--record-blocked-stop needs --stop-decision and loop type "research"');
+    if (!stopDecisionRequested) {
+      throw inputError('--record-blocked-stop needs --stop-decision and loop type "research" or "review"');
     }
     if (readOnly) throw inputError('--record-blocked-stop cannot be combined with --read-only');
     const iteration = Number(args.iteration);
@@ -2004,6 +2216,7 @@ async function main() {
   const stopDecisionFiles = stopDecisionRequested ? readStopDecisionFiles(args) : null;
 
   const ns = { specFolder, loopType, sessionId };
+  const recordContext = { args, loopType, files: stopDecisionFiles, sessionId };
   let db = null;
 
   try {
@@ -2061,6 +2274,9 @@ async function main() {
           stuckCount: stopDecisionInput.stuckCount,
           consecutiveFailureCount: stopDecisionInput.consecutiveFailureCount,
         };
+        if (recordBlockedStopRequested) {
+          recordBlockedStopDecision(payload, { ...recordContext, graphBlockers: [], nodes: [], signals: null, score: 0 });
+        }
       }
       if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
       jsonOut(payload);
@@ -2218,25 +2434,8 @@ async function main() {
         stuckCount: stopDecisionInput.stuckCount,
         consecutiveFailureCount: stopDecisionInput.consecutiveFailureCount,
       };
-      if (recordBlockedStopRequested && payload.stop_decision.decision === 'BLOCKED') {
-        const stateRows = stopDecisionFiles.stateLogRows;
-        const missingIterations = iterationsWithoutGraphFindings(orderedIterationRecords(stateRows), nodes);
-        const lineage = isPlainObject(stopDecisionFiles.config.lineage) ? stopDecisionFiles.config.lineage : {};
-        const row = buildBlockedStopRow({
-          stopDecision: payload.stop_decision,
-          stopDecisionInput,
-          graphBlockers: blockers,
-          signals,
-          score,
-          iteration: Number(args.iteration),
-          sessionId: typeof lineage.sessionId === 'string' ? lineage.sessionId : sessionId,
-          generation: finiteNumberOrNull(lineage.generation),
-          recoveryStrategy: blockedStopRecoveryStrategy(payload.stop_decision, blockers, missingIterations),
-        });
-        payload.blocked_stop_record = recordBlockedStop({ row, stateLogPath: args.stateLog, stateRows });
-        // A record the gateway refused fails the command the way the gateway
-        // fails, after the decision is printed.
-        if (payload.blocked_stop_record.status === 'failed') process.exitCode = payload.blocked_stop_record.exitCode;
+      if (recordBlockedStopRequested) {
+        recordBlockedStopDecision(payload, { ...recordContext, graphBlockers: blockers, nodes, signals, score });
       }
     }
     if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
@@ -2246,7 +2445,11 @@ async function main() {
     // be opened or evaluated still leaves a usable decision; report the missing
     // graph decision instead of failing the request.
     if (!stopDecisionRequested || (err && err.code === 'INPUT_VALIDATION')) throw err;
-    jsonOut(buildStopDecisionGraphFailurePayload(err, args, loopType, stopDecisionFiles));
+    const payload = buildStopDecisionGraphFailurePayload(err, args, loopType, stopDecisionFiles);
+    if (recordBlockedStopRequested) {
+      recordBlockedStopDecision(payload, { ...recordContext, graphBlockers: [], nodes: [], signals: null, score: 0 });
+    }
+    jsonOut(payload);
   } finally {
     db?.closeDb();
   }
@@ -2276,6 +2479,7 @@ module.exports = {
   readJsonObjectFile,
   readObservationThresholdConfig,
   readStateLogRows,
+  reviewBlockedStopTargetDimension,
   reviewUnfinishedCoreProtocols,
   reviewOmitsTraceability,
   shouldTraceImprovementEffect,

@@ -1,74 +1,54 @@
-# Iteration 006 - Frontier node F-1-006: security
+# Iteration 006 - Frontier node F-1-003: security
 
 ## Dispatcher
-
-- Lineage: opus (fan-out), iteration 6 of 24, dimension security, frontier node F-1-006 (depth 1 of 3)
-- Stop check before dispatch: CONTINUE (noStopCandidate)
-- Sources read: config, registry, strategy; steer.md absent
-
-## Dimension
-
-Security of the docs, playbooks and agent definitions: tool permissions in the canonical agents and mirrors, and whether the 37 playbook scenarios this range added instruct destructive, unsandboxed or permission-bypassing commands.
+- Lineage: opus (fan-out), session fanout-opus-1795201537192-sq1ivw, generation 1
+- Frontier node: F-1-003 (depth 1), dimension security
+- Sources read before work: lineage steer.md (absent), frontier block for F-1-003 security, convergence decision for iteration 5 (CONTINUE)
 
 ## Files Reviewed
-
-- `.skilled/agents/deep-review.md` and `.skilled/agents/deep-research.md` frontmatter `permission:` blocks; `.claude/agents/deep-review.md` and `.claude/agents/deep-research.md` `tools:` lines; `.codex/agents/deep-review.toml:5` (`sandbox_mode`)
-- All 37 playbook files the range added under `deep-review/manual-testing-playbook`, `deep-research/manual-testing-playbook` and `runtime/manual-testing-playbook` (pattern scan)
-- `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:25-60` (full read)
-- `.skilled/commands/deep/assets/deep-review.yaml:926-1135` (where confirm mode pauses during init)
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1000-1050 (fanoutRunnerPidOf, stopLiveFanoutRun), 3952-3962 (--status), 4795-4808 (spawned row)
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:298-321 (isLineageAlive), 364-384 (detectLiveLineages)
+- .gitignore change in 83800c3bfa2 (orchestration-status.log committed)
 
 ## Findings by Severity
 
 ### P0 Findings
-
 None.
 
 ### P1 Findings
+1. **`--stop` signals the process group of whatever process now holds a pid the ledger recorded, with no check that it is still a lineage** -- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1030 -- A lineage's identity in the ledger is its bare pid (the `spawned` row at fanout-run.cjs:4801-4808 records label, attempt, pid and time only). `detectLiveLineages` treats an open lineage as live when `kill(-pid, 0)` or `kill(pid, 0)` answers (fanout-pool.cjs:373-375, 318-321), and `stopLiveFanoutRun` then sends SIGTERM to `-pid` (fanout-run.cjs:1029-1031). The runner pid is verified against its command line because, in the code's own words, a pid "written down earlier ... may since belong to an unrelated process" (fanout-run.cjs:997-1015). The lineage pid gets no such check. Lineages are left open whenever a run ends by signal or crash (iteration 2 finding OPUS-F003-P1-001). Since 83800c3bfa2 the ledger is also committed (`!specs/**/orchestration-status.log`), so its pids outlive reboots and travel to other checkouts. After pid reuse, `--stop` sends SIGTERM to an unrelated process group when the reused pid leads one, such as a shell or an app started from a terminal. When it does not lead one, the process is counted live, survives, and `--stop` exits 2 after 10 s. The same detection makes a new run refuse to start while that unrelated process lives.
+   Finding class: cross-consumer
+   Scope proof: detectLiveLineages is the only liveness source for --stop and the live-run refusal (fanout-pool.cjs:364); the spawned row is the only pid record (fanout-run.cjs:4801)
+   Affected surface hints: fanout-run.cjs stopLiveFanoutRun and the spawned row; fanout-pool.cjs detectLiveLineages and isLineageAlive; .gitignore orchestration-status.log exception
+   Case: a run is ended by a closed terminal, the machine reboots, pid 61009 from the ledger is now a terminal shell's group leader, and the operator's `fanout-run.cjs --stop` sends SIGTERM to that shell's process group.
 
-None.
+```json
+{"type":"claim-adjudication","findingId":"OPUS-F003-P1-002","claim":"--stop SIGTERMs the process group of a reused pid because lineage liveness is judged by pid alone","evidenceRefs":[".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1030",".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:373",".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4805"],"counterevidenceSought":"Looked for a start-time, command-line or nonce check on the lineage pid (none; only the runner pid is checked), and for a closing row the signal path writes per lineage (none, per OPUS-F003-P1-001)","alternativeExplanation":"The operator is expected to run --stop only while the run is really live, when the pids are still the lineages","finalSeverity":"P1","confidence":0.7,"downgradeTrigger":"A per-lineage identity check such as process start time or command line before signalling, or the signal path closing every lineage row so no stale open row survives"}
+```
 
 ### P2 Findings
-
-1. **Both live two-node frontier playbooks tell the operator to wait for a confirm-mode stop before the frontier seed step, and the workflow has no such stop** -- .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/live-expansive-review-two-node-frontier.md:49 -- Step 4 says "When the orchestrator reports the config written and stops before the frontier seed step", and step 5 then has the operator hand-write `frontier-seed.json` and "tell the orchestrator to seed that file unchanged". Under `:confirm` the only init pause is `gate_init_approval` (`deep-review.yaml:1104-1105`), which runs after `step_frontier_seed` (`:926-951`), and `step_frontier_seed` instructs the orchestrator to decompose the target and write the seed file itself. So the scenario passes only if the orchestrating model deviates from the workflow; a faithful run seeds its own sub-targets, and the operator's node questions, the two-node count and the pass criteria no longer apply. The research twin (`deep-research/manual-testing-playbook/entry-points-and-modes/live-expansive-research-two-node-frontier.md:30,49`) carries the same instruction.
-   - Finding class: cross-consumer
-   - Scope proof: `grep -rn "before the frontier seed\|hold the run before"` over the playbooks returns these two scenarios only; `grep -n "applies_to: confirm"` in the review YAML shows no gate between `step_create_config` and `step_frontier_seed`.
-   - Affected surface hints: deep-review and deep-research live two-node frontier playbook scenarios; optionally a confirm gate before seeding in both YAMLs.
-   - Case: an operator follows the playbook under `:confirm`; the orchestrator writes its own three to eight sub-targets and proceeds to the init approval gate, so step 5 has nothing to wait for.
+None.
 
 ## Traceability Checks
-
-- `playbook_capability` (overlay): partial. The two live frontier scenarios depend on a pause the workflow does not provide (finding 1); the line-count claim `wc -l ... append-state-record.cjs` prints `121` holds today.
+- None run this iteration.
 
 ## Integration Evidence
-
-- Agent permissions are unchanged in the range: the diffs of all ten agent files touch only body text. `deep-review` keeps `webfetch: deny`, `task: deny`; `.claude/agents/deep-review.md` lists `Read, Write, Edit, Bash, Grep, Glob`; `.codex/agents/deep-review.toml:5` keeps `sandbox_mode = "workspace-write"`.
+- `--status` returns before spec-folder validation, config reads and every write: it reads `orchestration-status.log` under `--base-artifact-dir` and prints the table (fanout-run.cjs:3955-3961). It is read-only, which answers that part of F-1-003. It reads any path given, but it only reads.
 
 ## Edge Cases
-
-- Seven of the new playbooks use `jq` with no stated prerequisite. It is a dependency, not a security issue; recorded for the maintainability visit.
+- A pid owned by another user answers the probe with EPERM and counts as live (fanout-pool.cjs:309-310). The SIGTERM then fails silently and `--stop` reports a survivor. There is no harm, only a false partial.
 
 ## Confirmed-Clean Surfaces
-
-- No new playbook contains `rm -rf`, `rm -f`, `git reset|checkout|push|clean`, `sudo`, `chmod`, `--dangerously*`, `bypassPermissions` or `danger-full-access` (pattern scan over all 37 files returned nothing).
-- The live scenarios point every write at a `<fixture>` spec folder rather than a real packet.
+- `fanoutRunnerPidOf` accepts a parent only when its command line contains this script's basename (fanout-run.cjs:1014).
 
 ## Ruled Out
-
-- Permission widening in agent mirrors: no frontmatter change in range.
-- Destructive or permission-bypassing playbook commands: none found.
-
-## Operator Focus Coverage
-
-- Overengineering: none in the permission surface.
-- Operator UX: finding 1 makes two live scenarios unrunnable as written.
-- Cross-CLI parity: mirror permissions unchanged; `.codex` keeps its workspace-write sandbox.
+- --status writing to the run directory: it returns before any write.
 
 ## Next Focus
+- Dimension: security
+- Focus area: F-1-005 security
+- Reason: frontier round-robin
+- Rotation status: F-1-003 correctness and security done
+- Required evidence: file:line
 
-- Dimension: traceability
-- Focus area: next node per registry rotation (F-1-002 traceability: spec_code and checklist_evidence core protocols against the packet spec)
-- Reason: registry.frontier rotation; core protocols not yet recorded in this run
-- Rotation status: all three depth-1 nodes have correctness and security covered
-- Required evidence: file:line on both spec and code sides
-
-Review verdict: PASS
+Review verdict: CONDITIONAL

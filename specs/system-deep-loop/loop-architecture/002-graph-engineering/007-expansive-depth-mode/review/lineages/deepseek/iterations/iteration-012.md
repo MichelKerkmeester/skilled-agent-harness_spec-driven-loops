@@ -1,18 +1,25 @@
-# Iteration 12 - F-1-007 maintainability: pivot and coverage-graph change cost
+# Review Iteration 012
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-007, dimension maintainability. Node scope: the pivot library and mode scripts, `continuity-thread.cjs` and `runtime/lib/coverage-graph`.
-- Operator review focus covered in this iteration: overengineering (the double config write and the two retry controls named and judged), operator UX (attempt and failure text), cross-CLI/OS parity (per-loop paths and vocabularies).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 12 of 24
+- Focus: **Frontier node F-1-006: maintainability**
+- Dimension: maintainability
+- Frontier node: F-1-006 (depth 1 of 3), scope `.skilled/commands/deep`, `.skilled/skills/system-deep-loop/deep-review/references`, `.skilled/skills/system-deep-loop/deep-research/references`, `.skilled/skills/system-deep-loop/runtime/feature-catalog`
+- Convergence before dispatch: `CONTINUE` / `noStopCandidate`, stuck 0, consecutive failures 0.
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, both presentations, both command docs, `executor-branch-contract.vitest.ts`.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` -- attempt transition, retry loop, event ids and paths.
-- `.skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs` -- the subcommand surface the workflow drives.
-- `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts`, `deep-research/scripts/divergent-research-pivot.ts` -- the per-loop seed builders.
-- `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts`, `coverage-graph-query.ts` -- the per-loop vocabularies and safe metadata.
-- Traceability sources: `012-pivot-hygiene` REQ-001..REQ-009, `010-research-frontier-mode` REQ-005/REQ-008.
+- `.skilled/commands/deep/review.md:111`
+- `.skilled/commands/deep/research.md:118`
+- `.skilled/commands/deep/assets/deep-review-presentation.txt:142,226`
+- `.skilled/commands/deep/assets/deep-research-presentation.txt:131,199`
+- `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown:284,371`
+- `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:279,350`
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts:17-25,145-149`
 
 ## Findings - New
 
@@ -26,49 +33,56 @@ None.
 
 ### P2 Findings
 
-1. **The attempt-1 to attempt-2 config transition writes the config twice and the second write bypasses the conflict check** -- .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1296 -- When a retry opens, `preparePivotTransaction` calls `persistConfig(paths.configPath, openingRecord)` to replay the attempt-1 record unchanged, then `writeStateIfChangedAtomic(paths.configPath, configRecord, ...)` to adopt attempt 2. `persistConfig` is the guarded writer (it refuses a conflicting existing config), and `writeStateIfChangedAtomic` is the raw atomic writer, so the second call is the only write in the pivot that can replace a config without the guard. A reader must reconstruct why the replay exists, and a future caller that adds a third attempt or a migrated config shape has to re-derive the same two-step order; a crash between the writes leaves attempt 1 persisted with the attempt-failed event durable, which is only safe because the next prepare re-enters this branch.
-Finding class: instance-only
-Scope proof: the only `writeStateIfChangedAtomic` call in the file is this branch (`:1299`); every other config write goes through `persistConfig`. The comment at `:1289-1298` explains the replay but not the guard asymmetry.
-Affected surface hints: ["divergent-pivot.ts preparePivotTransaction", "persistConfig", "writeStateIfChangedAtomic", "attempt transition"]
-Case: a later change adds an attempt-3 path and copies `persistConfig` alone; the attempt-2 record no longer replays, `persistConfig` throws a conflict, and the retry fails at prepare instead of reporting a pivot failure.
+1. **The executor help text is hand-maintained in four files and the only test that reads them checks a single rejected flag** -- `.skilled/commands/deep/assets/deep-review-presentation.txt:142` -- The `--sandbox-mode` row and the per-kind help lines are duplicated in `review.md`, `research.md`, `deep-review-presentation.txt` and `deep-research-presentation.txt`, and the two compiled contracts are generated from them. This range had to edit all four to describe the opencode workspace-write default, and the pi line still drifted (R4-P2-001). The parity test that reads the presentations and protocol files (`executor-branch-contract.vitest.ts:145-149`) asserts only that they do not carry the rejected `--pure` flag; nothing compares the sandbox row or the per-kind lines across the four copies.
+   - Finding class: cross-consumer
+   - Scope proof: `rg -l "cli-opencode also defaults to .workspace-write." .skilled/commands/deep .skilled/skills/system-deep-loop` returns the two presentations and the two compiled contracts; `rg -n "OPENCODE_COMMAND_DOCS" executor-branch-contract.vitest.ts` shows the list is used only by the `--pure` assertion. The command docs carry a differently worded copy of the same claim, so the four hand-maintained copies are not byte-identical and no test could compare them without a normalized source.
+   - Affected surface hints: ["deep-review-presentation.txt", "deep-research-presentation.txt", "review.md", "research.md", "executor-branch-contract.vitest.ts"]
+   - Case: a maintainer changes the opencode sandbox behavior and edits the two presentations, missing `review.md` and `research.md`. The compiled contracts regenerate from the presentations and look correct, the `--pure` test passes, and the command docs keep telling operators the old behavior until someone reads both.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | `012` REQ-007's attempt identity and config parse match; the double write is an implementation detail the REQ does not name. The iteration 3 REQ-007 admission claim remains the only partial. |
-| `checklist_evidence` | partial | `012` AC rows match; AC-008 remains outstanding. |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | partial | `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts:145-149` | The docs match the code today, but the duplication has no parity guard beyond one negative flag check. |
+| `checklist_evidence` | notApplicable | - | No spec checklist for a commit-range target. |
+| `skill_agent` | notApplicable | - | No agent definition in the range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in the range. |
+| `feature_catalog_code` | pending | - | Covered in iteration 9; not re-run. |
+| `playbook_capability` | pending | - | Covered in iteration 6; not re-run. |
 
 ## Integration Evidence
 
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1490-1535` writes the retryable attempt failure with its own event id and lifecycle, which the YAML retry step reads.
-- `.skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs:15-25` documents that prepare is mode-owned while record-seat and finalize act on the persisted transaction, which is why finalize accepts the caller's paths.
-- `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:225-229` keeps one relation vocabulary per loop, so the research `DERIVED_FROM` edge cannot leak into a review graph.
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts:17-25` names the presentations and both `loop-protocol.md` files as "the cli-opencode command an operator copies", so the test's author already treated them as a parity surface; the assertion at `:145-149` covers only `--pure`.
+- `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown:284,371` and the research counterpart carry the generated copies, so a maintainer who edits only the presentations produces a self-consistent generated pair that still disagrees with the command docs.
+- `.skilled/commands/deep/review.md:111` and `.skilled/commands/deep/research.md:118` carry a differently worded copy of the same claim, which is why a byte comparison would not work and a normalized assertion is needed.
 
 ## Edge Cases
 
-- The library `runDivergentPivot` retries in-process while the YAML re-enters `step_prepare_divergent_pivot`; the two controls exist because the library is the packaged API and the workflow must orchestrate native seat dispatch across steps. They are ruled out as a duplication defect, not as a maintainability fix target.
-- `finalize` trusts the caller's paths JSON; only the workflow calls it, and the pivot paths are built once by prepare. The trust note is already recorded in the security iteration.
-- The review and research pivot scripts both build a seat list and identity; the seats and trigger text differ by loop, so the shared part is the library's transaction, not the builders.
+- **The four copies are not identical by design.** The command docs use a longer sentence; the presentations use a shorter row. A parity test would need to assert the shared facts (default mode, deny scope, read-only refusal), not the bytes.
+- **The compiled contracts are generated, so they are not a fifth hand-maintained copy.** They inherit whatever the presentations say, which is why the drift risk is in the four sources.
+- **The pi line is the proof of cost.** R4-P2-001 is exactly the drift this duplication permits, and it survived a range whose author edited all four files for the opencode change.
 
 ## Confirmed-Clean Surfaces
 
-- Attempt 1 keeps its historical ids and paths, and attempt 2 has a distinct prefix, so an older pivot still loads.
-- The retry event is distinct from `pivot_failed`, and the workflow reads its `retryable` flag rather than guessing from the reason.
-- Every config write has a stated replay rule; only the one transition needs the two-step order, and it is documented.
-- The graph vocabularies are per loop and the safe metadata list is one frozen constant.
+- **Compiled contracts are generated.** Their digests match their sources (iteration 9), so they cannot drift independently.
+- **The `--pure` guard works.** No doc carries the rejected flag.
+- **The presentations and command docs agree today.** The opencode paragraph and the pi line were compared in iterations 4 and 6; the only disagreement is the pi line already reported.
 
 ## Ruled Out
 
-- Collapsing the library retry loop and the YAML retry step: different owners and different dispatch models.
-- A duplication finding for the two mode-specific pivot builders: the shared transaction lives in the library; the builders carry genuinely different seats and triggers.
-- A vocabulary finding for `DERIVED_FROM`: it is research-only and the review graph never emits it.
+- **A finding for the compiled contracts.** Ruled out: they are generated and their digests match.
+- **A duplicate of R4-P2-001.** Ruled out: R4-P2-001 is the pi content drift; this finding is the structural duplication that let it happen, in a different file set.
+- **A finding for the `--pure` guard being too narrow on its own.** Ruled out as the same finding: the narrow guard is the evidence, not a separate defect.
 
 ## Next Focus
 
-- Dimension: none remaining. All three dealt nodes cover correctness, security, traceability and maintainability; the frontier is answered and the run proceeds to synthesis with stop reason `converged` / reasonDetail `frontier_drained`.
-- Reason: the dealt frontier holds no open or active node and at least one answered node, which is the legal `frontier_drained` candidate once the stop gates pass.
-- Required evidence: the findings registry, the merged state log and the iteration files this synthesis reads.
-- Rotation status: complete.
+- Dimension: correctness
+- Frontier node: F-2-007 (open, zero visits; the only unvisited node)
+- Focus area: the sandbox enforcement label matrix across every executor kind and all three sandbox modes — whether `sandboxEnforcementFor` reports `preventive`, `compensating` or `none` correctly for each kind, including the kinds whose builder emits a different mode than the one requested.
+- Reason: all three depth-1 nodes are answered or on their last dimension; the admitted child is the remaining frontier work and its question is the one R1-P2-001 opened.
+- Rotation status: F-1-006 all four dimensions covered; F-2-007 correctness next.
+- Blocked/productive carry-forward: productive (test-to-doc comparison found the unguarded duplication); no blocked approaches.
+- Required evidence: `sandboxEnforcementFor`, every builder's `confines` and `compensatingControl` argument, and the conformance test's per-surface assertions.
+- Recovery note: none.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

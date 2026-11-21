@@ -6,8 +6,7 @@
 
 // Compatibility battery for the OpenCode 2 surface: it proves the plugin folder
 // is active, that the skill folder is visible, and that the command listing
-// matches the repository's command files. OpenCode 1 is unsupported, so a binary
-// that reports major 1 is named and never checked.
+// matches the repository's command files.
 //
 // Every binary runs against a private data home, and the v2 leg starts its own
 // `serve` on a loopback port with a private database, so the shared service is
@@ -355,8 +354,7 @@ function v2ServerEnv(env, root, temp) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Reads the first version token that parses and lets it decide the family, so a
-// joined or noisy probe line is read the same way the router reads it. Major 1 is
-// a retired family, reported as unsupported rather than as unknown output.
+// joined or noisy probe line is read the same way the router reads it.
 function parseVersion(text) {
   if (typeof text !== 'string') return 'unknown';
   const trimmed = text.trim();
@@ -374,7 +372,6 @@ function parseVersion(text) {
         if (!match) continue;
 
         const major = Number(match[1]);
-        if (major === 1) return 'unsupported';
         if (major === 2) return 'v2';
         return 'unknown';
       }
@@ -464,21 +461,14 @@ function selectBinary(candidates, family) {
 }
 
 // Reports the family itself before any leg runs, so a missing binary reads as a
-// skip rather than a failure the other legs would have to explain. A binary that
-// reports a retired major is named whether or not a supported binary was found, so
-// the skip is not mistaken for no install and a leftover install beside a supported
-// one still surfaces.
-function legFamilyPresent(family, selected, unsupportedPaths = []) {
-  const unsupported = unsupportedPaths.map(
-    (binaryPath) => `${binaryPath}: reports OpenCode 1, which is unsupported`,
-  );
+// skip rather than a failure the other legs would have to explain.
+function legFamilyPresent(family, selected) {
   if (selected) {
     return makeResult(
-      'family-present', family, 'PASS', `a ${family} binary is installed`,
-      [selected.path, ...unsupported],
+      'family-present', family, 'PASS', `a ${family} binary is installed`, [selected.path],
     );
   }
-  return makeResult('family-present', family, 'SKIP', `no ${family} binary installed`, unsupported);
+  return makeResult('family-present', family, 'SKIP', `no ${family} binary installed`, []);
 }
 
 // Finds the first read whose count matches the previous one and is above zero,
@@ -761,10 +751,7 @@ async function main(argv, deps = {}) {
     const results = [];
 
     const selected = selectBinary(probed, args.family);
-    const unsupportedPaths = probed
-      .filter((candidate) => !candidate.error && parseVersion(candidate.output ?? '') === 'unsupported')
-      .map((candidate) => candidate.path);
-    results.push(legFamilyPresent(args.family, selected, unsupportedPaths));
+    results.push(legFamilyPresent(args.family, selected));
 
     if (selected) {
       let files = [];

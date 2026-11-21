@@ -52,7 +52,8 @@ const MODES = Object.freeze([
 // The measured producer surface for both deep modes: the two workflows, the
 // workflow step programs they call, the append gateway, the synthesis
 // close-out, both reducers, the verifier, the run-now sentinel, the
-// dispatch-iteration script, and the fan-out runner. A
+// dispatch-iteration script, the fan-out runner, and the convergence script,
+// which records a blocked review stop. A
 // file renamed out of this list fails as a missing surface rather than
 // passing unexamined.
 const PRODUCER_SURFACE = Object.freeze([
@@ -66,6 +67,7 @@ const PRODUCER_SURFACE = Object.freeze([
   '.skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs',
   '.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs',
   '.skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs',
+  '.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs',
   '.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs',
 ]);
 

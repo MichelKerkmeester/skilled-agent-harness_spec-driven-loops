@@ -1,38 +1,8 @@
 [
-  {
-    "question": "Are the generated artifacts the range rebuilt (compiled routing manifest, skill graph, graph metadata and description, compiled command contracts) worth a review pass of their own?",
-    "scope": [".skilled/bin/lib/compiled-routing", ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json", ".skilled/skills/system-deep-loop/graph-metadata.json", ".skilled/skills/system-deep-loop/description.json", ".skilled/commands/deep/assets/compiled"],
-    "evidence": "compile-command-contracts.cjs and the advisor graph rebuild regenerate these from their sources",
-    "pruneReason": "generated-artifact"
-  },
-  {
-    "question": "Is the frontier admission engine correct, minimal and portable: seed, admit, close, block and budget commands, the six admission checks, band budgets, the derived iteration budget and the commit-range relevance test?",
-    "scope": [".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs", ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit.vitest.ts", ".skilled/skills/system-deep-loop/runtime/tests/unit/frontier-admit-review.vitest.ts"],
-    "evidence": "git diff 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs (1300 added lines)"
-  },
-  {
-    "question": "Do the fan-out runner and merge handle expansive depth the same way for every executor kind: the round-robin frontier partition, per-lineage derived budgets, lineage prompts carrying focus and frontier scope, lineage command builders and the review coverage merge?",
-    "scope": [".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs", ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts", ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts"],
-    "evidence": "git diff 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
-  },
-  {
-    "question": "Is the operator-facing command surface for /deep:review and /deep:research clear and consistent: the flag table, --extend, --depth-mode=expansive and the frontier cap flags, setup resolution, dry-run, usage errors and the YAML steps that run them?",
-    "scope": [".skilled/commands/deep/review.md", ".skilled/commands/deep/research.md", ".skilled/commands/deep/assets/deep-review.yaml", ".skilled/commands/deep/assets/deep-research.yaml", ".skilled/commands/deep/assets/deep-review-presentation.txt", ".skilled/commands/deep/assets/deep-research-presentation.txt"],
-    "evidence": "git diff 21c4b325b5a..de32abbb74d -- .skilled/commands/deep (714 added YAML lines)"
-  },
-  {
-    "question": "Are the state reducers, upsert, convergence and iteration verification changes correct and free of duplicated logic: node status derivation, dimension coverage, extension bookkeeping, frontier_drained stops and the ledger schema and projection changes?",
-    "scope": [".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs", ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs", ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs", ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema", ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema", ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections", ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers", ".skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers"],
-    "evidence": "git diff 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs"
-  },
-  {
-    "question": "Do the skill docs, references, playbooks, feature catalogs and the deep-review and deep-research agent definitions with their .claude, .codex, .pi, .dsh and .vibe mirrors describe what the code does, the same way on every runtime?",
-    "scope": [".skilled/skills/system-deep-loop/deep-review", ".skilled/skills/system-deep-loop/deep-research", ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook", ".skilled/skills/system-deep-loop/runtime/feature-catalog", ".skilled/agents/deep-review.md", ".skilled/agents/deep-research.md", ".claude/agents/deep-review.md", ".claude/agents/deep-research.md", ".codex/agents/deep-review.toml", ".codex/agents/deep-research.toml", ".pi/agents/deep-review.md", ".pi/agents/deep-research.md", ".dsh/agents/deep-review.patch.yml", ".dsh/agents/deep-research.patch.yml", ".vibe/agents/deep-review.toml", ".vibe/agents/deep-research.toml"],
-    "evidence": "git diff --stat 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop/deep-review .skilled/skills/system-deep-loop/deep-research .skilled/agents .claude/agents .codex/agents .pi/agents .dsh/agents .vibe/agents"
-  },
-  {
-    "question": "Are the divergent pivot, continuity thread and coverage-graph query and signal changes correct and restrained: pivot hygiene, seat scope, quorum retry and the graph signals the stop gates read?",
-    "scope": [".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts", ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts", ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts", ".skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs", ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs", ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph"],
-    "evidence": "git diff 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts (202 added lines)"
-  }
+  {"question": "Fan-out trust: does the per-pass evidence (examined/unexamined flags) judge a lineage pass correctly, does the lineage timestamp window use the gateway clock and claimedTimestamp, and is the runner-written lineage block in each lineage config right?", "scope": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs .skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts", "evidence": "87223d32b92 0e49309a701 500ed459c99"},
+  {"question": "Cross-CLI adapter contract and sandbox: is the adapter capability record true for every kind, does a requested sandbox mode reach codex, pi, dsh and harness argv, and is the opencode workspace-write default with compensating enforcement sound?", "scope": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs", "evidence": "b8c96116192 2b32f0d73c8 040a5371fb3"},
+  {"question": "Stop and kill: do --stop, SIGHUP and parent death stop every lineage process and record a stopped outcome with a rerun command, and does --status show live progress rows read-only?", "scope": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs", "evidence": "a29a15210e7 87223d32b92"},
+  {"question": "Gateway identity: does the append gateway mint event id, idempotency key, producer and epoch for model-written review and research rows, and refuse a reused key with different content instead of replaying the old receipt?", "scope": ".skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts", "evidence": "8170db46079 1e2add8bab3 dfdd486fbe1"},
+  {"question": "Blocked stop and dry run: does convergence.cjs record a blocked stop from the script with skipped gates as unknown, and do both workflows keep that call read-only on a dry run?", "scope": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs .skilled/commands/deep/assets/deep-review.yaml .skilled/commands/deep/assets/deep-research.yaml", "evidence": "55e8a7c217f 91bcd050ee1 47ba2a08a85 555487146e2"},
+  {"question": "Docs and contracts: do the command docs, compiled contracts, references, feature catalogs and playbooks describe what the round 5 and 6 code now does?", "scope": ".skilled/commands/deep .skilled/skills/system-deep-loop/deep-review/references .skilled/skills/system-deep-loop/deep-research/references .skilled/skills/system-deep-loop/runtime/feature-catalog", "evidence": "b961eb5e2d3 425fa04e7d3 3bfd7c36fe0 09ffdaa27d0"}
 ]

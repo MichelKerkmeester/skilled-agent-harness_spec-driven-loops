@@ -19,10 +19,10 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 /**
- * Contract: parseOpencodeVersion(text) returns 'v2' | 'unsupported' | 'unknown'; major 1 is
- * 'unsupported'. resolveOpencodeBinary(env, deps?) returns { command, executablePath,
- * version: 'v2' }; a missing binary, a failed probe, unparseable output and an OpenCode 1
- * binary all throw Error(code 'E_OPENCODE_UNRESOLVED') carrying the probe output.
+ * Contract: parseOpencodeVersion(text) returns 'v2' | 'unknown'; any major other than 2 is
+ * 'unknown'. resolveOpencodeBinary(env, deps?) returns { command, executablePath,
+ * version: 'v2' }; a missing binary, a failed probe, unparseable output and another major
+ * all throw Error(code 'E_OPENCODE_UNRESOLVED') carrying the probe output.
  * deps.probe(executablePath) replaces --version. OPENCODE_BIN overrides PATH: bare names use
  * env.PATH, paths are used as-is, with no fallback. Otherwise the first opencode on PATH is
  * the only candidate. Cache entries use realpath, size, and mtime;
@@ -34,8 +34,8 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-type OpencodeVersion = 'v2' | 'unsupported' | 'unknown';
-type SupportedOpencodeVersion = Exclude<OpencodeVersion, 'unsupported' | 'unknown'>;
+type OpencodeVersion = 'v2' | 'unknown';
+type SupportedOpencodeVersion = Exclude<OpencodeVersion, 'unknown'>;
 
 interface OpencodeResolution {
   readonly command: string;
@@ -96,19 +96,19 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../.
 const resolver = requireCjs('../../scripts/opencode-version.cjs') as OpencodeVersionApi;
 const fanoutRun = requireCjs('../../scripts/fanout-run.cjs') as FanoutRunApi;
 
-const VERSION_1_OUTPUT = '1.19.3';
+const OTHER_MAJOR_OUTPUT = '3.0.0';
 const VERSION_2_OUTPUT = 'opencode v2.0.32';
-const VERSION_1_PRERELEASE_OUTPUT = '1.19.3-rc.1';
+const OTHER_MAJOR_PRERELEASE_OUTPUT = '3.0.0-rc.1';
 const EMPTY_OUTPUT = '';
 const UNPARSEABLE_OUTPUT = 'definitely not a version';
 const GARBAGE_OUTPUT = 'not an OpenCode version';
 const CRLF_VERSION_OUTPUT = '2.0.32\r\n';
 const TRAILING_SPACE_VERSION_OUTPUT = '2.0.32 ';
-const JOINED_VERSION_OUTPUT = '1.19.3 2.0.32';
+const JOINED_VERSION_OUTPUT = '3.0.0 2.0.32';
 const VERSION_OUTPUTS: readonly string[] = [
-  VERSION_1_OUTPUT,
+  OTHER_MAJOR_OUTPUT,
   VERSION_2_OUTPUT,
-  VERSION_1_PRERELEASE_OUTPUT,
+  OTHER_MAJOR_PRERELEASE_OUTPUT,
   EMPTY_OUTPUT,
   UNPARSEABLE_OUTPUT,
   GARBAGE_OUTPUT,
@@ -199,14 +199,14 @@ afterEach(() => {
 });
 
 describe('OpenCode version resolution', () => {
-  it('P1 refuses 1.19.3 as an unsupported OpenCode 1 binary', () => {
+  it('P1 refuses 3.0.0 as an unknown major', () => {
     const binDir = createTempDirectory();
-    writeVersionStub(binDir, 'opencode', VERSION_1_OUTPUT);
+    writeVersionStub(binDir, 'opencode', OTHER_MAJOR_OUTPUT);
     const env = envWithPath(binDir);
 
-    expect(resolver.parseOpencodeVersion(VERSION_1_OUTPUT)).toBe('unsupported');
-    const error = expectUnresolved(() => resolver.resolveOpencodeBinary(env), VERSION_1_OUTPUT);
-    expect(error.message).toContain('no longer supported');
+    expect(resolver.parseOpencodeVersion(OTHER_MAJOR_OUTPUT)).toBe('unknown');
+    const error = expectUnresolved(() => resolver.resolveOpencodeBinary(env), OTHER_MAJOR_OUTPUT);
+    expect(error.message).toContain('was not supported');
     expect(fanoutRun.isOpencodeBinaryAvailable(env)).toBe(false);
   });
 
@@ -222,14 +222,14 @@ describe('OpenCode version resolution', () => {
     });
   });
 
-  it('P3 refuses 1.19.3-rc.1 as unsupported', () => {
+  it('P3 refuses 3.0.0-rc.1 as unknown', () => {
     const binDir = createTempDirectory();
-    writeVersionStub(binDir, 'opencode', VERSION_1_PRERELEASE_OUTPUT);
+    writeVersionStub(binDir, 'opencode', OTHER_MAJOR_PRERELEASE_OUTPUT);
 
-    expect(resolver.parseOpencodeVersion(VERSION_1_PRERELEASE_OUTPUT)).toBe('unsupported');
+    expect(resolver.parseOpencodeVersion(OTHER_MAJOR_PRERELEASE_OUTPUT)).toBe('unknown');
     expectUnresolved(
       () => resolver.resolveOpencodeBinary(envWithPath(binDir)),
-      VERSION_1_PRERELEASE_OUTPUT,
+      OTHER_MAJOR_PRERELEASE_OUTPUT,
     );
   });
 
@@ -375,9 +375,9 @@ describe('OpenCode lineage builders', () => {
     expect(result.args).toContain('llmgateway/deepseek-v4.1-flash-1017#max');
   });
 
-  it('refuses a cli-opencode lineage when opencode is OpenCode 1', () => {
+  it('refuses a cli-opencode lineage when opencode reports another major', () => {
     const binDir = createTempDirectory();
-    writeVersionStub(binDir, 'opencode', VERSION_1_OUTPUT);
+    writeVersionStub(binDir, 'opencode', OTHER_MAJOR_OUTPUT);
     const error = thrownError(() => fanoutRun.buildLineageCommand(
       { kind: 'cli-opencode', model: MODEL, reasoningEffort: EFFORT },
       PROMPT,
@@ -386,7 +386,7 @@ describe('OpenCode lineage builders', () => {
       { env: envWithPath(binDir) },
     ));
 
-    expect(error.message).toContain('no longer supported');
+    expect(error.message).toContain('was not supported');
   });
 });
 
@@ -397,7 +397,7 @@ describe('OpenCode resolver adversarial cases', () => {
   });
 
   it('uses the first version token in joined output', () => {
-    expect(resolver.parseOpencodeVersion(JOINED_VERSION_OUTPUT)).toBe('unsupported');
+    expect(resolver.parseOpencodeVersion(JOINED_VERSION_OUTPUT)).toBe('unknown');
   });
 
   it('resolves a bare OPENCODE_BIN name through env.PATH', () => {
@@ -469,7 +469,7 @@ describe('OpenCode resolver adversarial cases', () => {
     const firstDir = join(pathRoot, 'dir1');
     const secondDir = join(pathRoot, 'dir2');
     const pinned = writeVersionStub(firstDir, 'opencode', VERSION_2_OUTPUT);
-    writeVersionStub(secondDir, 'opencode', VERSION_1_OUTPUT);
+    writeVersionStub(secondDir, 'opencode', OTHER_MAJOR_OUTPUT);
     const env = { ...envWithPath(secondDir), OPENCODE_BIN: pinned };
 
     expect(resolver.resolveOpencodeBinary(env)).toEqual({
@@ -479,12 +479,12 @@ describe('OpenCode resolver adversarial cases', () => {
     });
   });
 
-  it('takes the first opencode on PATH and does not search past an OpenCode 1', () => {
+  it('takes the first opencode on PATH and does not search past another major', () => {
     const pathRoot = createTempDirectory();
     const firstDir = join(pathRoot, 'dir1');
     const secondDir = join(pathRoot, 'dir2');
     const firstExecutable = writeVersionStub(firstDir, 'opencode', VERSION_2_OUTPUT);
-    writeVersionStub(secondDir, 'opencode', VERSION_1_OUTPUT);
+    writeVersionStub(secondDir, 'opencode', OTHER_MAJOR_OUTPUT);
 
     expect(resolver.resolveOpencodeBinary(envWithPath(firstDir, secondDir))).toEqual({
       command: 'opencode',
@@ -493,7 +493,7 @@ describe('OpenCode resolver adversarial cases', () => {
     });
     expectUnresolved(
       () => resolver.resolveOpencodeBinary(envWithPath(secondDir, firstDir)),
-      VERSION_1_OUTPUT,
+      OTHER_MAJOR_OUTPUT,
     );
   });
 
@@ -504,7 +504,7 @@ describe('OpenCode resolver adversarial cases', () => {
     const probe = (path: string): string => {
       probeCount += 1;
       const script = readFileSync(path, 'utf8');
-      return script.includes(VERSION_1_OUTPUT) ? VERSION_1_OUTPUT : VERSION_2_OUTPUT;
+      return script.includes(OTHER_MAJOR_OUTPUT) ? OTHER_MAJOR_OUTPUT : VERSION_2_OUTPUT;
     };
     const env = envWithPath(binDir);
     const deps = { probe };
@@ -513,9 +513,9 @@ describe('OpenCode resolver adversarial cases', () => {
     expect(resolver.resolveOpencodeBinary(env, deps).version).toBe('v2');
     expect(probeCount).toBe(1);
 
-    writeVersionStub(binDir, 'opencode', VERSION_1_OUTPUT);
+    writeVersionStub(binDir, 'opencode', OTHER_MAJOR_OUTPUT);
     expect(executablePath).toBe(join(binDir, 'opencode'));
-    expectUnresolved(() => resolver.resolveOpencodeBinary(env, deps), VERSION_1_OUTPUT);
+    expectUnresolved(() => resolver.resolveOpencodeBinary(env, deps), OTHER_MAJOR_OUTPUT);
     expect(probeCount).toBe(2);
   });
 

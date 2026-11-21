@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-opencode routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -59,7 +59,7 @@ The routing detail the short summary leaves out: the prerequisite probe, the gua
 command -v opencode || echo "Not installed. Run: brew install opencode (macOS) or curl -fsSL https://opencode.ai/v2/install | bash"
 ```
 
-Install steps, version detection and removing an older install: [`references/install-and-versions.md`](./references/install-and-versions.md).
+Install steps and version detection: [`references/install-and-versions.md`](./references/install-and-versions.md).
 
 ### Self-Invocation Guard (ADR-001)
 

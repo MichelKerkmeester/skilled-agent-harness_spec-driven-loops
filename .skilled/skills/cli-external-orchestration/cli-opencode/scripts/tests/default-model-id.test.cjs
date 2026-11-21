@@ -31,9 +31,8 @@ const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..', '..');
 // checkout runs unless a flag overrides it.
 const OPENCODE_CONFIG = path.join(REPO_ROOT, 'opencode.json');
 
-// The default on both OpenCode versions, the `✓` row of the roster's `### llmgateway`
-// table: OpenCode 1 dispatches it at `--variant max`, OpenCode 2 with the `#max` effort
-// suffix on the id.
+// The default, the `✓` row of the roster's `### llmgateway` table, dispatched with the
+// `#max` effort suffix on the id.
 const DEFAULT_ID = 'llmgateway/deepseek-v4.1-flash-1017';
 
 // The gateway serves two DeepSeek V4.1 Flash releases under separate ids. The older one

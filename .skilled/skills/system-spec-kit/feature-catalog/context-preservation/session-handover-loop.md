@@ -18,7 +18,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.40.0
+version: 1.0.42.0
 ---
 
 # Session handover loop (skilled-loop)
@@ -71,7 +71,7 @@ Before it relaunches, the wrapper consumes the record and reads the note's state
 
 ### Shell Shim And Symlinked Repositories
 
-`.skilled/bin/skilled-loop-shell.sh` is sourced from `~/.zshrc` or `~/.bashrc` and reads the same in bash 3.2 and zsh. It defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent` and `vibe` as shell functions. A function runs `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when `SKILLED_LOOP_ID` is unset, stdin and stdout are a terminal, the arguments open an interactive session and a wrapper exists at or above the current directory. A `.skilled` that is a symlink counts, so a repository that links this checkout's `.skilled` starts under the loop too. Its automatic hop also needs the runtime folders `.claude`, `.codex`, `.opencode`, `.pi` and `.vibe` linked or registered, because each runtime reads its hooks from the project it starts in. Subcommands, print and one-shot modes, version and help run the binary directly. Each runtime's list is copied by hand from its own `--help`. OpenCode's matches 2.3.2, which reads any other first word, such as the v1 names `providers`, `agent`, `attach` and `web`, as a directory to open a session in, so those words stay wrapped. Codex `resume` and `fork`, and Cursor `agent`, `ls` and `resume` stay wrapped because they open a session. `cursor-agent` maps to the wrapper's `cursor` arm. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing, without the terminal check.
+`.skilled/bin/skilled-loop-shell.sh` is sourced from `~/.zshrc` or `~/.bashrc` and reads the same in bash 3.2 and zsh. It defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent` and `vibe` as shell functions. A function runs `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when `SKILLED_LOOP_ID` is unset, stdin and stdout are a terminal, the arguments open an interactive session the wrapper can relaunch and a wrapper exists at or above the current directory. A `.skilled` that is a symlink counts, so a repository that links this checkout's `.skilled` starts under the loop too. Its automatic hop also needs the runtime folders `.claude`, `.codex`, `.opencode`, `.pi` and `.vibe` linked or registered, because each runtime reads its hooks from the project it starts in. Subcommands, print and one-shot modes, version, help and OpenCode's `--completions` run the binary directly. Claude `attach` and OpenCode `mini` open a session but run the binary directly too, because a hop rebuilds the root command and cannot return to either. Each runtime's list is copied by hand from its own `--help`. OpenCode's matches 2.3.2, which reads any other first word, such as the v1 names `providers`, `agent`, `attach` and `web`, as a directory to open a session in, so those words stay wrapped. Codex `resume` and `fork`, and Cursor `agent`, `ls` and `resume` stay wrapped because they open a session. `cursor-agent` maps to the wrapper's `cursor` arm. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing, without the terminal check.
 
 ### Pi And OpenCode Adapters
 
@@ -79,7 +79,7 @@ Pi checks usage at message_end and holds the nudge text there rather than sendin
 
 OpenCode reads message.updated and message.part.updated. It pushes the active nudge on every request while this session has no handoff. When `SKILLED_LOOP_ID` is set but names no record, it keeps pushing only until the handoff note exists. A matching claim seed stays in the system prompt on every request of the session until the note leaves the open state or a new non-seed user message arrives, because an auxiliary request can consume the first prompt. The seed enters through experimental.chat.system.transform. The relaunch record is armed on session.idle.
 
-The wrapper's Pi relaunch carries provider and model selection together with -ne and each -e extension selection from the initial launch. In this repository, start Pi with -ne -e .pi/extensions/session-handover.ts because two installed extensions both register --fast. OpenCode 2, whose help lists `--standalone`, gets `--standalone` on the first launch and every relaunch, and the wrapper carries the model through `OPENCODE_CONFIG_CONTENT`, because its root command takes no model flag. When neither `--server` nor `--standalone` is passed, the wrapper first reads `opencode --version` and exits 1 on an OpenCode 1 binary, pointing at `opencode-setup.sh remove-v1`.
+The wrapper's Pi relaunch carries provider and model selection together with -ne and each -e extension selection from the initial launch. In this repository, start Pi with -ne -e .pi/extensions/session-handover.ts because two installed extensions both register --fast. OpenCode 2, whose help lists `--standalone`, gets `--standalone` on the first launch and every relaunch, and the wrapper carries the model through `OPENCODE_CONFIG_CONTENT`, because its root command takes no model flag.
 
 In the recorded live runs, OpenCode reported about 1M context tokens for openai/gpt-6-luna and Pi reported 272K. These reported window sizes differ by runtime.
 

@@ -600,6 +600,18 @@ describe('legal-stop gates', () => {
     const result = legalGates({ missingDimensions: ['security'] });
 
     expect(result.gates.dimensionCoverageGate).toMatchObject({ pass: false, skipped: false });
+    expect(result.gates.dimensionCoverageGate).toMatchObject({ missing: ['security'], traceabilityCovered: true });
+    expect(result.failed).toEqual(['dimensionCoverageGate']);
+  });
+
+  it('names unsettled traceability on the dimension coverage gate when no dimension is missing', () => {
+    const result = legalGates({ traceabilityCovered: false });
+
+    expect(result.gates.dimensionCoverageGate).toMatchObject({
+      pass: false,
+      missing: [],
+      traceabilityCovered: false,
+    });
     expect(result.failed).toEqual(['dimensionCoverageGate']);
   });
 

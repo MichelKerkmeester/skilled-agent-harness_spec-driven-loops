@@ -286,8 +286,9 @@ export const EXECUTOR_ADAPTER_CAPABILITIES = Object.freeze({
  * present in `EXECUTOR_KIND_FLAG_SUPPORT` above only means the field is
  * accepted; it does NOT mean the kind can actually confine the process. A
  * `false` entry here does not mean the kind is unconfined in practice --
- * fanout-run.cjs applies its own compensating control per kind (a fail-loud
- * reject for cli-opencode, --permission-mode plus the fan-out's post-hoc
+ * fanout-run.cjs applies its own compensating control per kind (an
+ * external_directory deny for cli-opencode's file tools under workspace-write and a
+ * fail-loud reject of read-only, --permission-mode plus the fan-out's post-hoc
  * write-containment guard for cli-devin, a restricted tool allowlist for
  * cli-pi) -- it means none of those controls is an OS-level boundary the way
  * `--sandbox` is for codex and cursor. Callers must not infer preventive OS
@@ -300,7 +301,8 @@ export const EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY: Record<ExecutorKind, boolea
   'cli-codex': true,
   // --permission-mode is enforced by Claude Code's own tool gate before a write/exec runs
   'cli-claude-code': true,
-  // No confinement flag exists; the builder fails loud for anything but danger-full-access
+  // No confinement flag exists; workspace-write denies external_directory to the file tools only
+  // (Bash can still write outside the working directory), and read-only is refused
   'cli-opencode': false,
   // --sandbox enabled/disabled is a real OS confinement flag, independent of the approval mode
   'cli-cursor': true,

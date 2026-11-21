@@ -8,7 +8,7 @@ trigger_phrases:
   - "review blocked stop"
 importance_tier: normal
 contextType: implementation
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Deep Review Convergence Signals
@@ -68,7 +68,7 @@ STOP is legal only when all of these are true:
 5. No unresolved P0 remains.
 6. Graph-aware blockers are absent or explicitly unavailable with fallback evidence.
 
-If any item fails, the workflow emits `blocked_stop` and continues or routes to recovery.
+If any item fails, `convergence.cjs` records `blocked_stop` and the workflow continues or routes to recovery.
 
 ---
 

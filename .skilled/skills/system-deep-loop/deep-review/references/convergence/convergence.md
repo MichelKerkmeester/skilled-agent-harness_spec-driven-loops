@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.25.0
+version: 1.11.29.0
 ---
 
 # Deep Review Convergence
@@ -137,7 +137,7 @@ Every pivot dispatches three seats, or six when its first attempt misses quorum,
 
 #### blocked_stop Event (canonical, persisted)
 
-`step_emit_blocked_stop` in `deep-review.yaml` appends the following record to `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. The gate names and their shapes are load-bearing, the reducer reads them verbatim:
+`convergence.cjs` records the following row in `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. `step_graph_convergence` in `deep-review.yaml` runs it with `--record-blocked-stop` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event), and on a BLOCKED decision it appends a `deep_review.blocked_stop_recorded` event through the append gateway, which projects to this row. The workflow never writes it by hand. The gate names and their shapes are load-bearing, the reducer reads them verbatim:
 
 ```json
 {
@@ -151,7 +151,9 @@ Every pivot dispatches three seats, or six when its first attempt misses quorum,
     "dimensionCoverageGate": {
       "pass": false,
       "covered": ["correctness", "security", "traceability"],
-      "missing": ["maintainability"]
+      "missing": ["maintainability"],
+      "traceabilityCovered": true,
+      "coverageAge": 2
     },
     "p0ResolutionGate": { "pass": false, "activeP0": 1 },
     "evidenceDensityGate": { "pass": true, "avgEvidencePerFinding": 1.6 },
@@ -170,7 +172,7 @@ Every pivot dispatches three seats, or six when its first attempt misses quorum,
 ```
 
 - `blockedBy`: array of gate names that failed (string[], never structured objects). Empty when STOP is legal, in which case no `blocked_stop` event is emitted.
-- `gateResults`: named sub-records keyed by `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. This is the full 9-gate set emitted by `step_emit_blocked_stop` in `deep-review.yaml`. Each sub-record has a `pass` boolean plus gate-specific fields (score, covered/missing, activeP0, avgEvidencePerFinding, activeP0P1, securitySensitive, requiredRows, passingRows, searchDebt, mode, unavailabilityReason). The reducer reads these verbatim and does not coerce shapes. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates, they pass trivially when the review-depth-v2 search path is inactive (no search debt, graph available).
+- `gateResults`: named sub-records keyed by `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. This is the full 9-gate set `convergence.cjs` records. Each sub-record has a `pass` boolean plus gate-specific fields (score, covered/missing, plus `traceabilityCovered` and `coverageAge` (a number or null) on `dimensionCoverageGate` so a block with nothing missing still names its cause, activeP0, avgEvidencePerFinding, activeP0P1, securitySensitive, requiredRows, passingRows, searchDebt, mode, unavailabilityReason). The reducer reads these verbatim and does not coerce shapes. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates, they pass trivially when the review-depth-v2 search path is inactive (no search debt, graph available).
 - `graphBlockerDetail`: array of structured graph blockers copied from the latest graph convergence decision. Empty when graph convergence did not veto STOP.
 - `recoveryStrategy`: human-readable one-liner describing what the next iteration should do before another stop attempt.
 - When the graph convergence verdict is `STOP_BLOCKED`, fold the graph blocker gate name into `blockedBy` and preserve the structured blocker objects under `graphBlockerDetail`.
@@ -453,7 +455,7 @@ A new critical finding always signals significant remaining work. The 0.50 floor
 
 ## 6. LEGAL-STOP GATE BUNDLE
 
-> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `step_emit_blocked_stop` in `deep-review.yaml`, which emits **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §1 event shape mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) has been reconciled.
+> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `convergence.cjs`, which the `step_graph_convergence` step in `deep-review.yaml` runs with `--record-blocked-stop` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event) and which records **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §1 event shape mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) has been reconciled.
 
 Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 9 gates and persist a blocked-stop event when any gate fails.
 

@@ -247,13 +247,13 @@ type RunAuditedExecutorCommandInput = {
   // optional; the engine generates a filename-safe unique one when omitted.
   receiptDir?: string;
   dispatchId?: string;
-  // For the cli-deepseek-harness single-lineage branch only: its fresh harness home and
-  // spec-folder marker are keys the per-kind allowlist drops on purpose. They are merged
-  // after the filter, so only the values the caller names reach the child, never an
-  // inherited one. Another kind that needs a key widens its allowlist instead. The allowed
-  // keys are exactly those in DISPATCH_ENV_KEYS for the kind; any other key is refused
-  // before a receipt is written or a child is spawned. Only the synchronous runner reads
-  // this field and completionCheck.
+  // Keys a single-lineage branch must set on the child itself. The cli-deepseek-harness
+  // home and spec-folder marker are keys the per-kind allowlist drops on purpose, and the
+  // cli-opencode workspace-write deny replaces any inherited inline config. They are merged
+  // after the filter, so the value the caller names is the one the child sees. Another kind
+  // that needs a key widens its allowlist instead. The allowed keys are exactly those in
+  // DISPATCH_ENV_KEYS for the kind; any other key is refused before a receipt is written or
+  // a child is spawned. Only the synchronous runner reads this field and completionCheck.
   dispatchEnv?: Record<string, string>;
   // The harness prints a JSON event stream the orchestrator never reads, so a caller can
   // keep that stream off the terminal and record only how many bytes it held.
@@ -1404,11 +1404,13 @@ export function classifyExecutorUnavailable(stdout: string, stderr: string): str
   return null;
 }
 
-// A dispatchEnv key the per-kind env filter drops on purpose is merged after that filter,
-// so this list is the only place that says which keys a caller may name. A kind with no
+// A dispatchEnv key is merged after the per-kind env filter, so it reaches the child even
+// when the filter drops it and overrides any inherited value the filter admits. This list
+// is therefore the only place that says which keys a caller may name. A kind with no
 // entry allows none: a caller that needs one widens this list for that kind first.
 const DISPATCH_ENV_KEYS: Readonly<Partial<Record<ExecutorKind, readonly string[]>>> = {
   'cli-deepseek-harness': ['DSH_HOME', 'DSH_SPEC_FOLDER', 'SYSTEM_SPEC_GATE_DISABLED', 'AI_SESSION_CHILD'],
+  'cli-opencode': ['OPENCODE_CONFIG_CONTENT'],
 };
 
 // Check the caller-named keys at the one boundary that merges them, so no later caller can

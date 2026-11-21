@@ -8,7 +8,7 @@ trigger_phrases:
   - "coverage graph script exit codes"
 importance_tier: important
 contextType: implementation
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # Deep Loop Runtime Script Interface Contract
@@ -97,7 +97,7 @@ Workflow-facing fields: `graph_decision`, `graph_signals_json`, `graph_blockers_
 
 Behavior: Returns `CONTINUE` for empty graphs, `STOP_BLOCKED` when blocking guards fail, and `STOP_ALLOWED` when all convergence signals pass.
 
-`--record-blocked-stop` needs `--stop-decision`, loop type `research` and a positive `--iteration`, and is refused with `--read-only`. On a BLOCKED stop decision it appends a `blocked_stop` row through `append-mode-event.cjs` once per run and blocker set, and reports the outcome as `blocked_stop_record.status`: `recorded`, `already_recorded` or `failed`. A failed record exits with the gateway's exit code after the decision is printed.
+`--record-blocked-stop` needs `--stop-decision`, loop type `research` or `review` and a positive `--iteration`, and is refused with `--read-only`. On a BLOCKED stop decision it appends the mode's blocked-stop event (`blocked_stop` for research, `deep_review.blocked_stop_recorded` for review) through `append-mode-event.cjs` once per run and blocker set, and reports the outcome as `blocked_stop_record.status`: `recorded`, `already_recorded` or `failed`. A failed record exits with the gateway's exit code after the decision is printed.
 
 ### upsert.cjs
 

@@ -33,7 +33,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 
 | File | Responsibility |
 |---|---|
-| `append-mode-event.cjs` | Appends a validated mode event through the authorized gateway and refreshes the mode's state projection. In review mode it also records a bare `type:"iteration"` record and projects it back. A research or review iteration row is timed by the gateway clock, and a stamp the model wrote rides beside it as `claimedTimestamp`. |
+| `append-mode-event.cjs` | Appends a validated mode event through the authorized gateway and refreshes the mode's state projection. In review mode it also records a bare `type:"iteration"` record and projects it back. A research or review iteration row is timed by the gateway clock, and a stamp the model wrote rides beside it as `claimedTimestamp`. A legacy research or review row's event id, idempotency key, producer and epoch are minted by the gateway, never taken from the row. A reused key with other content exits 2 and writes the reason to stderr. |
 | `append-state-record.cjs` | Appends a validated state record to the durable state stream. |
 | `check-contract-drift.cjs` | Checks command and runtime contract surfaces for drift. |
 | `check-documentation-drift.cjs` | Checks the hub README, mode READMEs and the benchmark report index against the mode registry for stale links and counts. |
@@ -41,7 +41,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `check-protocol-append-sites.cjs` | Fails a workflow asset that records canonical state without declaring the append gateway, or that appends directly without declaring the exception. |
 | `codex-dispatch.cjs` | Runs the Codex executor dispatch boundary and records its result. |
 | `compile-command-contracts.cjs` | Compiles command contract inputs into the runtime validation surface. |
-| `convergence.cjs` | Computes typed convergence decisions from graph state. Under `--record-blocked-stop` it also records a blocked research stop through the append gateway. |
+| `convergence.cjs` | Computes typed convergence decisions from graph state. Under `--record-blocked-stop` it also records a blocked research or review stop through the append gateway. |
 | `dispatch-iteration.cjs` | Dispatches one research or review iteration to a CLI executor and refuses the `native` kind, which runs through the orchestrator instead. A Claude Code dispatch validates the configured config directory before reading the prompt and passes it as `CLAUDE_CONFIG_DIR`. Every kind passes a requested sandbox mode through, so a requested `read-only` stays read-only. For codex, cursor, devin, pi and deepseek-harness an unset mode resolves to `workspace-write`. |
 | `divergent-pivot.cjs` | Runs one divergent pivot transaction across process boundaries: `prepare` derives the mode's input and the missing Council seats, `record-seat` records one seat result, and `finalize` completes the pivot from disk. A first-attempt quorum failure is retryable once through a second `prepare`. |
 | `fanout-merge.cjs` | Merges fan-out lineage outputs into deterministic consolidated artifacts. |
@@ -50,7 +50,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `fanout-salvage.cjs` | Recovers missing iteration artifacts from captured subprocess output, reads each lineage's provider cost, and judges each committed pass from the lineage log against the gateway commits. |
 | `frontier-admit.cjs` | Seeds, admits, prunes and closes nodes in the append-only frontier node store of an expansive run, applying the relevance, dedupe, depth, fan-out, run-wide node cap, budget and acyclicity checks in that order. The six commands are `seed`, `admit`, `close`, `graph`, `block` and `budget`: `graph` projects the store as graph events, `block` renders the FRONTIER prompt block and `budget` writes the derived seed budget into the mode config. |
 | `loop-lock.cjs` | Adapts shared loop-lock acquisition, heartbeat, reclaim and release to the CLI. |
-| `opencode-version.cjs` | Resolves the OpenCode binary from `$OPENCODE_BIN`, else the first `opencode` on PATH, parses `--version` into `v2`, `unsupported` or `unknown` and refuses a dispatch on a major-1 binary or an unparsable version. `fanout-run.cjs` uses it to build the `run` line. |
+| `opencode-version.cjs` | Resolves the OpenCode binary from `$OPENCODE_BIN`, else the first `opencode` on PATH, parses `--version` into `v2` or `unknown` and refuses a dispatch on any version other than OpenCode 2. `fanout-run.cjs` uses it to build the `run` line. |
 | `query.cjs` | Queries coverage gaps, contradictions and stored graph state. |
 | `reduce-state.cjs` | Reduces durable state records into a current runtime projection. |
 | `render-command-contract.cjs` | Renders the command contract used by validation and dispatch. |

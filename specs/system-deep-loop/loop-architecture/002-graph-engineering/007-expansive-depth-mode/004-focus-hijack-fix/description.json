@@ -15,7 +15,7 @@
     "review",
     "reducers"
   ],
-  "lastUpdated": "2026-11-17T18:12:41.883Z",
+  "lastUpdated": "2026-11-20T20:00:56.669Z",
   "specId": "004",
   "folderSlug": "focus-hijack-fix",
   "parentChain": [
@@ -24,8 +24,9 @@
     "002-graph-engineering",
     "007-expansive-depth-mode"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "17-11-26_19-12__applied-the-fable-5-2-plan-review-across-all.md"
+    "17-11-26_19-12__applied-the-fable-5-2-plan-review-across-all.md",
+    "20-11-26_21-00__compacted-the-phase-s-stored-recent-action-to-the.md"
   ]
 }

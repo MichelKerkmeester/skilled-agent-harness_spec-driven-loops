@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7088,
-    "ok": 20202,
+    "missing-frontmatter": 7090,
+    "ok": 20242,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28918,
+  "documentsScanned": 28960,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "541bad0cc79b0c53b45e511b7a17ba78f149e800c7b1c1a0cac0ff863a29fbc1",
+  "manifestHash": "75f82f1c9e0ce019dbdbab32a3cf789731917731f193c4baa610cabc0abed357",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45737,
+      "ok": 45804,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -41086,6 +41086,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261120T190404Z/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261120T190404Z/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -42715,6 +42727,18 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research_archive/20261120T185112Z/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -42940,18 +42964,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/research.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/fanout-attribution.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -56348,6 +56360,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -62056,6 +62072,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261120T190404Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages",
       "reason": "excluded directory"
     },
@@ -62636,6 +62656,34 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/host-integrations/z_archive",
       "reason": "excluded directory"
     },
@@ -63128,7 +63176,23 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/lineages",
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

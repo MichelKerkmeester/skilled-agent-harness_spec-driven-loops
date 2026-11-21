@@ -298,4 +298,24 @@ describe('convergence.cjs --record-blocked-stop', () => {
     expect(result.exitCode).not.toBe(0);
     expect(String(result.json.error)).toContain('--read-only');
   });
+
+  // A dry run runs the same convergence command as a preview, with --read-only in
+  // place of --record-blocked-stop, and must leave every file it could write as it was.
+  it('decides a blocked stop on the dry-run command line without writing anything', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    const run = seedRun();
+    seedBlockedGraph(namespace);
+    const eventsPath = join(String(process.env.DEEP_LOOP_COVERAGE_DB_DIR), 'observability-events.jsonl');
+    const readEvents = () => (fs.existsSync(eventsPath) ? fs.readFileSync(eventsPath, 'utf8') : null);
+    const stateBefore = fs.readFileSync(run.stateLog, 'utf8');
+    const eventsBefore = readEvents();
+
+    const result = decide(namespace, run, ['--persist-snapshot', '--read-only']);
+    expect(result.exitCode, result.stderr).toBe(0);
+    expect((result.json.stop_decision as { decision: string }).decision).toBe('BLOCKED');
+    expect((result.json.data as { snapshotPersistence: string }).snapshotPersistence).toBe('not_requested');
+    expect(fs.readFileSync(run.stateLog, 'utf8')).toBe(stateBefore);
+    expect(readEvents()).toBe(eventsBefore);
+  });
 });

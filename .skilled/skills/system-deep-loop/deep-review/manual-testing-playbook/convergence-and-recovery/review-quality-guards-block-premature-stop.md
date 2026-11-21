@@ -1,7 +1,7 @@
 ---
 title: "DRV-018 -- Review quality guards block premature stop"
 description: "Verify that 3 binary gates (evidence, scope, coverage) must all pass before the review loop can issue STOP."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # DRV-018 -- Review quality guards block premature stop
@@ -18,7 +18,7 @@ This scenario validates review quality guards block premature stop for `DRV-018`
 
 Quality guards are the review-specific safety net that prevents the loop from stopping when convergence signals look good but the review output is incomplete or unreliable. Unlike research mode, review mode enforces evidence completeness on every finding, scope containment against the declared review target, and coverage of all configured dimensions including traceability protocols.
 
-These 3 contract-level binary gates (evidence, scope, coverage) declared in `review-mode-contract.yaml` are the coarse layer. The legal-stop decision tree expands them into the 9 named event-shape gates emitted by `step_emit_blocked_stop`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. This scenario validates the 3 binary gates, the 9-gate bundle is the authoritative stop check (see `references/convergence/convergence.md` §6).
+These 3 contract-level binary gates (evidence, scope, coverage) declared in `review-mode-contract.yaml` are the coarse layer. The legal-stop decision tree expands them into the 9 named event-shape gates that `convergence.cjs --record-blocked-stop` records in the blocked-stop event: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. This scenario validates the 3 binary gates, the 9-gate bundle is the authoritative stop check (see `references/convergence/convergence.md` §6).
 
 ---
 

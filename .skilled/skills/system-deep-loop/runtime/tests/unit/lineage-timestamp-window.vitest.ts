@@ -324,6 +324,8 @@ describe('checkLineageCompletion', () => {
     const verdict = checkLineageCompletion(lateRows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW });
     expect(verdict).toMatchObject({ complete: false, failure: 'stamped_after_completion' });
     expect(verdict.complete === false && verdict.detail).toContain('iteration 12');
+    expect(verdict.complete === false && verdict.detail).toContain('2026-11-19T19:28:00.000Z');
+    expect(verdict.complete === false && verdict.detail).not.toContain('claim');
   });
 
   it('fails on a claimed stamp beyond the process end even when the gateway timed the row inside it', () => {
@@ -333,6 +335,9 @@ describe('checkLineageCompletion', () => {
     rows.splice(rows.length - 1, 0, { type: 'event', event: 'terminal_gates', timestamp: '2026-11-19T19:25:10.000Z' });
     const verdict = checkLineageCompletion(rows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW });
     expect(verdict).toMatchObject({ complete: false, failure: 'stamped_after_completion' });
+    // The message names the claim that was judged, with the gateway time beside it.
+    expect(verdict.complete === false && verdict.detail)
+      .toContain('claims 2026-11-19T19:28:00.000Z, committed 2026-11-19T19:25:00.000Z');
   });
 
   it('passes a resumed lineage whose earlier attempt left rows before the window', () => {

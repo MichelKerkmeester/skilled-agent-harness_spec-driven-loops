@@ -481,7 +481,10 @@ function runLineageBuiltin(context) {
 function runResearchOpencode(context) {
   const reasoningEffort = context.reasoningEffort;
   const model = nullable(context.model);
-  const sandboxMode = context.sandboxMode === null ? 'danger-full-access' : context.sandboxMode;
+  // An unset mode takes the same workspace-write default as fan-out. The builder honours it
+  // with an inline config that denies external_directory to the file tools, carried in the
+  // child env it returns; Bash is not confined. An explicit read-only is refused there.
+  const sandboxMode = resolveSandboxMode(context.sandboxMode);
   const executor = {
     kind: 'cli-opencode',
     model,
@@ -498,7 +501,7 @@ function runResearchOpencode(context) {
   const lineage = { kind: 'cli-opencode', model, reasoningEffort, sandboxMode };
   const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
   const repoRoot = context.repoRoot;
-  const { command, args, input, cwd } = buildLineageCommand(
+  const { command, args, input, cwd, env } = buildLineageCommand(
     lineage,
     message,
     sandboxMode,
@@ -517,6 +520,7 @@ function runResearchOpencode(context) {
       iteration: context.iteration,
       // buildLineageCommand returns empty input, so stdin is closed for OpenCode.
       input,
+      dispatchEnv: env,
       receiptDir: context.receiptDir,
       dispatchId: context.dispatchId,
       sessionId: context.sessionId,
@@ -750,10 +754,13 @@ function stageAndDispatchReviewOpencode(context, eventDir) {
   const message = REVIEW_PREAMBLE + '\n\n' + promptBody;
   const reasoningEffort = context.reasoningEffort;
   const model = nullable(context.model);
-  const sandboxMode = context.sandboxMode === null ? 'danger-full-access' : context.sandboxMode;
+  // An unset mode takes the same workspace-write default as fan-out. The builder honours it
+  // with an inline config that denies external_directory to the file tools, carried in the
+  // child env it returns; Bash is not confined. An explicit read-only is refused there.
+  const sandboxMode = resolveSandboxMode(context.sandboxMode);
   const lineage = { kind: 'cli-opencode', model, reasoningEffort, sandboxMode };
   const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
-  const { command, args, input, cwd } = buildLineageCommand(
+  const { command, args, input, cwd, env } = buildLineageCommand(
     lineage,
     message,
     sandboxMode,
@@ -782,6 +789,7 @@ function stageAndDispatchReviewOpencode(context, eventDir) {
     iteration: context.iteration,
     // buildLineageCommand returns empty input, so stdin is closed for OpenCode.
     input,
+    dispatchEnv: env,
     receiptDir: context.receiptDir,
     dispatchId: context.dispatchId,
     sessionId: context.sessionId,

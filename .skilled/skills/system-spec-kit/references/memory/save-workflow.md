@@ -8,7 +8,7 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.10.0
+version: 1.6.11.0
 ---
 
 # Memory Save Workflow - Context Preservation Methods
@@ -254,7 +254,7 @@ A `--full-auto` save writes these into the leaf's `_memory.continuity` block. A 
 | `open_questions`     | array   | Question ids such as `Q1` |
 | `answered_questions` | array   | Question ids, disjoint from `open_questions` |
 
-The writer sets `packet_pointer`, `last_updated_at` and `last_updated_by` itself. A field the payload leaves out keeps its stored value while that value validates; a stored value that fails validation is dropped and named in the save output. A payload value that fails fails the whole save before any file is written, and an empty string counts as absent.
+The writer sets `packet_pointer`, `last_updated_at` and `last_updated_by` itself. A field the payload leaves out keeps its stored value while that value validates; a stored optional field that fails validation is dropped and named in the save output; a stored `recent_action` or `next_safe_action` that fails cannot be dropped, because the validator requires both, so the save is rejected unless the payload supplies a replacement. A payload value that fails fails the whole save before any file is written, and an empty string counts as absent.
 
 ### Session Reference
 

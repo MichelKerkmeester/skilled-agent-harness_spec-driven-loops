@@ -51,6 +51,41 @@ _memory:
 | Q015 | The expansive review budget counts the four canonical dimensions plus custom ones. | Not stated. | None | 011 decision Q011, task T037, commit 954345ac43f |
 | Q016 | Keep the no-open-P0/P1 rule and run another native Opus pair rather than amend again. | Not stated. | None | 014 goal.md section 4, Native pairs row |
 | Q017 | Doc run 11 stands as the last doc run; rerun only the skilled alignment, over the full diff. | Not stated. | None | 014 goal.md section 4, Skilled runs 13-16 and Skilled run-17 (last) rows |
+| Q018 | Decouple the frontier node cap from max_iterations and rerun the expansive pilots, rather than amend the criteria. | Not stated. | None | 010 AC-014, 011 AC-011, deep-research.yaml node cap |
+| Q019 | Ratify ADR-006 (010) and ADR-005 (011): the default-run golden tests strip the expansive-only persona paragraph. | Not stated. | None | 010 ADR-006, 011 ADR-005 |
+| Q020 | Decouple the node cap and amend AC-014, since four frozen default-run blockers make a non-cap research stop unreachable. | Not stated. | None | 010 AC-014 |
+| Q021 | Add a partition-drained stop so a fan-out review lineage stops once its own frontier node is answered. | Not stated. | None | 011 AC-011, frontier_drained stop candidate |
+| Q022 | Fix the lineage coverage graph first, then gate the drained-partition stop through the review quality gates. | Not stated. | None | 011, review lineage coverage graph |
+| Q023 | Add EVIDENCE_FOR links to the standard graph upsert before closing AC-011. | Not stated. | None | 011 AC-011, upsert.cjs evidence links |
+| Q024 | Keep frontier_drained a hard stop candidate that skips the score gate but faces every quality gate. | Not stated. | None | 011, convergence.cjs frontier_drained |
+| Q025 | Amend AC-011 to what the pilot rerun can show and log the defects it found. | Not stated. | None | 011 AC-011 |
+| Q026 | Send the depth-cap question to a fresh Opus xhigh design review that keeps the program's goal and intent. | Not stated. | None | expansive budget design, parent goal.md |
+| Q027 | Size the defaulted expansive budget from the seed, option (c) with a ceiling, keeping the cap at half the budget. | Not stated. | None | frontier-admit.cjs expansiveBudget |
+| Q028 | Send the no-seed-share edge to a fresh Opus high review given the original intent, goal and purpose. | Not stated. | None | frontier-admit.cjs seedBudget |
+| Q029 | A lineage with no seed share, or a run whose seeds were all pruned, gets its loop default budget. | Not stated. | None | frontier-admit.cjs seedBudget, fanout-run.cjs expansiveLineageBudgets |
+| Q030 | Fix both P1s and the P2s of the 10-iteration review, then rerun the gate. | Not stated. | None | review fix round, review/review-report.md |
+| Q031 | Add four low-token live playbook scenarios through /create:manual-testing-playbook. | Not stated. | None | DR-077, DR-078, DRV-084, DRV-085 |
+| Q032 | Fix the setup-time and iteration-time gaps before running the four live scenarios. | Not stated. | None | DR-077, DR-078, DRV-084, DRV-085 |
+| Q033 | Fix the review traceability requirement and the research closeout sourceFindings read, then rerun DRV-084 and DR-078. | Not stated. | None | convergence.cjs traceability gate, synthesis-closeout.cjs |
+| Q034 | Fix R1, R2, the quoted fan-out config and the R3 frontier-logic refactor. | Not stated. | None | reduce-state.cjs, frontier-admit.cjs |
+| Q035 | Fix every P1, the mode problems and all P2s from the expansive dogfood review. | Not stated. | None | commits a424fb6cd8a..d4420e9510d |
+| Q036 | Choose the pivot admission design for the best UX and logic; the result amended the review pivot requirement. | Not stated. | None | commit b4e482bcb91, 011 REQ-007 |
+| Q037 | Build every 'do' row of the generation 3 improvement backlog. | Not stated. | None | commits adade6c293e..2191e6d1e62, research/improvement-backlog.md |
+| Q038 | Wait for main to settle, then merge integration into main once. | Not stated. | None | merge commit 545bfa1fe94 |
+| Q039 | Update the two pi-default tests to main's provider-free Pi settings. | Not stated. | None | commit 9ff4d22c00a, executor-config.vitest.ts |
+| Q040 | Switch the active gh account to the one with push rights instead of using a one-off token. | Not stated. | None | gh auth active account |
+| Q041 | Keep the integration branch and worktree after the merge. | Not stated. | None | worktrees/455-expansive-depth-integration |
+| Q042 | Fix both small defects: guard the cost reader and cover workflow-steps.cjs in the review contract digest. | Not stated. | None | commits 958eb9ca1df, 07cf5f92b61 |
+| Q043 | Build the generation 4 backlog's top ten plus rows 11-15. | Not stated. | None | research/improvement-backlog.md rows 1-15, round 5 commits |
+| Q044 | Land round 5 by rebasing onto main, regating and pushing; replaced by a merge when the rebase conflicted. | Not stated. | None | round 5 landing |
+| Q045 | Remove the merged side worktree 483-r5-fanout-stop-lineage and its branch. | Not stated. | None | worktree 483-r5-fanout-stop-lineage |
+| Q046 | Fix the opencode unset sandbox default and the other three gaps the round found. | Not stated. | None | commits 040a5371fb3, 1e2add8bab3, 55e8a7c217f, 2e295fea62a |
+| Q047 | Merge main into the branch instead of rebasing, after the rebase hit a replay conflict. | Not stated. | None | merge commit c46d5b43dbb |
+| Q048 | Land the gap fixes by merging main, regating and pushing. | Not stated. | None | merge ae17b03309b, push to 8170db46079 |
+| Q049 | Skip the blocked-stop record on a dry run. | Not stated. | None | commits 47ba2a08a85, 555487146e2 |
+| Q050 | Mint review row identity like research and refuse a reused key with different content, in the same landing. | Not stated. | None | commit 8170db46079, append-mode-event.cjs |
+| Q051 | Leave the parent goal.md binding row for 015-reducer-test-focus-contract to the session that owns that phase. | Not stated. | None | parent goal.md, 015-reducer-test-focus-contract |
+| Q052 | Resolve the merge conflict to main's side, dropping the OpenCode 1 trigger phrase. | Not stated. | None | merge ae17b03309b, opencode-version-dispatch.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -394,6 +429,697 @@ Stop after fixes, report
 Answer:
 ```text
 Rerun skilled, full diff (Recommended)
+```
+
+### Q018
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_0124XY7BsyfxrDhCww4fnWY1:0 -->
+
+Question:
+```text
+Pilot stop criterion: both live expansive-depth pilots (research 010, review 011) stopped on the iteration cap, so AC-014 (010) and AC-011 (011) are Unmet. Cause: the workflow sets maxFrontierNodes = max_iterations, and default-run quality gates (source diversity, graph STOP_BLOCKED) also block an earlier stop. How should I close these?
+```
+
+Options:
+```text
+Amend the criteria (Recommended)
+Decouple the caps + rerun
+Leave Unmet
+```
+
+Answer:
+```text
+Decouple the caps + rerun
+```
+
+### Q019
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_0124XY7BsyfxrDhCww4fnWY1:1 -->
+
+Question:
+```text
+Golden-test waivers: the default-run golden tests strip one expansive-only persona paragraph from the agent definition. ADR-006 (phase 010) and ADR-005 (phase 011) record this as a waiver, which keeps 011's golden criterion open until ratified. Ratify?
+```
+
+Options:
+```text
+Ratify both (Recommended)
+Reject both
+```
+
+Answer:
+```text
+Ratify both (Recommended)
+```
+
+### Q020
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01DZkg8CnttvcpZMfP5Hihip:0 -->
+
+Question:
+```text
+Research pilot: I replayed run 2's final stop check (993 fixture). Decoupling the node cap won't make a non-cap stop reachable, because four default-run blockers that D2 freezes all fired at once: novelty never converged (rolling avg 0.89, MAD stop=false, weighted score 0.35); source diversity was 0.50 vs a 1.5 threshold; graph question coverage was 0.22 (16 uncovered); claim verification was 0. A rerun would cost ~1h and is almost certain to cap-stop again, which would be attempt 3. What now?
+```
+
+Options:
+```text
+Decouple, amend AC-014 (Recommended)
+Decouple and rerun anyway
+Amend only, no code
+```
+
+Answer:
+```text
+Decouple, amend AC-014 (Recommended)
+```
+
+### Q021
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01DZkg8CnttvcpZMfP5Hihip:1 -->
+
+Question:
+```text
+Review pilot: the node cap never stopped it (12 nodes used against a cap of 16). It failed because each fan-out lineage keeps running after its own frontier node is answered (pi-2 and pi-6 ran 12 more iterations to the cap). The 6→8 root fix for the seven-node part has already landed. What should I do for AC-011?
+```
+
+Options:
+```text
+Partition-drained stop (Recommended)
+Amend AC-011
+Rerun as-is
+```
+
+Answer:
+```text
+Partition-drained stop (Recommended)
+```
+
+### Q022
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01MALQzKqe4JjaiRQRSvwzQr:0 -->
+
+Question:
+```text
+Review partition-drained stop: I replayed the pilot lineages. In pi-2, pi-5 and pi-6, a drained-partition candidate would be BLOCKED by review quality gates on every iteration, and a blocked stop just continues to the cap. The failing gates: hotspotSaturationGate always fails when a lineage has no coverage graph (5 of 6 had none), pi-2 has an active P0, and partial spec_code traceability fails dimensionCoverageGate. Which design?
+```
+
+Options:
+```text
+Drained stops like the cap
+Fix lineage graph, then gate
+Gated candidate + amend AC-011
+Amend AC-011 only
+```
+
+Answer:
+```text
+Fix lineage graph, then gate
+```
+
+### Q023
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01LDqruFvN9Ax8ncL2p5aeua:0 -->
+
+Question:
+```text
+The lineage-graph fix and the gated frontier_drained candidate are committed (full suite: 3414 passed, 0 failed). A replay still predicts 3 of 6 review pilot lineages cap-stopping. The graph decision stays CONTINUE because evidence density is 0: the standard graph upsert never creates EVIDENCE_FOR links (only pi-3's leaf sent any). pi-2 and pi-6 are also blocked by real findings (an active P0, partial spec_code traceability). How do I close AC-011?
+```
+
+Options:
+```text
+Rerun now, then decide
+Add evidence links first
+Amend AC-011 + rerun
+```
+
+Answer:
+```text
+Add evidence links first
+```
+
+### Q024
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01LDqruFvN9Ax8ncL2p5aeua:1 -->
+
+Question:
+```text
+The agent made frontier_drained a HARD stop candidate (like all_dimensions_clean), so it skips the convergence-score gate but still faces all nine quality gates and the graph decision. A soft one could never add a stop, because the composite candidate already forms at the score the gate needs. Keep it hard?
+```
+
+Options:
+```text
+Keep hard (Recommended)
+Veto: make it soft
+```
+
+Answer:
+```text
+Keep hard (Recommended)
+```
+
+### Q025
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01Wjx69nuK2C3ABzL8tSZQsF:0 -->
+
+Question:
+```text
+Review pilot rerun (28 min, all 6 lineages got working graphs): AC-011 FAILs. Zero open and zero active: met (22 nodes: 12 answered, 7 exhausted, 3 pruned). But (1) the seed has 8 depth-1 nodes: 7 subsystems + the determinism node T030 requires; (2) pi-2 still hit the cap, blocked by real spec_code traceability that this commit-range fixture's placeholder spec can't satisfy; (3) only pi-6's stop was legal and script-computed: pi-1, pi-3, pi-4 and pi-5 leaves wrote stop reasons themselves (one invented maxDurationReached; one went to synthesis on BLOCKED), and nothing checks a leaf's stop reason. How should AC-011 close?
+```
+
+Options:
+```text
+Amend AC-011, log defects
+Fix stop integrity, rerun
+Leave Unmet
+```
+
+Answer:
+```text
+Amend AC-011, log defects
+```
+
+### Q026
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_019BxFSQ9bCcKQd1U9r9yBGy:0 -->
+
+Question:
+```text
+Expansive runs at default budgets never grow past depth 1. The frontier node cap is half of maxIterations (research 10 → 5, review 7 → 3), and the 3-8 seeds already fill it, so every depth-2 proposal is pruned 'fanout'. At --max-iterations=16 the review pilot admitted 14 depth-2 nodes. How should this work?
+```
+
+Options:
+```text
+Keep cap, document it (Recommended)
+Cap counts only growth
+Raise expansive default
+```
+
+Answer:
+```text
+ask fresh opus xhigh, keep our origjnal goal and purpose and intent in mind
+```
+
+### Q027
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01FPRewkTEXRRTCkKKmmFfgM:0 -->
+
+Question:
+```text
+The fresh Opus xhigh design review recommends option (c), with the expansive default budget sized from the seed. The cap rule stays at half the budget, so your earlier decoupling ruling stands. When --depth-mode=expansive is set and --max-iterations is left at its default, the run's budget becomes max(loopDefault, 2·c·(S + 2)), where S = seeded depth-1 nodes and c = 1 for research or the dimension count (4) for review. Research S=3 → 10, S=6 → 16; review S=1 → 24, S=3 → 40. An explicit --max-iterations always wins, and default runs are untouched (D2). Rejected: docs only (review at its default of 7 answers zero seeds), seeds outside the cap (reverses your decoupling ruling), and counting only open nodes (no effect, because the store never records 'answered'). Proceed?
+```
+
+Options:
+```text
+Build option (c) (Recommended)
+(c) with a ceiling
+Docs only
+```
+
+Answer:
+```text
+(c) with a ceiling
+```
+
+### Q028
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01VsMCUwNnrod7TAc5iAL7ps:0 -->
+
+Question:
+```text
+The seed-sized expansive budget is built (full suite 3456 passed, 0 failed). One edge: in a fan-out review where a lineage gets no seed node (S=0), the formula 2·c·(S+2) still gives 16 iterations (c=4 dimensions) instead of the review default of 7. Such a lineage has no frontier node to fund. What should it get?
+```
+
+Options:
+```text
+Loop default when S=0 (Recommended)
+Keep 16
+```
+
+Answer:
+```text
+ask fresh opus high, give it og user intent goal and putpose
+```
+
+### Q029
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_016jVgas6Jitctqvg1Hke9CA:0 -->
+
+Question:
+```text
+Fresh Opus high recommends: a lineage with no seed share (S=0) gets its loop default (CLI review 7, CLI research 10, native 12), not 16, and a single run whose seeds were all pruned gets the same. The code shows why: such a lineage writes no node store, gets frontier_scope none and an empty frontier block, so it can't grow nodes. It runs as a plain whole-target review, and extra iterations only add cost against the 120-minute limit. It also recommends not skipping the lineage (that would drop the executors you chose) and printing a warning when lineages outnumber seeds. An explicit or matrix iteration count still wins. Apply?
+```
+
+Options:
+```text
+Apply recommendation (Recommended)
+Keep 16
+```
+
+Answer:
+```text
+Apply recommendation (Recommended)
+```
+
+### Q030
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01L47b6zqjdbkSVtA3zDuhWw:0 -->
+
+Question:
+```text
+The 10-iteration deep review found 0 P0, 2 P1 and 14 P2 issues (verdict FAIL, from the 2 P1s and coverage). P1s: (1) research focus text written by a leaf agent goes into a double-quoted shell argument in deep-research.yaml, so backticks in it run as commands; (2) frontier-admit rejects every expansive node when a review commit-range target carries any surrounding text, so the run silently behaves like a default run. Eight P2s are overengineering (for example an unused seed budget, merged coverage surfaces nothing reads) and one is sk-code. What should I fix?
+```
+
+Options:
+```text
+P1s + P2s, then re-gate (Recommended)
+P1s only
+No fixes now
+```
+
+Answer:
+```text
+P1s + P2s, then re-gate (Recommended)
+```
+
+### Q031
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01EyZtCftbNKKw6JxAvyGdYY:0 -->
+
+Question:
+```text
+Of the playbook scenarios this program added, 31 of 33 only run scripts or tests, and just two are live conversation scenarios (the --extend ones). There is no live conversation scenario for an expansive research or review run, an expansive fan-out run, or custom review dimensions. Should I add a small set of low-token live scenarios through /create:manual-testing-playbook?
+```
+
+Options:
+```text
+Add 4 low-token scenarios (Recommended)
+Add them, skip live check
+Leave as is
+```
+
+Answer:
+```text
+Add 4 low-token scenarios (Recommended)
+```
+
+### Q032
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01McZeHW16qseqhzJwnC2pph:0 -->
+
+Question:
+```text
+The four live playbook scenarios (DR-077, DR-078, DRV-084, DRV-085) are committed but unproven. All three runs hit the 25-minute limit, because setup takes 8-11 minutes and each research or review iteration takes 8.5-13 minutes. How do you want to proceed?
+```
+
+Options:
+```text
+Rerun with 50 min cap (Recommended)
+Fix the two gaps first
+Accept partial results
+```
+
+Answer:
+```text
+Fix the two gaps first
+```
+
+### Q033
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01D5MNNFt8sUG2iGhMUnJYwv:0 -->
+
+Question:
+```text
+The live reruns found two bugs in code that predates this program. (1) A review whose dimensions leave out traceability can never pass, because convergence.cjs:939-941 requires traceability coverage. (2) Research closeout halts silently because synthesis-closeout.cjs:397 reads a sourceFindings count the research reducer never writes; that left DR-077's run unclosed, so the DR-078 extend scenario was blocked. What should I do?
+```
+
+Options:
+```text
+Fix both, rerun DRV-084 + DR-078 (Recommended)
+Fix bug 1 only
+Hand both off
+```
+
+Answer:
+```text
+Fix both, rerun DRV-084 + DR-078 (Recommended)
+```
+
+### Q034
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_011vxKkqqGAxt4gRwCysL1a7:0 -->
+
+Question:
+```text
+The 3-iteration Opus-high review left these open: R1 (an expansive review node still requires traceability when the run's dimensions leave it out, at reduce-state.cjs:1224, the same root cause as the bug just fixed), R2 (the research topic keeps line breaks), the fan-out config JSON still interpolated inside single quotes in a shell command, and R3 (frontier logic duplicated across files, with the copies already behaving differently). Which should I fix?
+```
+
+Options:
+```text
+R1, R2 + JSON quoting (Recommended)
+All four incl. R3 refactor
+Stop here
+```
+
+Answer:
+```text
+All four incl. R3 refactor
+```
+
+### Q035
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01STY1FhWhyQwmpcjXamtqih:0 -->
+
+Question:
+```text
+The expansive review found 4 P1s: (1) the stuck counter is shared across the whole review and closes the wrong subtopics; (2) 'thought' iterations count as subtopic visits; (3) the spec promises pivot admission but the workflow never admits; (4) nothing records the files a commit range touches. It also found 18 P2s and 5 problems with the mode itself. What should be fixed?
+```
+
+Options:
+```text
+P1s + mode problems (Recommended)
+P1s + mode problems + all P2s
+P1s only
+Nothing yet
+```
+
+Answer:
+```text
+P1s + mode problems + all P2s
+```
+
+### Q036
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01STY1FhWhyQwmpcjXamtqih:1 -->
+
+Question:
+```text
+Item 3: the spec promises that pivots get admitted to the frontier, but the deep-review workflow says it never admits them. Which one should change?
+```
+
+Options:
+```text
+Amend the spec (Recommended)
+Change the code
+```
+
+Answer:
+```text
+choose for best ux and logic
+```
+
+### Q037
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_018yYZ97fTDx4dBXpKukHL1c:0 -->
+
+Question:
+```text
+The expansive research produced a 34-item improvement list. The top 10 are all rated 'do' and are mostly small fixes: the resource-map folder bug, the single-reviewer Claude permission lock, the missing top-level config, graph stop checks, per-run status in the summary, research per-subtopic stuck counting, finished runs stealing other runs' questions, the research metadata rewrite, an honest permissions display, and skipping finished runs on relaunch. Which items should be built?
+```
+
+Options:
+```text
+Top 10 + regressions (Recommended)
+Every 'do' row
+Top 5 only
+Nothing yet
+```
+
+Answer:
+```text
+Every 'do' row
+```
+
+### Q038
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01PZ8AsszRceurEs56Ew7wH4:0 -->
+
+Question:
+```text
+Merging integration into main hits 25 conflicting files. Most are docs, but they include fanout-run.cjs, the research ledger schema, and main having dropped OpenCode 1 while this branch still uses it. The build agent is also still committing. How should I merge?
+```
+
+Options:
+```text
+Wait, then merge once (Recommended)
+Merge the current tip now
+Stop the build, then merge
+```
+
+Answer:
+```text
+Wait, then merge once (Recommended)
+```
+
+### Q039
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01E4ESDh3BxCoCfgq52f9UKu:0 -->
+
+Question:
+```text
+Two pi-default tests in executor-config.vitest.ts fail on main itself, because main's 8bc8f71d2bf removed the .pi defaults they check. Until they're fixed, every gate run stays red. How should they be fixed?
+```
+
+Options:
+```text
+Update the tests (Recommended)
+Restore .pi defaults
+Leave them
+```
+
+Answer:
+```text
+Update the tests (Recommended)
+```
+
+### Q040
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01E4ESDh3BxCoCfgq52f9UKu:1 -->
+
+Question:
+```text
+The active gh account (michelkerkmeester-barter) gets a 403 on this repo, so the merge push used the MichelKerkmeester token for that one command. What should future pushes from this machine do?
+```
+
+Options:
+```text
+Ask each time (Recommended)
+Switch active account
+Always use owner token
+```
+
+Answer:
+```text
+Switch active account
+```
+
+### Q041
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01E4ESDh3BxCoCfgq52f9UKu:2 -->
+
+Question:
+```text
+What should happen to the local integration branch worktrees/455-expansive-depth-integration (never pushed) now that it is fully on main?
+```
+
+Options:
+```text
+Keep it (Recommended)
+Remove now
+```
+
+Answer:
+```text
+Keep it (Recommended)
+```
+
+### Q042
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_011AxuZUWzkony4aDufuNZRY:0 -->
+
+Question:
+```text
+I rechecked the small open items on main. Only two are real defects. (1) The cost reader in fanout-salvage.cjs (readLineageProviderCostUsd) calls readFileSync with no guard, so a single unreadable lineage log crashes the run before the orchestration summary is written. The fix is a try/catch that returns null, plus one test. (2) The review contract digest hashes only deep-review.yaml, so it misses the logic that moved into workflow-steps.cjs. Nothing compares the digest today. The other two items aren't defects. CLAUDE_DEFAULT_MODEL is pinned on purpose, and a test holds it to the fallback its packet documents. The --allow-single-lineage mentions are in already-shipped release notes. Which should I fix?
+```
+
+Options:
+```text
+Cost reader only (Recommended)
+Cost reader + digest
+Leave them
+```
+
+Answer:
+```text
+Cost reader + digest
+```
+
+### Q043
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01QCZzMU5RFPLzhxpLM15x4u:1 -->
+
+Question:
+```text
+The new backlog's top ten are mostly small (S effort). Build them next?
+```
+
+Options:
+```text
+Build the top ten (Recommended)
+Top ten + rows 11-15
+Not now
+```
+
+Answer:
+```text
+Top ten + rows 11-15
+```
+
+### Q044
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01JPxTRMNtFxFYNFy14nPZwr:0 -->
+
+Question:
+```text
+Round 5 is 19 local commits on the integration branch, and its gate is green: 3821 tests passed (up from 3717), 0 failed, every other check passing. Main gained 10 commits from other sessions meanwhile, none touching the same files. How should I land it?
+```
+
+Options:
+```text
+Rebase, regate, push (Recommended)
+Merge, regate, push
+Keep local
+```
+
+Answer:
+```text
+Rebase, regate, push (Recommended)
+```
+
+### Q045
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01JPxTRMNtFxFYNFy14nPZwr:1 -->
+
+Question:
+```text
+Round 5 left a merged side worktree, 483-r5-fanout-stop-lineage, and its branch. Its commits are already in the integration branch. Remove both?
+```
+
+Options:
+```text
+Remove both (Recommended)
+Keep it
+```
+
+Answer:
+```text
+Remove both (Recommended)
+```
+
+### Q046
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01JPxTRMNtFxFYNFy14nPZwr:2 -->
+
+Question:
+```text
+The round found one real safety gap it didn't fix: an opencode lineage with no sandbox mode set runs as danger-full-access, the most permissive mode. Fix it next?
+```
+
+Options:
+```text
+Fix after landing (Recommended)
+Fix + the other 3 gaps
+Leave it
+```
+
+Answer:
+```text
+Fix + the other 3 gaps
+```
+
+### Q047
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01QjrNG5CzhuxTwBQSVXVgeL:0 -->
+
+Question:
+```text
+The rebase hit a conflict in fanout-run.cjs, so I aborted it and the branch is back at 0e49309a701, unchanged. The conflict wasn't with main. Round 5 merged a side branch, and a rebase has to replay that side branch's commit against changes it was originally merged beside. A test merge of origin/main into the branch is conflict-free. Switch to merging?
+```
+
+Options:
+```text
+Merge instead (Recommended)
+Resolve the rebase
+Keep local
+```
+
+Answer:
+```text
+Merge instead (Recommended)
+```
+
+### Q048
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01MXQaJBJEkGfM6uCxMF8KTc:0 -->
+
+Question:
+```text
+All four gap fixes are 6 local commits. Gate: 3838 passed, 0 failed, every check green. Main gained 32 commits from other sessions, none touching the deep loop, and a test merge is clean. Land it the same way as round 5?
+```
+
+Options:
+```text
+Merge, regate, push (Recommended)
+Keep local
+```
+
+Answer:
+```text
+Merge, regate, push (Recommended)
+```
+
+### Q049
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01MXQaJBJEkGfM6uCxMF8KTc:1 -->
+
+Question:
+```text
+The new script-backed blocked stop now writes a real state row during a dry run, in both research and review, and a dry run is supposed to write nothing. Fix it?
+```
+
+Options:
+```text
+Skip it on dry runs (Recommended)
+Leave it
+```
+
+Answer:
+```text
+Skip it on dry runs (Recommended)
+```
+
+### Q050
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01MXQaJBJEkGfM6uCxMF8KTc:2 -->
+
+Question:
+```text
+The review gateway silently drops a row that reuses an earlier idempotency key, and it still trusts model-written identity fields (research is now protected). Fix it too?
+```
+
+Options:
+```text
+Fix with the dry-run fix (Recommended)
+Later
+```
+
+Answer:
+```text
+Fix with the dry-run fix (Recommended)
+```
+
+### Q051
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01MXQaJBJEkGfM6uCxMF8KTc:3 -->
+
+Question:
+```text
+check-goal fails 4/5 because the parent goal.md has no binding row for the new child 015-reducer-test-focus-contract. Another session added that child on main. Who adds the row?
+```
+
+Options:
+```text
+Leave to that session (Recommended)
+Add it here
+```
+
+Answer:
+```text
+Leave to that session (Recommended)
+```
+
+### Q052
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01AXztVpEsoqKSK66FVDhEgF:0 -->
+
+Question:
+```text
+Main moved again during the merge, and the merge now has one conflict, in the cli-opencode feature-catalog file opencode-version-dispatch.md. It's a single trigger-phrase line in the frontmatter. Our side keeps "OpenCode 1 refusal". Main deleted it in 09a760a4763, "remove every OpenCode 1 observation". How should I resolve it?
+```
+
+Options:
+```text
+Take main's side (Recommended)
+Abort the merge
+```
+
+Answer:
+```text
+Take main's side (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.32.0
+version: 1.4.33.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -48,7 +48,7 @@ OpenCode is the framework that owns this repository. The same binary that hosts 
 
 **Version baseline.** This reference is pinned to OpenCode 2 at 2.3.2, the only supported version. Flag and provider observations that name 2.0.32 were read on that release and have not been re-read on 2.3.2. Later versions are unsupported until re-verified. The install and upgrade path is in [`install-and-versions.md`](./install-and-versions.md).
 
-**Version detection.** The resolvers (`.skilled/hooks/cli-dispatch/lib/opencode-version.mjs` and `.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs`) probe `opencode` on `PATH`, or `OPENCODE_BIN` when it is set. A major-2 binary is family `v2`, a major-1 binary is reported as `unsupported`, and anything else is `unknown`. A deep-loop lineage refuses both labels. The dispatch guard applies every rule to a binary that is not supported and blocks only on a violation.
+**Version detection.** The resolvers (`.skilled/hooks/cli-dispatch/lib/opencode-version.mjs` and `.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs`) probe `opencode` on `PATH`, or `OPENCODE_BIN` when it is set. A major-2 binary is family `v2`, and anything else is `unknown`. A deep-loop lineage refuses `unknown`. The dispatch guard applies every rule to a binary that is not supported and blocks only on a violation.
 
 ---
 
@@ -64,7 +64,7 @@ OpenCode is the framework that owns this repository. The same binary that hosts 
 
 After installation, run `opencode --version` to confirm. The cli-opencode skill is pinned to OpenCode 2 at 2.3.2. Newer binaries may add or rename flags, so consult Section 9 (Version Drift) before relying on a non-pinned flag.
 
-**Setup helper.** `scripts/opencode-setup.sh` takes exactly three modes: `v2` installs OpenCode 2 into the default prefix, `remove-v1` removes the earlier major version's package and launcher (database files are listed and left in place), and `check` reports what each name resolves to without changing anything. Exit codes are 0 for success, 1 for a refusal or failure, and 2 for a usage error. A machine that still carries the earlier major version needs one run of `opencode-setup.sh remove-v1`.
+**Setup helper.** `scripts/opencode-setup.sh` takes exactly two modes: `v2` installs OpenCode 2 into the default prefix, and `check` reports what each name resolves to without changing anything. Exit codes are 0 for success, 1 for a refusal or failure, and 2 for a usage error.
 
 ---
 
@@ -152,7 +152,7 @@ The working directory moves into the `cd`, and the effort level rides on `-m` as
 
 ### Stdin handling: `</dev/null` is required for non-interactive dispatch
 
-> **`stdin-redirect-required` (error).** Ad-hoc `opencode run` MUST close or redirect stdin (`</dev/null`). Omitting it can hang indefinitely at 0% CPU with zero output. The recorded hang is from OpenCode 1 (v1.14.39), and no OpenCode 2 reproduction is recorded, so the redirect stays required.
+> **`stdin-redirect-required` (error).** Ad-hoc `opencode run` MUST close or redirect stdin (`</dev/null`). Omitting it can hang indefinitely at 0% CPU with zero output. No OpenCode 2 reproduction of the hang is recorded, and the redirect stays required.
 
 ALWAYS append `</dev/null` AFTER the prompt argument and BEFORE the stdout/stderr redirects:
 
@@ -330,7 +330,7 @@ This reference is pinned to OpenCode 2 at 2.3.2, the only supported version. If 
 1. Run `opencode run --help -m llmgateway/deepseek-v4.1-flash-1017 </dev/null` and diff the flag list against Section 4.
 2. Run `opencode --help` and diff the subcommand list against Section 3.
 3. If a flag was renamed, prefer the new name in the dispatch. If a flag was removed, fall back to the closest analogue and surface the drift in the calling AI's response.
-4. If the live binary reports a major version other than 2, the resolvers classify it `unsupported` for major 1 and `unknown` for any other major. A deep-loop lineage refuses either, and the dispatch guard checks every rule against it. Re-validate the entire skill against the new flag table and bump the cli-opencode minor version.
+4. If the live binary reports a major version other than 2, the resolvers classify it `unknown`. A deep-loop lineage refuses it, and the dispatch guard checks every rule against it. Re-validate the entire skill against the new flag table and bump the cli-opencode minor version.
 
 ### Failure modes specific to drift
 

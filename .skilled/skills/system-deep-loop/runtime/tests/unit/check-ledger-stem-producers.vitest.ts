@@ -38,6 +38,7 @@ const PRODUCER_SURFACE = [
   join(RUNTIME_REL, 'scripts', 'run-now-sentinel.cjs'),
   join(RUNTIME_REL, 'scripts', 'dispatch-iteration.cjs'),
   join(RUNTIME_REL, 'scripts', 'workflow-steps.cjs'),
+  join(RUNTIME_REL, 'scripts', 'convergence.cjs'),
   join('.skilled', 'skills', 'system-deep-loop', 'deep-research', 'scripts', 'reduce-state.cjs'),
 ];
 

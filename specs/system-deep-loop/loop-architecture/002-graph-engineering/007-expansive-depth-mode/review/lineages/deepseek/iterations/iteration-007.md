@@ -1,20 +1,27 @@
-# Iteration 7 - F-1-003 traceability: fan-out runner and merge against the review packet
+# Review Iteration 007
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-003, dimension traceability. Node scope: `fanout-run.cjs`, `fanout-merge.cjs` and their unit suites, with the packet docs, feature catalogs and playbooks as traceability evidence.
-- Operator review focus covered in this iteration: overengineering (catalog and playbook prose checked against one code rule), operator UX (the dashboard/report text the merge produces), cross-CLI/OS parity (all runtime mirrors checked for the new agent contract).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 7 of 24
+- Focus: **Frontier node F-1-002: traceability**
+- Dimension: traceability
+- Frontier node: F-1-002 (depth 1 of 3), scope `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`, `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`, `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
+- Convergence before dispatch: `CONTINUE` / `noStopCandidate`, stuck 0, consecutive failures 0.
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, the three node files, `runtime/feature-catalog/executor/executor-config.md`, `runtime/feature-catalog/fanout/fanout-run.md`, `runtime/feature-catalog/fanout/fanout-salvage.md`, `deep-review/references/protocol/loop-protocol.md`, and the three commit messages.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` -- partition, per-lineage prompt, budget derivation and lineage store.
-- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` -- merged coverage, frontier and provenance.
-- `.skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md` -- the shipped-behavior claims for depth coverage, stop behavior and pivot.
-- `.skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md` -- the pivot candidate and retry claims.
-- `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md` and `review-pivot-gates-on-terminal-frontier.md` -- the DRV-083 and DRV-081 commands and expectations.
-- `.skilled/agents/deep-review.md` and `.skilled/agents/deep-research.md` against `.claude/agents`, `.codex/agents`, `.pi/agents`, `.dsh/agents` and `.vibe/agents` -- the new frontier/proposal contract in every mirror.
-- Traceability sources: `009-fanout-review-coverage-merge` REQ-001..REQ-006, `011-review-frontier-mode` REQ-008/REQ-017, `012-pivot-hygiene` REQ-002/REQ-005/REQ-007.
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:112-143,197-307` (flag support, adapter record, preventive record)
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:100-200,1078-1102,1404-1425`
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2870-3048,3392-3448,3560-3626`
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:101-163` (cost reader)
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/executor/executor-config.md:26-48`
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:110,197,203`
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-salvage.md:58`
+- `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:284-289`
+- Commit messages: `555487146e2`, `8170db46079`, `47ba2a08a85`.
 
 ## Findings - New
 
@@ -28,50 +35,54 @@ None.
 
 ### P2 Findings
 
-None.
+None. This pass produced no new finding.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | `011` REQ-008's seed, partition, `frontier_scope`, store and merge guard match the code; REQ-017's candidate order and gate chain match `convergence.cjs`. The iteration 3 REQ-007 admission gap remains the only partial. |
-| `checklist_evidence` | partial | AC-010/AC-011 fan-out rows match; AC-008 remains the outstanding row. |
-| `skill_agent` | pass | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` expands the depth mode, the veto and the frontier row contract the agent definition carries (`.skilled/agents/deep-review.md`, `frontier_proposal` section). |
-| `agent_cross_runtime` | pass | The three new agent-contract additions (frontier proposal rows, frontierNodeId, the CLI output contract) appear in `.skilled/agents`, `.claude/agents`, `.codex/agents`, `.pi/agents`, `.dsh/agents` and `.vibe/agents`; the diffs differ only in runtime frontmatter and the path-convention line. |
-| `feature_catalog_code` | partial | The expansive-depth catalog matches seeding, band budget, stop order and dashboard. Its dimension-coverage sentence says "only an attempt that produced evidence counts" but lists only `error`/`failed`/`failure`/`timeout`; the code also counts `thought` and `stuck`, which is the code side of R2-P1-001. |
-| `playbook_capability` | pass | DRV-081 names the pivot gate, the `frontier-unanswered` seed and the default-path case; DRV-083 names the 21 drained-frontier cases and the exact test and rg commands. Both match the code's steps and messages. |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | pass | `555487146e2`, `8170db46079`, `47ba2a08a85`; `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4162-4170`; `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:429-495`; `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` `--read-only` refusal | Each commit message names a behavior the code implements: the dry-run convergence call is bound to `--read-only`, the review row mints identity and refuses a reused key with other content, and the blocked-stop record is withheld on a dry run. No message claims more than the diff does. |
+| `checklist_evidence` | notApplicable | - | The review target is a commit range, not a spec packet; no checklist exists to verify. |
+| `skill_agent` | notApplicable | - | No agent definition is in the range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror is in the range. |
+| `feature_catalog_code` | pass | `.skilled/skills/system-deep-loop/runtime/feature-catalog/executor/executor-config.md:26-48`, `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:110,197,203` | Every catalog claim checked matches the code: the adapter record's fields, the cost reader's opencode/claude-only cost, the claude stream-json log, the opencode compensating control and the dsh narrowing. |
+| `playbook_capability` | notApplicable | - | No playbook asserts a capability this node's code owns. |
 
 ## Integration Evidence
 
-- `.skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md:22` says the adapter "continues with the selected read-only direction" and does not claim frontier admission; the feature catalog therefore agrees with the implemented branch and disagrees with AC-008, which narrows the fix for R3-P1-001 to the acceptance criterion and plan text.
-- `.skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:34` matches the `frontier_drained` ordering and the gate chain in `convergence.cjs:1164-1217`.
-- `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/frontier-drained-stops-review.md:50-58` cites the stop-decision suite name and the `rg` command the code actually exposes.
-- `.skilled/agents/deep-review.md` and all five mirrors carry the same `frontier_proposal` contract; the `.claude`/`.pi` diffs are the runtime frontmatter and path-convention lines only.
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-salvage.md:58` says a lineage's cost adds up its live and rotated logs, and `fanout-salvage.cjs:137-163` does exactly that per attempt. The claude reader takes the last cumulative `result` cost per log (`:115-118`), so summing across attempts is correct and does not double-count within one attempt.
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/executor/executor-config.md:29` names the conformance test as the drift check; the test exists and covers binary, prompt channel, log format, effort surface, sandbox surface and cost source. Its one weak assertion is already reported as R3-P2-001.
+- `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:288` documents the dsh narrowing and the pi same-command behavior, which is the traceability evidence that R1-P2-001 is a provenance-label issue rather than an undocumented behavior change.
 
 ## Edge Cases
 
-- The catalog's "produced evidence" sentence and its status list disagree with each other; I recorded the conflict against the existing R2-P1-001 rather than opening a second finding for the same rule.
-- The `.vibe` mirror is generated from the canonical agent by `sync-agents-vibe.cjs`; its instruction string carries the full contract, so a hash comparison against the markdown canonical would be misleading.
-- The packet's `Met` rows for AC-008 are the traceability defect surface; the code and catalog agree with each other, so the resolution is a packet amendment unless the operator wants the admission behavior.
+- **The commit range includes a merge-free linear history.** All three commits are ordinary fixes; no merge commit needed the `merge-no-own-diff` prune.
+- **`spec_code` for a commit range has no spec document.** The commit messages are the stated contract, so the protocol compares each message to the diff it names rather than to a `spec.md`. Recorded as `pass` on that basis, not as `notApplicable`, because the messages do make verifiable claims.
+- **The adapter record is documentation-as-code.** `EXECUTOR_ADAPTER_CAPABILITIES` is read by the conformance test and the catalog, not by the builders. That is the documented design (`executor-config.ts:191-196`), so a reader expecting runtime enforcement from the record is reading it wrong, not finding drift.
 
 ## Confirmed-Clean Surfaces
 
-- The fan-out review partition, per-lineage budget and merge guard are documented in REQ-008 and implemented line-for-line.
-- The feature catalog's band-budget, derived-budget and ledger-store claims match `frontier-admit.cjs` and `reduce-state.cjs`.
-- Both new playbooks cite commands and test names that exist and match the current code.
-- Every runtime mirror carries the new agent contract; no mirror is stale for this range.
+- **Flag-support table vs builders.** Every field in `EXECUTOR_KIND_FLAG_SUPPORT` is either consumed by the builder or by the runner's timeout/env path; no kind advertises a field its builder ignores silently.
+- **Cost source per kind.** `log` for opencode and claude, `none` for every other kind, matching `readLineageProviderCostUsd`'s behavior.
+- **Prompt channel per kind.** `argv`, `stdin` and `file` each match the builder's actual argument placement.
+- **Resume.** Every record says `artifact`, and no builder passes a provider-session resume flag.
 
 ## Ruled Out
 
-- A new finding for the catalog's "produced evidence" sentence: the same rule is already R2-P1-001, and splitting it would double-count one defect across code and docs.
-- A stale-mirror finding: all six agent surfaces carry the new contract, so the differences are runtime packaging only.
-- A playbook/code mismatch: the DRV-081 and DRV-083 commands and named cases exist as written.
+- **A cost double-count across rotated claude logs.** Ruled out: rotation is per attempt, and each attempt's log carries its own cumulative total, so summing attempts is correct.
+- **A flag-support entry the builder ignores.** Ruled out: the dsh `reasoningEffort` entry is documented as baked into the route patch, which the builder states at `fanout-run.cjs:3619-3620`.
+- **A commit message overstating its diff.** Ruled out: each of the three messages names a behavior the diff implements, and none claims a broader guarantee.
+- **A traceability finding from the dsh narrowing.** Ruled out as a duplicate of R1-P2-001 and its iteration-3 refinement.
 
 ## Next Focus
 
-- Dimension: traceability on F-1-005 (reducers, extension and graph evidence against the packet).
-- Reason: F-1-003 is traceable and its only gap is the shared REQ-007 claim; F-1-005 carries the extension, ledger-projection and evidence-edge requirements that the report cites.
-- Required evidence: `001` REQ-002/REQ-004, `006` REQ-001..REQ-004 and `011` REQ-018/AС-019 against `reduce-state.cjs`, `upsert.cjs`, the ledger schema and the projections.
-- Rotation status: correctness and security covered on all nodes; traceability covered on F-1-003.
+- Dimension: traceability
+- Frontier node: F-1-004 (active; the reducer's breadth-first rule selects the shallowest node with the fewest visits)
+- Focus area: the gateway's cross-references: whether the `deep-review-state.jsonl` field list in `state-jsonl.md` matches what the projection actually writes, and whether the ledger event stems named in the catalog all have a registered producer.
+- Reason: F-1-002 traceability is clean; the gateway node has had correctness and security passes and its documented state shape is the next traceability surface.
+- Rotation status: F-1-002 correctness, security and traceability covered; F-1-004 traceability next.
+- Blocked/productive carry-forward: productive (commit-message-to-diff comparison and cost-reader tracing both held); no blocked approaches.
+- Required evidence: `state-jsonl.md` field list, the projection contract's row construction, and the stem registry.
+- Recovery note: none.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS
