@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-20 |
 | **Branch** | `worktrees/499-overlay-readmes-and-alignment` |
 | **Parent Spec** | ../spec.md |

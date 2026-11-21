@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 014-overlay-folder-readmes
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-20
 <!-- /ANCHOR:metadata -->
 
@@ -51,13 +51,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given an overlay folder with a folder lacking a README, When `status --audit` runs, Then it prints `DOCS     missing-readme <label>/<F>`, `docs=<n>`, and a `docs` key under `--json` | `overlay-engine-readmes.test.cjs` docs-leg tests | Unmet | - |
-| AC-002 | REQ-002 | Given an adopter with no READMEs, When `status` runs with and without `--audit`, Then `RESULT:`, `result` and the exit code are the same | The unchanged-exit test and the Barter comparison | Unmet | - |
-| AC-003 | REQ-003 | Given a documentation-only README, When apply, adopt, capture, `repin --stage`, status, pre-commit or relayout runs, Then none writes, takes or names it outside the docs leg | One test per command in `overlay-engine-readmes.test.cjs` | Unmet | - |
-| AC-004 | REQ-004 | Given a manifest listing one layout-link path twice, When `apply` runs, Then it is refused before any write and the tree is byte-identical | The duplicate-path test | Unmet | - |
-| AC-005 | REQ-005 | Given an invalid README, When `status --audit` runs, Then sk-doc's validator reports it as `invalid-readme`; Given no validator, Then one `DOCS     skipped:` line prints | The real-validator and skipped tests | Unmet | - |
-| AC-006 | REQ-006 | Given `repin-runs/`, a dot folder, `node_modules` and a linked folder, When the walk runs, Then none of them is reported | The skip-list test | Unmet | - |
-| AC-007 | REQ-007 | Given the overlay docs, When read, Then they name the README roles, the DOCS lines and the duplicate refusal | `rg -n 'DOCS' overlays.md doctor-overlay-presentation.txt` | Unmet | - |
+| AC-001 | REQ-001 | Given an overlay folder with a folder lacking a README, When `status --audit` runs, Then it prints `DOCS     missing-readme <label>/<F>`, `docs=<n>`, and a `docs` key under `--json` | `overlay-engine-readmes.test.cjs`: "status --audit prints one missing-readme line per folder without one" and "--json carries the docs key under --audit only", both placements, pass in the 354-test engine suite | Met | - |
+| AC-002 | REQ-002 | Given an adopter with no READMEs, When `status` runs with and without `--audit`, Then `RESULT:`, `result` and the exit code are the same | `overlay-engine-readmes.test.cjs`: "the docs leg never changes RESULT or the exit code", plus the Barter run: both engines `RESULT: PASSED`, exit 0, non-DOCS lines identical | Met | - |
+| AC-003 | REQ-003 | Given a documentation-only README, When apply, adopt, capture, `repin --stage`, status, pre-commit or relayout runs, Then none writes, takes or names it outside the docs leg | `overlay-engine-readmes.test.cjs`: the apply, capture, guard and pre-commit, relayout, repin --stage and three adopt tests, both placements and both README names | Met | - |
+| AC-004 | REQ-004 | Given a manifest listing one layout-link path twice, When `apply` runs, Then it is refused before any write and the tree is byte-identical | `overlay-engine-fixes.test.cjs`: the duplicate table, one subtest per spelling incl. `ext/.`, `x/../ext`, `a//b` and the case pair, `apply`, `status`, `apply --relayout` and `apply --adopt` exit 2 with the tree byte-identical | Met | - |
+| AC-005 | REQ-005 | Given an invalid README, When `status --audit` runs, Then sk-doc's validator reports it as `invalid-readme`; Given no validator, Then one `DOCS     skipped:` line prints | `overlay-engine-readmes.test.cjs`: "the real sk-doc validator names a rejected README and passes a valid one" and "a missing python3 prints one skipped line" | Met | - |
+| AC-006 | REQ-006 | Given `repin-runs/`, a dot folder, `node_modules` and a linked folder, When the walk runs, Then none of them is reported | `overlay-engine-readmes.test.cjs`: "the docs walk skips the run folders, dot folders and node_modules, and never follows a link", and the unreadable and too-long folder tests | Met | - |
+| AC-007 | REQ-007 | Given the overlay docs, When read, Then they name the README roles, the DOCS lines and the duplicate refusal | `rg -n "DOCS" overlays.md doctor-overlay-presentation.txt` prints lines in both; `rg -n "listed twice"` prints the refusal in both | Met | - |
 
 ### Status values
 
@@ -82,7 +82,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The engine change is in progress, so no criterion is met yet.
+Every criterion is met, with the engine suite at 354 of 354. The review ran its five allowed rounds: the last one failed on a single P1, fixed in `fcc8df4983f` and covered by a red-first test, with no further review round.
 <!-- /ANCHOR:closure -->

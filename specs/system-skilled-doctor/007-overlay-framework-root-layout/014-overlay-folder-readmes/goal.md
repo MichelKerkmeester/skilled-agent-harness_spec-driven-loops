@@ -54,10 +54,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` exits 0 with more than 294 tests on Skilled main.
-- [ ] Every new behavior test fails against the engine at `bf6806ad4b3`.
-- [ ] `status --audit` on Barter's tree prints the same `RESULT:` line and exit code as the engine at `bf6806ad4b3`.
-- [ ] `validate.sh --recursive --strict` on the parent packet prints `RESULT: PASSED`.
+- [x] `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` exits 0 with more than 294 tests on Skilled main.
+- [x] Every new behavior test fails against the engine at `bf6806ad4b3`.
+- [x] `status --audit` on Barter's tree prints the same `RESULT:` line and exit code as the engine at `bf6806ad4b3`.
+- [x] `validate.sh --recursive --strict` on the parent packet prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -73,12 +73,15 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| README contract | Done | `scratch/overlay-readme-contract.md`, copied to the shared scratchpad |
-| Engine change | In Progress | Worker running on the worktree branch |
+| README contract | Done | `scratch/overlay-readme-contract.md`, six dated amendments, copied to the shared scratchpad |
+| Engine change | Done | 354 of 354 engine tests on the branch, 294 before; each behavior test failed first against the engine before it |
+| Barter `status --audit` | Done | `RESULT: PASSED`, exit 0, with the engine at `bf6806ad4b3` and on the branch; `docs=0` |
+| Review | Capped | Five rounds. Round five failed on the capital sharp s alone, fixed in `fcc8df4983f` with no sixth round |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| `README.markdown` | Amended into the contract: sk-doc reads a `README.md` under a commands folder as a command document |
+| Duplicate layout links | Compared after normalization, NFC and, on a case-insensitive disk, full case folding, through one key the planner also uses |
 <!-- /ANCHOR:log -->

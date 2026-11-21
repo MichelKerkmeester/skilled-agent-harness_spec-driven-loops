@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "/local-doc-alignment gains an overlay-layout topic and /local-skilled-alignment an overlays target, both finding a vendored project's overlay folder through .skilled-overlays.json and refusing a folder outside the project."
 trigger_phrases:
   - "alignment command overlay targets implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets"
-    last_updated_at: "2026-11-20T23:53:20Z"
+    last_updated_at: "2026-11-21T00:25:54Z"
     last_updated_by: "generate-context"
-    recent_action: "Landed the overlay target and topic in the private command copy"
-    next_safe_action: "Run the Barter mirror of the overlays target"
+    recent_action: "Wrote the delivered-work description"
+    next_safe_action: "Run the merge into local main"
     packet_purpose: "Purpose: Either command, run in a vendored project, finds the overlay folder through `.skilled-overlays.json` and audits it, and a project without that file gets a clean answer instead of an error."
     blockers: []
     key_files:
       - ".skilled/commands/local-skilled-alignment.md"
       - ".skilled/commands/local-doc-alignment.md"
     session_dedup:
-      fingerprint: "sha256:b58c2afe5498b810ef577f2eec8c3f07b620a1c1b26fb41152c27745fa799f2e"
+      fingerprint: "sha256:3cb598db1437d412f250c882278f266b94ef37855c1d9994ae3476407a41dddf"
       session_id: "scaffold-015-alignment-command-overlay-targets"
       parent_session_id: null
     completion_pct: 100

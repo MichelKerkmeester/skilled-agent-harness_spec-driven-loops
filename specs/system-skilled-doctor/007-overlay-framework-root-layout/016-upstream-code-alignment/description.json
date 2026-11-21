@@ -6,17 +6,19 @@
     "phase",
     "upstream-code-alignment"
   ],
-  "lastUpdated": "2026-11-20T23:53:09.109Z",
+  "lastUpdated": "2026-11-21T00:25:57.429Z",
   "specId": "016",
   "folderSlug": "upstream-code-alignment",
   "parentChain": [
     "system-skilled-doctor",
     "007-overlay-framework-root-layout"
   ],
-  "memorySequence": 3,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "20-11-26_23-26__scaffolded-and-planned-the-phase-on-the-worktree.md",
     "21-11-26_00-52__closed-the-phase-work-verified-reviewed-and.md",
-    "21-11-26_00-53__upstream-counterparts-of-barter-s-overlaid-code.md"
+    "21-11-26_00-53__upstream-counterparts-of-barter-s-overlaid-code.md",
+    "21-11-26_01-22__re-read-the-ai-speckit-handoff-list-before.md",
+    "21-11-26_01-25__wrote-the-implementation-description-so-it-states.md"
   ]
 }

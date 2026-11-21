@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The Skilled counterparts of the code Barter overlays now meet sk-code's Skilled standard on headers, comment hygiene, docs and section order, with no change in behavior, and every handoff item from the ai-speckit session is applied or recorded."
 trigger_phrases:
   - "upstream code alignment implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment"
-    last_updated_at: "2026-11-20T23:53:09Z"
+    last_updated_at: "2026-11-21T00:25:57Z"
     last_updated_by: "generate-context"
-    recent_action: "Aligned 13 overlaid upstream files with sk-code, review approved"
-    next_safe_action: "Run the reverse handoff into Barter's overlay copies"
+    recent_action: "Wrote the delivered-work description"
+    next_safe_action: "Run the merge into local main"
     packet_purpose: "Purpose: Each Skilled counterpart of an overlaid code file meets the standard's behavior-neutral rules, so Barter's copy and its source agree on the lines neither changes on purpose."
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       - ".skilled/scripts/git-hooks/pre-push"
     session_dedup:
-      fingerprint: "sha256:7bbaa22acded70c3ef22aa770a3fc3f17cae674f409e6c1d041585a175b65ade"
+      fingerprint: "sha256:03f9161dd510e232df694224a7e2be7f48277c8fa13586b8ff704d5bbf4e7b23"
       session_id: "scaffold-016-upstream-code-alignment"
       parent_session_id: null
     completion_pct: 100
@@ -78,7 +78,7 @@ When Barter fixes one of these flaws in its overlay copy, the Skilled source now
 
 ### Handoff items
 
-The list was read at 23:13, 23:45 and 00:01, and the last read found no new item for these files.
+The list was read at 23:13, 23:45, 00:01 and 01:12. It last changed at 23:34, and no later read found a new item for these files.
 
 | Item | Result |
 |------|--------|

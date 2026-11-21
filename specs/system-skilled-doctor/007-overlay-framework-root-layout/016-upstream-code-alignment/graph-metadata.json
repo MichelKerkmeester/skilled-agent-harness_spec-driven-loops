@@ -206,7 +206,7 @@
     ],
     "causal_summary": "When a Barter overlay copy breaks sk-code's Skilled standard because the Skilled file it copies does, fixing only the copy leaves the source wrong",
     "created_at": "2026-11-20T22:06:36Z",
-    "last_save_at": "2026-11-20T23:53:09.109Z",
+    "last_save_at": "2026-11-21T00:25:57.429Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c97bedf8f4c45b1a22577951abe649b1750260611da1d74990d6d382e6780507",
+    "source_fingerprint": "sha256:72b99f4a6171140100257d5a50f09b4b7984f041d6bed8159f580056dee79c97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6d01b4976628fcc6e98a6683f1c9cc35ec89b17964c4f88962a9a2de0bc3cde8",
       "plan.md": "52ff4c525435ebce8bce34addda3f67b158a6a06f395ded8ce93316ba1ea3404",
       "tasks.md": "acb882999bae3091c0d64e8c006e5215d5bd62176d3dfb43bda3dbf7a8df40a2",
-      "implementation-summary.md": "482e272007f9e64bb5c434633d0a27dd74073a97f4d589377e529dd55da944f1"
+      "implementation-summary.md": "1f6e073629283ce3a8e913775d2211695f6533a63386f9ab69e1dd36d750d0fd"
     },
     "last_active_at": null
   }
