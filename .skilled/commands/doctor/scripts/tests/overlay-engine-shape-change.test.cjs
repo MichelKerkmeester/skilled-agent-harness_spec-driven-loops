@@ -760,6 +760,20 @@ for (const [label, entry, problem] of [
   });
 }
 
+// An entry set is parsed only once its destination is read, so one that does
+// not parse still waits on the link rather than naming a destination status
+// cannot read.
+test('status waits on a missing layout link that leads outside the tree for an entry set that does not parse', (t) => {
+  const fixture = createShapeFixture(t, [{ id: 'tool', scope: 'json-entry', source: 'files/bad.json', destination: 'up/settings.json' }],
+    [{ path: 'up', target: '../outside' }]);
+  writeFile(fixture.overlayDir, 'files/bad.json', '{ not json\n');
+  fs.mkdirSync(path.join(fixture.workspace, 'outside'));
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: up\/settings\.json waits on the layout link up, which apply makes before it writes the entry$/m, status.output);
+  assert.equal(status.output.includes('upstream removed'), false, status.output);
+});
+
 test('status keeps the planner text whole when the destination is the layout link path itself', (t) => {
   const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
   const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up', pinnedSha256 }], [{ path: 'up', target: 't' }]);

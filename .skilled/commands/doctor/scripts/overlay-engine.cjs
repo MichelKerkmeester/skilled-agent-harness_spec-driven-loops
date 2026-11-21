@@ -3642,15 +3642,8 @@ function overlaySideReady(entry, ctx) {
   };
   switch (entry.scope) {
     case 'file':
+    case 'json-entry':
       return read(entry.source) !== null;
-    case 'json-entry': {
-      const spec = read(entry.source);
-      try {
-        return spec !== null && JSON.parse(spec.toString('utf8')) !== undefined;
-      } catch {
-        return false;
-      }
-    }
     case 'marked-section': {
       const anchor = entry.insertBefore;
       const isAnchorValid = anchor === undefined || (typeof anchor === 'string' && anchor !== '' && !/[\r\n]/.test(anchor));
