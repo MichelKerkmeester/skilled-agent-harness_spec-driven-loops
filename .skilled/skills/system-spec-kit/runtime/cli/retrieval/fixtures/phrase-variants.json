@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6759c2c65b519ebfbd44b84153018aeae30d65498b1c82b7a39cef9411bdf8ae",
+  "manifestHash": "3c5b915bc7053791cac35499cfd3e7f9bc552e4f3635d758cab5cb4cee5043b2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5657,6 +5657,9 @@
     ],
     "026 docs sync": [
       "026 docs sync"
+    ],
+    "026 doctor lane removal alignment operator decisions": [
+      "026-doctor-lane-removal-alignment operator decisions"
     ],
     "026 graph and context optimization": [
       "026 graph and context optimization",
@@ -11713,6 +11716,9 @@
     "align system deep loop": [
       "align system deep loop"
     ],
+    "align system deep loop code with sk code": [
+      "align system deep loop code with sk code"
+    ],
     "align system deep loop implementation summary": [
       "align system deep loop implementation summary"
     ],
@@ -11829,6 +11835,21 @@
     ],
     "alignment cli opencode result": [
       "alignment cli opencode result"
+    ],
+    "alignment command overlay targets": [
+      "alignment command overlay targets"
+    ],
+    "alignment command overlay targets goal": [
+      "alignment command overlay targets goal"
+    ],
+    "alignment command overlay targets implementation summary": [
+      "alignment command overlay targets implementation summary"
+    ],
+    "alignment command overlay targets plan": [
+      "alignment command overlay targets plan"
+    ],
+    "alignment command overlay targets tasks": [
+      "alignment command overlay targets tasks"
     ],
     "alignment convergence mode off": [
       "alignment convergence mode off"
@@ -15888,6 +15909,9 @@
     ],
     "blocked stops carry context": [
       "blocked stops carry context"
+    ],
+    "blocked streak stop": [
+      "blocked streak stop"
     ],
     "blocker 1 parity harness": [
       "blocker 1 parity harness"
@@ -45446,6 +45470,9 @@
     "documentation matches shipped state": [
       "documentation matches shipped state"
     ],
+    "documentation only readme overlay": [
+      "documentation only readme overlay"
+    ],
     "documentation quality refactor": [
       "documentation quality refactor"
     ],
@@ -49717,15 +49744,6 @@
     "expansive depth mode": [
       "expansive depth mode"
     ],
-    "expansive depth mode implementation summary": [
-      "expansive depth mode implementation summary"
-    ],
-    "expansive depth mode plan": [
-      "expansive depth mode plan"
-    ],
-    "expansive depth mode tasks": [
-      "expansive depth mode tasks"
-    ],
     "expansive depth playbook coverage": [
       "expansive depth playbook coverage"
     ],
@@ -50935,6 +50953,9 @@
     ],
     "fan out automation task breakdown": [
       "fan-out automation task breakdown"
+    ],
+    "fan out budget table": [
+      "fan-out budget table"
     ],
     "fan out cli lineage driver": [
       "fan-out cli lineage driver"
@@ -65934,6 +65955,9 @@
     "layout cap and relayout evidence": [
       "layout cap and relayout evidence"
     ],
+    "layout link listed twice": [
+      "layout link listed twice"
+    ],
     "layout link path escapes the tree root": [
       "layout link path escapes the tree root"
     ],
@@ -68126,6 +68150,9 @@
     ],
     "local skilled alignment advisor": [
       "local skilled alignment advisor"
+    ],
+    "local skilled alignment overlays target": [
+      "local skilled alignment overlays target"
     ],
     "local test speedups": [
       "local test speedups"
@@ -79332,9 +79359,6 @@
     "opencode": [
       "opencode"
     ],
-    "opencode 1 refusal": [
-      "OpenCode 1 refusal"
-    ],
     "opencode 2 ancestor opencode folder": [
       "opencode 2 ancestor opencode folder"
     ],
@@ -80099,6 +80123,9 @@
     ],
     "opencode version drift": [
       "opencode version drift"
+    ],
+    "opencode version families v2 unknown": [
+      "opencode version families v2 unknown"
     ],
     "opencode version resolver": [
       "opencode version resolver"
@@ -81471,8 +81498,26 @@
     "overengineering simplification summary": [
       "overengineering simplification summary"
     ],
+    "overlaid file sk code alignment": [
+      "overlaid file sk-code alignment"
+    ],
     "overlay adoption closure gate": [
       "overlay adoption closure gate"
+    ],
+    "overlay alignment follow ups": [
+      "overlay alignment follow ups"
+    ],
+    "overlay alignment follow ups goal": [
+      "overlay alignment follow ups goal"
+    ],
+    "overlay alignment follow ups implementation summary": [
+      "overlay alignment follow ups implementation summary"
+    ],
+    "overlay alignment follow ups plan": [
+      "overlay alignment follow ups plan"
+    ],
+    "overlay alignment follow ups tasks": [
+      "overlay alignment follow ups tasks"
     ],
     "overlay apply adopt": [
       "overlay apply adopt"
@@ -81513,6 +81558,9 @@
     "overlay engine plan": [
       "overlay engine plan"
     ],
+    "overlay engine pycache": [
+      "overlay engine pycache"
+    ],
     "overlay engine relayout target": [
       "overlay engine relayout target"
     ],
@@ -81537,6 +81585,24 @@
     "overlay first write checks tasks": [
       "overlay first write checks tasks"
     ],
+    "overlay folder readmes": [
+      "overlay folder readmes"
+    ],
+    "overlay folder readmes acceptance criteria": [
+      "overlay folder readmes acceptance criteria"
+    ],
+    "overlay folder readmes goal": [
+      "overlay folder readmes goal"
+    ],
+    "overlay folder readmes implementation summary": [
+      "overlay folder readmes implementation summary"
+    ],
+    "overlay folder readmes plan": [
+      "overlay folder readmes plan"
+    ],
+    "overlay folder readmes tasks": [
+      "overlay folder readmes tasks"
+    ],
     "overlay follow up review synthesis": [
       "overlay follow up review synthesis"
     ],
@@ -81557,6 +81623,9 @@
     ],
     "overlay guard test": [
       "overlay guard test"
+    ],
+    "overlay layout doc alignment topic": [
+      "overlay layout doc alignment topic"
     ],
     "overlay layout second review fixes": [
       "overlay layout second review fixes"
@@ -81617,6 +81686,9 @@
     ],
     "overlay sync repin failure modes": [
       "overlay sync repin failure modes"
+    ],
+    "overlay upstream handoff": [
+      "overlay upstream handoff"
     ],
     "overlay write checks follow up": [
       "overlay write checks follow up"
@@ -84680,6 +84752,9 @@
     "phase 13 system spec kit": [
       "phase 13 system spec kit"
     ],
+    "phase 13 ux and alignment pass": [
+      "phase 13 ux and alignment pass"
+    ],
     "phase 13 vibe audit fixes": [
       "phase 13 vibe audit fixes"
     ],
@@ -84712,6 +84787,9 @@
     ],
     "phase 14 harden overlay engine from fable review": [
       "phase 14 harden overlay engine from fable review"
+    ],
+    "phase 14 overlay folder readmes": [
+      "phase 14 overlay folder readmes"
     ],
     "phase 14 playbook docs and closeout": [
       "phase 14 playbook docs and closeout"
@@ -84763,6 +84841,9 @@
     ],
     "phase 15 align sk code": [
       "phase 15 align sk code"
+    ],
+    "phase 15 alignment command overlay targets": [
+      "phase 15 alignment command overlay targets"
     ],
     "phase 15 archive current location and ignored files": [
       "phase 15 archive current location and ignored files"
@@ -84899,6 +84980,9 @@
     "phase 16 tasks": [
       "phase 16 tasks"
     ],
+    "phase 16 upstream code alignment": [
+      "phase 16 upstream code alignment"
+    ],
     "phase 16 vibe turn end guards": [
       "phase 16 vibe turn end guards"
     ],
@@ -84934,6 +85018,9 @@
     ],
     "phase 17 over engineering cuts": [
       "phase 17 over engineering cuts"
+    ],
+    "phase 17 overlay alignment follow ups": [
+      "phase 17 overlay alignment follow ups"
     ],
     "phase 17 plan": [
       "phase 17 plan"
@@ -86464,6 +86551,9 @@
     ],
     "phase 5 trim duplicated and dead agent text": [
       "phase 5 trim duplicated and dead agent text"
+    ],
+    "phase 5 v1 reference purge": [
+      "phase 5 v1 reference purge"
     ],
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
@@ -92522,6 +92612,9 @@
     "pull request template": [
       "pull request template"
     ],
+    "purge opencode 1 references": [
+      "purge opencode 1 references"
+    ],
     "purge qwen3 embeddings": [
       "purge qwen3 embeddings"
     ],
@@ -92650,6 +92743,9 @@
     ],
     "push and repin open items goal": [
       "push and repin open items goal"
+    ],
+    "push and repin open items implementation summary": [
+      "push and repin open items implementation summary"
     ],
     "push and repin open items plan": [
       "push and repin open items plan"
@@ -95388,6 +95484,9 @@
     "reducer test focus contract": [
       "reducer test focus contract"
     ],
+    "reducer test focus contract goal": [
+      "reducer test focus contract goal"
+    ],
     "reducer test focus contract implementation summary": [
       "reducer test focus contract implementation summary"
     ],
@@ -98036,9 +98135,6 @@
     ],
     "remove obsidian plugin support": [
       "remove obsidian plugin support"
-    ],
-    "remove old opencode install": [
-      "remove old opencode install"
     ],
     "remove ollama from skill advisor": [
       "remove ollama from skill advisor"
@@ -101045,6 +101141,9 @@
     "retired advisor lane cleanup": [
       "retired advisor lane cleanup"
     ],
+    "retired advisor lane shared modules": [
+      "retired advisor lane shared modules"
+    ],
     "retired benchmark handling": [
       "retired benchmark handling"
     ],
@@ -103886,6 +103985,9 @@
     "router sync orphan check": [
       "router sync orphan check"
     ],
+    "router sync readme orphan": [
+      "router sync readme orphan"
+    ],
     "router sync verifier header": [
       "router sync verifier header"
     ],
@@ -105475,6 +105577,9 @@
     ],
     "runtime test project green": [
       "runtime test project green"
+    ],
+    "runtime test setup file": [
+      "runtime test setup file"
     ],
     "runtime test suites": [
       "runtime test suites"
@@ -110743,6 +110848,21 @@
     ],
     "sk code alignment tasks": [
       "sk-code alignment tasks"
+    ],
+    "sk code and readme alignment": [
+      "sk code and readme alignment"
+    ],
+    "sk code and readme alignment acceptance criteria": [
+      "sk code and readme alignment acceptance criteria"
+    ],
+    "sk code and readme alignment implementation summary": [
+      "sk code and readme alignment implementation summary"
+    ],
+    "sk code and readme alignment plan": [
+      "sk code and readme alignment plan"
+    ],
+    "sk code and readme alignment tasks": [
+      "sk code and readme alignment tasks"
     ],
     "sk code and sk doc alignment": [
       "sk code and sk doc alignment"
@@ -119990,6 +120110,9 @@
     "skip dont break floor of three": [
       "skip dont break floor of three"
     ],
+    "skip fsync test setup": [
+      "skip fsync test setup"
+    ],
     "skip manual causal edge promotion shipped": [
       "skip-manual causal edge promotion shipped"
     ],
@@ -124184,6 +124307,9 @@
     "status and cleanup": [
       "status and cleanup"
     ],
+    "status audit docs leg": [
+      "status audit docs leg"
+    ],
     "status cjs": [
       "status.cjs"
     ],
@@ -126395,6 +126521,9 @@
     "system deep loop 2 1 7 0": [
       "system-deep-loop 2.1.7.0"
     ],
+    "system deep loop 2 2 0 0": [
+      "system-deep-loop 2.2.0.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -126658,6 +126787,9 @@
     ],
     "system deep loop v2 1 7 0": [
       "system-deep-loop v2.1.7.0"
+    ],
+    "system deep loop v2 2 0 0": [
+      "system-deep-loop v2.2.0.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
@@ -127820,6 +127952,9 @@
     "system spec kit 2 13 5 0": [
       "system-spec-kit 2.13.5.0"
     ],
+    "system spec kit 2 14 0 0": [
+      "system-spec-kit 2.14.0.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -128479,6 +128614,9 @@
     ],
     "system spec kit v2 13 5 0": [
       "system-spec-kit v2.13.5.0"
+    ],
+    "system spec kit v2 14 0 0": [
+      "system-spec-kit v2.14.0.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -133254,6 +133392,21 @@
     "upstream cocoindex delta classification": [
       "upstream cocoindex delta classification"
     ],
+    "upstream code alignment": [
+      "upstream code alignment"
+    ],
+    "upstream code alignment goal": [
+      "upstream code alignment goal"
+    ],
+    "upstream code alignment implementation summary": [
+      "upstream code alignment implementation summary"
+    ],
+    "upstream code alignment plan": [
+      "upstream code alignment plan"
+    ],
+    "upstream code alignment tasks": [
+      "upstream code alignment tasks"
+    ],
     "upstream delta tasks": [
       "upstream delta tasks"
     ],
@@ -133346,6 +133499,24 @@
     ],
     "utilization review acceptance criteria": [
       "utilization review acceptance criteria"
+    ],
+    "ux and alignment pass": [
+      "ux and alignment pass"
+    ],
+    "ux and alignment pass acceptance criteria": [
+      "ux and alignment pass acceptance criteria"
+    ],
+    "ux and alignment pass goal": [
+      "ux and alignment pass goal"
+    ],
+    "ux and alignment pass implementation summary": [
+      "ux and alignment pass implementation summary"
+    ],
+    "ux and alignment pass plan": [
+      "ux and alignment pass plan"
+    ],
+    "ux and alignment pass tasks": [
+      "ux and alignment pass tasks"
     ],
     "ux flow references": [
       "ux flow references"
@@ -133550,6 +133721,24 @@
     ],
     "v1 docs and playbooks sweep tasks": [
       "v1 docs and playbooks sweep tasks"
+    ],
+    "v1 reference purge": [
+      "v1 reference purge"
+    ],
+    "v1 reference purge acceptance criteria": [
+      "v1 reference purge acceptance criteria"
+    ],
+    "v1 reference purge decision record": [
+      "v1 reference purge decision record"
+    ],
+    "v1 reference purge implementation summary": [
+      "v1 reference purge implementation summary"
+    ],
+    "v1 reference purge plan": [
+      "v1 reference purge plan"
+    ],
+    "v1 reference purge tasks": [
+      "v1 reference purge tasks"
     ],
     "v1 runtime code and tests": [
       "v1 runtime code and tests"
@@ -136195,6 +136384,9 @@
     ],
     "vitest setupfiles bypass": [
       "vitest setupFiles bypass"
+    ],
+    "vitest setupfiles skip fsync": [
+      "vitest setupFiles skip-fsync"
     ],
     "vitest stress config": [
       "vitest stress config"

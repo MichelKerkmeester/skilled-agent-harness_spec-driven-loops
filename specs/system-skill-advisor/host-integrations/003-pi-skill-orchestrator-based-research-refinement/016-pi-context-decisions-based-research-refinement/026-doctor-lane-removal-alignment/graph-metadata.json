@@ -16,6 +16,7 @@
       "doctor lane removal alignment plan",
       "doctor lane removal alignment tasks",
       "doctor lane removal alignment acceptance criteria",
+      "026-doctor-lane-removal-alignment operator decisions",
       "doctor lane removal alignment implementation summary"
     ],
     "key_topics": [
@@ -33,12 +34,13 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md",
       ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
@@ -53,8 +55,7 @@
       ".skilled/skills/system-skilled-doctor/leaf-manifest.json",
       "runtime/data/trigger-index.json",
       ".skilled/changelog/skilled/v4.2.0.0.md",
-      "changelog/v2.14.0.0.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs"
+      "changelog/v2.14.0.0.md"
     ],
     "entities": [
       {
@@ -79,6 +80,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -172,19 +179,7 @@
         "source": "derived"
       },
       {
-        "name": "sweep-lane-residue.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,11 +195,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 024 deleted the advisor's embedding lane, and the doctor commands already run the new surface",
     "created_at": "2026-11-21T16:16:42Z",
-    "last_save_at": "2026-11-21T21:53:18.171Z",
+    "last_save_at": "2026-11-21T22:16:32.444Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +213,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:63ac06d1e4ed467738cdc9c169c809c4721c5f444388d2b9a194ffe24dbabd43",
+    "source_fingerprint": "sha256:2d34f716ca5bcd7aff71383647bbf2aa6b392a7edec6d7bdef07dae720530c8d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e2970d987d03d66cbf508d7a712b3a7493c1895e4ee9a78234663f70dd1d672b",
+      "spec.md": "28625f51b981682adf057bb8f8e7db3745349589a55947f01d92ed380d17f835",
       "plan.md": "e12ff4e6bb08525fb39e152e1011823a0ee9a78bb7fbc1bfb87164ec38450e9e",
-      "tasks.md": "586f63cea2154f79ddc21a65d4fa79b5c68df6b8a889b0deb938efcab4e7d412",
-      "implementation-summary.md": "1e44a4e3a843231ce917b6a33cc685508857291be89250922b5476022855c1ca"
+      "tasks.md": "93e8620f765ff2527b491de398cf0e529daad14b4ef695bc8522e5f4621914d1",
+      "decision-record.md": "22cf3e96b3d7154a6d8d0d3c79717e0e7eba4bd8a1e9f7e245951ac284e1d36f",
+      "implementation-summary.md": "e06f63331cb1f4df0f47294668208c8342e3951083fd3c5be6a4b0028e4f3d40"
     },
     "last_active_at": null
   }

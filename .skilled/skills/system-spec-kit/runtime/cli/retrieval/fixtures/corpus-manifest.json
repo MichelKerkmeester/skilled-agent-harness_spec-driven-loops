@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a7870b97ed3ab791b64169ddca15cd9b36e35f35486782bab7e371a7f36b0bc4",
+  "corpusHash": "8a73bb65dff2c796efb95ca8b6d229e6f6a3f5437b6e2386270642315741679f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29028,
+  "includedPathCount": 29075,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7559,6 +7559,7 @@
     ".skilled/skills/system-deep-loop/changelog/v2.1.5.0.md",
     ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
     ".skilled/skills/system-deep-loop/changelog/v2.1.7.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-research/README.md",
     ".skilled/skills/system-deep-loop/deep-research/ROUTER.md",
     ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
@@ -8088,6 +8089,7 @@
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pool-concurrency-cap.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-preview.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-salvage-recovery.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-stall-watchdog.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fixed-rate-overrun-accounting.md",
@@ -8131,6 +8133,7 @@
     ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
     ".skilled/skills/system-deep-loop/runtime/scripts/lib/README.md",
     ".skilled/skills/system-deep-loop/runtime/tests/README.md",
+    ".skilled/skills/system-deep-loop/runtime/tests/_support/README.md",
     ".skilled/skills/system-deep-loop/runtime/tests/council/README.md",
     ".skilled/skills/system-deep-loop/runtime/tests/helpers/README.md",
     ".skilled/skills/system-deep-loop/runtime/tests/hierarchical-budgets/README.md",
@@ -8745,6 +8748,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.13.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.5.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.14.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -10570,6 +10574,12 @@
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/plan.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/spec.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/tasks.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/acceptance-criteria.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/decision-record.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/implementation-summary.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/plan.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/spec.md",
+    "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/tasks.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/decision-record.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review-archive/20261119T155645Z/deep-review-strategy.md",
     "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/review-archive/20261119T155645Z/prompts/iteration-1.md",
@@ -18789,14 +18799,13 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/tasks.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/decision-record.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/goal.md",
-    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/implementation-summary.md",
-    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research/research.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/deep-research-dashboard.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/research_archive/20261117T103614Z/deep-research-strategy.md",
@@ -18868,10 +18877,11 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T183614Z/prompts/iteration-3.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T183614Z/resource-map.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261119T183614Z/review-report.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261120T190404Z/fanout-attribution.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261120T190404Z/review-report.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/fanout-attribution.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/review-report.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/spec.md",
-    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/tasks.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/context-index.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/handover.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/reference/01-graph-engineering-primer.md",
@@ -19030,6 +19040,12 @@
     "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/plan.md",
     "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/spec.md",
     "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/tasks.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/goal.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/plan.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/spec.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/tasks.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/acceptance-criteria.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/implementation-summary.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/plan.md",
@@ -19807,6 +19823,7 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/decision-record.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/implementation-summary.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/spec.md",
@@ -20424,6 +20441,7 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/implementation-summary.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/tasks.md",
@@ -20432,7 +20450,36 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/acceptance-criteria.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/acceptance-criteria.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/fanout-attribution.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/review-report.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/fanout-attribution.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/review-report.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/spec.md",
@@ -29060,7 +29107,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6759c2c65b519ebfbd44b84153018aeae30d65498b1c82b7a39cef9411bdf8ae",
+  "manifestHash": "3c5b915bc7053791cac35499cfd3e7f9bc552e4f3635d758cab5cb4cee5043b2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31428,6 +31475,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/004-v2-review-p2-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal/005-v1-reference-purge/scratch",
       "reason": "excluded directory"
     },
     {
@@ -37139,6 +37190,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review-archive/20261120T190404Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/review/lineages",
       "reason": "excluded directory"
     },
@@ -37280,6 +37335,10 @@
     },
     {
       "path": "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/scratch",
       "reason": "excluded directory"
     },
     {
@@ -38280,6 +38339,30 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/lineages",
       "reason": "excluded directory"
     },
     {

@@ -8,26 +8,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment"
-    last_updated_at: "2026-11-21T17:25:23Z"
+    last_updated_at: "2026-11-21T22:14:11Z"
     last_updated_by: "generate-context"
-    recent_action: "Completed doctor lane removal alignment, commit 092ebd6c256"
-    next_safe_action: "Decide whether to merge the lane removal branch"
+    recent_action: "Fixed the second review's findings in 533cb420627 and merged origin/main as 12a5a29ab09"
+    next_safe_action: "Decide whether to push and merge the lane removal branch to main"
     packet_purpose: "Purpose: A user who types a cleanup request reaches `/doctor:update`, the install guide names the cleanup command for that user's install type, and the doctor release records what 024 removed."
     blockers: []
     key_files:
+      - ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs"
+      - ".skilled/changelog/skilled/v4.2.0.0.md"
+      - ".skilled/skills/system-spec-kit/changelog/v2.14.0.0.md"
       - "INSTALL-SKILLED.md"
-      - ".skilled/commands/doctor/_routes.yaml"
-      - ".skilled/skills/system-skilled-doctor/changelog/v1.3.0.0.md"
-      - ".skilled/commands/doctor/scripts/tests/doctor-helper-match.test.cjs"
     session_dedup:
-      fingerprint: "sha256:59599976364f64d9c26becd94fb96af0c43e12c7240bb50d80c8579bdaa03ea5"
+      fingerprint: "sha256:48ff0d11504565f76c7589566e0c8d495891f45dfb521ff23fafb2afde54e59c"
       session_id: "planning-026-doctor-lane-removal-alignment"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
       workspace: "/Users/michelkerkmeester/worktrees/public/497-ollama-lane-removal"
-      savedAt: "2026-11-21T17:25:23Z"
+      savedAt: "2026-11-21T22:14:11Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -49,7 +49,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 026-doctor-lane-removal-alignment |
 | **Status** | Complete |
-| **Completed** | 2026-11-21, commit `092ebd6c256` |
+| **Completed** | 2026-11-21, commits `092ebd6c256` (first round), `533cb420627` (second review round) and merge `12a5a29ab09` |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -145,6 +145,22 @@ An independent review returned one P1 and three P2 findings, all fixed before th
 - **P2:** the doctor v1.3.0.0 changelog now names the removed `/doctor:skill-advisor` setup action.
 
 After the fix: doctor suite 1437 of 1437, helper-match 31 of 31, bridges `"changed": []`, advisor ratchets 60 of 60, phrase reach `STATUS=OK phrases=262`, route validation 31 routes, residue repo mode 47 of 47 with live 0, mirrors 260, and no gate term in any added line or the new changelog.
+
+## Second Review Round
+
+A fresh reviewer read the whole epic on 2026-11-21 and returned CONDITIONAL, with no P0, three P1 and eight P2 findings. The operator placed the fixes in this packet. Two leaf workers made them in parallel, and the orchestrator checked each against the code before committing.
+
+- **P1, orphaned compiled files.** The shared package kept `dist/chunking.js` and `dist/utils/retry.js` after their sources were deleted, because `tsc --build` never deletes such output. Machine mode stayed at exit 1. Apply now deletes them when their source is gone and keeps them when it exists.
+- **P1, merge with main.** main had moved 237 commits. The merge `12a5a29ab09` resolved eight conflicts and dropped the one line in main's new overlay routing test that set the removed lane's switch.
+- **P1, release note.** v4.2.0.0 now gives the cleanup per install type.
+- **P2 fixes.** The tool finds a model server whose node path holds a space or is named `nodejs`, and M7 lists the three launcher key families. The gate test no longer fails on an unused allowlist row. The dead lease field, cache-clearing step and corpus flag are gone, and system-spec-kit ships 2.14.0.0. 024's records are reconciled, and the operator kept the cleanup phrases over 024 decision Q004.
+
+Gates on the merged tree: residue repo mode 47 of 47 with live 0, residue vitest 117 passed, advisor typecheck exit 0, advisor suite 2450 passed and 4 skipped, doctor suites 1613 passed and 0 failed, route validation 31 routes, phrase reach `STATUS=OK phrases=262`, bridges `"changed": []` and mirrors 260 in sync. The advisor suite needed `npm run build` and a skill-graph rescan first, because the merge changed sources the attested build and the local graph predated.
+
+Not done, by choice:
+- The `sharp` and `protobufjs` overrides in the two `package.json` files stay. Removing them needs an install to prove the lockfiles stay in sync.
+- The advisor changelog still does not name the removed setting keys, because the residue gate forbids those names.
+- `rebuild-native-modules.sh` calls `record-node-version.js` at `cli/setup/` under the skill root, but the file is at `runtime/cli/setup/`. That bug predates this branch and is left for its own fix.
 
 ## Known Limitations
 

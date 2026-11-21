@@ -74,10 +74,29 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Second Review Round
+
+An independent review of the whole epic returned CONDITIONAL on 2026-11-21. Two leaf workers made the fixes in parallel, and the orchestrator verified, committed and merged.
+
+- [x] T024 Delete the orphaned compiled shared outputs (REQ-013). Verify: the residue vitest covers an orphan listed by machine mode, deleted by apply and gone on the next machine run, and a kept file when its source exists. Evidence: `orphanedSharedOutput` adds the four tsc outputs of `shared/dist/chunking` and `shared/dist/utils/retry` to `COMPILED_LANE_PATHS`, each with its own source, and `hasOwnSource` keeps them while that source exists. The vitest prints `Tests  117 passed (117)`, up from 106, with exit 0.
+- [x] T025 Detect a model server whose node binary path holds a space or is named `nodejs` (REQ-014). Verify: the old and new `runsModelServer` disagree on those lines and agree on a non-node negative. Evidence: a side-by-side import of `HEAD:SWEEP` and the edited file printed old false and new true for `/Users/John Doe/.nvm/versions/node/v22/bin/node <server>` and for `/usr/bin/nodejs <server>`, and false for both on `/bin/ls /tmp/node <server>`. The temporary copy was removed.
+- [x] T026 List the three launcher key families in M7 (REQ-015). Verify: `git grep` on base and HEAD shows no reader left. Evidence: at `bf6806ad4b3` only `.env.example`, `model-server-supervision.cjs` and `ENV-REFERENCE.md` named them, and HEAD has none outside `specs/`. `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` and the prefixes `SPECKIT_LAUNCHER_CRASH_LOOP_` and `SPECKIT_LAUNCHER_RSS_` are listed, with one vitest case.
+- [x] T027 Drop the unmatched-row assertion from the doctor gate test (REQ-016). Verify: `node --test DOCTOR/scripts/tests/lane-residue-gate.test.cjs` exits 0. Evidence: `ℹ pass 2`, exit 0. The exit-0 and `live` 0 assertions stay.
+- [x] T028 Split the v4.2.0.0 cleanup bullet per install type (REQ-017). Verify: the release note names `/doctor:update apply` for a copy and the residue script from the checkout for a link. Evidence: the Skill Advisor upgrade group names both paths and the link refusal message, and `check_changelog_shape.py` prints `PASS` with exit 0.
+- [x] T029 Remove the dead references (REQ-018). Verify: `git grep` outside `specs/` finds no `modelServerPid` in a doc, no `huggingface/hub` step in a script and no `enable-semantic`, `enable_semantic` or `semantic_enabled`. Evidence: after the index rebuild, the only `modelServerPid` hits outside `specs/` are the generated `phrase-variants.json` and `trigger-index.json`, whose entry comes from a historical launcher packet's trigger phrase under `specs/system-speckit/`, so no live doc or code names it. `bash -n` on the rebuild helper and `py_compile` on the corpus scorer exit 0.
+- [x] T030 Ship system-spec-kit 2.14.0.0 (REQ-019). Verify: `SKILL.md` reads the version and the changelog exists and passes the gate. Evidence: `5:version: 2.14.0.0`, `changelog/v2.14.0.0.md` listed, its shape check prints `PASS`, and repo mode stays at `live` 0.
+- [x] T031 Reconcile the 024 records and record the routing answer (REQ-020). Verify: 024's handoff criterion names the fixture proof, its goal log holds a reconciliation row, and this packet's decision record states the phrases replace Q004. Evidence: the handoff row now cites Q007 and Q010, the row was appended with `goal.cjs packet-log` (exit 0), and the continuity save writes the operator's two answers into `decision-record.md`.
+- [x] T032 Merge origin/main into the branch (REQ-021). Verify: the merge commit has two parents and every gate passes on the merged tree. Evidence: `12a5a29ab09` has parents `533cb420627` and `e9588c57f00`. Eight files conflicted: four generated index outputs kept the branch side, and the install guide, doctor README, update presentation and release note were merged by hand. main's new overlay routing test set the removed lane's switch, and that line was dropped. On the merged tree repo mode exits 0 with 47 of 47 rows and `live` 0, the advisor typecheck exits 0, the advisor suite prints `Tests  2450 passed | 4 skipped` with exit 0 after a rebuild and a skill-graph rescan, the doctor suites print `ℹ pass 1613` and `ℹ fail 0`, the residue vitest prints 117 passed, route validation prints 31 routes, phrase reach prints `STATUS=OK phrases=262`, the bridges print `"changed": []`, and the mirrors print 260 in sync.
+- [x] T033 Regenerate the trigger index as the last write, then validate this packet and 016 strictly. Verify: the index `--check` reports no stale document, and both strict runs print `RESULT: PASSED`. Evidence: recorded in implementation-summary.md section Second Review Round.
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`, with T002 and T003 closed by their observed output
+- [x] All tasks marked `[x]`, with T002 and T003 closed by their observed output, and T024 to T033 closed by the second review round
 - [x] No `[B]` blocked tasks remaining
 - [x] Each Met acceptance criterion names the output it observed
 - [x] The implementation commit holds every file in `spec.md` Files to Change, and nothing outside it. Evidence: commit `092ebd6c256` on `worktrees/497-ollama-lane-removal`; `git show --name-only 092ebd6c256` lists the planned files, the packet docs, the 016 phase map and the regenerated index outputs
