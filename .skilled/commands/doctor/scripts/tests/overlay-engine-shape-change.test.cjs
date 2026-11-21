@@ -711,7 +711,7 @@ test('a layout link moved back to a target that holds an earlier copy is refused
 });
 
 function assertMissingTargetLines(lines, fixture, target, linkPath = 'up') {
-  assert.equal(lines[0], '  a write under a link that resolves nowhere has no folder to land in, so apply writes nothing');
+  assert.equal(lines[0], '  a write under a link to a folder that does not exist has no folder to land in, so apply writes nothing');
   assert.equal(lines[1], `  Next: mkdir -p ${path.join(fixture.tree, target)}, or point the layout link ${linkPath} in ` +
     `${path.join(fixture.overlayDir, 'overlay-manifest.json')} at a folder that exists, then from ${fixture.tree}: ` +
     'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply');
@@ -774,6 +774,104 @@ test('a layout link standing at a target that does not exist is refused once an 
   fs.mkdirSync(path.join(fixture.tree, 'nothere'));
   applyOk(fixture);
   assert.equal(fixture.run(['status']).code, 0);
+});
+
+// The Next line for a target that stands but is not a folder: set it aside,
+// make the folder, or point the link elsewhere.
+function setAsideNext(fixture, target) {
+  const targetPath = path.join(fixture.tree, target);
+  return `  Next: mv ${targetPath} ${targetPath}.keep and mkdir -p ${targetPath}, or point the layout link up in ` +
+    `${path.join(fixture.overlayDir, 'overlay-manifest.json')} at a folder that exists, then from ${fixture.tree}: ` +
+    'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply';
+}
+
+// Follow the set-aside Next line and prove the entry then writes through the
+// link and the tree ends in sync.
+function setAsideAndApply(fixture, target) {
+  const targetPath = path.join(fixture.tree, target);
+  fs.renameSync(targetPath, targetPath + '.keep');
+  fs.mkdirSync(targetPath);
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(targetPath, 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+}
+
+// A layout link to a file gives a write under it no folder to land in, so it is
+// refused while it is planned instead of failing once apply has made the link.
+test('a layout link not made yet whose target is a file with an entry under it is refused, and the link is not made', (t) => {
+  const fixture = createShapeFixture(t, [UP_ENTRY], [{ path: 'up', target: 'tfile' }]);
+  writeFile(fixture.tree, 'tfile', 'a project file\n');
+  const lines = assertRefusedByBoth(fixture, 'up links to tfile, which is a file, and overlay tool writes under it');
+  assert.equal(lines[0], '  a write under a link to a file has no folder to land in, so apply writes nothing');
+  assert.equal(lines[1], setAsideNext(fixture, 'tfile'));
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'tfile'), 'utf8'), 'a project file\n');
+  setAsideAndApply(fixture, 'tfile');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'tfile.keep'), 'utf8'), 'a project file\n');
+});
+
+test('a layout link standing at a target that became a file is refused once an entry writes under it', (t) => {
+  const links = [{ path: 'up', target: 'tfile' }];
+  const fixture = createShapeFixture(t, [], links);
+  fs.mkdirSync(path.join(fixture.tree, 'tfile'));
+  applyOk(fixture);
+  fs.rmdirSync(path.join(fixture.tree, 'tfile'));
+  writeFile(fixture.tree, 'tfile', 'a project file\n');
+  fixture.setManifest([UP_ENTRY], links);
+  const lines = assertRefusedByBoth(fixture, 'up links to tfile, which is a file, and overlay tool writes under it');
+  assert.equal(lines[1], setAsideNext(fixture, 'tfile'));
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'up')), 'tfile');
+  setAsideAndApply(fixture, 'tfile');
+});
+
+// A whole-file entry at the link's own path writes the link's target, so a
+// file target is what it expects and is not refused.
+test('a layout link to a file where a whole-file entry writes the link path itself is not refused', (t) => {
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up' }], [{ path: 'up', target: 'tfile' }]);
+  writeFile(fixture.tree, 'tfile', 'a project file\n');
+  for (const command of ['status', 'apply']) {
+    assert.equal(fixture.run([command]).output.includes('which is a file'), false, command);
+  }
+});
+
+// A link at the target that does not resolve cannot take a mkdir -p, so the
+// Next line names that link as the thing to set aside.
+test('a layout link whose target is a link that does not resolve is refused with a Next line that sets that link aside', (t) => {
+  const fixture = createShapeFixture(t, [UP_ENTRY], [{ path: 'up', target: 'tdang' }]);
+  fs.symlinkSync('nowhere', path.join(fixture.tree, 'tdang'));
+  const lines = assertRefusedByBoth(fixture, 'up links to tdang, which does not exist, and overlay tool writes under it');
+  assert.equal(lines[0], '  a write under a link to a link that does not resolve has no folder to land in, so apply writes nothing');
+  assert.equal(lines[1], setAsideNext(fixture, 'tdang'));
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  setAsideAndApply(fixture, 'tdang');
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'tdang.keep')), 'nowhere');
+});
+
+// A moved link with another layout link inside it: the apply that moves the
+// outer link alone reports the inner one, which the next apply makes.
+test('a moved layout link with a layout link inside it names the inner link in its Next line, and the sequence ends in sync', (t) => {
+  const entry = { ...DIRECTORY_ENTRY, destination: 'a/b/tool' };
+  const links = [{ path: 'a', target: 'target' }, { path: 'a/b', target: 'sub' }];
+  const fixture = createShapeFixture(t, [entry], links);
+  fs.mkdirSync(path.join(fixture.tree, 'target', 'sub'));
+  fs.mkdirSync(path.join(fixture.tree, 'target2', 'sub'), { recursive: true });
+  applyOk(fixture);
+  const moved = [{ path: 'a', target: 'target2' }, { path: 'a/b', target: 'sub' }];
+  fixture.setManifest([entry], moved);
+  const lines = assertRefusedByBoth(fixture, 'a moves from target to target2, and overlay tool writes under it');
+  assert.match(lines[1], new RegExp(`^ {2}Next: take overlay tool out of .*overlay-manifest\\.json, run ${ENGINE_LINE} apply from .*\\/tree ` +
+    'to move the link alone, then put the entry back and run apply again, which makes a/b if the first apply reports it$'));
+  fixture.setManifest([], moved);
+  const alone = fixture.run(['apply']);
+  assert.equal(alone.code, 1, alone.output);
+  assert.match(alone.output, /^overlay-edited a\/b {2}\(layout link\)/m, alone.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'a')), 'target2');
+  fixture.setManifest([entry], moved);
+  applyOk(fixture);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target2', 'sub', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
 });
 
 // On a volume that ignores case, the link recorded as up is the one the

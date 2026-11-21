@@ -147,6 +147,16 @@ test('capture is a no-op for an in-sync destination', (t) => {
   assert.equal(fs.readFileSync(fixture.statePath, 'utf8'), stateBefore);
 });
 
+// A capture that a destination's own state stops prints the lines apply
+// prints for it, and its Next line reruns the capture rather than apply.
+function assertCaptureStoppedLikeApply(fixture, captured, apply, key) {
+  const capturedLines = captured.output.trimEnd().split('\n');
+  const applyLines = apply.output.trimEnd().split('\n');
+  assert.deepEqual(capturedLines.slice(0, -1), applyLines.slice(0, -1));
+  assert.equal(capturedLines.at(-1), `  Next: run the fix on each line above, then from ${fixture.tree}: ` +
+    `node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --capture ${key}`);
+}
+
 test('capture refuses a both-changed destination without writing', (t) => {
   const fixture = createFixture(t);
   seedState(fixture);
@@ -157,10 +167,25 @@ test('capture refuses a both-changed destination without writing', (t) => {
 
   const captured = fixture.run(['apply', '--capture', 'guarded.txt']);
   assert.equal(captured.code, 1, captured.output);
-  assert.equal(captured.output, apply.output);
+  assertCaptureStoppedLikeApply(fixture, captured, apply, 'guarded.txt');
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'guarded.txt'), 'utf8'), 'live side\n');
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'files/guarded.txt'), 'utf8'), 'overlay side\n');
   assert.equal(fs.readFileSync(fixture.statePath, 'utf8'), stateBefore);
+});
+
+test('a capture stopped by a both-changed destination ends in sync once its Next line is followed', (t) => {
+  const fixture = createFixture(t);
+  seedState(fixture);
+  writeFile(fixture.tree, 'guarded.txt', 'live side\n');
+  writeFile(fixture.overlayDir, 'files/guarded.txt', 'overlay side\n');
+  const refused = fixture.run(['apply', '--capture', 'guarded.txt']);
+  assert.equal(refused.code, 1, refused.output);
+  writeFile(fixture.overlayDir, 'files/guarded.txt', 'overlay one\n');
+  const captured = fixture.run(['apply', '--capture', 'guarded.txt']);
+  assert.equal(captured.code, 0, captured.output);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'files/guarded.txt'), 'utf8'), 'live side\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
 });
 
 test('capture refuses an upstream-moved destination without writing', (t) => {
@@ -174,7 +199,7 @@ test('capture refuses an upstream-moved destination without writing', (t) => {
 
   const captured = fixture.run(['apply', '--capture', 'guarded.txt']);
   assert.equal(captured.code, 1, captured.output);
-  assert.equal(captured.output, apply.output);
+  assertCaptureStoppedLikeApply(fixture, captured, apply, 'guarded.txt');
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'guarded.txt'), 'utf8'), 'new upstream bytes\n');
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'files/guarded.txt'), 'utf8'), 'overlay one\n');
   assert.equal(fs.readFileSync(fixture.statePath, 'utf8'), stateBefore);

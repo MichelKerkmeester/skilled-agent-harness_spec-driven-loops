@@ -3322,36 +3322,50 @@ function refuseLinksInsideOverlayWrites(ctx, layout, plans) {
   return layout;
 }
 
-// Whether a layout link's target is missing, read from the folder the link sits
-// in as the operating system reads it. A folder not there yet is read as
+// Why a layout link's target cannot take a write under it, read from the folder
+// the link sits in as the operating system reads it: 'missing' when nothing is
+// there, 'dangling' when a link there does not resolve, 'file' when it is not a
+// folder, or null when it is a folder. A folder not there yet is read as
 // written, the way apply makes it, unless another manifest link sits on its
 // way: that link, once made, decides where the folder lands, so the target is
 // left to apply, as is a folder that cannot be resolved at all, such as one
 // behind a looping link the layout replaces.
-function isLayoutTargetMissing(root, manifest, link) {
+function layoutTargetFault(root, manifest, link) {
   const folder = path.dirname(path.resolve(root, link.path));
   if (!fs.existsSync(folder)) {
     const fold = pathFold(root);
     const isLinkOnTheWay = (manifest.layoutLinks || []).some((other) => other !== link && other &&
       typeof other.path === 'string' && isWithin(fold(path.resolve(root, other.path)), fold(folder)));
-    if (isLinkOnTheWay) return false;
+    if (isLinkOnTheWay) return null;
   }
   let realFolder;
   try {
     realFolder = canonicalPath(folder);
   } catch {
-    return false;
+    return null;
   }
-  return !fs.existsSync(path.resolve(realFolder, link.target));
+  const targetPath = path.resolve(realFolder, link.target);
+  let stats;
+  try {
+    stats = fs.statSync(targetPath);
+  } catch {
+    try {
+      return fs.lstatSync(targetPath).isSymbolicLink() ? 'dangling' : 'missing';
+    } catch {
+      return 'missing';
+    }
+  }
+  return stats.isDirectory() ? null : 'file';
 }
 
 // A layout link with entries at or below it that apply cannot write through as
-// planned. One whose target does not exist gives a write under it no folder to
-// land in. One the manifest points somewhere new would move only after the
-// entries are written, so they would land in its old target. Each is refused
-// while it is planned, so status and apply print it alike and nothing is
-// written. An entry whose own path is the link writes through it only when it
-// writes a folder there; a whole file written there is the link's target.
+// planned. One whose target does not exist, or is not a folder, gives a write
+// under it no folder to land in. One the manifest points somewhere new would
+// move only after the entries are written, so they would land in its old
+// target. Each is refused while it is planned, so status and apply print it
+// alike and nothing is written. An entry whose own path is the link writes
+// through it only when it writes a folder there; a whole file written there is
+// the link's target.
 function refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans) {
   const root = ctx.root;
   const fold = pathFold(root);
@@ -3384,25 +3398,37 @@ function refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans) {
     const isStanding = !record && current === link.target;
     if ((!record && !isStanding) || (record && record.replacesOwned)) continue;
     const writersUnder = entriesUnder(link, true);
-    const missingUnder = writersUnder.length > 0 && isLayoutTargetMissing(root, manifest, link) ? writersUnder : [];
-    if (missingUnder.length > 0) {
+    const fault = writersUnder.length > 0 ? layoutTargetFault(root, manifest, link) : null;
+    if (fault) {
+      const targetPath = path.resolve(path.dirname(path.resolve(linkPath)), link.target);
+      const makeFolder = fault === 'missing'
+        ? `mkdir -p ${shellPath(targetPath)}`
+        : `mv ${shellPath(targetPath)} ${shellPath(targetPath + '.keep')} and mkdir -p ${shellPath(targetPath)}`;
+      const linkedTo = { missing: 'a folder that does not exist', dangling: 'a link that does not resolve', file: 'a file' }[fault];
       layout.problems.push(withRemedy(
-        `${link.path} links to ${link.target}, which does not exist, and ${named(missingUnder)} under it`,
-        'a write under a link that resolves nowhere has no folder to land in, so apply writes nothing',
-        `Next: mkdir -p ${shellPath(path.resolve(path.dirname(path.resolve(linkPath)), link.target))}, ` +
-          `or point the layout link ${link.path} in ${manifestPath} at a folder that exists, then ${engineApply}`));
+        `${link.path} links to ${link.target}, which ${fault === 'file' ? 'is a file' : 'does not exist'}, and ${named(writersUnder)} under it`,
+        `a write under a link to ${linkedTo} has no folder to land in, so apply writes nothing`,
+        `Next: ${makeFolder}, or point the layout link ${link.path} in ${manifestPath} at a folder that exists, then ${engineApply}`));
       refused.add(record);
     }
     const movedUnder = record && record.isRetarget ? entriesUnder(link, false) : [];
     if (movedUnder.length > 0) {
       const ids = movedUnder.map((entry) => entry.id).join(', ');
       const single = movedUnder.length === 1;
+      // A layout link inside the moved one is made only once the link has
+      // moved, so the apply that moves it alone reports the inner link and the
+      // apply after it makes that link.
+      const key = fold(path.posix.normalize(link.path).replace(/\/+$/, ''));
+      const inner = (manifest.layoutLinks || []).filter((other) => other !== link && other && typeof other.path === 'string' &&
+        fold(path.posix.normalize(other.path)).startsWith(key + '/')).map((other) => other.path);
+      const makesInner = inner.length === 0 ? ''
+        : `, which makes ${inner.join(', ')} if the first apply reports ${inner.length === 1 ? 'it' : 'them'}`;
       layout.problems.push(withRemedy(
         `${link.path} moves from ${current} to ${link.target}, and ${named(movedUnder)} under it`,
         `apply writes the entries under a link before it moves the link, so they would land in ${current}, ` +
           `not ${link.target}`,
         `Next: take ${single ? 'overlay' : 'overlays'} ${ids} out of ${manifestPath}, run ${ENGINE_COMMAND} apply from ` +
-          `${shellPath(root)} to move the link alone, then put ${single ? 'the entry' : 'the entries'} back and run apply again`));
+          `${shellPath(root)} to move the link alone, then put ${single ? 'the entry' : 'the entries'} back and run apply again${makesInner}`));
       refused.add(record);
     }
   }
@@ -5105,10 +5131,12 @@ function isApplyBlocked(analysis) {
 }
 
 // The close of an apply that a destination's own fix stops: the lines above
-// name each fix, and nothing was written.
-function printStoppedByDestination(ctx) {
+// name each fix, and nothing was written. A stopped capture is rerun as the
+// capture it was, not as a plain apply.
+function printStoppedByDestination(ctx, captureKey = null) {
+  const rerun = captureKey === null ? 'apply' : 'apply --capture ' + shellPath(captureKey);
   console.log('  this apply wrote nothing: a destination above stops it before any write');
-  console.log('  Next: run the fix on each line above, then ' + nextEngine(ctx.root, 'apply').slice('Next: '.length));
+  console.log('  Next: run the fix on each line above, then ' + nextEngine(ctx.root, rerun).slice('Next: '.length));
 }
 
 // An apply that stops while it plans has written nothing, so the error it stops
@@ -5456,11 +5484,12 @@ function captureUnderLock(ctx, manifest, inputPath) {
   if (classified.state !== 'live-edited') {
     printProblems(ctx, [classified]);
     // The same reason apply prints for this destination: a capture and an apply
-    // that both refuse it have to read the same way.
+    // that both refuse it read the same way, save the Next line, which reruns
+    // the capture.
     for (const problem of (classified.plan && classified.plan.problems) || []) {
       console.log(`BLOCKED  ${classified.plan.entry.id}: ${problem}`);
     }
-    printStoppedByDestination(ctx);
+    printStoppedByDestination(ctx, record.key);
     return EXIT_CONFLICT;
   }
   const live = fs.readFileSync(record.destinationPath);

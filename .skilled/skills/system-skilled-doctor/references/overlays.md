@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.45.0
+version: 1.0.46.0
 ---
 
 # Vendored Skilled Overlays
@@ -222,17 +222,23 @@ BLOCKED  layout: up moves from target to target2, and overlay tool writes under 
   Next: take overlay tool out of /path/to/tree/skilled-overlays/overlay-manifest.json, run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply from /path/to/tree to move the link alone, then put the entry back and run apply again
 ```
 
-The general form is `<link> moves from <old> to <new>, and overlay <id> writes under it`. With more than one entry under the link it reads `overlays <a, b> write under it`, and the `Next:` line reads `take overlays <a, b> out of` and `put the entries back`. Follow the two steps. The first apply moves the link alone, and the second writes the entries through its new target. What an earlier apply wrote through the old target stays there.
+The general form is `<link> moves from <old> to <new>, and overlay <id> writes under it`. With more than one entry under the link it reads `overlays <a, b> write under it`, and the `Next:` line reads `take overlays <a, b> out of` and `put the entries back`. Follow the two steps. The first apply moves the link alone, and the second writes the entries through its new target. What an earlier apply wrote through the old target stays there. When another layout link sits inside the moved one, such as `a/b` inside `a`, the `Next:` line ends `, which makes a/b if the first apply reports it`. The first apply then exits 1 with `overlay-edited a/b  (layout link)`, and the second apply makes that link.
 
 A layout link whose target does not exist, with an entry destination at or under it, is refused the same way, whether apply would make it or move it, or it already stands there:
 
 ```text
 BLOCKED  layout: up links to nothere, which does not exist, and overlay tool writes under it
-  a write under a link that resolves nowhere has no folder to land in, so apply writes nothing
+  a write under a link to a folder that does not exist has no folder to land in, so apply writes nothing
   Next: mkdir -p /path/to/tree/nothere, or point the layout link up in /path/to/tree/skilled-overlays/overlay-manifest.json at a folder that exists, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
 The general form is `<link> links to <target>, which does not exist, and overlay <id> writes under it`. The `mkdir -p` path is the target resolved from the link's own folder, so `a/up` linking to `nothere` names `/path/to/tree/a/nothere`. `status` judges a link in a folder apply has not made yet as if apply had made the folder, unless another layout link sits on the way to it, which leaves the judgment to `apply`. A link moved to a missing target prints both refusals, and `mkdir -p` clears only the first. The moved-link refusal then remains, so follow its two steps after it.
+
+A target that is a file is refused the same way, with `<link> links to <target>, which is a file, and overlay <id> writes under it` and the why line `a write under a link to a file has no folder to land in, so apply writes nothing`. A target that is itself a link that does not resolve keeps the `which does not exist` first line, and its why line reads `a write under a link to a link that does not resolve has no folder to land in, so apply writes nothing`. A `mkdir -p` fails on what stands at either target, so the `Next:` line sets that file or link aside first:
+
+```text
+  Next: mv /path/to/tree/tfile /path/to/tree/tfile.keep and mkdir -p /path/to/tree/tfile, or point the layout link up in /path/to/tree/skilled-overlays/overlay-manifest.json at a folder that exists, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
 
 An apply stopped by a blocked overlay or a `BLOCKED  layout:` refusal ends with `blocked=<n> changed=0`, `  this apply wrote nothing: a blocked overlay stops it before any write` and a `Next:` line that reruns apply after the fixes. An apply or a capture that only a destination's own state stops, such as a `both-changed` line, prints no `blocked=` line and ends with these lines instead:
 
@@ -240,6 +246,8 @@ An apply stopped by a blocked overlay or a `BLOCKED  layout:` refusal ends with 
   this apply wrote nothing: a destination above stops it before any write
   Next: run the fix on each line above, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
+
+A capture stopped this way prints the same lines, except that its `Next:` line reruns the capture, such as `then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --capture guarded.txt`.
 
 A missing layout link inside a folder an entry writes, where the entry writes files at or below the link, can never be made after those writes. `status` and `apply` refuse it while planning, and `apply` writes nothing and exits 1:
 
