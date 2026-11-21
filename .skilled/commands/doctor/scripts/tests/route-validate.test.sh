@@ -105,6 +105,7 @@ check "--help exits 0" '[[ "$RC" -eq 0 && "$OUT" == *"--self-test"* ]]'
 
 run_rv -- "$SCRIPT" --bogus
 check "an unknown argument exits 2" '[[ "$RC" -eq 2 && "$OUT" == *"--bogus"* ]]'
+check "an unknown argument names the next command" '[[ "$OUT" == *$'"'"'\nNext: bash .skilled/commands/doctor/scripts/route-validate.sh --help'"'"'* ]]'
 
 EMPTY_REPO="$(mktemp -d "$WORK/empty-repo.XXXXXX")"
 run_rv REPO_ROOT="$EMPTY_REPO" -- "$SCRIPT"

@@ -335,6 +335,7 @@ test('a non-repository, an unknown flag and an unknown tool are usage errors', (
   assert.equal(unknownFlag.status, 2);
   assert.match(unknownFlag.stderr.split(/\r?\n/, 1)[0], /^git-setup-check: unknown argument: --bogus$/);
   assert.match(unknownFlag.stderr, /^Usage: node /m);
+  assert.match(unknownFlag.stderr, /^Next: node \S*git-setup-check\.cjs --repo \.$/m);
 
   const unknownTool = f.run(['--tool', 'nope']);
   assert.equal(unknownTool.status, 2);

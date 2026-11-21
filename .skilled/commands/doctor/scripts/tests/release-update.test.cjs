@@ -2142,6 +2142,30 @@ test('record-base --pin refuses a commit that is no framework commit or is found
   assert.ok(nowhere.document.error.includes('remote ' + fixture.upstream), nowhere.document.error);
 });
 
+test('record-base --pin --offline refuses a local miss and names the online retry', () => {
+  const fixture = makePinnedFixture();
+  const { vendored } = makeVendoredLayout(fixture.root, 'project', fixture.middleTree);
+  const missing = 'e'.repeat(40);
+  const repo = fs.realpathSync(vendored);
+
+  const offline = runRaw('record-base', '--dry-run', '--pin', missing, '--offline',
+    '--repo', vendored);
+  assert.equal(offline.exitCode, 1, offline.stderr);
+  assert.ok(offline.stderr.startsWith('[release-update] commit ' + missing
+    + ' was not found in this repository ('), offline.stderr);
+  assert.match(offline.stderr, /; --offline searched no remote\n/);
+  assert.ok(offline.stderr.includes(repo), offline.stderr);
+  const next = offline.stderr.split('\n').find((line) => line.startsWith('Next: '));
+  assert.ok(next, 'the refusal should end with a Next line: ' + offline.stderr);
+  assert.match(next, /release-update\.cjs record-base --repo .+ --pin e{40}$/);
+  assert.doesNotMatch(next, /--offline/);
+
+  const json = runCli(vendored, 'record-base', '--dry-run', '--pin', missing, '--offline');
+  assert.equal(json.exitCode, 1, JSON.stringify(json.document));
+  assert.equal(json.document.ok, false);
+  assert.match(json.document.error, /--offline searched no remote\nNext: /);
+});
+
 test('a normal checkout still resolves --repo below its root to the git top level', () => {
   const fixture = makeFixture();
   const vendor = makeVendor(fixture, 'vendor-normal-root');

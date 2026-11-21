@@ -50,6 +50,7 @@ while [[ $# -gt 0 ]]; do
     --help|-h)   show_help; exit 0 ;;
     *)
       echo "ERROR: unknown argument: $1" >&2
+      echo "Next: bash .skilled/commands/doctor/scripts/route-validate.sh --help" >&2
       show_help >&2
       exit 2
       ;;
@@ -57,7 +58,8 @@ while [[ $# -gt 0 ]]; do
 done
 
 if ! python3 -c 'import yaml' 2>/dev/null; then
-  echo "ERROR: python3 with PyYAML is required. Install via: pip3 install pyyaml" >&2
+  echo "ERROR: python3 with PyYAML is required, and this python3 cannot import yaml." >&2
+  echo "Next: pip3 install pyyaml" >&2
   exit 3
 fi
 

@@ -59,6 +59,7 @@ const GIT_HOOK_NAMES = new Set([
   'p4-post-changelist', 'p4-pre-submit', 'post-index-change',
 ]);
 
+const SCRIPT_COMMAND = 'node .skilled/commands/doctor/scripts/git-setup-check.cjs';
 const USAGE = 'Usage: node .skilled/commands/doctor/scripts/git-setup-check.cjs [--repo <dir>] [--tool <claude|codex|devin|cursor|opencode|pi|dsh>] [--json]';
 
 const TOOLS = ['claude', 'codex', 'devin', 'cursor', 'opencode', 'pi', 'dsh'];
@@ -1794,7 +1795,7 @@ async function main(argv) {
   applySafeGitEnv();
   const opts = parseArgs(argv);
   if (opts.error) {
-    process.stderr.write(`git-setup-check: ${opts.error}\n${USAGE}\n`);
+    process.stderr.write(`git-setup-check: ${opts.error}\nNext: ${SCRIPT_COMMAND} --repo .\n${USAGE}\n`);
     return 2;
   }
   // The repository root must be resolved before any other child process, so the
@@ -1804,7 +1805,8 @@ async function main(argv) {
   const probe = runCommand(requested, GIT_BIN, ['-C', requested, 'rev-parse', '--show-toplevel']);
   const repoRoot = probe.status === 0 && probe.stdout.trim() !== '' ? path.resolve(probe.stdout.trim()) : '';
   if (repoRoot === '') {
-    process.stderr.write(`git-setup-check: not inside a git work tree: ${requested}\n${USAGE}\n`);
+    process.stderr.write(`git-setup-check: not inside a git work tree: ${requested}\n`
+      + `Next: ${SCRIPT_COMMAND} --repo <git-work-tree>\n${USAGE}\n`);
     return 2;
   }
   const ctx = { repoRoot, tool: opts.tool };

@@ -53,7 +53,7 @@ from typing import Any, Dict, List, Optional, Sequence, Set
 try:
     import yaml
 except ImportError:
-    print("ERROR: PyYAML required. Install via: pip3 install pyyaml", file=sys.stderr)
+    print("ERROR: PyYAML required, and this python3 cannot import yaml.\nNext: pip3 install pyyaml", file=sys.stderr)
     sys.exit(3)
 
 

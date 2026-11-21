@@ -115,7 +115,7 @@ function main(argv) {
   try {
     options = parseArgs(argv);
   } catch (error) {
-    process.stderr.write(`ERROR: ${error.message}\n${USAGE}\n`);
+    process.stderr.write(`ERROR: ${error.message}\nNext: node .skilled/commands/doctor/scripts/ci-report.cjs --json\n${USAGE}\n`);
     return 2;
   }
 
@@ -135,7 +135,8 @@ function main(argv) {
 
   const variables = readVariables(options.noGh);
   if (!variables.known && !options.noGh) {
-    process.stderr.write(`note: variable states are unknown: ${variables.reason}\n`);
+    process.stderr.write(`note: variable states are unknown: ${variables.reason}\n`
+      + 'Next: gh auth status\n');
   }
   const resolved = resolveNewestNonRebuildSha(options, profile);
   const parsed = parseWorkflows();

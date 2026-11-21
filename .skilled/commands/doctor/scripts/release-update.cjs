@@ -189,6 +189,11 @@ function usageError(message) {
   return Object.assign(new Error(message), { usage: true });
 }
 
+// A refusal names the exact command to run next; runCommand prints it on a Next: line.
+function withNext(error, next) {
+  return Object.assign(error, { next });
+}
+
 function parseVersion(tag) {
   if (typeof tag !== 'string') return null;
   const match = VERSION_RE.exec(tag);
@@ -1628,16 +1633,17 @@ function loadRun(runPath, repo) {
     stats = fs.lstatSync(runDir);
   } catch (error) {
     if (error.code !== 'ENOENT') throw error;
-    throw new Error('run directory not found: ' + runDir
-      + '; pass the runDir that align or apply reported, or run align to create one');
+    throw withNext(new Error('run directory not found: ' + runDir
+      + '; pass the runDir that align or apply reported, or run align to create one'),
+    SCRIPT_COMMAND + ' align --repo ' + shellQuote(repo));
   }
   if (stats.isSymbolicLink() || !stats.isDirectory()) {
     throw new Error('run path must be a real directory');
   }
   const plan = readRunJson(runDir, 'plan.json', null);
   if (!plan) {
-    throw new Error('run directory has no plan.json: ' + runDir
-      + '; run align to create an alignment run');
+    throw withNext(new Error('run directory has no plan.json: ' + runDir
+      + '; run align to create an alignment run'), SCRIPT_COMMAND + ' align --repo ' + shellQuote(repo));
   }
   const emptyDecisions = { schemaVersion: 1, files: {}, deferredUnits: [] };
   const run = { runDir, plan, decisions: readRunJson(runDir, 'decisions.json', emptyDecisions) };
@@ -1812,9 +1818,10 @@ function resolveApplyRun(repo, options) {
     const hasDeferredUnit = (run.decisions.deferredUnits || []).length > 0;
     if (hasOperatorDecision || hasDeferredUnit) {
       // Reusing a decided run discards choices, can write a deferred unit, and uses up the run.
-      throw new Error('the newest alignment run at this HEAD holds operator decisions: ' + latest
+      throw withNext(new Error('the newest alignment run at this HEAD holds operator decisions: ' + latest
         + '. Apply them with --decisions ' + path.join(latest, 'decisions.json')
-        + ', or run align for a new plan');
+        + ', or run align for a new plan'), SCRIPT_COMMAND + ' apply --repo ' + shellQuote(repo)
+        + ' --decisions ' + shellQuote(path.join(latest, 'decisions.json')) + ' --dry-run');
     }
     run.decisions = { schemaVersion: 1, files: {}, deferredUnits: [] };
     return run;
@@ -2119,11 +2126,12 @@ function lockConflictError(repo) {
     let message = prefix + ', and it is stale because process ' + owner.pid + ' (' + command
       + ', started ' + startedAt + ') is no longer running. Clear it with ' + SCRIPT_COMMAND
       + ' unlock';
+    const next = SCRIPT_COMMAND + ' unlock --repo ' + shellQuote(repo);
     if (typeof owner.runDir === 'string' && owner.runDir
       && fs.existsSync(path.join(path.resolve(repo, owner.runDir), 'rollback.json'))) {
       message += ', then restore the interrupted run with ' + rollbackCommand(repo, owner.runDir);
     }
-    return new Error(message);
+    return withNext(new Error(message), next);
   }
   return new Error(prefix + ', and it has no readable owner, so confirm that no apply, rollback'
     + ' or record-base is running before removing it by hand');
@@ -2240,8 +2248,9 @@ function applyPlan(repo, options) {
     throw new Error('--release does not match the alignment plan');
   }
   if (!run.withoutRun && fs.existsSync(safeResolve(run.runDir, 'rollback.json'))) {
-    throw new Error('this run was already applied (rollback.json exists): ' + run.runDir
-      + '; run align for a new plan, or undo this one with ' + rollbackCommand(repo, run.runDir));
+    throw withNext(new Error('this run was already applied (rollback.json exists): ' + run.runDir
+      + '; run align for a new plan, or undo this one with ' + rollbackCommand(repo, run.runDir)),
+    SCRIPT_COMMAND + ' align --repo ' + shellQuote(repo));
   }
   if (fs.existsSync(safeResolve(repo, LOCK_FILE))) {
     throw lockConflictError(repo);
@@ -2280,8 +2289,10 @@ function applyPlan(repo, options) {
   const regenerate = regenerateFollowUps(run.plan, prepared.appliedUnits);
   const digest = planDigest(run, prepared);
   if (options.planDigest && options.planDigest !== digest) {
-    throw new Error('plan changed since the dry-run: its digest no longer matches. '
-      + 'Run apply --dry-run again and approve the new plan');
+    throw withNext(new Error('plan changed since the dry-run: its digest no longer matches. '
+      + 'Run apply --dry-run again and approve the new plan'),
+    SCRIPT_COMMAND + ' apply --repo ' + shellQuote(repo)
+      + (run.withoutRun ? '' : ' --run ' + shellQuote(run.runDir)) + ' --dry-run');
   }
   if (options.dryRun) {
     return {
@@ -2335,9 +2346,10 @@ function applyPlan(repo, options) {
         completed += 1;
       }
     } catch (error) {
-      throw new Error('apply stopped after ' + completed + ' of ' + prepared.writes.length
+      throw withNext(new Error('apply stopped after ' + completed + ' of ' + prepared.writes.length
         + ' writes, at ' + prepared.writes[completed].path + ': ' + error.message
-        + '; the checkout is partly updated, restore it with ' + rollbackCommand(repo, run.runDir));
+        + '; the checkout is partly updated, restore it with ' + rollbackCommand(repo, run.runDir)),
+      rollbackCommand(repo, run.runDir));
     }
   } finally {
     try {
@@ -2420,26 +2432,33 @@ function recordBase(repo, options) {
   const pinned = options.pin || null;
   const release = pinned ? null : options.release || latestTag(localTags, options.includePrerelease);
   if (!release && !pinned) {
-    throw new Error('no local release tag exists;'
-      + ' name the release this tree was installed from with --release');
+    throw withNext(new Error('no local release tag exists;'
+      + ' name the release this tree was installed from with --release'),
+    SCRIPT_COMMAND + ' record-base --repo ' + shellQuote(repo) + ' --release <vN.N.N.N>');
   }
   const commit = tagCommit(repo, pinned || release, options.remote, !options.offline, new Map());
   if (!commit) {
-    throw new Error(pinned
+    const recordCommand = SCRIPT_COMMAND + ' record-base --repo ' + shellQuote(repo);
+    throw withNext(new Error(pinned
       ? (options.offline
         ? 'commit ' + pinned + ' was not found in this repository (' + repo + ');'
           + ' --offline searched no remote'
         : 'commit ' + pinned + ' was found in neither this repository (' + repo + ')'
           + ' nor remote ' + options.remote)
-      : 'release tag could not be resolved: ' + release);
+      : 'release tag could not be resolved: ' + release), pinned
+      ? (options.offline
+        ? recordCommand + ' --pin ' + pinned
+        : recordCommand + ' --pin ' + pinned + ' --remote <framework-repository-url>')
+      : 'git -C ' + shellQuote(repo) + ' fetch --tags ' + shellQuote(options.remote));
   }
   // A vendoring project keeps the framework below a subfolder, so its own commits
   // resolve locally but carry no top-level .skilled directory. This refuses such a
   // pin by name; a project that keeps .skilled at its root is not caught here.
   const skilledType = pinned ? gitTry(repo, ['cat-file', '-t', commit + ':.skilled']) : null;
   if (pinned && !(skilledType.ok && skilledType.value.trim() === 'tree')) {
-    throw new Error('commit ' + commit + ' is not a framework commit: it has no top-level'
-      + ' .skilled directory. Pin the framework repository commit this tree was copied from');
+    throw withNext(new Error('commit ' + commit + ' is not a framework commit: it has no top-level'
+      + ' .skilled directory. Pin the framework repository commit this tree was copied from'),
+    SCRIPT_COMMAND + ' record-base --repo ' + shellQuote(repo) + ' --pin <framework-commit>');
   }
   const label = pinned ? 'commit ' + commit : 'release ' + release;
   const releaseFiles = commitFiles(repo, commit);
@@ -2450,8 +2469,10 @@ function recordBase(repo, options) {
       ? { known: false, tags: [], error: 'offline mode' }
       : remoteTags(repo, options.remote);
     if (!listing.known) {
-      throw new Error('cannot list release tags (' + listing.error + '), so release ' + release
-        + ' cannot be checked against nearer releases. Pass --trust-release to record it unchecked');
+      throw withNext(new Error('cannot list release tags (' + listing.error + '), so release ' + release
+        + ' cannot be checked against nearer releases. Pass --trust-release to record it unchecked'),
+      SCRIPT_COMMAND + ' record-base --repo ' + shellQuote(repo) + ' --release ' + release
+        + ' --trust-release');
     }
     const candidateTags = sortTags([...new Set([...localTags, ...listing.tags])].filter(accepts));
     const commits = new Map([[release, commit]]);
@@ -2480,9 +2501,10 @@ function recordBase(repo, options) {
       }
     }
     if (nearerReleases.length) {
-      throw new Error('release ' + release + ' is not the nearest release to this tree: '
+      throw withNext(new Error('release ' + release + ' is not the nearest release to this tree: '
         + nearerReleases.join('; ') + '. Name the release this tree was installed from, or pass '
-        + '--trust-release to record ' + release + ' anyway');
+        + '--trust-release to record ' + release + ' anyway'),
+      SCRIPT_COMMAND + ' record-base --repo ' + shellQuote(repo) + ' --release <installed-release>');
     }
   }
   const headFiles = headFilesAt(repo, 'HEAD');
@@ -2538,8 +2560,10 @@ function rollbackPlan(repo, runPath, options = {}) {
   const run = loadRun(runPath, repo);
   const rollback = readRunJson(run.runDir, 'rollback.json', null);
   if (!rollback) {
-    throw new Error('this run has no rollback.json: ' + run.runDir
-      + '; apply has not written from it, so there is nothing to roll back');
+    throw withNext(new Error('this run has no rollback.json: ' + run.runDir
+      + '; apply has not written from it, so there is nothing to roll back'),
+    SCRIPT_COMMAND + ' apply --repo ' + shellQuote(repo) + ' --run ' + shellQuote(run.runDir)
+      + ' --dry-run');
   }
   if (!Array.isArray(rollback.paths)) {
     throw new Error('rollback.json has no paths array: ' + run.runDir);
@@ -2755,9 +2779,12 @@ function runCommand(argv) {
     return { exitCode: result.exitCode || 0, result, json: options.json };
   } catch (error) {
     const exitCode = error.usage ? 2 : 1;
+    const next = error.next || (error.usage ? SCRIPT_COMMAND + ' --help' : null);
     return {
       exitCode,
-      error: error.message,
+      error: next
+        ? error.message + (error.message.includes('\n') ? '\n  Next: ' : '\nNext: ') + next
+        : error.message,
       json: options ? options.json : argv.includes('--json'),
     };
   }
