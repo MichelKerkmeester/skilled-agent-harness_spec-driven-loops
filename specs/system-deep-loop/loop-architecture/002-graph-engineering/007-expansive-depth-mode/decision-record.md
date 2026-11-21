@@ -90,6 +90,20 @@ _memory:
 | Q054 | Push the dry-run fix, the live review record and the decisions now, and land the new fixes in a later push. | Not stated. | None | push eae0c02ceaf..5a3de84e15b |
 | Q055 | Land round 7, then make --stop stop the surviving members of a group whose leader exited. | Not stated. | None | merge d980ac7da74, commit 4fc94bae0d3 |
 | Q056 | Fix the --stop double close before landing, so a stopped lineage ends with one terminal row. | Not stated. | None | commit 6ff8135076c, merge 2e913d56935 |
+| Q057 | Build the runtime defects, doc drift and packet bookkeeping, plus routing single-executor runs through the fan-out command builder. | Not stated. | None | round 8 commits 6ec426de2db..79fd6666d33, commit 0a9de51c040 |
+| Q058 | Write the goal for 015-reducer-test-focus-contract and its parent binding row in this session. | Not stated. | Q051 | commit 534ba42b6db, 015-reducer-test-focus-contract/goal.md, parent goal.md |
+| Q059 | Build no OS sandbox around opencode and keep the honest compensating sandbox label. | Not stated. | None | commits 4db1d9aaa43, 9af2f0efc7a, sandboxEnforcement compensating |
+| Q060 | Redact the noreply author address in this packet's 15 files only. | Not stated. | None | commit 3710b3afb22 |
+| Q061 | Fix the 10 MB stdout cap on single-executor Claude before the live run. | Not stated. | None | commits 1b7fe3e1a26, 90fd5bd1bb4 |
+| Q062 | The save docs win: drop the phase parent's implementation-summary.md. | Not stated. | None | commit 9e71013e64f, spec.md |
+| Q063 | Also fix the sandbox labels, the resumed run stop reason and the 011 synthesis list of exhausted and blocked nodes. | Not stated. | None | commits 9af2f0efc7a, 336f7b05df7, 40dbd7b5610 |
+| Q064 | Fix the backtracking email regex and bound the live stdout buffer before the live runs. | Not stated. | None | commit 56777af3240 |
+| Q065 | Keep the parent's decision record and move its plan.md and tasks.md content out of the parent. | Not stated. | None | commit 3ca0b161dc0, goal.md log, decision-record.md |
+| Q066 | Redact the real email addresses in the deep-loop logs committed before masking existed, beyond this packet. | Not stated. | Q060 | commit 88645b0150e (26 logs) |
+| Q067 | Run the section D live runs now, Claude iteration included. | Not stated. | None | commit e06143a14ce, scratch/dogfood-round8.md |
+| Q068 | Fix both live-run stop bugs and the pre-dispatch containment gap for an artifact dir outside the worktree. | Not stated. | None | commits 61112481bc3, a20a1d96a05, 978b74e8df7 |
+| Q069 | Add an opt-in switch to the Claude-under-Claude recursion guard, read from the typo "nypass" and the follow-up. | Not stated. | None | commit 3c8df597438 (SPECKIT_ALLOW_HOST_SESSION_EXECUTOR), scratch/dogfood-round8.md Round 11 replay |
+| Q070 | Take all four round 11 leftovers in a last fix round: the audit row's model, Claude id masking, usage errors and signals plus doc drift. | Not stated. | None | round 12 commits 4e5216729f9, 8fc35a98984, 09076dd4e0f, 0d1725f86e5 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1203,6 +1217,279 @@ Keep local
 Answer:
 ```text
 Fix the double close, then land (Recommended)
+```
+
+### Q057
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01Q5ncNMHd64fxtCaXA37Xf1:0 -->
+
+Question:
+```text
+The three audits found about 30 open items in four groups: runtime defects (about 14), doc drift (16 places), packet bookkeeping, and held refactors. The largest held refactor is routing single-executor runs through the same command builder as fan-out. The two copies have already diverged three times: permission mode, sandbox pass-through and output format. How much should this round build?
+```
+
+Options:
+```text
+Defects, drift, bookkeeping + one executor path (Recommended)
+Defects, drift, bookkeeping only
+Everything, all held rows
+```
+
+Answer:
+```text
+Defects, drift, bookkeeping + one executor path (Recommended)
+```
+
+### Q058
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01Q5ncNMHd64fxtCaXA37Xf1:1 -->
+
+Question:
+```text
+check-goal fails because child 015-reducer-test-focus-contract has no goal.md and the parent has no row for it. You left this to the session that owns 015. That session has finished: 015 is marked Complete, and it never added a goal. Close it here?
+```
+
+Options:
+```text
+Write the goal and row here (Recommended)
+Leave it failing
+```
+
+Answer:
+```text
+Write the goal and row here (Recommended)
+```
+
+### Q059
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01Q5ncNMHd64fxtCaXA37Xf1:2 -->
+
+Question:
+```text
+An opencode lineage's Bash can still write outside its working directory, because OpenCode 2 can't restrict shell commands by path. The only real fix is to wrap the opencode process in an OS sandbox: sandbox-exec on macOS, bwrap on Linux. Build that?
+```
+
+Options:
+```text
+No, keep the honest label (Recommended)
+Build it, macOS only
+```
+
+Answer:
+```text
+No, keep the honest label (Recommended)
+```
+
+### Q060
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01Q5ncNMHd64fxtCaXA37Xf1:3 -->
+
+Question:
+```text
+The GitHub noreply author address is in 94 files already on main, mostly raw lineage logs and review iterations across nine tracks, 15 of them in this packet. It's the same address that is public on every commit. New logs are redacted now. What about the existing 94?
+```
+
+Options:
+```text
+Redact this packet's 15 (Recommended)
+Redact all 94
+Leave them
+```
+
+Answer:
+```text
+Redact this packet's 15 (Recommended)
+```
+
+### Q061
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_015i1ZeNCunoKoLYStBY6C9w:1 -->
+
+Question:
+```text
+The round found that single-executor Claude now streams stream-json into a 10 MB stdout cap (executor-audit.ts:1470). A long iteration could overflow it. That's the likeliest failure in the live run (section D). Fix it before running?
+```
+
+Options:
+```text
+Fix, then run D (Recommended)
+Run D as is
+```
+
+Answer:
+```text
+Fix, then run D (Recommended)
+```
+
+### Q062
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_015i1ZeNCunoKoLYStBY6C9w:2 -->
+
+Question:
+```text
+LOGIC-SYNC: the save docs say a phase parent holds no implementation-summary.md, but this parent has one, and the save writer never writes to a parent. So the parent stays 'in progress' at 0% while every child says Complete. Which truth wins?
+```
+
+Options:
+```text
+Docs win: drop the parent's summary (Recommended)
+Parent keeps it
+```
+
+Answer:
+```text
+Docs win: drop the parent's summary (Recommended)
+```
+
+### Q063
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_015i1ZeNCunoKoLYStBY6C9w:3 -->
+
+Question:
+```text
+The round left other findings outside the plan. In priority order: (1) the 10 MB cap above; (2) phase 011's synthesis never lists exhausted or blocked nodes, as its ADR-001 requires; (3) a single-iteration DeepSeek harness audit row records danger-full-access while the harness runs workspace-write; (4) devin and pi report workspace-write while running unconfined; (5) a resumed research run loses maxIterationsReached as its stop reason. Which should be fixed too?
+```
+
+Options:
+```text
+(3)+(4) sandbox labels
+(5) resume stop reason
+(2) 011 synthesis list
+```
+
+Answer:
+```text
+(3)+(4) sandbox labels, (5) resume stop reason, (2) 011 synthesis list
+```
+
+### Q064
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01LGrNkVHJSeZ95gYu6vq4oQ:1 -->
+
+Question:
+```text
+The new log redaction is slow: masking email addresses in a 12 MB log took 9.6 s, because the regex backtracks on long runs of word characters. Two smaller gaps remain: stderr still has the 10 MB cap, and fan-out's live stdout buffer has no size limit. Fix these before the live runs?
+```
+
+Options:
+```text
+Fix the regex + live buffer (Recommended)
+Run the live checks first
+```
+
+Answer:
+```text
+Fix the regex + live buffer (Recommended)
+```
+
+### Q065
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01LGrNkVHJSeZ95gYu6vq4oQ:2 -->
+
+Question:
+```text
+The rule that removed the parent's implementation-summary.md also says a phase parent holds no plan.md, tasks.md or decision-record.md, and this parent still has all three. The decision record holds this packet's Q018-Q056 operator decisions, and the next save writes new ones there. What should happen to them?
+```
+
+Options:
+```text
+Keep the decision record, move plan and tasks (Recommended)
+Leave all three
+Move all three
+```
+
+Answer:
+```text
+Keep the decision record, move plan and tasks (Recommended)
+```
+
+### Q066
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01B7euafRnXUMhjMWQwxJtf2:1 -->
+
+Question:
+```text
+Round 10 found 375 email addresses that were never masked, in 49 deep-loop logs committed before masking existed. Earlier you limited redaction to this packet's 15 files. What about these?
+```
+
+Options:
+```text
+Leave them (Recommended)
+Redact the 49 logs
+```
+
+Answer:
+```text
+Redact the 49 logs
+```
+
+### Q067
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01B7euafRnXUMhjMWQwxJtf2:2 -->
+
+Question:
+```text
+Next is section D, the live runs. They are cheap and run on DeepSeek through LLM Gateway, capped at 4 iterations. They cover a fan-out research run, a single-executor Claude review iteration, and throwaway runs for SIGHUP, a spared process, and a reused key. Run them now?
+```
+
+Options:
+```text
+Run now (Recommended)
+Skip the Claude iteration
+```
+
+Answer:
+```text
+Run now (Recommended)
+```
+
+### Q068
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_014ghbHrSCr8tzXKDKUzzViy:0 -->
+
+Question:
+```text
+The live runs found two real bugs. (1) `--stop` reports a process as spared, but the runner's own stop handler kills the whole group anyway (`fanout-run.cjs:1173`). Round 8 had wrongly marked this fixed. (2) The runner writes 'stopped' rows for lineages that ignored SIGTERM and are still alive (`:5099`). There is also a gap: when the artifact dir is outside the worktree, the pre-dispatch containment check returns empty, so the child runs before the post-dispatch check throws. Fix them?
+```
+
+Options:
+```text
+Fix all three (Recommended)
+Only the two stop bugs
+```
+
+Answer:
+```text
+Fix all three (Recommended)
+```
+
+### Q069
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01XhSBbNg92PokbUYkjDntFC:0 -->
+
+Question:
+```text
+For the Claude check you answered "nypass"; I read it as "bypass". The guard that refuses Claude-under-Claude has no switch to turn it off. Bypassing it means starting the run detached, outside this session's process tree, so the guard can't see it: a deliberate end-run around a safety check. What did you mean?
+```
+
+Options:
+```text
+I'll run it in a plain terminal (Recommended)
+Yes, detach it this once
+Leave it unproven
+```
+
+Answer:
+```text
+make the switch lol
+```
+
+### Q070
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01HJAzea1JXvDACG8ge2ApjJ:1 -->
+
+Question:
+```text
+Round 11 left five smaller items open. Which should a last fix round take?
+```
+
+Options:
+```text
+Audit row's model
+Mask Claude uuid/request_id
+Usage error, not stack trace
+Signals + docs drift
+```
+
+Answer:
+```text
+Audit row's model, "Usage error, not stack trace", Mask Claude uuid/request_id, Signals + docs drift
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
