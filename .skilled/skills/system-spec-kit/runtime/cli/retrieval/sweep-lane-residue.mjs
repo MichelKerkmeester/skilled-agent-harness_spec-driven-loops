@@ -198,8 +198,21 @@ const MODEL_SERVER_SCRIPT_NAME = 'hf-model-server.cjs';
 const SCRIPT_EXTENSION = /\.(?:js|cjs|mjs|ts|mts|cts)$/;
 /** Node options after which node runs inline code, so no script word follows. */
 const NODE_EVAL_OPTIONS = new Set(['-e', '--eval', '-p', '--print']);
-/** Node options whose value is the next word, which is never the script. */
-const NODE_VALUE_OPTIONS = new Set(['-r', '--require', '--import', '--loader', '--experimental-loader', '-C', '--conditions']);
+/**
+ * Node options that take their value as the next word when written without
+ * `=`, so that word is never the script. An option missing from this list and
+ * written that way makes its value read as the script.
+ */
+const NODE_VALUE_OPTIONS = new Set([
+  '-r', '--require', '--import', '--loader', '--experimental-loader', '-C', '--conditions',
+  '--env-file', '--env-file-if-exists', '--inspect-port', '--debug-port', '--input-type', '--title',
+  '--redirect-warnings', '--disable-warning', '--diagnostic-dir', '--report-dir', '--report-directory',
+  '--report-filename', '--report-signal', '--heapsnapshot-signal', '--icu-data-dir', '--openssl-config',
+  '--tls-cipher-list', '--tls-keylog', '--secure-heap', '--secure-heap-min', '--max-http-header-size',
+  '--unhandled-rejections', '--dns-result-order', '--watch-path', '--cpu-prof-dir', '--cpu-prof-name',
+  '--heap-prof-dir', '--heap-prof-name', '--localstorage-file', '--trace-event-categories',
+  '--trace-event-file-pattern', '--experimental-config-file',
+]);
 
 /**
  * The value-free dotenv reader, resolved from this script's own checkout so a
@@ -1249,9 +1262,9 @@ export function listProcesses() {
  * on disk, because an installed CLI such as `/opt/homebrew/bin/eslint` has no
  * script extension but is a whole script of its own. The join runs up to the
  * server script's name, unless a word that is a script of its own comes first.
- * Inline code (`-e`, `-p`) names no script, and an option that takes a value
- * never has that value read as one. A command line read any other way names no
- * script.
+ * Inline code (`-e`, `-p`) names no script, and the value of an option in
+ * `NODE_VALUE_OPTIONS` written as a separate word is never read as one. A
+ * command line read any other way names no script.
  *
  * @param {string} command Process command line.
  * @returns {string | null} The script node runs, or null when this is not node or no script can be read.
@@ -1687,7 +1700,9 @@ export async function runMachineChecks(options = {}, env = process.env, io = {})
 /**
  * Resolves a deletion target from a root and fixed names. The target is
  * refused when it is a symlink itself or when its real parent leaves the
- * root's real path, so a planted link can never redirect a delete.
+ * root's real path, so a link planted under the root can never redirect a
+ * delete. A root that is itself a link resolves to its target and passes, so a
+ * caller that must not follow a linked root checks the root first.
  *
  * @param {string} rootDir Root the target must stay inside.
  * @param {string[]} segments Fixed path segments under the root.

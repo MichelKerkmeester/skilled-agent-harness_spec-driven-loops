@@ -61,21 +61,22 @@ The lane cleanup no longer deletes a regular file just because `HF_EMBED_SERVER_
 
 The residue tool had three defects, and each one now has a test that failed before its fix. An explicit server address can name any file, so a name it adds is listed for deletion only when it is a socket. A regular file there stays on disk and M4 notes it, while the four fixed server names keep their old rule. When the dotenv parser rejects a line, M7 adds a note naming the file and keeps its status, because marking it not checked would exit 2 and fail every `/doctor:update apply` over one odd line. `nodeScriptOf` now joins the words of a spaced script path up to the server script's name, and it stops at a word that is a script of its own.
 
-The doc work closes the other advisories. The workflow comment, the catalog page and the 008 plan say the gate runs on every pull request and on pushes to `main` and `skilled/**`. The catalog page and the tool header say an exact-path allowlist row exempts the whole file. The 32 allowlist reasons no longer cite line numbers. Phase 005 closed with T053 and AC-014, the 024 parent and 016 row 24 read Complete, the 024 goal ticks four of its five criteria, and phases 001 and 006 carry an Evidence clause on every checked row.
+The doc work closes the other advisories. The workflow comment, the catalog page and the 008 plan say the gate runs on every pull request and on pushes to `main` and `skilled/**`. The catalog page and the tool header say an exact-path allowlist row exempts the whole file. The 32 allowlist reasons no longer cite line numbers. Phase 005 closed with T053 and AC-014, the 024 parent and 016 row 24 read Complete, the 024 goal ticks all five of its criteria, criterion 4 on two recorded dispositions, and phases 001 and 006 carry an Evidence clause on every checked row.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs` | Modified | Socket-only rule for a name an explicit address adds (line 1340), the dotenv note (line 1533), the spaced script path in `nodeScriptOf` (line 1251), and header decisions 3 and 7 |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts` | Modified | Real-socket fixture, regular-file case, dotenv rejected-line case, script-match table and one header sentence |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs` | Modified | Socket-only rule for a name an explicit address adds (the `isSocket()` branch in `checkModelServer`), the dotenv note (the `could not be parsed` note in `checkDotenv`), the spaced script path in `nodeScriptOf` with `isFileOnDisk`, header decisions 3 and 7, and, in the follow-up, the wider `NODE_VALUE_OPTIONS` and the `resolveContainedTarget` doc comment |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts` | Modified | Real-socket fixture, regular-file case, dotenv rejected-line case, script-match table and one header sentence. The follow-up adds two table rows and the linked IPC folder case |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json` | Modified | 32 reasons drop their line numbers; the 47 paths are unchanged |
 | `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/lane-residue-gate-and-cleanup.md` | Modified | Push filter wording, the whole-file limit and version `1.0.1.0` |
 | `.github/workflows/advisory-checks.yml` | Modified | Comment lines 23 to 25 only |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md` | Modified | Line 25 names the push branch filter in place of every push |
 | `runtime/data/trigger-index.json` and three `retrieval/fixtures` outputs | Regenerated | The last write, by `generate-trigger-index.mjs` |
 | `../024-ollama-lane-removal/008-cleanup-wiring-and-gating/plan.md` | Modified | Lines 370, 375 and 400 drop the every-push claim |
-| `../024-ollama-lane-removal/goal.md` | Modified | Criteria 1, 2, 3 and 5 ticked, and one progress row through `goal.cjs packet-log` |
-| `../024-ollama-lane-removal/005-shared-embeddings-package/` | Modified | T053 and AC-014 closed across spec, plan, tasks, acceptance criteria and summary, and one goal log row |
+| `../024-ollama-lane-removal/goal.md` | Modified | All five criteria ticked, and two progress rows: one citing the checks for criteria 1, 2, 3 and 5, and a later one closing criterion 4 on the C-08 and BAT-01 dispositions |
+| `../024-ollama-lane-removal/005-shared-embeddings-package/` | Modified | T053 and AC-014 closed across spec, plan, tasks, acceptance criteria and summary, and one goal log row. The follow-up ticks the six goal criteria, adds one more log row and names `1f85a9dd6dd` in T054 |
 | `../024-ollama-lane-removal/spec.md` | Modified | Status and phase-map row 5 read Complete |
 | `../024-ollama-lane-removal/001-residue-check-and-cleanup-tool/tasks.md`, `../024-ollama-lane-removal/006-prose-docs-and-changelogs/tasks.md` | Modified | 12 and 11 Evidence clauses |
 | `../spec.md` | Modified | Row 24 reads Complete, and row 25 lists this packet |
@@ -88,9 +89,20 @@ The doc work closes the other advisories. The workflow comment, the catalog page
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The baseline came first, on `bf3bca7a8b1`: the Vitest file passed 92 of 92, the gate test 2 of 2, and repo mode exited 0 at 47 of 47. The new tests went in next and ran against the unfixed tool. The file exited 1 with `3 failed | 95 passed (98)`, the three failures being the regular-file case, the dotenv case and the spaced-path row, while the real-socket case passed as planned. The three fixes then took the file to 98 of 98. The independent review then found that an installed CLI with no script extension, such as `node /opt/homebrew/bin/eslint <server path>`, read as the model server. `nodeScriptOf` now joins words only when the first is an absolute path that is no file on disk, returns no script for `-e` and `-p`, and skips the value of `-r`, `--import` and `--loader`. Five rows for those cases took the file to 103 of 103.
+The baseline came first, on `bf3bca7a8b1`: the Vitest file passed 92 of 92, the gate test 2 of 2, and repo mode exited 0 at 47 of 47. The new tests went in next and ran against the unfixed tool. The file exited 1 with `3 failed | 95 passed (98)`, the three failures being the regular-file case, the dotenv case and the spaced-path row, while the real-socket case passed as planned. The three fixes then took the file to 98 of 98. The independent review then found that an installed CLI with no script extension, such as `node /opt/homebrew/bin/eslint <server path>`, read as the model server. `nodeScriptOf` now joins words only when the first is an absolute path that is no file on disk, checked by `fs.statSync` in the new `isFileOnDisk`, returns no script for `-e` and `-p`, and skips the value of the options it lists. Five rows for those cases took the file to 103 of 103.
 
-The wording, allowlist and metadata edits followed. Each new sentence in a file the allowlist does not exempt was checked against both vocabularies before it was written. The gates then ran on the final state, `repair-derived` refreshed the generated metadata, and the trigger index was regenerated as the last write. Nothing is committed; the conductor commits after review.
+The wording, allowlist and metadata edits followed. Each new sentence in a file the allowlist does not exempt was checked against both vocabularies before it was written. The gates then ran on the final state, `repair-derived` refreshed the generated metadata, and the trigger index was regenerated as the last write. The implementation commit is `1d1bfadab67`, which also rewords `retrieval/README.md:25` and ticks the 024 goal. The follow-up review fixes below land in a later commit that the orchestrator makes.
+
+### Follow-up review fixes
+
+The follow-up `/deep:review` ran three iterations on `1d1bfadab67` (`review/iterations/`) and found seven P2 findings, no P0 or P1. Their ids are this run's, not the 024 review's. T035 to T042 in `tasks.md` hold the evidence.
+
+1. **R1-P2-001.** An unlisted node option written with its value as a separate word, such as `--env-file`, had that value read as the script. `NODE_VALUE_OPTIONS` now lists 39 options, and its comment says an unlisted one would still be misread.
+2. **R1-P2-002.** Phase 005's goal had six unticked criteria and T054 said no phase commit existed. The criteria are ticked, criterion 4 now excludes the residue check and its test, and T054 names `1f85a9dd6dd`.
+3. **R2-P2-001.** The refusal to delete through a linked server folder had no test. The case `refuses to delete a model server file through a linked IPC folder` covers it, and the `resolveContainedTarget` comment says a linked root passes, so the caller checks the root. The orchestrator reports that removing the guard makes the case fail.
+4. **R3-P2-001 to R3-P2-004.** These docs described the tree before `1d1bfadab67`. They now record the five 024 ticks, the commit and the README change, the remaining `nodeScriptOf` limit and the `statSync`, and they cite functions and test titles in place of line numbers.
+
+The Vitest file went from 103 to 106 passing tests.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -108,7 +120,7 @@ The wording, allowlist and metadata edits followed. Each new sentence in a file 
 | Three sites say every pull request and pushes to `main` and `skilled/**` (doc-to-config drift R3-P2-003, doc-code drift R7-P2-001) | That is the real trigger, and the trigger itself is unchanged. |
 | Goal logs gain rows and never lose one (completion-metadata drift, R3-P2-001 and R3-P2-002) | The log is append-only, so each new Complete row supersedes the older Pending and not-committed rows. |
 | Evidence clauses cite a file line or a command (evidence-less checklist rows, R10-P2-001) | A checked row is a claim, and the clause names what backs it. |
-| 024 goal criterion 4 stays unticked | It says the alignment findings "are fixed and committed". C-08, the bodies of the tagged releases, waits on the operator after merge, and BAT-01, a latency test that also fails on main, was left unchanged. |
+| 024 goal criterion 4 is ticked on recorded dispositions | It says the alignment findings "are fixed and committed". The rest were fixed, while C-08, the release bodies, which the operator writes after a merge, and BAT-01, a latency test that also fails on main under load, are dispositioned in 008's implementation summary. The later `Criterion 4 \| Complete` log row supersedes the earlier row that called it open. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -118,7 +130,7 @@ The wording, allowlist and metadata edits followed. Each new sentence in a file 
 
 | Check | Result |
 |-------|--------|
-| G1 `VITEST tests/sweep-lane-residue.vitest.ts` | Exit 0, 103 of 103 after the review fix; the baseline was 92 of 92 |
+| G1 `VITEST tests/sweep-lane-residue.vitest.ts` | Exit 0, 106 of 106 after the follow-up review fixes, 103 after the independent review fix and 92 at baseline |
 | G2 and G4 `node --test lane-residue-gate.test.cjs` | Exit 0, 2 of 2, the planted-term case passed |
 | G3 `sweep-lane-residue.mjs repo --json` | Exit 0, 47 of 47 allowlist rows matched, live 0, after the regeneration |
 | G5 real-socket case | Machine exit 1 before apply and 0 after |
@@ -130,7 +142,7 @@ The wording, allowlist and metadata edits followed. Each new sentence in a file 
 | G11 comment hygiene | No line |
 | `npm run typecheck` in `runtime/cli` | Exit 0 |
 | Measured `runsModelServer` command | `true true`; the spaced row returned false on the unfixed tool |
-| G12 follow-up `/deep:review` | Not run; the conductor runs it next |
+| G12 follow-up `/deep:review` | Three iterations ran and found seven P2 findings, all fixed above. The report and the verdict wait on the orchestrator's re-review |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -138,12 +150,11 @@ The wording, allowlist and metadata edits followed. Each new sentence in a file 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **SL4-005 is still open.** AC-024 and T034 wait on the follow-up `/deep:review`, which decides whether the real-socket fixture closes the deferred fixture-realism item. The packet stays In Progress until it does.
-2. **024 reads Complete beside one open goal criterion.** Criterion 4 cannot hold as written while C-08 waits on the operator after merge. Amending it the way criterion 3 was amended would make the tick and the status agree, and that is the operator's call.
+1. **AC-024 is still open.** The follow-up review's iterations rule SL4-005 out, but AC-024 and T034 wait on the orchestrator's re-review to record the verdict and SL4-005's disposition in the report. The packet stays In Progress until it does.
+2. **024 goal criterion 4 is ticked on dispositions, not fixes.** Its text says the alignment findings are "fixed and committed", and C-08 and BAT-01 were dispositioned instead, in 008's implementation summary. The criterion's text was not amended the way criterion 3 was. Amending it would make the text and the tick agree, and that is the operator's call.
 3. **The `npm ci` flags are not on record.** The conducting session reports exit 0 in the three packages, but not whether `--offline --no-audit --no-fund` were passed. This run observed the absence checks, both typechecks and the shared tests.
-4. **Some cases have no test.** A directory or a symlink at an address name takes the same `isSocket()` rule as the regular file, with no test of its own. A command whose first word after node has no script extension, such as `node -r foo /p/hf-model-server.cjs`, is now listed as a model server but never owned. Apply then keeps the server files while that process runs, which errs toward keeping them.
-5. **One adjacent site still says "every push".** `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md:25` says the doctor test runs `repo` on every push. It is outside this packet's files, so it is reported, not changed.
-6. **The continuity frontmatter is stale.** No `/speckit:save` ran, so `_memory.continuity` in this packet still describes the planning session.
+4. **Some cases have no test, and one command shape is still misread.** A directory or a symlink at an address name takes the same `isSocket()` rule as the regular file, with no test of its own. A node option missing from `NODE_VALUE_OPTIONS` and written with its value as a separate word still has that value read as the script: `node --test-reporter spec /x/.skilled/bin/hf-model-server.cjs` reads `spec` and is not seen as a model server. Machine mode can then report the server absent while it runs, and apply can delete its socket and pid files. No known launcher passes such an option.
+5. **The continuity frontmatter is stale.** No `/speckit:save` ran, so `_memory.continuity` in this packet still describes the planning session.
 <!-- /ANCHOR:limitations -->
 
 ---

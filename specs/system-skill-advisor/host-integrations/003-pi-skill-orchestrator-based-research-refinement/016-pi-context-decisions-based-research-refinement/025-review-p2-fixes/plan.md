@@ -54,9 +54,9 @@ Three code changes in `sweep-lane-residue.mjs`, each with a test written first: 
 Other: a single-file CLI with pure parse helpers and a fixture-backed test suite. Each check builds a list of findings, and the apply mode acts only on the list.
 
 ### Key Components
-- **`nodeScriptOf`** (`sweep-lane-residue.mjs`, T:1244): reads the script that a node command runs. It gains the join rule for a path with spaces. Without the rule, `runsModelServer` returns false for any checkout under a spaced path.
-- **`checkModelServer`** (T:1293): builds the server file list that M4 reports and apply deletes. It gains the socket-only rule for names that come from an explicit address. Without the rule, a regular file named by `HF_EMBED_SERVER_URL` is listed and deleted.
-- **`checkDotenv`** (T:1475): reads key names through the value-free env-secret CLI. It gains a note when the CLI marks a file invalid. Without the note, lane keys on rejected lines go unreported with no sign of why.
+- **`nodeScriptOf`** (`sweep-lane-residue.mjs`): reads the script that a node command runs. It gains the join rule for a path with spaces. Without the rule, `runsModelServer` returns false for any checkout under a spaced path.
+- **`checkModelServer`**: builds the server file list that M4 reports and apply deletes. It gains the socket-only rule for names that come from an explicit address. Without the rule, a regular file named by `HF_EMBED_SERVER_URL` is listed and deleted.
+- **`checkDotenv`**: reads key names through the value-free env-secret CLI. It gains a note when the CLI marks a file invalid. Without the note, lane keys on rejected lines go unreported with no sign of why.
 
 ### Data Flow
 The machine check builds the process and file lists, and apply deletes what this checkout owns from them. The repo check reads the tracked files against the allowlist, and it reads the trigger index outputs by structure. The trigger index generator writes those outputs, so it runs after every packet and tool edit. The docs describe these flows, and the 024 metadata records the result.
@@ -71,13 +71,13 @@ Imported from the Planning Packet in `../024-ollama-lane-removal/review/review-r
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `sweep-lane-residue.mjs` `checkModelServer` extra-name loop (T:1314-1322) | Lists server files for M4 and for apply | update | V socket case (real socket) and V regular-file case |
-| `sweep-lane-residue.mjs` socket-folder rule (about T:1326-1330) | Lists the socket folder only when it holds server files or is empty; the count `serverFiles` counts only listed files | unchanged | V case: a folder that holds a skipped regular file is kept |
-| `sweep-lane-residue.mjs` `nodeScriptOf` (T:1244) | Reads the script a node command runs | update | Script-match table in V; measured command prints `true true` |
-| `sweep-lane-residue.mjs` `runsModelServer` (T:1258) | Decides which processes are model servers for the M4 process list | unchanged (follows `nodeScriptOf`) | Measured command; V ownership cases at V:818 to V:860 |
-| `sweep-lane-residue.mjs` `isOwnedModelServer` (T:1275) and its `owned` flag (T:1307) | Decides whether apply may signal a process | unchanged (follows `nodeScriptOf`) | V ownership cases at V:818 to V:860 still pass |
-| `sweep-lane-residue.mjs` `checkDotenv` (T:1475-1506) | M7 lane-key finding | update (note only; status unchanged) | V dotenv bad-line case |
-| `sweep-lane-residue.mjs` `machineExitCode` (T:1576-1581) | Exit 2 on NOT_CHECKED | unchanged; M7 must not become NOT_CHECKED | Machine exit assertions in V |
+| `sweep-lane-residue.mjs` `checkModelServer` extra-name loop (over `MODEL_SERVER_DIR_FILES` and `dir.files`) | Lists server files for M4 and for apply | update | V socket case (real socket) and V regular-file case |
+| `sweep-lane-residue.mjs` socket-folder rule (the `socket-dir` item in `checkModelServer`) | Lists the socket folder only when it holds server files or is empty; the count `serverFiles` counts only listed files | unchanged | V case: a folder that holds a skipped regular file is kept |
+| `sweep-lane-residue.mjs` `nodeScriptOf` | Reads the script a node command runs | update | Script-match table in V; measured command prints `true true` |
+| `sweep-lane-residue.mjs` `runsModelServer` | Decides which processes are model servers for the M4 process list | unchanged (follows `nodeScriptOf`) | Measured command; the V ownership cases under `describe('model server ownership and socket names')` |
+| `sweep-lane-residue.mjs` `isOwnedModelServer` and the `owned` flag `checkModelServer` sets from it | Decides whether apply may signal a process | unchanged (follows `nodeScriptOf`) | The V ownership cases under `describe('model server ownership and socket names')` still pass |
+| `sweep-lane-residue.mjs` `checkDotenv` | M7 lane-key finding | update (note only; status unchanged) | V dotenv bad-line case |
+| `sweep-lane-residue.mjs` `machineExitCode` | Exit 2 on NOT_CHECKED | unchanged; M7 must not become NOT_CHECKED | Machine exit assertions in V |
 | `sweep-lane-residue.mjs` header, decisions 3 and 7 (line 34 onward) | Describes the allowlist and the script rule | update | `rg -n 'whole file|may contain spaces'` |
 | `fixtures/lane-residue-allowlist.json` (47 rows) | Exact-path rows with reasons | update (reasons only) | `rg -n '[Ll]ines? [0-9]'` prints no line; repo mode 47 of 47 |
 | `feature-catalog/tooling-and-scripts/lane-residue-gate-and-cleanup.md` line 19 and section 2 | Describes the gate and its trigger | update | `rg -n 'every push'` prints none; the whole-file line is present |
@@ -97,7 +97,7 @@ Required inventories:
 - Same-class producers: `rg -n 'MODEL_SERVER_DIR_FILES|dir\.files|lstatOrNull' .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs` shows that the server file list is built in one place.
 - Consumers of changed symbols: `rg -n 'nodeScriptOf|runsModelServer|isOwnedModelServer|checkDotenv' .skilled --glob '*.mjs' --glob '*.cjs' --glob '*.ts'`.
 - Matrix axes, with the rows that a new test covers:
-  - Address kind: socket (V:869, real socket), regular file (new), TCP address (existing V:886), fixed name (existing). Directory, symlink and absent path take the same `lstat().isSocket()` rule and have no new test; the implementation run names them as untested.
+  - Address kind: socket (the case `probes and deletes the socket file a custom server address names, beside the fixed names`, made a real socket), regular file (new), TCP address (existing case `probes no extra path for a TCP server address`), fixed name (existing). Directory, symlink and absent path take the same `lstat().isSocket()` rule and have no new test; the implementation run names them as untested.
   - Command shape: plain path (existing), spaced path (new, true), first script is another file (new, false), `xhf-model-server.cjs` as a suffix of another name (new, false), other script with the server path as an argument (new, false).
   - Dotenv: all lines valid (existing), one rejected line with one lane key (new, note and status FOUND).
 - Algorithm invariant, parser: `nodeScriptOf` returns the first non-option word after node when that word ends in `.js`, `.cjs`, `.mjs` or `.ts`. Otherwise it joins the following words into the shortest prefix whose last segment is exactly `hf-model-server.cjs`, and the search stops at the first later word that ends in a script extension. When no prefix matches, it returns the first non-option word, as it does today.
@@ -145,7 +145,7 @@ Gates, each a separate verification step. Run them in this order: finish all edi
 
 ### Term check for new text outside the allowlist
 
-The catalog page and the workflow file have no allowlist row, so every new sentence in them is checked before it is written: a `node -e` check of each sentence against `IDENTIFIER_TERMS` and `PROSE_TERMS` (T:110 to T:160) must print no hit. `sweep-lane-residue.mjs` and `sweep-lane-residue.vitest.ts` have exact-path rows, so their new text is exempt; the new test strings still live in the test file only.
+The catalog page and the workflow file have no allowlist row, so every new sentence in them is checked before it is written: a `node -e` check of each sentence against `IDENTIFIER_TERMS` and `PROSE_TERMS` in the tool must print no hit. `sweep-lane-residue.mjs` and `sweep-lane-residue.vitest.ts` have exact-path rows, so their new text is exempt; the new test strings still live in the test file only.
 <!-- /ANCHOR:testing -->
 
 ---

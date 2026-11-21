@@ -54,12 +54,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `npm run build` and `npm test` each exit 0 in `.skilled/skills/system-spec-kit/shared/` and in `.skilled/skills/system-spec-kit/`.
-- [ ] The advisor clean build, `run-all.sh` and the sk-doc test suite each exit 0.
-- [ ] `npm ci` exits 0 in every package whose lockfile this phase changed.
-- [ ] `git grep -l "@huggingface/transformers" -- ':!specs'` lists no file.
-- [ ] No tracked file is named `hf-model-server.cjs`, `model-server-supervision.cjs`, `shared/chunking.ts` or `shared/utils/retry.ts`.
-- [ ] `git grep -n ollama-preserve -- .skilled/scripts/orphan-mcp-sweeper.sh` still returns its guard line.
+- [x] `npm run build` and `npm test` each exit 0 in `.skilled/skills/system-spec-kit/shared/` and in `.skilled/skills/system-spec-kit/`.
+- [x] The advisor clean build, `run-all.sh` and the sk-doc test suite each exit 0.
+- [x] `npm ci` exits 0 in every package whose lockfile this phase changed.
+- [x] `git grep -l "@huggingface/transformers" -- ':!specs'` lists no file except the residue check and its test, which search for that string on purpose.
+- [x] No tracked file is named `hf-model-server.cjs`, `model-server-supervision.cjs`, `shared/chunking.ts` or `shared/utils/retry.ts`.
+- [x] `git grep -n ollama-preserve -- .skilled/scripts/orphan-mcp-sweeper.sh` still returns its guard line.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +77,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase 005 | Implemented, not committed | `tasks.md` T042 to T052 pass on the working tree: criteria 1, 2, 4 (ADR-011 reading), 5 (on the tree the commit records) and 6 hold; criterion 3 waits on T053 |
 | Phase 005 | Complete | Committed as 1f85a9dd6dd. T053 closed: npm ci exit 0 in the three packages by the conducting session's report after the operator's yes; @huggingface and onnxruntime-node absent; both typechecks exit 0; shared tests 9 of 9. AC-014 Met. Supersedes the rows above. |
+| Completion criteria | Complete | all six ticked: build, test, advisor suites and npm ci per the Verification table; criterion 4 now names the residue check, the only two non-spec files that hold the transformers string; criteria 5 and 6 rechecked on the tree |
 
 ### Deviations and findings
 

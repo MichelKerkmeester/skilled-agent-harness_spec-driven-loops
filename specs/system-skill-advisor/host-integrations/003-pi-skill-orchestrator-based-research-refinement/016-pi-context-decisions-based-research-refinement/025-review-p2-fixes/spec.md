@@ -80,7 +80,7 @@ The first `runsModelServer` call is the R1-P2-001 defect: a checkout path with a
 
 ### Out of Scope
 - Changing the advisory-checks trigger. The gate runs on `push` to `main` and `skilled/**` plus `pull_request`; the packet rewords the claim and leaves the trigger alone, because the review's fix for R3-P2-003 is a wording fix.
-- Setting M7 to NOT_CHECKED on a rejected dotenv line, which the review's R9-P2-001 fix suggests. In `machineExitCode` (`sweep-lane-residue.mjs`, T:1579) NOT_CHECKED exits 2, so `/doctor:update apply` would fail for any `.env` with one odd line, and the lane code that read those keys is gone. A note keeps the status and names the file.
+- Setting M7 to NOT_CHECKED on a rejected dotenv line, which the review's R9-P2-001 fix suggests. In `machineExitCode` in `sweep-lane-residue.mjs`, NOT_CHECKED exits 2, so `/doctor:update apply` would fail for any `.env` with one odd line, and the lane code that read those keys is gone. A note keeps the status and names the file.
 - Per-term allowlist rows, the first option in the review's R1-P2-002 fix. The review names the documentation option as sufficient, and this packet takes it.
 - Closing the deferred search item SL4-005 with this packet's fixtures alone. The follow-up `/deep:review` decides it.
 - Running `npm ci`. That install is the operator's (005 T053), and the packet records the operator's report rather than running it.
@@ -96,10 +96,11 @@ The rows below are the planned edits for the implementation run. The write scope
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json` | Modify | Remove line numbers from 32 reasons; the 47 paths stay |
 | `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/lane-residue-gate-and-cleanup.md` | Modify | Reword the every-push line and state the whole-file allowlist limit |
 | `.github/workflows/advisory-checks.yml` | Modify | Comment lines 21 to 23 only; the trigger block stays as it is |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md` | Modify | Reword line 25 to the push branch filter. Added during implementation, since it held the same every-push claim |
 | `generate-trigger-index.mjs` run | Regenerate | Last write: `runtime/data/trigger-index.json` and its three fixture outputs |
 | `../024-ollama-lane-removal/008-cleanup-wiring-and-gating/plan.md` | Modify | Reword line 375 |
 | `../024-ollama-lane-removal/goal.md` | Modify | Tick the criteria that hold at lines 88 to 92; append one Complete row through `goal.cjs packet-log` |
-| `../024-ollama-lane-removal/005-shared-embeddings-package/` | Modify | Close T053 and AC-014; Blocked wording becomes Complete in five documents |
+| `../024-ollama-lane-removal/005-shared-embeddings-package/` | Modify | Close T053 and AC-014; Blocked wording becomes Complete in five documents. The follow-up review fixes then tick the six goal criteria and name phase commit `1f85a9dd6dd` in T054 |
 | `../024-ollama-lane-removal/spec.md` | Modify | Status and phase-map row 5 read Complete |
 | `../spec.md` (016 parent) | Modify | Row 24 reads Complete; add row 25 for this packet |
 | `../024-ollama-lane-removal/001-residue-check-and-cleanup-tool/tasks.md` and `../024-ollama-lane-removal/006-prose-docs-and-changelogs/tasks.md` | Modify | Evidence clauses on 12 and 11 checked CHK rows |
@@ -168,7 +169,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: A machine-mode run starts no more processes than it does today. The one new filesystem call is an `lstat` on each explicit extra server name.
+- **NFR-P01**: A machine-mode run starts no more processes than it does today. It makes two new filesystem calls: an `lstat` on each explicit extra server name, and the `fs.statSync` in `isFileOnDisk`. `nodeScriptOf` makes that `statSync` only when the first script word is an absolute path with no script extension. `checkModelServer` reads every node process through `nodeScriptOf` once, and each process it reads as a model server twice more for ownership, so the call can run three times for one server process.
 - **NFR-P02**: The `nodeScriptOf` change scans the words of one command line once, so its cost is linear in the length of that line.
 
 ### Security

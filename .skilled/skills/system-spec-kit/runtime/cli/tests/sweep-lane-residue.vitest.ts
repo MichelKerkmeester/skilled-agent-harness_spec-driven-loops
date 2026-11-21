@@ -898,6 +898,8 @@ describe('model server ownership and socket names', () => {
     ['node --require /x/hook.cjs /x/.skilled/bin/hf-model-server.cjs', true],
     ['node --require /x/hook /x/My Repo/.skilled/bin/hf-model-server.cjs', true],
     ['node tool.mts /x/.skilled/bin/hf-model-server.cjs', false],
+    ['node --env-file cfg.vars /x/.skilled/bin/hf-model-server.cjs', true],
+    ['node --inspect-port 9230 /x/.skilled/bin/hf-model-server.cjs', true],
   ])('reads the server script from the whole command line: %s', (command, expected) => {
     expect(runsModelServer(command)).toBe(expected);
   });
@@ -1126,6 +1128,27 @@ describe('apply mode', () => {
     expect(fs.readdirSync(ipcDir)).toEqual(['daemon-ipc.sock']);
     expect(fs.existsSync(daemonSocket)).toBe(true);
     expect(report.exitCode).toBe(0);
+  });
+
+  // The containment check accepts a root that is itself a link, so the
+  // directory check before each server file delete is the only thing that
+  // keeps a linked IPC folder from carrying the delete into its target.
+  it('refuses to delete a model server file through a linked IPC folder', async () => {
+    const fixture = makeMachineFixture();
+    const realDir = makeTempDir('lane-residue-ipc-real-');
+    const target = writeFile(realDir, 'hf-embed.sock', '');
+    const linkedDir = path.join(makeTempDir('lane-residue-ipc-link-'), 'ipc');
+    fs.symlinkSync(realDir, linkedDir);
+
+    const report = await applyQuietly(fixture, {}, { ...fixture.env, SPECKIT_IPC_SOCKET_DIR: linkedDir });
+
+    expect(fs.existsSync(target)).toBe(true);
+    expect(actionsOf(report, 'refused')).toContainEqual({
+      action: 'refused',
+      reason: 'its directory is a symlink',
+      target: path.join(linkedDir, 'hf-embed.sock'),
+    });
+    expect(actionsOf(report, 'deleted').filter((action: Action) => action.target.startsWith(linkedDir))).toEqual([]);
   });
 
   it('keeps a directory that sits where a model server file name was expected', async () => {

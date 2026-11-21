@@ -45,14 +45,16 @@
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json",
       ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/lane-residue-gate-and-cleanup.md",
       ".github/workflows/advisory-checks.yml",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
       "runtime/data/trigger-index.json",
+      "review/review-report.md",
       ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs",
       "feature-catalog/tooling-and-scripts/lane-residue-gate-and-cleanup.md",
       ".skilled/commands/doctor/scripts/tests/lane-residue-gate.test.cjs",
       "retrieval/fixtures/generation-diagnostics.json",
       "retrieval/fixtures/corpus-manifest.json",
       "retrieval/fixtures/phrase-variants.json",
-      "scratch/.gitkeep"
+      "retrieval/README.md"
     ],
     "entities": [
       {
@@ -116,9 +118,21 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
         "name": "trigger-index.json",
         "kind": "config",
         "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -149,12 +163,6 @@
         "name": "phrase-variants.json",
         "kind": "config",
         "path": "retrieval/fixtures/phrase-variants.json",
-        "source": "derived"
-      },
-      {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": "scratch/.gitkeep",
         "source": "derived"
       },
       {
@@ -192,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 024 deep review (`../024-ollama-lane-removal/review/review-report.md`, verdict CONDITIONAL) found no P0 or P1 defect and ten P2 advisories",
     "created_at": "2026-11-21T13:34:37Z",
-    "last_save_at": "2026-11-21T14:38:59.639Z",
+    "last_save_at": "2026-11-21T15:17:41.553Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:813ee6d8628ee4cb7e7b66ddbbd7850fa88e7ff0092df8d3ce9e22645d329b57",
+    "source_fingerprint": "sha256:8c1b50c7185eb20b8f6ef3a97f7972d1559e6e31065de30edade81df43bca476",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7ff036db8ba1819f6ed1b2198bd9cd987f937d485d8013c5a177cc260e808d4e",
-      "plan.md": "c006d374153b0cfee7ba2d5a4c8380cd0d54e2a167c924edab6c802cb4c25a68",
-      "tasks.md": "ed2b3ec5d9f9629d94d294d8c15248f43bea439764f1b9790091c3ca17b75efa",
-      "implementation-summary.md": "27e4f136e196c99c01d4304b4d81601ec561b12f361a7ab7ee2747185a1c6ed7"
+      "spec.md": "1b90f41d4466368f458183ab2db067463e9feec4f8efb06fcf62f8783c640bd4",
+      "plan.md": "079bd44d3d2354dc3feb7a958f55c9fda99ae38663f76d8c0c3183c0bc5b2088",
+      "tasks.md": "a38278bf7c469b81727ca583d8d85c03ec5801b63ccac3bbd2dc0025b77b32d0",
+      "implementation-summary.md": "e8b42040b302fa576392e8fe477ead37eb2bbb8fad4d6e3c31d5f6a64c7d7cab"
     },
     "last_active_at": null
   }

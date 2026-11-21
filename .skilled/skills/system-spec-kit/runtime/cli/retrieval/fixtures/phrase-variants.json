@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6085372a48e04ecdf2ec4a6d5338a40395edb769eb118aa549296f8b633163f4",
+  "manifestHash": "1a11013529320f85cd0656ba2d35848787e98f16d178994bf13962460d74f016",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5372,6 +5372,9 @@
     ],
     "025 artifact certificate binding complete": [
       "025 artifact certificate binding complete"
+    ],
+    "025 deep review report": [
+      "025 deep review report"
     ],
     "025 memory search degraded readiness wiring": [
       "025-memory-search-degraded-readiness-wiring"
@@ -102208,6 +102211,9 @@
     ],
     "review p2 fixes plan": [
       "review p2 fixes plan"
+    ],
+    "review p2 fixes review report": [
+      "review p2 fixes review report"
     ],
     "review p2 fixes tasks": [
       "review p2 fixes tasks"
