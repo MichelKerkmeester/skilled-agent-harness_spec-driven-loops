@@ -151,6 +151,27 @@ describe('live stdout for the progress row', () => {
     }) as { error?: unknown };
     expect(under.error).toBeUndefined();
   });
+
+  // The progress row judges the attempt in flight from this copy, so it must hold what
+  // the saved log will hold, and must not keep growing for a child that outlives the stop.
+  it('hands the callback the kept stdout, which stops at the cap while the child writes on', async () => {
+    const script = "trap '' TERM; printf 'head\\n'; sleep 0.1; yes a | head -c 4096; sleep 0.1; printf 'after\\n'; exit 0";
+    const chunks: string[] = [];
+    const kept: unknown[] = [];
+    const result = await runLineageProcess('sh', ['-c', script], {
+      env: process.env,
+      timeoutMs: 10_000,
+      maxBuffer: 1024,
+      onOutput: (chunk: unknown, keptStdout: unknown) => {
+        if (typeof chunk === 'string') chunks.push(chunk);
+        kept.push(keptStdout);
+      },
+    });
+    expect(chunks.join('')).toContain('after\n');
+    expect(result.stdout.length).toBeLessThanOrEqual(1024);
+    expect(result.stdout).not.toContain('after');
+    expect(kept.at(-1)).toBe(result.stdout);
+  });
 });
 
 function listTree(dir: string): string[] {

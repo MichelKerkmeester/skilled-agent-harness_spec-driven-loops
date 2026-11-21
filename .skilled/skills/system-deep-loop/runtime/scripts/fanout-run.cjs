@@ -1470,15 +1470,39 @@ function redactTerminalLineageLogs(lineageDir) {
 const PROVIDER_ID_FIELD_PATTERN = /("(?:workspace|workspace_?id|session_?id|org|org_?id|organization_?id|account_?id|user_?id|email)"\s*:\s*)"[^"]*"/gi;
 const PROVIDER_ID_TOKEN_PATTERN = /\b(?:wrk|ws|org|acct|ses|usr|user|proj|key|sk)_[A-Za-z0-9]{6,}\b/g;
 const PROVIDER_URL_PATTERN = /\bhttps?:\/\/[^\s"'\\<>)]+/gi;
-const PROVIDER_EMAIL_PATTERN = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
+const PROVIDER_EMAIL_PATTERN = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/y;
+const EMAIL_LOCAL_RUN_PATTERN = /[A-Za-z0-9._%+-]+/g;
+
+// A global replace tries the address pattern at every position of a run of local-part
+// characters, which is quadratic on a long run with no '@'. Every position of a run ends
+// its local part at the same '@', so the result is the same when only the run's first
+// position is tried, or the end of the address before it.
+function maskEmailAddresses(text) {
+  let masked = '';
+  let copied = 0;
+  let from = 0;
+  while (from < text.length) {
+    EMAIL_LOCAL_RUN_PATTERN.lastIndex = from;
+    const run = EMAIL_LOCAL_RUN_PATTERN.exec(text);
+    if (!run) break;
+    from = run.index + run[0].length;
+    if (text[from] !== '@') continue;
+    PROVIDER_EMAIL_PATTERN.lastIndex = run.index;
+    const address = PROVIDER_EMAIL_PATTERN.exec(text);
+    if (!address) continue;
+    masked += `${text.slice(copied, run.index)}<email>`;
+    copied = run.index + address[0].length;
+    from = copied;
+  }
+  return masked + text.slice(copied);
+}
 
 function redactProviderText(text) {
   if (typeof text !== 'string') return text;
-  return text
+  const unmailed = text
     .replace(PROVIDER_ID_FIELD_PATTERN, '$1"<redacted>"')
-    .replace(PROVIDER_URL_PATTERN, '<url>')
-    .replace(PROVIDER_EMAIL_PATTERN, '<email>')
-    .replace(PROVIDER_ID_TOKEN_PATTERN, '<id>');
+    .replace(PROVIDER_URL_PATTERN, '<url>');
+  return maskEmailAddresses(unmailed).replace(PROVIDER_ID_TOKEN_PATTERN, '<id>');
 }
 
 function hasNonEmptyFile(filePath) {
@@ -3201,7 +3225,7 @@ const LINEAGE_STDERR_CAP_BYTES = 256 * 1024;
  *
  * @param {string} command - Executable to run.
  * @param {string[]} cmdArgs - Arguments for the executable.
- * @param {Object} opts - { cwd, env, timeoutMs, maxBuffer, input? }.
+ * @param {Object} opts - { cwd, env, timeoutMs, maxBuffer, input?, onOutput?(chunk, keptStdout) }.
  * @returns {Promise<{status:number|null, signal:string|null, stdout:string, error?:Error}>}
  */
 function runLineageProcess(command, cmdArgs, opts) {
@@ -3256,21 +3280,24 @@ function runLineageProcess(command, cmdArgs, opts) {
 
     child.stdout?.setEncoding('utf8');
     child.stdout?.on('data', (chunk) => {
-      if (typeof opts.onOutput === 'function') opts.onOutput(chunk);
-      if (truncated) return;
-      stdoutBytes += Buffer.byteLength(chunk, 'utf8');
-      if (stdoutBytes > maxBuffer) {
-        truncated = true;
-        // The stop below sends the signal a timeout sends, and a child may survive it and
-        // exit 0, so the overflow travels as its own error, the code spawnSync uses for it.
-        if (!spawnError) {
-          spawnError = new Error(`stdout passed the ${maxBuffer}-byte cap`);
-          spawnError.code = 'ENOBUFS';
+      if (!truncated) {
+        stdoutBytes += Buffer.byteLength(chunk, 'utf8');
+        if (stdoutBytes > maxBuffer) {
+          truncated = true;
+          // The stop below sends the signal a timeout sends, and a child may survive it and
+          // exit 0, so the overflow travels as its own error, the code spawnSync uses for it.
+          if (!spawnError) {
+            spawnError = new Error(`stdout passed the ${maxBuffer}-byte cap`);
+            spawnError.code = 'ENOBUFS';
+          }
+          terminateLineageProcess(child, 'SIGTERM');
+        } else {
+          stdout += chunk;
         }
-        terminateLineageProcess(child, 'SIGTERM');
-        return;
       }
-      stdout += chunk;
+      // The kept stdout goes beside the chunk, so a reader of the running attempt judges the
+      // text the result will carry instead of a second copy that grows past the cap.
+      if (typeof opts.onOutput === 'function') opts.onOutput(chunk, stdout);
     });
     // Keep a bounded copy of stderr: an executor refusal (usage limit, auth,
     // sandbox) is reported there and nowhere else, and without it a failed
@@ -5463,7 +5490,8 @@ async function main() {
       });
 
       // The attempt's stdout reaches its log file only on exit, so the progress row
-      // judges the passes of the attempt in flight from the copy kept here.
+      // judges the passes of the attempt in flight from the runner's kept stdout, the
+      // capped head the log will hold.
       let liveStdout = '';
       // Started here so the sampler exists for every heartbeat it takes; the first
       // sample is the baseline, so no detection can fire before dispatch.
@@ -5492,9 +5520,9 @@ async function main() {
           env: dispatchEnv,
           maxBuffer: 20 * 1024 * 1024,
           abortSignal: context.signal,
-          onOutput: (chunk) => {
+          onOutput: (_chunk, keptStdout) => {
             markLineageEvent();
-            if (typeof chunk === 'string') liveStdout += chunk;
+            if (typeof keptStdout === 'string') liveStdout = keptStdout;
           },
           onSpawn: ({ pid }) => {
             lineageProcessLiveness.set(livenessKey, { alive: true, pid });

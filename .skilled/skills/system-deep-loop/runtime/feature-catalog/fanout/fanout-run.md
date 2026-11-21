@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.27.0
+version: 1.4.28.0
 ---
 
 # Fan-out CLI lineage driver
@@ -92,7 +92,8 @@ Each `progress` row also carries the lineage's own progress, read by
 reduced registry frontier) and `flaggedPasses`, the passes `passEvidence` in
 `fanout-salvage.cjs` marks `unexamined`, or null while any pass cannot be judged. An attempt's
 stdout reaches its log file only when it exits, so the row judges the running attempt from the
-stdout the runner has received so far. A beat whose fields cannot be read still writes its row
+stdout the runner has kept so far. That copy stops at the 20 MB cap the saved log stops at, so a
+child that outlives the stop cannot grow it. A beat whose fields cannot be read still writes its row
 without them.
 
 That default is load-bearing rather than cosmetic. The heartbeat appends to the
@@ -265,7 +266,7 @@ The stdout summary and `orchestration-summary.json` carry `lineages`, one `{labe
 |---|---|
 | `tests/unit/fanout-run.vitest.ts` | Native lineage refusal (exit 3, names the lineage, spawns nothing), bad JSON config exits 3, missing required args exits 3, 2-lineage pool creates distinct dirs + ledger + summary, same-kind replica state dirs are distinct |
 | `tests/unit/fanout-run.vitest.ts` | Expansive depth groups: `expansive depth frontier` (the round-robin deal, the reuse of the budget step's partition, the per-lineage node store, the `frontier_scope` binding, the recorded partition and `depthMode` propagation) and `per-lineage expansive budget` (the seed-share budget, the loop-default floor for a lineage dealt no seed node, and the refusal of an expansive matrix that holds a native lineage) |
-| `tests/unit/fanout-status.vitest.ts` | Progress-row fields, the heartbeat that still beats when they cannot be read, live stdout handed to the output callback, and `--status` printing one row per lineage without writing or refusing a directory with no ledger |
+| `tests/unit/fanout-status.vitest.ts` | Progress-row fields, the heartbeat that still beats when they cannot be read, live stdout handed to the output callback with the kept stdout that stops at the cap, and `--status` printing one row per lineage without writing or refusing a directory with no ledger |
 | `tests/unit/fanout-stop.vitest.ts` | SIGHUP stops the lineages and exits 129, a SIGKILL of the bootstrap stops them, `--stop` ends a live run from a second process with a rerun per stopped lineage, and leaves a process alone when its lineage is not live in the ledger |
 | `tests/unit/fanout-lineage-config.vitest.ts` | The lineage block written from the root config for research and review, after a non-zero exit too, and left alone without a root config |
 | `tests/unit/fanout-claude-stream-json.vitest.ts` | The claude stream-json argv, its last-result cost, and the pending-question and quota checks reading the final answer |
