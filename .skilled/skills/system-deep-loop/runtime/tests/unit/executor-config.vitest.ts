@@ -1052,8 +1052,9 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
   });
 
   // The shipped Pi settings name no private provider, so a vendoring project runs Pi on its
-  // own provider without an overlay; the default model stays first among the enabled ones.
-  it('ships no default provider and keeps its default model first among the enabled models', () => {
+  // own provider without an overlay. Every dispatch names its model, so the order of the
+  // enabled list is the operator's to choose; the dispatch default only has to be enabled.
+  it('ships no default provider and keeps its dispatch default among the enabled models', () => {
     const settings = JSON.parse(readFileSync(resolve(REPO_ROOT, '.pi', 'settings.json'), 'utf8')) as {
       defaultProvider?: string;
       defaultModel?: string;
@@ -1061,7 +1062,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
     };
     expect(settings.defaultProvider).toBeUndefined();
     expect(settings.defaultModel).toBeUndefined();
-    expect(settings.enabledModels?.[0]).toBe(`llmgateway/${PI_DEFAULT_MODEL}`);
+    expect(settings.enabledModels).toContain(`llmgateway/${PI_DEFAULT_MODEL}`);
   });
 
   it('lets the pi-blackhole workers fall back to the session model, which supports the high thinking level', () => {
