@@ -478,8 +478,10 @@ STATUS=[APPLIED|PARTIAL|ROLLED_BACK|DECLINED|CANCELLED|DRY_RUN|FAILED]
 STATUS=FAILED ERROR="[sanitized error]"
 Action: [check|align|apply]
 State record: [validated path or not persisted for this action]
-Next: [safe next step]
+Next: [the updater's own Next: command when it printed one, else the safe next step]
 ```
+
+The updater ends a refusal with a `Next:` line naming the exact command, and with `--json` that line sits inside the `error` text. Sanitize the error to its first line for `ERROR=`, and carry the `Next:` command into the `Next:` line rather than dropping it.
 
 ## 10. Compatibility Action
 

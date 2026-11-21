@@ -110,6 +110,8 @@ REFUSE: [name] is a protected workflow
 REFUSE: [name] is not a bare lowercase hyphen-case name ending in .yml
 ```
 
+Under the refused line, print one `Next:` line with the exact rerun. The scaffold writes only a new, unprotected workflow, so the rerun names another file: `Next: /doctor:ci scaffold --name=<new-name>.yml`, with a bare lowercase hyphen-case name for the third line.
+
 ### Toggle Plan And Approval
 
 ```text
@@ -152,6 +154,8 @@ REFUSE: [master] must stay unset because it also skips [file], the only check th
 REFUSE: [name] must stay unset because the CI profile lists it in neverOff
 REFUSE: [name] must stay unset, as [README path] says
 ```
+
+Under the refused line, print `Next: /doctor:ci report`, which lists every switch with its state, so the operator can pick a switch the toggle accepts. For the ignored-profile line, fix the profile as the line says, then rerun the same `/doctor:ci toggle`.
 
 In this repository the ruleset requires the message-contract context, so the two required-check lines read:
 

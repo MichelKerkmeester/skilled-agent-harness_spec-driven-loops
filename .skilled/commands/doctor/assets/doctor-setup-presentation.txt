@@ -42,7 +42,7 @@ Render this table first, before any leg runs.
 | `/doctor:mcp` | Code Mode install and debug, its UTCP configuration and runtime registration |
 | `/doctor:install [--root <dir>] [--runtimes <list>] [--json]` | Putting Skilled into your own project repo: the build check, what is already linked, and the ordered setup commands to run |
 | `/doctor:symlink [check|link|unlink] [--json] [--root <dir>]` | The framework links in a project repo: which runtime folders are linked, broken or missing, linking them over a printed plan and its digest, and undoing one recorded run |
-| `/doctor:overlay [status|apply|repin] [--json] [--root <dir>]` | A vendored Skilled tree's own overlays: which destinations are out of sync and why, then putting them back, capturing one live edit, or re-pinning the tree to a newer upstream commit over a staged plan, after one yes |
+| `/doctor:overlay [status|apply|repin] [--json] [--audit] [--root <dir>] [--capture|--adopt <path>|--relayout] [--upstream|--to|--rollback <value>]` | A vendored Skilled tree's own overlays: which destinations are out of sync and why, with `--audit` the unowned drift and the overlay folder's READMEs, then putting them back, capturing one live edit, adopting one unowned path, moving sources onto their layout paths or re-pinning the tree to a newer upstream commit over a staged plan and rolling a failed re-pin back, each after one yes |
 
 ## 3. Per-Leg Result Table
 
