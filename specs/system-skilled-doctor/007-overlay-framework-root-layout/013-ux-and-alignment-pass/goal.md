@@ -84,6 +84,6 @@ and findings belong here.
 | Alignment critic | `executors.json` names a cli-opencode critic. The operator named no external CLI, so both critics ran native: `review`, model opus, effort high |
 | Alignment scope | Two path runs (`.skilled/commands/doctor`, `.skilled/skills/system-skilled-doctor`) with `--base 57c01fb4c11^ --full-diff`, because the default base and first-parent mode scope 007's merged work to almost nothing |
 | Alignment lanes | Lanes ran against the main checkout, which matched the branch start, and returned their JSON through their scratch folders |
-| Worker dispatch | Every Agent worker ran with `model: "opus"` and `effort: "medium"`, and every alignment lane and critic with `model: "opus"` and `effort: "high"`, all set on the call |
+| Worker dispatch | In the first session every Agent worker ran with `model: "opus"` and `effort: "medium"`, and every alignment lane and critic with `model: "opus"` and `effort: "high"`, all set on the call. In the second session every worker set `model: "opus"` on the call, and effort medium was written into the prompt rather than passed as the parameter |
 | Phase folder number | `create.sh --phase` allocated 018; the folder was renamed to the 013 the parent map names |
 <!-- /ANCHOR:log -->

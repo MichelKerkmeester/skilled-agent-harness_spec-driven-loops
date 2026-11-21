@@ -96,7 +96,7 @@ The work ran on `worktrees/506-ux-and-alignment-pass` over two sessions. The fir
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Each behavior change started with a test that failed, and each commit names its red run. Workers that edited `overlay-engine.cjs` ran one at a time. Every Agent dispatch ran with `model: "opus"` and effort medium, and the alignment lanes and critics ran on opus at effort high.
+Each behavior change started with a test that failed, and each commit names its red run. Workers that edited `overlay-engine.cjs` ran one at a time. In the first session every Agent dispatch set `model: "opus"` and effort medium on the call, and the alignment lanes and critics ran on opus at effort high. In the second session every dispatch set `model: "opus"` on the call, and effort medium was written into the prompt rather than passed as the parameter.
 
 ### Review rounds
 
