@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.40.0
+version: 1.0.41.0
 ---
 
 # Vendored Skilled Overlays
@@ -205,12 +205,12 @@ A link on the path is refused the same way when it leads outside the tree or res
 BLOCKED  t: thing is a link that leads outside the tree, to /elsewhere/thing, where overlay t writes
   apply writes only inside the tree, and a write through this link would land outside it, so the link stays
   Next: mv /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
-BLOCKED  t: thing is a link that does not resolve, where overlay t writes
+BLOCKED  u: other is a link that does not resolve, where overlay u writes
   apply cannot tell where a write through it would land, so it writes nothing and the link stays
-  Next: mv /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  Next: mv /path/to/tree/other /path/to/tree/other.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
-The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same text on a `MISS` line. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
+The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same lines with `MISS` in place of `BLOCKED`. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
 
 ### An Edit to an Owned File
 
