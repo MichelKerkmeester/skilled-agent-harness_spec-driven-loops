@@ -261,6 +261,9 @@ type RunAuditedExecutorCommandInput = {
   // A clean exit does not prove a good run for every CLI. When set, it judges the
   // output of a child that exited 0, and a non-null reason is recorded as a crash.
   completionCheck?: (exitCode: number, stdout: string, stderr: string) => string | null;
+  // Receives the child's captured stdout once a spawned child settles, whatever its exit,
+  // so a caller can record what the stream reports, such as its cost, without echoing it.
+  onStdout?: (stdout: string) => void;
 };
 
 // ───────────────────────────────────────────────────────────────────
@@ -1358,23 +1361,25 @@ export function classifyExecutorUnavailable(stdout: string, stderr: string): str
     .filter((line) => line.trim().length > 0)
     .slice(-20)
     .filter((line) => {
-      if (/\b(error|failed|failure|exception|denied|status)\b/i.test(line)) {
-        return true;
-      }
-
+      // An event stream also carries tool output, whose text can name an error and a
+      // quota without the executor having hit one, so a JSON event counts only when its
+      // own shape says the executor failed: an error event, a Claude result flagged
+      // is_error, or a harness final event whose reason kind is error.
+      let parsed: unknown;
       try {
-        const parsed: unknown = JSON.parse(line);
-        return typeof parsed === 'object'
-          && parsed !== null
-          && !Array.isArray(parsed)
-          && (
-            'error' in parsed
-            || 'errorKind' in parsed
-            || ('type' in parsed && parsed.type === 'error')
-          );
+        parsed = JSON.parse(line);
       } catch {
+        return /\b(error|failed|failure|exception|denied|status)\b/i.test(line);
+      }
+      if (!isObjectRecord(parsed)) {
         return false;
       }
+      return 'error' in parsed
+        || 'errorKind' in parsed
+        || parsed.type === 'error'
+        || parsed.event === 'error'
+        || (parsed.type === 'result' && parsed.is_error === true)
+        || (parsed.type === 'final' && isObjectRecord(parsed.reason) && parsed.reason.kind === 'error');
     });
   const output = `${stdoutErrors.join('\n')}\n${stderr}`;
   const markers = [
@@ -1494,6 +1499,8 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       sessionId: null,
     });
   }
+
+  input.onStdout?.(typeof result.stdout === 'string' ? result.stdout : '');
 
   if (result.error) {
     const isTimeoutError =

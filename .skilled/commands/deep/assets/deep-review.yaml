@@ -1759,6 +1759,7 @@ workflow:
           notes:
             - "Routed through runAuditedExecutorCommand so claude-code produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
             - "CLAUDE_CONFIG_DIR is forwarded through guardContext.env (CLAUDE_ prefix is allowlisted) so account-specific Claude Code routing is preserved"
+            - "Builds through buildLineageCommand: --output-format stream-json --verbose, kept off the terminal; the session cost is written to {artifact_dir}/iterations/iteration-{NNN}.cost.json (providerCostUsd, null when the stream reports none); an unset model resolves to the builder's CLAUDE_DEFAULT_MODEL"
             - "sandboxMode maps to permission-mode: read-only -> plan, workspace-write or unset -> acceptEdits, danger-full-access -> bypassPermissions"
             - "claude-code has no serviceTier flag"
             - "claude-code supports --effort for reasoning depth"
@@ -1786,9 +1787,9 @@ workflow:
             - "PRE-DISPATCH RULE (read before running the script): when this run is ITSELF a fan-out CLI lineage — config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID / SPECKIT_CLI_DISPATCH_STACK / CODEX_SESSION_ID is present in the environment — the lineage IS the executor. Do NOT run this dispatch script. Perform the iteration in-process instead: read the rendered prompt at {state_paths.prompt_dir}/iteration-{current_iteration}.md, do the review pass yourself, write the iteration file and the delta, and hand the iteration record to the append gateway (append-mode-event.cjs) exactly as the leaf contract requires, never writing the state log yourself, then continue to post_dispatch_validate."
             - "Nested CLI dispatch from a lineage is a route violation, not a slow path: a codex lineage that runs this script spawns codex inside its own sandbox, where the child cannot initialize and every iteration fails. The script refuses that case before any spawn and before any dispatch receipt is written, exiting RECURSION_GUARD_EXIT_CODE; that refusal is a route error to fix, never a redispatchable executor failure."
             - "Routed through runAuditedExecutorCommand so codex produces INTENT + COMPLETION dispatch receipts; recursion guard (CODEX_SESSION_ID) + env allowlist (CODEX_/OPENAI_/AZURE_OPENAI_) enforced via buildExecutorDispatchEnv"
-            - "Fails closed when the codex binary is absent (exit 1) — parity with the fan-out cli-codex lineage guard in fanout-run.cjs; codex routing never degrades to native"
+            - "Builds through the shared fan-out builder (buildLineageCommand), which throws when the codex binary is absent, before any receipt; codex routing never degrades to native"
             - "codex exec reads the iteration prompt from stdin via the trailing '-' (input: promptBody); '-c model_reasoning_effort=' maps reasoning depth, default medium; '-c service_tier=' forwarded when configured"
-            - "--sandbox follows the requested sandbox mode and defaults to workspace-write when none is set, so the iteration can write its own iteration file/delta/state record (a requested read-only is passed through and fails the post-dispatch artifact gate); -c approval_policy=never keeps it non-interactive; --model omitted when unset so ~/.codex/config.toml default applies"
+            - "--sandbox follows the requested sandbox mode and defaults to workspace-write when none is set, so the iteration can write its own iteration file/delta/state record (a requested read-only is passed through and fails the post-dispatch artifact gate); -c approval_policy=never keeps it non-interactive; an unset model resolves to the builder's CODEX_DEFAULT_MODEL"
         if_cli_cursor:
           command: |
             node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-cursor {cli_dispatch_args}

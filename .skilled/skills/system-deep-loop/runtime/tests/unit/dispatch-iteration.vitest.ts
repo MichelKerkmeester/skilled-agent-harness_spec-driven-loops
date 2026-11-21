@@ -7,7 +7,7 @@
 // move. These cases pin the dispatch-free exits that a wrong branch or a
 // permissive parser would otherwise turn into a real dispatch.
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
@@ -30,14 +30,19 @@ import { detectFromAncestry } from '../../lib/deep-loop/executor-audit.js';
 const here = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(here, '..', '..', '..', '..', '..', '..');
 const SCRIPT = resolve(here, '..', '..', 'scripts', 'dispatch-iteration.cjs');
-const dispatcher = createRequire(import.meta.url)(SCRIPT) as {
-  buildClaudeInvocation: (
-    context: Record<string, unknown>,
-    configDir: string,
-    promptBody: string,
-  ) => { executor: { sandboxMode: string | null }; args: string[] };
+const requireCjs = createRequire(import.meta.url);
+const dispatcher = requireCjs(SCRIPT) as {
+  buildClaudeDispatch: (context: Record<string, unknown>) => {
+    args: string[];
+    echoStdout?: boolean;
+    executor: { model: string | null; sandboxMode: string | null };
+    onStdout: (stdout: string) => void;
+  };
   buildContext: (values: Record<string, string>) => Record<string, unknown>;
 };
+const { CLAUDE_DEFAULT_MODEL, CODEX_DEFAULT_MODEL } = requireCjs(
+  resolve(here, '..', '..', 'scripts', 'fanout-run.cjs'),
+) as { CLAUDE_DEFAULT_MODEL: string; CODEX_DEFAULT_MODEL: string };
 
 const EXECUTOR_KINDS = [
   'native',
@@ -291,57 +296,110 @@ describe('dispatch-iteration --claude-config-dir', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Dispatch Iteration Claude Permission Mode
+// MODULE: Dispatch Iteration Claude Dispatch
 // ───────────────────────────────────────────────────────────────────
 //
 // The review leaf records its own state through node every iteration, which
 // acceptEdits cannot run in -p mode, so --sandbox-mode must reach the Claude
 // permission mode on review exactly as it does on research. Built in-process
-// because a spawned Claude dispatch is refused under a Claude process tree.
+// because a spawned Claude dispatch is refused under a Claude process tree; a
+// shim on PATH satisfies the builder's binary check.
 
-describe('dispatch-iteration Claude permission mode', () => {
-  function permissionFor(loopType: 'research' | 'review', sandboxMode: string): {
-    permission: string;
-    executorSandbox: string | null;
-  } {
+describe('dispatch-iteration Claude dispatch', () => {
+  let root = '';
+  let savedPath: string | undefined;
+
+  beforeAll(() => {
+    root = mkdtempSync(join(tmpdir(), 'dispatch-claude-'));
+    mkdirSync(join(root, 'bin'));
+    writeFileSync(join(root, 'bin', 'claude'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+    writeFileSync(join(root, 'prompt.md'), 'fixture prompt\n', 'utf8');
+    savedPath = process.env.PATH;
+    process.env.PATH = `${join(root, 'bin')}:${savedPath}`;
+  });
+
+  afterAll(() => {
+    process.env.PATH = savedPath;
+    rmSync(root, { recursive: true, force: true });
+  });
+
+  function claudeDispatch(
+    loopType: 'research' | 'review',
+    overrides: Record<string, string> = {},
+  ): ReturnType<typeof dispatcher.buildClaudeDispatch> {
     const context = dispatcher.buildContext({
       executor: 'cli-claude-code',
       loopType,
+      repoRoot: REPO_ROOT,
+      promptFile: join(root, 'prompt.md'),
+      stateLog: join(root, 'state.jsonl'),
+      packetDir: join(root, 'packet'),
+      artifactDir: join(root, 'artifact'),
       model: 'sonnet',
       reasoningEffort: 'null',
       serviceTier: 'null',
-      sandboxMode,
-      iteration: '1',
+      sandboxMode: 'null',
+      iteration: '3',
       generation: '1',
+      sessionId: 's',
       timeoutSeconds: '60',
-      packetDir: '/tmp/packet',
+      ...overrides,
     });
-    const { executor, args } = dispatcher.buildClaudeInvocation(context, '', 'prompt');
-    return {
-      permission: args[args.indexOf('--permission-mode') + 1],
-      executorSandbox: executor.sandboxMode,
-    };
+    return dispatcher.buildClaudeDispatch(context);
+  }
+
+  function flagAfter(args: string[], flag: string): string {
+    return args[args.indexOf(flag) + 1];
   }
 
   for (const loopType of ['research', 'review'] as const) {
     it(`keeps acceptEdits as the ${loopType} default when no sandbox mode is set`, () => {
-      expect(permissionFor(loopType, 'null')).toEqual({
-        permission: 'acceptEdits',
-        executorSandbox: null,
-      });
+      const dispatch = claudeDispatch(loopType);
+      expect(flagAfter(dispatch.args, '--permission-mode')).toBe('acceptEdits');
+      expect(dispatch.executor.sandboxMode).toBe('workspace-write');
     });
 
     it(`maps danger-full-access to bypassPermissions on ${loopType}`, () => {
-      expect(permissionFor(loopType, 'danger-full-access')).toEqual({
-        permission: 'bypassPermissions',
-        executorSandbox: 'danger-full-access',
-      });
+      const dispatch = claudeDispatch(loopType, { sandboxMode: 'danger-full-access' });
+      expect(flagAfter(dispatch.args, '--permission-mode')).toBe('bypassPermissions');
+      expect(dispatch.executor.sandboxMode).toBe('danger-full-access');
     });
 
     it(`maps read-only to plan on ${loopType}`, () => {
-      expect(permissionFor(loopType, 'read-only').permission).toBe('plan');
+      expect(flagAfter(claudeDispatch(loopType, { sandboxMode: 'read-only' }).args, '--permission-mode'))
+        .toBe('plan');
     });
   }
+
+  it('resolves an unset model to the default instead of the literal string null', () => {
+    const dispatch = claudeDispatch('review', { model: 'null' });
+    expect(flagAfter(dispatch.args, '--model')).toBe(CLAUDE_DEFAULT_MODEL);
+    expect(dispatch.executor.model).toBeNull();
+  });
+
+  it('logs stream-json and keeps the event stream off the terminal', () => {
+    const dispatch = claudeDispatch('research');
+    expect(flagAfter(dispatch.args, '--output-format')).toBe('stream-json');
+    expect(dispatch.echoStdout).toBe(false);
+  });
+
+  it('writes the iteration cost sidecar from the last result event', () => {
+    const stream = [
+      JSON.stringify({ type: 'assistant', message: { content: [] } }),
+      JSON.stringify({ type: 'result', subtype: 'success', total_cost_usd: 0.42 }),
+    ].join('\n');
+    claudeDispatch('review').onStdout(stream);
+    const sidecar = join(root, 'artifact', 'iterations', 'iteration-003.cost.json');
+    expect(JSON.parse(readFileSync(sidecar, 'utf8'))).toEqual({ iteration: 3, providerCostUsd: 0.42 });
+  });
+
+  // A stream with no result event, such as a child killed mid-run, has an unknown spend,
+  // which must not read as a free iteration.
+  it('records an unknown cost as null, not zero', () => {
+    claudeDispatch('research', { iteration: '4' }).onStdout('not a json stream\n');
+    const sidecar = join(root, 'artifact', 'iterations', 'iteration-004.cost.json');
+    expect(JSON.parse(readFileSync(sidecar, 'utf8'))).toEqual({ iteration: 4, providerCostUsd: null });
+  });
 });
 
 // ───────────────────────────────────────────────────────────────────
@@ -471,6 +529,45 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
     it('keeps workspace-write when no sandbox mode is set', () => {
       const run = dispatchArgv('cli-codex', 'codex', 'codex 0.0.0', 'null');
       expect(flagValue(run.argv, '--sandbox')).toBe('workspace-write');
+    });
+
+    it('gives codex the default model when none is set', () => {
+      const run = dispatchArgv('cli-codex', 'codex', 'codex 0.0.0', 'null');
+      expect(flagValue(run.argv, '--model')).toBe(CODEX_DEFAULT_MODEL);
+    });
+
+    // The shared builder refuses an absent binary with its input-validation error, as it
+    // does for every other kind, before any receipt or state row is written.
+    it('throws the builder refusal when the codex binary is missing', () => {
+      const fixture = createSandboxFixture('not-codex', 'codex 0.0.0');
+      const result = spawnSync(process.execPath, [
+        SCRIPT,
+        '--executor', 'cli-codex',
+        '--loop-type', 'research',
+        '--repo-root', fixture.repo,
+        '--prompt-file', join(fixture.root, 'prompt.md'),
+        '--state-log', join(fixture.root, 'state.jsonl'),
+        '--packet-dir', join(fixture.repo, 'packet'),
+        '--artifact-dir', join(fixture.repo, 'packet'),
+        '--iteration', '1',
+        '--generation', '1',
+        '--session-id', 's',
+        '--model', 'null',
+        '--reasoning-effort', 'null',
+        '--service-tier', 'null',
+        '--sandbox-mode', 'null',
+        '--timeout-seconds', '60',
+      ], {
+        cwd: fixture.repo,
+        encoding: 'utf8',
+        timeout: 60_000,
+        env: { PATH: '/usr/bin:/bin', HOME: fixture.root, TMPDIR: process.env.TMPDIR },
+      });
+      expect(result.status).not.toBe(0);
+      expect(result.stderr).toContain('cli-codex executor unavailable');
+      expect(result.stderr).toContain('INPUT_VALIDATION');
+      expect(existsSync(join(fixture.repo, 'packet', 'dispatch-receipts'))).toBe(false);
+      expect(readFileSync(join(fixture.root, 'state.jsonl'), 'utf8')).toBe('');
     });
   });
 

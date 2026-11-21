@@ -115,6 +115,33 @@ describe('executor-audit', () => {
     expect(classifyExecutorUnavailable('{"type":"error","message":"rate limit exceeded"}', '')).toBe('rate limit');
   });
 
+  // A JSON event stream carries tool output too, so a tool that printed an error about a
+  // quota must not read as the executor itself running out of one.
+  it('ignores a quota error inside a stream-json tool result', () => {
+    const toolResult = JSON.stringify({
+      type: 'user',
+      message: {
+        content: [{ type: 'tool_result', content: 'grep: error: the quota table failed to load' }],
+      },
+    });
+    expect(classifyExecutorUnavailable(toolResult, '')).toBeNull();
+  });
+
+  it('classifies a quota failure from the stream-json result event', () => {
+    const result = JSON.stringify({
+      type: 'result',
+      subtype: 'success',
+      is_error: true,
+      result: 'Claude AI usage limit reached',
+    });
+    expect(classifyExecutorUnavailable(result, '')).toBe('usage limit');
+  });
+
+  it('still classifies a harness final event that ended on a quota error', () => {
+    const final = JSON.stringify({ type: 'final', reason: { kind: 'error', message: 'Quota exceeded' } });
+    expect(classifyExecutorUnavailable(final, '')).toBe('Quota');
+  });
+
   it('buildExecutorAuditRecord returns all audit fields for a CLI executor', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-claude-code',
@@ -677,6 +704,33 @@ describe('executor-audit', () => {
         detail: 'cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK',
         executor: { kind: 'cli-claude-code' },
       });
+    });
+  });
+
+  it.each([
+    ['a clean exit', 0],
+    ['a non-zero exit', 3],
+  ])('runAuditedExecutorCommand hands the captured stdout to onStdout once on %s', (_label, status) => {
+    withTempStateLog('', (stateLogPath) => {
+      const seen: string[] = [];
+      runAuditedExecutorCommand({
+        command: 'node',
+        args: ['-e', `process.stdout.write('{"type":"result"}\\n'); process.exit(${status})`],
+        cwd: tmpdir(),
+        timeoutSeconds: 5,
+        stateLogPath,
+        executor: cliClaudeExecutor(),
+        iteration: 2,
+        guardContext: {
+          env: { PATH: process.env.PATH, [CLI_DISPATCH_STACK_ENV]: '' },
+          ancestryCmdlines: [],
+          statePaths: [],
+        },
+        echoStdout: false,
+        onStdout: (stdout: string) => { seen.push(stdout); },
+      });
+
+      expect(seen).toEqual(['{"type":"result"}\n']);
     });
   });
 
