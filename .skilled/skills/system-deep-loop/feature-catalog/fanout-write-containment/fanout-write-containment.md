@@ -6,7 +6,7 @@ trigger_phrases:
   - "preserve rather than revert out-of-scope writes"
   - "unattributed out-of-scope writes"
   - "shared checkout churn detection"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Fan-Out Write Containment (system-deep-loop)
@@ -23,6 +23,12 @@ dispatch it diffs the working tree and reports what landed outside.
 
 The guard compares the tree before and after a dispatch, subtracting paths that were already dirty
 so unrelated in-flight work is never counted against the lane.
+
+The guard needs the lineage directory to sit inside the git worktree it diffs. When the repository
+is a worktree but the lineage directory lies outside it, the before-dispatch snapshot refuses with
+`artifact scope <dir> is outside the git worktree — containment cannot be enforced`, so no lane is
+spawned whose writes could never be checked. When there is no worktree at all, because git is
+unavailable or the repository root is not inside one, both checks are a no-op.
 
 What it does with a finding is the part worth understanding. The tree records that a file changed,
 never who changed it, and on a shared checkout the honest answer is frequently a second session.

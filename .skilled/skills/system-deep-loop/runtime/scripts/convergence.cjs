@@ -1093,6 +1093,8 @@ function buildStopDecision(input) {
   const consecutiveFailureCount = typeof source.consecutiveFailureCount === 'number'
     ? source.consecutiveFailureCount
     : 0;
+  const blockedStreak = typeof source.blockedStreak === 'number' ? source.blockedStreak : 0;
+  const blockedKey = typeof source.blockedKey === 'string' ? source.blockedKey : null;
   const maxIterations = Number.isFinite(config.maxIterations) ? config.maxIterations : Infinity;
   const stuckThreshold = Number.isFinite(config.stuckThreshold) ? config.stuckThreshold : Infinity;
   const minIterations = Number.isFinite(config.minIterations) ? config.minIterations : 0;
@@ -1149,6 +1151,17 @@ function buildStopDecision(input) {
     graphDecision: source.graphDecision ?? null,
     inputs: input,
   });
+
+  // A block on the same blocker set as the streak before it extends the streak;
+  // any other set starts a new one. Once the streak, this pass included, reaches
+  // the stuck threshold the run stops instead of being blocked again: retrying
+  // the same blockers with nothing new found would only run to the cap.
+  const blocked = (reasonDetail, evaluated, blockedBy) => {
+    const streak = (blockerSetKey(blockedBy) === blockedKey ? blockedStreak : 0) + 1;
+    return streak >= stuckThreshold
+      ? emit('STOP', 'blockedStop', 'blockedStreakReached', evaluated, blockedBy)
+      : emit('BLOCKED', 'blockedStop', reasonDetail, evaluated, blockedBy);
+  };
 
   const cleanReviewStop = loopType === 'review'
     && missingDimensions.length === 0
@@ -1252,13 +1265,18 @@ function buildStopDecision(input) {
 
   const evaluated = gatesAt(candidate.hardStop);
   if (loopType === 'review' && evaluated.failed.length > 0) {
-    return emit('BLOCKED', 'blockedStop', evaluated.failed[0], evaluated, evaluated.failed);
+    return blocked(evaluated.failed[0], evaluated, evaluated.failed);
   }
+  // A failed quality guard blocks the candidate the way a failed review gate
+  // does, so it records the same blocked-stop row and counts toward the streak.
   if (loopType !== 'review' && failedGuards.length > 0) {
-    return emit('CONTINUE', null, 'qualityGuardFailed', evaluated, failedGuards);
+    return blocked('qualityGuardFailed', evaluated, failedGuards);
   }
 
   const combined = combineGraphDecision(candidate, source.graphDecision, source.graphBlockers);
+  if (combined.decision === 'BLOCKED') {
+    return blocked(combined.reasonDetail, evaluated, combined.blockedBy);
+  }
   return emit(
     combined.decision,
     combined.stopReason,
@@ -1435,17 +1453,30 @@ function recordsNewFinding(row) {
   return Object.values(recorded).some((count) => typeof count === 'number' && count > 0);
 }
 
+// The blocker set a blocked-stop row names, independent of order.
+function blockerSetKey(list) {
+  return Array.isArray(list) ? [...list].map(String).sort().join('\n') : '';
+}
+
 // The counters are rebuilt from the log on every pass, so a resumed run counts
 // the same as a run that never paused. Given a nodeId, the stuck count reads only
 // the rows bound to that node, so clean passes on its siblings cannot close it,
 // and a bound pass that recorded a new finding is progress whatever its ratio:
 // the ratio divides by the run's accumulated total, so it shrinks as the run
 // grows while the pass still found something new.
+//
+// The blocked streak counts the runs in a row whose blocked-stop row names the
+// same blocker set. It belongs to the whole run, never to a node: the blockers
+// are run-level gates and graph checks, so a new finding on any node is progress
+// against them and resets the streak. A run's last row stands for that run, and
+// rows for the current iteration or later are left out, so a decision computed
+// again for a run that already recorded its block counts the same as the first.
 function deriveLoopCounters(records, options) {
   const rows = Array.isArray(records) ? records : [];
   const settings = isPlainObject(options) ? options : {};
   const loopType = settings.loopType;
   const nodeId = typeof settings.nodeId === 'string' && settings.nodeId !== '' ? settings.nodeId : null;
+  const currentIteration = finiteNumberOrNull(settings.iteration);
   const activeByIteration = nodeId === null ? null : activeNodeByIteration(settings.frontierHistory);
   const convergenceThreshold = finiteNumberOrNull(settings.convergenceThreshold);
   const researchThreshold = convergenceThreshold !== null && convergenceThreshold > 0
@@ -1456,21 +1487,39 @@ function deriveLoopCounters(records, options) {
   // A redispatched iteration supersedes its earlier rows, and the surviving row
   // counts at the position of the last row for that iteration.
   const lastIndexByNumber = new Map();
+  const lastBlockedIndexByRun = new Map();
   for (let index = 0; index < rows.length; index += 1) {
     const row = rows[index];
-    if (!isPlainObject(row) || row.type !== 'iteration') continue;
+    if (!isPlainObject(row)) continue;
+    if (row.type === 'event' && row.event === 'blocked_stop') {
+      const run = finiteNumberOrNull(row.run);
+      if (run !== null) lastBlockedIndexByRun.set(run, index);
+      continue;
+    }
+    if (row.type !== 'iteration') continue;
     const number = iterationRecordNumber(row);
     if (number !== null) lastIndexByNumber.set(number, index);
   }
 
   let stuckCount = 0;
   let consecutiveFailureCount = 0;
+  let blockedStreak = 0;
+  let blockedKey = null;
   for (let index = 0; index < rows.length; index += 1) {
     const row = rows[index];
     if (!isPlainObject(row)) continue;
     if ((row.type === 'event' && row.event === 'stuckRecovery')
       || row.stem === 'deep_review.recovery_started') {
       stuckCount = 0;
+      continue;
+    }
+    if (row.type === 'event' && row.event === 'blocked_stop') {
+      const run = finiteNumberOrNull(row.run);
+      if (run === null || lastBlockedIndexByRun.get(run) !== index) continue;
+      if (currentIteration !== null && run >= currentIteration) continue;
+      const key = blockerSetKey(row.blockedBy);
+      blockedStreak = key === blockedKey ? blockedStreak + 1 : 1;
+      blockedKey = key;
       continue;
     }
     if (row.type !== 'iteration') continue;
@@ -1483,21 +1532,30 @@ function deriveLoopCounters(records, options) {
     if (!isEvidenceBearingIteration(row)) continue;
 
     consecutiveFailureCount = 0;
-    if (nodeId !== null && !iterationBoundToNode(row, nodeId, activeByIteration)) continue;
-    if (row.status === 'insight') {
-      stuckCount = 0;
-      continue;
-    }
     const ratio = loopType === 'review'
       ? finiteNumberOrNull(row.newFindingsRatio)
       : finiteNumberOrNull(row.newInfoRatio);
     const low = loopType === 'review'
       ? ratio !== null && ratio <= reviewThreshold
       : ratio !== null && ratio < researchThreshold;
+    // Research rows carry no finding counts, so a research pass shows progress
+    // through the signals that reset its stuck count. Without them, a run still
+    // adding sources would end on the blocker it was working to clear.
+    const progressed = recordsNewFinding(row)
+      || (loopType !== 'review' && (row.status === 'insight' || (ratio !== null && !low)));
+    if (progressed) {
+      blockedStreak = 0;
+      blockedKey = null;
+    }
+    if (nodeId !== null && !iterationBoundToNode(row, nodeId, activeByIteration)) continue;
+    if (row.status === 'insight') {
+      stuckCount = 0;
+      continue;
+    }
     stuckCount = low && !(nodeId !== null && recordsNewFinding(row)) ? stuckCount + 1 : 0;
   }
 
-  return { stuckCount, consecutiveFailureCount };
+  return { stuckCount, consecutiveFailureCount, blockedStreak, blockedKey };
 }
 
 function stopDecisionConfig(config, loopType, args) {
@@ -1817,9 +1875,11 @@ function buildStopDecisionInput(args, loopType, files, graph) {
     && decisionConfig.depthMode === 'expansive'
     && typeof activeNodeId === 'string'
     && activeNodeId !== '';
+  const currentIteration = Number(args.iteration);
   const counters = deriveLoopCounters(stateRows, {
     loopType,
     convergenceThreshold,
+    ...(Number.isInteger(currentIteration) && currentIteration >= 1 ? { iteration: currentIteration } : {}),
     ...(nodeScoped ? { nodeId: activeNodeId, frontierHistory: files?.frontierHistory } : {}),
   });
 
@@ -1829,6 +1889,8 @@ function buildStopDecisionInput(args, loopType, files, graph) {
       ?? iterationRecords.length,
     stuckCount: counters.stuckCount,
     consecutiveFailureCount: counters.consecutiveFailureCount,
+    blockedStreak: counters.blockedStreak,
+    blockedKey: counters.blockedKey,
     config: decisionConfig,
     ratios,
     research: loopType === 'research'
@@ -1880,12 +1942,27 @@ function iterationsWithoutGraphFindings(iterationRecords, nodes) {
     .filter((iteration) => iteration !== null && !covered.has(iteration));
 }
 
+// The next focus is steered by this text, so it names what each failed guard
+// found: the under-sourced questions, or the answers that left the key questions.
+function qualityGuardRecoveryStrategy(stopDecision) {
+  const guards = isPlainObject(stopDecision.gates?.qualityGuards?.guards)
+    ? stopDecision.gates.qualityGuards.guards
+    : {};
+  const parts = stopDecision.blockedBy.map((name) => {
+    const violations = Array.isArray(guards[name]?.violations) ? guards[name].violations : [];
+    return violations.length > 0 ? `${name} (${violations.join('; ')})` : name;
+  });
+  return `Clear the failed quality guards before stopping: ${parts.join(', ')}.`;
+}
+
 function blockedStopRecoveryStrategy(stopDecision, graphBlockers, missingIterations) {
   const first = (Array.isArray(graphBlockers) ? graphBlockers : [])
     .find((blocker) => blockerName(blocker) === stopDecision.blockedBy[0]);
-  const base = first && typeof first.description === 'string' && first.description !== ''
-    ? first.description
-    : 'Collect deeper graph evidence before stopping.';
+  const base = stopDecision.reasonDetail === 'qualityGuardFailed'
+    ? qualityGuardRecoveryStrategy(stopDecision)
+    : first && typeof first.description === 'string' && first.description !== ''
+      ? first.description
+      : 'Collect deeper graph evidence before stopping.';
   if (missingIterations.length === 0) return base;
   return `${base} Iteration(s) ${missingIterations.join(', ')} recorded findings but left no FINDING node in the graph; check that their graph upsert ran.`;
 }
@@ -1909,10 +1986,11 @@ function buildBlockedStopRow({ stopDecision, stopDecisionInput, graphBlockers, s
         total: finiteNumberOrNull(research.totalQuestions) ?? 0,
       },
       evidenceDensity: {
-        pass: !blocked.has('source_diversity_guard') && !blocked.has('evidence_depth_guard'),
+        pass: !blocked.has('source_diversity_guard')
+          && !blocked.has('evidence_depth_guard')
+          && !blocked.has('sourceDiversity'),
         sources: finiteNumberOrNull(signals?.sourceDiversity) ?? 0,
       },
-      hotspotSaturation: { pass: true },
     },
     recoveryStrategy,
     timestamp: new Date().toISOString(),
@@ -2020,7 +2098,19 @@ function reviewBlockedStopRecoveryHint(stopDecision, config) {
 // The review ledger event for a blocked stop. Its identity comes from the
 // review config, which names the run the gateway opened, and the convergence
 // event it names is the one the workflow appends for the same iteration.
-function buildReviewBlockedStopEvent({ stopDecision, graphBlockers, registry, config, sessionId, generation, iteration }) {
+// Only P0 and P1 findings are adjudicated, and the latest claim-adjudication row
+// says how many of them still lack a packet. With no such row none has been.
+function adjudicatedFindingCount(stateRows, activeP0P1) {
+  let latest = null;
+  for (const row of Array.isArray(stateRows) ? stateRows : []) {
+    if (isPlainObject(row) && row.type === 'event' && row.event === 'claim_adjudication') latest = row;
+  }
+  if (latest === null) return 0;
+  const missing = Array.isArray(latest.missingPackets) ? latest.missingPackets.length : 0;
+  return Math.max(0, activeP0P1 - missing);
+}
+
+function buildReviewBlockedStopEvent({ stopDecision, graphBlockers, registry, config, sessionId, generation, iteration, stateRows }) {
   const counts = isPlainObject(registry.findingsBySeverity) ? registry.findingsBySeverity : {};
   const p0 = uint32OrZero(counts.P0);
   const p1 = uint32OrZero(counts.P1);
@@ -2031,7 +2121,13 @@ function buildReviewBlockedStopEvent({ stopDecision, graphBlockers, registry, co
     data: {
       blockedGateIds: stopDecision.blockedBy,
       gateResults: reviewBlockedStopGateResults(stopDecision, graphBlockers),
-      activeFindingCounts: { candidates: p0 + p1 + p2, adjudicated: p0 + p1 + p2, p0, p1, p2 },
+      activeFindingCounts: {
+        candidates: p0 + p1 + p2,
+        adjudicated: adjudicatedFindingCount(stateRows, p0 + p1),
+        p0,
+        p1,
+        p2,
+      },
       recoveryStrategy: ledgerCodeSlug(stopDecision.blockedBy[0], 'blocked-stop'),
       targetDimensionId: reviewBlockedStopTargetDimension({
         input: stopDecision.inputs,
@@ -2056,12 +2152,11 @@ function buildReviewBlockedStopEvent({ stopDecision, graphBlockers, registry, co
 // is the block the next focus is steered by. Both modes project the record to
 // a blocked_stop state row, which is what the repeat check reads.
 function recordBlockedStop({ event, mode, run, blockedBy, summary, stateLogPath, stateRows }) {
-  const blockerKey = (list) => (Array.isArray(list) ? [...list].map(String).sort().join('\n') : '');
   const already = stateRows.some((existing) => isPlainObject(existing)
     && existing.type === 'event'
     && existing.event === 'blocked_stop'
     && finiteNumberOrNull(existing.run) === run
-    && blockerKey(existing.blockedBy) === blockerKey(blockedBy));
+    && blockerSetKey(existing.blockedBy) === blockerSetKey(blockedBy));
   if (already) return { status: 'already_recorded', run, ...summary };
 
   const eventDir = fs.mkdtempSync(path.join(os.tmpdir(), 'deep-loop-blocked-stop-'));
@@ -2137,6 +2232,7 @@ function recordBlockedStopDecision(payload, { args, loopType, files, sessionId, 
         sessionId: reviewSessionId,
         generation: finiteNumberOrNull(config.generation) ?? 1,
         iteration,
+        stateRows,
       });
       record = recordBlockedStop({
         event,
@@ -2459,7 +2555,10 @@ module.exports = {
   CONVERGENCE_PROFILE_SCHEMA,
   applyNoveltyCorroborationGuard,
   applyObservationThresholdGuard,
+  blockedStopRecoveryStrategy,
+  buildBlockedStopRow,
   buildImprovementEffect,
+  buildReviewBlockedStopEvent,
   buildStopDecision,
   buildStopDecisionInput,
   combineGraphDecision,

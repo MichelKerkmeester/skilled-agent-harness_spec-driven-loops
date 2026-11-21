@@ -33,7 +33,7 @@ All variables are optional. The engine runs with sensible defaults when none are
 **There is no longer a feature-flag registry to tabulate.** `lib/search/search-flags.ts` was deleted with the memory engine, taking about ninety retrieval, ranking, graph, cognitive and feedback gates with it. `lib/config/capability-flags.ts` survives but now declares six gates, all of them in [Section 3](#3-spec-validation-and-generated-metadata): `SPECKIT_GENERATOR_HARDENING`, `SPECKIT_GENERATED_METADATA_GRANDFATHER`, `SPECKIT_GENERATED_METADATA_DRIFT_GATE`, `SPECKIT_IDENTITY_MERGE_SAFETY`, `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` and `SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE`.
 
 Every variable below now lives in the section that owns its reader, and each row's Source column names that file. If you are looking for a flag that used to be in this table and cannot find it, it was retired: nothing reads it, and setting it does nothing.
-Total unique variables documented: 214, counted as unique backticked names in the `Variable` column of every table below. Recount with that method when adding rows. Multi-variable cells count once per name. The flag tables name their variables in a `governing env var` column instead, so the four names that appear only there (`SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP`, `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR`, `SPECKIT_ENTITY_CONFIG_PATH`, `SPECKIT_PI_DIRECTIVE_DEDUP`) sit outside this count. With them the document names 218. Every spec-kit-owned name must have a verified reader in its source. The DeepSeek Harness names are listed for adjacent setup and are verified against its external run-surface documentation.
+Total unique variables documented: 215, counted as unique backticked names in the `Variable` column of every table below. Recount with that method when adding rows. Multi-variable cells count once per name. The flag tables name their variables in a `governing env var` column instead, so the four names that appear only there (`SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP`, `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR`, `SPECKIT_ENTITY_CONFIG_PATH`, `SPECKIT_PI_DIRECTIVE_DEDUP`) sit outside this count. With them the document names 219. Every spec-kit-owned name must have a verified reader in its source. The DeepSeek Harness names are listed for adjacent setup and are verified against its external run-surface documentation.
 
 ### Data Quality and Generator Hardening (028/005)
 
@@ -458,11 +458,12 @@ Cascade-probe timing overrides for the embedder auto-selection cascade. Defaults
 
 ## DEEP-LOOP RUNTIME
 
-Runtime overrides for the shared deep-loop fan-out merge, read by the deep-loop runtime scripts and never by this package.
+Runtime overrides for the shared deep-loop fan-out merge and the executor recursion guard, read by the deep-loop runtime and never by this package.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_FANOUT_NEAR_DUP_DEDUP` | `false` | boolean (opt-in `1`/`true`/`yes`/`on`) | Near-duplicate finding collapse in the fan-out merge. Default OFF keeps exact-id bucketing only. Set an enabled value to also collapse near-duplicate findings by content key. | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` |
+| `SPECKIT_ALLOW_HOST_SESSION_EXECUTOR` | unset (guard enforced) | boolean (exactly `1` to enable) | Lets an operator run a CLI executor from inside their own session of that CLI on purpose. It skips only the recursion guard's ancestry check and session-variable check. The lineage, stack and lockfile layers still refuse. A dispatch it lets through prints one stderr line, and the executor record carries `recursionGuardRelaxed`. The child env never inherits it. | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` |
 
 ---
 

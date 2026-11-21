@@ -8,17 +8,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode"
-    last_updated_at: "2026-11-17T14:34:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Authored the planned phase docs"
-    next_safe_action: "Wait for phases 008-010, then start T001"
-    blockers: []
-    key_files: []
+    last_updated_at: "2026-11-21T11:09:55Z"
+    last_updated_by: "generate-context"
+    recent_action: "Phase merged and built on integration; golden test passes and pilot run 2 drained"
+    next_safe_action: "Record a budget per depth (CHK-113) and show SL-004 and SL-2-04 frontier-free"
+    packet_purpose: "Purpose: With `--depth-mode=expansive`, a review run decomposes its target into admitted sub-target nodes held in `candidateCoverage`, `searchDebt` and a review `registry.frontier`, focuses them breadth-first, refuses to stop while they are open within budget, closes them cleanly and partitions depth-1 no..."
+    blockers:
+      - "Search debt SL-004 and SL-2-04 not shown frontier-free"
+      - "CHK-113 open: no budget per depth recorded"
+    key_files:
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/tasks.md"
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:989cf1c23e6a428358517461e6c333348e1afd2c9d731cc162e20909be1aa529"
       session_id: "scaffold-011-review-frontier-mode"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
+      workspace: "/Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration"
+      savedAt: "2026-11-21T11:09:55Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---

@@ -440,7 +440,9 @@ workflow:
           {state_paths.config} already holds a non-empty lineage.sessionId, keep that
           lineage block and createdAt, so a rerun of the same fan-out stays in its session
           and generation.
-          fanout-run.cjs never reads this file; it reads each lineage's own config.
+          fanout-run.cjs reads each lineage's own config. It touches this file only on a
+          defaulted expansive run, where it rewrites maxIterations to the largest lineage
+          cap before it spawns.
         template: .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json
         session_id_init: "{session_id} when bound, else {ISO_8601_NOW}"
         lineage_values:
@@ -1130,8 +1132,9 @@ workflow:
           4. a STOP candidate exists when every question is answered (all_questions_answered) or the weighted vote passes (composite_converged). When neither forms and depth_mode == "expansive" in a fan-out lineage (its config carries fanout_lineage_artifact_dir), a lineage whose frontier share holds at least one answered node and none still open or active forms a hard candidate (frontier_drained), so it stops instead of working the topic questions other lineages own. A single-executor or default run never forms it.
           5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)
           5a. if depth_mode == "expansive" and the frontier still holds an open or active node: CONTINUE (frontierOpen). This veto never creates a stop.
-          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)
+          6. a failed quality guard blocks the candidate: BLOCKED (blockedStop, reasonDetail qualityGuardFailed), with the failed guards in blockedBy
           7. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
+          8. a BLOCKED from step 6 or 7 whose blockedBy set matches the blocked_stop rows of the runs before it becomes STOP (blockedStop, reasonDetail blockedStreakReached) once that streak, this pass included, reaches config.stuckThreshold. A different blocker set starts a new streak, and a pass that shows progress resets it: research iteration rows carry no findingsNew, so progress is an insight pass or a newInfoRatio at or above the convergence threshold.
           Bind the outputs from stop_decision:
             decision = stop_decision.decision
             reason = stop_decision.stopReason when it is not null, else stop_decision.reasonDetail
@@ -1158,8 +1161,8 @@ workflow:
           - reason_detail: "stop_decision.reasonDetail, the fine cause behind the decision"
           - weighted_stop_score: "stop_decision.weightedStopScore, for diagnostics only"
           - stop_blocked: "Boolean true when stop_decision.decision == BLOCKED"
-          - blocked_by_json: "JSON array of graph blocker names when decision == BLOCKED"
-          - blocked_by_csv: "Comma-separated graph blocker names when decision == BLOCKED"
+          - blocked_by_json: "JSON array of graph blocker or failed guard names when decision == BLOCKED"
+          - blocked_by_csv: "Comma-separated graph blocker or failed guard names when decision == BLOCKED"
           - gate_convergence_pass: "Boolean pass/fail for the graph-assisted convergence gate"
           - gate_convergence_score: "Numeric score recorded from graph convergence"
           - gate_key_question_coverage_pass: "Boolean pass/fail derived from graph blocker coverage signals"
@@ -1632,6 +1635,7 @@ workflow:
             - "claude-code has no serviceTier flag"
             - "claude-code supports --effort for reasoning depth"
             - "CLAUDE_CONFIG_DIR is forwarded through guardContext.env (CLAUDE_ prefix is allowlisted) so a configured Claude account is used for research as it is for review"
+            - "Builds through buildLineageCommand: --output-format stream-json --verbose, kept off the terminal; the session cost is written to {artifact_dir}/iterations/iteration-{NNN}.cost.json (providerCostUsd, null when the stream reports none); an unset model resolves to the builder's CLAUDE_DEFAULT_MODEL"
         if_cli_cursor:
           command: |
             node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-cursor {cli_dispatch_args}
@@ -1690,9 +1694,9 @@ workflow:
             - "PRE-DISPATCH RULE (read before running the script): when this run is ITSELF a fan-out CLI lineage — config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID / SPECKIT_CLI_DISPATCH_STACK / CODEX_SESSION_ID is present in the environment — the lineage IS the executor. Do NOT run this dispatch script. Perform the iteration in-process instead: read the rendered prompt at {state_paths.prompt_dir}/iteration-{current_iteration}.md, do the research yourself, write the iteration file and the delta, and hand the iteration record to the append gateway (append-mode-event.cjs) exactly as the leaf contract requires, never writing the state log yourself, then continue to post_dispatch_validate."
             - "Nested CLI dispatch from a lineage is a route violation, not a slow path: a codex lineage that runs this script spawns codex inside its own sandbox, where the child cannot initialize and every iteration fails. The script refuses that case before any spawn and before any dispatch receipt is written, exiting RECURSION_GUARD_EXIT_CODE; that refusal is a route error to fix, never a redispatchable executor failure."
             - "Routed through runAuditedExecutorCommand so codex produces INTENT + COMPLETION dispatch receipts; recursion guard (CODEX_SESSION_ID) + env allowlist (CODEX_/OPENAI_/AZURE_OPENAI_) enforced via buildExecutorDispatchEnv"
-            - "Fails closed when the codex binary is absent (exit 1) — parity with the fan-out cli-codex lineage guard in fanout-run.cjs; codex routing never degrades to native"
+            - "Builds through the shared fan-out builder (buildLineageCommand), which throws when the codex binary is absent, before any receipt; codex routing never degrades to native"
             - "codex exec reads the iteration prompt from stdin via the trailing '-' (input: promptBody); '-c model_reasoning_effort=' maps reasoning depth, default medium; '-c service_tier=' forwarded when configured"
-            - "--sandbox follows the requested sandbox mode and defaults to workspace-write when none is set, so the iteration can write its own iteration file/delta/state record (a requested read-only is passed through and fails the post-dispatch artifact gate); -c approval_policy=never keeps it non-interactive; --model omitted when unset so ~/.codex/config.toml default applies"
+            - "--sandbox follows the requested sandbox mode and defaults to workspace-write when none is set, so the iteration can write its own iteration file/delta/state record (a requested read-only is passed through and fails the post-dispatch artifact gate); -c approval_policy=never keeps it non-interactive; an unset model resolves to the builder's CODEX_DEFAULT_MODEL"
         post_dispatch_validate:
           validator: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type research --artifact-dir {artifact_dir} --iteration {current_iteration}"
@@ -1964,7 +1968,7 @@ workflow:
           - total_questions: "Count total questions tracked in strategy.md"
           - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
           - divergence_summary: "Read registry.divergence and summarize saturated directions, completed pivots, failures, overrides, Council artifact refs, and remaining frontier; else 'no divergent pivots recorded'"
-          - reason: "Use the latest synthesis/recovery stop reason in {state_paths.state_log} if present. On a fan-out root (direct lineage state logs exist and the root state log holds no such stop row): take each lineage that {state_paths.packet_dir}/orchestration-summary.json lists with status succeeded, and read the stopReason of the last row carrying a stopReason in {state_paths.packet_dir}/lineages/<label>/deep-research-state.jsonl; when they agree use it, when they differ use the one whose row has the latest timestamp, since the run ended when that lineage stopped. Only when neither yields a reason, the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
+          - reason: "When this session's loop left phase_loop for synthesis, keep the reason it bound on that exit: the STOP reason from step_check_convergence (maxIterationsReached, converged, blockedStop or error), maxDurationReached from step_check_max_duration, or manualStop from an on_C exit. Never re-derive it from rows: no state row carries any of those reasons before closeout, and a resumed run's log still holds the earlier session's userPaused and stuckRecovery rows. Otherwise use the latest synthesis/recovery stop reason in {state_paths.state_log} after the latest 'resumed' or 'run_extended' row, if present. On a fan-out root (direct lineage state logs exist and the root state log holds no such stop row): take each lineage that {state_paths.packet_dir}/orchestration-summary.json lists with status succeeded, and read the stopReason of the last row carrying a stopReason in {state_paths.packet_dir}/lineages/<label>/deep-research-state.jsonl; when they agree use it, when they differ use the one whose row has the latest timestamp, since the run ended when that lineage stopped. Only when neither yields a reason, the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
 
       # ─── APPROVAL GATE: Pre-Synthesis ───
       gate_pre_synthesis:

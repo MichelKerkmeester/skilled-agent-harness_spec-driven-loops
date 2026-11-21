@@ -553,15 +553,15 @@ describe('quality guards', () => {
     });
   });
 
-  it('continues below the cap when a quality guard fails', () => {
+  it('blocks the stop below the cap when a quality guard fails', () => {
     const decision = buildStopDecision(
       researchInput({
         research: { iterationRecords: [{ answeredQuestions: ['q9'], keyQuestions: ['q1'] }] },
       }),
     );
 
-    expect(decision.decision).toBe('CONTINUE');
-    expect(decision.stopReason).toBeNull();
+    expect(decision.decision).toBe('BLOCKED');
+    expect(decision.stopReason).toBe('blockedStop');
     expect(decision.reasonDetail).toBe('qualityGuardFailed');
     expect(decision.blockedBy).toEqual(['focusAlignment']);
 
@@ -1179,7 +1179,7 @@ describe('frontierOpen veto', () => {
         composite({ research: { frontierOpen: 0, iterationRecords: offFocusRecords } }),
       );
 
-      expect(decision.decision).toBe('CONTINUE');
+      expect(decision.decision).toBe('BLOCKED');
       expect(decision.reasonDetail).toBe('qualityGuardFailed');
       expect(decision.blockedBy).toEqual(['focusAlignment']);
     });
@@ -1468,5 +1468,97 @@ describe('research frontier_drained candidate for a fan-out lineage', () => {
     expect(Object.prototype.hasOwnProperty.call(single.research ?? {}, 'fanoutLineage')).toBe(false);
     expect(buildStopDecision({ ...single, iterationCount: 5, ratios: [0.6, 0.5, 0.45], graphDecision: 'STOP_ALLOWED', graphBlockers: [] }).reasonDetail)
       .toBe('noStopCandidate');
+  });
+});
+
+// A failed quality guard records the same blocked-stop row a graph block does,
+// so a research run that keeps failing the same guard ends on the streak.
+describe('research blocked-stop streak on a failed quality guard', () => {
+  const offFocus = { iterationRecords: [{ answeredQuestions: ['q9'], keyQuestions: ['q1'] }] };
+  const streakInput = (blockedStreak: number, blockedKey: string | null) => ({
+    ...researchInput({ research: offFocus }),
+    blockedStreak,
+    blockedKey,
+  }) as StopDecisionInput;
+
+  it('stops once the same failed guard reaches the stuck threshold', () => {
+    expect(buildStopDecision(streakInput(2, 'focusAlignment'))).toMatchObject({
+      decision: 'STOP',
+      stopReason: 'blockedStop',
+      reasonDetail: 'blockedStreakReached',
+      blockedBy: ['focusAlignment'],
+    });
+  });
+
+  it('keeps blocking below the threshold or after a different blocker set', () => {
+    expect(buildStopDecision(streakInput(1, 'focusAlignment')).decision).toBe('BLOCKED');
+    expect(buildStopDecision(streakInput(2, 'source_diversity_guard')).decision).toBe('BLOCKED');
+  });
+
+  // The recovery text steers the next focus, so it names what the guard found.
+  it('steers recovery to the answers the failed guard named', () => {
+    const { blockedStopRecoveryStrategy } = requireCjs('../../scripts/convergence.cjs') as {
+      blockedStopRecoveryStrategy: (decision: StopDecision, blockers: unknown[], missing: number[]) => string;
+    };
+    expect(blockedStopRecoveryStrategy(buildStopDecision(streakInput(0, null)), [], []))
+      .toBe('Clear the failed quality guards before stopping: focusAlignment (q9).');
+  });
+});
+
+describe('blocked-stop records', () => {
+  const {
+    buildBlockedStopRow,
+    buildReviewBlockedStopEvent,
+  } = requireCjs('../../scripts/convergence.cjs') as {
+    buildBlockedStopRow: (args: Record<string, unknown>) => { gateResults: Record<string, { pass: boolean }> };
+    buildReviewBlockedStopEvent: (args: Record<string, unknown>) => {
+      data: { activeFindingCounts: Record<string, number> };
+    };
+  };
+
+  function reviewCounts(stateRows: Array<Record<string, unknown>>) {
+    const stopDecision = buildStopDecision(reviewInput({ review: { hotspotSaturated: false } }));
+    return buildReviewBlockedStopEvent({
+      stopDecision,
+      graphBlockers: [],
+      registry: { findingsBySeverity: { P0: 1, P1: 1, P2: 3 } },
+      config: {},
+      sessionId: 'session-1',
+      generation: 1,
+      iteration: 3,
+      stateRows,
+    }).data.activeFindingCounts;
+  }
+
+  // Only P0 and P1 findings are adjudicated, so the count never includes a P2,
+  // and it reads the latest adjudication row rather than repeating the candidates.
+  it('counts as adjudicated only the P0 and P1 findings the latest adjudication covered', () => {
+    expect(reviewCounts([{ type: 'event', event: 'claim_adjudication', passed: true, missingPackets: [] }]))
+      .toMatchObject({ candidates: 5, adjudicated: 2 });
+    expect(reviewCounts([{ type: 'event', event: 'claim_adjudication', passed: false, missingPackets: ['F002'] }]))
+      .toMatchObject({ candidates: 5, adjudicated: 1 });
+    expect(reviewCounts([])).toMatchObject({ candidates: 5, adjudicated: 0 });
+  });
+
+  // Research has no hotspot gate, so its row claims no result for one, and a
+  // failed source-diversity guard is an evidence-density failure.
+  it('gives the research row no hotspot result and fails evidence density on a source-diversity block', () => {
+    const stopDecision = buildStopDecision(researchInput({
+      research: { answeredQuestionSourceCounts: { q1: 1 } },
+    }));
+    expect(stopDecision.blockedBy).toEqual(['sourceDiversity']);
+    const row = buildBlockedStopRow({
+      stopDecision,
+      stopDecisionInput: stopDecision.inputs,
+      graphBlockers: [],
+      signals: null,
+      score: 0,
+      iteration: 5,
+      sessionId: 'session-1',
+      generation: null,
+      recoveryStrategy: '',
+    });
+    expect(row.gateResults).not.toHaveProperty('hotspotSaturation');
+    expect(row.gateResults.evidenceDensity.pass).toBe(false);
   });
 });

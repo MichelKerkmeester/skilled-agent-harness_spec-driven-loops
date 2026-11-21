@@ -9,7 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.10.0
+version: 1.11.11.0
 ---
 
 # Deep Review State Log Records
@@ -98,7 +98,9 @@ The projected variant of this row is thin: only `type`, `topic`, `maxIterations`
 
 **Legacy field:** `run`, the older name for `iteration`. Readers still accept it and the fan-out stop-policy validator does not; new records write `iteration`. Event records keep their own `run` field.
 
-**Optional fields:** `parentSessionId`, `continuedFromRun`, `findingsRefined`, `findingRefs`, `traceabilityChecks`, `coverage`, `noveltyJustification`, `ruledOut`, `focusTrack`, `scoreEstimate`, `segment`, `convergenceSignals`, `graphEvents`, `claimedTimestamp` (written by the ledger projection, never by the agent)
+**Optional fields:** `parentSessionId`, `continuedFromRun`, `findingsRefined`, `findingRefs`, `traceabilityChecks`, `coverage`, `noveltyJustification`, `ruledOut`, `focusTrack`, `scoreEstimate`, `segment`, `convergenceSignals`, `graphEvents`, `frontierNodeId`, `claimedTimestamp` (written by the ledger projection, never by the agent)
+
+**Frontier node:** under `--depth-mode=expansive` the FRONTIER block tells the agent to set `focus` to `Frontier node <id>: <dimension>` and add `"frontierNodeId":"<id>"`. The id binds the iteration to that node first; the focus marker and the store's `active` row for the iteration are the fallbacks, so a record that drops the field still counts. A default run writes no `frontierNodeId`.
 
 | Required Field | Type | Description |
 |---------------|------|-------------|
@@ -201,9 +203,10 @@ When the review legal-stop decision tree returns `blocked`, `convergence.cjs` re
 {
   "type": "event",
   "event": "blocked_stop",
-  "mode": "review",
+  "iteration": "iteration-4",
   "run": 4,
   "blockedBy": ["dimensionCoverageGate", "p0ResolutionGate"],
+  "stopReason": "dimension-coverage-gate",
   "gateResults": {
     "convergenceGate": { "pass": true, "score": 0.72 },
     "dimensionCoverageGate": {
@@ -221,16 +224,17 @@ When the review legal-stop decision tree returns `blocked`, `convergence.cjs` re
     "candidateCoverageGate": { "pass": true, "searchDebt": [], "missing": [] },
     "graphlessFallbackGate": { "pass": true, "mode": "graph_available", "missing": [], "unavailabilityReason": "" }
   },
-  "recoveryStrategy": "Cover the missing review dimensions, then resolve the active P0.",
-  "timestamp": "2026-04-11T09:45:00Z",
-  "sessionId": "rvw-2026-04-11T09-00-00Z",
-  "generation": 1
+  "graphBlockerDetail": [],
+  "recoveryStrategy": "Clear the failed legal-stop gates before stopping: dimensionCoverageGate, p0ResolutionGate.",
+  "timestamp": "2026-04-11T09:45:00Z"
 }
 ```
 
 `gateResults` carries the full 9-gate set `convergence.cjs` records: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. The last two are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. See `../convergence/convergence.md` §1 for the authoritative shape.
 
-**Required:** `type`, `event`, `mode`, `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, `timestamp`, `sessionId`, `generation`
+**Projected fields:** `type`, `event`, `iteration`, `run`, `blockedBy`, `stopReason`, `gateResults`, `graphBlockerDetail`, `recoveryStrategy`, `timestamp`. The row carries no `mode`, `sessionId` or `generation`, which stay in the event's scope. Its `stopReason` is the first failed gate as a kebab-case code, not a lifecycle stop reason.
+
+**Blocked streak:** the loop counters rebuild a streak from these rows. A run's last row stands for that run, a row whose sorted `blockedBy` set matches the one before it adds one, a different set restarts at one, and an evidence-bearing iteration that records a new finding (`findingsNew`) resets it. Once the streak, the current pass included, reaches `stuckThreshold` (2 by default), the decision is STOP with `stopReason` `blockedStop` and `reasonDetail` `blockedStreakReached` instead of another BLOCKED. That stopping pass writes no `blocked_stop` row, and the terminal `terminal_gates` row carries `stopReason: "blockedStop"`. The iteration cap is checked first. Under expansive depth the streak belongs to the run, not a node, so a new finding on any node resets it.
 
 ### Graph Convergence Event
 

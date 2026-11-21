@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.12.0
+version: 1.4.15.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 58 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria. DLR-060 to DLR-065 map to catalog entries that carry no F-number, and DLR-066 maps to F025.
+This playbook provides 59 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria. DLR-060 to DLR-065 map to catalog entries that carry no F-number, and DLR-066 and DLR-067 map to F025.
 
 ### REALISTIC TEST MODEL
 
@@ -103,7 +103,7 @@ Scenario verdict — three outcomes only:
 - `FAIL`: expected behavior is missing, output contradicts the contract, a critical check failed, or the core behavior worked but the required evidence or metadata is incomplete. An outcome another operator cannot reproduce from the captured evidence is a `FAIL`, not a partial pass.
 - `SKIP`: a concrete sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevented execution, and the run record names it
 
-Release is cleared only when all 58 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
+Release is cleared only when all 59 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
 
 ---
 
@@ -632,7 +632,7 @@ Expected signals: stdout JSON with `"ok":true` and a receipt carrying `ledger_id
 ### DLR-065 | frontier-admit.cjs
 
 #### Description
-Owns the expansive frontier node store: seeds depth-1 nodes and reports the budget, admits or prunes leaf proposals through six ordered checks, closes nodes, and refuses to close a pruned node as live.
+Owns the expansive frontier node store: seeds depth-1 nodes and reports the budget, admits or prunes leaf proposals through seven ordered checks, closes nodes, and refuses to close a pruned node as live.
 
 #### Scenario Contract
 Prompt: `Validate frontier-admit.cjs: seed two nodes, admit one proposal and prune one, close the admitted node, and try to close the pruned one. Return a PASS or FAIL verdict with the reason.`
@@ -675,7 +675,7 @@ Expected signals: The retry case and the fail-closed second-miss case pass. The 
 
 ## 14. FAN-OUT
 
-This category covers 12 scenarios validating the opt-in multi-executor fan-out layer: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, artifact-dir-override parity, and the expansive per-lineage budget.
+This category covers 13 scenarios validating the opt-in multi-executor fan-out layer: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, artifact-dir-override parity, the expansive per-lineage budget and the read-only command preview.
 
 ### DLR-023 | Fan-out config schema
 
@@ -825,15 +825,28 @@ Expected signals: The census prefixes `runs:`, `pairs:`, `class near-line:`, `cl
 ### DLR-066 | Fan-out sizes each expansive lineage from its seed share
 
 #### Description
-Under `--depth-mode expansive`, a lineage with no matrix `iterations` value gets a budget from its own seed share, a lineage dealt no seed node runs at its loop default (12 native, the workflow default for a CLI lineage), and stderr notes name each derived budget and warn once when lineages outnumber the open seed nodes.
+Under `--depth-mode expansive`, a lineage with no matrix `iterations` value gets a budget from its own seed share, a lineage dealt no seed node runs at its loop default (10 for research, 7 for review), and stderr notes name each derived budget and warn once when lineages outnumber the open seed nodes. A matrix that holds a native lineage is refused before any lineage is sized, and the root config's `maxIterations` becomes the largest lineage cap.
 
 #### Scenario Contract
 Prompt: `Check that an expansive fan-out sizes each lineage from its own seed share, keeps a matrix iterations value, runs a lineage with no seed share at its loop default, and names each budget on stderr. Return a PASS or FAIL verdict with the reason.`
 
-Expected signals: the four per-lineage budget cases pass; a research matrix of four lineages gets `[12, 10, 12, 5]`; a review lineage dealt two nodes gets 24 and one dealt none gets 7; the notes open with `[fanout-run] 3 lineages share 1 open seed node, so 2 lineages get no seed share`.
+Expected signals: the six per-lineage budget cases pass; a research matrix of four lineages gets `[12, 10, 10, 5]`; a review lineage dealt two nodes gets 24 and one dealt none gets 7; the notes open with `[fanout-run] 3 lineages share 1 open seed node, so 2 lineages get no seed share`; a matrix holding a native lineage exits 3 before any seed share is named; the root config's `maxIterations` becomes 14 with the line `[fanout-run] budget table: a 14, b 12 iterations; root maxIterations 14, the largest lineage cap`, and stays untouched under `--preview` or an explicit `--max-iterations`.
 
 #### Test Execution
 > **Feature File:** [DLR-066](../manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md)
+
+### DLR-067 | Fan-out preview builds every lineage command without writing
+
+#### Description
+`fanout-run.cjs --preview` prints each lineage's command with its prompt replaced by a digest, its effective config and the aggregate budget, then exits before any directory, ledger, store or root-config write.
+
+#### Scenario Contract
+Prompt: `Check that the fan-out preview prints every lineage command with its prompt digested, rejects what the real run would reject, and writes nothing. Return a PASS or FAIL verdict with the reason.`
+
+Expected signals: the four `--preview` cases and the root-config guard case pass; they assert `status: "preview"`, `<prompt:...>` in each lineage's `args`, the `aggregate_budget` units legend, a `dry_run_halt` at boundary `child-spawn`, and an artifact directory and root config that are byte-identical afterwards.
+
+#### Test Execution
+> **Feature File:** [DLR-067](../manual-testing-playbook/fanout/fanout-run-preview.md)
 
 ---
 
@@ -1025,3 +1038,4 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-064 | [Research Claude config dir](../feature-catalog/executor/research-claude-config-dir.md) | [executor/research-claude-config-dir.md](../manual-testing-playbook/executor/research-claude-config-dir.md) |
 | DLR-065 | [frontier-admit.cjs](../feature-catalog/script-entry-points/frontier-admit-script.md) | [script-entry-points/frontier-admit-script.md](../manual-testing-playbook/script-entry-points/frontier-admit-script.md) |
 | DLR-066 | [F025 Fan-out CLI lineage driver](../feature-catalog/fanout/fanout-run.md) | [fanout/fanout-expansive-lineage-budget.md](../manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md) |
+| DLR-067 | [F025 Fan-out CLI lineage driver](../feature-catalog/fanout/fanout-run.md) | [fanout/fanout-run-preview.md](../manual-testing-playbook/fanout/fanout-run-preview.md) |

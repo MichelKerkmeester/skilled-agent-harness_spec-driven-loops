@@ -944,7 +944,7 @@ f4975f8a409 feat(system-deep-loop): steer review focus and render the frontier b
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 8fda03e7135 -- .skilled/commands/deep/assets/deep-review-presentation.txt && git -c core.fsmonitor=false show 4d0b12723eb -- .skilled/commands/deep/assets/deep-review-presentation.txt
 commit 8fda03e71357d5503c896ba99375b2e2bfdd9996
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:26:01 2026 +0100
 
     feat(deep): bind the review depth_mode flag beside convergence_mode
@@ -1008,7 +1008,7 @@ index d6f75b58de9..a171799aef9 100644
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 0ed468b7659 -- .skilled/commands/deep/assets/deep-review.yaml
 commit 0ed468b76597207882e65eee51588a064a67983e
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:43:50 2026 +0100
 
     feat(deep): wire the expansive review frontier into the review workflow
@@ -1172,7 +1172,7 @@ index 68f2e3ad029..93c39ff0dc7 100644
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 33b6f92ac14 -- .skilled/commands/deep/assets/deep-review.yaml && git -c core.fsmonitor=false show 6953b67c5dd -- .skilled/commands/deep/assets/deep-review.yaml
 commit 33b6f92ac140ff1a2c5fc10aff35c7e96223e02f
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:32:46 2026 +0100
 
     fix(system-deep-loop): reduce the review frontier once after the seed
@@ -1209,7 +1209,7 @@ index 93c39ff0dc7..9fdcaeac930 100644
          log: "Initialization complete. Config, state, and strategy files created. Review scope: {review_scope_files_count} files, {dimension_queue_count} dimensions."
          set: { current_iteration: 1, p0_count: 0, p1_count: 0, p2_count: 0 }
 commit 6953b67c5dd03ce477c4df1be20d5fea9fee301d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:09:03 2026 +0100
 
     fix(deep): count extended runs by iteration when run holds a run id
@@ -1346,7 +1346,7 @@ index 16baba90c52..fbf95ff4059 100644
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 4d0b12723eb -- .skilled/commands/deep/assets/deep-review.yaml .skilled/commands/deep/assets/deep-review-presentation.txt
 commit 4d0b12723eb8b107869285e5e48026665408e6ff
 Merge: ed3d2a7d74c 7f0995f4e37
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 22:29:49 2026 +0100
 
     feat(system-deep-loop): integrate the review dimension coverage
@@ -1359,7 +1359,7 @@ Date:   Tue Nov 17 22:29:49 2026 +0100
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show -m --first-parent 4d0b12723eb -- .skilled/commands/deep/assets/deep-review.yaml .skilled/commands/deep/assets/deep-review-presentation.txt | head -120
 commit 4d0b12723eb8b107869285e5e48026665408e6ff
 Merge: ed3d2a7d74c 7f0995f4e37
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 22:29:49 2026 +0100
 
     feat(system-deep-loop): integrate the review dimension coverage
@@ -2886,7 +2886,7 @@ config.fanout_lineage_artifact_dir: .opencode/specs/system-speckit/999-golden/re
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 8fda03e7135 -- .skilled/commands/deep/assets/deep-review.yaml .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json
 commit 8fda03e71357d5503c896ba99375b2e2bfdd9996
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:26:01 2026 +0100
 
     feat(deep): bind the review depth_mode flag beside convergence_mode
@@ -2988,7 +2988,7 @@ index d51af26a20b..ab581f8c045 100644
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show f4975f8a409 -- .skilled/commands/deep/assets/deep-review.yaml
 commit f4975f8a409ddadb7c7d7997ae15a849786a05b5
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:39:44 2026 +0100
 
     feat(system-deep-loop): steer review focus and render the frontier block
@@ -3118,7 +3118,7 @@ step_graph_convergence:
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 2c80c64f391 -- .skilled/commands/deep/assets/deep-review-presentation.txt .skilled/commands/deep/assets/deep-research-presentation.txt | head -120
 commit 2c80c64f3915ebb71604d9ba5e3dd96498fc1293
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 20:04:16 2026 +0100
 
     feat(deep): extend a completed research or review run with --extend=N
@@ -3841,7 +3841,7 @@ f4975f8a409 feat(system-deep-loop): steer review focus and render the frontier b
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 15f0c2c268e -- .skilled/commands/deep/assets/deep-review.yaml .skilled/commands/deep/assets/deep-review-presentation.txt && git -c core.fsmonitor=false show 8f333189cbe -- .skilled/commands/deep/assets/deep-review.yaml
 commit 15f0c2c268e39a739abd85146344a7d10d50155a
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 20:05:15 2026 +0100
 
     fix(system-deep-loop): apply the minIterations floor to review runs
@@ -3865,7 +3865,7 @@ index 3c6d9047b9a..52396ea1398 100644
            6. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
            Bind the outputs from stop_decision, where G is stop_decision.gates and I is stop_decision.inputs.review:
 commit 8f333189cbe1fcdb3e330e756447800002c91f8d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 20:24:20 2026 +0100
 
     fix(system-deep-loop): refuse non-integer extend values in the extension step
@@ -3899,7 +3899,7 @@ index 7a262608f88..0f7d348c794 100644
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 2c80c64f391 -- .skilled/commands/deep/assets/deep-review.yaml | head -260
 commit 2c80c64f3915ebb71604d9ba5e3dd96498fc1293
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 20:04:16 2026 +0100
 
     feat(deep): extend a completed research or review run with --extend=N

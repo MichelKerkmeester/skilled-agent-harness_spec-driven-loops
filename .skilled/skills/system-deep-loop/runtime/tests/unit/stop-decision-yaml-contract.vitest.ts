@@ -598,3 +598,37 @@ describe.each([
     expect(commandDoc).toContain('| `--frontier-max-nodes` |');
   });
 });
+
+// A review that ends on a repeated blocked stop must name that reason on its
+// terminal gate row, or the run and its report record it as converged.
+describe('deep-review terminal stop reason', () => {
+  const text = readFileSync(resolve(ASSETS, 'deep-review.yaml'), 'utf8');
+
+  it('passes a blockedStop stop through to the terminal gate row', () => {
+    const rule = text.split('\n').find((line) => line.includes('terminal_stop_reason = reason when')) ?? '';
+    expect(rule).toContain('blockedStop when decision is STOP and reason is blockedStop');
+  });
+});
+
+// Before closeout no research state row carries maxIterationsReached, converged,
+// blockedStop, maxDurationReached or manualStop, and a resumed run's log still
+// holds the earlier session's pause and recovery rows. The synthesis reason must
+// keep the stop this session bound, or the report names a stale or default reason.
+describe('deep-research synthesis stop reason', () => {
+  const text = readFileSync(resolve(ASSETS, 'deep-research.yaml'), 'utf8');
+  const hydrate = (parseYaml(text) as any).workflow.phase_synthesis.steps.step_hydrate_summary_metrics;
+  const rule: string = hydrate.extract.find((entry: Record<string, string>) => 'reason' in entry).reason;
+  const sessionClause = rule.slice(0, rule.indexOf(String.raw`{state_paths.state_log}`));
+
+  it('keeps the stop reason this session bound, maxIterationsReached and blockedStop included', () => {
+    expect(sessionClause).toContain('left phase_loop for synthesis');
+    expect(sessionClause).toContain('maxIterationsReached');
+    expect(sessionClause).toContain('blockedStop');
+    expect(sessionClause).not.toContain('reason blockedStop, use blockedStop');
+  });
+
+  it('reads stop rows only after the latest resumed or run_extended row', () => {
+    const rowClause = rule.slice(sessionClause.length, rule.indexOf('On a fan-out root'));
+    expect(rowClause).toContain("after the latest 'resumed' or 'run_extended' row");
+  });
+});

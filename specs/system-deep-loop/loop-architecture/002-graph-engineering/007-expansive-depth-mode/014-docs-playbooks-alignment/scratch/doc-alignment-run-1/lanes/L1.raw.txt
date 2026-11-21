@@ -248,7 +248,7 @@ worktrees/455-expansive-depth-integration
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show --stat 9e0b02c49a6 | head -40
 commit 9e0b02c49a6178776643ea85c9d1c9aada99d3f4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:18:47 2026 +0100
 
     fix(system-deep-loop): repair expansive review frontier defects from the pilot
@@ -511,7 +511,7 @@ You may append up to 6 `frontier_proposal` rows to this iteration's delta with "
 [0m$ [0mgit -c core.fsmonitor=false show --stat 1642d622a3b | head -40; git -c core.fsmonitor=false show --stat 65eb3c029d0 | head -30
 commit 1642d622a3b1f8383f84b9273e44cd3bf8041052
 Merge: 43eb6d47b8e f0f08e96f3d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:25:57 2026 +0100
 
     feat(system-deep-loop): integrate the research frontier pilot fixes
@@ -531,7 +531,7 @@ Date:   Wed Nov 18 01:25:57 2026 +0100
  7 files changed, 246 insertions(+), 29 deletions(-)
 commit 65eb3c029d0c2c0a29dcfcc0039d7343692c2d83
 Merge: 70be3187a9f 33b6f92ac14
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:33:40 2026 +0100
 
     feat(system-deep-loop): integrate the review frontier seed reduce
@@ -622,7 +622,7 @@ d05921666c0 feat(agents): check every agent outline against the template
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show 0ed468b7659 -- .skilled/agents/deep-review.md | head -80; echo ===; git -c core.fsmonitor=false show 8b44a506edb -- .skilled/agents/deep-review.md | head -60
 commit 0ed468b76597207882e65eee51588a064a67983e
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:43:50 2026 +0100
 
     feat(deep): wire the expansive review frontier into the review workflow
@@ -648,7 +648,7 @@ index 22a9aa1e375..62961defce3 100644
  - Verify the narrative contains focus, finding severity sections, traceability checks, edge cases, ruled-out section, and next focus.
 ===
 commit 8b44a506edb1eda423dd22bdc061d84048baa0c4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 22:12:35 2026 +0100
 
     feat(system-deep-loop): describe and prove custom review dimensions
@@ -694,7 +694,7 @@ index 04afe3b4c4a..22a9aa1e375 100644
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show 13c893a4e5d -- .skilled/agents/deep-research.md | head -50; echo ===; git -c core.fsmonitor=false show ac4151f027f -- .skilled/agents/deep-research.md .skilled/agents/deep-review.md | head -60
 commit 13c893a4e5dc818236fb6ba75a94a6855773bbdb
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 22:45:40 2026 +0100
 
     feat(system-deep-loop): let the research leaf propose frontier questions
@@ -723,7 +723,7 @@ index 80ac26eecdd..d22a42e7eeb 100644
  - Partially new findings count as 0.5.
 ===
 commit ac4151f027f7380e81c090e4739b7098ba6a36ba
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 20:20:43 2026 +0100
 
     docs(system-deep-loop): document completed-run extension as a live mode

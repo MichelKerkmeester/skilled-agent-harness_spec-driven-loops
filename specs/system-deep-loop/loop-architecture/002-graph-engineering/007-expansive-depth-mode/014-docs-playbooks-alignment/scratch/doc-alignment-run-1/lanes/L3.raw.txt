@@ -3564,7 +3564,7 @@ f8c334b9c39 docs(system-deep-loop): add research frontier playbooks and changelo
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 9e0b02c49a6 | head -40
 commit 9e0b02c49a6178776643ea85c9d1c9aada99d3f4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:18:47 2026 +0100
 
     fix(system-deep-loop): repair expansive review frontier defects from the pilot
@@ -3600,7 +3600,7 @@ Date:   Wed Nov 18 01:18:47 2026 +0100
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 1642d622a3b | head -40
 commit 1642d622a3b1f8383f84b9273e44cd3bf8041052
 Merge: 43eb6d47b8e f0f08e96f3d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:25:57 2026 +0100
 
     feat(system-deep-loop): integrate the research frontier pilot fixes
@@ -3622,7 +3622,7 @@ Date:   Wed Nov 18 01:25:57 2026 +0100
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 1642d622a3b -- .skilled/commands/deep/assets/deep-research.yaml .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | head -100
 commit 1642d622a3b1f8383f84b9273e44cd3bf8041052
 Merge: 43eb6d47b8e f0f08e96f3d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:25:57 2026 +0100
 
     feat(system-deep-loop): integrate the research frontier pilot fixes
@@ -5313,7 +5313,7 @@ deep-review/manual-testing-playbook/fanout/fanout-frontier-partition-round-robin
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 98082bf5177 | head -40
 commit 98082bf517770c5bc0515afacc1de94726eca7d9
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:08:32 2026 +0100
 
     docs(system-deep-loop): fix alignment findings in catalogs and READMEs
@@ -5355,7 +5355,7 @@ Date:   Wed Nov 18 01:08:32 2026 +0100
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 98082bf5177 -- .skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md .skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/completed-run-extension.md | head -60
 commit 98082bf517770c5bc0515afacc1de94726eca7d9
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:08:32 2026 +0100
 
     docs(system-deep-loop): fix alignment findings in catalogs and READMEs

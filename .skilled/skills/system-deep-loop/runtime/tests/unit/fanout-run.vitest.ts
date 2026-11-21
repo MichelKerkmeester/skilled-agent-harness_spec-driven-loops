@@ -1673,7 +1673,8 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
       executable: 'devin',
       model: 'glm-5-2',
       reasoningEffort: null,
-      sandboxMode: 'workspace-write',
+      sandboxMode: 'danger-full-access',
+      sandboxWidenedFrom: 'workspace-write',
       webSearch: 'inherit',
     });
     expect(command.invocationFingerprint).toMatch(/^inv:[a-f0-9]{64}$/);
@@ -2863,7 +2864,7 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     );
   });
 
-  it('rejects an unapproved single-lineage research or review run before side effects', async () => {
+  it('refuses a one-lineage research or review matrix before side effects', async () => {
     for (const loopType of ['research', 'review'] as const) {
       const binDir = makeTempDir(`fanout-run-single-lineage-refused-${loopType}-bin-`);
       const hermetic = useHermeticEnv(`single-lineage-refused-${loopType}`);
@@ -2876,7 +2877,7 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
         concurrency: 1,
       });
 
-      // rawSpawnCjs skips the shared helper, which would add the opt-in.
+      // rawSpawnCjs skips the shared helper, which would add --only-lineage.
       const result = await rawSpawnCjs(fanoutRunScript, [
         '--spec-folder',
         specFolder,
@@ -2932,9 +2933,9 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     }
   });
 
-  it('runs a two-lineage research or review matrix without the single-lineage opt-in', async () => {
-    // Every other launch in this file opts in through the shared helper, so this case
-    // proves the default posture still accepts a real fan-out.
+  it('runs a two-lineage research or review matrix without --only-lineage', async () => {
+    // Every other launch in this file names its lineage through the shared helper, so this
+    // case proves a real fan-out still runs without --only-lineage.
     for (const loopType of ['research', 'review'] as const) {
       const binDir = makeTempDir(`fanout-run-two-lineage-default-${loopType}-bin-`);
       const hermetic = useHermeticEnv(`two-lineage-default-${loopType}`);
@@ -7322,6 +7323,63 @@ describe('fanout-run.cjs — per-lineage expansive budget', () => {
     expect(output).not.toContain('seed share');
     expect(existsSync(join(baseDir, 'lineages'))).toBe(false);
   });
+
+  // The root config's maxIterations is the largest lineage cap, so the root status,
+  // the synthesis and a later restart read the same budget table the lineages run.
+  // Nine open seeds over two lineages deal shares of five and four: 14 and 12.
+  function expansiveRootRun(testId: string) {
+    const binDir = makeTempDir(`fanout-run-${testId}-bin-`);
+    writeStubBinary(binDir, 'opencode');
+    const hermetic = useHermeticEnv(testId);
+    const specFolder = `specs/test-fanout-run-${testId}`;
+    const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+    writeFileSync(join(baseDir, 'frontier-nodes.jsonl'), Array.from({ length: 9 }, (_, index) => `${JSON.stringify({
+      nodeId: `F-1-00${index + 1}`, parentId: 'root', depth: 1, status: 'open', question: `Question ${index + 1}?`, scope: 'lib', reason: null, iteration: 0,
+    })}\n`).join(''), 'utf8');
+    const rootConfigPath = join(baseDir, 'deep-research-config.json');
+    writeFileSync(rootConfigPath, `${JSON.stringify({ topic: 'Topic', maxIterations: 10 }, null, 2)}\n`, 'utf8');
+    const run = (...extra: string[]) => spawnCjs(fanoutRunScript, [
+      '--spec-folder', specFolder,
+      '--loop-type', 'research',
+      '--fanout-config-json', JSON.stringify({
+        executors: [
+          { label: 'a', kind: 'cli-opencode', model: 'llmgateway/deepseek-v4.1-flash-1017' },
+          { label: 'b', kind: 'cli-opencode', model: 'llmgateway/deepseek-v4.1-flash-1017' },
+        ],
+        concurrency: 2,
+        maxRetries: 0,
+      }),
+      '--base-artifact-dir', baseDir,
+      '--research-topic', 'Topic',
+      '--depth-mode', 'expansive',
+      ...extra,
+    ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 60_000 });
+    return { run, rootConfigPath };
+  }
+
+  it('writes the largest lineage cap into the root config before any lineage spawns', async () => {
+    const { run, rootConfigPath } = expansiveRootRun('expansive-root-budget');
+    const result = await run();
+
+    const rootConfig = JSON.parse(readFileSync(rootConfigPath, 'utf8')) as Record<string, unknown>;
+    expect(rootConfig.maxIterations, result.stderr).toBe(14);
+    expect(rootConfig.topic).toBe('Topic');
+    expect(result.stderr).toContain('[fanout-run] budget table: a 14, b 12 iterations; root maxIterations 14, the largest lineage cap');
+  });
+
+  it('leaves the root config untouched under --preview and under an explicit --max-iterations', async () => {
+    const preview = expansiveRootRun('expansive-root-budget-preview');
+    const before = readFileSync(preview.rootConfigPath, 'utf8');
+    const previewResult = await preview.run('--preview');
+    expect(previewResult.exitCode, previewResult.stderr).toBe(0);
+    expect(readFileSync(preview.rootConfigPath, 'utf8')).toBe(before);
+
+    const flagged = expansiveRootRun('expansive-root-budget-flag');
+    const flaggedResult = await flagged.run('--max-iterations', '5');
+    const rootConfig = JSON.parse(readFileSync(flagged.rootConfigPath, 'utf8')) as Record<string, unknown>;
+    expect(rootConfig.maxIterations, flaggedResult.stderr).toBe(10);
+    expect(flaggedResult.stderr).not.toContain('budget table');
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -7419,6 +7477,23 @@ describe('fanout-run.cjs — a fatal provider refusal is announced and redacted'
     expect(readFileSync(join(logsDir, 'fanout-lineage.out'), 'utf8')).toContain('attempt-two');
     expect(readFileSync(join(logsDir, 'fanout-lineage.1.out'), 'utf8')).toContain('attempt-one');
     expect(existsSync(join(logsDir, 'fanout-lineage.1.err'))).toBe(false);
+  });
+
+  // The stdout cap stops the lineage with the same signal a timeout sends, so the failure
+  // must name the cap, or the operator raises a timeout that was never the cause.
+  it('fails a lineage whose stdout passed the cap with that reason, not as a timeout', async () => {
+    const binDir = makeTempDir('fanout-run-overflow-bin-');
+    const baseDir = makeTempDir('fanout-run-overflow-base-');
+    writeFileSync(
+      join(binDir, 'opencode'),
+      ['#!/bin/sh', OPENCODE_VERSION_PROBE, 'yes aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa | head -c 22000000', 'sleep 30', 'exit 0', ''].join('\n'),
+      { mode: 0o755 },
+    );
+    const hermetic = useHermeticEnv('stdout-overflow');
+    const result = await runRefusal(hermetic, binDir, baseDir);
+
+    expect(result.stderr).toMatch(/lineage quota stdout passed the 20971520-byte cap/);
+    expect(result.stderr).not.toMatch(/lineage quota timed out/);
   });
 
   // The artifact directory is staged for commit, so a failed attempt's kept log and the

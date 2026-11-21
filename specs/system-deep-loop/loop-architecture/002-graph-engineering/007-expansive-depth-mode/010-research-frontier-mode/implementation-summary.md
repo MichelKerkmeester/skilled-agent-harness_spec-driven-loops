@@ -8,26 +8,30 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode"
-    last_updated_at: "2026-11-17T18:12:37Z"
+    last_updated_at: "2026-11-21T11:09:41Z"
     last_updated_by: "generate-context"
-    recent_action: "Built T001-T026 and T029 on the phase branch; closure docs written"
-    next_safe_action: "Merge into integration, then run T030 full suite and the T031 pilot"
+    recent_action: "Closed T030 on the 31c29fe031a gate run; phase merged and built on integration"
+    next_safe_action: "Resolve open P0 boxes CHK-FIX-001, CHK-FIX-003 and CHK-120 in tasks.md"
     packet_purpose: "Purpose: With `--depth-mode=expansive`, a research run discovers new scope as typed proposals, admits it under fixed bounds, steers focus to it breadth-first, refuses to stop while admitted nodes are open within budget and still reaches a clean stop when every node is terminal; without the flag, nothing c..."
-    blockers: []
+    blockers:
+      - "P0 CHK-FIX-001 open: edits not classed cross-consumer"
+      - "P0 CHK-FIX-003 open: no consumer inventory"
+      - "P0 CHK-120 open: no golden run on a reverted tree"
     key_files:
-      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/spec.md"
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/tasks.md"
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/010-research-frontier-mode/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:1b87bbd32d746995577155cb31ae97c9b51c0fb5c76a7eb3881b1956ffbd54ab"
       session_id: "scaffold-010-research-frontier-mode"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "94a4cf06-5c71-4a49-952f-6bbffe1f9b56"
-      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-17T18:12:37Z"
+      sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
+      workspace: "/Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration"
+      savedAt: "2026-11-21T11:09:41Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 85
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -156,7 +160,7 @@ The golden baseline was captured first, on the untouched tree. Each change then 
 
 1. **The pilot ran twice; AC-014 was amended.** The operator dropped the non-cap stop clause on 2026-11-18 (decision-record Q003), because the default-run stop gates block it, and run 2 meets the amended drain criterion. The node cap is now derived as half of `maxIterations`. Both target-2 runs used `--depth-mode=expansive` on throwaway fixtures (`scratch/pilot-run-1.md`, `scratch/pilot-run-2.md`), and both stopped on `maxIterationsReached`. Run 1 ran 12 iterations, admitted 8 nodes beyond the 4 seeds and ended with 4 answered and 8 closed by budget. Its three defects were fixed in `1642d622a3b` with fail-first tests. Run 2 ran 16 iterations, ended with all 16 nodes answered and confirmed the fixes live. Two nodes briefly showed a budget close while already answered, a possible residue of one fix that is not confirmed. A stop before the cap stays out of reach while `maxFrontierNodes` equals `max_iterations`, because the seeds and early admissions fill every slot and each iteration answers one node. The T032 check printed 1 on run 1 and 0 on run 2, since it depends on what the leaf cites. Run 2 also hit a synthesis-closeout exit 2 and a SQLite foreign-key error on graph edges, both outside this phase.
 2. **Playbook and changelog written.** Six scenarios (DR-068 to DR-073) and the v1.16.0.0 changelog entry landed in integration.
-3. **Full suite pending.** The whole deep-loop suite runs at the merge gate (T030). Earlier integration gates showed one unrelated flaky test per run.
+3. **Full suite green after the merge.** T030 closed on the integration gate at `31c29fe031a`: 211 of 211 files and 3888 tests passed, 11 skipped. Earlier integration gates showed one unrelated flaky test per run.
 4. **A focus without the node marker is not counted.** Visits match the `Frontier node <id>` marker anywhere in the focus, and the frontier block asks the leaf to copy its Focus Area line. A leaf that drops the marker altogether leaves visits at 0, so the budget does not spend and the stuck close cannot find the node.
 5. **CLI lineage prompt bytes.** A default CLI lineage now carries the expansive-only leaf-contract paragraph in its embedded persona. AC-001 is waived for that one artifact under ADR-006, ratified by the operator on 2026-11-18.
 <!-- /ANCHOR:limitations -->

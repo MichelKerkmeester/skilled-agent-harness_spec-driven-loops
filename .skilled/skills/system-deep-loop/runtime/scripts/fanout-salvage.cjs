@@ -175,25 +175,40 @@ function toEpochMs(value) {
  * Opencode JSON events carry an epoch-ms timestamp, and claude stream-json assistant
  * events carry an ISO one. A log with neither, such as plain text, cannot place a
  * call in a pass, so it yields null rather than an empty list that would read as zero.
+ * The exception is an untimed claude log that holds no tool call, such as an attempt
+ * that died on a quota error after its init event: it provably ran no call, so it
+ * yields an empty list and does not leave a later attempt's passes unjudged.
  *
  * @param {string} log - One or more attempts' captured stdout.
  * @returns {Array<{atMs:number, tool:string, input:Object}>|null} Calls, or null when
- *   the log holds no timed event.
+ *   the log holds no timed event and may hold an untimed call.
  */
 function readTimedToolEvents(log) {
   if (typeof log !== 'string') return null;
   let timed = false;
+  // Stays true while every line is a claude stream-json event without a tool call.
+  let provablyCallFree = log.trim() !== '';
   const events = [];
   for (const line of log.split('\n')) {
     const trimmed = line.trim();
-    if (!trimmed.startsWith('{')) continue;
-    let parsed;
-    try {
-      parsed = JSON.parse(trimmed);
-    } catch {
+    if (trimmed === '') continue;
+    let parsed = null;
+    if (trimmed.startsWith('{')) {
+      try {
+        parsed = JSON.parse(trimmed);
+      } catch {
+        parsed = null;
+      }
+    }
+    if (!parsed || typeof parsed !== 'object') {
+      provablyCallFree = false;
       continue;
     }
-    if (!parsed || typeof parsed !== 'object') continue;
+    if (typeof parsed.session_id !== 'string'
+      || (parsed.message && Array.isArray(parsed.message.content)
+        && parsed.message.content.some((block) => block && block.type === 'tool_use'))) {
+      provablyCallFree = false;
+    }
     if (typeof parsed.timestamp === 'number' && parsed.part && typeof parsed.part === 'object') {
       timed = true;
       if (parsed.type !== 'tool_use') continue;
@@ -215,7 +230,8 @@ function readTimedToolEvents(log) {
       }
     }
   }
-  return timed ? events : null;
+  if (timed) return events;
+  return provablyCallFree ? [] : null;
 }
 
 function isSourceRead(event) {

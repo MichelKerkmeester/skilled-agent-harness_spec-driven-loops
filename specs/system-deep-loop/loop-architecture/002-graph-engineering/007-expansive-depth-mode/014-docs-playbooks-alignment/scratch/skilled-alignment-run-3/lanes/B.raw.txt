@@ -1718,7 +1718,7 @@ NOTE: 1 violation(s) (0 fail, 0 warn, 1 note):
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 33b6f92ac14 | head -40; echo "===="; git -c core.fsmonitor=false show --stat 65eb3c029d0 | head -40
 commit 33b6f92ac140ff1a2c5fc10aff35c7e96223e02f
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:32:46 2026 +0100
 
     fix(system-deep-loop): reduce the review frontier once after the seed
@@ -1740,7 +1740,7 @@ Date:   Wed Nov 18 01:32:46 2026 +0100
 ====
 commit 65eb3c029d0c2c0a29dcfcc0039d7343692c2d83
 Merge: 70be3187a9f 33b6f92ac14
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:33:40 2026 +0100
 
     feat(system-deep-loop): integrate the review frontier seed reduce
@@ -5374,7 +5374,7 @@ Use '--' to separate paths from revisions, like this:
 'git <command> [<revision>...] -- [<file>...]'
 ====
 commit e05ac531d2156d1ae28deb0f0a1cf30e6af01ed1
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:24:43 2026 +0100
 
     docs(system-deep-loop): refresh review frontier playbook outputs
@@ -5405,7 +5405,7 @@ e673c77ba93 docs(sk-doc): add the changelog voice rule carve-out and the rewrite
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 70be3187a9f | head -40
 commit 70be3187a9ffc2af08dcf57790c5ed08386e910c
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:32:05 2026 +0100
 
     docs(system-deep-loop): record the first live frontier pilots

@@ -63,7 +63,14 @@ async function waitFor<T>(probe: () => T | null | undefined | false, timeoutMs =
   }
 }
 
-type LedgerRow = { event?: string; label?: string; pid?: number; process_start?: string };
+type LedgerRow = {
+  event?: string;
+  label?: string;
+  pid?: number;
+  process_start?: string;
+  runner_pid?: number;
+  survivors?: Array<{ label: string; pid: number }>;
+};
 
 function readLedger(baseDir: string): LedgerRow[] {
   const ledgerPath = join(baseDir, 'orchestration-status.log');
@@ -76,17 +83,22 @@ function readLedger(baseDir: string): LedgerRow[] {
 
 type RunFixture = { hermetic: HermeticEnv; baseDir: string; args: string[]; env: NodeJS.ProcessEnv };
 
-function makeSleepingRun(testId: string, executorBody = 'sleep 60\nexit 0'): RunFixture {
+function makeSleepingRun(
+  testId: string,
+  executorBody: string | ((tmpDir: string) => string) = 'sleep 60\nexit 0',
+  count = 1,
+): RunFixture {
   const hermetic = createHermeticEnv(testId);
   hermeticEnvs.push(hermetic);
   const binDir = join(hermetic.tmpDir, 'bin');
   mkdirSync(binDir, { recursive: true });
-  writeFileSync(join(binDir, 'opencode'), `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\n${executorBody}\n`, { mode: 0o755 });
+  const body = typeof executorBody === 'function' ? executorBody(hermetic.tmpDir) : executorBody;
+  writeFileSync(join(binDir, 'opencode'), `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\n${body}\n`, { mode: 0o755 });
   const baseDir = join(hermetic.tmpDir, SPEC_FOLDER, 'research');
   mkdirSync(baseDir, { recursive: true });
   const fanoutConfig = JSON.stringify({
-    executors: [{ label: 'slow', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
-    concurrency: 1,
+    executors: [{ label: 'slow', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count }],
+    concurrency: count,
     maxRetries: 0,
   });
   return {
@@ -97,7 +109,7 @@ function makeSleepingRun(testId: string, executorBody = 'sleep 60\nexit 0'): Run
       '--loop-type', 'research',
       '--fanout-config-json', fanoutConfig,
       '--base-artifact-dir', baseDir,
-      '--only-lineage', 'slow',
+      ...(count === 1 ? ['--only-lineage', 'slow'] : []),
     ],
     env: { ...hermetic.env, PATH: `${binDir}:${hermetic.env['PATH'] ?? ''}` },
   };
@@ -293,5 +305,90 @@ describe('fanout-run.cjs --stop — lineage identity', () => {
     expect(lastJson(stop.stdout)).toMatchObject({ status: 'ok', stopped: [{ label: 'slow', pid: leaderPid }] });
     expect(groupAlive(leaderPid)).toBe(false);
     expect(terminalRows().map((row) => row.event)).toEqual(['stopped']);
+  }, 40_000);
+
+  it('a runner stopped by a signal spares the members --stop would spare, and still stops the others', async () => {
+    // The executor starts one member, waits past the one-second resolution of a start time,
+    // starts a second and exits; both members keep its output pipe open, so the runner still
+    // holds the exited leader as a running lineage.
+    const fixture = makeSleepingRun('fanout-stop-identity-runner-spare', (tmpDir) => [
+      `sleep 60 & echo $! >> "${tmpDir}/members"`,
+      'sleep 2',
+      `sleep 60 & echo $! >> "${tmpDir}/members"`,
+      'exit 0',
+    ].join('\n'));
+    const run = startRun(fixture);
+    const runExited = new Promise((resolvePromise) => run.on('exit', resolvePromise));
+    const spawned = await waitFor(() => readLedger(fixture.baseDir).find((row) => row.event === 'spawned'));
+    const leaderPid = spawned.pid as number;
+    ownedGroups.push(leaderPid);
+    const membersPath = join(fixture.hermetic.tmpDir, 'members');
+    const [olderPid, newerPid] = await waitFor(() => {
+      if (!existsSync(membersPath)) return null;
+      const pids = readFileSync(membersPath, 'utf8').trim().split('\n').filter(Boolean).map(Number);
+      return pids.length === 2 && processStart(leaderPid) === '' && groupAlive(leaderPid) ? pids : null;
+    });
+
+    // Every member of a real lineage group descends from its leader, so none starts before
+    // the recorded spawn and the spare branch cannot be reached honestly. This row is the
+    // injection: it repeats the spawn with the newer member's start, and the latest row for
+    // a pid is the one a stop reads.
+    writeFileSync(join(fixture.baseDir, 'orchestration-status.log'), `${JSON.stringify({
+      ...spawned,
+      process_start: processStart(newerPid),
+    })}\n`, { flag: 'a' });
+
+    run.kill('SIGTERM');
+    await runExited;
+
+    const pidAlive = (pid: number) => processStart(pid) !== '';
+    expect(pidAlive(olderPid)).toBe(true);
+    expect(pidAlive(newerPid)).toBe(false);
+    expect(readLedger(fixture.baseDir).filter((row) => row.event === 'stopped').map((row) => row.label)).toEqual(['slow']);
+  }, 40_000);
+
+  it('a runner stopped by a signal leaves a lineage that outlives the signal open, and names it a survivor', async () => {
+    // The first lineage to start ignores SIGTERM, and its sleep inherits that.
+    const fixture = makeSleepingRun('fanout-stop-identity-runner-survivor', (tmpDir) => [
+      `if mkdir "${tmpDir}/stubborn" 2>/dev/null; then echo $$ > "${tmpDir}/stubborn/pid"; trap '' TERM; fi`,
+      'sleep 60',
+      'exit 0',
+    ].join('\n'), 2);
+    const run = startRun(fixture);
+    const runExited = new Promise<number | null>((resolvePromise) => run.on('exit', (code) => resolvePromise(code)));
+    const spawnedRows = await waitFor(() => {
+      const rows = readLedger(fixture.baseDir).filter((row) => row.event === 'spawned');
+      return rows.length === 2 ? rows : null;
+    });
+    for (const row of spawnedRows) ownedGroups.push(row.pid as number);
+    const stubbornPidPath = join(fixture.hermetic.tmpDir, 'stubborn', 'pid');
+    const stubbornPid = await waitFor(() => (existsSync(stubbornPidPath)
+      ? Number(readFileSync(stubbornPidPath, 'utf8').trim()) || null
+      : null));
+    const stubborn = spawnedRows.find((row) => row.pid === stubbornPid) as LedgerRow;
+    const normal = spawnedRows.find((row) => row.pid !== stubbornPid) as LedgerRow;
+
+    run.kill('SIGTERM');
+    // A second signal lands while the runner waits on the survivor, and must not cut the
+    // stop short of its summary.
+    await new Promise((resolvePromise) => setTimeout(resolvePromise, 500));
+    try {
+      process.kill(stubborn.runner_pid as number, 'SIGTERM');
+    } catch {
+      // The runner already exited, which the assertions below report.
+    }
+    expect(await runExited).toBe(143);
+
+    expect(groupAlive(stubbornPid)).toBe(true);
+    expect(groupAlive(normal.pid as number)).toBe(false);
+    const ledger = readLedger(fixture.baseDir);
+    expect(ledger.filter((row) => row.event === 'stopped').map((row) => row.label)).toEqual([normal.label]);
+    expect(ledger.find((row) => row.event === 'run_stopped')?.survivors).toEqual([
+      { label: stubborn.label, pid: stubbornPid },
+    ]);
+    const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
+      results: Array<{ label: string; status: string }>;
+    };
+    expect(summary.results.find((result) => result.label === stubborn.label)?.status).not.toBe('stopped');
   }, 40_000);
 });

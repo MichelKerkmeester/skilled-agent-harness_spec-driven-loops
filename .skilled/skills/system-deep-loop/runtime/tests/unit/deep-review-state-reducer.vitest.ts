@@ -1352,6 +1352,48 @@ describe('reduceReviewState expansive frontier', () => {
     expect(frontier.budget.depth1).toEqual({ allotted: 5, spent: 2 });
   });
 
+  // A node that closed exhausted after covering every dimension owes no search
+  // debt, so the follow-up list is the only place the synthesis can learn of it.
+  it('lists every exhausted and blocked node on the dashboard as follow-up review work', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [
+      nodeRow({ nodeId: 'F-1-001', status: 'exhausted', reason: 'budget', question: 'Is the stop path covered?' }),
+      nodeRow({
+        nodeId: 'F-1-002',
+        scope: 'src/parser',
+        status: 'blocked',
+        reason: 'target unreadable',
+        question: 'Does the parser reject bad input?',
+      }),
+      nodeRow({ nodeId: 'F-1-003', status: 'pruned', reason: 'duplicate' }),
+    ]);
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${[
+      iterationRecord(1, 'Frontier node F-1-001: correctness', ['correctness'], { frontierNodeId: 'F-1-001' }),
+      iterationRecord(2, 'Frontier node F-1-001: security', ['security'], { frontierNodeId: 'F-1-001' }),
+      iterationRecord(3, 'Frontier node F-1-001: maintainability', ['maintainability'], { frontierNodeId: 'F-1-001' }),
+    ].join('\n')}\n`);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const section = sectionAfter(result.dashboard, '## 10B. FRONTIER', '<!--');
+
+    expect(section).toContain('- Follow-up: F-1-001 exhausted (budget), scope src, every dimension reviewed: Is the stop path covered?');
+    expect(section).toContain('- Follow-up: F-1-002 blocked (target unreadable), scope src/parser, next dimension correctness: Does the parser reject bad input?');
+    expect(section).not.toContain('F-1-003');
+  });
+
+  it('states that no follow-up review work is left when no node closed exhausted or blocked', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExpansiveConfig(reviewDir);
+    writeStore(reviewDir, [nodeRow({ nodeId: 'F-1-001' })]);
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const section = sectionAfter(result.dashboard, '## 10B. FRONTIER', '<!--');
+
+    expect(section).toContain('- Follow-up review work: none');
+    expect(section).not.toContain('- Follow-up:');
+  });
+
   // The size line's per-status counts have to add up to its total, so a node an
   // operator closed as abstained is counted beside the other closed states.
   it('counts an abstained node in the dashboard frontier size line', () => {

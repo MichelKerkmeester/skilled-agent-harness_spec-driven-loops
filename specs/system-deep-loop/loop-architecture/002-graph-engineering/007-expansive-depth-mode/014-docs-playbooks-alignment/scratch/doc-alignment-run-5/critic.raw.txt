@@ -3586,9 +3586,9 @@ None.
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show --format=fuller --no-patch 7799a67f
 commit 7799a67f677576d07a9f1082fb3db8d9b6efbaa4
-Author:     Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author:     Michel Kerkmeester <redacted>
 AuthorDate: Wed Nov 18 08:14:00 2026 +0100
-Commit:     Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Commit:     Michel Kerkmeester <redacted>
 CommitDate: Wed Nov 18 08:14:00 2026 +0100
 
     docs(system-deep-loop): align expansive-depth docs with the shipped code
@@ -3651,7 +3651,7 @@ CommitDate: Wed Nov 18 08:14:00 2026 +0100
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show 7799a67f -- .skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-research/SKILL.md | sed -n '1,220p'
 commit 7799a67f677576d07a9f1082fb3db8d9b6efbaa4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 08:14:00 2026 +0100
 
     docs(system-deep-loop): align expansive-depth docs with the shipped code
@@ -3750,7 +3750,7 @@ index 25d36e4b82a..462d973435d 100644
  `step_frontier_seed` decomposes the topic into 3 to 6 depth-1 nodes before iteration 1. On a plain run it sits in `phase_init` after `step_create_config`; on a fan-out run it runs before `step_fanout_spawn`. It calls `runtime/scripts/frontier-admit.cjs seed`.
 [0m$ [0mgit -c core.fsmonitor=false show 7799a67f -- .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md | sed -n '1,260p'
 commit 7799a67f677576d07a9f1082fb3db8d9b6efbaa4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 08:14:00 2026 +0100
 
     docs(system-deep-loop): align expansive-depth docs with the shipped code
@@ -4533,7 +4533,7 @@ Under `stopPolicy: convergence`, an extension with nothing new can stop again at
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show 7799a67f -- .skilled/commands/deep/research.md .skilled/commands/deep/review.md README.md .skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md | sed -n '1,260p'
 commit 7799a67f677576d07a9f1082fb3db8d9b6efbaa4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 08:14:00 2026 +0100
 
     docs(system-deep-loop): align expansive-depth docs with the shipped code
@@ -4646,7 +4646,7 @@ index 56839252027..00ec2986767 100644
  A loop can also spread across several AI CLIs at once. Each executor runs its own lineage, and for a review the strictest verdict wins the merge. A pool caps how many lineages run at once. A stall watchdog stops a lineage that stops making progress, and a cost cap bounds what each one spends. The [Deep Loop README](.skilled/skills/system-deep-loop/README.md) describes both modes and the shared runtime.
 [0m$ [0mgit -c core.fsmonitor=false show 7799a67f -- .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook | sed -n '1,300p'
 commit 7799a67f677576d07a9f1082fb3db8d9b6efbaa4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 08:14:00 2026 +0100
 
     docs(system-deep-loop): align expansive-depth docs with the shipped code

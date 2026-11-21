@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.30.0
+version: 1.11.31.0
 ---
 
 # deep-review
@@ -190,9 +190,9 @@ An admission step runs before the reducer. It applies seven checks in order: rel
 
 The frontier veto never outranks the iteration cap, consecutive failures, stuck recovery, pause, the max-duration stop, `--convergence-mode=off`, `--stop-policy=max-iterations` or the floor above. Stuck recovery closes the active node as `exhausted`. Once every node is closed and at least one was answered, a run that forms no other stop candidate gets `frontier_drained`. The legal-stop gates still decide it, so a run whose frontier work is done stops before its cap.
 
-The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`, which defaults to half of `maxIterations`. A review root takes up to 8 depth-1 children, because the seed asks for 3 to 8 sub-targets and the root cap never falls below that floor. When `--max-iterations` is left at its default, the run sizes its budget from the seed. The budget is `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the dimension universe, the four canonical dimensions less traceability when the config's `reviewDimensions` list leaves it out, plus each custom name it adds, each counted once. The seed step prints the derived budget.
+The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`, which defaults to half of `maxIterations`. A review root takes up to 8 depth-1 children, because the seed asks for 3 to 8 sub-targets and the root cap never falls below that floor. When `--max-iterations` is left at its default, the run sizes its budget from the seed. The budget is `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the dimension universe, the four canonical dimensions less traceability when the config's `reviewDimensions` list leaves it out, plus each custom name it adds, each counted once. On a single-executor run the seed step prints the derived budget. A fan-out parent's seed prints no whole-seed budget: the runner writes the largest lineage cap into the root config's `maxIterations` and prints the run's budget table as one `[fanout-run] budget table:` line on stderr.
 
-When D is four or more, the ceiling of 24 binds from the first seed. One run then cannot fund every node at every depth of a wide review. Split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead. That is 12 iterations for a native lineage and 7 for a CLI one or a single run.
+When D is four or more, the ceiling of 24 binds from the first seed. One run then cannot fund every node at every depth of a wide review. Split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default of 7 iterations instead.
 
 The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value. The seed warns when it leaves no room past depth 1. Iteration time varies by executor and model: a measured fan-out run took 0.5 to 5 minutes an iteration and committed reviews 1.5 to 3.7 minutes, so a 24-iteration review on the slowest of those can reach `maxDurationMinutes` (120) before its iteration cap.
 

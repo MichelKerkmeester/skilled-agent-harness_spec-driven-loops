@@ -101,11 +101,14 @@ const {
 } = require('../lib/deep-loop/write-containment.ts');
 const {
   buildLineageCommand,
+  rotateLineageLog,
   sweepStaleDshHomes,
   validateClaudeConfigDir,
   validateDshCompletion,
   withAgentPersona,
+  writeRedactedLineageLog,
 } = require('./fanout-run.cjs');
+const { sumProviderCostFromLog } = require('./fanout-salvage.cjs');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -278,6 +281,49 @@ function readPrompt(context) {
   );
 }
 
+// The lineage every kind's command is built from, and the executor record its audit rows
+// carry. The iteration writes its own iteration file, delta and state record, so an unset
+// sandbox mode resolves to workspace-write. An explicit read-only reaches the builder
+// unchanged, which maps it to each CLI's read-only surface or refuses it, so the
+// iteration fails instead of silently gaining write access.
+function singleIterationLineage(
+  context,
+  { reasoningEffort = context.reasoningEffort, serviceTier = null, configDir = null } = {},
+) {
+  const kind = context.executorKind;
+  const model = nullable(context.model);
+  const sandboxMode = resolveSandboxMode(context.sandboxMode);
+  return {
+    lineage: { kind, model, sandboxMode, reasoningEffort, serviceTier },
+    executor: {
+      kind,
+      model,
+      configDir,
+      reasoningEffort,
+      serviceTier,
+      sandboxMode,
+      timeoutSeconds: context.timeoutSeconds,
+      governor: null,
+    },
+    sandboxMode,
+    resolvedPermission: resolveClaudePermissionMode(sandboxMode),
+  };
+}
+
+// The executor the audit rows record, carrying the sandbox mode the built command runs and
+// what it enforces. A builder that runs another mode than the one asked for keeps the asked
+// mode beside it, so the record never names a boundary the command does not have.
+function executorAsBuilt(executor, effectiveConfig) {
+  const { sandboxMode, sandboxNarrowedFrom, sandboxWidenedFrom, sandboxEnforcement } = effectiveConfig;
+  return {
+    ...executor,
+    sandboxMode,
+    ...(sandboxNarrowedFrom !== undefined ? { sandboxNarrowedFrom } : {}),
+    ...(sandboxWidenedFrom !== undefined ? { sandboxWidenedFrom } : {}),
+    sandboxEnforcement,
+  };
+}
+
 // The artifact-dir boundary is prompt-only, so a workspace-write leaf can write anywhere
 // in the repo. Snapshot the already-dirty set before the dispatch, diff it after, and
 // report every NEW out-of-artifact-dir path. A violation is left on disk and never made
@@ -324,6 +370,27 @@ function reportWriteContainment({
   }
 }
 
+// An iteration's own files share one numbered stem under iterations/.
+function iterationFilePath(artifactDir, iteration, suffix) {
+  return path.join(artifactDir, 'iterations', `iteration-${String(iteration).padStart(3, '0')}${suffix}`);
+}
+
+// The child's stdout lands beside the iteration, named like a fan-out lineage log. An
+// earlier attempt's log is kept under the next free number, since it may be the only
+// record of why that attempt failed. The artifact directory is committed and a provider
+// echoes account ids and the author's email into the stream, so the log is masked once
+// the runner's own reads of the raw text are done, even when one of them threw.
+function runWithStdoutLog(dispatch, artifactDir, iteration) {
+  const stdoutLogPath = iterationFilePath(artifactDir, iteration, '.out');
+  fs.mkdirSync(path.dirname(stdoutLogPath), { recursive: true });
+  rotateLineageLog(stdoutLogPath);
+  try {
+    return runAuditedExecutorCommand({ ...dispatch, stdoutLogPath });
+  } finally {
+    if (fs.existsSync(stdoutLogPath)) writeRedactedLineageLog(stdoutLogPath, stdoutLogPath);
+  }
+}
+
 function dispatchWithContainment({
   dispatch,
   repoRoot,
@@ -334,7 +401,7 @@ function dispatchWithContainment({
   label,
 }) {
   const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
-  const dispatchExit = runAuditedExecutorCommand(dispatch);
+  const dispatchExit = runWithStdoutLog(dispatch, artifactDir, iteration);
   reportWriteContainment({
     preDispatchDirtyPaths,
     repoRoot,
@@ -351,82 +418,75 @@ function dispatchWithContainment({
 // 5. EXECUTOR HANDLERS
 // ───────────────────────────────────────────────────────────────────
 
-// The executor record and argv for one Claude iteration. Both loops build them here so the
-// permission mode is derived the same way on each.
-function buildClaudeInvocation(context, configDir, promptBody) {
-  const isReview = context.loopType === 'review';
-  const executor = {
-    kind: 'cli-claude-code',
-    model: context.model,
-    configDir: configDir || null,
-    reasoningEffort: context.reasoningEffort,
-    serviceTier: isReview ? null : context.serviceTier,
-    sandboxMode: context.sandboxMode,
-    timeoutSeconds: context.timeoutSeconds,
-  };
-  if (isReview) executor.governor = null;
-  const args = [
-    '-p',
-    promptBody,
-    '--model',
-    executor.model,
-    '--permission-mode',
-    resolveClaudePermissionMode(executor.sandboxMode),
-    '--output-format',
-    'text',
-  ];
-  if (executor.reasoningEffort) {
-    args.push('--effort', executor.reasoningEffort);
-  }
-  return { executor, args };
-}
-
-function runClaude(context) {
-  // Both loops validate the config dir before the prompt is read, so an unusable
-  // config directory fails before any prompt or persona file is touched.
+// The dispatch for one Claude iteration. Both loops validate the config dir before the
+// prompt is read, so an unusable config directory fails before any prompt or persona file
+// is touched.
+function buildClaudeDispatch(context) {
   const configDir = context.claudeConfigDir
     ? validateClaudeConfigDir(context.claudeConfigDir)
     : '';
-  const { executor, args } = buildClaudeInvocation(context, configDir, readPrompt(context));
-
+  const { lineage, executor, sandboxMode, resolvedPermission } = singleIterationLineage(
+    context,
+    { configDir: configDir || null },
+  );
   // CLAUDE_CONFIG_DIR rides through guardContext.env; the CLAUDE_ prefix is on the
   // cli-claude-code env allowlist so buildExecutorDispatchEnv admits it.
   const parentEnv = { ...process.env };
   if (configDir) {
     parentEnv.CLAUDE_CONFIG_DIR = configDir;
   }
-
-  return runAuditedExecutorCommand({
-    command: 'claude',
+  const { command, args, effectiveConfig } = buildLineageCommand(
+    lineage,
+    readPrompt(context),
+    sandboxMode,
+    resolvedPermission,
+    { env: parentEnv, cwd: context.repoRoot },
+  );
+  const costPath = iterationFilePath(context.artifactDir, context.iteration, '.cost.json');
+  return {
+    command,
     args,
     cwd: context.repoRoot,
     timeoutSeconds: executor.timeoutSeconds,
     stateLogPath: context.stateLogPath,
-    executor,
+    executor: executorAsBuilt(executor, effectiveConfig),
     iteration: context.iteration,
     guardContext: { env: parentEnv },
     receiptDir: context.receiptDir,
     dispatchId: context.dispatchId,
     sessionId: context.sessionId,
+    // The stream-json log is read here for its cost, not by the orchestrator.
+    echoStdout: false,
+    // Written whatever the exit, since a failed iteration still spent. A stream with no
+    // result event records null: its spend is unknown, not zero.
+    onStdout: (stdout) => {
+      fs.mkdirSync(path.dirname(costPath), { recursive: true });
+      fs.writeFileSync(
+        costPath,
+        JSON.stringify({ iteration: context.iteration, providerCostUsd: sumProviderCostFromLog(stdout) }) + '\n',
+        'utf8',
+      );
+    },
+  };
+}
+
+function runClaude(context) {
+  return dispatchWithContainment({
+    dispatch: buildClaudeDispatch(context),
+    repoRoot: context.repoRoot,
+    artifactDir: context.artifactDir,
+    stateLogPath: context.stateLogPath,
+    iteration: context.iteration,
+    label: context.dispatchId,
+    sessionId: context.sessionId,
   });
 }
 
 function runLineageBuiltin(context) {
-  const kind = context.executorKind;
-  const model = nullable(context.model);
-  const timeoutSeconds = context.timeoutSeconds;
-  // The iteration writes its own iteration file, delta and state record, so an unset mode
-  // resolves to workspace-write. An explicit read-only reaches the builder unchanged, which
-  // maps it to each CLI's read-only surface: the iteration then fails at the artifact gate
-  // instead of silently gaining write access.
-  const sandboxMode = resolveSandboxMode(context.sandboxMode);
-  const reasoningEffort = kind === 'cli-pi' ? context.reasoningEffort : null;
-  const lineage = { kind, model, sandboxMode };
-  if (kind === 'cli-pi') {
-    lineage.reasoningEffort = reasoningEffort;
-  }
-  const resolvedSandbox = resolveSandboxMode(sandboxMode);
-  const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
+  const { lineage, executor, sandboxMode, resolvedPermission } = singleIterationLineage(
+    context,
+    { reasoningEffort: context.executorKind === 'cli-pi' ? context.reasoningEffort : null },
+  );
 
   const repoRoot = context.repoRoot;
   const promptBody = readPrompt(context);
@@ -436,33 +496,22 @@ function runLineageBuiltin(context) {
   // binary preflight stay one source of truth. It throws (fail closed) when the binary is
   // absent or the model is off the allowlist, so a requested CLI executor never becomes
   // native.
-  const { command, args, input } = buildLineageCommand(
+  const { command, args, input, effectiveConfig } = buildLineageCommand(
     lineage,
     promptBody,
-    resolvedSandbox,
+    sandboxMode,
     resolvedPermission,
     { env: process.env, cwd: repoRoot },
   );
-
-  const executor = {
-    kind,
-    model,
-    configDir: null,
-    reasoningEffort,
-    serviceTier: null,
-    sandboxMode,
-    timeoutSeconds,
-    governor: null,
-  };
 
   return dispatchWithContainment({
     dispatch: {
       command,
       args,
       cwd: repoRoot,
-      timeoutSeconds,
+      timeoutSeconds: executor.timeoutSeconds,
       stateLogPath: context.stateLogPath,
-      executor,
+      executor: executorAsBuilt(executor, effectiveConfig),
       iteration: context.iteration,
       input,
       receiptDir: context.receiptDir,
@@ -479,29 +528,15 @@ function runLineageBuiltin(context) {
 }
 
 function runResearchOpencode(context) {
-  const reasoningEffort = context.reasoningEffort;
-  const model = nullable(context.model);
-  // An unset mode takes the same workspace-write default as fan-out. The builder honours it
-  // with an inline config that denies external_directory to the file tools, carried in the
-  // child env it returns; Bash is not confined. An explicit read-only is refused there.
-  const sandboxMode = resolveSandboxMode(context.sandboxMode);
-  const executor = {
-    kind: 'cli-opencode',
-    model,
-    configDir: null,
-    reasoningEffort,
-    serviceTier: null,
-    sandboxMode,
-    timeoutSeconds: context.timeoutSeconds,
-    governor: null,
-  };
+  // The builder honours workspace-write with an inline config that denies
+  // external_directory to the file tools, carried in the child env it returns; Bash is not
+  // confined.
+  const { lineage, executor, sandboxMode, resolvedPermission } = singleIterationLineage(context);
   const promptBody = readPrompt(context);
   const message = RESEARCH_PREAMBLE + '\n\n' + promptBody;
 
-  const lineage = { kind: 'cli-opencode', model, reasoningEffort, sandboxMode };
-  const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
   const repoRoot = context.repoRoot;
-  const { command, args, input, cwd, env } = buildLineageCommand(
+  const { command, args, input, cwd, env, effectiveConfig } = buildLineageCommand(
     lineage,
     message,
     sandboxMode,
@@ -516,7 +551,7 @@ function runResearchOpencode(context) {
       cwd: cwd || repoRoot,
       timeoutSeconds: executor.timeoutSeconds,
       stateLogPath: context.stateLogPath,
-      executor,
+      executor: executorAsBuilt(executor, effectiveConfig),
       iteration: context.iteration,
       // buildLineageCommand returns empty input, so stdin is closed for OpenCode.
       input,
@@ -535,16 +570,8 @@ function runResearchOpencode(context) {
 }
 
 function runDeepseekHarness(context) {
-  const kind = 'cli-deepseek-harness';
-  const model = nullable(context.model);
-  const timeoutSeconds = context.timeoutSeconds;
-  // The iteration writes its own iteration file, delta and state record, so an unset mode
-  // resolves to workspace-write. An explicit read-only is passed through, never widened.
-  const sandboxMode = resolveSandboxMode(context.sandboxMode);
-  const reasoningEffort = context.reasoningEffort;
-  const lineage = { kind, model, sandboxMode, reasoningEffort };
-  const resolvedSandbox = resolveSandboxMode(sandboxMode);
-  const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
+  const { lineage, executor, sandboxMode, resolvedPermission } = singleIterationLineage(context);
+  const timeoutSeconds = executor.timeoutSeconds;
 
   const repoRoot = context.repoRoot;
   const artifactDir = context.artifactDir;
@@ -561,24 +588,13 @@ function runDeepseekHarness(context) {
   // harness executor never becomes native. The headless harness reads the dotenv file in
   // its working directory and the repository root holds one, so the builder starts it in
   // the artifact folder and the dispatch runs from the cwd it returns.
-  const { command, args, input, cwd } = buildLineageCommand(
+  const { command, args, input, cwd, effectiveConfig } = buildLineageCommand(
     lineage,
     promptBody,
-    resolvedSandbox,
+    sandboxMode,
     resolvedPermission,
     { env: process.env, cwd: repoRoot, lineageDir: artifactDir, repoRoot },
   );
-
-  const executor = {
-    kind,
-    model,
-    configDir: null,
-    reasoningEffort,
-    serviceTier: null,
-    sandboxMode,
-    timeoutSeconds,
-    governor: null,
-  };
   // The step timeout equals the executor timeout, so the child gets a shorter one. An
   // outer kill while the child still runs would skip the finally block and strand the home.
   const dispatchTimeoutSeconds = Math.max(Math.ceil(timeoutSeconds / 2), timeoutSeconds - 30);
@@ -592,13 +608,13 @@ function runDeepseekHarness(context) {
   const dshHome = fs.mkdtempSync(path.join(os.tmpdir(), 'dsh-home-'));
   let dispatchExit;
   try {
-    dispatchExit = runAuditedExecutorCommand({
+    dispatchExit = runWithStdoutLog({
       command,
       args,
       cwd,
       timeoutSeconds: dispatchTimeoutSeconds,
       stateLogPath: context.stateLogPath,
-      executor,
+      executor: executorAsBuilt(executor, effectiveConfig),
       iteration: context.iteration,
       input,
       receiptDir: context.receiptDir,
@@ -616,7 +632,7 @@ function runDeepseekHarness(context) {
       // and stderr are judged as well as its exit code.
       completionCheck: validateDshCompletion,
       echoStdout: false,
-    });
+    }, artifactDir, context.iteration);
   } finally {
     fs.rmSync(dshHome, { recursive: true, force: true });
   }
@@ -752,15 +768,8 @@ function stageAndDispatchReviewOpencode(context, eventDir) {
   );
 
   const message = REVIEW_PREAMBLE + '\n\n' + promptBody;
-  const reasoningEffort = context.reasoningEffort;
-  const model = nullable(context.model);
-  // An unset mode takes the same workspace-write default as fan-out. The builder honours it
-  // with an inline config that denies external_directory to the file tools, carried in the
-  // child env it returns; Bash is not confined. An explicit read-only is refused there.
-  const sandboxMode = resolveSandboxMode(context.sandboxMode);
-  const lineage = { kind: 'cli-opencode', model, reasoningEffort, sandboxMode };
-  const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
-  const { command, args, input, cwd, env } = buildLineageCommand(
+  const { lineage, executor, sandboxMode, resolvedPermission } = singleIterationLineage(context);
+  const { command, args, input, cwd, env, effectiveConfig } = buildLineageCommand(
     lineage,
     message,
     sandboxMode,
@@ -768,24 +777,13 @@ function stageAndDispatchReviewOpencode(context, eventDir) {
     { env: process.env, cwd: repoRoot, directoryRoot: repoRoot },
   );
 
-  const executor = {
-    kind: 'cli-opencode',
-    model,
-    configDir: null,
-    reasoningEffort,
-    serviceTier: null,
-    sandboxMode,
-    timeoutSeconds: context.timeoutSeconds,
-    governor: null,
-  };
-
   const dispatch = {
     command,
     args,
     cwd: cwd || repoRoot,
     timeoutSeconds: executor.timeoutSeconds,
     stateLogPath: context.stateLogPath,
-    executor,
+    executor: executorAsBuilt(executor, effectiveConfig),
     iteration: context.iteration,
     // buildLineageCommand returns empty input, so stdin is closed for OpenCode.
     input,
@@ -797,7 +795,7 @@ function stageAndDispatchReviewOpencode(context, eventDir) {
   // The caller reports containment after the staged-event drain: the gateway rewrites
   // the state log from its ledger, so a row appended before the drain is lost.
   const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
-  const dispatchExit = runAuditedExecutorCommand(dispatch);
+  const dispatchExit = runWithStdoutLog(dispatch, artifactDir, context.iteration);
   return { dispatchExit, preDispatchDirtyPaths, repoRoot, artifactDir };
 }
 
@@ -888,66 +886,41 @@ function drainStagedEvents({ eventDir, mode, runDirectory, gatewayPath }) {
 // ───────────────────────────────────────────────────────────────────
 
 function runCodex(context) {
-  // Fail closed: a requested codex executor must dispatch codex or abort, never silently
-  // degrade to another executor. Undetected absence is what got Codex deprecated before,
-  // so the branch exits non-zero when the binary is missing instead of falling through to
-  // a native/other path.
-  let codexAvailable = false;
-  try {
-    execFileSync('/bin/sh', ['-c', 'command -v codex >/dev/null 2>&1'], { stdio: 'ignore' });
-    codexAvailable = true;
-  } catch {}
-  if (!codexAvailable) {
-    console.error('cli-codex executor unavailable: command -v codex failed');
-    return 1;
-  }
+  const { lineage, executor, sandboxMode, resolvedPermission } = singleIterationLineage(
+    context,
+    { serviceTier: context.serviceTier },
+  );
 
-  const executor = {
-    kind: 'cli-codex',
-    model: nullable(context.model),
-    configDir: null,
-    reasoningEffort: context.reasoningEffort,
-    serviceTier: context.serviceTier,
-    sandboxMode: resolveSandboxMode(context.sandboxMode),
-    timeoutSeconds: context.timeoutSeconds,
-    governor: null,
-  };
-
-  // Refuse before any spawn and before any receipt is written, so a refusal can never be
-  // mistaken for a real attempt. A process that is already a CLI lineage or a codex
-  // session must run the iteration itself, not delegate it onward.
+  // Refuse before any spawn and before any receipt or failure row is written, so a refusal
+  // can never be mistaken for a real attempt. A process that is already a CLI lineage or a
+  // codex session must run the iteration itself, not delegate it onward.
   const guardVerdict = validateExecutorDispatchAllowed(executor, { env: process.env });
   if (!guardVerdict.allowed) {
     console.error(formatRecursionGuardRefusal(guardVerdict, executor));
     return RECURSION_GUARD_EXIT_CODE;
   }
 
-  const promptBody = readPrompt(context);
-  // codex reads the iteration prompt from stdin via the trailing '-'. The iteration must
-  // WRITE its own iteration file, delta and state record, so an unset sandbox resolves to
-  // workspace-write. An explicit read-only is forwarded as read-only and the iteration
-  // fails at the artifact gate rather than gaining write access. approval_policy=never
-  // keeps the run non-interactive.
-  const args = ['exec'];
-  if (executor.model) {
-    args.push('--model', executor.model);
-  }
-  args.push('-c', 'model_reasoning_effort=' + (executor.reasoningEffort || 'medium'));
-  if (executor.serviceTier) {
-    args.push('-c', 'service_tier=' + executor.serviceTier);
-  }
-  args.push('-c', 'approval_policy=never', '--sandbox', executor.sandboxMode, '-');
+  // codex reads the iteration prompt from stdin via the trailing '-'. The builder fails
+  // closed when the binary is absent, so a requested codex executor never degrades to
+  // another one.
+  const { command, args, input, effectiveConfig } = buildLineageCommand(
+    lineage,
+    readPrompt(context),
+    sandboxMode,
+    resolvedPermission,
+    { env: process.env, cwd: context.repoRoot },
+  );
 
   return dispatchWithContainment({
     dispatch: {
-      command: 'codex',
+      command,
       args,
       cwd: context.repoRoot,
       timeoutSeconds: executor.timeoutSeconds,
       stateLogPath: context.stateLogPath,
-      executor,
+      executor: executorAsBuilt(executor, effectiveConfig),
       iteration: context.iteration,
-      input: promptBody,
+      input,
       receiptDir: context.receiptDir,
       dispatchId: context.dispatchId,
       sessionId: context.sessionId,
@@ -1029,7 +1002,7 @@ if (require.main === module) {
 // ───────────────────────────────────────────────────────────────────
 
 module.exports = {
-  buildClaudeInvocation,
+  buildClaudeDispatch,
   buildContext,
   drainStagedEvents,
   main,

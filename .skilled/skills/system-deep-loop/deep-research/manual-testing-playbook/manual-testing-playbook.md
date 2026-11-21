@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.10.0
+version: 1.16.11.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -631,9 +631,9 @@ Expected signals: Stuck threshold is enforced, recovery resets the counter, the 
 Verify that convergence STOP is blocked when an answered question cites <2 independent sources.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the source diversity quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question for >= 2 independent sources, and that a violation turns the decision into CONTINUE with reasonDetail qualityGuardFailed and writes no event. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the source diversity quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question for >= 2 independent sources, and that a violation turns the decision into a blocked decision with reasonDetail qualityGuardFailed and writes the blocked_stop row. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
-Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, and no event is written, violated question targeted in next iteration focus.
+Expected signals: the STOP candidate becomes a blocked decision with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, the `blocked_stop` row is written and the loop continues, violated question targeted in next iteration focus.
 
 #### Test Execution
 > **Feature File:** [DR-020](../manual-testing-playbook/convergence-and-recovery/quality-guard-source-diversity.md)
@@ -644,9 +644,9 @@ Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `quali
 Verify that convergence STOP is blocked when an iteration answers a question its key question list does not hold.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the focus alignment quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard compares the answered questions against the key questions in the latest iteration record that names both lists, and that a mismatch turns the decision into CONTINUE with reasonDetail qualityGuardFailed and focusAlignment in blockedBy, and writes no event. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the focus alignment quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard compares the answered questions against the key questions in the latest iteration record that names both lists, and that a mismatch turns the decision into a blocked decision with reasonDetail qualityGuardFailed and focusAlignment in blockedBy, and writes the blocked_stop row. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
-Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `focusAlignment` in blockedBy, and no event is written, misaligned question flagged in violation detail.
+Expected signals: the STOP candidate becomes a blocked decision with reasonDetail `qualityGuardFailed` and `focusAlignment` in blockedBy, the `blocked_stop` row is written and the loop continues, misaligned question flagged in violation detail.
 
 #### Test Execution
 > **Feature File:** [DR-021](../manual-testing-playbook/convergence-and-recovery/quality-guard-focus-alignment.md)
@@ -657,22 +657,22 @@ Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `quali
 Verify that a question backed by a single source cannot close the loop and that the reserved singleWeakSource guard reports notEvaluated.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the no-single-weak-source quality guard entry for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the source diversity guard refuses an answered question with fewer than two sources, that the decision becomes CONTINUE with reasonDetail qualityGuardFailed and sourceDiversity in blockedBy, that no event is written, and that the reserved singleWeakSource entry reports notEvaluated. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the no-single-weak-source quality guard entry for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the source diversity guard refuses an answered question with fewer than two sources, that the decision becomes a blocked decision with reasonDetail qualityGuardFailed and sourceDiversity in blockedBy, that the blocked_stop row is written, and that the reserved singleWeakSource entry reports notEvaluated. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
-Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, no event is written, the single-source question is targeted for stronger sourcing in the next iteration, and `singleWeakSource` reports `notEvaluated`.
+Expected signals: the STOP candidate becomes a blocked decision with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, the `blocked_stop` row is written, the single-source question is targeted for stronger sourcing in the next iteration, and `singleWeakSource` reports `notEvaluated`.
 
 #### Test Execution
 > **Feature File:** [DR-022](../manual-testing-playbook/convergence-and-recovery/quality-guard-no-single-weak-source.md)
 
-### DR-023 | Composite Convergence Passes but Guard Fails → CONTINUE
+### DR-023 | Composite Convergence Passes but Guard Fails → Blocked Stop
 
 #### Description
-Verify the full override path: composite score >0.60 triggers STOP, quality guards check fires, guard fails, decision overridden to CONTINUE.
+Verify the full block path: composite score >0.60 triggers STOP, quality guards check fires, guard fails, decision is blocked, the blocked_stop row is written and the loop continues.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the convergence-guard override path for deep-research. Trace the full sequence: composite convergence votes STOP (score >0.60), then evaluateResearchQualityGuards runs, then a guard violation is detected, then the STOP is overridden to CONTINUE and the loop resumes against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify this flow exists in convergence.md Decision Order step 8, convergence.cjs, and loop-protocol.md Step 2c. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Prompt summary: As a manual-testing orchestrator, validate the convergence-guard override path for deep-research. Trace the full sequence: composite convergence votes STOP (score >0.60), then evaluateResearchQualityGuards runs, then a guard violation is detected, then the STOP is blocked with its blocked_stop row and the loop continues, checked against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify this flow exists in convergence.md Decision Order step 8, convergence.cjs, and loop-protocol.md Step 2c. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
 
-Expected signals: a weighted stop score above 0.60 nominates STOP, the failed guard turns it into `CONTINUE` with reasonDetail `qualityGuardFailed` and the failed guards in blockedBy, the workflow logs `Quality guard failed: <guards>. Continuing.` and writes no event, and the loop resumes.
+Expected signals: a weighted stop score above 0.60 nominates STOP, the failed guard turns it into a blocked decision with stopReason `blockedStop`, reasonDetail `qualityGuardFailed` and the failed guards in blockedBy, the script records the `blocked_stop` row, the workflow logs `Quality guard failed: <guards>. Continuing.` and `step_emit_blocked_stop` continues the loop, and once the same blocker set has blocked `stuckThreshold` runs in a row the decision is STOP with reasonDetail `blockedStreakReached`.
 
 #### Test Execution
 > **Feature File:** [DR-023](../manual-testing-playbook/convergence-and-recovery/convergence-passes-guard-fails-override.md)

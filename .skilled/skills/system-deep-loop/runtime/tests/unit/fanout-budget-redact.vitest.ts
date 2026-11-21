@@ -114,4 +114,18 @@ describe('fanout-run.cjs — lineage log masking', () => {
     const once = runner.redactProviderText('mail jane@example.com at https://x.test/ws/1 id ses_e0aeFAKESESSION');
     expect(runner.redactProviderText(once)).toBe(once);
   });
+
+  // A regex runs synchronously, so the test timeout cannot stop a slow mask; the bound
+  // is asserted on the measured time, and the timeout only has to outlast a slow run.
+  it('masks a 12 MB log of long word runs in linear time and still finds the address in it', () => {
+    const run = `${'a'.repeat(1500)} `;
+    const half = run.repeat(Math.ceil((6 * 1024 * 1024) / run.length));
+    const text = `${half}Author: Jane Doe <jane.doe@example.com>\n${half}`;
+    const startedAt = performance.now();
+    const masked = runner.redactProviderText(text);
+    const elapsedMs = performance.now() - startedAt;
+    expect(masked).not.toContain('jane.doe@example.com');
+    expect(masked).toContain('Author: Jane Doe <<email>>');
+    expect(elapsedMs).toBeLessThan(2500);
+  }, 60_000);
 });

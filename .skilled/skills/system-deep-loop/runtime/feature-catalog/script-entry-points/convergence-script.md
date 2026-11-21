@@ -7,7 +7,7 @@ trigger_phrases:
   - "check convergence decision"
   - "stop allowed stop blocked"
   - "graph-aware loop convergence"
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # convergence.cjs
@@ -42,7 +42,7 @@ An expansive review forms the hard stop candidate `frontier_drained` when its fr
 
 ### Research frontier_drained Candidate
 
-An expansive research fan-out lineage (`fanoutLineage`) forms the same hard candidate `frontier_drained` when its frontier share holds at least one node, none is open or active, and at least one is answered. It comes after `all_questions_answered` and `composite_converged`. A single-executor expansive run and a default run never form it. The `minIterations` floor still applies, a failed quality guard still turns it into CONTINUE, and the graph decision still settles it.
+An expansive research fan-out lineage (`fanoutLineage`) forms the same hard candidate `frontier_drained` when its frontier share holds at least one node, none is open or active, and at least one is answered. It comes after `all_questions_answered` and `composite_converged`. A single-executor expansive run and a default run never form it. The `minIterations` floor still applies, a failed quality guard still turns it into BLOCKED, and the graph decision still settles it.
 
 ### Minimum Iterations Floor
 
@@ -55,6 +55,14 @@ Under `depthMode: 'expansive'`, a stop candidate becomes CONTINUE with `reasonDe
 ### Source Diversity on an Empty Graph
 
 The research quality guard `sourceDiversity` reports `insufficient` with `passed: false` when the graph reads cleanly but holds no answered QUESTION node. `notEvaluated` is kept for a graph read that failed. Only a guard whose status is `failed` blocks a stop, so `insufficient` changes no stop decision; the guard just no longer reads as a pass on evidence it never saw.
+
+### Blocked-Stop Streak
+
+A BLOCKED decision, from a failed review gate, a failed research quality guard (`reasonDetail` `qualityGuardFailed`) or a graph `STOP_BLOCKED`, becomes STOP with `stopReason` `blockedStop` and `reasonDetail` `blockedStreakReached` once the same sorted blocker set, this pass included, has blocked `stuckThreshold` runs in a row (review 2, research 3). `deriveLoopCounters` builds the streak from the `blocked_stop` rows, one per run, ignoring rows at or after `--iteration`. A different set restarts it at 1. A review pass that records a new finding resets it, and so does a research pass with status `insight` or a `newInfoRatio` at or above the convergence threshold. The cap and stuck recovery are checked first, and the stopping pass records no row.
+
+### Flag Spellings
+
+Flags are read as `--kebab-case`, which the parser turns into camelCase. A few settings also accept a snake_case flag: `--depth_mode`, `--convergence_mode`, `--sliding_window_size` and `--min_observations`. The observation guard turns on with `--observation-threshold-guard` or `--min-observations-guard`, and the improvement-effect trace with `--improvement-effect`, `--improvement-effect-trace` or `--trace-improvement-effect`. Every accepted spelling is listed in `CONVERGENCE_FLAGS`; any other flag, and any positional argument, is an input error.
 
 ### Recording a Blocked Stop
 

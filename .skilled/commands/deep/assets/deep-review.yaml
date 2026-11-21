@@ -450,7 +450,8 @@ workflow:
           non-empty sessionId, keep sessionId, parentSessionId, lineageMode, generation and
           createdAt, so a rerun of the same fan-out stays in its session and generation.
           fanout-run.cjs reads the lineage values below from this file and copies them into
-          each lineage's own config.
+          each lineage's own config. On a defaulted expansive run it also rewrites
+          maxIterations here to the largest lineage cap before it spawns.
         template: .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json
         session_id_init: "{session_id} when bound, else {ISO_8601_NOW}"
         lineage_values:
@@ -1225,6 +1226,7 @@ workflow:
           4b. if depth_mode == "expansive" and the frontier still holds an open or active node: CONTINUE (frontierOpen). It vetoes every review candidate, all_dimensions_clean included, and never creates a stop.
           5. the nine legal-stop gates run on a candidate: convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate. Any failed gate gives BLOCKED (blockedStop).
           6. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
+          7. a BLOCKED from step 5 or 6 whose blockedBy set matches the blocked_stop rows of the runs before it, with no new finding since, becomes STOP (blockedStop, reasonDetail blockedStreakReached) once that streak, this pass included, reaches config.stuckThreshold. A different blocker set starts a new streak.
           Bind the outputs from stop_decision, where G is stop_decision.gates and I is stop_decision.inputs.review:
             decision = stop_decision.decision
             stopReason = stop_decision.stopReason
@@ -1336,7 +1338,7 @@ workflow:
             note: "The script computes all three gates from the config, state log and registry: evidence by the evidenceDensityGate rule, coverage by the dimensionCoverageGate rule, and scope by matching every open finding's file against reviewScopeFiles. Never judge a gate from the findings yourself. Run it fresh at this stop, even when an earlier blocked stop recorded failures."
             on_error: "When the script exits non-zero or prints status error, fail closed: bind terminal_gate_results_json to three rows, evidence, scope and coverage, each with status fail, reasonCode gate-script-error and evidenceDigest the sha256 of the script's error text, and bind failed_required_gate_ids to [\"evidence\",\"scope\",\"coverage\"]."
             evaluate: |
-              terminal_stop_reason = reason when it is maxIterationsReached, maxDurationReached, manualStop or error, else "converged". Read reason, never stopReason: every manual stop sets reason to manualStop while stopReason may still hold blockedStop or stuckRecovery
+              terminal_stop_reason = reason when it is maxIterationsReached, maxDurationReached, manualStop or error; blockedStop when decision is STOP and reason is blockedStop; else "converged". Read reason, never stopReason: every manual stop sets reason to manualStop while stopReason may still hold blockedStop or stuckRecovery
             outputs:
               - terminal_gate_results_json: "Tool terminal_gate_results_json: three rows {gateId, status, reasonCode, evidenceDigest} in the order evidence, scope, coverage"
               - failed_required_gate_ids: "Tool failed_required_gate_ids: the gateIds whose status is fail, in that order; [] when all pass"
@@ -1757,6 +1759,7 @@ workflow:
           notes:
             - "Routed through runAuditedExecutorCommand so claude-code produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
             - "CLAUDE_CONFIG_DIR is forwarded through guardContext.env (CLAUDE_ prefix is allowlisted) so account-specific Claude Code routing is preserved"
+            - "Builds through buildLineageCommand: --output-format stream-json --verbose, kept off the terminal; the session cost is written to {artifact_dir}/iterations/iteration-{NNN}.cost.json (providerCostUsd, null when the stream reports none); an unset model resolves to the builder's CLAUDE_DEFAULT_MODEL"
             - "sandboxMode maps to permission-mode: read-only -> plan, workspace-write or unset -> acceptEdits, danger-full-access -> bypassPermissions"
             - "claude-code has no serviceTier flag"
             - "claude-code supports --effort for reasoning depth"
@@ -1784,9 +1787,9 @@ workflow:
             - "PRE-DISPATCH RULE (read before running the script): when this run is ITSELF a fan-out CLI lineage — config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID / SPECKIT_CLI_DISPATCH_STACK / CODEX_SESSION_ID is present in the environment — the lineage IS the executor. Do NOT run this dispatch script. Perform the iteration in-process instead: read the rendered prompt at {state_paths.prompt_dir}/iteration-{current_iteration}.md, do the review pass yourself, write the iteration file and the delta, and hand the iteration record to the append gateway (append-mode-event.cjs) exactly as the leaf contract requires, never writing the state log yourself, then continue to post_dispatch_validate."
             - "Nested CLI dispatch from a lineage is a route violation, not a slow path: a codex lineage that runs this script spawns codex inside its own sandbox, where the child cannot initialize and every iteration fails. The script refuses that case before any spawn and before any dispatch receipt is written, exiting RECURSION_GUARD_EXIT_CODE; that refusal is a route error to fix, never a redispatchable executor failure."
             - "Routed through runAuditedExecutorCommand so codex produces INTENT + COMPLETION dispatch receipts; recursion guard (CODEX_SESSION_ID) + env allowlist (CODEX_/OPENAI_/AZURE_OPENAI_) enforced via buildExecutorDispatchEnv"
-            - "Fails closed when the codex binary is absent (exit 1) — parity with the fan-out cli-codex lineage guard in fanout-run.cjs; codex routing never degrades to native"
+            - "Builds through the shared fan-out builder (buildLineageCommand), which throws when the codex binary is absent, before any receipt; codex routing never degrades to native"
             - "codex exec reads the iteration prompt from stdin via the trailing '-' (input: promptBody); '-c model_reasoning_effort=' maps reasoning depth, default medium; '-c service_tier=' forwarded when configured"
-            - "--sandbox follows the requested sandbox mode and defaults to workspace-write when none is set, so the iteration can write its own iteration file/delta/state record (a requested read-only is passed through and fails the post-dispatch artifact gate); -c approval_policy=never keeps it non-interactive; --model omitted when unset so ~/.codex/config.toml default applies"
+            - "--sandbox follows the requested sandbox mode and defaults to workspace-write when none is set, so the iteration can write its own iteration file/delta/state record (a requested read-only is passed through and fails the post-dispatch artifact gate); -c approval_policy=never keeps it non-interactive; an unset model resolves to the builder's CODEX_DEFAULT_MODEL"
         if_cli_cursor:
           command: |
             node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-cursor {cli_dispatch_args}
@@ -2344,6 +2347,7 @@ workflow:
 
           8. **Deferred Items**
              - Advisory-only or backlog-worthy follow-ups that do not block the current verdict
+             - When {state_paths.findings_registry} carries a `frontier` object, list every node in `frontier.nodes` whose status is `exhausted` or `blocked` as follow-up review work: its nodeId, status, reason, scope, and `nextDimension` (or "every dimension reviewed" when it is null). These are the nodes a review dashboard lists as `Follow-up` lines in `## 10B. FRONTIER`; on a fan-out root, each lineage's dashboard lists its own, and the merged node ids carry the lineage label. They do not change the verdict. A registry with no `frontier` object adds nothing here.
 
           **Dimension Expansion Map**
              - Insert `## Dimension Expansion Map` after Deferred Items and before Search Ledger.

@@ -254,7 +254,7 @@ b697ae5d08f fix(agents): give the research record its run identity and let read 
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 0ed468b7659 | cat; echo ---; git -c core.fsmonitor=false show 0ed468b7659 -- .skilled/agents/deep-review.md | cat
 commit 0ed468b76597207882e65eee51588a064a67983e
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:43:50 2026 +0100
 
     feat(deep): wire the expansive review frontier into the review workflow
@@ -283,7 +283,7 @@ Date:   Tue Nov 17 23:43:50 2026 +0100
  17 files changed, 343 insertions(+), 25 deletions(-)
 ---
 commit 0ed468b76597207882e65eee51588a064a67983e
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:43:50 2026 +0100
 
     feat(deep): wire the expansive review frontier into the review workflow
@@ -329,7 +329,7 @@ index 22a9aa1e375..62961defce3 100644
 182:  depth_mode: default  # default | expansive (opt-in frontier growth)
 ---
 commit 0ed468b76597207882e65eee51588a064a67983e
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:43:50 2026 +0100
 
     feat(deep): wire the expansive review frontier into the review workflow
@@ -423,7 +423,7 @@ ac1d2a6b7dc fix(system-deep-loop): write frontier graph events as one JSON array
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 9e0b02c49a6 | cat; echo ===; git -c core.fsmonitor=false show 9e0b02c49a6 -- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | head -120
 commit 9e0b02c49a6178776643ea85c9d1c9aada99d3f4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:18:47 2026 +0100
 
     fix(system-deep-loop): repair expansive review frontier defects from the pilot
@@ -458,7 +458,7 @@ Date:   Wed Nov 18 01:18:47 2026 +0100
  10 files changed, 223 insertions(+), 23 deletions(-)
 ===
 commit 9e0b02c49a6178776643ea85c9d1c9aada99d3f4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:18:47 2026 +0100
 
     fix(system-deep-loop): repair expansive review frontier defects from the pilot
@@ -568,7 +568,7 @@ index dfdc7a91408..87be5766a5b 100644
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 1642d622a3b | cat; echo ===; git -c core.fsmonitor=false show 1642d622a3b -- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs | head -200
 commit 1642d622a3b1f8383f84b9273e44cd3bf8041052
 Merge: 43eb6d47b8e f0f08e96f3d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:25:57 2026 +0100
 
     feat(system-deep-loop): integrate the research frontier pilot fixes
@@ -589,7 +589,7 @@ Date:   Wed Nov 18 01:25:57 2026 +0100
 ===
 commit 1642d622a3b1f8383f84b9273e44cd3bf8041052
 Merge: 43eb6d47b8e f0f08e96f3d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:25:57 2026 +0100
 
     feat(system-deep-loop): integrate the research frontier pilot fixes
@@ -680,7 +680,7 @@ spec-check-protocol.md
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show f0f08e96f3d --stat | cat; echo ===; git -c core.fsmonitor=false show f0f08e96f3d -- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | cat
 commit f0f08e96f3db643fe6b72815a8fb520120b19f0f
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:16:35 2026 +0100
 
     fix(system-deep-loop): reduce once after the frontier seed

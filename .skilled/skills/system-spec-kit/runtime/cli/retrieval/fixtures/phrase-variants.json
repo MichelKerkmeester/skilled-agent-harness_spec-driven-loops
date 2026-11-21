@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3f0a90d7ae29ce131d4f1c2ec43deda3bc991a441fe113a1977ad3b8df09dc32",
+  "manifestHash": "bec8f95f98c9dc044fdcd679945303ffe05873f7fbff75a3eeca032653f8794d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15909,6 +15909,9 @@
     ],
     "blocked stops carry context": [
       "blocked stops carry context"
+    ],
+    "blocked streak stop": [
+      "blocked streak stop"
     ],
     "blocker 1 parity harness": [
       "blocker 1 parity harness"
@@ -49729,15 +49732,6 @@
     "expansive depth mode": [
       "expansive depth mode"
     ],
-    "expansive depth mode implementation summary": [
-      "expansive depth mode implementation summary"
-    ],
-    "expansive depth mode plan": [
-      "expansive depth mode plan"
-    ],
-    "expansive depth mode tasks": [
-      "expansive depth mode tasks"
-    ],
     "expansive depth playbook coverage": [
       "expansive depth playbook coverage"
     ],
@@ -50947,6 +50941,9 @@
     ],
     "fan out automation task breakdown": [
       "fan-out automation task breakdown"
+    ],
+    "fan out budget table": [
+      "fan-out budget table"
     ],
     "fan out cli lineage driver": [
       "fan-out cli lineage driver"
@@ -95361,6 +95358,9 @@
     "reducer test focus contract": [
       "reducer test focus contract"
     ],
+    "reducer test focus contract goal": [
+      "reducer test focus contract goal"
+    ],
     "reducer test focus contract implementation summary": [
       "reducer test focus contract implementation summary"
     ],
@@ -126293,6 +126293,9 @@
     "system deep loop 2 1 7 0": [
       "system-deep-loop 2.1.7.0"
     ],
+    "system deep loop 2 2 0 0": [
+      "system-deep-loop 2.2.0.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -126556,6 +126559,9 @@
     ],
     "system deep loop v2 1 7 0": [
       "system-deep-loop v2.1.7.0"
+    ],
+    "system deep loop v2 2 0 0": [
+      "system-deep-loop v2.2.0.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"

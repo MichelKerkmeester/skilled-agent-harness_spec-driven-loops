@@ -1195,6 +1195,12 @@ describe('deep-review typed ledger schema', () => {
       data: { ...input.data, stopReason: 'maxDurationReached' },
     }, registry)).not.toThrow();
 
+    // A run that ends on a repeated blocked stop keeps that reason on its terminal row.
+    expect(() => prepareDeepReviewEvent({
+      ...input,
+      data: { ...input.data, stopReason: 'blockedStop' },
+    }, registry)).not.toThrow();
+
     expect(() => prepareDeepReviewEvent({
       ...input,
       data: {

@@ -6,7 +6,20 @@
 
 import { randomBytes } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import {
+  closeSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  openSync,
+  readFileSync,
+  readSync,
+  readdirSync,
+  renameSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,6 +34,10 @@ import { deriveReceiptKey, signReceipt } from './receipt-crypto.js';
 
 export const CLI_DISPATCH_STACK_ENV = 'SPECKIT_CLI_DISPATCH_STACK' as const;
 export const FANOUT_LINEAGE_ENV = 'SPECKIT_FANOUT_LINEAGE_ID' as const;
+// An operator who starts a dispatch from their own CLI session on purpose sets this to
+// exactly '1'. It relaxes only the two checks that detect that host session, never the
+// lineage, stack or lockfile layers, and the child never inherits it.
+export const HOST_SESSION_EXECUTOR_ENV = 'SPECKIT_ALLOW_HOST_SESSION_EXECUTOR' as const;
 
 // A guard refusal is a route violation, not an executor outcome. It must not read as
 // a clean dispatch to the caller, so it exits distinctly from success (0) and from the
@@ -46,7 +63,7 @@ export type RecursionGuardFailureReason =
   | 'recursion-guard-lockfile';
 
 export type ExecutorDispatchAllowedResult =
-  | { allowed: true }
+  | { allowed: true; relaxedLayers?: RecursionGuardLayer[] }
   | {
       allowed: false;
       reason: RecursionGuardFailureReason;
@@ -261,6 +278,13 @@ type RunAuditedExecutorCommandInput = {
   // A clean exit does not prove a good run for every CLI. When set, it judges the
   // output of a child that exited 0, and a non-null reason is recorded as a crash.
   completionCheck?: (exitCode: number, stdout: string, stderr: string) => string | null;
+  // Receives the child's captured stdout once a spawned child settles, whatever its exit,
+  // so a caller can record what the stream reports, such as its cost, without echoing it.
+  onStdout?: (stdout: string) => void;
+  // Where the synchronous runner writes the child's stdout. The file is the only copy of
+  // the stream, so a caller that keeps it names the path; without one the runner uses a
+  // temporary file it removes once the stream has been read.
+  stdoutLogPath?: string;
 };
 
 // ───────────────────────────────────────────────────────────────────
@@ -286,6 +310,23 @@ function isAllowedExecutorEnvKey(key: string, kind: ExecutorKind): boolean {
 
 function recursionReasonForLayer(layer: RecursionGuardLayer): RecursionGuardFailureReason {
   return `recursion-guard-${layer}` as RecursionGuardFailureReason;
+}
+
+// A relaxed verdict is reported where the dispatch runs, so the operator sees it once and
+// every receipt and failure row of that dispatch carries the layers it skipped.
+function applyHostSessionRelaxation(
+  input: RunAuditedExecutorCommandInput,
+  verdict: Extract<ExecutorDispatchAllowedResult, { allowed: true }>,
+): RunAuditedExecutorCommandInput {
+  if (!verdict.relaxedLayers) {
+    return input;
+  }
+  const kind = getExecutorKind(input.executor);
+  process.stderr.write(
+    `${HOST_SESSION_EXECUTOR_ENV}=1 relaxed the ${kind} recursion guard`
+      + ` [${verdict.relaxedLayers.join(', ')}]: dispatching from the host session on purpose\n`,
+  );
+  return { ...input, executor: { ...input.executor, recursionGuardRelaxed: verdict.relaxedLayers } as ExecutorConfig };
 }
 
 function splitDispatchStack(stack: string | undefined): string[] {
@@ -998,26 +1039,38 @@ export function validateExecutorDispatchAllowed(
   }
 
   const selfPresenceExempt = SELF_PRESENCE_EXEMPT_KINDS.has(kind);
+  const hostSessionAllowed = env[HOST_SESSION_EXECUTOR_ENV] === '1';
+  const relaxedLayers: RecursionGuardLayer[] = [];
 
   if (!selfPresenceExempt && detectFromAncestry(kind, context.ancestryCmdlines)) {
-    return {
-      allowed: false,
-      layer: 'ancestry',
-      reason: recursionReasonForLayer('ancestry'),
-      detail: `${kind} executor binary appears in process ancestry`,
-    };
+    if (hostSessionAllowed) {
+      relaxedLayers.push('ancestry');
+    } else {
+      return {
+        allowed: false,
+        layer: 'ancestry',
+        reason: recursionReasonForLayer('ancestry'),
+        detail: `${kind} executor binary appears in process ancestry`,
+      };
+    }
   }
 
   if (detectFromRuntimeEnv(kind, env)) {
-    const envName = EXECUTOR_SESSION_ENV_BY_KIND[kind] ?? 'runtime session env';
-    return {
-      allowed: false,
-      layer: 'env',
-      reason: recursionReasonForLayer('env'),
-      detail: `${envName} is set for ${kind}`,
-    };
+    if (hostSessionAllowed) {
+      relaxedLayers.push('env');
+    } else {
+      const envName = EXECUTOR_SESSION_ENV_BY_KIND[kind] ?? 'runtime session env';
+      return {
+        allowed: false,
+        layer: 'env',
+        reason: recursionReasonForLayer('env'),
+        detail: `${envName} is set for ${kind}`,
+      };
+    }
   }
 
+  // The switch does not reach this check: an inherited harness state env points a leaf at
+  // the operator's harness state, which is a lineage hazard, not a sign of the host session.
   if (
     kind === 'cli-deepseek-harness'
     && (EXECUTOR_STATE_ENV_BY_KIND[kind] ?? [])
@@ -1044,7 +1097,7 @@ export function validateExecutorDispatchAllowed(
     };
   }
 
-  return { allowed: true };
+  return relaxedLayers.length > 0 ? { allowed: true, relaxedLayers } : { allowed: true };
 }
 
 /**
@@ -1104,22 +1157,36 @@ export function buildExecutorDispatchEnv(
 /**
  * Build an executor audit record for provenance logging.
  *
- * @param executor - Executor configuration.
+ * @param executor - Executor configuration, optionally carrying the sandbox report of the
+ *   command built from it: the mode that command runs replaces the requested `sandboxMode`,
+ *   which is then kept as `sandboxNarrowedFrom` or `sandboxWidenedFrom`.
  * @returns Audit record with kind, model, reasoning effort, and service tier.
  */
-export function buildExecutorAuditRecord(executor: ExecutorConfig, lineageId?: string): Record<string, unknown> {
+export function buildExecutorAuditRecord(
+  executor: ExecutorConfig & {
+    sandboxNarrowedFrom?: string;
+    sandboxWidenedFrom?: string;
+    sandboxEnforcement?: string;
+    recursionGuardRelaxed?: RecursionGuardLayer[];
+  },
+  lineageId?: string,
+): Record<string, unknown> {
   return {
     kind: getExecutorKind(executor),
     model: executor.model,
     reasoningEffort: executor.reasoningEffort,
     serviceTier: executor.serviceTier,
     sandboxMode: executor.sandboxMode,
+    ...(executor.sandboxNarrowedFrom !== undefined ? { sandboxNarrowedFrom: executor.sandboxNarrowedFrom } : {}),
+    ...(executor.sandboxWidenedFrom !== undefined ? { sandboxWidenedFrom: executor.sandboxWidenedFrom } : {}),
+    ...(executor.sandboxEnforcement !== undefined ? { sandboxEnforcement: executor.sandboxEnforcement } : {}),
     timeoutSeconds: executor.timeoutSeconds,
     webSearch: executor.liveTools?.webSearch ?? null,
     configDir: executor.configDir,
     governor: executor.governor,
     executable: executor.kind,
     ...(lineageId !== undefined ? { lineageId } : {}),
+    ...(executor.recursionGuardRelaxed !== undefined ? { recursionGuardRelaxed: executor.recursionGuardRelaxed } : {}),
   };
 }
 
@@ -1358,23 +1425,25 @@ export function classifyExecutorUnavailable(stdout: string, stderr: string): str
     .filter((line) => line.trim().length > 0)
     .slice(-20)
     .filter((line) => {
-      if (/\b(error|failed|failure|exception|denied|status)\b/i.test(line)) {
-        return true;
-      }
-
+      // An event stream also carries tool output, whose text can name an error and a
+      // quota without the executor having hit one, so a JSON event counts only when its
+      // own shape says the executor failed: an error event, a Claude result flagged
+      // is_error, or a harness final event whose reason kind is error.
+      let parsed: unknown;
       try {
-        const parsed: unknown = JSON.parse(line);
-        return typeof parsed === 'object'
-          && parsed !== null
-          && !Array.isArray(parsed)
-          && (
-            'error' in parsed
-            || 'errorKind' in parsed
-            || ('type' in parsed && parsed.type === 'error')
-          );
+        parsed = JSON.parse(line);
       } catch {
+        return /\b(error|failed|failure|exception|denied|status)\b/i.test(line);
+      }
+      if (!isObjectRecord(parsed)) {
         return false;
       }
+      return 'error' in parsed
+        || 'errorKind' in parsed
+        || parsed.type === 'error'
+        || parsed.event === 'error'
+        || (parsed.type === 'result' && parsed.is_error === true)
+        || (parsed.type === 'final' && isObjectRecord(parsed.reason) && parsed.reason.kind === 'error');
     });
   const output = `${stdoutErrors.join('\n')}\n${stderr}`;
   const markers = [
@@ -1425,17 +1494,62 @@ function assertDispatchEnvAllowed(input: RunAuditedExecutorCommandInput): void {
   }
 }
 
+// The checks after a dispatch read at most this much of the end of the stdout file, so a
+// stream of any length is judged without holding all of it. A stream up to this size is
+// read whole, exactly as an in-memory capture would have held it.
+const STDOUT_READ_BYTES = 20 * 1024 * 1024;
+
+// Returns the file whole when it fits the read bound, else its tail from the first line
+// boundary past the cut, so no partial line or split character reaches a parser.
+function readStdoutTail(filePath: string, size: number): string {
+  if (size === 0) {
+    return '';
+  }
+  const length = Math.min(size, STDOUT_READ_BYTES);
+  const buffer = Buffer.alloc(length);
+  const fd = openSync(filePath, 'r');
+  try {
+    readSync(fd, buffer, 0, length, size - length);
+  } finally {
+    closeSync(fd);
+  }
+  if (length === size) {
+    return buffer.toString('utf8');
+  }
+  const firstNewline = buffer.indexOf(0x0a);
+  return firstNewline === -1 ? '' : buffer.subarray(firstNewline + 1).toString('utf8');
+}
+
+// Copies the stdout file to the terminal in chunks, so the echo is the whole stream
+// without the whole stream ever sitting in memory.
+function echoStdoutFile(filePath: string): void {
+  const fd = openSync(filePath, 'r');
+  try {
+    for (;;) {
+      const chunk = Buffer.alloc(1024 * 1024);
+      const bytesRead = readSync(fd, chunk, 0, chunk.length, null);
+      if (bytesRead === 0) {
+        break;
+      }
+      process.stdout.write(chunk.subarray(0, bytesRead));
+    }
+  } finally {
+    closeSync(fd);
+  }
+}
+
 /**
  * Run a non-native executor command synchronously and log dispatch failures.
  *
  * Detects timeout, crash, and non-zero exit conditions and translates
  * them into typed dispatch_failure JSONL events.
  *
- * @param input - Command input with executor config and state log path.
+ * @param requested - Command input with executor config and state log path.
  * @returns 0 for executor outcomes (failures are logged, not thrown), or
  *   RECURSION_GUARD_EXIT_CODE when the recursion guard refused before spawn.
  */
-export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput): number {
+export function runAuditedExecutorCommand(requested: RunAuditedExecutorCommandInput): number {
+  let input = requested;
   const dispatchAllowed = validateExecutorDispatchAllowed(input.executor, input.guardContext);
   if (!dispatchAllowed.allowed) {
     // Loud and non-zero: a refusal that returned 0 with no message read as a clean
@@ -1445,6 +1559,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
     emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail, null, input.sessionId);
     return RECURSION_GUARD_EXIT_CODE;
   }
+  input = applyHostSessionRelaxation(input, dispatchAllowed);
 
   // A refused key must fail before the INTENT receipt, so no receipt records a dispatch
   // whose environment the runner would not have allowed.
@@ -1457,31 +1572,50 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
   const timeoutMs = Number.isFinite(input.timeoutSeconds)
     ? Math.max(1000, Math.trunc(input.timeoutSeconds * 1000) - 1000)
     : 1000;
-  const result = spawnSync(input.command, input.args, {
-    cwd: input.cwd,
-    encoding: 'utf8',
-    timeout: timeoutMs,
-    env: { ...buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env), ...input.dispatchEnv },
-    maxBuffer: 10 * 1024 * 1024,
-    ...(typeof input.input === 'string' ? { input: input.input } : {}),
-  });
+  // The child writes its stdout straight to a file. An in-memory capture has a size cap,
+  // and a long stream-json run passed it, which killed the dispatch with ENOBUFS and lost
+  // the run's cost. The cap below now bounds stderr alone.
+  const tempStdoutDir = input.stdoutLogPath === undefined ? mkdtempSync(join(tmpdir(), 'executor-stdout-')) : null;
+  const stdoutLogPath = input.stdoutLogPath ?? join(tempStdoutDir as string, 'stdout.log');
+  let result: ReturnType<typeof spawnSync>;
+  let stdout: string;
+  try {
+    mkdirSync(dirname(stdoutLogPath), { recursive: true });
+    const stdoutFd = openSync(stdoutLogPath, 'w');
+    try {
+      result = spawnSync(input.command, input.args, {
+        cwd: input.cwd,
+        encoding: 'utf8',
+        timeout: timeoutMs,
+        env: { ...buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env), ...input.dispatchEnv },
+        stdio: ['pipe', stdoutFd, 'pipe'],
+        maxBuffer: 10 * 1024 * 1024,
+        ...(typeof input.input === 'string' ? { input: input.input } : {}),
+      });
+    } finally {
+      closeSync(stdoutFd);
+    }
 
-  if (input.echoStdout === false) {
-    // The child still produced the stream the checks below read. Only the terminal copy
-    // is skipped, so a caller can log its size without replaying every event. An empty
-    // stream still logs its size, so a silent child reads as 0 bytes, not as no line.
-    const stdoutBytes = typeof result.stdout === 'string' ? Buffer.byteLength(result.stdout) : 0;
-    process.stderr.write(`[executor-audit] child stdout ${stdoutBytes} bytes, not echoed\n`);
-  } else if (typeof result.stdout === 'string' && result.stdout.length > 0) {
-    process.stdout.write(result.stdout);
+    const stdoutBytes = statSync(stdoutLogPath).size;
+    stdout = readStdoutTail(stdoutLogPath, stdoutBytes);
+    if (input.echoStdout === false) {
+      // Only the terminal copy is skipped, so a caller can log the stream's size without
+      // replaying every event. An empty stream still logs its size, so a silent child
+      // reads as 0 bytes, not as no line.
+      process.stderr.write(`[executor-audit] child stdout ${stdoutBytes} bytes, not echoed\n`);
+    } else if (stdoutBytes > 0) {
+      echoStdoutFile(stdoutLogPath);
+    }
+  } finally {
+    if (tempStdoutDir !== null) {
+      rmSync(tempStdoutDir, { recursive: true, force: true });
+    }
   }
-  if (typeof result.stderr === 'string' && result.stderr.length > 0) {
-    process.stderr.write(result.stderr);
+  const stderr = typeof result.stderr === 'string' ? result.stderr : '';
+  if (stderr.length > 0) {
+    process.stderr.write(stderr);
   }
-  const unavailableMarker = classifyExecutorUnavailable(
-    typeof result.stdout === 'string' ? result.stdout : '',
-    typeof result.stderr === 'string' ? result.stderr : '',
-  );
+  const unavailableMarker = classifyExecutorUnavailable(stdout, stderr);
 
   // Post-dispatch COMPLETION countersign: bind the INTENT to the child facts the
   // wrapper observed (pid / exit / signal). Written before failure classification
@@ -1494,6 +1628,8 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       sessionId: null,
     });
   }
+
+  input.onStdout?.(stdout);
 
   if (result.error) {
     const isTimeoutError =
@@ -1543,11 +1679,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
   // Some CLIs exit 0 after a failure they report only in their output, such as a
   // plugin that did not load, so the caller's check reads what the child printed.
   if (input.completionCheck && result.status === 0) {
-    const completionFailure = input.completionCheck(
-      result.status,
-      typeof result.stdout === 'string' ? result.stdout : '',
-      typeof result.stderr === 'string' ? result.stderr : '',
-    );
+    const completionFailure = input.completionCheck(result.status, stdout, stderr);
     if (completionFailure !== null) {
       emitDispatchFailure(
         input.stateLogPath,
@@ -1571,7 +1703,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
   // model is skipped, never a false loud failure.
   if (process.env.SPECKIT_PROVENANCE_CHECK === '1') {
     const requestedModel = input.executor.model;
-    const actualModel = extractActualModel(typeof result.stdout === 'string' ? result.stdout : '', getExecutorKind(input.executor));
+    const actualModel = extractActualModel(stdout, getExecutorKind(input.executor));
     if (
       actualModel !== null &&
       typeof requestedModel === 'string' &&
@@ -1600,17 +1732,19 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
  * Uses spawn + detached process group for graceful timeout handling with
  * SIGTERM escalation to SIGKILL after the grace period.
  *
- * @param input - Command input with executor config and state log path.
+ * @param requested - Command input with executor config and state log path.
  * @returns Promise resolving to 0 after the process completes, or
  *   RECURSION_GUARD_EXIT_CODE when the recursion guard refused before spawn.
  */
-export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCommandInput): Promise<number> {
+export async function runAuditedExecutorCommandAsync(requested: RunAuditedExecutorCommandInput): Promise<number> {
+  let input = requested;
   const dispatchAllowed = validateExecutorDispatchAllowed(input.executor, input.guardContext);
   if (!dispatchAllowed.allowed) {
     process.stderr.write(`${formatRecursionGuardRefusal(dispatchAllowed, input.executor)}\n`);
     emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail, null, input.sessionId);
     return RECURSION_GUARD_EXIT_CODE;
   }
+  input = applyHostSessionRelaxation(input, dispatchAllowed);
 
   // Pre-dispatch INTENT receipt (engine-signed, no child id yet).
   const receiptCtx = beginReceipt(input);
