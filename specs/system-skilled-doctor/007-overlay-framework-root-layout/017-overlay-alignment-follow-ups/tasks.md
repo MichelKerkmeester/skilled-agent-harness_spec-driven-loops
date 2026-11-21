@@ -35,7 +35,7 @@ contextType: "general"
 
 - [x] T001 Create the worktree through sk-git (`worktrees/500-overlay-alignment-follow-ups`). Verify: `git worktree list` shows the path on that branch.
 - [x] T002 Create this phase with `create.sh --phase` (`017-overlay-alignment-follow-ups/`). Verify: `ls` lists `spec.md`, `plan.md`, `tasks.md` and `goal.md`.
-- [x] T003 Run the gates on main before any change (`scratch` gate log). Verify: engine 354, guard 20, contract 9, lsa 76, ldoc 10 and router-sync 55 each exit 0.
+- [x] T003 Run the gates on main before any change (`scratch` gate log). Verify: engine 354, guard 20 (34 with the hook tests under `tests/`), contract 9, lsa 76, ldoc 10 and router-sync 55 each exit 0.
 <!-- /ANCHOR:phase-1 -->
 
 ---

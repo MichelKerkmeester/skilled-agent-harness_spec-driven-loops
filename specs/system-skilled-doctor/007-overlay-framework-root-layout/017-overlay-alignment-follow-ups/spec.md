@@ -99,6 +99,8 @@ $ node --test --test-name-pattern="folder README" .skilled/skills/sk-code/sk-cod
 | `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs` | Modify | A test that unrouted READMEs pass leg 1b |
 | `.skilled/commands/doctor/scripts/overlay-engine.cjs` | Modify | One cache predicate applied to every directory-entry reader |
 | `.skilled/commands/doctor/scripts/tests/overlay-engine-cache-skip.test.cjs` | Create | Tests for apply, status, a stale state record and adopt or capture |
+| `.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` | Modify | A repin rollback restores a pruned cache |
+| `.skilled/skills/system-skilled-doctor/references/overlays.md` | Modify | States the cache rule and the docs walk's `__pycache__` skip |
 <!-- /ANCHOR:scope -->
 
 ---

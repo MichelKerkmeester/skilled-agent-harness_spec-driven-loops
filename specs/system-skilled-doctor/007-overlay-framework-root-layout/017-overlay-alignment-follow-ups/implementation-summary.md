@@ -113,8 +113,9 @@ The review ran in three rounds, each by `@review`:
 | Router-sync suite | 56 of 56, exit 0 (55 before) |
 | Engine suite on the branch | 362 of 362, exit 0 (354 before) |
 | Guard and contract suites | 20 of 20 and 9 of 9, exit 0 |
+| Full guard suite, `overlay-guard.test.cjs` plus `tests/*.test.mjs`, on merged main | 34 of 34, exit 0, as phase 014 recorded at `7153a45a8b9`. It drives the hooks end to end through the engine's `--guard` listing, which the cache skip changed |
 | Final `@review` round | `Review status: APPROVED`, no P0 or P1 |
-| Gates on merged main `b4e147b3622` | engine 362, guard 20, contract 9, lsa 76, ldoc 10 and router-sync 56, each exit 0. `route-validate.sh` validates 32 routes. Strict recursive validation of the 007 parent prints 17 `RESULT: PASSED` |
+| Gates on merged main `b4e147b3622` | engine 362, guard 20 (34 with the hook tests), contract 9, lsa 76, ldoc 10 and router-sync 56, each exit 0. `route-validate.sh` validates 32 routes. Strict recursive validation of the 007 parent prints 17 `RESULT: PASSED` |
 | Router-sync guard vs Barter's copy on main | `diff` exit 0 |
 <!-- /ANCHOR:verification -->
 
@@ -129,7 +130,8 @@ The review ran in three rounds, each by `@review`:
    - A repin backup copies every cache below a large skill-root destination.
    - `readmeShipTest` counts a README that `retained` keeps as shipping.
 2. **Older failures are untouched.** Turning a folder into a file or a link within one apply still fails in `applyOnePlan` and `ensureSymlink`, as it did before this phase.
-3. **The drift guards' one failure is not this phase's.** `run-all-drift-guards.sh` exits 1 on main and on the branch because of a research-archive `post.sh` another session committed in `17a9ddbcb68`.
+3. **Workers ran on their agent definitions' own model and effort.** The original brief asked for Opus at medium effort, and the `@code` and `@review` dispatches did not set either. No result depended on it.
+4. **The drift guards' one failure is not this phase's.** `run-all-drift-guards.sh` exits 1 on main and on the branch because of a research-archive `post.sh` another session committed in `17a9ddbcb68`.
 <!-- /ANCHOR:limitations -->
 
 ---
