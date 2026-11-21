@@ -29,7 +29,7 @@ Current state:
 
 | File | Responsibility |
 |---|---|
-| `adapter-fixture.ts` | Declares the six adapter kinds with their binary names and models, builds a temporary shim `bin/` directory per kind, reads back captured argv, stdin, cwd and environment plus recorded pids, runs a fan-out through `runtime/scripts/fanout-run.cjs`, and reports adapter binary availability together with the live opt-in gate. |
+| `adapter-fixture.ts` | Declares the six adapter kinds with their binary names and models, builds a temporary shim `bin/` directory per kind, reads back captured argv, stdin, cwd and environment plus recorded pids, runs a fan-out through [`../../../../scripts/fanout-run.cjs`](../../../../scripts/fanout-run.cjs), and reports adapter binary availability together with the live opt-in gate. |
 | `adapter-suite.ts` | Factory that registers one adapter subject as a Vitest suite. Holds the shared matrix integrity, adapter contract, fixture integrity and live probe tests, builds the per-kind command, environment and expected flags, and removes fixtures, worktrees and leftover pids after each test. |
 | `codex-fixture.ts` | Builds the codex shim environment by installing `codex-shim.cjs` as both `codex` and `pkill`, reads a single codex capture, swaps `process.env` around an operation, and writes the lineage artifact tree that a completed lineage is expected to leave behind. |
 | `live-preflight.ts` | Gives the codex live probe its opt-in gate, a self-invocation guard against a `CODEX_` runtime variable, a dependency isolation check on `runtime/node_modules`, a binary presence check and a `codex login status` check. |
