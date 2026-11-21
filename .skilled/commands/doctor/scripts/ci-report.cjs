@@ -124,11 +124,12 @@ function main(argv) {
     loadedProfile = loadProfile({ cliPath: options.profile, root: REPO_ROOT });
   } catch (error) {
     if (!(error instanceof ProfileError)) throw error;
-    process.stderr.write(`ERROR: ${error.message}\n`);
+    process.stderr.write(`ERROR: ${error.message}\nNext: make that change, then run node .skilled/commands/doctor/scripts/ci-report.cjs --json\n`);
     return 3;
   }
   if (loadedProfile.errors.length > 0) {
     for (const fault of loadedProfile.errors) process.stderr.write(`ERROR: CI profile ${loadedProfile.display}: ${fault.message}\n`);
+    process.stderr.write(`${loadedProfile.errors.length > 1 ? '  ' : ''}Next: fix ${loadedProfile.display}, then run node .skilled/commands/doctor/scripts/ci-report.cjs --json\n`);
     return 3;
   }
   const { profile } = loadedProfile;
@@ -145,6 +146,9 @@ function main(argv) {
 
   for (const failure of loaded.errors) {
     process.stderr.write(`ERROR: ${failure.file}: ${failure.message}\n`);
+  }
+  if (loaded.errors.length > 0) {
+    process.stderr.write((loaded.errors.length > 1 ? '  ' : '') + 'Next: fix the YAML in .github/workflows, then run node .skilled/commands/doctor/scripts/ci-report.cjs --json\n');
   }
   if (options.json) {
     process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

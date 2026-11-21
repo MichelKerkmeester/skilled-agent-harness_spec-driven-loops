@@ -1554,7 +1554,8 @@ function assertRunDirectory(runDir) {
       throw new Error('run path must be a real directory');
     }
     if (fs.readdirSync(resolved).length) {
-      throw new Error('run directory already exists and is not empty: ' + resolved);
+      throw new Error('run directory already exists and is not empty: ' + resolved
+        + '; a run never writes over an earlier one, so pass --out with a new empty directory');
     }
   } else {
     fs.mkdirSync(resolved);
@@ -1764,11 +1765,16 @@ function decisionTarget(repo, run, file, record) {
   if (decision === 'keep-local') return undefined;
   const content = readProposal(run, file.path);
   const sha256 = crypto.createHash('sha256').update(content).digest('hex');
+  const proposalPath = path.join(run.runDir, 'proposals', runRelativePath(file.path));
+  const redecide = SCRIPT_COMMAND + ' decide --repo ' + shellQuote(repo) + ' --run '
+    + shellQuote(run.runDir) + ' --path ' + shellQuote(file.path) + ' --decision ' + decision;
   if (!record.proposalSha256 || sha256 !== record.proposalSha256) {
-    throw new Error('proposal changed after decision: ' + file.path);
+    throw withNext(new Error('proposal changed after decision: ' + file.path
+      + ', so the recorded decision no longer covers ' + proposalPath + '; record it again'), redecide);
   }
   if (CONFLICT_MARKER_RE.test(content.toString('utf8'))) {
-    throw new Error('proposal still contains conflict markers: ' + file.path);
+    throw withNext(new Error('proposal still contains conflict markers: ' + file.path
+      + '; resolve them in ' + proposalPath + ', then record the decision again'), redecide);
   }
   const mode = file.local ? file.local.mode : file.release ? file.release.mode : '100644';
   return { mode, blob: gitBlobId(repo, content), content };
@@ -1908,11 +1914,15 @@ function assertPlanFresh(repo, run, paths) {
       : null;
     const plannedLocal = file.local ? { mode: file.local.mode, blob: file.local.blob } : null;
     if (!sameState(local, plannedLocal)) {
-      throw new Error('drift since align: local blob changed for ' + file.path);
+      throw withNext(new Error('drift since align: local blob changed for ' + file.path
+        + ', so this run no longer describes the checkout; align a fresh run'),
+      SCRIPT_COMMAND + ' align --repo ' + shellQuote(repo));
     }
     const actualRelease = releaseFiles.get(file.path) || null;
     if (!sameState(actualRelease, file.release)) {
-      throw new Error('drift since align: release blob changed for ' + file.path);
+      throw withNext(new Error('drift since align: release blob changed for ' + file.path
+        + ', so this run no longer describes the release; align a fresh run'),
+      SCRIPT_COMMAND + ' align --repo ' + shellQuote(repo));
     }
   }
 }
@@ -2113,8 +2123,8 @@ function lockConflictError(repo) {
     const command = typeof owner.command === 'string' && owner.command
       ? owner.command
       : 'unknown command';
-    return new Error(prefix + ', held by running process ' + owner.pid + ' (' + command
-      + '), so wait for it to finish');
+    return withNext(new Error(prefix + ', held by running process ' + owner.pid + ' (' + command
+      + '), so wait for it to finish, then rerun this command'), 'ps -p ' + owner.pid + ' -o pid,command');
   }
   if (state === 'stale') {
     const command = typeof owner.command === 'string' && owner.command
@@ -2133,8 +2143,10 @@ function lockConflictError(repo) {
     }
     return withNext(new Error(message), next);
   }
-  return new Error(prefix + ', and it has no readable owner, so confirm that no apply, rollback'
-    + ' or record-base is running before removing it by hand');
+  const lockPath = shellQuote(path.join(repo, LOCK_FILE));
+  return withNext(new Error(prefix + ', and it has no readable owner, so confirm that no apply, rollback'
+    + ' or record-base is running (ps -ax -o pid,command | grep release-update.cjs) before'
+    + ' removing it by hand'), 'rm ' + lockPath);
 }
 
 function acquireLock(repo, owner) {

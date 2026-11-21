@@ -91,10 +91,13 @@ const LABEL_WIDTH = 34;
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function fail(message) {
+function fail(message, next) {
   console.error(`STATUS=ERROR command-catalog-mirror: ${message}`);
+  if (next) console.error(`Next: ${next}`);
   process.exit(2);
 }
+
+const RERUN = 'node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs';
 
 function parseArgs(argv) {
   const opts = { root: DEFAULT_REPO, strict: false };
@@ -105,9 +108,9 @@ function parseArgs(argv) {
     else if (argv[i] === '--check') continue;
     else if (argv[i] === '--root') {
       const next = argv[++i];
-      if (!next) fail('--root needs a directory');
+      if (!next) fail('--root needs a directory', `${RERUN} --root <repository root>`);
       opts.root = path.resolve(next);
-    } else fail(`unknown argument: ${argv[i]}`);
+    } else fail(`unknown argument: ${argv[i]}`, `${RERUN} [--strict] [--root <repository root>]`);
   }
   return opts;
 }

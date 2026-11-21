@@ -1021,10 +1021,12 @@ function main(argv, hooks = {}) {
 
   if (!fs.existsSync(options.manifest)) {
     console.error(`${TAG} ERROR: the manifest is missing at ${options.manifest}`);
+    console.error(`${TAG} Next: node .skilled/commands/doctor/scripts/agents-md-check.cjs --manifest <path to the manifest>`);
     return 2;
   }
   if (!fs.existsSync(options.root) || !fs.statSync(options.root).isDirectory()) {
     console.error(`${TAG} ERROR: the target root is not a directory: ${options.root}`);
+    console.error(`${TAG} Next: node .skilled/commands/doctor/scripts/agents-md-check.cjs --root <repository root>`);
     return 2;
   }
   // The root file's name is the manifest's to declare, so this precondition reads the same
@@ -1056,6 +1058,7 @@ function main(argv, hooks = {}) {
     // A manifest that cannot be parsed leaves nothing to compare against, and an empty
     // report would read like a clean one.
     console.error(`${TAG} ERROR: cannot classify ${options.root}: the manifest at ${options.manifest} could not be read as JSON`);
+    console.error(`${TAG} Next: fix the JSON in ${options.manifest}, then run node .skilled/commands/doctor/scripts/agents-md-check.cjs`);
     return 2;
   }
 
