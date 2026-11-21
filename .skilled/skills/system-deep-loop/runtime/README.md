@@ -44,7 +44,7 @@ Generated dependencies under `node_modules/` and repository metadata directories
 | CLI commands | [`scripts/README.md`](scripts/README.md) |
 | Runtime tests | [`tests/README.md`](tests/README.md) |
 | Package manifest | `package.json` (`@deep-loop/runtime`: its dependencies plus the `typecheck`, `typecheck:tests` and `test` scripts) |
-| TypeScript configuration | `tsconfig.json` for `lib/`, and `tsconfig.tests.json` for the tests and the two pivot scripts, an opt-in check that is not part of `typecheck` or CI |
+| TypeScript configuration | `tsconfig.json` for `lib/`, and `tsconfig.tests.json` for the tests and the research and review divergent pivot scripts, an opt-in check that is not part of `typecheck` or CI |
 | Vitest configuration | `vitest.config.ts` |
 
 Consumers import domain behavior from `lib/` or invoke a documented script from `scripts/`. The mode workflows own user-facing orchestration and pass durable inputs into this runtime.
