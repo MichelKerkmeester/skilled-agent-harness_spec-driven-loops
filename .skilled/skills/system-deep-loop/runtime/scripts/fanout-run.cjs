@@ -1210,6 +1210,34 @@ function processStartOf(pid) {
   return result.status === 0 ? result.stdout.trim() : '';
 }
 
+function spawnedRowOf(records, lineage) {
+  return records.filter((record) => record
+    && record.event === 'spawned'
+    && record.label === lineage.label
+    && Number(record.pid) === lineage.pid).at(-1);
+}
+
+function recordedProcessStart(records, lineage) {
+  const spawnedRow = spawnedRowOf(records, lineage);
+  return spawnedRow && typeof spawnedRow.process_start === 'string' ? spawnedRow.process_start : '';
+}
+
+/**
+ * The runner the spawned row names, or null when it is gone or cannot be proven to be it.
+ *
+ * An exited leader takes the kernel's parent link with it, and its members are reparented
+ * away from the runner, so the row is the only way back to a runner that is still waiting
+ * on their output. The recorded start time is checked like a lineage pid's, since the
+ * number alone may now belong to an unrelated process.
+ */
+function recordedRunnerPidOf(records, lineage) {
+  const spawnedRow = spawnedRowOf(records, lineage);
+  const runnerPid = spawnedRow ? Number(spawnedRow.runner_pid) : Number.NaN;
+  const recorded = spawnedRow && typeof spawnedRow.runner_start === 'string' ? spawnedRow.runner_start : '';
+  if (!Number.isInteger(runnerPid) || runnerPid <= 1 || !recorded) return null;
+  return processStartOf(runnerPid) === recorded ? runnerPid : null;
+}
+
 /**
  * Why a live ledger pid may not be signalled, or null when it is still its lineage.
  *
@@ -1217,15 +1245,65 @@ function processStartOf(pid) {
  * start time cannot be read, is refused like a mismatch.
  */
 function lineageIdentityRefusal(records, lineage) {
-  const spawnedRow = records.filter((record) => record
-    && record.event === 'spawned'
-    && record.label === lineage.label
-    && Number(record.pid) === lineage.pid).at(-1);
-  const recorded = spawnedRow && typeof spawnedRow.process_start === 'string' ? spawnedRow.process_start : '';
+  const recorded = recordedProcessStart(records, lineage);
   if (!recorded) return 'no_recorded_identity';
   const current = processStartOf(lineage.pid);
   if (!current) return 'identity_unreadable';
   return current === recorded ? null : 'identity_mismatch';
+}
+
+const LSTART_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/**
+ * An lstart rendering as epoch milliseconds, or NaN when it is not one.
+ *
+ * Read field by field rather than through Date.parse, which would take the zone-less text in
+ * the stopping shell's zone; both sides are rendered under TZ=UTC, so UTC is the right zone.
+ */
+function lstartMs(text) {
+  const match = /^[A-Za-z]{3}\s+([A-Za-z]{3})\s+(\d{1,2})\s+(\d{2}):(\d{2}):(\d{2})\s+(\d{4})$/.exec(String(text).trim());
+  const month = match ? LSTART_MONTHS.indexOf(match[1]) : -1;
+  if (month < 0) return Number.NaN;
+  return Date.UTC(Number(match[6]), month, Number(match[2]), Number(match[3]), Number(match[4]), Number(match[5]));
+}
+
+function pidAnswers(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    return !(error && error.code === 'ESRCH');
+  }
+}
+
+/**
+ * The live members of an exited leader's process group, split by whether they can be the
+ * lineage's, or null when the leader itself still answers.
+ *
+ * A group outlives its leader, and the leader's children may still be doing lineage work. A
+ * member started before the leader's recorded start cannot descend from it, so it is set aside
+ * rather than signalled; one whose start time cannot be read is set aside too.
+ */
+function exitedLeaderGroupMembers(recordedStart, groupId) {
+  if (process.platform === 'win32' || pidAnswers(groupId)) return null;
+  const spawnMs = lstartMs(recordedStart);
+  const result = spawnSync('ps', ['-A', '-o', 'pid=,pgid=,lstart='], {
+    encoding: 'utf8',
+    env: { ...process.env, LC_ALL: 'C', TZ: 'UTC' },
+  });
+  const members = [];
+  const spared = [];
+  if (result.status !== 0 || !Number.isFinite(spawnMs)) return { members, spared };
+  for (const line of result.stdout.split('\n')) {
+    const match = /^\s*(\d+)\s+(\d+)\s+(.+?)\s*$/.exec(line);
+    if (!match || Number(match[2]) !== groupId) continue;
+    const pid = Number(match[1]);
+    if (pid === process.pid) continue;
+    const startedMs = lstartMs(match[3]);
+    if (Number.isFinite(startedMs) && startedMs >= spawnMs) members.push(pid);
+    else spared.push({ pid, process_start: match[3] });
+  }
+  return { members, spared };
 }
 
 /**
@@ -1235,34 +1313,56 @@ function lineageIdentityRefusal(records, lineage) {
  * terminal row since, and a group or pid that still answers. A live pid is signalled only
  * when its process start time still matches the one recorded at spawn, since the number
  * alone may now belong to an unrelated process group; the others are reported as refused.
- * The runner goes first: it stops its own lineages, and once it is gone it cannot retry
+ * When the leader has exited but its group still answers, each member started at or after the
+ * recorded start is signalled on its own, and the others are listed under spared; with no such
+ * member the lineage stays refused. The runner goes first: it stops its own lineages, and once it is gone it cannot retry
  * the ones stopped here. A lineage is recorded as stopped only once it no longer answers.
  *
  * @param {string} ledgerPath - The run's orchestration-status.log.
  * @param {string[]} argv - The run's own argv plus --stop, which the rerun command drops.
- * @returns {Promise<{stopped: Array<{label: string, pid: number}>, survivors: Array<{label: string, pid: number}>, refused: Array<{label: string, pid: number, reason: string}>}>}
+ * @returns {Promise<{stopped: Array<{label: string, pid: number}>, survivors: Array<{label: string, pid: number}>, refused: Array<{label: string, pid: number, reason: string}>, spared: Array<{label: string, pid: number, process_start: string}>}>}
  */
 async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
   const records = readLedgerRecords(ledgerPath);
   const live = [];
   const refused = [];
+  const spared = [];
   for (const lineage of detectLiveLineages(records)) {
     const reason = lineageIdentityRefusal(records, lineage);
-    if (reason) refused.push({ label: lineage.label, pid: lineage.pid, reason });
+    // Only an unreadable start time can mean an exited leader; a mismatch is a reused pid,
+    // whose new group must never be searched for members.
+    const group = reason === 'identity_unreadable'
+      ? exitedLeaderGroupMembers(recordedProcessStart(records, lineage), lineage.pid)
+      : null;
+    if (group) spared.push(...group.spared.map((member) => ({ label: lineage.label, ...member })));
+    if (group && group.members.length > 0) live.push({ ...lineage, members: group.members });
+    else if (reason) refused.push({ label: lineage.label, pid: lineage.pid, reason });
     else live.push(lineage);
   }
-  const runnerPids = new Set(live.map((lineage) => fanoutRunnerPidOf(lineage.pid)).filter(Boolean));
+  // A runner still waiting on a leaderless group would settle the lineage again once its
+  // members end, so it is stopped first and closes the lineage itself, as it does when the
+  // leader still answers.
+  const runnerOf = (lineage) => (lineage.members
+    ? recordedRunnerPidOf(records, lineage)
+    : fanoutRunnerPidOf(lineage.pid));
+  const runnerPids = new Set(live.map(runnerOf).filter(Boolean));
   for (const runnerPid of runnerPids) signalIfPresent(runnerPid, 'SIGTERM');
   for (const lineage of live) {
-    signalIfPresent(process.platform === 'win32' ? lineage.pid : -lineage.pid, 'SIGTERM');
+    if (lineage.members) for (const memberPid of lineage.members) signalIfPresent(memberPid, 'SIGTERM');
+    else signalIfPresent(process.platform === 'win32' ? lineage.pid : -lineage.pid, 'SIGTERM');
   }
+  // A spared member keeps the group answering, so a lineage stopped member by member is
+  // confirmed by its signalled members alone.
+  const answers = (lineage) => (lineage.members
+    ? lineage.members.some(pidAnswers)
+    : isLineageAlive(lineage.pid));
 
   let survivors = live;
   let runners = [...runnerPids];
   const deadline = Date.now() + STOP_CONFIRM_TIMEOUT_MS;
   while ((survivors.length > 0 || runners.length > 0) && Date.now() < deadline) {
     await new Promise((resolvePromise) => setTimeout(resolvePromise, 100));
-    survivors = survivors.filter((lineage) => isLineageAlive(lineage.pid));
+    survivors = survivors.filter(answers);
     runners = runners.filter((runnerPid) => isLineageAlive(runnerPid));
   }
 
@@ -1280,7 +1380,7 @@ async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
     redactTerminalLineageLogs(path.join(lineagesDir, lineage.label));
   }
   const brief = ({ label, pid }) => ({ label, pid });
-  return { stopped: stopped.map(brief), survivors: survivors.map(brief), refused };
+  return { stopped: stopped.map(brief), survivors: survivors.map(brief), refused, spared };
 }
 
 /**
@@ -4954,6 +5054,9 @@ async function main() {
   };
 
   installFanoutSignalHandlers(writeStoppedSummary);
+  // Recorded with each spawn, so a --stop can still reach this runner once a lineage's
+  // leader has exited and its kernel parent link is gone.
+  const runnerProcessStart = processStartOf(process.pid);
 
   const { results, summary } = await runCappedPool({
     items: cliLineages,
@@ -5338,6 +5441,7 @@ async function main() {
               at: new Date().toISOString(),
               status: 'running',
               ...(processStart ? { process_start: processStart } : {}),
+              ...(runnerProcessStart ? { runner_pid: process.pid, runner_start: runnerProcessStart } : {}),
             });
           },
           onExit: ({ pid, exitedAtMs }) => {
