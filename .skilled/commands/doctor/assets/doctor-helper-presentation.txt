@@ -99,7 +99,8 @@ DOCTOR TARGET FAILED
 Target: helper
 Step: [the step that failed]
 Error: [message]
-Next: [the accepted invocation, or the manifest command to rerun]
+Why: [the reason the matcher printed under the error, else what the failed step reads]
+Next: [the matcher's own Next: line when it printed one, else the accepted invocation or the manifest command to rerun]
 STATUS=FAIL ERROR="[message]"
 ```
 

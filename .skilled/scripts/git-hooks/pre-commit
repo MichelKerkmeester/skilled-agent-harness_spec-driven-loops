@@ -61,8 +61,28 @@ fi
 if [[ "$SOURCE_ROOT" == "/dev/null/.skilled-untrusted" ]] \
   && [[ -f "$REPO_ROOT/.skilled/skills/system-spec-kit/SKILL.md" || -f "$REPO_ROOT/.opencode/skills/system-spec-kit/SKILL.md" ]]; then
   echo "NOTICE [gate:hook-trust]: this clone is not trusted, so the pre-commit checks were skipped." >&2
-  echo "Enable them: git config --local skilled.trustRepoHooks true" >&2
+  echo "To enable, only in a clone you trust: git config --local skilled.trustRepoHooks true" >&2
 fi
+# Paths in messages are shown relative to the repository root, the form an operator types.
+_shown_path() { printf '%s' "${1#"$REPO_ROOT"/}"; }
+# A Next line must run as pasted whatever a path holds, so each word it interpolates
+# is shell-quoted. printf %q leaves an ordinary path exactly as it was.
+_shell_words() {
+  [[ $# -gt 0 ]] || return 0
+  local _words
+  printf -v _words '%q ' "$@"
+  printf '%s' "${_words% }"
+}
+_shown_word() { _shell_words "$(_shown_path "$1")"; }
+# Those paths resolve only from the repository root, so a Next line naming one says where to run it.
+_from_root() { printf 'from %s:' "$(_shell_words "$REPO_ROOT")"; }
+# Quotes the NUL-separated paths on stdin as one word list.
+_shell_words_nul() {
+  local _item _items=()
+  while IFS= read -r -d '' _item; do _items+=("$_item"); done
+  _shell_words ${_items[@]+"${_items[@]}"}
+}
+RESTORE_NOTE="  That copies HEAD over both the index and the working tree, so any staged or unstaged edit to the file is lost."
 
 # Shared hook kill-switch (master + per-concern); fail-open if guard absent
 if [ -n "$REPO_ROOT" ] && [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
@@ -76,8 +96,14 @@ if [ -n "$REPO_ROOT" ] && [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
   else
     hook_enabled git-commit-hooks || exit 0
   fi
+elif _in_toolchain_repo && [ -e "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
+  # Restoring would overwrite any edit to a file that is only unreadable.
+  echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is unreadable; commit gates remain enabled." >&2
+  echo "Next: $(_from_root) chmod +r $(_shown_word "$SOURCE_ROOT/hooks/shared/hook-flags.sh")" >&2
 elif _in_toolchain_repo; then
-  echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is missing or unreadable; commit gates remain enabled." >&2
+  echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is missing; commit gates remain enabled." >&2
+  echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$SOURCE_ROOT/hooks/shared/hook-flags.sh")" >&2
+  echo "$RESTORE_NOTE" >&2
 fi
 
 if [[ -z "$REPO_ROOT" ]]; then
@@ -106,6 +132,7 @@ if [[ -r "$_bounded_git_lib" ]]; then
   git_bound_arm
 else
   echo "WARNING [gate:git-timeout]: $_bounded_git_lib is missing, so git calls here run without a time bound." >&2
+  echo "Next: $(_from_root) bash $(_shell_words "$(cd "$(dirname "$_trust_self")/.." && pwd -P)/install-git-hooks.sh")" >&2
   # Unbounded fallbacks, used only when the bounded-git library is unreadable.
   git_bounded() { git -c core.fsmonitor=false "$@"; }
   git_bound_finish() { exit "$1"; }
@@ -165,7 +192,16 @@ COMMENT_CHECKER="${SOURCE_ROOT}/skills/sk-code/sk-code-quality/scripts/check-com
 # ships the toolchain it still means a broken install and still blocks, unless the gate
 # is bypassed, because a bypassed gate has nothing left to run.
 if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && ! -x "$COMMENT_CHECKER" ]] && _in_toolchain_repo; then
-  echo "BLOCKED [gate:comment-hygiene]: checker is missing or not executable: $COMMENT_CHECKER" >&2
+  # A checker that is present but lacks the execute bit may carry an unstaged edit,
+  # and a restore would overwrite it, so that case is offered the mode fix alone.
+  if [[ -e "$COMMENT_CHECKER" ]]; then
+    echo "BLOCKED [gate:comment-hygiene]: checker is not executable: $COMMENT_CHECKER" >&2
+    echo "Next: $(_from_root) chmod +x $(_shown_word "$COMMENT_CHECKER")" >&2
+  else
+    echo "BLOCKED [gate:comment-hygiene]: checker is missing: $COMMENT_CHECKER" >&2
+    echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$COMMENT_CHECKER")" >&2
+    echo "$RESTORE_NOTE" >&2
+  fi
   echo "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ..." >&2
   exit 1
 fi
@@ -183,6 +219,9 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
       # A submodule entry has no blob to read. Any other unreadable file must not pass unchecked.
       [[ "$(git_bounded ls-files -s -- "$file" | cut -c1-6)" == "160000" ]] && continue
       echo "BLOCKED [gate:comment-hygiene]: could not read the staged content of $file" >&2
+      printf 'Next: %s git add -- %q\n' "$(_from_root)" "$file" >&2
+      echo "  That stages the working-tree copy, so re-commit once it holds what you mean to commit." >&2
+      echo "  A read that timed out is not repaired by staging; retry the commit instead." >&2
       exit 1
     fi
     HYGIENE_FILES+=("$file")
@@ -218,7 +257,7 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
       printf '%s\n' "$CHECKER_OUTPUT"
       echo ""
       echo "BLOCKED [gate:comment-hygiene]: staged files contain ephemeral-artifact pointers in code comments."
-      echo "See: .opencode/skills/sk-code/sk-code-quality/references/code-style-guide.md §4"
+      echo "See: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md §4"
       echo "Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line."
       echo "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ..."
       exit 1
@@ -226,6 +265,8 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
     *)
       echo "BLOCKED [gate:comment-hygiene]: the checker failed (exit $CHECKER_RC)." >&2
       printf '%s\n' "$CHECKER_OUTPUT" >&2
+      echo "Run a close check over the working tree (the hook checked the staged copies):" >&2
+      echo "Next: $(_from_root) git diff --cached --name-only -z --diff-filter=ACM | xargs -0 $(_shown_word "$COMMENT_CHECKER")${HYGIENE_FLAGS[@]+ $(_shell_words "${HYGIENE_FLAGS[@]}")} --" >&2
       echo "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ..." >&2
       exit 1
       ;;
@@ -237,11 +278,15 @@ PHRASE_LINTER="$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/spec/template-phr
 if [[ "${SPECKIT_SKIP_PHRASE_LINT:-0}" != "1" ]] && _in_toolchain_repo; then
   if [[ ! -f "$PHRASE_LINTER" ]]; then
     echo "WARNING [gate:template-phrase-lint]: linter is missing; skipping phrase checks." >&2
+    echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$PHRASE_LINTER")" >&2
+    echo "$RESTORE_NOTE" >&2
   elif ! command -v node >/dev/null 2>&1; then
     echo "WARNING [gate:template-phrase-lint]: node is unavailable; skipping phrase checks." >&2
   elif ! node "$PHRASE_LINTER"; then
     echo "" >&2
     echo "BLOCKED [gate:template-phrase-lint]: staged trigger phrases contain a template or editor fallback." >&2
+    echo "Fix the phrase named above and git add its file, then re-check with:" >&2
+    echo "Next: $(_from_root) node $(_shown_word "$PHRASE_LINTER")" >&2
     echo "Fix the phrase, or bypass with SPECKIT_SKIP_PHRASE_LINT=1 git commit ..." >&2
     exit 1
   fi
@@ -261,12 +306,16 @@ done < <(git_bounded diff --cached --name-only --diff-filter=ACMD | grep -E '^\.
 if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
   if [[ ! -f "$MIRROR_CHECKER" ]] && _in_toolchain_repo; then
     echo "BLOCKED [gate:agent-mirror-sync]: checker is missing: $MIRROR_CHECKER" >&2
+    echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$MIRROR_CHECKER")" >&2
+    echo "$RESTORE_NOTE" >&2
     echo "Bypass: SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit ... (this gate has no switch of its own, so that one turns off every pre-commit gate)" >&2
     exit 1
   elif ! command -v node >/dev/null 2>&1 || [[ ! -f "$MIRROR_CHECKER" ]]; then
     # Another repository's agent folders are its own; only the toolchain hears about it.
     if _in_toolchain_repo; then
-      echo "WARNING: node or agent mirror-sync checker unavailable — skipping mirror gate" >&2
+      echo "WARNING [gate:agent-mirror-sync]: node or the agent mirror-sync checker is unavailable, so the mirror gate was skipped." >&2
+      echo "Next: command -v node" >&2
+      echo "  Put node on PATH until that prints its path, then re-commit." >&2
     fi
   else
     # Exit 3 means the checker could not run, here because its built parser is missing. That is
@@ -275,11 +324,13 @@ if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
     node "$MIRROR_CHECKER" "${STAGED_AGENTS[@]}" || MIRROR_RC=$?
     if [[ "$MIRROR_RC" -eq 3 ]]; then
       echo "WARNING [gate:agent-mirror-sync]: agent mirror-sync is not checkable here, so the mirror gate was skipped." >&2
-      echo "Build its parser: npm --prefix .skilled/skills/system-spec-kit run build" >&2
+      printf 'Next: from %q: npm --prefix %q run build\n' "$REPO_ROOT" "$(_shown_path "$SOURCE_ROOT/skills/system-spec-kit")" >&2
     elif [[ "$MIRROR_RC" -ne 0 ]]; then
       echo ""
       echo "BLOCKED [gate:agent-mirror-sync]: staged agent files desync the .opencode / .claude mirrors."
       echo "Fix: re-sync the mirrors so each agent body matches, then re-stage."
+      echo "Align each mirror the DRIFT lines above name and git add it, then re-check with:"
+      echo "Next: $(_from_root) node $(_shown_word "$MIRROR_CHECKER") $(_shell_words "${STAGED_AGENTS[@]}")"
       echo "Bypass: SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit ... (this gate has no switch of its own, so that one turns off every pre-commit gate)"
       exit 1
     fi
@@ -306,6 +357,8 @@ if [[ "${SPECKIT_SKIP_DOC_VERSION_BUMP:-0}" != "1" ]] && command -v node >/dev/n
     if [[ ! -f "$DOCV_ENGINE" ]]; then
       echo "" >&2
       echo "BLOCKED [gate:doc-version-bump]: version engine is missing: $DOCV_ENGINE" >&2
+      echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$DOCV_ENGINE")" >&2
+      echo "$RESTORE_NOTE" >&2
       echo "Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ..." >&2
       exit 1
     fi
@@ -321,6 +374,8 @@ if [[ "${SPECKIT_SKIP_DOC_VERSION_BUMP:-0}" != "1" ]] && command -v node >/dev/n
         echo "BLOCKED [gate:doc-version-bump]: staged docs need a version raise, and this commit narrows its" >&2
         echo "pathspec, so a raise staged now would be discarded with the temporary index." >&2
         printf '%s\n' "$DOCV_OUT" | sed 's/^/  /' >&2
+        echo "Git add the paths you named, then commit without a pathspec, so the raise is staged:" >&2
+        echo "Next: git commit" >&2
         echo "Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ..." >&2
         exit 1
       fi
@@ -339,12 +394,26 @@ if [[ "${SPECKIT_SKIP_DOC_VERSION_BUMP:-0}" != "1" ]] && command -v node >/dev/n
         printf '%s\n' "$DOCV_ERR" | sed 's/^/  /' >&2
         echo "A version raised now would describe content this commit does not contain." >&2
         echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+        DOCV_PARTIAL="$(printf '%s\n' "$DOCV_ERR" | sed -n 's/^ *STAGED AND UNSTAGED //p' | tr '\n' ' ')"
+        if [[ -n "$DOCV_PARTIAL" ]]; then
+          DOCV_PARTIAL_PATHS=()
+          while IFS= read -r DOCV_PARTIAL_PATH; do
+            [[ -n "$DOCV_PARTIAL_PATH" ]] && DOCV_PARTIAL_PATHS+=("$DOCV_PARTIAL_PATH")
+          done < <(printf '%s\n' "$DOCV_ERR" | sed -n 's/^ *STAGED AND UNSTAGED //p')
+          echo "Next: $(_from_root) git add -- $(_shell_words ${DOCV_PARTIAL_PATHS[@]+"${DOCV_PARTIAL_PATHS[@]}"})" >&2
+        else
+          echo "The report named no path this hook could read, so add each doc it lists by hand:" >&2
+          echo "Next: $(_from_root) git add -- <each path listed above>" >&2
+        fi
+        echo "  Or set the unstaged part aside instead: git stash push --keep-index" >&2
         echo "Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ..." >&2
         exit 1
       elif [[ "$DOCV_RC" -ne 0 ]]; then
         echo "" >&2
         echo "BLOCKED [gate:doc-version-bump]: could not raise the version of the staged docs:" >&2
         printf '%s\n' "$DOCV_ERR" | sed 's/^/  /' >&2
+        echo "Repair what the report names, then confirm with a read-only check:" >&2
+        echo "Next: $(_from_root) node $(_shown_word "$DOCV_ENGINE") bump --check --skills-root $(_shown_word "$SOURCE_ROOT/skills")" >&2
         echo "Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ..." >&2
         exit 1
       fi
@@ -463,6 +532,8 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && _in_toolchain_repo && comm
       _in_toolchain_repo || continue
       echo "" >&2
       echo "BLOCKED [gate:mirror-parity]: script is missing: $MIRROR_SCRIPT" >&2
+      echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$MIRROR_SCRIPT")" >&2
+      echo "$RESTORE_NOTE" >&2
       MIRROR_FAIL=1
       continue
     fi
@@ -481,7 +552,7 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && _in_toolchain_repo && comm
     fi
   done
   if [[ "$MIRROR_FAIL" -ne 0 ]]; then
-    echo "Fix: regenerate the mirror the message names, git add its output, and re-commit." >&2
+    echo "Fix: run the Next or Fix line under each block above, git add its output, and re-commit." >&2
     echo "Bypass: SPECKIT_SKIP_MIRROR_PARITY=1 git commit ..." >&2
     exit 1
   fi
@@ -532,6 +603,8 @@ if [[ "${SPECKIT_SKIP_SKILL_AUTHORING:-0}" != "1" ]] && _in_toolchain_repo; then
         if [[ ! -f "$LEAF" ]]; then
           echo "" >&2
           echo "BLOCKED [gate:skill-authoring]: script is missing: $LEAF" >&2
+          echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$LEAF")" >&2
+          echo "$RESTORE_NOTE" >&2
           SKILL_AUTHORING_FAIL=1
         elif ! LEAF_OUT="$(node "$LEAF" --check "$SKILL_ROOT" 2>&1)"; then
           echo "" >&2
@@ -545,6 +618,8 @@ if [[ "${SPECKIT_SKIP_SKILL_AUTHORING:-0}" != "1" ]] && _in_toolchain_repo; then
         if [[ ! -f "$DOCTOR" ]]; then
           echo "" >&2
           echo "BLOCKED [gate:skill-authoring]: script is missing: $DOCTOR" >&2
+          echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$DOCTOR")" >&2
+          echo "$RESTORE_NOTE" >&2
           SKILL_AUTHORING_FAIL=1
         elif ! command -v python3 >/dev/null 2>&1; then
           # The doctor shells out to python3 for its checks. Only this call is
@@ -562,6 +637,8 @@ if [[ "${SPECKIT_SKIP_SKILL_AUTHORING:-0}" != "1" ]] && _in_toolchain_repo; then
         if [[ ! -f "$SIGNALS" ]]; then
           echo "" >&2
           echo "BLOCKED [gate:skill-authoring]: script is missing: $SIGNALS" >&2
+          echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$SIGNALS")" >&2
+          echo "$RESTORE_NOTE" >&2
           SKILL_AUTHORING_FAIL=1
         elif ! SIGNALS_OUT="$(node "$SIGNALS" --check --hub "$SKILL_NAME" 2>&1)"; then
           echo "" >&2
@@ -604,6 +681,8 @@ if [[ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]]; then
       if _in_toolchain_repo; then
         echo "" >&2
         echo "BLOCKED [gate:prompt-card-sync]: drift guard is missing: $CARD_GUARD" >&2
+        echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$CARD_GUARD")" >&2
+        echo "$RESTORE_NOTE" >&2
         echo "Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ..." >&2
         exit 1
       fi
@@ -611,7 +690,7 @@ if [[ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]]; then
       echo "" >&2
       echo "BLOCKED [gate:prompt-card-sync]: prompt-knowledge drift guard failed (see FAIL lines above)." >&2
       echo "Fix: keep each fact in its one canonical home and point to it; see" >&2
-      echo "     .opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md." >&2
+      echo "     .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md." >&2
       echo "Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ..." >&2
       exit 1
     fi
@@ -634,6 +713,8 @@ if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
       if _in_toolchain_repo; then
         echo "" >&2
         echo "BLOCKED [gate:mcp-mutation-class]: contract guard is missing: $MUTCLASS_GUARD" >&2
+        echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$MUTCLASS_GUARD")" >&2
+        echo "$RESTORE_NOTE" >&2
         echo "Bypass: SPECKIT_SKIP_MCP_MUTATION_CLASS=1 git commit ..." >&2
         exit 1
       fi
@@ -694,6 +775,8 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     echo "" >&2
     echo "BLOCKED [gate:route-remint]: could not read the hub list from compiled-route-guard.cjs:" >&2
     printf '%s\n' "$ROUTE_HUBS" | sed 's/^/  /' >&2
+    echo "Next: $(_from_root) node -e 'console.log(require(require(\"path\").resolve(process.argv[1])).HUBS.join(\" \"))' $(_shown_word "$ROUTE_GUARD")" >&2
+    echo "  That reproduces the error; repair what it names, then re-commit." >&2
     echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
     exit 1
   fi
@@ -709,6 +792,8 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     echo "" >&2
     echo "BLOCKED [gate:route-remint]: could not resolve the activation root from compiled-route-layout.cjs:" >&2
     printf '%s\n' "$ROUTE_RUNTIME" | sed 's/^/  /' >&2
+    echo "Next: $(_from_root) node -e 'console.log(require(require(\"path\").resolve(process.argv[1])).activationRootFor(require(\"path\").resolve(process.argv[2])))' $(_shown_word "$ROUTE_LAYOUT") $(_shown_word "$SOURCE_ROOT/bin/lib/compiled-routing")" >&2
+    echo "  That reproduces the error; repair what it names, then re-commit." >&2
     echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
     exit 1
   fi
@@ -721,6 +806,8 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     echo "" >&2
     echo "BLOCKED [gate:route-remint]: could not read the authored program dir from compiled-route-layout.cjs:" >&2
     printf '%s\n' "$ROUTE_AUTHORED_DIR" | sed 's/^/  /' >&2
+    echo "Next: $(_from_root) node -e 'console.log(require(require(\"path\").resolve(process.argv[1])).AUTHORED_PROGRAM_DIR)' $(_shown_word "$ROUTE_LAYOUT")" >&2
+    echo "  That reproduces the error; repair what it names, then re-commit." >&2
     echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
     exit 1
   fi
@@ -784,6 +871,8 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       printf '%s\n' "$ROUTE_DIRTY" | sed 's/^/  /' >&2
       echo "A manifest minted now would describe content this commit does not contain." >&2
       echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+      echo "Next: $(_from_root) git add -- $(git_bounded diff --name-only -z -- "${ROUTE_PATHS[@]}" 2>/dev/null | _shell_words_nul)" >&2
+      echo "  Or set the unstaged part aside instead: git stash push --keep-index" >&2
       echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
@@ -798,6 +887,19 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
         echo "" >&2
         echo "BLOCKED [gate:route-remint]: $ROUTE_HUB cannot be re-minted, missing:" >&2
         echo "  $ROUTE_NEEDED" >&2
+        # The authored copy is derived from the runtime manifest, which the loop has
+        # already found. A runtime manifest git does not track belongs to a new hub,
+        # so it is minted rather than restored.
+        if [[ "$ROUTE_NEEDED" == "$ROUTE_AUTHORED_FILE" ]]; then
+          echo "Next: $(_from_root) cp $(_shown_word "$ROUTE_RUNTIME_FILE") $(_shown_word "$ROUTE_AUTHORED_FILE")" >&2
+          echo "  Then git add both and re-commit." >&2
+        elif [[ "$ROUTE_NEEDED" == "$ROUTE_RUNTIME_FILE" ]] \
+             && ! git_bounded ls-files --error-unmatch -- "$ROUTE_NEEDED" >/dev/null 2>&1; then
+          echo "Next: $(_from_root) node $(_shown_word "$ROUTE_MINT") mint --hub $(_shell_words "$ROUTE_HUB") --skill-root $(_shown_word "$SOURCE_ROOT/skills/$ROUTE_HUB")" >&2
+        else
+          echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$ROUTE_NEEDED")" >&2
+          echo "$RESTORE_NOTE" >&2
+        fi
         echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
         exit 1
       fi
@@ -810,6 +912,8 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       echo "" >&2
       echo "BLOCKED [gate:route-remint]: re-minting $ROUTE_HUB failed." >&2
       printf '%s\n' "$ROUTE_OUT" | sed 's/^/  /' >&2
+      echo "Repair what the output names, then rerun:" >&2
+      echo "Next: $(_from_root) node $(_shown_word "$ROUTE_MINT") refresh --hub $(_shell_words "$ROUTE_HUB") --skill-root $(_shown_word "$SOURCE_ROOT/skills/$ROUTE_HUB")" >&2
       echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
@@ -820,6 +924,8 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       echo "" >&2
       echo "BLOCKED [gate:route-remint]: could not copy the $ROUTE_HUB manifest to its authored copy:" >&2
       echo "  $ROUTE_AUTHORED_FILE" >&2
+      echo "Next: $(_from_root) cp $(_shown_word "$ROUTE_RUNTIME_FILE") $(_shown_word "$ROUTE_AUTHORED_FILE")" >&2
+      echo "  Then git add both and re-commit." >&2
       echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
@@ -878,6 +984,8 @@ if [[ "${SPECKIT_SKIP_CONTRACT_RECOMPILE:-0}" != "1" ]] && command -v node >/dev
       echo "" >&2
       echo "BLOCKED [gate:contract-recompile]: could not read the command list from compile-command-contracts.cjs:" >&2
       printf '%s\n' "$CONTRACT_COMMANDS" | sed 's/^/  /' >&2
+      echo "Next: $(_from_root) node -e 'console.log(Object.keys(require(require(\"path\").resolve(process.argv[1])).COMMANDS).join(\"\\n\"))' $(_shown_word "$CONTRACT_COMPILER")" >&2
+      echo "  That reproduces the error; repair what it names, then re-commit." >&2
       echo "Bypass: SPECKIT_SKIP_CONTRACT_RECOMPILE=1 git commit ..." >&2
       exit 1
     fi
@@ -888,6 +996,8 @@ if [[ "${SPECKIT_SKIP_CONTRACT_RECOMPILE:-0}" != "1" ]] && command -v node >/dev
         echo "" >&2
         echo "BLOCKED [gate:contract-recompile]: compiling $CONTRACT_COMMAND failed." >&2
         printf '%s\n' "$CONTRACT_OUT" | sed 's/^/  /' >&2
+        echo "Repair what the output names, then rerun:" >&2
+        echo "Next: $(_from_root) node $(_shown_word "$CONTRACT_COMPILER") --command $(_shell_words "$CONTRACT_COMMAND") --write" >&2
         echo "Bypass: SPECKIT_SKIP_CONTRACT_RECOMPILE=1 git commit ..." >&2
         exit 1
       fi
@@ -899,6 +1009,8 @@ if [[ "${SPECKIT_SKIP_CONTRACT_RECOMPILE:-0}" != "1" ]] && command -v node >/dev
       echo "" >&2
       echo "BLOCKED [gate:contract-recompile]: the deep command contracts still drift after a recompile:" >&2
       printf '%s\n' "$CONTRACT_AFTER" | tail -6 | sed 's/^/  /' >&2
+      echo "Next: $(_from_root) node $(_shown_word "$CONTRACT_CHECK")" >&2
+      echo "  That prints the full drift report; repair what it names, then re-commit." >&2
       echo "Bypass: SPECKIT_SKIP_CONTRACT_RECOMPILE=1 git commit ..." >&2
       exit 1
     fi
@@ -958,7 +1070,9 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
         echo "BLOCKED [gate:spec-remint]: spec docs are staged and this commit narrows its" >&2
         echo "pathspec, so metadata staged now would be discarded with the temporary index." >&2
         echo "Fix: run the repair yourself and commit its output with the docs:" >&2
-        printf '  node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder %s --apply\n' $SPEC_PACKETS >&2
+        for SPEC_PACKET in $SPEC_PACKETS; do
+          printf '  node %s --folder %s --apply\n' "$(_shown_path "$SPEC_TOOL")" "$SPEC_PACKET" >&2
+        done
         echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
         exit 1
       fi
@@ -989,6 +1103,14 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
           printf '%s\n' "$SPEC_DIRTY_INPUTS" | sed 's/^/  /' >&2
           echo "Metadata derived now would describe content this commit does not contain." >&2
           echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+          SPEC_DIRTY_WORDS=()
+          SPEC_DERIVED_RE='/(graph-metadata|description)\.json$'
+          while IFS= read -r -d '' SPEC_DIRTY_PATH; do
+            [[ "$SPEC_DIRTY_PATH" == *"/scratch/"* || "$SPEC_DIRTY_PATH" =~ $SPEC_DERIVED_RE ]] && continue
+            SPEC_DIRTY_WORDS+=("$SPEC_DIRTY_PATH")
+          done < <(git_bounded diff --name-only -z -- "$SPEC_PACKET" 2>/dev/null || true)
+          echo "Next: $(_from_root) git add -- $(_shell_words ${SPEC_DIRTY_WORDS[@]+"${SPEC_DIRTY_WORDS[@]}"})" >&2
+          echo "  Or set the unstaged part aside instead: git stash push --keep-index" >&2
           echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
           exit 1
         fi
@@ -1002,6 +1124,8 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
       if [[ ! -f "$SPEC_TOOL" ]]; then
         echo "" >&2
         echo "BLOCKED [gate:spec-remint]: re-derive tool is missing: $SPEC_TOOL" >&2
+        echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$SPEC_TOOL")" >&2
+        echo "$RESTORE_NOTE" >&2
         echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
         exit 1
       fi
@@ -1030,6 +1154,8 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
         printf '%s\n' "$SPEC_OUT" | sed 's/^/  /' >&2
         echo "Any packet the tool did repair has been staged, so a retry reports this" >&2
         echo "same failure rather than a half-written tree." >&2
+        echo "Repair what the output names, then rerun:" >&2
+        echo "Next: $(_from_root) node $(_shown_word "$SPEC_TOOL")${SPEC_ARGS[@]+ $(_shell_words "${SPEC_ARGS[@]}")} --apply" >&2
         echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
         exit 1
       fi

@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.35.0
+version: 1.0.49.0
 ---
 
 # Vendored Skilled Overlays
@@ -55,13 +55,14 @@ The value is a path relative to the tree root, written with forward slashes. It 
 | `overlay-manifest.json` | The pinned upstream commit and one entry per overlay |
 | `sync-state.json` | Schema version 2: the hashes it last applied to each destination, the layout link targets it made, the array items it added, the values its `set` and `insertObjectKeys` operations wrote and the keys its `setKeyOnItem` operations wrote |
 | `.build-lock` | Present only while one of the engine's writing runs holds it: an `apply`, a capture, an adopt, a relayout, a live re-pin or a rollback |
+| `repin-runs/`, `relayout-runs/` | The backups a re-pin and a relayout write before their first change |
 | Everything else | The overlay sources the manifest entries name |
 
 The setting lives outside `.skilled` because a re-copy overwrites that folder, and outside the manifest because the manifest sits inside the folder the setting finds. It stays at the tree root when the folder sits beside the tree, so the tree always names its own overlays.
 
 `sync-state.json` carries four optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it still equals what the engine wrote. An item recorded there but edited since is refused rather than deleted, because the entry set no longer describes what it should be. `sets` holds each `set` a `json-entry` overlay applied: its path, the value written and whether the engine added the key. Each key an `insertObjectKeys` inserts is recorded there too, as a `set` on that key's path, and returns the same way once the entry set stops naming it. Two operations on one path share one record, however the path spells an index. When the entry set stops naming that path, `apply` writes back the value the pin holds. A key the pin does not hold is deleted while it still carries the recorded value and the record shows this overlay added it. A value edited since it was recorded is refused rather than overwritten. Two nested `set` operations dropped together both leave: the outer value returns first, and a value a later `set` wrote inside it counts as part of its record. A `set` the entry set still lists inside a dropped outer one is written again once the outer value returns, provided the pin holds the key or object that set writes into. Otherwise the overlay is refused. A dropped `set` that a kept `set` wrote over, or that another operation kind wrote inside, is refused, because the live value no longer equals the record. Put the `set` back or restore the value by hand. A path through an array is restored only while that array holds the same number of items in the live file and in the pin, the overlay adds no item to it, and the item at each index is the pin's item apart from the values this overlay's operations wrote into it. When the overlay wrote the whole item, through one `set`, through several that cover every key, or through a `set` on the array above it, every other item of that array must be the pin's. A step into an array counts as an index however the entry set spells it. Otherwise `apply` refuses and names the outermost array on the path. That refusal clears once that array reads the same as the pin's. To clear it, put the whole array back to the pin's by hand and run `apply`. The operations the entry set still lists then write into it again. A key the pin does not hold that the live file already held when a `set` first named it is refused, not deleted, because a person may have written it. A record an older engine wrote never marks the keys it added, so it refuses the same way. Delete the key by hand or put the `set` back in the entry set. The restore reads the pinned copy the run was given. For `apply` that is the checkout the manifest's pin names, and for a re-pin it is the new commit, whether or not the copy writes the file. Before its backup a re-pin plans each `json-entry` destination its copy leaves in place against the new commit, and when one cannot be applied it refuses with exit 2 and writes nothing. A refused array clears once it is put back to the copy at the current pin by hand and `apply` runs, before the re-pin. Without a pinned copy the overlay is refused, unless the live file holds exactly the bytes the entry's `pinnedSha256` names, because those bytes are the pinned copy. The refusal says to set `pin.checkout` or to put the file back to those bytes. `keys` holds each key a `setKeyOnItem` wrote: the array path, the identity key and the matched item's identity, the key, the value written and whether the engine added the key. The item is found by its identity in the live file and in the pin, never by its position. When the entry set stops naming that key, `apply` writes back the value the pin's item holds, or deletes the key when the pin's item lacks it and the record shows this overlay added it. A value edited since is refused, and so is a drop with no readable pinned copy. A key on an item an `insertItems` or `appendItems` in the same entry set still lists leaves with that item's own rewrite. The cases that follow are not undone, and `status` prints a `NOTE` line for those it can see, described under [Notes](#notes). An operation of any kind whose path steps through an array index lands on another item when one before it is added or removed. A `set` through an array index that stays listed while an `insertItems` on that array leaves moves to the next item, and the value it wrote on the item before stays behind with no record. A link the state has no record of is refused and reported, and an item or a value it has no record of is left in place. A value no record covers, such as one an older engine wrote before a drop, stays in place, and the `cross-check` note names it. A state file from an older engine holds none of these keys, so nothing is retargeted, removed or restored until the first apply records them.
 
-The engine reads a version 1 state file and the next `apply` rewrites it as version 2. An engine older than version 2 refuses to read a version 2 file. A record without a valid path is refused, and the error names the record and the fix. The engine writes `sync-state.json` and `overlay-manifest.json` through a temporary file and a rename, so an interrupted run leaves the old file whole. `apply` records the state right after it writes the destinations, before any `regenerate` step runs. When a step fails, the state says so, and the next `apply` runs the steps again even when every destination is already in sync. The first `apply` after an upgrade to an engine that records `setKeyOnItem` and `insertObjectKeys` rewrites `sync-state.json` even when it prints `0 changed`, because it records the operations the entry sets still list. Commit that change with the upgrade. An older engine ignores the `keys` record and drops it on its next write, so a `setKeyOnItem` dropped after that is not taken back. It also reads the inserted object keys in `sets` as dropped sets: it deletes each one and the `insertObjectKeys` puts it back, so the file ends the same.
+The engine reads a version 1 state file and the next `apply` rewrites it as version 2. An engine older than version 2 refuses to read a version 2 file. A record without a valid path is refused, and the error names the record and the fix. The engine writes `sync-state.json` and `overlay-manifest.json` through a temporary file and a rename, so an interrupted run leaves the old file whole. `apply` records the state right after it writes the destinations, before any `regenerate` step runs. When a step fails, the state says so, and the next `apply` runs the steps again even when every destination is already in sync. Until then `status` prints a `REGEN` line and fails. The first `apply` after an upgrade to an engine that records `setKeyOnItem` and `insertObjectKeys` rewrites `sync-state.json` even when it prints `0 changed`, because it records the operations the entry sets still list. Commit that change with the upgrade. An older engine ignores the `keys` record and drops it on its next write, so a `setKeyOnItem` dropped after that is not taken back. It also reads the inserted object keys in `sets` as dropped sets: it deletes each one and the `insertObjectKeys` puts it back, so the file ends the same.
 
 ### READMEs in the Overlay Folder
 
@@ -73,18 +74,20 @@ With `F` as a folder's path relative to the overlay folder, `F/README.md` or `F/
 2. `F` is the `source` folder of a `directory` entry, or sits under it. Everything inside a whole-folder entry ships, except a Python bytecode cache.
 3. `F` is the `source` folder of a `skill-root` entry, or sits under it, and the README's path relative to that source is listed in the entry's `replace`, or sits under a folder `replace` lists. A skill-root entry ships only what `replace` names.
 
+A README whose path the skill-root entry's `retained` list names, on a path inside a folder its `replace` list names, is documentation only, because `apply` keeps the vendor's live bytes there. A retained path that `replace` names directly still ships.
+
 Every other README is documentation only. These rules apply to both names alike.
 
 A new README inside a directory entry ships. Adding one to a folder inside a `directory` entry, or inside a folder a `skill-root` entry's `replace` lists, changes the vendored tree on the next `apply`. It is overlay content like any other file in that folder.
 
-A Python bytecode cache is never overlay content. The folder readers skip a `__pycache__` folder and any `*.pyc` or `*.pyo` file on both sides of a `directory` or `skill-root` entry, so `apply` never ships one from the overlay folder, and status, capture and adopt pass over it. A cache a script wrote in the live tree is never deleted while its folder still ships. A folder the entry stops shipping goes with its cache. Once `apply` has deleted the folder's files, it removes the folder whole if nothing but caches is left in it. For a `directory` entry that is a folder the source no longer has. For a `skill-root` entry it is a folder at or under a `remove` path, or under a `replace` folder whose source lacks it. The rule goes by name, not by what git ignores, because an overlay folder can sit outside any repository.
+A Python bytecode cache is never overlay content. Only a folder named `__pycache__`, or a file ending in `.pyc` or `.pyo`, counts as one. A folder whose name ends in `.pyc` is ordinary content. The folder readers skip a `__pycache__` folder and any `*.pyc` or `*.pyo` file on both sides of a `directory` or `skill-root` entry, so `apply` never ships one from the overlay folder, and status, capture and adopt pass over it. A cache a script wrote in the live tree is never deleted while its folder still ships. A folder the entry stops shipping goes with its cache. Once `apply` has deleted the folder's files, it removes the folder whole if nothing but caches is left in it. For a `directory` entry that is a folder the source no longer has. For a `skill-root` entry it is a folder at or under a `remove` path, or under a `replace` folder whose source lacks it. The rule goes by name, not by what git ignores, because an overlay folder can sit outside any repository. When `apply` cannot remove such a cache folder, for example because a file in it is read-only, it leaves the folder, prints a `NOTE` line naming it with an indented `Next: chmod -R u+w <folder> && rm -r <folder>` line, and still succeeds, because only caches were left. A re-pin backs up a cache only when its apply could remove it, so the backup never grows with caches that stay.
 
 The engine never applies, adopts, captures, stages or flags a documentation-only README:
 
 - `apply` never writes it to the tree.
 - `apply --adopt` never takes it over as a source. An adopt that would place a source onto an existing documentation-only README, or would turn one into content by making its folder a `directory` entry, refuses and writes nothing.
 - `apply --capture` never writes into it.
-- `repin --stage` never puts it into the staged tree.
+- `repin --stage` never puts it into the stage folder.
 - No status line, `--json` field, audit finding, `pre-commit` refusal, guard refusal, `LAYOUT` line or relayout move names it as drift, extra, stray, unowned or off-layout. It shows up only in the README check `status --audit` runs, described under [README Checks](#readme-checks).
 
 All of this holds the same way for an overlay folder inside the tree, the default `skilled-overlays/`.
@@ -110,12 +113,13 @@ The common mistake is running `apply` over a `live-edited` destination. It block
 
 ### Off-Layout and Stale Sources
 
-Two more `status` lines name work no destination state covers.
+Three more `status` lines name work no destination state covers.
 
 | The line | What happened | What resolves it |
 |----------|---------------|------------------|
 | `STALE    root-file <path>` | Upstream changed a root file named in `repin.rootFiles` that a `file` or `marked-section` overlay owns and pins in `pinnedSha256`. A re-pin never copies a root file, so no destination line reports it | Rebase the overlay onto the new upstream file, then update its `pinnedSha256` |
-| `LAYOUT   <overlay>: <field> <from> belongs at <to>` | The copy the entry names sits off its layout path. A destination under `.skilled/` lays out under `framework/`, so `.skilled/skills/x` belongs at `framework/skills/x`, and `.skilled` itself at `framework`. Any other destination lays out under `root/`, with its leading dots dropped, so `.claude/settings.json` belongs at `root/claude/settings.json`. `<field>` is `source`, `fragment` or `base`, and a `marked-section` entry can print one line for each. The `base` path carries `.base` before the extension. `status` prints at most 20 of these lines, then one overflow line: `LAYOUT   … <n> more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout` when no hidden move sits under `root/skilled`, `LAYOUT   … <n> more under root/skilled; change the destination or remove the entry` when every hidden move does, and `LAYOUT   … <n> more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout for <m>, and change the destination or remove the entry for the <b> under root/skilled` when they mix. `status --json` keeps every move in `offLayout`. A LAYOUT line never fails the status | `/doctor:overlay apply --relayout`; when `<to>` sits under `root/skilled` the line ends `change the destination or remove the entry` instead, because relayout refuses that move |
+| `REGEN    pending: <ids>` | An earlier `apply` wrote and recorded the destinations, then a `regenerate` step failed. The line names every `regenerate` step id in the manifest, comma-separated, because the next `apply` reruns them all. A why line and `Next: from <root>: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply` follow it. A manifest with no `regenerate` steps prints no line. `status --json` names the same ids in `regeneratePending`, after `staleRootFiles`. The field is always present and holds `[]` when nothing is pending. A REGEN line fails the status | Fix the step that failed, then run `/doctor:overlay apply` |
+| `LAYOUT   <overlay>: <field> <from> belongs at <to>` | The copy the entry names sits off its layout path. A destination under `.skilled/` lays out under `framework/`, so `.skilled/skills/x` belongs at `framework/skills/x`, and `.skilled` itself at `framework`. Any other destination lays out under `root/`, with its leading dots dropped, so `.claude/settings.json` belongs at `root/claude/settings.json`. `<field>` is `source`, `fragment` or `base`, and a `marked-section` entry can print one line for each. The `base` path carries `.base` before the extension. `status` prints at most 20 of these lines, then one overflow line: `LAYOUT   … <n> more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout` when no hidden move sits under `root/skilled`, `LAYOUT   … <n> more under root/skilled; change the destination or remove the entry` when every hidden move does, and `LAYOUT   … <n> more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout for <m>, and change the destination or remove the entry for the <b> under root/skilled` when they mix. An indented `Next:` line follows the overflow line. When a hidden move can go and any move, shown or hidden, sits under `root/skilled`, it reads `Next: change the destination of each entry under root/skilled in <manifest path>, or remove the entry, then from <root>: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout`, because relayout refuses every move until those entries change. `status --json` keeps every move in `offLayout`. A LAYOUT line never fails the status | `/doctor:overlay apply --relayout`. When `<to>` sits under `root/skilled` the line ends `change the destination or remove the entry` instead, because relayout refuses that move |
 
 `STALE` names a root file owned by a `file` or a `marked-section` overlay that carries `pinnedSha256`. Both scopes pin upstream's copy of the destination. A `file` entry copies that file whole, and a `marked-section` entry keeps it as its `base`. One comparison against the pinned commit therefore catches an upstream move for either one. The line prints even while the entry itself still applies cleanly, which is why it is the only sign the pin is out of date. Without a readable checkout at the pin the check cannot run, and `status` prints a `NOTE` line saying it skipped the check.
 
@@ -157,13 +161,15 @@ A relative `pin.checkout` is read from the root of the tree the engine runs on, 
 
 ## 4. WHAT THE ENGINE REFUSES
 
+Most refusals the engine, the doctor scripts and the git hooks print end with a `Next:` line naming the exact command to run, and the folder to run it from. The write guard's refusals name their command inline instead.
+
 ### A Held Lock
 
 `apply`, a capture, an adopt, a relayout, a live re-pin and a rollback each take `<overlayDir>/.build-lock` and remove it when they finish, also on failure. The owner line records the process id and the host that wrote it, as `pid=<n> host=<name>`. A lock whose owner has ended on this host is leftover state, so the next run takes it over and prints one note naming whose lock it was. A `repin --stage` does not take it: it reads a dead owner's line, prints `note: the overlay lock belongs to a run that has ended:`, and leaves the lock for the next writing run. A line with a process id and no `host=` token came from an engine that only ever ran on the machine it was installed in, so that id is probed here too. The takeover runs behind `<overlayDir>/.build-lock.takeover`, and only one run at a time can create that file. A marker older than a minute is what a run killed mid-takeover leaves behind, so the next run clears it instead of waiting for it to go. Neither leftover is deleted by its shared path. The lock and the marker are each renamed aside first and deleted only when the renamed file is the one that was judged stale, and a file another run wrote in the meantime is put back, unless another file already stands at the path, in which case the set-aside file is dropped. A marker put back this way can outlive its run, and a takeover then refuses for up to a minute and says to run it again. A run killed in that instant can leave a `.claim` file beside the lock, which is safe to delete. A lock with a live owner, a lock another host wrote, or a lock with no process id in its line still refuses, and that refusal prints the owner line and the lock file path. Remove such a file by hand once you know its run has ended.
 
 ### Secret Files
 
-The engine never reads a `.env` file, even one a manifest entry names. A file whose name contains `token` is read only when the manifest names its exact path:
+The engine never reads a `.env` file, even one a manifest entry names. The template `.env.example` is the exception. It holds no secret by convention, so the engine reads, copies, re-pins and reports it like any vendored file. Only that exact name is exempt, the same name the env secret guard lets an agent read, so every other `.env` name stays protected. A file whose name contains `token` is read only when the manifest names its exact path:
 
 - A `file` or `marked-section` entry names its destination exactly.
 - A `directory` or `skill-root` entry walks a folder, so it lists each token-named file it may read in `protectedPaths`, by its path relative to the entry. Any other token-named file the walk meets is refused.
@@ -182,9 +188,102 @@ A `protectedPaths` value that points outside the entry, an absolute path, an emp
 
 A refused file blocks only the entry it belongs to. `status` still reports every other overlay, then prints a `MISS` line for the blocked entry that names the file and the fix, such as `add "assets/tokens.css" to this entry's protectedPaths`, and exits 1. `apply` writes nothing while any entry is blocked, and `repin` refuses before its backup.
 
+### Another Shape in the Way
+
+An entry can change what it writes at a destination between a file, a folder and a layout link. `apply` first removes its own earlier output there, meaning files whose bytes match what it last wrote or a layout link it made, then writes the new shape in the same run. A file, folder or link it did not write is unowned, so `apply` refuses it, writes nothing and exits 1:
+
+```text
+BLOCKED  t: thing is a folder that does not match what apply last wrote there, where overlay t writes a file; apply removes only its own output, so it stays
+  Next: mv /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+Move the unowned copy aside as the `Next:` line says, then compare it with the overlay before you delete it.
+
+A link on the path is refused the same way when it leads outside the tree, because apply writes only inside the tree, or when it loops and so never resolves. A link whose target is simply missing is not refused here. A layout link like that, with an entry under it, has its own refusal, described below. The entry writes nothing, the link stays and the run exits 1:
+
+```text
+BLOCKED  t: thing is a link that leads outside the tree, to /elsewhere/thing, where overlay t writes
+  apply writes only inside the tree, and a write through this link would land outside it, so the link stays
+  Next: mv /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+BLOCKED  u: other is a link that does not resolve, where overlay u writes
+  apply cannot tell where a write through it would land, so it writes nothing and the link stays
+  Next: mv /path/to/tree/other /path/to/tree/other.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same lines with `MISS` in place of `BLOCKED`. That holds for a write through a layout link `apply` makes before the writes, too. `status` cannot make that link, so it judges the write where the link will send it. A link beyond it that leads outside the tree prints as `MISS     tool: target is a link that leads outside the tree, to <landed>, where overlay tool writes`, after `MISS     layout: up is missing (link to target)`. Only that refusal is judged ahead. A block that shows only through the link, such as a project file where the entry writes a folder, shows first in `apply`, after it makes the link, and `apply` then writes nothing. That refusal names the link someone else made further along the chain, such as `target`, never the layout link apply makes again. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
+
+A layout link the tree lacks outright, with an entry destination at or under it, is made before the entry writes. Once the manifest's own links plan without a problem, `apply` makes each such link, plans every entry again through it and, when that plan passes, prints `linked up -> target` before the writes. When that second plan blocks, `apply` removes the links it made and any folders it made for them, prints that plan's `BLOCKED` lines and writes nothing. A link that retargets, replaces a pinned link or takes the place of the engine's own output keeps its turn after the writes. On a filesystem that ignores letter case, a link and a destination that differ only in case, such as `Up` and `up/tool`, count as one path here.
+
+A layout link the manifest points at a new target, with an entry destination at or under it, is refused while it is planned. `apply` writes the entries under a link before it moves the link, so they would land in the old target. `status` and `apply` print the same lines, `status` after `MISS     layout:` and `apply` after `BLOCKED  layout:`, and both exit 1. The link stays where it was and `apply` writes nothing:
+
+```text
+BLOCKED  layout: up moves from target to target2, and overlay tool writes under it
+  apply writes the entries under a link before it moves the link, so they would land in target, not target2
+  Next: take overlay tool out of /path/to/tree/skilled-overlays/overlay-manifest.json, run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply from /path/to/tree to move the link alone, then put the entry back and run apply again
+```
+
+The general form is `<link> moves from <old> to <new>, and overlay <id> writes under it`. With more than one entry under the link it reads `overlays <a, b> write under it`, and the `Next:` line reads `take overlays <a, b> out of` and `put the entries back`. Follow the two steps. The first apply moves the link alone, and the second writes the entries through its new target. What an earlier apply wrote through the old target stays there. When another layout link sits inside the moved one, such as `a/b` inside `a`, the `Next:` line ends `, which makes a/b if the first apply reports it`. The first apply may then exit 1 with `overlay-edited a/b  (layout link)`, when that link already stood in the old target, and the second apply makes it.
+
+A layout link whose target does not exist, with an entry destination at or under it, is refused the same way, whether apply would make it or move it, or it already stands there:
+
+```text
+BLOCKED  layout: up links to nothere, which does not exist, and overlay tool writes under it
+  a write under a link to a folder that does not exist has no folder to land in, so apply writes nothing
+  Next: mkdir -p /path/to/tree/nothere, or point the layout link up in /path/to/tree/skilled-overlays/overlay-manifest.json at a folder that exists, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+The general form is `<link> links to <target>, which does not exist, and overlay <id> writes under it`. The `mkdir -p` path is the target resolved from the link's own folder, so `a/up` linking to `nothere` names `/path/to/tree/a/nothere`. `status` judges a link in a folder apply has not made yet as if apply had made the folder, unless another layout link sits on the way to it, which leaves the judgment to `apply`. A link moved to a missing target prints both refusals, and `mkdir -p` clears only the first. The moved-link refusal then remains, so follow its two steps after it.
+
+A target that is a file is refused the same way, with `<link> links to <target>, which is a file, and overlay <id> writes under it` and the why line `a write under a link to a file has no folder to land in, so apply writes nothing`. A target that is itself a link that does not resolve keeps the `which does not exist` first line, and its why line reads `a write under a link to a link that does not resolve has no folder to land in, so apply writes nothing`. A `mkdir -p` fails on what stands at either target, so the `Next:` line sets that file or link aside first:
+
+```text
+  Next: mv /path/to/tree/tfile /path/to/tree/tfile.keep and mkdir -p /path/to/tree/tfile, or point the layout link up in /path/to/tree/skilled-overlays/overlay-manifest.json at a folder that exists, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+An apply stopped by a blocked overlay or a `BLOCKED  layout:` refusal ends with `blocked=<n> changed=0`, `  this apply wrote nothing: a blocked overlay stops it before any write` and a `Next:` line that reruns apply after the fixes. An apply or a capture that only a destination's own state stops, such as a `both-changed` line, prints no `blocked=` line and ends with these lines instead:
+
+```text
+  this apply wrote nothing: a destination above stops it before any write
+  Next: run the fix on each line above, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+A capture stopped this way prints the same lines, except that its `Next:` line reruns the capture, such as `then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --capture guarded.txt`.
+
+A missing layout link inside a folder an entry writes, where the entry writes files at or below the link, can never be made after those writes. `status` and `apply` refuse it while planning, and `apply` writes nothing and exits 1:
+
+```text
+BLOCKED  layout: tool/deep is a layout link inside tool, the folder overlay tool writes
+  overlay tool writes files at that path, and they would stand where the link goes
+  Next: move the layout link tool/deep out of tool in /path/to/tree/skilled-overlays/overlay-manifest.json, or drop those files from the overlay, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+The general form is `<path> is a layout link inside <destination>, the folder overlay <id> writes`, and `status` prints the same lines after `MISS     layout:` and exits 1. Move the link out of that folder in the manifest, or drop those files from the overlay.
+
+A layout link whose folder leads outside the tree is refused while the manifest is planned, whether the folder leads out as the tree stands or once `apply` makes the manifest's link above it. `status` and `apply` exit 2 and write nothing, and the refusal names the link that leads out:
+
+```text
+[overlay-engine] layout link path escapes the tree root: a/b
+  the folder it sits in leads outside the tree through target, so a link made there would land outside it
+  Next: mv /path/to/tree/target /path/to/tree/target.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+That is the `status` output. `apply` prints the same three lines and adds `  this apply wrote nothing: it stopped while planning, before any write`, which it adds under any error it stops on while planning.
+
+A link on the way that does not resolve reads `the folder it sits in passes <link>, a link that does not resolve, so apply cannot tell where a link made there would land`. When no link on the way can be named, the why line reads `the folder it sits in leads outside the tree, so a link made there would land outside it`. A path that leaves the tree as text reads `a layout link is made only inside the tree`. Both then end with `Next: change the layout link <path> in <manifest> to a path inside the tree, then from <tree root>: node .skilled/commands/doctor/scripts/overlay-engine.cjs status`.
+
+Planning refuses a file or folder already standing at a layout link path, with `<path> exists but is not the link to <target>`. When one appears there after planning, `apply` stops at that link with exit 2 rather than delete it, and prints:
+
+```text
+[overlay-engine] up is a folder, not the layout link to target; refusing to replace it
+  a real file or folder stands there now, and replacing it would delete that work
+  Next: mv /path/to/tree/up /path/to/tree/up.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+A file reads `is a file` in place of `is a folder`.
+
 ### An Edit to an Owned File
 
-The `overlay-guard` hook refuses an agent's edit to a file an overlay owns, before it is written, and names the overlay file to edit instead. It asks the engine for each path, so it follows the same manifest. It is one runtime-neutral core with an adapter per runtime, for Claude, Codex, Cursor, Devin, Pi, DSH and OpenCode, and the OpenCode adapter sits at `.skilled/hooks/overlay-guard/opencode/overlay-guard.js`. In a repository with no overlay folder it allows every edit at once. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off.
+The `overlay-guard` hook refuses an agent's edit to a file an overlay owns, before it is written, and names the overlay file to edit instead. It asks the engine for each path, so it follows the same manifest. It is one runtime-neutral core with an adapter per runtime, for Claude, Codex, Cursor, Devin, Pi, DSH, OpenCode and Vibe, and the OpenCode adapter sits at `.skilled/hooks/overlay-guard/opencode/overlay-guard.js`. In a repository with no overlay folder it allows every edit at once. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off.
 
 ### A Write No Overlay Owns
 
@@ -243,7 +342,7 @@ A generated path, a path an overlay owns, a path under a `repin.exclude` folder 
 - A folder named `__pycache__`, the bytecode cache Python writes beside a script it runs.
 - A folder reached through a symbolic link. The walk never follows a link.
 
-Every walked folder needs a `README.md` or a `README.markdown`, and only a regular file counts, so a README that is a link counts as missing. A folder the walk cannot read is skipped and not counted. Every README there, under either name and shipping or documentation only, goes through sk-doc's own validator, and a folder with both names has both checked. The engine runs `python3 <tree>/.skilled/skills/sk-doc/scripts/validate_document.py <README> --json` once per README, with `JEV_FEATURE_CITE_DRIFT=0` set, and lets the validator detect the document type. A README with any `blocking_errors` is invalid, and so is one the validator answers without a `blocking_errors` list, for example with an `error` key or output that is not JSON. The lines print after the `AUDIT` lines and before `checked=`:
+Every walked folder needs a `README.md` or a `README.markdown`, and only a regular file counts, so a README that is a link counts as missing. A folder the walk cannot read is skipped and not counted. Every README there, under either name and shipping or documentation only, goes through sk-doc's own validator, and a folder with both names has both checked. The engine runs `python3 <tree>/.skilled/skills/sk-doc/scripts/validate_document.py <README> --json` once per README, with `JEV_FEATURE_CITE_DRIFT=0` and `PYTHONDONTWRITEBYTECODE=1` set, and lets the validator detect the document type. A README with any `blocking_errors` is invalid, and so is one the validator answers without a `blocking_errors` list, for example with an `error` key or output that is not JSON. A validator still running after 30 seconds is killed and reported as invalid with `the validator did not finish in 30s`, and `OVERLAY_DOCS_VALIDATOR_TIMEOUT_MS` changes that limit. A validator that cannot start is reported with `the validator could not run: <error>`. The lines print after the `AUDIT` lines and before `checked=`:
 
 ```text
 DOCS     missing-readme <overlay label>/<F>
@@ -323,13 +422,14 @@ The layout path puts each copy under `framework/` when its destination sits unde
 
 ## 6. ADOPTING THE ENGINE WITH EXISTING OVERLAYS
 
-A project that already keeps its own overlay folder and replay script moves onto the engine without moving a file. The engine reads the same manifest shape and the same `sync-state.json` shape, `{ "schemaVersion": 1, "pin", "files" }`, so the folder stays where it is. The first `apply` rewrites the state as schema version 2.
+A project that already keeps its own overlay folder and replay script moves onto the engine without moving a file first. The engine reads the same manifest shape and the same `sync-state.json` shape, `{ "schemaVersion": 1, "pin", "files" }`, so the folder stays where it is. The first `apply` rewrites the state as schema version 2.
 
 1. **Name the folder.** Add `.skilled-overlays.json` at the root of the vendored copy with `{ "overlayDir": "<folder>" }`. Without it the engine looks in `skilled-overlays/`, and `status` stops with an error that says so.
 2. **Run `/doctor:overlay status`.** Each entry that walks a token-named file prints a `MISS` line naming the file. Add each one to that entry's `protectedPaths`, by its path relative to the entry.
 3. **Add the `repin` block** from §5 when the copy keeps a real folder where upstream ships a link, or when it vendors a different set of runtime folders.
-4. **Check the generated surfaces.** The manifest's `regenerate` and `verifyGenerated` steps run after every apply, including the one a re-pin makes. Each command runs at the tree root, so review the list rather than copying one from a folder you do not trust. A verify step only fails when its command can fail: `skill-graph-freshness.cjs` reports and exits 0 unless it gets `--strict`.
-5. **Run `status` again** until it prints `RESULT: PASSED`, then use `apply` and `repin` as usual.
+4. **Check the generated surfaces.** The manifest's `regenerate` and `verifyGenerated` steps run after an `apply` that wrote something, after one that follows a failed regeneration, which `status` reports on a `REGEN` line, and after the apply a live re-pin makes (a `repin --stage` run skips them). An `apply` that prints `0 changed` with nothing pending runs neither. Each command runs at the tree root, so review the list rather than copying one from a folder you do not trust. A verify step only fails when its command can fail: `skill-graph-freshness.cjs` reports and exits 0 unless it gets `--strict`.
+5. **Expect `LAYOUT` lines.** Each copy that sits off its `framework/` or `root/` path prints one, as [Off-Layout and Stale Sources](#off-layout-and-stale-sources) describes. They never fail `status`. Run `/doctor:overlay apply --relayout` once when you want the copies moved onto their layout paths.
+6. **Run `status` again** until it prints `RESULT: PASSED`, then use `apply` and `repin` as usual.
 
 A replay script the project keeps beside the engine can keep reading the same folder. It reads only the keys it knows, and the engine ignores keys it does not read, such as a fork's own certificates. A script must not write `sync-state.json`: one that writes it as version 1 drops the records of the items and values the `json-entry` overlays wrote, and those then stay in the live files after they leave an entry set. Retire the script once nothing depends on its extra keys or states.
 

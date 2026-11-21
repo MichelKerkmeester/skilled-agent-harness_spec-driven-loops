@@ -206,6 +206,14 @@ if grep -q called "$TMP/skill-gate-calls.log" 2>/dev/null; then PASS=$((PASS+1))
 else FAIL=$((FAIL+1)); echo "FAIL: a range under .skilled/skills never reached the skill-root metadata checker"; fi
 rm -f "$SKILL_CHECKER" "$TMP/skill-gate-calls.log"
 
+# The fix runs from the repository root, under the fixture's .opencode source root.
+mkdir -p "$(dirname "$SKILL_CHECKER")"
+printf '%s\n' "process.exit(1);" > "$SKILL_CHECKER"
+expect_hook_says "stale skill metadata names the fix under the source root it was found in" \
+  0 "Next: from $(cd "$TMP" && pwd -P): node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix" \
+  "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA"
+rm -f "$SKILL_CHECKER"
+
 mkdir -p "$(dirname "$SENTINEL")"; printf 'name: system-spec-kit\n' > "$SENTINEL"
 expect_hook_says "a missing skill checker warns with its path where the toolchain ships" \
   0 "checker is missing: " "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA" \
@@ -231,6 +239,10 @@ expect_hook_says "drift in a .skilled routing input blocks the push" \
   1 "routing-commit-parity" "refs/heads/main $OPENCODE_SHA refs/heads/main $SKILLED_SHA"
 expect_hook "a pushed commit other than HEAD is not compared with the working tree" \
   0 "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA"
+printf '%s\n' "process.exit(1);" > "$TMP/.opencode/bin/compiled-route-guard.cjs"
+expect_hook_says "a stale route names the re-check from the repository root" \
+  1 "Next: from $(cd "$TMP" && pwd -P): node .opencode/bin/compiled-route-guard.cjs" \
+  "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA"
 rm -rf "$TMP/.opencode/bin"
 git -C "$TMP" checkout -q -- .skilled/skills/demo/hub-router.json
 
@@ -257,6 +269,9 @@ expect_hook "...unless SPECKIT_ALLOW_MASS_DELETION=1 approves it" \
   SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 SPECKIT_ALLOW_MASS_DELETION=1
 expect_hook_says "a missing route guard blocks the push" \
   1 "route guard is missing" "refs/heads/main $SHA_A refs/heads/main $SHA_B" \
+  SPECKIT_ALLOW_MASS_DELETION=1
+expect_hook_says "...and its restore says it discards a staged version too" \
+  1 "staged or unstaged edit to the file is lost" "refs/heads/main $SHA_A refs/heads/main $SHA_B" \
   SPECKIT_ALLOW_MASS_DELETION=1
 rm -f "$SENTINEL"
 
@@ -291,6 +306,8 @@ expect_hook_says "a pushed packet its track root does not list blocks the push" 
   1 "[gate:track-roots]" "refs/heads/main $TRACK_DRIFT_SHA refs/heads/main $TRACK_OK_SHA" "${TRACK_ENV[@]}"
 if grep -qF "on disk, not declared: 002-unlisted" "$TMP/last.err"; then PASS=$((PASS+1))
 else FAIL=$((FAIL+1)); echo "FAIL: the track-root block does not name the unlisted packet"; fi
+if grep -qE '^Fix: from [^ ]+: node [^ ]*refresh-track-roots\.mjs --apply$' "$TMP/last.err"; then PASS=$((PASS+1))
+else FAIL=$((FAIL+1)); echo "FAIL: the track-root Fix line does not name the folder to run from"; grep -F 'Fix:' "$TMP/last.err"; fi
 expect_hook "...unless SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 skips it" \
   0 "refs/heads/main $TRACK_DRIFT_SHA refs/heads/main $TRACK_OK_SHA" "${TRACK_ENV[@]}" SPECKIT_SKIP_PREPUSH_TRACK_GATE=1
 # The working tree still holds 002-unlisted; the pushed commit does not.
@@ -359,20 +376,54 @@ git -C "$CID" commit -q --allow-empty -m "chore(x): unstamped base" -m "Body."
 CID_BASE="$(git -C "$CID" rev-parse HEAD)"
 cid_expect "a pushed commit without a Commit-Id is blocked" 1 \
   "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA" "[gate:commit-id]"
+cid_expect "a range that starts at the root commit rebases from --root" 1 \
+  "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA" \
+  "Next: git rebase -x 'git commit --amend --no-edit' --root"
 git -C "$CID" commit -q --allow-empty -m "chore(x): stamped" -m "Body." -m "Commit-Id: 0000001"
 CID_STAMPED="$(git -C "$CID" rev-parse HEAD)"
 cid_expect "an update adding only stamped commits passes" 0 \
   "refs/heads/main $CID_STAMPED refs/heads/main $CID_BASE"
+git -C "$CID" commit -q --allow-empty -m "chore(x): unstamped on top" -m "Body."
+cid_expect "an update rebases from the commit the pushed range starts after" 1 \
+  "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_STAMPED" \
+  "Next: git rebase -x 'git commit --amend --no-edit' $CID_STAMPED"
+git -C "$CID" reset -q --hard "$CID_STAMPED"
 git -C "$CID" checkout -q -b side "$CID_BASE"
 git -C "$CID" commit -q --allow-empty -m "chore(x): side" -m "Body." -m "Commit-Id: 0000002"
 git -C "$CID" checkout -q main
 git -C "$CID" merge -q --no-ff --no-edit side
 cid_expect "a merge commit needs no Commit-Id" 0 \
   "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_STAMPED"
+# A merged-in unstamped commit leaves no one base that spans only the pushed range.
+CID_MERGED="$(git -C "$CID" rev-parse HEAD)"
+git -C "$CID" checkout -q -b side2 "$CID_BASE"
+git -C "$CID" commit -q --allow-empty -m "chore(x): side unstamped" -m "Body."
+git -C "$CID" checkout -q main
+git -C "$CID" merge -q --no-ff --no-edit side2
+cid_expect "a range holding a merge keeps the stamping base placeholder" 1 \
+  "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_MERGED" \
+  "Next: git rebase -x 'git commit --amend --no-edit' <the commit before the first one>"
+cid_expect "the stamping base placeholder says the base is the operator's to name" 1 \
+  "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_MERGED" \
+  "No one base spans exactly the pushed range, so replace the placeholder with the commit before the first one to fix."
 git -C "$CID" config skilled.commitId false
 cid_expect "skilled.commitId false exempts the repository" 0 \
   "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA"
 rm -rf "$CID"
+
+# ── an autosync live push over the deletion ceiling names the manual publish ──
+# The publisher sits under the fixture's .opencode source root and runs from the repository root.
+mkdir -p "$TMP/.opencode/scripts/git-hooks/lib"
+cp "$REPO_ROOT/.opencode/scripts/git-hooks/lib/mass-deletion-guard.sh" "$TMP/.opencode/scripts/git-hooks/lib/"
+printf 'a\n' > "$TMP/del-a.txt"; printf 'b\n' > "$TMP/del-b.txt"
+git -C "$TMP" add del-a.txt del-b.txt; git -C "$TMP" commit -q -m 'two files'
+DEL_BASE="$(git -C "$TMP" rev-parse HEAD)"
+git -C "$TMP" rm -q del-a.txt del-b.txt; git -C "$TMP" commit -q -m 'drop two files'
+expect_hook_says "a blocked autosync publish names the manual publish under the source root" \
+  1 "Manual publish:  from $(cd "$TMP" && pwd -P): bash .opencode/bin/git-sync.sh --live live" \
+  "refs/heads/live $(git -C "$TMP" rev-parse HEAD) refs/heads/live $DEL_BASE" \
+  SPECKIT_AUTOSYNC=1 SPECKIT_LIVE_BRANCH=live SPECKIT_MASS_DELETION_THRESHOLD=1
+rm -rf "$TMP/.opencode/scripts"
 
 # ── report ──────────────────────────────────────────────────────
 echo "pre-push tests: PASS=$PASS FAIL=$FAIL"

@@ -84,6 +84,30 @@ MINT
 # Run the real hook inside the fixture. Prints nothing; the caller reads $? and the log.
 run_hook() { ( cd "$TMP" && bash "$HOOK" >"$TMP/out.log" 2>&1 ); }
 
+# A printed Next command is pasted into a shell, so read its words the way a shell
+# would: eval only `set --` over the text after the prefix, inside the fixture. A path
+# that would expand when pasted expands here too, and leaves its marker file behind.
+# A Next line naming a repository-relative path says to run it from the repository root.
+next_from() { printf 'from %s: ' "$(cd "$TMP" && pwd -P)"; }
+next_words() { # next_words <text after "Next: "> -> each word, NUL-separated
+  local line
+  line="$(grep -m1 -F "Next: $1" "$TMP/out.log")" || return 1
+  line="${line#*Next: "$1"}"
+  ( cd "$TMP" && eval "set -- $line" && printf '%s\0' "$@" )
+}
+# check_next_words <label> <text after "Next: "> <path the command must name>
+check_next_words() {
+  local label="$1" prefix="$2" want="$3" words
+  words="$(next_words "$prefix" | tr '\0' '\n')"
+  if [[ -e "$TMP/MARKER" ]]; then
+    echo "FAIL  $label: pasting the Next line ran a command substitution"; FAIL=$((FAIL + 1)); rm -f "$TMP/MARKER"
+  elif ! grep -qxF -- "$want" <<<"$words"; then
+    echo "FAIL  $label: Next line does not name '$want' as one word"; sed 's/^/        /' <<<"$words"; FAIL=$((FAIL + 1))
+  else
+    echo "PASS  $label"; PASS=$((PASS + 1))
+  fi
+}
+
 check() { # check <label> <expected-rc> <actual-rc> [<substring the log must contain>]
   local label="$1" want="$2" got="$3" needle="${4:-}"
   if [[ "$got" != "$want" ]]; then
@@ -121,6 +145,16 @@ git -C "$TMP" add ".opencode/skills/$HUB/SKILL.md"
 echo "unstaged too" > "$TMP/.opencode/skills/$HUB/SKILL.md"
 run_hook; RC=$?
 check "partly staged input is refused" 1 "$RC" "staged and unstaged at once"
+
+# ── 3b. the partly staged refusal names a git add that runs as pasted for any path ──
+setup_fixture
+ODD_LEAF=".opencode/skills/$HUB/odd leaf \$(touch MARKER)/SKILL.md"
+mkdir -p "$TMP/$(dirname "$ODD_LEAF")"
+echo "staged" > "$TMP/$ODD_LEAF"; git -C "$TMP" add -- "$ODD_LEAF"
+echo "unstaged too" > "$TMP/$ODD_LEAF"
+run_hook; RC=$?
+check "a partly staged odd path is refused" 1 "$RC" "staged and unstaged at once"
+check_next_words "the route refusal's git add names the odd path as one word" "$(next_from)git add -- " "$ODD_LEAF"
 
 # ── 4. a missing authored manifest blocks rather than exiting zero in silence ──
 setup_fixture
@@ -229,6 +263,15 @@ echo "# staged" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
 echo "# unstaged too" > "$TMP/$PKT/spec.md"
 run_hook; RC=$?
 check "partly staged packet is refused" 1 "$RC" "staged and unstaged at once"
+
+# ── 10b. the packet refusal names a git add that runs as pasted for any path ──
+setup_spec_fixture
+ODD_DOC="$PKT/odd doc \$(touch MARKER).md"
+echo "# staged" > "$TMP/$ODD_DOC"; git -C "$TMP" add -- "$ODD_DOC"
+echo "# unstaged too" > "$TMP/$ODD_DOC"
+run_hook; RC=$?
+check "a partly staged odd doc is refused" 1 "$RC" "staged and unstaged at once"
+check_next_words "the packet refusal's git add names the odd doc as one word" "$(next_from)git add -- " "$ODD_DOC"
 
 # ── 11. a repair failure blocks and shows the tool's own output ──
 setup_spec_fixture
@@ -389,18 +432,81 @@ setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 run_hook; RC=$?
 check "a missing kill switch warns and leaves gates on" 0 "$RC" "hook-flags.sh is missing"
+check "a missing kill switch is restored from HEAD, from the repository root" 0 "$RC" \
+  "Next: from $(cd "$TMP" && pwd -P): git restore --source=HEAD --staged --worktree -- .opencode/hooks/shared/hook-flags.sh"
+
+# ── 23b. a kill switch that is present but unreadable is made readable, not restored ──
+setup_gate_fixture toolchain
+SR="$TMP/.skilled"; [[ -f "$SR/skills/system-spec-kit/SKILL.md" ]] || SR="$TMP/.opencode"
+mkdir -p "$SR/hooks/shared"
+echo ': ' > "$SR/hooks/shared/hook-flags.sh"
+chmod 000 "$SR/hooks/shared/hook-flags.sh"
+stage_new "notes.md" "note"
+run_hook; RC=$?
+check "an unreadable kill switch warns and leaves gates on" 0 "$RC" "hook-flags.sh is unreadable"
+check "an unreadable kill switch is made readable, from the repository root" 0 "$RC" \
+  "Next: from $(cd "$TMP" && pwd -P): chmod +r .opencode/hooks/shared/hook-flags.sh"
+if grep -q "git restore.*hook-flags" "$TMP/out.log"; then
+  echo "FAIL  an unreadable kill switch is not restored over"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  an unreadable kill switch is not restored over"; PASS=$((PASS + 1))
+fi
+chmod 644 "$SR/hooks/shared/hook-flags.sh"
+
+# ── 23c. a phrase-lint refusal names the re-check from the repository root ──
+setup_gate_fixture toolchain
+PL=".opencode/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs"
+mkdir -p "$TMP/$(dirname "$PL")"
+printf 'process.exit(1);\n' > "$TMP/$PL"
+stage_new "notes.md" "note"
+run_hook; RC=$?
+check "a phrase-lint finding blocks" 1 "$RC" "BLOCKED \[gate:template-phrase-lint\]"
+check "the phrase-lint re-check runs from the repository root" 1 "$RC" \
+  "Next: from $(cd "$TMP" && pwd -P): node $PL"
 
 # ── 24. a missing comment checker blocks where the toolchain ships ──
 setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
-check "a missing comment checker blocks" 1 "$RC" "checker is missing or not executable: "
+check "a missing comment checker blocks" 1 "$RC" "comment-hygiene]: checker is missing: "
+check "a missing comment checker names its restore command" 1 "$RC" "Next: $(next_from)git restore --source=HEAD --staged --worktree -- .opencode/skills/sk-code/"
+check "a restore says it discards a staged version too" 1 "$RC" "staged or unstaged edit to the file is lost"
+
+# ── 24b. a present comment checker without the execute bit names chmod, not a restore ──
+# A restore would overwrite an unstaged edit to the checker, so it must not be offered.
+setup_gate_fixture toolchain
+CHK=".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+mkdir -p "$TMP/$(dirname "$CHK")"
+printf '#!/usr/bin/env bash\nexit 0\n' > "$TMP/$CHK"
+chmod -x "$TMP/$CHK"
+stage_new "notes.md" "note"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a non-executable comment checker blocks" 1 "$RC" "checker is not executable: "
+check "a non-executable comment checker names chmod" 1 "$RC" "Next: $(next_from)chmod +x $CHK"
+if grep -qE "git (checkout|restore) .*check-comment-hygiene" "$TMP/out.log"; then
+  echo "FAIL  a non-executable comment checker offers no restore"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  a non-executable comment checker offers no restore"; PASS=$((PASS + 1))
+fi
+
+# ── 24c. a crashing comment checker names a command that matches how the hook ran it ──
+setup_gate_fixture toolchain
+mkdir -p "$TMP/$(dirname "$CHK")"
+printf '#!/usr/bin/env bash\nexit 3\n' > "$TMP/$CHK"
+chmod +x "$TMP/$CHK"
+stage_new "notes.md" "note"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a crashing comment checker blocks" 1 "$RC" "the checker failed (exit 3)"
+check "a crashing comment checker offers a close check, not a rerun" 1 "$RC" "a close check over the working tree"
+check "the close check passes the paths after --" 1 "$RC" "xargs -0 $CHK --$"
+check "the close check runs from the repository root" 1 "$RC" "Next: $(next_from)git diff --cached"
 
 # ── 25. a missing agent mirror checker blocks where the toolchain ships ──
 setup_gate_fixture toolchain
 stage_new ".opencode/agents/probe.md" "agent"
 run_hook; RC=$?
 check "a missing agent mirror checker blocks" 1 "$RC" "agent-mirror-sync]: checker is missing"
+check "a missing agent mirror checker names its restore command" 1 "$RC" "Next: $(next_from)git restore --source=HEAD --staged --worktree -- .opencode/bin/check-agent-mirror-sync.cjs"
 check "a missing agent mirror checker names the chain's off switch" 1 "$RC" "SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit"
 
 # ── 26. a missing mirror parity script blocks where the toolchain ships ──
@@ -408,6 +514,7 @@ setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
 check "a missing mirror parity script blocks" 1 "$RC" "mirror-parity]: script is missing"
+check "a missing mirror parity script names its restore command" 1 "$RC" "Next: $(next_from)git restore --source=HEAD --staged --worktree -- .opencode/skills/"
 
 # ── 27. a staged .skilled prompt surface reaches the card-sync guard ──
 setup_gate_fixture
@@ -802,7 +909,12 @@ setup_gate_fixture toolchain
 git -C "$TMP" config --unset skilled.trustRepoHooks
 stage_new "notes.md" "note"
 run_hook; RC=$?
-check "an untrusted clone is not blocked" 0 "$RC" "git config --local skilled.trustRepoHooks true"
+check "an untrusted clone is not blocked" 0 "$RC" "To enable, only in a clone you trust: git config --local skilled.trustRepoHooks true"
+if grep -qF "Next: git config --local skilled.trustRepoHooks" "$TMP/out.log"; then
+  echo "FAIL  the trust opt-in is not offered as a Next step"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  the trust opt-in is not offered as a Next step"; PASS=$((PASS + 1))
+fi
 
 # ── 57. an untrusted repository without the toolchain hears nothing ──
 setup_gate_fixture
@@ -905,7 +1017,9 @@ CHECKER
 stage_new ".opencode/agents/probe.md" "agent"
 run_hook; RC=$?
 check "a not-checkable mirror checker warns and skips" 0 "$RC" "agent mirror-sync is not checkable"
-check "the not-checkable warning names the build" 0 "$RC" "npm --prefix .skilled/skills/system-spec-kit run build"
+# The fixture's source root is .opencode, and the build runs from the repository root.
+check "the not-checkable warning names the build under the fixture's source root" 0 "$RC" \
+  "Next: from $(cd "$TMP" && pwd -P): npm --prefix .opencode/skills/system-spec-kit run build"
 
 # ── 65. a mirror checker that reports drift still blocks ──
 setup_gate_fixture
@@ -968,6 +1082,18 @@ docv_doc 1.2.0.0 "Unstaged body." > "$TMP/$DOCV_REF"
 SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
 check "a doc staged and unstaged at once is refused" 1 "$RC" "staged and unstaged at once"
 check "the refusal names its bypass" 1 "$RC" "SPECKIT_SKIP_DOC_VERSION_BUMP=1"
+
+# An engine that refuses a partial doc without naming it leaves the hook no path to
+# quote, so the placeholder Next line must say why it is a placeholder.
+setup_docv_fixture
+rm "$TMP/.opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+printf 'process.exit(3);\n' > "$TMP/.opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs"
+docv_doc 1.2.0.0 "Staged body." > "$TMP/$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"
+docv_doc 1.2.0.0 "Unstaged body." > "$TMP/$DOCV_REF"
+SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
+check "a partial refusal that names no path is still refused" 1 "$RC" "staged and unstaged at once"
+check "the unnamed-path placeholder says the report named no path" 1 "$RC" \
+  "The report named no path this hook could read, so add each doc it lists by hand:"
 
 setup_docv_fixture
 docv_doc 1.2 "Changed body." > "$TMP/$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"

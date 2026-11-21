@@ -375,8 +375,9 @@ DOCTOR TARGET FAILED
 Target: check
 Step: [row or phase]
 Error: [message]
+Why: [the reason the engine printed under the error, else what the failed row checks]
 Changed: none
-Next: [recommended command or manual action]
+Next: [the engine's own Next: line when it printed one, else the command from the matching Troubleshooting row, or the accepted invocation]
 STATUS=ERROR ERROR="[message]"
 ```
 
@@ -390,8 +391,9 @@ Target: convert
 Skill: [name]
 Step: [the phase that stopped the run]
 Error: [the engine's code and message]
+Why: [the reason the engine printed under the error, else what the refusal protects]
 Changed: [changes applied before the failure, or none]
-Next: [the repair, or the refusal table's Next column]
+Next: [the engine's own Next: line when it printed one, else the repair or the refusal table's Next column]
 STATUS=FAIL ERROR="[code]"
 ```
 

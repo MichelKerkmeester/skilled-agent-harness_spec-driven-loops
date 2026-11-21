@@ -108,7 +108,7 @@ workflow:
     activities:
       - "When every approved change verified, render the presentation contract's success result with each change, its scope, the verification and its undo command (STATUS=OK)"
       - "When nothing was approved, render its cancelled result (STATUS=CANCELLED ACTION=cancelled)"
-      - "When a write or verification failed, render its failure result naming the step and any change already applied (STATUS=FAIL)"
+      - "When a write or verification failed, render its failure result, with the script's Next: line as printed when it has one, naming the step and any change already applied (STATUS=FAIL)"
 
 # ─────────────────────────────────────────────────────────────────
 # OUTPUT

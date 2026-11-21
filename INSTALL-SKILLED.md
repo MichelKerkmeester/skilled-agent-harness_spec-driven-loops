@@ -200,6 +200,9 @@ A re-pin replaces your copy whole with a newer commit, so a change made in the c
 <!-- readme-check
 allow-ref skilled-overlays/overlay-manifest.json | the manifest path the engine names in its error, in a project that copies Skilled in
 allow-ref .skilled-overlays.json | the optional overlay folder setting in a project that copies Skilled in, which this checkout does not ship
+allow-ref ../my-overlays | an example sibling overlay folder in a project that copies Skilled in
+allow-ref framework/ | the layout folder inside a project's overlay folder, which this checkout does not ship
+allow-ref root/claude/settings.json | an example layout path inside a project's overlay folder
 -->
 
 ### Step 1: Create The Copy
@@ -215,7 +218,7 @@ Commit the result in your project. The commit you exported is your pin.
 
 ### Step 2: Create The Overlay Folder
 
-The engine looks for `skilled-overlays/` at the root of your project. To use another folder, add `.skilled-overlays.json` at the root, for example `{ "overlayDir": "my-overlays" }`.
+The engine looks for `skilled-overlays/` at the root of your project. To use another folder, add `.skilled-overlays.json` at the root, for example `{ "overlayDir": "my-overlays" }`. The setting can also name a folder beside the copy, such as `{ "overlayDir": "../my-overlays" }`. That works only when one git repository holds both, for example with the copy in a subfolder of the repository, or when the copy is in no git repository. A folder outside the repository stops every `/doctor:overlay` command with exit 2.
 
 The folder holds `overlay-manifest.json` and your overlay files. This manifest replaces one Skilled file and adds a folder of team commands:
 
@@ -226,20 +229,20 @@ The folder holds `overlay-manifest.json` and your overlay files. This manifest r
     {
       "id": "commit-template",
       "scope": "file",
-      "source": "sk-git/commit-message-template.md",
+      "source": "framework/skills/sk-git/assets/commit-message-template.md",
       "destination": ".skilled/skills/sk-git/assets/commit-message-template.md"
     },
     {
       "id": "team-commands",
       "scope": "directory",
-      "source": "team-commands",
+      "source": "framework/commands/team",
       "destination": ".skilled/commands/team"
     }
   ]
 }
 ```
 
-`source` is where your version lives, inside the overlay folder. `destination` is the path in the copy that the overlay owns. The pin's `checkout` names your local Skilled checkout, so the engine can read the pinned files. Save your version of each file at its `source` path.
+`source` is where your version lives, inside the overlay folder. `destination` is the path in the copy that the overlay owns. Put each source at its layout path, so a teammate can find the overlay for any file. A destination under `.skilled/` goes under `framework/` with `.skilled/` dropped. Any other destination goes under `root/` with its leading dots dropped, so `.claude/settings.json` goes at `root/claude/settings.json`. A source elsewhere still works, but `status` prints a `LAYOUT` line for it until you run `/doctor:overlay apply --relayout`. The pin's `checkout` names your local Skilled checkout, so the engine can read the pinned files. Save your version of each file at its `source` path.
 
 ### Overlay Types
 
@@ -294,6 +297,7 @@ A re-pin moves your copy to a newer commit and applies your overlays again. It r
 2. **You fix the report.** Update each blocked overlay to fit the new Skilled file, and remove each overlay that now equals it. Run the command again.
 3. **You approve.** The live run backs up every path it touches, copies the new files, moves the pin and applies the overlays.
 4. **It checks the result.** The run ends with `RESULT: PASSED` and the new pin in your manifest. The command then names `/doctor:update record-base` as the next step, because the update base still names the old pin.
+5. **You move older copies onto the layout, once.** If `status` prints `LAYOUT` lines after the re-pin, some overlay copies still sit at their older paths. Run `/doctor:overlay apply --relayout` to move them. It backs each copy up first and points the manifest at the new paths. The lines never fail `status`, so this step can wait.
 
 A re-pin copies `.skilled` and the runtime folders. It never copies a root file such as `AGENTS.md`, so your project's version survives. Each Skilled change it skips prints as a `not-copied` line, and you copy those over by hand when you want them.
 
@@ -311,7 +315,7 @@ Rollback restores every backed-up file byte for byte, removes the files the run 
 
 ### Bring An Existing Overlay Folder
 
-If you already keep overlays with a script of your own, the engine reads the same manifest and state files, so the folder stays where it is. Name it in `.skilled-overlays.json` and run `status`. Each line names its fix. The overlay guide has the full [adoption steps](.skilled/skills/system-skilled-doctor/references/overlays.md#6-adopting-the-engine-with-existing-overlays).
+If you already keep overlays with a script of your own, the engine reads the same manifest and state files, so the folder stays where it is. Name it in `.skilled-overlays.json` and run `status`. Each line names its fix. Expect a `LAYOUT` line for each source that is not at its layout path. Those lines never fail `status`, and `/doctor:overlay apply --relayout` moves the sources when you want. The overlay guide has the full [adoption steps](.skilled/skills/system-skilled-doctor/references/overlays.md#6-adopting-the-engine-with-existing-overlays).
 
 &nbsp;
 
@@ -320,7 +324,7 @@ If you already keep overlays with a script of your own, the engine reads the sam
 | When | Linked project | Copied project |
 | --- | --- | --- |
 | **After a `git pull` in the checkout** | Run `/doctor:symlink check --root <dir>`, and run `link` again if it lists missing entries | Nothing until you re-pin |
-| **To adopt a new Skilled release** | The `git pull` already did | Run `/doctor:overlay repin` |
+| **To adopt a new Skilled release** | The `git pull` already did | Run `/doctor:overlay repin`, then `/doctor:overlay apply --relayout` if `status` prints `LAYOUT` lines |
 | **When something looks wrong** | Run `/doctor:setup` in your project | Run `/doctor:overlay status`, then `/doctor:setup` |
 | **To find the right command** | Run `/doctor:helper` and describe the problem | Same as linked |
 
@@ -338,7 +342,9 @@ If you already keep overlays with a script of your own, the engine reads the sam
 | `upstream-moved` | The pin moved, and the file matches neither the old copy nor your overlay | Update the overlay to fit the new Skilled file and run `status` again |
 | `refusing to inspect a protected path` | An overlay walks a file with `token` in its name | Add that file to the overlay's `protectedPaths`, as the line says |
 | `refuse: unowned <path> differs from the old pin` | Someone edited a file in place that no overlay owns | Move the edit into an overlay, or restore the file from your pin |
-| `refuse: the overlay lock is held` | Another run still holds the lock, or a run on another machine left it | Wait for the other run. If it ended elsewhere, delete the lock file the message names. A lock left by an ended run on this machine is taken over on its own |
+| `refuse: the overlay lock is held` | Another run still holds the lock, or a run on another machine left it | Wait for the other run. Then run the `Next:` line the message prints, which names the pid to check with `ps -p` and the lock file to remove. A lock left by an ended run on this machine is taken over on its own |
+| `LAYOUT   <overlay>: <field> <from> belongs at <to>; <remedy>` | An overlay copy sits off its `framework/` or `root/` layout path, often after a re-pin. `<field>` is `source`, `fragment` or `base` | Do what the remedy says. It is usually `/doctor:overlay apply --relayout`, run once. When `<to>` sits under `root/skilled`, change the entry's destination or remove the entry, because relayout refuses that move. The line never fails `status` |
+| `does not match what apply last wrote there`, `is a link that leads outside the tree` or `is a link that does not resolve` | An unowned file, folder or link stands where an overlay now writes another shape, or a link on the path leads outside the tree or loops | Run the `Next:` line it prints, which moves the path aside to `<path>.keep` and applies again |
 | `semantic_lane_off` in a recommendation's `warnings` | The advisor answered on phrases alone. The reason after the colon says why, such as `prompt_embedding_unreachable` when Ollama is not answering | Run `/doctor:skill-advisor embedder` from the project. If the warning stays, restart the advisor daemon, which picks its embedder at startup |
 
 &nbsp;

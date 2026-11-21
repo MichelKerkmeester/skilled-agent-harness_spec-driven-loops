@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass",
+  "description": "Phase 13: ux-and-alignment-pass",
+  "keywords": [
+    "phase",
+    "ux-and-alignment-pass"
+  ],
+  "lastUpdated": "2026-11-21T07:47:44.148Z",
+  "specId": "013",
+  "folderSlug": "ux-and-alignment-pass",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

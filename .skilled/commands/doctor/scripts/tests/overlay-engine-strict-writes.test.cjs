@@ -517,6 +517,17 @@ test('pre-commit refuses a staged vendored change no overlay owns, and passes ow
     'refuse: staged change to REPO RULES.md is under a vendored root and no overlay owns it',
     'refuse: staged deletion of .skilled/skills/hub/SKILL.md is under a vendored root and no overlay owns it',
   ]);
+  // Each refused path carries its own why and its own runnable Next line.
+  const fixLines = refused.stdout.split('\n');
+  const fixAt = fixLines.indexOf('refuse: staged change to .skilled/skills/hub/fix.md is under a vendored root and no overlay owns it');
+  assert.deepEqual(fixLines.slice(fixAt + 1, fixAt + 4), [
+    '  a re-pin copies upstream over this path, so the next re-pin would overwrite this change',
+    `  Next: from ${fixture.tree}: ${ENGINE_COMMAND} apply --adopt .skilled/skills/hub/fix.md`,
+    `    or drop it: git -C ${fixture.tree} restore --staged -- .skilled/skills/hub/fix.md`,
+  ]);
+  assert.ok(refused.stdout.includes('  Next: put it back: git -C ' + fixture.tree +
+    ' restore --staged --worktree -- .skilled/skills/hub/SKILL.md'), refused.stdout);
+  assert.ok(refused.stdout.includes(`  Next: from ${fixture.tree}: ${ENGINE_COMMAND} apply --adopt "REPO RULES.md"`), refused.stdout);
 
   // A commit that moves the pin is a re-pin, which ran its own drift scan.
   const manifest = readJson(fixture.manifestPath);

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "58e5b6c8dd41a6864f0b8285e0d97d17230156524530b08fa6b57dc1625e1e1c",
+  "manifestHash": "8d4a079a24bd2cc76fdb04d77bed2903b7ffa587486b89ff218d77b7e4d6b382",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -84662,6 +84662,9 @@
     "phase 13 system spec kit": [
       "phase 13 system spec kit"
     ],
+    "phase 13 ux and alignment pass": [
+      "phase 13 ux and alignment pass"
+    ],
     "phase 13 vibe audit fixes": [
       "phase 13 vibe audit fixes"
     ],
@@ -92614,6 +92617,9 @@
     ],
     "push and repin open items goal": [
       "push and repin open items goal"
+    ],
+    "push and repin open items implementation summary": [
+      "push and repin open items implementation summary"
     ],
     "push and repin open items plan": [
       "push and repin open items plan"
@@ -133241,6 +133247,24 @@
     ],
     "utilization review acceptance criteria": [
       "utilization review acceptance criteria"
+    ],
+    "ux and alignment pass": [
+      "ux and alignment pass"
+    ],
+    "ux and alignment pass acceptance criteria": [
+      "ux and alignment pass acceptance criteria"
+    ],
+    "ux and alignment pass goal": [
+      "ux and alignment pass goal"
+    ],
+    "ux and alignment pass implementation summary": [
+      "ux and alignment pass implementation summary"
+    ],
+    "ux and alignment pass plan": [
+      "ux and alignment pass plan"
+    ],
+    "ux and alignment pass tasks": [
+      "ux and alignment pass tasks"
     ],
     "ux flow references": [
       "ux flow references"

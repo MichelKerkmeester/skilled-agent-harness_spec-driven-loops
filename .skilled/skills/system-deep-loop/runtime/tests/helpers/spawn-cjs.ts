@@ -119,6 +119,46 @@ export type ReplayScriptRunResult = {
   diff: string[];
 };
 
+// Variables the parent shell may carry that change what a spawned runner or
+// stub does. An outer fan-out exports its lineage id and dispatch stack, an
+// operator may export enforcement or root overrides, and a git hook exports
+// GIT_DIR and its siblings, which point every git call in the child at the
+// wrong repository. The list is explicit rather than a prefix wipe, because
+// DEEP_LOOP_COVERAGE_DB_DIR above must still reach every child.
+export const HERMETIC_STRIPPED_ENV_KEYS: readonly string[] = [
+  'SPECKIT_FANOUT_LINEAGE_ID',
+  'SPECKIT_CLI_DISPATCH_STACK',
+  'SPECKIT_PROVENANCE_CHECK',
+  'SPECKIT_FANOUT_NEAR_DUP_DEDUP',
+  'DEEP_LOOP_EVIDENCE_ENFORCEMENT',
+  'DEEP_REVIEW_V2_ENFORCEMENT',
+  'DEEP_LOOP_TSX_LOADED',
+  'DEEP_LOOP_LEDGER_BACKING_GATE',
+  'DEEP_LOOP_VERIFY_GATEWAY_RECEIPT',
+  'DEEP_LOOP_REPO_ROOT',
+  'DEEP_LOOP_AUTHORITY_ROOT',
+  'DEEP_LOOP_TEST_FAULT',
+  'DEEP_LOOP_MIN_OBSERVATIONS',
+  'DEEP_LOOP_MIN_OBSERVATIONS_GUARD',
+  'DEEP_LOOP_CURSOR_NEUTRAL_WORKSPACE',
+  'GIT_DIR',
+  'GIT_WORK_TREE',
+  'GIT_INDEX_FILE',
+  'GIT_PREFIX',
+  'GIT_COMMON_DIR',
+  'GIT_OBJECT_DIRECTORY',
+  'GIT_ALTERNATE_OBJECT_DIRECTORIES',
+];
+
+/** A copy of process.env without the keys in HERMETIC_STRIPPED_ENV_KEYS. */
+export function strippedProcessEnv(): NodeJS.ProcessEnv {
+  const env: NodeJS.ProcessEnv = { ...process.env };
+  for (const key of HERMETIC_STRIPPED_ENV_KEYS) {
+    delete env[key];
+  }
+  return env;
+}
+
 export function createHermeticEnv(testId: string): HermeticEnv {
   const tmpRoot = mkdtempSync(join(tmpdir(), 'dlr-hermetic-'));
   const safeId = testId.replace(/[^a-zA-Z0-9._-]+/g, '-').replace(/^-+|-+$/g, '') || 'test';
@@ -147,7 +187,7 @@ export function createHermeticEnv(testId: string): HermeticEnv {
     dbPath,
     tmpDir,
     env: {
-      ...process.env,
+      ...strippedProcessEnv(),
       HOME: home,
       TMPDIR: tmpDir,
       TEMP: tmpDir,

@@ -292,6 +292,7 @@ async function main(bridges, options) {
 
 const options = parseArgs(process.argv.slice(2));
 if (options === null) {
+  process.stderr.write('Next: node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs [--json]\n');
   process.stderr.write('Usage: doctor-phrase-reach.cjs [--json]\n');
   process.exit(2);
 }
@@ -299,7 +300,8 @@ if (options === null) {
 // A missing build is a setup problem, not a probe verdict: nothing can be scored,
 // so the run must not print a reach result either way.
 if (!fs.existsSync(BUILT_SCORER)) {
-  process.stderr.write('doctor-phrase-reach: advisor runtime is not built; run npm --prefix .skilled/skills/system-skill-advisor/runtime run build\n');
+  process.stderr.write('doctor-phrase-reach: advisor runtime is not built\n');
+  process.stderr.write('Next: npm --prefix .skilled/skills/system-skill-advisor/runtime run build\n');
   process.exit(2);
 }
 
@@ -319,6 +321,7 @@ try {
 } catch (error) {
   removeTempDbDir();
   process.stderr.write(`doctor-phrase-reach: ${errorText(error)}\n`);
+  process.stderr.write('Next: fix the cause named above, then run node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs\n');
   process.exit(2);
 }
 

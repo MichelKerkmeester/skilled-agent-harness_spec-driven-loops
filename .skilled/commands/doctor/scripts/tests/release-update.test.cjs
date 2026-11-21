@@ -2142,6 +2142,30 @@ test('record-base --pin refuses a commit that is no framework commit or is found
   assert.ok(nowhere.document.error.includes('remote ' + fixture.upstream), nowhere.document.error);
 });
 
+test('record-base --pin --offline refuses a local miss and names the online retry', () => {
+  const fixture = makePinnedFixture();
+  const { vendored } = makeVendoredLayout(fixture.root, 'project', fixture.middleTree);
+  const missing = 'e'.repeat(40);
+  const repo = fs.realpathSync(vendored);
+
+  const offline = runRaw('record-base', '--dry-run', '--pin', missing, '--offline',
+    '--repo', vendored);
+  assert.equal(offline.exitCode, 1, offline.stderr);
+  assert.ok(offline.stderr.startsWith('[release-update] commit ' + missing
+    + ' was not found in this repository ('), offline.stderr);
+  assert.match(offline.stderr, /; --offline searched no remote\n/);
+  assert.ok(offline.stderr.includes(repo), offline.stderr);
+  const next = offline.stderr.split('\n').find((line) => line.startsWith('Next: '));
+  assert.ok(next, 'the refusal should end with a Next line: ' + offline.stderr);
+  assert.match(next, /release-update\.cjs record-base --repo .+ --pin e{40}$/);
+  assert.doesNotMatch(next, /--offline/);
+
+  const json = runCli(vendored, 'record-base', '--dry-run', '--pin', missing, '--offline');
+  assert.equal(json.exitCode, 1, JSON.stringify(json.document));
+  assert.equal(json.document.ok, false);
+  assert.match(json.document.error, /--offline searched no remote\nNext: /);
+});
+
 test('a normal checkout still resolves --repo below its root to the git top level', () => {
   const fixture = makeFixture();
   const vendor = makeVendor(fixture, 'vendor-normal-root');
@@ -2223,3 +2247,76 @@ for (const command of ['decide', 'rollback']) {
     });
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// REFUSAL LINES: FIRST LINES STAY, NEXT LINES RUN
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The Next line of a refusal, run as the shell would split it. Only dry-run and
+// read-only Next lines are run here, so the run itself writes nothing.
+function runNextLine(error) {
+  const next = error.split('\n').map((line) => line.trim()).find((line) => line.startsWith('Next: '));
+  assert.ok(next, error);
+  const command = next.slice('Next: '.length);
+  const prefix = 'node .skilled/commands/doctor/scripts/release-update.cjs ';
+  assert.ok(command.startsWith(prefix), command);
+  const split = spawnSync('bash', ['-c', 'printf "%s\\0" ' + command.slice(prefix.length)], { encoding: 'utf8' });
+  assert.equal(split.status, 0, split.stderr);
+  const args = split.stdout.split('\0').filter(Boolean);
+  const result = spawnSync(process.execPath, [SCRIPT_PATH, ...args], { encoding: 'utf8' });
+  return { args, exitCode: result.status, stderr: result.stderr };
+}
+
+test('the Next line of a rollback with nothing to roll back runs without a usage error', () => {
+  const fixture = makeFixture();
+  const aligned = runCli(fixture.operator, 'align');
+  assert.equal(aligned.exitCode, 0, JSON.stringify(aligned.document));
+  const refused = runCli(fixture.operator, 'rollback', '--run', aligned.document.runDir);
+  assert.equal(refused.exitCode, 1, JSON.stringify(refused.document));
+  const rerun = runNextLine(refused.document.error);
+  assert.notEqual(rerun.exitCode, 2, rerun.stderr);
+  assert.doesNotMatch(rerun.stderr, /unknown option/);
+  assert.ok(rerun.args.includes('--decisions'), rerun.args.join(' '));
+});
+
+test('the Next line of a stale plan digest repeats the release the caller pinned and runs', () => {
+  const fixture = makeFixture();
+  const preview = runCli(fixture.operator, 'apply', '--release', 'v1.1.0.0', '--dry-run');
+  assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+  writeFile(fixture.operator, HUB_A_FILE, '# a reference\nOperator line\n');
+  commitAll(fixture.operator, 'change planned file');
+  const refused = runCli(fixture.operator, 'apply', '--release', 'v1.1.0.0', '--plan-digest', preview.document.planDigest);
+  assert.equal(refused.exitCode, 1, JSON.stringify(refused.document));
+  const rerun = runNextLine(refused.document.error);
+  assert.notEqual(rerun.exitCode, 2, rerun.stderr);
+  assert.doesNotMatch(rerun.stderr, /unknown option/);
+  assert.ok(rerun.args.join(' ').includes('--release v1.1.0.0'), rerun.args.join(' '));
+});
+
+test('each refusal keeps the first line it always printed, with the added reason below it', () => {
+  const fixture = makeFixture();
+  const firstLine = (outcome) => outcome.document.error.split('\n')[0];
+
+  const out = path.join(fixture.operator, 'taken-run');
+  writeFile(fixture.operator, 'taken-run/earlier.txt', 'earlier\n');
+  const taken = runCli(fixture.operator, 'align', '--out', out);
+  assert.equal(firstLine(taken), 'run directory already exists and is not empty: ' + fs.realpathSync(out));
+
+  const aligned = runCli(fixture.operator, 'align');
+  writeFile(fixture.operator, HUB_A_FILE, '# a reference\nCommitted after align\n');
+  commitAll(fixture.operator, 'change after alignment');
+  const drifted = runCli(fixture.operator, 'apply', '--decisions', path.join(aligned.document.runDir, 'decisions.json'));
+  assert.equal(firstLine(drifted), 'drift since align: local blob changed for ' + HUB_A_FILE);
+  runCli(fixture.operator, 'unlock');
+
+  const lockFile = '.skilled/skills/.state/doctor-update/.apply.lock';
+  writeFile(fixture.operator, lockFile, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString(), command: 'apply' }) + '\n');
+  const live = runCli(fixture.operator, 'unlock');
+  assert.equal(firstLine(live), 'apply lock already exists: ' + lockFile + ', held by running process ' + process.pid
+    + ' (apply), so wait for it to finish');
+
+  writeFile(fixture.operator, lockFile, '{}\n');
+  const unknown = runCli(fixture.operator, 'unlock');
+  assert.equal(firstLine(unknown), 'apply lock already exists: ' + lockFile + ', and it has no readable owner, so confirm'
+    + ' that no apply, rollback or record-base is running before removing it by hand');
+});

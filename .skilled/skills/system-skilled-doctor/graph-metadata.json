@@ -79,7 +79,13 @@
     "overlay root files drifted upstream",
     "overlay rebase",
     "drifted from the pinned upstream commit",
-    "changed the root files an overlay owns"
+    "changed the root files an overlay owns",
+    "overlay folder beside the tree",
+    "sibling overlay folder",
+    "move my overlay folder out of the tree",
+    "adopt an unowned vendored file into an overlay",
+    "overlay folders missing a readme",
+    "base from a pinned framework commit"
   ],
   "derived": {
     "trigger_phrases": [
@@ -169,6 +175,12 @@
     "overlay root files drifted upstream",
     "overlay rebase",
     "drifted from the pinned upstream commit",
-    "changed the root files an overlay owns"
+    "changed the root files an overlay owns",
+    "overlay folder beside the tree",
+    "sibling overlay folder",
+    "move my overlay folder out of the tree",
+    "adopt an unowned vendored file into an overlay",
+    "overlay folders missing a readme",
+    "base from a pinned framework commit"
   ]
 }

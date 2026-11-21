@@ -70,6 +70,6 @@ async function main() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 main().catch((error) => {
-  process.stderr.write(`overlay-guard: ${error instanceof Error ? error.message : String(error)}\n`);
+  process.stderr.write(`overlay-guard: ${error instanceof Error ? error.message : String(error)} -- the write was allowed unguarded. ${guardCore.statusRemedy()}\n`);
   approve();
 });

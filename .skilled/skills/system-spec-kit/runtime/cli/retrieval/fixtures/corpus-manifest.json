@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b69727354418fb0e6a0c99595ed47a297f3ce3e0dced7166da2b1bcd9a05f30d",
+  "corpusHash": "255f3113bd5d89c72c1db7d259747a9ded93f4036cc281468e67f0da8e4fe3ef",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28962,
+  "includedPathCount": 28969,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -20335,6 +20335,7 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/implementation-summary.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/tasks.md",
@@ -20343,6 +20344,12 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/acceptance-criteria.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/acceptance-criteria.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/goal.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/implementation-summary.md",
@@ -28994,7 +29001,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "58e5b6c8dd41a6864f0b8285e0d97d17230156524530b08fa6b57dc1625e1e1c",
+  "manifestHash": "8d4a079a24bd2cc76fdb04d77bed2903b7ffa587486b89ff218d77b7e4d6b382",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -38190,6 +38197,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/scratch",
       "reason": "excluded directory"
     },
     {

@@ -203,9 +203,14 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'parallel routes': [['sk-code', 0.85]],
   'route handler': [['sk-code', 0.7]],
   'metadata api': [['sk-code', 0.65]],
+  // The overlay engine's manifest is the doctor skill's file, so the `json` in
+  // its name names no code to write.
+  '.skilled-overlays.json': [['system-skilled-doctor', 1.2], ['sk-code', -0.6]],
+  'overlay status': [['system-skilled-doctor', 1]],
 };
 
-const WRITE_VERBS = /\b(add|build|change|configure|create|edit|fix|generate|implement|modify|patch|refactor|rename|replace|run|update|write)\b/;
+const WRITE_VERB_WORDS = ['add', 'build', 'change', 'configure', 'create', 'edit', 'fix', 'generate', 'implement', 'modify', 'patch', 'refactor', 'rename', 'replace', 'run', 'update', 'write'];
+const WRITE_VERBS = new RegExp(`\\b(${WRITE_VERB_WORDS.join('|')})\\b`);
 // A write verb that the prompt negates ("don't write anything back", "do not edit
 // files") forbids the write rather than asking for it, so it must not award a
 // write-surface boost. Both apostrophe forms are matched because prompts arrive
@@ -217,6 +222,17 @@ const NEGATED_WRITE = /\b(?:don['’]t|do not|never|without)\s+(?:\w+\s+){0,2}?(
 // tag, a tag push or a version number, never a label on subscribers or posts.
 const RELEASE_ACTION = /\b(?:cut|tag|publish|ship)\s+(?:a|an|the)?\s*(?:new\s+)?release\b(?!\s+(?:notes?|blog|post|party|announcement|newsletter))/;
 const TAG_CONTEXT = /\b(?:git\s+tag|(?:push|create)\s+(?:the\s+|a\s+|an\s+(?:annotated\s+)?)?tags?|tag\s+(?:it|the\s+(?:version|release|commit))|v\d+(?:\.\d+)+|tagged|tagging)\b/;
+// A README check across overlay folders is the docs leg of the overlay status
+// audit. Writing a README stays doc work, so the rule holds only when no verb
+// authors one; running the audit is not a README write.
+// The doc penalty outweighs the README token plus its author phrase, which both fire here.
+// The match anchors on Skilled overlay vocabulary, because a bare "overlay" is
+// as often a UI modal or tooltip whose README is plain doc work.
+const OVERLAY_README_CHECK = /(?:\bskilled[\s-]overlays?\b|\boverlays?\s+(?:folders?|status|manifest|audit|roots?)\b)(?:\s+[\w-]+){0,6}?\s+(?:a\s+|the\s+)?readme\b/;
+// Every write verb authors a README except `run`, which runs the audit, plus the
+// verbs that only ever reword prose.
+const README_AUTHORING_WORDS = [...WRITE_VERB_WORDS.filter((verb) => verb !== 'run'), 'draft', 'improve', 'polish', 'revise', 'rewrite'];
+const README_AUTHORING = new RegExp(`\\b(?:${README_AUTHORING_WORDS.join('|')})\\b`);
 const MEMORY_PRESERVATION_SESSION_INTENT = /\b(preserve|remember|capture|keep|store)\b.*\b(next|future|later)\s+session\b|\b(next|future|later)\s+session\b.*\b(lose|lost|preserve|remember|capture|keep|store)\b/;
 
 // ───────────────────────────────────────────────────────────────────
@@ -385,7 +401,12 @@ export function scoreExplicitLane(
     push(scores, 'mcp-tooling', 0.9, 'design-tool-read');
     push(scores, 'sk-code', -0.5, 'design-tool-read');
   }
-  if (writes && /\b(readme|docs|documentation|playbook|taxonomy|markdown|feature_catalog|skill\.md|router\.md)\b/.test(lower)) {
+  const overlayReadmeCheck = OVERLAY_README_CHECK.test(lower) && !README_AUTHORING.test(affirmedWriteText(lower));
+  if (overlayReadmeCheck) {
+    push(scores, 'system-skilled-doctor', 1, 'overlay-readme-check');
+    push(scores, 'sk-doc', -1.5, 'overlay-readme-check');
+  }
+  if (writes && !overlayReadmeCheck && /\b(readme|docs|documentation|playbook|taxonomy|markdown|feature_catalog|skill\.md|router\.md)\b/.test(lower)) {
     push(scores, 'sk-doc', 0.7, 'write-doc-surface');
   }
   if (writes && /\b(classifier|helper|fixture|json|jsonl|vitest|typescript|python|script|skill_advisor\.py|mcp\.json|commonjs)\b/.test(lower)) {

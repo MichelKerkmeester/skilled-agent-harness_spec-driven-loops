@@ -194,7 +194,7 @@ export const GATE_3_DEFERRED_INSTRUCTION = [
 // the user, not a menu the model itself could try to resolve alone. The
 // mutation notice is embedded so a blocked model relays the same
 // once-per-session shape every other channel delivers.
-export const GATE_3_DENY_DETAIL = `DENIED: this Write/Edit needs a bound spec folder first.\n${GATE_3_MUTATION_NOTICE}\nThen retry the same call.`;
+export const GATE_3_DENY_DETAIL = `DENIED: this Write/Edit needs a bound spec folder first.\n${GATE_3_MUTATION_NOTICE}\nNext: ask the operator the question above, then retry the same call.`;
 
 const GATE_3_DELIVERY_KIND = 'gate-question';
 const GATE_3_DELIVERY_HASH_ALGORITHM = 'sha256';

@@ -111,7 +111,7 @@ async function OverlayGuardPlugin(ctx) {
         // Fail open, but leave a trace: a broken core would otherwise leave
         // every write unguarded in silence.
         const message = error instanceof Error ? error.message : String(error);
-        appendGuardLog(projectDir, `allowing a write it could not judge: ${message}`);
+        appendGuardLog(projectDir, `allowing a write it could not judge: ${message} -- the write was allowed unguarded. ${guardCore.statusRemedy()}`);
         return;
       }
       for (const note of result.notes ?? []) appendGuardLog(projectDir, note);

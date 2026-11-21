@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7093,
-    "ok": 20241,
+    "ok": 20248,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28962,
+  "documentsScanned": 28969,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "58e5b6c8dd41a6864f0b8285e0d97d17230156524530b08fa6b57dc1625e1e1c",
+  "manifestHash": "8d4a079a24bd2cc76fdb04d77bed2903b7ffa587486b89ff218d77b7e4d6b382",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45806,
+      "ok": 45814,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -63195,6 +63195,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass/scratch",
       "reason": "excluded directory"
     },
     {

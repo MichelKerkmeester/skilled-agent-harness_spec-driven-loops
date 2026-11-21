@@ -212,10 +212,12 @@ function main(argv) {
     const mode = opts.positional[0];
     if (mode === 'list') return list(registry, root, opts);
     if (mode === 'set') return set(registry, root, opts);
-    throw new RefusedError('usage: git-hook-gates.cjs list|set ... (see the header)');
+    throw Object.assign(new RefusedError('usage: git-hook-gates.cjs list|set ... (see the header)'),
+      { next: 'node .skilled/commands/doctor/scripts/git-hook-gates.cjs list' });
   } catch (err) {
     const message = err instanceof RefusedError ? err.message : `unexpected: ${err.message}`;
     process.stderr.write(`git-hook-gates: ${message}\n`);
+    if (err.next) process.stderr.write(`Next: ${err.next}\n`);
     process.stdout.write(`STATUS=FAIL ERROR="${message.replace(/"/g, "'")}"\n`);
     return 2;
   }
