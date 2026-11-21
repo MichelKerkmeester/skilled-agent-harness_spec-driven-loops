@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fcb84c24039c826f05d0256888399262dae79ebeaa259138f1039102172e99e4",
+  "manifestHash": "3f0a90d7ae29ce131d4f1c2ec43deda3bc991a441fe113a1977ad3b8df09dc32",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -84665,6 +84665,9 @@
     "phase 13 system spec kit": [
       "phase 13 system spec kit"
     ],
+    "phase 13 ux and alignment pass": [
+      "phase 13 ux and alignment pass"
+    ],
     "phase 13 vibe audit fixes": [
       "phase 13 vibe audit fixes"
     ],
@@ -133238,6 +133241,24 @@
     ],
     "utilization review acceptance criteria": [
       "utilization review acceptance criteria"
+    ],
+    "ux and alignment pass": [
+      "ux and alignment pass"
+    ],
+    "ux and alignment pass acceptance criteria": [
+      "ux and alignment pass acceptance criteria"
+    ],
+    "ux and alignment pass goal": [
+      "ux and alignment pass goal"
+    ],
+    "ux and alignment pass implementation summary": [
+      "ux and alignment pass implementation summary"
+    ],
+    "ux and alignment pass plan": [
+      "ux and alignment pass plan"
+    ],
+    "ux and alignment pass tasks": [
+      "ux and alignment pass tasks"
     ],
     "ux flow references": [
       "ux flow references"
