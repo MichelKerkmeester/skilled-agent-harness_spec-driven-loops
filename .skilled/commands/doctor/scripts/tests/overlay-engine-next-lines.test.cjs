@@ -89,6 +89,19 @@ test('a folder that replaced an engine-made link before its retarget keeps its f
   assert.equal(fs.readFileSync(path.join(moved, 'project.md'), 'utf8'), 'project file\n');
 });
 
+test('a re-pin path below a linked folder keeps its first line and names a quoted absolute mv', (t) => {
+  const fixture = createFixture(t, []);
+  writeFile(fixture.tree, 'elsewhere/kept.md', 'kept\n');
+  fs.symlinkSync('elsewhere', path.join(fixture.tree, 'my hub'));
+  const lines = engine.treeShapeProblems(fixture.tree, { copy: ['my hub/new.md'], delete: [] });
+  assert.equal(lines.length, 1);
+  const parts = lines[0].split('\n');
+  assert.equal(parts[0], 'refuse: my hub/new.md sits below my hub, which the tree holds as a link');
+  const moved = path.join(fixture.tree, 'my hub');
+  assert.equal(parts[2], `  Next: mv ${quoted(moved)} ${quoted(moved + '.keep')}, then rerun the re-pin`);
+  assert.equal(parts[3], '  or, to keep it where it is: add "my hub/new.md" to repin.exclude in overlay-manifest.json, then rerun the re-pin');
+});
+
 test('the first line of a state file of an unsupported shape is the line it always was', (t) => {
   const fixture = createSyncFixture(t);
   assert.equal(fixture.run(['apply']).code, 0);

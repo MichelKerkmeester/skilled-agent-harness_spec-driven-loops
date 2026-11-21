@@ -5596,8 +5596,8 @@ function treeShapeProblems(root, touched) {
     if (blockedBy) {
       lines.push(`refuse: ${relativePath} sits below ${blockedBy}` +
         '\n  the copy writes this path into a folder, and that path is not one' +
-        `\n  Next: move it aside (mv ${shellPath(blockedAt)} ${shellPath(blockedAt + '.aside')}) from ${shellPath(root)}, ` +
-        `or add "${relativePath}" to repin.exclude, then rerun the re-pin`);
+        `\n  Next: mv ${shellPath(path.join(root, blockedAt))} ${shellPath(path.join(root, blockedAt) + '.keep')}, then rerun the re-pin` +
+        `\n  or, to keep it where it is: add "${relativePath}" to repin.exclude in ${MANIFEST_FILE}, then rerun the re-pin`);
     } else if (isDirectory(path.join(root, relativePath))) {
       lines.push(`refuse: ${relativePath} is a folder in the tree where upstream ships a file; list it in repin.exclude to keep it`);
     }
@@ -8228,6 +8228,7 @@ module.exports = {
   planLayoutLinks,
   planOverlay,
   regenerate,
+  treeShapeProblems,
   resolveOverlayDir,
   resolveRemoveRootPath,
   runCheck,
