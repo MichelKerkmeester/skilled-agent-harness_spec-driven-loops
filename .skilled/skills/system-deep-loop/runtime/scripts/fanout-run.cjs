@@ -5575,8 +5575,9 @@ async function main() {
       // and is reported, never deleted, since it may be a concurrent parent/sibling write
       // this leaf cannot be proven to own; restore mode is an explicit opt-in that rolls a
       // path back. The leaf must still be free to write its iteration file/delta/state
-      // record inside lineageDir; only OUT-of-lineageDir writes are detected. Fails open
-      // when the artifact dir is outside the git worktree (hermetic test lineages).
+      // record inside lineageDir; only OUT-of-lineageDir writes are detected. An artifact
+      // dir outside the git worktree is refused before the lane spawns; with no worktree at
+      // all, containment is a no-op.
       let containmentFindings = null;
       let containmentRecoveryHint = null;
       let containmentQuarantinePath = null;

@@ -478,6 +478,7 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
     version: string,
     sandboxMode: string,
     extraFlags: string[] = [],
+    artifactDir?: string,
   ): { status: number | null; stderr: string; argv: string[] | null; fixture: SandboxFixture } {
     const fixture = createSandboxFixture(command, version);
     const result = spawnSync(process.execPath, [
@@ -488,7 +489,7 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
       '--prompt-file', join(fixture.root, 'prompt.md'),
       '--state-log', join(fixture.root, 'state.jsonl'),
       '--packet-dir', join(fixture.repo, 'packet'),
-      '--artifact-dir', join(fixture.repo, 'packet'),
+      '--artifact-dir', artifactDir ?? join(fixture.repo, 'packet'),
       '--iteration', '1',
       '--generation', '1',
       '--session-id', 's',
@@ -681,6 +682,18 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
       const run = dispatchArgv('cli-opencode', 'opencode', OPENCODE_VERSION, 'read-only');
       expect(run.status).not.toBe(0);
       expect(run.stderr).toContain("cannot enforce sandbox mode 'read-only'");
+      expect(run.argv).toBeNull();
+    });
+
+    // The post-dispatch check rejects an artifact dir outside the worktree, so a child
+    // spawned first would have run with writes nothing could ever check. The shim's
+    // argv record is written only by the dispatch itself, never by the version probe.
+    it('refuses an artifact dir outside the git worktree before the child runs', () => {
+      const externalArtifact = mkdtempSync(join(tmpdir(), 'dispatch-external-artifact-'));
+      tempDirs.push(externalArtifact);
+      const run = dispatchArgv('cli-opencode', 'opencode', OPENCODE_VERSION, 'workspace-write', [], externalArtifact);
+      expect(run.status).not.toBe(0);
+      expect(run.stderr).toContain('is outside the git worktree — containment cannot be enforced');
       expect(run.argv).toBeNull();
     });
 

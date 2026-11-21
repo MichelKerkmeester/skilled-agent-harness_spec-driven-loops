@@ -1053,8 +1053,9 @@ function isContainedInArtifact(
 
 /**
  * The artifact-dir subtree relative to repoRoot in POSIX form, or null when the
- * artifact dir is not inside the resolved git worktree (hermetic test artifact
- * dirs, external paths) -- the signal to skip containment entirely.
+ * artifact dir is not inside the resolved git worktree (external paths) or there is
+ * no worktree at all. The checks call it through resolveEnforceableArtifactScope,
+ * which skips containment only in the second case and refuses the first.
  *
  * All three paths are resolved through realpath so a symlinked repo root (e.g.
  * macOS `/var` -> `/private/var`) does not make the worktree toplevel disagree
@@ -1110,6 +1111,23 @@ function resolveArtifactScope(
     unattributableRelPosix,
     unattributableFileRelPosix,
   };
+}
+
+/**
+ * The artifact scope both containment checks run against, or null when there is no git
+ * worktree to check at all. Throws when repoRoot IS a worktree but the artifact dir cannot
+ * be scoped inside it: containment cannot be enforced there, and returning nothing would
+ * read as a clean tree. The pre-dispatch snapshot and the post-dispatch detector share this
+ * so they refuse the same cases, and the refusal lands before any lane is spawned.
+ */
+function resolveEnforceableArtifactScope(
+  opts: ContainmentOptions,
+): ReturnType<typeof resolveArtifactScope> {
+  const scope = resolveArtifactScope(opts);
+  if (!scope && resolveGitToplevel(opts.repoRoot, opts.env)) {
+    throw new Error(`artifact scope ${opts.artifactDir} is outside the git worktree — containment cannot be enforced`);
+  }
+  return scope;
 }
 
 /**
@@ -1262,11 +1280,13 @@ function captureBaselineFile(input: {
  * whose bytes cannot be copied is marked truncated; the snapshot itself never fails on a
  * capture problem.
  *
- * Returns [] (no-op) when git is unavailable, repoRoot is not a worktree, or
- * artifactDir is outside the worktree.
+ * Returns [] (no-op) when git is unavailable or repoRoot is not a worktree. Throws when
+ * repoRoot is a worktree but artifactDir cannot be scoped inside it, the same refusal the
+ * post-dispatch check makes, so a caller stops before it spawns a lane whose writes could
+ * never be checked.
  */
 export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPathEntry[] {
-  const scope = resolveArtifactScope(opts);
+  const scope = resolveEnforceableArtifactScope(opts);
   if (!scope) return [];
   const entries = readStatusEntries({ repoRoot: opts.repoRoot, env: opts.env });
   const out: DirtyPathEntry[] = [];
@@ -1315,14 +1335,8 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPat
  * nowhere, because an untracked path has no index entry for its removal to differ from.
  */
 export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentViolation[] {
-  const scope = resolveArtifactScope(opts);
-  if (!scope) {
-    // Artifact outside worktree: hard failure, not an empty violation list.
-    if (resolveGitToplevel(opts.repoRoot, opts.env)) {
-      throw new Error(`artifact scope ${opts.artifactDir} is outside the git worktree — containment cannot be enforced`);
-    }
-    return [];
-  }
+  const scope = resolveEnforceableArtifactScope(opts);
+  if (!scope) return [];
   const entries = readStatusEntries({ repoRoot: opts.repoRoot, env: opts.env });
   const preMap = new Map(opts.preDispatchDirtyPaths.map((e) => [toPosix(e.path), e.hash]));
   const violations: ContainmentViolation[] = [];
