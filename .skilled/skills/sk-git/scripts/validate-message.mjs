@@ -226,12 +226,15 @@ function main() {
 // The remedy runs from wherever the operator stands, so it names this file absolutely.
 const VALIDATOR = fileURLToPath(import.meta.url);
 
+/** A word a printed command can carry as pasted: single-quoted unless nothing in it is special. */
+const shellWord = (text) => (/^[A-Za-z0-9_@%+=:,./-]+$/.test(text) ? text : `'${text.replace(/'/g, "'\\''")}'`);
+
 function contractRemedy(err) {
   if (!err.file) return '  Next: git config --unset skgit.contractDir\n';
   const base = err.file.split(/[\\/]/).pop();
   const kind = Object.keys(TEMPLATE_FILES).find((k) => TEMPLATE_FILES[k] === base);
   const lines = [`  Rules: ${err.file}`];
-  if (kind) lines.push(`  Next: node ${VALIDATOR} --check-template ${err.file} --kind ${kind}`);
+  if (kind) lines.push(`  Next: node ${shellWord(VALIDATOR)} --check-template ${shellWord(err.file)} --kind ${kind}`);
   return lines.join('\n') + '\n';
 }
 

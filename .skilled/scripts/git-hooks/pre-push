@@ -53,6 +53,16 @@
 
 set -euo pipefail
 
+# A Next line must run as pasted whatever a path holds, so each word it interpolates
+# is shell-quoted. printf %q leaves an ordinary path exactly as it was.
+_shell_words() {
+  [[ $# -gt 0 ]] || return 0
+  local _words
+  printf -v _words '%q ' "$@"
+  printf '%s' "${_words% }"
+}
+RESTORE_NOTE="That copies HEAD over both the index and the working tree, so any staged or unstaged edit to the file is lost."
+
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 if [[ -z "$REPO_ROOT" ]]; then
   exit 0
@@ -252,7 +262,8 @@ while read -r _ local_sha remote_ref remote_sha; do
   if [[ "$is_new" -eq 0 && "$_MASS_DEL_MISSING" -eq 1 && "${SPECKIT_ALLOW_MASS_DELETION:-0}" != "1" ]]; then
     echo "BLOCKED [gate:mass-deletion]: guard library is missing: $_MASS_DEL_GUARD" >&2
     echo "  Without it the push cannot be checked for mass deletions, so this checkout's install is broken." >&2
-    echo "  Next: git restore --source=HEAD --staged --worktree -- $_MASS_DEL_GUARD" >&2
+    echo "  Next: git restore --source=HEAD --staged --worktree -- $(_shell_words "$_MASS_DEL_GUARD")" >&2
+    echo "    $RESTORE_NOTE" >&2
     echo "Approve this push once, deliberately: SPECKIT_ALLOW_MASS_DELETION=1 git push ..." >&2
     REJECTED=1
     continue
@@ -298,7 +309,7 @@ while read -r _ local_sha remote_ref remote_sha; do
         echo "  Next: git push" >&2
       else
         echo "  The validator and helpers sit beside the hook script; relink the hooks to a checkout that has them." >&2
-        echo "  Next: bash $INSTALLER" >&2
+        echo "  Next: bash $(_shell_words "$INSTALLER")" >&2
       fi
       REJECTED=1
       continue
@@ -314,13 +325,14 @@ while read -r _ local_sha remote_ref remote_sha; do
       if [[ "$_contract_rc" -eq 1 ]]; then
         echo "BLOCKED [gate:message-contract]: commits pushed to '$branch_name' break the commit rules above." >&2
         echo "   Reword each one the validator listed, then push again." >&2
-        echo "  Next: git rebase -i <the commit before the first one>   (mark each listed commit as reword)" >&2
+        echo "  Next: git rebase -i <the commit before the first one>" >&2
+        echo "  In the todo list, mark each listed commit as reword." >&2
         REJECTED=1
         continue
       elif [[ "$_contract_rc" -ne 0 ]]; then
         echo "BLOCKED [gate:message-contract]: the message validator could not check the commits pushed to '$branch_name' (exit $_contract_rc); its error is above." >&2
         echo "  The push stays blocked until the validator can run. Rerun it alone to see the error:" >&2
-        echo "  Next: node $CONTRACT_VALIDATOR --repo $REPO_ROOT --rev-list \"$_range\" --exclude-ref \"refs/remotes/$REMOTE_NAME/$branch_name\"" >&2
+        echo "  Next: node $(_shell_words "$CONTRACT_VALIDATOR") --repo $(_shell_words "$REPO_ROOT") --rev-list $(_shell_words "$_range") --exclude-ref $(_shell_words "refs/remotes/$REMOTE_NAME/$branch_name")" >&2
         REJECTED=1
         continue
       fi
@@ -341,7 +353,7 @@ while read -r _ local_sha remote_ref remote_sha; do
   if [[ ! "$local_sha" =~ ^0+$ ]]; then
     if [[ "$COMMIT_ID_BROKEN" -eq 1 ]]; then
       echo "BLOCKED [gate:commit-id]: the hook helpers are missing at $HOOK_DIR/lib, so Commit-Id trailers cannot be checked." >&2
-      echo "  Next: bash $INSTALLER" >&2
+      echo "  Next: bash $(_shell_words "$INSTALLER")" >&2
       REJECTED=1
       continue
     fi
@@ -356,7 +368,7 @@ while read -r _ local_sha remote_ref remote_sha; do
            --format='%h%x09%(trailers:key=Commit-Id,valueonly,separator=%x2C)%x09%s' "${_id_range[@]}")"; then
         echo "BLOCKED [gate:commit-id]: the commits pushed to '$branch_name' could not be read; git's error is above." >&2
         echo "  The push stays blocked until git can read them. Rerun the read alone to see the error:" >&2
-        echo "  Next: git log --oneline ${_id_range[*]}" >&2
+        echo "  Next: git log --oneline $(_shell_words "${_id_range[@]}")" >&2
         REJECTED=1
         continue
       fi
@@ -400,7 +412,8 @@ while read -r _ local_sha remote_ref remote_sha; do
         echo "  SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...   (an update)"
         echo "  SPECKIT_ALLOW_REMOTE_PUSH=$branch_name git push ...   (creating the branch)"
         echo "To repair the install instead, restore the script and push again:"
-        echo "  Next: git restore --source=HEAD --staged --worktree -- $NAMING"
+        echo "  Next: git restore --source=HEAD --staged --worktree -- $(_shell_words "$NAMING")"
+        echo "    $RESTORE_NOTE"
         echo ""
       } >&2
       REJECTED=1
@@ -527,7 +540,8 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
     echo "" >&2
     echo "BLOCKED [gate:compiled-routing]: route guard is missing: $ROUTE_GUARD" >&2
     echo "  Without it the routing manifests cannot be checked, so this checkout's install is broken." >&2
-    echo "  Next: git restore --source=HEAD --staged --worktree -- $ROUTE_GUARD" >&2
+    echo "  Next: git restore --source=HEAD --staged --worktree -- $(_shell_words "$ROUTE_GUARD")" >&2
+    echo "    $RESTORE_NOTE" >&2
     echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..." >&2
     exit 1
   fi
@@ -542,8 +556,9 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
         echo "Fix: refresh the hub, then resync its authored copy in the same change —"
         echo "     refreshing alone leaves the runtime and authored manifests disagreeing."
         echo "     Then rebuild and re-pin that hub's canary before pushing."
-        echo "Next: run the command the guard printed above beside each hub, git add both manifests,"
-        echo "      commit them, then re-check with: node ${ROUTE_GUARD#"$REPO_ROOT"/}"
+        echo "Run the command the guard printed above beside each hub, git add both manifests"
+        echo "and commit them, then re-check with:"
+        echo "Next: node $(_shell_words "${ROUTE_GUARD#"$REPO_ROOT"/}")"
         echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..."
         echo ""
       } >&2
@@ -616,7 +631,8 @@ if [[ "${SPECKIT_SKIP_PREPUSH_TRACK_GATE:-0}" != "1" ]] && _in_toolchain_repo &&
     echo "" >&2
     echo "BLOCKED [gate:track-roots]: sweep is missing: $TRACK_SWEEP" >&2
     echo "  Without it the track roots cannot be checked, so this checkout's install is broken." >&2
-    echo "  Next: git restore --source=HEAD --staged --worktree -- $TRACK_SWEEP" >&2
+    echo "  Next: git restore --source=HEAD --staged --worktree -- $(_shell_words "$TRACK_SWEEP")" >&2
+    echo "    $RESTORE_NOTE" >&2
     echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 git push ..." >&2
     exit 1
   else
@@ -630,7 +646,7 @@ if [[ "${SPECKIT_SKIP_PREPUSH_TRACK_GATE:-0}" != "1" ]] && _in_toolchain_repo &&
           echo "BLOCKED [gate:track-roots]: in commit ${pushed_sha:0:10}, a track root's children_ids"
           echo "do not list exactly the packets that track holds:"
           echo "$_track_out" | sed 's/^/  /'
-          echo "Fix: node $(dirname "${TRACK_SWEEP#"$REPO_ROOT"/}")/refresh-track-roots.mjs --apply"
+          echo "Fix: node $(_shell_words "$(dirname "${TRACK_SWEEP#"$REPO_ROOT"/}")/refresh-track-roots.mjs") --apply"
           echo "     then commit each changed graph-metadata.json together with the packets it"
           echo "     lists, and push again."
           echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 git push ..."

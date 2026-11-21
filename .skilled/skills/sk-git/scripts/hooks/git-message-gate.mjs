@@ -55,12 +55,17 @@ const BRANCH_NON_CREATE = new Set(['-d', '-D', '--delete', '-c', '-C', '--copy',
 // 3. SHELL PARSING
 // ─────────────────────────────────────────────────────────────────────────────
 
+/** Single-quote text for a POSIX shell, so nothing in it expands. */
+const literal = (text) => `'${text.replace(/'/g, "'\\''")}'`;
+
+/** A word a printed command can carry as pasted: left bare when nothing in it is special. */
+const shellWord = (text) => (/^[A-Za-z0-9_@%+=:,./-]+$/.test(text) ? text : literal(text));
+
 /**
  * Replace `"$(cat <<'EOF' … EOF\n)"` with a quoted literal, the form agents use for multi-line
  * messages and PR bodies. Everything after this is ordinary quoting.
  */
 function inlineHeredocs(command) {
-  const literal = (text) => `'${text.replace(/'/g, "'\\''")}'`;
   return command.replace(
     /"?\$\(\s*cat\s+<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1[^\n]*\n([\s\S]*?)\n[ \t]*\2[ \t]*\n?\s*\)"?/g,
     (_, _q, _tag, body) => literal(body),
@@ -313,7 +318,7 @@ export function unreadableRulesReason(err) {
   if (err.file) {
     lines.push(`  Rules: ${err.file}`);
     lines.push('  A rules file that exists must parse, so the gate blocks instead of guessing. Repair its ```json block under "Enforced rules", then run the command again.');
-    if (kind) lines.push(`  Next: node ${VALIDATOR} --check-template ${err.file} --kind ${kind}`);
+    if (kind) lines.push(`  Next: node ${shellWord(VALIDATOR)} --check-template ${shellWord(err.file)} --kind ${kind}`);
   } else {
     lines.push('  The skgit.contractDir setting names a folder that does not exist. Create that folder or remove the setting, then run the command again.');
     lines.push('  Next: git config --unset skgit.contractDir');

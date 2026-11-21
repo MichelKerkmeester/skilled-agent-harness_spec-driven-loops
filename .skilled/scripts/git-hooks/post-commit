@@ -87,10 +87,11 @@ if [ "${SPECKIT_AUTOSYNC:-0}" = "1" ] && [ -n "${SPECKIT_LIVE_BRANCH:-}" ]; then
     fi
   elif _in_toolchain_repo && [ -e "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
     echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is unreadable; continuing with live-sync enabled." >&2
-    echo "Next: chmod +r ${SOURCE_ROOT#"$REPO_ROOT"/}/hooks/shared/hook-flags.sh" >&2
+    printf 'Next: chmod +r %q\n' "${SOURCE_ROOT#"$REPO_ROOT"/}/hooks/shared/hook-flags.sh" >&2
   elif _in_toolchain_repo; then
     echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is missing; continuing with live-sync enabled." >&2
-    echo "Next: git restore --source=HEAD --staged --worktree -- ${SOURCE_ROOT#"$REPO_ROOT"/}/hooks/shared/hook-flags.sh" >&2
+    printf 'Next: git restore --source=HEAD --staged --worktree -- %q\n' "${SOURCE_ROOT#"$REPO_ROOT"/}/hooks/shared/hook-flags.sh" >&2
+    echo "  That copies HEAD over both the index and the working tree, so any staged or unstaged edit to the file is lost." >&2
   fi
   if [ "$__pc_ls_enabled" = "1" ]; then
     _as_git_dir="$(git rev-parse --absolute-git-dir 2>/dev/null || true)"

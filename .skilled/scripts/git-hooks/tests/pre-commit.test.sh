@@ -84,6 +84,28 @@ MINT
 # Run the real hook inside the fixture. Prints nothing; the caller reads $? and the log.
 run_hook() { ( cd "$TMP" && bash "$HOOK" >"$TMP/out.log" 2>&1 ); }
 
+# A printed Next command is pasted into a shell, so read its words the way a shell
+# would: eval only `set --` over the text after the prefix, inside the fixture. A path
+# that would expand when pasted expands here too, and leaves its marker file behind.
+next_words() { # next_words <text after "Next: "> -> each word, NUL-separated
+  local line
+  line="$(grep -m1 -F "Next: $1" "$TMP/out.log")" || return 1
+  line="${line#*Next: "$1"}"
+  ( cd "$TMP" && eval "set -- $line" && printf '%s\0' "$@" )
+}
+# check_next_words <label> <text after "Next: "> <path the command must name>
+check_next_words() {
+  local label="$1" prefix="$2" want="$3" words
+  words="$(next_words "$prefix" | tr '\0' '\n')"
+  if [[ -e "$TMP/MARKER" ]]; then
+    echo "FAIL  $label: pasting the Next line ran a command substitution"; FAIL=$((FAIL + 1)); rm -f "$TMP/MARKER"
+  elif ! grep -qxF -- "$want" <<<"$words"; then
+    echo "FAIL  $label: Next line does not name '$want' as one word"; sed 's/^/        /' <<<"$words"; FAIL=$((FAIL + 1))
+  else
+    echo "PASS  $label"; PASS=$((PASS + 1))
+  fi
+}
+
 check() { # check <label> <expected-rc> <actual-rc> [<substring the log must contain>]
   local label="$1" want="$2" got="$3" needle="${4:-}"
   if [[ "$got" != "$want" ]]; then
@@ -121,6 +143,16 @@ git -C "$TMP" add ".opencode/skills/$HUB/SKILL.md"
 echo "unstaged too" > "$TMP/.opencode/skills/$HUB/SKILL.md"
 run_hook; RC=$?
 check "partly staged input is refused" 1 "$RC" "staged and unstaged at once"
+
+# ── 3b. the partly staged refusal names a git add that runs as pasted for any path ──
+setup_fixture
+ODD_LEAF=".opencode/skills/$HUB/odd leaf \$(touch MARKER)/SKILL.md"
+mkdir -p "$TMP/$(dirname "$ODD_LEAF")"
+echo "staged" > "$TMP/$ODD_LEAF"; git -C "$TMP" add -- "$ODD_LEAF"
+echo "unstaged too" > "$TMP/$ODD_LEAF"
+run_hook; RC=$?
+check "a partly staged odd path is refused" 1 "$RC" "staged and unstaged at once"
+check_next_words "the route refusal's git add names the odd path as one word" "git add -- " "$ODD_LEAF"
 
 # ── 4. a missing authored manifest blocks rather than exiting zero in silence ──
 setup_fixture
@@ -229,6 +261,15 @@ echo "# staged" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
 echo "# unstaged too" > "$TMP/$PKT/spec.md"
 run_hook; RC=$?
 check "partly staged packet is refused" 1 "$RC" "staged and unstaged at once"
+
+# ── 10b. the packet refusal names a git add that runs as pasted for any path ──
+setup_spec_fixture
+ODD_DOC="$PKT/odd doc \$(touch MARKER).md"
+echo "# staged" > "$TMP/$ODD_DOC"; git -C "$TMP" add -- "$ODD_DOC"
+echo "# unstaged too" > "$TMP/$ODD_DOC"
+run_hook; RC=$?
+check "a partly staged odd doc is refused" 1 "$RC" "staged and unstaged at once"
+check_next_words "the packet refusal's git add names the odd doc as one word" "git add -- " "$ODD_DOC"
 
 # ── 11. a repair failure blocks and shows the tool's own output ──
 setup_spec_fixture
@@ -414,6 +455,7 @@ stage_new "notes.md" "note"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a missing comment checker blocks" 1 "$RC" "comment-hygiene]: checker is missing: "
 check "a missing comment checker names its restore command" 1 "$RC" "Next: git restore --source=HEAD --staged --worktree -- .opencode/skills/sk-code/"
+check "a restore says it discards a staged version too" 1 "$RC" "staged or unstaged edit to the file is lost"
 
 # ── 24b. a present comment checker without the execute bit names chmod, not a restore ──
 # A restore would overwrite an unstaged edit to the checker, so it must not be offered.
@@ -441,7 +483,7 @@ stage_new "notes.md" "note"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a crashing comment checker blocks" 1 "$RC" "the checker failed (exit 3)"
 check "a crashing comment checker offers a close check, not a rerun" 1 "$RC" "a close check over the working tree"
-check "the close check passes the paths after --" 1 "$RC" "$CHK -- "
+check "the close check passes the paths after --" 1 "$RC" "xargs -0 $CHK --$"
 
 # ── 25. a missing agent mirror checker blocks where the toolchain ships ──
 setup_gate_fixture toolchain

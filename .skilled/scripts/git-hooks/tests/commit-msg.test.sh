@@ -589,6 +589,29 @@ printf 'chore(sk-git): probe the lone hook\n' > "$TMP/message.txt"
 check "a lone hook copy blocks on its missing helpers" 1 "$RC" "Next: bash $LONE_REAL/scripts/install-git-hooks.sh"
 rm -rf "$LONE"
 
+# ── the installer it names runs as pasted when its path holds a space and a $( ──
+# The words are read the way a shell reads a pasted line: eval of `set --` only, so a
+# path that would expand leaves its marker file behind.
+setup_repo
+ODD_BASE="$(cd "$(mktemp -d)" && pwd -P)"
+LONE="$ODD_BASE/odd \$(touch MARKER) dir"
+mkdir -p "$LONE/scripts/git-hooks"
+cp "$HOOK" "$LONE/scripts/git-hooks/commit-msg"
+printf 'chore(sk-git): probe the lone hook\n' > "$TMP/message.txt"
+( cd "$TMP" && bash "$LONE/scripts/git-hooks/commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
+NEXT_LINE="$(grep -m1 -F 'Next: bash ' "$TMP/out.log" || true)"
+NEXT_WORDS="$(cd "$ODD_BASE" && eval "set -- ${NEXT_LINE#*Next: bash }" && printf '%s\n' "$@")"
+if [[ "$RC" -ne 1 || -z "$NEXT_LINE" ]]; then
+  echo "FAIL  an odd-path lone hook names its installer: rc $RC, line '$NEXT_LINE'"; FAIL=$((FAIL + 1))
+elif [[ -e "$ODD_BASE/MARKER" ]]; then
+  echo "FAIL  an odd-path installer runs as pasted: pasting ran a command substitution"; FAIL=$((FAIL + 1))
+elif [[ "$NEXT_WORDS" != "$LONE/scripts/install-git-hooks.sh" ]]; then
+  echo "FAIL  an odd-path installer runs as pasted: got '$NEXT_WORDS'"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  an odd-path installer runs as pasted"; PASS=$((PASS + 1))
+fi
+rm -rf "$ODD_BASE"
+
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
 [[ "$FAIL" -eq 0 ]]

@@ -258,6 +258,9 @@ expect_hook "...unless SPECKIT_ALLOW_MASS_DELETION=1 approves it" \
 expect_hook_says "a missing route guard blocks the push" \
   1 "route guard is missing" "refs/heads/main $SHA_A refs/heads/main $SHA_B" \
   SPECKIT_ALLOW_MASS_DELETION=1
+expect_hook_says "...and its restore says it discards a staged version too" \
+  1 "staged or unstaged edit to the file is lost" "refs/heads/main $SHA_A refs/heads/main $SHA_B" \
+  SPECKIT_ALLOW_MASS_DELETION=1
 rm -f "$SENTINEL"
 
 rm -f "$TMP/.opencode/skills/sk-git/scripts/worktree-naming.sh"

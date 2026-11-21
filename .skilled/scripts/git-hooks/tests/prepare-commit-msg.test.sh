@@ -353,6 +353,30 @@ check_count "allocator failure reports one line" 'allocator failed' 1 "$TMP/out.
 check_count "allocator failure names the real allocate call" 'Next: bash .*commit-id-naming\.sh allocate$' 1 "$TMP/out.log"
 check_count "allocator failure warns that the rerun reserves an id" 'reserves' 1 "$TMP/out.log"
 
+# ── 14b. a lone hook copy names an installer that runs as pasted for any path ──
+# The words are read the way a shell reads a pasted line: eval of `set --` only, so a
+# path that would expand leaves its marker file behind.
+setup_repo
+ODD_BASE="$(cd "$(mktemp -d)" && pwd -P)"
+LONE="$ODD_BASE/odd \$(touch MARKER) dir"
+mkdir -p "$LONE/scripts/git-hooks"
+cp "$HOOK" "$LONE/scripts/git-hooks/prepare-commit-msg"
+printf 'feat(sk-git): probe the lone hook\n' > "$TMP/message.txt"
+( cd "$TMP" && bash "$LONE/scripts/git-hooks/prepare-commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
+NEXT_LINE="$(grep -m1 -F 'Next: bash ' "$TMP/out.log" || true)"
+NEXT_WORDS="$(cd "$ODD_BASE" && eval "set -- ${NEXT_LINE#*Next: bash }" && printf '%s\n' "$@")"
+check_rc "a lone hook copy exits 0" 0 "$RC"
+if [[ -z "$NEXT_LINE" ]]; then
+  fail "an odd-path installer runs as pasted" "no Next line in the log"
+elif [[ -e "$ODD_BASE/MARKER" ]]; then
+  fail "an odd-path installer runs as pasted" "pasting ran a command substitution"
+elif [[ "$NEXT_WORDS" != "$LONE/scripts/install-git-hooks.sh" ]]; then
+  fail "an odd-path installer runs as pasted" "got '$NEXT_WORDS'"
+else
+  pass "an odd-path installer runs as pasted"
+fi
+rm -rf "$ODD_BASE"
+
 # ── 15. attribution lines are stripped before stamping ──────────────────────
 setup_repo
 cat > "$TMP/message.txt" <<'MSG'
