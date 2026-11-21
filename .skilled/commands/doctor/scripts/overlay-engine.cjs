@@ -3135,14 +3135,24 @@ function isRecordedLink(root, state, link, current) {
  */
 function isOwnedShapeForLink(manifest, root, state, link, linkPath) {
   const fold = pathFold(root);
-  const key = fold(relativeKey(root, linkPath));
+  const key = relativeKey(root, linkPath);
+  const folded = fold(key);
   const overlaps = (manifest.overlays || []).some((entry) => {
     if (typeof entry.destination !== 'string') return false;
     const destination = fold(path.posix.normalize(entry.destination).replace(/\/+$/, ''));
-    return destination === key || destination.startsWith(key + '/') || key.startsWith(destination + '/');
+    return destination === folded || destination.startsWith(folded + '/') || folded.startsWith(destination + '/');
   });
   if (overlaps) return false;
-  return destinationShape(linkPath, key, (state && state.files) || {}).isOwned;
+  const recordedFiles = (state && state.files) || {};
+  if (destinationShape(linkPath, key, recordedFiles).isOwned) return true;
+  // The state keeps each path as the manifest spelled it. Where the volume
+  // folds case, a record spelled with other case names this same entry, so
+  // it is read under its recorded spelling.
+  const depth = key.split('/').length;
+  const recordedSpelling = Object.keys(recordedFiles)
+    .map((recordedKey) => recordedKey.split('/').slice(0, depth).join('/'))
+    .find((prefix) => prefix !== key && fold(prefix) === folded);
+  return recordedSpelling !== undefined && destinationShape(linkPath, recordedSpelling, recordedFiles).isOwned;
 }
 
 /**

@@ -128,6 +128,48 @@ test('a file the engine wrote becomes the layout link the manifest now names, in
   assert.equal(fixture.run(['status']).code, 0);
 });
 
+// The state records a destination as the manifest spelled it, so a name with
+// capitals is still found there on a volume that ignores case.
+test('a file the engine wrote at a name with capitals becomes the layout link there on a volume that ignores case', (t) => {
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'Tool' }]);
+  if (!isCaseInsensitive(fixture.workspace)) {
+    t.skip('the volume tells case apart, so the case fold is not exercised');
+    return;
+  }
+  applyOk(fixture);
+  fixture.setManifest([], [{ path: 'Tool', target: 'target' }]);
+  applyOk(fixture);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'Tool')), 'target');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a folder the engine wrote at a name with capitals becomes the layout link there on a volume that ignores case', (t) => {
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'Tool' }]);
+  if (!isCaseInsensitive(fixture.workspace)) {
+    t.skip('the volume tells case apart, so the case fold is not exercised');
+    return;
+  }
+  applyOk(fixture);
+  fixture.setManifest([], [{ path: 'Tool', target: 'target' }]);
+  applyOk(fixture);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'Tool')), 'target');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'inside.md'), 'utf8'), 'link target\n');
+});
+
+// On a volume that ignores case, a link spelled with other case than the
+// recorded destination stands at the same entry, so it still replaces it.
+test('a file the engine wrote becomes a layout link spelled with other case on a volume that ignores case', (t) => {
+  const fixture = createShapeFixture(t, [FILE_ENTRY]);
+  if (!isCaseInsensitive(fixture.workspace)) {
+    t.skip('the volume tells case apart, so tool and Tool are two paths');
+    return;
+  }
+  applyOk(fixture);
+  fixture.setManifest([], [{ path: 'Tool', target: 'target' }]);
+  applyOk(fixture);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'Tool')), 'target');
+});
+
 test('a layout link the engine made becomes the file an entry now names, and its target is untouched', (t) => {
   const fixture = createShapeFixture(t, [], [LINK]);
   applyOk(fixture);
