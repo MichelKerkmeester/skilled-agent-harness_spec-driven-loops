@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research",
+  "description": "Phase 1: research",
+  "keywords": [
+    "phase",
+    "research"
+  ],
+  "lastUpdated": "2026-11-21T09:11:45.777Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "21-11-26_10-10__deep-research-ran-10-iterations-on-cli-opencode.md",
+    "21-11-26_10-11__deep-research-ran-10-iterations-on-cli-opencode.md"
+  ]
+}
