@@ -1559,6 +1559,27 @@ test('relayout still moves a right-kind copy kept off the layout beside one of t
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'root/up/tool.md')), false);
 });
 
+// A source that climbs out of the overlay folder is refused whether or not
+// anything sits there, so relayout writes nothing even when another entry has a
+// copy it could move.
+test('relayout refuses a missing source that escapes the overlay folder and moves nothing', (t) => {
+  const fixture = createWrongKindSourceFixture(t, WRONG_KIND_SOURCES[1],
+    [{ id: 'note', scope: 'file', source: 'custom/note.md', destination: 'up/note.md' }]);
+  fixture.manifest.overlays[0].source = '../../outside/nope.md';
+  writeManifest(fixture);
+  writeFile(fixture.overlayDir, 'custom/note.md', 'overlay note\n');
+  writeFile(fixture.tree, 'up/note.md', 'upstream note\n');
+  const before = snapshotFolder(fixture.overlayDir);
+
+  const relayout = fixture.run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 2, relayout.output);
+  assert.match(relayout.output.split('\n')[0],
+    /^refuse: overlay source escapes skilled-overlays: \S*\/outside\/nope\.md$/, relayout.output);
+  assert.deepEqual(snapshotFolder(fixture.overlayDir), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'root/up/note.md')), false);
+});
+
 // An overlay folder beside the tree is named `../<name>` by the setting file.
 // Its backup keeps each moved copy at its path inside that folder, since the
 // folder's label climbs out of the tree and cannot be a folder in the run.

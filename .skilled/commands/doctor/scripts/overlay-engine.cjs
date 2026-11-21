@@ -5056,9 +5056,12 @@ function layoutMoves(manifest, ctx) {
 // planner reads it as: a folder, not followed through a link at its end, for
 // the source of a directory or skill-root entry, and a file, read through any
 // link, for every other field. Only the path is looked at, so a credential file
-// is never opened.
+// is never opened. A path that climbs out of the overlay folder counts as ready,
+// so relayout's own containment check refuses the run instead of a missing copy
+// out there slipping past it while the rest of the moves go ahead.
 function layoutCopyReady(ctx, entry, field) {
-  const copy = path.join(ctx.overlayRoot, entry[field]);
+  const copy = path.resolve(ctx.overlayRoot, entry[field]);
+  if (!isWithin(ctx.overlayRoot, copy) || copy === ctx.overlayRoot) return true;
   if (field === 'source' && (entry.scope === 'directory' || entry.scope === 'skill-root')) return isDirectory(copy);
   try {
     return fs.statSync(copy).isFile();
