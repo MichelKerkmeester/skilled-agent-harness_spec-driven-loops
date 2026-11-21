@@ -600,6 +600,28 @@ test('status refuses a write through a missing layout link whose target leads ou
   assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
 });
 
+// A moved layout link is judged at its new target even when every entry under
+// it is in sync through the old one, so status and apply refuse the same move,
+// and apply puts the old link back without writing outside the tree.
+test('a layout link moved to a new target that leads outside the tree is refused by status and apply, and the old link stays', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [UP_ENTRY], [{ path: 'up', target: 'target' }]);
+  applyOk(fixture);
+  fs.symlinkSync(outside, path.join(fixture.tree, 'target2'));
+  fixture.setManifest([UP_ENTRY], [{ path: 'up', target: 'target2' }]);
+  const before = fs.readdirSync(outside).sort();
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: target2 is a link that leads outside the tree, to .*, where overlay tool writes$/m, status.output);
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 1, result.output);
+  assert.match(result.output, /target2 is a link that leads outside the tree/, result.output);
+  assert.match(result.output, /this apply wrote nothing/, result.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'up')), 'target');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+  assert.deepEqual(fs.readdirSync(outside).sort(), before);
+});
+
 // A missing layout link inside another one whose target leads outside the tree
 // is refused while the manifest is planned, before any link is made. The
 // refusal names the link that leads out, which is the one to move aside.

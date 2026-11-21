@@ -3390,8 +3390,10 @@ function movedLinkNotes(manifest, root, movedLinks) {
 // Status cannot make a missing layout link or move one, so an entry under such
 // a link is judged where the link will send it: a write through a link that
 // then leads outside the tree is refused here as apply refuses it once the link
-// stands, rather than listed as work apply can do. Only that refusal is judged
-// ahead; a link whose own folder is not there yet is left to apply.
+// stands, rather than listed as work apply can do. Every path the entry owns is
+// judged, not only those it owes now, since an entry in sync through a link's
+// old target still writes all of them through the new one. Only that refusal is
+// judged ahead; a link whose own folder is not there yet is left to apply.
 function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
   const root = ctx.root;
   if (analysis.layout.problems.length > 0) return;
@@ -3409,7 +3411,10 @@ function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
       const landing = path.resolve(path.dirname(linkPath), record.link.target);
       if (!isWithin(absoluteRoot, landing)) continue;
       const writes = [
-        ...plan.writes.map((write) => ({ filePath: path.resolve(write.filePath), followLeaf: write.symlinkTarget === undefined })),
+        ...plan.outputs.map((output) => ({
+          filePath: path.resolve(output.filePath),
+          followLeaf: output.buffer !== null && output.symlinkTarget === undefined,
+        })),
         ...plan.deletes.map((filePath) => ({ filePath: path.resolve(filePath), followLeaf: false })),
       ];
       for (const { filePath, followLeaf } of writes) {
