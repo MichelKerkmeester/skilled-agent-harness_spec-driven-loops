@@ -3104,13 +3104,17 @@ function replacedLinkState(root, link) {
 
 /**
  * Say whether the state records this exact target as a link the engine made.
+ * The recorded path is matched the way the volume matches names, so a link the
+ * manifest now spells in another case is still the engine's own; the target is
+ * matched as written.
+ * @param {string} root Destination tree root.
  * @param {object} state Loaded applied-hash state.
  * @param {object} link Layout link entry from the manifest.
  * @param {string|null} current Target the path links to right now.
  * @returns {boolean} Whether the record matches what stands on disk.
  */
-function isRecordedLink(state, link, current) {
-  const recorded = state && state.links ? state.links[link.path] : undefined;
+function isRecordedLink(root, state, link, current) {
+  const recorded = engineLinkText(root, (state && state.links) || {}, link.path);
   return typeof recorded === 'string' && recorded === current;
 }
 
@@ -3170,7 +3174,7 @@ function planLayoutLinks(manifest, root, state) {
     if (stats && stats.isSymbolicLink()) current = fs.readlinkSync(linkPath);
     if (!stats) {
       missing.push({ link, linkPath });
-    } else if (current !== null && current !== link.target && isRecordedLink(state, link, current)) {
+    } else if (current !== null && current !== link.target && isRecordedLink(root, state, link, current)) {
       // The manifest moved this entry's target after an earlier apply, and the
       // state records the link standing here as the engine's own: the link is
       // retargeted rather than reported as a stranger occupying the path.
@@ -3266,23 +3270,20 @@ function applyLayoutLink(root, link, isRetarget, replacesOwned = null) {
   ensureSymlink(path.join(root, link.path), link.target);
 }
 
-// A layout link the tree lacks outright, or one the engine made that the
-// manifest now points somewhere else, with an overlay destination at or below
-// it. Its entry's writes belong through the link as the manifest names it, so
-// the link is made or moved before they are planned again; made after them, it
-// would find their folder in its place, and moved after them, it would leave
-// their bytes in the old target and none in the new one. A link that replaces a
-// pinned link or takes the place of the engine's own output keeps its turn after
-// the writes: the engine's own output never sits under an entry destination, and
-// a pinned link removed first could not be put back.
+// A layout link the tree lacks outright, with an overlay destination at or
+// below it. Its entry's writes belong through the link, so the link is made
+// before they are planned again; made after them, it would find their folder in
+// its place. A link that replaces, retargets or takes the place of something is
+// left to its usual turn, after the writes. The link and the destinations are
+// compared the way the tree's filesystem matches names.
 function linksAboveOverlays(manifest, root, layoutRecords) {
   const fold = pathFold(root);
   const destinations = (manifest.overlays || [])
     .filter((entry) => typeof entry.destination === 'string')
     .map((entry) => fold(path.posix.normalize(entry.destination).replace(/\/+$/, '')));
   return layoutRecords.filter((record) => {
-    if (record.replacesOwned || replacedLinkState(root, record.link).state !== 'none') return false;
-    if (!record.isRetarget && pathExists(path.join(root, record.link.path))) return false;
+    if (record.isRetarget || record.replacesOwned || replacedLinkState(root, record.link).state !== 'none') return false;
+    if (pathExists(path.join(root, record.link.path))) return false;
     const key = fold(path.posix.normalize(record.link.path).replace(/\/+$/, ''));
     return destinations.some((destination) => destination === key || destination.startsWith(key + '/'));
   });
@@ -3321,79 +3322,121 @@ function refuseLinksInsideOverlayWrites(ctx, layout, plans) {
   return layout;
 }
 
-// Make or move the links above overlays, each with the folders it needs, and
-// say how to take every one back, so a run that stops before any overlay write
-// leaves the tree as it found it. A moved link is put back with the very text it
-// had.
+// Whether a layout link's target is missing, read from the folder the link sits
+// in as the operating system reads it. A link whose own folder is not there yet
+// is left to apply, since a link above it decides where that folder lands.
+function isLayoutTargetMissing(root, link) {
+  const folder = path.dirname(path.resolve(root, link.path));
+  if (!fs.existsSync(folder)) return false;
+  return !fs.existsSync(path.resolve(canonicalPath(folder), link.target));
+}
+
+// A layout link with entries at or below it that apply cannot write through as
+// planned. One whose target does not exist gives a write under it no folder to
+// land in. One the manifest points somewhere new would move only after the
+// entries are written, so they would land in its old target. Each is refused
+// while it is planned, so status and apply print it alike and nothing is
+// written. An entry whose own path is the link writes through it only when it
+// writes a folder there; a whole file written there is the link's target.
+function refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans) {
+  const root = ctx.root;
+  const fold = pathFold(root);
+  const manifestPath = shellPath(ctx.manifestPath);
+  const engineApply = nextEngine(root, 'apply').slice('Next: '.length);
+  const entriesUnder = (link, isFolderOnlyAtLink) => {
+    const key = fold(path.posix.normalize(link.path).replace(/\/+$/, ''));
+    return plans.map((plan) => plan.entry).filter((entry) => {
+      if (typeof entry.destination !== 'string') return false;
+      const destination = fold(path.posix.normalize(entry.destination).replace(/\/+$/, ''));
+      if (destination.startsWith(key + '/')) return true;
+      return destination === key && (!isFolderOnlyAtLink || entry.scope === 'directory' || entry.scope === 'skill-root');
+    });
+  };
+  const named = (entries) => (entries.length === 1
+    ? `overlay ${entries[0].id} writes`
+    : `overlays ${entries.map((entry) => entry.id).join(', ')} write`);
+  const pending = new Map(layout.missing.map((record) => [record.link, record]));
+  const refused = new Set();
+  for (const link of manifest.layoutLinks || []) {
+    if (!link || typeof link.path !== 'string' || typeof link.target !== 'string') continue;
+    const record = pending.get(link);
+    const linkPath = path.join(root, link.path);
+    let current = null;
+    try {
+      current = fs.readlinkSync(linkPath);
+    } catch {
+      current = null;
+    }
+    const isStanding = !record && current === link.target;
+    if ((!record && !isStanding) || (record && record.replacesOwned)) continue;
+    const missingUnder = isLayoutTargetMissing(root, link) ? entriesUnder(link, true) : [];
+    if (missingUnder.length > 0) {
+      layout.problems.push(withRemedy(
+        `${link.path} links to ${link.target}, which does not exist, and ${named(missingUnder)} under it`,
+        'a write under a link that resolves nowhere has no folder to land in, so apply writes nothing',
+        `Next: mkdir -p ${shellPath(path.resolve(path.dirname(path.resolve(linkPath)), link.target))}, ` +
+          `or point the layout link ${link.path} in ${manifestPath} at a folder that exists, then ${engineApply}`));
+      refused.add(record);
+    }
+    const movedUnder = record && record.isRetarget ? entriesUnder(link, false) : [];
+    if (movedUnder.length > 0) {
+      const ids = movedUnder.map((entry) => entry.id).join(', ');
+      const single = movedUnder.length === 1;
+      layout.problems.push(withRemedy(
+        `${link.path} moves from ${current} to ${link.target}, and ${named(movedUnder)} under it`,
+        `apply writes the entries under a link before it moves the link, so they would land in ${current}, ` +
+          `not ${link.target}`,
+        `Next: take ${single ? 'overlay' : 'overlays'} ${ids} out of ${manifestPath}, run ${ENGINE_COMMAND} apply from ` +
+          `${shellPath(root)} to move the link alone, then put ${single ? 'the entry' : 'the entries'} back and run apply again`));
+      refused.add(record);
+    }
+  }
+  layout.missing = layout.missing.filter((record) => !refused.has(record));
+  return layout;
+}
+
+// The manifest's layout links planned against the tree and the overlay plans,
+// with every refusal that keeps a link from being made, so status and apply
+// judge the links one way.
+function planLayout(ctx, manifest, state, plans) {
+  const layout = refuseLinksInsideOverlayWrites(ctx, planLayoutLinks(manifest, ctx.root, state), plans);
+  return refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans);
+}
+
+// Make the links above overlays, each with the folders it needs, and say how to
+// take every one back, so a run that stops before any overlay write leaves the
+// tree as it found it.
 function makeLinksFirst(root, records) {
   const made = [];
-  const restore = (linkPath, previousTarget) => {
-    if (previousTarget !== null && !pathExists(linkPath)) fs.symlinkSync(previousTarget, linkPath);
-  };
   const undo = () => {
-    for (const { linkPath, firstMadeFolder, previousTarget } of made.reverse()) {
+    for (const { linkPath, firstMadeFolder } of made.reverse()) {
       fs.rmSync(linkPath, { force: true });
-      restore(linkPath, previousTarget);
       if (firstMadeFolder) fs.rmSync(firstMadeFolder, { recursive: true, force: true });
     }
   };
-  let pending = null;
   try {
     for (const record of records) {
       const linkPath = path.join(root, record.link.path);
-      const previousTarget = record.isRetarget ? fs.readlinkSync(linkPath) : null;
       let firstMadeFolder = null;
       for (let folder = path.dirname(linkPath); isWithin(root, folder) && folder !== path.resolve(root); folder = path.dirname(folder)) {
         if (pathExists(folder)) break;
         firstMadeFolder = folder;
       }
-      pending = { linkPath, previousTarget };
       applyLayoutLink(root, record.link, record.isRetarget, record.replacesOwned);
-      made.push({ linkPath, firstMadeFolder, previousTarget });
-      pending = null;
+      made.push({ linkPath, firstMadeFolder });
     }
   } catch (error) {
-    if (pending) restore(pending.linkPath, pending.previousTarget);
     undo();
     throw error;
   }
   return undo;
 }
 
-// Where a moved layout link used to send the entries under it. Their earlier
-// copies stay there, since that folder may be shared and apply never deletes a
-// file it cannot prove is its own; the state now tracks the new copies instead.
-function movedLinkNotes(manifest, root, movedLinks) {
-  const fold = pathFold(root);
-  const destinations = (manifest.overlays || [])
-    .filter((entry) => typeof entry.destination === 'string')
-    .map((entry) => path.posix.normalize(entry.destination).replace(/\/+$/, ''));
-  const notes = [];
-  for (const { record, previousTarget } of movedLinks) {
-    const key = path.posix.normalize(record.link.path).replace(/\/+$/, '');
-    const oldFolder = path.resolve(path.dirname(path.join(root, record.link.path)), previousTarget);
-    for (const destination of destinations) {
-      if (fold(destination) !== fold(key) && !fold(destination).startsWith(fold(key) + '/')) continue;
-      const oldPath = path.join(oldFolder, destination.slice(key.length));
-      if (!pathExists(oldPath)) continue;
-      const oldKey = isWithin(path.resolve(root), oldPath) ? toPosix(path.relative(path.resolve(root), oldPath)) : oldPath;
-      // A copy another entry still writes there is that entry's, not a leftover.
-      if (destinations.some((other) => fold(oldKey) === fold(other) || fold(oldKey).startsWith(fold(other) + '/'))) continue;
-      notes.push(`${record.link.path} now links to ${record.link.target}, and what apply wrote through it before stays at ` +
-        `${oldKey}, no longer tracked\n  Next: ${isDirectory(oldPath) ? 'rm -r' : 'rm'} ${shellPath(oldPath)}, once nothing ` +
-        'in the tree reads it');
-    }
-  }
-  return notes;
-}
-
-// Status cannot make a missing layout link or move one, so an entry under such
-// a link is judged where the link will send it: a write through a link that
-// then leads outside the tree is refused here as apply refuses it once the link
-// stands, rather than listed as work apply can do. Every path the entry owns is
-// judged, not only those it owes now, since an entry in sync through a link's
-// old target still writes all of them through the new one. Only that refusal is
-// judged ahead; a link whose own folder is not there yet is left to apply.
+// Status cannot make a missing layout link, so an entry under such a link is
+// judged where the link will send it: a write through a link that then leads
+// outside the tree is refused here as apply refuses it once the link stands,
+// rather than listed as work apply can do. Only that refusal is judged ahead; a
+// link whose own folder is not there yet is left to apply.
 function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
   const root = ctx.root;
   if (analysis.layout.problems.length > 0) return;
@@ -3411,10 +3454,7 @@ function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
       const landing = path.resolve(path.dirname(linkPath), record.link.target);
       if (!isWithin(absoluteRoot, landing)) continue;
       const writes = [
-        ...plan.outputs.map((output) => ({
-          filePath: path.resolve(output.filePath),
-          followLeaf: output.buffer !== null && output.symlinkTarget === undefined,
-        })),
+        ...plan.writes.map((write) => ({ filePath: path.resolve(write.filePath), followLeaf: write.symlinkTarget === undefined })),
         ...plan.deletes.map((filePath) => ({ filePath: path.resolve(filePath), followLeaf: false })),
       ];
       for (const { filePath, followLeaf } of writes) {
@@ -4312,7 +4352,7 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
       });
     }
   }
-  const layout = refuseLinksInsideOverlayWrites(ctx, planLayoutLinks(manifest, root, state), plans);
+  const layout = planLayout(ctx, manifest, state, plans);
   for (const record of layoutLinkRecords(layout, root)) records.push(record);
   return { plans, records, blocked, layout };
 }
@@ -4628,7 +4668,7 @@ function runCheck(ctx, manifest, state, plans) {
   const root = ctx.root;
   const problems = [];
   let misses = 0;
-  const layout = refuseLinksInsideOverlayWrites(ctx, planLayoutLinks(manifest, root, state), plans);
+  const layout = planLayout(ctx, manifest, state, plans);
   const layoutCount = (manifest.layoutLinks || []).length > 0 ? 1 : 0;
   for (const problem of layout.problems) problems.push(`layout: ${problem}`);
   for (const { link } of layout.missing) problems.push(`layout: ${link.path} is missing (link to ${link.target})`);
@@ -5049,6 +5089,13 @@ function isApplyBlocked(analysis) {
     analysis.blocked.length > 0 || analysis.layout.problems.length > 0;
 }
 
+// The close of an apply that a destination's own fix stops: the lines above
+// name each fix, and nothing was written.
+function printStoppedByDestination(ctx) {
+  console.log('  this apply wrote nothing: a destination above stops it before any write');
+  console.log('  Next: run the fix on each line above, then ' + nextEngine(ctx.root, 'apply').slice('Next: '.length));
+}
+
 // Print why an apply cannot run, and say whether it stops before any write.
 function reportApplyBlocked(ctx, analysis) {
   const blockers = analysis.records.filter((record) => BLOCKING_STATES.has(record.state));
@@ -5072,6 +5119,8 @@ function reportApplyBlocked(ctx, analysis) {
       console.log(`blocked=${analysis.blocked.length + (layoutProblems.length > 0 ? 1 : 0)} changed=0`);
       console.log('  this apply wrote nothing: a blocked overlay stops it before any write');
       console.log('  ' + nextEngine(ctx.root, 'apply') + ', after fixing each BLOCKED line above');
+    } else {
+      printStoppedByDestination(ctx);
     }
     return true;
   }
@@ -5102,8 +5151,6 @@ function applyUnderLock(ctx, manifest, options = {}) {
   const linkedFirst = analysis.layout.problems.length > 0 ? []
     : linksAboveOverlays(manifest, root, analysis.records.filter((record) => record.layout));
   if (linkedFirst.length === 0 && reportApplyBlocked(ctx, analysis)) return EXIT_CONFLICT;
-  const movedLinks = linkedFirst.filter((record) => record.isRetarget)
-    .map((record) => ({ record, previousTarget: fs.readlinkSync(path.join(root, record.link.path)) }));
   if (linkedFirst.length > 0) {
     const undoLinks = makeLinksFirst(root, linkedFirst);
     try {
@@ -5127,7 +5174,6 @@ function applyUnderLock(ctx, manifest, options = {}) {
   for (const record of linkedFirst) console.log('linked ' + record.key + ' -> ' + record.target);
   for (const plan of plansToApply) written += applyOnePlan(plan, root, ctx.overlayRoot, cacheNotices);
   for (const notice of cacheNotices) console.log(`NOTE     ${notice}`);
-  for (const note of movedLinkNotes(manifest, root, movedLinks)) console.log(`NOTE     ${note}`);
 
   // The links are restored before the regeneration steps run: a route resolving
   // skills through one of them reads nothing until the link exists.
@@ -5385,6 +5431,7 @@ function captureUnderLock(ctx, manifest, inputPath) {
     for (const problem of (classified.plan && classified.plan.problems) || []) {
       console.log(`BLOCKED  ${classified.plan.entry.id}: ${problem}`);
     }
+    printStoppedByDestination(ctx);
     return EXIT_CONFLICT;
   }
   const live = fs.readFileSync(record.destinationPath);
