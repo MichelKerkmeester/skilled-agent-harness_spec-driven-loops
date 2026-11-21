@@ -3514,10 +3514,17 @@ function makeLinksFirst(root, records) {
 }
 
 // Status cannot make a missing layout link, so an entry under such a link is
-// judged where the link will send it: a write through a link that then leads
-// outside the tree is refused here as apply refuses it once the link stands,
-// rather than listed as work apply can do. Only that refusal is judged ahead; a
-// link whose own folder is not there yet is left to apply.
+// judged where the link will send it, the way apply judges it once the link
+// stands. A write through a link that then leads outside the tree is refused
+// first, as apply refuses it. Any other entry the safety pass let through is
+// planned again at the link's landing in the tree, against the bytes apply will
+// read there, with the state and the pin still read at the manifest path. Its
+// refusals name the manifest path; a clean plan there waits on the link, which
+// only apply can make. A remove-root row, and a landing plan that would read a
+// protected path, keep the plan made at the manifest path. A
+// landing that leads outside the tree is refused before anything there is read,
+// and one under another link not made yet is left as planned, since its bytes
+// cannot be read until that link stands.
 function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
   const root = ctx.root;
   if (analysis.layout.problems.length > 0) return;
@@ -3526,30 +3533,103 @@ function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
   const engineLinks = engineMadeLinks(manifest, state);
   const fold = pathFold(root);
   const absoluteRoot = path.resolve(root);
+  const { exact, refused } = assertSafeToPlan(ctx, manifest);
+  const recordedLinks = unnamedRecordedLinks(manifest, state);
+  const upstreamBytes = pinnedUpstreamBytes(manifest);
   for (let index = 0; index < analysis.plans.length; index += 1) {
     const plan = analysis.plans[index];
-    if (plan.problems.length > 0) continue;
     let found = null;
-    for (const record of pending) {
-      const linkPath = path.resolve(root, record.link.path);
-      const landing = path.resolve(path.dirname(linkPath), record.link.target);
-      if (!isWithin(absoluteRoot, landing)) continue;
-      const writes = [
-        ...plan.writes.map((write) => ({ filePath: path.resolve(write.filePath), followLeaf: write.symlinkTarget === undefined })),
-        ...plan.deletes.map((filePath) => ({ filePath: path.resolve(filePath), followLeaf: false })),
-      ];
-      for (const { filePath, followLeaf } of writes) {
-        if (!isWithin(fold(linkPath), fold(filePath))) continue;
-        found = linkLeavingTree(root, path.join(landing, filePath.slice(linkPath.length)), { followLeaf, engineLinks });
+    if (plan.problems.length === 0) {
+      for (const record of pending) {
+        const linkPath = path.resolve(root, record.link.path);
+        const landing = path.resolve(path.dirname(linkPath), record.link.target);
+        if (!isWithin(absoluteRoot, landing)) continue;
+        const writes = [
+          ...plan.writes.map((write) => ({ filePath: path.resolve(write.filePath), followLeaf: write.symlinkTarget === undefined })),
+          ...plan.deletes.map((filePath) => ({ filePath: path.resolve(filePath), followLeaf: false })),
+        ];
+        for (const { filePath, followLeaf } of writes) {
+          if (!isWithin(fold(linkPath), fold(filePath))) continue;
+          found = linkLeavingTree(root, path.join(landing, filePath.slice(linkPath.length)), { followLeaf, engineLinks });
+          if (found) break;
+        }
         if (found) break;
       }
-      if (found) break;
     }
-    if (!found) continue;
-    analysis.plans[index] = refusedPlan(plan.entry, linkLeavingTreeProblem(plan.entry, found, root));
-    analysis.blocked.push(analysis.plans[index]);
+    let judged = null;
+    if (found) {
+      judged = refusedPlan(plan.entry, linkLeavingTreeProblem(plan.entry, found, root));
+    } else if (!refused.has(plan.entry.id)) {
+      judged = planAtLanding(ctx, plan, pending, { state, exact, recordedLinks, engineLinks, upstreamBytes });
+    }
+    if (!judged) continue;
+    analysis.plans[index] = judged;
+    analysis.blocked = analysis.blocked.filter((blocked) => blocked !== plan);
     analysis.records = analysis.records.filter((record) => record.plan !== plan);
+    if (judged.problems.length > 0) analysis.blocked.push(judged);
   }
+}
+
+// Plan one entry at the landing of the missing layout link above it, or say
+// null when its plan stands as made. Its keys stay at the manifest path: the
+// state and the pin are read there, the problems name the manifest path, and
+// the plan returned writes nothing, since status has no link to write through.
+// A plan apply could carry out waits on the link instead.
+function planAtLanding(ctx, plan, pending, { state, exact, recordedLinks, engineLinks, upstreamBytes }) {
+  const root = ctx.root;
+  const { entry } = plan;
+  if (typeof entry.destination !== 'string' || entry.scope === 'remove-root') return null;
+  const fold = pathFold(root);
+  const absoluteRoot = path.resolve(root);
+  const destination = path.posix.normalize(entry.destination).replace(/\/+$/, '');
+  const record = pending.find((candidate) => {
+    const key = fold(path.posix.normalize(candidate.link.path).replace(/\/+$/, ''));
+    return fold(destination) === key || fold(destination).startsWith(key + '/');
+  });
+  if (!record) return null;
+  const linkPath = path.resolve(root, record.link.path);
+  const landing = path.resolve(path.dirname(linkPath), record.link.target);
+  if (!isWithin(absoluteRoot, landing) || landing === absoluteRoot) return null;
+  if (pending.some((other) => isWithin(fold(path.resolve(root, other.link.path)), fold(landing)))) return null;
+  const linkKey = relativeKey(root, linkPath);
+  const landingKey = relativeKey(root, landing);
+  const under = (key, prefix) => fold(key) === fold(prefix) || fold(key).startsWith(fold(prefix) + '/');
+  const swap = (key, from, to) => (under(key, from) ? to + key.slice(from.length) : key);
+  const landingDestination = swap(destination, linkKey, landingKey);
+  const toManifestPath = (filePath) => {
+    const resolved = path.resolve(filePath);
+    return isWithin(landing, resolved) ? path.join(linkPath, resolved.slice(landing.length)) : resolved;
+  };
+  const leaves = linkLeavingTree(root, path.join(root, landingDestination), { followLeaf: true, engineLinks });
+  if (leaves) return refusedPlan(entry, linkLeavingTreeProblem(entry, leaves, root));
+
+  // Apply looks each hash up at the manifest path, so a hash recorded at the
+  // landing itself is not one this entry sees.
+  const recorded = state.files instanceof Map ? [...state.files] : Object.entries(state.files || {});
+  const accepted = new Map(recorded.filter(([key]) => !under(key, landingKey)));
+  for (const [key, value] of recorded) {
+    if (under(key, linkKey)) accepted.set(swap(key, linkKey, landingKey), value);
+  }
+  const landed = planOverlay({ ...entry, destination: landingDestination }, ctx, {
+    acceptedSha256: accepted,
+    recordedLinks,
+    engineLinks,
+    recordedItems: (state.items || {})[entry.destination] || [],
+    recordedSets: (state.sets || {})[entry.destination] || [],
+    recordedKeys: (state.keys || {})[entry.destination] || [],
+    upstreamBytes: upstreamBytes ? (key) => upstreamBytes(swap(key, landingKey, linkKey)) : null,
+  });
+  if (landed.outputs.some((output) => [output.filePath, output.sourcePath]
+    .some((filePath) => filePath && isProtectedReadPath(toManifestPath(filePath), exact)))) return null;
+  if (landed.problems.length > 0) {
+    const problems = landed.problems.map((problem) => problem.split(landingDestination).join(entry.destination));
+    return { entry, problems, writes: [], deletes: [], outputs: [] };
+  }
+  if (plan.problems.length === 0) return null;
+  return refusedPlan(entry, withRemedy(
+    `${entry.destination} waits on the layout link ${linkKey}, which apply makes before it writes the entry`,
+    `${linkKey} is not there yet, so ${entry.destination} was judged at ${landingDestination}, where the link leads, and nothing there stops apply`,
+    nextEngine(root, 'apply')));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

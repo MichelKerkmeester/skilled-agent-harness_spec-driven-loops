@@ -640,6 +640,62 @@ test('status refuses a write through a missing layout link whose target leads ou
   assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
 });
 
+// A pinned entry under a missing layout link is judged against the bytes its
+// target holds, which are the bytes apply reads once it makes the link, so
+// status never sends to a rebase an entry apply then writes, nor lists as work
+// one apply then refuses. Every line keeps the manifest path, not the target's.
+function pinnedUnderMissingLink(t, landing) {
+  const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up/tool.md', pinnedSha256 }], [{ path: 'up', target: 'target' }]);
+  if (landing !== null) writeFile(fixture.tree, 'target/tool.md', landing);
+  return fixture;
+}
+
+test('status sends a pinned entry under a missing layout link to apply when the target holds the pinned bytes, and apply ends in sync', (t) => {
+  const fixture = pinnedUnderMissingLink(t, 'upstream tool\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.equal(status.output.includes('upstream removed'), false, status.output);
+  assert.match(status.output, /^MISS {5}tool: up\/tool\.md waits on the layout link up, which apply makes before it writes the entry$/m, status.output);
+  assert.match(status.output, /^ {2}up is not there yet, so up\/tool\.md was judged at target\/tool\.md, where the link leads, and nothing there stops apply$/m,
+    status.output);
+  assert.match(status.output, /^ {2}Next: from .*: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs apply$/m, status.output);
+  assert.equal(/^MISS .*target\/tool\.md/m.test(status.output), false, status.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  const json = JSON.parse(fixture.run(['status', '--json']).output);
+  assert.equal(json.check.problems.some((problem) => problem.startsWith('tool: up/tool.md waits on the layout link up')), true, JSON.stringify(json.check));
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool.md'), 'utf8'), 'tool file\n');
+  const after = fixture.run(['status']);
+  assert.equal(after.code, 0, after.output);
+  assert.match(after.output, /^in-sync=1 /m, after.output);
+});
+
+test('status and apply refuse a pinned entry under a missing layout link alike when the target lacks the file', (t) => {
+  const fixture = pinnedUnderMissingLink(t, null);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: upstream removed up\/tool\.md; rebase the overlay$/m, status.output);
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, /^BLOCKED {2}tool: upstream removed up\/tool\.md; rebase the overlay$/m, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+});
+
+test('status and apply refuse a pinned entry under a missing layout link alike when the target holds other bytes', (t) => {
+  const fixture = pinnedUnderMissingLink(t, 'someone else\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: upstream changed up\/tool\.md; rebase the overlay$/m, status.output);
+  assert.equal(status.output.includes('upstream removed'), false, status.output);
+  assert.equal(/target\/tool\.md/.test(status.output), false, status.output);
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, /^BLOCKED {2}tool: upstream changed up\/tool\.md; rebase the overlay$/m, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool.md'), 'utf8'), 'someone else\n');
+});
+
 // A missing layout link inside another one whose target leads outside the tree
 // is refused while the manifest is planned, before any link is made. The
 // refusal names the link that leads out, which is the one to move aside.
