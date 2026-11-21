@@ -19,6 +19,7 @@ import {
   readFileSync,
   realpathSync,
   rmSync,
+  statSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -701,5 +702,103 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
       });
       expect(receiptSandboxMode(packetDir, 'review-i1-g1')).toBe('workspace-write');
     });
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Dispatch Iteration Stdout Log
+// ───────────────────────────────────────────────────────────────────
+//
+// A single-executor child's stdout goes to a log beside the iteration, masked like a
+// fan-out lineage log, so a long stream neither crashes the dispatch nor leaks the
+// account ids and the author email a provider echoes into it.
+
+describe.skipIf(detectFromAncestry('cli-devin'))('dispatch-iteration stdout log', () => {
+  const tempDirs: string[] = [];
+
+  afterEach(() => {
+    for (const dir of tempDirs.splice(0)) {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  function dispatchDevin(childBody: string): { root: string; packet: string; stderr: string; status: number | null } {
+    const root = mkdtempSync(join(tmpdir(), 'dispatch-stdout-log-'));
+    tempDirs.push(root);
+    const repo = join(root, 'repo');
+    const binDir = join(root, 'bin');
+    const packet = join(repo, 'packet');
+    mkdirSync(binDir);
+    mkdirSync(join(repo, '.skilled', 'agents'), { recursive: true });
+    mkdirSync(packet);
+    writeFileSync(join(repo, '.skilled', 'agents', 'deep-research.md'), 'persona\n', 'utf8');
+    writeFileSync(join(root, 'prompt.md'), 'fixture prompt\n', 'utf8');
+    writeFileSync(join(root, 'state.jsonl'), '', 'utf8');
+    spawnSync('git', ['init', '-q', repo], { encoding: 'utf8' });
+    const shimPath = join(binDir, 'devin');
+    writeFileSync(
+      shimPath,
+      '#!/usr/bin/env node\n'
+        + "const fs = require('node:fs');\n"
+        + "if (process.argv[2] === '--version') { process.stdout.write('devin 0.0.0\\n'); process.exit(0); }\n"
+        + childBody
+        + 'process.exit(0);\n',
+      'utf8',
+    );
+    chmodSync(shimPath, 0o755);
+    const result = spawnSync(process.execPath, [
+      SCRIPT,
+      '--executor', 'cli-devin',
+      '--loop-type', 'research',
+      '--repo-root', repo,
+      '--prompt-file', join(root, 'prompt.md'),
+      '--state-log', join(root, 'state.jsonl'),
+      '--packet-dir', packet,
+      '--artifact-dir', packet,
+      '--iteration', '2',
+      '--generation', '1',
+      '--session-id', 's',
+      '--model', 'null',
+      '--reasoning-effort', 'null',
+      '--service-tier', 'null',
+      '--sandbox-mode', 'null',
+      '--timeout-seconds', '60',
+    ], {
+      cwd: repo,
+      encoding: 'utf8',
+      timeout: 60_000,
+      maxBuffer: 64 * 1024 * 1024,
+      env: {
+        PATH: `${binDir}:${process.env.PATH}`,
+        HOME: root,
+        TMPDIR: process.env.TMPDIR,
+      },
+    });
+    return { root, packet, stderr: result.stderr ?? '', status: result.status };
+  }
+
+  it('writes a stream past the old 10 MB cap to a masked log beside the iteration', () => {
+    const filler = JSON.stringify({ type: 'message', text: 'a line of model prose '.repeat(45) }) + '\n';
+    const run = dispatchDevin(
+      `const line = ${JSON.stringify(filler)};\n`
+        + 'for (let written = 0; written < 12 * 1024 * 1024; written += line.length) fs.writeSync(1, line);\n'
+        + `fs.writeSync(1, ${JSON.stringify(JSON.stringify({ type: 'init', session_id: 'abc-123', note: 'author@example.com' }) + '\n')});\n`,
+    );
+
+    const logPath = join(run.packet, 'iterations', 'iteration-002.out');
+    expect(run.status, run.stderr).toBe(0);
+    expect(readFileSync(join(run.root, 'state.jsonl'), 'utf8')).not.toContain('dispatch_failure');
+    const log = readFileSync(logPath, 'utf8');
+    expect(log.length).toBeGreaterThan(12 * 1024 * 1024);
+    expect(log).toContain('"session_id":"<redacted>"');
+    expect(log).toContain('<email>');
+    expect(log).not.toContain('author@example.com');
+  });
+
+  it('logs a silent child as an empty file, not a missing one', () => {
+    const run = dispatchDevin('');
+
+    expect(run.status, run.stderr).toBe(0);
+    expect(statSync(join(run.packet, 'iterations', 'iteration-002.out')).size).toBe(0);
   });
 });

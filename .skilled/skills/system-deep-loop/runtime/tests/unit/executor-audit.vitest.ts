@@ -3,7 +3,8 @@
 // ───────────────────────────────────────────────────────────────────
 import { describe, expect, it } from 'vitest';
 
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
@@ -28,6 +29,10 @@ import {
   writeFirstRecordExecutor,
 } from '../../lib/deep-loop/executor-audit.js';
 import type { ExecutorConfig } from '../../lib/deep-loop/executor-config.js';
+
+const { sumProviderCostFromLog } = createRequire(import.meta.url)('../../scripts/fanout-salvage.cjs') as {
+  sumProviderCostFromLog: (stdout: string) => number | null;
+};
 
 /**
  * Creates a temporary state log with initial content for executor-audit tests.
@@ -758,6 +763,75 @@ describe('executor-audit', () => {
         iteration: 10,
         executorUnavailable: true,
         matchedMarker: 'resource_exhausted',
+      });
+    });
+  });
+
+  // A child that writes the stream as many short lines, then its last lines, so a case
+  // can make the stream as long as it needs without one huge string in the child either.
+  function streamingChild(fillerBytes: number, lastLines: string[], exitCode: number): string[] {
+    const filler = JSON.stringify({ type: 'assistant', message: { content: [{ type: 'text', text: 'x'.repeat(1000) }] } });
+    return ['-e', [
+      "const fs = require('node:fs');",
+      `const line = ${JSON.stringify(filler + '\n')};`,
+      `for (let written = 0; written < ${fillerBytes}; written += line.length) fs.writeSync(1, line);`,
+      `fs.writeSync(1, ${JSON.stringify(lastLines.join('\n') + '\n')});`,
+      `process.exit(${exitCode});`,
+    ].join('\n')];
+  }
+
+  function auditedRun(stateLogPath: string, args: string[], extra: Record<string, unknown>): void {
+    runAuditedExecutorCommand({
+      command: process.execPath,
+      args,
+      cwd: tmpdir(),
+      timeoutSeconds: 60,
+      stateLogPath,
+      executor: cliClaudeExecutor(),
+      iteration: 4,
+      guardContext: {
+        env: { PATH: process.env.PATH, [CLI_DISPATCH_STACK_ENV]: '' },
+        ancestryCmdlines: [],
+        statePaths: [],
+      },
+      echoStdout: false,
+      ...extra,
+    });
+  }
+
+  it('runAuditedExecutorCommand logs a stream past the old 10 MB capture cap and still reads its cost', () => {
+    withTempStateLog('', (stateLogPath) => {
+      const logPath = join(dirname(stateLogPath), 'iterations', 'iteration-004.out');
+      const seen: string[] = [];
+      const finalLine = JSON.stringify({ type: 'result', subtype: 'success', total_cost_usd: 0.42 });
+      auditedRun(stateLogPath, streamingChild(12 * 1024 * 1024, [finalLine], 0), {
+        stdoutLogPath: logPath,
+        onStdout: (stdout: string) => { seen.push(stdout); },
+        completionCheck: (_exit: number, stdout: string) =>
+          (stdout.trimEnd().split('\n').at(-1) === finalLine ? null : 'no result event'),
+      });
+
+      expect(readFileSync(stateLogPath, 'utf8')).toBe('');
+      expect(statSync(logPath).size).toBeGreaterThan(12 * 1024 * 1024);
+      expect(seen).toHaveLength(1);
+      expect(sumProviderCostFromLog(seen[0])).toBe(0.42);
+    });
+  });
+
+  // Past the read bound the checks see only the stream's end, which is where a CLI
+  // reports the refusal that ended the run.
+  it('runAuditedExecutorCommand classifies an unavailable marker found only at the end of a long stream', () => {
+    withTempStateLog('', (stateLogPath) => {
+      auditedRun(stateLogPath, streamingChild(24 * 1024 * 1024, [
+        JSON.stringify({ type: 'error', message: 'rate limit reached for this account' }),
+      ], 1), {});
+
+      const row = JSON.parse(readFileSync(stateLogPath, 'utf8').trimEnd().split('\n').at(-1) ?? '');
+      expect(row).toMatchObject({
+        event: 'dispatch_failure',
+        detail: 'executor exited with status 1',
+        executorUnavailable: true,
+        matchedMarker: 'rate limit',
       });
     });
   });

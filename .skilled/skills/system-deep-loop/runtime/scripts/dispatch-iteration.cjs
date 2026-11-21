@@ -101,10 +101,12 @@ const {
 } = require('../lib/deep-loop/write-containment.ts');
 const {
   buildLineageCommand,
+  rotateLineageLog,
   sweepStaleDshHomes,
   validateClaudeConfigDir,
   validateDshCompletion,
   withAgentPersona,
+  writeRedactedLineageLog,
 } = require('./fanout-run.cjs');
 const { sumProviderCostFromLog } = require('./fanout-salvage.cjs');
 
@@ -354,6 +356,27 @@ function reportWriteContainment({
   }
 }
 
+// An iteration's own files share one numbered stem under iterations/.
+function iterationFilePath(artifactDir, iteration, suffix) {
+  return path.join(artifactDir, 'iterations', `iteration-${String(iteration).padStart(3, '0')}${suffix}`);
+}
+
+// The child's stdout lands beside the iteration, named like a fan-out lineage log. An
+// earlier attempt's log is kept under the next free number, since it may be the only
+// record of why that attempt failed. The artifact directory is committed and a provider
+// echoes account ids and the author's email into the stream, so the log is masked once
+// the runner's own reads of the raw text are done, even when one of them threw.
+function runWithStdoutLog(dispatch, artifactDir, iteration) {
+  const stdoutLogPath = iterationFilePath(artifactDir, iteration, '.out');
+  fs.mkdirSync(path.dirname(stdoutLogPath), { recursive: true });
+  rotateLineageLog(stdoutLogPath);
+  try {
+    return runAuditedExecutorCommand({ ...dispatch, stdoutLogPath });
+  } finally {
+    if (fs.existsSync(stdoutLogPath)) writeRedactedLineageLog(stdoutLogPath, stdoutLogPath);
+  }
+}
+
 function dispatchWithContainment({
   dispatch,
   repoRoot,
@@ -364,7 +387,7 @@ function dispatchWithContainment({
   label,
 }) {
   const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
-  const dispatchExit = runAuditedExecutorCommand(dispatch);
+  const dispatchExit = runWithStdoutLog(dispatch, artifactDir, iteration);
   reportWriteContainment({
     preDispatchDirtyPaths,
     repoRoot,
@@ -405,11 +428,7 @@ function buildClaudeDispatch(context) {
     resolvedPermission,
     { env: parentEnv, cwd: context.repoRoot },
   );
-  const costPath = path.join(
-    context.artifactDir,
-    'iterations',
-    `iteration-${String(context.iteration).padStart(3, '0')}.cost.json`,
-  );
+  const costPath = iterationFilePath(context.artifactDir, context.iteration, '.cost.json');
   return {
     command,
     args,
@@ -575,7 +594,7 @@ function runDeepseekHarness(context) {
   const dshHome = fs.mkdtempSync(path.join(os.tmpdir(), 'dsh-home-'));
   let dispatchExit;
   try {
-    dispatchExit = runAuditedExecutorCommand({
+    dispatchExit = runWithStdoutLog({
       command,
       args,
       cwd,
@@ -599,7 +618,7 @@ function runDeepseekHarness(context) {
       // and stderr are judged as well as its exit code.
       completionCheck: validateDshCompletion,
       echoStdout: false,
-    });
+    }, artifactDir, context.iteration);
   } finally {
     fs.rmSync(dshHome, { recursive: true, force: true });
   }
@@ -762,7 +781,7 @@ function stageAndDispatchReviewOpencode(context, eventDir) {
   // The caller reports containment after the staged-event drain: the gateway rewrites
   // the state log from its ledger, so a row appended before the drain is lost.
   const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
-  const dispatchExit = runAuditedExecutorCommand(dispatch);
+  const dispatchExit = runWithStdoutLog(dispatch, artifactDir, context.iteration);
   return { dispatchExit, preDispatchDirtyPaths, repoRoot, artifactDir };
 }
 

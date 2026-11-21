@@ -6,7 +6,20 @@
 
 import { randomBytes } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import {
+  closeSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  openSync,
+  readFileSync,
+  readSync,
+  readdirSync,
+  renameSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -264,6 +277,10 @@ type RunAuditedExecutorCommandInput = {
   // Receives the child's captured stdout once a spawned child settles, whatever its exit,
   // so a caller can record what the stream reports, such as its cost, without echoing it.
   onStdout?: (stdout: string) => void;
+  // Where the synchronous runner writes the child's stdout. The file is the only copy of
+  // the stream, so a caller that keeps it names the path; without one the runner uses a
+  // temporary file it removes once the stream has been read.
+  stdoutLogPath?: string;
 };
 
 // ───────────────────────────────────────────────────────────────────
@@ -1430,6 +1447,50 @@ function assertDispatchEnvAllowed(input: RunAuditedExecutorCommandInput): void {
   }
 }
 
+// The checks after a dispatch read at most this much of the end of the stdout file, so a
+// stream of any length is judged without holding all of it. A stream up to this size is
+// read whole, exactly as an in-memory capture would have held it.
+const STDOUT_READ_BYTES = 20 * 1024 * 1024;
+
+// Returns the file whole when it fits the read bound, else its tail from the first line
+// boundary past the cut, so no partial line or split character reaches a parser.
+function readStdoutTail(filePath: string, size: number): string {
+  if (size === 0) {
+    return '';
+  }
+  const length = Math.min(size, STDOUT_READ_BYTES);
+  const buffer = Buffer.alloc(length);
+  const fd = openSync(filePath, 'r');
+  try {
+    readSync(fd, buffer, 0, length, size - length);
+  } finally {
+    closeSync(fd);
+  }
+  if (length === size) {
+    return buffer.toString('utf8');
+  }
+  const firstNewline = buffer.indexOf(0x0a);
+  return firstNewline === -1 ? '' : buffer.subarray(firstNewline + 1).toString('utf8');
+}
+
+// Copies the stdout file to the terminal in chunks, so the echo is the whole stream
+// without the whole stream ever sitting in memory.
+function echoStdoutFile(filePath: string): void {
+  const fd = openSync(filePath, 'r');
+  try {
+    for (;;) {
+      const chunk = Buffer.alloc(1024 * 1024);
+      const bytesRead = readSync(fd, chunk, 0, chunk.length, null);
+      if (bytesRead === 0) {
+        break;
+      }
+      process.stdout.write(chunk.subarray(0, bytesRead));
+    }
+  } finally {
+    closeSync(fd);
+  }
+}
+
 /**
  * Run a non-native executor command synchronously and log dispatch failures.
  *
@@ -1462,31 +1523,50 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
   const timeoutMs = Number.isFinite(input.timeoutSeconds)
     ? Math.max(1000, Math.trunc(input.timeoutSeconds * 1000) - 1000)
     : 1000;
-  const result = spawnSync(input.command, input.args, {
-    cwd: input.cwd,
-    encoding: 'utf8',
-    timeout: timeoutMs,
-    env: { ...buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env), ...input.dispatchEnv },
-    maxBuffer: 10 * 1024 * 1024,
-    ...(typeof input.input === 'string' ? { input: input.input } : {}),
-  });
+  // The child writes its stdout straight to a file. An in-memory capture has a size cap,
+  // and a long stream-json run passed it, which killed the dispatch with ENOBUFS and lost
+  // the run's cost. The cap below now bounds stderr alone.
+  const tempStdoutDir = input.stdoutLogPath === undefined ? mkdtempSync(join(tmpdir(), 'executor-stdout-')) : null;
+  const stdoutLogPath = input.stdoutLogPath ?? join(tempStdoutDir as string, 'stdout.log');
+  let result: ReturnType<typeof spawnSync>;
+  let stdout: string;
+  try {
+    mkdirSync(dirname(stdoutLogPath), { recursive: true });
+    const stdoutFd = openSync(stdoutLogPath, 'w');
+    try {
+      result = spawnSync(input.command, input.args, {
+        cwd: input.cwd,
+        encoding: 'utf8',
+        timeout: timeoutMs,
+        env: { ...buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env), ...input.dispatchEnv },
+        stdio: ['pipe', stdoutFd, 'pipe'],
+        maxBuffer: 10 * 1024 * 1024,
+        ...(typeof input.input === 'string' ? { input: input.input } : {}),
+      });
+    } finally {
+      closeSync(stdoutFd);
+    }
 
-  if (input.echoStdout === false) {
-    // The child still produced the stream the checks below read. Only the terminal copy
-    // is skipped, so a caller can log its size without replaying every event. An empty
-    // stream still logs its size, so a silent child reads as 0 bytes, not as no line.
-    const stdoutBytes = typeof result.stdout === 'string' ? Buffer.byteLength(result.stdout) : 0;
-    process.stderr.write(`[executor-audit] child stdout ${stdoutBytes} bytes, not echoed\n`);
-  } else if (typeof result.stdout === 'string' && result.stdout.length > 0) {
-    process.stdout.write(result.stdout);
+    const stdoutBytes = statSync(stdoutLogPath).size;
+    stdout = readStdoutTail(stdoutLogPath, stdoutBytes);
+    if (input.echoStdout === false) {
+      // Only the terminal copy is skipped, so a caller can log the stream's size without
+      // replaying every event. An empty stream still logs its size, so a silent child
+      // reads as 0 bytes, not as no line.
+      process.stderr.write(`[executor-audit] child stdout ${stdoutBytes} bytes, not echoed\n`);
+    } else if (stdoutBytes > 0) {
+      echoStdoutFile(stdoutLogPath);
+    }
+  } finally {
+    if (tempStdoutDir !== null) {
+      rmSync(tempStdoutDir, { recursive: true, force: true });
+    }
   }
-  if (typeof result.stderr === 'string' && result.stderr.length > 0) {
-    process.stderr.write(result.stderr);
+  const stderr = typeof result.stderr === 'string' ? result.stderr : '';
+  if (stderr.length > 0) {
+    process.stderr.write(stderr);
   }
-  const unavailableMarker = classifyExecutorUnavailable(
-    typeof result.stdout === 'string' ? result.stdout : '',
-    typeof result.stderr === 'string' ? result.stderr : '',
-  );
+  const unavailableMarker = classifyExecutorUnavailable(stdout, stderr);
 
   // Post-dispatch COMPLETION countersign: bind the INTENT to the child facts the
   // wrapper observed (pid / exit / signal). Written before failure classification
@@ -1500,7 +1580,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
     });
   }
 
-  input.onStdout?.(typeof result.stdout === 'string' ? result.stdout : '');
+  input.onStdout?.(stdout);
 
   if (result.error) {
     const isTimeoutError =
@@ -1550,11 +1630,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
   // Some CLIs exit 0 after a failure they report only in their output, such as a
   // plugin that did not load, so the caller's check reads what the child printed.
   if (input.completionCheck && result.status === 0) {
-    const completionFailure = input.completionCheck(
-      result.status,
-      typeof result.stdout === 'string' ? result.stdout : '',
-      typeof result.stderr === 'string' ? result.stderr : '',
-    );
+    const completionFailure = input.completionCheck(result.status, stdout, stderr);
     if (completionFailure !== null) {
       emitDispatchFailure(
         input.stateLogPath,
@@ -1578,7 +1654,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
   // model is skipped, never a false loud failure.
   if (process.env.SPECKIT_PROVENANCE_CHECK === '1') {
     const requestedModel = input.executor.model;
-    const actualModel = extractActualModel(typeof result.stdout === 'string' ? result.stdout : '', getExecutorKind(input.executor));
+    const actualModel = extractActualModel(stdout, getExecutorKind(input.executor));
     if (
       actualModel !== null &&
       typeof requestedModel === 'string' &&

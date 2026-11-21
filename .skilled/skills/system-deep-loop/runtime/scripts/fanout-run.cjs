@@ -5962,6 +5962,8 @@ module.exports = {
   expansiveLineageBudgets,
   flagLineageBudgets,
   redactProviderText,
+  rotateLineageLog,
+  writeRedactedLineageLog,
   rerunCommandFor,
   expansiveLineageBudgetNotes,
   runLineageProcess,

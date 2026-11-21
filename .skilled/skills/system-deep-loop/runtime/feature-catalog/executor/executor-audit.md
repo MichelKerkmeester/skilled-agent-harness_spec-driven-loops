@@ -7,7 +7,7 @@ trigger_phrases:
   - "audit executor"
   - "recursion guard"
   - "dispatch-failure emission"
-version: 1.4.0.4
+version: 1.4.1.0
 ---
 
 # Executor audit
@@ -25,6 +25,8 @@ This feature belongs to the executor group and is catalogued as F002 in the `run
 ## 2. HOW IT WORKS
 
 Recursion guard, executor audit record writing, dispatch-failure emission, and audited command spawning.
+
+The synchronous runner sends the child's stdout to a file, never to a memory buffer, so a long stream-json run cannot fail with `ENOBUFS`. A caller names the file with `stdoutLogPath`; without one the runner uses a temporary file and removes it. The checks that follow, `onStdout`, `completionCheck`, the unavailable-marker scan and the opt-in model check, read the whole file up to 20 MB and its last 20 MB past that, cut at a line boundary. The terminal echo copies the file in chunks. The 10 MB `maxBuffer` now bounds stderr only. `dispatch-iteration.cjs` points the file at `iterations/iteration-NNN.out` and masks it with the fan-out lineage-log redactor after the run.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
