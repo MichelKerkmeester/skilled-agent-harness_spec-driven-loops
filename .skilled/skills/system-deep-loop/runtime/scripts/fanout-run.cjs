@@ -1570,7 +1570,9 @@ function redactTerminalLineageLogs(lineageDir) {
 // session ids, and console links that carry them. The failure message reaches the
 // ledger, the summary, the observability log and stdout, all of which can be committed,
 // so those parts are masked here while the error type, status and retry-after stay.
-const PROVIDER_ID_FIELD_PATTERN = /("(?:workspace|workspace_?id|session_?id|org|org_?id|organization_?id|account_?id|user_?id|email)"\s*:\s*)"[^"]*"/gi;
+// Claude's stream-json also stamps every event with a message uuid and a request id; no
+// reader of a settled log keys on either, so they are masked like the session id.
+const PROVIDER_ID_FIELD_PATTERN = /("(?:workspace|workspace_?id|session_?id|org|org_?id|organization_?id|account_?id|user_?id|email|uuid|request_?id)"\s*:\s*)"[^"]*"/gi;
 const PROVIDER_ID_TOKEN_PATTERN = /\b(?:wrk|ws|org|acct|ses|usr|user|proj|key|sk)_[A-Za-z0-9]{6,}\b/g;
 const PROVIDER_URL_PATTERN = /\bhttps?:\/\/[^\s"'\\<>)]+/gi;
 const PROVIDER_EMAIL_PATTERN = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/y;

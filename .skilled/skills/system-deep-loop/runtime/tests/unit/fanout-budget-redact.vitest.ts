@@ -108,6 +108,19 @@ describe('fanout-run.cjs — lineage log masking', () => {
     expect(masked).toContain('<email>');
   });
 
+  it('masks the message and request ids a Claude stream-json line carries, and the line still parses', () => {
+    const line = '{"type":"assistant","timestamp":"2026-11-20T10:00:00Z","message":{"content":[]},'
+      + '"request_id":"req_011ChGJKzYqfFAKE","session_id":"7f1c2d3e-0000-4000-8000-00000000abcd",'
+      + '"uuid":"9cad4c26-6e3a-4b1c-9d2e-00000000fake","error":{"requestId":"req_011ChGJYcnGTFAKE"}}';
+    const masked = runner.redactProviderText(line);
+    for (const id of ['req_011ChGJKzYqfFAKE', '9cad4c26-6e3a-4b1c-9d2e-00000000fake', 'req_011ChGJYcnGTFAKE']) {
+      expect(masked).not.toContain(id);
+    }
+    const parsed = JSON.parse(masked);
+    expect(parsed).toMatchObject({ type: 'assistant', timestamp: '2026-11-20T10:00:00Z', uuid: '<redacted>', request_id: '<redacted>' });
+    expect(parsed.error.requestId).toBe('<redacted>');
+  });
+
   it('leaves text with no secrets unchanged and is stable when applied twice', () => {
     const plain = '{"type":"step_finish","part":{"cost":0.2,"tool":"read","state":{"input":{"filePath":"a.ts"}}}}\n';
     expect(runner.redactProviderText(plain)).toBe(plain);
