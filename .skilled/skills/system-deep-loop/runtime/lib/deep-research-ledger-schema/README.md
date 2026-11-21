@@ -36,7 +36,7 @@ Callers should use the exported API in `index.ts`. Filesystem, ledger and workfl
 | Public API | `index.ts` |
 | Primary implementation | `deep-research-ledger-schema.ts` |
 
-The barrel re-exports the lane's supported types, constants, parsers and runtime helpers. Event definitions, payload builders and schema guards. Direct imports from implementation files bypass the lane contract and should remain limited to internal composition and focused tests.
+The barrel re-exports the lane's supported types, constants, parsers and runtime helpers. `createDeepResearchEventRegistry` builds the event-type registry for every lane stem, and `prepareDeepResearchEvent` turns an event input into a write preflight checked against that registry. `legacy-compatibility.ts` adds `decideDeepResearchCompatibility` and `upcastLegacyDeepResearchRecord` for older record shapes. Direct imports from implementation files bypass the lane contract and should remain limited to internal composition and focused tests.
 
 ---
 
