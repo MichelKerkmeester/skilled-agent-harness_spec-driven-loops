@@ -448,6 +448,45 @@ test('the backup takes the Python cache under an owned folder a file entry now r
   assert.ok(backedUp.includes(cache), backedUp.join('\n'));
 });
 
+for (const [direction, before, after, cache] of [
+  ['folder becomes a file', { 'vendor/keep/sub/x.md': 'sub x\n' }, { 'vendor/keep/sub': 'now a file\n' },
+    '.skilled/vendor/keep/sub/__pycache__/x.cpython-39.pyc'],
+  ['file becomes a folder', { 'vendor/keep/sub': 'a file\n' }, { 'vendor/keep/sub/x.md': 'sub x\n' }, null],
+]) {
+  test(`a re-pin replaces a skill-root subfolder whose ${direction}, and the rollback puts the old shape back`, (t) => {
+    const fixture = createRepinFixture(t);
+    const { tree, overlayDir } = fixture;
+    for (const [relativePath, value] of Object.entries(before)) writeFile(overlayDir, relativePath, value);
+    fixture.manifest.overlays.push({
+      id: 'vendor', scope: 'skill-root', source: 'vendor', destination: '.skilled/vendor',
+      replace: ['keep'], remove: [], retained: [],
+    });
+    writeManifest(fixture);
+    assert.equal(fixture.run(['apply']).code, 0);
+    const cacheBytes = Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0x04]);
+    if (cache) writeFile(tree, cache, cacheBytes);
+    fs.rmSync(path.join(overlayDir, 'vendor/keep/sub'), { recursive: true });
+    for (const [relativePath, value] of Object.entries(after)) writeFile(overlayDir, relativePath, value);
+
+    const result = fixture.repin();
+    assert.equal(result.code, 0, result.output);
+    for (const [relativePath, value] of Object.entries(after)) {
+      assert.equal(fs.readFileSync(path.join(tree, '.skilled', relativePath), 'utf8'), value);
+    }
+    const runId = fs.readdirSync(fixture.runsDir)[0];
+    if (cache) {
+      const backedUp = readJson(path.join(fixture.runsDir, runId, 'backup.json')).entries.map((entry) => entry.path);
+      assert.ok(backedUp.includes(cache), backedUp.join('\n'));
+    }
+    const rolledBack = fixture.run(['repin', '--rollback', runId]);
+    assert.equal(rolledBack.code, 0, rolledBack.output);
+    for (const [relativePath, value] of Object.entries(before)) {
+      assert.equal(fs.readFileSync(path.join(tree, '.skilled', relativePath), 'utf8'), value);
+    }
+    if (cache) assert.deepEqual(fs.readFileSync(path.join(tree, cache)), cacheBytes);
+  });
+}
+
 test('--rollback refuses a backed-up file whose bytes no longer match the recorded hash', (t) => {
   const fixture = createRepinFixture(t);
   const result = fixture.repin();

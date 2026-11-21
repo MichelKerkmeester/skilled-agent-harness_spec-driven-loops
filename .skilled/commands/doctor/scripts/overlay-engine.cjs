@@ -2581,7 +2581,7 @@ function keptRetainedPaths(entry, sourceDir) {
  * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
  * @returns {{writes: object[], deletes: string[], outputs: object[]}}
  */
-function planSkillRootOverlay(entry, ctx, problems) {
+function planSkillRootOverlay(entry, ctx, problems, acceptedSha256, { recordedLinks } = {}) {
   const sourceDir = path.join(ctx.overlayRoot, entry.source);
   const destinationDir = path.join(ctx.root, entry.destination);
   if (!isDirectory(sourceDir)) {
@@ -2623,6 +2623,26 @@ function planSkillRootOverlay(entry, ctx, problems) {
       return { writes: [], deletes: [], outputs: [] };
     }
   }
+  // A replace path whose source changed shape since the last apply: the old
+  // shape goes before the write only when the state records it as the engine's
+  // own output. A folder it wrote that is now a file joins the replaced
+  // subtrees, so its files are this plan's deletes and the write clears the
+  // folder they leave behind.
+  const shapeChanged = [];
+  for (const rel of entry.replace.map(manifestFolderPath)) {
+    const destinationPath = path.join(destinationDir, rel);
+    const key = relativeKey(ctx.root, destinationPath);
+    const shape = destinationShape(destinationPath, key, acceptedSha256, recordedLinks);
+    const wantsFolder = replacedSubtrees.has(rel);
+    const inTheWay = wantsFolder ? shape.kind === 'file' || (shape.kind === 'link' && shape.isOwned) : shape.kind === 'folder';
+    if (!inTheWay) continue;
+    if (!shape.isOwned) {
+      problems.push(unownedShapeProblem(entry, key, shape.kind, wantsFolder ? 'folder' : 'file', ctx.root));
+      return { writes: [], deletes: [], outputs: [] };
+    }
+    if (!wantsFolder) shapeChanged.push(rel);
+  }
+
   const outputs = [];
   const keptPaths = keptRetainedPaths(entry, sourceDir);
   for (const [rel, wanted] of desired) {
@@ -2643,26 +2663,36 @@ function planSkillRootOverlay(entry, ctx, problems) {
   }
 
   const current = walkTree(destinationDir);
-  const removedPrefixes = [...manifestFolderPaths(entry.remove), ...replacedSubtrees];
+  const removedPrefixes = [...manifestFolderPaths(entry.remove), ...replacedSubtrees, ...shapeChanged];
   const matchesPrefix = (prefixes, rel) => prefixes.some((prefix) => rel === prefix || rel.startsWith(`${prefix}/`));
   const isRemoved = (rel) => matchesPrefix(removedPrefixes, rel);
   // A replaced subtree is the overlay's to capture into; only a path the entry
   // removes without also replacing is a removal the overlay performs.
   const isDeclaredRemoval = (rel) => matchesPrefix(manifestFolderPaths(entry.remove), rel) &&
     !matchesPrefix(entry.replace.map(manifestFolderPath), rel);
-  const isReplacedSubtree = (rel) => matchesPrefix([...replacedSubtrees], rel);
+  const isReplacedSubtree = (rel) => matchesPrefix([...replacedSubtrees, ...shapeChanged], rel);
 
+  // A folder where the source now ships a file or a link was the entry's own:
+  // its files are this plan's deletes, so the write clears what they leave behind.
+  const isLiveFolder = (filePath) => {
+    try {
+      return fs.lstatSync(filePath).isDirectory();
+    } catch {
+      return false;
+    }
+  };
   for (const [rel, wanted] of desired) {
     const destinationPath = path.join(destinationDir, rel);
     const existing = current.get(rel);
+    const replacesFolder = isLiveFolder(destinationPath);
     if (wanted.kind === 'symlink') {
       if (!existing || existing.kind !== 'symlink' || existing.target !== wanted.target) {
-        writes.push({ filePath: destinationPath, symlinkTarget: wanted.target });
+        writes.push({ filePath: destinationPath, symlinkTarget: wanted.target, ...(replacesFolder ? { replacesFolder } : {}) });
       }
       continue;
     }
     if (!existing || existing.kind !== 'file' || Buffer.compare(existing.buffer, wanted.buffer) !== 0) {
-      writes.push({ filePath: destinationPath, buffer: wanted.buffer, mode: wanted.mode });
+      writes.push({ filePath: destinationPath, buffer: wanted.buffer, mode: wanted.mode, ...(replacesFolder ? { replacesFolder } : {}) });
     }
   }
 
@@ -2810,7 +2840,7 @@ function applyOnePlan(plan, root, overlayRoot = null, notices = []) {
 }
 
 /**
- * Remove the folder a directory overlay now ships as a file or a link. The
+ * Remove the folder a directory or skill-root overlay now ships as a file or a link. The
  * plan's deletes have already taken every file the overlay put there, so only
  * empty folders and Python caches remain; anything else means the folder holds
  * work the plan never saw, and the write stops instead of removing it.
@@ -5531,9 +5561,9 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
   // Apply's prune takes a Python cache only together with a folder the entry no
   // longer ships, and no record names a cache. So the caches under such a folder
   // are backed up for a rollback to put back, by the same test the prune applies.
-  // That test also covers a folder a directory entry now ships as a file, which
-  // apply clears before the write. A folder a file entry replaces is its record
-  // key, so the engine paths above already take every cache below it.
+  // That test also covers a folder a directory or skill-root entry now ships as
+  // a file, which apply clears before the write. A folder a file entry replaces
+  // is its record key, so the engine paths above already take every cache below it.
   // Any other cache stays where it is, and copying it would only grow the backup.
   for (const entry of manifest.overlays || []) {
     if ((entry.scope !== 'directory' && entry.scope !== 'skill-root') || typeof entry.destination !== 'string') continue;

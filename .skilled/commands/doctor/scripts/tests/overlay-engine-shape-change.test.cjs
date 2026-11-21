@@ -212,3 +212,84 @@ test('an owned folder that also holds a project file is refused as a layout link
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool', 'project.md'), 'utf8'), 'project file\n');
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool', 'a.md'), 'utf8'), 'bundle a\n');
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. SKILL-ROOT REPLACE PATHS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A skill-root entry replaces the paths it lists, so a shape change under one
+// of them follows the same rule: its own old shape goes, anyone else's stays.
+function skillRootEntry(replace) {
+  return { id: 'vendor', scope: 'skill-root', source: 'vendor', destination: 'vendor', replace, remove: [], retained: [] };
+}
+
+function swapToFile(fixture, relativePath, value) {
+  fs.rmSync(path.join(fixture.overlayDir, relativePath), { recursive: true });
+  writeFile(fixture.overlayDir, relativePath, value);
+}
+
+function swapToFolder(fixture, relativePath, child, value) {
+  fs.rmSync(path.join(fixture.overlayDir, relativePath));
+  writeFile(fixture.overlayDir, path.join(relativePath, child), value);
+}
+
+test('a subfolder under a skill-root replace folder that becomes a file is replaced in one apply', (t) => {
+  const fixture = createShapeFixture(t, [skillRootEntry(['keep'])]);
+  writeFile(fixture.overlayDir, 'vendor/keep/sub/x.md', 'sub x\n');
+  applyOk(fixture);
+  swapToFile(fixture, 'vendor/keep/sub', 'now a file\n');
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'vendor', 'keep', 'sub'), 'utf8'), 'now a file\n');
+  assert.equal(applyOk(fixture).output.includes('EISDIR'), false);
+});
+
+test('a file under a skill-root replace folder that becomes a folder is replaced in one apply', (t) => {
+  const fixture = createShapeFixture(t, [skillRootEntry(['keep'])]);
+  writeFile(fixture.overlayDir, 'vendor/keep/sub', 'a file\n');
+  applyOk(fixture);
+  swapToFolder(fixture, 'vendor/keep/sub', 'x.md', 'sub x\n');
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'vendor', 'keep', 'sub', 'x.md'), 'utf8'), 'sub x\n');
+});
+
+test('a skill-root replace folder the engine wrote becomes the file the source now ships, in one apply', (t) => {
+  const fixture = createShapeFixture(t, [skillRootEntry(['keep/sub'])]);
+  writeFile(fixture.overlayDir, 'vendor/keep/sub/x.md', 'sub x\n');
+  applyOk(fixture);
+  swapToFile(fixture, 'vendor/keep/sub', 'now a file\n');
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'vendor', 'keep', 'sub'), 'utf8'), 'now a file\n');
+});
+
+test('a skill-root replace file the engine wrote becomes the folder the source now ships, in one apply', (t) => {
+  const fixture = createShapeFixture(t, [skillRootEntry(['keep/sub'])]);
+  writeFile(fixture.overlayDir, 'vendor/keep/sub', 'a file\n');
+  applyOk(fixture);
+  swapToFolder(fixture, 'vendor/keep/sub', 'x.md', 'sub x\n');
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'vendor', 'keep', 'sub', 'x.md'), 'utf8'), 'sub x\n');
+});
+
+test('an unowned folder where a skill-root replace path writes a file is refused, and its files stay', (t) => {
+  const fixture = createShapeFixture(t, [skillRootEntry(['keep/sub'])]);
+  writeFile(fixture.overlayDir, 'vendor/keep/sub', 'a file\n');
+  writeFile(fixture.tree, 'vendor/keep/sub/project.md', 'project file\n');
+  const result = fixture.run(['apply']);
+  assert.notEqual(result.code, 0, result.output);
+  const target = path.join(fixture.tree, 'vendor', 'keep', 'sub');
+  assert.match(result.output, /vendor\/keep\/sub is a folder that does not match what apply last wrote there/);
+  assert.ok(result.output.includes(`Next: mv ${target} ${target}.keep, then from ${fixture.tree}: node `), result.output);
+  assert.equal(fs.readFileSync(path.join(target, 'project.md'), 'utf8'), 'project file\n');
+});
+
+test('an unowned file where a skill-root replace path writes a folder is refused, and it stays', (t) => {
+  const fixture = createShapeFixture(t, [skillRootEntry(['keep/sub'])]);
+  writeFile(fixture.overlayDir, 'vendor/keep/sub/x.md', 'sub x\n');
+  writeFile(fixture.tree, 'vendor/keep/sub', 'project file\n');
+  const result = fixture.run(['apply']);
+  assert.notEqual(result.code, 0, result.output);
+  const target = path.join(fixture.tree, 'vendor', 'keep', 'sub');
+  assert.match(result.output, /vendor\/keep\/sub is a file that does not match what apply last wrote there/);
+  assert.ok(result.output.includes(`Next: mv ${target} ${target}.keep, then from ${fixture.tree}: node `), result.output);
+  assert.equal(fs.readFileSync(target, 'utf8'), 'project file\n');
+});
