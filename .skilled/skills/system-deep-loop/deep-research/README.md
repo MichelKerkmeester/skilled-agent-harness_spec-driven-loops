@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.28.0
+version: 1.14.29.0
 ---
 
 # deep-research
@@ -174,7 +174,7 @@ The node cap stays half the budget, which leaves room for at least two nodes pas
 
 ### Stop Reasons
 
-The workflow persists one `stopReason` value when the loop ends or pauses.
+The workflow persists one `stopReason` value when the loop ends or pauses. Synthesis keeps the reason the session's own last pass reached. A resumed run that then hits the cap records `maxIterationsReached`, even when the earlier session left a pause or recovery row in the state log.
 
 | Value | Meaning |
 |---|---|

@@ -610,13 +610,25 @@ describe('deep-review terminal stop reason', () => {
   });
 });
 
-// No research state row carries blockedStop, so the synthesis reason must take it
-// from the stop decision or the report records the run as converged.
+// Before closeout no research state row carries maxIterationsReached, converged,
+// blockedStop, maxDurationReached or manualStop, and a resumed run's log still
+// holds the earlier session's pause and recovery rows. The synthesis reason must
+// keep the stop this session bound, or the report names a stale or default reason.
 describe('deep-research synthesis stop reason', () => {
   const text = readFileSync(resolve(ASSETS, 'deep-research.yaml'), 'utf8');
+  const hydrate = (parseYaml(text) as any).workflow.phase_synthesis.steps.step_hydrate_summary_metrics;
+  const rule: string = hydrate.extract.find((entry: Record<string, string>) => 'reason' in entry).reason;
+  const sessionClause = rule.slice(0, rule.indexOf(String.raw`{state_paths.state_log}`));
 
-  it('keeps a blockedStop stop as the synthesis reason', () => {
-    const rule = text.split('\n').find((line) => line.trim().startsWith('- reason: "') && line.includes('synthesis/recovery stop reason')) ?? '';
-    expect(rule).toContain('ended the loop with decision STOP and reason blockedStop, use blockedStop');
+  it('keeps the stop reason this session bound, maxIterationsReached and blockedStop included', () => {
+    expect(sessionClause).toContain('left phase_loop for synthesis');
+    expect(sessionClause).toContain('maxIterationsReached');
+    expect(sessionClause).toContain('blockedStop');
+    expect(sessionClause).not.toContain('reason blockedStop, use blockedStop');
+  });
+
+  it('reads stop rows only after the latest resumed or run_extended row', () => {
+    const rowClause = rule.slice(sessionClause.length, rule.indexOf('On a fan-out root'));
+    expect(rowClause).toContain("after the latest 'resumed' or 'run_extended' row");
   });
 });
