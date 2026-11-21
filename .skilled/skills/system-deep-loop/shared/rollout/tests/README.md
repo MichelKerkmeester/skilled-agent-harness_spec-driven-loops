@@ -17,7 +17,7 @@ Test suite for `../resolve-injection-mode.cjs`. Pins the default `fallback` reso
 
 | File | Purpose |
 |------|---------|
-| `resolve-injection-mode.test.cjs` | Nine assertions run against temporary config files: default fallback with an empty mode map, string and evidence-bearing JSON overrides, and `SPECKIT_COMMAND_INJECTION_MODE` env override precedence. |
+| `resolve-injection-mode.test.cjs` | Twelve assertions run against temporary config files: default fallback with an empty mode map, string and evidence-bearing JSON overrides, `SPECKIT_COMMAND_INJECTION_MODE` env override precedence, fallback when the config file is missing, and a thrown error naming the path when the config is malformed JSON or not an object. |
 | `validate-rollout.test.cjs` | Validates the repaired rollout, a complete evidence-bearing `fix` entry and each missing evidence field, including the legacy string form. |
 
 ---
@@ -29,7 +29,7 @@ node .skilled/skills/system-deep-loop/shared/rollout/tests/resolve-injection-mod
 node .skilled/skills/system-deep-loop/shared/rollout/tests/validate-rollout.test.cjs
 ```
 
-Expected: both commands exit 0; the resolver reports 9 assertions and the validator reports 12 assertions.
+Expected: both commands exit 0; the resolver reports 12 assertions and the validator reports 12 assertions.
 
 ---
 

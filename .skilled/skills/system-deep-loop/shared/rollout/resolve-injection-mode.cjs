@@ -56,16 +56,36 @@ function parseEnvOverride(rawValue) {
   return { command, mode };
 }
 
+/**
+ * Read the per-command mode map. A missing file means nothing is rolled out yet and
+ * yields an empty map; any other read failure, invalid JSON or a non-object root is
+ * a config error and throws, because an empty map would silently resolve every
+ * command to `fallback`.
+ *
+ * @param {string} configPath - Path to the rollout JSON file.
+ * @returns {Object} The mode map, or an empty object when the file does not exist.
+ * @throws {Error} When the file exists but cannot be read or parsed as a JSON object.
+ */
 function loadModeMap(configPath) {
+  let raw;
   try {
-    const raw = fs.readFileSync(configPath, 'utf8');
-    const parsed = JSON.parse(raw);
-
-    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
-    return parsed;
-  } catch {
-    return {};
+    raw = fs.readFileSync(configPath, 'utf8');
+  } catch (error) {
+    if (error && error.code === 'ENOENT') return {};
+    throw new Error(`[command-injection-rollout] unable to read ${configPath}: ${error.message}`, { cause: error });
   }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (error) {
+    throw new Error(`[command-injection-rollout] invalid JSON in ${configPath}: ${error.message}`, { cause: error });
+  }
+
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw new Error(`[command-injection-rollout] ${configPath} must hold a JSON object of command modes`);
+  }
+  return parsed;
 }
 
 /**

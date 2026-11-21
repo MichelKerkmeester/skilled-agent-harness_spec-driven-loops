@@ -244,12 +244,22 @@ function executeUpcaster(
     second = upcaster.upcast(
       immutableJsonClone(event as unknown as JsonObject) as unknown as EventEnvelope,
     );
-  } catch {
-    throw new EventUpcastError(
+  } catch (error: unknown) {
+    const failure = new EventUpcastError(
       EventEnvelopeErrorCodes.UPCAST_EXECUTION_FAILED,
       'Upcaster threw while transforming a validated event',
       { eventType: event.event_type, fromVersion: upcaster.fromVersion },
     );
+    // The upcaster's own error is the only record of why it threw. It is attached the way
+    // native `new Error(message, { cause })` attaches it: own and non-enumerable, so it
+    // stays out of the bounded scalar details and out of any JSON serialization.
+    Object.defineProperty(failure, 'cause', {
+      value: error,
+      writable: true,
+      enumerable: false,
+      configurable: true,
+    });
+    throw failure;
   }
 
   if (canonicalJson(first as unknown as JsonObject) !== canonicalJson(second as unknown as JsonObject)) {

@@ -42,7 +42,7 @@ node behavior-bench-run.cjs --scenario <file> --leg <name> --out-dir <dir>
   [--timeout-ms <ms>] [--watchdog-ms <ms>]
 ```
 
-Exit codes: `0` when a result JSON is written, even for a failed or killed run. `2` for bad flags, an unparseable scenario or an unknown leg. `3` when the runner itself fails. `75` when the provider rejects the run on quota or rate limit, so the cell never ran and can be retried after the reset.
+Exit codes: `0` when a result JSON is written, even for a failed or killed run. `2` for bad flags, an unparseable scenario, a `/regex/` marker that does not compile or an unknown leg. `3` when the runner itself fails. `75` when the provider rejects the run on quota or rate limit, so the cell never ran and can be retried after the reset.
 
 ---
 
@@ -51,6 +51,7 @@ Exit codes: `0` when a result JSON is written, even for a failed or killed run. 
 ```bash
 node .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs
 node .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run-git-timeout.test.cjs
+node .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run-markers.test.cjs
 ```
 
-Both run hermetically. No live model session is required. Expected: the first prints `behavior-bench-run.test.cjs: all assertions passed`, and the second reports `pass 4` and `fail 0`. See [`tests/README.md`](tests/README.md).
+All three run hermetically. No live model session is required. Expected: the first prints `behavior-bench-run.test.cjs: all assertions passed`, and the second and third each report `pass 4` and `fail 0`. See [`tests/README.md`](tests/README.md).
