@@ -539,6 +539,8 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
         echo "Fix: refresh the hub, then resync its authored copy in the same change —"
         echo "     refreshing alone leaves the runtime and authored manifests disagreeing."
         echo "     Then rebuild and re-pin that hub's canary before pushing."
+        echo "Next: run the command the guard printed above beside each hub, git add both manifests,"
+        echo "      commit them, then re-check with: node ${ROUTE_GUARD#"$REPO_ROOT"/}"
         echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..."
         echo ""
       } >&2

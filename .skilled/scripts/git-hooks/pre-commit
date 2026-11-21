@@ -292,6 +292,7 @@ if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
       echo ""
       echo "BLOCKED [gate:agent-mirror-sync]: staged agent files desync the .opencode / .claude mirrors."
       echo "Fix: re-sync the mirrors so each agent body matches, then re-stage."
+      echo "Next: align each mirror the DRIFT lines above name, git add it, then re-check with: node $(_shown_path "$MIRROR_CHECKER") ${STAGED_AGENTS[*]}"
       echo "Bypass: SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit ... (this gate has no switch of its own, so that one turns off every pre-commit gate)"
       exit 1
     fi
@@ -353,6 +354,12 @@ if [[ "${SPECKIT_SKIP_DOC_VERSION_BUMP:-0}" != "1" ]] && command -v node >/dev/n
         printf '%s\n' "$DOCV_ERR" | sed 's/^/  /' >&2
         echo "A version raised now would describe content this commit does not contain." >&2
         echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+        DOCV_PARTIAL="$(printf '%s\n' "$DOCV_ERR" | sed -n 's/^ *STAGED AND UNSTAGED //p' | tr '\n' ' ')"
+        if [[ -n "$DOCV_PARTIAL" ]]; then
+          echo "Next: git add -- ${DOCV_PARTIAL% }   # or git stash push --keep-index to set the unstaged part aside" >&2
+        else
+          echo "Next: git add -- <each path listed above>   # or git stash push --keep-index to set the unstaged part aside" >&2
+        fi
         echo "Bypass: SPECKIT_SKIP_DOC_VERSION_BUMP=1 git commit ..." >&2
         exit 1
       elif [[ "$DOCV_RC" -ne 0 ]]; then
@@ -716,6 +723,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     echo "" >&2
     echo "BLOCKED [gate:route-remint]: could not read the hub list from compiled-route-guard.cjs:" >&2
     printf '%s\n' "$ROUTE_HUBS" | sed 's/^/  /' >&2
+    echo "Next: node -e 'console.log(require(require(\"path\").resolve(process.argv[1])).HUBS.join(\" \"))' $(_shown_path "$ROUTE_GUARD")   # reproduces the error; repair what it names, then re-commit" >&2
     echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
     exit 1
   fi
@@ -731,6 +739,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     echo "" >&2
     echo "BLOCKED [gate:route-remint]: could not resolve the activation root from compiled-route-layout.cjs:" >&2
     printf '%s\n' "$ROUTE_RUNTIME" | sed 's/^/  /' >&2
+    echo "Next: node -e 'console.log(require(require(\"path\").resolve(process.argv[1])).activationRootFor(require(\"path\").resolve(process.argv[2])))' $(_shown_path "$ROUTE_LAYOUT") $(_shown_path "$SOURCE_ROOT")/bin/lib/compiled-routing   # reproduces the error; repair what it names, then re-commit" >&2
     echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
     exit 1
   fi
@@ -743,6 +752,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     echo "" >&2
     echo "BLOCKED [gate:route-remint]: could not read the authored program dir from compiled-route-layout.cjs:" >&2
     printf '%s\n' "$ROUTE_AUTHORED_DIR" | sed 's/^/  /' >&2
+    echo "Next: node -e 'console.log(require(require(\"path\").resolve(process.argv[1])).AUTHORED_PROGRAM_DIR)' $(_shown_path "$ROUTE_LAYOUT")   # reproduces the error; repair what it names, then re-commit" >&2
     echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
     exit 1
   fi
@@ -806,6 +816,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       printf '%s\n' "$ROUTE_DIRTY" | sed 's/^/  /' >&2
       echo "A manifest minted now would describe content this commit does not contain." >&2
       echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+      echo "Next: git add -- ${ROUTE_DIRTY//$'\n'/ }   # or git stash push --keep-index to set the unstaged part aside" >&2
       echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
@@ -820,6 +831,17 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
         echo "" >&2
         echo "BLOCKED [gate:route-remint]: $ROUTE_HUB cannot be re-minted, missing:" >&2
         echo "  $ROUTE_NEEDED" >&2
+        # The authored copy is derived from the runtime manifest, which the loop has
+        # already found. A runtime manifest git does not track belongs to a new hub,
+        # so it is minted rather than restored.
+        if [[ "$ROUTE_NEEDED" == "$ROUTE_AUTHORED_FILE" ]]; then
+          echo "Next: cp $(_shown_path "$ROUTE_RUNTIME_FILE") $(_shown_path "$ROUTE_AUTHORED_FILE"), then git add both and re-commit." >&2
+        elif [[ "$ROUTE_NEEDED" == "$ROUTE_RUNTIME_FILE" ]] \
+             && ! git_bounded ls-files --error-unmatch -- "$ROUTE_NEEDED" >/dev/null 2>&1; then
+          echo "Next: node $(_shown_path "$ROUTE_MINT") mint --hub $ROUTE_HUB --skill-root $(_shown_path "$SOURCE_ROOT/skills/$ROUTE_HUB")" >&2
+        else
+          echo "Next: git checkout -- $(_shown_path "$ROUTE_NEEDED")" >&2
+        fi
         echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
         exit 1
       fi
@@ -832,6 +854,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       echo "" >&2
       echo "BLOCKED [gate:route-remint]: re-minting $ROUTE_HUB failed." >&2
       printf '%s\n' "$ROUTE_OUT" | sed 's/^/  /' >&2
+      echo "Next: repair what the output names, then rerun: node $(_shown_path "$ROUTE_MINT") refresh --hub $ROUTE_HUB --skill-root $(_shown_path "$SOURCE_ROOT/skills/$ROUTE_HUB")" >&2
       echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
@@ -842,6 +865,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       echo "" >&2
       echo "BLOCKED [gate:route-remint]: could not copy the $ROUTE_HUB manifest to its authored copy:" >&2
       echo "  $ROUTE_AUTHORED_FILE" >&2
+      echo "Next: cp $(_shown_path "$ROUTE_RUNTIME_FILE") $(_shown_path "$ROUTE_AUTHORED_FILE"), then git add both and re-commit." >&2
       echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
@@ -900,6 +924,7 @@ if [[ "${SPECKIT_SKIP_CONTRACT_RECOMPILE:-0}" != "1" ]] && command -v node >/dev
       echo "" >&2
       echo "BLOCKED [gate:contract-recompile]: could not read the command list from compile-command-contracts.cjs:" >&2
       printf '%s\n' "$CONTRACT_COMMANDS" | sed 's/^/  /' >&2
+      echo "Next: node -e 'console.log(Object.keys(require(require(\"path\").resolve(process.argv[1])).COMMANDS).join(\"\\n\"))' $(_shown_path "$CONTRACT_COMPILER")   # reproduces the error; repair what it names, then re-commit" >&2
       echo "Bypass: SPECKIT_SKIP_CONTRACT_RECOMPILE=1 git commit ..." >&2
       exit 1
     fi
@@ -910,6 +935,7 @@ if [[ "${SPECKIT_SKIP_CONTRACT_RECOMPILE:-0}" != "1" ]] && command -v node >/dev
         echo "" >&2
         echo "BLOCKED [gate:contract-recompile]: compiling $CONTRACT_COMMAND failed." >&2
         printf '%s\n' "$CONTRACT_OUT" | sed 's/^/  /' >&2
+        echo "Next: repair what the output names, then rerun: node $(_shown_path "$CONTRACT_COMPILER") --command $CONTRACT_COMMAND --write" >&2
         echo "Bypass: SPECKIT_SKIP_CONTRACT_RECOMPILE=1 git commit ..." >&2
         exit 1
       fi
@@ -921,6 +947,7 @@ if [[ "${SPECKIT_SKIP_CONTRACT_RECOMPILE:-0}" != "1" ]] && command -v node >/dev
       echo "" >&2
       echo "BLOCKED [gate:contract-recompile]: the deep command contracts still drift after a recompile:" >&2
       printf '%s\n' "$CONTRACT_AFTER" | tail -6 | sed 's/^/  /' >&2
+      echo "Next: node $(_shown_path "$CONTRACT_CHECK")   # prints the full drift report; repair what it names, then re-commit" >&2
       echo "Bypass: SPECKIT_SKIP_CONTRACT_RECOMPILE=1 git commit ..." >&2
       exit 1
     fi
@@ -1013,6 +1040,7 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
           printf '%s\n' "$SPEC_DIRTY_INPUTS" | sed 's/^/  /' >&2
           echo "Metadata derived now would describe content this commit does not contain." >&2
           echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+          echo "Next: git add -- ${SPEC_DIRTY_INPUTS//$'\n'/ }   # or git stash push --keep-index to set the unstaged part aside" >&2
           echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
           exit 1
         fi
@@ -1055,6 +1083,7 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
         printf '%s\n' "$SPEC_OUT" | sed 's/^/  /' >&2
         echo "Any packet the tool did repair has been staged, so a retry reports this" >&2
         echo "same failure rather than a half-written tree." >&2
+        echo "Next: repair what the output names, then rerun: node $(_shown_path "$SPEC_TOOL") ${SPEC_ARGS[@]+"${SPEC_ARGS[*]}"} --apply" >&2
         echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
         exit 1
       fi
