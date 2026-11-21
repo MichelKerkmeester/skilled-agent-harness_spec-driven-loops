@@ -183,6 +183,20 @@ function jsonEntryRemedy(entry, ctx, message) {
       `\n  Next: edit ${shellPath(path.join(ctx.overlayRoot, entry.source))} to match the live entry, or remove that ` +
       `entry from ${shellPath(entry.destination)} by hand, then ${status}`;
   }
+  const source = shellPath(path.join(ctx.overlayRoot, entry.source));
+  if (/^cannot (insert into|append to) the empty /.test(message)) {
+    return '\n  an insert lays its entries out like the ones already there, and an empty object or array holds none' +
+      `\n  Next: add one entry to ${shellPath(entry.destination)} by hand, or write the whole value with a set ` +
+      `operation in ${source}, then ${status}`;
+  }
+  if (/^anchor ".*" appears \d+ times/.test(message)) {
+    return '\n  an anchor has to name exactly one item, or the insert has no single place to go' +
+      `\n  Next: edit the match in ${source} so it names one item of ${entry.destination}, then ${status}`;
+  }
+  if (/^an item list without an identity key cannot hold objects/.test(message)) {
+    return '\n  without an identityKey the engine cannot tell one object item from another' +
+      `\n  Next: add an "identityKey" to that operation in ${source}, then ${status}`;
+  }
   return "\n  each operation's path and anchor must be found in the live file" +
     `\n  Next: edit ${shellPath(path.join(ctx.overlayRoot, entry.source))} so each operation fits ${entry.destination}, ` +
     `then ${status}`;
@@ -4406,8 +4420,14 @@ function commandStatus(ctx, options = {}) {
   const stale = staleRootFiles(manifest);
   const offLayout = layoutMoves(manifest);
   const notes = statusNotes(ctx, manifest, state, analysis, { isAudit: Boolean(options.isAudit) });
+  // A failed regeneration leaves every destination in sync, so the pending flag
+  // is the only sign that apply still owes a rebuild. Apply reruns every step,
+  // so every step is named.
+  const regeneratePending = state.regeneratePending === true
+    ? (manifest.regenerate || []).map((step) => step.id)
+    : [];
   const isInSync = outOfSync.length === 0 && analysis.blocked.length === 0 && check.miss === 0 &&
-    stale.length === 0 && (audit === null || audit.findings.length === 0);
+    stale.length === 0 && regeneratePending.length === 0 && (audit === null || audit.findings.length === 0);
 
   if (options.isJson) {
     const report = {
@@ -4424,6 +4444,7 @@ function commandStatus(ctx, options = {}) {
         fix: fixFor(ctx, record),
       })),
       staleRootFiles: stale,
+      regeneratePending,
       offLayout,
       notes,
       check,
@@ -4443,6 +4464,11 @@ function commandStatus(ctx, options = {}) {
   for (const entry of stale) {
     console.log(`STALE    root-file ${entry.path}: upstream changed it since overlay ${entry.overlay} was pinned; ` +
       'rebase the overlay, then update its pinnedSha256');
+  }
+  if (regeneratePending.length > 0) {
+    console.log(`REGEN    pending: ${regeneratePending.join(', ')}`);
+    console.log('  an earlier apply did not finish its regeneration, so the next apply reruns these steps');
+    console.log('  ' + nextEngine(ctx.root, 'apply'));
   }
   // Relayout refuses a move into root/skilled, so each line, and the count of the
   // moves past the cap, names the fix the operator can make instead of a run
@@ -4464,11 +4490,14 @@ function commandStatus(ctx, options = {}) {
         : `; run ${ENGINE_COMMAND} apply --relayout for ${movable}, and change the destination or remove the ` +
           `entry for the ${blocked} under root/skilled`;
     console.log(`LAYOUT   … ${hidden.length} more${remedy}`);
-    // One remedy covers every hidden line, whichever of the two fixes each needs.
-    if (movable > 0) {
-      const rest = blocked > 0 ? `; it leaves the ${blocked} under root/skilled, whose destination you change or ` +
-        'whose entry you remove' : '';
-      console.log('  ' + nextEngine(ctx.root, 'apply --relayout') + rest);
+    // One remedy covers every hidden line. Relayout refuses every move while any
+    // move, shown or hidden, lands under root/skilled, so that fix comes first.
+    const isAnyBlocked = offLayout.some((move) => isUnderRootSkilled(move.to));
+    if (movable > 0 && isAnyBlocked) {
+      console.log(`  Next: change the destination of each entry under root/skilled in ${shellPath(ctx.manifestPath)}, ` +
+        'or remove the entry, then ' + nextEngine(ctx.root, 'apply --relayout').slice('Next: '.length));
+    } else if (movable > 0) {
+      console.log('  ' + nextEngine(ctx.root, 'apply --relayout'));
     } else {
       console.log('  Next: change the destination of each entry under root/skilled, or remove the entry');
     }
@@ -4758,6 +4787,23 @@ function extractMarkedSection(entry, live) {
   return Buffer.from(text.slice(begin, end), 'utf8');
 }
 
+// The capture refusal for a path no overlay writes. The Next line runs from the
+// tree root, so the adopt it names takes the path relative to that root. Adopt
+// refuses a path outside the tree or one an overlay owns, so neither is offered it.
+function printNotADestination(ctx, inputPath, isOwned) {
+  const inside = captureCandidates(ctx.root, inputPath).filter((candidate) => isWithin(ctx.root, candidate) &&
+    candidate !== ctx.root);
+  const target = inside.find((candidate) => pathExists(candidate)) || inside[0];
+  console.log('refuse: path is not an overlay destination: ' + inputPath);
+  console.log('  capture copies a live edit into the overlay that writes the path, and no overlay writes this one');
+  if (!target || isOwned) {
+    console.log('  Next: capture a path a status line names');
+    return;
+  }
+  console.log('  Next: capture a path a status line names, or bring this one under an overlay: ' +
+    nextEngine(ctx.root, 'apply --adopt ' + shellPath(toPosix(path.relative(ctx.root, target)))).slice('Next: '.length));
+}
+
 /**
  * Capture one live edit; the caller holds the lock.
  * @param {object} ctx Engine context.
@@ -4773,7 +4819,7 @@ function captureUnderLock(ctx, manifest, inputPath) {
     if (record) break;
   }
   if (!record) {
-    console.log('refuse: path is not an overlay destination: ' + inputPath);
+    printNotADestination(ctx, inputPath);
     return EXIT_ERROR;
   }
   if (record.removal) {
@@ -4791,6 +4837,8 @@ function captureUnderLock(ctx, manifest, inputPath) {
   }
   if (record.entry.scope === 'json-entry') {
     console.log('refuse: edit ' + ctx.overlayLabel + '/' + sourceRelative(ctx, record.sourcePath) + ' instead');
+    console.log('  apply builds this file from its entry set, so a copy of the live file has nowhere to go');
+    console.log('  Next: edit ' + shellPath(record.sourcePath) + ', then ' + nextEngine(ctx.root, 'apply').slice('Next: '.length));
     return EXIT_ERROR;
   }
   if (!['directory', 'skill-root'].includes(record.entry.scope) && !isFile(record.sourcePath)) {
@@ -4810,13 +4858,15 @@ function captureUnderLock(ctx, manifest, inputPath) {
   const livePath = canonicalPath(record.destinationPath);
   if (isCaptureRestricted(ctx, record, livePath)) {
     console.log('refuse: protected capture path: ' + record.key);
+    console.log('  the live file resolves to a protected path, which may hold a credential, so capture never copies it');
+    console.log('  Next: copy it into the overlay by hand only if it is safe to keep there, then ' + nextEngine(ctx.root, 'status').slice('Next: '.length));
     return EXIT_ERROR;
   }
   const state = loadState(ctx, manifest);
   const analysis = analyze(ctx, manifest, state);
   const classified = analysis.records.find((item) => item.key === record.key);
   if (!classified) {
-    console.log('refuse: path is not an overlay destination: ' + inputPath);
+    printNotADestination(ctx, inputPath, true);
     return EXIT_ERROR;
   }
   if (classified.state === 'in-sync') {
@@ -5564,6 +5614,16 @@ function copyUpstreamEntry(fromPath, toPath) {
   fs.chmodSync(toPath, stats.mode & 0o777);
 }
 
+// A node of the manifest read as text. Parsing and walking it name no file, so
+// a failure is prefixed with the manifest's path and given its why and Next.
+function manifestNodeAt(ctx, text, keys, why, next) {
+  try {
+    return nodeAtPath(parseJsonSource(text), keys);
+  } catch (error) {
+    throw new Error(withRemedy(`${shellPath(ctx.manifestPath)}: ${error.message}`, why, next));
+  }
+}
+
 /**
  * Point the manifest's pin at the new commit, changing only that value's text.
  * @param {object} ctx Engine context.
@@ -5571,7 +5631,9 @@ function copyUpstreamEntry(fromPath, toPath) {
  */
 function writePin(ctx, commit) {
   const text = fs.readFileSync(ctx.manifestPath, 'utf8');
-  const node = nodeAtPath(parseJsonSource(text), ['pin', 'commit']);
+  const node = manifestNodeAt(ctx, text, ['pin', 'commit'], 'the re-pin writes the new commit into pin.commit',
+    `Next: set "pin": {"commit": ${JSON.stringify(commit)}} in ${shellPath(ctx.manifestPath)}, then ` +
+    nextEngine(ctx.root, 'status').slice('Next: '.length));
   if (node.type !== 'string') {
     throw new Error(withRemedy('the manifest pin.commit is not a string', 'the re-pin writes the new commit into that value',
       `Next: set "pin": {"commit": "<commit>"} as a string in ${shellPath(ctx.manifestPath)}, then rerun the re-pin`));
@@ -5966,6 +6028,8 @@ function repinUnderLock(ctx, job, report) {
   const drift = unownedDrift(ctx, manifest, job, touched);
   if (drift.length > 0) {
     drift.push(`  move each edit into an overlay, list the path in repin.exclude, or restore it from ${job.oldPin}`);
+    drift.push(`  Next: bring each path above under an overlay (${nextEngine(ctx.root, 'apply --adopt <path>')
+      .slice('Next: '.length)}), or add it to repin.exclude in ${shellPath(ctx.manifestPath)}, then rerun the re-pin`);
     return refuseRepin(drift);
   }
   const shape = treeShapeProblems(ctx.root, touched);
@@ -6569,8 +6633,11 @@ function adoptionId(manifest, key) {
  */
 function appendOverlayEntry(ctx, entry) {
   const text = fs.readFileSync(ctx.manifestPath, 'utf8');
-  const list = nodeAtPath(parseJsonSource(text), ['overlays']);
-  if (list.type !== 'array') throw new Error('the manifest overlays value is not a list');
+  const fixList = `Next: make "overlays" in ${shellPath(ctx.manifestPath)} a list of entries, then rerun the adopt`;
+  const list = manifestNodeAt(ctx, text, ['overlays'], 'adopt appends its entry to that list', fixList);
+  if (list.type !== 'array') {
+    throw new Error(withRemedy('the manifest overlays value is not a list', 'adopt appends its entry to that list', fixList));
+  }
   const last = list.items[list.items.length - 1];
   const indent = (last && indentBefore(text, last.start)) || '    ';
   const body = JSON.stringify(entry, null, 2).split('\n').join('\n' + indent);
@@ -7367,10 +7434,15 @@ function planRelayout(ctx, manifest, groups) {
   const moves = [];
   const skipped = [];
   const claimed = new Map();
+  const manifestPath = shellPath(ctx.manifestPath);
+  const rerun = nextEngine(ctx.root, 'apply --relayout').slice('Next: '.length);
+  const sourcePath = (relative) => shellPath(path.join(ctx.overlayRoot, relative));
   for (const group of groups) {
     if (group.clashes) {
       const destinations = [group.to, ...group.clashes].join(' and ');
-      problems.push(`refuse: ${group.from} is claimed by ${destinations}; one copy cannot move to both`);
+      problems.push(withRemedy(`refuse: ${group.from} is claimed by ${destinations}; one copy cannot move to both`,
+        'the entries that share this copy map it to different layout paths',
+        `Next: give each of those entries in ${manifestPath} its own source, then ${rerun}`));
       continue;
     }
     const from = containedOverlayPath(ctx, group.from);
@@ -7381,24 +7453,32 @@ function planRelayout(ctx, manifest, groups) {
     }
     if (isUnderRootSkilled(group.to)) {
       const ids = [...new Set(group.records.map((record) => record.overlay))].join(', ');
-      problems.push(`refuse: ${ids}: ${group.from} belongs at ${group.to}, under root/skilled, which holds no copy; ` +
-        'change the destination or remove the entry');
+      problems.push(withRemedy(`refuse: ${ids}: ${group.from} belongs at ${group.to}, under root/skilled, which holds no copy; ` +
+        'change the destination or remove the entry', '',
+        `Next: change the destination of ${ids} in ${manifestPath}, or remove the entry, then ${rerun}`));
       continue;
     }
     // A README no entry reaches only documents the folder, so the refusal names
     // it as that rather than as a copy already in place.
     if (pathExists(to.absolute) && README_NAMES.includes(path.posix.basename(to.relative)) &&
       isFile(to.absolute) && !ships(to.relative)) {
-      problems.push(`refuse: a documentation-only README sits at ${ctx.overlayLabel}/${to.relative}: ` +
-        'merge it into the overlay copy or move it, then relayout');
+      problems.push(withRemedy(`refuse: a documentation-only README sits at ${ctx.overlayLabel}/${to.relative}: ` +
+        'merge it into the overlay copy or move it, then relayout', '',
+        `Next: merge ${shellPath(to.absolute)} into ${shellPath(from.absolute)} or move it out of the way, then ${rerun}`));
       continue;
     }
     if (pathExists(to.absolute)) {
-      problems.push(`refuse: ${to.relative} already exists in ${ctx.overlayLabel}`);
+      problems.push(withRemedy(`refuse: ${to.relative} already exists in ${ctx.overlayLabel}`,
+        'relayout never writes over a file that sits at a layout path',
+        `Next: move ${shellPath(to.absolute)} aside once you have compared it with ${shellPath(from.absolute)}, ` +
+        `then ${rerun}`));
       continue;
     }
     if (!pathExists(from.absolute)) {
-      problems.push(`refuse: ${from.relative} does not exist in ${ctx.overlayLabel}`);
+      problems.push(withRemedy(`refuse: ${from.relative} does not exist in ${ctx.overlayLabel}`,
+        'relayout moves a copy that is there, and the manifest names one that is not',
+        `Next: restore ${sourcePath(from.relative)}, or point the entry at the copy it keeps in ${manifestPath}, ` +
+        `then ${rerun}`));
       continue;
     }
     // Moving a folder carries the copies inside it, so a second move out of that
@@ -7411,7 +7491,9 @@ function planRelayout(ctx, manifest, groups) {
       continue;
     }
     if (claimed.has(to.relative)) {
-      problems.push(`refuse: ${claimed.get(to.relative)} and ${from.relative} both belong at ${to.relative}`);
+      problems.push(withRemedy(`refuse: ${claimed.get(to.relative)} and ${from.relative} both belong at ${to.relative}`,
+        'two entries write one destination, so their copies would share one layout path',
+        `Next: keep one entry for that destination in ${manifestPath}, then ${rerun}`));
       continue;
     }
     claimed.set(to.relative, from.relative);
@@ -7505,11 +7587,19 @@ function relayoutLinkTargets(ctx, moves, manifest) {
  */
 function planRelayoutManifest(ctx, fieldEdits, linkEdits) {
   const text = fs.readFileSync(ctx.manifestPath, 'utf8');
-  const document = parseJsonSource(text);
+  // The caller prints the why and Next under this refusal, so only the path is added.
+  const named = (read) => {
+    try {
+      return read();
+    } catch (error) {
+      throw new Error(`${shellPath(ctx.manifestPath)}: ${error.message}`);
+    }
+  };
+  const document = named(() => parseJsonSource(text));
   const edits = [];
   if (fieldEdits.length > 0) {
     const entries = new Map();
-    for (const node of nodeAtPath(document, ['overlays']).items) {
+    for (const node of named(() => nodeAtPath(document, ['overlays'])).items) {
       const id = node.type === 'object' ? findMember(node, 'id') : undefined;
       if (id && id.value.type === 'string') entries.set(id.value.value, node);
     }
@@ -7526,7 +7616,7 @@ function planRelayoutManifest(ctx, fieldEdits, linkEdits) {
   }
   if (linkEdits.length > 0) {
     const links = new Map();
-    for (const node of nodeAtPath(document, ['layoutLinks']).items) {
+    for (const node of named(() => nodeAtPath(document, ['layoutLinks'])).items) {
       const linkPath = node.type === 'object' ? findMember(node, 'path') : undefined;
       if (linkPath && linkPath.value.type === 'string') links.set(linkPath.value.value, node);
     }

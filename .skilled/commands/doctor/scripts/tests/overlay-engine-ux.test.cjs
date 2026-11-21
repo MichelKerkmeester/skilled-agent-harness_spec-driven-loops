@@ -133,3 +133,90 @@ test('a setting file that names no folder says which value to set and the comman
     `to a folder such as "skilled-overlays" (in the tree) or "../overlays" (beside it), then from ${fixture.tree}: ` +
     `${ENGINE_COMMAND} status`), status.output);
 });
+
+test('status reports a regeneration a failed apply left pending, and passes once apply finishes it', (t) => {
+  const fixture = createSyncFixture(t);
+  fixture.manifest.regenerate = [{ id: 'fails', argv: ['node', '-e', 'process.exit(3)'] }];
+  writeManifest(fixture);
+  writeFile(fixture.overlayDir, 'files/guarded.txt', 'overlay two\n');
+  assert.equal(fixture.run(['apply']).code, 1);
+
+  const status = fixture.run(['status']);
+  const report = JSON.parse(fixture.run(['status', '--json']).stdout);
+
+  assert.equal(status.code, 1, status.output);
+  const lines = status.output.split('\n');
+  const at = lines.indexOf('REGEN    pending: fails');
+  assert.ok(at >= 0, status.output);
+  assert.equal(lines[at + 1], '  an earlier apply did not finish its regeneration, so the next apply reruns these steps',
+    status.output);
+  assert.equal(lines[at + 2], `  Next: from ${fixture.tree}: ${ENGINE_COMMAND} apply`, status.output);
+  assert.match(status.output, /RESULT: FAILED/);
+  assert.equal(report.result, 'FAILED');
+  assert.deepEqual(report.regeneratePending, ['fails']);
+
+  fixture.manifest.regenerate = [{ id: 'fails', argv: ['node', '-e', 'process.exit(0)'] }];
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const settled = fixture.run(['status']);
+  assert.equal(settled.code, 0, settled.output);
+  assert.equal(settled.output.includes('REGEN'), false, settled.output);
+  assert.deepEqual(JSON.parse(fixture.run(['status', '--json']).stdout).regeneratePending, []);
+});
+
+test('an insert into an empty object says why it cannot and names a set as the way through', (t) => {
+  const fixture = createSyncFixture(t);
+  fs.writeFileSync(path.join(fixture.tree, 'settings.json'), '{}\n');
+
+  const applied = fixture.run(['apply']);
+
+  assert.notEqual(applied.code, 0, applied.output);
+  assert.match(applied.output, /cannot apply the entry set to settings\.json: cannot insert into the empty object at /);
+  assert.ok(applied.output.includes('  an insert lays its entries out like the ones already there, and an empty ' +
+    'object or array holds none'), applied.output);
+  assert.ok(applied.output.includes(`  Next: add one entry to settings.json by hand, or write the whole value with a ` +
+    `set operation in ${path.join(fixture.overlayDir, 'json/entries.json')}, then from ${fixture.tree}: ` +
+    `${ENGINE_COMMAND} status`), applied.output);
+});
+
+test('a capture of a path no overlay writes names the adopt that brings it under one', (t) => {
+  const fixture = createSyncFixture(t);
+  writeFile(fixture.tree, 'loose.md', 'loose\n');
+
+  const captured = fixture.run(['apply', '--capture', path.join(fixture.tree, 'loose.md')]);
+
+  assert.equal(captured.code, 2, captured.output);
+  const lines = captured.output.trim().split('\n');
+  assert.equal(lines[0], 'refuse: path is not an overlay destination: ' + path.join(fixture.tree, 'loose.md'));
+  assert.equal(lines[1], '  capture copies a live edit into the overlay that writes the path, and no overlay writes this one');
+  assert.equal(lines[2], '  Next: capture a path a status line names, or bring this one under an overlay: ' +
+    `from ${fixture.tree}: ${ENGINE_COMMAND} apply --adopt loose.md`);
+});
+
+test('a capture of a json-entry destination names the entry set to edit and the apply after it', (t) => {
+  const fixture = createSyncFixture(t);
+
+  const captured = fixture.run(['apply', '--capture', 'settings.json']);
+
+  assert.equal(captured.code, 2, captured.output);
+  const lines = captured.output.trim().split('\n');
+  assert.match(lines[0], /^refuse: edit \S+\/json\/entries\.json instead$/);
+  assert.equal(lines[2], `  Next: edit ${path.join(fixture.overlayDir, 'json/entries.json')}, then from ${fixture.tree}: ` +
+    `${ENGINE_COMMAND} apply`, captured.output);
+});
+
+test('relayout onto a layout path that already holds a file names the file to move aside', (t) => {
+  const fixture = createSyncFixture(t);
+  writeFile(fixture.overlayDir, 'root/guarded.txt', 'in the way\n');
+
+  const relayout = fixture.run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 2, relayout.output);
+  const lines = relayout.output.split('\n');
+  const at = lines.findIndex((line) => /^refuse: root\/guarded\.txt already exists in \S+$/.test(line));
+  assert.ok(at >= 0, relayout.output);
+  assert.equal(lines[at + 1], '  relayout never writes over a file that sits at a layout path', relayout.output);
+  assert.equal(lines[at + 2], `  Next: move ${path.join(fixture.overlayDir, 'root/guarded.txt')} aside once you have ` +
+    `compared it with ${path.join(fixture.overlayDir, 'files/guarded.txt')}, then from ${fixture.tree}: ` +
+    `${ENGINE_COMMAND} apply --relayout`, relayout.output);
+});
