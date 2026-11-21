@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.37.0
+version: 1.0.38.0
 ---
 
 # Vendored Skilled Overlays
@@ -169,7 +169,7 @@ Most refusals the engine, the doctor scripts and the git hooks print end with a 
 
 ### Secret Files
 
-The engine never reads a `.env` file, even one a manifest entry names. The templates `.env.example`, `.env.sample` and `.env.template` are the exception. They hold no secret by convention, so the engine reads, copies, re-pins and reports them like any vendored file. Only those exact names are exempt, so a file such as `.env.local` stays protected. A file whose name contains `token` is read only when the manifest names its exact path:
+The engine never reads a `.env` file, even one a manifest entry names. The template `.env.example` is the exception. It holds no secret by convention, so the engine reads, copies, re-pins and reports it like any vendored file. Only that exact name is exempt, the same name the env secret guard lets an agent read, so every other `.env` name stays protected. A file whose name contains `token` is read only when the manifest names its exact path:
 
 - A `file` or `marked-section` entry names its destination exactly.
 - A `directory` or `skill-root` entry walks a folder, so it lists each token-named file it may read in `protectedPaths`, by its path relative to the entry. Any other token-named file the walk meets is refused.
