@@ -833,7 +833,7 @@ function tryWriteReceipt(
   try {
     writeReceiptAtomic(receiptPath, record);
   } catch (err: unknown) {
-    emitReceiptWriteFailure(stateLogPath, executor, iteration, phase, (err as Error).message ?? String(err), sessionId);
+    emitReceiptWriteFailure(stateLogPath, executor, iteration, phase, err instanceof Error ? err.message : String(err), sessionId);
   }
 }
 

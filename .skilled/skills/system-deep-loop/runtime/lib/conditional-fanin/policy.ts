@@ -71,13 +71,15 @@ export function conditionalFanInPolicyDigest(policy: ConditionalFanInPolicy): st
   return sha256Bytes(canonicalBytes(policy));
 }
 
-/** Frozen policy at the current version from the given thresholds, with value-of-computation turned off. */
-export function defaultConditionalFanInPolicy(input: {
+interface DefaultConditionalFanInPolicyInput {
   minimumAcceptedCount: number;
   minimumSupportBasisPoints: number;
   minimumProvenanceGroups: number;
   partialFailurePolicyReference: string;
-}): ConditionalFanInPolicy {
+}
+
+/** Frozen policy at the current version from the given thresholds, with value-of-computation turned off. */
+export function defaultConditionalFanInPolicy(input: DefaultConditionalFanInPolicyInput): ConditionalFanInPolicy {
   return Object.freeze({
     policyVersion: CONDITIONAL_FANIN_POLICY_VERSION,
     minimumAcceptedCount: input.minimumAcceptedCount,

@@ -851,3 +851,75 @@ describe('loop-lock', () => {
     }
   });
 });
+
+describe('loop-lock refresh restore after a failed heartbeat write', () => {
+  type RenameArg = Parameters<typeof readFileSync>[0];
+
+  async function refreshWithFailingWrite(failRestore: boolean): Promise<{ thrown: unknown; lockPath: string; tempDir: string }> {
+    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
+    const lockPath = join(tempDir, '.deep-loop.lock');
+    const writeError = new Error('heartbeat write failed');
+    vi.resetModules();
+    vi.doMock('node:fs', async () => {
+      const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
+      return {
+        ...actual,
+        writeFileSync(...args: Parameters<typeof actual.writeFileSync>) {
+          if (typeof args[0] === 'string' && args[0].includes('.refreshing.')) throw writeError;
+          return actual.writeFileSync(...args);
+        },
+        renameSync(from: RenameArg, to: RenameArg) {
+          if (failRestore && typeof from === 'string' && from.includes('.refreshing.') && to === lockPath) {
+            throw new Error('restore rename failed');
+          }
+          actual.renameSync(from as string, to as string);
+        },
+      };
+    });
+
+    let thrown: unknown = null;
+    try {
+      const loopLock = await import('../../lib/deep-loop/loop-lock.js');
+      const acquired = loopLock.acquireLoopLock(lockPath, lockData());
+      if (!acquired.acquired) throw new Error('Expected lock acquisition');
+      try {
+        loopLock.refreshLoopLock(lockPath, process.pid, new Date('2026-05-22T12:05:00.000Z'), {
+          acquireNonce: acquired.lock.acquireNonce,
+        });
+      } catch (error: unknown) {
+        thrown = error;
+      }
+    } finally {
+      vi.doUnmock('node:fs');
+      vi.resetModules();
+    }
+    expect((thrown as Error | null)?.message ?? '').not.toBe('');
+    return { thrown, lockPath, tempDir };
+  }
+
+  it('restores the claimed lock and rethrows the write error unchanged when the restore succeeds', async () => {
+    const { thrown, lockPath, tempDir } = await refreshWithFailingWrite(false);
+    try {
+      expect(thrown).toBeInstanceOf(Error);
+      expect(thrown).not.toBeInstanceOf(AggregateError);
+      expect((thrown as Error).message).toBe('heartbeat write failed');
+      expect(existsSync(lockPath)).toBe(true);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('surfaces a failed restore alongside the write error instead of stranding the claim silently', async () => {
+    const { thrown, lockPath, tempDir } = await refreshWithFailingWrite(true);
+    try {
+      expect(thrown).toBeInstanceOf(AggregateError);
+      const errors = (thrown as AggregateError).errors.map((error: unknown) => (error as Error).message);
+      expect(errors).toEqual(['heartbeat write failed', 'restore rename failed']);
+      expect((thrown as AggregateError).message).toContain(lockPath);
+      expect(existsSync(lockPath)).toBe(false);
+      expect(readdirSync(tempDir).some((name) => name.includes('.refreshing.'))).toBe(true);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+});

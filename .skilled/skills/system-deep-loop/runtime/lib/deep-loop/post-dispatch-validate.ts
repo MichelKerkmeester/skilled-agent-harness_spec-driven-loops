@@ -1021,20 +1021,32 @@ function openingRowNamesExecutor(content: Buffer, iteration: unknown): boolean {
   });
 }
 
-function findLastIterationRecord(content: string): Record<string, unknown> | null {
+interface LastIterationRecordScan {
+  record: Record<string, unknown> | null;
+  /** Non-blank lines the backward scan passed over because they were not JSON. */
+  skippedUnparseableLines: number;
+}
+
+// A torn or partial line must not hide an earlier complete record, so the scan steps over it, but
+// it counts what it stepped over so the result can say the file was not clean.
+function findLastIterationRecord(content: string): LastIterationRecordScan {
   const lines = content.split(/\r?\n/);
+  let skippedUnparseableLines = 0;
   for (let index = lines.length - 1; index >= 0; index -= 1) {
     const line = lines[index]?.trim();
     if (!line) continue;
+    let parsed: unknown;
     try {
-      const parsed = JSON.parse(line);
-      if (isObjectRecord(parsed) && parsed.type === CANONICAL_ITERATION_TYPE) {
-        return parsed;
-      }
+      parsed = JSON.parse(line);
     } catch {
+      skippedUnparseableLines += 1;
+      continue;
+    }
+    if (isObjectRecord(parsed) && parsed.type === CANONICAL_ITERATION_TYPE) {
+      return { record: parsed, skippedUnparseableLines };
     }
   }
-  return null;
+  return { record: null, skippedUnparseableLines };
 }
 
 function findLastJsonlRegion(content: Buffer, startByte = 0): JsonlLineRegion | null {
@@ -1728,14 +1740,23 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
         return { ok: false, reason: 'delta_file_empty', details: input.deltaFilePath };
       }
       const deltaContent = readFileSync(input.deltaFilePath, 'utf8');
-      deltaIterationRecord = findLastIterationRecord(deltaContent);
+      const deltaScan = findLastIterationRecord(deltaContent);
+      deltaIterationRecord = deltaScan.record;
+      const skipWarnings: PostDispatchAdvisory[] = deltaScan.skippedUnparseableLines > 0
+        ? [{
+          code: 'delta_unparseable_lines_skipped',
+          detail: `${input.deltaFilePath}: skipped ${deltaScan.skippedUnparseableLines} unparseable lines scanning back for the last '${CANONICAL_ITERATION_TYPE}' record`,
+        }]
+        : [];
       if (!deltaIterationRecord) {
         return {
           ok: false,
           reason: 'delta_file_missing_iteration_record',
           details: `${input.deltaFilePath} has no record with type='${CANONICAL_ITERATION_TYPE}'`,
+          ...(skipWarnings.length > 0 ? { warnings: skipWarnings } : {}),
         };
       }
+      warnings.push(...skipWarnings);
     }
 
     // A structurally valid, intent-bound dispatch receipt pair makes the

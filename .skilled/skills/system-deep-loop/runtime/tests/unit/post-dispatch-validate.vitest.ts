@@ -1015,3 +1015,60 @@ describe('post-dispatch-validate', () => {
     });
   });
 });
+
+describe('post-dispatch-validate delta scan over unparseable lines', () => {
+  const stateRecord = {
+    type: 'iteration',
+    iteration: 1,
+    newInfoRatio: 0.4,
+    status: 'continue',
+    focus: 'coverage',
+  };
+
+  function validateWithDelta(deltaContent: string): ReturnType<typeof validateIterationOutputs> {
+    let result: ReturnType<typeof validateIterationOutputs> | null = null;
+    withTempPaths(({ tempDir, iterationFile, stateLogPath }) => {
+      const deltaFilePath = join(tempDir, 'iter-001.jsonl');
+      writeFileSync(iterationFile, '# Iteration 1\n', 'utf8');
+      writeFileSync(stateLogPath, '{"type":"event"}\n', 'utf8');
+      const previousStateLogSize = statSync(stateLogPath).size;
+      writeFileSync(stateLogPath, `${readFileSync(stateLogPath, 'utf8')}${JSON.stringify(stateRecord)}\n`, 'utf8');
+      writeFileSync(deltaFilePath, deltaContent, 'utf8');
+      result = validateIterationOutputs({
+        iterationFile,
+        stateLogPath,
+        previousStateLogSize,
+        requiredJsonlFields: ['type', 'iteration', 'newInfoRatio', 'status', 'focus'],
+        deltaFilePath,
+      });
+    });
+    if (result === null) throw new Error('Expected a validation result');
+    return result;
+  }
+
+  function skipWarnings(result: ReturnType<typeof validateIterationOutputs>): string[] {
+    return (result.warnings ?? [])
+      .filter((warning) => warning.code === 'delta_unparseable_lines_skipped')
+      .map((warning) => warning.detail);
+  }
+
+  it('reports no skipped lines when every delta line parses', () => {
+    const result = validateWithDelta(`${JSON.stringify(stateRecord)}\n`);
+    expect(result.ok).toBe(true);
+    expect(skipWarnings(result)).toEqual([]);
+  });
+
+  it('keeps the last parseable iteration record and warns about the lines it skipped', () => {
+    const result = validateWithDelta(`${JSON.stringify(stateRecord)}\n{"type":"iteration","iter\nnot json\n`);
+    expect(result.ok).toBe(true);
+    const details = skipWarnings(result);
+    expect(details).toHaveLength(1);
+    expect(details[0]).toContain('2 unparseable lines');
+  });
+
+  it('names the skipped lines when no iteration record is left to select', () => {
+    const result = validateWithDelta('not json\n');
+    expect(result).toMatchObject({ ok: false, reason: 'delta_file_missing_iteration_record' });
+    expect(skipWarnings(result)).toHaveLength(1);
+  });
+});

@@ -1435,3 +1435,63 @@ describe('executor-audit recursion guard: operator host-session switch', () => {
     }
   });
 });
+
+describe('dispatch receipt write failure detail', () => {
+  async function runWithFailingReceiptWrite(thrown: unknown): Promise<Array<Record<string, unknown>>> {
+    const tempDir = mkdtempSync(join(tmpdir(), 'executor-receipt-failure-'));
+    const stateLogPath = join(tempDir, 'state.jsonl');
+    const receiptDir = join(tempDir, 'receipts');
+    writeFileSync(stateLogPath, '{"type":"event","event":"start"}\n', 'utf8');
+    vi.resetModules();
+    vi.doMock('node:fs', async () => {
+      const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
+      return {
+        ...actual,
+        writeFileSync(...args: Parameters<typeof actual.writeFileSync>) {
+          if (typeof args[0] === 'string' && args[0].startsWith(receiptDir) && args[0].endsWith('.tmp')) throw thrown;
+          return actual.writeFileSync(...args);
+        },
+      };
+    });
+    try {
+      const audit = await import('../../lib/deep-loop/executor-audit.js');
+      audit.runAuditedExecutorCommand({
+        command: process.execPath,
+        args: ['-e', 'process.exit(0)'],
+        cwd: tempDir,
+        timeoutSeconds: 10,
+        stateLogPath,
+        executor: cliClaudeExecutor(),
+        iteration: 1,
+        guardContext: { env: { PATH: process.env.PATH, HOME: process.env.HOME }, ancestryCmdlines: [], statePaths: [] },
+        receiptDir,
+        dispatchId: 'receipt-failure',
+      });
+      return readFileSync(stateLogPath, 'utf8')
+        .split('\n')
+        .filter((line) => line.trim() !== '')
+        .map((line) => JSON.parse(line) as Record<string, unknown>)
+        .filter((row) => row.event === 'dispatch_receipt_write_failed');
+    } finally {
+      vi.doUnmock('node:fs');
+      vi.resetModules();
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  }
+
+  it('records the Error message as the failure detail', async () => {
+    const failures = await runWithFailingReceiptWrite(new Error('receipt disk full'));
+    expect(failures.map((row) => [row.phase, row.detail])).toEqual([
+      ['intent', 'receipt disk full'],
+      ['completion', 'receipt disk full'],
+    ]);
+  });
+
+  it('records a non-Error throw as its string form instead of failing the dispatch', async () => {
+    const failures = await runWithFailingReceiptWrite(null);
+    expect(failures.map((row) => [row.phase, row.detail])).toEqual([
+      ['intent', 'null'],
+      ['completion', 'null'],
+    ]);
+  });
+});
