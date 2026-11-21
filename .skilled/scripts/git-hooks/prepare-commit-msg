@@ -305,6 +305,7 @@ if [[ -n "${SPECKIT_COMMIT_SPEC:-}" && "$HAS_SPEC" -eq 0 ]]; then
     printf 'prepare-commit-msg: SPECKIT_COMMIT_SPEC is not a packet path; Spec not stamped.\n' >&2
     printf '  It must be one path of letters, digits, dots, dashes, underscores and slashes.\n' >&2
     printf '  Next: export SPECKIT_COMMIT_SPEC=specs/<track>/<packet>\n' >&2
+    printf '  Replace <track>/<packet> with the track and packet this commit belongs to.\n' >&2
   fi
 fi
 

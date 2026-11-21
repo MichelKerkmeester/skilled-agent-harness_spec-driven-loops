@@ -239,6 +239,10 @@ expect_hook_says "drift in a .skilled routing input blocks the push" \
   1 "routing-commit-parity" "refs/heads/main $OPENCODE_SHA refs/heads/main $SKILLED_SHA"
 expect_hook "a pushed commit other than HEAD is not compared with the working tree" \
   0 "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA"
+printf '%s\n' "process.exit(1);" > "$TMP/.opencode/bin/compiled-route-guard.cjs"
+expect_hook_says "a stale route names the re-check from the repository root" \
+  1 "Next: from $(cd "$TMP" && pwd -P): node .opencode/bin/compiled-route-guard.cjs" \
+  "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA"
 rm -rf "$TMP/.opencode/bin"
 git -C "$TMP" checkout -q -- .skilled/skills/demo/hub-router.json
 
@@ -388,6 +392,18 @@ git -C "$CID" checkout -q main
 git -C "$CID" merge -q --no-ff --no-edit side
 cid_expect "a merge commit needs no Commit-Id" 0 \
   "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_STAMPED"
+# A merged-in unstamped commit leaves no one base that spans only the pushed range.
+CID_MERGED="$(git -C "$CID" rev-parse HEAD)"
+git -C "$CID" checkout -q -b side2 "$CID_BASE"
+git -C "$CID" commit -q --allow-empty -m "chore(x): side unstamped" -m "Body."
+git -C "$CID" checkout -q main
+git -C "$CID" merge -q --no-ff --no-edit side2
+cid_expect "a range holding a merge keeps the stamping base placeholder" 1 \
+  "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_MERGED" \
+  "Next: git rebase -x 'git commit --amend --no-edit' <the commit before the first one>"
+cid_expect "the stamping base placeholder says the base is the operator's to name" 1 \
+  "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_MERGED" \
+  "No one base spans exactly the pushed range, so replace the placeholder with the commit before the first one to fix."
 git -C "$CID" config skilled.commitId false
 cid_expect "skilled.commitId false exempts the repository" 0 \
   "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA"

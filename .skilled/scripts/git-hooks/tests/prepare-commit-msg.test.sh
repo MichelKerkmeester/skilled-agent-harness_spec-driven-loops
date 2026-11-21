@@ -281,6 +281,15 @@ check_before "Spec sits above Commit-Id" '^Spec:' '^Commit-Id:' "$TMP/message.tx
 check_rc "spec stamp is idempotent" 0 "$RC"
 check_count "second run keeps one Spec" '^Spec: specs/example/001-demo$' 1 "$TMP/message.txt"
 
+# ── 9b. a malformed SPECKIT_COMMIT_SPEC names the packet path as the operator's to fill ──
+setup_repo
+printf 'feat(sk-git): carry a bad packet path\n\nBody text.\n' > "$TMP/message.txt"
+( cd "$TMP" && SPECKIT_COMMIT_SPEC='specs/bad path' bash "$HOOK" "$TMP/message.txt" message >"$TMP/out.log" 2>&1 ); RC=$?
+check_rc "a malformed spec path exits 0" 0 "$RC"
+check_count "the malformed spec path names its placeholder" '^  Next: export SPECKIT_COMMIT_SPEC=specs/<track>/<packet>$' 1 "$TMP/out.log"
+check_count "the placeholder says the packet is the operator's to name" \
+  '^  Replace <track>/<packet> with the track and packet this commit belongs to\.$' 1 "$TMP/out.log"
+
 # ── 10. a foreign repository without the allocator is untouched ─────────────
 rm -rf "$TMP"
 mkdir -p "$TMP/foreign"

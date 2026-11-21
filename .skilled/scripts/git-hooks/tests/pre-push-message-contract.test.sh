@@ -186,6 +186,8 @@ git -C "$TMP/repo" merge -q --no-ff main -m "Merge branch 'main' into branches/0
 push_rc branches/003-merge branches/003-merge SPECKIT_ALLOW_REMOTE_PUSH=1; RC=$?
 check "a range with a merge keeps the base placeholder" 1 "$RC" \
   "Next: git rebase -i <the commit before the first one>"
+check "the base placeholder says the base is the operator's to name" 1 "$RC" \
+  "No one base spans exactly the pushed range, so replace the placeholder with the commit before the first one to fix."
 
 # ── 12. a force-push over a remote tip never fetched checks only new commits ──
 setup

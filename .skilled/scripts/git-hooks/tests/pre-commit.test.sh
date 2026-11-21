@@ -87,6 +87,8 @@ run_hook() { ( cd "$TMP" && bash "$HOOK" >"$TMP/out.log" 2>&1 ); }
 # A printed Next command is pasted into a shell, so read its words the way a shell
 # would: eval only `set --` over the text after the prefix, inside the fixture. A path
 # that would expand when pasted expands here too, and leaves its marker file behind.
+# A Next line naming a repository-relative path says to run it from the repository root.
+next_from() { printf 'from %s: ' "$(cd "$TMP" && pwd -P)"; }
 next_words() { # next_words <text after "Next: "> -> each word, NUL-separated
   local line
   line="$(grep -m1 -F "Next: $1" "$TMP/out.log")" || return 1
@@ -152,7 +154,7 @@ echo "staged" > "$TMP/$ODD_LEAF"; git -C "$TMP" add -- "$ODD_LEAF"
 echo "unstaged too" > "$TMP/$ODD_LEAF"
 run_hook; RC=$?
 check "a partly staged odd path is refused" 1 "$RC" "staged and unstaged at once"
-check_next_words "the route refusal's git add names the odd path as one word" "git add -- " "$ODD_LEAF"
+check_next_words "the route refusal's git add names the odd path as one word" "$(next_from)git add -- " "$ODD_LEAF"
 
 # ── 4. a missing authored manifest blocks rather than exiting zero in silence ──
 setup_fixture
@@ -269,7 +271,7 @@ echo "# staged" > "$TMP/$ODD_DOC"; git -C "$TMP" add -- "$ODD_DOC"
 echo "# unstaged too" > "$TMP/$ODD_DOC"
 run_hook; RC=$?
 check "a partly staged odd doc is refused" 1 "$RC" "staged and unstaged at once"
-check_next_words "the packet refusal's git add names the odd doc as one word" "git add -- " "$ODD_DOC"
+check_next_words "the packet refusal's git add names the odd doc as one word" "$(next_from)git add -- " "$ODD_DOC"
 
 # ── 11. a repair failure blocks and shows the tool's own output ──
 setup_spec_fixture
@@ -467,7 +469,7 @@ setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a missing comment checker blocks" 1 "$RC" "comment-hygiene]: checker is missing: "
-check "a missing comment checker names its restore command" 1 "$RC" "Next: git restore --source=HEAD --staged --worktree -- .opencode/skills/sk-code/"
+check "a missing comment checker names its restore command" 1 "$RC" "Next: $(next_from)git restore --source=HEAD --staged --worktree -- .opencode/skills/sk-code/"
 check "a restore says it discards a staged version too" 1 "$RC" "staged or unstaged edit to the file is lost"
 
 # ── 24b. a present comment checker without the execute bit names chmod, not a restore ──
@@ -480,7 +482,7 @@ chmod -x "$TMP/$CHK"
 stage_new "notes.md" "note"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a non-executable comment checker blocks" 1 "$RC" "checker is not executable: "
-check "a non-executable comment checker names chmod" 1 "$RC" "Next: chmod +x $CHK"
+check "a non-executable comment checker names chmod" 1 "$RC" "Next: $(next_from)chmod +x $CHK"
 if grep -qE "git (checkout|restore) .*check-comment-hygiene" "$TMP/out.log"; then
   echo "FAIL  a non-executable comment checker offers no restore"; FAIL=$((FAIL + 1))
 else
@@ -497,13 +499,14 @@ SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a crashing comment checker blocks" 1 "$RC" "the checker failed (exit 3)"
 check "a crashing comment checker offers a close check, not a rerun" 1 "$RC" "a close check over the working tree"
 check "the close check passes the paths after --" 1 "$RC" "xargs -0 $CHK --$"
+check "the close check runs from the repository root" 1 "$RC" "Next: $(next_from)git diff --cached"
 
 # ── 25. a missing agent mirror checker blocks where the toolchain ships ──
 setup_gate_fixture toolchain
 stage_new ".opencode/agents/probe.md" "agent"
 run_hook; RC=$?
 check "a missing agent mirror checker blocks" 1 "$RC" "agent-mirror-sync]: checker is missing"
-check "a missing agent mirror checker names its restore command" 1 "$RC" "Next: git restore --source=HEAD --staged --worktree -- .opencode/bin/check-agent-mirror-sync.cjs"
+check "a missing agent mirror checker names its restore command" 1 "$RC" "Next: $(next_from)git restore --source=HEAD --staged --worktree -- .opencode/bin/check-agent-mirror-sync.cjs"
 check "a missing agent mirror checker names the chain's off switch" 1 "$RC" "SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit"
 
 # ── 26. a missing mirror parity script blocks where the toolchain ships ──
@@ -511,7 +514,7 @@ setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
 check "a missing mirror parity script blocks" 1 "$RC" "mirror-parity]: script is missing"
-check "a missing mirror parity script names its restore command" 1 "$RC" "Next: git restore --source=HEAD --staged --worktree -- .opencode/skills/"
+check "a missing mirror parity script names its restore command" 1 "$RC" "Next: $(next_from)git restore --source=HEAD --staged --worktree -- .opencode/skills/"
 
 # ── 27. a staged .skilled prompt surface reaches the card-sync guard ──
 setup_gate_fixture

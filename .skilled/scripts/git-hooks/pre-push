@@ -352,6 +352,7 @@ while read -r _ local_sha remote_ref remote_sha; do
           echo "  Next: git rebase -i $_base" >&2
         else
           echo "  Next: git rebase -i <the commit before the first one>" >&2
+          echo "  No one base spans exactly the pushed range, so replace the placeholder with the commit before the first one to fix." >&2
         fi
         echo "  In the todo list, mark each listed commit as reword." >&2
         REJECTED=1
@@ -412,6 +413,7 @@ while read -r _ local_sha remote_ref remote_sha; do
             echo "  Next: git rebase -x 'git commit --amend --no-edit' $_base"
           else
             echo "  Next: git rebase -x 'git commit --amend --no-edit' <the commit before the first one>"
+            echo "  No one base spans exactly the pushed range, so replace the placeholder with the commit before the first one to fix."
           fi
           echo "   To exempt this repository: git config --local skilled.commitId false"
         } >&2
@@ -590,7 +592,7 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
         echo "     Then rebuild and re-pin that hub's canary before pushing."
         echo "Run the command the guard printed above beside each hub, git add both manifests"
         echo "and commit them, then re-check with:"
-        echo "Next: node $(_shell_words "${ROUTE_GUARD#"$REPO_ROOT"/}")"
+        printf 'Next: from %q: node %q\n' "$REPO_ROOT" "${ROUTE_GUARD#"$REPO_ROOT"/}"
         echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..."
         echo ""
       } >&2
