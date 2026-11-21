@@ -8,17 +8,30 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode"
-    last_updated_at: "2026-11-17T14:34:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Authored the planned phase docs"
-    next_safe_action: "Wait for phases 008-010, then start T001"
-    blockers: []
-    key_files: []
+    last_updated_at: "2026-11-21T11:09:55Z"
+    last_updated_by: "generate-context"
+    recent_action: "Phase merged and built on integration; golden test passes and pilot run 2 drained"
+    next_safe_action: "Add the synthesis step ADR-001 needs for exhausted and blocked nodes (CHK-042)"
+    packet_purpose: "Purpose: With `--depth-mode=expansive`, a review run decomposes its target into admitted sub-target nodes held in `candidateCoverage`, `searchDebt` and a review `registry.frontier`, focuses them breadth-first, refuses to stop while they are open within budget, closes them cleanly and partitions depth-1 no..."
+    blockers:
+      - "CHK-042 open: no synthesis step lists exhausted or blocked nodes"
+      - "Search debt SL-004 and SL-2-04 not shown frontier-free"
+      - "CHK-113 open: no budget per depth recorded"
+    key_files:
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/tasks.md"
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:ccc740dfce944b6858cca923fa8790ac05775dcb31093279396faeae2bde46b5"
       session_id: "scaffold-011-review-frontier-mode"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
+      workspace: "/Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration"
+      savedAt: "2026-11-21T11:09:55Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---

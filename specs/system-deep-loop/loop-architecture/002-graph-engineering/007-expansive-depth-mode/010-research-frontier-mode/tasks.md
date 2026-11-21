@@ -105,7 +105,7 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [B] T030 Run the full deep-loop suite. Verify: `npm test` from `$D/runtime` exits 0 and the guard suites from parent research section 10 are all listed as passed. Merge-time step 2026-11-17: the full suite runs at the integration merge gate. Named suites on this branch: golden 12, frontier-admit 23, reduce-state 48, stop-decision 79, yaml-contract 22, fanout-run 203, fanout-merge 84, prompt-pack 18, all passing.
+- [x] T030 Run the full deep-loop suite. Verify: `npm test` from `$D/runtime` exits 0 and the guard suites from parent research section 10 are all listed as passed. Merge-time step 2026-11-17: the full suite runs at the integration merge gate. Named suites on this branch: golden 12, frontier-admit 23, reduce-state 48, stop-decision 79, yaml-contract 22, fanout-run 203, fanout-merge 84, prompt-pack 18, all passing. Evidence 2026-11-21: the integration gate at `31c29fe031a`, after this phase merged, ran `vitest run` in `$D/runtime` (the `npm test` script): 211 of 211 files and 3888 tests passed, 11 skipped, exit 0. Every guard suite section 10 names is a file in that run.
 - [x] T031 Run the pilot on example target 2 with `--depth-mode=expansive`, a stated `maxIterations`, depth-1 nodes rooted at `runtime/lib/prompt-policy.ts` and `runtime/data/prompt-policy.default.json`, the scorer at depth 2 and dedupe against `specs/system-skill-advisor/routing-and-scoring/001-010` (pilot packet under this phase's `scratch/`). Verify: `jq '.frontier.stats'` on the pilot `findings-registry.json` shows zero open and zero active nodes, the frontier reaches zero open before the iteration cap (amended 2026-11-18, decision-record Q003), and the log records how many depth-1 nodes the seed step produced. Merge-time step 2026-11-17 (decision D-010-04): the live pilot needs a full \`/deep:research\` loop and runs after integration. Interim evidence is a CLI smoke on a scratch packet: seed admitted 2 and pruned 1 duplicate; admit added F-2-004 and pruned a repeat; the reducer projected stats, budget and the 6B section; the stop decision returned CONTINUE \`frontierOpen\`; closing every node left zero open and zero active. First live run 2026-11-18 (`scratch/pilot-run-1.md`): FAIL, stop `maxIterationsReached` at 12 of 12, 0 open, 0 active, 8 nodes admitted beyond the seed. Its three defects are fixed on integration `1642d622a3b`; Rerun 2026-11-18 at maxIterations 16 (`scratch/pilot-run-2.md`): 16 of 16 nodes answered, 0 open, 0 active, the frontier at zero open from the check before iteration 15, stop on the cap; the seed step produced 4 depth-1 nodes. Met under the amended criterion; the cap is now derived as half of `maxIterations`.
 - [x] T032 Check the pilot cites the current command-surfacing symbols (pilot `research.md`). Verify: `rg -c 'COMMAND_POLICIES'` on it prints nothing and `rg -c 'COMMAND_ROWS|TRACKED_COMMANDS'` prints at least 1. Merge-time step 2026-11-17: checked on the pilot \`research.md\` once T031 runs. Checked on the first live pilot research.md 2026-11-18: `rg -c COMMAND_POLICIES` prints nothing, `rg -c "COMMAND_ROWS|TRACKED_COMMANDS"` prints 1.
 <!-- /ANCHOR:phase-3 -->
@@ -115,8 +115,8 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` Open 2026-11-21: 33 of 34 tasks are `[x]`; T030 is still `[B]`.
-- [ ] No `[B]` blocked tasks remaining Open 2026-11-21: T030 is `[B]`. The parent goal log's final gate row (2026-11-19, 3520 passed, 0 failed) may be the run T030 waits for; closing T030 is that task's own step.
+- [x] All tasks marked `[x]` Evidence 2026-11-21: 34 of 34 tasks are `[x]`.
+- [x] No `[B]` blocked tasks remaining Evidence 2026-11-21: T030 closed on the `31c29fe031a` gate run; no task is `[B]`.
 - [x] Manual verification passed Evidence 2026-11-21: pilot run 2 (`scratch/pilot-run-2.md`) meets the amended AC-014 with 16 of 16 nodes answered, 0 open and 0 active; T031 and T032 are `[x]` and AC-014 reads Met.
 - [x] The golden test passes and the pilot registry shows every frontier node terminal
 <!-- /ANCHOR:completion -->
@@ -209,7 +209,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized Open 2026-11-21: `tasks.md` keeps T030 at `[B]`, while `implementation-summary.md` says the full suite is green at the integration gate and its continuity still names T030 as the next action.
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized Evidence 2026-11-21: `tasks.md` ticks T030, the summary's Known Limitations item 3 records the same gate run, and the continuity writer replaced the T030 next action.
 - [x] CHK-041 [P1] `research.md` command flag table and the agent definition describe the same flag and row Evidence 2026-11-17: `research.md` flag row and the agent Step 9 row both name `--depth-mode`/`frontier_proposal`.
 - [x] CHK-042 [P2] `wave_orchestration` carries a pointer to the frontier mode Evidence 2026-11-17: `wave_orchestration.summary` points at the live frontier.
 - [x] CHK-043 [P1] Reference docs, playbook scenarios and the changelog entry name `--depth-mode`, per T026-T028 Evidence 2026-11-17: `rg -l -- '--depth-mode'` prints the SKILL.md, the README, the four reference docs, the playbook root and DR-068, and the changelog entry.
@@ -233,7 +233,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 14 | 11/14 |
-| P1 Items | 25 | 18/25 |
+| P1 Items | 25 | 20/25 |
 | P2 Items | 9 | 9/9 |
 
 **Verification Date**: 2026-11-21: each box still open before that date was checked one by one at HEAD, and earlier ticks were not rechecked. Counts are ticked boxes; each open box names its reason inline.
@@ -288,7 +288,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] All spec documents synchronized Open 2026-11-21: `tasks.md` keeps T030 at `[B]`, while `implementation-summary.md` says the full suite is green at the integration gate and its continuity still names T030 as the next action.
+- [x] CHK-140 [P1] All spec documents synchronized Evidence 2026-11-21: `tasks.md` ticks T030, the summary's Known Limitations item 3 records the same gate run, and the continuity writer replaced the T030 next action.
 - [ ] CHK-141 [P1] Prompt-pack allowed-write list matches the agent definition Open 2026-11-21: the lists differ. `deep-research/assets/prompt-pack-iteration.md.tmpl` (ALLOWED WRITE PATHS) lists the iteration file, the delta, `research.md` under `progressiveSynthesis` and the gateway's writes. `.skilled/agents/deep-research.md` also allows `research/research-ideas.md` when idea capture is explicitly allowed.
 - [x] CHK-142 [P2] User-facing docs beyond the command doc are listed in T026-T028 Evidence 2026-11-21: T026 names `convergence.md`, `loop-protocol.md`, `state-format.md`, the quick reference, `SKILL.md` and `README.md`. T027 names the playbook scenarios and T028 the changelog.
 - [x] CHK-143 [P2] N/A: knowledge lives in this packet and the parent research N/A 2026-11-21: knowledge lives in this packet and the parent research.
