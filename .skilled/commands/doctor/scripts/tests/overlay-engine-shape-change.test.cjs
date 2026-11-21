@@ -877,6 +877,34 @@ test('a moved layout link with a layout link inside it names the inner link in i
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'target2', 'sub', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
 });
 
+// A moved link that another layout link reads through, both made by earlier
+// applies: an entry under the other link writes through the moved one, so it
+// would land in the old target as surely as an entry under the moved link.
+test('a moved layout link that another layout link reads through, with an entry under that link, is refused and its Next sequence ends in sync', (t) => {
+  const links = [{ path: 'inner', target: 'target' }, { path: 'up', target: 'inner' }];
+  const fixture = createShapeFixture(t, [], links.slice(0, 1));
+  writeFile(fixture.tree, 'target2/other.md', 'second target\n');
+  applyOk(fixture);
+  fixture.setManifest([UP_ENTRY], links);
+  applyOk(fixture);
+  assert.equal(fixture.run(['status']).code, 0);
+  const moved = [{ path: 'inner', target: 'target2' }, { path: 'up', target: 'inner' }];
+  fixture.setManifest([UP_ENTRY], moved);
+  writeFile(fixture.overlayDir, 'bundle/a.md', 'bundle a two\n');
+  const oldTarget = snapshot(path.join(fixture.tree, 'target'));
+  const newTarget = snapshot(path.join(fixture.tree, 'target2'));
+  assertMovedLinkLines(assertRefusedByBoth(fixture, 'inner moves from target to target2, and overlay tool writes under it'),
+    'target', 'target2');
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'inner')), 'target');
+  assert.deepEqual(snapshot(path.join(fixture.tree, 'target')), oldTarget);
+  assert.deepEqual(snapshot(path.join(fixture.tree, 'target2')), newTarget);
+  moveLinkAlone(fixture, [UP_ENTRY], moved);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'inner')), 'target2');
+  assert.deepEqual(snapshot(path.join(fixture.tree, 'target')), oldTarget);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target2', 'tool', 'a.md'), 'utf8'), 'bundle a two\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target2', 'other.md'), 'utf8'), 'second target\n');
+});
+
 // On a volume that ignores case, the link recorded as up is the one the
 // manifest now spells UP, so it is moved like any link the engine made.
 test('a recorded layout link the manifest spells in another case is moved on a volume that ignores case', (t) => {

@@ -3380,6 +3380,31 @@ function refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans) {
       return destination === key && (!isFolderOnlyAtLink || entry.scope === 'directory' || entry.scope === 'skill-root');
     });
   };
+  // A moved link carries every entry under it, and every entry under another
+  // layout link whose target reads through it, followed from link to link,
+  // since those writes land in its old target too.
+  const absoluteRoot = path.resolve(root);
+  const keyOf = (link) => fold(path.posix.normalize(link.path).replace(/\/+$/, ''));
+  const targetKeyOf = (link) => fold(path.relative(absoluteRoot,
+    path.resolve(absoluteRoot, path.dirname(link.path), link.target)).split(path.sep).join('/'));
+  const entriesThroughMovedLink = (moved) => {
+    const links = (manifest.layoutLinks || []).filter((other) => other && typeof other.path === 'string' && typeof other.target === 'string');
+    const through = [moved];
+    const seen = new Set([moved]);
+    for (let index = 0; index < through.length; index += 1) {
+      const key = keyOf(through[index]);
+      for (const other of links) {
+        if (seen.has(other)) continue;
+        const targetKey = targetKeyOf(other);
+        if (targetKey !== key && !targetKey.startsWith(key + '/')) continue;
+        seen.add(other);
+        through.push(other);
+      }
+    }
+    const found = new Set();
+    for (const reading of through) for (const entry of entriesUnder(reading, false)) found.add(entry);
+    return plans.map((plan) => plan.entry).filter((entry) => found.has(entry));
+  };
   const named = (entries) => (entries.length === 1
     ? `overlay ${entries[0].id} writes`
     : `overlays ${entries.map((entry) => entry.id).join(', ')} write`);
@@ -3411,7 +3436,7 @@ function refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans) {
         `Next: ${makeFolder}, or point the layout link ${link.path} in ${manifestPath} at a folder that exists, then ${engineApply}`));
       refused.add(record);
     }
-    const movedUnder = record && record.isRetarget ? entriesUnder(link, false) : [];
+    const movedUnder = record && record.isRetarget ? entriesThroughMovedLink(link) : [];
     if (movedUnder.length > 0) {
       const ids = movedUnder.map((entry) => entry.id).join(', ');
       const single = movedUnder.length === 1;
