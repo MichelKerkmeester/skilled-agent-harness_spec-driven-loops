@@ -328,20 +328,37 @@ function removePath(filePath) {
  * @param {((relative: string) => boolean)|null} [isUnshippedFolder] Says whether the
  *   entry no longer ships a folder, given its posix path relative to the top folder.
  * @param {string} [relative] Path of `dir` relative to the top folder; '' at the top.
+ * @param {{dir: string, code: string}[]} [blocked] Receives each folder of caches
+ *   the prune could not remove, with the error code that stopped it.
+ * @returns {boolean} True when a folder of caches at or below `dir` stayed.
  */
-function pruneEmptyDirs(dir, isUnshippedFolder = null, relative = '') {
-  if (!isDirectory(dir)) return;
+function pruneEmptyDirs(dir, isUnshippedFolder = null, relative = '', blocked = []) {
+  if (!isDirectory(dir)) return false;
+  let isBlocked = false;
   for (const dirent of fs.readdirSync(dir, { withFileTypes: true })) {
     if (!dirent.isDirectory()) continue;
-    pruneEmptyDirs(path.join(dir, dirent.name), isUnshippedFolder, relative ? relative + '/' + dirent.name : dirent.name);
+    const childRelative = relative ? relative + '/' + dirent.name : dirent.name;
+    if (pruneEmptyDirs(path.join(dir, dirent.name), isUnshippedFolder, childRelative, blocked)) isBlocked = true;
   }
+  // A folder below this one kept caches it could not lose, so this one is not
+  // empty, and removing it would only fail the same way and report it twice.
+  if (isBlocked) return true;
   // A cache folder's fate is its nearest ordinary folder's, since no source ships one.
-  if (relative && isUnshippedFolder && !relative.split('/').some(isPythonCacheName) &&
+  if (relative && isUnshippedFolder && !isPythonCachePath(relative, true) &&
       isUnshippedFolder(relative) && holdsOnlyPythonCaches(dir)) {
-    fs.rmSync(dir, { recursive: true, force: true });
-    return;
+    // The folder holds caches alone, so a failure here loses no overlay content:
+    // it is reported and the run goes on, unlike a failed delete of a shipped file.
+    try {
+      fs.rmSync(dir, { recursive: true, force: true });
+    } catch (error) {
+      if (!error || typeof error.code !== 'string') throw error;
+      blocked.push({ dir, code: error.code });
+      return true;
+    }
+    return false;
   }
   if (fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
+  return false;
 }
 
 /**
@@ -350,7 +367,7 @@ function pruneEmptyDirs(dir, isUnshippedFolder = null, relative = '') {
  * @returns {boolean} True for a folder with only caches in it, or with nothing.
  */
 function holdsOnlyPythonCaches(dir) {
-  return fs.readdirSync(dir, { withFileTypes: true }).every((dirent) => isPythonCacheName(dirent.name) ||
+  return fs.readdirSync(dir, { withFileTypes: true }).every((dirent) => isPythonCachePath(dirent.name, dirent.isDirectory()) ||
     (dirent.isDirectory() && holdsOnlyPythonCaches(path.join(dir, dirent.name))));
 }
 
@@ -380,8 +397,13 @@ function unshippedFolderTest(entry, overlayRoot) {
 // both sides, so a cache is never shipped, deleted, captured, adopted or reported
 // as drift. The test is by name and not by what git ignores: an overlay folder can
 // sit in no repository, and what an entry ships must not move with an ignore file.
-function isPythonCacheName(name) {
-  return name === '__pycache__' || name.endsWith('.pyc') || name.endsWith('.pyo');
+// A path is a cache when a folder on it is named `__pycache__`, or when it is a
+// file ending in `.pyc` or `.pyo`; a folder with such an ending is ordinary content.
+function isPythonCachePath(relativePath, isFolder) {
+  const segments = relativePath.split('/');
+  const last = segments[segments.length - 1];
+  return segments.slice(0, -1).includes('__pycache__') || last === '__pycache__' ||
+    (!isFolder && (last.endsWith('.pyc') || last.endsWith('.pyo')));
 }
 
 /**
@@ -399,7 +421,7 @@ function walkTree(dir) {
     const rel = stack.pop();
     const abs = rel ? path.join(dir, rel) : dir;
     for (const dirent of fs.readdirSync(abs, { withFileTypes: true })) {
-      if (isPythonCacheName(dirent.name)) continue;
+      if (isPythonCachePath(dirent.name, dirent.isDirectory())) continue;
       const childRel = rel ? path.posix.join(rel, dirent.name) : dirent.name;
       const childAbs = path.join(dir, childRel);
       const stats = fs.lstatSync(childAbs);
@@ -433,7 +455,7 @@ function listTreePaths(directoryPath, { isCacheIncluded = false } = {}) {
   while (pending.length > 0) {
     const current = pending.pop();
     for (const item of fs.readdirSync(current, { withFileTypes: true })) {
-      if (!isCacheIncluded && isPythonCacheName(item.name)) continue;
+      if (!isCacheIncluded && isPythonCachePath(item.name, item.isDirectory())) continue;
       const absolute = path.join(current, item.name);
       const stats = fs.lstatSync(absolute);
       if (stats.isDirectory()) pending.push(absolute);
@@ -2533,9 +2555,11 @@ function planOverlay(entry, ctx, { acceptedSha256, recordedItems, recordedSets, 
  * @param {string} root Destination tree root.
  * @param {string|null} [overlayRoot] The overlay folder. Without it, a folder the
  *   entry no longer ships keeps a Python cache left in it.
+ * @param {string[]} [notices] Receives a notice for each folder of Python caches
+ *   the prune could not remove.
  * @returns {number} Number of write and delete operations applied.
  */
-function applyOnePlan(plan, root, overlayRoot = null) {
+function applyOnePlan(plan, root, overlayRoot = null, notices = []) {
   for (const deletion of plan.deletes) removePath(deletion);
   for (const write of plan.writes) {
     if (write.symlinkTarget !== undefined) ensureSymlink(write.filePath, write.symlinkTarget);
@@ -2543,9 +2567,23 @@ function applyOnePlan(plan, root, overlayRoot = null) {
   }
   if (plan.deletes.length > 0 && plan.entry.destination) {
     const isUnshippedFolder = overlayRoot ? unshippedFolderTest(plan.entry, overlayRoot) : null;
-    pruneEmptyDirs(path.join(root, plan.entry.destination), isUnshippedFolder);
+    const blocked = [];
+    pruneEmptyDirs(path.join(root, plan.entry.destination), isUnshippedFolder, '', blocked);
+    for (const { dir, code } of blocked) notices.push(cacheFolderNotice(toPosix(path.relative(root, dir)), code));
   }
   return plan.writes.length + plan.deletes.length;
+}
+
+/**
+ * The notice for a folder of Python caches the prune could not remove.
+ * @param {string} folder Posix path of the folder relative to the tree root.
+ * @param {string} code Error code of the failed removal.
+ * @returns {string} The notice, with its remedy on an indented `Next:` line.
+ */
+function cacheFolderNotice(folder, code) {
+  return `could not remove the Python cache folder ${folder} (${code}): apply was only clearing ` +
+    'Python caches from a folder its overlay no longer ships, not overlay content, so the folder stays\n' +
+    `  Next: chmod -R u+w ${folder} && rm -r ${folder}`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -4230,7 +4268,9 @@ function applyUnderLock(ctx, manifest, options = {}) {
   const layoutRecords = analysis.records.filter((record) => record.layout);
   const plansToApply = new Set(changedRecords.map((record) => record.plan));
   let written = 0;
-  for (const plan of plansToApply) written += applyOnePlan(plan, root, ctx.overlayRoot);
+  const cacheNotices = [];
+  for (const plan of plansToApply) written += applyOnePlan(plan, root, ctx.overlayRoot, cacheNotices);
+  for (const notice of cacheNotices) console.log(`NOTE     ${notice}`);
 
   // The links are restored before the regeneration steps run: a route resolving
   // skills through one of them reads nothing until the link exists.
@@ -4349,13 +4389,13 @@ function captureRecordForPath(ctx, manifest, candidate) {
     }
     if (entry.scope === 'directory') {
       const relative = directoryRelative(destinationPath, candidate);
-      if (relative === null || relative.split('/').some(isPythonCacheName)) continue;
+      if (relative === null || isPythonCachePath(relative, isDirectory(candidate))) continue;
       const sourcePath = path.resolve(ctx.overlayRoot, entry.source, relative);
       return { entry, key, destinationPath: candidate, sourcePath };
     }
     if (entry.scope === 'skill-root') {
       const relative = directoryRelative(destinationPath, candidate);
-      if (relative === null || relative.split('/').some(isPythonCacheName)) continue;
+      if (relative === null || isPythonCachePath(relative, isDirectory(candidate))) continue;
       const isReplacement = (entry.replace || []).some((replacement) =>
         relative === replacement || relative.startsWith(replacement + '/'));
       const sourcePath = path.resolve(ctx.overlayRoot, entry.source, relative);
@@ -5055,14 +5095,23 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
   for (const relativePath of enginePaths) {
     for (const leaf of backupLeaves(root, relativePath)) if (!groups.has(leaf)) groups.set(leaf, 'engine');
   }
-  // Apply removes a folder a folder entry stops shipping together with the caches
-  // left in it, and no record names a cache. Every cache below such an entry is
-  // backed up, not only those in folders the prune would take, so the backup
-  // cannot miss one if the prune's decision differs from a guess made here.
+  // Apply's prune takes a Python cache only together with a folder the entry no
+  // longer ships, and no record names a cache. So the caches under such a folder
+  // are backed up for a rollback to put back, by the same test the prune applies.
+  // Any other cache stays where it is, and copying it would only grow the backup.
   for (const entry of manifest.overlays || []) {
     if ((entry.scope !== 'directory' && entry.scope !== 'skill-root') || typeof entry.destination !== 'string') continue;
-    for (const leaf of backupLeaves(root, path.posix.normalize(entry.destination))) {
-      if (leaf.split('/').some(isPythonCacheName) && !groups.has(leaf)) groups.set(leaf, 'engine');
+    const isUnshippedFolder = unshippedFolderTest(entry, ctx.overlayRoot);
+    const destination = path.posix.normalize(entry.destination);
+    for (const leaf of backupLeaves(root, destination)) {
+      if (groups.has(leaf) || !isPythonCachePath(leaf, false)) continue;
+      // The prune never takes a cache folder on its own, only an ordinary folder above it.
+      const parts = path.posix.relative(destination, leaf).split('/');
+      for (let depth = 1; depth < parts.length && parts[depth - 1] !== '__pycache__'; depth += 1) {
+        if (!isUnshippedFolder(parts.slice(0, depth).join('/'))) continue;
+        groups.set(leaf, 'engine');
+        break;
+      }
     }
   }
 
@@ -5363,7 +5412,7 @@ function upstreamLosses(ctx, manifest, job, touched) {
       const sourceDir = path.join(ctx.overlayRoot, entry.source);
       if (!isDirectory(sourceDir)) continue;
       const carried = walkTree(sourceDir);
-      const isKept = (rel) => carried.has(rel) || rel.split('/').some(isPythonCacheName);
+      const isKept = (rel) => carried.has(rel) || isPythonCachePath(rel, false);
       for (const relativePath of removedUpstreamChanges(job, touched, destination, isKept)) {
         const how = job.oldBlobs.has(relativePath) ? 'changed' : 'added';
         losses.push({
@@ -5384,7 +5433,7 @@ function upstreamLosses(ctx, manifest, job, touched) {
       for (const folder of folders) {
         const carried = walkTree(path.join(sourceDir, folder));
         const isKept = (rel) => carried.has(rel) || retained.has(path.posix.join(folder, rel)) ||
-          rel.split('/').some(isPythonCacheName);
+          isPythonCachePath(rel, false);
         for (const relativePath of removedUpstreamChanges(job, touched, path.posix.join(destination, folder), isKept)) {
           const how = job.oldBlobs.has(relativePath) ? 'changed' : 'added';
           losses.push({

@@ -231,3 +231,70 @@ test('status --audit asks no README of a Python cache folder in the overlay fold
   assert.ok(missing.some((line) => line.endsWith('/directory-source')), audit.stdout);
   assert.deepEqual(missing.filter((line) => line.includes('__pycache__')), []);
 });
+
+test('a source folder whose name ends in .pyc is ordinary content and ships with its files', (t) => {
+  const fixture = createSyncFixture(t);
+  writeFile(fixture.overlayDir, 'directory-source/lib.pyc/real.py', 'print("real")\n');
+
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'directory-live/lib.pyc/real.py'), 'utf8'), 'print("real")\n');
+  assert.ok(Object.keys(readJson(fixture.statePath).files).some((key) => key.endsWith('lib.pyc/real.py')));
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.stdout, /RESULT: PASSED/);
+});
+
+test('a Python cache folder apply cannot remove leaves one notice with the fix, and apply still succeeds', (t) => {
+  if (typeof process.getuid === 'function' && process.getuid() === 0) {
+    t.skip('root ignores folder permissions');
+    return;
+  }
+  const fixture = createSyncFixture(t);
+  for (const base of [fixture.overlayDir + '/directory-source', fixture.tree + '/directory-live']) {
+    writeFile(base, 'sub/a.py', 'print("a")\n');
+    writeFile(base, 'sub/inner/b.py', 'print("b")\n');
+  }
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cacheDir = path.join(fixture.tree, 'directory-live/sub/inner/__pycache__');
+  writeFile(fixture.tree, 'directory-live/sub/inner/__pycache__/b.cpython-39.pyc', CACHE_BYTES);
+  fs.rmSync(path.join(fixture.overlayDir, 'directory-source/sub'), { recursive: true });
+  fs.chmodSync(cacheDir, 0o555);
+  try {
+    const applied = fixture.run(['apply']);
+    assert.equal(applied.code, 0, applied.output);
+    const notices = applied.stdout.split('\n').filter((line) => line.startsWith('NOTE     ') && line.includes('Python cache'));
+    assert.equal(notices.length, 1, applied.output);
+    assert.match(notices[0], /directory-live\/sub\/inner/);
+    assert.match(notices[0], /E[A-Z]+/);
+    assert.match(notices[0], /not overlay content/);
+    assert.match(applied.stdout, /^ {2}Next: chmod -R u\+w directory-live\/sub\/inner\b/m);
+    assert.equal(fs.existsSync(path.join(fixture.tree, 'directory-live/sub/a.py')), false);
+    assert.equal(fs.existsSync(path.join(fixture.tree, 'directory-live/sub/inner/b.py')), false);
+    assert.deepEqual(fs.readFileSync(path.join(cacheDir, 'b.cpython-39.pyc')), CACHE_BYTES);
+  } finally {
+    fs.chmodSync(cacheDir, 0o755);
+  }
+});
+
+test('an overlay file apply cannot delete still fails the run', (t) => {
+  if (typeof process.getuid === 'function' && process.getuid() === 0) {
+    t.skip('root ignores folder permissions');
+    return;
+  }
+  const fixture = createSyncFixture(t);
+  for (const base of [fixture.overlayDir + '/directory-source', fixture.tree + '/directory-live']) {
+    writeFile(base, 'sub/a.py', 'print("a")\n');
+  }
+  assert.equal(fixture.run(['apply']).code, 0);
+  const subDir = path.join(fixture.tree, 'directory-live/sub');
+  fs.rmSync(path.join(fixture.overlayDir, 'directory-source/sub'), { recursive: true });
+  fs.chmodSync(subDir, 0o555);
+  try {
+    const applied = fixture.run(['apply']);
+    assert.equal(applied.code, 2, applied.output);
+    assert.doesNotMatch(applied.output, /Python cache/);
+  } finally {
+    fs.chmodSync(subDir, 0o755);
+  }
+});

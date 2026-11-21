@@ -378,6 +378,33 @@ test('--rollback restores the Python cache in a folder a directory overlay stopp
   assert.deepEqual(fs.readFileSync(cachePath), cacheBytes);
 });
 
+test('the backup takes only the Python caches apply could remove, not every cache below a folder entry', (t) => {
+  const fixture = createRepinFixture(t);
+  const { tree, overlayDir } = fixture;
+  writeFile(overlayDir, 'vendor/keep/a.py', 'a\n');
+  fixture.manifest.overlays.push({
+    id: 'vendor', scope: 'skill-root', source: 'vendor', destination: '.skilled/vendor',
+    replace: ['keep'], remove: ['gone'], retained: [],
+  });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cacheBytes = Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0x01]);
+  const kept = [
+    '.skilled/vendor/__pycache__/top.cpython-39.pyc',
+    '.skilled/vendor/keep/__pycache__/a.cpython-39.pyc',
+    '.skilled/vendor/upstream/__pycache__/u.cpython-39.pyc',
+    '.skilled/vendor/upstream/deep/stray.pyc',
+  ];
+  const removable = '.skilled/vendor/gone/__pycache__/g.cpython-39.pyc';
+  for (const relativePath of [...kept, removable]) writeFile(tree, relativePath, cacheBytes);
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  const runDir = path.join(fixture.runsDir, fs.readdirSync(fixture.runsDir)[0]);
+  const backedUp = readJson(path.join(runDir, 'backup.json')).entries.map((entry) => entry.path);
+  assert.deepEqual(backedUp.filter((relativePath) => /__pycache__|\.py[co]$/.test(relativePath)), [removable]);
+});
+
 test('--rollback refuses a backed-up file whose bytes no longer match the recorded hash', (t) => {
   const fixture = createRepinFixture(t);
   const result = fixture.repin();
