@@ -2347,6 +2347,7 @@ workflow:
 
           8. **Deferred Items**
              - Advisory-only or backlog-worthy follow-ups that do not block the current verdict
+             - When {state_paths.findings_registry} carries a `frontier` object, list every node in `frontier.nodes` whose status is `exhausted` or `blocked` as follow-up review work: its nodeId, status, reason, scope, and `nextDimension` (or "every dimension reviewed" when it is null). These are the nodes a review dashboard lists as `Follow-up` lines in `## 10B. FRONTIER`; on a fan-out root, each lineage's dashboard lists its own, and the merged node ids carry the lineage label. They do not change the verdict. A registry with no `frontier` object adds nothing here.
 
           **Dimension Expansion Map**
              - Insert `## Dimension Expansion Map` after Deferred Items and before Search Ledger.

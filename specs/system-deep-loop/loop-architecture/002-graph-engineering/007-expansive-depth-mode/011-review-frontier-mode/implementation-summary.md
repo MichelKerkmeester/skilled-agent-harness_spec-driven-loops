@@ -11,17 +11,16 @@ _memory:
     last_updated_at: "2026-11-21T11:09:55Z"
     last_updated_by: "generate-context"
     recent_action: "Phase merged and built on integration; golden test passes and pilot run 2 drained"
-    next_safe_action: "Add the synthesis step ADR-001 needs for exhausted and blocked nodes (CHK-042)"
+    next_safe_action: "Record a budget per depth (CHK-113) and show SL-004 and SL-2-04 frontier-free"
     packet_purpose: "Purpose: With `--depth-mode=expansive`, a review run decomposes its target into admitted sub-target nodes held in `candidateCoverage`, `searchDebt` and a review `registry.frontier`, focuses them breadth-first, refuses to stop while they are open within budget, closes them cleanly and partitions depth-1 no..."
     blockers:
-      - "CHK-042 open: no synthesis step lists exhausted or blocked nodes"
       - "Search debt SL-004 and SL-2-04 not shown frontier-free"
       - "CHK-113 open: no budget per depth recorded"
     key_files:
       - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/tasks.md"
       - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:ccc740dfce944b6858cca923fa8790ac05775dcb31093279396faeae2bde46b5"
+      fingerprint: "sha256:989cf1c23e6a428358517461e6c333348e1afd2c9d731cc162e20909be1aa529"
       session_id: "scaffold-011-review-frontier-mode"
       parent_session_id: null
     session_ref:

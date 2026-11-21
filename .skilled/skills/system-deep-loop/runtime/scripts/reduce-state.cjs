@@ -2529,6 +2529,17 @@ function renderFrontierSection(frontier) {
   const budgetEntries = Object.entries(
     frontier.budget && typeof frontier.budget === 'object' ? frontier.budget : {},
   );
+  // An exhausted or blocked node leaves no debt once it covered every dimension,
+  // and the verdict never names it, so the synthesis lists it as review work the
+  // run left unfinished.
+  const followUp = nodes
+    .filter((node) => node && (node.status === 'exhausted' || node.status === 'blocked'))
+    .map((node) => {
+      const scope = Array.isArray(node.scope) ? node.scope.join(', ') : (node.scope || 'unscoped');
+      const reason = node.reason ? ` (${node.reason})` : '';
+      const dimension = node.nextDimension ? `next dimension ${node.nextDimension}` : 'every dimension reviewed';
+      return `- Follow-up: ${node.nodeId} ${node.status}${reason}, scope ${scope}, ${dimension}: ${node.question}`;
+    });
   return [
     '<!-- ANCHOR:frontier -->',
     '## 10B. FRONTIER',
@@ -2541,6 +2552,7 @@ function renderFrontierSection(frontier) {
     ...(frontier.activeNodeId
       ? [`- Active node: ${frontier.activeNodeId} (${frontier.activeNextDimension})`]
       : ['- Active node: none']),
+    ...(followUp.length ? followUp : ['- Follow-up review work: none']),
     '',
     '<!-- /ANCHOR:frontier -->',
   ];

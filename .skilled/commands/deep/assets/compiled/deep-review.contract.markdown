@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "d44ce7a0f6b25d04e094c531a2a301674e99b1e847042c39df2dabe2a4598ed5",
+      "sha256": "04d932bb99b3eddc85feb216ae173e4251d4bd8c2f9bda7f0d2b67498f25e6e0",
       "section": "full"
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "d838d6fea024ad68940e4e83bfe1c456cb3e074cd31f441905a013b1e7df1ee4",
+      "sha256": "90b6b87a6703b2dff6f586cde94e7c5690cf59951a107ef6f147d866764112b1",
       "section": "full"
     },
     {

@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.19.0
+version: 1.11.20.0
 ---
 
 # Deep Review State Format
@@ -393,7 +393,7 @@ The review synthesis output contains 9 core sections plus a conditional `## Reso
 
 **Resource Map Coverage Gate** is emitted only when `resource_map_present` is true and MUST contain exactly three bullets: touched entries, untouched entries (`expected-by-scope` vs `gap`), and implementation paths absent from the map.
 
-**Deferred Items** captures advisory findings, blocked protocols, and future follow-up checks.
+**Deferred Items** captures advisory findings, blocked protocols, and future follow-up checks. When the findings registry carries a `frontier` object, it also lists every frontier node closed `exhausted` or `blocked` as follow-up review work, with its status, reason, scope and next uncovered dimension. These entries do not change the verdict.
 
 **Audit Appendix** contains iteration table, convergence signal replay, file coverage matrix, and dimension breakdown.
 

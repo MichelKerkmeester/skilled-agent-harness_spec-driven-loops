@@ -12,7 +12,7 @@
     "candidatecoverage",
     "searchdebt"
   ],
-  "lastUpdated": "2026-11-21T11:09:55.540Z",
+  "lastUpdated": "2026-11-21T11:41:46.701Z",
   "specId": "011",
   "folderSlug": "review-frontier-mode",
   "parentChain": [
@@ -21,8 +21,9 @@
     "002-graph-engineering",
     "007-expansive-depth-mode"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "21-11-26_12-09__rechecked-the-phase-at-the-integration-tip-merged.md"
+    "21-11-26_12-09__rechecked-the-phase-at-the-integration-tip-merged.md",
+    "21-11-26_12-41__ticked-chk-042-the-review-synthesis-now-lists.md"
   ]
 }

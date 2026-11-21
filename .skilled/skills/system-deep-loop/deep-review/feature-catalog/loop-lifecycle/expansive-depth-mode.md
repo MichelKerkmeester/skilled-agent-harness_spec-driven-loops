@@ -6,7 +6,7 @@ trigger_phrases:
   - "expansive depth review"
   - "review frontier mode"
   - "review frontier-nodes"
-version: 1.0.20.0
+version: 1.0.21.0
 ---
 
 # Expansive depth mode (--depth-mode=expansive)
@@ -35,7 +35,7 @@ A review stop candidate becomes another iteration while nodes stay open. The `fr
 
 ### Dashboard
 
-An expansive run adds a `## 10B. FRONTIER` section to its review dashboard, and a default run renders no such section. The section reports the frontier size by status, the pruned count, the revisits that covered no new dimension, each budget band's spent and allotted iterations, and the active node with its next dimension.
+An expansive run adds a `## 10B. FRONTIER` section to its review dashboard, and a default run renders no such section. The section reports the frontier size by status, the pruned count, the revisits that covered no new dimension, each budget band's spent and allotted iterations, and the active node with its next dimension. It also has one `Follow-up` line for each node closed `exhausted` or `blocked`, with the node's reason, scope and next uncovered dimension, or `Follow-up review work: none` when no node closed that way. The review report's Deferred Items section lists the same nodes as follow-up review work, read from `frontier.nodes` in the findings registry. A report whose registry has no frontier adds nothing there.
 
 ### Pivot
 
