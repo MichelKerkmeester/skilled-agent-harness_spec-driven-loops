@@ -913,6 +913,80 @@ test('layout link paths are compared as the plan resolves them, and distinct pat
   }
 });
 
+// Where the tree ignores case, `EXT` and `ext` are one entry, so a nested path
+// spelled in the other case is judged by the link the run writes there. The plan
+// refuses it in either entry order, before any write.
+test('a layout link below a link spelled in another case that points out is refused in either entry order', (t) => {
+  const outer = { path: 'EXT', target: '../outside' };
+  const inner = { path: 'ext/planted', target: 'anything' };
+  for (const links of [[outer, inner], [inner, outer]]) {
+    const label = links.map((link) => link.path).join(', ');
+    const fixture = createSyncFixture(t);
+    if (!ignoresCase(fixture.tree)) {
+      t.skip('the tree sits on a case-sensitive filesystem, where these spellings name two paths');
+      return;
+    }
+    const outside = path.resolve(fixture.tree, '../outside');
+    fs.mkdirSync(outside);
+    fixture.manifest.layoutLinks = links;
+    writeManifest(fixture);
+    const before = treeDigest(fixture.tree);
+
+    for (const command of ['status', 'apply']) {
+      const result = fixture.run([command]);
+      assert.equal(result.code, 2, label + ' ' + command + ': ' + result.output);
+      assert.ok(result.output.includes('layout link path escapes the tree root: ext/planted'), label + ' ' + command + ': ' + result.output);
+    }
+    assert.deepEqual(fs.readdirSync(outside), [], label);
+    assert.equal(treeDigest(fixture.tree), before, label);
+  }
+});
+
+// Whether a folder's filesystem treats the composed and decomposed forms of one
+// name as one entry, read from the disk in a scratch folder beside it.
+function foldsUnicodeForms(dir) {
+  const scratch = fs.mkdtempSync(path.join(dir, 'forms-'));
+  try {
+    fs.writeFileSync(path.join(scratch, 'café'), '');
+    const composed = fs.lstatSync(path.join(scratch, 'café'));
+    let decomposed = null;
+    try {
+      decomposed = fs.lstatSync(path.join(scratch, 'café'));
+    } catch {
+      decomposed = null;
+    }
+    return decomposed !== null && decomposed.dev === composed.dev && decomposed.ino === composed.ino;
+  } finally {
+    fs.rmSync(scratch, { recursive: true, force: true });
+  }
+}
+
+test('the composed and decomposed forms of one layout link path are refused as one path listed twice', (t) => {
+  const fixture = createSyncFixture(t);
+  if (!foldsUnicodeForms(path.dirname(fixture.tree))) {
+    t.skip('the tree sits on a filesystem that stores the two forms as two names');
+    return;
+  }
+  const outside = path.resolve(fixture.tree, '../outside');
+  fs.mkdirSync(outside);
+  fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
+  fixture.manifest.layoutLinks = [
+    { path: 'café', target: '../outside' },
+    { path: 'café/planted', target: 'anything' },
+    { path: 'café', target: 'real-dir' },
+  ];
+  writeManifest(fixture);
+  const before = treeDigest(fixture.tree);
+
+  for (const command of ['status', 'apply']) {
+    const result = fixture.run([command]);
+    assert.equal(result.code, 2, command + ': ' + result.output);
+    assert.ok(result.output.includes('layout link path is listed twice: café'), command + ': ' + result.output);
+  }
+  assert.deepEqual(fs.readdirSync(outside), []);
+  assert.equal(treeDigest(fixture.tree), before);
+});
+
 // A looping upstream link resolves nowhere, so the writer removes it before it
 // judges the folder below it. A looping parent that is not replaced is still
 // refused at plan time by the dangling-or-looping test above.

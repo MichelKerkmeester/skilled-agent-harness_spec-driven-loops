@@ -2884,11 +2884,14 @@ const caseInsensitiveDirs = new Map();
 /**
  * Tell whether the filesystem holding a folder ignores letter case in names.
  * The answer comes from the disk, never from the platform, since one platform
- * can mount both kinds: the nearest name on the folder's real path that has a
- * letter is spelled with its case flipped, and the filesystem ignores case when
- * that spelling opens the same folder. A path with no letter in any name cannot
- * be probed, and is taken as case-sensitive. The answer is kept per folder, so
- * a run probes each folder once.
+ * can mount both kinds. The folder's own entries are read first, since they sit
+ * on the folder's filesystem: the first name with a letter is spelled with its
+ * case flipped, and the filesystem ignores case when that spelling opens the
+ * same entry. Nothing is created to probe. Only a folder with no such entry
+ * falls back to the nearest name on its real path that has a letter, which may
+ * sit on the filesystem of a folder above it. A path with no letter anywhere
+ * cannot be probed, and is taken as case-sensitive. The answer is kept per
+ * folder, so a run probes each folder once.
  * @param {string} dir Existing folder.
  * @returns {boolean} Whether two names differing only in case name one entry there.
  */
@@ -2901,6 +2904,22 @@ function isCaseInsensitiveDir(dir) {
       const lower = ch.toLowerCase();
       return ch === lower ? ch.toUpperCase() : lower;
     }).join('');
+    const sameEntry = (spelled, flipped) => {
+      const original = fs.lstatSync(spelled);
+      let other = null;
+      try {
+        other = fs.lstatSync(flipped);
+      } catch {
+        other = null;
+      }
+      return other !== null && other.dev === original.dev && other.ino === original.ino;
+    };
+    const inside = fs.readdirSync(real).find((name) => flip(name) !== name);
+    if (inside !== undefined) {
+      answer = sameEntry(path.join(real, inside), path.join(real, flip(inside)));
+      caseInsensitiveDirs.set(dir, answer);
+      return answer;
+    }
     let current = real;
     let suffix = [];
     while (path.dirname(current) !== current) {
@@ -2929,16 +2948,34 @@ function isCaseInsensitiveDir(dir) {
 }
 
 /**
+ * Spell a layout link path the way the destination filesystem compares names,
+ * so every check that asks whether two paths are one entry asks the same way.
+ * The path is normalized without trailing slashes, and composed to Unicode NFC,
+ * since a filesystem that stores the composed and decomposed forms of a name
+ * apart still lets two such names look alike in a manifest. Where the tree root
+ * sits on a filesystem that ignores case, case is folded too.
+ * @param {string} p Path, relative or absolute.
+ * @param {boolean} foldCase Whether the tree root's filesystem ignores case.
+ * @returns {string} The comparison key, never a path to read or write.
+ */
+function layoutPathKey(p, foldCase) {
+  const composed = path.normalize(p).replace(/(.)[\\/]+$/, '$1').normalize('NFC');
+  return foldCase ? composed.toLowerCase() : composed;
+}
+
+/**
  * Find the first layout link path the manifest lists more than once. Two
  * spellings name one path when they normalize to the same path without
  * trailing slashes, the way the plan resolves them, so `./a`, `a/`, `a/.` and
- * `x/../a` are the same link, and so are `a//b` and `a/b`. Where the tree root
- * sits on a filesystem that ignores case, `ext` and `EXT` are one entry on
- * disk, so they are compared with case folded too.
+ * `x/../a` are the same link, and so are `a//b` and `a/b`. The composed and
+ * decomposed Unicode forms of one name are the same link too. Where the tree
+ * root sits on a filesystem that ignores case, `ext` and `EXT` are one entry
+ * on disk, so they are compared with case folded too.
  * Two spellings that reach one place through a folder link, like `alias/a` and
- * `a` beside `alias -> .`, are not compared here: the plan joins each path onto
- * the root without resolving its folders, and the escape check below judges
- * where each parent resolves.
+ * `a` beside `alias -> .`, are not compared here, and the plan does not catch
+ * them either: it joins each path onto the root without resolving the folders
+ * the run itself links. The writer catches such a path at write time, when it
+ * judges where the parent resolves before it writes below it.
  * @param {object} manifest Loaded overlay manifest.
  * @param {string} [root] Destination tree root, probed for case handling.
  * @returns {string|null} The later copy's path, normalized and without trailing slashes, or null.
@@ -2949,7 +2986,7 @@ function duplicateLayoutLinkPath(manifest, root) {
   for (const link of manifest.layoutLinks || []) {
     if (!link || typeof link.path !== 'string') continue;
     const normalized = path.posix.normalize(link.path).replace(/\/+$/, '');
-    const key = foldCase ? normalized.toLowerCase() : normalized;
+    const key = layoutPathKey(normalized, foldCase);
     if (seen.has(key)) return normalized;
     seen.add(key);
   }
@@ -2995,8 +3032,12 @@ function layoutLinkEscape(root, manifest) {
   // while its parent is still the link on disk, or after an earlier entry has
   // made it a planned link. Neither judgement alone can know which.
   const layoutLinks = manifest.layoutLinks || [];
+  // Paths are matched by their comparison key, so two spellings the tree's
+  // filesystem treats as one entry are one planned link.
+  const foldCase = isCaseInsensitiveDir(root);
+  const keyOf = (p) => layoutPathKey(p, foldCase);
   const writtenBefore = (treeRoot, at, entryIndex) => layoutLinks.slice(0, entryIndex)
-    .some((link) => link && typeof link.path === 'string' && path.resolve(treeRoot, link.path) === at);
+    .some((link) => link && typeof link.path === 'string' && keyOf(path.resolve(treeRoot, link.path)) === keyOf(at));
   const parentStaysOnDisk = (treeRoot, linkPath, replacedPath, entryIndex) => {
     const absolute = path.resolve(treeRoot, linkPath);
     const replaced = typeof replacedPath === 'string' ? path.resolve(treeRoot, replacedPath) : null;
@@ -3040,9 +3081,9 @@ function layoutLinkEscape(root, manifest) {
   const planned = new Map();
   for (const link of manifest.layoutLinks || []) {
     if (!link || typeof link.path !== 'string' || typeof link.target !== 'string') continue;
-    planned.set(path.resolve(canonicalRoot, link.path), link.target);
+    planned.set(keyOf(path.resolve(canonicalRoot, link.path)), link.target);
     const onDiskAt = canonicalOrNull(canonicalPathWithoutLeaf, path.resolve(root, link.path));
-    if (onDiskAt !== null) planned.set(onDiskAt, link.target);
+    if (onDiskAt !== null) planned.set(keyOf(onDiskAt), link.target);
   }
   const parentStaysInTree = (treeRoot, linkPath, replacedPath, followed = new Set(), followedInto = []) => {
     const top = path.resolve(treeRoot);
@@ -3059,13 +3100,13 @@ function layoutLinkEscape(root, manifest) {
       }
       const onDiskAt = canonicalOrNull(canonicalPath, current);
       if (onDiskAt !== null) spelled.push(onDiskAt);
-      const plannedAt = spelled.find((candidate) => planned.has(candidate));
+      const plannedAt = spelled.find((candidate) => planned.has(keyOf(candidate)));
       if (plannedAt !== undefined) {
-        if (followed.has(plannedAt)) return false;
-        followed.add(plannedAt);
+        if (followed.has(keyOf(plannedAt))) return false;
+        followed.add(keyOf(plannedAt));
         // A relative target resolves from the folder the link physically sits in.
         const from = canonicalOrNull(canonicalPath, path.dirname(current)) || path.dirname(current);
-        const into = path.resolve(from, planned.get(plannedAt));
+        const into = path.resolve(from, planned.get(keyOf(plannedAt)));
         const landed = path.join(into, ...parts.slice(index + 1), path.basename(absolute));
         if (!isWithin(top, landed)) {
           // Outside the tree a looping link resolves nowhere, so it is refused.
