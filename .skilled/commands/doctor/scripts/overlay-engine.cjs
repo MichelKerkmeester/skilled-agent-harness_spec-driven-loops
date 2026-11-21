@@ -5055,6 +5055,16 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
   for (const relativePath of enginePaths) {
     for (const leaf of backupLeaves(root, relativePath)) if (!groups.has(leaf)) groups.set(leaf, 'engine');
   }
+  // Apply removes a folder a folder entry stops shipping together with the caches
+  // left in it, and no record names a cache. Every cache below such an entry is
+  // backed up, not only those in folders the prune would take, so the backup
+  // cannot miss one if the prune's decision differs from a guess made here.
+  for (const entry of manifest.overlays || []) {
+    if ((entry.scope !== 'directory' && entry.scope !== 'skill-root') || typeof entry.destination !== 'string') continue;
+    for (const leaf of backupLeaves(root, path.posix.normalize(entry.destination))) {
+      if (leaf.split('/').some(isPythonCacheName) && !groups.has(leaf)) groups.set(leaf, 'engine');
+    }
+  }
 
   const entries = [];
   const createdDirs = new Set();
