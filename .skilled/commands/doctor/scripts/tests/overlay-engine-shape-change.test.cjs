@@ -643,7 +643,8 @@ test('status refuses a write through a missing layout link whose target leads ou
 // A pinned entry under a missing layout link is judged against the bytes its
 // target holds, which are the bytes apply reads once it makes the link, so
 // status never sends to a rebase an entry apply then writes, nor lists as work
-// one apply then refuses. Every line keeps the manifest path, not the target's.
+// one apply then refuses. A clean plan names only the manifest path; a refusal
+// names it in one header line, and the planner's lines under it name the target.
 function pinnedUnderMissingLink(t, landing) {
   const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
   const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up/tool.md', pinnedSha256 }], [{ path: 'up', target: 'target' }]);
