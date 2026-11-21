@@ -63,17 +63,24 @@ _shell_words() {
 }
 RESTORE_NOTE="That copies HEAD over both the index and the working tree, so any staged or unstaged edit to the file is lost."
 # The base a rebase over the pushed range starts from, shell-quoted: the parent of the
-# oldest commit in the range, or --root when that commit has no parent. The whole list
-# is read before the first line is taken, so no pipe closes early under pipefail.
-# Prints nothing and fails when the range cannot be read or is empty.
+# oldest commit in the range, or --root when that commit has no parent. The first
+# argument is the pushed tip. The whole list is read before the first line is taken,
+# so no pipe closes early under pipefail. A range holding a merge can make that base
+# reach commits outside the range, which a rebase would replay, so the base counts only
+# when it spans exactly the range. Prints nothing and fails otherwise.
 _rebase_base() {
-  local _list _oldest _parent
+  local _list _oldest _parent _want _got
   _list="$(git -C "$REPO_ROOT" rev-list --topo-order --reverse "$@" 2>/dev/null)" || return 1
   _oldest="${_list%%$'\n'*}"
   [[ -n "$_oldest" ]] || return 1
+  _want="$(git -C "$REPO_ROOT" rev-list --count "$@" 2>/dev/null)" || return 1
   if _parent="$(git -C "$REPO_ROOT" rev-parse --verify -q "${_oldest}^" 2>/dev/null)"; then
+    _got="$(git -C "$REPO_ROOT" rev-list --count "$1" --not "$_parent" 2>/dev/null)" || return 1
+    [[ "$_got" == "$_want" ]] || return 1
     _shell_words "$_parent"
   else
+    _got="$(git -C "$REPO_ROOT" rev-list --count "$1" 2>/dev/null)" || return 1
+    [[ "$_got" == "$_want" ]] || return 1
     printf '%s' '--root'
   fi
 }

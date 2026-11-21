@@ -171,6 +171,22 @@ git -C "$TMP/repo" merge -q --no-ff main -m "Merge branch 'main' into branches/0
 push_rc branches/003-merge branches/003-merge SPECKIT_ALLOW_REMOTE_PUSH=1; RC=$?
 check "a merged-in remote commit is not re-checked" 0 "$RC"
 
+# ── 11b. a range holding a merge names no base a rebase would widen ──────────
+# Rebasing from the parent of the branch's own bad commit would replay the merged-in
+# main commit too, so the hook keeps the placeholder rather than print that base.
+setup
+git -C "$TMP/repo" checkout -q -b branches/003-merge
+git -C "$TMP/repo" push -q origin branches/003-merge
+git -C "$TMP/repo" checkout -q main
+commit "Update README.md"
+git -C "$TMP/repo" push -q origin main
+git -C "$TMP/repo" checkout -q branches/003-merge
+commit "update" "No type and no scope."
+git -C "$TMP/repo" merge -q --no-ff main -m "Merge branch 'main' into branches/003-merge"
+push_rc branches/003-merge branches/003-merge SPECKIT_ALLOW_REMOTE_PUSH=1; RC=$?
+check "a range with a merge keeps the base placeholder" 1 "$RC" \
+  "Next: git rebase -i <the commit before the first one>"
+
 # ── 12. a force-push over a remote tip never fetched checks only new commits ──
 setup
 git clone -q "$TMP/remote.git" "$TMP/other" 2>/dev/null
