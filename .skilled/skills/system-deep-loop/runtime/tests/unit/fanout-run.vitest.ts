@@ -2863,7 +2863,7 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     );
   });
 
-  it('rejects an unapproved single-lineage research or review run before side effects', async () => {
+  it('refuses a one-lineage research or review matrix before side effects', async () => {
     for (const loopType of ['research', 'review'] as const) {
       const binDir = makeTempDir(`fanout-run-single-lineage-refused-${loopType}-bin-`);
       const hermetic = useHermeticEnv(`single-lineage-refused-${loopType}`);
@@ -2876,7 +2876,7 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
         concurrency: 1,
       });
 
-      // rawSpawnCjs skips the shared helper, which would add the opt-in.
+      // rawSpawnCjs skips the shared helper, which would add --only-lineage.
       const result = await rawSpawnCjs(fanoutRunScript, [
         '--spec-folder',
         specFolder,
@@ -2932,9 +2932,9 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     }
   });
 
-  it('runs a two-lineage research or review matrix without the single-lineage opt-in', async () => {
-    // Every other launch in this file opts in through the shared helper, so this case
-    // proves the default posture still accepts a real fan-out.
+  it('runs a two-lineage research or review matrix without --only-lineage', async () => {
+    // Every other launch in this file names its lineage through the shared helper, so this
+    // case proves a real fan-out still runs without --only-lineage.
     for (const loopType of ['research', 'review'] as const) {
       const binDir = makeTempDir(`fanout-run-two-lineage-default-${loopType}-bin-`);
       const hermetic = useHermeticEnv(`two-lineage-default-${loopType}`);
