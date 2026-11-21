@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "blocked",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phase 004 the shared embeddings package has no production importer, but it is still compiled, tested and installed",
     "created_at": "2026-11-20T21:51:22Z",
-    "last_save_at": "2026-11-21T03:43:41.003Z",
+    "last_save_at": "2026-11-21T14:13:16.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39380d1e220c7454c8fcb76bf8ea695416b78f29a9a757d97769b663c4830244",
+    "source_fingerprint": "sha256:2ca978166289338c84fc130369eb29b202307db736af7fb47c28c0ea9f7ce2a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d6115d1e3e85bfca2ab9660652aa8ebe0c77b4345f47ec5b65ccbd8e92eb720a",
-      "plan.md": "45c03955f87df79e36202c2dc9d4c55300f7aa18862285f6c13c3ef0b65d6d4d",
-      "tasks.md": "f75746f20414a2b8c1db06aa1a9ae9db946d3c9df6b46c9037fa578305bc7002",
-      "implementation-summary.md": "3eefeab03344cdefa8479f3461daf610344ad6d83d735882c530d84e66f5ac6f"
+      "spec.md": "bef3f96ac1d40acb4f183a96b7d763140ef6f8f67e73eaca7f0ab122f64b5685",
+      "plan.md": "4841476b985ba32ce253acc406c12a751e8f5014f1036a0e4cdcffc64c53fd2b",
+      "tasks.md": "f387bf40261f913277586a2c41e2eaaa481d54903c7657fea2cb7af36d6efff7",
+      "implementation-summary.md": "89a762ea6b52bd32fe1f94770818baeb9e7509b5c6cd0b2a7822a3001e86f667"
     },
     "last_active_at": null
   }

@@ -32,9 +32,11 @@
 //    tracked symlink, so a link into the embeddings package passes a pure
 //    content search.
 // 3. Exact-path allowlist rows. A folder or glob row would also hide a remnant
-//    that lands in that folder later, so the loader refuses both. The index
-//    outputs get no row: a whole-file row would hide a lane phrase that points
-//    at a live doc, so their entries are judged one by one.
+//    that lands in that folder later, so the loader refuses both. A row still
+//    exempts the whole file, so new lane text added later to an allowlisted
+//    file is not caught. The index outputs get no row: a whole-file row would
+//    hide a lane phrase that points at a live doc, so their entries are judged
+//    one by one.
 // 4. Apply deletes and never copies. Every deleted path is a resolved root plus
 //    a fixed name, refused when it is a symlink or resolves outside that root.
 // 5. The shared-model answer is never remembered. It comes from the terminal or
@@ -43,8 +45,8 @@
 // 6. A checkout that still holds a lane source gets no change from apply: its
 //    own code still uses the database tables, model server and model cache.
 // 7. A model server is a node process whose first script argument is the
-//    server script. A shell or pager whose command line merely names the
-//    script is neither listed nor signalled.
+//    server script, and that script path may contain spaces. A shell or pager
+//    whose command line merely names the script is neither listed nor signalled.
 //
 // This file, its allowlist and its test are the one place the vocabulary is
 // meant to survive, and each is exempted by its own allowlist row.
@@ -192,6 +194,12 @@ const ADVISOR_RUNTIME_SEGMENTS = Object.freeze(['.skilled', 'skills', 'system-sk
 const SPEC_KIT_SEGMENTS = Object.freeze(['.skilled', 'skills', 'system-spec-kit']);
 const MODEL_SERVER_SCRIPT_SEGMENTS = Object.freeze(['.skilled', 'bin', 'hf-model-server.cjs']);
 const MODEL_SERVER_SCRIPT_NAME = 'hf-model-server.cjs';
+/** A word node would run as a script: it ends in one of node's script extensions. */
+const SCRIPT_EXTENSION = /\.(?:js|cjs|mjs|ts|mts|cts)$/;
+/** Node options after which node runs inline code, so no script word follows. */
+const NODE_EVAL_OPTIONS = new Set(['-e', '--eval', '-p', '--print']);
+/** Node options whose value is the next word, which is never the script. */
+const NODE_VALUE_OPTIONS = new Set(['-r', '--require', '--import', '--loader', '--experimental-loader', '-C', '--conditions']);
 
 /**
  * The value-free dotenv reader, resolved from this script's own checkout so a
@@ -1235,16 +1243,56 @@ export function listProcesses() {
 
 /**
  * The supervisor started the server as `node <script>`, so the script is the
- * first argument after node's own leading options. A command line read any
- * other way names no script.
+ * first argument after node's own leading options. ps joins the arguments with
+ * spaces, so a script path that holds a space arrives as several words. The
+ * words are joined only when the first one is an absolute path that is no file
+ * on disk, because an installed CLI such as `/opt/homebrew/bin/eslint` has no
+ * script extension but is a whole script of its own. The join runs up to the
+ * server script's name, unless a word that is a script of its own comes first.
+ * Inline code (`-e`, `-p`) names no script, and an option that takes a value
+ * never has that value read as one. A command line read any other way names no
+ * script.
  *
  * @param {string} command Process command line.
  * @returns {string | null} The script node runs, or null when this is not node or no script can be read.
  */
 export function nodeScriptOf(command) {
-  const words = command.trim().split(/\s+/);
-  if (path.basename(words[0] ?? '') !== 'node') return null;
-  return words.slice(1).find((word) => !word.startsWith('-')) ?? null;
+  const words = [...command.matchAll(/\S+/g)];
+  if (path.basename(words[0]?.[0] ?? '') !== 'node') return null;
+  let start = -1;
+  for (let index = 1; index < words.length; index += 1) {
+    const word = words[index][0];
+    if (NODE_EVAL_OPTIONS.has(word)) return null;
+    if (NODE_VALUE_OPTIONS.has(word)) {
+      index += 1;
+      continue;
+    }
+    if (word.startsWith('-')) continue;
+    start = index;
+    break;
+  }
+  if (start < 0) return null;
+  const first = words[start][0];
+  if (SCRIPT_EXTENSION.test(first) || !path.isAbsolute(first) || isFileOnDisk(first)) return first;
+  for (const word of words.slice(start + 1)) {
+    // A joined path ends in the server's name only when this word does, after
+    // a slash; slicing the line keeps the spacing ps printed.
+    if (word[0].endsWith(`/${MODEL_SERVER_SCRIPT_NAME}`)) return command.slice(words[start].index, word.index + word[0].length);
+    if (SCRIPT_EXTENSION.test(word[0])) break;
+  }
+  return first;
+}
+
+/**
+ * @param {string} candidate An absolute path read from a command line.
+ * @returns {boolean} Whether it names an existing file; an unreadable path counts as one, so it is never joined.
+ */
+function isFileOnDisk(candidate) {
+  try {
+    return fs.statSync(candidate).isFile();
+  } catch (error) {
+    return error?.code !== 'ENOENT' && error?.code !== 'ENOTDIR';
+  }
 }
 
 /**
@@ -1315,7 +1363,15 @@ export function checkModelServer(ctx, processes) {
     for (const name of new Set([...MODEL_SERVER_DIR_FILES, ...(dir.files ?? [])])) {
       const candidate = path.join(dir.path, name);
       try {
-        if (!lstatOrNull(candidate)) continue;
+        const stat = lstatOrNull(candidate);
+        if (!stat) continue;
+        // An explicit address can name any file, and apply deletes what is
+        // listed here, so a name it adds counts only as a socket. The fixed
+        // names are the server's own whatever their type.
+        if (!MODEL_SERVER_DIR_FILES.includes(name) && !stat.isSocket()) {
+          notes.push(`${candidate}: the server address names it, but it is not a socket, so it is left in place`);
+          continue;
+        }
         items.push({ detail: `model server file (${dir.source})`, dir: dir.path, kind: 'server-file', path: candidate });
         serverFiles += 1;
       } catch (error) {
@@ -1501,6 +1557,11 @@ export function checkDotenv(ctx) {
     }
     for (const key of result.keys.filter(isLaneEnvKey)) {
       items.push({ detail: 'lane key in a dotenv file', key, path: absolute });
+    }
+    // A rejected line hides its key, but the status stays as read: marking the
+    // check incomplete would exit 2 and fail every update for one odd line.
+    if (result.valid === false) {
+      notes.push(`${absolute}: some lines could not be parsed, so lane keys on them were not checked`);
     }
   }
 

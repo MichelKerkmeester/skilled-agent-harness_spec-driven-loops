@@ -38,10 +38,12 @@
 // refused; a directory sitting under a model server file name is kept; the
 // socket folder loses only the files the model server writes and is kept while
 // it holds anything else; a shared folder (IPC, explicit socket address,
-// launcher-pinned) loses only those files and is never removed; nothing is
-// touched while a model server may still use it (foreign server, or no
-// readable process list); only node running this checkout's script as its
-// first script argument is signalled, never another process naming it.
+// launcher-pinned) loses only those files and is never removed; a name an
+// explicit address adds goes only when it is a socket, and a regular file there
+// is kept and noted; nothing is touched while a model server may still use it
+// (foreign server, or no readable process list); only node running this
+// checkout's script as its first script argument is signalled, never another
+// process naming it, and a script path with spaces still counts.
 //
 // Isolation: machine and apply cases run in-process with fixture locations for
 // HOME, OLLAMA_HOST, OLLAMA_MODELS, SYSTEM_SKILL_ADVISOR_DB_DIR, the socket
@@ -54,7 +56,7 @@
 import { type ChildProcess, spawn, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import http from 'node:http';
-import type { AddressInfo } from 'node:net';
+import net, { type AddressInfo } from 'node:net';
 import os from 'node:os';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
@@ -73,6 +75,7 @@ import {
   resolveContainedTarget,
   runApply,
   runMachineChecks,
+  runsModelServer,
   sharedModelQuestion,
 } from '../retrieval/sweep-lane-residue.mjs';
 
@@ -743,6 +746,23 @@ describe('machine mode', () => {
     expect(printed).not.toContain('UNRELATED_KEY');
   });
 
+  it('notes a dotenv file with a line the parser rejects, keeps the key it found and prints neither line', async () => {
+    const fixture = makeMachineFixture();
+    const envFile = writeFile(fixture.root, '.env', 'not-a-dotenv-line-must-not-print\nOLLAMA_BASE_URL=http://value-that-must-not-print.invalid\n');
+
+    const report = await runMachineChecks(fixture.options, fixture.env, NO_PROCESSES);
+
+    const m7 = findingById(report, 'M7');
+    expect(m7.status).toBe('found');
+    expect(m7.items.map((item: Report) => item.key)).toEqual(['OLLAMA_BASE_URL']);
+    expect(m7.notes).toEqual([expect.stringContaining(envFile)]);
+    expect(m7.notes[0]).toContain('could not be parsed');
+    expect(report.exitCode).toBe(1);
+    const printed = `${JSON.stringify(report)}\n${formatMachineSummary(report)}`;
+    expect(printed).not.toContain('not-a-dotenv-line-must-not-print');
+    expect(printed).not.toContain('value-that-must-not-print');
+  });
+
   // Each variable moves where the model server writes its files. The pinned
   // folder is the launcher's own derivation, which relocates a socket folder
   // whose socket path would pass the sun_path limit. The fixture lives under
@@ -866,20 +886,71 @@ describe('model server ownership and socket names', () => {
     expect(report.exitCode).toBe(0);
   });
 
+  // A checkout path may hold spaces, which split the command line into more
+  // words; another script, or a longer name ending in the server's, is not it.
+  it.each([
+    ['node /Users/x/My Repo/.skilled/bin/hf-model-server.cjs', true],
+    ['node other.js /path/hf-model-server.cjs', false],
+    ['node /x/My Repo/y.js /p/hf-model-server.cjs', false],
+    ['node /x/xhf-model-server.cjs', false],
+    [`node ${process.execPath} /x/.skilled/bin/hf-model-server.cjs`, false],
+    ['node -e require("x") /x/.skilled/bin/hf-model-server.cjs', false],
+    ['node --require /x/hook.cjs /x/.skilled/bin/hf-model-server.cjs', true],
+    ['node --require /x/hook /x/My Repo/.skilled/bin/hf-model-server.cjs', true],
+    ['node tool.mts /x/.skilled/bin/hf-model-server.cjs', false],
+  ])('reads the server script from the whole command line: %s', (command, expected) => {
+    expect(runsModelServer(command)).toBe(expected);
+  });
+
   it('probes and deletes the socket file a custom server address names, beside the fixed names', async () => {
     const fixture = makeMachineFixture();
-    const dir = fs.realpathSync(makeTempDir('lane-residue-custom-'));
+    // A real socket, because the custom name is listed only when it is one. The
+    // folder sits under /tmp so the socket path fits sun_path on every machine.
+    const dir = fs.realpathSync(makeShortTempDir('lane-residue-custom-'));
     for (const name of SERVER_FILES) writeFile(dir, name, '');
-    const custom = writeFile(dir, 'custom.sock', '');
+    const custom = path.join(dir, 'custom.sock');
     writeFile(dir, 'notes.txt', 'not the model server\'s');
     const env = { ...fixture.env, HF_EMBED_SERVER_URL: `unix://${custom}` };
+    const socketServer = net.createServer();
+    await new Promise<void>((resolve, reject) => {
+      socketServer.once('error', reject);
+      socketServer.listen(custom, () => resolve());
+    });
+
+    try {
+      // The server keeps listening through both runs: closing it removes the socket file.
+      expect(fs.lstatSync(custom).isSocket()).toBe(true);
+      const machine = await runMachineChecks(fixture.options, env, NO_PROCESSES);
+      const report = await applyQuietly(fixture, {}, env);
+
+      expect(machine.exitCode).toBe(1);
+      expect(findingById(machine, 'M4').items.map((item: Report) => path.basename(item.path)).sort()).toEqual([...SERVER_FILES, 'custom.sock'].sort());
+      expect(actionsOf(report, 'deleted').map((action) => path.basename(action.target)).sort()).toEqual([...SERVER_FILES, 'custom.sock'].sort());
+      expect(fs.readdirSync(dir)).toEqual(['notes.txt']);
+      expect(report.exitCode).toBe(0);
+    } finally {
+      await new Promise<void>((resolve) => socketServer.close(() => resolve()));
+    }
+  });
+
+  it('keeps a regular file a custom server address names in the socket folder, and notes it', async () => {
+    const fixture = makeMachineFixture();
+    // The address names a file in the --socket-dir folder itself, so the folder
+    // rule runs too: a folder holding only that file is not the server's.
+    const regular = writeFile(fixture.socketDir, 'operator-notes.txt', 'operator data');
+    const env = { ...fixture.env, HF_EMBED_SERVER_URL: `unix://${regular}` };
 
     const machine = await runMachineChecks(fixture.options, env, NO_PROCESSES);
     const report = await applyQuietly(fixture, {}, env);
 
-    expect(findingById(machine, 'M4').items.map((item: Report) => path.basename(item.path)).sort()).toEqual([...SERVER_FILES, 'custom.sock'].sort());
-    expect(actionsOf(report, 'deleted').map((action) => path.basename(action.target)).sort()).toEqual([...SERVER_FILES, 'custom.sock'].sort());
-    expect(fs.readdirSync(dir)).toEqual(['notes.txt']);
+    const m4 = findingById(machine, 'M4');
+    expect(m4.items).toEqual([]);
+    expect(m4.status).toBe('absent');
+    expect(m4.notes).toEqual([expect.stringContaining(regular)]);
+    expect(machine.exitCode).toBe(0);
+    expect(report.actions.filter((action: Action) => action.target === regular || action.target === fixture.socketDir)).toEqual([]);
+    expect(fs.readFileSync(regular, 'utf8')).toBe('operator data');
+    expect(fs.readdirSync(fixture.socketDir)).toEqual(['operator-notes.txt']);
     expect(report.exitCode).toBe(0);
   });
 

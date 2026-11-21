@@ -154,8 +154,8 @@ A ratchet, routing corpus or score baseline move is a P0 halt, never a recapture
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md
-- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-001 [P0] Requirements documented in spec.md Evidence: `spec.md:265` section 4 holds the REQ rows, starting at `spec.md:273`.
+- [x] CHK-002 [P0] Technical approach defined in plan.md Evidence: `plan.md:53` section 3 ARCHITECTURE and the ADR record at `plan.md:240`.
 - [x] CHK-003 [P1] Phase 005 is committed, no 005-list path is live, and every live path is on a `spec.md` 006, 007 or 008 list (T001) Evidence: phase 005 committed as `1f85a9dd6dd`; T001 classified every live path.
 - [x] CHK-004 [P1] The conductor has answered open question 1, or the answer is recorded as pending in the implementation summary Evidence: answered; the allowlist rows land here (spec.md section 12).
 <!-- /ANCHOR:pre-impl -->
@@ -187,12 +187,12 @@ A ratchet, routing corpus or score baseline move is a P0 halt, never a recapture
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [x] CHK-FIX-001 [P0] Finding class: `cross-consumer`; the vocabulary reaches advisor, spec-kit, sk-code and sk-doc docs, command assets, the env template and five changelog folders.
+- [x] CHK-FIX-001 [P0] Finding class: `cross-consumer`; the vocabulary reaches advisor, spec-kit, sk-code and sk-doc docs, command assets, the env template and five changelog folders. Evidence: `plan.md:72` FIX ADDENDUM rows name the advisor, spec-kit, sk-code and `/create:command` surfaces, the env template and the 23 changelog entries.
 - [x] CHK-FIX-002 [P0] Same-class producer inventory: the residue check's live list drops from 99 to the 5 named 007 paths (T001, T045). Evidence: live 99 to 5.
 - [x] CHK-FIX-003 [P0] Consumer inventory: every referrer of a renamed or deleted file is edited or owned by phase 007, and every in-file anchor link resolves (T041, T046). Evidence: link check 0 broken; old anchors have no inbound links.
-- [x] CHK-FIX-004 [P0] Adversarial cases: a matched term in a fenced block, a table cell, an anchor id, a frontmatter trigger phrase and a cited spec path are each handled by `plan.md` ADR-001 or the 008 list, and `hits` counts every line form.
-- [x] CHK-FIX-005 [P1] Matrix: eight file kinds by five classes, as `plan.md` lists, each cell edited here or owned by a named phase.
-- [x] CHK-FIX-006 [P1] Hostile env: N/A, no edited file is code that reads process state; the stress test's two strings are labels.
+- [x] CHK-FIX-004 [P0] Adversarial cases: a matched term in a fenced block, a table cell, an anchor id, a frontmatter trigger phrase and a cited spec path are each handled by `plan.md` ADR-001 or the 008 list, and `hits` counts every line form. Evidence: `plan.md:100` names the five adversarial cases, and ADR-001 rule (b) at `plan.md:250` covers an anchor rename with its in-file links.
+- [x] CHK-FIX-005 [P1] Matrix: eight file kinds by five classes, as `plan.md` lists, each cell edited here or owned by a named phase. Evidence: `plan.md:99` lists the eight file kinds by the five classes.
+- [x] CHK-FIX-006 [P1] Hostile env: N/A, no edited file is code that reads process state; the stress test's two strings are labels. Evidence: `git diff --name-only 1f85a9dd6dd 29ae0d13c59 -- '*.ts' '*.cjs' '*.mjs' '*.py'` prints only `lane-fusion-stress.vitest.ts`, a test file.
 - [x] CHK-FIX-007 [P1] Evidence is pinned to `S` and the phase commit SHA. Evidence: pinned to `S` = `1f85a9dd6dd`; the commit message names the base.
 <!-- /ANCHOR:fix-completeness -->
 
@@ -221,7 +221,7 @@ A ratchet, routing corpus or score baseline move is a P0 halt, never a recapture
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-050 [P1] Temp files in scratch/ only Evidence: `git show --name-only 29ae0d13c59` lists no scratch path but `scratch/.gitkeep`, and `ls -A scratch` prints only `.gitkeep`.
 - [x] CHK-051 [P1] scratch/ cleaned before completion Evidence: scratch holds only `.gitkeep`.
 <!-- /ANCHOR:file-org -->
 
@@ -244,9 +244,9 @@ A ratchet, routing corpus or score baseline move is a P0 halt, never a recapture
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [x] CHK-100 [P0] Architecture decisions documented in `plan.md`'s ARCHITECTURE DECISION RECORD section
-- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [x] CHK-102 [P1] Alternatives documented with rejection rationale
+- [x] CHK-100 [P0] Architecture decisions documented in `plan.md`'s ARCHITECTURE DECISION RECORD section Evidence: `plan.md:240` opens the ARCHITECTURE DECISION RECORD section with ADR-001 to ADR-010.
+- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted) Evidence: `rg -c '^### ADR' plan.md` and `rg -c '^\*\*Status\*\*' plan.md` each print 10; ADR-007 is Proposed at `plan.md:375`, the other nine Accepted.
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale Evidence: `rg -c '^\*\*Alternatives Rejected' plan.md` prints 10, one per ADR.
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -262,7 +262,7 @@ A ratchet, routing corpus or score baseline move is a P0 halt, never a recapture
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [x] CHK-120 [P0] Rollback procedure documented: revert the one phase commit; nothing outside the tree changed
+- [x] CHK-120 [P0] Rollback procedure documented: revert the one phase commit; nothing outside the tree changed Evidence: `plan.md:145` section 7 ROLLBACK PLAN names the trigger and the restore procedure.
 - [x] CHK-121 [P1] Phase 007 does not start until T045 and T048 pass Evidence: T045 and T048 passed before 007 starts.
 <!-- /ANCHOR:deploy-ready -->
 

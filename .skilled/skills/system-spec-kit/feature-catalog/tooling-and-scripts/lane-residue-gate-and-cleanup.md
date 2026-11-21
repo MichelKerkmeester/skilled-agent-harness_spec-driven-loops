@@ -7,7 +7,7 @@ trigger_phrases:
   - "lane residue check"
   - "retired embedding route residue"
   - "lane cleanup"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Lane Residue Gate and Cleanup (sweep-lane-residue.mjs)
@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `sweep-lane-residue.mjs` answers with an exit code whether anything of the skill advisor's retired embedding route is left, in the tracked repository or on this machine, and its apply mode removes what this checkout owns.
 
-Two callers depend on it. The blocking `lane-residue` job in `.github/workflows/advisory-checks.yml` runs its repo mode on every push and pull request, and `/doctor:update apply` runs its machine and apply modes as the lane cleanup step after the advisor rebuild prompt. A machine with nothing left answers exit `0` and is not changed.
+Two callers depend on it. The blocking `lane-residue` job in `.github/workflows/advisory-checks.yml` runs its repo mode on every pull request and on pushes to `main` and `skilled/**`, and `/doctor:update apply` runs its machine and apply modes as the lane cleanup step after the advisor rebuild prompt. A machine with nothing left answers exit `0` and is not changed.
 
 ---
 
@@ -24,7 +24,7 @@ Two callers depend on it. The blocking `lane-residue` job in `.github/workflows/
 
 ### Repo Mode
 
-`repo` lists every tracked file outside `specs/` that names the retired route: by content under two vocabularies, one of code identifiers and one of prose wording, by a lane word in its path, or as a tracked symlink into an embeddings folder. A file named by an exact-path row in `fixtures/lane-residue-allowlist.json` is reported without failing. The loader refuses a folder or glob row, so a remnant that later lands beside an allowlisted file still fails. The trigger index and its three sidecar outputs always carry spec history, so they are read by structure instead, and each of their entries is live only when the path it stands for lies outside `specs/` and on no allowlist row. Any live hit exits `1`.
+`repo` lists every tracked file outside `specs/` that names the retired route: by content under two vocabularies, one of code identifiers and one of prose wording, by a lane word in its path, or as a tracked symlink into an embeddings folder. A file named by an exact-path row in `fixtures/lane-residue-allowlist.json` is reported without failing. A row exempts the whole file, so lane text added to an allowlisted file later is not caught. The loader refuses a folder or glob row, so a remnant that later lands beside an allowlisted file still fails. The trigger index and its three sidecar outputs always carry spec history, so they are read by structure instead, and each of their entries is live only when the path it stands for lies outside `specs/` and on no allowlist row. Any live hit exits `1`.
 
 ### Machine and Apply Modes
 

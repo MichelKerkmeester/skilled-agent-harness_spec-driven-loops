@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes",
+  "description": "Fix the ten P2 advisories from the lane removal deep review",
+  "keywords": [
+    "ten",
+    "advisories",
+    "lane",
+    "removal",
+    "deep",
+    "review"
+  ],
+  "lastUpdated": "2026-11-21T13:49:38.791Z",
+  "specId": "025",
+  "folderSlug": "review-p2-fixes",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_14-49__review-p2-fixes-planned-twelve-requirements-fix.md"
+  ]
+}

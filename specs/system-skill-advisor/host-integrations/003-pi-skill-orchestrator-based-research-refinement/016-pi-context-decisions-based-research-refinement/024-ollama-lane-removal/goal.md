@@ -85,11 +85,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Each of phases 001 to 008 has a commit on `worktrees/497-ollama-lane-removal`, and `git log --reverse` shows them in folder order.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal --recursive --strict` prints `RESULT: PASSED`.
-- [ ] The residue check in `.skilled/skills/system-spec-kit/runtime/cli/retrieval/` exits 0 in repo mode, exits 1 on its planted-term fixture, and in machine mode exits 0 on a fixture home and checkout after apply.
-- [ ] Findings from `/local-doc-alignment` and `/local-skilled-alignment`, run after phase 008, are fixed and committed on `worktrees/497-ollama-lane-removal`.
-- [ ] `git branch -a --contains <branch tip>` lists only `worktrees/497-ollama-lane-removal`, so nothing merged to `main` and nothing was pushed.
+- [x] Each of phases 001 to 008 has a commit on `worktrees/497-ollama-lane-removal`, and `git log --reverse` shows them in folder order.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal --recursive --strict` prints `RESULT: PASSED`.
+- [x] The residue check in `.skilled/skills/system-spec-kit/runtime/cli/retrieval/` exits 0 in repo mode, exits 1 on its planted-term fixture, and in machine mode exits 0 on a fixture home and checkout after apply.
+- [x] Findings from `/local-doc-alignment` and `/local-skilled-alignment`, run after phase 008, are fixed and committed on `worktrees/497-ollama-lane-removal`.
+- [x] `git branch -a --contains <branch tip>` lists only `worktrees/497-ollama-lane-removal`, so nothing merged to `main` and nothing was pushed.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -109,6 +109,8 @@ and findings belong here.
 | Criterion 3 amended | done | operator answer: fixture proof counts; machine mode on the operator's Mac cannot reach exit 0 while D2 keeps the primary checkout unmerged |
 | Operator-machine follow-up | pending operator | machine mode on the operator's Mac reaches exit 0 after the merge, the operator's /doctor:update apply and retiring older worktrees; moved out of criterion 3 on the operator's answer |
 | Deep review, 10 iterations | done, CONDITIONAL | review/review-report.md: P0 0, P1 0, P2 10, one deferred search item |
+| Phases 001 to 008 | Complete | Criteria 1 2 3 5 ticked: 8 phase commits in folder order; strict recursive validate PASSED; repo exit 0 at 47 of 47, planted fixture exit 1, fixture machine 1 then 0 after apply; branch -a --contains lists only this branch. Criterion 4 open: 46 findings fixed in 3e66f2e0303 and 22cfc3131f6; C-08 waits on the operator after merge; BAT-01 fails on main too, unchanged. |
+| Criterion 4 | Complete | alignment findings fixed in 3e66f2e0303 and 22cfc3131f6; C-08 (release bodies, operator after merge) and BAT-01 (latency test that fails on main under load) carry recorded dispositions in 008 implementation-summary |
 
 ### Deviations and findings
 

@@ -100,8 +100,8 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md
-- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-001 [P0] Requirements documented in spec.md Evidence: `spec.md:118` section 4 holds REQ-001 to REQ-008 at `spec.md:126` to `:138`.
+- [x] CHK-002 [P0] Technical approach defined in plan.md Evidence: `plan.md:51` section 3 ARCHITECTURE names the pattern and the key components.
 - [x] CHK-003 [P1] Dependencies identified and available Evidence: git, node:sqlite and env-secret.cjs present.
 <!-- /ANCHOR:pre-impl -->
 
@@ -123,8 +123,8 @@ contextType: "implementation"
 
 - [x] CHK-020 [P0] All acceptance criteria met Evidence: `acceptance-criteria.md` all Met.
 - [x] CHK-021 [P0] Repo mode run by hand on this worktree Evidence: repo exit 1, 333/24/309.
-- [x] CHK-022 [P1] Empty repository and allowlisted file cases tested
-- [x] CHK-023 [P1] Missing git and malformed allowlist cases tested
+- [x] CHK-022 [P1] Empty repository and allowlisted file cases tested Evidence: `sweep-lane-residue.vitest.ts:514` (`exits 0 for a repository with no tracked files`) and `:497` (`exits 0 when the only hit is allowlisted by its exact path`), line numbers at `bf3bca7a8b1`; both pass in the file's 98-test run.
+- [x] CHK-023 [P1] Missing git and malformed allowlist cases tested Evidence: `sweep-lane-residue.vitest.ts:529` (`exits 2 when git cannot be found`) and `:404` (the `refuses %s` table over malformed allowlists), line numbers at `bf3bca7a8b1`; both pass in the file's 98-test run.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -132,7 +132,7 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [x] CHK-FIX-001 [P0] Finding class: `matrix/evidence`; the script is the evidence tool for the whole removal.
+- [x] CHK-FIX-001 [P0] Finding class: `matrix/evidence`; the script is the evidence tool for the whole removal. Evidence: `plan.md:70` FIX ADDENDUM lists the surfaces the evidence tool reads, and `plan.md:83` names its matrix axes.
 - [x] CHK-FIX-002 [P0] Same-class producer inventory: the memory sweeper is the only sibling and stays unchanged. Evidence: `git diff --stat` shows no change to the memory sweeper.
 - [x] CHK-FIX-003 [P0] Consumer inventory: no consumer exists until phase 008. Evidence: T011.
 - [x] CHK-FIX-004 [P0] Path tests cover outside-root, symlink and unrelated-sibling cases for apply mode. Evidence: symlink, outside-root and unrelated-sibling cases pass.
@@ -156,7 +156,7 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized Evidence: `spec.md:105` Files to Change, `plan.md:172` to `:174` and tasks T003 to T009 name the same script, allowlist, test and README; strict validation of 024 with `--recursive` covers this folder.
 - [x] CHK-041 [P1] The script header states the exit codes and the three modes Evidence: header lines 5 to 42.
 - [x] CHK-042 [P2] Retrieval README row added Evidence: T009.
 <!-- /ANCHOR:docs -->
@@ -167,7 +167,7 @@ contextType: "implementation"
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only Evidence: scratch holds only .gitkeep.
-- [x] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-051 [P1] scratch/ cleaned before completion Evidence: `ls -A scratch` prints only `.gitkeep`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -189,9 +189,9 @@ contextType: "implementation"
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [x] CHK-100 [P0] Architecture decisions documented in `plan.md`'s ARCHITECTURE DECISION RECORD section
-- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [x] CHK-102 [P1] Alternatives documented with rejection rationale
+- [x] CHK-100 [P0] Architecture decisions documented in `plan.md`'s ARCHITECTURE DECISION RECORD section Evidence: `plan.md:207` opens the ARCHITECTURE DECISION RECORD section, with ADR-001 at `plan.md:209`.
+- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted) Evidence: `rg -c '^### ADR' plan.md` prints 1, and that ADR's status is Accepted at `plan.md:211`.
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale Evidence: `plan.md:221` lists ADR-001's rejected alternatives with a reason each.
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -207,7 +207,7 @@ contextType: "implementation"
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [x] CHK-120 [P0] Rollback procedure documented: revert the phase commit
+- [x] CHK-120 [P0] Rollback procedure documented: revert the phase commit Evidence: `plan.md:123` section 7 ROLLBACK PLAN; its procedure at `plan.md:126` is `git revert` of the phase commit.
 - [x] CHK-121 [P1] Nothing calls the script yet, so landing it changes no workflow Evidence: T011.
 <!-- /ANCHOR:deploy-ready -->
 
@@ -224,7 +224,7 @@ contextType: "implementation"
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [x] CHK-140 [P1] `spec.md` scope, `plan.md` components and `tasks.md` tasks name the same four files
+- [x] CHK-140 [P1] `spec.md` scope, `plan.md` components and `tasks.md` tasks name the same four files Evidence: `spec.md:105` to `:112` list the four files; `plan.md:61`, `:77` and `:172` to `:174` name the same four; tasks T003 to T009 build them.
 <!-- /ANCHOR:docs-verify -->
 
 ---

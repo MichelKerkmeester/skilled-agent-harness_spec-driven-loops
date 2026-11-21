@@ -99,7 +99,7 @@ Commands run from the repository root with `K=.skilled/skills/system-spec-kit`, 
 - [x] T050 Run the goal and requirement greps (`goal.md` criteria 4 to 6). Verify: `git grep -l "@huggingface/transformers" -- ':!specs'` prints exactly `$K/runtime/cli/retrieval/sweep-lane-residue.mjs`; `git ls-files | grep -c -E '(^|/)(hf-model-server|model-server-supervision|sidecar-env-allowlist)\.cjs$|shared/chunking\.ts$|shared/utils/retry\.ts$'` prints 0; `git grep -n ollama-preserve -- .skilled/scripts/orphan-mcp-sweeper.sh` prints the guard line; `git grep -l 'shared/embeddings' -- ':!specs' ':!*.md' ':!*.json'` prints exactly the residue check; and `git grep -l -E 'hf-model-server|model-server-supervision|sidecar-env-allowlist' -- ':!specs' ':!*.md' ':!*.json'` prints exactly the residue check and its test. Evidence: `git grep -l "@huggingface/transformers" -- ':!specs'` printed exactly `$K/runtime/cli/retrieval/sweep-lane-residue.mjs`, and with that file also excluded (ADR-011) printed nothing, exit 1. The `ollama-preserve` grep printed `.skilled/scripts/orphan-mcp-sweeper.sh:488:` and the guard line. The `shared/embeddings` code grep printed exactly the residue check; the server-names code grep printed exactly the residue check and `sweep-lane-residue.vitest.ts`. `git grep -l ONNXRUNTIME -- .github` printed nothing. [DEVIATION: the `git ls-files` count reads the index, and the deletions stay unstaged because staging is barred, so on the working index it printed 5; none of the five exists on disk and `git ls-files -d` lists all five. On a scratch copy of the index with the 55 deletions removed (`git update-index --remove`, the tree the phase commit records) it printed 0, and `git ls-files $K/shared/embeddings \| wc -l` printed 0. The scratch index was deleted; nothing was staged.]
 - [x] T051 Run the residue check in repo and machine mode (`$K/runtime/cli/retrieval/sweep-lane-residue.mjs`). Verify: `node $K/runtime/cli/retrieval/sweep-lane-residue.mjs repo --json` lists no path this phase deleted, lists `.skilled/scripts/orphan-mcp-sweeper.sh` among the allowlisted and not the live files, and its `allowlisted` count is T002's plus one; `node $K/runtime/cli/retrieval/sweep-lane-residue.mjs machine` runs to its summary with the exit status recorded, proving it still loads `$B/lib/launcher-ipc-bridge.cjs`. Machine mode only reports: the terminal prompt and every deletion belong to `apply`, which this phase never runs. Evidence: Repo mode exit 1 with `files : 130 (identifier 91, prose 79, path 3, symlink 0)`, `allowlisted : 30`, `live : 100` (201, 29 and 172 at `S`). The `--json` output lists `.skilled/scripts/orphan-mcp-sweeper.sh` among the allowlisted files and not the live ones, lists none of the 55 deleted paths, lists no live file that was not live at `S`, and has `unusedAllowlistRows: []`; allowlisted is T002's 29 plus one. Machine mode ran to `result : exit 1 (remnants remain)` with no load error: M1 compiled lane output absent, M2 found (`@huggingface` and `onnxruntime-node` still in the `$R` and `$K` `node_modules` until T053), M3 found (vector tables in this worktree's advisor database), M4 and M5 absent, M6 found (the pulled `nomic-embed-text` manifest), M7 absent, M8 found (25 linked worktrees). `apply` was never run.
 - [x] T052 Prove the boundary and the comment rule (`plan.md` affected surfaces). Verify: `git diff --stat $S -- .env.example $K/runtime/ENV-REFERENCE.md $K/references/config/environment-variables.md $K/ARCHITECTURE.md ':(glob)**/changelog/**' $K/runtime/data/trigger-index.json $K/runtime/cli/retrieval/fixtures/phrase-variants.json $K/runtime/cli/retrieval/fixtures/corpus-manifest.json $K/runtime/cli/retrieval/fixtures/generation-diagnostics.json $K/runtime/cli/retrieval/sweep-lane-residue.mjs $K/runtime/cli/tests/sweep-lane-residue.vitest.ts` prints nothing, and `git diff $S -- .skilled .github | grep -E '^\+' | grep -E 'REQ-[0-9]|ADR-[0-9]|\bT0[0-9]{2}\b|phase 00[0-9]'` prints nothing. Evidence: The boundary `git diff --stat $S --` printed nothing, exit 0, and the id grep over the added lines printed nothing, exit 1.
-- [ ] T053 [B] After the operator says yes, reinstall each package whose lockfile changed (`$R/package-lock.json`, `$K/package-lock.json`, `.skilled/skills/system-deep-loop/package-lock.json`). Verify: `npm ci --offline --no-audit --no-fund` exits 0 in `$R`, `$K` and `.skilled/skills/system-deep-loop`; `ls $R/node_modules/@huggingface $K/node_modules/onnxruntime-node 2>&1 | grep -c 'No such file'` prints 2; and `(cd $R && npm run typecheck)`, `(cd $K && npm run typecheck)` and `(cd $K/shared && npm test)` exit 0 afterwards.
+- [x] T053 After the operator says yes, reinstall each package whose lockfile changed (`$R/package-lock.json`, `$K/package-lock.json`, `.skilled/skills/system-deep-loop/package-lock.json`). Verify: `npm ci --offline --no-audit --no-fund` exits 0 in `$R`, `$K` and `.skilled/skills/system-deep-loop`; `ls $R/node_modules/@huggingface $K/node_modules/onnxruntime-node 2>&1 | grep -c 'No such file'` prints 2; and `(cd $R && npm run typecheck)`, `(cd $K && npm run typecheck)` and `(cd $K/shared && npm test)` exit 0 afterwards. Evidence: the operator approved the install, and the conducting session reports that `npm ci` exited 0 in `$R`, `$K` and `.skilled/skills/system-deep-loop`. This record did not observe those three runs, and it does not record whether `--offline --no-audit --no-fund` were passed. Observed on 2026-11-21: `ls $R/node_modules/@huggingface $K/node_modules/onnxruntime-node` printed two `No such file` lines; `(cd $R && npm run typecheck)` and `(cd $K && npm run typecheck)` each exit 0; `(cd $K/shared && npm test)` exit 0 with `ℹ tests 9` and `ℹ pass 9`. Phase commit `1f85a9dd6dd`.
 - [x] T054 Record each gate's command, exit status and count with `S` and the phase commit, the goal criterion 4 conflict as a goal-log finding, and remove scratch files (`implementation-summary.md`). Verify: `rg -c '^\| ' implementation-summary.md` counts one row per gate in T042 to T053, and `ls -A $F/scratch` prints only `.gitkeep`. [DEVIATION: not done; its deliverable is `implementation-summary.md`, which the conductor reserved, so the gate rows live in this file's Evidence and no phase commit exists yet. `ls -A $F/scratch` prints only `.gitkeep`.] Evidence: the Verification table in `implementation-summary.md`; the criterion 4 reading is in the goal log; scratch holds only `.gitkeep`.
 - [x] T055 Validate this phase (`spec.md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $F --strict` prints `RESULT: PASSED`. Evidence: `validate.sh $F --strict` printed `Summary: Errors: 0  Warnings: 1` and `RESULT: PASSED`, exit 0; the warning is AI_PROTOCOLS (the Level 3 AI Execution Protocol section is absent from the plan).
 <!-- /ANCHOR:phase-3 -->
@@ -109,8 +109,8 @@ Commands run from the repository root with `K=.skilled/skills/system-spec-kit`, 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]` Evidence: `rg -n '^- \[ \] T' tasks.md` prints nothing after T053 closed.
+- [x] No `[B]` blocked tasks remaining Evidence: `[B]` appears only in the notation table and this line; T053 lost its marker when it closed.
 - [x] Manual verification passed: `createChildEnv`, `buildOwnerLease` and section 11 of the launcher read correctly, and the three lockfile diffs only remove entries Evidence: the T011 probe printed `0 0`, `buildOwnerLease` returns no supervision field, section 11 holds only the two child helpers, and the T027 diffs added 0 package entries; the one added field is `$R`'s root `hasInstallScript`, which reflects a `postinstall` script already in `package.json` at `S`.
 <!-- /ANCHOR:completion -->
 
@@ -165,7 +165,7 @@ Commands run from the repository root with `K=.skilled/skills/system-spec-kit`, 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-020 [P0] All acceptance criteria met Evidence: all 15 rows of `acceptance-criteria.md` read Met once AC-014 closed with T053.
 - [x] CHK-021 [P0] Each edited test file passes alone with its planned count: bootstrap 14, bridge probe 17, sweeper 18, memory pipeline 3, memory residue and orphan check at their T003 counts, typo flags 16 Evidence: Alone: bootstrap 14, bridge probe 17, sweeper 18, memory pipeline 3, memory residue 29 (29 at T003), orphan check 17 (17 at T003), typo flags 16, all passed (T015, T019, T020, T023, T024, T031, T038).
 - [x] CHK-022 [P0] The shared, spec-kit, advisor, bin, doctor and sk-doc suites exit 0 (T042 to T048) Evidence: Shared, spec-kit, advisor (and stress), bin, doctor and sk-doc suites each exit 0 (T042 to T048).
 - [x] CHK-023 [P1] Every suite total equals its T003 baseline minus the deleted cases: shared 18 to 9, runtime minus 147, advisor minus 18, the others unchanged Evidence: Shared 18 to 9; advisor 2460 to 2442 (minus 18) and 178 to 177 files; bin 95, doctor 1417 and the CLI project 2664 unchanged; runtime 1508 to 1359. [DEVIATION: the runtime drop is 149, not 147: passed fell by exactly 147 and skipped by 2, the two skipped cases of a deleted file that `vitest list` did not count (T043).]
@@ -192,7 +192,7 @@ Commands run from the repository root with `K=.skilled/skills/system-spec-kit`, 
 
 - [x] CHK-030 [P0] No secret, token or dotenv value appears in any edited file Evidence: A grep of the added lines for key, secret, token, password and bearer patterns matched only the filename `utils/token-estimate.ts` in the shared README.
 - [x] CHK-031 [P0] The launcher allowlist only shrinks: `git diff $S -- $B/system-skill-advisor-launcher.cjs | grep -c "^+  '"` prints 0 Evidence: The count printed 0 (T011).
-- [x] CHK-032 [P1] `npm ci` runs only after the conductor's yes, with `--offline`, and its rollback is written in `plan.md` section 7 Evidence: `npm ci` was not run; T053 stays `[B]` for the operator, and `plan.md` section 7 holds the rollback.
+- [x] CHK-032 [P1] `npm ci` runs only after the conductor's yes, with `--offline`, and its rollback is written in `plan.md` section 7 Evidence: `npm ci` ran only after the operator's yes, by the conducting session's report, and `plan.md` section 7 holds the rollback. Whether `--offline` was passed is not recorded here (T053).
 <!-- /ANCHOR:security -->
 
 ---
@@ -200,7 +200,7 @@ Commands run from the repository root with `K=.skilled/skills/system-spec-kit`, 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized Evidence: spec.md Status Blocked on T053 only; deviations recorded in tasks.md Evidence.
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized Evidence: spec.md Status reads Complete now that T053 is closed; deviations recorded in tasks.md Evidence.
 - [x] CHK-041 [P1] Every README edited here names no deleted file below its frontmatter (T008, T009, T013, T021, T032) Evidence: Each README's `BODY ... \| rg` printed nothing (T008, T009, T013, T021, T032).
 - [x] CHK-042 [P2] The router's `RETRIEVAL_TUNING` intent still loads a file that exists Evidence: `RETRIEVAL_TUNING` now loads only `references/memory/trigger-config.md`, which exists (T028).
 <!-- /ANCHOR:docs -->
@@ -221,8 +221,8 @@ Commands run from the repository root with `K=.skilled/skills/system-spec-kit`, 
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 15 | 14/15 |
-| P1 Items | 19 | 14/19 |
+| P0 Items | 15 | 15/15 |
+| P1 Items | 19 | 19/19 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-21
@@ -279,5 +279,5 @@ Commands run from the repository root with `K=.skilled/skills/system-spec-kit`, 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
 | Operator | Merges the branch | [ ] Approved | |
-| Conductor | Says yes to `npm ci` (T053) | [ ] Approved | |
+| Conductor | Says yes to `npm ci` (T053) | [x] Approved | 2026-11-21 |
 <!-- /ANCHOR:sign-off -->

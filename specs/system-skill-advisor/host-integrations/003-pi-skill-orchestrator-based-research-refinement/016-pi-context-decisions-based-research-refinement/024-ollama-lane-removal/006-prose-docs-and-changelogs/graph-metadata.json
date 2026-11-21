@@ -58,7 +58,8 @@
       ".skilled/commands/create/assets/create-command-auto.yaml",
       ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md",
       "shared/types.ts",
-      ".skilled/skills/system-skilled-doctor/changelog/v1.1.7.0.md"
+      ".skilled/skills/system-skilled-doctor/changelog/v1.1.7.0.md",
+      "scratch/.gitkeep"
     ],
     "entities": [
       {
@@ -170,6 +171,12 @@
         "source": "derived"
       },
       {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": "scratch/.gitkeep",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -198,17 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 002 to 005 delete the lane's code, but the docs still teach it",
     "created_at": "2026-11-20T21:51:23Z",
-    "last_save_at": "2026-11-21T05:06:42.137Z",
+    "last_save_at": "2026-11-21T14:13:18.067Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +220,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a844f3c6ed85d10c16f39e7926296866b8061b63d47180ac967c48e0a2d53b8",
+    "source_fingerprint": "sha256:f14b9a907adf63fea1e4e1e977a64b05b204884d39ef34a3cd8691ea0aa5b590",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e96bcce56265ddac190fa72b45b2edb5ff4d79dd40788662f791c7f39fe9b17e",
       "plan.md": "bc0fecc0c8b2d4c9399ccefcf89c7a785959f9f67232867f9e11aae526ea44ca",
-      "tasks.md": "7dd509f2976843fcbb988b67cac4f53547711661cd960a9a77b6503ac9c00b9d",
+      "tasks.md": "34ca92234af76aa76b40fba886ff1165b038c009a3ceb794d2bfea259f7681a6",
       "implementation-summary.md": "ad6aae26a596e6ffc89927bf6218065278c29de453149e134b3a39fe2bd14b0b"
     },
     "last_active_at": null

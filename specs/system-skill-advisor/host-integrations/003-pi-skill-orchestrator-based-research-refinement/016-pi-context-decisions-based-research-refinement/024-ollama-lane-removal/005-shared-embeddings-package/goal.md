@@ -76,6 +76,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase 005 | Implemented, not committed | `tasks.md` T042 to T052 pass on the working tree: criteria 1, 2, 4 (ADR-011 reading), 5 (on the tree the commit records) and 6 hold; criterion 3 waits on T053 |
+| Phase 005 | Complete | Committed as 1f85a9dd6dd. T053 closed: npm ci exit 0 in the three packages by the conducting session's report after the operator's yes; @huggingface and onnxruntime-node absent; both typechecks exit 0; shared tests 9 of 9. AC-014 Met. Supersedes the rows above. |
 
 ### Deviations and findings
 

@@ -20,8 +20,9 @@ on:
 #
 # `lane-residue` blocks too. It runs the retired embedding lane's residue check over every
 # tracked file outside specs/, so a lane term that comes back in a file its exact-path
-# allowlist does not name turns the check red. It lives here because this file runs on every push and pull request with no path
-# filter, and the check needs only git and Node, so the job installs nothing.
+# allowlist does not name turns the check red. It lives here because this file runs on
+# every pull request and on pushes to `main` and `skilled/**`, with no path filter, and
+# the check needs only git and Node, so the job installs nothing.
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

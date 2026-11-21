@@ -136,7 +136,7 @@ The ordered work and each task's verify command are in `tasks.md`.
 | Phase 004 committed | Internal | Yellow | Fourteen advisor files still import the package; 004 is planned, not built |
 | Phase 004's recorded advisor `npm test` totals | Internal | Yellow | REQ-007's 177 files and 2438 hold only when the start commit records 004's expected 178 and 2456 |
 | npm cache with every tarball the regenerated lockfiles name | External | Green | The offline regeneration already succeeded in scratch; `npm ci --offline` needs the same cache |
-| The conductor's yes for `npm ci` | Internal | Yellow | Goal criterion 3 stays Unmet; every other gate can still run |
+| The conductor's yes for `npm ci` | Internal | Green | Goal criterion 3 stays Unmet; every other gate can still run |
 | Phases 001 and 002 gate baselines | Internal | Green | The stress, run-all and residue numbers come from them |
 <!-- /ANCHOR:dependencies -->
 

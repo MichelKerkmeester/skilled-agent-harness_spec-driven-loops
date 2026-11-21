@@ -1,5 +1,5 @@
 {
-  "manifestHash": "948a4b115e09415f0eb6cd9e719f9ae26c97e7d692d9c8e65ffa2ecf624ce332",
+  "manifestHash": "6085372a48e04ecdf2ec4a6d5338a40395edb769eb118aa549296f8b633163f4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -53220,6 +53220,9 @@
     "fix the stale lock reclaim race": [
       "fix the stale lock reclaim race"
     ],
+    "fix the ten p2 advisories from the lane": [
+      "fix the ten p2 advisories from the lane"
+    ],
     "fix write recipe backfill flag": [
       "fix write recipe backfill flag"
     ],
@@ -102196,6 +102199,9 @@
     ],
     "review p2 fixes": [
       "review p2 fixes"
+    ],
+    "review p2 fixes acceptance criteria": [
+      "review p2 fixes acceptance criteria"
     ],
     "review p2 fixes implementation summary": [
       "review p2 fixes implementation summary"

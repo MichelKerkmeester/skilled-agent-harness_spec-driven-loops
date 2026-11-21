@@ -367,12 +367,12 @@ BLOCKED when a live path at T001 or T025 is lane residue, when an apply would to
 
 **Status**: Accepted
 
-**Context**: A lane term can return in any tracked file, so a path-filtered workflow would miss most of them. `advisory-checks.yml` runs on every push to `main` and `skilled/**` and on every pull request, with no path filter, and its `gate-critical` job installs and builds two workspaces first. Repo mode needs only Node built-ins and git, and took 8.15 s here. The pre-commit hook's header sends checks that only need to run once per change, and cost more than they catch, to CI. Goal decision D2 names CI and the doctor tests.
+**Context**: A lane term can return in any tracked file, so a path-filtered workflow would miss most of them. `advisory-checks.yml` runs on every pull request and on pushes to `main` and `skilled/**`, with no path filter, and its `gate-critical` job installs and builds two workspaces first. Repo mode needs only Node built-ins and git, and took 8.15 s here. The pre-commit hook's header sends checks that only need to run once per change, and cost more than they catch, to CI. Goal decision D2 names CI and the doctor tests.
 
 **Decision**: Add a `lane-residue` job to `advisory-checks.yml` with the file's switch condition (`vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'`), the same pinned checkout and setup-node actions as its siblings, a fail-closed check that the tool exists, and `node T repo`, with no `continue-on-error`. Add `D/scripts/tests/lane-residue-gate.test.cjs`, which `run-all.sh` picks up inside its node:test suite. Both land in the same commit as the cleanup wiring, after T025 has shown `live        : 0` on that tree. No new workflow file is created, so `/doctor:ci scaffold` is not needed; `/doctor:ci report` reads the new job's switch by its shape.
 
 **Consequences**:
-- Every push and pull request runs the gate in about a minute without an install.
+- Each pull request, and each push to `main` or `skilled/**`, runs the gate in about a minute without an install.
 - The doctor test adds about 8 s to `run-all.sh`, and the suite count stays 7.
 - `SKILLED_CI_FRESHNESS=off` switches the gate off with its group.
 
@@ -397,7 +397,7 @@ BLOCKED when a live path at T001 or T025 is lane residue, when an apply would to
 
 **Alternatives Rejected**:
 - Keep 007's four rows and leave `derived` a hand-run check: nothing would run it on a later push.
-- Gate `generate-trigger-index.mjs --check` in the residue job: fails every push between a doc edit and the post-merge rebuild.
+- Gate `generate-trigger-index.mjs --check` in the residue job: fails each gated push and pull request between a doc edit and the post-merge rebuild.
 - Make the residue tool run the advisor probes: it would need a built advisor.
 
 ---

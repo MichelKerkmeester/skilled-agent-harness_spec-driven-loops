@@ -15,39 +15,39 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
-      "reason": "The check's own doc. Line 99 names the --socket-dir default, /tmp/system-hf-embed, the folder apply deletes the model server's files from."
+      "reason": "The check's own doc. It names the --socket-dir default, /tmp/system-hf-embed, the folder apply deletes the model server's files from."
     },
     {
       "path": ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-task-completion/auto-note.md",
-      "reason": "Line 19 names Ollama as a future ClickUp note provider. Not the advisor lane."
+      "reason": "It names Ollama as a future ClickUp note provider. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md",
-      "reason": "Codex's own --oss mode runs local models through Ollama (lines 105, 173, 549). Not the advisor lane."
+      "reason": "Codex's own --oss mode runs local models through Ollama. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md",
-      "reason": "Line 64 describes Codex's own --oss mode with local Ollama models. Not the advisor lane."
+      "reason": "It describes Codex's own --oss mode with local Ollama models. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md",
-      "reason": "Line 92 says the Figma CLI supports local LLMs via LM Studio or Ollama. Not the advisor lane."
+      "reason": "It says the Figma CLI supports local LLMs via LM Studio or Ollama. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
-      "reason": "sqlite-vec is a teaching example of typing an untyped module (lines 79, 81). Not the advisor lane."
+      "reason": "sqlite-vec is a teaching example of typing an untyped module. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md",
-      "reason": "sqlite-vec is a teaching example of a permitted any (lines 130, 136). Not the advisor lane."
+      "reason": "sqlite-vec is a teaching example of a permitted any. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md",
-      "reason": "Line 103 is a TSDoc example class that uses sqlite-vec. Not the advisor lane."
+      "reason": "A TSDoc example class in it uses sqlite-vec. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
-      "reason": "Lines 320 and 322 are an optional-require example with sqlite-vec. Not the advisor lane."
+      "reason": "It holds an optional-require example with sqlite-vec. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/lib/database/indexer.mjs",
@@ -79,19 +79,19 @@
     },
     {
       "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/neverhack/DESIGN.md",
-      "reason": "Line 195 uses semantic lanes for colour roles in a design system. Not the advisor lane."
+      "reason": "It uses semantic lanes for colour roles in a design system. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/neverhack/neverhack-canonical.json",
-      "reason": "Line 36 uses semantic lanes for colour roles in a design system. Not the advisor lane."
+      "reason": "It uses semantic lanes for colour roles in a design system. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-deep-loop/runtime/lib/semantic-communities/community-projection.ts",
-      "reason": "semantic_shadow_only (line 747) is a deep-loop coverage metric that shares the name. Not the advisor lane."
+      "reason": "semantic_shadow_only is a deep-loop coverage metric that shares the name. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts",
-      "reason": "semantic_shadow_only (line 1035) asserts the deep-loop coverage metric of the same name. Not the advisor lane."
+      "reason": "A case asserts semantic_shadow_only, the deep-loop coverage metric of the same name. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md",
@@ -99,15 +99,15 @@
     },
     {
       "path": ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
-      "reason": "Lines 25 and 64 point to the embedder bake-off case studies. Not the advisor lane."
+      "reason": "Two links point to the embedder bake-off case studies. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
-      "reason": "Line 53 names an embedder as one example of a promoted default. Not the advisor lane."
+      "reason": "It names an embedder as one example of a promoted default. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
-      "reason": "Line 103 is a worked changelog example about the retired memory database and its embedder. Not the advisor lane."
+      "reason": "It holds a worked changelog example about the retired memory database and its embedder. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
@@ -127,67 +127,67 @@
     },
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/tests/cli-exit-taxonomy.vitest.ts",
-      "reason": "Lines 86 and 94 pass the removed includeSemanticHealth status flag to prove the CLI refuses it with exit 64. A refusal test for the removed lane."
+      "reason": "Two cases pass the removed includeSemanticHealth status flag to prove the CLI refuses it with exit 64. A refusal test for the removed lane."
     },
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
-      "reason": "Line 333 loops over the two removed health flags, includeSemanticHealth among them, to prove the status handler refuses each. A refusal test for the removed lane."
+      "reason": "A case loops over the two removed health flags, includeSemanticHealth among them, to prove the status handler refuses each. A refusal test for the removed lane."
     },
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
-      "reason": "Line 664 is a dated reviewer reason for an approved parity divergence, written when the semantic lane weight was 0. A frozen record of the removed lane."
+      "reason": "It holds a dated reviewer reason for an approved parity divergence, written when the semantic lane weight was 0. A frozen record of the removed lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/ops/process-memory-harness.ts",
-      "reason": "The ollama-serve rule (lines 112 to 115) and its sample row on line 510 keep the memory harness from flagging an operator-managed Ollama daemon. A guard kept on purpose, not the advisor lane."
+      "reason": "The ollama-serve rule and its sample row keep the memory harness from flagging an operator-managed Ollama daemon. A guard kept on purpose, not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/process-memory-harness.vitest.ts",
-      "reason": "Lines 26 and 109 assert the harness rule that treats an operator-managed Ollama daemon as expected. A test of a kept guard, not the advisor lane."
+      "reason": "Two cases assert the harness rule that treats an operator-managed Ollama daemon as expected. A test of a kept guard, not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/process-sweep.vitest.ts",
-      "reason": "Line 147 is a sample ollama serve command proving the sweep plan keeps an expected warm daemon. A test of a kept guard, not the advisor lane."
+      "reason": "A sample ollama serve command in it proves the sweep plan keeps an expected warm daemon. A test of a kept guard, not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs",
-      "reason": "Lines 71 to 73 list the retired memory server tool names embedder_list, embedder_set and embedder_status, which this sibling check searches for. Its vocabulary, not the advisor lane."
+      "reason": "It lists the retired memory server tool names embedder_list, embedder_set and embedder_status, which this sibling check searches for. Its vocabulary, not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-invariance.vitest.ts",
-      "reason": "Comments on lines 106 and 129 and exemptions on lines 138 and 142 name the retired memory server embedder manifest, catalog entry and playbook. Not the advisor lane."
+      "reason": "Two comments and two exemptions name the retired memory server embedder manifest, catalog entry and playbook. Not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
-      "reason": "Lines 292, 293 and 535 are expected spec and catalog paths whose folder or file names contain embedder. Paths in a retrieval fixture, not the advisor lane."
+      "reason": "It holds three expected spec and catalog paths whose folder or file names contain embedder. Paths in a retrieval fixture, not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/specs_system-speckit_028-memory-search-intelligence_002-speckit-memory_012-query-channel-calibration_spec.md",
-      "reason": "A frozen copy of a retired memory-search spec used as an anchor-repair fixture. Lines 74 and 107 name that server embedder. Fixture text, not the advisor lane."
+      "reason": "A frozen copy of a retired memory-search spec used as an anchor-repair fixture. Its text names that server embedder. Fixture text, not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/specs_system-speckit_028-memory-search-intelligence_003-spec-data-quality_006-generated-metadata-build_010-deterministic-ranking-benchmark_spec.md",
-      "reason": "A frozen copy of a retired memory-search spec used as an anchor-repair fixture. Lines 74 and 132 name that server nomic-embed embedder. Fixture text, not the advisor lane."
+      "reason": "A frozen copy of a retired memory-search spec used as an anchor-repair fixture. Its text names that server nomic-embed embedder. Fixture text, not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/specs_system-speckit_028-memory-search-intelligence_scratch_topology-migration-backup_identity-backups_004-dark-flag-graduation_001-multihop-tail-appends_spec.md",
-      "reason": "A frozen copy of a retired memory-search spec used as an anchor-repair fixture. Lines 3, 143 and 156 name that server nomic-embed embedder. Fixture text, not the advisor lane."
+      "reason": "A frozen copy of a retired memory-search spec used as an anchor-repair fixture. Its text names that server nomic-embed embedder. Fixture text, not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md",
-      "reason": "Lines 210 and 211 are recorded output listing spec folder paths that contain embedder. Spec paths, not the advisor lane."
+      "reason": "It holds recorded output listing spec folder paths that contain embedder. Spec paths, not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md",
-      "reason": "Line 91 links a spec packet whose folder path contains embedder. A spec path, not the advisor lane."
+      "reason": "It links a spec packet whose folder path contains embedder. A spec path, not the advisor lane."
     },
     {
       "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md",
-      "reason": "Line 37 documents the sweeper guard that preserves an unrelated local Ollama server, and line 66 cites a spec folder path that contains embedder. A kept guard and a spec path, not the advisor lane."
+      "reason": "It documents the sweeper guard that preserves an unrelated local Ollama server, and cites a spec folder path that contains embedder. A kept guard and a spec path, not the advisor lane."
     },
     {
       "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
-      "reason": "Line 12699 records a verdict for a file under a specs/ folder whose path contains embedder. A spec folder path string, not the advisor lane."
+      "reason": "It records a verdict for a file under a specs/ folder whose path contains embedder. A spec folder path string, not the advisor lane."
     }
   ]
 }

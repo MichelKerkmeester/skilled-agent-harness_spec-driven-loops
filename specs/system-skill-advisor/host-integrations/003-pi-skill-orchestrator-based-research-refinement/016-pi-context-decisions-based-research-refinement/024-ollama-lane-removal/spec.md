@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Blocked |
+| **Status** | Complete |
 | **Created** | 2026-11-20 |
 | **Branch** | `worktrees/497-ollama-lane-removal` |
 | **Parent Spec** | `../spec.md` |
@@ -115,7 +115,7 @@ Per-phase detail lives in each child's `spec.md` and `plan.md`. The research inv
 | 2 | 002-doctor-surface/ | The embedder route, asset, menu item, setup leg, install step, coverage lines, contract tests and cost script, with the bridge regeneration and the two install docs | Complete |
 | 3 | 003-lane-feeders/ | Vector refresh, prompt embedding, exact rerank, the command meaning path, `embeddingText` and the forwarded env keys | Complete |
 | 4 | 004-lane-core/ | The lane id, status contract, vector DDL, `lib/embedders/`, the dead env flag and the remaining lane tests and fixtures, in one commit | Complete |
-| 5 | 005-shared-embeddings-package/ | The shared embeddings package, HF model server, launcher supervision, orphan check class, sk-doc validator, `chunking.ts`, `utils/retry.ts`, the npm dependency and lockfiles | Blocked (the operator's `npm ci`) |
+| 5 | 005-shared-embeddings-package/ | The shared embeddings package, HF model server, launcher supervision, orphan check class, sk-doc validator, `chunking.ts`, `utils/retry.ts`, the npm dependency and lockfiles | Complete |
 | 6 | 006-prose-docs-and-changelogs/ | Prose docs, identity files, trigger phrases, the "five-lane" renames and all 23 changelog rewrites | Complete |
 | 7 | 007-generated-surfaces/ | Trigger index and its fixtures, the skill-graph export and the cite-drift labels | Complete |
 | 8 | 008-cleanup-wiring-and-gating/ | The cleanup wired into `/doctor:update apply` and the residue check flipped to gating | Complete |

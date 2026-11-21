@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-shared-embeddings-package |
-| **Completed** | Blocked on the operator's `npm ci` (T053) |
+| **Completed** | 2026-11-21, when T053 closed after the operator's `npm ci` |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,7 +49,7 @@ No code in the repository can load a model any more. The shared embeddings packa
 
 ### Phase 5: shared-embeddings-package
 
-The launcher keeps its daemon, lease and IPC behavior and no longer forwards `MEMORY_DB_PATH` or `HF_EMBED_SERVER_URL`. The IPC bridge loses only its model-server probe, so `resolveIpcSocketDir` stays for the daemon and the residue check. The doctor orphan check drops its model-server class with a recomputed held-out digest, the orphan sweeper drops its model-server lines and keeps the `ollama-preserve` guard behind an exact-path allowlist row, the sk-doc model-reference validator goes, and 22 CI workflows lose the ONNX runtime setting. The three lockfiles were regenerated with `npm install --package-lock-only --offline --ignore-scripts`, which installs nothing; reinstalling `node_modules` is left to the operator.
+The launcher keeps its daemon, lease and IPC behavior and no longer forwards `MEMORY_DB_PATH` or `HF_EMBED_SERVER_URL`. The IPC bridge loses only its model-server probe, so `resolveIpcSocketDir` stays for the daemon and the residue check. The doctor orphan check drops its model-server class with a recomputed held-out digest, the orphan sweeper drops its model-server lines and keeps the `ollama-preserve` guard behind an exact-path allowlist row, the sk-doc model-reference validator goes, and 22 CI workflows lose the ONNX runtime setting. The three lockfiles were regenerated with `npm install --package-lock-only --offline --ignore-scripts`, which installs nothing; the operator's `npm ci` reinstalled `node_modules` afterwards (T053).
 
 ### Files Changed
 
@@ -110,7 +110,7 @@ An Opus worker edited `shared/types.ts` first, then deleted the package and its 
 | `git grep -n ollama-preserve` in the sweeper | the guard at line 488 |
 | `sweep-lane-residue.mjs repo` | exit 1: 130 files, 30 allowlisted, 100 live (was 172) |
 | Lockfile diff | 3 files, 2121 lines removed; no package entry added |
-| `npm ci --offline` (T053) | not run: waiting for the operator |
+| `npm ci` (T053) | exit 0 in the three packages, by the conducting session's report; `@huggingface` and `onnxruntime-node` absent; both typechecks exit 0; shared tests 9 of 9 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -118,7 +118,7 @@ An Opus worker edited `shared/types.ts` first, then deleted the package and its 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`node_modules` still holds the removed packages until the operator runs `npm ci`.** Run `npm ci --offline --no-audit --no-fund` in `.skilled/skills/system-skill-advisor/runtime`, `.skilled/skills/system-spec-kit` and `.skilled/skills/system-deep-loop`, then the advisor typecheck and suite. To undo, check out the previous lockfiles and run `npm ci --offline` again. Every test in this phase ran against the old `node_modules`; a grep of all 77 removed package names finds no surviving import.
+1. **The reinstall's flags are not on record here.** The conducting session reports that `npm ci` exited 0 in `.skilled/skills/system-skill-advisor/runtime`, `.skilled/skills/system-spec-kit` and `.skilled/skills/system-deep-loop`, but not whether `--offline --no-audit --no-fund` were passed. To undo, check out the previous lockfiles and run `npm ci --offline` again. The phase's suites ran against the old `node_modules`; the typechecks and the shared tests were rerun after the reinstall (T053), and a grep of all 77 removed package names finds no surviving import.
 2. **A model server left running from an older checkout is no longer recognized by the orphan check.** The residue check's machine mode still reports it, and phase 008 wires the cleanup.
 3. **The advisory CI job's name still mentions doc-model references.** Renaming it could break a branch rule that requires the check by name, so it is the operator's call.
 <!-- /ANCHOR:limitations -->

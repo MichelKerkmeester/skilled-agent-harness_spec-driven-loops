@@ -33,7 +33,7 @@ Once phase 004 lands, the advisor imports nothing from `system-spec-kit/shared/e
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Blocked |
+| **Status** | Complete |
 | **Created** | 2026-11-20 |
 | **Branch** | `worktrees/497-ollama-lane-removal` |
 | **Parent Spec** | ../spec.md |
@@ -460,7 +460,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 12. OPEN QUESTIONS
 
 - **Resolved: goal criterion 4 conflicts with the residue check.** The check must name the dependency to find it. The conductor accepted `plan.md` ADR-011: criterion 4 reads with the residue check's script excluded, because the parent goal's objective exempts the check's own allowlisted files and outranks the child wording.
-- **Operator, open: `npm ci` (T053, REQ-014, goal criterion 3).** Reinstalling `node_modules` is an install, which AGENTS.md section 3 makes a stop-for-yes. The unattended run regenerates the lockfiles offline and does not reinstall, so REQ-014 and AC-014 stay Unmet and this phase's status stays Blocked until the operator runs `npm ci --offline --no-audit --no-fund` in the three packages. Undo: `git checkout` the previous lockfiles and run `npm ci --offline` again.
+- **Resolved: `npm ci` (T053, REQ-014, goal criterion 3).** Reinstalling `node_modules` is an install, which AGENTS.md section 3 makes a stop-for-yes, so the unattended run regenerated the lockfiles offline and left the reinstall to the operator. The operator said yes, and the conducting session reports that `npm ci` exited 0 in the three packages. `@huggingface` and `onnxruntime-node` are gone from the two `node_modules` folders, and both typechecks and the shared tests exit 0 (T053). Undo: `git checkout` the previous lockfiles and run `npm ci --offline` again.
 - Is `MEMORY_DB_PATH` still forwarded? Decision: no; its only readers were `factory.ts` and `hf-local.ts`, so the forwarding, the `SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH` allowlist key and five bootstrap cases go (`plan.md` ADR-004).
 - Do the sweeper's model-server lines and their allowlist row land here or in 006? Decision: here, beside the server they classify, so the row names a file whose only lane term is the guard decision Q005 keeps (`plan.md` ADR-006).
 - Is the `onnxruntime-node` CI setting removed here? Decision: yes; it tunes an install that no lockfile has after this phase, and `onnxruntime` is not a residue term, so no later phase would find it (`plan.md` ADR-010).
