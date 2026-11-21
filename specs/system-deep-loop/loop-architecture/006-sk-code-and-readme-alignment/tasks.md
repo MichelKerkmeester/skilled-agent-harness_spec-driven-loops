@@ -31,34 +31,31 @@ contextType: "general"
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [ ] T001 Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
-- [ ] T002 Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
-- [ ] T003 [P] Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
+- [x] T001 Scaffold this Level 2 packet with the spec-kit create script (`spec.md`). Verify: `ls` on the packet lists `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`.
+- [x] T002 Record the checker baselines (`scratchpad/dlh/base/`). Verify: `check_readme_references.py` prints `SUMMARY files=78 pass=64 fail=14`.
+- [x] T003 Record the gate baseline (`scratchpad/gate-dlh-base.log`). Verify: the log prints `Tests  2 failed | 3967 passed | 9 skipped`, and the two failing tests pass in isolation.
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
-- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
-- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
-- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
-- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
+- [x] T004 [P] Audit seven folder lanes read-only (`scratchpad/dlh/audit-L1.md` to `audit-L7.md`). Verify: `grep -H '^Counts' audit-L*.md` prints seven Counts lines.
+- [x] T005 [P] Apply the behaviour-neutral code fixes per lane (`.skilled/skills/system-deep-loop/**/*.{ts,cjs,sh}`). Verify: the comment-only diff filter over the changed code files prints no line.
+- [x] T006 [P] Correct the drifted READMEs per lane (`.skilled/skills/system-deep-loop/**/README.md`). Verify: `check_readme_references.py` over the skill READMEs prints `fail=0`.
+- [x] T007 Create the missing support README (`runtime/tests/_support/README.md`). Verify: `ls` prints the file and the code-folder audit reports it `valid`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [ ] T008 Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
-- [ ] T009 Test edge cases (`<test>`). Verify: `<test command>` exits 0.
-- [ ] T010 Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
+- [x] T008 Run the full gate from the final state (`scratchpad/gate-dlh.log`). Verify: the log prints vitest 0 failed, three check exits of 0, `Tests  18 passed (18)` and `validate exit=0 passed=16 failed=0`.
+- [x] T009 Run the side checkers (typecheck, mirrors, documentation drift, frontmatter versions, trigger index). Verify: each exits 0.
+- [x] T010 Record the results and the operator decision list (`implementation-summary.md`). Verify: `rg -n 'class \(b\)' implementation-summary.md` prints at least one line.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,9 +64,9 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -104,9 +101,9 @@ contextType: "general"
 ## Pre-Implementation
 <!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md Evidence: spec.md sections 2 to 5 filled.
+- [x] CHK-002 [P0] Technical approach defined in plan.md Evidence: plan.md section 4 names the three phases.
+- [x] CHK-003 [P1] Dependencies identified and available Evidence: plan.md section 6 lists the sk-create-readme checkers.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -115,10 +112,10 @@ contextType: "general"
 ## Code Quality
 <!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks Evidence: quality-gate.cjs over 582 files prints NO_BLOCKER_FOUND, typecheck exit 0.
+- [x] CHK-011 [P0] No console errors or warnings Evidence: vitest 3967 passed, 0 failed.
+- [x] CHK-012 [P1] Error handling implemented N/A: comment-only pass. Error-handling gaps are listed as behaviour items in implementation-summary.md.
+- [x] CHK-013 [P1] Code follows project patterns Evidence: each lane loaded the sk-code checklists before its first write.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -127,10 +124,10 @@ contextType: "general"
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met Evidence: acceptance-criteria.md AC-001 to AC-004 Met.
+- [x] CHK-021 [P0] Manual testing complete Evidence: about ten inserted doc comments were spot-read against their code.
+- [x] CHK-022 [P1] Edge cases tested Evidence: the empty-folder and gitignored-file cases are recorded in implementation-summary.md.
+- [x] CHK-023 [P1] Error scenarios validated Evidence: checker conflicts are recorded as decision items rather than forced.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -139,13 +136,13 @@ contextType: "general"
 ## FIX ADDENDUM: FIX COMPLETENESS
 <!-- FILL: Write this section when the packet fixes a reported finding. Delete it otherwise. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Evidence: every finding is classed a, b or c in scratchpad/dlh/audit-L1.md to audit-L7.md.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Evidence: lanes ran grep probes over every file in scope.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. N/A: no helper, policy or schema changed.
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. N/A: no security, path or parser fix was built.
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. N/A: no matrix applies to a comment pass.
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. N/A: no code that reads process-wide state changed.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: the gate ran at fe8909a3a8e.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -154,9 +151,9 @@ contextType: "general"
 ## Security
 <!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No hardcoded secrets Evidence: the secrets check ran clean on 582 files.
+- [x] CHK-031 [P0] Input validation implemented N/A: no input handling changed. Validation gaps are behaviour items.
+- [x] CHK-032 [P1] Auth/authz working correctly N/A: no auth surface.
 <!-- /ANCHOR:security -->
 
 ---
@@ -165,9 +162,9 @@ contextType: "general"
 ## Documentation
 <!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized Evidence: spec, plan and tasks describe the same seven lanes.
+- [x] CHK-041 [P1] Code comments adequate Evidence: TSDoc rescan finds 0 undocumented exported functions, classes or interfaces outside tests.
+- [x] CHK-042 [P2] README updated (if applicable) Evidence: check_readme_references.py prints SUMMARY files=79 pass=79 fail=0.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -176,8 +173,8 @@ contextType: "general"
 ## File Organization
 <!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only Evidence: lane temp files sit under the session scratchpad, outside the repository.
+- [x] CHK-051 [P1] scratch/ cleaned before completion Evidence: the packet scratch/ holds only .gitkeep.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -188,9 +185,9 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-21
 <!-- /ANCHOR:summary -->

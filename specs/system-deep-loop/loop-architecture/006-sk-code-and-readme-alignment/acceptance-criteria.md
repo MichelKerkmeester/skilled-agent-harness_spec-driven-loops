@@ -7,18 +7,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-sk-code-and-readme-alignment"
+    packet_pointer: "system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment"
     last_updated_at: "2026-11-21T18:32:25Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Marked every criterion with observed evidence"
+    next_safe_action: "None; the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-006-sk-code-and-readme-alignment"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,9 +37,9 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-11-21
 <!-- /ANCHOR:metadata -->
 
@@ -53,7 +53,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the final commit `fe8909a3a8e`, When `gate.sh dlh` runs, Then vitest reports 0 failed and at least 3967 passed, the three checks exit 0, parity is 18/18 and validate is 16/16 | `scratchpad/gate-dlh.log`: `3967 passed, 11 skipped, 0 failed`, `check-contract-drift exit=0`, `Tests  18 passed (18)`, `validate exit=0 passed=16 failed=0` | Met | - |
+| AC-002 | REQ-002 | Given the 79 skill READMEs, When the reference and count checkers run, Then both report no failure, and the default-mode audit keeps every skill README valid | `SUMMARY files=79 pass=79 fail=0` from both checkers. `audit_readmes.py` default mode: 72 of 72 valid | Met | - |
+| AC-003 | REQ-003 | Given the code diff, When non-comment lines are filtered, Then only type annotations, split literals and one unexported interface remain, and the quality gate passes | Filter output: `catch (...: unknown)`, three `denial` literal splits, `PivotSeatDispatchContext`, two `binding` types. `quality-gate.cjs` over 582 files: NO_BLOCKER_FOUND. Typecheck exit 0 | Met | - |
+| AC-004 | REQ-004 | Given `runtime/tests/_support/`, When the code-folder audit runs, Then its README exists and is valid | `audit_readmes.py --document-type code-folder`: `runtime/tests/_support/README.md` valid | Met | - |
 
 ### Status values
 
@@ -79,7 +82,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is Met with observed evidence. The behaviour-changing and undecided findings are the operator's, listed in `implementation-summary.md`.
 <!-- /ANCHOR:closure -->

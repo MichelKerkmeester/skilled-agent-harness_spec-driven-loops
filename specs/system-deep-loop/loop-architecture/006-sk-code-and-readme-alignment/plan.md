@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Align system-deep-loop code with sk-code and its code-folder READMEs with the sk-doc create-readme standard"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Seven read-only folder lanes audit the skill against sk-code and sk-create-readme and class each finding as behaviour-neutral, behaviour-changing or undecided. Fourteen fix lanes then apply only the behaviour-neutral items, one code agent and one README agent per folder lane, so no two agents edit the same file. Commits land one lane at a time after every lane has finished."
 trigger_phrases:
   - "sk code and readme alignment plan"
 importance_tier: "normal"
@@ -21,13 +21,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript, CommonJS JavaScript, Bash |
+| **Framework** | None; Node runtime scripts and libraries |
+| **Storage** | None changed |
+| **Testing** | Vitest, `tsc --noEmit`, sk-code quality gate, sk-create-readme checkers |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Seven read-only folder lanes audit the skill against sk-code and sk-create-readme and class each finding as behaviour-neutral, behaviour-changing or undecided. Fourteen fix lanes then apply only the behaviour-neutral items, one code agent and one README agent per folder lane, so no two agents edit the same file. Commits land one lane at a time after every lane has finished.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -43,7 +43,7 @@ contextType: "general"
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
+- [ ] `bash scratchpad/gate.sh dlh` prints vitest 0 failed, three check exits of 0, 18 parity tests passed and `validate exit=0 passed=16 failed=0`
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -54,14 +54,14 @@ contextType: "general"
 <!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Other: a documentation and comment hygiene pass over an existing library
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **Audit lanes**: read-only audits that write one finding table per lane to the scratchpad
+- **Fix lanes**: code agents edit comment lines, README agents edit README files
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+Audit tables feed the fix lanes, whose diffs are checked for comment-only code changes before each lane commit.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -74,8 +74,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| Code under the skill | Runtime behaviour | Unchanged | Comment-only diff check per lane |
+| Code-folder READMEs | Describe the code | Update | The three sk-create-readme checkers |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -91,7 +91,7 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 <!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Setup scaffolds this packet and records the checker and test baselines. Implementation runs the seven audit lanes and then the fourteen fix lanes. Verification runs the full gate and every checker from the final state. The ordered work is in `tasks.md`.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -102,9 +102,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | The runtime vitest suite | Vitest |
+| Integration | Contract parity and packet validation | Vitest, validate.sh |
+| Manual | Spot-read of inserted doc comments | Reading |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -115,7 +115,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| sk-create-readme checkers | Internal | Green | READMEs cannot be proven valid |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -124,8 +124,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 <!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+- **Trigger**: A gate regression traced to a lane commit
+- **Procedure**: `git revert` the lane commit; each lane is its own commit
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -143,9 +143,9 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Setup | None | Implementation |
+| Implementation | Setup | Verification |
+| Verification | Implementation | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
