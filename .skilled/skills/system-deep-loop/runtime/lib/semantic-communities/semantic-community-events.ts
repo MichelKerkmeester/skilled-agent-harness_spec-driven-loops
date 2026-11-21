@@ -53,6 +53,7 @@ const OBSERVATION_FIELDS = [
 ] as const;
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
 
+/** Caller-supplied envelope fields for one semantic claim observation event, including its event id and idempotency key. */
 export interface SemanticObservationEnvelopeInput {
   readonly eventId: string;
   readonly streamId: string;

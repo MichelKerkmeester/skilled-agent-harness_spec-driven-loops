@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Progress Record
+// ───────────────────────────────────────────────────────────────────
 // Shared progress-record type, reducer allowlist, and pair validator.
 //
 // Cross-cutting across all deep-loop modes (context, review, research,
@@ -31,6 +34,13 @@ const PROGRESS_THRESHOLD_SECONDS = 60;
 // Predicates & filters
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Match a record by either its progress type or its progress_record event, so
+ * both the type-tagged and the event-tagged forms are recognised.
+ *
+ * @param {Object} record - A parsed JSONL record, or any value.
+ * @returns {boolean} True for a progress record; false for anything else, including non-objects.
+ */
 function isProgressRecord(record) {
   return Boolean(record
     && typeof record === 'object'
@@ -49,7 +59,7 @@ function filterCompletionBearingRecords(records) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Pair validator (GAP-35: no-op heartbeats mask stalls)
+// Pair validator: no-op heartbeats would otherwise mask stalls
 // ─────────────────────────────────────────────────────────────────────────────
 
 function normalizeText(value) {

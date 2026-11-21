@@ -157,6 +157,7 @@ export type SemanticCoverageEdgeBoundary = Omit<CoverageEdge, 'id' | 'relation' 
 // 4. COMMUNITY PROJECTION
 // ───────────────────────────────────────────────────────────────────
 
+/** One equivalence community: its representative claim, its member claim ids and the versioned hash of that membership. */
 export interface SemanticCommunityRecord extends JsonObject {
   readonly community_id: string;
   readonly representative_claim_id: string;
@@ -167,6 +168,7 @@ export interface SemanticCommunityRecord extends JsonObject {
 
 export type SemanticMembershipStatus = 'stable' | 'ambiguous';
 
+/** One claim's membership; a stable claim names its community, an ambiguous claim has a null community and lists its candidates. */
 export interface SemanticMembershipRecord extends JsonObject {
   readonly claim_id: string;
   readonly status: SemanticMembershipStatus;
@@ -177,6 +179,7 @@ export interface SemanticMembershipRecord extends JsonObject {
 
 export type SemanticLineageKind = 'created' | 'continued' | 'merge' | 'split';
 
+/** One community change between projection versions (created, continued, merge or split), with source and target community ids. */
 export interface SemanticCommunityLineageRecord extends JsonObject {
   readonly lineage_kind: SemanticLineageKind;
   readonly from_community_ids: string[];
@@ -185,6 +188,7 @@ export interface SemanticCommunityLineageRecord extends JsonObject {
   readonly lineage_hash: string;
 }
 
+/** The projection for one namespace and config: claims, admitted edges, communities, memberships, lineage and the last ledger sequence applied. */
 export interface SemanticCommunityProjection extends JsonObject {
   readonly schema_version: typeof SEMANTIC_PROJECTION_SCHEMA_VERSION;
   readonly namespace: SemanticNamespaceRecord;
@@ -209,6 +213,7 @@ export interface SemanticProjectionHistory extends JsonObject {
 // 5. INCREMENTAL AND NOVELTY OUTPUTS
 // ───────────────────────────────────────────────────────────────────
 
+/** One claim observed under a projection version and config digest, with its candidate assessments; the payload of a semantic claim event. */
 export interface SemanticClaimObservation extends JsonObject {
   readonly projection_version: string;
   readonly config_digest: string;
@@ -223,6 +228,7 @@ export type SemanticConceptNovelty =
 
 export type SemanticEvidenceNovelty = 'new_evidence' | 'no_new_evidence';
 
+/** Concept and evidence novelty for one claim; the concept increment is 1 only when the claim starts a new community. */
 export interface SemanticNoveltyResult extends JsonObject {
   readonly claim_id: string;
   readonly projection_version: string;
@@ -234,6 +240,7 @@ export interface SemanticNoveltyResult extends JsonObject {
   readonly community_id: string | null;
 }
 
+/** Work counters for one incremental projection step, including the claim count a full rebuild would have processed. */
 export interface SemanticIncrementalTelemetry extends JsonObject {
   readonly candidate_count: number;
   readonly admitted_edge_count: number;
@@ -242,12 +249,14 @@ export interface SemanticIncrementalTelemetry extends JsonObject {
   readonly full_rebuild_claim_count: number;
 }
 
+/** The projection after one incremental claim step, that claim's novelty and the step's telemetry. */
 export interface SemanticIncrementalResult {
   readonly projection: SemanticCommunityProjection;
   readonly novelty: SemanticNoveltyResult;
   readonly telemetry: SemanticIncrementalTelemetry;
 }
 
+/** Semantic novelty reported beside the legacy coverage-graph deltas, which stay the authority. */
 export interface SemanticNoveltyShadowResult {
   readonly authority: 'legacy_coverage_graph';
   readonly semantic: SemanticNoveltyResult;
@@ -259,6 +268,7 @@ export interface SemanticNoveltyShadowResult {
 // 6. COVERAGE-GRAPH BOUNDARY INPUTS
 // ───────────────────────────────────────────────────────────────────
 
+/** Input for a semantic claim record; the node must be a research CLAIM coverage node or creation throws. */
 export interface CreateSemanticClaimInput {
   readonly node: CoverageNode;
   readonly rawText: string;
@@ -267,6 +277,7 @@ export interface CreateSemanticClaimInput {
   readonly origin: SemanticLedgerOrigin;
 }
 
+/** Coverage-graph inputs for the legacy novelty delta; the windowed delta is computed only when a window size is given. */
 export interface SemanticLegacyNoveltyInput {
   readonly nodes: readonly CoverageNode[];
   readonly edges: readonly CoverageEdge[];

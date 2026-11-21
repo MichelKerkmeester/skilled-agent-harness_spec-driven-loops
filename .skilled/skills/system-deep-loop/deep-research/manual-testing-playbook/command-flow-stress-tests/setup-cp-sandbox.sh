@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Deep Research Command Sandbox Setup
+# ───────────────────────────────────────────────────────────────
+# Build a disposable sandbox under /tmp holding the speckit commands, the
+# deep-research skill, the spec-kit skill and the deep-research agents.
+#
+# Exit Codes:
+#   0 - Sandbox created, or help printed
+#   1 - A required source path is missing
+#   2 - Invalid argument or sandbox directory
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

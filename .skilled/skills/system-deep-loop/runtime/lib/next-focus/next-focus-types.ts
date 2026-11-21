@@ -42,6 +42,7 @@ export interface NonApplicableNextFocusSignal {
 
 export type NextFocusSignal = RequiredNextFocusSignal | NonApplicableNextFocusSignal;
 
+/** The three scoring signals every candidate declares, each either evidenced or explicitly not applicable. */
 export interface NextFocusSignals {
   readonly coverageGap: NextFocusSignal;
   readonly contradictionUrgency: NextFocusSignal;
@@ -63,6 +64,7 @@ export type NextFocusCandidateValidation =
   | { readonly valid: true; readonly candidate: NextFocusCandidate }
   | { readonly valid: false; readonly rejections: readonly PivotCandidateRejection[] };
 
+/** Projection identity, sorted unique evidence ids and the fingerprint over them, shared by every candidate in one decision. */
 export interface NextFocusSourceSnapshot {
   readonly projectionWatermark: string;
   readonly projectionVersion: string;
@@ -80,18 +82,21 @@ interface NextFocusRegionBase {
   readonly noveltyDecay: RequiredNextFocusSignal;
 }
 
+/** Region input for a coverage-graph gap; it must carry required coverage-gap evidence. */
 export interface CoverageGapRegionInput extends NextFocusRegionBase {
   readonly kind: 'coverage_gap';
   readonly gap: CoverageGap;
   readonly coverageGap: RequiredNextFocusSignal;
 }
 
+/** Region input for an open contradiction relationship; it must carry required contradiction-urgency evidence. */
 export interface OpenContradictionRegionInput extends NextFocusRegionBase {
   readonly kind: 'open_contradiction';
   readonly relationshipId: string;
   readonly contradictionUrgency: RequiredNextFocusSignal;
 }
 
+/** Region input for an under-covered semantic community; it must carry required coverage-gap evidence. */
 export interface UnderCoveredCommunityRegionInput extends NextFocusRegionBase {
   readonly kind: 'under_covered_community';
   readonly communityId: string;
@@ -103,6 +108,7 @@ export type NextFocusRegionInput =
   | OpenContradictionRegionInput
   | UnderCoveredCommunityRegionInput;
 
+/** One projection snapshot and its regions, so every derived candidate shares the same watermark and version. */
 export interface NextFocusDerivationSnapshot {
   readonly projectionWatermark: string;
   readonly projectionVersion: string;
@@ -110,6 +116,7 @@ export interface NextFocusDerivationSnapshot {
   readonly regions: readonly NextFocusRegionInput[];
 }
 
+/** A ranked frontier entry: its 1-based rank, the per-signal basis-point components and the combined score. */
 export interface ScoredNextFocusCandidate {
   readonly rank: number;
   readonly candidate: NextFocusCandidate;
@@ -126,18 +133,21 @@ export type NextFocusComparatorTier =
   | 'novelty_decay'
   | 'candidate_id';
 
+/** Records which comparator tier decided the order between the winner and one compared candidate. */
 export interface NextFocusComparatorTraceEntry {
   readonly winnerCandidateId: string;
   readonly comparedCandidateId: string;
   readonly decisiveTier: NextFocusComparatorTier;
 }
 
+/** A candidate refused at validation, with its id and fingerprint when readable (otherwise null) and the reasons. */
 export interface NextFocusRejectedCandidate {
   readonly candidateId: string | null;
   readonly candidateFingerprint: string | null;
   readonly rejections: readonly PivotCandidateRejection[];
 }
 
+/** The run, source iteration, projection watermark and policy version that identify one decision. */
 export interface NextFocusDecisionIdentity {
   readonly runId: string;
   readonly sourceIteration: number;
@@ -145,6 +155,7 @@ export interface NextFocusDecisionIdentity {
   readonly policyVersion: string;
 }
 
+/** Selection input; a source snapshot that does not match the expected watermark and version makes selection throw. */
 export interface NextFocusSelectionRequest {
   readonly runId: string;
   readonly sourceIteration: number;
@@ -168,11 +179,13 @@ interface NextFocusDecisionBase {
   readonly comparatorTrace: readonly NextFocusComparatorTraceEntry[];
 }
 
+/** A decision with a non-empty accepted frontier, carrying the selected candidate. */
 export interface NextFocusSelectedDecision extends NextFocusDecisionBase {
   readonly outcome: 'next_focus_selected';
   readonly selectedCandidate: NextFocusCandidate;
 }
 
+/** A decision recorded when the accepted frontier is empty, so no focus is recommended. */
 export interface NextFocusUnavailableDecision extends NextFocusDecisionBase {
   readonly outcome: 'next_focus_unavailable';
   readonly unavailableReason: 'empty_accepted_frontier';
@@ -188,11 +201,13 @@ export interface NextFocusShadowComparison {
   readonly matchesAuthority: boolean;
 }
 
+/** Ledger receipt for a recorded decision; idempotent is true when an identical event already existed and nothing was appended. */
 export interface NextFocusRecordResult {
   readonly receipt: DurableAppendReceipt;
   readonly idempotent: boolean;
 }
 
+/** A decision restored from verified events, with the selected focus, or null when the decision was unavailable. */
 export interface ReplayedNextFocusDecision {
   readonly decision: NextFocusDecision;
   readonly restoredFocus: string | null;

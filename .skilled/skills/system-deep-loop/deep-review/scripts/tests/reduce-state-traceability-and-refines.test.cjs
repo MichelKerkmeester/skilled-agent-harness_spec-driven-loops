@@ -1,5 +1,6 @@
-// Deep Review Reducer Traceability And Refines Test
-//
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Review Reducer Traceability And Refines Test
+// ───────────────────────────────────────────────────────────────────
 // Three regression cases:
 //   1. A traceability-only iteration renders no BLOCKED dead ends, while an
 //      explicit Dead Ends entry still renders one.
