@@ -1,0 +1,27 @@
+---
+title: "mcp-aside-devtools Benchmark Reports"
+description: "Index of recorded run reports for the mcp-aside-devtools mode, one row per run folder."
+trigger_phrases:
+  - "mcp-aside-devtools benchmark reports"
+importance_tier: "normal"
+contextType: "general"
+---
+
+# mcp-aside-devtools Benchmark Reports
+
+> Recorded runs of the mcp-aside-devtools playbook, newest first. Raw execution evidence is named in each run's `source.md`.
+
+---
+
+## 1. OVERVIEW
+
+Each row below is one run folder. A run whose result changes gets a new folder. A prior run is never overwritten.
+
+---
+
+## 2. RUN INDEX
+
+| Executed | Folder | Runtime | Result | Verdict | Source |
+|---|---|---|---|---|---|
+| 2026-11-21 | [`2026-11-21--manual-testing-playbook--app-running-rerun/`](./2026-11-21--manual-testing-playbook--app-running-rerun/) | aside 1.26.626.1517, macOS, Aside app running | 3 PASS (ASD-006, ASD-008, ASD-009) | **PASS** | `manual-testing-playbook` |
+| 2026-11-21 | [`2026-11-21--manual-testing-playbook--hub-path-live/`](./2026-11-21--manual-testing-playbook--hub-path-live/) | aside 1.26.626.1517, macOS | 2 PASS, 2 FAIL, 1 SKIP | **FAIL** | `manual-testing-playbook` |

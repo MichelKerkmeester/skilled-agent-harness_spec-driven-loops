@@ -774,8 +774,8 @@
           "health"
         ],
         "topScoringPaths": [
-          ".opencode/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/cli-bdg-lifecycle/session-status.md",
-          ".opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md",
+          ".opencode/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/cli-bdg-lifecycle/session-status.md",
+          ".opencode/skills/mcp-browser-use/mcp-chrome-devtools/references/session-management.md",
           ".opencode/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-authentication/auth-status.md"
         ],
         "triggerPhrase": "check health",

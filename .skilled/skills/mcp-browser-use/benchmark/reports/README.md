@@ -1,0 +1,27 @@
+---
+title: "mcp-browser-use Benchmark Reports"
+description: "Index of recorded run reports for the mcp-browser-use hub, one row per run folder."
+trigger_phrases:
+  - "mcp-browser-use benchmark reports"
+importance_tier: "normal"
+contextType: "general"
+---
+
+# mcp-browser-use Benchmark Reports
+
+> Recorded runs of the mcp-browser-use hub playbook, newest first. Raw execution evidence is named in each run's `source.md`.
+
+---
+
+## 1. OVERVIEW
+
+Each row below is one run folder. A run whose result changes gets a new folder. A prior run is never overwritten. Each mode packet keeps its own runs under its own `benchmark/reports/`.
+
+---
+
+## 2. RUN INDEX
+
+| Executed | Folder | Runtime | Result | Verdict | Source |
+|---|---|---|---|---|---|
+| 2026-11-21 | [`compiled-routing/2026-11-21--two-stage-replay--compiled/`](./compiled-routing/2026-11-21--two-stage-replay--compiled/README.md) | advisor plus compiled router, six requests | 6 PASS | **PASS** | `source.md` in the run folder |
+| 2026-11-21 | [`2026-11-21--manual-testing-playbook--hub-routing/`](./2026-11-21--manual-testing-playbook--hub-routing/) | compiled router, seven prompts, admission check | 6 PASS, 1 FAIL | **FAIL** | `manual-testing-playbook` |

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scoringInstant": "2026-11-19T00:00:00Z",
+  "scoringInstant": "2026-11-21T00:00:00Z",
   "entries": [
     {
       "id": "harder:b299699c3964",
@@ -450,7 +450,7 @@
       "localTop": "none",
       "nativeTop": "system-spec-kit",
       "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
-      "approvedAt": "2026-08-15"
+      "approvedAt": "2026-11-21"
     },
     {
       "id": "rr-iter3-131",
@@ -751,6 +751,28 @@
       "nativeTop": "system-spec-kit",
       "reason": "reviewed 2026-11-05: local returns the gold command-speckit-save on a typed /memory:save at a dead-level 0.95 against system-spec-kit and breaks that tie toward the command, while native breaks the same tie toward the umbrella skill; why native resolves this prompt to the owner is not traced",
       "approvedAt": "2026-11-05"
+    },
+    {
+      "id": "rr-hub6-204",
+      "corpus": "labeled",
+      "prompt": "Run an agentic browser session with aside mcp through Code Mode and save the screenshots.",
+      "gold": "mcp-browser-use",
+      "promptHash": "sha256:33cdf36f2e5e6bfc4519399de41a6b53ff8ea200217a799fb5164c125d40b70b",
+      "localTop": "mcp-browser-use",
+      "nativeTop": "mcp-code-mode",
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-11-21"
+    },
+    {
+      "id": "harder:eb10a4b1b288",
+      "corpus": "harder",
+      "prompt": "Inspect what the rendered page actually did after the click, including network and visual proof.",
+      "gold": "mcp-browser-use",
+      "promptHash": "sha256:eb10a4b1b288817423b6525eba5e74b846d7b38d972992d359b1a04111a92eaf",
+      "localTop": "mcp-browser-use",
+      "nativeTop": "none",
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-11-21"
     }
   ]
 }

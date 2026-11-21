@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Skill Creation Workflow - Complete Development Guide
@@ -50,7 +50,7 @@ Load the file that matches the current task:
 | **Advisor index handoff**: the shared field vocabulary that create and doctor render after scaffolding or diagnosing a skill root, covering metadata ownership, refresh ownership, the verification-state enum, and branch scope | [advisor-index-handoff.md](shared/advisor-index-handoff.md) | Wiring a create or doctor completion report, or aligning its vocabulary with doctor |
 | **Parent hubs with nested mode packets**: one advisor identity dispatching to workflow and surface packets through a two-axis `modes[]` registry with `packetKind`, named extensions, required hub-router metadata, and the two-state root `ROUTER.md` control document | [parent-skills-nested-packets.md](parent-skill/parent-skills-nested-packets.md) | Designing or repairing a parent skill, parent hub, mode packet, surface packet, mode registry, hub router, or root router |
 | **Parent hub router schema**: detailed schema companion for `mode-registry.json`, `hub-router.json`, `packetKind`, `surfaceBundle`, router signals, vocabulary classes, named extensions, and the two-state root `ROUTER.md` contract | [parent-hub-router-schema.md](parent-skill/parent-hub-router-schema.md) | Validating or authoring parent-hub router metadata and two-axis mode declarations |
-| **Compiled-routing architecture**: which seven hubs the compiled router serves and why, the shadow-child-to-cohort chain, the compiled-serving parity bar, and why a fresh `--compiled-routing ready` manifest is onboarding evidence, not a working compiled route | [compiled-routing-architecture.md](parent-skill/compiled-routing-architecture.md) | Deciding or explaining `--compiled-routing legacy\|ready`, or a parent hub's path toward the compiled router |
+| **Compiled-routing architecture**: which eight hubs the compiled router serves and why, the shadow-child-to-cohort chain, the compiled-serving parity bar, and why a fresh `--compiled-routing ready` manifest is onboarding evidence, not a working compiled route | [compiled-routing-architecture.md](parent-skill/compiled-routing-architecture.md) | Deciding or explaining `--compiled-routing legacy\|ready`, or a parent hub's path toward the compiled router |
 
 ---
 

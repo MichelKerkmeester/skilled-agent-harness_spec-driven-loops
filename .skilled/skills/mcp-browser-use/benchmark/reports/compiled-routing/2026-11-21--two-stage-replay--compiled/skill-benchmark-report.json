@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-11-21T15:01:47.037Z",
+  "hub": "mcp-browser-use",
+  "rows": [
+    {
+      "id": "MBU-R-01",
+      "kind": "mode",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "debug this page with chrome devtools and take a screenshot",
+      "advisorTop": "mcp-browser-use",
+      "advisorConfidence": 0.95,
+      "advisorPasses": true,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "dd69936393b40a51080dac4772d42a8e317e8fe099514d4db846716027000698",
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS"
+    },
+    {
+      "id": "MBU-R-02",
+      "kind": "mode",
+      "gold": "mcp-aside-devtools",
+      "prompt": "use aside to fill this form in my signed-in account",
+      "advisorTop": "mcp-browser-use",
+      "advisorConfidence": 0.9308,
+      "advisorPasses": true,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "dd69936393b40a51080dac4772d42a8e317e8fe099514d4db846716027000698",
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS"
+    },
+    {
+      "id": "MBU-R-03",
+      "kind": "mode",
+      "gold": "mcp-bladebro",
+      "prompt": "use bladebro to attach to my open browser and finish the checkout flow",
+      "advisorTop": "mcp-browser-use",
+      "advisorConfidence": 0.9242,
+      "advisorPasses": true,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "dd69936393b40a51080dac4772d42a8e317e8fe099514d4db846716027000698",
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS"
+    },
+    {
+      "id": "MBU-T-01",
+      "kind": "tie-break",
+      "gold": "mcp-aside-devtools",
+      "prompt": "replay this signed-in checkout step by step and save the evidence",
+      "advisorTop": "mcp-browser-use",
+      "advisorConfidence": 0.8255,
+      "advisorPasses": true,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-aside-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "dd69936393b40a51080dac4772d42a8e317e8fe099514d4db846716027000698",
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS"
+    },
+    {
+      "id": "MBU-T-02",
+      "kind": "tie-break",
+      "gold": "mcp-bladebro",
+      "prompt": "in the browser I already have open, work out how to finish this signup",
+      "advisorTop": "mcp-browser-use",
+      "advisorConfidence": 0.8299,
+      "advisorPasses": true,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-bladebro"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "dd69936393b40a51080dac4772d42a8e317e8fe099514d4db846716027000698",
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS"
+    },
+    {
+      "id": "MBU-T-03",
+      "kind": "tie-break",
+      "gold": "mcp-chrome-devtools",
+      "prompt": "export a HAR of this page load",
+      "advisorTop": "mcp-browser-use",
+      "advisorConfidence": 0.9161,
+      "advisorPasses": true,
+      "mcpToolingAboveThreshold": false,
+      "routeAction": "route",
+      "routeSelectionKind": "single",
+      "routeTargets": [
+        "mcp-chrome-devtools"
+      ],
+      "servingAuthority": "compiled",
+      "policyHash": "dd69936393b40a51080dac4772d42a8e317e8fe099514d4db846716027000698",
+      "stage1": true,
+      "stage2": true,
+      "verdict": "PASS"
+    }
+  ]
+}
