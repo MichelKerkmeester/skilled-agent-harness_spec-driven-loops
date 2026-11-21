@@ -739,6 +739,27 @@ test('status waits on a missing layout link that leads outside the tree without 
   assert.equal(fs.readFileSync(outsideFile, 'utf8'), 'tool file\n');
 });
 
+// A missing source is refused before the destination is read, so making the
+// link changes nothing about it: status names it as apply does instead of
+// waiting on a link apply never makes.
+for (const [label, entry, problem] of [
+  ['file', { ...FILE_ENTRY, source: 'files/nope.md', destination: 'up/tool.md' }, 'canonical copy is missing: files/nope.md'],
+  ['folder', { ...DIRECTORY_ENTRY, source: 'nope/', destination: 'up/tool' }, 'canonical folder is missing: nope/'],
+]) {
+  test(`status names a missing source ${label} under a missing layout link that leads outside the tree as apply does`, (t) => {
+    const fixture = createShapeFixture(t, [entry], [{ path: 'up', target: '../outside' }]);
+    fs.mkdirSync(path.join(fixture.workspace, 'outside'));
+    const status = fixture.run(['status']);
+    assert.equal(status.code, 1, status.output);
+    assert.ok(status.output.split('\n').includes(`MISS     tool: ${problem}`), status.output);
+    assert.equal(status.output.includes('waits on the layout link'), false, status.output);
+    const apply = fixture.run(['apply']);
+    assert.equal(apply.code, 1, apply.output);
+    assert.ok(apply.output.split('\n').includes(`BLOCKED  tool: ${problem}`), apply.output);
+    assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  });
+}
+
 test('status keeps the planner text whole when the destination is the layout link path itself', (t) => {
   const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
   const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up', pinnedSha256 }], [{ path: 'up', target: 't' }]);

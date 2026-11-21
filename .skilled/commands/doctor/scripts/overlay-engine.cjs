@@ -3625,6 +3625,42 @@ function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
   }
 }
 
+// Whether the overlay side of an entry is there to apply, read the way its
+// planner reads it before it looks at the destination. An entry refused for
+// its overlay side is refused the same once a layout link is made, so its
+// problems stand as the planner wrote them.
+function overlaySideReady(entry, ctx) {
+  const read = (rel) => {
+    try {
+      return typeof rel === 'string' ? readBufferOrNull(path.join(ctx.overlayRoot, rel)) : null;
+    } catch {
+      return null;
+    }
+  };
+  switch (entry.scope) {
+    case 'file':
+      return read(entry.source) !== null;
+    case 'json-entry': {
+      const spec = read(entry.source);
+      try {
+        return spec !== null && JSON.parse(spec.toString('utf8')) !== undefined;
+      } catch {
+        return false;
+      }
+    }
+    case 'marked-section': {
+      const anchor = entry.insertBefore;
+      const isAnchorValid = anchor === undefined || (typeof anchor === 'string' && anchor !== '' && !/[\r\n]/.test(anchor));
+      return isAnchorValid && read(entry.fragment) !== null && read(entry.base) !== null;
+    }
+    case 'directory':
+    case 'skill-root':
+      return typeof entry.source === 'string' && isDirectory(path.join(ctx.overlayRoot, entry.source));
+    default:
+      return false;
+  }
+}
+
 // Plan one entry at the landing of the missing layout link above it, or say
 // null when its plan stands as made. The state and the pin are read at the
 // manifest path, and the plan returned writes nothing, since status has no link
@@ -3632,7 +3668,7 @@ function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
 // wrote them, after a line that names the manifest path, so no path in them is
 // rewritten. A plan apply could carry out waits on the link instead, and so
 // does one with problems under a link that leads outside the tree, which status
-// does not read.
+// does not read, unless its overlay side is what refuses it.
 function planAtLanding(ctx, plan, pending, { state, exact, recordedLinks, engineLinks, upstreamBytes }) {
   const root = ctx.root;
   const { entry } = plan;
@@ -3649,7 +3685,7 @@ function planAtLanding(ctx, plan, pending, { state, exact, recordedLinks, engine
   const landing = path.resolve(path.dirname(linkPath), record.link.target);
   const linkKey = relativeKey(root, linkPath);
   if (!isWithin(absoluteRoot, landing)) {
-    if (plan.problems.length === 0) return null;
+    if (plan.problems.length === 0 || !overlaySideReady(entry, ctx)) return null;
     return refusedPlan(entry, withRemedy(
       `${entry.destination} waits on the layout link ${linkKey}, which apply makes before it writes the entry`,
       `${linkKey} leads outside the tree, to ${record.link.target}, and status does not read outside the tree, so ${entry.destination} is judged once apply has made the link`,
