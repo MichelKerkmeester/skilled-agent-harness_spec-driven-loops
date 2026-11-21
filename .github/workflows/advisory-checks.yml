@@ -5,7 +5,7 @@ on:
   pull_request:
   workflow_dispatch:
 
-# Two jobs share this file. `advisory` holds three report-only steps: checks worth seeing
+# Three jobs share this file. `advisory` holds three report-only steps: checks worth seeing
 # that must not block, and that were previously paid for on every commit or push locally.
 # None of them belongs in a hook: one is advisory by design, and another has a
 # known-failing backlog that predates it. Running them here keeps the signal and gives the
@@ -17,6 +17,11 @@ on:
 # `gate-critical` is the opposite case and carries no continue-on-error: it runs the
 # gate-critical node suites, so a regression in one of them turns the check red instead
 # of reporting the rot again.
+#
+# `lane-residue` blocks too. It runs the retired embedding lane's residue check over every
+# tracked file outside specs/, so a lane term that comes back in any file turns the check
+# red. It lives here because this file runs on every push and pull request with no path
+# filter, and the check needs only git and Node, so the job installs nothing.
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -129,3 +134,26 @@ jobs:
             .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs \
             .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-devin.test.mjs \
             .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-prebind.test.mjs
+
+  lane-residue:
+    name: Lane residue check (blocking)
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      # Repo mode reads tracked files through git and loads only Node built-ins and
+      # two sibling modules, so it needs no install or build.
+      - name: Lane residue check
+        run: |
+          set -euo pipefail
+          CHECK=".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs"
+          # Fail closed: a missing script is a moved or deleted file, not a clean tree.
+          if [ ! -f "$CHECK" ]; then
+            echo "::error::Lane residue check not found at $CHECK, failing closed."
+            exit 1
+          fi
+          node "$CHECK" repo

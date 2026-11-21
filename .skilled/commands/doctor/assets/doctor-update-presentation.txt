@@ -258,6 +258,7 @@ Applied units: [list or none]
 Skipped units: [unit and reason, with the paths for undecided files, or none]
 Follow-up checks: [regenerate hubs, generated files and their generators, hooks, runtime mirrors, databases]
 Targets modified since alignment: [none or engine refusal]
+Lane cleanup: after the rebuild prompt, delete what the retired embedding lane left in this checkout; ask about the pulled shared model when a local model server lists it
 ```
 
 If the dry-run plan is valid, ask once:
@@ -428,7 +429,31 @@ If rebuild fails, record `reindex=failed`, show the observed error and the same 
 
 After the rebuild outcome on an applied run, name a restart of the advisor daemon to load updated command bridges and lane weights, which are read once at startup. Skip it on dry-run.
 
-## 9. Result Templates
+## 9. Lane Cleanup
+
+After the rebuild outcome, on every path that reached the rebuild prompt, the lane cleanup reads what the retired embedding lane left on this machine. When its report lists a question under `askFirst`, show the question exactly as the tool wrote it, then the yes-or-no line, and wait:
+
+```text
+[askFirst[].question]
+Reply yes to delete the pulled shared model, or no to keep it. The answer is used for this run only.
+```
+
+Pass the answer only on the apply command that follows. The next run asks again and never reuses an earlier answer. Write no answer to the state log or any other file.
+
+Then show the cleanup report:
+
+```text
+Lane cleanup
+Deleted: [each target the apply report lists as deleted, or none]
+Kept: [each kept target with its reason, or none]
+For you to remove: [each reported target with its remedy line, a count per linked worktree rather than one line per item, or none]
+After-check: exit [0|1|2] ([nothing left|remnants remain|a check could not run])
+Lane cleanup: [clean|cleaned|remaining|failed|not_applicable]
+```
+
+Take every bracketed value from the tool's report. Do not write a path, file name, question or command of your own. The `--json` report holds the full list of items. A cleanup exit 1 is `remaining` and an exit 2 is `failed`. Neither one changes the update's STATUS, which the release write and its battery decide.
+
+## 10. Result Templates
 
 ### Check
 
@@ -465,6 +490,7 @@ Skipped units: [list or none]
 Post-apply checks: [pass count] passed, [fail count] failed
 Database reindex: [rebuilt|skipped|failed|not applicable]
 Advisor daemon: restart to load updated command bridges and lane weights; both are read once at startup
+Lane cleanup: [clean|cleaned|remaining|failed|not_run|not_applicable]
 Rollback: [not needed|completed|partial|failed]
 State log: .skilled/skills/.state/doctor-update/runs/.doctor-update.last-run.json, or none for a dry run
 Before the next /doctor:update apply, commit or restore changed framework files. Updater records remain local and ignored. On a dry-run, omit the advisor daemon line because the rebuild prompt did not run.
@@ -480,7 +506,7 @@ State record: [validated path or not persisted for this action]
 Next: [safe next step]
 ```
 
-## 10. Compatibility Action
+## 11. Compatibility Action
 
 ### Compatibility preview
 

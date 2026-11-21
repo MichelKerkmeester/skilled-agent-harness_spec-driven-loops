@@ -34,7 +34,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-20 |
 | **Branch** | `worktrees/497-ollama-lane-removal` |
 | **Parent Spec** | ../spec.md |
@@ -247,7 +247,7 @@ The tool loads no module that phase 005 deleted: besides Node built-ins it impor
 | `W/advisory-checks.yml` | Modify | A blocking `lane-residue` job: the file's switch condition, checkout and Node only, repo mode, no `continue-on-error`; the header comment counts three jobs |
 | `W/README.md` | Modify | The `advisory-checks.yml` row names the blocking residue job |
 | `.skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md` | Modify | Expected signals: the cleanup after the rebuild outcome, the question only when a local model server lists the model, `lane_cleanup` in the state log |
-| `.skilled/manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md` | Modify | The possible shared-model question in the scripted conversation, answered no |
+| `.skilled/manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md` | Modify | The possible shared-model question in the scripted conversation, answered no, plus a setup guard that skips when the cleanup would act outside the scratch clone and a plain statement of what it reaches on the runner's machine (review fix) |
 | `.skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md` | Modify (conditional) | Only if its upgrade step disagrees with the wiring, as phase 006's open question asked this phase to check |
 <!-- /ANCHOR:scope -->
 
@@ -286,6 +286,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-017 | The operator's machine is never changed (parent decision D6): every apply in this phase runs against a fixture root, HOME, database folder, socket folder and model server; the Ollama manifest listing, the absence of `/tmp/system-hf-embed` and the per-check machine-mode statuses read at T003 read the same at the end. |
 | REQ-018 | Gates are no worse than at the start commit: the sweep suite passes with 51 plus the new cases; route-validate prints `OK`; the mirror check prints `PASS`; the link check prints `0 broken`; and no added line names a spec, phase, task, requirement or decision id. |
 | REQ-019 | The state log and presentation carry the outcome and never an answer: `state_log_schema` gains `lane_cleanup: "clean\|cleaned\|remaining\|failed\|not_run\|not_applicable"` and no field holds the shared-model answer; the presentation's plan shows the disclosure line, section 9 holds the question and report templates, and the Apply result shows `Lane cleanup:`; a cleanup exit 1 renders as `remaining`, never as `STATUS=FAILED`. |
+| REQ-020 | Review fix: the index check fails closed on a shape it does not know. When the phrase variants output is tracked, repo mode exits 2 unless its `variants` field is a map (an object that is not an array), a recorded spelling list is a list of strings, every phrase's path ids are a list, the index's `phrases` is a map and every index path is a string. A renamed variants map, a variants map that is an array, spellings that are not a list, path ids that are not a list and a phrases map that is an array each exit 2 in a fixture, and the real tree still reads 1069 lane paths and 389 lane phrases and exits 0. |
+| REQ-021 | Conductor amendment to ADR-002 after review: M3 counts a backup or quarantine copy of the advisor database only when the copy holds a lane table, index, column or the model name in its bytes, or cannot be opened to tell. The copy is opened immutable, so the inspection writes no `-wal` or `-shm` beside it. A fixture copy that holds a lane table is found and deleted by apply, and a fixture copy of a WAL-mode database without one is not reported, not touched and leaves the folder listing unchanged. |
+| REQ-022 | Review fix: the scripted apply conversation keeps the cleanup in its scratch clone or skips. Setup runs the tool's report once and exits 77 when the database folder or any model server folder it resolves lies outside the clone, and the page says plainly what the cleanup still reaches on the runner's machine. The page names no residue term. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -312,7 +315,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Dependency | Phase 007's commit with repo mode at exit 0 | A gate that fails at merge blocks every unrelated commit | T001 halts while any path is live that is not a non-lane match 006 or 007 left; the CI job lands only after T025 shows exit 0 on the same tree |
 | Dependency | Phase 006's removal changelog entry | Its upgrade step may promise what the wiring does not do | T024 compares the two and fixes the entry's step if they disagree |
 | Risk | The one-run answer lets an agent delete the shared model without asking | High | The flag names no default, is refused outside apply, and is read only from that command line; the contract test pins the ask-then-pass order and that no answer is stored or read; open question 1 puts the D5 reading to the conductor |
-| Risk | The cleanup deletes a live database under a running old daemon | Med | It runs after the rebuild prompt, so after a rebuild only the `.bak` copy is left to delete; the daemon recreates and rescans a missing database at start, as phase 001 recorded; the result names a daemon restart |
+| Risk | The cleanup deletes a live database under a running old daemon | Med | It runs after the rebuild prompt, so after a rebuild only a `.bak` copy that still holds the lane's tables is left to delete (a copy of a database without them stays, conductor amendment to ADR-002); the daemon recreates and rescans a missing database at start, as phase 001 recorded; the result names a daemon restart |
 | Risk | A wiring file names a residue term and the new gate fails on its own commit | Med | ADR-008 keeps every term inside the tool; T017 to T024 each run the patterns on their file and T025 runs repo mode before T026 writes the job |
 | Risk | The pseudo-terminal case hangs CI | Med | Its driver kills the child at a deadline, it is skipped without `python3`, and T016 runs the suite three times |
 <!-- /ANCHOR:risks -->

@@ -39,7 +39,7 @@
       "question"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,12 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/lane-residue-gate.test.cjs",
+      ".github/workflows/advisory-checks.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md",
       ".skilled/hooks/env-secret-guard/cli/env-secret.cjs",
       ".skilled/bin/lib/launcher-ipc-bridge.cjs",
       ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md",
-      ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md",
-      ".skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md",
-      ".skilled/commands/doctor/assets/doctor-update-apply.yaml"
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md"
     ],
     "entities": [
       {
@@ -92,6 +100,60 @@
         "source": "derived"
       },
       {
+        "name": "sweep-lane-residue.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-lane-residue.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lane-residue-allowlist.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lane-residue-gate.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/lane-residue-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "v2.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md",
+        "source": "derived"
+      },
+      {
         "name": "env-secret.cjs",
         "kind": "file",
         "path": ".skilled/hooks/env-secret-guard/cli/env-secret.cjs",
@@ -113,18 +175,6 @@
         "name": "doctor-update-apply-conversation.md",
         "kind": "doc",
         "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md",
-        "source": "derived"
-      },
-      {
-        "name": "v2.0.0.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-update-apply.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
         "source": "derived"
       },
       {
@@ -156,54 +206,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Report",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow After",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 built `sweep-lane-residue.mjs` report-only and unwired, and nothing calls it today",
     "created_at": "2026-11-20T21:51:24Z",
-    "last_save_at": "2026-11-21T04:48:00.020Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-21T07:50:22.478Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -213,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b47944b0249d49608624a5991ce4c071fdc8fe688905777d0e0ed2a40440b2f6",
+    "source_fingerprint": "sha256:e7e8dd7b9abb78e48b7c85b6bf891a3fdedef7efd986984ce7fe05644449cc9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca11774c0a1df3e64d77e58026819764d39ac665b5b8acab0d5a4434ce4fcb73",
-      "plan.md": "b76676c53a1d65922315f2c0ce0c73e2c701194ae034a8a35445b830183878cc",
-      "tasks.md": "da9cb712c6d34424c52619c54512756cb239e6f62e1ec60202ba68b9f00cb7fd",
-      "implementation-summary.md": "1a1b8c17d98c5f82c2468a6cc6516d884751cda5893d141bff22e1e871a7c098"
+      "spec.md": "314c9a04cc21136d9a0c3924771dc0e094ef2635587937231839b7a55cc1ccd6",
+      "plan.md": "c4f623f549d27be624a50ff76eaa9950a29e6bdb871814925ba042caa8f675c4",
+      "tasks.md": "7018db21d5fac30cb36fd6e4a9121c0a1ee3bbb13a2e36000e6221fd35ccb3a9",
+      "implementation-summary.md": "fac6856bed02b4e6ce3c5fa4e1ad114275ee19600359396c383d3a6d8a38e4b4"
     },
     "last_active_at": null
   }

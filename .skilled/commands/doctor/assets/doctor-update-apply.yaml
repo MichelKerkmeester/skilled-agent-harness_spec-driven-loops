@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator applying an approved spec-kit release plan
 purpose: Preview selected release writes, request one startup approval, apply the plan, verify follow-up checks and retain a rollback path.
-action: preflight -> release.apply.dry_run -> startup.approval -> release.apply -> post_apply.battery -> rebuild.prompt -> state.log
+action: preflight -> release.apply.dry_run -> startup.approval -> release.apply -> post_apply.battery -> rebuild.prompt -> lane.cleanup -> state.log
 
 operating_mode:
   workflow: sequential_orchestrator
@@ -28,6 +28,7 @@ apply_orchestrator_invariant: |
 upstream_assets:
   engine: ".skilled/commands/doctor/scripts/release-update.cjs"
   presentation: ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
+  lane_cleanup: ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs"
   pass_policy:
     startup_approval_required: true
     dry_run_writes: none
@@ -74,13 +75,14 @@ mutation_boundaries:
     - ".skilled/skills/.state/doctor-update/runs/.doctor-update.last-run.json"
     - "Exact documented write counterparts in the post-apply battery, only after separate approval"
     - "Exact planned paths reported skipped by engine rollback, only for the approved git restore recovery step"
+    - "The targets the lane cleanup tool lists as deleted in its apply --json actions for this checkout, covered by the startup approval whose plan showed the lane cleanup line"
   forbidden_targets:
     - "any release-managed checkout path absent from the engine plan"
-    - "any path outside the engine plan, its selected run directory, the release ledgers, lock and state log, except an approved documented post-apply write counterpart"
+    - "any path outside the engine plan, its selected run directory, the release ledgers, lock and state log, except an approved documented post-apply write counterpart or a lane cleanup target"
     - "all unrelated user changes and any pre-existing lock owned by another process"
   validator:
     name: canonical_path_validator
-    rule: "Resolve every engine plan, run, state-log, battery and restore path to a canonical repository path; allow release writes only when the exact path appears in the engine plan; require run artifacts below .skilled/skills/.state/doctor-update/runs and gitignored; pass git restore only exact engine-reported skipped paths."
+    rule: "Resolve every engine plan, run, state-log, battery and restore path to a canonical repository path; allow release writes only when the exact path appears in the engine plan; require run artifacts below .skilled/skills/.state/doctor-update/runs and gitignored; pass git restore only exact engine-reported skipped paths. Lane cleanup deletes are the tool's own: it deletes only fixed names under resolved roots and refuses symlinks, so the workflow reads them from its apply report and passes it no path."
 
 state_log_schema:
   command: "/doctor:update apply"
@@ -94,6 +96,7 @@ state_log_schema:
   writes: "array of paths"
   battery: "map of check name to pass|fail|not_run"
   reindex: "rebuilt|skipped|failed|not_applicable"
+  lane_cleanup: "clean|cleaned|remaining|failed|not_run|not_applicable"
   rollback: "not_needed|completed|partial|failed"
   final_status: "dry_run|applied|partial|failed|rolled_back|declined|cancelled"
 
@@ -211,11 +214,28 @@ workflow:
     stale_index_rule: "Skipped or failed database rebuild must never be reported as a silent success."
     daemon_restart: "Name a restart of the advisor daemon to load updated command bridges and lane weights, which are read once at startup."
 
-  phase_7_state_log:
+  phase_7_lane_cleanup:
+    approval: "Covered by the one startup approval, whose plan shows the lane cleanup line. The only question is the tool's own about the pulled shared model, asked on every run where the tool lists it."
+    when: "Run on every path that reached phase_6_rebuild_prompt, whether the rebuild ran, was skipped or failed. A backup copy of the advisor database goes only when it still holds a table of the retired lane, and a copy of a database without one stays. Never run it on DRY_RUN, DECLINED, CANCELLED, or a failure or rollback before the rebuild prompt."
+    missing_tool: "If upstream_assets.lane_cleanup is absent, because the update scope excluded spec-kit, record lane_cleanup=not_applicable and run nothing."
+    report_command: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs machine --json"
+    apply_command: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs apply --json [--shared-model delete|keep] </dev/null"
+    steps:
+      - "Run report_command and read its exit code, its findings and its askFirst list."
+      - "Exit 0: record lane_cleanup=clean, run no apply and ask nothing."
+      - "Exit 2: record lane_cleanup=failed with the tool's notes and run no apply."
+      - "Exit 1 with an empty askFirst: run apply_command without --shared-model."
+      - "Exit 1 with a non-empty askFirst: show each askFirst[].question verbatim with the presentation's yes-or-no line and wait for the answer. An unambiguous yes binds --shared-model delete and any other answer binds --shared-model keep, for the one apply_command that follows."
+      - "Run apply_command once, with stdin closed by </dev/null so the tool never waits on a terminal, then read its report: exit 0 records lane_cleanup=cleaned, exit 1 records lane_cleanup=remaining with its kept and reported actions and their remedy lines, and exit 2 records lane_cleanup=failed with the tool's notes."
+    answer_rule: "Ask on every run. Pass the answer only on the apply_command that follows the question, never to a later run. Never read an earlier state log, run directory or answer to decide whether to ask or what to pass, and never write the answer to any file, the state log included."
+    outcomes: [clean, cleaned, remaining, failed, not_run, not_applicable]
+    status_rule: "The cleanup never decides STATUS. lane_cleanup=remaining or failed leaves STATUS to the release write and its battery, and an exit 1 from the tool is remaining, never STATUS=FAILED."
+
+  phase_8_state_log:
     approval: none
     write: ".skilled/skills/.state/doctor-update/runs/.doctor-update.last-run.json"
-    fields: [command, start, end, duration_seconds, run_dir, release, dry_run, startup_approved, writes, battery, reindex, rollback, final_status]
-    terminal_rule: "Write the state log on every terminal path except dry-run, including preflight failure, declined approval, engine failure, battery failure, rollback, rebuild skipped or failed, and success. Confirm any engine-acquired lock was released before ending. A dry run writes no state log."
+    fields: [command, start, end, duration_seconds, run_dir, release, dry_run, startup_approved, writes, battery, reindex, lane_cleanup, rollback, final_status]
+    terminal_rule: "Write the state log on every terminal path except dry-run, including preflight failure, declined approval, engine failure, battery failure, rollback, rebuild skipped or failed, and success. Record lane_cleanup=not_run on every path that ended before phase_7_lane_cleanup. Confirm any engine-acquired lock was released before ending. A dry run writes no state log."
 
 terminal_statuses:
   - "STATUS=DRY_RUN"

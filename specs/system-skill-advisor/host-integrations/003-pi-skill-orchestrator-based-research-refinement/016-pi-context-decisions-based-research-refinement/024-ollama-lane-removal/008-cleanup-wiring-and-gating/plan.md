@@ -303,6 +303,8 @@ BLOCKED when a live path at T001 or T025 is lane residue, when an apply would to
 - A cleanup approval prompt: fires on every update for the new `.bak` copy.
 - Running the cleanup before the rebuild prompt: leaves the rebuild's copy behind, against D1.
 
+**Amendment (conductor, after review)**: M3 no longer counts every backup or quarantine copy. It opens each copy immutable, which reads the one file and writes no `-wal` or `-shm` beside it, and counts the copy only when it holds a lane table, index, column or the model name in its bytes, or cannot be opened to tell (REQ-021). The placement still holds: the first update after the removal backs up a database that still carries the lane's tables, so the cleanup must run after the rebuild to remove that copy. A copy made by a later rebuild holds none, so it stays and is not reported, and machine mode can read clean after it. The first rejected alternative's reason changes with this: an approval prompt would now fire only on the update that finds a lane-bearing copy, not on every update. It stays rejected, because the startup approval already discloses the owned deletes. `goal.md` D1 still says the cleanup deletes the `.bak` copy the rebuild made, and the conductor owns that file.
+
 ---
 
 ### ADR-003: M5 moves to the package-local model cache and becomes an owned delete

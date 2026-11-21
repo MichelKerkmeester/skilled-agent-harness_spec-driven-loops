@@ -23,7 +23,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 
 | Workflow | Responsibility |
 |---|---|
-| `advisory-checks.yml` | Runs advisory test suites, the trigger index freshness check (`generate-trigger-index.mjs --check`) and the AGENTS.md manifest check (`agents-md-manifest.cjs --check`) as report-only steps, then blocks on 13 gate-critical node suites. |
+| `advisory-checks.yml` | Runs advisory test suites, the trigger index freshness check (`generate-trigger-index.mjs --check`) and the AGENTS.md manifest check (`agents-md-manifest.cjs --check`) as report-only steps, then blocks on 13 gate-critical node suites and on the blocking `lane-residue` job, which runs `sweep-lane-residue.mjs repo` so a retired embedding lane term in any tracked file outside `specs/` fails the check. |
 | `agent-mirror-sync.yml` | Keeps the `.skilled` and `.claude` agent mirrors aligned. |
 | `changed-packet-validation.yml` | Validates the spec packets a commit or pull request changed. Compares the set of failing rules at head against the merge base, or the previous tip on a push, and blocks when head fails a rule the base did not. |
 | `chart-corpus.yml` | Checks the chart corpus contract and runs its mutation suite. |

@@ -1,5 +1,5 @@
 {
-  "description": "Exact tracked paths sweep-lane-residue.mjs repo mode may report without failing. Every row names one file, never a folder or glob, and says why each of its matches is not live residue of the skill advisor's retired semantic lane. A row whose file stops matching is listed as unused, never as an error.",
+  "description": "Exact tracked paths sweep-lane-residue.mjs repo mode may report without failing. Every row names one file, never a folder or glob, and says why each of its matches is not live residue of the skill advisor's retired semantic lane. A row whose file stops matching is listed as unused, never as an error. The trigger index and its three sidecar fixtures take no row: repo mode judges each of their lane entries by the path it points at.",
   "entries": [
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
@@ -184,22 +184,6 @@
     {
       "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
       "reason": "Line 12699 records a verdict for a file under a specs/ folder whose path contains embedder. A spec folder path string, not the advisor lane."
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      "reason": "Written by generate-trigger-index.mjs from the trigger phrases of every doc, specs/ included. Each lane term in it is a spec packet path or phrase, kept as history, or a phrase of a file this allowlist already exempts. Regenerate it; never edit it."
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
-      "reason": "Written by generate-trigger-index.mjs beside the trigger index: the path of every doc it read. Each lane term in it is a spec packet path, kept as history. Regenerate it; never edit it."
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
-      "reason": "Written by generate-trigger-index.mjs beside the trigger index: frontmatter diagnostics per doc. Each lane term in it is a spec packet path, kept as history. Regenerate it; never edit it."
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
-      "reason": "Written by generate-trigger-index.mjs beside the trigger index: the raw spellings of each phrase. Each lane term in it spells a spec packet phrase, kept as history, or a phrase of a file this allowlist already exempts. Regenerate it; never edit it."
     }
   ]
 }

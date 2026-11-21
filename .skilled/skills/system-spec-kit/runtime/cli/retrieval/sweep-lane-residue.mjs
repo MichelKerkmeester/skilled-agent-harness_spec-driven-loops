@@ -9,16 +9,20 @@
 //
 //   repo     Lists every tracked file outside specs/ that names the lane: by
 //            content under two vocabularies, by a lane word in its path, or as
-//            a symlink into an embeddings folder.
+//            a symlink into an embeddings folder. The trigger index generator's
+//            four outputs are read by structure instead, because they always
+//            hold spec packet history.
 //   machine  Reports what the lane left on this machine (checks M1 to M8):
-//            compiled output, installed model modules, vector objects and
-//            backup copies of the advisor database, the model-server process
-//            and socket dir, the HuggingFace cache folder, the pulled Ollama
-//            model, lane keys in dotenv files, and M1 to M3 again for every
-//            linked worktree.
+//            compiled output, installed model modules, vector objects in the
+//            advisor database and its backup copies, the model-server process
+//            and socket dir, the model cache inside each package folder, the
+//            pulled Ollama model, lane keys in dotenv files, and M1 to M3 again
+//            for every linked worktree. `askFirst` lists the question apply
+//            would ask, so a caller without a terminal can ask it instead.
 //   apply    Runs the machine checks, deletes what this checkout owns without
-//            asking, asks on a terminal before touching either shared model
-//            store, then re-runs the checks and exits on that second result.
+//            asking, asks before touching the shared Ollama model (on a
+//            terminal, or through this run's --shared-model answer), then
+//            re-runs the checks and exits on that second result.
 //
 // Decisions that are load-bearing, each because the naive version lies:
 //
@@ -28,19 +32,29 @@
 //    tracked symlink, so a link into the embeddings package passes a pure
 //    content search.
 // 3. Exact-path allowlist rows. A folder or glob row would also hide a remnant
-//    that lands in that folder later, so the loader refuses both.
+//    that lands in that folder later, so the loader refuses both. The index
+//    outputs get no row: a whole-file row would hide a lane phrase that points
+//    at a live doc, so their entries are judged one by one.
 // 4. Apply deletes and never copies. Every deleted path is a resolved root plus
 //    a fixed name, refused when it is a symlink or resolves outside that root.
-// 5. The shared-store answer is never remembered. Storing it would write new
-//    lane state onto the machine this cleanup exists to clear.
+// 5. The shared-model answer is never remembered. It comes from the terminal or
+//    from --shared-model on this run's own command line, because storing it
+//    would write new lane state onto the machine this cleanup exists to clear.
+// 6. A checkout that still holds a lane source gets no change from apply: its
+//    own code still uses the database tables, model server and model cache.
+// 7. A model server is a node process whose first script argument is the
+//    server script. A shell or pager whose command line merely names the
+//    script is neither listed nor signalled.
 //
 // This file, its allowlist and its test are the one place the vocabulary is
 // meant to survive, and each is exempted by its own allowlist row.
 //
 // Usage:
 //   node sweep-lane-residue.mjs repo [--root <path>] [--allowlist <path>] [--json]
-//   node sweep-lane-residue.mjs machine|apply [--root <path>] [--db-dir <path>]
-//        [--hf-home <path>] [--ollama-host <url>] [--socket-dir <path>] [--json]
+//   node sweep-lane-residue.mjs machine [--root <path>] [--db-dir <path>]
+//        [--ollama-host <url>] [--socket-dir <path>] [--json]
+//   node sweep-lane-residue.mjs apply [--root <path>] [--db-dir <path>]
+//        [--ollama-host <url>] [--socket-dir <path>] [--shared-model delete|keep] [--json]
 //
 // Exit codes: 0 = nothing left, 1 = remnants remain, 2 = invocation error, or,
 // in machine and apply mode, a check that could not run while nothing was found.
@@ -53,7 +67,7 @@ import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import readline from 'node:readline/promises';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { stableStringify } from './lib/artifact.mjs';
 import { compareCodeUnits } from './lib/normalize.mjs';
@@ -67,8 +81,12 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 
 export const DEFAULT_ALLOWLIST_PATH = path.resolve(SCRIPT_DIR, 'fixtures', 'lane-residue-allowlist.json');
 
-/** Report schema; bump when a consumer would have to change to read it. */
-export const SCHEMA_VERSION = 1;
+/**
+ * Report schema; bump when a consumer would have to change to read it. Version
+ * 2 dropped the hub cache root from the machine context and added `askFirst`
+ * to the machine and apply reports and `index` to the repo report.
+ */
+export const SCHEMA_VERSION = 2;
 
 /** Exit codes. */
 export const EXIT_CLEAN = 0;
@@ -132,6 +150,21 @@ export const SYMLINK_TARGET_TERM = 'embeddings';
 
 /** Historical packets name the lane thousands of times and are a record, not a live surface. */
 export const EXCLUDED_PATHSPEC = ':!specs';
+const SPECS_PREFIX = 'specs/';
+
+/**
+ * The trigger index generator's four outputs. The generator reads every doc,
+ * specs/ included, so these files always carry lane words from packet history.
+ * Each lane entry is live only when it points outside specs/ and at no
+ * allowlisted file.
+ */
+export const INDEX_OUTPUTS = Object.freeze({
+  diagnostics: '.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json',
+  index: '.skilled/skills/system-spec-kit/runtime/data/trigger-index.json',
+  manifest: '.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json',
+  variants: '.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json',
+});
+const INDEX_GENERATOR = '.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs';
 
 const GIT_SYMLINK_MODE = '120000';
 const SPAWN_MAX_BUFFER = 256 * 1024 * 1024;
@@ -187,6 +220,27 @@ const MODEL_MODULE_PATHS = Object.freeze([
   Object.freeze({ base: 'specKit', segments: Object.freeze(['node_modules', 'onnxruntime-node']) }),
 ]);
 
+/**
+ * The model folder the lane's model library downloaded into. The library's
+ * default cache is a `.cache` folder inside its own package, and no lane code
+ * moved it, so the copy sits under each package that installed the library,
+ * never in the shared HuggingFace hub cache.
+ */
+const MODEL_CACHE_SEGMENTS = Object.freeze(['node_modules', '@huggingface', 'transformers', '.cache', 'nomic-ai', 'nomic-embed-text-v1.5']);
+const MODEL_CACHE_BASES = Object.freeze(['advisorRuntime', 'specKit']);
+
+/**
+ * Sources whose presence means the checkout still runs the lane. Apply changes
+ * nothing in such a checkout, because its code still uses the compiled output,
+ * the database tables, the model server and the model cache.
+ */
+const LANE_SOURCE_PATHS = Object.freeze([
+  '.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts',
+  '.skilled/skills/system-skill-advisor/runtime/lib/embedders',
+  '.skilled/skills/system-spec-kit/shared/embeddings',
+  '.skilled/bin/hf-model-server.cjs',
+]);
+
 const DB_FILENAME = 'skill-graph.sqlite';
 const DB_COMPANION_SUFFIXES = Object.freeze(['', '-wal', '-shm']);
 /** Backup copies the rebuild route keeps and the runtime's quarantined copies. */
@@ -212,8 +266,8 @@ const OLLAMA_DELETE_TIMEOUT_MS = 10000;
 export const OLLAMA_MODEL = 'nomic-embed-text:v1.5';
 const OLLAMA_MANIFEST_SEGMENTS = Object.freeze(['manifests', 'registry.ollama.ai', 'library', 'nomic-embed-text', 'v1.5']);
 
-/** The one cache folder the model server filled. Never a prefix or glob: the cache is shared. */
-export const HF_MODEL_FOLDER = 'models--nomic-ai--nomic-embed-text-v1.5';
+/** The only answers --shared-model takes, each binding one apply run. */
+export const SHARED_MODEL_ANSWERS = Object.freeze(['delete', 'keep']);
 
 /**
  * Dotenv keys only the lane read. Generic provider credentials such as an
@@ -240,17 +294,19 @@ const PROCESS_POLL_MS = 100;
 
 const USAGE = [
   'usage: sweep-lane-residue.mjs repo [--root <path>] [--allowlist <path>] [--json]',
-  '       sweep-lane-residue.mjs machine|apply [--root <path>] [--db-dir <path>] [--hf-home <path>]',
-  '                                      [--ollama-host <url>] [--socket-dir <path>] [--json]',
+  '       sweep-lane-residue.mjs machine [--root <path>] [--db-dir <path>] [--ollama-host <url>]',
+  '                                      [--socket-dir <path>] [--json]',
+  '       sweep-lane-residue.mjs apply [--root <path>] [--db-dir <path>] [--ollama-host <url>]',
+  '                                    [--socket-dir <path>] [--shared-model delete|keep] [--json]',
 ].join('\n');
 
-/** Value flags and the modes that read each one. */
+/** Value flags, the modes that read each one, and the values a closed flag takes. */
 const VALUE_FLAGS = Object.freeze({
   '--allowlist': Object.freeze({ key: 'allowlistPath', modes: Object.freeze(['repo']) }),
   '--db-dir': Object.freeze({ key: 'dbDir', modes: Object.freeze(['machine', 'apply']) }),
-  '--hf-home': Object.freeze({ key: 'hfHome', modes: Object.freeze(['machine', 'apply']) }),
   '--ollama-host': Object.freeze({ key: 'ollamaHost', modes: Object.freeze(['machine', 'apply']) }),
   '--root': Object.freeze({ key: 'root', modes: MODES }),
+  '--shared-model': Object.freeze({ key: 'sharedModel', modes: Object.freeze(['apply']), values: SHARED_MODEL_ANSWERS }),
   '--socket-dir': Object.freeze({ key: 'socketDir', modes: Object.freeze(['machine', 'apply']) }),
 });
 
@@ -273,6 +329,8 @@ export function escapeRegExp(value) {
 const IDENTIFIER_MATCHERS = Object.freeze(IDENTIFIER_TERMS.map((term) => ({ regex: new RegExp(escapeRegExp(term), 'i'), term })));
 const PROSE_MATCHERS = Object.freeze(PROSE_TERMS.map((term) => ({ regex: new RegExp(escapeRegExp(term), 'i'), term })));
 const IDENTIFIER_REGEX = new RegExp(IDENTIFIER_TERMS.map(escapeRegExp).join('|'), 'i');
+/** Either vocabulary, the test a string in an index output has to pass to count as a lane entry. */
+const LANE_TERM_REGEX = new RegExp([...IDENTIFIER_TERMS, ...PROSE_TERMS].map(escapeRegExp).join('|'), 'i');
 
 /**
  * @param {string} text Content to attribute.
@@ -481,27 +539,162 @@ function readTrackedText(root, relativePath) {
 }
 
 /**
+ * Reads each tracked index output that is present in the working tree. An
+ * output that cannot be read as JSON fails the scan rather than falling back to
+ * text, because a text scan of it always matches and a skipped file hides
+ * whatever it holds.
+ *
+ * @param {string} root Work tree top.
+ * @param {Set<string>} trackedPaths Tracked paths outside specs/.
+ * @returns {Record<string, any>} Parsed outputs by INDEX_OUTPUTS key.
+ * @throws {Error} When a tracked output is not a regular file or not readable JSON.
+ */
+function readIndexOutputs(root, trackedPaths) {
+  const outputs = {};
+  for (const [key, relativePath] of Object.entries(INDEX_OUTPUTS)) {
+    if (!trackedPaths.has(relativePath)) continue;
+    const absolute = path.join(root, relativePath);
+    const stat = lstatOrNull(absolute);
+    if (!stat) continue;
+    if (!stat.isFile()) throw new Error(`${relativePath} is not a regular file, so its lane entries cannot be read`);
+    try {
+      outputs[key] = JSON.parse(fs.readFileSync(absolute, 'utf8'));
+    } catch (error) {
+      throw new Error(`${relativePath} is not readable JSON, so its lane entries cannot be checked: ${messageOf(error)}`);
+    }
+  }
+  return outputs;
+}
+
+/**
+ * Judges the index outputs entry by entry. A lane path in the index, every
+ * target of a phrase whose key or any of its recorded spellings names the
+ * lane, and every lane string in the corpus manifest and the generation
+ * diagnostics is live only when the path it stands for lies outside specs/ and
+ * is no allowlist row. A string that sits in a record with a `path` field, such
+ * as a diagnostics reason quoting a phrase, stands for that record's path;
+ * any other string stands for itself.
+ *
+ * The index and its variants are left out of the text scan, so every container
+ * walked here must have the generator's shape. A renamed, missing or retyped
+ * one throws instead of reading as empty, which would pass a lane phrase unseen.
+ *
+ * @param {Record<string, any>} outputs Parsed outputs by INDEX_OUTPUTS key.
+ * @param {Set<string>} allowlistedPaths Exact allowlisted paths.
+ * @returns {{ counts: Record<string, number>, entries: Record<string, Array<Record<string, string>>> }} Live entries per output.
+ * @throws {Error} When the index or its phrase variants do not have the generator's shape.
+ */
+export function checkIndexOutputs(outputs, allowlistedPaths) {
+  const entries = { diagnostics: [], index: [], manifest: [], variants: [] };
+  const counts = { lanePaths: 0, lanePhrases: 0, laneStrings: 0, outside: 0 };
+  const isOutside = (target) => !target.startsWith(SPECS_PREFIX) && !allowlistedPaths.has(target);
+  const isMap = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+  const record = (key, entry) => {
+    entries[key].push(entry);
+    counts.outside += 1;
+  };
+
+  const index = outputs.index;
+  if (index !== undefined) {
+    if (!isMap(index) || !Array.isArray(index.paths) || !isMap(index.phrases)) {
+      throw new Error(`${INDEX_OUTPUTS.index} has no paths array or phrases map`);
+    }
+    for (const target of index.paths) {
+      if (typeof target !== 'string') throw new Error(`${INDEX_OUTPUTS.index} holds a path that is not a string`);
+      if (!LANE_TERM_REGEX.test(target)) continue;
+      counts.lanePaths += 1;
+      if (isOutside(target)) record('index', { kind: 'path', path: target });
+    }
+
+    // Absent only when the variants output is not tracked, and then the text
+    // scan reads it instead.
+    let variants = {};
+    if (outputs.variants !== undefined) {
+      if (!isMap(outputs.variants) || !isMap(outputs.variants.variants)) {
+        throw new Error(`${INDEX_OUTPUTS.variants} has no variants map`);
+      }
+      variants = outputs.variants.variants;
+    }
+    for (const [phrase, ids] of Object.entries(index.phrases)) {
+      if (!Array.isArray(ids)) throw new Error(`${INDEX_OUTPUTS.index} maps "${phrase}" to something other than a list of path ids`);
+      const spellings = Object.hasOwn(variants, phrase) ? variants[phrase] : [];
+      if (!Array.isArray(spellings) || spellings.some((value) => typeof value !== 'string')) {
+        throw new Error(`${INDEX_OUTPUTS.variants} records spellings of "${phrase}" that are not a list of strings`);
+      }
+      const keyNamesLane = LANE_TERM_REGEX.test(phrase);
+      const spelling = keyNamesLane ? undefined : spellings.find((value) => LANE_TERM_REGEX.test(value));
+      if (!keyNamesLane && spelling === undefined) continue;
+      counts.lanePhrases += 1;
+      for (const id of ids) {
+        const target = index.paths[id];
+        if (typeof target !== 'string') throw new Error(`${INDEX_OUTPUTS.index} maps "${phrase}" to path id ${id}, which it does not hold`);
+        if (!isOutside(target)) continue;
+        if (keyNamesLane) record('index', { kind: 'phrase', path: target, phrase });
+        else record('variants', { kind: 'phrase', path: target, phrase, spelling });
+      }
+    }
+  }
+
+  for (const key of ['manifest', 'diagnostics']) {
+    if (outputs[key] === undefined) continue;
+    const visit = (node, owner) => {
+      if (typeof node === 'string') {
+        if (!LANE_TERM_REGEX.test(node)) return;
+        counts.laneStrings += 1;
+        const target = owner ?? node;
+        if (isOutside(target)) record(key, target === node ? { kind: 'string', path: target } : { kind: 'string', path: target, text: node });
+        return;
+      }
+      if (Array.isArray(node)) {
+        for (const value of node) visit(value, owner);
+        return;
+      }
+      if (node === null || typeof node !== 'object') return;
+      const ownPath = typeof node.path === 'string' ? node.path : owner;
+      for (const [field, value] of Object.entries(node)) {
+        visit(field, ownPath);
+        visit(value, ownPath);
+      }
+    };
+    visit(outputs[key], undefined);
+  }
+
+  return { counts, entries };
+}
+
+/**
  * Lists every tracked lane remnant outside specs/ and splits it into live and
- * allowlisted files.
+ * allowlisted files. The index outputs are judged by checkIndexOutputs instead
+ * of by their text, and an allowlist row naming one of them hides nothing.
  *
  * @param {{ allowlistPath?: string, root?: string }} [options] Scan options.
  * @returns {Record<string, any>} Report.
- * @throws {Error} When git is missing, the root is wrong, git fails, or the allowlist is malformed.
+ * @throws {Error} When git is missing, the root is wrong, git fails, the allowlist is malformed, or an index output cannot be read.
  */
 export function scanRepo(options = {}) {
   const root = resolveRepoRoot(options.root ?? process.cwd());
   const allowlistPath = path.resolve(options.allowlistPath ?? DEFAULT_ALLOWLIST_PATH);
   const allowlist = loadAllowlist(allowlistPath);
+  const allowlistedPaths = new Set(allowlist.map((row) => row.path));
 
-  /** @type {Map<string, { identifier: string[], path: string[], prose: string[], symlink: string | null }>} */
+  /** @type {Map<string, { identifier: string[], index: Array<Record<string, string>>, path: string[], prose: string[], symlink: string | null }>} */
   const hits = new Map();
   const hitFor = (relativePath) => {
-    if (!hits.has(relativePath)) hits.set(relativePath, { identifier: [], path: [], prose: [], symlink: null });
+    if (!hits.has(relativePath)) hits.set(relativePath, { identifier: [], index: [], path: [], prose: [], symlink: null });
     return hits.get(relativePath);
   };
 
-  const identifierFiles = grepTrackedFiles(root, IDENTIFIER_PATTERN);
-  const proseFiles = grepTrackedFiles(root, PROSE_PATTERN);
+  const trackedEntries = listTrackedEntries(root);
+  const outputs = readIndexOutputs(root, new Set(trackedEntries.map((entry) => entry.path)));
+  // The phrase variants only mean something through the index, so they are
+  // read by structure only when the index is read too.
+  const structuralPaths = new Set(Object.keys(outputs)
+    .filter((key) => key !== 'variants' || outputs.index !== undefined)
+    .map((key) => INDEX_OUTPUTS[key]));
+  const indexCheck = checkIndexOutputs(outputs, allowlistedPaths);
+
+  const identifierFiles = grepTrackedFiles(root, IDENTIFIER_PATTERN).filter((relativePath) => !structuralPaths.has(relativePath));
+  const proseFiles = grepTrackedFiles(root, PROSE_PATTERN).filter((relativePath) => !structuralPaths.has(relativePath));
   for (const relativePath of identifierFiles) {
     const terms = attributeTerms(readTrackedText(root, relativePath), 'identifier');
     hitFor(relativePath).identifier = terms.length > 0 ? terms : ['unattributed'];
@@ -510,10 +703,13 @@ export function scanRepo(options = {}) {
     const terms = attributeTerms(readTrackedText(root, relativePath), 'prose');
     hitFor(relativePath).prose = terms.length > 0 ? terms : ['unattributed'];
   }
+  for (const [key, list] of Object.entries(indexCheck.entries)) {
+    if (list.length > 0) hitFor(INDEX_OUTPUTS[key]).index = list;
+  }
 
   let pathHits = 0;
   let symlinkHits = 0;
-  for (const entry of listTrackedEntries(root)) {
+  for (const entry of trackedEntries) {
     const lowerPath = entry.path.toLowerCase();
     const pathWords = PATH_TERMS.filter((word) => lowerPath.includes(word));
     const isLink = entry.mode === GIT_SYMLINK_MODE;
@@ -544,8 +740,11 @@ export function scanRepo(options = {}) {
   const live = [];
   const allowlisted = [];
   for (const relativePath of [...hits.keys()].sort(compareCodeUnits)) {
-    const matched = compactMatch(hits.get(relativePath));
-    const row = rowsByPath.get(relativePath);
+    const hit = hits.get(relativePath);
+    const matched = compactMatch(hit);
+    // A row naming an index output would hide every later lane entry in it, so
+    // an entry judged live stays live whatever the allowlist says.
+    const row = hit.index.length > 0 ? undefined : rowsByPath.get(relativePath);
     if (row) {
       matchedRows.add(row.path);
       allowlisted.push({ matched, path: relativePath, reason: row.reason });
@@ -568,6 +767,11 @@ export function scanRepo(options = {}) {
       symlink: symlinkHits,
     },
     allowlisted,
+    index: {
+      ...indexCheck.counts,
+      generator: INDEX_GENERATOR,
+      outputsRead: [...structuralPaths].sort(compareCodeUnits),
+    },
     live,
     mode: 'repo',
     patterns: {
@@ -583,12 +787,13 @@ export function scanRepo(options = {}) {
 }
 
 /**
- * @param {{ identifier: string[], path: string[], prose: string[], symlink: string | null }} hit Raw hit.
- * @returns {Record<string, string[] | string>} Only the groups that matched.
+ * @param {{ identifier: string[], index: Array<Record<string, string>>, path: string[], prose: string[], symlink: string | null }} hit Raw hit.
+ * @returns {Record<string, any>} Only the groups that matched.
  */
 function compactMatch(hit) {
   const matched = {};
   if (hit.identifier.length > 0) matched.identifier = hit.identifier;
+  if (hit.index.length > 0) matched.index = hit.index;
   if (hit.prose.length > 0) matched.prose = hit.prose;
   if (hit.path.length > 0) matched.path = hit.path;
   if (hit.symlink !== null) matched.symlink = hit.symlink;
@@ -620,16 +825,18 @@ export function normalizeOllamaHost(value) {
 }
 
 /**
- * @param {{ hfHome?: string }} options CLI options.
- * @param {Record<string, string | undefined>} env Environment.
- * @returns {string} The HuggingFace hub cache root the model server would have used.
+ * @param {string} root Checkout root.
+ * @returns {string[]} The lane sources still present under the root. A path
+ *   that cannot be inspected counts as present, so the guard fails closed.
  */
-export function resolveHfHubRoot(options, env) {
-  if (options.hfHome) return path.resolve(options.hfHome, 'hub');
-  if (nonEmpty(env.HF_HUB_CACHE)) return path.resolve(env.HF_HUB_CACHE);
-  if (nonEmpty(env.HF_HOME)) return path.resolve(env.HF_HOME, 'hub');
-  const cacheHome = nonEmpty(env.XDG_CACHE_HOME) ?? path.join(nonEmpty(env.HOME) ?? os.homedir(), '.cache');
-  return path.resolve(cacheHome, 'huggingface', 'hub');
+export function findLaneSources(root) {
+  return LANE_SOURCE_PATHS.filter((relativePath) => {
+    try {
+      return lstatOrNull(path.join(root, ...relativePath.split('/'))) !== null;
+    } catch {
+      return true;
+    }
+  });
 }
 
 /**
@@ -664,7 +871,7 @@ export function resolveMachineContext(options = {}, env = process.env) {
   return {
     ...checkout,
     dbDir: path.resolve(options.dbDir ?? nonEmpty(env.SYSTEM_SKILL_ADVISOR_DB_DIR) ?? path.join(checkout.advisorRuntime, 'database')),
-    hubRoot: resolveHfHubRoot(options, env),
+    laneSources: findLaneSources(checkout.root),
     modelServerDirNotes: serverDirs.notes,
     modelServerDirs: serverDirs.dirs,
     modelServerScript: path.join(checkout.root, ...MODEL_SERVER_SCRIPT_SEGMENTS),
@@ -707,23 +914,25 @@ function unixSocketPathOf(value) {
  * folder, the folder of an explicit socket address, and the folder a launcher
  * pinned to its own advisor database derives through the IPC bridge. Only the
  * first is the model server's own; the others are shared with other services.
+ * An explicit socket address also names its own file, which can carry any
+ * name, so that one name is probed beside the fixed ones.
  *
  * @param {string} socketDir The default or `--socket-dir` folder.
  * @param {Record<string, string | undefined>} env Environment.
- * @returns {{ dirs: Array<{ path: string, source: string }>, notes: string[] }} Folders, first source wins, and why one could not be derived.
+ * @returns {{ dirs: Array<{ files: string[], path: string, source: string }>, notes: string[] }} Folders, first source wins, with the extra file names each must probe, and why one could not be derived.
  */
 export function resolveModelServerDirs(socketDir, env) {
-  const candidates = [{ path: socketDir, source: 'socket-dir' }];
+  const candidates = [{ files: [], path: socketDir, source: 'socket-dir' }];
   const notes = [];
 
   const ipcSocketDir = nonEmpty(env.SPECKIT_IPC_SOCKET_DIR);
   if (ipcSocketDir && !ipcSocketDir.startsWith('tcp://')) {
-    candidates.push({ path: path.resolve(ipcSocketDir), source: 'SPECKIT_IPC_SOCKET_DIR' });
+    candidates.push({ files: [], path: path.resolve(ipcSocketDir), source: 'SPECKIT_IPC_SOCKET_DIR' });
   }
 
   const serverUrl = nonEmpty(env.HF_EMBED_SERVER_URL);
   const socketPath = unixSocketPathOf(serverUrl);
-  if (socketPath) candidates.push({ path: path.dirname(socketPath), source: 'HF_EMBED_SERVER_URL' });
+  if (socketPath) candidates.push({ files: [path.basename(socketPath)], path: path.dirname(socketPath), source: 'HF_EMBED_SERVER_URL' });
 
   // The launcher pins only when no explicit address is set and the IPC folder
   // is not a TCP address; the same conditions apply here.
@@ -733,20 +942,25 @@ export function resolveModelServerDirs(socketDir, env) {
       const bridge = requireCjs(IPC_BRIDGE_MODULE);
       const pinned = bridge.resolveIpcSocketDir(ADVISOR_SERVICE_NAME, { dbDir: canonicalizePath(overrideDbDir), env });
       if (typeof pinned === 'string' && !pinned.startsWith('tcp://')) {
-        candidates.push({ path: path.resolve(pinned), source: 'SYSTEM_SKILL_ADVISOR_DB_DIR' });
+        candidates.push({ files: [], path: path.resolve(pinned), source: 'SYSTEM_SKILL_ADVISOR_DB_DIR' });
       }
     } catch (error) {
       notes.push(`the model server folder a launcher pins to ${overrideDbDir} could not be derived: ${messageOf(error)}`);
     }
   }
 
-  const seen = new Set();
-  const dirs = candidates.filter((candidate) => {
-    if (seen.has(candidate.path)) return false;
-    seen.add(candidate.path);
-    return true;
-  });
-  return { dirs, notes };
+  // Two sources can name one folder; the first keeps its source and gains the
+  // later ones' file names, so a custom socket name is never dropped.
+  const byPath = new Map();
+  for (const candidate of candidates) {
+    const kept = byPath.get(candidate.path);
+    if (!kept) {
+      byPath.set(candidate.path, { ...candidate, files: [...candidate.files] });
+      continue;
+    }
+    for (const name of candidate.files) if (!kept.files.includes(name)) kept.files.push(name);
+  }
+  return { dirs: [...byPath.values()], notes };
 }
 
 /**
@@ -873,17 +1087,27 @@ export function checkModelModules(checkout) {
  * embedding columns on skill_nodes, and the model name anywhere in its bytes,
  * which also covers rows a schema query cannot see.
  *
+ * A read-only open of a database in WAL mode still writes its -wal and -shm
+ * files beside it. A copy has no writer and no companions of its own, so it is
+ * opened immutable, which reads the one file and writes nothing.
+ *
  * @param {string} filePath SQLite file.
  * @param {{ DatabaseSync: any } | null} sqlite The loaded node:sqlite module.
+ * @param {{ immutable?: boolean }} [options] Open a file no process writes without touching its folder.
  * @returns {{ complete: boolean, detail: string[] }} What it holds and whether every probe ran.
  */
-export function inspectSqliteFile(filePath, sqlite) {
+export function inspectSqliteFile(filePath, sqlite, { immutable = false } = {}) {
   const detail = [];
   let complete = true;
 
   if (sqlite) {
     try {
-      const db = new sqlite.DatabaseSync(filePath, { readOnly: true });
+      let target = filePath;
+      if (immutable) {
+        target = pathToFileURL(filePath);
+        target.searchParams.set('immutable', '1');
+      }
+      const db = new sqlite.DatabaseSync(target, { readOnly: true });
       try {
         for (const row of db.prepare('SELECT type, name FROM sqlite_master WHERE name IS NOT NULL').all()) {
           if (DB_NAME_PATTERN.test(String(row.name))) detail.push(`${row.type} ${row.name}`);
@@ -911,8 +1135,8 @@ export function inspectSqliteFile(filePath, sqlite) {
 }
 
 /**
- * M3: vector objects in the advisor databases, their backup and quarantine
- * copies, and vector shards.
+ * M3: vector objects in the advisor databases, the backup and quarantine
+ * copies that hold one or cannot be opened, and vector shards.
  *
  * @param {string} dbDir Advisor database directory.
  * @param {{ DatabaseSync: any } | null} sqlite The loaded node:sqlite module.
@@ -934,7 +1158,19 @@ export function checkDatabases(dbDir, sqlite) {
   for (const entry of entries.sort((a, b) => compareCodeUnits(a.name, b.name))) {
     const absolute = path.join(dbDir, entry.name);
     if (DB_COPY_PATTERN.test(entry.name)) {
-      items.push({ detail: 'backup or quarantine copy of the advisor database', kind: 'copy', path: absolute });
+      // A rebuild after the removal copies a database with no lane object, and
+      // that copy stays. A copy that holds one, or that cannot be opened to
+      // tell, such as a quarantined corrupt file, goes.
+      if (!entry.isFile()) {
+        items.push({ detail: 'backup or quarantine copy of the advisor database', kind: 'copy', path: absolute });
+        continue;
+      }
+      const inspected = inspectSqliteFile(absolute, sqlite, { immutable: true });
+      if (inspected.detail.length > 0) {
+        items.push({ detail: `copy of the advisor database holding ${inspected.detail.join(', ')}`, kind: 'copy', path: absolute });
+      } else if (!inspected.complete) {
+        items.push({ detail: 'copy of the advisor database that could not be opened to look for vector objects', kind: 'copy', path: absolute });
+      }
       continue;
     }
     if (!entry.isFile() || !entry.name.endsWith('.sqlite')) continue;
@@ -984,32 +1220,55 @@ export function listProcesses() {
 }
 
 /**
+ * The supervisor started the server as `node <script>`, so the script is the
+ * first argument after node's own leading options. A command line read any
+ * other way names no script.
+ *
  * @param {string} command Process command line.
- * @returns {boolean} Whether one of its words is the model server script.
+ * @returns {string | null} The script node runs, or null when this is not node or no script can be read.
  */
-function runsModelServer(command) {
-  return command.split(/\s+/).some((word) => word.endsWith(MODEL_SERVER_SCRIPT_NAME));
+export function nodeScriptOf(command) {
+  const words = command.trim().split(/\s+/);
+  if (path.basename(words[0] ?? '') !== 'node') return null;
+  return words.slice(1).find((word) => !word.startsWith('-')) ?? null;
 }
 
 /**
- * Ownership needs both halves of how the supervisor starts the server, `node`
- * running this checkout's script: the script path alone would also match a
- * pager or editor opened on that file, and apply signals whatever it owns. A
- * server started from another checkout belongs to that checkout's sessions.
+ * Whether a process is any checkout's model server. A shell, pager or editor
+ * whose command line merely names the script is not one, and neither is node
+ * running another script that takes the server's path as an argument.
+ *
+ * @param {string} command Process command line.
+ * @returns {boolean} Whether node runs a model server script as its first script argument.
+ */
+export function runsModelServer(command) {
+  const script = nodeScriptOf(command);
+  return script !== null && path.basename(script) === MODEL_SERVER_SCRIPT_NAME;
+}
+
+/**
+ * Ownership: node runs this checkout's server script. The folders are compared
+ * through their real paths, because the script itself is deleted by the update
+ * while a server started before it keeps running from that path, and a server
+ * may have been started through a linked folder. A relative script path names
+ * no folder this process can resolve, so it is never owned. A server started
+ * from another checkout belongs to that checkout's sessions.
  *
  * @param {string} command Process command line.
  * @param {string} modelServerScript This checkout's model server script.
  * @returns {boolean} Whether node is running this checkout's script.
  */
 export function isOwnedModelServer(command, modelServerScript) {
-  const trimmed = command.trim();
-  if (path.basename(trimmed.split(/\s+/)[0] ?? '') !== 'node') return false;
-  return [modelServerScript, realpathOrSelf(modelServerScript)].some((candidate) => trimmed.endsWith(candidate));
+  if (!runsModelServer(command)) return false;
+  const script = nodeScriptOf(command);
+  if (!path.isAbsolute(script)) return false;
+  return realpathOrSelf(path.dirname(script)) === realpathOrSelf(path.dirname(modelServerScript));
 }
 
 /**
- * M4: a running model server, and the fixed files it writes in every folder it
- * could have used. The `--socket-dir` folder itself counts only while it is
+ * M4: a running model server, the fixed files it writes in every folder it
+ * could have used, and the socket file an explicit address names. The
+ * `--socket-dir` folder itself counts only while it is
  * empty or still holds one of those files; a folder left with only other
  * files is someone else's and is not residue.
  *
@@ -1039,7 +1298,7 @@ export function checkModelServer(ctx, processes) {
 
   for (const dir of ctx.modelServerDirs) {
     let serverFiles = 0;
-    for (const name of MODEL_SERVER_DIR_FILES) {
+    for (const name of new Set([...MODEL_SERVER_DIR_FILES, ...(dir.files ?? [])])) {
       const candidate = path.join(dir.path, name);
       try {
         if (!lstatOrNull(candidate)) continue;
@@ -1093,20 +1352,27 @@ export function checkOllamaServe(processes) {
 }
 
 /**
- * M5: the exact model folder in the HuggingFace hub cache.
+ * M5: the lane model's folder in the model cache inside each package that
+ * installed the model library. This checkout owns these copies, so apply
+ * deletes them without asking.
  *
- * @param {Record<string, string>} ctx Machine context.
+ * @param {{ advisorRuntime: string, root: string, specKit: string }} checkout Checkout paths.
  * @returns {Record<string, any>} Finding.
  */
-export function checkHfCache(ctx) {
-  const folder = path.join(ctx.hubRoot, HF_MODEL_FOLDER);
-  try {
-    const stat = lstatOrNull(folder);
-    const items = stat ? [{ detail: 'HuggingFace cache folder for the lane model', path: folder }] : [];
-    return finding('M5', 'HuggingFace cache folder', items.length > 0 ? FOUND : ABSENT, items);
-  } catch (error) {
-    return finding('M5', 'HuggingFace cache folder', NOT_CHECKED, [], [`${folder}: ${messageOf(error)}`]);
+export function checkModelCache(checkout) {
+  const items = [];
+  const notes = [];
+  let incomplete = false;
+  for (const base of MODEL_CACHE_BASES) {
+    const folder = path.join(checkout[base], ...MODEL_CACHE_SEGMENTS);
+    try {
+      if (lstatOrNull(folder)) items.push({ base, detail: 'lane model in the package model cache', path: folder });
+    } catch (error) {
+      incomplete = true;
+      notes.push(`${folder}: ${messageOf(error)}`);
+    }
   }
+  return finding('M5', 'lane model in the package model cache', statusOf(items, incomplete), items, notes);
 }
 
 /**
@@ -1148,6 +1414,33 @@ export async function checkOllamaModel(ctx) {
   } catch (error) {
     return finding('M6', name, NOT_CHECKED, [], [...notes, `${manifest}: ${messageOf(error)}`]);
   }
+}
+
+/**
+ * The one question apply asks, worded once so a terminal run and a caller that
+ * asks on the tool's behalf show the same words.
+ *
+ * @param {string} host Ollama origin.
+ * @returns {string} The question.
+ */
+export function sharedModelQuestion(host) {
+  return `Delete the Ollama model ${OLLAMA_MODEL} from ${host}? Nothing records who pulled it.`;
+}
+
+/**
+ * The questions apply would ask on this machine: the shared model, only when a
+ * running server lists it, because only then can apply act on an answer, and
+ * never in a checkout that still holds a lane source, where apply changes
+ * nothing.
+ *
+ * @param {Record<string, any>} ctx Machine context.
+ * @param {Array<Record<string, any>>} findings Findings.
+ * @returns {Array<{ check: string, question: string }>} Questions in the order apply asks them.
+ */
+function askFirstOf(ctx, findings) {
+  if (ctx.laneSources.length > 0) return [];
+  const model = findings.find((entry) => entry.id === 'M6')?.items[0];
+  return model?.source === 'api' ? [{ check: 'M6', question: sharedModelQuestion(ctx.ollamaHost) }] : [];
 }
 
 /**
@@ -1293,7 +1586,7 @@ export async function runMachineChecks(options = {}, env = process.env, io = {})
     checkModelModules(checkout),
     checkDatabases(ctx.dbDir, sqlite),
     checkModelServer(ctx, processes),
-    checkHfCache(ctx),
+    checkModelCache(checkout),
     await checkOllamaModel(ctx),
     checkDotenv(ctx),
     checkWorktrees(ctx, sqlite),
@@ -1301,6 +1594,7 @@ export async function runMachineChecks(options = {}, env = process.env, io = {})
   ];
 
   return {
+    askFirst: askFirstOf(ctx, findings),
     context: ctx,
     exitCode: machineExitCode(findings),
     findings,
@@ -1492,16 +1786,22 @@ async function deleteOllamaModel(host) {
 
 /**
  * Runs the machine checks, deletes the leftovers this checkout owns, asks
- * before touching either shared model store, reports what only the user can
- * remove, then runs the checks again. Other worktrees are reported, never
- * touched: each may belong to a live session.
+ * before touching the shared model, reports what only the user can remove,
+ * then runs the checks again. Other worktrees are reported, never touched:
+ * each may belong to a live session. In a checkout that still holds a lane
+ * source nothing is deleted, stopped or asked.
  *
- * @param {Record<string, any>} [options] CLI options.
+ * @param {Record<string, any>} [options] CLI options; `sharedModel` is this run's answer about the shared model.
  * @param {Record<string, string | undefined>} [env] Environment.
  * @param {{ confirm?: (question: string) => Promise<boolean>, interactive?: boolean, processes?: Array<{ command: string, pid: number }> | null }} [io] Terminal access, defaulting to stdin, and an optional process list.
  * @returns {Promise<Record<string, any>>} Report with the before and after checks.
+ * @throws {Error} When `sharedModel` is neither delete nor keep.
  */
 export async function runApply(options = {}, env = process.env, io = {}) {
+  const sharedModel = options.sharedModel;
+  if (sharedModel !== undefined && !SHARED_MODEL_ANSWERS.includes(sharedModel)) {
+    throw new Error(`--shared-model takes ${SHARED_MODEL_ANSWERS.join(' or ')}, not ${sharedModel}`);
+  }
   const interactive = io.interactive ?? Boolean(process.stdin.isTTY);
   const confirm = io.confirm ?? confirmOnTerminal;
   const checkIo = { processes: io.processes };
@@ -1510,6 +1810,57 @@ export async function runApply(options = {}, env = process.env, io = {}) {
   const byId = new Map(before.findings.map((entry) => [entry.id, entry]));
   const actions = [];
 
+  if (ctx.laneSources.length > 0) {
+    keepForLaneSource(ctx, byId, actions);
+  } else {
+    await cleanOwnedLeftovers(ctx, byId, actions, { confirm, interactive, sharedModel });
+  }
+  reportUserLeftovers(byId, actions);
+
+  const after = await runMachineChecks(options, env, checkIo);
+  return {
+    actions,
+    after,
+    askFirst: before.askFirst,
+    before,
+    exitCode: after.exitCode,
+    interactive,
+    mode: 'apply',
+    schemaVersion: SCHEMA_VERSION,
+  };
+}
+
+/**
+ * Records every item apply would act on as kept, naming the lane source that
+ * still uses it. Deleting any of it would break the code that still runs.
+ *
+ * @param {Record<string, any>} ctx Machine context.
+ * @param {Map<string, Record<string, any>>} byId Findings by check id.
+ * @param {Array<Record<string, any>>} actions Action log.
+ * @returns {void}
+ */
+function keepForLaneSource(ctx, byId, actions) {
+  const reason = `this checkout still holds the lane source ${ctx.laneSources.join(', ')}; update it, then run apply again`;
+  for (const id of ['M1', 'M3', 'M4', 'M5']) {
+    for (const item of byId.get(id).items) {
+      actions.push({ action: 'kept', reason, target: item.kind === 'process' ? `pid ${item.pid}` : item.path });
+    }
+  }
+  const model = byId.get('M6').items[0];
+  if (model) actions.push({ action: 'kept', reason, target: model.path ?? `${OLLAMA_MODEL} on ${ctx.ollamaHost}` });
+}
+
+/**
+ * Deletes what this checkout owns and acts on the shared model as this run's
+ * answer says.
+ *
+ * @param {Record<string, any>} ctx Machine context.
+ * @param {Map<string, Record<string, any>>} byId Findings by check id.
+ * @param {Array<Record<string, any>>} actions Action log.
+ * @param {{ confirm: (question: string) => Promise<boolean>, interactive: boolean, sharedModel?: string }} answer How the shared-model question is answered.
+ * @returns {Promise<void>}
+ */
+async function cleanOwnedLeftovers(ctx, byId, actions, { confirm, interactive, sharedModel }) {
   // M1: the fixed compiled paths are deleted; any other compiled file that
   // still names the lane needs a rebuild after its source is removed.
   const fixedCompiled = new Set();
@@ -1519,10 +1870,6 @@ export async function runApply(options = {}, env = process.env, io = {}) {
   }
   for (const item of byId.get('M1').items.filter((entry) => !fixedCompiled.has(entry.path))) {
     actions.push({ action: 'reported', reason: 'rebuild the package once the lane source is gone', target: item.path });
-  }
-
-  for (const item of byId.get('M2').items) {
-    actions.push({ action: 'reported', reason: 'reinstall dependencies once the lockfile drops the dependency', target: item.path });
   }
 
   // M3: the database is derived state, so it is discarded with its WAL and
@@ -1576,33 +1923,43 @@ export async function runApply(options = {}, env = process.env, io = {}) {
     if (serverFiles.some((entry) => entry.kind === 'socket-dir')) removeEmptyDir(ctx.socketDir, actions);
   }
 
-  // M5 and M6: shared stores. Ask on a terminal every run and remember nothing.
-  if (byId.get('M5').status === FOUND) {
-    const target = path.join(ctx.hubRoot, HF_MODEL_FOLDER);
-    if (!interactive) {
-      actions.push({ action: 'kept', reason: 'no terminal to ask; the cache is shared with other tools', target });
-    } else if (await confirm(`Delete the HuggingFace cache folder ${target}? Other tools may share this cache.`)) {
-      deleteContained(ctx.hubRoot, [HF_MODEL_FOLDER], actions, { allowDirectory: true });
-    } else {
-      actions.push({ action: 'kept', reason: 'answered no', target });
-    }
+  // M5: the package's own copy of the lane model, owned like the database.
+  for (const item of byId.get('M5').items) {
+    deleteContained(ctx[item.base], [...MODEL_CACHE_SEGMENTS], actions, { allowDirectory: true });
   }
 
+  // M6: the shared model. This run's answer comes from --shared-model or the
+  // terminal, and nothing is remembered for the next run.
   const model = byId.get('M6').items[0];
   if (model) {
     const target = `${OLLAMA_MODEL} on ${ctx.ollamaHost}`;
     if (model.source !== 'api') {
       actions.push({ action: 'reported', reason: `the server did not answer; start it and rerun, or run "ollama rm ${OLLAMA_MODEL}"`, target: model.path });
-    } else if (!interactive) {
-      actions.push({ action: 'kept', reason: 'no terminal to ask; nothing records who pulled this model', target });
-    } else if (await confirm(`Delete the Ollama model ${OLLAMA_MODEL} from ${ctx.ollamaHost}? Nothing records who pulled it.`)) {
+    } else if (sharedModel === 'keep') {
+      actions.push({ action: 'kept', reason: 'answered keep for this run', target });
+    } else if (sharedModel === 'delete' || (interactive && await confirm(sharedModelQuestion(ctx.ollamaHost)))) {
       const removed = await deleteOllamaModel(ctx.ollamaHost);
       actions.push(removed.ok ? { action: 'deleted', target } : { action: 'failed', reason: removed.reason, target });
+    } else if (!interactive) {
+      actions.push({ action: 'kept', reason: 'no terminal to ask and no --shared-model answer; nothing records who pulled this model', target });
     } else {
       actions.push({ action: 'kept', reason: 'answered no', target });
     }
   }
+}
 
+/**
+ * Reports what only the user can remove: module folders a reinstall clears,
+ * dotenv keys, other worktrees and a running Ollama server.
+ *
+ * @param {Map<string, Record<string, any>>} byId Findings by check id.
+ * @param {Array<Record<string, any>>} actions Action log.
+ * @returns {void}
+ */
+function reportUserLeftovers(byId, actions) {
+  for (const item of byId.get('M2').items) {
+    actions.push({ action: 'reported', reason: 'reinstall dependencies once the lockfile drops the dependency', target: item.path });
+  }
   for (const item of byId.get('M7').items) {
     actions.push({ action: 'reported', reason: `remove ${item.key} by hand; values are never read here`, target: item.path });
   }
@@ -1612,25 +1969,27 @@ export async function runApply(options = {}, env = process.env, io = {}) {
   for (const item of byId.get('info').items) {
     actions.push({ action: 'reported', reason: 'the route never recorded the pid it started, so it is left running', target: `pid ${item.pid}` });
   }
-
-  const after = await runMachineChecks(options, env, checkIo);
-  return {
-    actions,
-    after,
-    before,
-    exitCode: after.exitCode,
-    interactive,
-    mode: 'apply',
-    schemaVersion: SCHEMA_VERSION,
-  };
 }
 
 // ───────────────────────────────────────────────────────────────────
 // 7. OUTPUT
 // ───────────────────────────────────────────────────────────────────
 
+/** Index entries printed per output in the human summary; `--json` lists every one. */
+const HUMAN_INDEX_ENTRY_LIMIT = 3;
+
 /**
- * @param {Record<string, string[] | string>} matched Matched groups.
+ * @param {Record<string, string>} entry Live index entry.
+ * @returns {string} One-line rendering.
+ */
+function formatIndexEntry(entry) {
+  if (entry.kind === 'phrase') return `phrase "${entry.phrase}"${entry.spelling ? ` (spelled "${entry.spelling}")` : ''} -> ${entry.path}`;
+  if (entry.text) return `"${entry.text}" in the record of ${entry.path}`;
+  return entry.path;
+}
+
+/**
+ * @param {Record<string, any>} matched Matched groups.
  * @returns {string} One-line rendering.
  */
 function formatMatched(matched) {
@@ -1639,6 +1998,11 @@ function formatMatched(matched) {
   if (matched.prose) parts.push(`prose: ${matched.prose.join(', ')}`);
   if (matched.path) parts.push(`path: ${matched.path.join(', ')}`);
   if (matched.symlink) parts.push(`symlink -> ${matched.symlink}`);
+  if (matched.index) {
+    const shown = matched.index.slice(0, HUMAN_INDEX_ENTRY_LIMIT).map(formatIndexEntry);
+    const more = matched.index.length - shown.length;
+    parts.push(`index: ${shown.join(', ')}${more > 0 ? `, ${more} more` : ''}`);
+  }
   return parts.join('; ');
 }
 
@@ -1647,12 +2011,13 @@ function formatMatched(matched) {
  * @returns {string} Human-readable summary.
  */
 export function formatRepoSummary(report) {
-  const { counts } = report;
+  const { counts, index } = report;
   const lines = [
     'mode        : repo',
     `root        : ${report.root}`,
     `allowlist   : ${report.allowlistPath} (${counts.allowlistRows} row(s), ${counts.allowlistRowsMatched} matched)`,
     `files       : ${counts.files} (identifier ${counts.identifier}, prose ${counts.prose}, path ${counts.path}, symlink ${counts.symlink})`,
+    `index       : ${index.outputsRead.length} output(s) read by structure: ${index.lanePaths} lane path(s), ${index.lanePhrases} lane phrase(s), ${index.laneStrings} lane string(s), ${index.outside} outside specs/ and the allowlist`,
     `allowlisted : ${counts.allowlisted}`,
     `live        : ${counts.live}`,
   ];
@@ -1662,6 +2027,9 @@ export function formatRepoSummary(report) {
     lines.push('', `live files (${shown.length} of ${report.live.length}):`);
     for (const entry of shown) lines.push(`  ${entry.path}  [${formatMatched(entry.matched)}]`);
     if (report.live.length > shown.length) lines.push(`  ... ${report.live.length - shown.length} more; --json lists every file`);
+  }
+  if (index.outside > 0) {
+    lines.push('', `An index entry is live when it points outside specs/ at a file with no allowlist row. Remove the lane words from that file, or regenerate the index if it was deleted: node ${index.generator}`);
   }
   if (report.unusedAllowlistRows.length > 0) {
     lines.push('', 'allowlist rows that matched nothing:');
@@ -1692,10 +2060,10 @@ function machineLines(report) {
   const lines = [
     `root        : ${context.root}`,
     `db dir      : ${context.dbDir}`,
-    `hf hub      : ${context.hubRoot}`,
     `ollama      : ${context.ollamaHost} (store ${context.ollamaModelsDir})`,
     `socket dir  : ${context.socketDir}`,
     ...context.modelServerDirs.filter((dir) => dir.path !== context.socketDir).map((dir) => `server dir  : ${dir.path} (${dir.source}; shared, fixed file names only)`),
+    ...context.laneSources.map((source) => `lane source : ${source} (apply changes nothing while it exists)`),
     '',
   ];
   for (const entry of report.findings) {
@@ -1706,6 +2074,7 @@ function machineLines(report) {
     if (entry.items.length > shown.length) lines.push(`       ... ${entry.items.length - shown.length} more; --json lists every item`);
     for (const note of entry.notes) lines.push(`       note: ${note}`);
   }
+  if (report.askFirst.length > 0) lines.push('', ...report.askFirst.map((entry) => `ask first   : ${entry.question}`));
   return lines;
 }
 
@@ -1732,7 +2101,12 @@ export function formatMachineSummary(report) {
  * @returns {string} Human-readable summary.
  */
 export function formatApplySummary(report) {
-  const lines = ['mode        : apply', `terminal    : ${report.interactive ? 'yes, ask-first items were asked' : 'no, ask-first items were kept'}`, '', 'actions:'];
+  const lines = [
+    'mode        : apply',
+    `terminal    : ${report.interactive ? 'yes' : 'no'} (a --shared-model answer, when given, replaces the question for this run; with neither, the shared model is kept)`,
+    '',
+    'actions:',
+  ];
   if (report.actions.length === 0) lines.push('  none');
   for (const entry of report.actions) {
     lines.push(`  ${entry.action.padEnd(9)} ${entry.target}${entry.reason ? `  (${entry.reason})` : ''}`);
@@ -1748,7 +2122,7 @@ export function formatApplySummary(report) {
 /**
  * @param {string[]} argv Arguments after the script name.
  * @returns {Record<string, any>} Parsed options with `mode` set.
- * @throws {Error} On a missing or unknown mode, an unknown flag, a missing value or a flag the mode does not read.
+ * @throws {Error} On a missing or unknown mode, an unknown flag, a missing or unaccepted value or a flag the mode does not read.
  */
 export function parseArgs(argv) {
   const args = { json: false, mode: undefined };
@@ -1763,6 +2137,8 @@ export function parseArgs(argv) {
     if (Object.hasOwn(VALUE_FLAGS, arg)) {
       const value = argv[i + 1];
       if (value === undefined || value.startsWith('--')) throw new Error(`${arg} requires a value`);
+      const accepted = VALUE_FLAGS[arg].values;
+      if (accepted && !accepted.includes(value)) throw new Error(`${arg} takes ${accepted.join(' or ')}, not ${value}`);
       args[VALUE_FLAGS[arg].key] = value;
       seenFlags.push(arg);
       i += 1;

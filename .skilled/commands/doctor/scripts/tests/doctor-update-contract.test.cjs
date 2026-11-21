@@ -202,3 +202,92 @@ test('the apply result keeps updater records local and asks to resolve framework
 test('the lock template routes stale locks to rollback', () => {
   assert.ok(PRESENTATION.includes('Run /doctor:update rollback to clear the lock'));
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. LANE CLEANUP CONTRACT
+// ─────────────────────────────────────────────────────────────────────────────
+
+const LANE_CLEANUP = blockAfterKey(APPLY_WORKFLOW, 'phase_7_lane_cleanup');
+const LANE_CLEANUP_OUTCOMES = ['clean', 'cleaned', 'remaining', 'failed', 'not_run', 'not_applicable'];
+
+function occurrences(source, text) {
+  return source.split(text).length - 1;
+}
+
+test('the lane cleanup runs after the rebuild prompt and before the state log', () => {
+  const phases = [...APPLY_WORKFLOW.matchAll(/^ {2}(phase_\d+_[a-z_]+):\s*$/gm)].map((match) => match[1]);
+  assert.deepEqual(phases.slice(-3), ['phase_6_rebuild_prompt', 'phase_7_lane_cleanup', 'phase_8_state_log']);
+  const action = APPLY_WORKFLOW.split('\n').find((line) => line.startsWith('action:'));
+  assert.ok(action.endsWith('rebuild.prompt -> lane.cleanup -> state.log'));
+});
+
+test('the lane cleanup runs on every path that reached the rebuild prompt and on no other', () => {
+  assert.match(LANE_CLEANUP, /every path that reached phase_6_rebuild_prompt/);
+  assert.match(LANE_CLEANUP, /whether the rebuild ran, was skipped or failed/);
+  assert.match(LANE_CLEANUP, /Never run it on DRY_RUN, DECLINED, CANCELLED, or a failure or rollback before the rebuild prompt/);
+  const stateLog = blockAfterKey(APPLY_WORKFLOW, 'phase_8_state_log');
+  assert.match(stateLog, /lane_cleanup=not_run on every path that ended before phase_7_lane_cleanup/);
+});
+
+test('the lane cleanup reports first, asks only on a non-empty askFirst, then applies once with stdin closed', () => {
+  const tool = APPLY_WORKFLOW.match(/^\s+lane_cleanup:\s*"([^"]+)"\s*$/m)[1];
+  assert.ok(fs.existsSync(path.resolve(COMMAND_ROOT, '../../..', tool)), tool + ' must exist');
+  assert.ok(LANE_CLEANUP.includes('report_command: "node ' + tool + ' machine --json"'));
+  assert.ok(LANE_CLEANUP.includes('apply_command: "node ' + tool + ' apply --json [--shared-model delete|keep] </dev/null"'));
+  assert.match(LANE_CLEANUP, /Exit 1 with an empty askFirst: run apply_command without --shared-model/);
+  assert.match(LANE_CLEANUP, /Exit 1 with a non-empty askFirst: show each askFirst\[\]\.question verbatim/);
+  assert.match(LANE_CLEANUP, /for the one apply_command that follows/);
+  assert.match(LANE_CLEANUP, /Exit 0: record lane_cleanup=clean, run no apply and ask nothing/);
+});
+
+test('the shared-model answer and the closed stdin appear only in the lane cleanup phase', () => {
+  for (const text of ['--shared-model', '</dev/null']) {
+    assert.ok(occurrences(LANE_CLEANUP, text) > 0, text + ' must appear in phase_7_lane_cleanup');
+    assert.equal(occurrences(APPLY_WORKFLOW, text), occurrences(LANE_CLEANUP, text), text + ' must appear nowhere else');
+  }
+});
+
+test('the lane cleanup asks on every run, reads no earlier answer and writes none', () => {
+  assert.match(LANE_CLEANUP, /Ask on every run\./);
+  assert.match(LANE_CLEANUP, /never to a later run/);
+  assert.match(LANE_CLEANUP, /Never read an earlier state log, run directory or answer to decide whether to ask or what to pass/);
+  assert.match(LANE_CLEANUP, /never write the answer to any file, the state log included/);
+});
+
+test('the state log records the lane cleanup outcome and never an answer', () => {
+  const schema = blockAfterKey(APPLY_WORKFLOW, 'state_log_schema');
+  assert.ok(schema.includes('lane_cleanup: "' + LANE_CLEANUP_OUTCOMES.join('|') + '"'));
+  const fields = blockAfterKey(APPLY_WORKFLOW, 'phase_8_state_log').match(/fields: \[([^\]]+)\]/)[1].split(', ');
+  assert.ok(fields.includes('lane_cleanup'));
+  for (const field of [...schema.matchAll(/^ {2}([a-z_]+):/gm)].map((match) => match[1]).concat(fields)) {
+    assert.doesNotMatch(field, /answer|shared_model|question/, field + ' must not hold an answer');
+  }
+  assert.deepEqual(LANE_CLEANUP.match(/outcomes: \[([^\]]+)\]/)[1].split(', '), LANE_CLEANUP_OUTCOMES);
+});
+
+test('a cleanup exit 1 is remaining and never decides STATUS', () => {
+  assert.match(LANE_CLEANUP, /exit 1 records lane_cleanup=remaining/);
+  assert.match(LANE_CLEANUP, /an exit 1 from the tool is remaining, never STATUS=FAILED/);
+  assert.ok(blockAfterKey(APPLY_WORKFLOW, 'mutation_boundaries').includes('lane cleanup tool lists as deleted in its apply --json actions'));
+});
+
+test('the presentation discloses the cleanup, templates its question and report, and shows its outcome', () => {
+  const headings = PRESENTATION.split('\n').filter((line) => /^## \d+\. /.test(line));
+  const at = (heading) => headings.indexOf(heading);
+  assert.ok(at('## 8. Advisor Rebuild Prompt') >= 0);
+  assert.equal(at('## 9. Lane Cleanup'), at('## 8. Advisor Rebuild Prompt') + 1);
+  assert.equal(at('## 10. Result Templates'), at('## 9. Lane Cleanup') + 1);
+  assert.equal(at('## 11. Compatibility Action'), at('## 10. Result Templates') + 1);
+
+  const plan = sectionAfterHeading(PRESENTATION, '## 4. Apply Plan and Startup Approval');
+  assert.match(plan, /^Lane cleanup: after the rebuild prompt, delete what the retired embedding lane left in this checkout/m);
+
+  const cleanup = sectionAfterHeading(PRESENTATION, '## 9. Lane Cleanup');
+  assert.ok(cleanup.includes('[askFirst[].question]'));
+  assert.ok(cleanup.includes('Reply yes to delete the pulled shared model, or no to keep it.'));
+  assert.ok(cleanup.includes('The next run asks again and never reuses an earlier answer.'));
+  assert.match(cleanup, /^Lane cleanup: \[clean\|cleaned\|remaining\|failed\|not_applicable\]$/m);
+
+  const result = sectionAfterHeading(PRESENTATION, '## 10. Result Templates');
+  assert.ok(result.includes('Lane cleanup: [' + LANE_CLEANUP_OUTCOMES.join('|') + ']'));
+});

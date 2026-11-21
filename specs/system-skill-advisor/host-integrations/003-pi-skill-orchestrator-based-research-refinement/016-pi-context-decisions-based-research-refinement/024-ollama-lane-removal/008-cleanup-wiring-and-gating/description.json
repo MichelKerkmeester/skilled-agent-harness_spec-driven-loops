@@ -1,11 +1,12 @@
 {
+  "level": "3",
   "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating",
   "description": "Phase 8: cleanup-wiring-and-gating",
   "keywords": [
     "phase",
     "cleanup-wiring-and-gating"
   ],
-  "lastUpdated": "2026-11-20T21:51:25.323Z",
+  "lastUpdated": "2026-11-21T07:50:22.478Z",
   "specId": "008",
   "folderSlug": "cleanup-wiring-and-gating",
   "parentChain": [
@@ -15,7 +16,8 @@
     "016-pi-context-decisions-based-research-refinement",
     "024-ollama-lane-removal"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_08-50__wired-the-lane-cleanup-into-doctor-update-apply.md"
+  ]
 }
