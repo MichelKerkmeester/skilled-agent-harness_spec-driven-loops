@@ -589,6 +589,9 @@ if (require.main === module) {
     process.exitCode = main(process.argv.slice(2));
   } catch (error) {
     console.error(`${TAG} ERROR: ${error.message}`);
+    console.error(error instanceof UsageError
+      ? `${TAG} Next: node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check`
+      : `${TAG} Next: fix the cause named above, then run node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check`);
     if (error instanceof UsageError) console.error(USAGE);
     process.exitCode = 2;
   }

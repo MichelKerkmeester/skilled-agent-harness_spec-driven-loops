@@ -199,7 +199,7 @@ function scanSurface(repo, surface, roster) {
 function main() {
   const { root } = parseArgs(process.argv.slice(2));
   const canonicalDir = path.join(root, CANONICAL_REL);
-  if (!fs.existsSync(canonicalDir)) fail(`canonical source dir not found: ${canonicalDir}`);
+  if (!fs.existsSync(canonicalDir)) fail(`canonical source dir not found: ${canonicalDir}`, `${RERUN} --root <repository root>`);
 
   const roster = canonicalRoster(canonicalDir);
   const problems = [];
@@ -253,5 +253,5 @@ function main() {
 try {
   main();
 } catch (err) {
-  fail(`checker crashed: ${err && err.message ? err.message : String(err)}`);
+  fail(`checker crashed: ${err && err.message ? err.message : String(err)}`, `fix the cause named above, then run ${RERUN}`);
 }

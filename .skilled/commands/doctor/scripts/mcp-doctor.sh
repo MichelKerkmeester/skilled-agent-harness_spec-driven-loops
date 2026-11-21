@@ -73,10 +73,16 @@ while [[ $# -gt 0 ]]; do
     --help|-h)   show_help; exit 0 ;;
     --json)      JSON_MODE=true; shift ;;
     --root)
-      if [[ $# -lt 2 ]]; then echo "Error: --root requires a path" >&2; exit "$EXIT_USAGE"; fi
+      if [[ $# -lt 2 ]]; then
+        echo "Error: --root requires a path" >&2
+        echo "Next: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --root <repository root>" >&2
+        exit "$EXIT_USAGE"
+      fi
       ROOT_OVERRIDE="$2"; shift 2 ;;
     *)
-      echo "Unknown option: $1" >&2; show_help >&2; exit "$EXIT_USAGE" ;;
+      echo "Unknown option: $1" >&2
+      echo "Next: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --help" >&2
+      show_help >&2; exit "$EXIT_USAGE" ;;
   esac
 done
 

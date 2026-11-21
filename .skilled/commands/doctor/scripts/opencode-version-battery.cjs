@@ -1078,6 +1078,7 @@ if (require.main === module) {
     (code) => { process.exitCode = code; },
     (error) => {
       process.stderr.write(`${error?.message ?? error}\n`);
+      process.stderr.write('Next: fix the cause named above, then rerun this opencode-version-battery.cjs command\n');
       process.exitCode = 2;
     },
   );

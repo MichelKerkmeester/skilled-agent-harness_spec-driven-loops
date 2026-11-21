@@ -272,7 +272,7 @@ function main(argv) {
     process.stdout.write(render(template, values));
   } catch (error) {
     if (!(error instanceof TemplateError)) throw error;
-    process.stderr.write(`ERROR: ${error.message}\n`);
+    process.stderr.write(`ERROR: ${error.message}\nNext: fix that marker in the CI template under .skilled/commands/doctor/assets, then run node .skilled/commands/doctor/scripts/ci-scaffold.cjs\n`);
     return 4;
   }
   return 0;

@@ -171,6 +171,7 @@ resolve_project_root() {
     # An explicit root that is missing must never fall back to another tree.
     if [[ ! -d "$hint" ]]; then
       printf 'Error: --root is not a directory: %s\n' "$hint" >&2
+      printf 'Next: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --root <repository root>\n' >&2
       return 1
     fi
     cd "$hint" && pwd

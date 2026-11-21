@@ -198,6 +198,7 @@ function main(argv, { cwd = process.cwd(), env = process.env } = {}) {
     const known = error instanceof RequestError;
     const message = known ? error.message : `unexpected: ${error.message}`;
     process.stderr.write(`sk-code-quality-config: ${message}\n`);
+    if (!known) process.stderr.write('Next: fix the cause named above, then rerun this sk-code-quality-config.cjs command\n');
     const mode = known && error.mode ? ` MODE=${error.mode}` : '';
     process.stdout.write(`STATUS=FAIL${mode} ERROR=${known ? error.code : 'INTERNAL_ERROR'} MESSAGE="${message.replace(/"/g, "'")}"\n`);
     return known ? error.exit : 2;

@@ -65,11 +65,13 @@ while [[ $# -gt 0 ]]; do
       ;;
     -*)
       echo "ERROR: unknown option: $1" >&2
+      echo "Next: bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh [<repo-root>]" >&2
       exit 2
       ;;
     *)
       if [[ -n "$ROOT" ]]; then
         echo "ERROR: only one repo-root argument is accepted" >&2
+        echo "Next: bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh <repo-root>" >&2
         exit 2
       fi
       ROOT="$1"
@@ -83,13 +85,22 @@ if [[ -z "$ROOT" ]]; then
 fi
 if [[ ! -d "$ROOT" ]]; then
   echo "ERROR: repo root not found: $ROOT" >&2
+  echo "Next: bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh <repo-root>" >&2
   exit 2
 fi
 ROOT="$(cd "$ROOT" && pwd)"
 MANIFEST="$ROOT/.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml"
 
-command -v python3 >/dev/null 2>&1 || { echo "ERROR: python3 required" >&2; exit 2; }
-[[ -f "$MANIFEST" ]] || { echo "ERROR: manifest not found: $MANIFEST" >&2; exit 2; }
+command -v python3 >/dev/null 2>&1 || {
+  echo "ERROR: python3 required" >&2
+  echo "Next: install python3, then rerun bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh" >&2
+  exit 2
+}
+[[ -f "$MANIFEST" ]] || {
+  echo "ERROR: manifest not found: $MANIFEST" >&2
+  echo "Next: bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh <repo-root that ships the doctor command>" >&2
+  exit 2
+}
 
 overall_exit=0
 
@@ -112,7 +123,8 @@ import sys
 try:
     import yaml
 except ImportError:
-    print("ERROR: PyYAML is required (python3 -m pip install pyyaml)", file=sys.stderr)
+    print("ERROR: PyYAML is required", file=sys.stderr)
+    print("Next: python3 -m pip install pyyaml", file=sys.stderr)
     sys.exit(2)
 
 ROOT = os.environ["ROOT"]
@@ -214,6 +226,7 @@ fi
 
 if [[ -z "${WORKLIST//[$'\n\t ']/}" ]]; then
   echo "ERROR: no scripts resolved from manifest or discovery" >&2
+  echo "Next: add a row per MCP script to $MANIFEST, then rerun bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh" >&2
   exit 2
 fi
 

@@ -399,10 +399,10 @@ function checkMetadata(meta, commands, repo) {
 function main() {
   const opts = parseArgs(process.argv.slice(2));
   const commandsDir = path.join(opts.root, '.skilled/commands');
-  if (!fs.existsSync(commandsDir)) fail(`commands directory not found: ${commandsDir}`);
+  if (!fs.existsSync(commandsDir)) fail(`commands directory not found: ${commandsDir}`, `${RERUN} --root <repository root>`);
 
   const commands = readCommandTree(commandsDir);
-  if (commands.length === 0) fail(`no command files under ${commandsDir}`);
+  if (commands.length === 0) fail(`no command files under ${commandsDir}`, `${RERUN} --root <repository root>`);
   const namespaces = new Set(commands.map((c) => c.ns).filter(Boolean));
 
   const drift = [];
@@ -464,5 +464,5 @@ function main() {
 try {
   main();
 } catch (err) {
-  fail(`checker crashed: ${err && err.message ? err.message : String(err)}`);
+  fail(`checker crashed: ${err && err.message ? err.message : String(err)}`, `fix the cause named above, then run ${RERUN}`);
 }

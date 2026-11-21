@@ -1616,7 +1616,13 @@ function readRunJson(runDir, relative, fallback) {
 function createAlignment(repo, options) {
   const result = makePlan(repo, options);
   if (!options.dryRun) {
-    const runDir = assertRunDirectory(result.plan.runDir);
+    let runDir;
+    try {
+      runDir = assertRunDirectory(result.plan.runDir);
+    } catch (error) {
+      if (error.next) throw error;
+      throw withNext(error, SCRIPT_COMMAND + ' align --repo ' + shellQuote(repo) + ' --out <a new empty directory>');
+    }
     result.plan.runDir = runDir;
     result.plan.externalRunDir = !withinRoot(repo, runDir);
     for (const entry of result.evidence) writeRunFile(runDir, entry.path, entry.content);
@@ -1669,7 +1675,12 @@ function normalizeRunUnits(run) {
 }
 
 function normalizedDecisionPath(input, plan) {
-  const normalized = assertSafeRelative(input, '--path');
+  let normalized;
+  try {
+    normalized = assertSafeRelative(input, '--path');
+  } catch (error) {
+    throw withNext(error, 'rerun this decide command with --path set to a planned file path inside the repository');
+  }
   const candidate = normalized.startsWith('.skilled/') ? normalized : '.skilled/' + normalized;
   if (!plan.files.some((file) => file.path === candidate)) {
     throw new Error('path is not a planned file: ' + input);
