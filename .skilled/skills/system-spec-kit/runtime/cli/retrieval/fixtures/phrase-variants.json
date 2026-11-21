@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5fe9b2de4e5eea69a20f0edec3b3cad886cef7092da036d66a970f02d5a1aaa7",
+  "manifestHash": "2243c24c42d8b81440ed474fe982a442d7974d81fda6ceda34fb309d0dfeb3ea",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11745,6 +11745,9 @@
     ],
     "align system spec kit tasks": [
       "align system spec kit tasks"
+    ],
+    "align the doctor surface with the removed advisor": [
+      "align the doctor surface with the removed advisor"
     ],
     "align the hub routing repo rule": [
       "align the hub routing repo rule"
@@ -44400,6 +44403,21 @@
     ],
     "doctor install guidance": [
       "doctor install guidance"
+    ],
+    "doctor lane removal alignment": [
+      "doctor lane removal alignment"
+    ],
+    "doctor lane removal alignment acceptance criteria": [
+      "doctor lane removal alignment acceptance criteria"
+    ],
+    "doctor lane removal alignment implementation summary": [
+      "doctor lane removal alignment implementation summary"
+    ],
+    "doctor lane removal alignment plan": [
+      "doctor lane removal alignment plan"
+    ],
+    "doctor lane removal alignment tasks": [
+      "doctor lane removal alignment tasks"
     ],
     "doctor manual playbook rows": [
       "doctor manual playbook rows"

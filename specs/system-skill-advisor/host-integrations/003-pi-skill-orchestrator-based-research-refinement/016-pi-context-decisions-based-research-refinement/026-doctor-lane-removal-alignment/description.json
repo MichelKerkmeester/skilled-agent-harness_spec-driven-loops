@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment",
+  "description": "Align the doctor surface with the removed advisor lane: cleanup routing, the update guide for linked and copied installs, and release 1.3.0.0",
+  "keywords": [
+    "align",
+    "doctor",
+    "surface",
+    "removed",
+    "advisor",
+    "lane",
+    "cleanup",
+    "routing",
+    "guide",
+    "linked",
+    "copied",
+    "installs",
+    "release"
+  ],
+  "lastUpdated": "2026-11-21T16:25:00.315Z",
+  "specId": "026",
+  "folderSlug": "doctor-lane-removal-alignment",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_17-24__planned-the-doctor-lane-removal-alignment-make.md"
+  ]
+}
