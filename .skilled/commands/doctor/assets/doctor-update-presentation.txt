@@ -389,6 +389,7 @@ After the nearest-release check passes or an approved trust retry succeeds, ask 
 
 ```text
 Record release [release] as the base for these units?
+The next /doctor:update check judges each unit against this base, instead of an inferred one.
 Reply yes to write .skilled/skills/.state/doctor-update/base.json, or no to leave it unchanged.
 ```
 
@@ -414,7 +415,7 @@ After the battery, ask:
 ```text
 The release update completed its post-apply checks.
 Run /doctor:skill-advisor rebuild now so skill routing uses the updated skills?
-Reply yes to run it, or no to skip.
+Reply yes to run it, or no to skip. A skip leaves routing on the previous skill metadata until you run /doctor:skill-advisor rebuild.
 ```
 
 Record `reindex=rebuilt` only after successful completion is observed. If skipped, show:
@@ -477,6 +478,7 @@ STATUS=[APPLIED|PARTIAL|ROLLED_BACK|DECLINED|CANCELLED|DRY_RUN|FAILED]
 ```text
 STATUS=FAILED ERROR="[sanitized error]"
 Action: [check|align|apply]
+Why: [the updater's indented reason line when it printed one, else what the refusal protects]
 State record: [validated path or not persisted for this action]
 Next: [the updater's own Next: command when it printed one, else the safe next step]
 ```

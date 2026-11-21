@@ -134,7 +134,7 @@ With `--dry-run`, follow the plan with `Dry run: nothing was written.` and conti
 Otherwise ask:
 
 ```text
-Apply this change? Reply approve to write it, or no to cancel.
+Apply this change? Reply approve to run the git config command above, then the setting is read back and its undo command printed. Reply no to cancel with nothing written.
 ```
 
 ### Standards: Status
@@ -192,7 +192,7 @@ With `--dry-run`, follow the plan with `Dry run: nothing was written.` and conti
 Otherwise ask:
 
 ```text
-Apply this change? Reply approve to write it, or no to cancel.
+Apply this change? Reply approve to write .sk-git/[file], then the standards check runs on it. Reply no to cancel with nothing written.
 ```
 
 When the plan lists prose to update, ask after the write:
@@ -232,10 +232,13 @@ DOCTOR TARGET FAILED
 Target: [target]
 Step: [setup|workflow phase]
 Error: [message]
+Why: [the reason the script printed under the error, else what the failed step protects]
 Changed: [changes applied before the failure, or none]
-Next: [recommended command or manual action]
+Next: [the script's own Next: line when it printed one, else the command from the matching NEXT-STEP SUGGESTIONS row, or the accepted invocation]
 STATUS=FAIL ERROR="[message]"
 ```
+
+`git-setup-check.cjs` and `hook-wiring-check.cjs` end a bad invocation with a `Next:` line naming the exact command. Show it as printed.
 
 ### Setup Check Result
 

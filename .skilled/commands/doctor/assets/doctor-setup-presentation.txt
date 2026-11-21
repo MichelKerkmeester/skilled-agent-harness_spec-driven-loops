@@ -93,9 +93,12 @@ DOCTOR TARGET FAILED
 Target: setup
 Step: [leg]
 Error: [message]
-Next: [recommended command or manual action]
+Why: [the reason the leg's checker printed, else what that leg checks]
+Next: [the checker's own Next: line when it printed one, else the repair command for that leg]
 STATUS=ERROR ERROR="[message]"
 ```
+
+This block is for a leg that could not run at all, such as a checker that crashed or was called wrongly. A leg that ran and failed is a row in the per-leg table with its repair command, not this block. Every leg only reads, so nothing was changed.
 
 ## 5. Troubleshooting Display
 

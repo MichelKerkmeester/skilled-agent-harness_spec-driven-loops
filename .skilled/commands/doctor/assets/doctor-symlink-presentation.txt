@@ -283,8 +283,9 @@ DOCTOR TARGET FAILED
 Target: [check|link|unlink]
 Step: [the phase or action that stopped the run]
 Error: [the engine's code and message]
+Why: [the reason the engine printed under the error, else what the refusal protects]
 Changed: [what was written before the failure, or none]
-Next: [the repair, or the accepted invocation]
+Next: [the engine's own Next: line when it printed one, else the repair or the accepted invocation]
 STATUS=FAIL ERROR="[code]"
 ```
 

@@ -270,7 +270,7 @@ workflow:
       - "When the operator declined a question, render the cancelled result naming what was declined, state Changed: none with the scratch root deleted, and end with STATUS=CANCELLED ACTION=cancelled."
       - "When dry_run is true, render the dry-run result: the plan, or the first plan's refusal as the pending follow-up when it refused, then the dry-run line and STATUS=OK, with Changed: none."
       - "When the plan reported no writes, render the already-converted result with the engine's message and STATUS=OK."
-      - "When a refusal, a missing asset, a preservation failure or a failed read-back stopped the run, render the failure result naming the phase and the engine's code (STATUS=FAIL)."
+      - "When a refusal, a missing asset, a preservation failure or a failed read-back stopped the run, render the failure result, with the script's Next: line as printed when it has one, naming the phase and the engine's code (STATUS=FAIL)."
       - "End by saying the operator commits the converted skill themselves; this route stages and commits nothing."
 
 # ─────────────────────────────────────────────────────────────────

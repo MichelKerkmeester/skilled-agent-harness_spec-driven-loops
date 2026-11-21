@@ -221,10 +221,13 @@ DOCTOR TARGET FAILED
 Target: [target]
 Step: [setup|workflow phase]
 Error: [message]
+Why: [the reason the script printed under the error, else what the failed step protects]
 Changed: [changes applied before the failure, or none]
-Next: [recommended command or manual action]
+Next: [the script's own Next: line when it printed one, else the command from the matching Troubleshooting row, or the accepted invocation]
 STATUS=FAIL ERROR="[message]"
 ```
+
+`ci-report.cjs`, `ci-scaffold.cjs` and `ci-toggle.cjs` end each refusal with a `Next:` line naming the exact command. Show it as printed.
 
 ## 5. TROUBLESHOOTING DISPLAY
 
