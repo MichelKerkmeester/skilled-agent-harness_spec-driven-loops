@@ -3517,14 +3517,17 @@ function makeLinksFirst(root, records) {
 // judged where the link will send it, the way apply judges it once the link
 // stands. A write through a link that then leads outside the tree is refused
 // first, as apply refuses it. Any other entry the safety pass let through is
-// planned again at the link's landing in the tree, against the bytes apply will
-// read there, with the state and the pin still read at the manifest path. Its
-// refusals name the manifest path; a clean plan there waits on the link, which
-// only apply can make. A remove-root row, and a landing plan that would read a
-// protected path, keep the plan made at the manifest path. A
-// landing that leads outside the tree is refused before anything there is read,
-// and one under another link not made yet is left as planned, since its bytes
-// cannot be read until that link stands.
+// planned again at the link's landing in the tree, with the state and the pin
+// still read at the manifest path. Only the planner's problems are judged
+// there; whether a file at the landing is a live edit is left to apply. The
+// landing's problems are kept word for word, since they name paths that exist,
+// under one line that names the manifest path and the link; a clean plan there
+// waits on the link, which only apply can make. A remove-root row, and a
+// landing plan that would read a protected path, keep the plan made at the
+// manifest path. A link that leads outside the tree is never read through: an
+// entry with problems there waits on the link, and a clean one is left as
+// planned. A landing under another link not made yet is left as planned, since
+// its bytes cannot be read until that link stands.
 function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
   const root = ctx.root;
   if (analysis.layout.problems.length > 0) return;
@@ -3571,10 +3574,13 @@ function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
 }
 
 // Plan one entry at the landing of the missing layout link above it, or say
-// null when its plan stands as made. Its keys stay at the manifest path: the
-// state and the pin are read there, the problems name the manifest path, and
-// the plan returned writes nothing, since status has no link to write through.
-// A plan apply could carry out waits on the link instead.
+// null when its plan stands as made. The state and the pin are read at the
+// manifest path, and the plan returned writes nothing, since status has no link
+// to write through. Problems found at the landing are returned as the planner
+// wrote them, after a line that names the manifest path, so no path in them is
+// rewritten. A plan apply could carry out waits on the link instead, and so
+// does one with problems under a link that leads outside the tree, which status
+// does not read.
 function planAtLanding(ctx, plan, pending, { state, exact, recordedLinks, engineLinks, upstreamBytes }) {
   const root = ctx.root;
   const { entry } = plan;
@@ -3589,9 +3595,16 @@ function planAtLanding(ctx, plan, pending, { state, exact, recordedLinks, engine
   if (!record) return null;
   const linkPath = path.resolve(root, record.link.path);
   const landing = path.resolve(path.dirname(linkPath), record.link.target);
-  if (!isWithin(absoluteRoot, landing) || landing === absoluteRoot) return null;
-  if (pending.some((other) => isWithin(fold(path.resolve(root, other.link.path)), fold(landing)))) return null;
   const linkKey = relativeKey(root, linkPath);
+  if (!isWithin(absoluteRoot, landing)) {
+    if (plan.problems.length === 0) return null;
+    return refusedPlan(entry, withRemedy(
+      `${entry.destination} waits on the layout link ${linkKey}, which apply makes before it writes the entry`,
+      `${linkKey} leads outside the tree, to ${record.link.target}, and status does not read outside the tree, so ${entry.destination} is judged once apply has made the link`,
+      `${nextEngine(root, 'apply')}, then ${ENGINE_COMMAND} status`));
+  }
+  if (landing === absoluteRoot) return null;
+  if (pending.some((other) => isWithin(fold(path.resolve(root, other.link.path)), fold(landing)))) return null;
   const landingKey = relativeKey(root, landing);
   const under = (key, prefix) => fold(key) === fold(prefix) || fold(key).startsWith(fold(prefix) + '/');
   const swap = (key, from, to) => (under(key, from) ? to + key.slice(from.length) : key);
@@ -3622,8 +3635,11 @@ function planAtLanding(ctx, plan, pending, { state, exact, recordedLinks, engine
   if (landed.outputs.some((output) => [output.filePath, output.sourcePath]
     .some((filePath) => filePath && isProtectedReadPath(toManifestPath(filePath), exact)))) return null;
   if (landed.problems.length > 0) {
-    const problems = landed.problems.map((problem) => problem.split(landingDestination).join(entry.destination));
-    return { entry, problems, writes: [], deletes: [], outputs: [] };
+    const header = withRemedy(
+      `${entry.destination} waits on the layout link ${linkKey}, and apply refuses it once the link stands`,
+      `${linkKey} is not there yet, so ${entry.destination} was judged at ${landingDestination}, where the link leads`,
+      'Next: run the fix on each line below, then ' + nextEngine(root, 'apply').slice('Next: '.length));
+    return { entry, problems: [header, ...landed.problems], writes: [], deletes: [], outputs: [] };
   }
   if (plan.problems.length === 0) return null;
   return refusedPlan(entry, withRemedy(

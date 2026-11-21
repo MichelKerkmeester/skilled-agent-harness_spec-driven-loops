@@ -671,11 +671,20 @@ test('status sends a pinned entry under a missing layout link to apply when the 
   assert.match(after.output, /^in-sync=1 /m, after.output);
 });
 
+// When the target refuses the entry, status says so in two parts: one line that
+// names the manifest path, the link and the target, then the planner's own lines
+// word for word, which name the target's paths, so each Next runs as pasted.
+const WAITS_REFUSED = /^MISS {5}tool: up\/tool\.md waits on the layout link up, and apply refuses it once the link stands$/m;
+const JUDGED_AT_TARGET = /^ {2}up is not there yet, so up\/tool\.md was judged at target\/tool\.md, where the link leads$/m;
+
 test('status and apply refuse a pinned entry under a missing layout link alike when the target lacks the file', (t) => {
   const fixture = pinnedUnderMissingLink(t, null);
   const status = fixture.run(['status']);
   assert.equal(status.code, 1, status.output);
-  assert.match(status.output, /^MISS {5}tool: upstream removed up\/tool\.md; rebase the overlay$/m, status.output);
+  assert.match(status.output, WAITS_REFUSED, status.output);
+  assert.match(status.output, JUDGED_AT_TARGET, status.output);
+  assert.match(status.output, /^MISS {5}tool: upstream removed target\/tool\.md; rebase the overlay$/m, status.output);
+  assert.ok(status.output.indexOf('waits on the layout link') < status.output.indexOf('upstream removed'), status.output);
   const apply = fixture.run(['apply']);
   assert.equal(apply.code, 1, apply.output);
   assert.match(apply.output, /^BLOCKED {2}tool: upstream removed up\/tool\.md; rebase the overlay$/m, apply.output);
@@ -686,14 +695,91 @@ test('status and apply refuse a pinned entry under a missing layout link alike w
   const fixture = pinnedUnderMissingLink(t, 'someone else\n');
   const status = fixture.run(['status']);
   assert.equal(status.code, 1, status.output);
-  assert.match(status.output, /^MISS {5}tool: upstream changed up\/tool\.md; rebase the overlay$/m, status.output);
+  assert.match(status.output, WAITS_REFUSED, status.output);
+  assert.match(status.output, /^MISS {5}tool: upstream changed target\/tool\.md; rebase the overlay$/m, status.output);
   assert.equal(status.output.includes('upstream removed'), false, status.output);
-  assert.equal(/target\/tool\.md/.test(status.output), false, status.output);
+  const json = JSON.parse(fixture.run(['status', '--json']).output);
+  const problems = json.check.problems;
+  const header = problems.findIndex((problem) => problem.startsWith('tool: up/tool.md waits on the layout link up, and apply refuses it'));
+  assert.notEqual(header, -1, JSON.stringify(json.check));
+  assert.equal(problems[header + 1], 'tool: upstream changed target/tool.md; rebase the overlay', JSON.stringify(json.check));
   const apply = fixture.run(['apply']);
   assert.equal(apply.code, 1, apply.output);
   assert.match(apply.output, /^BLOCKED {2}tool: upstream changed up\/tool\.md; rebase the overlay$/m, apply.output);
   assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool.md'), 'utf8'), 'someone else\n');
+});
+
+// A layout link that leads outside the tree is never read through by status, so
+// a pinned entry under it waits on the link whatever bytes stand out there, and
+// apply, which follows the manifest's own link, judges it once the link stands.
+test('status waits on a missing layout link that leads outside the tree without reading there, and apply writes through it', (t) => {
+  const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up/tool.md', pinnedSha256 }], [{ path: 'up', target: '../outside' }]);
+  const outsideFile = path.join(fixture.workspace, 'outside', 'tool.md');
+  fs.mkdirSync(path.dirname(outsideFile));
+  const outputs = [];
+  for (const bytes of [null, 'someone else\n', 'upstream tool\n']) {
+    if (bytes === null) fs.rmSync(outsideFile, { force: true });
+    else fs.writeFileSync(outsideFile, bytes);
+    const status = fixture.run(['status']);
+    assert.equal(status.code, 1, status.output);
+    assert.match(status.output, /^MISS {5}tool: up\/tool\.md waits on the layout link up, which apply makes before it writes the entry$/m, status.output);
+    assert.match(status.output, /^ {2}up leads outside the tree, to \.\.\/outside, and status does not read outside the tree, so up\/tool\.md is judged once apply has made the link$/m,
+      status.output);
+    assert.match(status.output, /^ {2}Next: from .*: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs apply, then node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs status$/m,
+      status.output);
+    assert.equal(/upstream (removed|changed)/.test(status.output), false, status.output);
+    outputs.push(status.output);
+  }
+  assert.equal(outputs[1], outputs[0]);
+  assert.equal(outputs[2], outputs[0]);
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(outsideFile, 'utf8'), 'tool file\n');
+});
+
+test('status keeps the planner text whole when the destination is the layout link path itself', (t) => {
+  const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up', pinnedSha256 }], [{ path: 'up', target: 't' }]);
+  writeFile(fixture.tree, 't', 'someone else\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: up waits on the layout link up, and apply refuses it once the link stands$/m, status.output);
+  assert.match(status.output, /^ {2}up is not there yet, so up was judged at t, where the link leads$/m, status.output);
+  assert.match(status.output, /^MISS {5}tool: upstream changed t; rebase the overlay$/m, status.output);
+  assert.equal(/upsupream|uphe/.test(status.output), false, status.output);
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, /^BLOCKED {2}tool: upstream changed up; rebase the overlay$/m, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+});
+
+test('status names a missing source whole when its path holds the layout link target', (t) => {
+  const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, source: 'files/real/tool.md', destination: 'up/tool.md', pinnedSha256 }], [{ path: 'up', target: 'real' }]);
+  writeFile(fixture.tree, 'real/tool.md', 'upstream tool\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /files\/real\/tool\.md/, status.output);
+  assert.equal(status.output.includes('files/up/tool.md'), false, status.output);
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, /files\/real\/tool\.md/, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+});
+
+test('status quotes every path with a space on its Next lines for an entry under a missing layout link', (t) => {
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'my up/tool.md' }], [{ path: 'my up', target: 'real' }]);
+  writeFile(fixture.tree, 'real/tool.md/user.md', 'user work\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: my up\/tool\.md waits on the layout link my up, and apply refuses it once the link stands$/m, status.output);
+  const nextLines = status.output.split('\n').filter((line) => /^\s*Next:/.test(line));
+  assert.ok(nextLines.some((line) => line.includes(path.join(fixture.tree, 'real', 'tool.md'))), status.output);
+  for (const line of nextLines) {
+    assert.equal(/my up/.test(line.replace(/'[^']*'/g, '')), false, line);
+  }
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'real', 'tool.md', 'user.md'), 'utf8'), 'user work\n');
 });
 
 // A missing layout link inside another one whose target leads outside the tree
