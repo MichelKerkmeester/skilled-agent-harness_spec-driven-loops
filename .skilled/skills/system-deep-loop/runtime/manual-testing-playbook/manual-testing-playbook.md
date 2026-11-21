@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.14.0
+version: 1.4.15.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -825,12 +825,12 @@ Expected signals: The census prefixes `runs:`, `pairs:`, `class near-line:`, `cl
 ### DLR-066 | Fan-out sizes each expansive lineage from its seed share
 
 #### Description
-Under `--depth-mode expansive`, a lineage with no matrix `iterations` value gets a budget from its own seed share, a lineage dealt no seed node runs at its loop default (12 native, the workflow default for a CLI lineage), and stderr notes name each derived budget and warn once when lineages outnumber the open seed nodes.
+Under `--depth-mode expansive`, a lineage with no matrix `iterations` value gets a budget from its own seed share, a lineage dealt no seed node runs at its loop default (10 for research, 7 for review), and stderr notes name each derived budget and warn once when lineages outnumber the open seed nodes. A matrix that holds a native lineage is refused before any lineage is sized, and the root config's `maxIterations` becomes the largest lineage cap.
 
 #### Scenario Contract
 Prompt: `Check that an expansive fan-out sizes each lineage from its own seed share, keeps a matrix iterations value, runs a lineage with no seed share at its loop default, and names each budget on stderr. Return a PASS or FAIL verdict with the reason.`
 
-Expected signals: the four per-lineage budget cases pass; a research matrix of four lineages gets `[12, 10, 12, 5]`; a review lineage dealt two nodes gets 24 and one dealt none gets 7; the notes open with `[fanout-run] 3 lineages share 1 open seed node, so 2 lineages get no seed share`.
+Expected signals: the six per-lineage budget cases pass; a research matrix of four lineages gets `[12, 10, 10, 5]`; a review lineage dealt two nodes gets 24 and one dealt none gets 7; the notes open with `[fanout-run] 3 lineages share 1 open seed node, so 2 lineages get no seed share`; a matrix holding a native lineage exits 3 before any seed share is named; the root config's `maxIterations` becomes 14 with the line `[fanout-run] budget table: a 14, b 12 iterations; root maxIterations 14, the largest lineage cap`, and stays untouched under `--preview` or an explicit `--max-iterations`.
 
 #### Test Execution
 > **Feature File:** [DLR-066](../manual-testing-playbook/fanout/fanout-expansive-lineage-budget.md)

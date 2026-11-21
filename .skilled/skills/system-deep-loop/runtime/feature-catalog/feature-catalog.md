@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.19.0
+version: 1.4.20.0
 ---
 
 # runtime/: Feature Catalog
@@ -771,7 +771,8 @@ open depth-1 frontier nodes round-robin in node-id order by UTF-16 code unit, `w
 the share of each lineage dealt a node that has no store yet, the prompt binds `depthMode` and `frontier_scope`, and the split is
 recorded as `frontier_partition` in `orchestration-summary.json`. `expansiveLineageBudgets`
 sizes a lineage with no matrix `iterations` from its seed share, and a lineage dealt no seed
-node runs at its loop default: 12 native, 7 CLI review, 10 CLI research.
+node runs at its loop default: 10 for research, 7 for review. A native lineage is refused before
+any lineage is sized.
 
 Each progress row carries the lineage's committed iterations, `lastCommitAt`, frontier `nodes`
 and `flaggedPasses`, and `--status` prints them per lineage without writing. `--stop` ends a live

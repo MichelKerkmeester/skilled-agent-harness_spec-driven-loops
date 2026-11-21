@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.25.0
+version: 1.4.26.0
 ---
 
 # Fan-out CLI lineage driver
@@ -39,7 +39,9 @@ the post-subprocess salvage step.
 
 Fully shipped. Supports every CLI executor kind (`EXECUTOR_KINDS` in `lib/deep-loop/executor-config.ts`): `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-deepseek-harness` (experimental).
 Per-lineage subprocess timeout = `min(iterations *
-timeoutSeconds * 2, 4h)`. TSX bootstrap (mirrors `convergence.cjs` pattern) ensures
+timeoutSeconds * 2, 4h)`. A lineage's stdout is capped at 20 MB: past it the process
+group is stopped and the lineage fails with `stdout passed the <n>-byte cap`, even when
+the child exits 0, and it is not reported as a timeout. TSX bootstrap (mirrors `convergence.cjs` pattern) ensures
 TypeScript imports (`parseFanoutConfig`, `expandLineages`) resolve in the CJS context. Exit
 codes: 0=all ok, 2=some failed, 3=all failed or refused before start. A research or review
 matrix that expands to one lineage is refused with exit 3 before any lineage directory or

@@ -9,7 +9,7 @@ trigger_phrases:
   - "research convergence decision order"
 importance_tier: important
 contextType: implementation
-version: 1.14.16.0
+version: 1.14.17.0
 ---
 
 # Convergence Detection Reference
@@ -156,7 +156,7 @@ Every non-terminal STOP candidate must pass the gate bundle before the workflow 
 |------|------|---------|
 | Convergence Gate | Low novelty holds for the required consecutive evidence iterations | Emit `blocked_stop`, continue |
 | Coverage Gate | Every key question has an evidence-backed answer | Emit `blocked_stop`, continue |
-| Quality Gate | Source diversity and focus alignment pass, while the reserved single-weak-source entry reports `notEvaluated` and never blocks a stop | `CONTINUE` with `qualityGuardFailed`, no `blocked_stop` event |
+| Quality Gate | Source diversity and focus alignment pass, while the reserved single-weak-source entry reports `notEvaluated` and never blocks a stop | `BLOCKED` with `qualityGuardFailed`, emit `blocked_stop`, continue |
 | Graph Gate | A graph decision exists and graph coverage has no STOP blockers | Emit `graph_convergence`/`blocked_stop`, continue |
 
 The reducer surfaces legal-stop evidence through the findings registry and dashboard. The JSONL event shapes live in `../state/state-jsonl.md`.

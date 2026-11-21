@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.16.0
+version: 1.14.17.0
 ---
 
 # deep-research: Feature Catalog
@@ -67,7 +67,7 @@ Chooses whether the loop continues, enters stuck recovery, or reaches a legal st
 
 #### How It Works
 
-The loop first applies hard stops and the three-signal `shouldContinue()` vote, then runs the legal-stop gate bundle and optional graph convergence check before accepting STOP. When a gate other than the quality guard blocks a stop, convergence.cjs records a first-class `blocked_stop` event through the append gateway and the loop keeps running with an explicit recovery hint. A failed quality guard instead returns CONTINUE with `qualityGuardFailed` and writes no event.
+The loop first applies hard stops and the three-signal `shouldContinue()` vote, then runs the legal-stop gate bundle and optional graph convergence check before accepting STOP. When a gate, the quality guard included, blocks a stop, convergence.cjs records a first-class `blocked_stop` event through the append gateway and the loop keeps running with an explicit recovery hint. A failed quality guard reports reasonDetail `qualityGuardFailed`.
 
 #### Source Files
 
@@ -438,7 +438,7 @@ Blocks weak or incomplete STOP decisions even after convergence math votes to st
 
 #### How It Works
 
-The legal-stop bundle checks coverage, evidence density, and research quality before STOP becomes final. Current guard behavior requires source diversity and focus alignment between the answered questions and the key questions in the same iteration record. The bundle also carries a reserved single-weak-source entry that reports `notEvaluated`. A failed guard forces the loop back to CONTINUE with reasonDetail `qualityGuardFailed` and writes no event. Only a graph `STOP_BLOCKED` records `blocked_stop`.
+The legal-stop bundle checks coverage, evidence density, and research quality before STOP becomes final. Current guard behavior requires source diversity and focus alignment between the answered questions and the key questions in the same iteration record. The bundle also carries a reserved single-weak-source entry that reports `notEvaluated`. A failed guard returns BLOCKED with reasonDetail `qualityGuardFailed` and records `blocked_stop`, as a graph `STOP_BLOCKED` does.
 
 #### Source Files
 

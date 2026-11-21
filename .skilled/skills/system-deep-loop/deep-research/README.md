@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.27.0
+version: 1.14.28.0
 ---
 
 # deep-research
@@ -156,7 +156,7 @@ A low novelty score only nominates STOP.
 | MAD noise floor | 0.35 | The latest ratio sits at or below `MAD * 1.4826` |
 | Question entropy | 0.35 | Evidence-backed coverage reaches 0.85 |
 
-A normalized score above 0.60 nominates STOP. The legal-stop gates then check that low novelty held for the required rounds, that every key question has an evidence-backed answer, that sources are diverse and that research stayed aligned with the key questions. A reserved single-weak-source entry reports `notEvaluated` and never blocks a stop. A failed quality guard returns CONTINUE with `qualityGuardFailed` and records no event. A missing graph decision blocks every non-terminal STOP, and a graph `STOP_BLOCKED` records `blocked_stop` and continues with a recovery focus.
+A normalized score above 0.60 nominates STOP. The legal-stop gates then check that low novelty held for the required rounds, that every key question has an evidence-backed answer, that sources are diverse and that research stayed aligned with the key questions. A reserved single-weak-source entry reports `notEvaluated` and never blocks a stop. A failed quality guard returns BLOCKED with `qualityGuardFailed` and records the same `blocked_stop` row a graph block records. A missing graph decision blocks every non-terminal STOP, and a graph `STOP_BLOCKED` records `blocked_stop` and continues with a recovery focus.
 
 The shipped config floors convergence at 3 rounds, sets `stuckThreshold` to 3 and caps a run at 10 rounds and 120 minutes. Lower `--convergence` asks for more rounds. Raise it when the loop should finish sooner.
 
@@ -168,7 +168,7 @@ An admission step runs before the reducer. It applies seven checks in order: rel
 
 While a node stays open, the frontier vetoes a soft convergence stop. The veto never outranks the iteration cap or the other hard stops. The caps are `maxDepth` 3, `maxChildrenPerNode` 6, a `0.5/0.35/0.15` budget split and `maxFrontierNodes`, which defaults to half of `maxIterations`.
 
-When `--max-iterations` is left at its default, the run sizes its budget from the seed. The budget is `min(24, max(10, 2 × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes, 16 at the full six seeds. The seed step prints the derived budget. A fan-out lineage with no matrix `iterations` value is sized the same way from its own round-robin share of the seed, with a floor of 12 for a native lineage and 10 for a CLI one, and a lineage dealt no seed node runs at that floor.
+When `--max-iterations` is left at its default, the run sizes its budget from the seed. The budget is `min(24, max(10, 2 × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes, 16 at the full six seeds. On a single-executor run the seed step prints the derived budget. A fan-out lineage with no matrix `iterations` value is sized the same way from its own round-robin share of the seed, with the loop default of 10 as its floor, and a lineage dealt no seed node runs at that floor. A fan-out parent's seed prints no whole-seed budget: the runner writes the largest lineage cap into the root config's `maxIterations` and prints the run's budget table as one `[fanout-run] budget table:` line on stderr.
 
 The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value. The seed warns when it leaves no room past depth 1.
 
@@ -230,7 +230,7 @@ Skip it for a single lookup, where a direct web search or the `@context` agent i
 
 **Q: How does convergence decide to stop?**
 
-A: A low novelty score only nominates STOP. The weighted score must clear 0.60 before a STOP is nominated. Then the legal-stop gates check novelty over the required rounds, question coverage, source diversity, focus alignment and graph evidence. A failed quality guard continues the loop with `qualityGuardFailed` and writes no event. A graph block writes a `blocked_stop` event and the loop continues with a recovery focus. The full decision order is in [the convergence reference](./references/convergence/convergence.md).
+A: A low novelty score only nominates STOP. The weighted score must clear 0.60 before a STOP is nominated. Then the legal-stop gates check novelty over the required rounds, question coverage, source diversity, focus alignment and graph evidence. A failed quality guard, reported as `qualityGuardFailed`, or a graph block writes a `blocked_stop` event and the loop continues with a recovery focus, until the same blockers have blocked `stuckThreshold` runs in a row and the run stops with `blockedStreakReached`. The full decision order is in [the convergence reference](./references/convergence/convergence.md).
 
 **Q: Why does each iteration start a fresh agent?**
 

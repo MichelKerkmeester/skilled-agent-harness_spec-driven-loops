@@ -1,7 +1,7 @@
 ---
 title: "DR-020 -- Quality Guard — Source Diversity"
 description: "Verify that convergence STOP is blocked when an answered question cites <2 independent sources."
-version: 1.14.4.0
+version: 1.14.5.0
 ---
 
 # DR-020 -- Quality Guard — Source Diversity
@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate source-diversity guards override STOP when answered questions lack independent sources.`
 - Expected execution process: Inspect the Quality Gate row in §4 LEGAL STOP GATES of the convergence reference first, then the convergence.cjs guard evaluation, then the loop protocol Step 2c, then the deep-research.yaml line that logs a failed guard.
 - Desired user-visible outcome: The user gets an accurate explanation of how single-source answers are caught and why the loop continues past them.
-- Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, and no event is written, violated question targeted in next iteration focus.
+- Expected signals: the STOP candidate becomes a blocked decision with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, the `blocked_stop` row is written and the loop continues, violated question targeted in next iteration focus.
 - Pass/fail posture: PASS if the source_diversity guard rule (>= 2 independent sources), its STOP override and its workflow log line are consistent across convergence.md, loop-protocol.md and deep-research.yaml; FAIL if any of those elements drift or contradict.
 
 ---
@@ -49,11 +49,11 @@ Validate source-diversity guards override STOP when answered questions lack inde
 2. `bash: rg -n -A 20 '^function evaluateResearchQualityGuards' .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
 3. `bash: rg -n -A 10 '^#### Step 2c: Quality Guard Check' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
 4. `bash: rg -n 'qualityGuardFailed|Quality guard failed' .skilled/commands/deep/assets/deep-research.yaml`
-5. `bash: rg -n '6\. a failed quality guard turns the candidate into CONTINUE' .skilled/commands/deep/assets/deep-research.yaml`
+5. `bash: rg -n '6\. a failed quality guard blocks the candidate' .skilled/commands/deep/assets/deep-research.yaml`
 ### Expected
-the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, and no event is written, violated question targeted in next iteration focus.
+the STOP candidate becomes a blocked decision with reasonDetail `qualityGuardFailed` and `sourceDiversity` in blockedBy, the `blocked_stop` row is written and the loop continues, violated question targeted in next iteration focus.
 ### Evidence
-Capture the Quality Gate row, the sourceDiversity count filter (a question with fewer than two sources is a violation), the Step 2c rule, and the workflow log line. The graph `sourceDiversity` signal counts distinct source kinds and skips `unclassified`, so two sources of one kind still block a STOP. A failed guard writes no event.
+Capture the Quality Gate row, the sourceDiversity count filter (a question with fewer than two sources is a violation), the Step 2c rule, and the workflow log line. The graph `sourceDiversity` signal counts distinct source kinds and skips `unclassified`, so two sources of one kind still block a STOP. A failed guard writes the same `blocked_stop` row a graph block writes.
 ### Pass/Fail
 PASS if the source_diversity guard rule (>= 2 independent sources), its STOP override and its workflow log line are consistent across convergence.md, loop-protocol.md and deep-research.yaml; FAIL if any of those elements drift or contradict.
 ### Failure Triage
