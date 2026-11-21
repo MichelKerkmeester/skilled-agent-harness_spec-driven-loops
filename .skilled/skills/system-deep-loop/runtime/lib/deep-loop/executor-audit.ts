@@ -41,7 +41,7 @@ export const HOST_SESSION_EXECUTOR_ENV = 'SPECKIT_ALLOW_HOST_SESSION_EXECUTOR' a
 
 // A guard refusal is a route violation, not an executor outcome. It must not read as
 // a clean dispatch to the caller, so it exits distinctly from success (0) and from the
-// executor-missing fail-closed path (1) that the CLI branches already use.
+// executor-missing fail-closed path, which the dispatcher reports as a usage error (64).
 export const RECURSION_GUARD_EXIT_CODE = 3;
 
 export type DispatchFailureReason =

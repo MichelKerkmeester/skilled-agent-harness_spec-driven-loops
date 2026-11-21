@@ -100,6 +100,7 @@ const {
   snapshotOutOfScopeDirtyPaths,
 } = require('../lib/deep-loop/write-containment.ts');
 const {
+  ExecutorUnavailableError,
   buildLineageCommand,
   rotateLineageLog,
   sweepStaleDshHomes,
@@ -993,7 +994,17 @@ function main(argv) {
     throw error;
   }
 
-  return runDispatch(values);
+  // A missing executor binary and an artifact dir outside the git worktree are both refused
+  // before any child spawns, and both are fixed by the operator's setup, so they exit as usage
+  // errors. Every other throw stays a crash with its stack.
+  try {
+    return runDispatch(values);
+  } catch (error) {
+    if (error instanceof ExecutorUnavailableError || error?.code === 'ARTIFACT_OUTSIDE_WORKTREE') {
+      return usageExit(error.message);
+    }
+    throw error;
+  }
 }
 
 if (require.main === module) {

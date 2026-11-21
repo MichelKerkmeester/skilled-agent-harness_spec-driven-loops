@@ -1114,6 +1114,21 @@ function resolveArtifactScope(
 }
 
 /**
+ * The refusal for an artifact dir that sits outside the git worktree. It is a setup error the
+ * caller made, not a crash, so a CLI entry point reports it as a usage error. Callers match on
+ * `code` rather than the class, because this module can load twice in one process (once through
+ * `require`, once through `import`), and the two copies do not share a class identity.
+ */
+export class ArtifactOutsideWorktreeError extends Error {
+  readonly code = 'ARTIFACT_OUTSIDE_WORKTREE';
+
+  constructor(artifactDir: string) {
+    super(`artifact scope ${artifactDir} is outside the git worktree — containment cannot be enforced`);
+    this.name = 'ArtifactOutsideWorktreeError';
+  }
+}
+
+/**
  * The artifact scope both containment checks run against, or null when there is no git
  * worktree to check at all. Throws when repoRoot IS a worktree but the artifact dir cannot
  * be scoped inside it: containment cannot be enforced there, and returning nothing would
@@ -1125,7 +1140,7 @@ function resolveEnforceableArtifactScope(
 ): ReturnType<typeof resolveArtifactScope> {
   const scope = resolveArtifactScope(opts);
   if (!scope && resolveGitToplevel(opts.repoRoot, opts.env)) {
-    throw new Error(`artifact scope ${opts.artifactDir} is outside the git worktree — containment cannot be enforced`);
+    throw new ArtifactOutsideWorktreeError(opts.artifactDir);
   }
   return scope;
 }

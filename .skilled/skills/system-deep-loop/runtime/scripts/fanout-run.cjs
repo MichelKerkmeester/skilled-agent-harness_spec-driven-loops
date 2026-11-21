@@ -181,6 +181,17 @@ function inputError(message) {
   return err;
 }
 
+// An executor binary that is not on PATH. It stays an input-validation error, so this
+// runner's own exit mapping is unchanged, and the class lets the single-iteration dispatcher
+// report it as a usage error without reclassifying every other input-validation throw.
+class ExecutorUnavailableError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'ExecutorUnavailableError';
+    this.code = 'INPUT_VALIDATION';
+  }
+}
+
 function agentPersonaBlock(agentName, repoRoot) {
   const personaPath = path.join(repoRoot, '.skilled', 'agents', `${agentName}.md`);
   let persona;
@@ -3597,7 +3608,7 @@ function finalizeLineageCommand(input) {
 
 function buildCodexLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isCodexBinaryAvailable(options.env || process.env)) {
-    throw inputError('cli-codex executor unavailable: command -v codex failed');
+    throw new ExecutorUnavailableError('cli-codex executor unavailable: command -v codex failed');
   }
   const webSearch = effectiveWebSearchPolicy(lineage);
   const model = lineage.model || CODEX_DEFAULT_MODEL;
@@ -3636,7 +3647,7 @@ function buildCodexLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 
 function buildClaudeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isClaudeBinaryAvailable(options.env || process.env)) {
-    throw inputError('cli-claude-code executor unavailable: command -v claude failed');
+    throw new ExecutorUnavailableError('cli-claude-code executor unavailable: command -v claude failed');
   }
   const model = lineage.model || CLAUDE_DEFAULT_MODEL;
   const args = [
@@ -3727,7 +3738,7 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
   try {
     opencode = resolveOpencodeBinary(parentEnv);
   } catch (error) {
-    throw inputError(`cli-opencode executor unavailable: ${error.message}`);
+    throw new ExecutorUnavailableError(`cli-opencode executor unavailable: ${error.message}`);
   }
 
   const model = lineage.model || OPENCODE_DEFAULT_MODEL;
@@ -3870,7 +3881,7 @@ const PI_DEFAULT_MODEL = 'deepseek-v4.1-flash-1017';
 
 function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isCursorBinaryAvailable(options.env || process.env)) {
-    throw inputError('cli-cursor executor unavailable: command -v cursor-agent failed');
+    throw new ExecutorUnavailableError('cli-cursor executor unavailable: command -v cursor-agent failed');
   }
   const webSearch = effectiveWebSearchPolicy(lineage);
   const model = lineage.model || CURSOR_DEFAULT_MODEL;
@@ -4007,7 +4018,7 @@ const DEVIN_DEFAULT_MODEL = 'swe-2-max';
 
 function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isDevinBinaryAvailable(options.env || process.env)) {
-    throw inputError('cli-devin executor unavailable: command -v devin failed');
+    throw new ExecutorUnavailableError('cli-devin executor unavailable: command -v devin failed');
   }
   const webSearch = effectiveWebSearchPolicy(lineage);
   const model = lineage.model || DEVIN_DEFAULT_MODEL;
@@ -4124,7 +4135,7 @@ const REASONING_TO_PI_THINKING = new Map([
 
 function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isPiBinaryAvailable(options.env || process.env)) {
-    throw inputError('cli-pi executor unavailable: command -v pi failed');
+    throw new ExecutorUnavailableError('cli-pi executor unavailable: command -v pi failed');
   }
   const model = lineage.model || PI_DEFAULT_MODEL;
   if (!PI_ALLOWED_MODELS.has(model)) {
@@ -4268,7 +4279,7 @@ function removeDshHome(home) {
 function buildDshLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   const env = options.env || process.env;
   if (!isDshBinaryAvailable(env)) {
-    throw inputError('cli-deepseek-harness executor unavailable: command -v dsh failed');
+    throw new ExecutorUnavailableError('cli-deepseek-harness executor unavailable: command -v dsh failed');
   }
   // Even a version probe creates harness state, so it runs in a throwaway home outside the checkout.
   const probeHome = fs.mkdtempSync(path.join(os.tmpdir(), 'dsh-version-'));
@@ -4495,7 +4506,7 @@ function buildVibeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermi
   options = options || {};
   const env = options.env || process.env;
   if (!isVibeBinaryAvailable(env)) {
-    throw inputError('cli-mistral-vibe executor unavailable: command -v vibe failed');
+    throw new ExecutorUnavailableError('cli-mistral-vibe executor unavailable: command -v vibe failed');
   }
   // A version probe still touches Vibe's home, so it runs in a throwaway home outside the
   // checkout and is removed before the lineage's own home is created.
@@ -6156,6 +6167,7 @@ module.exports = {
   DSH_ALLOWED_MODELS,
   DSH_DEFAULT_MODEL,
   DSH_VERSION,
+  ExecutorUnavailableError,
   buildLineageCommand,
   validateDshCompletion,
   sweepStaleDshHomes,

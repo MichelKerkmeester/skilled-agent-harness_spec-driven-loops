@@ -568,9 +568,10 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
       expect(flagValue(run.argv, '--model')).toBe(CODEX_DEFAULT_MODEL);
     });
 
-    // The shared builder refuses an absent binary with its input-validation error, as it
-    // does for every other kind, before any receipt or state row is written.
-    it('throws the builder refusal when the codex binary is missing', () => {
+    // The shared builder refuses an absent binary, as it does for every other kind, before
+    // any receipt or state row is written. That is an operator setup error, so it exits as a
+    // usage error with the message alone rather than a crash with a stack.
+    it('refuses a missing codex binary as a usage error', () => {
       const fixture = createSandboxFixture('not-codex', 'codex 0.0.0');
       const result = spawnSync(process.execPath, [
         SCRIPT,
@@ -595,9 +596,9 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
         timeout: 60_000,
         env: { PATH: '/usr/bin:/bin', HOME: fixture.root, TMPDIR: process.env.TMPDIR },
       });
-      expect(result.status).not.toBe(0);
-      expect(result.stderr).toContain('cli-codex executor unavailable');
-      expect(result.stderr).toContain('INPUT_VALIDATION');
+      expect(result.status).toBe(64);
+      expect(result.stderr).toContain('cli-codex executor unavailable: command -v codex failed');
+      expect(result.stderr).not.toMatch(/^\s+at /m);
       expect(existsSync(join(fixture.repo, 'packet', 'dispatch-receipts'))).toBe(false);
       expect(readFileSync(join(fixture.root, 'state.jsonl'), 'utf8')).toBe('');
     });
@@ -693,6 +694,8 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
     it('refuses a read-only dispatch before the child runs', () => {
       const run = dispatchArgv('cli-opencode', 'opencode', OPENCODE_VERSION, 'read-only');
       expect(run.status).not.toBe(0);
+      // A builder input error that is not a missing binary is not rerouted to the usage exit.
+      expect(run.status).not.toBe(64);
       expect(run.stderr).toContain("cannot enforce sandbox mode 'read-only'");
       expect(run.argv).toBeNull();
     });
@@ -704,8 +707,9 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
       const externalArtifact = mkdtempSync(join(tmpdir(), 'dispatch-external-artifact-'));
       tempDirs.push(externalArtifact);
       const run = dispatchArgv('cli-opencode', 'opencode', OPENCODE_VERSION, 'workspace-write', [], externalArtifact);
-      expect(run.status).not.toBe(0);
+      expect(run.status).toBe(64);
       expect(run.stderr).toContain('is outside the git worktree — containment cannot be enforced');
+      expect(run.stderr).not.toMatch(/^\s+at /m);
       expect(run.argv).toBeNull();
     });
 
