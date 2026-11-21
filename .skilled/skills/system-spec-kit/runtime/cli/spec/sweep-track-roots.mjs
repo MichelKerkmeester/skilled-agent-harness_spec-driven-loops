@@ -7,15 +7,16 @@
 // nothing else reporting it. This sweep walks every track root that carries a
 // graph-metadata.json, compares the declared children_ids with the numbered
 // child directories, and prints one line per track. A declared sub-track is
-// swept the same way, under its "<track>/<sub>" identity.
+// swept the same way, under its "<track>/<sub>" identity, and a level-2 one
+// under "<track>/<sub>/<inner>".
 //
 // A track matches only when the declared set equals the on-disk set, no entry
 // hangs off another identity and no packet is declared more than once. Counting
 // alone is not enough: a packet renamed on disk leaves both counts where they
 // were, and a repeated entry leaves the set itself equal.
 //
-// A track that holds numbered packets beside declared sub-tracks is mixed and
-// counts as drift too. Its children list can be correct and the track still
+// A track or a level-1 sub-track that holds numbered packets beside declared
+// sub-tracks is mixed and counts as drift too. Its children list can be correct and the track still
 // wrong, so refreshing does not clear it: the packets move into a sub-track.
 //
 // An undeclared non-numbered folder, a symlinked sub-track and, in the working
@@ -45,6 +46,7 @@ import path from 'node:path';
 
 import {
   compareTrackChildren,
+  MAX_SUB_TRACK_DEPTH,
   parseTrackMetadata,
   readCommitTracks,
   readWorkingTreeTracks,
@@ -145,8 +147,9 @@ function main() {
     if (!result.matches) {
       drifted += 1;
     }
-    // Only a top-level track can be mixed: a sub-track holds packets alone.
-    const layout = track.name.includes('/') ? null : trackLayout(track.children);
+    // A track and a level-1 sub-track can be mixed; a level-2 sub-track holds
+    // packets alone, since nothing below it is ever read as a sub-track.
+    const layout = track.name.split('/').length > MAX_SUB_TRACK_DEPTH ? null : trackLayout(track.children);
     if (layout?.mixed) {
       process.stdout.write(`    flat packets beside sub-tracks: ${layout.packets.join(', ')}\n`);
       mixed += 1;

@@ -7,7 +7,7 @@ trigger_phrases:
   - "move or renumber a spec packet"
   - "declare a sub-track"
   - "re-parent packets into a sub-track"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Spec packet relocation (relocate.mjs)
@@ -31,7 +31,7 @@ The tool runs from the repository root and takes exactly one mode. Paths are rel
 | `--map <file.json>` | Applies a list of `{ "from", "to" }` moves. A destination in a sub-track that does not exist yet declares that sub-track in the same run |
 | `--from <path> --to <path>` | Moves one packet. Both flags are needed together |
 | `--renumber <folder>` | Closes the number gaps among a folder's numbered children in their current order. Numbers held in that folder's `z_archive/` count as taken |
-| `--declare-subtrack <track>/<name>` | Declares a sub-track in a track that holds no flat packets |
+| `--declare-subtrack <track>/<name>` | Declares a sub-track in a track that holds no flat packets. `<track>/<sub>/<name>` declares a level-2 sub-track inside a declared level-1 one that holds no flat packets |
 
 `--apply` writes. Without it the run prints every move and every file it would change and writes nothing. `--help` prints the usage line and exits 0.
 
@@ -61,8 +61,8 @@ Every refusal happens before the first write, each is printed as `relocate: refu
 - a source or destination name that is not `NNN-slug`
 - a destination that already exists, or a number a live or archived sibling already holds
 - a source or destination named by two entries, a chain or swap between entries, or a destination inside its own source
-- a destination deeper than one sub-track, or in a folder that exists without the sub-track declaration
-- a plan that would leave a track holding flat packets beside sub-tracks
+- a destination deeper than two sub-track levels, a new level-2 sub-track inside a folder that is not a declared sub-track, or a destination in a folder that exists without the sub-track declaration
+- a plan that would leave a track or a level-1 sub-track holding flat packets beside sub-tracks
 - a tracked source with uncommitted changes, or an uncommitted file the run would rewrite
 - `--declare-subtrack` on a track without `graph-metadata.json`, on a folder that holds `spec.md` or on a track that still holds flat packets
 
@@ -93,6 +93,7 @@ The run is safe to repeat. An entry whose folder already sits at its destination
 |---|---|---|
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts` | Vitest | Covers move, renumber, re-parent, sub-track declaration, the refusals, the dry-run exit status, a repeated apply, a stopped re-parent, the close statuses and the bare-name boundary |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate-real-pipeline.vitest.ts` | Vitest | Runs the tool and `archive.sh` with the true store writers in a temp repository, so a removed pipeline step fails a test |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/nested-subtrack.vitest.ts` | Vitest | Covers a move into a level-2 sub-track, a level-2 declaration and the refusals at a third level |
 
 ---
 

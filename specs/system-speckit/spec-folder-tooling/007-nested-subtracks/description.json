@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-folder-tooling/007-nested-subtracks",
+  "description": "Allow a declared sub-track to hold declared sub-tracks (max two sub-track levels under a track)",
+  "keywords": [
+    "allow",
+    "declared",
+    "sub-track",
+    "hold",
+    "sub-tracks",
+    "max",
+    "two",
+    "levels",
+    "track"
+  ],
+  "lastUpdated": "2026-11-21T07:10:55.659Z",
+  "specId": "007",
+  "folderSlug": "nested-subtracks",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_08-10__implemented-two-levels-of-declared-sub-tracks.md"
+  ]
+}

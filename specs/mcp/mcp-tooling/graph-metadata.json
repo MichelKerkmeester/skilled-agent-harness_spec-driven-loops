@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling",
+  "spec_folder": "mcp/mcp-tooling",
+  "parent_id": "mcp",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "mcp/mcp-tooling"
+    ],
+    "causal_summary": "Container folder for mcp/mcp-tooling."
+  }
+}

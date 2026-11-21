@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp",
+  "spec_folder": "mcp",
+  "parent_id": null,
+  "children_ids": [
+    "mcp/mcp-browser-use",
+    "mcp/mcp-tooling"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "mcp"
+    ],
+    "causal_summary": "Track folder for mcp."
+  }
+}

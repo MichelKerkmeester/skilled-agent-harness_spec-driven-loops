@@ -1031,6 +1031,8 @@ refresh_track_level() {
 }
 
 # The reader omits tracks without graph metadata, so inspect the declaration directly.
+# A value names a track's level-1 sub-track, "<track>/<sub>", or a level-2 one
+# inside it, "<track>/<sub>/<inner>"; every sub-track on the way must declare itself.
 inspect_subtrack() {
     local specs_root="$1"
     local track="$2"
@@ -1039,23 +1041,47 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const [specsRoot, trackName] = process.argv.slice(2);
-const [parentName, subName, ...extraSegments] = trackName.split('/');
+const [parentName, ...subNames] = trackName.split('/');
+const maxSubTrackDepth = 2;
 const packetPattern = /^\d{3}(?:[-_].+)?$/;
 const isCandidateTrackName = (name) =>
   !name.startsWith('.') && name !== 'node_modules' && !packetPattern.test(name);
 const isSubTrackCandidateName = (name) =>
-  isCandidateTrackName(name) && !name.startsWith('z_');
-const reject = (diagnostic = 'undeclared folder ignored') => {
-  process.stdout.write(`${trackName}: ${diagnostic}`);
+  Boolean(name) && isCandidateTrackName(name) && !name.startsWith('z_');
+const reject = (id = trackName, diagnostic = 'undeclared folder ignored') => {
+  process.stdout.write(`${id}: ${diagnostic}`);
   process.exitCode = 1;
 };
 
+// The first undeclared or refused folder on the way names the diagnostic.
+const inspectLevel = (folder, id) => {
+  const stat = fs.lstatSync(folder, { throwIfNoEntry: false });
+  if (stat?.isSymbolicLink()) return reject(id, 'symlinked folder skipped, not followed'), false;
+  if (!stat?.isDirectory()) return reject(id), false;
+  const descriptionPath = path.join(folder, 'description.json');
+  const descriptionStat = fs.lstatSync(descriptionPath, { throwIfNoEntry: false });
+  let description = null;
+  if (descriptionStat?.isFile() && !descriptionStat.isSymbolicLink()) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(descriptionPath, 'utf8'));
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) description = parsed;
+    } catch {
+      description = null;
+    }
+  }
+  if (!description || description.level !== 'sub-track') return reject(id), false;
+  if (fs.existsSync(path.join(folder, 'spec.md'))) {
+    return reject(id, 'declared folder has spec.md and cannot be a sub-track'), false;
+  }
+  return true;
+};
+
 if (
-  extraSegments.length > 0
+  subNames.length === 0
+  || subNames.length > maxSubTrackDepth
   || !parentName
-  || !subName
   || !isCandidateTrackName(parentName)
-  || !isSubTrackCandidateName(subName)
+  || !subNames.every(isSubTrackCandidateName)
 ) {
   reject();
 } else {
@@ -1064,29 +1090,12 @@ if (
   if (!parentStat?.isDirectory() || fs.existsSync(path.join(parentPath, 'spec.md'))) {
     reject();
   } else {
-    const subPath = path.join(parentPath, subName);
-    const subStat = fs.lstatSync(subPath, { throwIfNoEntry: false });
-    if (subStat?.isSymbolicLink()) {
-      reject('symlinked folder skipped, not followed');
-    } else if (!subStat?.isDirectory()) {
-      reject();
-    } else {
-      const descriptionPath = path.join(subPath, 'description.json');
-      const descriptionStat = fs.lstatSync(descriptionPath, { throwIfNoEntry: false });
-      let description = null;
-      if (descriptionStat?.isFile() && !descriptionStat.isSymbolicLink()) {
-        try {
-          const parsed = JSON.parse(fs.readFileSync(descriptionPath, 'utf8'));
-          if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) description = parsed;
-        } catch {
-          description = null;
-        }
-      }
-      if (!description || description.level !== 'sub-track') {
-        reject();
-      } else if (fs.existsSync(path.join(subPath, 'spec.md'))) {
-        reject('declared folder has spec.md and cannot be a sub-track');
-      }
+    let folder = parentPath;
+    let id = parentName;
+    for (const subName of subNames) {
+      folder = path.join(folder, subName);
+      id = `${id}/${subName}`;
+      if (!inspectLevel(folder, id)) break;
     }
   }
 }
@@ -1101,22 +1110,25 @@ subtrack_diagnostic() {
     inspect_subtrack "$1" "$2" || true
 }
 
-# A packet filed in a declared sub-track is listed by the sub-track, while the
-# track lists the sub-track itself. A slash value that names no declared
-# sub-track is not a second level at all, so it keeps the earlier skip.
+# A packet filed in a declared sub-track is listed by the sub-track, while each
+# level above lists the sub-track below it. A slash value that names no declared
+# sub-track, or one deeper than two sub-track levels, keeps the earlier skip.
 refresh_track_root() {
     local specs_root="$1"
     local track="$2"
     [[ -n "$track" ]] || return 0
     if [[ "$track" == */* ]]; then
-        local parent="${track%%/*}"
-        local sub="${track#*/}"
-        [[ "$sub" != */* ]] || return 0
+        local top="${track%%/*}"
+        local level="$track"
+        [[ "$track" != */*/*/* ]] || return 0
         # The reader cannot expose a child root unless its parent metadata exists.
-        [[ -f "$specs_root/$parent/graph-metadata.json" ]] || return 0
+        [[ -f "$specs_root/$top/graph-metadata.json" ]] || return 0
         is_declared_subtrack "$specs_root" "$track" || return 0
-        refresh_track_level "$specs_root" "$track"
-        refresh_track_level "$specs_root" "$parent"
+        while [[ "$level" == */* ]]; do
+            refresh_track_level "$specs_root" "$level"
+            level="${level%/*}"
+        done
+        refresh_track_level "$specs_root" "$top"
         return 0
     fi
     refresh_track_level "$specs_root" "$track"
@@ -1262,7 +1274,7 @@ validate_track_value() {
     [[ -z "$track" ]] && return 0
     case "/$track/" in
         //*|*"/../"*|*"/./"*|*"//"*)
-            echo "Error: --track '$display_track' must name a folder under specs/, such as 'demo' or declared sub-track 'demo/sub'." >&2
+            echo "Error: --track '$display_track' must name a folder under specs/, such as 'demo' or declared sub-track 'demo/sub' or 'demo/sub/inner'." >&2
             echo "An absolute path, '.', '..' and an empty segment are refused." >&2
             exit 1
             ;;
@@ -1430,8 +1442,8 @@ fi
 validate_track_value "$TRACK" "$RAW_TRACK_VALUE"
 if [[ -n "$TRACK" ]]; then
     SPECS_DIR="$SPECS_DIR/$TRACK"
-    if [[ "$TRACK" == */*/* ]]; then
-        echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' has more than two path segments; use a track or one declared sub-track such as 'demo/sub'." >&2
+    if [[ "$TRACK" == */*/*/* ]]; then
+        echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' has more than three path segments; a track holds at most two sub-track levels, such as 'demo/sub' or 'demo/sub/inner'." >&2
         exit 1
     fi
     if [[ "$TRACK" == */* ]]; then
@@ -1615,8 +1627,10 @@ advise_sub_track() {
         printf "[speckit] This packet fits no existing sub-track of %s. Consider proposing a new sub-track.\n" "$track" >&2
     elif [[ "$tool_output" == "best fit: "* ]]; then
         local named="${tool_output#best fit: }"
-        if [[ "$named" != "$track/$sub" ]]; then
-            printf "[speckit] This packet may fit %s better than %s/%s.\n" "$named" "$track" "$sub" >&2
+        # The fit is scored among the track's level-1 sub-tracks, so a packet
+        # filed in a level-2 one is judged by the level-1 sub-track holding it.
+        if [[ "$named" != "$track/${sub%%/*}" ]]; then
+            printf "[speckit] This packet may fit %s better than %s.\n" "$named" "$TRACK" >&2
         fi
     fi
     return 0

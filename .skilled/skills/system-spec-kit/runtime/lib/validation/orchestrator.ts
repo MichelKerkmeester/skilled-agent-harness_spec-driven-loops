@@ -236,13 +236,17 @@ function hasSubTrackLevel(folder: string): boolean {
   }
 }
 
-function isDeclaredSubTrack(folder: string): boolean {
+// A level-1 sub-track sits directly in a track root and a level-2 one directly in
+// a level-1 sub-track. Nothing deeper is a sub-track, matching the track reader.
+function isDeclaredSubTrack(folder: string, depth = 1): boolean {
   const resolved = path.resolve(folder);
   const name = path.basename(resolved);
   if (!fs.existsSync(resolved) || fs.lstatSync(resolved).isSymbolicLink()) return false;
   if (name.startsWith('.') || name === 'node_modules' || name.startsWith('z_') || PACKET_FOLDER_RE.test(name)) return false;
   if (fs.existsSync(path.join(resolved, 'spec.md'))) return false;
-  if (!isTrackRoot(path.dirname(resolved))) return false;
+  if (!isTrackRoot(path.dirname(resolved))) {
+    return depth === 1 && isDeclaredSubTrack(path.dirname(resolved), depth + 1) && hasSubTrackLevel(resolved);
+  }
   // The track reader never reads an archive, hidden or node_modules track, so
   // nothing inside one is a sub-track.
   const trackName = path.basename(path.dirname(resolved));

@@ -397,6 +397,12 @@ function expectedParentId(folder, recordedParent) {
   if (segments.length === 3 && declaresSubtrack(path.join(root, ...segments.slice(0, -1)))) {
     return { known: true, parentId };
   }
+  // A level-2 sub-track sits directly in a level-1 one, and both must declare
+  // themselves before either is a parent.
+  if (segments.length === 4 && declaresSubtrack(path.join(root, ...segments.slice(0, -1)))
+    && declaresSubtrack(path.join(root, ...segments.slice(0, -2)))) {
+    return { known: true, parentId };
+  }
   // A packet moved into a track root from a sub-track, or from another track,
   // still names where it came from. Only the track itself is a parent the path
   // check accepts there, so anything else is cleared. The recorded id is compared
