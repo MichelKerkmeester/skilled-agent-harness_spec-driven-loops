@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.29.0
+version: 1.4.30.0
 ---
 
 # Fan-out CLI lineage driver
@@ -174,9 +174,15 @@ hangup. On each of these stops the runner signals its lineages through the same 
 `--stop` uses, reading each start time from the lineage's latest `spawned` row: a leader that
 still answers gets its group signalled, an exited leader's members started since the recorded
 spawn are signalled one by one, and a member `--stop` would list under `spared` is left alone.
-The runner writes one `stopped` row per lineage still running,
+It then waits up to 2.5 seconds, well inside the 10-second window of a `--stop` that signalled
+it, for each lineage to stop answering, judged as `--stop` judges it. It does not escalate to
+SIGKILL, as `--stop` does not. The runner writes one `stopped` row per lineage that stopped,
 with its `pid`, the `signal` and a `rerun_command`, and its own closing row is `run_stopped`, so
 the `results` list in `orchestration-summary.json` and `--status` show those lineages as `stopped`.
+A lineage still answering after the wait gets no row, so a later `--stop` or rerun still sees it
+live. It is listed as `{label, pid}` under `survivors` on `run_stopped` and in the summary, and
+its result stays `running`. The signal handlers stay installed until the runner exits, so a
+second signal during the wait does not cut the stop short of its rows.
 
 ### Expansive Depth
 
@@ -272,7 +278,7 @@ The stdout summary and `orchestration-summary.json` carry `lineages`, one `{labe
 | `tests/unit/fanout-run.vitest.ts` | Expansive depth groups: `expansive depth frontier` (the round-robin deal, the reuse of the budget step's partition, the per-lineage node store, the `frontier_scope` binding, the recorded partition and `depthMode` propagation) and `per-lineage expansive budget` (the seed-share budget, the loop-default floor for a lineage dealt no seed node, and the refusal of an expansive matrix that holds a native lineage) |
 | `tests/unit/fanout-status.vitest.ts` | Progress-row fields, the heartbeat that still beats when they cannot be read, live stdout handed to the output callback with the kept stdout that stops at the cap, and `--status` printing one row per lineage without writing or refusing a directory with no ledger |
 | `tests/unit/fanout-stop.vitest.ts` | SIGHUP stops the lineages and exits 129, a SIGKILL of the bootstrap stops them, `--stop` ends a live run from a second process with a rerun per stopped lineage, and leaves a process alone when its lineage is not live in the ledger |
-| `tests/unit/fanout-stop-identity.vitest.ts` | `--stop` signals only a pid whose start time matches its `spawned` row, signals an exited leader's newer members and spares an older one, and a runner stopped by a signal spares the same member |
+| `tests/unit/fanout-stop-identity.vitest.ts` | `--stop` signals only a pid whose start time matches its `spawned` row, signals an exited leader's newer members and spares an older one, and a runner stopped by a signal spares the same member and leaves a lineage that ignores SIGTERM open under `survivors` |
 | `tests/unit/fanout-lineage-config.vitest.ts` | The lineage block written from the root config for research and review, after a non-zero exit too, and left alone without a root config |
 | `tests/unit/fanout-claude-stream-json.vitest.ts` | The claude stream-json argv, its last-result cost, and the pending-question and quota checks reading the final answer |
 | `tests/unit/fanout-pool.vitest.ts` | A `stopped` row closes a lineage rather than leaving it to be requeued as an orphan |

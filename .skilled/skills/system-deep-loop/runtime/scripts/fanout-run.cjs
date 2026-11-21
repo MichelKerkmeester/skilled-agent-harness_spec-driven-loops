@@ -687,8 +687,10 @@ function installFanoutSignalHandlers(onStop) {
       process.exit(signalExitCode(signal));
     }
   };
+  // Kept installed until exit: a once handler leaves the signal at its default, so a second
+  // one sent while the stop waits on its lineages would kill the runner before it records them.
   for (const signal of FORWARDED_SIGNALS) {
-    process.once(signal, () => stopAndExit(signal));
+    process.on(signal, () => stopAndExit(signal));
   }
   // A dead parent is the hangup the terminal would have sent, so it is recorded as one.
   watchBootstrapParent(() => stopAndExit('SIGHUP'));
@@ -1391,6 +1393,67 @@ function signalStoppingLineage(lineage, signal) {
 }
 
 /**
+ * The pids and process groups that hold a process which has not exited, from one ps
+ * snapshot, or null when ps cannot be read.
+ *
+ * An exited child stays a zombie until its parent reaps it, and a zombie still answers
+ * signal 0. The runner waits on its own lineages without running the event loop, which is
+ * where Node reaps, so a probe by signal alone would read every exited leader as alive.
+ */
+function liveProcessTable() {
+  if (process.platform === 'win32') return null;
+  const result = spawnSync('ps', ['-A', '-o', 'pid=,pgid=,stat='], { encoding: 'utf8' });
+  if (result.status !== 0) return null;
+  const pids = new Set();
+  const groups = new Set();
+  for (const line of result.stdout.split('\n')) {
+    const match = /^\s*(\d+)\s+(\d+)\s+(\S+)/.exec(line);
+    if (!match || match[3].startsWith('Z')) continue;
+    pids.add(Number(match[1]));
+    groups.add(Number(match[2]));
+  }
+  return { pids, groups };
+}
+
+/**
+ * Whether a lineage a stop has signalled still answers, judged as both stop paths judge it.
+ *
+ * A spared member keeps the group answering, so a lineage stopped member by member is
+ * confirmed by its signalled members alone. Without a process table the signal probes stand in.
+ *
+ * @param {{pid: number, members?: number[]}} lineage - A lineage from the classify step.
+ * @param {{pids: Set<number>, groups: Set<number>}|null} table - A `liveProcessTable` snapshot.
+ * @returns {boolean} True while the group, the leader or a signalled member is still running.
+ */
+function stoppingLineageAnswers(lineage, table) {
+  if (!table) return lineage.members ? lineage.members.some(pidAnswers) : isLineageAlive(lineage.pid);
+  if (lineage.members) return lineage.members.some((memberPid) => table.pids.has(memberPid));
+  return table.groups.has(lineage.pid) || table.pids.has(lineage.pid);
+}
+
+// Well under the --stop confirm window, so a --stop that signalled this runner sees it exit,
+// and finds every lineage it closed already closed, before that window ends.
+const RUNNER_STOP_GRACE_MS = 2_500;
+
+/**
+ * The lineages still answering once they stop or the runner's grace runs out.
+ *
+ * The wait blocks the thread on purpose: the event loop would let the pool settle, retry or
+ * respawn the lineages being stopped while the stop is still deciding what to record.
+ */
+function lineagesStillAnsweringAfterGrace(lineages, graceMs = RUNNER_STOP_GRACE_MS) {
+  const pause = new Int32Array(new SharedArrayBuffer(4));
+  const deadline = Date.now() + graceMs;
+  let remaining = lineages;
+  for (;;) {
+    const table = liveProcessTable();
+    remaining = remaining.filter((lineage) => stoppingLineageAnswers(lineage, table));
+    if (remaining.length === 0 || Date.now() >= deadline) return remaining;
+    Atomics.wait(pause, 0, 0, 100);
+  }
+}
+
+/**
  * Stop the lineages the ledger shows as live, from a process other than their runner.
  *
  * Live means what a re-run refuses on: a spawned row after the lineage's latest start, no
@@ -1418,18 +1481,14 @@ async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
   const runnerPids = new Set(live.map(runnerOf).filter(Boolean));
   for (const runnerPid of runnerPids) signalIfPresent(runnerPid, 'SIGTERM');
   for (const lineage of live) signalStoppingLineage(lineage, 'SIGTERM');
-  // A spared member keeps the group answering, so a lineage stopped member by member is
-  // confirmed by its signalled members alone.
-  const answers = (lineage) => (lineage.members
-    ? lineage.members.some(pidAnswers)
-    : isLineageAlive(lineage.pid));
 
   let survivors = live;
   let runners = [...runnerPids];
   const deadline = Date.now() + STOP_CONFIRM_TIMEOUT_MS;
   while ((survivors.length > 0 || runners.length > 0) && Date.now() < deadline) {
     await new Promise((resolvePromise) => setTimeout(resolvePromise, 100));
-    survivors = survivors.filter(answers);
+    const table = liveProcessTable();
+    survivors = survivors.filter((lineage) => stoppingLineageAnswers(lineage, table));
     runners = runners.filter((runnerPid) => isLineageAlive(runnerPid));
   }
 
@@ -5144,13 +5203,23 @@ async function main() {
     if (stoppedSummaryWritten) return;
     stoppedSummaryWritten = true;
     const ledgerRecords = readLedgerRecords(ledgerPath);
-    stopActiveLineageProcesses(signal, ledgerRecords);
+    const { live, refused } = stopActiveLineageProcesses(signal, ledgerRecords);
+    // A refused lineage was not signalled. Only one with no recorded start can still own its
+    // group; for the others the pid has exited or now belongs to another process, so what
+    // answers there is not the lineage and must not keep it open.
+    const survivors = lineagesStillAnsweringAfterGrace([
+      ...live,
+      ...refused.filter((lineage) => lineage.reason === 'no_recorded_identity')
+        .map(({ label, pid }) => ({ label, pid })),
+    ]).map(({ label, pid }) => ({ label, pid }));
+    const survivorLabels = new Set(survivors.map((survivor) => survivor.label));
     const stoppedAtIso = new Date().toISOString();
     // Each lineage still running is closed with its own row, so the next run neither
     // requeues it as an orphan nor charges it a retry, and the summary reads it as stopped.
+    // A survivor gets no row: it is still running, and a later --stop or rerun must see it live.
     for (const lineage of cliLineages) {
       const snapshot = lineageSnapshots.get(lineage.label);
-      if (!snapshot || snapshot.status !== 'running') continue;
+      if (!snapshot || snapshot.status !== 'running' || survivorLabels.has(lineage.label)) continue;
       const spawnedRow = ledgerRecords.filter((record) => record
         && record.event === 'spawned'
         && record.label === lineage.label).at(-1);
@@ -5175,6 +5244,7 @@ async function main() {
       signal,
       at: stoppedAtIso,
       gauges,
+      survivors,
     });
     writeOrchestrationSummary(summaryPath, {
       run_id: runId,
@@ -5189,6 +5259,7 @@ async function main() {
       status: 'partial',
       ...partial.summary,
       gauges,
+      survivors,
       results: partial.results,
     });
   };
