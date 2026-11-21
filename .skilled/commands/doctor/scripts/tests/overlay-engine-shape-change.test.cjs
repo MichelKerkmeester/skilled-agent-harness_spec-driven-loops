@@ -830,9 +830,12 @@ test('a layout link standing at a target that became a file is refused once an e
 test('a layout link to a file where a whole-file entry writes the link path itself is not refused', (t) => {
   const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up' }], [{ path: 'up', target: 'tfile' }]);
   writeFile(fixture.tree, 'tfile', 'a project file\n');
-  for (const command of ['status', 'apply']) {
-    assert.equal(fixture.run([command]).output.includes('which is a file'), false, command);
-  }
+  assert.equal(fixture.run(['status']).output.includes('which is a file'), false);
+  const result = applyOk(fixture);
+  assert.equal(result.output.includes('which is a file'), false, result.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'up')), 'tfile');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
 });
 
 // A link at the target that does not resolve cannot take a mkdir -p, so the
