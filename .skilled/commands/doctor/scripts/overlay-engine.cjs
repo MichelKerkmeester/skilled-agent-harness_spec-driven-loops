@@ -2172,6 +2172,103 @@ function keepAsideRemedy(root, key) {
 }
 
 /**
+ * Find a link on a path that leads outside the tree, or that resolves nowhere,
+ * so a write or delete on the path could land outside it. Each part of the path
+ * that exists is resolved, the leaf only when the write follows it; a dangling
+ * link is judged by where its target would be made.
+ * @param {string} root Destination tree root.
+ * @param {string} filePath Absolute path inside the tree.
+ * @param {{followLeaf?: boolean, removed?: Set<string>, cache?: Map<string, object|null>}} [options]
+ *   `removed` holds paths the plan deletes first, so nothing below one is read
+ *   through it, and `cache` keeps each part's answer for one plan.
+ * @returns {{key: string, landed: string|null}|null} The link, relative to the
+ *   root, and where it lands (null when it does not resolve), or null when every
+ *   part stays inside the tree.
+ */
+function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set(), cache = new Map() } = {}) {
+  const absoluteRoot = path.resolve(root);
+  const realRoot = canonicalPath(absoluteRoot);
+  const parts = path.relative(absoluteRoot, path.resolve(filePath)).split(path.sep).filter(Boolean);
+  let current = absoluteRoot;
+  for (let index = 0; index < parts.length; index += 1) {
+    current = path.join(current, parts[index]);
+    if (removed.has(current)) return null;
+    if (index === parts.length - 1 && !followLeaf) return null;
+    if (cache.has(current)) {
+      const known = cache.get(current);
+      if (known) return known;
+      continue;
+    }
+    let stats;
+    try {
+      stats = fs.lstatSync(current);
+    } catch (error) {
+      if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) return null;
+      throw error;
+    }
+    let found = null;
+    if (stats.isSymbolicLink()) {
+      let landed;
+      try {
+        landed = fs.realpathSync.native(current);
+      } catch (error) {
+        landed = null;
+        if (error && error.code === 'ENOENT') {
+          try {
+            landed = canonicalPath(path.resolve(path.dirname(current), fs.readlinkSync(current)));
+          } catch {
+            landed = null;
+          }
+        }
+      }
+      if (landed === null || !isWithin(realRoot, landed)) found = { key: toPosix(path.relative(absoluteRoot, current)), landed };
+    }
+    cache.set(current, found);
+    if (found) return found;
+    if (!stats.isSymbolicLink() && !stats.isDirectory()) return null;
+  }
+  return null;
+}
+
+// The first link a plan's writes or deletes would go through to land outside
+// the tree. A file write follows its leaf; a link write and a delete replace
+// theirs unopened, and anything below a path the plan deletes is made fresh.
+function planLeavingTree(root, plan) {
+  const removed = new Set(plan.deletes.map((filePath) => path.resolve(filePath)));
+  const cache = new Map();
+  for (const write of plan.writes) {
+    const filePath = path.resolve(write.filePath);
+    const followLeaf = write.symlinkTarget === undefined && !removed.has(filePath);
+    const found = linkLeavingTree(root, filePath, { followLeaf, removed, cache });
+    if (found) return found;
+  }
+  for (const filePath of plan.deletes) {
+    const found = linkLeavingTree(root, filePath, { cache });
+    if (found) return found;
+  }
+  return null;
+}
+
+/**
+ * The refusal for a link the entry would write or delete through that leads
+ * outside the tree, or that resolves nowhere.
+ * @param {object} entry Manifest overlay entry.
+ * @param {{key: string, landed: string|null}} found The link and where it lands.
+ * @param {string} root Destination tree root, for the remedy's paths.
+ * @returns {string} The problem, with its why and remedy on indented lines.
+ */
+function linkLeavingTreeProblem(entry, found, root) {
+  if (found.landed === null) {
+    return withRemedy(`${found.key} is a link that does not resolve, where overlay ${entry.id} writes`,
+      'apply cannot tell where a write through it would land, so it writes nothing and the link stays',
+      keepAsideRemedy(root, found.key));
+  }
+  return withRemedy(`${found.key} is a link that leads outside the tree, to ${found.landed}, where overlay ${entry.id} writes`,
+    'apply writes only inside the tree, and a write through this link would land outside it, so the link stays',
+    keepAsideRemedy(root, found.key));
+}
+
+/**
  * Plan a whole-file overlay, guarded by its pin when it has one.
  * @param {object} entry Manifest overlay entry.
  * @param {object} ctx Engine context.
@@ -2799,7 +2896,17 @@ function planOverlay(entry, ctx, { acceptedSha256, recordedLinks, recordedItems,
       listedItems: [], listedSets: [], listedKeys: [], warnings: [],
     };
   }
-  const plan = planner(entry, ctx, problems, acceptedSha256, { recordedLinks, recordedItems, recordedSets, recordedKeys, upstreamBytes });
+  const empty = { writes: [], deletes: [], outputs: [] };
+  const leavesBefore = typeof entry.destination === 'string' && entry.scope !== 'remove-root'
+    ? linkLeavingTree(ctx.root, path.join(ctx.root, entry.destination), { followLeaf: true }) : null;
+  if (leavesBefore) problems.push(linkLeavingTreeProblem(entry, leavesBefore, ctx.root));
+  let plan = leavesBefore ? empty
+    : planner(entry, ctx, problems, acceptedSha256, { recordedLinks, recordedItems, recordedSets, recordedKeys, upstreamBytes });
+  const leavesAfter = leavesBefore ? null : planLeavingTree(ctx.root, plan);
+  if (leavesAfter) {
+    problems.push(linkLeavingTreeProblem(entry, leavesAfter, ctx.root));
+    plan = empty;
+  }
   return {
     entry,
     problems,

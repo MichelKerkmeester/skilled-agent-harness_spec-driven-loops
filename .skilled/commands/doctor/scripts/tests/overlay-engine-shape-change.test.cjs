@@ -146,8 +146,13 @@ test('a link the engine did not make where a directory entry writes keeps its ol
   applyOk(fixture);
   // The manifest still names the link, so a directory entry may not take it over.
   fixture.setManifest([DIRECTORY_ENTRY], [LINK]);
-  fixture.run(['apply']);
+  const second = fixture.run(['apply']);
+  assert.equal(second.code, 0, second.output);
+  // The link stays, and the folder's files land inside the tree, at its target.
   assert.equal(kindOf(path.join(fixture.tree, 'tool')), 'link');
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'tool')), 'target');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'a.md'), 'utf8'), 'bundle a\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'inside.md'), 'utf8'), 'link target\n');
 });
 
 test('a subfolder of a directory source that becomes a file is replaced in one apply', (t) => {
@@ -292,4 +297,89 @@ test('an unowned file where a skill-root replace path writes a folder is refused
   assert.match(result.output, /vendor\/keep\/sub is a file that does not match what apply last wrote there/);
   assert.ok(result.output.includes(`Next: mv ${target} ${target}.keep, then from ${fixture.tree}: node `), result.output);
   assert.equal(fs.readFileSync(target, 'utf8'), 'project file\n');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. LINKS THAT LEAD OUTSIDE THE TREE
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A link the engine did not make that leads outside the tree is refused for
+// every entry scope, whether it stands at the destination or on a folder above
+// it: a write through it would land outside the tree.
+function outsideFolder(t) {
+  const outside = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'overlay-engine-outside-'));
+  t.after(() => fs.rmSync(outside, { recursive: true, force: true }));
+  fs.writeFileSync(path.join(outside, 'outside.md'), 'outside\n');
+  return outside;
+}
+
+function assertOutsideRefusal(fixture, outside, linkKey) {
+  const before = fs.readdirSync(outside).sort();
+  for (const command of ['status', 'apply']) {
+    const result = fixture.run([command]);
+    assert.equal(result.code, 1, result.output);
+    assert.match(result.output, new RegExp(`${linkKey.replace(/[/.]/g, '\\$&')} is a link that leads outside the tree`), result.output);
+    const linkPath = path.join(fixture.tree, linkKey);
+    assert.ok(result.output.includes(`Next: mv ${linkPath} ${linkPath}.keep, then from ${fixture.tree}: node `), result.output);
+  }
+  assert.deepEqual(fs.readdirSync(outside).sort(), before);
+  assert.equal(fs.readFileSync(path.join(outside, 'outside.md'), 'utf8'), 'outside\n');
+}
+
+test('a link outside the tree where a directory entry writes is refused, and nothing lands outside', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [DIRECTORY_ENTRY]);
+  fs.symlinkSync(outside, path.join(fixture.tree, 'tool'));
+  assertOutsideRefusal(fixture, outside, 'tool');
+});
+
+test('a link outside the tree on a folder above a directory entry is refused, and nothing outside is deleted', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'up/tool' }]);
+  fs.mkdirSync(path.join(outside, 'tool'));
+  fs.writeFileSync(path.join(outside, 'tool', 'theirs.md'), 'theirs\n');
+  fs.symlinkSync(outside, path.join(fixture.tree, 'up'));
+  assertOutsideRefusal(fixture, outside, 'up');
+  assert.equal(fs.readFileSync(path.join(outside, 'tool', 'theirs.md'), 'utf8'), 'theirs\n');
+});
+
+test('a link outside the tree where a skill-root entry writes is refused, and nothing lands outside', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [skillRootEntry(['keep'])]);
+  writeFile(fixture.overlayDir, 'vendor/keep/x.md', 'keep x\n');
+  fs.symlinkSync(outside, path.join(fixture.tree, 'vendor'));
+  assertOutsideRefusal(fixture, outside, 'vendor');
+});
+
+test('a link outside the tree above a skill-root replace path is refused, and nothing lands outside', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [skillRootEntry(['keep/sub'])]);
+  writeFile(fixture.overlayDir, 'vendor/keep/sub/x.md', 'sub x\n');
+  fs.mkdirSync(path.join(fixture.tree, 'vendor'));
+  fs.symlinkSync(outside, path.join(fixture.tree, 'vendor', 'keep'));
+  assertOutsideRefusal(fixture, outside, 'vendor/keep');
+});
+
+test('a link to a file outside the tree where a whole-file entry writes is refused, and the file is untouched', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [FILE_ENTRY]);
+  fs.symlinkSync(path.join(outside, 'outside.md'), path.join(fixture.tree, 'tool'));
+  assertOutsideRefusal(fixture, outside, 'tool');
+});
+
+test('a dangling link that points outside the tree where a whole-file entry writes is refused', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [FILE_ENTRY]);
+  fs.symlinkSync(path.join(outside, 'not-yet.md'), path.join(fixture.tree, 'tool'));
+  assertOutsideRefusal(fixture, outside, 'tool');
+});
+
+test('a link that loops where a whole-file entry writes is refused, not a crash', (t) => {
+  const fixture = createShapeFixture(t, [FILE_ENTRY]);
+  fs.symlinkSync('loop-b', path.join(fixture.tree, 'tool'));
+  fs.symlinkSync('tool', path.join(fixture.tree, 'loop-b'));
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 1, result.output);
+  assert.equal(result.output.includes('ELOOP'), false, result.output);
+  assert.match(result.output, /tool is a link that does not resolve/, result.output);
 });
