@@ -99,6 +99,14 @@ describe('overlay request routing', () => {
     expect(topSkill('Polish the overlays README wording')).toBe('sk-doc');
   });
 
+  it('keeps a README check on a UI modal overlay component on the doc hub', () => {
+    expect(topSkill('check the modal overlay component readme for broken links')).toBe('sk-doc');
+  });
+
+  it('keeps a README review of a tooltip overlay widget on the doc hub', () => {
+    expect(topSkill('review the tooltip overlay widget readme for outdated examples')).toBe('sk-doc');
+  });
+
   it('keeps a plain README writing request on the doc hub', () => {
     expect(topSkill('Write a README for this project folder')).toBe('sk-doc');
   });

@@ -226,7 +226,9 @@ const TAG_CONTEXT = /\b(?:git\s+tag|(?:push|create)\s+(?:the\s+|a\s+|an\s+(?:ann
 // audit. Writing a README stays doc work, so the rule holds only when no verb
 // authors one; running the audit is not a README write.
 // The doc penalty outweighs the README token plus its author phrase, which both fire here.
-const OVERLAY_README_CHECK = /\boverlay(?:s)?\b(?:\s+[\w-]+){0,6}?\s+(?:a\s+|the\s+)?readme\b/;
+// The match anchors on Skilled overlay vocabulary, because a bare "overlay" is
+// as often a UI modal or tooltip whose README is plain doc work.
+const OVERLAY_README_CHECK = /(?:\bskilled[\s-]overlays?\b|\boverlays?\s+(?:folders?|status|manifest|audit|roots?)\b)(?:\s+[\w-]+){0,6}?\s+(?:a\s+|the\s+)?readme\b/;
 // Every write verb authors a README except `run`, which runs the audit, plus the
 // verbs that only ever reword prose.
 const README_AUTHORING_WORDS = [...WRITE_VERB_WORDS.filter((verb) => verb !== 'run'), 'draft', 'improve', 'polish', 'revise', 'rewrite'];
