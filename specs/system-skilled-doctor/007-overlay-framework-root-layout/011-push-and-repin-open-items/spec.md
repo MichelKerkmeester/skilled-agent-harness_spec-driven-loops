@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-20 |
 | **Branch** | `main` in Skilled, then `main` in ai-speckit |
 | **Parent Spec** | ../spec.md |
@@ -64,7 +64,8 @@ Barter runs on the pushed Skilled commit that carries phase 009's fixes, and `re
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-N/A: nothing has run yet. The push is the operator's and the re-pin belongs to a later ai-speckit session, which records its output here.
+Pushed 542748515e8d3a391e419b2630b21b270fe2cd20 to origin/main. ai-speckit pin.commit = 542748515e8d3a391e419b2630b21b270fe2cd20.
+Live re-pin run 20261121T071540Z-e1a262: RESULT: PASSED. record-base: exit 0, 74 of 74 units name 542748515e8.
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -81,7 +82,7 @@ N/A: nothing has run yet. The push is the operator's and the re-pin belongs to a
 ### Out of Scope
 - New fixes in Skilled or ai-speckit - phases 009 and 010.
 
-Target Skilled commit: not yet pushed; the operator's push sets it.
+Target Skilled commit: 542748515e8d3a391e419b2630b21b270fe2cd20
 
 ### Files to Change
 
