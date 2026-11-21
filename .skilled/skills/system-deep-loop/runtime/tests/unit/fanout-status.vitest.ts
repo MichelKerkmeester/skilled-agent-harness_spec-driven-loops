@@ -130,6 +130,27 @@ describe('live stdout for the progress row', () => {
     expect(result.stdout).toBe('one\ntwo\n');
     expect(chunks.join('')).toBe(result.stdout);
   });
+
+  // The cap stops the child and keeps only what fit, so the result must say so: a child
+  // that survives the stop and exits 0 would otherwise read as a clean run on cut output.
+  it('marks a result whose stdout passed the cap, even when the child exits 0', async () => {
+    const script = "trap '' TERM; yes a | head -c 4096; sleep 0.2; exit 0";
+    const over = await runLineageProcess('sh', ['-c', script], {
+      env: process.env,
+      timeoutMs: 10_000,
+      maxBuffer: 1024,
+    }) as { status: number | null; stdout: string; error?: { code?: string } };
+    expect(over.status).toBe(0);
+    expect(over.error?.code).toBe('ENOBUFS');
+    expect(over.stdout.length).toBeLessThanOrEqual(1024);
+
+    const under = await runLineageProcess('sh', ['-c', 'printf "small\\n"'], {
+      env: process.env,
+      timeoutMs: 10_000,
+      maxBuffer: 1024,
+    }) as { error?: unknown };
+    expect(under.error).toBeUndefined();
+  });
 });
 
 function listTree(dir: string): string[] {

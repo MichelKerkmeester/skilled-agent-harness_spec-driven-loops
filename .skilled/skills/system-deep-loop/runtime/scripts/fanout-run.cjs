@@ -3253,6 +3253,12 @@ function runLineageProcess(command, cmdArgs, opts) {
       stdoutBytes += Buffer.byteLength(chunk, 'utf8');
       if (stdoutBytes > maxBuffer) {
         truncated = true;
+        // The stop below sends the signal a timeout sends, and a child may survive it and
+        // exit 0, so the overflow travels as its own error, the code spawnSync uses for it.
+        if (!spawnError) {
+          spawnError = new Error(`stdout passed the ${maxBuffer}-byte cap`);
+          spawnError.code = 'ENOBUFS';
+        }
         terminateLineageProcess(child, 'SIGTERM');
         return;
       }
@@ -3413,6 +3419,7 @@ function finalizeLineageCommand(input) {
     reasoningEffort: input.reasoningEffort,
     serviceTier: input.serviceTier,
     sandboxMode: input.resolvedSandbox,
+    ...(input.requestedSandbox ? { sandboxNarrowedFrom: input.requestedSandbox } : {}),
     permissionMode: emittedPermissionMode(input),
     sandboxEnforcement: sandboxEnforcementFor(input),
     effortApplied: input.effortApplied ?? (input.reasoningEffort ? 'flag' : 'none'),
@@ -4189,7 +4196,10 @@ function buildDshLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermis
     // The route patch sets the effort; no flag carries it.
     effortApplied: 'baked',
     serviceTier: null,
-    resolvedSandbox,
+    // dsh is never given danger-full-access, so a full-access request runs as
+    // workspace-write and is reported as the mode it runs plus the mode it was asked for.
+    resolvedSandbox: permissionMode,
+    ...(resolvedSandbox !== permissionMode ? { requestedSandbox: resolvedSandbox } : {}),
     resolvedPermission: permissionMode,
     webSearch: effectiveWebSearchPolicy(lineage),
   });
@@ -5617,7 +5627,8 @@ async function main() {
       lineageSlotAccounting.set(lineage.label, slotAccounting);
 
       const exitCode = result.status ?? (result.error ? 1 : 0);
-      const timedOut = result.signal === 'SIGTERM';
+      const outputOverflow = result.error?.code === 'ENOBUFS';
+      const timedOut = !outputOverflow && result.signal === 'SIGTERM';
       // Any signal-kill is abnormal, not just the orchestrator's own SIGTERM timeout — a
       // stall-watchdog / lag-ceiling abort or an external SIGKILL leaves result.status null,
       // so exitCode computes to 0 and the lineage would otherwise be masked as success.
@@ -5656,20 +5667,22 @@ async function main() {
       const exitCodeIsFailure = (exitCode !== 0 && lineage.kind !== 'cli-pi')
         || dshCompletionFailure !== null
         || vibeCompletionFailure !== null;
-      if (timedOut || killedBySignal || exitCodeIsFailure) {
-        const reason = timedOut
-          ? 'timed out'
-          : killedBySignal
-            ? `killed by signal ${result.signal}`
-            : dshCompletionFailure
-              ? dshCompletionFailure
-              : vibeCompletionFailure
-                ? vibeCompletionFailure
-                : `exited with code ${exitCode}`;
+      if (outputOverflow || timedOut || killedBySignal || exitCodeIsFailure) {
+        const reason = outputOverflow
+          ? result.error.message
+          : timedOut
+            ? 'timed out'
+            : killedBySignal
+              ? `killed by signal ${result.signal}`
+              : dshCompletionFailure
+                ? dshCompletionFailure
+                : vibeCompletionFailure
+                  ? vibeCompletionFailure
+                  : `exited with code ${exitCode}`;
         // A provider that refuses the run on an exhausted allowance exits like any crash.
         // Name it and keep its own words, so the roll-up shows an outage the operator can
         // act on instead of an anonymous exit.
-        const quotaExhaustion = !timedOut && !killedBySignal
+        const quotaExhaustion = !outputOverflow && !timedOut && !killedBySignal
           ? detectQuotaExhaustion(savedStderr, savedStdout)
           : null;
         const failure = new Error(

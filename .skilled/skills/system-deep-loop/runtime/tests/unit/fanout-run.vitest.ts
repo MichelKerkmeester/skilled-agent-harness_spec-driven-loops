@@ -7478,6 +7478,23 @@ describe('fanout-run.cjs — a fatal provider refusal is announced and redacted'
     expect(existsSync(join(logsDir, 'fanout-lineage.1.err'))).toBe(false);
   });
 
+  // The stdout cap stops the lineage with the same signal a timeout sends, so the failure
+  // must name the cap, or the operator raises a timeout that was never the cause.
+  it('fails a lineage whose stdout passed the cap with that reason, not as a timeout', async () => {
+    const binDir = makeTempDir('fanout-run-overflow-bin-');
+    const baseDir = makeTempDir('fanout-run-overflow-base-');
+    writeFileSync(
+      join(binDir, 'opencode'),
+      ['#!/bin/sh', OPENCODE_VERSION_PROBE, 'yes aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa | head -c 22000000', 'sleep 30', 'exit 0', ''].join('\n'),
+      { mode: 0o755 },
+    );
+    const hermetic = useHermeticEnv('stdout-overflow');
+    const result = await runRefusal(hermetic, binDir, baseDir);
+
+    expect(result.stderr).toMatch(/lineage quota stdout passed the 20971520-byte cap/);
+    expect(result.stderr).not.toMatch(/lineage quota timed out/);
+  });
+
   // The artifact directory is staged for commit, so a failed attempt's kept log and the
   // log of a lineage that failed for good carry the same masking as the ledger rows.
   it('masks the account in the rotated log and in a terminally failed lineage log', async () => {

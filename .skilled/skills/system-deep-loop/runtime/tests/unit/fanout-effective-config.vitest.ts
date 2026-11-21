@@ -117,6 +117,33 @@ describe('fanout-run.cjs — effective_config reports what each command enforces
     }
   });
 
+  // The dispatch never passes dsh danger-full-access, so a full-access request runs as
+  // workspace-write; the report must say what runs and that the request was narrowed.
+  it('reports a dsh full-access request as narrowed to the workspace-write it runs', () => {
+    const opts = {
+      env: stubEnv(),
+      executableVersion: 'stub 1.0.0',
+      repoRoot: dshRepo(),
+      lineageDir: makeTempDir('fanout-effective-config-lineage-'),
+    };
+    const narrowed = buildLineageCommand(
+      { kind: 'cli-deepseek-harness' }, 'prompt text', 'danger-full-access', 'bypassPermissions', opts,
+    );
+    expect(narrowed.args[narrowed.args.indexOf('--permission-mode') + 1]).toBe('workspace-write');
+    expect(narrowed.effectiveConfig).toMatchObject({
+      sandboxMode: 'workspace-write',
+      sandboxNarrowedFrom: 'danger-full-access',
+      permissionMode: 'workspace-write',
+      sandboxEnforcement: 'preventive',
+    });
+
+    const asked = buildLineageCommand(
+      { kind: 'cli-deepseek-harness' }, 'prompt text', 'workspace-write', 'acceptEdits', opts,
+    );
+    expect(asked.effectiveConfig.sandboxMode).toBe('workspace-write');
+    expect(asked.effectiveConfig).not.toHaveProperty('sandboxNarrowedFrom');
+  });
+
   // A native lineage has no command to report: OpenCode 2 run cannot start the
   // registered command its adapter needed, so the builder refuses it.
   it('builds no command and reports no effective config for a native lineage', () => {
