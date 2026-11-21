@@ -59,7 +59,13 @@ function uniquePaths(paths) {
 // The engine path is relative to the tree root, and the operator may stand anywhere,
 // so the remedy names the directory to run it from.
 function statusRemedy(treeRoot = DEFAULT_TREE_ROOT) {
-  return `Next: from ${treeRoot}: node .skilled/commands/doctor/scripts/overlay-engine.cjs status`;
+  return `Next: from ${shellWord(treeRoot)}: node ${ENGINE_RELATIVE.split(path.sep).join('/')} status`;
+}
+
+// A word a printed command carries as pasted: single-quoted unless nothing in it is special.
+function shellWord(text) {
+  const value = String(text);
+  return /^[A-Za-z0-9_@%+=:,./-]+$/.test(value) ? value : `'${value.replace(/'/g, "'\\''")}'`;
 }
 
 function oneLine(text) {

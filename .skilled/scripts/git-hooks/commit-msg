@@ -80,7 +80,7 @@ if cip_repo_wants_ids "$REPO_ROOT" \
   printf 'BLOCKED: this repository requires a Commit-Id trailer, and the prepare-commit-msg hook did not stamp one.\n' >&2
   printf '  A prepare-commit-msg line above names the cause; fix that first, and never type the id by hand.\n' >&2
   printf '  If no such line appears, the stamper is switched off (SPECKIT_SKIP_PREPARE_COMMIT_MSG=1 or gate config) or not installed:\n' >&2
-  printf '  unset that switch, or reinstall with bash .skilled/scripts/install-git-hooks.sh\n' >&2
+  printf '  unset that switch, or reinstall from %q: bash %q\n' "${REPO_ROOT:-$PWD}" "$INSTALLER" >&2
   printf '  A malformed Commit-Id line already in the message also stops the stamper: delete it.\n' >&2
   printf '  Next: git commit\n' >&2
   printf '  To exempt this repository instead: git config --local skilled.commitId false\n' >&2

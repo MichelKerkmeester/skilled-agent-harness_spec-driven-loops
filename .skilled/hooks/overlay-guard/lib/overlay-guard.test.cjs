@@ -408,3 +408,8 @@ test('pi: edit and write map input.path to a block', async () => {
     else process.env.HOOK_FLAGS_CONFIG = previous;
   }
 });
+
+test('the status remedy quotes a tree root with a space so it runs as pasted', () => {
+  const line = loadCore().statusRemedy('/tmp/my tree');
+  assert.equal(line, "Next: from '/tmp/my tree': node .skilled/commands/doctor/scripts/overlay-engine.cjs status");
+});

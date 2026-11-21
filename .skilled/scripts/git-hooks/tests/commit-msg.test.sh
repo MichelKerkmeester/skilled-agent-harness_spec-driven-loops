@@ -555,6 +555,7 @@ git -C "$TMP" config skilled.commitId true
 printf 'feat(sk-git): add a thing\n\nWhy it changed.\n' > "$TMP/message.txt"
 run_hook; RC=$?
 check "a covered repository blocks a message without a Commit-Id" 1 "$RC" "requires a Commit-Id"
+check "...and its reinstall hint names the folder to run the installer from" 1 "$RC" "reinstall from .*: bash .*install-git-hooks.sh"
 printf 'feat(sk-git): add a thing\n\nWhy it changed.\n\nCommit-Id: 0000001\n' > "$TMP/message.txt"
 run_hook; RC=$?
 check "a covered repository passes a message with a Commit-Id" 0 "$RC"

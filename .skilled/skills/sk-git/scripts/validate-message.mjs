@@ -222,13 +222,13 @@ function main() {
   throw new UsageError('nothing to validate: pass --commit, --rev-list, --pr-body, --branch, --explain or --check-template');
 }
 
-/** Name the unreadable rules file and the exact command that checks the repair. */
 // The remedy runs from wherever the operator stands, so it names this file absolutely.
 const VALIDATOR = fileURLToPath(import.meta.url);
 
 /** A word a printed command can carry as pasted: single-quoted unless nothing in it is special. */
 const shellWord = (text) => (/^[A-Za-z0-9_@%+=:,./-]+$/.test(text) ? text : `'${text.replace(/'/g, "'\\''")}'`);
 
+/** Name the unreadable rules file and the exact command that checks the repair. */
 function contractRemedy(err) {
   if (!err.file) return '  Next: git config --unset skgit.contractDir\n';
   const base = err.file.split(/[\\/]/).pop();
