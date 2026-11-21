@@ -310,13 +310,16 @@ function singleIterationLineage(
   };
 }
 
-// The executor the audit rows record, carrying the sandbox mode the built command runs and
-// what it enforces. A builder that runs another mode than the one asked for keeps the asked
-// mode beside it, so the record never names a boundary the command does not have.
+// The executor the audit rows record, carrying the model and sandbox mode the built command
+// runs and what it enforces. The model is the builder's own resolution, so an unset model is
+// recorded as the default the command runs, not as the null that was asked for. A builder that
+// runs another mode than the one asked for keeps the asked mode beside it, so the record never
+// names a boundary the command does not have.
 function executorAsBuilt(executor, effectiveConfig) {
-  const { sandboxMode, sandboxNarrowedFrom, sandboxWidenedFrom, sandboxEnforcement } = effectiveConfig;
+  const { model, sandboxMode, sandboxNarrowedFrom, sandboxWidenedFrom, sandboxEnforcement } = effectiveConfig;
   return {
     ...executor,
+    model,
     sandboxMode,
     ...(sandboxNarrowedFrom !== undefined ? { sandboxNarrowedFrom } : {}),
     ...(sandboxWidenedFrom !== undefined ? { sandboxWidenedFrom } : {}),

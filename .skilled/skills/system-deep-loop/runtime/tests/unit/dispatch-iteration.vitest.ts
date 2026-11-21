@@ -16,6 +16,7 @@ import {
   existsSync,
   mkdirSync,
   mkdtempSync,
+  readdirSync,
   readFileSync,
   realpathSync,
   rmSync,
@@ -26,7 +27,8 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { detectFromAncestry } from '../../lib/deep-loop/executor-audit.js';
+import { HOST_SESSION_EXECUTOR_ENV, detectFromAncestry } from '../../lib/deep-loop/executor-audit.js';
+import { EXECUTOR_KINDS as CONFIGURED_EXECUTOR_KINDS } from '../../lib/deep-loop/executor-config.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(here, '..', '..', '..', '..', '..', '..');
@@ -41,9 +43,17 @@ const dispatcher = requireCjs(SCRIPT) as {
   };
   buildContext: (values: Record<string, string>) => Record<string, unknown>;
 };
-const { CLAUDE_DEFAULT_MODEL, CODEX_DEFAULT_MODEL } = requireCjs(
+const {
+  CLAUDE_DEFAULT_MODEL,
+  CODEX_DEFAULT_MODEL,
+  CURSOR_DEFAULT_MODEL,
+  DEVIN_DEFAULT_MODEL,
+  DSH_DEFAULT_MODEL,
+  OPENCODE_DEFAULT_MODEL,
+  PI_DEFAULT_MODEL,
+} = requireCjs(
   resolve(here, '..', '..', 'scripts', 'fanout-run.cjs'),
-) as { CLAUDE_DEFAULT_MODEL: string; CODEX_DEFAULT_MODEL: string };
+) as Record<string, string>;
 
 const EXECUTOR_KINDS = [
   'native',
@@ -375,7 +385,7 @@ describe('dispatch-iteration Claude dispatch', () => {
   it('resolves an unset model to the default instead of the literal string null', () => {
     const dispatch = claudeDispatch('review', { model: 'null' });
     expect(flagAfter(dispatch.args, '--model')).toBe(CLAUDE_DEFAULT_MODEL);
-    expect(dispatch.executor.model).toBeNull();
+    expect(dispatch.executor.model).toBe(CLAUDE_DEFAULT_MODEL);
   });
 
   it('logs stream-json and keeps the event stream off the terminal', () => {
@@ -479,6 +489,7 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
     sandboxMode: string,
     extraFlags: string[] = [],
     artifactDir?: string,
+    extraEnv: Record<string, string> = {},
   ): { status: number | null; stderr: string; argv: string[] | null; fixture: SandboxFixture } {
     const fixture = createSandboxFixture(command, version);
     const result = spawnSync(process.execPath, [
@@ -507,6 +518,7 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
         PATH: `${join(fixture.root, 'bin')}:${process.env.PATH}`,
         HOME: fixture.root,
         TMPDIR: process.env.TMPDIR,
+        ...extraEnv,
       },
     });
     const argv = existsSync(fixture.recordPath)
@@ -753,6 +765,92 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
         permission: { external_directory: 'deny' },
       });
       expect(receiptSandboxMode(packetDir, 'review-i1-g1')).toBe('workspace-write');
+    });
+  });
+
+  // The audit names the model the command runs, so an unset model must be recorded as the
+  // default the builder put on the command line, never as the null that was asked for. The
+  // host-session opt-in relaxes only the ancestry layer, so the kind this session runs under
+  // dispatches too instead of stopping at the recursion guard before its argv exists.
+  describe('audit model per executor kind', () => {
+    const flagModel = (flag: string) => (argv: string[]): string | null => {
+      const index = argv.indexOf(flag);
+      return index === -1 ? null : argv[index + 1];
+    };
+    // cli-deepseek-harness takes no model flag: the route patch it names pins the model.
+    const routePatchModel = (argv: string[]): string | null => {
+      const route = argv.find((arg) => /route-[\w-]+\.patch\.yml$/.test(arg));
+      if (!route) return null;
+      const patch = readFileSync(join(REPO_ROOT, '.dsh', 'patches', route.split('/').pop() as string), 'utf8');
+      return /id: agent-default-model[\s\S]*?\bmodel: (\S+)/.exec(patch)?.[1] ?? null;
+    };
+    const DISPATCHABLE: Record<string, {
+      command: string;
+      version: string;
+      flags?: string[];
+      defaultModel: string;
+      argvModel: (argv: string[]) => string | null;
+    }> = {
+      'cli-codex': { command: 'codex', version: 'codex 0.0.0', defaultModel: CODEX_DEFAULT_MODEL, argvModel: flagModel('--model') },
+      'cli-claude-code': { command: 'claude', version: '0.0.0', defaultModel: CLAUDE_DEFAULT_MODEL, argvModel: flagModel('--model') },
+      'cli-opencode': {
+        command: 'opencode',
+        version: '2.3.2',
+        defaultModel: OPENCODE_DEFAULT_MODEL,
+        // -m carries the model with the effort the route pins after a '#'.
+        argvModel: (argv) => flagModel('-m')(argv)?.split('#')[0] ?? null,
+      },
+      'cli-cursor': { command: 'cursor-agent', version: '0.0.0', defaultModel: CURSOR_DEFAULT_MODEL, argvModel: flagModel('--model') },
+      'cli-devin': { command: 'devin', version: 'devin 0.0.0', defaultModel: DEVIN_DEFAULT_MODEL, argvModel: flagModel('--model') },
+      'cli-pi': {
+        command: 'pi',
+        version: '0.0.0',
+        defaultModel: PI_DEFAULT_MODEL,
+        // --model carries a provider/model selector.
+        argvModel: (argv) => flagModel('--model')(argv)?.split('/').pop() ?? null,
+      },
+      'cli-deepseek-harness': {
+        command: 'dsh',
+        version: '0.2.2-rc.3',
+        flags: ['--spec-folder', 'specs/fixture'],
+        defaultModel: DSH_DEFAULT_MODEL,
+        argvModel: routePatchModel,
+      },
+    };
+
+    it.each([...CONFIGURED_EXECUTOR_KINDS])('records the model the %s command runs', (kind) => {
+      const spec = DISPATCHABLE[kind];
+      if (!spec) {
+        // No single-iteration dispatch path: refused before any audit row exists.
+        const run = dispatchArgv(kind, 'unused', '0.0.0', 'null');
+        expect(run.status).toBe(64);
+        expect(existsSync(join(run.fixture.repo, 'packet', 'dispatch-receipts'))).toBe(false);
+        return;
+      }
+      const run = dispatchArgv(kind, spec.command, spec.version, 'null', spec.flags ?? [], undefined, {
+        [HOST_SESSION_EXECUTOR_ENV]: '1',
+      });
+      expect(run.argv, run.stderr).not.toBeNull();
+      const argvModel = spec.argvModel(run.argv as string[]);
+      expect(argvModel).toBe(spec.defaultModel);
+      expect(recordedExecutor(run).model).toBe(argvModel);
+      const receiptDir = join(run.fixture.repo, 'packet', 'dispatch-receipts');
+      const receiptModels = readdirSync(receiptDir)
+        .filter((name) => name.endsWith('.json'))
+        .map((name) => JSON.parse(readFileSync(join(receiptDir, name), 'utf8')) as {
+          facts?: { executor?: { model: unknown } };
+        })
+        .filter((receipt) => receipt.facts?.executor)
+        .map((receipt) => receipt.facts?.executor?.model);
+      expect(receiptModels.length).toBeGreaterThan(1);
+      expect(new Set(receiptModels)).toEqual(new Set([argvModel]));
+      // A clean exit writes no failure row, so only the rows that do carry an executor are read.
+      const rows = readFileSync(join(run.fixture.root, 'state.jsonl'), 'utf8')
+        .split('\n')
+        .filter(Boolean)
+        .map((line) => JSON.parse(line) as { executor?: { model: unknown } })
+        .filter((row) => row.executor);
+      for (const row of rows) expect(row.executor?.model).toBe(argvModel);
     });
   });
 });
