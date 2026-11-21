@@ -1,0 +1,171 @@
+{
+  "skill": "mcp-browser-use",
+  "version": "1.1.0.0",
+  "routerPolicy": {
+    "defaultMode": null,
+    "ambiguityDelta": 1,
+    "tieBreak": [
+      "mcp-chrome-devtools",
+      "mcp-aside-devtools",
+      "mcp-bladebro"
+    ],
+    "outcomes": {
+      "single": "one dominant browser signal routes to one mode",
+      "orderedBundle": "multiple explicitly named browser tools route in tie-break order",
+      "defer": "unclear or generic browser phrasing asks for disambiguation"
+    },
+    "defaultResource": [
+      "ROUTER.md",
+      "mode-registry.json"
+    ],
+    "defaultResourceSemantics": "fallback-only",
+    "defaultResourceContract": "A scored route assembles exactly the selected mode's declared resources. defaultResource is consulted only when no mode scores, and then only as the defer-time suggestion offered alongside disambiguation. It is never added to a scored route's resource set.",
+    "discoveryClasses": [
+      "hub-identity",
+      "generic-browser-automation"
+    ],
+    "discoveryClassesContract": "Classes listed here are hub discovery and defer evidence only. No mode's scoring classes reference them, so a prompt that matches only discovery vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode."
+  },
+  "routerSignals": {
+    "mcp-chrome-devtools": {
+      "weight": 4,
+      "classes": [
+        "chrome-devtools-aliases",
+        "browser-debug"
+      ],
+      "resources": [
+        "mcp-chrome-devtools/SKILL.md"
+      ]
+    },
+    "mcp-aside-devtools": {
+      "weight": 4,
+      "classes": [
+        "aside-devtools-aliases",
+        "aside-repl-evidence"
+      ],
+      "resources": [
+        "mcp-aside-devtools/SKILL.md"
+      ]
+    },
+    "mcp-bladebro": {
+      "weight": 4,
+      "classes": [
+        "bladebro-aliases",
+        "bladebro-workflow"
+      ],
+      "resources": [
+        "mcp-bladebro/SKILL.md"
+      ]
+    }
+  },
+  "vocabularyClasses": {
+    "hub-identity": {
+      "note": "Discovery-only. Hub-level vocabulary that identifies this hub, not any one mode. Deliberately unreferenced by routerSignals, so hub-identity-only prompts defer.",
+      "keywords": [
+        "mcp-browser-use",
+        "mode-registry",
+        "hub-router"
+      ]
+    },
+    "generic-browser-automation": {
+      "note": "Discovery-only. Generic browser-automation phrasing names no tool, so it never scores a mode. A prompt that matches only these phrases defers. The Aside and Bladebro agentic phrasing lives here too, because a bare agentic request belongs to neither mode.",
+      "keywords": [
+        "browser automation",
+        "automate the browser",
+        "web browser",
+        "agentic browser",
+        "ai browser automation",
+        "browser agent",
+        "natural language browser"
+      ]
+    },
+    "chrome-devtools-aliases": {
+      "keywords": [
+        "chrome devtools",
+        "open devtools",
+        "via devtools",
+        "use devtools",
+        "in devtools",
+        "devtools console",
+        "browser debug",
+        "lighthouse",
+        "bdg",
+        "cdp",
+        "chrome-devtools",
+        "mcp-chrome-devtools",
+        "chrome_devtools_live",
+        "chrome devtools live",
+        "chrome live manual",
+        "remote debugging",
+        "chrome autoconnect",
+        "my own chrome",
+        "signed-in chrome",
+        "logged in chrome"
+      ]
+    },
+    "browser-debug": {
+      "note": "Debugging and inspection vocabulary. It stays here and out of the Bladebro classes, so a debugging request resolves to Chrome DevTools and never to Bladebro on its own.",
+      "keywords": [
+        "inspect the dom",
+        "screenshot capture",
+        "console errors",
+        "network requests",
+        "har export",
+        "performance trace",
+        "cdp domain",
+        "capture browser screenshots",
+        "export a har",
+        "har file",
+        "core web vitals"
+      ]
+    },
+    "aside-devtools-aliases": {
+      "note": "Bare aside is kept: without it, requests such as \"run aside on the pricing page\" or \"open aside and log in\" name the tool and still defer. Stage two only runs after the advisor picks this hub, so ordinary-prose uses of the word never reach it.",
+      "keywords": [
+        "aside",
+        "aside browser",
+        "aside cli",
+        "aside mcp",
+        "aside repl",
+        "aside daemon",
+        "aside account",
+        "aside devtools",
+        "mcp-aside-devtools"
+      ]
+    },
+    "aside-repl-evidence": {
+      "note": "Deterministic REPL replay and evidence capture. These phrases carry no agentic or stealth qualifier, because agentic and stealth signed-in work belongs to the Bladebro classes.",
+      "keywords": [
+        "capture repl evidence",
+        "repl evidence capture",
+        "deterministic signed-in proof",
+        "sandboxed playwright repl",
+        "replay this signed-in",
+        "signed-in replay"
+      ]
+    },
+    "bladebro-aliases": {
+      "keywords": [
+        "bladebro",
+        "bladebro cli",
+        "bladebro mcp",
+        "stealth browser",
+        "rb attach",
+        "rb status"
+      ]
+    },
+    "bladebro-workflow": {
+      "note": "Agentic branching, stealth signed-in work and caller-owned browser attachment. Tie-break order places Chrome DevTools first on debugging overlap and Aside first on deterministic signed-in overlap.",
+      "keywords": [
+        "agentic signed-in",
+        "stealth signed-in",
+        "agentic branching",
+        "anti-detection browser",
+        "attach to my open browser",
+        "caller-owned browser",
+        "browser i already have open",
+        "already-open browser"
+      ]
+    }
+  }
+}
