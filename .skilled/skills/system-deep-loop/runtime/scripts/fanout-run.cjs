@@ -2044,6 +2044,13 @@ const FINISHED_LINEAGE_EXECUTOR_FIELDS = Object.freeze([
   'kind', 'model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'permissionMode', 'webSearch',
 ]);
 
+// The sandbox mode a lineage asked for. A builder that runs another mode reports that one and keeps
+// the request beside it, and the report can change while the command does not, so a finished
+// lineage is matched on the request.
+function requestedSandboxMode(config) {
+  return config.sandboxWidenedFrom ?? config.sandboxNarrowedFrom ?? config.sandboxMode;
+}
+
 function readJsonRecord(filePath) {
   try {
     const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -2076,13 +2083,14 @@ function finishedLineageMismatch({ loopType, lineageDir, label, binding, effecti
   const metadata = readJsonRecord(path.join(lineageDir, 'invocation-metadata.json'));
   const prior = metadata && isRecord(metadata.effectiveConfig) ? metadata.effectiveConfig : null;
   if (!prior || !isRecord(effectiveConfig)) return null;
+  const compared = (record, name) => (name === 'sandboxMode' ? requestedSandboxMode(record) : record[name]) ?? null;
   const changed = FINISHED_LINEAGE_EXECUTOR_FIELDS.filter((name) => (
     Object.prototype.hasOwnProperty.call(effectiveConfig, name)
-    && (prior[name] ?? null) !== (effectiveConfig[name] ?? null)
+    && compared(prior, name) !== compared(effectiveConfig, name)
   ));
   if (changed.length === 0) return null;
   return `lineage ${label} finished under a different executor${FINISHED_LINEAGE_REFUSAL_GUIDANCE}: `
-    + changed.map((name) => `${name} ${JSON.stringify(prior[name] ?? null)} -> ${JSON.stringify(effectiveConfig[name] ?? null)}`).join(', ');
+    + changed.map((name) => `${name} ${JSON.stringify(compared(prior, name))} -> ${JSON.stringify(compared(effectiveConfig, name))}`).join(', ');
 }
 
 /**
@@ -3371,7 +3379,9 @@ function buildInvocationFingerprintPayload(input) {
     effort: input.reasoningEffort,
     tier: input.serviceTier,
     sandboxPosture: {
-      sandboxMode: input.resolvedSandbox,
+      // A widened mode is only a new label for the command the request already ran, so the
+      // request stays in the identity.
+      sandboxMode: requestedSandboxReport(input).sandboxWidenedFrom ?? input.resolvedSandbox,
       permissionMode: input.resolvedPermission,
     },
     webSearch: input.webSearch,
@@ -3398,6 +3408,17 @@ function sandboxEnforcementFor(input) {
   return input.compensatingControl === true ? 'compensating' : 'none';
 }
 
+const SANDBOX_MODE_REACH = Object.freeze({ 'read-only': 0, 'workspace-write': 1, 'danger-full-access': 2 });
+
+// A builder that runs a different mode than the one asked for reports the mode it runs and
+// keeps the asked-for mode under the key that says which way the run moved.
+function requestedSandboxReport(input) {
+  if (!input.requestedSandbox || input.requestedSandbox === input.resolvedSandbox) return {};
+  return SANDBOX_MODE_REACH[input.requestedSandbox] > SANDBOX_MODE_REACH[input.resolvedSandbox]
+    ? { sandboxNarrowedFrom: input.requestedSandbox }
+    : { sandboxWidenedFrom: input.requestedSandbox };
+}
+
 function finalizeLineageCommand(input) {
   // cli-opencode has no OS-level sandbox. workspace-write is honoured only as a permission
   // rule (external_directory denied for its file tools), and its Bash tool can still write
@@ -3419,7 +3440,7 @@ function finalizeLineageCommand(input) {
     reasoningEffort: input.reasoningEffort,
     serviceTier: input.serviceTier,
     sandboxMode: input.resolvedSandbox,
-    ...(input.requestedSandbox ? { sandboxNarrowedFrom: input.requestedSandbox } : {}),
+    ...requestedSandboxReport(input),
     permissionMode: emittedPermissionMode(input),
     sandboxEnforcement: sandboxEnforcementFor(input),
     effortApplied: input.effortApplied ?? (input.reasoningEffort ? 'flag' : 'none'),
@@ -3898,6 +3919,8 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
   // devin CLI shows in untrusted dirs, so fresh dispatch directories otherwise fail
   // closed (the leaf explores then exits without producing its artifact).
   args.push('--respect-workspace-trust', 'false');
+  // A workspace-write request runs the full-access command, so it is reported as full access.
+  const runsSandbox = resolvedSandbox === 'read-only' ? 'read-only' : 'danger-full-access';
   return finalizeLineageCommand({
     kind: lineage.kind,
     command: 'devin',
@@ -3909,7 +3932,8 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
     model,
     reasoningEffort: null,
     serviceTier: null,
-    resolvedSandbox,
+    resolvedSandbox: runsSandbox,
+    requestedSandbox: resolvedSandbox,
     resolvedPermission,
     compensatingControl: resolvedSandbox === 'read-only',
     webSearch,
@@ -4006,6 +4030,8 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
     args.push('--thinking', thinking);
   }
   args.push(prompt);
+  // Every mode but read-only runs the same unrestricted command, so it is reported as full access.
+  const runsSandbox = resolvedSandbox === 'read-only' ? 'read-only' : 'danger-full-access';
   return finalizeLineageCommand({
     kind: lineage.kind,
     command: 'pi',
@@ -4017,7 +4043,8 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
     model,
     reasoningEffort: piEffort || null,
     serviceTier: null,
-    resolvedSandbox,
+    resolvedSandbox: runsSandbox,
+    requestedSandbox: resolvedSandbox,
     resolvedPermission,
     compensatingControl: args.includes('--tools'),
     webSearch: effectiveWebSearchPolicy(lineage),

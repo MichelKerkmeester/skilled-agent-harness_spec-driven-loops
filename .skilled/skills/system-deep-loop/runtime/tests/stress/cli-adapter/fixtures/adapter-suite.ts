@@ -465,7 +465,11 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
         expect(writableRun.result.exitCode).toBe(0);
         expect(readAdapterCaptures(writableFixture)[0].args).not.toContain('--tools');
         expect(JSON.parse(readFileSync(`${writableRun.lineageDir}/invocation-metadata.json`, 'utf8')).effectiveConfig)
-          .toMatchObject({ sandboxMode: 'workspace-write', sandboxEnforcement: 'none' });
+          .toMatchObject({
+            sandboxMode: 'danger-full-access',
+            sandboxWidenedFrom: 'workspace-write',
+            sandboxEnforcement: 'none',
+          });
       } else if (kind === 'cli-claude-code') {
         expect(readOnlyArgs).toEqual(expect.arrayContaining(['--permission-mode', 'plan']));
       } else if (kind === 'cli-devin') {

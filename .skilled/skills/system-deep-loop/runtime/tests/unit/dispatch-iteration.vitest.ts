@@ -521,7 +521,25 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
     return index === -1 ? undefined : list[index + 1];
   }
 
+  // The executor record the signed intent receipt carries, the same one the state rows carry.
+  function recordedExecutor(run: { fixture: SandboxFixture }): Record<string, unknown> {
+    return (JSON.parse(readFileSync(
+      join(run.fixture.repo, 'packet', 'dispatch-receipts', 'dispatch-research-i1-g1.intent.json'),
+      'utf8',
+    )) as { facts: { executor: Record<string, unknown> } }).facts.executor;
+  }
+
   describe.skipIf(detectFromAncestry('cli-codex'))('cli-codex', () => {
+    // codex confines workspace-write itself, so the record keeps the requested mode as is.
+    it('records a confined workspace-write as requested, with preventive enforcement', () => {
+      const run = dispatchArgv('cli-codex', 'codex', 'codex 0.0.0', 'workspace-write');
+      expect(flagValue(run.argv, '--sandbox')).toBe('workspace-write');
+      const executor = recordedExecutor(run);
+      expect(executor).toMatchObject({ sandboxMode: 'workspace-write', sandboxEnforcement: 'preventive' });
+      expect(executor).not.toHaveProperty('sandboxNarrowedFrom');
+      expect(executor).not.toHaveProperty('sandboxWidenedFrom');
+    });
+
     it('hands a requested read-only sandbox to codex', () => {
       const run = dispatchArgv('cli-codex', 'codex', 'codex 0.0.0', 'read-only');
       expect(flagValue(run.argv, '--sandbox')).toBe('read-only');
@@ -582,6 +600,17 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
       const run = dispatchArgv('cli-devin', 'devin', 'devin 0.0.0', 'null');
       expect(flagValue(run.argv, '--permission-mode')).toBe('dangerous');
     });
+
+    // devin runs a write lineage with the same unconfined command as full access.
+    it('records a workspace-write request as the unconfined mode devin runs', () => {
+      const run = dispatchArgv('cli-devin', 'devin', 'devin 0.0.0', 'workspace-write');
+      expect(flagValue(run.argv, '--permission-mode')).toBe('dangerous');
+      expect(recordedExecutor(run)).toMatchObject({
+        sandboxMode: 'danger-full-access',
+        sandboxWidenedFrom: 'workspace-write',
+        sandboxEnforcement: 'none',
+      });
+    });
   });
 
   describe.skipIf(detectFromAncestry('cli-deepseek-harness'))('cli-deepseek-harness', () => {
@@ -595,6 +624,16 @@ describe('dispatch-iteration sandbox mode per executor kind', () => {
     it('keeps workspace-write when no sandbox mode is set', () => {
       const run = dispatchArgv('cli-deepseek-harness', 'dsh', '0.2.2-rc.3', 'null', harnessFlags);
       expect(flagValue(run.argv, '--permission-mode')).toBe('workspace-write');
+    });
+
+    it('records a full-access request as the workspace-write the harness runs', () => {
+      const run = dispatchArgv('cli-deepseek-harness', 'dsh', '0.2.2-rc.3', 'danger-full-access', harnessFlags);
+      expect(flagValue(run.argv, '--permission-mode')).toBe('workspace-write');
+      expect(recordedExecutor(run)).toMatchObject({
+        sandboxMode: 'workspace-write',
+        sandboxNarrowedFrom: 'danger-full-access',
+        sandboxEnforcement: 'preventive',
+      });
     });
   });
 

@@ -1124,16 +1124,28 @@ export function buildExecutorDispatchEnv(
 /**
  * Build an executor audit record for provenance logging.
  *
- * @param executor - Executor configuration.
+ * @param executor - Executor configuration, optionally carrying the sandbox report of the
+ *   command built from it: the mode that command runs replaces the requested `sandboxMode`,
+ *   which is then kept as `sandboxNarrowedFrom` or `sandboxWidenedFrom`.
  * @returns Audit record with kind, model, reasoning effort, and service tier.
  */
-export function buildExecutorAuditRecord(executor: ExecutorConfig, lineageId?: string): Record<string, unknown> {
+export function buildExecutorAuditRecord(
+  executor: ExecutorConfig & {
+    sandboxNarrowedFrom?: string;
+    sandboxWidenedFrom?: string;
+    sandboxEnforcement?: string;
+  },
+  lineageId?: string,
+): Record<string, unknown> {
   return {
     kind: getExecutorKind(executor),
     model: executor.model,
     reasoningEffort: executor.reasoningEffort,
     serviceTier: executor.serviceTier,
     sandboxMode: executor.sandboxMode,
+    ...(executor.sandboxNarrowedFrom !== undefined ? { sandboxNarrowedFrom: executor.sandboxNarrowedFrom } : {}),
+    ...(executor.sandboxWidenedFrom !== undefined ? { sandboxWidenedFrom: executor.sandboxWidenedFrom } : {}),
+    ...(executor.sandboxEnforcement !== undefined ? { sandboxEnforcement: executor.sandboxEnforcement } : {}),
     timeoutSeconds: executor.timeoutSeconds,
     webSearch: executor.liveTools?.webSearch ?? null,
     configDir: executor.configDir,

@@ -310,6 +310,20 @@ function singleIterationLineage(
   };
 }
 
+// The executor the audit rows record, carrying the sandbox mode the built command runs and
+// what it enforces. A builder that runs another mode than the one asked for keeps the asked
+// mode beside it, so the record never names a boundary the command does not have.
+function executorAsBuilt(executor, effectiveConfig) {
+  const { sandboxMode, sandboxNarrowedFrom, sandboxWidenedFrom, sandboxEnforcement } = effectiveConfig;
+  return {
+    ...executor,
+    sandboxMode,
+    ...(sandboxNarrowedFrom !== undefined ? { sandboxNarrowedFrom } : {}),
+    ...(sandboxWidenedFrom !== undefined ? { sandboxWidenedFrom } : {}),
+    sandboxEnforcement,
+  };
+}
+
 // The artifact-dir boundary is prompt-only, so a workspace-write leaf can write anywhere
 // in the repo. Snapshot the already-dirty set before the dispatch, diff it after, and
 // report every NEW out-of-artifact-dir path. A violation is left on disk and never made
@@ -421,7 +435,7 @@ function buildClaudeDispatch(context) {
   if (configDir) {
     parentEnv.CLAUDE_CONFIG_DIR = configDir;
   }
-  const { command, args } = buildLineageCommand(
+  const { command, args, effectiveConfig } = buildLineageCommand(
     lineage,
     readPrompt(context),
     sandboxMode,
@@ -435,7 +449,7 @@ function buildClaudeDispatch(context) {
     cwd: context.repoRoot,
     timeoutSeconds: executor.timeoutSeconds,
     stateLogPath: context.stateLogPath,
-    executor,
+    executor: executorAsBuilt(executor, effectiveConfig),
     iteration: context.iteration,
     guardContext: { env: parentEnv },
     receiptDir: context.receiptDir,
@@ -482,7 +496,7 @@ function runLineageBuiltin(context) {
   // binary preflight stay one source of truth. It throws (fail closed) when the binary is
   // absent or the model is off the allowlist, so a requested CLI executor never becomes
   // native.
-  const { command, args, input } = buildLineageCommand(
+  const { command, args, input, effectiveConfig } = buildLineageCommand(
     lineage,
     promptBody,
     sandboxMode,
@@ -497,7 +511,7 @@ function runLineageBuiltin(context) {
       cwd: repoRoot,
       timeoutSeconds: executor.timeoutSeconds,
       stateLogPath: context.stateLogPath,
-      executor,
+      executor: executorAsBuilt(executor, effectiveConfig),
       iteration: context.iteration,
       input,
       receiptDir: context.receiptDir,
@@ -522,7 +536,7 @@ function runResearchOpencode(context) {
   const message = RESEARCH_PREAMBLE + '\n\n' + promptBody;
 
   const repoRoot = context.repoRoot;
-  const { command, args, input, cwd, env } = buildLineageCommand(
+  const { command, args, input, cwd, env, effectiveConfig } = buildLineageCommand(
     lineage,
     message,
     sandboxMode,
@@ -537,7 +551,7 @@ function runResearchOpencode(context) {
       cwd: cwd || repoRoot,
       timeoutSeconds: executor.timeoutSeconds,
       stateLogPath: context.stateLogPath,
-      executor,
+      executor: executorAsBuilt(executor, effectiveConfig),
       iteration: context.iteration,
       // buildLineageCommand returns empty input, so stdin is closed for OpenCode.
       input,
@@ -574,7 +588,7 @@ function runDeepseekHarness(context) {
   // harness executor never becomes native. The headless harness reads the dotenv file in
   // its working directory and the repository root holds one, so the builder starts it in
   // the artifact folder and the dispatch runs from the cwd it returns.
-  const { command, args, input, cwd } = buildLineageCommand(
+  const { command, args, input, cwd, effectiveConfig } = buildLineageCommand(
     lineage,
     promptBody,
     sandboxMode,
@@ -600,7 +614,7 @@ function runDeepseekHarness(context) {
       cwd,
       timeoutSeconds: dispatchTimeoutSeconds,
       stateLogPath: context.stateLogPath,
-      executor,
+      executor: executorAsBuilt(executor, effectiveConfig),
       iteration: context.iteration,
       input,
       receiptDir: context.receiptDir,
@@ -755,7 +769,7 @@ function stageAndDispatchReviewOpencode(context, eventDir) {
 
   const message = REVIEW_PREAMBLE + '\n\n' + promptBody;
   const { lineage, executor, sandboxMode, resolvedPermission } = singleIterationLineage(context);
-  const { command, args, input, cwd, env } = buildLineageCommand(
+  const { command, args, input, cwd, env, effectiveConfig } = buildLineageCommand(
     lineage,
     message,
     sandboxMode,
@@ -769,7 +783,7 @@ function stageAndDispatchReviewOpencode(context, eventDir) {
     cwd: cwd || repoRoot,
     timeoutSeconds: executor.timeoutSeconds,
     stateLogPath: context.stateLogPath,
-    executor,
+    executor: executorAsBuilt(executor, effectiveConfig),
     iteration: context.iteration,
     // buildLineageCommand returns empty input, so stdin is closed for OpenCode.
     input,
@@ -889,7 +903,7 @@ function runCodex(context) {
   // codex reads the iteration prompt from stdin via the trailing '-'. The builder fails
   // closed when the binary is absent, so a requested codex executor never degrades to
   // another one.
-  const { command, args, input } = buildLineageCommand(
+  const { command, args, input, effectiveConfig } = buildLineageCommand(
     lineage,
     readPrompt(context),
     sandboxMode,
@@ -904,7 +918,7 @@ function runCodex(context) {
       cwd: context.repoRoot,
       timeoutSeconds: executor.timeoutSeconds,
       stateLogPath: context.stateLogPath,
-      executor,
+      executor: executorAsBuilt(executor, effectiveConfig),
       iteration: context.iteration,
       input,
       receiptDir: context.receiptDir,

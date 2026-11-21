@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.26.0
+version: 1.4.27.0
 ---
 
 # Fan-out CLI lineage driver
@@ -56,11 +56,14 @@ and cap checks the post-attempt check applies to that row; only a lineage with n
 skipped on its config and artifacts alone. The post-attempt check stays strict. A finished lineage
 is skipped only for the run it finished under: when its recorded `topic` (research) or `reviewTarget`
 (review), or the executor fields in its `invocation-metadata.json` (kind, model, effort, tier,
-sandbox, permission and web search, not the executable path or version), differ from this run's,
-the whole run is refused with exit 3 and reason `finished_lineage_mismatch`, before any spawn,
+requested sandbox, permission and web search, not the executable path or version), differ from
+this run's, the whole run is refused with exit 3 and reason `finished_lineage_mismatch`, before any spawn,
 ledger mark or summary write, with a message naming each mismatched lineage and `--restart`. One
 mismatch refuses every lineage, because the merge reads every lineage folder and a partial refusal
-would mix old results with new ones. A side that recorded no value is not judged on it. A matrix that holds a `native`
+would mix old results with new ones. The sandbox is matched on the requested mode
+(`sandboxWidenedFrom`, else `sandboxNarrowedFrom`, else `sandboxMode`), so a lineage recorded
+before its builder began reporting a widened or narrowed mode resumes, while a changed request is
+still refused. A side that recorded no value is not judged on it. A matrix that holds a `native`
 lineage is refused with exit 3 before any lineage directory or process exists, naming the
 offending labels: `native fan-out lineages are not supported`. `native` stays the single,
 in-session executor, so the default `native` executor with `--count` greater than 1 is
@@ -227,7 +230,7 @@ The seed step prints no whole-seed budget for such a run, so this line is the ru
 
 ### Completion, Preview and Diagnostics
 
-`--preview` builds every lineage command without writing: it prints the redacted argv (each prompt replaced by its digest), cwd, session id, iterations, frontier scope, the Claude config dir when set and the model, reasoning effort and sandbox mode, then exits before any directory, ledger or store exists. In `effective_config`, `permissionMode` is the value the command passes after `--permission-mode`, or null for a kind that passes none (cli-codex, cli-cursor, cli-opencode, cli-pi), `sandboxEnforcement` is `preventive` when the executor's own confinement is on, `compensating` when the builder emits a non-OS restriction and otherwise `none`, and `effortApplied` is `flag`, `baked` (dsh, whose route patch sets the effort) or `none`. The preview JSON also carries `dry_run_halt`, the `child-spawn` halt event for `step_fanout_spawn` that the workflow prints when a dry run halts there, and `topic_digest`, the SHA-256 of the collapsed research topic, null for review. A `cli-mistral-vibe` lineage prints no command, and a matrix the real run would refuse prints that refusal.
+`--preview` builds every lineage command without writing: it prints the redacted argv (each prompt replaced by its digest), cwd, session id, iterations, frontier scope, the Claude config dir when set and the model, reasoning effort and sandbox mode, then exits before any directory, ledger or store exists. In `effective_config`, `sandboxMode` is the mode the command runs. When that differs from the requested mode, the requested one is kept as `sandboxNarrowedFrom` (dsh runs a `danger-full-access` request as `workspace-write`) or `sandboxWidenedFrom` (cli-devin and cli-pi run a `workspace-write` request with their full-access command, so it reads `danger-full-access`). `permissionMode` is the value the command passes after `--permission-mode`, or null for a kind that passes none (cli-codex, cli-cursor, cli-opencode, cli-pi), `sandboxEnforcement` is `preventive` when the executor's own confinement is on, `compensating` when the builder emits a non-OS restriction and otherwise `none`, and `effortApplied` is `flag`, `baked` (dsh, whose route patch sets the effort) or `none`. The preview JSON also carries `dry_run_halt`, the `child-spawn` halt event for `step_fanout_spawn` that the workflow prints when a dry run halts there, and `topic_digest`, the SHA-256 of the collapsed research topic, null for review. A `cli-mistral-vibe` lineage prints no command, and a matrix the real run would refuse prints that refusal.
 
 The preview's `aggregate_budget` carries a `units` legend for its cost numbers. `upper_bound.estimated_cost_units` is the sum of every lineage's `base_cost_units`, one attempt each, and it is the spend the aggregate cap gates on. A lineage's `base_cost_units` is its iterations times the cost units per iteration for one attempt, and its own `estimated_cost_units` is `base_cost_units x (retries + 1)`, the worst case if every retry runs, which is reported and never gated.
 

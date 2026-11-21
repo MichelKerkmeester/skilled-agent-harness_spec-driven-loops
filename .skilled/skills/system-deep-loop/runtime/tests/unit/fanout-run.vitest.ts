@@ -1673,7 +1673,8 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
       executable: 'devin',
       model: 'glm-5-2',
       reasoningEffort: null,
-      sandboxMode: 'workspace-write',
+      sandboxMode: 'danger-full-access',
+      sandboxWidenedFrom: 'workspace-write',
       webSearch: 'inherit',
     });
     expect(command.invocationFingerprint).toMatch(/^inv:[a-f0-9]{64}$/);
