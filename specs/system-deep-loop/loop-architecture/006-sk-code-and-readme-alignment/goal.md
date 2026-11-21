@@ -85,6 +85,6 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Baseline vitest | HEAD showed 2 load-sensitive failures and 9 skipped; the two tests pass in isolation and the final quiet run had 0 failed and 11 skipped |
+| Baseline vitest | The baseline run at HEAD showed 2 failed and 9 skipped, and the two tests passed when run alone. The final run showed 0 failed and 11 skipped. The cause of the flip is not confirmed |
 | Open findings | Behaviour-changing and undecided findings are listed in `implementation-summary.md` |
 <!-- /ANCHOR:log -->
