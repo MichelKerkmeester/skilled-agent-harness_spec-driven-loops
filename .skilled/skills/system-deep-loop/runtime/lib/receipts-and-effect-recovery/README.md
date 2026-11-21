@@ -54,7 +54,18 @@ Receipt and effect recovery sits after an intent is accepted and before a consum
 
 ---
 
-## 5. VALIDATION
+## 5. ERROR DETAILS
+
+These catch blocks drop the caught error today. The error or verdict they return carries no cause:
+
+- `effect-gateway.ts`: a non-`ReceiptEffectError` thrown by `adapter.execute` is rewrapped with no cause, and a throwing `adapter.reconcile` becomes an `in_doubt` verdict with no cause.
+- `effect-adapters.ts`: a filesystem reconcile that throws becomes an `in_doubt` verdict with no cause.
+
+When one of these paths is next changed, carry a bounded cause code in the error `details`. Use the caught error's `code` or `name`. Never copy its raw message or any launch material into `details`, because several of these errors promise never to retain it. Leave the paths alone until then.
+
+---
+
+## 6. VALIDATION
 
 ```bash
 .skilled/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .skilled/skills/system-deep-loop/runtime/tsconfig.json
@@ -62,7 +73,7 @@ Receipt and effect recovery sits after an intent is accepted and before a consum
 
 ---
 
-## 6. RELATED
+## 7. RELATED
 
 - [Runtime library map](../README.md)
 - [Authorized ledger](../authorized-ledger/README.md)

@@ -654,6 +654,61 @@ describe('provenance-balanced reduction', () => {
     expect(missing.receipt.adjudications[0].status).toBe('failed-closed');
   });
 
+  it('binds the actual fail-closed cause into the adjudication replay fingerprint', async () => {
+    const envelopes = [successfulEnvelope('sol'), successfulEnvelope('luna')];
+    const contested = (judgeContents: readonly (string | null)[]) => [
+      candidate(
+        envelopes[0],
+        'SOL',
+        { namespace: 'claim', stableId: 'alpha', type: 'claim' },
+        { answer: 'alpha' },
+        { judgeContent: judgeContents[0], semanticEquivalenceKey: 'semantic-1' },
+      ),
+      candidate(
+        envelopes[1],
+        'LUNA',
+        { namespace: 'claim', stableId: 'beta', type: 'claim' },
+        { answer: 'beta' },
+        { judgeContent: judgeContents[1], semanticEquivalenceKey: 'semantic-1' },
+      ),
+    ];
+    const expectedFingerprint = (
+      audit: { readonly candidateDigests: readonly string[] },
+      failClosedReason: string,
+    ) => sha256Bytes(canonicalBytes({
+      candidateDigests: [...audit.candidateDigests],
+      failClosedReason,
+      semanticKey: 'semantic-1',
+    }));
+    const rejectingPort: BlindedMergePort = {
+      async adjudicate() {
+        throw new Error('adjudication service unavailable');
+      },
+    };
+
+    const rejected = await reduceProvenance(input(
+      envelopes,
+      contested(['Alpha evidence', 'Beta evidence']),
+      ['SOL', 'LUNA'],
+      { adjudicator: rejectingPort },
+    ));
+    const rejectedAudit = rejected.receipt.adjudications[0];
+    expect(rejectedAudit.status).toBe('failed-closed');
+    expect(rejectedAudit.candidateDigests).toHaveLength(2);
+    expect(rejectedAudit.replayFingerprint).toBe(expectedFingerprint(rejectedAudit, 'adjudicator-rejected'));
+
+    const missingContent = await reduceProvenance(input(
+      envelopes,
+      contested([null, 'Beta evidence']),
+      ['SOL', 'LUNA'],
+      { adjudicator: rejectingPort },
+    ));
+    const missingAudit = missingContent.receipt.adjudications[0];
+    expect(missingAudit.status).toBe('failed-closed');
+    expect(missingAudit.candidateDigests).toHaveLength(1);
+    expect(missingAudit.replayFingerprint).toBe(expectedFingerprint(missingAudit, 'judge-content-missing'));
+  });
+
   it('records full fleet categories and never labels degraded survivors full-fleet', async () => {
     const envelopes = [successfulEnvelope('sol')];
     const families = ['SOL', 'LUNA', 'GLM', 'QWEN', 'KIMI', 'NOVA'];

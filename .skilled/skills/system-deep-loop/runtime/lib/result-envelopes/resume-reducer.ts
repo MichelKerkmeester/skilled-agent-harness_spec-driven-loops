@@ -8,18 +8,25 @@
 
 import {
   AppendOnlyLedger,
+  AuthorizedLedgerError,
   GENESIS_RECORD_HASH,
 } from '../authorized-ledger/index.js';
 import {
+  DispatchReceiptError,
   LINEAGE_DISPATCH_RESOLVED_EVENT_TYPE,
   asDispatchReceiptPayload,
   deriveDispatchReceiptId,
 } from '../dispatch-receipts/index.js';
 import {
+  EventEnvelopeError,
   canonicalBytes,
   canonicalJson,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import {
+  ResultEnvelopeError,
+  ResultEnvelopeErrorCodes,
+} from './errors.js';
 import {
   LEAF_RECOVERY_RECORDED_EVENT_TYPE,
   LEAF_RESULT_RECORDED_EVENT_TYPE,
@@ -58,6 +65,18 @@ export interface CompletionVerification {
 
 function compareCodeUnits(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
+}
+
+/**
+ * Only the ledger's own typed failures mean the evidence cannot be trusted.
+ * Anything else, such as a TypeError from a resolver, is a defect the caller
+ * must see rather than a ledger to mark unreadable.
+ */
+function isLedgerVerificationError(error: unknown): boolean {
+  return error instanceof AuthorizedLedgerError
+    || error instanceof EventEnvelopeError
+    || error instanceof DispatchReceiptError
+    || error instanceof ResultEnvelopeError;
 }
 
 async function resolves(
@@ -388,7 +407,13 @@ export async function foldResumeProgress(input: FoldResumeInput): Promise<FoldRe
   try {
     const events = await input.ledger.readVerifiedEvents();
     const registryDigests = new Set(events.map((event) => event.event.registryDigest));
-    if (registryDigests.size > 1) throw new Error('verified events disagree on registry digest');
+    if (registryDigests.size > 1) {
+      throw new ResultEnvelopeError(
+        ResultEnvelopeErrorCodes.UNTRUSTED_LEDGER,
+        'Verified events disagree on registry digest',
+        { registryDigestCount: registryDigests.size },
+      );
+    }
     const leaves: LeafProgressState[] = [];
     for (const leaf of expected) leaves.push(await reduceLeaf(leaf, events, input.resolver));
     const head = events.at(-1)?.frame;
@@ -401,7 +426,8 @@ export async function foldResumeProgress(input: FoldResumeInput): Promise<FoldRe
       registryVersion: input.registryVersion,
       sequence: head?.sequence ?? 0,
     }));
-  } catch {
+  } catch (error: unknown) {
+    if (!isLedgerVerificationError(error)) throw error;
     return resultFromSnapshot(buildSnapshot({
       expectedLeafDigest,
       integrity: 'unreadable',

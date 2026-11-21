@@ -42,6 +42,8 @@ Many runtime library domains import this module. Consumers include:
 - `../receipts-and-effect-recovery/`
 - `../mode-contracts/`
 
+This folder and `../authorized-ledger/` import each other. `fenced-ledger-writer.ts` and `lock-lifecycle-evidence.ts` import the `../authorized-ledger/` barrel, and `fenced-ledger-writer.ts` also imports `invokeAppendAuthorized` from `../authorized-ledger/append-only-ledger.ts`. In the other direction, `../authorized-ledger/append-only-ledger.ts` imports `fence-capability.ts`, `fenced-lease-coordinator.ts` and `locks-and-fencing-types.ts`, and `../authorized-ledger/dark-ledger-adapter.ts` imports `fenced-ledger-writer.ts`. `fence-capability.ts` stays here. Moving it would re-point every file that imports it on both sides.
+
 ---
 
 ## 4. TESTS

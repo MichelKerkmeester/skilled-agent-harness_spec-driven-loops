@@ -41,14 +41,25 @@ Launch-boundary substrate for `system-deep-loop` dispatch. The barrier resolves,
 
 ---
 
-## 4. TESTS
+## 4. ERROR DETAILS
+
+These catch blocks drop the caught error today. The error or denial they return carries no cause:
+
+- `dispatch-barrier.ts` and `resume-projection.ts`: a failing recovery route becomes `RECOVERY_ROUTING_FAILED` with no cause.
+- `evidence.ts`: a payload that fails `asDispatchReceiptPayload` becomes `RECEIPT_EVIDENCE_CORRUPT` with no cause.
+
+When one of these paths is next changed, carry a bounded cause code in the error `details`. Use the caught error's `code` or `name`. Never copy its raw message or any launch material into `details`, because several of these errors promise never to retain it. Leave the paths alone until then.
+
+---
+
+## 5. TESTS
 
 - `../../tests/unit/dispatch-receipts.vitest.ts`
 - `../../tests/unit/post-dispatch-receipt-validator.vitest.ts`
 
 ---
 
-## 5. RELATED
+## 6. RELATED
 
 - [`runtime/lib README`](../README.md)
 - [`authorized-ledger`](../authorized-ledger/README.md)

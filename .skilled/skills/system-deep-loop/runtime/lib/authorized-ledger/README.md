@@ -38,7 +38,26 @@ Every ledger-backed runtime library domain imports this module to append and rep
 
 ---
 
-## 4. TESTS
+## 4. BOUNDARIES
+
+This folder and `../locks-and-fencing/` import each other:
+
+- `append-only-ledger.ts` imports `resolveFenceCapability` and the `FenceCapability` types from `../locks-and-fencing/fence-capability.ts`, plus `FencedLeaseCoordinator` and `ProtectedResourceKinds` from the same folder.
+- `dark-ledger-adapter.ts` imports `appendAuthorizedThroughFence` from `../locks-and-fencing/fenced-ledger-writer.ts`.
+- In the other direction, `../locks-and-fencing/fenced-ledger-writer.ts` and `../locks-and-fencing/lock-lifecycle-evidence.ts` import this folder's barrel, and `fenced-ledger-writer.ts` also imports `invokeAppendAuthorized` from `append-only-ledger.ts`.
+
+`fence-capability.ts` stays in `../locks-and-fencing/`. Moving it would re-point every file that imports it on both sides.
+
+These catch blocks drop the caught error today. The error or denial they return carries no cause:
+
+- `transition-authorization-gateway.ts`: the audit read, the decision build and the verified-head read each return a deny with no cause.
+- `append-only-ledger.ts`: a throwing authority provider becomes `AUTHORIZATION_STALE` with no cause.
+
+When one of these paths is next changed, carry a bounded cause code in the error `details`. Use the caught error's `code` or `name`. Never copy its raw message or any launch material into `details`, because several of these errors promise never to retain it. Leave the paths alone until then.
+
+---
+
+## 5. TESTS
 
 - `../../tests/unit/authorized-ledger.vitest.ts`
 - `../../tests/fixtures/authorized-ledger-fixtures.ts`
@@ -46,7 +65,8 @@ Every ledger-backed runtime library domain imports this module to append and rep
 
 ---
 
-## 5. RELATED
+## 6. RELATED
 
 - [`runtime/lib README`](../README.md)
 - [`event-envelope`](../event-envelope/README.md)
+- [`locks-and-fencing`](../locks-and-fencing/README.md)

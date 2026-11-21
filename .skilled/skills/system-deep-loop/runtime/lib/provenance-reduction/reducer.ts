@@ -27,6 +27,7 @@ import {
   stableDigest,
 } from './identity.js';
 
+import type { AdjudicationVerdict } from '../blinded-adjudication/index.js';
 import type { JsonObject, JsonValue } from '../event-envelope/index.js';
 import type {
   AdjudicationAudit,
@@ -716,11 +717,20 @@ async function adjudicateSemanticGroups(
         const contents = sortedUnique(unit.candidateIds.map((candidateId) => {
           const content = occurrenceById.get(candidateId)?.candidate.judgeContent;
           if (content === null || content === undefined) {
-            throw new TypeError('judge-content-missing');
+            failClosedReason = 'judge-content-missing';
+            throw new TypeError(failClosedReason);
           }
-          return normalizeCandidateContentForJudging(content);
+          try {
+            return normalizeCandidateContentForJudging(content);
+          } catch (error: unknown) {
+            failClosedReason = 'judge-content-rejected';
+            throw error;
+          }
         }));
-        if (contents.length !== 1) throw new TypeError('judge-content-conflict');
+        if (contents.length !== 1) {
+          failClosedReason = 'judge-content-conflict';
+          throw new TypeError(failClosedReason);
+        }
         candidateRows.push({
           content: contents[0],
           digest: digestCandidateContent(contents[0]),
@@ -728,7 +738,8 @@ async function adjudicateSemanticGroups(
         });
       }
       if (new Set(candidateRows.map((entry) => entry.digest)).size !== candidateRows.length) {
-        throw new TypeError('judge-content-digest-collision');
+        failClosedReason = 'judge-content-digest-collision';
+        throw new TypeError(failClosedReason);
       }
       candidateRows.sort((left, right) => compareCodeUnits(left.digest, right.digest));
       const replayFingerprint = stableDigest({
@@ -748,7 +759,14 @@ async function adjudicateSemanticGroups(
         replayFingerprint,
         rubricDigest: input.policy.adjudicationRubricDigest,
       });
-      const verdict = input.adjudicator ? await input.adjudicator.adjudicate(request) : null;
+      let adjudicated: AdjudicationVerdict | null;
+      try {
+        adjudicated = input.adjudicator ? await input.adjudicator.adjudicate(request) : null;
+      } catch (error: unknown) {
+        failClosedReason = 'adjudicator-rejected';
+        throw error;
+      }
+      const verdict = adjudicated;
       const stable = verdict !== null
         && verdict.status === AdjudicationStatuses.STABLE
         && verdict.preferredCandidateDigest !== null
@@ -764,7 +782,10 @@ async function adjudicateSemanticGroups(
       const preferred = candidateRows.find((entry) => (
         entry.digest === verdict.preferredCandidateDigest
       ));
-      if (!preferred) throw new TypeError('preferred-candidate-missing');
+      if (!preferred) {
+        failClosedReason = 'preferred-candidate-missing';
+        throw new TypeError(failClosedReason);
+      }
       const merged = mergeUnits(units, preferred.unit);
       reduced.push(merged);
       for (const unit of units) {
