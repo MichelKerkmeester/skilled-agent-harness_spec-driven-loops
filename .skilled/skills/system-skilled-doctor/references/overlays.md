@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.38.0
+version: 1.0.39.0
 ---
 
 # Vendored Skilled Overlays
@@ -194,7 +194,7 @@ An entry can change what it writes at a destination between a file, a folder and
 
 ```text
 BLOCKED  t: thing is a folder that does not match what apply last wrote there, where overlay t writes a file; apply removes only its own output, so it stays
-  Next: mv thing thing.keep && node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  Next: mv /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
 Move the unowned copy aside as the `Next:` line says, then compare it with the overlay before you delete it.
@@ -345,7 +345,7 @@ A project that already keeps its own overlay folder and replay script moves onto
 1. **Name the folder.** Add `.skilled-overlays.json` at the root of the vendored copy with `{ "overlayDir": "<folder>" }`. Without it the engine looks in `skilled-overlays/`, and `status` stops with an error that says so.
 2. **Run `/doctor:overlay status`.** Each entry that walks a token-named file prints a `MISS` line naming the file. Add each one to that entry's `protectedPaths`, by its path relative to the entry.
 3. **Add the `repin` block** from §5 when the copy keeps a real folder where upstream ships a link, or when it vendors a different set of runtime folders.
-4. **Check the generated surfaces.** The manifest's `regenerate` and `verifyGenerated` steps run after an `apply` that wrote something, after one that follows a failed regeneration, which `status` reports on a `REGEN` line, and after every apply a re-pin makes. An `apply` that prints `0 changed` with nothing pending runs neither. Each command runs at the tree root, so review the list rather than copying one from a folder you do not trust. A verify step only fails when its command can fail: `skill-graph-freshness.cjs` reports and exits 0 unless it gets `--strict`.
+4. **Check the generated surfaces.** The manifest's `regenerate` and `verifyGenerated` steps run after an `apply` that wrote something, after one that follows a failed regeneration, which `status` reports on a `REGEN` line, and after the apply a live re-pin makes (a `repin --stage` run skips them). An `apply` that prints `0 changed` with nothing pending runs neither. Each command runs at the tree root, so review the list rather than copying one from a folder you do not trust. A verify step only fails when its command can fail: `skill-graph-freshness.cjs` reports and exits 0 unless it gets `--strict`.
 5. **Expect `LAYOUT` lines.** Each copy that sits off its `framework/` or `root/` path prints one, as [Off-Layout and Stale Sources](#off-layout-and-stale-sources) describes. They never fail `status`. Run `/doctor:overlay apply --relayout` once when you want the copies moved onto their layout paths.
 6. **Run `status` again** until it prints `RESULT: PASSED`, then use `apply` and `repin` as usual.
 
