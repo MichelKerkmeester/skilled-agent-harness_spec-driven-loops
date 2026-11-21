@@ -174,6 +174,30 @@ test('a subfolder of a directory source that becomes a link is replaced in one a
   assert.equal(fs.readlinkSync(path.join(fixture.tree, 'tool', 'deep')), 'a.md');
 });
 
+// A live folder with no file in it has nothing the walk can see, so the plan
+// holds no delete under it, yet the write still has to clear it.
+test('an empty live folder where a directory source now ships a file is replaced in one apply', (t) => {
+  const fixture = createShapeFixture(t, [DIRECTORY_ENTRY]);
+  writeFile(fixture.overlayDir, 'bundle/x', 'overlay x\n');
+  fs.mkdirSync(path.join(fixture.tree, 'tool', 'x'), { recursive: true });
+  applyOk(fixture);
+  const live = path.join(fixture.tree, 'tool', 'x');
+  assert.equal(kindOf(live), 'file');
+  assert.equal(fs.readFileSync(live, 'utf8'), 'overlay x\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a live folder holding only a Python cache where a directory source now ships a file is replaced in one apply', (t) => {
+  const fixture = createShapeFixture(t, [DIRECTORY_ENTRY]);
+  writeFile(fixture.overlayDir, 'bundle/x', 'overlay x\n');
+  writeFile(fixture.tree, 'tool/x/__pycache__/m.pyc', 'cache\n');
+  applyOk(fixture);
+  const live = path.join(fixture.tree, 'tool', 'x');
+  assert.equal(kindOf(live), 'file');
+  assert.equal(fs.readFileSync(live, 'utf8'), 'overlay x\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. UNOWNED SHAPES STAY A REFUSAL
 // ─────────────────────────────────────────────────────────────────────────────
@@ -196,6 +220,17 @@ test('an unowned file where a directory entry writes is refused, and nothing is 
   assert.match(result.output, /tool is a file that does not match what apply last wrote there/);
   assert.ok(result.output.includes(`Next: mv ${path.join(fixture.tree, 'tool')} ${path.join(fixture.tree, 'tool')}.keep, then from ${fixture.tree}: node `), result.output);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool'), 'utf8'), 'project file\n');
+});
+
+test('a live folder holding a project file where a directory source now ships a file is refused, and the file stays', (t) => {
+  const fixture = createShapeFixture(t, [DIRECTORY_ENTRY]);
+  writeFile(fixture.overlayDir, 'bundle/x', 'overlay x\n');
+  writeFile(fixture.tree, 'tool/x/user.md', 'project file\n');
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 1, result.output);
+  assert.match(result.output, /^ {2}this apply wrote nothing: a destination above stops it before any write$/m, result.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'tool', 'x')), 'folder');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool', 'x', 'user.md'), 'utf8'), 'project file\n');
 });
 
 test('an unowned folder where a layout link goes is still refused, and its files stay', (t) => {

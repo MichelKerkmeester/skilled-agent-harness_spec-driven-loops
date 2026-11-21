@@ -2414,18 +2414,23 @@ function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
   const key = relativeKey(ctx.root, destinationDir);
   const shape = destinationShape(destinationDir, key, acceptedSha256, recordedLinks);
   let current;
+  let isDestinationReplaced = false;
   if (shape.kind === 'file' || (shape.kind === 'link' && shape.isOwned)) {
     if (!shape.isOwned) {
       problems.push(unownedShapeProblem(entry, key, shape.kind, 'folder', ctx.root));
       return { writes: [], deletes: [], outputs: [] };
     }
     deletes.push(destinationDir);
+    isDestinationReplaced = true;
     current = new Map();
   } else {
     current = walkTree(destinationDir);
   }
-  // A folder the source now ships as a file or a link was the entry's own: its
-  // files are this plan's deletes, so the write clears what they leave behind.
+  // A live folder where the source now ships a file or a link is cleared by
+  // the write once this plan's deletes have taken its files, so only empty
+  // folders and Python caches may remain. A destination already deleted as
+  // another shape has no folder under it to clear, and its old link is never
+  // read through.
   const isLiveFolder = (filePath) => {
     try {
       return fs.lstatSync(filePath).isDirectory();
@@ -2436,7 +2441,7 @@ function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
   for (const [rel, wanted] of desired) {
     const destinationPath = path.join(destinationDir, rel);
     const existing = current.get(rel);
-    const replacesFolder = current.size > 0 && isLiveFolder(destinationPath);
+    const replacesFolder = !isDestinationReplaced && isLiveFolder(destinationPath);
     if (wanted.kind === 'symlink') {
       if (!existing || existing.kind !== 'symlink' || existing.target !== wanted.target) {
         writes.push({ filePath: destinationPath, symlinkTarget: wanted.target, ...(replacesFolder ? { replacesFolder } : {}) });
