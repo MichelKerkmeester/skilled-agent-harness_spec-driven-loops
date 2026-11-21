@@ -1,4 +1,4 @@
-# Dogfood log: live verification of rounds 8 to 11
+# Dogfood log: live verification of rounds 8 to 11, with the round 12 fixes
 
 > Kept from the conductor's session scratchpad. Paths under `D/` name the scratch evidence
 > directory `scratchpad/d-live/`, which was not kept. Packet paths (`SPEC/`) still resolve.
@@ -101,7 +101,9 @@ Counts: 21 rows. 19 Works (the A2 spared-process row on a FORGED ledger identity
   dispatch with the artifact dir outside a fresh git repo and a shim `opencode` that touches a
   marker file. Exit 1 with `artifact scope ... is outside the git worktree`, and no marker
   (`marker-check.txt`). `outside/` has no `iterations/` folder, which the stdout log creates
-  before any spawn, so the dispatch never got past the snapshot. The refusal still surfaces as an uncaught stack trace.
+  before any spawn, so the dispatch never got past the snapshot. The refusal still surfaced as an
+  uncaught stack trace. Round 12 (`09076dd4e0f`): this refusal and a missing executor binary now exit
+  64 with the usage line and no stack, checked by the dispatch-iteration unit tests, not live.
 - **Concurrent lanes trip each other's containment.** The fan-out lineages ended
   `completed_with_containment_advisory` because the sandbox lane deleted its own folder, and a dsh
   probe recorded the fan-out's root config as its own violation. Both were preserve-mode, so nothing
@@ -110,7 +112,8 @@ Counts: 21 rows. 19 Works (the A2 spared-process row on a FORGED ledger identity
   own lineage id. The round 8 plan rebutted the parent id as deliberate for closeout
   (`deep-research-reducer.ts:1819`), so ds-b may be the expected shape and ds-a the odd one. Not
   settled here.
-- The lineage logs still hold opencode-local `msg_`, `prt_` and `call_` ids unmasked.
+- The lineage logs still hold opencode-local `msg_`, `prt_` and `call_` ids unmasked. Round 12 left
+  these as they are.
 - The preview prints per-lineage budget lines, not the one budget-table line.
 
 ## Round 11 replay
@@ -134,9 +137,27 @@ Run on the same worktree at `3c8df597438`, clean at the start. Evidence lives un
   P0: a 1-based page used as a 0-based offset. It wrote no iteration record to the state log. The
   throwaway repo has no `append-mode-event.cjs`, and the child declined to write the projection by
   hand, as its contract says. This comes from the layout, not from the dispatch code.
-- Open: the executor record says `model: null` while the argv runs `claude-opus-4-8`. The Claude
-  log keeps per-message `uuid` and provider `request_id` values unmasked, like the opencode `msg_`
-  ids above.
+- Fixed in round 12, by unit test only: the executor record said `model: null` while the argv ran
+  `claude-opus-4-8`. It now takes the builder's resolved model for every kind (`4e5216729f9`). The
+  Claude log kept per-message `uuid` and provider `request_id` values unmasked. Both fields are now
+  masked (`8fc35a98984`). No live Claude run repeated the check.
+
+## Round 12 fixes
+
+Four fixes on the integration worktree, starting at `722b02207f3`. None was replayed live. Each has a
+unit test that failed before the fix.
+
+- `8fc35a98984`: `uuid` and `request_id`, camelCase included, join the masked provider-id fields. No
+  reader of a settled log keys on either field.
+- `4e5216729f9`: single-dispatch audit rows and receipts record the model the command runs. A test
+  runs every executor kind and compares the audit model with the argv.
+- `09076dd4e0f`: the two setup refusals exit 64 without a stack. `fanout-run.cjs` keeps exit 3 for
+  input validation, which collides with its own exit 3 for all lineages failed. That collision is
+  open.
+- `0d1725f86e5`: the fan-out bootstrap forwards every repeat of a signal until its child closes.
+  `verify-authority.cjs`, `check-direct-append.cjs` and `append-mode-event.cjs` keep the same
+  one-shot forwarder, and that is open. Three docs that called recursion detection out of scope now
+  describe the five-layer guard and the host-session switch.
 
 ## Runs
 
