@@ -31,15 +31,15 @@ Identity substrate that lets a later loop iteration recognize a claim it already
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-observation.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-detection-types.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-detection-policy.ts`
+- `../cycle-detection/cycle-observation.ts`
+- `../cycle-detection/cycle-detection-types.ts`
+- `../cycle-detection/cycle-detection-policy.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/claim-continuity.vitest.ts`
+- `../../tests/unit/claim-continuity.vitest.ts`
 
 ---
 
