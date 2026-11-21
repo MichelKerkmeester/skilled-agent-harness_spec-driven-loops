@@ -53,6 +53,7 @@ interface ReceiptWriter {
   readVerifiedEvents(): Promise<readonly VerifiedLedgerEvent[]>;
 }
 
+/** Writer, event and boundary registries, certification providers and producer a boundary receipt issuer works with. */
 export interface BoundaryReceiptIssuerOptions {
   readonly writer: ReceiptWriter;
   readonly registry: EventTypeRegistry;

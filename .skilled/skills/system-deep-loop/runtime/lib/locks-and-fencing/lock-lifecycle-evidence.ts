@@ -61,6 +61,7 @@ const PAYLOAD_FIELDS = new Set([
 const ACTIONS = new Set<LockLifecycleAction>(Object.values(LockLifecycleActions));
 const DIGEST_PATTERN = /^[a-f0-9]{64}$/u;
 
+/** Ledger payload of one lock lifecycle action, with the resource key digest, fence token, owner and latency. */
 export interface LockLifecycleEvidencePayload extends JsonObject {
   readonly action: LockLifecycleAction;
   readonly reason: string;
@@ -75,6 +76,7 @@ export interface LockLifecycleEvidencePayload extends JsonObject {
   readonly observed_at: string;
 }
 
+/** Event id, stream position, timestamps, producer and idempotency key for a lock lifecycle event envelope. */
 export interface LockLifecycleEnvelopeInput {
   readonly eventId: string;
   readonly streamId: string;
@@ -88,16 +90,21 @@ export interface LockLifecycleEnvelopeInput {
   readonly idempotencyKey: string;
 }
 
+/** Authorization decision id and durable append receipt for a recorded lock lifecycle event. */
 export interface LockLifecycleEvidenceReceipt {
   readonly decisionId: string;
   readonly receipt: DurableAppendReceipt;
 }
 
+/** A verified lock lifecycle payload with its ledger sequence. */
 export interface VerifiedLockLifecycleEvidence {
   readonly sequence: number;
   readonly payload: LockLifecycleEvidencePayload;
 }
 
+/**
+ * Replay projection of lock lifecycle events: action counts and the latest fence token and correlation per resource.
+ */
 export interface LockLifecycleProjection extends JsonObject {
   readonly totalEvents: number;
   readonly actionCounts: JsonObject;

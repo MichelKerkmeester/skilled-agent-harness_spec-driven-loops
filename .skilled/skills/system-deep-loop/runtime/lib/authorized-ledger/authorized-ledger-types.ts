@@ -311,6 +311,9 @@ export interface GatewayAllowProof {
   readonly auditReceipt: AuthorizationAuditReceipt;
 }
 
+/**
+ * Allow member of the gateway result union, carrying the recorded decision and the proof a fenced append must present.
+ */
 export interface GatewayAllowResult {
   readonly verdict: 'allow';
   readonly decision: AuthorizationDecisionRecord;
@@ -322,6 +325,10 @@ export interface GatewayAllowResult {
   readonly reasonCode?: AuthorizationReasonCode;
 }
 
+/**
+ * Deny member of the gateway result union; the decision and audit receipt are null when no decision could be durably
+ * recorded.
+ */
 export interface GatewayDenyResult {
   readonly verdict: 'deny';
   readonly reasonCode: AuthorizationReasonCode;

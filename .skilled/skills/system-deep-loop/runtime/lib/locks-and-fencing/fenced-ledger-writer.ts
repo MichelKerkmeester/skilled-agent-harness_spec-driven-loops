@@ -27,6 +27,7 @@ import type { FencedLease, ProtectedResourceIdentity } from './locks-and-fencing
 // 1. GUARDED APPEND
 // ───────────────────────────────────────────────────────────────────
 
+/** A ledger append under a held lease, with the gateway proof and the head the ledger must still be at. */
 export interface FencedLedgerAppendRequest {
   readonly lease: FencedLease;
   readonly ledger: AppendOnlyLedger;
@@ -157,6 +158,8 @@ export async function appendAuthorizedThroughFence(
       }),
     });
   } finally {
+    // The append outcome must win over a release failure, and release already records
+    // that failure as a rejected lifecycle decision in coordinator telemetry before rethrowing.
     await coordinator.release(lease).catch(() => undefined);
   }
 }

@@ -57,6 +57,7 @@ interface AuthorizationAuditEntry {
   readonly receipt: AuthorizationAuditReceipt;
 }
 
+/** Audit ledger contents after hash-chain verification: the verified head and its entries in sequence order. */
 export interface VerifiedAuthorizationAudit {
   readonly head: LedgerHead;
   readonly entries: readonly AuthorizationAuditEntry[];
@@ -869,19 +870,31 @@ export class TransitionAuthorizationGateway {
     }
     if (expected.actorId !== request.actorId) {
       return {
-        denial: { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:actorId'] },
+        denial: {
+          verdict: 'deny',
+          reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+          matchedRuleIds: ['identity:actorId'],
+        },
         verification: UNVERIFIED_IDENTITY,
       };
     }
     if (expected.capabilityId !== request.capabilityId) {
       return {
-        denial: { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:capabilityId'] },
+        denial: {
+          verdict: 'deny',
+          reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+          matchedRuleIds: ['identity:capabilityId'],
+        },
         verification: UNVERIFIED_IDENTITY,
       };
     }
     if (expected.evidenceDigest !== request.evidenceDigest) {
       return {
-        denial: { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:evidenceDigest'] },
+        denial: {
+          verdict: 'deny',
+          reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+          matchedRuleIds: ['identity:evidenceDigest'],
+        },
         verification: UNVERIFIED_IDENTITY,
       };
     }

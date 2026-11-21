@@ -45,6 +45,10 @@ export const EVIDENCE_CONTROL_REDUCER_ID = 'receipts-and-effect-recovery';
 export const EVIDENCE_CONTROL_REDUCER_VERSION = '1';
 export const EVIDENCE_CONTROL_PROJECTION_SCHEMA_VERSION = '1';
 
+/**
+ * Replay projection that lists event ids by kind: boundary results, receipts, effect intents, confirmations,
+ * recoveries and resolutions.
+ */
 export interface EvidenceControlProjection extends JsonObject {
   readonly ordered_events: string[];
   readonly boundary_results: string[];

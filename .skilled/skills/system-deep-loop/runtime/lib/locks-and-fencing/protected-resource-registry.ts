@@ -183,6 +183,10 @@ export function canonicalizeProtectedResource(input: unknown): CanonicalProtecte
 // 2. SHIPPED WRITE-SURFACE MANIFEST
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * One protected write surface: the source that writes, the operation, the resource kind, atomicity domain and the seam
+ * to call.
+ */
 export interface ProtectedWriteSurfaceManifestEntry {
   readonly surfaceId: string;
   readonly sourcePath: string;

@@ -42,6 +42,7 @@ import type {
 // 1. FUNCTIONAL ADAPTER OPTIONS
 // ───────────────────────────────────────────────────────────────────
 
+/** Callbacks and capability flags for an effect adapter over an API that accepts an idempotency key. */
 export interface IdempotentApiAdapterOptions<TRequest> {
   readonly adapterId: string;
   readonly adapterVersion: string;
@@ -59,6 +60,7 @@ export interface IdempotentApiAdapterOptions<TRequest> {
   ) => Promise<EffectReconciliationObservation>;
 }
 
+/** Callbacks for an effect adapter that dispatches a subprocess and may query its durable outcome later. */
 export interface SubprocessAdapterOptions<TRequest> {
   readonly adapterId: string;
   readonly adapterVersion: string;
@@ -75,12 +77,16 @@ export interface SubprocessAdapterOptions<TRequest> {
   ) => Promise<EffectReconciliationObservation>;
 }
 
+/**
+ * A file write relative to the adapter root, with the digest the current file must have (null when it must not exist).
+ */
 export interface AtomicFileEffectRequest extends JsonObject {
   readonly relativePath: string;
   readonly content: string;
   readonly expectedPriorDigest: string | null;
 }
 
+/** Root directory and optional adapter id, version and clock for the atomic file effect adapter. */
 export interface AtomicFileAdapterOptions {
   readonly rootDirectory: string;
   readonly adapterId?: string;

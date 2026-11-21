@@ -45,6 +45,7 @@ import type {
 // 2. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/** Identity frontier and claim replay fingerprint a claim continuity frontier is built from. */
 export interface CreateClaimContinuityFrontierInput {
   readonly identityFrontier: RestoredContinuityFrontier;
   readonly fingerprint: DerivedReplayFingerprint<ClaimContinuityState>;

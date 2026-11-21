@@ -84,6 +84,7 @@ export type DispatchReceiptMacTrustScope =
   | 'durable-cross-resume'
   | 'process-local-advisory';
 
+/** Key, provider, HMAC-SHA256 scheme, trust scope and verifier version a dispatch receipt MAC is made under. */
 export interface DispatchReceiptMacProfile {
   readonly keyId: string;
   readonly providerId: string;
@@ -143,6 +144,7 @@ export interface DispatchReceiptPayload extends JsonObject {
   readonly service_tier: string | null;
 }
 
+/** Run, dispatch, attempt and stream identity plus timestamps and correlation ids for a dispatch receipt event. */
 export interface DispatchReceiptEnvelopeInput {
   readonly attemptId: string;
   readonly authorityEpoch: number;
@@ -178,6 +180,10 @@ export interface DispatchReceiptEvidence {
   readonly unresolvedClassification: 'dispatch-resolved' | 'unresolved';
 }
 
+/**
+ * Handoff for a dispatch that has a receipt but no terminal result, routing it to effect reconciliation and successor
+ * salvage.
+ */
 export interface UnresolvedDispatchHandoff {
   readonly classification: 'unresolved';
   readonly effectRecovery: {
@@ -191,10 +197,15 @@ export interface UnresolvedDispatchHandoff {
   };
 }
 
+/** Test hook that runs after the receipt is durably appended and before the leaf is spawned. */
 export interface DispatchBarrierFaultInjection {
   readonly afterDurableAppendBeforeSpawn?: () => void;
 }
 
+/**
+ * Everything a receipt-gated dispatch needs: envelope, resolution pipeline, evidence writer, spawn function and
+ * optional MAC and unresolved routing.
+ */
 export interface DispatchWithReceiptInput<
   TExpandedConfig,
   TCapabilities,
@@ -252,6 +263,7 @@ export interface VerifiedDispatchResultEvidence {
   readonly verified: true;
 }
 
+/** Inputs for deciding on resume whether a dispatch is settled, matches the desired invocation, or is unresolved. */
 export interface ResumeDispatchInput {
   readonly desiredInvocationFingerprint: string;
   readonly dispatchId: string;
