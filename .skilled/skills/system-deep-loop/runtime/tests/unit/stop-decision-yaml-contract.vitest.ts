@@ -598,3 +598,25 @@ describe.each([
     expect(commandDoc).toContain('| `--frontier-max-nodes` |');
   });
 });
+
+// A review that ends on a repeated blocked stop must name that reason on its
+// terminal gate row, or the run and its report record it as converged.
+describe('deep-review terminal stop reason', () => {
+  const text = readFileSync(resolve(ASSETS, 'deep-review.yaml'), 'utf8');
+
+  it('passes a blockedStop stop through to the terminal gate row', () => {
+    const rule = text.split('\n').find((line) => line.includes('terminal_stop_reason = reason when')) ?? '';
+    expect(rule).toContain('blockedStop when decision is STOP and reason is blockedStop');
+  });
+});
+
+// No research state row carries blockedStop, so the synthesis reason must take it
+// from the stop decision or the report records the run as converged.
+describe('deep-research synthesis stop reason', () => {
+  const text = readFileSync(resolve(ASSETS, 'deep-research.yaml'), 'utf8');
+
+  it('keeps a blockedStop stop as the synthesis reason', () => {
+    const rule = text.split('\n').find((line) => line.trim().startsWith('- reason: "') && line.includes('synthesis/recovery stop reason')) ?? '';
+    expect(rule).toContain('ended the loop with decision STOP and reason blockedStop, use blockedStop');
+  });
+});

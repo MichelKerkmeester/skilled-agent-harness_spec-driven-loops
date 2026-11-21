@@ -450,7 +450,8 @@ workflow:
           non-empty sessionId, keep sessionId, parentSessionId, lineageMode, generation and
           createdAt, so a rerun of the same fan-out stays in its session and generation.
           fanout-run.cjs reads the lineage values below from this file and copies them into
-          each lineage's own config.
+          each lineage's own config. On a defaulted expansive run it also rewrites
+          maxIterations here to the largest lineage cap before it spawns.
         template: .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json
         session_id_init: "{session_id} when bound, else {ISO_8601_NOW}"
         lineage_values:
@@ -1225,6 +1226,7 @@ workflow:
           4b. if depth_mode == "expansive" and the frontier still holds an open or active node: CONTINUE (frontierOpen). It vetoes every review candidate, all_dimensions_clean included, and never creates a stop.
           5. the nine legal-stop gates run on a candidate: convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate. Any failed gate gives BLOCKED (blockedStop).
           6. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
+          7. a BLOCKED from step 5 or 6 whose blockedBy set matches the blocked_stop rows of the runs before it, with no new finding since, becomes STOP (blockedStop, reasonDetail blockedStreakReached) once that streak, this pass included, reaches config.stuckThreshold. A different blocker set starts a new streak.
           Bind the outputs from stop_decision, where G is stop_decision.gates and I is stop_decision.inputs.review:
             decision = stop_decision.decision
             stopReason = stop_decision.stopReason
@@ -1336,7 +1338,7 @@ workflow:
             note: "The script computes all three gates from the config, state log and registry: evidence by the evidenceDensityGate rule, coverage by the dimensionCoverageGate rule, and scope by matching every open finding's file against reviewScopeFiles. Never judge a gate from the findings yourself. Run it fresh at this stop, even when an earlier blocked stop recorded failures."
             on_error: "When the script exits non-zero or prints status error, fail closed: bind terminal_gate_results_json to three rows, evidence, scope and coverage, each with status fail, reasonCode gate-script-error and evidenceDigest the sha256 of the script's error text, and bind failed_required_gate_ids to [\"evidence\",\"scope\",\"coverage\"]."
             evaluate: |
-              terminal_stop_reason = reason when it is maxIterationsReached, maxDurationReached, manualStop or error, else "converged". Read reason, never stopReason: every manual stop sets reason to manualStop while stopReason may still hold blockedStop or stuckRecovery
+              terminal_stop_reason = reason when it is maxIterationsReached, maxDurationReached, manualStop or error; blockedStop when decision is STOP and reason is blockedStop; else "converged". Read reason, never stopReason: every manual stop sets reason to manualStop while stopReason may still hold blockedStop or stuckRecovery
             outputs:
               - terminal_gate_results_json: "Tool terminal_gate_results_json: three rows {gateId, status, reasonCode, evidenceDigest} in the order evidence, scope, coverage"
               - failed_required_gate_ids: "Tool failed_required_gate_ids: the gateIds whose status is fail, in that order; [] when all pass"

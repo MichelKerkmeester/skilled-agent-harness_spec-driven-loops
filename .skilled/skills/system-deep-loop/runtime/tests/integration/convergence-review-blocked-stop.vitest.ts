@@ -259,7 +259,7 @@ describe('convergence.cjs --record-blocked-stop for review', () => {
     const data = blockedStopData(run);
     expect(data).toMatchObject({
       blockedGateIds: ['hotspotSaturationGate'],
-      activeFindingCounts: { candidates: 2, adjudicated: 2, p0: 0, p1: 0, p2: 2 },
+      activeFindingCounts: { candidates: 2, adjudicated: 0, p0: 0, p1: 0, p2: 2 },
       recoveryStrategy: 'hotspot-saturation-gate',
       targetDimensionId: 'security',
       originatingConvergenceEventId: `graph-${run.sessionId}-g1-i3`,

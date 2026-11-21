@@ -356,7 +356,7 @@ const DATA_FIELD_RULES = Object.freeze({
     recoveryHint: optionalFieldRule('prose'),
   },
   'deep_review.terminal_gates_recorded': {
-    stopReason: enumRule('converged', 'maxIterationsReached', 'maxDurationReached', 'manualStop', 'error'),
+    stopReason: enumRule('converged', 'maxIterationsReached', 'maxDurationReached', 'manualStop', 'error', 'blockedStop'),
     gateResults: 'gate-results',
     failedRequiredGateIds: 'identifier-array',
     appendPosition: 'uint32',

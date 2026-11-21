@@ -440,7 +440,9 @@ workflow:
           {state_paths.config} already holds a non-empty lineage.sessionId, keep that
           lineage block and createdAt, so a rerun of the same fan-out stays in its session
           and generation.
-          fanout-run.cjs never reads this file; it reads each lineage's own config.
+          fanout-run.cjs reads each lineage's own config. It touches this file only on a
+          defaulted expansive run, where it rewrites maxIterations to the largest lineage
+          cap before it spawns.
         template: .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json
         session_id_init: "{session_id} when bound, else {ISO_8601_NOW}"
         lineage_values:
@@ -1130,8 +1132,9 @@ workflow:
           4. a STOP candidate exists when every question is answered (all_questions_answered) or the weighted vote passes (composite_converged). When neither forms and depth_mode == "expansive" in a fan-out lineage (its config carries fanout_lineage_artifact_dir), a lineage whose frontier share holds at least one answered node and none still open or active forms a hard candidate (frontier_drained), so it stops instead of working the topic questions other lineages own. A single-executor or default run never forms it.
           5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)
           5a. if depth_mode == "expansive" and the frontier still holds an open or active node: CONTINUE (frontierOpen). This veto never creates a stop.
-          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)
+          6. a failed quality guard blocks the candidate: BLOCKED (blockedStop, reasonDetail qualityGuardFailed), with the failed guards in blockedBy
           7. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
+          8. a BLOCKED from step 6 or 7 whose blockedBy set matches the blocked_stop rows of the runs before it becomes STOP (blockedStop, reasonDetail blockedStreakReached) once that streak, this pass included, reaches config.stuckThreshold. Only a different blocker set starts a new streak: research iteration rows carry no findingsNew, so no pass resets it.
           Bind the outputs from stop_decision:
             decision = stop_decision.decision
             reason = stop_decision.stopReason when it is not null, else stop_decision.reasonDetail
@@ -1158,8 +1161,8 @@ workflow:
           - reason_detail: "stop_decision.reasonDetail, the fine cause behind the decision"
           - weighted_stop_score: "stop_decision.weightedStopScore, for diagnostics only"
           - stop_blocked: "Boolean true when stop_decision.decision == BLOCKED"
-          - blocked_by_json: "JSON array of graph blocker names when decision == BLOCKED"
-          - blocked_by_csv: "Comma-separated graph blocker names when decision == BLOCKED"
+          - blocked_by_json: "JSON array of graph blocker or failed guard names when decision == BLOCKED"
+          - blocked_by_csv: "Comma-separated graph blocker or failed guard names when decision == BLOCKED"
           - gate_convergence_pass: "Boolean pass/fail for the graph-assisted convergence gate"
           - gate_convergence_score: "Numeric score recorded from graph convergence"
           - gate_key_question_coverage_pass: "Boolean pass/fail derived from graph blocker coverage signals"
@@ -1964,7 +1967,7 @@ workflow:
           - total_questions: "Count total questions tracked in strategy.md"
           - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
           - divergence_summary: "Read registry.divergence and summarize saturated directions, completed pivots, failures, overrides, Council artifact refs, and remaining frontier; else 'no divergent pivots recorded'"
-          - reason: "Use the latest synthesis/recovery stop reason in {state_paths.state_log} if present. On a fan-out root (direct lineage state logs exist and the root state log holds no such stop row): take each lineage that {state_paths.packet_dir}/orchestration-summary.json lists with status succeeded, and read the stopReason of the last row carrying a stopReason in {state_paths.packet_dir}/lineages/<label>/deep-research-state.jsonl; when they agree use it, when they differ use the one whose row has the latest timestamp, since the run ended when that lineage stopped. Only when neither yields a reason, the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
+          - reason: "When step_check_convergence in this session ended the loop with decision STOP and reason blockedStop, use blockedStop: no state row carries that reason. Otherwise use the latest synthesis/recovery stop reason in {state_paths.state_log} if present. On a fan-out root (direct lineage state logs exist and the root state log holds no such stop row): take each lineage that {state_paths.packet_dir}/orchestration-summary.json lists with status succeeded, and read the stopReason of the last row carrying a stopReason in {state_paths.packet_dir}/lineages/<label>/deep-research-state.jsonl; when they agree use it, when they differ use the one whose row has the latest timestamp, since the run ended when that lineage stopped. Only when neither yields a reason, the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
 
       # ─── APPROVAL GATE: Pre-Synthesis ───
       gate_pre_synthesis:
