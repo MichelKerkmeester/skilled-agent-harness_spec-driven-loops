@@ -92,7 +92,7 @@ function requireNonNegativeInteger(value: number, field: string): number {
 function requireBasisPoints(value: number, field: string): number {
   const validated = requireNonNegativeInteger(value, field);
   if (validated > BASIS_POINTS) {
-    throw new RangeError(`${field} must not exceed 10000 basis points`);
+    throw new RangeError(`${field} must not exceed ${BASIS_POINTS} basis points`);
   }
   return validated;
 }

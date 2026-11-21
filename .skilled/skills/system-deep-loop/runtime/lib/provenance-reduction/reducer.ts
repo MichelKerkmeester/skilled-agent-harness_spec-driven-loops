@@ -22,6 +22,7 @@ import {
 } from './types.js';
 import {
   canonicalIdentityKey,
+  compareCodeUnits,
   normalizeSourceBucketId,
   stableDigest,
 } from './identity.js';
@@ -274,14 +275,14 @@ function canonicalPolicy(policy: ProvenanceReductionPolicy): ProvenanceReduction
     ...policy,
     weights: Object.freeze([...policy.weights]
       .map((weight) => Object.freeze({ ...weight }))
-      .sort((left, right) => left.sourceBucketId.localeCompare(right.sourceBucketId))),
+      .sort((left, right) => compareCodeUnits(left.sourceBucketId, right.sourceBucketId))),
   });
 }
 
 function canonicalSourceRegistrations(input: ReduceProvenanceInput): CandidateProvenance[] {
   return [...input.sourceRegistrations]
     .map((registration) => parseProvenance(registration))
-    .sort((left, right) => left.resultEnvelopeId.localeCompare(right.resultEnvelopeId));
+    .sort((left, right) => compareCodeUnits(left.resultEnvelopeId, right.resultEnvelopeId));
 }
 
 function validateUpstream(
@@ -521,7 +522,7 @@ function parseOccurrences(
 
   const occurrenceIndex = new Map<string, number>();
   const valid = [...parsed]
-    .sort((left, right) => left.baseDigest.localeCompare(right.baseDigest))
+    .sort((left, right) => compareCodeUnits(left.baseDigest, right.baseDigest))
     .map((entry) => {
       const ordinal = occurrenceIndex.get(entry.baseDigest) ?? 0;
       occurrenceIndex.set(entry.baseDigest, ordinal + 1);
@@ -533,8 +534,8 @@ function parseOccurrences(
   const invalidIndex = new Map<string, number>();
   const invalid = invalidBase
     .sort((left, right) => {
-      const digestOrder = left.inputDigest.localeCompare(right.inputDigest);
-      return digestOrder !== 0 ? digestOrder : left.reasonCode.localeCompare(right.reasonCode);
+      const digestOrder = compareCodeUnits(left.inputDigest, right.inputDigest);
+      return digestOrder !== 0 ? digestOrder : compareCodeUnits(left.reasonCode, right.reasonCode);
     })
     .map((entry) => {
       const key = `${entry.inputDigest}:${entry.reasonCode}`;
@@ -554,7 +555,7 @@ function uniqueContributors(occurrences: readonly CandidateOccurrence[]): Contri
     contributors.set(occurrence.contributor.contributorId, occurrence.contributor);
   }
   return [...contributors.values()].sort((left, right) => (
-    left.contributorId.localeCompare(right.contributorId)
+    compareCodeUnits(left.contributorId, right.contributorId)
   ));
 }
 
@@ -615,7 +616,7 @@ function exactReduction(occurrences: readonly CandidateOccurrence[]): {
     }
     if (byPayload.size > 1) {
       const variants: ConflictVariant[] = [...byPayload.entries()]
-        .sort(([left], [right]) => left.localeCompare(right))
+        .sort(([left], [right]) => compareCodeUnits(left, right))
         .map(([payloadDigest, entries]) => {
           const contributors = uniqueContributors(entries);
           return Object.freeze({
@@ -652,7 +653,7 @@ function mergeUnits(units: readonly ReductionUnit[], preferred: ReductionUnit): 
     for (const contributor of unit.contributors) contributors.set(contributor.contributorId, contributor);
   }
   const orderedContributors = [...contributors.values()].sort((left, right) => (
-    left.contributorId.localeCompare(right.contributorId)
+    compareCodeUnits(left.contributorId, right.contributorId)
   ));
   const supportBucketIds = sortedUnique(orderedContributors.map((entry) => entry.sourceBucketId));
   const primarySourceBucketId = supportBucketIds[0];
@@ -703,7 +704,7 @@ async function adjudicateSemanticGroups(
   const reduced = [...untouched];
   for (const semanticKey of [...bySemantic.keys()].sort()) {
     const units = (bySemantic.get(semanticKey) ?? [])
-      .sort((left, right) => left.canonicalItemId.localeCompare(right.canonicalItemId));
+      .sort((left, right) => compareCodeUnits(left.canonicalItemId, right.canonicalItemId));
     if (units.length < 2) {
       reduced.push(...units);
       continue;
@@ -729,7 +730,7 @@ async function adjudicateSemanticGroups(
       if (new Set(candidateRows.map((entry) => entry.digest)).size !== candidateRows.length) {
         throw new TypeError('judge-content-digest-collision');
       }
-      candidateRows.sort((left, right) => left.digest.localeCompare(right.digest));
+      candidateRows.sort((left, right) => compareCodeUnits(left.digest, right.digest));
       const replayFingerprint = stableDigest({
         candidateDigests: candidateRows.map((entry) => entry.digest),
         policyVersion: input.policy.adjudicationPolicyVersion,
@@ -793,7 +794,7 @@ async function adjudicateSemanticGroups(
         candidateBindings: Object.freeze(candidateRows.map((entry) => Object.freeze({
           candidateDigest: entry.digest,
           canonicalItemId: entry.unit.canonicalItemId,
-        })).sort((left, right) => left.candidateDigest.localeCompare(right.candidateDigest))),
+        })).sort((left, right) => compareCodeUnits(left.candidateDigest, right.candidateDigest))),
         candidateDigests: Object.freeze(candidateDigests),
         counterfactualEvidenceIds: Object.freeze([]),
         preferredCandidateDigest: null,
@@ -808,7 +809,7 @@ async function adjudicateSemanticGroups(
     adjudications: Object.freeze(adjudications),
     mergedCandidateIds,
     units: Object.freeze(reduced.sort((left, right) => (
-      left.canonicalItemId.localeCompare(right.canonicalItemId)
+      compareCodeUnits(left.canonicalItemId, right.canonicalItemId)
     ))),
   });
 }
@@ -859,7 +860,7 @@ function branchQueues(units: readonly ReductionUnit[]): Map<string, ReductionUni
       const rankOrder = left.rank - right.rank;
       return rankOrder !== 0
         ? rankOrder
-        : left.canonicalItemId.localeCompare(right.canonicalItemId);
+        : compareCodeUnits(left.canonicalItemId, right.canonicalItemId);
     });
   }
   return queues;
@@ -972,7 +973,7 @@ function scheduleUnits(
     const schedule = mutableSchedules.get(bucketId);
     const remaining = [...(queues.get(bucketId)?.values() ?? [])]
       .flat()
-      .sort((left, right) => left.canonicalItemId.localeCompare(right.canonicalItemId));
+      .sort((left, right) => compareCodeUnits(left.canonicalItemId, right.canonicalItemId));
     if (!schedule) continue;
     const reason = schedule.selectedItemIds.length >= schedule.cap
       ? 'quota-deferred'
@@ -985,7 +986,7 @@ function scheduleUnits(
   }
 
   const schedules: SourceBucketSchedule[] = [...mutableSchedules.values()]
-    .sort((left, right) => left.sourceBucketId.localeCompare(right.sourceBucketId))
+    .sort((left, right) => compareCodeUnits(left.sourceBucketId, right.sourceBucketId))
     .map((schedule) => Object.freeze({
       ...schedule,
       configuredWeight: Object.freeze({ ...schedule.configuredWeight }),
@@ -1054,7 +1055,7 @@ function buildDispositions(
       }
     }
   }
-  return dispositions.sort((left, right) => left.candidateId.localeCompare(right.candidateId));
+  return dispositions.sort((left, right) => compareCodeUnits(left.candidateId, right.candidateId));
 }
 
 function outputItems(selected: readonly ReductionUnit[]): CanonicalReductionItem[] {
@@ -1159,8 +1160,8 @@ function buildLedger(
     sourceRegistrationDigest: stableDigest(canonicalSourceRegistrations(input)),
   }));
   pending.sort((left, right) => {
-    const typeOrder = left.eventType.localeCompare(right.eventType);
-    return typeOrder !== 0 ? typeOrder : left.eventId.localeCompare(right.eventId);
+    const typeOrder = compareCodeUnits(left.eventType, right.eventType);
+    return typeOrder !== 0 ? typeOrder : compareCodeUnits(left.eventId, right.eventId);
   });
   return pending.map((event, sequence) => Object.freeze({ ...event, sequence }));
 }

@@ -20,15 +20,17 @@ export function deriveResultIdempotencyKey(dispatchReceiptId: string): string {
   return identity('leaf-result-write', { dispatch_receipt_id: dispatchReceiptId });
 }
 
+interface SalvageEventIdentityInput {
+  readonly dispatchReceiptId: string;
+  readonly parserName: string;
+  readonly parserVersion: string;
+  readonly recoveredScope: JsonObject;
+  readonly sourceKind: string;
+  readonly sourceReference: string;
+}
+
 /** Returns `leaf-salvage:` plus the SHA-256 of the canonical receipt, parser, recovered scope and source fields. */
-export function deriveSalvageEventId(input: Readonly<{
-  dispatchReceiptId: string;
-  parserName: string;
-  parserVersion: string;
-  recoveredScope: JsonObject;
-  sourceKind: string;
-  sourceReference: string;
-}>): string {
+export function deriveSalvageEventId(input: SalvageEventIdentityInput): string {
   return identity('leaf-salvage', {
     dispatch_receipt_id: input.dispatchReceiptId,
     parser_name: input.parserName,

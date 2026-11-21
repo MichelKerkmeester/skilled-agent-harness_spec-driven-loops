@@ -401,7 +401,7 @@ export class HierarchicalBudgetAuthority {
   public async readScope(scopeId: string): Promise<BudgetScopeReadModel> {
     const { state } = await this.#readContext();
     const scope = projectionScopes(state)[scopeId];
-    if (!scope) throw new TypeError('Budget scope does not exist');
+    if (!scope) throw new TypeError(`Budget scope ${scopeId} does not exist`);
     const open = Object.values(projectionReservations(state)).filter((reservation) => (
       reservation.scopePath.includes(scopeId)
       && (reservation.status === 'reserved' || reservation.status === 'partially-released')

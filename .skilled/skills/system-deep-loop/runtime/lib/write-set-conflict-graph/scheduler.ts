@@ -21,16 +21,12 @@ import type {
 // 2. HELPERS
 // ───────────────────────────────────────────────────────────────────
 
-function compareText(left: string, right: string): number {
-  return compareStableText(left, right);
-}
-
 function connectedEdges(nodeId: string, edges: readonly ConflictEdge[]): readonly ConflictEdge[] {
   return edges.filter((edge) => edge.from === nodeId || edge.to === nodeId);
 }
 
 function uniqueSorted(values: readonly string[]): readonly string[] {
-  return [...new Set(values)].sort(compareText);
+  return [...new Set(values)].sort(compareStableText);
 }
 
 function dependenciesFor(nodeId: string, edges: readonly ConflictEdge[]): readonly string[] {
@@ -103,7 +99,7 @@ function fallbackSchedule(
   edges: readonly ConflictEdge[],
   issues: readonly GraphValidationIssue[],
 ): GraphSchedule {
-  const sortedNodes = [...nodes].sort((left, right) => compareText(left.id, right.id));
+  const sortedNodes = [...nodes].sort((left, right) => compareStableText(left.id, right.id));
   const lanes = sortedNodes.map((node, index) => ({
     lane_id: laneId(index),
     node_ids: [node.id],
@@ -149,14 +145,14 @@ export function createDeterministicSchedule(
   if (issues.length > 0) return fallbackSchedule(nodes, edges, issues);
 
   const nodesById = new Map(nodes.map((node) => [node.id, node] as const));
-  const remaining = new Set([...nodesById.keys()].sort(compareText));
+  const remaining = new Set([...nodesById.keys()].sort(compareStableText));
   const scheduled = new Set<string>();
   const lanes: ScheduleLane[] = [];
 
   while (remaining.size > 0) {
     const candidates = [...remaining]
       .filter((nodeId) => dependenciesFor(nodeId, edges).every((dependency) => scheduled.has(dependency)))
-      .sort(compareText);
+      .sort(compareStableText);
     const selected: string[] = [];
     for (const candidate of candidates) {
       if (selected.every((peer) => !conflicts(candidate, peer, edges))) selected.push(candidate);
@@ -165,7 +161,7 @@ export function createDeterministicSchedule(
       return fallbackSchedule(nodes, edges, [{
         code: 'DEPENDENCY_CYCLE',
         message: 'No dependency-ready node remained while constructing the schedule.',
-        node_ids: [...remaining].sort(compareText),
+        node_ids: [...remaining].sort(compareStableText),
         resources: [],
         source_paths: [],
       }]);

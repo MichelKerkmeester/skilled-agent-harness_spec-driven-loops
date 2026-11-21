@@ -21,6 +21,7 @@ import {
 import {
   ClaimContinuityError,
   ClaimContinuityErrorCodes,
+  CLAIM_IDENTITY_MAX_LENGTH,
 } from './claim-continuity-types.js';
 
 import type { AppendOnlyLedger } from '../authorized-ledger/index.js';
@@ -75,7 +76,7 @@ export async function deriveClaimContinuityReplayFingerprint(
   identityState: Readonly<ContinuityIdentityState>,
   identityProjectionDigest: string,
 ): Promise<DerivedReplayFingerprint<ClaimContinuityState>> {
-  if (typeof runId !== 'string' || runId.trim() === '' || runId.length > 512) {
+  if (typeof runId !== 'string' || runId.trim() === '' || runId.length > CLAIM_IDENTITY_MAX_LENGTH) {
     throw new ClaimContinuityError(
       ClaimContinuityErrorCodes.INVALID_INPUT,
       'Claim replay run ID must be a non-empty bounded string',

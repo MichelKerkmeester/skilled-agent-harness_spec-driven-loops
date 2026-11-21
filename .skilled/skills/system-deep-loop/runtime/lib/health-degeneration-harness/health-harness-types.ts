@@ -11,6 +11,12 @@ import type { JsonObject } from '../event-envelope/index.js';
 // 1. SIGNAL AND POLICY CONTRACTS
 // ───────────────────────────────────────────────────────────────────
 
+/** Longest identity string any harness input or projection accepts. */
+export const MAX_IDENTITY_CHARS = 4_096;
+
+/** Basis points in one whole, so every ratio and ceiling in the harness tops out here. */
+export const BASIS_POINTS = 10_000;
+
 export const HealthSignalKinds = {
   MODE_COLLAPSE: 'mode_collapse',
   REPETITION: 'repetition',

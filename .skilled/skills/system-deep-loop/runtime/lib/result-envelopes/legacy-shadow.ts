@@ -10,6 +10,9 @@ import { sha256Bytes } from '../event-envelope/index.js';
 
 import type { JsonObject, JsonValue } from '../event-envelope/index.js';
 
+// Both the parsed text parts and the raw stdout fallback are cut to the same salvage cap.
+const MAX_LEGACY_TEXT_CHARS = 50_000;
+
 // ───────────────────────────────────────────────────────────────────
 // 2. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
@@ -31,9 +34,9 @@ export function extractLegacyShadowText(stdout: string | null): string | null {
       // Non-JSON stdout remains eligible for the bounded raw fallback.
     }
   }
-  const extracted = chunks.join('').slice(0, 50_000);
+  const extracted = chunks.join('').slice(0, MAX_LEGACY_TEXT_CHARS);
   if (extracted.trim() !== '') return extracted;
-  return stdout.trim().length > 50 ? stdout.slice(0, 50_000) : null;
+  return stdout.trim().length > 50 ? stdout.slice(0, MAX_LEGACY_TEXT_CHARS) : null;
 }
 
 /** Salvage counts and the per-iteration fragments the legacy salvage path would report. */
@@ -50,16 +53,18 @@ export interface LegacySalvageShadow {
   readonly salvaged: number;
 }
 
+interface LegacySalvageShadowInput {
+  readonly capturedStdout: string | null;
+  readonly existingIterations: readonly number[];
+  readonly stateRecords: readonly JsonObject[];
+  readonly stdoutReference: string;
+}
+
 /**
  * Projects one salvage fragment per state-record iteration not already present, marked salvaged or failed by
  * whether stdout text was captured.
  */
-export function projectLegacySalvageShadow(input: Readonly<{
-  capturedStdout: string | null;
-  existingIterations: readonly number[];
-  stateRecords: readonly JsonObject[];
-  stdoutReference: string;
-}>): LegacySalvageShadow {
+export function projectLegacySalvageShadow(input: LegacySalvageShadowInput): LegacySalvageShadow {
   const existing = new Set(input.existingIterations);
   const text = extractLegacyShadowText(input.capturedStdout);
   const iterations = input.stateRecords
@@ -91,12 +96,14 @@ export interface LegacyFailureShadow {
   readonly timed_out: boolean;
 }
 
+interface LegacyFailureShadowInput {
+  readonly exitCode: number | null;
+  readonly salvage: { readonly failed: number; readonly salvaged: number } | null;
+  readonly timedOut: boolean;
+}
+
 /** Classifies a legacy failure as timeout, salvage or artifact miss (retryable) or a plain exit (fatal). */
-export function classifyLegacyFailureShadow(input: Readonly<{
-  exitCode: number | null;
-  salvage: { readonly failed: number; readonly salvaged: number } | null;
-  timedOut: boolean;
-}>): LegacyFailureShadow {
+export function classifyLegacyFailureShadow(input: LegacyFailureShadowInput): LegacyFailureShadow {
   const normalizedExitCode = Number.isFinite(Number(input.exitCode))
     ? Math.trunc(Number(input.exitCode))
     : null;
@@ -278,17 +285,19 @@ export function reconstructLegacyRegistryShadow(
   };
 }
 
+interface LegacyAttributionInput {
+  readonly kind: string | null;
+  readonly label: string;
+  readonly model: string | null;
+  readonly registry: JsonObject | null;
+  readonly stateRecords: readonly JsonObject[];
+}
+
 /**
  * Projects the legacy attribution row: label, kind, model, iteration and salvage counts, convergence and a
  * P0/P1-derived verdict.
  */
-export function projectLegacyAttribution(input: Readonly<{
-  kind: string | null;
-  label: string;
-  model: string | null;
-  registry: JsonObject | null;
-  stateRecords: readonly JsonObject[];
-}>): JsonObject {
+export function projectLegacyAttribution(input: LegacyAttributionInput): JsonObject {
   const severity = input.registry?.findingsBySeverity;
   const verdict = severity && typeof severity === 'object' && !Array.isArray(severity)
     ? Number((severity as JsonObject).P0) > 0

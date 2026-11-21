@@ -476,6 +476,25 @@ describe('provenance-balanced reduction', () => {
     expect(result.output.items.every((entry) => entry.effectiveSourceCount === 1)).toBe(true);
   });
 
+  it('orders source buckets by UTF-16 code unit whatever the process locale', async () => {
+    // Collation puts '_' before '-' before '.', code-unit order puts '-' before '.' before '_'.
+    const families = ['model_x', 'model.x', 'model-x'];
+    const envelopes = families.map((_, index) => successfulEnvelope(`f-${index}`));
+    const candidates = families.map((family, index) => candidate(
+      envelopes[index],
+      family,
+      { namespace: 'n', stableId: `f-${index}`, type: 'claim' },
+      { value: index },
+    ));
+    const result = await reduceProvenance(input(envelopes, candidates, families));
+    const expected = ['model-x', 'model.x', 'model_x'].map(normalizeSourceBucketId);
+
+    expect(result.receipt.schedules.map((entry) => entry.sourceBucketId)).toEqual(expected);
+    expect(replayProvenanceLedger(result.ledger).schedules.map((entry) => entry.sourceBucketId))
+      .toEqual(expected);
+    expect(replayProvenanceReduction(result).replayFingerprint).toBe(result.receipt.replayFingerprint);
+  });
+
   it('preserves minority work and defers quota exhaustion instead of erasing it', async () => {
     const envelopes = [
       successfulEnvelope('sol-1'),

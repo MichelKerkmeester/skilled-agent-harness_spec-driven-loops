@@ -50,6 +50,7 @@ import {
   ClaimContinuityError,
   ClaimContinuityErrorCodes,
   ClaimMatchDecisions,
+  CLAIM_IDENTITY_MAX_LENGTH,
 } from './claim-continuity-types.js';
 
 import type {
@@ -120,7 +121,7 @@ function semanticEventId(kind: string, value: JsonObject): string {
 }
 
 function bounded(value: string, field: string): string {
-  if (typeof value !== 'string' || value.trim() === '' || value.length > 512) {
+  if (typeof value !== 'string' || value.trim() === '' || value.length > CLAIM_IDENTITY_MAX_LENGTH) {
     throw new ClaimContinuityError(
       ClaimContinuityErrorCodes.INVALID_INPUT,
       `${field} must be a non-empty bounded string`,

@@ -15,6 +15,7 @@ import {
   DEGRADED_RESULT_EVENT_NAME,
   LATE_RESULT_EVENT_NAME,
   POLICY_EVALUATION_EVENT_NAME,
+  compareText,
 } from './evaluator.js';
 import { POLICY_SHADOW_COMPARISON_EVENT_NAME } from './shadow.js';
 
@@ -396,7 +397,7 @@ export async function recordPartialFailureEvaluation(
     ...input.terminalFailures,
     ...input.evaluation.synthesizedFailures,
   ].map((failure) => [failure.failure_id, failure])).values()]
-    .sort((left, right) => left.failure_id.localeCompare(right.failure_id));
+    .sort((left, right) => compareText(left.failure_id, right.failure_id));
   let offset = 0;
   const recordedFailures = [];
   for (const failure of failures) {

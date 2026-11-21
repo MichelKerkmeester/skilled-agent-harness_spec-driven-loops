@@ -12,9 +12,11 @@ import {
   budgetVector,
 } from '../hierarchical-budgets/index.js';
 import {
+  BASIS_POINTS,
   HealthHarnessError,
   HealthHarnessErrorCodes,
   HealthInputFields,
+  MAX_IDENTITY_CHARS,
 } from './health-harness-types.js';
 
 import type { CycleHealthEventPayload } from '../cycle-detection/index.js';
@@ -60,7 +62,7 @@ function cloneJson<T extends JsonValue>(value: T): T {
 }
 
 function requireIdentity(value: string, field: string): string {
-  if (typeof value !== 'string' || value.trim() === '' || value.length > 4_096) {
+  if (typeof value !== 'string' || value.trim() === '' || value.length > MAX_IDENTITY_CHARS) {
     throw new TypeError(`${field} must be a bounded non-empty identity`);
   }
   return value;
@@ -72,8 +74,8 @@ function requireDigest(value: string, field: string): string {
 }
 
 function requireBasisPoints(value: number, field: string): number {
-  if (!Number.isSafeInteger(value) || value < 0 || value > 10_000) {
-    throw new TypeError(`${field} must be an integer from 0 through 10000`);
+  if (!Number.isSafeInteger(value) || value < 0 || value > BASIS_POINTS) {
+    throw new TypeError(`${field} must be an integer from 0 through ${BASIS_POINTS}`);
   }
   return value;
 }

@@ -20,6 +20,7 @@ import {
   ClaimContinuityErrorCodes,
   ClaimMatchDecisions,
   ClaimMatchReasons,
+  CLAIM_IDENTITY_MAX_LENGTH,
 } from './claim-continuity-types.js';
 
 import type { ContinuityIdentityState } from '../deep-loop/continuity-identity/index.js';
@@ -65,7 +66,7 @@ function compareCodeUnits(left: string, right: string): number {
 }
 
 function boundedString(value: unknown, field: string): string {
-  if (typeof value !== 'string' || value.trim() === '' || value.length > 512) {
+  if (typeof value !== 'string' || value.trim() === '' || value.length > CLAIM_IDENTITY_MAX_LENGTH) {
     throw new ClaimContinuityError(
       ClaimContinuityErrorCodes.INVALID_INPUT,
       `${field} must be a non-empty bounded string`,

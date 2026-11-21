@@ -51,6 +51,8 @@ export const CLAIM_RELATIONSHIP_PROJECTION_SCHEMA_VERSION = 'claim-relationships
 export const CLAIM_RELATIONSHIP_REDUCER_ID = 'claim-relationship-status-fold';
 
 const DIGEST_PATTERN = /^[a-f0-9]{64}$/;
+// Identity and context fields share one length cap on both the write and the read side.
+const MAX_TEXT_CHARS = 4_096;
 const COMMON_FIELDS = [
   'relationship_id',
   'semantic_community_ids',
@@ -73,7 +75,7 @@ function compareText(left: string, right: string): number {
 // ───────────────────────────────────────────────────────────────────
 
 function requireText(value: unknown, field: string): string {
-  if (typeof value !== 'string' || value.trim() === '' || value.length > 4_096) {
+  if (typeof value !== 'string' || value.trim() === '' || value.length > MAX_TEXT_CHARS) {
     throw new ClaimRelationshipError(
       ClaimRelationshipErrorCodes.INVALID_INPUT,
       'Relationship identity and context fields must be bounded non-empty strings',
@@ -346,7 +348,7 @@ export function relationshipPayload(
 }
 
 function isText(value: JsonValue | undefined): value is string {
-  return typeof value === 'string' && value.trim() !== '' && value.length <= 4_096;
+  return typeof value === 'string' && value.trim() !== '' && value.length <= MAX_TEXT_CHARS;
 }
 
 function isSortedUniqueStrings(value: JsonValue | undefined): value is string[] {

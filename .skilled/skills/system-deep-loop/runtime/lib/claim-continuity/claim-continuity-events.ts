@@ -16,6 +16,7 @@ import {
   ContinuityIdentityKinds,
   validateIdentityRef,
 } from '../deep-loop/continuity-identity/index.js';
+import { CLAIM_IDENTITY_MAX_LENGTH } from './claim-continuity-types.js';
 
 import type {
   PolicyEvaluationInput,
@@ -70,7 +71,7 @@ function isObject(value: unknown): value is Readonly<JsonObject> {
 }
 
 function isString(value: unknown): value is string {
-  return typeof value === 'string' && value.length > 0 && value.length <= 512;
+  return typeof value === 'string' && value.length > 0 && value.length <= CLAIM_IDENTITY_MAX_LENGTH;
 }
 
 function isId(value: unknown): value is string {

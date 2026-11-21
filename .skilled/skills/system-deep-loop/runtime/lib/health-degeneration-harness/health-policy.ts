@@ -4,6 +4,7 @@
 
 import { canonicalBytes, canonicalJson, sha256Bytes } from '../event-envelope/index.js';
 import {
+  BASIS_POINTS,
   HealthHarnessError,
   HealthHarnessErrorCodes,
 } from './health-harness-types.js';
@@ -49,8 +50,8 @@ function assertPositiveInteger(value: number, field: string): void {
 }
 
 function assertBasisPoints(value: number, field: string): void {
-  if (!Number.isSafeInteger(value) || value < 0 || value > 10_000) {
-    throw new TypeError(`${field} must be an integer from 0 through 10000`);
+  if (!Number.isSafeInteger(value) || value < 0 || value > BASIS_POINTS) {
+    throw new TypeError(`${field} must be an integer from 0 through ${BASIS_POINTS}`);
   }
 }
 
