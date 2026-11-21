@@ -1112,6 +1112,27 @@ describe('expansive budget sized from the seed', () => {
     expect(result.growthSlots).toBe(0);
     expect(result.warning).toMatch(/no growth slot/);
   });
+
+  // A fan-out parent seeds before its root config exists, and its lineages are sized
+  // from their own shares, so a budget sized from the whole seed would name a cap no
+  // lineage runs. The fan-out runner prints the budget table instead.
+  it('reports no whole-seed budget for a defaulted seed that runs before any config', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'frontier-admit-budget-'));
+    tempDirs.push(dir);
+    writeFileSync(join(dir, 'frontier-seed.json'), JSON.stringify(seeds(6)), 'utf8');
+
+    const result = spawnSync(process.execPath, [
+      FRONTIER_ADMIT_SCRIPT, 'seed', '--artifact-dir', dir, '--iteration', '0',
+      '--input', join(dir, 'frontier-seed.json'), '--max-iterations-source', 'default',
+    ], { encoding: 'utf8' });
+
+    expect(result.status, String(result.stderr)).toBe(0);
+    const payload = JSON.parse(String(result.stdout)) as Record<string, unknown>;
+    expect(payload.admitted).toHaveLength(6);
+    expect(payload).not.toHaveProperty('derivedMaxIterations');
+    expect(payload).not.toHaveProperty('growthSlots');
+    expect(String(result.stderr)).not.toContain('budget after seed');
+  });
 });
 
 describe('shared band budget', () => {

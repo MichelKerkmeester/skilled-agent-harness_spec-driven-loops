@@ -892,7 +892,7 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
  * @param {'research'|'review'} [options.target='research'] - The loop being seeded.
  * @param {string} [options.maxIterationsSource='default'] - Where maxIterations came from.
  * @param {number} [options.maxIterations] - The bound budget, passed through to seedBudget.
- * @returns {Object} The admitted and pruned nodes plus the seedBudget fields, or skipped 'already-seeded'.
+ * @returns {Object} The admitted and pruned nodes plus the seedBudget fields (none for a defaulted seed with no config yet), or skipped 'already-seeded'.
  */
 function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], target = 'research', maxIterationsSource = 'default', maxIterations }) {
   // Every seeded node sits at depth 1 against the run's synthetic root: the seed
@@ -941,10 +941,14 @@ function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], ta
 
   const result = admitProposals({ artifactDir, iteration, proposals, knownTexts, target: mode, seeding: true });
 
+  // A defaulted seed with no config yet is a fan-out parent's: fanout-run sizes each
+  // lineage from its own share, so a budget sized from the whole seed names a cap no
+  // lineage runs, and the runner reports the budget table instead.
+  const fanoutParent = maxIterationsSource === 'default' && readTargetConfig(artifactDir, mode) === null;
   return {
     admitted: result.admitted,
     pruned: [...pruned, ...result.pruned],
-    ...seedBudget({ artifactDir, target: mode, maxIterationsSource, maxIterations }),
+    ...(fanoutParent ? {} : seedBudget({ artifactDir, target: mode, maxIterationsSource, maxIterations })),
   };
 }
 

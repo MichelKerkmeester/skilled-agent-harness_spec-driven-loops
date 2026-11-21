@@ -7322,6 +7322,63 @@ describe('fanout-run.cjs — per-lineage expansive budget', () => {
     expect(output).not.toContain('seed share');
     expect(existsSync(join(baseDir, 'lineages'))).toBe(false);
   });
+
+  // The root config's maxIterations is the largest lineage cap, so the root status,
+  // the synthesis and a later restart read the same budget table the lineages run.
+  // Nine open seeds over two lineages deal shares of five and four: 14 and 12.
+  function expansiveRootRun(testId: string) {
+    const binDir = makeTempDir(`fanout-run-${testId}-bin-`);
+    writeStubBinary(binDir, 'opencode');
+    const hermetic = useHermeticEnv(testId);
+    const specFolder = `specs/test-fanout-run-${testId}`;
+    const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+    writeFileSync(join(baseDir, 'frontier-nodes.jsonl'), Array.from({ length: 9 }, (_, index) => `${JSON.stringify({
+      nodeId: `F-1-00${index + 1}`, parentId: 'root', depth: 1, status: 'open', question: `Question ${index + 1}?`, scope: 'lib', reason: null, iteration: 0,
+    })}\n`).join(''), 'utf8');
+    const rootConfigPath = join(baseDir, 'deep-research-config.json');
+    writeFileSync(rootConfigPath, `${JSON.stringify({ topic: 'Topic', maxIterations: 10 }, null, 2)}\n`, 'utf8');
+    const run = (...extra: string[]) => spawnCjs(fanoutRunScript, [
+      '--spec-folder', specFolder,
+      '--loop-type', 'research',
+      '--fanout-config-json', JSON.stringify({
+        executors: [
+          { label: 'a', kind: 'cli-opencode', model: 'llmgateway/deepseek-v4.1-flash-1017' },
+          { label: 'b', kind: 'cli-opencode', model: 'llmgateway/deepseek-v4.1-flash-1017' },
+        ],
+        concurrency: 2,
+        maxRetries: 0,
+      }),
+      '--base-artifact-dir', baseDir,
+      '--research-topic', 'Topic',
+      '--depth-mode', 'expansive',
+      ...extra,
+    ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 60_000 });
+    return { run, rootConfigPath };
+  }
+
+  it('writes the largest lineage cap into the root config before any lineage spawns', async () => {
+    const { run, rootConfigPath } = expansiveRootRun('expansive-root-budget');
+    const result = await run();
+
+    const rootConfig = JSON.parse(readFileSync(rootConfigPath, 'utf8')) as Record<string, unknown>;
+    expect(rootConfig.maxIterations, result.stderr).toBe(14);
+    expect(rootConfig.topic).toBe('Topic');
+    expect(result.stderr).toContain('[fanout-run] budget table: a 14, b 12 iterations; root maxIterations 14, the largest lineage cap');
+  });
+
+  it('leaves the root config untouched under --preview and under an explicit --max-iterations', async () => {
+    const preview = expansiveRootRun('expansive-root-budget-preview');
+    const before = readFileSync(preview.rootConfigPath, 'utf8');
+    const previewResult = await preview.run('--preview');
+    expect(previewResult.exitCode, previewResult.stderr).toBe(0);
+    expect(readFileSync(preview.rootConfigPath, 'utf8')).toBe(before);
+
+    const flagged = expansiveRootRun('expansive-root-budget-flag');
+    const flaggedResult = await flagged.run('--max-iterations', '5');
+    const rootConfig = JSON.parse(readFileSync(flagged.rootConfigPath, 'utf8')) as Record<string, unknown>;
+    expect(rootConfig.maxIterations, flaggedResult.stderr).toBe(10);
+    expect(flaggedResult.stderr).not.toContain('budget table');
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

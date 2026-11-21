@@ -566,6 +566,29 @@ function expansiveLineageBudgetNotes(expanded, budgeted, partition) {
 }
 
 /**
+ * A fan-out root config's maxIterations is the largest lineage cap. The workflow writes
+ * the root config from the single-run template before the lineages are sized, so for a
+ * defaulted budget it holds the loop default, which no lineage may run. It is rewritten
+ * from the whole matrix, so a rerun of one lineage writes the same value. A root config
+ * that is absent or unreadable is left alone: the runner never creates one.
+ *
+ * @param {Object} params - Write inputs.
+ * @param {string} params.loopType - The fan-out loop type.
+ * @param {string} params.baseArtifactDir - The run's artifact directory holding the root config.
+ * @param {Object[]} params.lineages - Every lineage of the matrix, each with its iteration cap.
+ * @returns {string|null} The budget table line, or null when no root config was there to write.
+ */
+function writeRootConfigBudget({ loopType, baseArtifactDir, lineages }) {
+  const configPath = path.join(baseArtifactDir, LINEAGE_CONFIG_BY_LOOP_TYPE[loopType]);
+  const config = readJsonRecord(configPath);
+  if (!config) return null;
+  const largest = Math.max(...lineages.map((lineage) => lineage.iterations));
+  if (config.maxIterations !== largest) atomicWriteJson(configPath, { ...config, maxIterations: largest });
+  return `[fanout-run] budget table: ${lineages.map((lineage) => `${lineage.label} ${lineage.iterations}`).join(', ')} iterations; `
+    + `root maxIterations ${largest}, the largest lineage cap`;
+}
+
+/**
  * A lineage starts from its own store and inbox. They are written only when the
  * lineage has no store yet, so a resumed lineage keeps the nodes it already closed.
  * Review carries no inbox: its nodes reach the leaf through the FRONTIER block, so
@@ -4989,6 +5012,13 @@ async function main() {
   // mismatch refuses the whole run before any orphan mark, spawn or summary write.
   if (finishedLineageRefusals.length > 0) {
     throw inputError(`fan-out refused (${FINISHED_LINEAGE_MISMATCH_REASON}): ${finishedLineageRefusals.join('; ')}`);
+  }
+  // Written only once every refusal has passed, so a refused run leaves the root config
+  // as the workflow wrote it. An explicit --max-iterations already sits in the root
+  // config, so only a defaulted budget is rewritten.
+  if (expansiveBudgets && maxIterationsFlag === null) {
+    const budgetTable = writeRootConfigBudget({ loopType, baseArtifactDir, lineages: matrixLineages });
+    if (budgetTable) process.stderr.write(`${budgetTable}\n`);
   }
   const orphanedLineages = markOrphanedLineages(ledgerPath);
   const initialRetryCounts = readRetryCountsFromLedger(ledgerPath);
