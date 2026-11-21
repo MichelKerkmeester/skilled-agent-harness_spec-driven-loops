@@ -323,10 +323,19 @@ function pruneEmptyDirs(dir) {
   if (fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
 }
 
+// Python writes a bytecode cache beside any script it runs, so one turns up in a
+// folder entry's source and in its live copy alike. The folder readers skip it on
+// both sides, so a cache is never shipped, deleted, captured, adopted or reported
+// as drift. The test is by name and not by what git ignores: an overlay folder can
+// sit in no repository, and what an entry ships must not move with an ignore file.
+function isPythonCacheName(name) {
+  return name === '__pycache__' || name.endsWith('.pyc') || name.endsWith('.pyo');
+}
+
 /**
  * Every entry below `dir`, keyed by its path relative to `dir`. Symlinks are
  * returned as links with their target string, never followed, because the
- * vendored tree keeps its shape with relative links.
+ * vendored tree keeps its shape with relative links. Python caches are left out.
  * @param {string} dir Folder to walk.
  * @returns {Map<string, object>} Entries keyed by posix path relative to `dir`.
  */
@@ -338,6 +347,7 @@ function walkTree(dir) {
     const rel = stack.pop();
     const abs = rel ? path.join(dir, rel) : dir;
     for (const dirent of fs.readdirSync(abs, { withFileTypes: true })) {
+      if (isPythonCacheName(dirent.name)) continue;
       const childRel = rel ? path.posix.join(rel, dirent.name) : dirent.name;
       const childAbs = path.join(dir, childRel);
       const stats = fs.lstatSync(childAbs);
@@ -360,15 +370,18 @@ function walkTree(dir) {
 /**
  * Absolute paths of every non-directory entry below a folder, symlinks included.
  * @param {string} directoryPath Folder to list.
+ * @param {{isCacheIncluded?: boolean}} [options] Python caches are left out
+ *   unless `isCacheIncluded` is set.
  * @returns {string[]} Absolute paths.
  */
-function listTreePaths(directoryPath) {
+function listTreePaths(directoryPath, { isCacheIncluded = false } = {}) {
   const paths = [];
   if (!isDirectory(directoryPath)) return paths;
   const pending = [directoryPath];
   while (pending.length > 0) {
     const current = pending.pop();
     for (const item of fs.readdirSync(current, { withFileTypes: true })) {
+      if (!isCacheIncluded && isPythonCacheName(item.name)) continue;
       const absolute = path.join(current, item.name);
       const stats = fs.lstatSync(absolute);
       if (stats.isDirectory()) pending.push(absolute);
@@ -4281,13 +4294,13 @@ function captureRecordForPath(ctx, manifest, candidate) {
     }
     if (entry.scope === 'directory') {
       const relative = directoryRelative(destinationPath, candidate);
-      if (relative === null) continue;
+      if (relative === null || relative.split('/').some(isPythonCacheName)) continue;
       const sourcePath = path.resolve(ctx.overlayRoot, entry.source, relative);
       return { entry, key, destinationPath: candidate, sourcePath };
     }
     if (entry.scope === 'skill-root') {
       const relative = directoryRelative(destinationPath, candidate);
-      if (relative === null) continue;
+      if (relative === null || relative.split('/').some(isPythonCacheName)) continue;
       const isReplacement = (entry.replace || []).some((replacement) =>
         relative === replacement || relative.startsWith(replacement + '/'));
       const sourcePath = path.resolve(ctx.overlayRoot, entry.source, relative);
@@ -4946,11 +4959,12 @@ function hasLinkedAncestor(root, relativePath) {
 }
 
 // Every file and link below a path, for a path apply or a regenerate step writes
-// as a whole folder.
+// as a whole folder. Python caches are backed up too: a whole-folder write can take
+// them with it, so a rollback has to put them back.
 function backupLeaves(root, relativePath) {
   const filePath = path.join(root, relativePath);
   if (!isDirectory(filePath)) return [relativePath];
-  return listTreePaths(filePath).map((leaf) => relativeKey(root, leaf));
+  return listTreePaths(filePath, { isCacheIncluded: true }).map((leaf) => relativeKey(root, leaf));
 }
 
 /**
@@ -5284,7 +5298,8 @@ function upstreamLosses(ctx, manifest, job, touched) {
       const sourceDir = path.join(ctx.overlayRoot, entry.source);
       if (!isDirectory(sourceDir)) continue;
       const carried = walkTree(sourceDir);
-      for (const relativePath of removedUpstreamChanges(job, touched, destination, (rel) => carried.has(rel))) {
+      const isKept = (rel) => carried.has(rel) || rel.split('/').some(isPythonCacheName);
+      for (const relativePath of removedUpstreamChanges(job, touched, destination, isKept)) {
         const how = job.oldBlobs.has(relativePath) ? 'changed' : 'added';
         losses.push({
           overlay: entry.id,
@@ -5303,7 +5318,8 @@ function upstreamLosses(ctx, manifest, job, touched) {
       const folders = (entry.replace || []).filter((rel) => typeof rel === 'string' && isDirectory(path.join(sourceDir, rel)));
       for (const folder of folders) {
         const carried = walkTree(path.join(sourceDir, folder));
-        const isKept = (rel) => carried.has(rel) || retained.has(path.posix.join(folder, rel));
+        const isKept = (rel) => carried.has(rel) || retained.has(path.posix.join(folder, rel)) ||
+          rel.split('/').some(isPythonCacheName);
         for (const relativePath of removedUpstreamChanges(job, touched, path.posix.join(destination, folder), isKept)) {
           const how = job.oldBlobs.has(relativePath) ? 'changed' : 'added';
           losses.push({

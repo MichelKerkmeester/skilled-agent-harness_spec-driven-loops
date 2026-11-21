@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.33.0
+version: 1.0.34.0
 ---
 
 # Vendored Skilled Overlays
@@ -70,12 +70,14 @@ Every folder in the overlay folder needs a README: the overlay folder itself, `f
 With `F` as a folder's path relative to the overlay folder, `F/README.md` or `F/README.markdown` ships when any one of these is true:
 
 1. It is the `source` of a manifest entry of any scope, or a `marked-section` entry's `fragment` or `base`, because `apply` reads all three. A `file` entry is the usual case.
-2. `F` is the `source` folder of a `directory` entry, or sits under it. Everything inside a whole-folder entry ships.
+2. `F` is the `source` folder of a `directory` entry, or sits under it. Everything inside a whole-folder entry ships, except a Python bytecode cache.
 3. `F` is the `source` folder of a `skill-root` entry, or sits under it, and the README's path relative to that source is listed in the entry's `replace`, or sits under a folder `replace` lists. A skill-root entry ships only what `replace` names.
 
 Every other README is documentation only. These rules apply to both names alike.
 
 A new README inside a directory entry ships. Adding one to a folder inside a `directory` entry, or inside a folder a `skill-root` entry's `replace` lists, changes the vendored tree on the next `apply`. It is overlay content like any other file in that folder.
+
+A Python bytecode cache is never overlay content. The folder readers skip a `__pycache__` folder and any `*.pyc` or `*.pyo` file on both sides of a `directory` or `skill-root` entry, so `apply` neither ships one from the overlay folder nor deletes one a script wrote in the live tree, and status, capture and adopt pass over it. The rule goes by name, not by what git ignores, because an overlay folder can sit outside any repository.
 
 The engine never applies, adopts, captures, stages or flags a documentation-only README:
 
