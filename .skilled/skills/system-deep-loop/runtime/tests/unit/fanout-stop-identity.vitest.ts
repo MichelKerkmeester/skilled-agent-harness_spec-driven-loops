@@ -76,12 +76,12 @@ function readLedger(baseDir: string): LedgerRow[] {
 
 type RunFixture = { hermetic: HermeticEnv; baseDir: string; args: string[]; env: NodeJS.ProcessEnv };
 
-function makeSleepingRun(testId: string): RunFixture {
+function makeSleepingRun(testId: string, executorBody = 'sleep 60\nexit 0'): RunFixture {
   const hermetic = createHermeticEnv(testId);
   hermeticEnvs.push(hermetic);
   const binDir = join(hermetic.tmpDir, 'bin');
   mkdirSync(binDir, { recursive: true });
-  writeFileSync(join(binDir, 'opencode'), `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\nsleep 60\nexit 0\n`, { mode: 0o755 });
+  writeFileSync(join(binDir, 'opencode'), `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\n${executorBody}\n`, { mode: 0o755 });
   const baseDir = join(hermetic.tmpDir, SPEC_FOLDER, 'research');
   mkdirSync(baseDir, { recursive: true });
   const fanoutConfig = JSON.stringify({
@@ -269,5 +269,29 @@ describe('fanout-run.cjs --stop — lineage identity', () => {
       spared: [{ label: 'headless', pid: olderPid, process_start: processStart(olderPid) }],
     });
     expect(readLedger(fixture.baseDir).filter((row) => row.event === 'stopped').map((row) => row.label)).toEqual(['headless']);
+  }, 40_000);
+
+  it('leaves the close of a leaderless lineage to the runner still waiting on it, so it ends once', async () => {
+    // The executor backgrounds a member that keeps its output pipe open and exits, so the
+    // runner is still waiting on that output, the lineage still open, when --stop runs.
+    const fixture = makeSleepingRun('fanout-stop-identity-live-runner', 'sleep 60 &\nexit 0');
+    const run = startRun(fixture);
+    const runExited = new Promise((resolvePromise) => run.on('exit', resolvePromise));
+    const spawned = await waitFor(() => readLedger(fixture.baseDir).find((row) => row.event === 'spawned'));
+    const leaderPid = spawned.pid as number;
+    ownedGroups.push(leaderPid);
+    await waitFor(() => processStart(leaderPid) === '' && groupAlive(leaderPid));
+    const terminalRows = () => readLedger(fixture.baseDir)
+      .filter((row) => row.label === 'slow' && ['stopped', 'completed', 'failed'].includes(row.event ?? ''));
+    expect(run.exitCode).toBeNull();
+    expect(terminalRows()).toEqual([]);
+
+    const stop = await runStop(fixture);
+    await runExited;
+
+    expect(stop.exitCode).toBe(0);
+    expect(lastJson(stop.stdout)).toMatchObject({ status: 'ok', stopped: [{ label: 'slow', pid: leaderPid }] });
+    expect(groupAlive(leaderPid)).toBe(false);
+    expect(terminalRows().map((row) => row.event)).toEqual(['stopped']);
   }, 40_000);
 });

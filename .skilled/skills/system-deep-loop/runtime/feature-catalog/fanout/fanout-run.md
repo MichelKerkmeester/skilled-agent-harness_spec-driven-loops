@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.23.0
+version: 1.4.24.0
 ---
 
 # Fan-out CLI lineage driver
@@ -148,10 +148,13 @@ lineage's, is left alone and listed under `spared` as `{label, pid, process_star
 such member the lineage stays refused as `identity_unreadable`. It sends SIGTERM to the runner
 that spawned the lineages it kept first, found through the kernel's parent link and only when
 that parent is running `fanout-run.cjs`, then to each live lineage's process group, or to the
-members it chose. It waits up to 10 seconds for them to stop, judging a lineage stopped member
-by member by those members alone. Each lineage that no longer answers and is still open in the
-ledger gets a `stopped` ledger row with its `pid` and
-a `rerun_command`, the run's arguments without `--stop` plus `--only-lineage LABEL`. The command
+members it chose. An exited leader leaves no parent link, so for those members the runner is the
+`runner_pid` the `spawned` row recorded, signalled only while its start time still matches the
+row's `runner_start`; that runner closes the lineage itself, so it is not closed twice. It waits
+up to 10 seconds for them to stop, judging a lineage stopped member by member by those members
+alone. Each lineage that no longer answers and is still open in the ledger gets a `stopped`
+ledger row with its `pid` and a `rerun_command`, the run's arguments without `--stop` plus
+`--only-lineage LABEL`. The command
 prints `{status, stopped, survivors, refused, spared}`, each `stopped` and `survivors` entry
 `{label, pid}`, and exits 0 with `status: ok`, or 2 with `status: partial` when a lineage still
 answers or was refused. The pool reads a `stopped` row as a closed
