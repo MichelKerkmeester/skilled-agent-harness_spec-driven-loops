@@ -70,7 +70,7 @@ describe('sa-037 — Python bench runner', () => {
         {
           encoding: 'utf-8',
           timeout: 30000,
-          env: { ...process.env, SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1' },
+          env: process.env,
         },
       );
 
@@ -115,7 +115,7 @@ describe('sa-037 — Python bench runner', () => {
         {
           encoding: 'utf-8',
           timeout: 30000,
-          env: { ...process.env, SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1' },
+          env: process.env,
         },
       );
 

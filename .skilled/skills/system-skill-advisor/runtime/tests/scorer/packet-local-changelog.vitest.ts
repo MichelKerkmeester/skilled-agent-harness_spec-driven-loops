@@ -22,7 +22,6 @@ const here = dirname(fileURLToPath(import.meta.url));
 const savedPrivateRoots = process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
 
 process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'packet-local-changelog-'));
-process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
 delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;

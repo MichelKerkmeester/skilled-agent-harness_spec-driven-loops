@@ -12,7 +12,6 @@ const DEFAULT_WEIGHTS = {
   lexical: 0.28,
   graph_causal: 0.13,
   derived_generated: 0.12,
-  semantic_shadow: 0,
 } as const;
 
 const DEFAULT_SHADOW_WEIGHTS = {
@@ -20,7 +19,6 @@ const DEFAULT_SHADOW_WEIGHTS = {
   lexical: 0.25,
   graph_causal: 0.20,
   derived_generated: 0.10,
-  semantic_shadow: 0.05,
 } as const;
 
 async function loadRegistryFresh() {
@@ -86,12 +84,12 @@ describe('lane-registry env-override', () => {
   });
 
   it('honors the shadow-weights env independently', async () => {
-    process.env[SHADOW_ENV] = JSON.stringify({ semantic_shadow: 0.08 });
+    process.env[SHADOW_ENV] = JSON.stringify({ derived_generated: 0.08 });
     const mod = await loadRegistryFresh();
     expect(mod.DEFAULT_SCORER_LANE_WEIGHTS).toEqual(DEFAULT_WEIGHTS);
     expect(mod.DEFAULT_SHADOW_SCORER_LANE_WEIGHTS).toEqual({
       ...DEFAULT_SHADOW_WEIGHTS,
-      semantic_shadow: 0.08,
+      derived_generated: 0.08,
     });
   });
 

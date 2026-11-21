@@ -75,7 +75,7 @@ describe('sa-019 — Five-lane fusion', () => {
       skill: 'stress-target',
       dominantLane: expect.any(String),
     }));
-    expect(result.recommendations[0]?.laneContributions).toHaveLength(5);
+    expect(result.recommendations[0]?.laneContributions).toHaveLength(4);
   });
 
   it('surfaces lane thrash as ambiguity instead of hiding a close top-two', () => {

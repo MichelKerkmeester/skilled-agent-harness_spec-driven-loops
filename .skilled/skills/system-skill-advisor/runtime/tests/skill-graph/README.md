@@ -23,15 +23,12 @@ trigger_phrases:
 |---|---|---|
 | Test fixtures | Skill advisor tests | Created under temporary directories. |
 | Runtime DB files | Runtime state | Do not commit SQLite outputs from these tests. |
-| Shared embedder mocks | Test suite | Keep tests offline-safe. |
 
 ---
 
 ## 3. KEY FILES
 
-| File | Responsibility |
-|---|---|
-| `embedding-coverage.vitest.ts` | Verifies how `embeddingCoverage` counts skill and command vectors with no active embedder. |
+No test file lives in this folder now. The skill-graph database cases run from `../skill-graph-db.vitest.ts`.
 
 ---
 
@@ -66,4 +63,3 @@ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/syst
 
 - [`../README.md`](../README.md)
 - [`../../lib/skill-graph/README.md`](../../lib/skill-graph/README.md)
-- [`../embedders/README.md`](../embedders/README.md)

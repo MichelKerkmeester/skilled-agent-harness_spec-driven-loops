@@ -663,7 +663,7 @@ export const SPECKIT_GRAPH_EDGE_TYPES = [
   'DECORATES', 'OVERRIDES', 'TYPE_OF',
 ] as const;
 export const SPECKIT_SCORER_LANES = [
-  'explicit_author', 'lexical', 'graph_causal', 'derived_generated', 'semantic_shadow',
+  'explicit_author', 'lexical', 'graph_causal', 'derived_generated',
 ] as const;
 export const SPECKIT_PROMPT_CACHE_LAYERS = ['exact', 'near_dup'] as const;
 export const SPECKIT_CONFIDENCE_BUCKETS = [0, 0.5, 0.7, 0.8, 0.9, 1.0] as const;

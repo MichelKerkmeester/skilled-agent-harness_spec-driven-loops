@@ -7,7 +7,7 @@ trigger_phrases:
   - "laneBreakdown"
   - "attribution metadata"
   - "why_recommended"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Lane Contribution Attribution
@@ -34,7 +34,6 @@ The same opt-in response also includes `why_recommended`, a prompt-safe explanat
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts` | Library | Source reference |
 | `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Source reference |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | semantic-lane attribution source |
 | `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
 
 ### Validation And Tests

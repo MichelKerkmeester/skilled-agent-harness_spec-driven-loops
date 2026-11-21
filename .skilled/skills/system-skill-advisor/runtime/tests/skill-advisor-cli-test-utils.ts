@@ -77,7 +77,6 @@ export function createIsolatedCliScope(label: string): IsolatedCliScope {
     MEMORY_DB_PATH: memoryDbPath,
     SPECKIT_ADVISOR_SHADOW_DELTA_PATH: shadowDeltaPath,
     SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED: '0',
-    SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
   };
   // A switch exported in the shell would make every isolated call abstain.
   for (const flag of ADVISOR_DISABLED_FLAGS) delete env[flag];

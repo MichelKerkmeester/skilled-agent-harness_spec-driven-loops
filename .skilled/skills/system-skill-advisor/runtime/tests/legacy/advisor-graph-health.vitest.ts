@@ -35,10 +35,7 @@ describe('advisor graph health', () => {
     const result = spawnSync('python3', [advisorPath, '--health'], {
       cwd: repoRoot,
       encoding: 'utf8',
-      env: {
-        ...process.env,
-        SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
-      },
+      env: process.env,
     });
 
     expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);

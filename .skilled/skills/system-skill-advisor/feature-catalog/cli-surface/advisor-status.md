@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor freshness status"
   - "trust state status"
   - "semanticLaneHealth"
-version: 0.8.4.0
+version: 0.8.5.0
 ---
 
 # advisor_status Command
@@ -46,8 +46,6 @@ When callers pass `includeSemanticHealth` or `debug`, the status envelope also i
 | `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | CLI | Warm-only error and retryable exit handling |
 | `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
 | `.skilled/skills/system-skill-advisor/runtime/lib/freshness/trust-state.ts` | Library | Source reference |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | semantic-lane disabled-reason source |
-| `.skilled/skills/system-skill-advisor/runtime/lib/embedders/embeddings-health.ts` | Library | bounded read-only probe of provider resolution and the local model server |
 | `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:46-51` | Handler | Source reference |
 
 ### Validation And Tests
@@ -56,7 +54,6 @@ When callers pass `includeSemanticHealth` or `debug`, the status envelope also i
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | compact status, semantic health fields and degraded-vector reason coverage |
 | `.skilled/skills/system-skill-advisor/runtime/tests/cli-exit-taxonomy.vitest.ts` | Automated test | retryable daemon exit code |
-| `.skilled/skills/system-skill-advisor/runtime/tests/embedders/embeddings-health.vitest.ts` | Automated test | provider resolution and model-server probe coverage |
 | `Playbook scenario [NC-002](../../manual-testing-playbook/native-cli-tools/native-status-transitions.md).` | Manual playbook | Source reference |
 
 ---

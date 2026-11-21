@@ -6,7 +6,7 @@ trigger_phrases:
   - "lane ablation"
   - "scorer ablation"
   - "ablation accuracy"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Lane-by-Lane Ablation Protocol
@@ -37,7 +37,6 @@ The opt-in real-embedding check seeds skill and command vectors the same way pro
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts` | Automated test | Opt-in semantic-shadow ablation accuracy |
 | `Playbook scenario [SC-005](../../manual-testing-playbook/scorer-fusion/ablation.md).` | Manual playbook | Source reference |
 
 ---

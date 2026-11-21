@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/shared/` holds advisor-local helpers that are reused by multiple advisor modules. It is not the canonical `@spec-kit/shared` package; imports from `embeddings/` are a compatibility bridge to the shared package owned by `system-spec-kit/shared`.
+`lib/shared/` holds advisor-local helpers that are reused by multiple advisor modules. It is not the canonical `@spec-kit/shared` package.
 
 ---
 
@@ -23,7 +23,6 @@ trigger_phrases:
 |---|---|---|
 | `shared-payload.ts` | Skill advisor | Shared payload shape helpers for advisor runtime code. |
 | `unicode-normalization.ts` | Skill advisor | Prompt and label normalization helpers. |
-| `embeddings` symlink | `@spec-kit/shared` | Compatibility path only. Do not add advisor-owned embedder logic through the symlink. |
 
 ---
 
@@ -33,14 +32,12 @@ trigger_phrases:
 |---|---|
 | `shared-payload.ts` | Defines reusable payload helpers shared across advisor modules. |
 | `unicode-normalization.ts` | Normalizes Unicode-sensitive strings before scoring or rendering. |
-| `embeddings` | Symlink bridge to the canonical shared embedding implementation. |
 
 ---
 
 ## 4. BOUNDARIES
 
 - Keep advisor-specific helper code here only when it is used by more than one advisor module.
-- Keep embedding registry, adapters and cascade logic in `@spec-kit/shared`.
 - Do not place tool handler registration, database mutation flows or test fixtures in this folder.
 
 ---
@@ -70,5 +67,4 @@ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/syst
 ## 7. RELATED
 
 - [`../README.md`](../README.md)
-- [`../embedders/README.md`](../embedders/README.md)
 - [`../../../../system-spec-kit/shared/README.md`](../../../../system-spec-kit/shared/README.md)

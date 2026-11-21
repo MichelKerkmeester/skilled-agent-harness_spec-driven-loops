@@ -157,8 +157,6 @@ function evidenceFeature(value: string): string {
       return 'derived_skill_signal';
     case 'doc':
       return 'doc_reference_signal';
-    case 'cosine':
-      return 'semantic_similarity';
     default:
       if (value.includes('disambiguation')) return 'disambiguation_rule';
       if (value.includes('surface')) return 'surface_signal';

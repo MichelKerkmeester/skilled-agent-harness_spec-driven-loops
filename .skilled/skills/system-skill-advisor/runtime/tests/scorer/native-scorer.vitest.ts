@@ -19,7 +19,6 @@ import {
   EXPLICIT_AUTHOR_WEIGHT,
   GRAPH_CAUSAL_WEIGHT,
   LEXICAL_WEIGHT,
-  SEMANTIC_SHADOW_WEIGHT,
   parseScorerWeights,
 } from '../../lib/scorer/weights-config.js';
 import { lifecycleFixtures } from '../fixtures/lifecycle/index.js';
@@ -45,13 +44,12 @@ function skill(overrides: Partial<SkillProjection> & Pick<SkillProjection, 'id'>
 }
 
 describe('027/003 native scorer units', () => {
-  it('AC-1 weights config uses locked 5-lane named constants', () => {
+  it('AC-1 weights config uses locked named lane constants', () => {
     expect(parseScorerWeights(DEFAULT_SCORER_WEIGHTS)).toEqual({
       explicit_author: EXPLICIT_AUTHOR_WEIGHT,
       lexical: LEXICAL_WEIGHT,
       graph_causal: GRAPH_CAUSAL_WEIGHT,
       derived_generated: DERIVED_GENERATED_WEIGHT,
-      semantic_shadow: SEMANTIC_SHADOW_WEIGHT,
     });
   });
 
@@ -99,23 +97,34 @@ describe('027/003 native scorer units', () => {
     expect(result[1].ambiguousWith).toBeUndefined();
   });
 
-  it('AC-5 semantic shadow scores and contributes to live fusion', () => {
+  it('applies a lane weight override without changing the other lane weights', () => {
     const projection = createFixtureProjection([
       skill({
-        id: 'semantic-skill',
-        description: 'semantic token overlap only',
+        id: 'derived-skill',
+        description: 'derived scoring target',
+        intentSignals: ['derived scoring target'],
       }),
     ]);
-    const result = scoreAdvisorPrompt('semantic token overlap only', {
+    const baseline = scoreAdvisorPrompt('derived scoring target', {
       workspaceRoot: process.cwd(),
       projection,
       includeAllCandidates: true,
     });
-    const top = result.recommendations[0];
-    const semantic = top.laneContributions.find((lane) => lane.lane === 'semantic_shadow');
-    expect(semantic?.rawScore).toBeGreaterThan(0);
-    expect(semantic?.weightedScore).toBeCloseTo((semantic?.rawScore ?? 0) * SEMANTIC_SHADOW_WEIGHT, 6);
-    expect(semantic?.shadowOnly).toBe(false);
+    const overridden = scoreAdvisorPrompt('derived scoring target', {
+      workspaceRoot: process.cwd(),
+      projection,
+      includeAllCandidates: true,
+      laneWeightsOverride: { derived_generated: 0.25 },
+    });
+    const baselineTop = baseline.recommendations[0];
+    const overriddenTop = overridden.recommendations[0];
+
+    expect(baselineTop.laneContributions.map((lane) => lane.lane)).toContain('derived_generated');
+    for (const lane of baselineTop.laneContributions) {
+      const after = overriddenTop.laneContributions.find((entry) => entry.lane === lane.lane);
+      expect(after?.rawScore).toBe(lane.rawScore);
+      expect(after?.weight).toBe(lane.lane === 'derived_generated' ? 0.25 : lane.weight);
+    }
   });
 
   it('AC-8 explicit deprecated prompt surfaces deprecated skill with redirect metadata', () => {

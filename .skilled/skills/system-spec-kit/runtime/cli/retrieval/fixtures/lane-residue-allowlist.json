@@ -108,6 +108,14 @@
     {
       "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
       "reason": "Old-to-new spec folder path pairs whose folder names contain embedder. Spec paths, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "reason": "Forwards the OLLAMA_ environment prefix to the external CLI children it runs, because Codex can use Ollama as its local model provider. A child process setting, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/routing-parity-deep-skills.vitest.ts",
+      "reason": "Two routing prompts name an embedder investigation as the research topic. Prompt text about a topic, not the advisor lane; rewording it would move the routing scores the test asserts."
     }
   ]
 }

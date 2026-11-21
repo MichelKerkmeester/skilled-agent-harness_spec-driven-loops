@@ -78,8 +78,6 @@ const COMPILED_ROUTE_TIMEOUT_MS = 5000;
 // scores in process, so a projection left behind would change the caller.
 const PROJECTED_ENV_NAMES = [
   'SYSTEM_SKILL_ADVISOR_DB_DIR',
-  'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',
-  'VITEST',
   'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
   'PYTHONDONTWRITEBYTECODE',
   'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON',
@@ -339,12 +337,6 @@ export async function scoreCommandCorpus() {
     // return null, so the projection is built from committed metadata alone,
     // which is the only state a clean checkout can reproduce.
     process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = dbDir;
-    process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
-    // Match the test-harness regime: the semantic-shadow lane substitutes
-    // deterministic fixture vectors under the harness flag (real embeddings are
-    // not reproducible in CI), so every scorer gate runs this way. The baseline
-    // must be captured under the same regime the ratchet re-scores it in.
-    process.env.VITEST = 'true';
     process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
     process.env.PYTHONDONTWRITEBYTECODE = '1';
     delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;

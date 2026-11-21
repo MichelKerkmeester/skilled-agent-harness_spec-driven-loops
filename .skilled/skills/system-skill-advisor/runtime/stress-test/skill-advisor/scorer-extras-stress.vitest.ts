@@ -62,7 +62,7 @@ describe('sa-022 / sa-023 — scorer extras', () => {
 
     expect(recommendation?.skill).toBe('lane-attribution-target');
     expect(recommendation?.laneContributions.map((entry) => entry.lane)).toEqual([...SCORER_LANES]);
-    expect(recommendation?.laneContributions).toHaveLength(5);
+    expect(recommendation?.laneContributions).toHaveLength(4);
     for (const contribution of recommendation?.laneContributions ?? []) {
       expect(contribution.rawScore).toBeGreaterThanOrEqual(0);
       expect(contribution.weight).toBe(DEFAULT_SCORER_WEIGHTS[contribution.lane]);
@@ -70,7 +70,6 @@ describe('sa-022 / sa-023 — scorer extras', () => {
       expect(typeof contribution.shadowOnly).toBe('boolean');
       expect(JSON.stringify(contribution)).not.toContain('private@example.com');
     }
-    expect(recommendation?.dominantLane).not.toBe('semantic_shadow');
   });
 
   it('runs lane-by-lane ablation without mutating live scorer weights', () => {

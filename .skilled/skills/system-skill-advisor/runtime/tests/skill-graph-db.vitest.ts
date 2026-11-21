@@ -2,7 +2,7 @@
 // MODULE: Skill Graph SQLite Indexer Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -208,15 +208,16 @@ describe('skill graph database indexing', () => {
     }
   });
 
-  it('self-heals a legacy database whose skill_nodes CHECK omits sk-hub', () => {
-    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
+  it('discards a database stored at an older schema version', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-discard-'));
     const dbDir = join(root, 'db');
     const skillRoot = join(root, 'skills');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
     try {
-      // Plant a legacy DB: skill_nodes with the old family CHECK, an edge child that
-      // FK-references it, and an existing row — exactly the shape the migration must heal
-      // without cascade-deleting the edge or losing the row.
+      // Plant the shape older builds left behind: both drift-prone CHECKs, a
+      // retired embedding column and vector table, a marker row, and an empty
+      // rollback journal beside the file, which the read-only probe reads past.
       mkdirSync(dbDir, { recursive: true });
       const legacy = new Database(join(dbDir, 'skill-graph.sqlite'));
       legacy.exec(`
@@ -228,37 +229,49 @@ describe('skill graph database indexing', () => {
           domains TEXT, intent_signals TEXT, derived TEXT,
           source_path TEXT NOT NULL UNIQUE,
           content_hash TEXT NOT NULL,
-          embedding BLOB, embedding_model_id TEXT, embedding_content_hash TEXT,
+          embedding BLOB,
           indexed_at TEXT DEFAULT (datetime('now'))
         );
         CREATE TABLE skill_edges (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           source_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
           target_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
-          edge_type TEXT NOT NULL, weight REAL NOT NULL, context TEXT NOT NULL,
-          UNIQUE(source_id, target_id, edge_type)
+          edge_type TEXT NOT NULL CHECK(edge_type IN ('depends_on','enhances','siblings','conflicts_with')),
+          weight REAL NOT NULL CHECK(weight >= 0.0 AND weight <= 1.0),
+          context TEXT NOT NULL,
+          UNIQUE(source_id, target_id, edge_type),
+          CHECK(source_id != target_id)
         );
+        CREATE TABLE vec_1024 (skill_id TEXT PRIMARY KEY, embedding BLOB NOT NULL);
         CREATE TABLE schema_version (version INTEGER NOT NULL);
         INSERT INTO skill_nodes (id, family, category, schema_version, source_path, content_hash)
-          VALUES ('legacy-a', 'system', 'test', 1, '/x/legacy-a/graph-metadata.json', 'h-a'),
-                 ('legacy-b', 'system', 'test', 1, '/x/legacy-b/graph-metadata.json', 'h-b');
-        INSERT INTO skill_edges (source_id, target_id, edge_type, weight, context)
-          VALUES ('legacy-a', 'legacy-b', 'enhances', 0.5, 'edge survives the rebuild');
+          VALUES ('legacy-marker', 'system', 'test', 1, '/x/legacy-marker/graph-metadata.json', 'h-marker');
         INSERT INTO schema_version (version) VALUES (1);
       `);
       legacy.close();
+      writeFileSync(join(dbDir, 'skill-graph.sqlite-journal'), '', 'utf8');
 
-      // Opening via initDb runs the migration: CHECK dropped, rows + edge preserved.
       initDb(dbDir);
-      const tableSql = getDb().prepare("SELECT sql FROM sqlite_master WHERE type='table' AND name='skill_nodes'").get() as { sql: string };
-      expect(tableSql.sql).not.toMatch(/CHECK\s*\(\s*family\s+IN/i);
-      expect(getDb().prepare('SELECT COUNT(*) AS c FROM skill_nodes').get()).toEqual({ c: 2 });
-      expect(getDb().prepare('SELECT COUNT(*) AS c FROM skill_edges').get()).toEqual({ c: 1 });
+      const database = getDb();
 
-      // And a sk-hub skill now indexes without tripping a CHECK on the healed table.
-      const skillDir = join(skillRoot, 'sk-hubbed');
-      mkdirSync(skillDir, { recursive: true });
-      writeFileSync(join(skillDir, 'graph-metadata.json'), JSON.stringify({
+      expect(warn).toHaveBeenCalledWith(expect.stringContaining('Discarded a schema version'));
+      expect(database.prepare('SELECT version FROM schema_version').all()).toEqual([{ version: 2 }]);
+      const objectNames = (database.prepare('SELECT name FROM sqlite_master').all() as Array<{ name: string }>)
+        .map((row) => row.name);
+      expect(objectNames.filter((name) => /^vec_|embedding/i.test(name))).toEqual([]);
+      const columnNames = (database.prepare('PRAGMA table_info(skill_nodes)').all() as Array<{ name: string }>)
+        .map((column) => column.name);
+      expect(columnNames.filter((name) => /^embedding/i.test(name))).toEqual([]);
+      expect(database.prepare("SELECT COUNT(*) AS count FROM skill_nodes WHERE id = 'legacy-marker'").get()).toEqual({ count: 0 });
+      // Nothing is copied aside: only the database and its WAL sidecars remain.
+      expect(readdirSync(dbDir).filter((name) => !/^skill-graph\.sqlite(-wal|-shm)?$/.test(name))).toEqual([]);
+
+      // The rebuilt tables carry neither stale CHECK, so a hub family and an edge
+      // type the old constraints omitted both index.
+      writeGraphMetadata(skillRoot, 'hub-target');
+      const hubDir = join(skillRoot, 'sk-hubbed');
+      mkdirSync(hubDir, { recursive: true });
+      writeFileSync(join(hubDir, 'graph-metadata.json'), JSON.stringify({
         schema_version: 1,
         skill_id: 'sk-hubbed',
         family: 'sk-hub',
@@ -266,68 +279,191 @@ describe('skill graph database indexing', () => {
         domains: ['x'],
         intent_signals: ['x'],
         derived: {},
-        edges: {},
+        edges: {
+          prerequisite_for: [{ target: 'hub-target', weight: 0.8, context: 'edge type the old CHECK omitted' }],
+        },
       }), 'utf8');
       const result = indexSkillMetadata(skillRoot);
       expect(result.warnings.join(' ')).not.toMatch(/CHECK/);
-      expect(getDb().prepare('SELECT family FROM skill_nodes WHERE id = ?').get('sk-hubbed')).toEqual({ family: 'sk-hub' });
+      expect(database.prepare('SELECT family FROM skill_nodes WHERE id = ?').get('sk-hubbed')).toEqual({ family: 'sk-hub' });
+      expect(database.prepare("SELECT COUNT(*) AS count FROM skill_edges WHERE edge_type = 'prerequisite_for'").get()).toEqual({ count: 1 });
     } finally {
       closeDb();
       rmSync(root, { recursive: true, force: true });
     }
   });
 
-  it('self-heals a legacy database whose skill_edges CHECK omits a new edge type', () => {
-    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-'));
+  it('keeps a database stored at the current schema version', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-keep-'));
     const dbDir = join(root, 'db');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
     try {
-      // Plant a legacy DB: skill_edges carrying the old edge_type CHECK, two nodes, one edge.
+      initDb(dbDir);
+      getDb().prepare("INSERT INTO skill_graph_metadata (key, value) VALUES ('keep-marker', 'kept')").run();
+      closeDb();
+
+      // The second open reads the stored version through the read-only probe,
+      // so a probe that misread a current file would discard the marker here.
+      initDb(dbDir);
+      expect(getDb().prepare("SELECT value FROM skill_graph_metadata WHERE key = 'keep-marker'").get()).toEqual({ value: 'kept' });
+      expect(getDb().prepare('SELECT version FROM schema_version').all()).toEqual([{ version: 2 }]);
+      expect(warn).not.toHaveBeenCalledWith(expect.stringContaining('Discarded'));
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('keeps a current database whose write lock outlasts every wait', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-locked-'));
+    const dbDir = join(root, 'db');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    let holder: Database.Database | null = null;
+
+    try {
+      initDb(dbDir);
+      getDb().prepare("INSERT INTO skill_graph_metadata (key, value) VALUES ('lock-marker', 'kept')").run();
+      closeDb();
+
+      // A rollback-journal writer holds the file exclusively through the
+      // integrity check, the discard probe and the open, which each wait five
+      // seconds and give up. initDb is synchronous, so the lock cannot lapse
+      // part way through.
+      holder = new Database(join(dbDir, 'skill-graph.sqlite'));
+      holder.pragma('journal_mode = DELETE');
+      holder.exec('BEGIN EXCLUSIVE');
+      holder.prepare("INSERT INTO skill_graph_metadata (key, value) VALUES ('held', '1')").run();
+
+      expect(() => initDb(dbDir)).toThrow(/locked|busy/i);
+      expect(warn).not.toHaveBeenCalledWith(expect.stringContaining('Discarded'));
+
+      holder.exec('COMMIT');
+      holder.close();
+      holder = null;
+
+      initDb(dbDir);
+      expect(getDb().prepare(
+        "SELECT key, value FROM skill_graph_metadata WHERE key IN ('held', 'lock-marker') ORDER BY key",
+      ).all()).toEqual([
+        { key: 'held', value: '1' },
+        { key: 'lock-marker', value: 'kept' },
+      ]);
+      expect(getDb().prepare('SELECT version FROM schema_version').all()).toEqual([{ version: 2 }]);
+      expect(warn).not.toHaveBeenCalledWith(expect.stringContaining('Discarded'));
+    } finally {
+      holder?.close();
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 40_000);
+
+  it('creates schema_version before skill_nodes', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-order-'));
+
+    try {
+      initDb(join(root, 'db'));
+      const tables = (getDb().prepare(
+        "SELECT name FROM sqlite_master WHERE type = 'table' AND name IN ('schema_version', 'skill_nodes') ORDER BY rowid",
+      ).all() as Array<{ name: string }>).map((row) => row.name);
+      expect(tables).toEqual(['schema_version', 'skill_nodes']);
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('keeps a file whose schema_version table has no row yet', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-no-version-row-'));
+    const dbDir = join(root, 'db');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    try {
+      // Another opener that has created its tables but not yet written its
+      // version row leaves exactly this: skill_nodes beside an empty version table.
+      initDb(dbDir);
+      getDb().exec("DELETE FROM schema_version; INSERT INTO skill_graph_metadata (key, value) VALUES ('opener-marker', 'kept');");
+      closeDb();
+
+      initDb(dbDir);
+      expect(getDb().prepare("SELECT value FROM skill_graph_metadata WHERE key = 'opener-marker'").get()).toEqual({ value: 'kept' });
+      expect(getDb().prepare('SELECT version FROM schema_version').all()).toEqual([{ version: 2 }]);
+      expect(warn).not.toHaveBeenCalledWith(expect.stringContaining('Discarded'));
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('keeps an empty file and a file that holds no skill tables', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-unversioned-'));
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    try {
+      // A zero-byte file is what another opener leaves before its first table.
+      const emptyDir = join(root, 'empty');
+      mkdirSync(emptyDir, { recursive: true });
+      writeFileSync(join(emptyDir, 'skill-graph.sqlite'), '');
+      initDb(emptyDir);
+      expect(getDb().prepare('SELECT version FROM schema_version').all()).toEqual([{ version: 2 }]);
+      closeDb();
+
+      const otherDir = join(root, 'other');
+      mkdirSync(otherDir, { recursive: true });
+      const other = new Database(join(otherDir, 'skill-graph.sqlite'));
+      other.exec("CREATE TABLE opener_marker (value TEXT); INSERT INTO opener_marker (value) VALUES ('kept');");
+      other.close();
+      initDb(otherDir);
+      expect(getDb().prepare('SELECT value FROM opener_marker').all()).toEqual([{ value: 'kept' }]);
+      expect(warn).not.toHaveBeenCalledWith(expect.stringContaining('Discarded'));
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('discards an outdated file once the open has replayed a journal the probe could not', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-hot-journal-'));
+    const dbDir = join(root, 'db');
+    const dbFile = join(dbDir, 'skill-graph.sqlite');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    try {
+      initDb(dbDir);
+      closeDb();
+      const legacy = new Database(dbFile);
+      legacy.pragma('journal_mode = DELETE');
+      legacy.exec("UPDATE schema_version SET version = 1; INSERT INTO skill_graph_metadata (key, value) VALUES ('old-marker', 'stale');");
+      legacy.close();
+      // A non-empty journal beside a rollback-journal file is hot: a read-only
+      // connection refuses it, and only the read-write open replays it.
+      writeFileSync(`${dbFile}-journal`, 'stale rollback journal', 'utf8');
+
+      initDb(dbDir);
+      expect(warn).toHaveBeenCalledWith(expect.stringContaining('Discarded a schema version 1'));
+      expect(getDb().prepare("SELECT COUNT(*) AS count FROM skill_graph_metadata WHERE key = 'old-marker'").get()).toEqual({ count: 0 });
+      expect(getDb().prepare('SELECT version FROM schema_version').all()).toEqual([{ version: 2 }]);
+    } finally {
+      closeDb();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('discards a file with skill tables but no schema version table', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skill-graph-db-preversion-'));
+    const dbDir = join(root, 'db');
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    try {
       mkdirSync(dbDir, { recursive: true });
       const legacy = new Database(join(dbDir, 'skill-graph.sqlite'));
-      legacy.exec(`
-        CREATE TABLE skill_nodes (
-          id TEXT PRIMARY KEY, family TEXT NOT NULL, category TEXT NOT NULL,
-          schema_version INTEGER NOT NULL, domains TEXT, intent_signals TEXT, derived TEXT,
-          source_path TEXT NOT NULL UNIQUE, content_hash TEXT NOT NULL,
-          embedding BLOB, embedding_model_id TEXT, embedding_content_hash TEXT,
-          indexed_at TEXT DEFAULT (datetime('now'))
-        );
-        CREATE TABLE skill_edges (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          source_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
-          target_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
-          edge_type TEXT NOT NULL CHECK(edge_type IN ('depends_on','enhances','siblings','conflicts_with','prerequisite_for')),
-          weight REAL NOT NULL CHECK(weight >= 0.0 AND weight <= 1.0),
-          context TEXT NOT NULL,
-          UNIQUE(source_id, target_id, edge_type),
-          CHECK(source_id != target_id)
-        );
-        CREATE TABLE schema_version (version INTEGER NOT NULL);
-        INSERT INTO skill_nodes (id, family, category, schema_version, source_path, content_hash)
-          VALUES ('a','system','test',1,'/x/a/graph-metadata.json','h-a'),
-                 ('b','system','test',1,'/x/b/graph-metadata.json','h-b');
-        INSERT INTO skill_edges (source_id, target_id, edge_type, weight, context)
-          VALUES ('a','b','enhances',0.5,'existing edge survives');
-        INSERT INTO schema_version (version) VALUES (1);
-      `);
-      // The old CHECK rejects a novel edge type today.
-      expect(() => legacy.prepare("INSERT INTO skill_edges (source_id,target_id,edge_type,weight,context) VALUES ('a','b','mentors',0.5,'x')").run()).toThrow();
+      legacy.exec("CREATE TABLE skill_nodes (id TEXT PRIMARY KEY, family TEXT NOT NULL); INSERT INTO skill_nodes (id, family) VALUES ('pre-version-marker', 'system');");
       legacy.close();
 
-      // Opening via initDb runs the migration: the edge_type CHECK is dropped, the edge preserved.
       initDb(dbDir);
-      const tableSql = getDb().prepare("SELECT sql FROM sqlite_master WHERE type='table' AND name='skill_edges'").get() as { sql: string };
-      expect(tableSql.sql).not.toMatch(/CHECK\s*\(\s*edge_type\s+IN/i);
-      expect(getDb().prepare('SELECT COUNT(*) AS c FROM skill_edges').get()).toEqual({ c: 1 });
-
-      // A newly-added edge type now inserts (EDGE_TYPES is the single gate; the SQL no longer rejects it).
-      getDb().prepare("INSERT INTO skill_edges (source_id,target_id,edge_type,weight,context) VALUES ('a','b','mentors',0.5,'new edge type')").run();
-      expect(getDb().prepare("SELECT COUNT(*) AS c FROM skill_edges WHERE edge_type='mentors'").get()).toEqual({ c: 1 });
-
-      // The structural CHECKs (weight range, no self-loop) survive the rebuild.
-      expect(() => getDb().prepare("INSERT INTO skill_edges (source_id,target_id,edge_type,weight,context) VALUES ('a','a','enhances',0.5,'self loop')").run()).toThrow();
-      expect(() => getDb().prepare("INSERT INTO skill_edges (source_id,target_id,edge_type,weight,context) VALUES ('a','b','depends_on',9.0,'bad weight')").run()).toThrow();
+      expect(warn).toHaveBeenCalledWith(expect.stringContaining('Discarded a schema version 0'));
+      expect(getDb().prepare("SELECT COUNT(*) AS count FROM skill_nodes WHERE id = 'pre-version-marker'").get()).toEqual({ count: 0 });
+      expect(getDb().prepare('SELECT version FROM schema_version').all()).toEqual([{ version: 2 }]);
     } finally {
       closeDb();
       rmSync(root, { recursive: true, force: true });

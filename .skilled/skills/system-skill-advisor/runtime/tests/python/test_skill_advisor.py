@@ -912,7 +912,7 @@ description: Fixture helper for routing tests
                     "liveScore": 1.2,
                     "shadowScore": 1.4,
                     "delta": 0.2,
-                    "dominantShadowLane": "semantic_shadow",
+                    "dominantShadowLane": "lexical",
                 }],
             },
         }
@@ -924,7 +924,7 @@ description: Fixture helper for routing tests
             and first.get("dominant_lane") == "explicit_author"
             and first.get("redirect_from") == ["old-git"]
             and first.get("redirect_to") == "new-git"
-            and first.get("_shadow", {}).get("dominantShadowLane") == "semantic_shadow"
+            and first.get("_shadow", {}).get("dominantShadowLane") == "lexical"
         ):
             ok("T243-SA-020: native bridge preserves legacy parity fields")
         else:
@@ -1541,32 +1541,27 @@ def test_bench_harness():
     except Exception as exc:
         fail_test("T246-BN-004: load_advisor_module returns usable module", str(exc))
 
-    # In-process benchmark disables built-in semantic mode like subprocess paths.
+    # In-process benchmark scores each prompt once through the loaded advisor.
     try:
         original_loader = bench.load_advisor_module
-        original_env = os.environ.get(bench.BENCH_ENV_FLAG)
+        calls = []
 
         class FakeAdvisor:
             def analyze_prompt(self, **kwargs):
-                if os.environ.get(bench.BENCH_ENV_FLAG) != "1":
-                    raise AssertionError("benchmark_inprocess did not set semantic-disable env")
+                calls.append(kwargs.get("prompt"))
                 return []
 
         try:
             bench.load_advisor_module = lambda: FakeAdvisor()
             summary = bench.benchmark_inprocess(["prompt"], 1, 0.8, 0.35)
-            if summary.get("runtime_mode") == "python_inprocess" and summary.get("total_prompts") == 1:
-                ok("T246-BN-005: in-process benchmark uses comparable semantic-disabled runtime")
+            if summary.get("runtime_mode") == "python_inprocess" and summary.get("total_prompts") == 1 and calls == ["prompt"]:
+                ok("T246-BN-005: in-process benchmark scores each prompt through the loaded advisor")
             else:
-                fail_test("T246-BN-005: in-process benchmark uses comparable semantic-disabled runtime", f"summary={summary}")
+                fail_test("T246-BN-005: in-process benchmark scores each prompt through the loaded advisor", f"summary={summary} calls={calls}")
         finally:
             bench.load_advisor_module = original_loader
-            if original_env is None:
-                os.environ.pop(bench.BENCH_ENV_FLAG, None)
-            else:
-                os.environ[bench.BENCH_ENV_FLAG] = original_env
     except Exception as exc:
-        fail_test("T246-BN-005: in-process benchmark uses comparable semantic-disabled runtime", str(exc))
+        fail_test("T246-BN-005: in-process benchmark scores each prompt through the loaded advisor", str(exc))
 
 
 # ───────────────────────────────────────────────────────────────

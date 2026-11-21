@@ -83,10 +83,7 @@ print(json.dumps(out))
   const output = execFileSync('python3', ['-c', script, workspaceRoot], {
     input: JSON.stringify(rows.map((row) => row.prompt)),
     cwd: workspaceRoot,
-    env: {
-      ...process.env,
-      SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
-    },
+    env: process.env,
     encoding: 'utf8',
     stdio: ['pipe', 'pipe', 'ignore'],
     timeout: 120_000,
@@ -100,8 +97,6 @@ function goldSkill(row: CorpusRow): string | null {
 
 describe('advisor 196-prompt corpus regression-protection parity', () => {
   it('preserves Python-correct top-1 decisions while allowing native improvements', async () => {
-    const previousSemantic = process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC;
-    process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
     // Private `local-*` skills linked in from outside the checkout are not part of
     // the corpus regime the pinned counts were measured in.
     const previousPrivateRoots = process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
@@ -147,8 +142,8 @@ describe('advisor 196-prompt corpus regression-protection parity', () => {
         }
       }
 
-      // On the current 196-row corpus the Python reference scorer (built-in
-      // semantic disabled for determinism) makes 117 gold-correct top-1 calls;
+      // On the current 196-row corpus the Python reference scorer makes 117
+      // gold-correct top-1 calls;
       // the native/hook scorer preserves 112 of them (re-baselined 2026-09-07
       // after the deep-loop and design consolidations moved both numbers up). The remaining
       // Python-correct rows the native scorer diverges on are enumerated and
@@ -186,11 +181,6 @@ describe('advisor 196-prompt corpus regression-protection parity', () => {
         JSON.stringify(regressions.slice(0, 10), null, 2),
       ).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     } finally {
-      if (previousSemantic === undefined) {
-        delete process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC;
-      } else {
-        process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = previousSemantic;
-      }
       if (previousPrivateRoots === undefined) {
         delete process.env.SPECKIT_PRIVATE_SKILL_ROOTS;
       } else {

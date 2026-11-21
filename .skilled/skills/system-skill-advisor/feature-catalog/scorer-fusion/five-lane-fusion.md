@@ -6,7 +6,7 @@ trigger_phrases:
   - "lane weights canonical"
   - "fusion scorer"
   - "advisor analytical fusion"
-version: 0.8.3.0
+version: 0.8.4.0
 ---
 
 # Five-Lane Analytical Fusion
@@ -56,7 +56,6 @@ On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPen
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts` | Library | Source reference |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/graph-causal.ts` | Library | Source reference |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts` | Library | Source reference |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | Source reference |
 
 ### Validation And Tests
 

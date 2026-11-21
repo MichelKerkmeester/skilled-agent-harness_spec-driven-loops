@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 848,
+  "derived_count": 845,
   "directories": [
     ".",
     ".claude",
@@ -674,8 +674,6 @@
     ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges",
     ".skilled/skills/system-skill-advisor/runtime/lib/daemon",
     ".skilled/skills/system-skill-advisor/runtime/lib/derived",
-    ".skilled/skills/system-skill-advisor/runtime/lib/embedders",
-    ".skilled/skills/system-skill-advisor/runtime/lib/embedders/adapters",
     ".skilled/skills/system-skill-advisor/runtime/lib/freshness",
     ".skilled/skills/system-skill-advisor/runtime/lib/ipc",
     ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle",
@@ -693,7 +691,6 @@
     ".skilled/skills/system-skill-advisor/runtime/tests",
     ".skilled/skills/system-skill-advisor/runtime/tests/cache",
     ".skilled/skills/system-skill-advisor/runtime/tests/compat",
-    ".skilled/skills/system-skill-advisor/runtime/tests/embedders",
     ".skilled/skills/system-skill-advisor/runtime/tests/handlers",
     ".skilled/skills/system-skill-advisor/runtime/tests/helpers",
     ".skilled/skills/system-skill-advisor/runtime/tests/hooks",

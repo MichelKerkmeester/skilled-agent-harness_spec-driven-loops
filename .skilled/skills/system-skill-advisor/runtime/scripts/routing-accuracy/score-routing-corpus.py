@@ -241,9 +241,6 @@ def main() -> int:
     parser.add_argument("--require-historical-clean", action="store_true")
     args = parser.parse_args()
 
-    if not args.enable_semantic:
-        os.environ[advisor_env_name()] = "true"
-
     rows = load_jsonl(args.dataset)
     advisor = load_advisor_module()
     gate3_predictions = run_gate3_predictions(args.dataset)
@@ -267,11 +264,6 @@ def main() -> int:
 
     print(json.dumps(report, indent=2))
     return 0 if not failures else 1
-
-
-def advisor_env_name() -> str:
-    """Keep the semantic-disable env var in one place."""
-    return "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC"
 
 
 if __name__ == "__main__":

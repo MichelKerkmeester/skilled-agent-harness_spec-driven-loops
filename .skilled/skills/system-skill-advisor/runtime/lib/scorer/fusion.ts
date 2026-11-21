@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Advisor 5-Lane Fusion
+// MODULE: Advisor Lane Fusion
 // ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
@@ -29,7 +29,6 @@ import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
 import { scoreLexicalLane } from './lanes/lexical.js';
-import { scoreSemanticShadowLane } from './lanes/semantic-shadow.js';
 import { applyExecutorDelegationOverride } from './executor-delegation.js';
 import {
   DOCTOR_HELPER_BRIDGE_ID,
@@ -180,15 +179,15 @@ export function classifyAdvisorQuery(prompt: string): AdvisorQueryClass {
 export function queryClassLaneMultipliers(queryClass: AdvisorQueryClass): Readonly<Partial<Record<ScorerLane, number>>> {
   switch (queryClass) {
     case 'implementation':
-      return { explicit_author: 1.04, lexical: 1.00, graph_causal: 0.98, derived_generated: 0.98, semantic_shadow: 1.00 };
+      return { explicit_author: 1.04, lexical: 1.00, graph_causal: 0.98, derived_generated: 0.98 };
     case 'review':
-      return { explicit_author: 1.03, lexical: 1.02, graph_causal: 0.96, derived_generated: 0.98, semantic_shadow: 1.00 };
+      return { explicit_author: 1.03, lexical: 1.02, graph_causal: 0.96, derived_generated: 0.98 };
     case 'documentation':
-      return { explicit_author: 1.03, lexical: 0.98, graph_causal: 0.95, derived_generated: 1.04, semantic_shadow: 1.00 };
+      return { explicit_author: 1.03, lexical: 0.98, graph_causal: 0.95, derived_generated: 1.04 };
     case 'memory':
-      return { explicit_author: 1.04, lexical: 0.98, graph_causal: 1.02, derived_generated: 1.00, semantic_shadow: 0.96 };
+      return { explicit_author: 1.04, lexical: 0.98, graph_causal: 1.02, derived_generated: 1.00 };
     case 'tooling':
-      return { explicit_author: 1.04, lexical: 1.00, graph_causal: 0.98, derived_generated: 0.96, semantic_shadow: 1.00 };
+      return { explicit_author: 1.04, lexical: 1.00, graph_causal: 0.98, derived_generated: 0.96 };
     case 'unknown':
       return {};
   }
@@ -280,24 +279,6 @@ function buildLaneRuntimeHealth(
       ...(signal?.reason && signal.status === 'healthy' ? { reason: signal.reason } : {}),
     };
   });
-}
-
-function projectionRuntimeLaneHealth(
-  projection: AdvisorProjection,
-  runtimeLaneHealth: AdvisorScoringOptions['runtimeLaneHealth'] | undefined,
-  semanticWeight: number,
-): AdvisorScoringOptions['runtimeLaneHealth'] | undefined {
-  // A zero-weight lane is off, not degraded, so a stale index leaves it alone.
-  if (!projection.embeddingStaleness?.stale || semanticWeight <= 0) {
-    return runtimeLaneHealth;
-  }
-  return {
-    ...runtimeLaneHealth,
-    semantic_shadow: runtimeLaneHealth?.semantic_shadow ?? {
-      status: 'runtime_degraded',
-      reason: projection.embeddingStaleness.reason ?? 'projection_embedding_stale',
-    },
-  };
 }
 
 function degradedLaneReason(degradedLanes: readonly ScorerLane[]): string | null {
@@ -499,7 +480,6 @@ function buildLaneScores(
   }
   if (!disabled.has('lexical')) scores.lexical = scoreLexicalLane(prompt, projection);
   if (!disabled.has('derived_generated')) scores.derived_generated = scoreDerivedLane(prompt, projection, new Date(), affordances);
-  if (!disabled.has('semantic_shadow')) scores.semantic_shadow = scoreSemanticShadowLane(prompt, projection);
   let graphConflictMatches: readonly LaneMatch[] = [];
   let graphSupportBySeed: ReadonlyMap<string, ReadonlyMap<string, number>> = new Map();
   if (!disabled.has('graph_causal')) {
@@ -1139,11 +1119,7 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     affordances,
     useRrfFusion,
   );
-  const runtimeLaneHealth = projectionRuntimeLaneHealth(
-    projection,
-    options.runtimeLaneHealth,
-    weights.semantic_shadow,
-  );
+  const runtimeLaneHealth = options.runtimeLaneHealth;
   const laneHealth = buildLaneRuntimeHealth(laneScores, disabled, runtimeLaneHealth);
   const degradedLanes = laneHealth
     .filter((lane) => lane.status === 'runtime_degraded')

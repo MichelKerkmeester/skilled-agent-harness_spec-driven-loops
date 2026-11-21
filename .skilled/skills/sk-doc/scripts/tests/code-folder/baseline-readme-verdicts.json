@@ -1,5 +1,5 @@
 {
-  "count": 1246,
+  "count": 1245,
   "mode": "readme",
   "results": [
     {
@@ -1495,6 +1495,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/manual-testing-playbook/doctor-commands/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/repo-rules/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -7710,26 +7720,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/embedders/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/embedders/adapters/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".skilled/skills/system-skill-advisor/runtime/lib/freshness/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -7891,16 +7881,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-skill-advisor/runtime/tests/compat/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-skill-advisor/runtime/tests/embedders/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -9576,6 +9556,16 @@
       "blocking_errors": [],
       "document_type": "unknown",
       "file": ".skilled/skills/system-spec-kit/templates/scratch/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".vibe/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

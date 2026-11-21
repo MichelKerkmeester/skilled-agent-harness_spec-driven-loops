@@ -24,8 +24,6 @@
   "exclude": [
     "node_modules",
     "dist",
-    "lib/shared/embeddings",
-    "lib/shared/embeddings/**/*.ts",
     "tests",
     "stress-test",
     "**/*.bench.ts",

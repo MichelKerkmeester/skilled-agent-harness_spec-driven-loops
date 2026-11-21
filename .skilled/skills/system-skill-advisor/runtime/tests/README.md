@@ -66,7 +66,6 @@ tests/
 +-- python/                  # Python wrapper and script tests
 +-- schemas/                 # Schema validation tests
 +-- scorer/                  # Native scorer tests
-+-- embedders/               # Embedder schema and shared parity tests
 +-- skill-graph/             # Skill-graph round-trip tests
 +-- *.vitest.ts              # Package-level regression suites
 +-- *.test.ts                # Focused unit tests
@@ -186,7 +185,6 @@ tests/
 +-- cache/
 +-- compat/
 +-- doctor/
-+-- embedders/
 +-- fixtures/
 +-- handlers/
 +-- helpers/
@@ -217,7 +215,6 @@ tests/
 | `command-meaning-anchor.vitest.ts` | 28 cases on the meaning way in for a command row: a real cosine has to clear the bar and lead the other command rows by the margin, a meaning pass must also clear the uncertainty bar, stand-in evidence never passes, a skill row is left alone, a meaning-passed command moves ahead of a passing skill only by the margin, and eligibility rules out every command on a no-edit request and all but read-only commands on a read-only question. |
 | `command-policy-derivation.vitest.ts` | Pins the `derivePolicy` ladder and the closed risk-key vocabularies, and checks that the command tree and its declarations agree. |
 | `command-routing-slice.vitest.ts` | Holds live command routing to `scripts/routing-accuracy/command-routing-baseline.json` row by row, pins the corpus hash and requires a typed row and both plain splits for every command file. |
-| `embedders/` | Covers embedder schema, registry and shared-factory parity. |
 | `skill-graph/` | Covers focused skill-graph refresh round trips. |
 | `tsconfig.tests.json` | Type-checks the CLI and launcher test files listed in its `include`, extending the runtime `tsconfig.json`, with no emit. |
 
@@ -250,7 +247,6 @@ fixture or inline scenario
 | `*.test.ts` | Test files | Focused unit tests for affordance and attribution helpers. |
 | `fixtures/` | Test data | Shared prompt and routing inputs. |
 | `scorer/` | Test folder | Native scorer regression coverage. |
-| `embedders/` | Test folder | Embedder boundary and schema coverage. |
 | `skill-graph/` | Test folder | Focused skill-graph database coverage. |
 
 ---
@@ -271,6 +267,5 @@ Expected result: exit code `0`.
 
 - [`../README.md`](../README.md)
 - [`../lib/README.md`](../lib/README.md)
-- [`embedders/README.md`](embedders/README.md)
 - [`skill-graph/README.md`](skill-graph/README.md)
 - [`scorer/README.md`](scorer/README.md)

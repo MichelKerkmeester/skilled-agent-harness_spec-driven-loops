@@ -44,14 +44,8 @@ const OUTPUT_JSONL = resolve(HERE, 'ambiguity-prompts.jsonl');
 const DIST = resolve(HERE, '../../dist/runtime');
 
 process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-ambiguity-'));
-process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
 process.env.PYTHONDONTWRITEBYTECODE = '1';
-// Match the test-harness regime: the semantic-shadow lane substitutes
-// deterministic fixture vectors under the harness flag (real embeddings are not
-// reproducible in CI), so every scorer gate runs this way. The slice and gate
-// must be derived under the same regime that measures them.
-process.env.VITEST = 'true';
 delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;

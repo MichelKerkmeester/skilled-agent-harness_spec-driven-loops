@@ -109,7 +109,6 @@ describe('advisor conflict and query class seams', () => {
       adjusted.lexical,
       adjusted.graph_causal,
       adjusted.derived_generated,
-      adjusted.semantic_shadow,
     );
     expect(adjusted.explicit_author).toBeGreaterThanOrEqual(strongestOther);
 

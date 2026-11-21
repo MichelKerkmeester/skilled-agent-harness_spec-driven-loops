@@ -4,7 +4,7 @@
 
 // A command bridge passes only on its own authored wording: one of its phrases or
 // its runnable slash string, which the explicit-author lane reports. Every other
-// command row loses its pass, however well a token or a semantic score matched,
+// command row loses its pass, however well a token or a derived signal matched,
 // because a command must not be offered for a prompt that merely shares some of
 // its everyday words. Skill rows pass through untouched.
 //
@@ -12,9 +12,8 @@
 // refuse it or ask about it stops passing, and a prompt that asks for no change
 // stops every command that writes while a read-only command keeps its pass.
 //
-// One case scores a whole prompt with no embedder and no stored vectors, which is
-// the state of a machine that never ran one: every command it passes must still
-// rest on an authored phrase.
+// One case scores whole prompts through the real scorer: every command it passes
+// must still rest on an authored phrase.
 
 import { describe, expect, it } from 'vitest';
 
@@ -30,17 +29,16 @@ import type { AdvisorScoredRecommendation, LaneContribution } from '../lib/score
 
 const ROW_CONFIDENCE = 0.4;
 
-// A semantic contribution in either evidence form: a real embedder cosine reads
-// "cosine:" and the word-overlap stand-in reads "shadow:". The anchor counts neither.
-function semantic(score: number, evidenceKind: 'cosine' | 'shadow' = 'cosine'): LaneContribution {
-  const evidence = evidenceKind === 'cosine' ? `cosine:${score}` : 'shadow:test-fallback';
+// A derived-lane contribution: generated trigger and keyword evidence that
+// describes the prompt in other words. The anchor never counts it.
+function derived(score: number): LaneContribution {
   return {
-    lane: 'semantic_shadow',
+    lane: 'derived_generated',
     rawScore: score,
     weightedScore: 0,
     weight: 0,
-    evidence: [evidence],
-    shadowOnly: evidenceKind === 'shadow',
+    evidence: ['derived:test-trigger'],
+    shadowOnly: false,
   };
 }
 
@@ -90,12 +88,12 @@ function row(
 }
 
 describe('requireCommandPhraseAnchor', () => {
-  it('never passes a command on semantic evidence alone, whatever its score', () => {
-    // A real cosine and the stand-in both describe the prompt in other words, and
-    // neither is the command's own wording, so neither carries the row.
+  it('never passes a command on derived evidence alone, whatever its score', () => {
+    // Derived evidence describes the prompt in other words and is not the
+    // command's own wording, so it never carries the row.
     const ranked = [
-      row('command-doctor-env', 'command', [semantic(1.5, 'shadow')], { passes_threshold: true }),
-      row('create:agent', 'command', [semantic(0.99)], { passes_threshold: true }),
+      row('command-doctor-env', 'command', [derived(1.5)], { passes_threshold: true }),
+      row('create:agent', 'command', [derived(0.99)], { passes_threshold: true }),
     ];
 
     const result = requireCommandPhraseAnchor(ranked);
@@ -113,9 +111,9 @@ describe('requireCommandPhraseAnchor', () => {
   });
 
   it('keeps an authored command passing as the same row', () => {
-    // The authored phrase is the one way in, so a strong semantic score beside it
+    // The authored phrase is the one way in, so a strong derived score beside it
     // changes nothing and the row comes back untouched.
-    const authoredRow = row('create:agent', 'command', [authored(), semantic(0.99)], {
+    const authoredRow = row('create:agent', 'command', [authored(), derived(0.99)], {
       passes_threshold: true,
       confidence: 0.9,
     });
@@ -125,8 +123,8 @@ describe('requireCommandPhraseAnchor', () => {
     expect(result[0]).toBe(authoredRow);
   });
 
-  it('returns a skill row unchanged whatever its semantic score', () => {
-    const skillRow = row('sk-git', 'skill', [semantic(0.99)], { passes_threshold: true, confidence: 0.9 });
+  it('returns a skill row unchanged whatever its derived score', () => {
+    const skillRow = row('sk-git', 'skill', [derived(0.99)], { passes_threshold: true, confidence: 0.9 });
 
     const result = requireCommandPhraseAnchor([skillRow]);
 
@@ -232,7 +230,7 @@ describe('withholdWritingCommandsOnNoEdit', () => {
   });
 });
 
-describe('scoring with no embedder and no stored vectors', () => {
+describe('scoring whole prompts through the real scorer', () => {
   it('passes a command only on its own authored phrase', () => {
     const workspaceRoot = findAdvisorWorkspaceRoot(import.meta.dirname);
     const prompts = [

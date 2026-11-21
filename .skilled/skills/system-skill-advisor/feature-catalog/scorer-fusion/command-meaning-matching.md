@@ -6,7 +6,7 @@ trigger_phrases:
   - "command row embedding"
   - "vec_cmd table"
   - "command meaning anchor"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Command Meaning Matching
@@ -53,7 +53,6 @@ A meaning pass lifts a command past the read-only confidence floor, so `commandM
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs` | Script | Builds each row's `embeddingText` |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json` | Generated | Carries `embeddingText` per TypeScript-served row |
-| `.skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts` | Shared | Names and creates the `vec_cmd_<dim>` table |
 | `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts` | Shared | Embeds, skips and prunes command vectors during a scan |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Shared | Meaning pass, its two bars, eligibility and the ranking rule |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs` | Script | The `--real-embedding` measurement |

@@ -105,7 +105,6 @@ def run_case_subprocess(case: Dict[str, Any], threshold: float, uncertainty: flo
         command.append("--confidence-only")
     command.extend(["--", case["prompt"]])
     env = os.environ.copy()
-    env["SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC"] = "1"
     completed = subprocess.run(
         command,
         check=True,
