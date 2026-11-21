@@ -130,6 +130,7 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 14 | 014-overlay-folder-readmes/ | Runs in Skilled on `worktrees/499-overlay-readmes-and-alignment`. Gives the engine a README role for every overlay folder, an advisory docs leg in `status --audit`, and a refusal of a layout-link path listed twice. Barter's READMEs are written in ai-speckit's record 040 | Complete |
 | 15 | 015-alignment-command-overlay-targets/ | Runs in Skilled on the same branch. Gives `/local-doc-alignment` an `overlay-layout` topic and `/local-skilled-alignment` an `overlays` target, both found through `.skilled-overlays.json`. Both commands are gitignored private files, so the change landed by copy into the Skilled checkout | Complete |
 | 16 | 016-upstream-code-alignment/ | Runs in Skilled on the same branch. Fixes, at source, the sk-code Skilled-mode flaws that Barter's overlaid code files share with the Skilled files they copy | Complete |
+| 17 | 017-overlay-alignment-follow-ups/ | Runs in Skilled on `worktrees/500-overlay-alignment-follow-ups`. Fixes the two flaws the alignment work found in code Barter shares with Skilled: the router-sync guard reading a folder README as an orphan, and the engine shipping Python bytecode caches from a directory entry. Ends with a review of phases 014 to 017 that approves with no P0 or P1 | In Progress |
 
 ### Phase Transition Rules
 
@@ -142,6 +143,7 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 - Phase 7 ran in ai-speckit and is recorded here from its commit. Phase 8 pushes Skilled main from a Skilled session, and its re-pin belongs to a later ai-speckit session, which writes nothing in Skilled except phase 8's docs.
 - Phase 9 runs in Skilled on the worktree branch and merges into local main without a push. Phase 10 runs in ai-speckit and is recorded here. Phase 11's push is the operator's, and its re-pin belongs to a later ai-speckit session.
 - Phases 14, 15 and 16 run in Skilled on one worktree branch and merge into local main together without a push. Phase number 13 is unused. The Barter half of this work is ai-speckit's record 040, which writes nothing in Skilled.
+- Phase 17 runs in Skilled on its own worktree branch and merges into local main without a push. It reads Barter's copies and writes nothing under `barter/`.
 
 ### Phase Handoff Criteria
 
@@ -161,6 +163,7 @@ This table is an audit summary only. Each child's `plan.md` holds the per-phase 
 | 012-review-round-2-fixes | 014-overlay-folder-readmes | Phase 012's fixes are merged on local Skilled main, so the README work starts from its engine | `git merge-base --is-ancestor 7ededf2efb1 main` exits 0 in Skilled |
 | 014-overlay-folder-readmes | 015-alignment-command-overlay-targets | The README contract is written, so the `overlay-layout` topic knows which READMEs an overlay folder carries | `test -f 014-overlay-folder-readmes/scratch/overlay-readme-contract.md` exits 0 |
 | 015-alignment-command-overlay-targets | 016-upstream-code-alignment | Phases 014 and 015 pass their gates on the branch, so phase 016's suite runs start from a green tree | the engine suite and `route-validate.sh` exit 0 on the branch |
+| 016-upstream-code-alignment | 017-overlay-alignment-follow-ups | Phases 014 to 016 are merged on local Skilled main, so the follow-ups and the review start from their code | `git merge-base --is-ancestor 7153a45a8b9 main` exits 0 in Skilled |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -60,8 +60,7 @@ Frozen choices. Changing one is an amendment.
 ## 2. BINDING
 <!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->
 
-**Read the child goal before working a phase.** Each is authoritative for its
-phase and binds as if written here.
+**Read the child goal before working a phase.** It binds as if written here.
 
 | Phase | Goal document |
 |-------|---------------|
@@ -74,6 +73,7 @@ phase and binds as if written here.
 | 014-overlay-folder-readmes | its `goal.md` |
 | 015-alignment-command-overlay-targets | its `goal.md` |
 | 016-upstream-code-alignment | its `goal.md` |
+| 017-overlay-alignment-follow-ups | its `goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
