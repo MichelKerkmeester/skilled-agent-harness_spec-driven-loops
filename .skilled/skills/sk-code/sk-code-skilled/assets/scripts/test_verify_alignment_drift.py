@@ -591,5 +591,28 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             self.assertNotIn("specs/", result.stdout)
 
 
+    def test_skips_spec_deep_loop_run_archives(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            archived = [
+                root / "specs" / "demo" / "001-x" / "research_archive" / "20260101T000000Z" / "post.sh",
+                root / "specs" / "demo" / "001-x" / "review_archive" / "run-1" / "post.sh",
+                root / "specs" / "demo" / "001-x" / "review-archive" / "run-1" / "post.sh",
+            ]
+            shipped_archive = root / "src" / "research_archive" / "post.sh"
+            for file_path in (*archived, shipped_archive):
+                self.write_file(file_path, "echo hi\n")
+
+            discovered = list(self.module.iter_code_files([str(root)]))
+            for file_path in archived:
+                self.assertNotIn(str(file_path.resolve()), discovered)
+            self.assertIn(str(shipped_archive.resolve()), discovered)
+
+            result = self.run_cli(root)
+            self.assertEqual(1, result.returncode)
+            self.assertIn("src/research_archive/post.sh", result.stdout)
+            self.assertNotIn("specs/", result.stdout)
+
+
 if __name__ == "__main__":
     unittest.main()
