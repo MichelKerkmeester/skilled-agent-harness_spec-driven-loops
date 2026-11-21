@@ -75,6 +75,8 @@ Code Mode now leaves a manual marked `"disabled": true` out of startup registrat
 
 The operator asked for nothing to stay open, so four follow-ups the first round reported were closed too. The Mobbin, Refero and ClickUp docs no longer say the manual loads at startup or that reconnecting Code Mode brings its tools. They now say the ask step's `register_manual` call loads it and opens the sign-in tab. The backup-path test again checks this repository's own `.gitignore`, behind the same source-repo gate the other doctor tests use. A new CI workflow, `pi-entry-checks.yml`, type-checks the Pi entries and runs `hook-wiring-check.cjs`. The `/create:sk-skill` assets now carry the command's own name, which ends the codex command-router drift and drops the advisor scorer's exception for the old stem.
 
+On 2026-11-21 the consumer's ClickUp `SKILL.md` overlay was ported upstream byte for byte. The skill now says the manual ships disabled, and its MCP section, Code Mode invocation and troubleshooting each say to register it first. The consumer can drop that overlay entry on its next re-pin.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -82,6 +84,7 @@ The operator asked for nothing to stay open, so four follow-ups the first round 
 | `.skilled/skills/mcp-code-mode/mcp-server/index.ts` | Modified | Filter disabled manuals before the startup config is validated |
 | `.utcp_config.json` | Modified | Mark `clickup_official`, `mobbin` and `refero` disabled |
 | `.skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md`, `mcp-refero/SKILL.md` | Modified | Ask-then-register step, and one stale startup line in Mobbin |
+| `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md` | Modified | The consumer's register-on-demand overlay, ported byte for byte |
 | `.pi/settings.json`, `.pi/pi-blackhole-config.json` | Modified | Drop the `llmgateway` default and observer model, set `sessionFallback: true` |
 | Six files in `.skilled/commands/doctor/scripts/tests/` | Modified | Host-independent fixtures and source-repo-only skips |
 | `.skilled/commands/doctor/scripts/overlay-engine.cjs` | Modified | `insertBefore` on apply, rewrite, move and capture |
@@ -174,6 +177,7 @@ Every symptom was reproduced first on a scratch copy of the consumer's vendored 
 | Pi 1.5.2 live session, RPC mode, `--offline` | A tree with `.pi/` and no `.skilled/`: one `notify` naming 22 entries that are off and no `Failed to load extension`. The full worktree: no notice and no load error |
 | Stale-wording grep and `sk-skill-check` on the three modes | No stale claim outside changelogs. `Result: NO FINDINGS (1 UNKNOWN)` on each mode, the same as before the edit. `bash -n` exit 0 on both scripts |
 | Backup-path case | Passes with the `.gitignore` line, fails without it |
+| ClickUp overlay port | Upstream `SKILL.md` hashed the overlay's `pinnedSha256` before the copy. `cmp` against the overlay prints nothing after it. `sk-skill-check` `Result: FINDINGS (1)`, a C13 INFO, before and after. Stale-wording grep exit 1 |
 | CI recipe on a clean clone | Before provisioning: tsc exit 0, wiring check exit 1 naming `packet-purpose.js`. After `provision_worktree`: both exit 0. `ci-report` row with no flags. `check-gate-inputs.sh` `RESULT: PASSED` |
 | Router drift after the rename | `routers=42 clean=42 path-drift=0`. `typo-flags.vitest.ts` 34/34, roster tests 15/15, advisor transcript tests 359/359. Before removing the old stem the transcript test failed 2 |
 | `run-all.sh` in the worktree after the follow-ups | `7 suite(s) passed, 0 failed`, node:test tests 1332, pass 1332, fail 0, skipped 0, exit 0 |

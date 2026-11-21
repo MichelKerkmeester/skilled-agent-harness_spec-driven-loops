@@ -89,6 +89,8 @@ After the first merge, the operator said "leave nothing open". That brings the f
 - Add a CI step that type-checks the Pi entries through `tsconfig.pi.json` and runs `hook-wiring-check.cjs`.
 - Regenerate the codex command-router mirror that drifted from `create/sk-skill.md`.
 
+A second amendment on 2026-11-21 ports the consumer's ClickUp `SKILL.md` overlay. The overlay names the manual as disabled at startup and puts the register-first step in the MCP section, the Code Mode invocation and troubleshooting, so the consumer can drop it on its next re-pin.
+
 ### Out of Scope
 - `record-base --release` choosing an old nearest release - the consumer did not ask for it, and `--pin <sha>` already works.
 - Renumbering or reshaping the consumer's own review-core fragment - the fragment lives in the consumer's overlay folder.
@@ -100,6 +102,7 @@ After the first merge, the operator said "leave nothing open". That brings the f
 | `.skilled/skills/mcp-code-mode/mcp-server/index.ts` | Modify | Filter disabled manuals before validating the startup config |
 | `.utcp_config.json` | Modify | Mark `clickup_official`, `mobbin` and `refero` disabled |
 | `.skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md`, `mcp-refero/SKILL.md` | Modify | Ask-then-register step |
+| `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md` | Modify | The consumer's register-on-demand overlay, ported byte for byte |
 | `.pi/settings.json`, `.pi/pi-blackhole-config.json` | Modify | Provider-neutral defaults |
 | `.skilled/commands/doctor/scripts/tests/*.test.cjs` (seven files) | Modify | Host-independent fixtures, source-repo-only skips |
 | `.skilled/commands/doctor/scripts/overlay-engine.cjs`, `tests/overlay-engine-sync.test.cjs`, `system-skilled-doctor/references/overlays.md` | Modify | `insertBefore` placement, tests and docs |
@@ -139,6 +142,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-010 | In the source repository, a doctor test fails when `.gitignore` stops ignoring `.skilled/output/`, and a vendoring host skips that case. |
 | REQ-011 | A CI workflow type-checks the Pi entries through `tsconfig.pi.json` and runs `hook-wiring-check.cjs` on a change to `.pi/`, the config or a Pi adapter. |
 | REQ-012 | `generate-command-routers.cjs --check` reports no drift, so the spec-kit cli vitest project passes with 0 failures. |
+| REQ-013 | The ClickUp `SKILL.md` is byte-identical to the consumer's overlay of it, and `sk-skill-check` on the ClickUp mode reports the same result as before the port. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
