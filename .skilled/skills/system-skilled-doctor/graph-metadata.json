@@ -85,8 +85,7 @@
     "move my overlay folder out of the tree",
     "adopt an unowned vendored file into an overlay",
     "overlay folders missing a readme",
-    "overlay folder readme check",
-    "release-update base from a pinned framework commit"
+    "base from a pinned framework commit"
   ],
   "derived": {
     "trigger_phrases": [
@@ -182,7 +181,6 @@
     "move my overlay folder out of the tree",
     "adopt an unowned vendored file into an overlay",
     "overlay folders missing a readme",
-    "overlay folder readme check",
-    "release-update base from a pinned framework commit"
+    "base from a pinned framework commit"
   ]
 }
