@@ -181,11 +181,6 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN',
   'HF_EMBEDDINGS_MODEL',
   'HF_EMBED_SERVER_URL',
-  // The daemon's embedding adapter reads both settings.
-  'OLLAMA_BASE_URL',
-  'OLLAMA_REQUEST_TIMEOUT_MS',
-  // The daemon uses this setting to control its background vector refresh.
-  'SYSTEM_SKILL_ADVISOR_EMBED_REFRESH',
   'SPECKIT_LAUNCHER_BRIDGE_DISABLED',
   'SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN',
   'SPECKIT_MAX_SECONDARY_CLIENTS',

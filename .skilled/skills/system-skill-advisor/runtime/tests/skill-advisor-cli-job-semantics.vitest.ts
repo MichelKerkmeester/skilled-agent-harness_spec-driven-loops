@@ -49,12 +49,6 @@ interface ScanPayload {
       readonly indexedFiles?: number;
       readonly indexedEdges?: number;
       readonly rejectedEdges?: number;
-      readonly embeddings?: {
-        readonly embedded?: number;
-        readonly skipped?: number;
-        readonly failed?: number;
-        readonly warnings?: readonly string[];
-      };
     };
   };
 }
@@ -144,16 +138,11 @@ describe('skill-advisor CLI rebuild and scan job semantics', () => {
       indexedEdges: expect.any(Number),
       rejectedEdges: expect.any(Number),
     }));
-    expect(payload.data?.scan?.embeddings).toEqual(expect.objectContaining({
-      embedded: expect.any(Number),
-      skipped: expect.any(Number),
-      failed: expect.any(Number),
-      warnings: expect.any(Array),
-    }));
+    expect(payload.data?.scan).not.toHaveProperty('embeddings');
     console.log(`skill-advisor skill_graph_scan wall-time-ms=${run.durationMs}`);
   }, 240_000);
 
-  it('keeps status trust-state, shadow telemetry, and scan embedder reporting visible through the CLI', () => {
+  it('keeps status trust-state, shadow telemetry, and scan reporting visible through the CLI', () => {
     const scope = makeScope('resident-service');
     const statusRun = runSkillAdvisorShim([
       'advisor_status',
@@ -198,10 +187,9 @@ describe('skill-advisor CLI rebuild and scan job semantics', () => {
     ], scope.env, { timeoutMs: 180_000 });
     expect(scanRun.exitCode, scanRun.stderr).toBe(0);
     const scan = parseJsonOutput<ScanPayload>(scanRun);
-    expect(scan.data?.scan?.embeddings).toEqual(expect.objectContaining({
-      embedded: expect.any(Number),
-      skipped: expect.any(Number),
-      failed: expect.any(Number),
+    expect(scan.data?.scan).toEqual(expect.objectContaining({
+      scannedFiles: expect.any(Number),
+      indexedFiles: expect.any(Number),
     }));
   }, 300_000);
 });

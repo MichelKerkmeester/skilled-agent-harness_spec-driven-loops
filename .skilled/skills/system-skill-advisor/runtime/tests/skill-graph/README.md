@@ -1,10 +1,10 @@
 ---
 title: "Skill Advisor Skill-Graph Tests"
-description: "Focused Vitest coverage for advisor skill-graph refresh behavior, embeddings round-trips and database invariants."
+description: "Focused Vitest coverage for advisor skill-graph embedding coverage and database invariants."
 trigger_phrases:
   - "skill graph tests"
   - "advisor skill graph tests"
-  - "refresh skill embeddings test"
+  - "embedding coverage test"
 ---
 
 # Skill Advisor Skill-Graph Tests
@@ -31,7 +31,7 @@ trigger_phrases:
 
 | File | Responsibility |
 |---|---|
-| `refresh-roundtrip.vitest.ts` | Verifies active-embedder and legacy embedding refresh paths round-trip through SQLite. |
+| `embedding-coverage.vitest.ts` | Verifies how `embeddingCoverage` counts skill and command vectors with no active embedder. |
 
 ---
 

@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/003-lane-feeders",
+  "description": "Phase 3: lane-feeders",
+  "keywords": [
+    "phase",
+    "lane-feeders"
+  ],
+  "lastUpdated": "2026-11-21T00:49:06.384Z",
+  "specId": "003",
+  "folderSlug": "lane-feeders",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement",
+    "024-ollama-lane-removal"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_01-49__removed-the-lane-feeders-vector-refresh-at-daemon.md"
+  ]
+}

@@ -41,7 +41,6 @@ const PINNED_PROVIDER_MODEL_ID = 'ollama__nomic-embed-text-v1.5__768';
 const ABLATION_FLAG = 'SPECKIT_ADVISOR_SEMANTIC_ABLATION';
 
 const RRF_FUSION_FLAG = 'SPECKIT_ADVISOR_RRF_FUSION';
-const EXACT_SEMANTIC_RERANK_FLAG = 'SPECKIT_ADVISOR_EXACT_SEMANTIC_RERANK';
 
 const TRUE_FLAG_VALUES = new Set(['1', 'true', 'yes', 'on', 'enabled']);
 
@@ -294,15 +293,7 @@ describe('semantic-shadow paired ablation (opt-in, seeded)', () => {
       throw new Error(`[semantic-ablation] provider/pin unavailable under the opt-in flag: ${seedSkipReason}`);
     }
 
-    // The two arms may differ ONLY in the semantic lane. The exact-semantic
-    // rerank is a separate consumption site not gated by disabledLanes, so it
-    // must be OFF (its default) or the disabled arm would still be reranked.
     const rrfOn = flagEnabled(RRF_FUSION_FLAG);
-    const rerankOn = flagEnabled(EXACT_SEMANTIC_RERANK_FLAG);
-    expect(
-      rerankOn,
-      'exact-semantic rerank must be OFF so the two arms differ only in the semantic lane',
-    ).toBe(false);
 
     let fullCorrect = 0;
     let disabledCorrect = 0;

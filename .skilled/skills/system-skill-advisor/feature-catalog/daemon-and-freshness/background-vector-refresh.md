@@ -6,7 +6,7 @@ trigger_phrases:
   - "skill vector refresh"
   - "command vector refresh"
   - "embedding coverage"
-version: 0.8.7.0
+version: 0.8.8.0
 ---
 
 # Background Vector Refresh
@@ -41,7 +41,6 @@ Set `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH=off` to disable the refresh. The value i
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph/refresh-in-background.vitest.ts` | Automated test | Opt-out, coverage short-circuit, outage handling and shared refresh |
 | `.skilled/skills/system-skill-advisor/runtime/tests/skill-graph/embedding-coverage.vitest.ts` | Automated test | Coverage classification for eligible skill and command vectors |
 
 ---

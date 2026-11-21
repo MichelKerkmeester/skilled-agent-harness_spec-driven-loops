@@ -61,7 +61,6 @@ import {
   getDb,
   indexSkillMetadata,
   initDb,
-  refreshSkillEmbeddings,
 } from '../../lib/skill-graph/skill-graph-db.js';
 import * as skillGraphDb from '../../lib/skill-graph/skill-graph-db.js';
 import {
@@ -176,27 +175,6 @@ describe('semantic shadow cosine lane', () => {
       'embedding_model_id',
       'embedding_content_hash',
     ]));
-  });
-
-  it('embeds changed skill descriptions and skips matching hash/model rows', async () => {
-    const skillEmbedCalls = (text: string) => embedDocument.mock.calls.filter((call) => JSON.stringify(call).includes(text)).length;
-
-    writeSkill(skillRoot, 'alpha', 'stable local embedding workflow');
-    indexSkillMetadata(skillRoot);
-
-    const first = await refreshSkillEmbeddings(skillRoot);
-    const second = await refreshSkillEmbeddings(skillRoot);
-
-    expect(first).toEqual(expect.objectContaining({ embedded: 1, skipped: 0, failed: 0 }));
-    expect(second).toEqual(expect.objectContaining({ embedded: 0, skipped: 1, failed: 0 }));
-    expect(skillEmbedCalls('stable local embedding workflow')).toBe(1);
-
-    writeSkill(skillRoot, 'alpha', 'changed local embedding workflow');
-    indexSkillMetadata(skillRoot);
-    const third = await refreshSkillEmbeddings(skillRoot);
-
-    expect(third).toEqual(expect.objectContaining({ embedded: 1, failed: 0 }));
-    expect(skillEmbedCalls('changed local embedding workflow')).toBe(1);
   });
 
   it('computes cosine lane matches from cached skill vectors', () => {

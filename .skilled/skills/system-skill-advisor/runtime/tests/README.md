@@ -154,7 +154,6 @@ tests/
 +-- routing-golden-prompts.vitest.ts
 +-- routing-parity-deep-skills.vitest.ts
 +-- routing-registry-drift-guard.vitest.ts
-+-- semantic-prompt-embedding-degrade.vitest.ts
 +-- shadow-sink.vitest.ts
 +-- shared-import-specifier-extension.vitest.ts
 +-- skill-advisor-cli-dual-client.vitest.ts
@@ -173,7 +172,6 @@ tests/
 +-- skill-graph-bfs-traversal.vitest.ts
 +-- skill-graph-db.vitest.ts
 +-- skill-graph-diagnostic-redaction.vitest.ts
-+-- skill-graph-embedding-outage.vitest.ts
 +-- skill-graph-handlers.vitest.ts
 +-- skill-graph-queries-parity.vitest.ts
 +-- sqlite-integrity.vitest.ts

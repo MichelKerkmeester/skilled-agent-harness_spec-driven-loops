@@ -14,15 +14,12 @@ import { createPrivateSkillLinkCheck } from '../private-skill-target.js';
 import Database from 'better-sqlite3';
 import {
   commandVecTableNameForDim,
-  ensureCommandVecTableForDim,
   ensureVecMetadataTable,
   ensureVecTableForDim,
   getActiveEmbedder,
   hasActiveEmbedderPointer,
   vecTableNameForDim,
 } from '../embedders/schema.js';
-import { getAdapter, getManifest } from '../embedders/registry.js';
-import { probeOllamaModel, resolveOllamaBaseUrl } from '../embedders/adapters/ollama.js';
 import { checkSqliteIntegrity } from '../freshness/sqlite-integrity.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
 import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
@@ -36,8 +33,6 @@ import {
   sanitizeDerivedMetadata,
   sanitizeMetadataStringArray,
 } from './metadata-sanitizer.js';
-
-import type { EmbedderAdapter } from '../embedders/adapter.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -104,13 +99,6 @@ export interface SkillDocHarvestResult {
   deletedDocs: number;
 }
 
-export interface SkillEmbeddingRefreshResult {
-  embedded: number;
-  skipped: number;
-  failed: number;
-  warnings: string[];
-}
-
 export interface SkillEmbeddingRow {
   skillId: string;
   embedding: Float32Array;
@@ -135,13 +123,6 @@ interface CommandEmbeddingSource {
   embeddingText: string;
 }
 
-interface CommandEmbeddingRefreshResult {
-  embedded: number;
-  skipped: number;
-  failed: number;
-  pruned: number;
-}
-
 type JsonRecord = Record<string, unknown>;
 
 // ───────────────────────────────────────────────────────────────
@@ -154,9 +135,9 @@ export const DB_FILENAME = 'skill-graph.sqlite';
 
 const SKILL_METADATA_FILENAME = 'graph-metadata.json';
 // The command-bridge projection is a generated artifact owned by
-// scripts/command-bridges/derive-command-bridges.cjs, so the embedding refresh
-// reads it rather than recomputing command identities. A missing copy means no
-// command can be embedded yet, never a failed skill refresh.
+// scripts/command-bridges/derive-command-bridges.cjs, so the coverage reader
+// reads it rather than recomputing command identities. A missing copy reads as
+// no commands, never as a failed coverage check.
 const COMMAND_BRIDGES_FILENAME = 'command-bridges.generated.json';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -723,11 +704,6 @@ export function computeSkillMetadataContentHash(content: string): string {
     .digest('hex');
 }
 
-function encodeEmbedding(vector: Float32Array | readonly number[]): Buffer {
-  const array = vector instanceof Float32Array ? vector : Float32Array.from(vector);
-  return Buffer.from(array.buffer, array.byteOffset, array.byteLength);
-}
-
 function decodeEmbedding(blob: Buffer): Float32Array | null {
   if (blob.byteLength === 0 || blob.byteLength % Float32Array.BYTES_PER_ELEMENT !== 0) {
     return null;
@@ -746,11 +722,11 @@ function skillDescriptionForEmbedding(sourcePath: string): string {
 }
 
 /**
- * Read the generated command-bridge projection into the texts the refresh embeds.
+ * Read the generated command-bridge projection into command embedding sources.
  *
- * Returns null when the projection is absent, unparsable or shaped differently
- * than expected. A regenerated artifact must never be able to fail a skill
- * refresh, so every one of those cases reads as "no commands to embed".
+ * The bridges no longer carry embedding text, so this returns an empty list for
+ * the shipped artifact. Returns null when the projection is absent, unparsable
+ * or shaped differently than expected, which coverage reads as "no commands".
  */
 export function readCommandEmbeddingSources(): CommandEmbeddingSource[] | null {
   const filePath = COMMAND_BRIDGES_DIR_CANDIDATES
@@ -1293,24 +1269,6 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
   return summary;
 }
 
-/**
- * Refresh skill embeddings only when an active embedder pointer is configured.
- */
-export async function refreshSkillEmbeddings(skillDir?: string): Promise<SkillEmbeddingRefreshResult> {
-  const database = getDb();
-
-  if (!hasActiveEmbedderPointer(database)) {
-    return {
-      embedded: 0,
-      skipped: 0,
-      failed: 0,
-      warnings: ['no active embedder pointer; skill embeddings not refreshed'],
-    };
-  }
-
-  return refreshSkillEmbeddingsViaAdapter(database, skillDir);
-}
-
 function tableExists(database: Database.Database, tableName: string): boolean {
   const row = database.prepare(`
     SELECT 1 AS present
@@ -1428,363 +1386,6 @@ export function embeddingCoverage(database?: Database.Database): EmbeddingCovera
     incompleteIds,
     complete: skills.total > 0 && incompleteIds.length === 0,
   };
-}
-
-let backgroundEmbeddingRefresh: Promise<SkillEmbeddingRefreshResult | null> | null = null;
-// A request that lands while a run is in flight may follow a reindex the run's
-// pass has already read past, so the run makes one more pass for it.
-let backgroundEmbeddingRefreshRequested: { skillDir: string | undefined } | null = null;
-
-/**
- * Embedding coverage is index-time and only changed rows cost calls; the prompt
- * path remains tied to the semantic lane weight.
- */
-export async function refreshEmbeddingsInBackground(
-  skillDir?: string,
-): Promise<SkillEmbeddingRefreshResult | null> {
-  if (backgroundEmbeddingRefresh) {
-    backgroundEmbeddingRefreshRequested = { skillDir };
-    return backgroundEmbeddingRefresh;
-  }
-  if (process.env.SYSTEM_SKILL_ADVISOR_EMBED_REFRESH?.toLowerCase() === 'off') {
-    return null;
-  }
-
-  const refresh = (async (): Promise<SkillEmbeddingRefreshResult | null> => {
-    try {
-      // A pass that throws must not cost a queued request its pass, so each pass
-      // catches its own error; the run rethrows only when no pass succeeded.
-      let result: SkillEmbeddingRefreshResult | null = null;
-      let succeeded = false;
-      let lastError: unknown;
-      let request: { skillDir: string | undefined } | null = { skillDir };
-      while (request) {
-        try {
-          // A later pass that finds coverage complete keeps the result of the pass
-          // that did the work.
-          result = (await refreshEmbeddingsOnce(request.skillDir)) ?? result;
-          succeeded = true;
-        } catch (error: unknown) {
-          lastError = error;
-        }
-        request = backgroundEmbeddingRefreshRequested;
-        backgroundEmbeddingRefreshRequested = null;
-      }
-      if (!succeeded) throw lastError;
-      // A failed pass after a successful one is reported, not hidden behind the
-      // earlier pass's counts.
-      if (lastError !== undefined) {
-        const message = lastError instanceof Error ? lastError.message : String(lastError);
-        const warning = `refresh pass failed: ${message}`;
-        result = result
-          ? { ...result, warnings: [...result.warnings, warning] }
-          : { embedded: 0, skipped: 0, failed: 0, warnings: [warning] };
-      }
-      return result;
-    } finally {
-      // Runs in the same turn as the last pending-request check, so a request
-      // either joins this run before it or starts a new run after it.
-      backgroundEmbeddingRefresh = null;
-      backgroundEmbeddingRefreshRequested = null;
-    }
-  })();
-  backgroundEmbeddingRefresh = refresh;
-  return refresh;
-}
-
-async function refreshEmbeddingsOnce(
-  skillDir: string | undefined,
-): Promise<SkillEmbeddingRefreshResult | null> {
-  const database = getDb();
-  const coverage = embeddingCoverage(database);
-  if (coverage.complete) {
-    return null;
-  }
-
-  if (hasActiveEmbedderPointer(database)) {
-    const active = getActiveEmbedder(database);
-    const manifest = getManifest(active.name);
-    if (manifest?.backend === 'ollama') {
-      const probe = await probeOllamaModel(
-        resolveOllamaBaseUrl(),
-        manifest.ollamaName ?? manifest.name,
-        500,
-      );
-      if (!probe.available) {
-        return {
-          embedded: 0,
-          skipped: 0,
-          failed: 0,
-          warnings: [`embedding backend unavailable: ${probe.reason ?? 'unknown reason'}`],
-        };
-      }
-    }
-  }
-
-  return await refreshSkillEmbeddings(skillDir);
-}
-
-// A dead or wedged embedding backend fails every row for the same reason, so a
-// per-row retry buys nothing and costs one full request deadline each time.
-const EMBEDDING_BACKEND_OUTAGE_STREAK = 3;
-
-async function refreshSkillEmbeddingsViaAdapter(
-  database: Database.Database,
-  skillDir: string | undefined,
-): Promise<SkillEmbeddingRefreshResult> {
-  const active = getActiveEmbedder(database);
-  ensureVecTableForDim(database, active.dim);
-  ensureCommandVecTableForDim(database, active.dim);
-  const tableName = vecTableNameForDim(active.dim);
-  let adapter: EmbedderAdapter;
-  try {
-    const resolved = getAdapter(active.name);
-    if (!resolved) {
-      const warning = `ADAPTER-UNAVAILABLE: ${active.name} (manifest not found in registry)`;
-      console.warn(`[skill-graph] ${warning}`);
-      // Report every skill node as failed so refresh-watchers see an outage
-      // signal instead of an empty-corpus-looking zero count.
-      const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
-      return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
-    }
-    adapter = resolved;
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    const warning = `ADAPTER-UNAVAILABLE: ${active.name} (${message})`;
-    console.warn(`[skill-graph] ${warning}`);
-    const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
-    return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
-  }
-
-  // Fail fast on adapter-vs-pointer dim mismatch instead of per-row embedding
-  // noise and accidental table emptying.
-  if (adapter.dim !== active.dim) {
-    const warning = `ADAPTER-DIM-MISMATCH: ${active.name} reports dim=${adapter.dim} but vec_metadata pointer dim=${active.dim}; fix configuration before refresh`;
-    console.warn(`[skill-graph] ${warning}`);
-    const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
-    return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
-  }
-  const modelId = active.name;
-  const warnings: string[] = [];
-  let embedded = 0;
-  let skipped = 0;
-  let failed = 0;
-  // Give up once the run has proved the backend, not the row, is the problem,
-  // and count the rows it never tried as failed so the result still reads as an
-  // outage rather than a healthy short scan.
-  let consecutiveFailures = 0;
-  let backendOutage: string | null = null;
-
-  const rows = database.prepare(`
-    SELECT n.id AS id,
-           n.source_path AS source_path,
-           v.embedding AS vec_embedding,
-           v.model_id AS vec_model_id,
-           v.content_hash AS vec_content_hash
-    FROM skill_nodes n
-    LEFT JOIN ${tableName} v ON v.skill_id = n.id
-    ORDER BY n.id ASC
-  `).all() as Array<{
-    id: string;
-    source_path: string;
-    vec_embedding: Buffer | null;
-    vec_model_id: string | null;
-    vec_content_hash: string | null;
-  }>;
-
-  const upsertEmbedding = database.prepare(`
-    INSERT INTO ${tableName} (skill_id, embedding, model_id, content_hash, updated_at)
-    VALUES (?, ?, ?, ?, datetime('now'))
-    ON CONFLICT(skill_id) DO UPDATE SET
-      embedding = excluded.embedding,
-      model_id = excluded.model_id,
-      content_hash = excluded.content_hash,
-      updated_at = datetime('now')
-  `);
-  const deleteEmbedding = database.prepare(`DELETE FROM ${tableName} WHERE skill_id = ?`);
-
-  for (const row of rows) {
-    if (skillDir && !row.source_path.startsWith(skillDir)) {
-      skipped++;
-      continue;
-    }
-
-    const description = skillDescriptionForEmbedding(row.source_path).trim();
-    if (!description) {
-      deleteEmbedding.run(row.id);
-      skipped++;
-      continue;
-    }
-
-    const contentHash = computeContentHash(description);
-    if (
-      row.vec_embedding
-      && row.vec_model_id === modelId
-      && row.vec_content_hash === contentHash
-    ) {
-      skipped++;
-      continue;
-    }
-
-    // Keep stale vectors: the semantic lane's coverage gate refuses to score while any
-    // row is stale, and the projection check catches a model change.
-    if (backendOutage !== null) {
-      failed++;
-      continue;
-    }
-
-    try {
-      const vectors = await adapter.embed([description], { inputType: 'document' });
-      const vector = vectors[0];
-      if (!vector || vector.length !== active.dim) {
-        throw new Error(`adapter returned vector of length ${vector?.length ?? 0}, expected ${active.dim}`);
-      }
-      upsertEmbedding.run(row.id, encodeEmbedding(vector), modelId, contentHash);
-      embedded++;
-      consecutiveFailures = 0;
-    } catch (error: unknown) {
-      failed++;
-      consecutiveFailures++;
-      const message = error instanceof Error ? error.message : String(error);
-      const warning = `EMBEDDING-FAILED: ${row.id} (${message})`;
-      warnings.push(warning);
-      console.warn(`[skill-graph] ${warning}`);
-      if (consecutiveFailures >= EMBEDDING_BACKEND_OUTAGE_STREAK) {
-        backendOutage = message;
-        const outageWarning = `EMBEDDING-BACKEND-OUTAGE: stopped after ${consecutiveFailures}`
-          + ` consecutive failures (${message}); the remaining skills are counted as`
-          + ' failed and retried on the next refresh';
-        warnings.push(outageWarning);
-        console.warn(`[skill-graph] ${outageWarning}`);
-      }
-    }
-  }
-
-  // Commands share the skill vector space, so a backend the skill loop has
-  // already proved dead is not asked again for them. Their counts stay out of
-  // the returned totals, which report the skill corpus this refresh exists for.
-  const commands = await refreshCommandEmbeddings(database, adapter, active.dim, modelId, backendOutage);
-  if (commands) {
-    console.warn(
-      `[skill-graph] Command embeddings: ${commands.embedded} embedded, ${commands.skipped} skipped,`
-      + ` ${commands.failed} failed, ${commands.pruned} pruned`,
-    );
-  }
-
-  return { embedded, skipped, failed, warnings };
-}
-
-/**
- * Embed the command-bridge projection into its own per-dimension table.
- *
- * Commands are the queries the router matches, not skills, so their vectors live
- * in the command table. That table carries no foreign key into skill_nodes, so a
- * command the projection drops leaves its vector behind unless the refresh prunes
- * it here.
- *
- * A row whose text hash and model id both still match is never re-sent to the
- * backend, so a rerun over an unchanged projection refreshes nothing.
- */
-async function refreshCommandEmbeddings(
-  database: Database.Database,
-  adapter: EmbedderAdapter,
-  dim: number,
-  modelId: string,
-  inheritedOutage: string | null,
-): Promise<CommandEmbeddingRefreshResult | null> {
-  const sources = readCommandEmbeddingSources();
-  if (sources === null) {
-    // A missing or unreadable projection is a regeneration gap, not a refresh
-    // failure, so the stored command vectors stay untouched until it is rebuilt.
-    const warning = `COMMAND-BRIDGES-UNAVAILABLE: ${COMMAND_BRIDGES_FILENAME} is missing or unreadable, skipped command embeddings`;
-    console.warn(`[skill-graph] ${warning}`);
-    return null;
-  }
-
-  const commandTable = commandVecTableNameForDim(dim);
-  const storedRows = new Map(
-    (database.prepare(`
-      SELECT command_id, embedding, model_id, content_hash
-      FROM ${commandTable}
-    `).all() as Array<{
-      command_id: string;
-      embedding: Buffer | null;
-      model_id: string;
-      content_hash: string;
-    }>).map((row) => [row.command_id, row]),
-  );
-
-  const upsertEmbedding = database.prepare(`
-    INSERT INTO ${commandTable} (command_id, embedding, model_id, content_hash, updated_at)
-    VALUES (?, ?, ?, ?, datetime('now'))
-    ON CONFLICT(command_id) DO UPDATE SET
-      embedding = excluded.embedding,
-      model_id = excluded.model_id,
-      content_hash = excluded.content_hash,
-      updated_at = datetime('now')
-  `);
-  const deleteEmbedding = database.prepare(`DELETE FROM ${commandTable} WHERE command_id = ?`);
-
-  const result: CommandEmbeddingRefreshResult = { embedded: 0, skipped: 0, failed: 0, pruned: 0 };
-  const liveIds = new Set(sources.map((source) => source.commandId));
-  for (const storedId of storedRows.keys()) {
-    if (!liveIds.has(storedId)) {
-      result.pruned += deleteEmbedding.run(storedId).changes;
-    }
-  }
-
-  // The same outage rule as the skill loop: give up once the backend, not the
-  // row, is the proven problem, and count what was never tried as failed so the
-  // next refresh retries it.
-  let consecutiveFailures = 0;
-  let backendOutage = inheritedOutage;
-
-  for (const source of sources) {
-    const contentHash = computeContentHash(source.embeddingText);
-    const stored = storedRows.get(source.commandId);
-    if (
-      stored
-      && stored.embedding
-      && stored.model_id === modelId
-      && stored.content_hash === contentHash
-    ) {
-      result.skipped++;
-      continue;
-    }
-
-    // Keep stale vectors: the semantic lane's coverage gate refuses to score while any
-    // row is stale, and the projection check catches a model change.
-    if (backendOutage !== null) {
-      result.failed++;
-      continue;
-    }
-
-    try {
-      const vectors = await adapter.embed([source.embeddingText], { inputType: 'document' });
-      const vector = vectors[0];
-      if (!vector || vector.length !== dim) {
-        throw new Error(`adapter returned vector of length ${vector?.length ?? 0}, expected ${dim}`);
-      }
-      upsertEmbedding.run(source.commandId, encodeEmbedding(vector), modelId, contentHash);
-      result.embedded++;
-      consecutiveFailures = 0;
-    } catch (error: unknown) {
-      result.failed++;
-      consecutiveFailures++;
-      const message = error instanceof Error ? error.message : String(error);
-      const warning = `COMMAND-EMBEDDING-FAILED: ${source.commandId} (${message})`;
-      console.warn(`[skill-graph] ${warning}`);
-      if (consecutiveFailures >= EMBEDDING_BACKEND_OUTAGE_STREAK) {
-        backendOutage = message;
-        const outageWarning = `COMMAND-EMBEDDING-BACKEND-OUTAGE: stopped after ${consecutiveFailures}`
-          + ` consecutive failures (${message}); the remaining commands are counted as`
-          + ' failed and retried on the next refresh';
-        console.warn(`[skill-graph] ${outageWarning}`);
-      }
-    }
-  }
-
-  return result;
 }
 
 export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddingRow[] {

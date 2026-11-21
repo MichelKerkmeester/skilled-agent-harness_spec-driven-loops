@@ -21,7 +21,6 @@ interface CommandBridgeEntry {
   readonly skillId: string;
   readonly ownerMode: string;
   readonly description?: string;
-  readonly embeddingText?: string;
   readonly ownedSignals?: readonly string[];
   readonly standalone?: boolean;
   readonly mutating?: string;
@@ -222,9 +221,9 @@ function sorted(entries: readonly CommandBridgeEntry[]): CommandBridgeEntry[] {
 }
 
 function inventoryEntry(entry: CommandBridgeEntry): CommandBridgeEntry {
-  // Both fields are derived for a consumer, never authored, so neither is part
+  // The runtime block is derived for a consumer, never authored, so it is not part
   // of the inventory this guard compares against its sources.
-  const { runtime: _runtime, embeddingText: _embeddingText, ...inventory } = entry;
+  const { runtime: _runtime, ...inventory } = entry;
   return inventory;
 }
 
@@ -389,15 +388,7 @@ describe('command-bridges drift guard', () => {
     expect(sorted(generatedInventory)).toEqual(expected);
   });
 
-  it('keeps TypeScript bridge embeddings and skill descriptions non-empty', () => {
-    const generated = JSON.parse(readFileSync(GENERATED_PATH, 'utf8')) as CommandBridgeDump;
-    const missingEmbeddingIds = generated.entries
-      .filter(
-        (entry) => entry.runtime?.typescript.enabled === true
-          && (typeof entry.embeddingText !== 'string' || entry.embeddingText.trim().length === 0),
-      )
-      .map((entry) => entry.id)
-      .sort();
+  it('keeps skill descriptions non-empty', () => {
     const missingSkillDescriptions = readdirSync(SKILLS_ROOT, { withFileTypes: true })
       .filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'))
       .map((skillFolder) => {
@@ -409,10 +400,7 @@ describe('command-bridges drift guard', () => {
       .filter((skillId): skillId is string => skillId !== null)
       .sort();
 
-    expect({ missingEmbeddingIds, missingSkillDescriptions }).toEqual({
-      missingEmbeddingIds: [],
-      missingSkillDescriptions: [],
-    });
+    expect(missingSkillDescriptions).toEqual([]);
   });
 
   it('generates all inventory ids for both runtimes and scores exactly the compatibility rows plus the standalone commands', () => {

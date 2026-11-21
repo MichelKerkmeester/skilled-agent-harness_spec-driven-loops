@@ -29,7 +29,7 @@ import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
 import { scoreLexicalLane } from './lanes/lexical.js';
-import { scoreSemanticShadowExactSubset, scoreSemanticShadowLane } from './lanes/semantic-shadow.js';
+import { scoreSemanticShadowLane } from './lanes/semantic-shadow.js';
 import { applyExecutorDelegationOverride } from './executor-delegation.js';
 import {
   DOCTOR_HELPER_BRIDGE_ID,
@@ -74,10 +74,7 @@ const DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
 const DEFAULT_UNCERTAINTY_THRESHOLD = resolvedUncertaintyThreshold();
 export const ADVISOR_RRF_FUSION_FLAG = 'SPECKIT_ADVISOR_RRF_FUSION';
 export const ADVISOR_QUERY_CLASS_ROUTING_FLAG = 'SPECKIT_ADVISOR_QUERY_CLASS_ROUTING';
-export const ADVISOR_EXACT_SEMANTIC_RERANK_FLAG = 'SPECKIT_ADVISOR_EXACT_SEMANTIC_RERANK';
 export const ADVISOR_RRF_K = 8;
-export const ADVISOR_EXACT_SEMANTIC_RERANK_TOP_K = 10;
-const ADVISOR_EXACT_SEMANTIC_RERANK_WINDOW = 0.05;
 const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b/;
 const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
 // Writing a test or a helper is code work even when the prompt also names a deep-review phrase or a
@@ -132,12 +129,6 @@ type AdvisorRuntimeLabel = (typeof ADVISOR_RUNTIME_VALUES)[number];
 type AdvisorFreshnessLabel = (typeof ADVISOR_HOOK_FRESHNESS_VALUES)[number];
 export type AdvisorQueryClass = 'implementation' | 'review' | 'documentation' | 'memory' | 'tooling' | 'unknown';
 
-interface ExactSemanticRerankEntry {
-  readonly rawScore: number;
-}
-
-type ExactSemanticRerankIndex = ReadonlyMap<string, ExactSemanticRerankEntry>;
-
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
 // ───────────────────────────────────────────────────────────────────
@@ -163,11 +154,6 @@ export function isAdvisorRrfFusionEnabled(): boolean {
 
 export function isAdvisorQueryClassRoutingEnabled(): boolean {
   const value = process.env[ADVISOR_QUERY_CLASS_ROUTING_FLAG]?.trim().toLowerCase();
-  return value ? TRUE_FLAG_VALUES.has(value) : false;
-}
-
-export function isAdvisorExactSemanticRerankEnabled(): boolean {
-  const value = process.env[ADVISOR_EXACT_SEMANTIC_RERANK_FLAG]?.trim().toLowerCase();
   return value ? TRUE_FLAG_VALUES.has(value) : false;
 }
 
@@ -391,31 +377,6 @@ function graphConflictAdjustment(
   recommendation: AdvisorScoredRecommendation,
 ): number {
   return conflictIndex.get(recommendation.skill)?.rawScore ?? 0;
-}
-
-function buildExactSemanticRerankIndex(
-  prompt: string,
-  projection: AdvisorProjection,
-  recommendations: readonly AdvisorScoredRecommendation[],
-  fusion: AdvisorRrfFusion | null,
-): ExactSemanticRerankIndex {
-  if (!fusion) return new Map();
-  const topSkillIds = [...recommendations]
-    .filter((recommendation) => fusion.rankBySkill.has(recommendation.skill))
-    .sort((left, right) => rrfRankFor(fusion, left) - rrfRankFor(fusion, right))
-    .slice(0, ADVISOR_EXACT_SEMANTIC_RERANK_TOP_K)
-    .map((recommendation) => recommendation.skill);
-  const matches = scoreSemanticShadowExactSubset(prompt, projection, topSkillIds);
-  return new Map(matches.map((match) => [match.skillId, {
-    rawScore: match.score,
-  }]));
-}
-
-function exactSemanticRerankScore(
-  rerankIndex: ExactSemanticRerankIndex,
-  recommendation: AdvisorScoredRecommendation,
-): number | null {
-  return rerankIndex.get(recommendation.skill)?.rawScore ?? null;
 }
 
 function rrfRankFor(
@@ -860,98 +821,20 @@ function primaryIntentBonus(
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
-// The bar sits above the highest cosine any prompt that must stay silent reached
-// against a command row, with headroom, because a command offered for the wrong
-// prompt costs more than one that stays quiet. The margin asks for a small lead
-// over the next command and over the top skill, which is what kept a wrong
-// command out of first place on the tuning rows. Raise the bar before the
-// margin if a false offer appears.
-export const COMMAND_MEANING_MIN_COSINE = 0.72;
-export const COMMAND_MEANING_MARGIN = 0.02;
-
-// The lane reports a real embedder cosine as "cosine:", while the word-overlap
-// stand-in used under test reports "shadow:". Only a real cosine may carry a
-// command on meaning, because the stand-in measures shared words rather than
-// shared meaning.
-function commandMeaningCosine(contribution: LaneContribution | undefined): number | null {
-  if (!contribution) return null;
-  return contribution.evidence.some((entry) => entry.startsWith('cosine:'))
-    ? contribution.rawScore
-    : null;
-}
-
 // A command bridge passes on its own wording: one of its authored phrases or its
 // runnable slash string, which the explicit-author lane reports. A bridge that
 // passed on shared single tokens alone stays scored but stops passing, because
 // its phrases are everyday words and a command must not be offered for a prompt
-// that merely shares some of them. A paraphrase shares no words at all, so the
-// second way in is meaning: a real prompt embedding that clears both bars above.
-// Meaning-passed ids are collected so a later ordering step can tell them apart,
-// and a doctor problem in other words reaches /doctor:helper through
-// applyDoctorHelperHandoff instead.
-// A question that only wants an answer must not be handed a command that
-// changes things, however close the meaning. Phrase matches are already held to
-// this by the read-only confidence floor, and a meaning match lifts confidence
-// past that floor, so it has to ask the same question itself. A command whose
-// route only reads stays eligible for a plain explainer, because running it is
-// the answer. An explicit no-edit request rules out every command.
-export function commandMeaningEligible(
-  promptLower: string,
-  readOnlyExplainer: boolean,
-  skill: SkillProjection | undefined,
-): boolean {
-  if (isNoEditRequest(promptLower)) return false;
-  if (!readOnlyExplainer) return true;
-  return skill !== undefined && skill.kind === 'command' && 'readOnly' in skill && skill.readOnly === true;
-}
-
+// that merely shares some of them.
 export function requireCommandPhraseAnchor(
   ranked: readonly AdvisorScoredRecommendation[],
-  confidenceThreshold: number = DEFAULT_CONFIDENCE_THRESHOLD,
-  meaningPassed: Set<string> = new Set(),
-  meaningEligible: (skillId: string) => boolean = () => true,
-  uncertaintyThreshold: number = DEFAULT_UNCERTAINTY_THRESHOLD,
 ): AdvisorScoredRecommendation[] {
-  const cosineByCommandId = new Map<string, number>();
-  for (const recommendation of ranked) {
-    if (recommendation.kind !== 'command') continue;
-    const cosine = commandMeaningCosine(
-      recommendation.laneContributions.find((contribution) => contribution.lane === 'semantic_shadow'),
-    );
-    if (cosine !== null) cosineByCommandId.set(recommendation.skill, cosine);
-  }
-  // A command row with no cosine counts as 0, so the bar is the strongest other
-  // command row, not the strongest row overall: a skill row never decides this.
-  const leadingOtherCosine = (skillId: string): number => {
-    let lead = 0;
-    for (const [otherSkillId, cosine] of cosineByCommandId) {
-      if (otherSkillId !== skillId && cosine > lead) lead = cosine;
-    }
-    return lead;
-  };
   return ranked.map((recommendation) => {
     if (recommendation.kind !== 'command') return recommendation;
     const anchored = recommendation.laneContributions.some((contribution) => (
       contribution.lane === 'explicit_author' && contribution.rawScore > 0
     ));
     if (anchored) return recommendation;
-    const cosine = cosineByCommandId.get(recommendation.skill);
-    if (cosine !== undefined
-      && cosine >= COMMAND_MEANING_MIN_COSINE
-      && cosine - leadingOtherCosine(recommendation.skill) >= COMMAND_MEANING_MARGIN
-      && recommendation.uncertainty <= uncertaintyThreshold
-      && meaningEligible(recommendation.skill)) {
-      // A meaning match alone rarely clears the threshold on its lane weight, so
-      // the anchor lifts the row to it rather than leaving it scored but unpassed.
-      // A row the hooks would drop for its uncertainty must not be reported as
-      // passing, or the direct CLI call shows a head no hook renders.
-      meaningPassed.add(recommendation.skill);
-      return {
-        ...recommendation,
-        confidence: Math.max(recommendation.confidence, confidenceThreshold),
-        passes_threshold: true,
-      };
-    }
     return recommendation.passes_threshold
       ? { ...recommendation, passes_threshold: false }
       : recommendation;
@@ -1086,46 +969,6 @@ export function keepPassingSkillsAboveDoctorBridges(
     ...remaining.slice(0, insertionIndex),
     ...passingDoctorBridges,
     ...remaining.slice(insertionIndex),
-  ];
-}
-
-// A command that passed on meaning was chosen by the prompt's own words rather
-// than by a typed name, so the doctor ordering above can leave a skill's row in
-// front of it. The command only takes the front when its cosine leads the top
-// passing skill's cosine by the margin, so the margin alone decides how close a
-// skill may sit and still keep its place. With no passing skill there is nothing
-// for the command to outrank.
-export function rankMeaningPassedCommandFirst(
-  ranked: readonly AdvisorScoredRecommendation[],
-  meaningPassed: ReadonlySet<string>,
-): AdvisorScoredRecommendation[] {
-  if (meaningPassed.size === 0) return [...ranked];
-  const shadowCosine = (recommendation: AdvisorScoredRecommendation): number | null => commandMeaningCosine(
-    recommendation.laneContributions.find((contribution) => contribution.lane === 'semantic_shadow'),
-  );
-  let commandIndex = -1;
-  let commandCosine = Number.NEGATIVE_INFINITY;
-  for (const [index, recommendation] of ranked.entries()) {
-    if (recommendation.kind !== 'command' || !meaningPassed.has(recommendation.skill)) continue;
-    const cosine = shadowCosine(recommendation);
-    if (cosine === null || cosine <= commandCosine) continue;
-    commandIndex = index;
-    commandCosine = cosine;
-  }
-  if (commandIndex < 0) return [...ranked];
-  const leadingPassingRow = ranked.find((recommendation) => (
-    recommendation.kind !== 'command' && recommendation.passes_threshold
-  ));
-  if (leadingPassingRow) {
-    // A row with no cosine of its own contributes nothing to meaning, so it counts
-    // as 0 and the command's own cosine decides against it.
-    const leadingCosine = shadowCosine(leadingPassingRow) ?? 0;
-    if (commandCosine - leadingCosine < COMMAND_MEANING_MARGIN) return [...ranked];
-  }
-  return [
-    ranked[commandIndex]!,
-    ...ranked.slice(0, commandIndex),
-    ...ranked.slice(commandIndex + 1),
   ];
 }
 
@@ -1289,7 +1132,6 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
   const disabled = new Set(options.disabledLanes ?? []);
   const affordances = normalize(options.affordances ?? []);
   const useRrfFusion = isAdvisorRrfFusionEnabled();
-  const useExactSemanticRerank = useRrfFusion && isAdvisorExactSemanticRerankEnabled();
   const { laneScores, graphConflictMatches, graphSupportBySeed } = buildLaneScores(
     prompt,
     projection,
@@ -1434,9 +1276,6 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
       }
     }
   }
-  const exactSemanticRerankIndex = useExactSemanticRerank
-    ? buildExactSemanticRerankIndex(prompt, projection, recommendations, rrfFusion)
-    : new Map<string, ExactSemanticRerankEntry>();
   let ranked = recommendations.sort((left, right) => {
     const leftCommandBonus = left.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
     const rightCommandBonus = right.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
@@ -1447,16 +1286,6 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     const adjustedScoreDiff = (right.score + rightCommandBonus + rightIntent + rightConflict)
       - (left.score + leftCommandBonus + leftIntent + leftConflict);
     if (useRrfFusion) {
-      const leftExactSemantic = exactSemanticRerankScore(exactSemanticRerankIndex, left);
-      const rightExactSemantic = exactSemanticRerankScore(exactSemanticRerankIndex, right);
-      if (leftExactSemantic !== null
-        && rightExactSemantic !== null
-        && Math.abs(adjustedScoreDiff) <= ADVISOR_EXACT_SEMANTIC_RERANK_WINDOW) {
-        const exactSemanticDiff = rightExactSemantic - leftExactSemantic;
-        if (exactSemanticDiff !== 0) {
-          return exactSemanticDiff;
-        }
-      }
       return adjustedScoreDiff
         || rrfRankFor(rrfFusion, left) - rrfRankFor(rrfFusion, right)
         || left.skill.localeCompare(right.skill);
@@ -1617,22 +1446,13 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     return doctorFreeRun[doctorFreeIndex++]!;
   });
 
-  const commandMeaningPassed = new Set<string>();
-  const projectionSkillById = new Map(projection.skills.map((skill) => [skill.id, skill]));
-  ranked = requireCommandPhraseAnchor(
-    ranked,
-    options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
-    commandMeaningPassed,
-    (skillId) => commandMeaningEligible(promptLower, readOnlyExplainer, projectionSkillById.get(skillId)),
-    options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
-  );
+  ranked = requireCommandPhraseAnchor(ranked);
   const leadPhrasesById = new Map<string, readonly string[]>();
   for (const skill of projection.skills) {
     if (!skill.id.startsWith(DOCTOR_BRIDGE_PREFIX) || !skill.leadPhrases?.length) continue;
     leadPhrasesById.set(skill.id, skill.leadPhrases);
   }
   ranked = keepPassingSkillsAboveDoctorBridges(ranked, promptLower, leadPhrasesById);
-  ranked = rankMeaningPassedCommandFirst(ranked, commandMeaningPassed);
   ranked = applyDoctorHelperHandoff(ranked, {
     prompt,
     promptLower,

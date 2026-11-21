@@ -78,8 +78,6 @@ export function createIsolatedCliScope(label: string): IsolatedCliScope {
     SPECKIT_ADVISOR_SHADOW_DELTA_PATH: shadowDeltaPath,
     SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED: '0',
     SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
-    // Test daemons must not embed against a live local Ollama.
-    SYSTEM_SKILL_ADVISOR_EMBED_REFRESH: 'off',
   };
   // A switch exported in the shell would make every isolated call abstain.
   for (const flag of ADVISOR_DISABLED_FLAGS) delete env[flag];
