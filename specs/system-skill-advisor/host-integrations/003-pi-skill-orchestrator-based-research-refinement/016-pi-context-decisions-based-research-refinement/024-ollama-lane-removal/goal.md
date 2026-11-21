@@ -108,6 +108,7 @@ and findings belong here.
 | Phases 001 to 008 | Pending | Phase map in `spec.md` |
 | Criterion 3 amended | done | operator answer: fixture proof counts; machine mode on the operator's Mac cannot reach exit 0 while D2 keeps the primary checkout unmerged |
 | Operator-machine follow-up | pending operator | machine mode on the operator's Mac reaches exit 0 after the merge, the operator's /doctor:update apply and retiring older worktrees; moved out of criterion 3 on the operator's answer |
+| Deep review, 10 iterations | done, CONDITIONAL | review/review-report.md: P0 0, P1 0, P2 10, one deferred search item |
 
 ### Deviations and findings
 

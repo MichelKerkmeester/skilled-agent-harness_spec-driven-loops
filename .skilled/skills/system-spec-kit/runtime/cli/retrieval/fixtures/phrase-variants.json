@@ -1,5 +1,5 @@
 {
-  "manifestHash": "91243868def3cc5eb5fb27cb1b02ee724f8b9cec10c7f733f8546563750f0b66",
+  "manifestHash": "948a4b115e09415f0eb6cd9e719f9ae26c97e7d692d9c8e65ffa2ecf624ce332",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -65391,6 +65391,9 @@
     "lane residue check": [
       "lane residue check"
     ],
+    "lane residue deep review": [
+      "lane residue deep review"
+    ],
     "lane residue gate and cleanup": [
       "lane residue gate and cleanup"
     ],
@@ -78918,8 +78921,14 @@
     "ollama lane off and daemon liveness tasks": [
       "ollama lane off and daemon liveness tasks"
     ],
+    "ollama lane removal deep review": [
+      "ollama lane removal deep review"
+    ],
     "ollama lane removal phase parent spec": [
       "ollama lane removal phase parent spec"
+    ],
+    "ollama lane removal review report": [
+      "ollama lane removal review report"
     ],
     "ollama merge closure gate": [
       "ollama merge closure gate"

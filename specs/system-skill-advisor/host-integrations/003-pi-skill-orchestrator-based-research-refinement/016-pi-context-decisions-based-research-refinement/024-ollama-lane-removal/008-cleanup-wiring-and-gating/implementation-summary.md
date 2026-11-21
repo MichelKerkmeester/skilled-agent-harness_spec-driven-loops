@@ -8,23 +8,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating"
-    last_updated_at: "2026-11-21T11:31:14Z"
+    last_updated_at: "2026-11-21T13:25:49Z"
     last_updated_by: "generate-context"
-    recent_action: "Moved the operator-machine follow-up out of the lane residue cleanup criteria"
-    next_safe_action: "Decide the merge of the lane removal branch"
+    recent_action: "Reviewed the lane residue cleanup wiring and gating in ten iterations, verdict CONDITIONAL"
+    next_safe_action: "Decide whether to fix the ten P2 review advisories"
     packet_purpose: "Purpose: Every update removes what the lane left on the machine it runs on, asks about the pulled shared model each time, and any lane term that comes back fails CI and the doctor tests."
     blockers: []
     key_files:
-      - "008-cleanup-wiring-and-gating/implementation-summary.md"
+      - "024-ollama-lane-removal/review/review-report.md"
     session_dedup:
-      fingerprint: "sha256:4f734af2ed353ba09d99cd384a7e9867cfb90bf53fb7de09b43d7e8c7eb7083d"
+      fingerprint: "sha256:150241fe8b1ea3e31b843e41f91aef4c87ee4e6a8c3a18ffc09e6089f43a2b36"
       session_id: "scaffold-008-cleanup-wiring-and-gating"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
       workspace: "/Users/michelkerkmeester/worktrees/public/497-ollama-lane-removal"
-      savedAt: "2026-11-21T11:31:14Z"
+      savedAt: "2026-11-21T13:25:49Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

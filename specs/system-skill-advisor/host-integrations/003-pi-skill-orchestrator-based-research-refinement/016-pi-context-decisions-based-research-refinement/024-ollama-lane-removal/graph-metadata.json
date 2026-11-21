@@ -177,27 +177,27 @@
         "source": "derived"
       },
       {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "Verbatim Operator Answers Each",
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "text",
-        "kind": "technology",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "it",
-        "kind": "key_phrase",
+        "name": "Native Opus",
+        "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The advisor's semantic lane, which scores prompts with Ollama or HuggingFace embeddings, ships at live weight 0 after three negative measurements",
     "created_at": "2026-11-20T21:51:18Z",
-    "last_save_at": "2026-11-21T11:31:14.572Z",
+    "last_save_at": "2026-11-21T13:27:26.340Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:7903915a881a01193475cb22b4431cc7f21a9a6bbfb05a553af81933adac60e2",
+    "source_fingerprint": "sha256:e55006bc9ed1d11c7a319519f12cc56235a1ff8e219cea5820379fc80e49159c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "32b32acf3aa50dfe3c3ca80282554c27452ca99b3b1ad27d089f3664c1ef99eb",
-      "decision-record.md": "2ec2e4064fd219f0df2b1c522c59ca7b10ce21209d5671b4833da7add43f7d51"
+      "decision-record.md": "999b36ec697dea96f65d2cd114d682574dc66dce0144921da7d1a8f1477cd570"
     },
     "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating",
-    "last_active_at": "2026-11-21T11:31:14.572Z"
+    "last_active_at": "2026-11-21T13:25:49.773Z"
   }
 }

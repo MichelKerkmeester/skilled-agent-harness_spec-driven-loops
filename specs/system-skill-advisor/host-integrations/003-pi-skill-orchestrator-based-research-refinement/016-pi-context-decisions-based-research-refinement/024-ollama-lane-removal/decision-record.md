@@ -44,6 +44,7 @@ _memory:
 | Q008 | The pulled nomic-embed-text model is removed by hand on the operator's machine. | Not stated. | None | 008 implementation-summary.md |
 | Q009 | The operator closes the session goal; the work stays on the worktree branch. | Not stated. | None | goal.md |
 | Q010 | Criterion 3 drops the operator-machine sentence; that follow-up is a pending operator step in the packet log. | Not stated. | None | goal.md completion criteria and log |
+| Q011 | The deep review ran on cli-claude-code under the second account by starting the dispatcher detached without the parent Claude Code session env, past the recursion guard, for this run only. | Not stated. | None | review/review-report.md section 1, review/deep-review-config.json executor |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -248,6 +249,26 @@ Merge and retire now
 Answer:
 ```text
 Move that sentence out (Recommended)
+```
+
+### Q011
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01JwM6aeKw5V2SUkQFnak3d2:0 -->
+
+Question:
+```text
+The repo's recursion guard blocks a `cli-claude-code` (claude2) dispatch from inside this Claude Code session. How should the 10-iteration deep review of the 024 epic run?
+```
+
+Options:
+```text
+Native Opus, medium (Recommended)
+You run it on claude2
+Different CLI executor
+```
+
+Answer:
+```text
+override block
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

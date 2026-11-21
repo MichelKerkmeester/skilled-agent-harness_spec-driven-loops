@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 001 built `sweep-lane-residue.mjs` report-only and unwired, and nothing calls it today",
     "created_at": "2026-11-20T21:51:24Z",
-    "last_save_at": "2026-11-21T11:31:14.494Z",
+    "last_save_at": "2026-11-21T13:25:49.691Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6dfdff0c2f4edc3fb3f4a6869484639154bc685ec5c5fc262d171ee039e508cf",
+    "source_fingerprint": "sha256:0e906269654b3ff753ec83f330e0ddd651bd0bb4fabeba6ea098236f95cdf3b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "314c9a04cc21136d9a0c3924771dc0e094ef2635587937231839b7a55cc1ccd6",
       "plan.md": "c4f623f549d27be624a50ff76eaa9950a29e6bdb871814925ba042caa8f675c4",
       "tasks.md": "7018db21d5fac30cb36fd6e4a9121c0a1ee3bbb13a2e36000e6221fd35ccb3a9",
-      "implementation-summary.md": "37113b93e610cdcaae89d49ccefd9db4c0e4603218bc4e95d300db4e7002dd5f"
+      "implementation-summary.md": "d5ca9df31e160c3a3b4244cc2494acde7b5c35e23d3320e4be99baa16687cc52"
     },
     "last_active_at": null
   }
