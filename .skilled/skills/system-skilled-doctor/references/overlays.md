@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.34.0
+version: 1.0.35.0
 ---
 
 # Vendored Skilled Overlays
@@ -77,7 +77,7 @@ Every other README is documentation only. These rules apply to both names alike.
 
 A new README inside a directory entry ships. Adding one to a folder inside a `directory` entry, or inside a folder a `skill-root` entry's `replace` lists, changes the vendored tree on the next `apply`. It is overlay content like any other file in that folder.
 
-A Python bytecode cache is never overlay content. The folder readers skip a `__pycache__` folder and any `*.pyc` or `*.pyo` file on both sides of a `directory` or `skill-root` entry, so `apply` neither ships one from the overlay folder nor deletes one a script wrote in the live tree, and status, capture and adopt pass over it. The rule goes by name, not by what git ignores, because an overlay folder can sit outside any repository.
+A Python bytecode cache is never overlay content. The folder readers skip a `__pycache__` folder and any `*.pyc` or `*.pyo` file on both sides of a `directory` or `skill-root` entry, so `apply` never ships one from the overlay folder, and status, capture and adopt pass over it. A cache a script wrote in the live tree is never deleted while its folder still ships. A folder the entry stops shipping goes with its cache. Once `apply` has deleted the folder's files, it removes the folder whole if nothing but caches is left in it. For a `directory` entry that is a folder the source no longer has. For a `skill-root` entry it is a folder at or under a `remove` path, or under a `replace` folder whose source lacks it. The rule goes by name, not by what git ignores, because an overlay folder can sit outside any repository.
 
 The engine never applies, adopts, captures, stages or flags a documentation-only README:
 
@@ -240,6 +240,7 @@ A generated path, a path an overlay owns, a path under a `repin.exclude` folder 
 - `repin-runs/` and `relayout-runs/` directly under the overlay folder, which hold the engine's runtime state and its backups.
 - A folder whose name starts with a dot.
 - A folder named `node_modules`.
+- A folder named `__pycache__`, the bytecode cache Python writes beside a script it runs.
 - A folder reached through a symbolic link. The walk never follows a link.
 
 Every walked folder needs a `README.md` or a `README.markdown`, and only a regular file counts, so a README that is a link counts as missing. A folder the walk cannot read is skipped and not counted. Every README there, under either name and shipping or documentation only, goes through sk-doc's own validator, and a folder with both names has both checked. The engine runs `python3 <tree>/.skilled/skills/sk-doc/scripts/validate_document.py <README> --json` once per README, with `JEV_FEATURE_CITE_DRIFT=0` set, and lets the validator detect the document type. A README with any `blocking_errors` is invalid, and so is one the validator answers without a `blocking_errors` list, for example with an `error` key or output that is not JSON. The lines print after the `AUDIT` lines and before `checked=`:

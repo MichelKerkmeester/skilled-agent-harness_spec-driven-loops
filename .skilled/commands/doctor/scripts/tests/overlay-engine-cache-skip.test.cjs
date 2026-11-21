@@ -178,3 +178,56 @@ test('adopt of a live folder carries no Python cache into the overlay folder and
   assert.equal(status.code, 0, status.output);
   assert.match(status.stdout, /RESULT: PASSED/);
 });
+
+// A folder the entry stops shipping must go whole, cache included, or a later
+// source that reuses its name as a file can never be applied.
+test('a directory entry that stops shipping a folder removes it with its Python cache and keeps the cache of a folder it still ships', (t) => {
+  const fixture = createSyncFixture(t);
+  for (const base of [fixture.overlayDir + '/directory-source', fixture.tree + '/directory-live']) {
+    writeFile(base, 'sub/a.py', 'print("a")\n');
+    writeFile(base, 'keep/b.py', 'print("b")\n');
+  }
+  assert.equal(fixture.run(['apply']).code, 0);
+  writeFile(fixture.tree, 'directory-live/sub/__pycache__/a.cpython-39.pyc', CACHE_BYTES);
+  writeFile(fixture.tree, 'directory-live/keep/__pycache__/b.cpython-39.pyc', CACHE_BYTES);
+  fs.rmSync(path.join(fixture.overlayDir, 'directory-source/sub'), { recursive: true });
+
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'directory-live/sub')), false);
+  assert.deepEqual(fs.readFileSync(path.join(fixture.tree, 'directory-live/keep/__pycache__/b.cpython-39.pyc')), CACHE_BYTES);
+
+  writeFile(fixture.overlayDir, 'directory-source/sub', 'now a file\n');
+  const reused = fixture.run(['apply']);
+  assert.equal(reused.code, 0, reused.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'directory-live/sub'), 'utf8'), 'now a file\n');
+});
+
+test('a skill-root entry removes a removed or no longer replaced folder with its Python cache and keeps the cache of a folder it still ships', (t) => {
+  const fixture = createSyncFixture(t);
+  writeFile(fixture.overlayDir, 'skill-root-source/docs/old/gone.py', 'print("gone")\n');
+  assert.equal(fixture.run(['apply']).code, 0);
+  fixture.manifest.overlays.find((entry) => entry.id === 'skill-root').remove = ['legacy'];
+  writeManifest(fixture);
+  fs.rmSync(path.join(fixture.overlayDir, 'skill-root-source/docs/old'), { recursive: true });
+  writeFile(fixture.tree, 'skill/legacy/tool.py', 'print("legacy")\n');
+  writeFile(fixture.tree, 'skill/legacy/__pycache__/tool.cpython-39.pyc', CACHE_BYTES);
+  writeFile(fixture.tree, 'skill/docs/old/__pycache__/gone.cpython-39.pyc', CACHE_BYTES);
+  writeFile(fixture.tree, 'skill/docs/__pycache__/kept.cpython-39.pyc', CACHE_BYTES);
+
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'skill/legacy')), false);
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'skill/docs/old')), false);
+  assert.deepEqual(fs.readFileSync(path.join(fixture.tree, 'skill/docs/__pycache__/kept.cpython-39.pyc')), CACHE_BYTES);
+});
+
+test('status --audit asks no README of a Python cache folder in the overlay folder', (t) => {
+  const fixture = createSyncFixture(t);
+  writeFile(fixture.overlayDir, 'directory-source/__pycache__/check.cpython-39.pyc', CACHE_BYTES);
+
+  const audit = fixture.run(['status', '--audit']);
+  const missing = audit.stdout.split('\n').filter((line) => line.startsWith('DOCS     missing-readme'));
+  assert.ok(missing.some((line) => line.endsWith('/directory-source')), audit.stdout);
+  assert.deepEqual(missing.filter((line) => line.includes('__pycache__')), []);
+});

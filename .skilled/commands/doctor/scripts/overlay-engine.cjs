@@ -315,12 +315,64 @@ function removePath(filePath) {
 // A vendor folder whose every file was removed would otherwise stay behind as an
 // empty directory, which reads as "still part of the skill" to a human and to a
 // directory listing in a check.
-function pruneEmptyDirs(dir) {
+//
+// The deletes go file by file and never see a Python cache, so a folder the entry
+// stops shipping keeps the cache a script wrote there, and a later source that
+// reuses the folder's name as a file can then never be written. With
+// `isUnshippedFolder`, such a folder goes whole once nothing but caches is left
+// in it. A folder the entry still ships keeps its cache.
+/**
+ * Remove the empty folders below `dir`, and with a test, the folders the entry no
+ * longer ships that hold nothing but Python caches.
+ * @param {string} dir Folder to prune.
+ * @param {((relative: string) => boolean)|null} [isUnshippedFolder] Says whether the
+ *   entry no longer ships a folder, given its posix path relative to the top folder.
+ * @param {string} [relative] Path of `dir` relative to the top folder; '' at the top.
+ */
+function pruneEmptyDirs(dir, isUnshippedFolder = null, relative = '') {
   if (!isDirectory(dir)) return;
   for (const dirent of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (dirent.isDirectory()) pruneEmptyDirs(path.join(dir, dirent.name));
+    if (!dirent.isDirectory()) continue;
+    pruneEmptyDirs(path.join(dir, dirent.name), isUnshippedFolder, relative ? relative + '/' + dirent.name : dirent.name);
+  }
+  // A cache folder's fate is its nearest ordinary folder's, since no source ships one.
+  if (relative && isUnshippedFolder && !relative.split('/').some(isPythonCacheName) &&
+      isUnshippedFolder(relative) && holdsOnlyPythonCaches(dir)) {
+    fs.rmSync(dir, { recursive: true, force: true });
+    return;
   }
   if (fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
+}
+
+/**
+ * Whether a folder holds nothing but Python caches, at any depth. Links are never followed.
+ * @param {string} dir Folder to read.
+ * @returns {boolean} True for a folder with only caches in it, or with nothing.
+ */
+function holdsOnlyPythonCaches(dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).every((dirent) => isPythonCacheName(dirent.name) ||
+    (dirent.isDirectory() && holdsOnlyPythonCaches(path.join(dir, dirent.name))));
+}
+
+/**
+ * The test that says whether a folder entry no longer ships a folder of its live copy.
+ * A `directory` entry ships the folders its source has. A `skill-root` entry gives
+ * up a folder at or under a `remove` path, or under a `replace` folder whose source
+ * lacks it, unless a `replace` path still sits inside it.
+ * @param {object} entry Manifest overlay entry.
+ * @param {string} overlayRoot The overlay folder.
+ * @returns {((relative: string) => boolean)|null} The test, or null for any other scope.
+ */
+function unshippedFolderTest(entry, overlayRoot) {
+  if (entry.scope !== 'directory' && entry.scope !== 'skill-root') return null;
+  const sourceDir = path.join(overlayRoot, entry.source);
+  const isSourceFolder = (relative) => isDirectory(path.join(sourceDir, relative));
+  if (entry.scope === 'directory') return (relative) => !isSourceFolder(relative);
+  const matchesPrefix = (prefixes, relative) => prefixes.some((prefix) => relative === prefix || relative.startsWith(`${prefix}/`));
+  const replacedSubtrees = entry.replace.filter((relative) => isSourceFolder(relative));
+  const isShipped = (relative) => entry.replace.some((prefix) => prefix.startsWith(`${relative}/`)) ||
+    (matchesPrefix(replacedSubtrees, relative) && isSourceFolder(relative));
+  return (relative) => matchesPrefix([...entry.remove, ...replacedSubtrees], relative) && !isShipped(relative);
 }
 
 // Python writes a bytecode cache beside any script it runs, so one turns up in a
@@ -2479,16 +2531,19 @@ function planOverlay(entry, ctx, { acceptedSha256, recordedItems, recordedSets, 
  * Apply one overlay plan's writes and removals.
  * @param {object} plan Result from planOverlay.
  * @param {string} root Destination tree root.
+ * @param {string|null} [overlayRoot] The overlay folder. Without it, a folder the
+ *   entry no longer ships keeps a Python cache left in it.
  * @returns {number} Number of write and delete operations applied.
  */
-function applyOnePlan(plan, root) {
+function applyOnePlan(plan, root, overlayRoot = null) {
   for (const deletion of plan.deletes) removePath(deletion);
   for (const write of plan.writes) {
     if (write.symlinkTarget !== undefined) ensureSymlink(write.filePath, write.symlinkTarget);
     else writeFile(write.filePath, write.buffer, write.mode);
   }
   if (plan.deletes.length > 0 && plan.entry.destination) {
-    pruneEmptyDirs(path.join(root, plan.entry.destination));
+    const isUnshippedFolder = overlayRoot ? unshippedFolderTest(plan.entry, overlayRoot) : null;
+    pruneEmptyDirs(path.join(root, plan.entry.destination), isUnshippedFolder);
   }
   return plan.writes.length + plan.deletes.length;
 }
@@ -4175,7 +4230,7 @@ function applyUnderLock(ctx, manifest, options = {}) {
   const layoutRecords = analysis.records.filter((record) => record.layout);
   const plansToApply = new Set(changedRecords.map((record) => record.plan));
   let written = 0;
-  for (const plan of plansToApply) written += applyOnePlan(plan, root);
+  for (const plan of plansToApply) written += applyOnePlan(plan, root, ctx.overlayRoot);
 
   // The links are restored before the regeneration steps run: a route resolving
   // skills through one of them reads nothing until the link exists.
@@ -6584,7 +6639,8 @@ function overlayDocFolders(overlayRoot) {
     const readmeNames = README_NAMES.filter((name) => dirents.some((dirent) => dirent.name === name && dirent.isFile()));
     folders.push({ relative, readmeNames });
     for (const dirent of dirents) {
-      if (!dirent.isDirectory() || dirent.name.startsWith('.') || dirent.name === 'node_modules') continue;
+      if (!dirent.isDirectory() || dirent.name.startsWith('.') || dirent.name === 'node_modules' ||
+          dirent.name === '__pycache__') continue;
       if (relative === '' && (dirent.name === RUNS_FOLDER || dirent.name === RELAYOUT_RUNS_FOLDER)) continue;
       pending.push(relative ? relative + '/' + dirent.name : dirent.name);
     }
