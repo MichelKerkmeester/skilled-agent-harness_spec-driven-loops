@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.42.0
+version: 1.0.43.0
 ---
 
 # Vendored Skilled Overlays
@@ -210,9 +210,18 @@ BLOCKED  u: other is a link that does not resolve, where overlay u writes
   Next: mv /path/to/tree/other /path/to/tree/other.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
-The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same lines with `MISS` in place of `BLOCKED`, except for a write through a layout link the tree does not have yet. `status` cannot make that link, so it prints only `MISS     layout: up is missing (link to target)`, and a link beyond it that leads outside the tree shows first in `apply`, after apply makes the link. That refusal names the link someone else made further along the chain, such as `target`, never the layout link apply makes again. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
+The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same lines with `MISS` in place of `BLOCKED`. That holds for a write through a layout link `apply` makes or moves before the writes, too. `status` cannot make that link, so it judges the write where the link will send it. A link beyond it that leads outside the tree prints as `MISS     tool: target is a link that leads outside the tree, to <landed>, where overlay tool writes`, after `MISS     layout: up is missing (link to target)`. Only that refusal is judged ahead. A block that shows only through the link, such as a project file where the entry writes a folder, shows first in `apply`, after it makes the link, and `apply` then writes nothing. That refusal names the link someone else made further along the chain, such as `target`, never the layout link apply makes again. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
 
-A layout link the tree lacks outright, with an entry destination at or under it, is made before the entry writes. Once the manifest's own links plan without a problem, `apply` makes each such link, plans every entry again through it and, when that plan passes, prints `linked up -> target` before the writes. When that second plan blocks, `apply` removes the links it made and any folders it made for them, prints that plan's `BLOCKED` lines and writes nothing. A link that retargets, replaces a pinned link or takes the place of the engine's own output keeps its turn after the writes.
+A layout link with an entry destination at or under it is made before the entry writes when the tree lacks it outright. The same holds when the engine made it and the manifest now points it at a new target. Once the manifest's own links plan without a problem, `apply` makes or moves each such link, plans every entry again through it and, when that plan passes, prints `linked up -> target` before the writes. When that second plan blocks, `apply` removes the links it made and any folders it made for them, puts each moved link back with the target it had, prints that plan's `BLOCKED` lines and writes nothing. A link that replaces a pinned link or takes the place of the engine's own output keeps its turn after the writes. On a filesystem that ignores letter case, a link and a destination that differ only in case, such as `Up` and `up/tool`, count as one path here.
+
+A moved link leaves in place the copy an earlier apply wrote through its old target, because that folder may hold other work. The state tracks only the new copy, and `apply` names the old one after the writes:
+
+```text
+NOTE     up now links to target2, and what apply wrote through it before stays at target/tool, no longer tracked
+  Next: rm -r /path/to/tree/target/tool, once nothing in the tree reads it
+```
+
+A file reads `rm` in place of `rm -r`. The note does not change the exit code. Remove the old copy once nothing reads it.
 
 A missing layout link inside a folder an entry writes, where the entry writes files at or below the link, can never be made after those writes. `status` and `apply` refuse it while planning, and `apply` writes nothing and exits 1:
 
@@ -223,6 +232,16 @@ BLOCKED  layout: tool/deep is a layout link inside tool, the folder overlay tool
 ```
 
 The general form is `<path> is a layout link inside <destination>, the folder overlay <id> writes`, and `status` prints the same lines after `MISS     layout:` and exits 1. Move the link out of that folder in the manifest, or drop those files from the overlay.
+
+A layout link whose folder leads outside the tree is refused while the manifest is planned, whether the folder leads out as the tree stands or once `apply` makes the manifest's link above it. `status` and `apply` exit 2 and write nothing, and the refusal names the link that leads out:
+
+```text
+[overlay-engine] layout link path escapes the tree root: a/b
+  the folder it sits in leads outside the tree through target, so a link made there would land outside it
+  Next: mv /path/to/tree/target /path/to/tree/target.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+A link on the way that does not resolve reads `the folder it sits in passes <link>, a link that does not resolve, so apply cannot tell where a link made there would land`. When no link on the way can be named, the why line reads `the folder it sits in leads outside the tree, so a link made there would land outside it`. A path that leaves the tree as text reads `a layout link is made only inside the tree`. Both then end with `Next: change the layout link <path> in <manifest> to a path inside the tree, then from <tree root>: node .skilled/commands/doctor/scripts/overlay-engine.cjs status`.
 
 Planning refuses a file or folder already standing at a layout link path, with `<path> exists but is not the link to <target>`. When one appears there after planning, `apply` stops at that link with exit 2 rather than delete it, and prints:
 
