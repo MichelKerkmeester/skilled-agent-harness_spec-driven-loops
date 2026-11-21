@@ -1,0 +1,1 @@
+{"event":"completed","label":"single","terminal":true,"reason":"maxIterationsReached","at":"2026-10-25T12:09:45Z","duration_ms":1973820,"loop_type":"research","sessionId":"fanout-luna-1792927892367-86umpv","generation":1,"gauges":{"iterations":10,"elapsed_ms":1973820,"score":0.12},"state_hash":"sha256:51f4dc1ce5c18ccd70f99a6508997f844aed057289950913a25659c21881e446"}

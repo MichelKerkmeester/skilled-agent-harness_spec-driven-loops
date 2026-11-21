@@ -1,0 +1,2 @@
+{"event":"started","label":"luna","loop_type":"research","sessionId":"fanout-luna-1788884019738-h5vslh","generation":1,"at":"2026-09-08T16:17:44Z"}
+{"event":"completed","label":"luna","loop_type":"research","sessionId":"fanout-luna-1788884019738-h5vslh","generation":1,"iterationsCompleted":10,"stopReason":"maxIterationsReached","researchFile":"specs/system-speckit/033-system-speckit-v4/034-v4-state-inventory-research/research/lineages/luna/research.md","at":"2026-09-08T19:35:00Z"}

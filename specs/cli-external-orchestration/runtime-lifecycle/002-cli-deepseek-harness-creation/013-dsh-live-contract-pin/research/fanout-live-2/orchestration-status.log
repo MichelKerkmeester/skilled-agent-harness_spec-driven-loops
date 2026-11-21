@@ -1,0 +1,7 @@
+{"event":"started","label":"dsh-live-2","index":0,"attempt":1,"at":"2026-11-06T16:05:40.456Z","gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"dsh-live-2","at":"2026-11-06T16:06:52.607Z","duration_ms":60002,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"dsh-live-2","at":"2026-11-06T16:07:52.607Z","duration_ms":120002,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"dsh-live-2","at":"2026-11-06T16:08:52.609Z","duration_ms":180004,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"dsh-live-2","at":"2026-11-06T16:09:52.610Z","duration_ms":240005,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"dsh-live-2","at":"2026-11-06T16:10:52.612Z","duration_ms":300007,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"completed","label":"dsh-live-2","index":0,"attempt":1,"at":"2026-11-06T16:12:00.998Z","duration_ms":380542,"terminal":true,"gauges":{"lag":0,"pending":0,"failed":0},"skippedCount":5,"slotDurationMs":380536.360333}

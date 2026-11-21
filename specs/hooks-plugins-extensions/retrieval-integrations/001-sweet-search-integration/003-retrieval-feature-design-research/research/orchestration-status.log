@@ -1,0 +1,1 @@
+{"event":"completed","label":"single","terminal":true,"reason":"maxIterationsReached","at":"2026-11-09T15:25:50Z","duration_ms":2028000,"loop_type":"research","sessionId":"2026-11-09T14:52:02Z","generation":1,"gauges":{"iterations":5,"elapsed_ms":2028000,"score":0},"state_hash":"sha256:c73875b8bb7f016ea9be4cf78a38cc10d45fbd5a8a5109774a2ae03e12b93e77"}

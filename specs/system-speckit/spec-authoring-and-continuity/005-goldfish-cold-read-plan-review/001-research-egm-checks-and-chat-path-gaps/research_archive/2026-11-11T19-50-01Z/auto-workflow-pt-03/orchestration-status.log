@@ -1,0 +1,13 @@
+{"event":"started","label":"auto-workflow-deepseek","index":0,"attempt":1,"at":"2026-11-11T19:26:43.018Z","gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"auto-workflow-deepseek","at":"2026-11-11T19:27:45.695Z","duration_ms":60002,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"auto-workflow-deepseek","at":"2026-11-11T19:28:45.697Z","duration_ms":120004,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"auto-workflow-deepseek","at":"2026-11-11T19:29:45.699Z","duration_ms":180006,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"auto-workflow-deepseek","at":"2026-11-11T19:30:45.700Z","duration_ms":240007,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"auto-workflow-deepseek","at":"2026-11-11T19:31:45.700Z","duration_ms":300007,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"auto-workflow-deepseek","at":"2026-11-11T19:32:45.701Z","duration_ms":360008,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"auto-workflow-deepseek","at":"2026-11-11T19:33:45.702Z","duration_ms":420009,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"auto-workflow-deepseek","at":"2026-11-11T19:34:45.703Z","duration_ms":480010,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"auto-workflow-deepseek","at":"2026-11-11T19:35:45.704Z","duration_ms":540011,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"completed","label":"auto-workflow-deepseek","index":0,"attempt":1,"at":"2026-11-11T19:36:20.086Z","duration_ms":577067,"terminal":true,"gauges":{"lag":0,"pending":0,"failed":0},"skippedCount":8,"slotDurationMs":577065.169625}
+{"event":"metadata_refresh_ok","status":"ok","spec_folder":"specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review","at":"2026-11-11T19:36:20.086Z","generator":"generate-description.js"}
+{"event":"metadata_refresh_ok","status":"ok","spec_folder":"specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review","at":"2026-11-11T19:36:20.150Z","generator":"backfill-graph-metadata.js"}
