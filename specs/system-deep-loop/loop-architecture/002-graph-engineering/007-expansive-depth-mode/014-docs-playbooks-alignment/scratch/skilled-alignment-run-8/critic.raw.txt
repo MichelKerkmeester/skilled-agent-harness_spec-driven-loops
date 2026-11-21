@@ -4417,7 +4417,7 @@ index 2937f260344..d1579380a79 100644
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 7799a67f677 --stat && git -c core.fsmonitor=false show 7799a67f677 -- .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md | head -80
 commit 7799a67f677576d07a9f1082fb3db8d9b6efbaa4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 08:14:00 2026 +0100
 
     docs(system-deep-loop): align expansive-depth docs with the shipped code
@@ -4477,7 +4477,7 @@ Date:   Wed Nov 18 08:14:00 2026 +0100
  README.md                                          |  2 +-
  38 files changed, 94 insertions(+), 74 deletions(-)
 commit 7799a67f677576d07a9f1082fb3db8d9b6efbaa4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 08:14:00 2026 +0100
 
     docs(system-deep-loop): align expansive-depth docs with the shipped code

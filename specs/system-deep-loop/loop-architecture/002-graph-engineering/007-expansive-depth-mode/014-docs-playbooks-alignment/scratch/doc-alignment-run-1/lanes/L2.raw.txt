@@ -819,7 +819,7 @@ commands/deep/assets/deep-review.yaml:206:  review_output: "{artifact_dir}/revie
  10 files changed, 106 insertions(+), 19 deletions(-)
 ===
 commit 8fda03e71357d5503c896ba99375b2e2bfdd9996
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:26:01 2026 +0100
 
     feat(deep): bind the review depth_mode flag beside convergence_mode
@@ -896,7 +896,7 @@ index 28261a6e2ff..f0f5b9c07a1 100644
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show 2c80c64f391 -- .skilled/commands/deep/review.md .skilled/commands/deep/research.md .skilled/commands/deep/assets/deep-review-presentation.txt | head -160
 commit 2c80c64f3915ebb71604d9ba5e3dd96498fc1293
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 20:04:16 2026 +0100
 
     feat(deep): extend a completed research or review run with --extend=N
@@ -1820,7 +1820,7 @@ EXIT:0
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show 8b44a506edb -- .skilled/commands/deep/assets/deep-review-presentation.txt | head -80
 commit 8b44a506edb1eda423dd22bdc061d84048baa0c4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 22:12:35 2026 +0100
 
     feat(system-deep-loop): describe and prove custom review dimensions

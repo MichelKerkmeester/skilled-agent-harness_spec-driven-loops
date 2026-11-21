@@ -166,7 +166,7 @@ aa30dc28f77 feat(system-deep-loop): partition the research frontier across fan-o
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show --stat f0f08e96f3d 6953b67c5dd 6d4adc8ef41 2c9405692a1 | head -60
 commit f0f08e96f3db643fe6b72815a8fb520120b19f0f
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:16:35 2026 +0100
 
     fix(system-deep-loop): reduce once after the frontier seed
@@ -186,7 +186,7 @@ Date:   Wed Nov 18 01:16:35 2026 +0100
  3 files changed, 81 insertions(+), 1 deletion(-)
 
 commit 6953b67c5dd03ce477c4df1be20d5fea9fee301d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:09:03 2026 +0100
 
     fix(deep): count extended runs by iteration when run holds a run id
@@ -210,7 +210,7 @@ Date:   Tue Nov 17 23:09:03 2026 +0100
  8 files changed, 60 insertions(+), 12 deletions(-)
 
 commit 6d4adc8ef419b8ebb53d8e709130b5984a1f1369
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:04:19 2026 +0100
 
     docs(system-deep-loop): document the expansive research frontier
@@ -228,7 +228,7 @@ Date:   Tue Nov 17 23:04:19 2026 +0100
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show f0f08e96f3d -- .skilled/commands/deep/assets/deep-research.yaml; git -c core.fsmonitor=false show 2c9405692a1 -- .skilled/commands/deep/assets/deep-research.yaml
 commit f0f08e96f3db643fe6b72815a8fb520120b19f0f
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:16:35 2026 +0100
 
     fix(system-deep-loop): reduce once after the frontier seed
@@ -264,7 +264,7 @@ index 5478a05fc80..48342314333 100644
          action: "Classify late-INIT spec.md state after the durable research packet exists"
          dry_run_event_policy: preview-only
 commit 2c9405692a1f0d08104a98fc596388e56495fab8
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:19:19 2026 +0100
 
     fix(system-deep-loop): match frontier visits on a reworded focus
@@ -318,7 +318,7 @@ b1f6c78482a refactor(cli-external-orchestration): retire the Cline provider and 
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show 391d83fbe6e -- .skilled/commands/deep/assets/deep-research-presentation.txt; git -c core.fsmonitor=false show 2c80c64f391 -- .skilled/commands/deep/assets/deep-research-presentation.txt
 commit 391d83fbe6e9f5acbf02c3554afafd71b9cab6cc
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 22:20:29 2026 +0100
 
     feat(deep): bind the research depth_mode flag beside convergence_mode
@@ -383,7 +383,7 @@ index ac3ae741f47..8eaa49f07af 100644
  ## 2. Dashboard / Checkpoint Layout
  
 commit 2c80c64f3915ebb71604d9ba5e3dd96498fc1293
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 20:04:16 2026 +0100
 
     feat(deep): extend a completed research or review run with --extend=N
@@ -430,7 +430,7 @@ index f83c3402dbc..ac3ae741f47 100644
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show 2c80c64f391 -- .skilled/commands/deep/assets/deep-research.yaml
 commit 2c80c64f3915ebb71604d9ba5e3dd96498fc1293
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 20:04:16 2026 +0100
 
     feat(deep): extend a completed research or review run with --extend=N
@@ -654,7 +654,7 @@ index f0820f8e102..918d5f7bb32 100644
 [0m$ [0mgit -c core.fsmonitor=false show 5e583331cc9 --stat; git -c core.fsmonitor=false show 5e583331cc9 -- .skilled/commands/deep/assets/deep-research.yaml
 commit 5e583331cc9cbf3284c1a925fa24d8d8797216a5
 Merge: 6b6cda9b796 7c2897f653d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:16:01 2026 +0100
 
     feat(system-deep-loop): integrate the research frontier mode
@@ -715,7 +715,7 @@ Date:   Tue Nov 17 23:16:01 2026 +0100
  46 files changed, 4109 insertions(+), 169 deletions(-)
 commit 5e583331cc9cbf3284c1a925fa24d8d8797216a5
 Merge: 6b6cda9b796 7c2897f653d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Tue Nov 17 23:16:01 2026 +0100
 
     feat(system-deep-loop): integrate the research frontier mode

@@ -1280,7 +1280,7 @@ ac1d2a6b7dc fix(system-deep-loop): write frontier graph events as one JSON array
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 9e0b02c49a6 -- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs | head -200
 commit 9e0b02c49a6178776643ea85c9d1c9aada99d3f4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:18:47 2026 +0100
 
     fix(system-deep-loop): repair expansive review frontier defects from the pilot

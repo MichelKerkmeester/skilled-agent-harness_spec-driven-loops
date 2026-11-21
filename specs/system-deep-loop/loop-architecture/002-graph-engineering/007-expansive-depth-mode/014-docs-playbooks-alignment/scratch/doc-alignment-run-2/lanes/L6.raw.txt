@@ -1244,7 +1244,7 @@ f0f08e96f3d fix(system-deep-loop): reduce once after the frontier seed
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 1642d622a3b -- .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs .skilled/commands/deep/assets/deep-research.yaml .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | head -200
 commit 1642d622a3b1f8383f84b9273e44cd3bf8041052
 Merge: 43eb6d47b8e f0f08e96f3d
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:25:57 2026 +0100
 
     feat(system-deep-loop): integrate the research frontier pilot fixes
@@ -1270,7 +1270,7 @@ ac1d2a6b7dc fix(system-deep-loop): write frontier graph events as one JSON array
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 54042891bf5 -- .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs | head -120; echo "==== f0f08 ===="; git -c core.fsmonitor=false show f0f08e96f3d -- .skilled/commands/deep/assets/deep-research.yaml | head -80
 commit 54042891bf5957a8f4e24ca3371c094442f0633c
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:12:31 2026 +0100
 
     fix(system-deep-loop): keep answered frontier nodes out of the budget close
@@ -1391,7 +1391,7 @@ index 813b5eca8f8..4f1c121673c 100644
 +      ? {
 ==== f0f08 ====
 commit f0f08e96f3db643fe6b72815a8fb520120b19f0f
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:16:35 2026 +0100
 
     fix(system-deep-loop): reduce once after the frontier seed
@@ -1429,7 +1429,7 @@ index 5478a05fc80..48342314333 100644
 > build · deepseek-v4.1-flash
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show 9e0b02c49a6 -- .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md | head -260
 commit 9e0b02c49a6178776643ea85c9d1c9aada99d3f4
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:18:47 2026 +0100
 
     fix(system-deep-loop): repair expansive review frontier defects from the pilot
