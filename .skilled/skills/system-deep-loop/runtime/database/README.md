@@ -19,6 +19,7 @@ Persistence layer for deep-loop graph state. Research, review and context script
 |------|---------|
 | `deep-loop-graph.sqlite` | SQLite database holding coverage-graph state across deep-* sessions |
 | `council-graph.sqlite` | Legacy AI Council graph database, kept on disk. No current script reads or writes it |
+| `observability-events.jsonl` | Gitignored runtime file. `status.cjs` and `convergence.cjs` append observability events to it beside the coverage-graph database, so it appears only after a run |
 
 ---
 

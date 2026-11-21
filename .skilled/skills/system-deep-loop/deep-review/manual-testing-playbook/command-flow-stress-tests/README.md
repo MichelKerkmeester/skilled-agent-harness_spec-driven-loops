@@ -1,7 +1,7 @@
 ---
 title: "Command-Flow Stress Tests: deep-review CP-05x scenarios"
 description: "Sandboxed scenarios validating the /deep:review command-level entrypoint, write boundary and leaf refusal behavior."
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # Command-Flow Stress Tests
@@ -20,7 +20,7 @@ Six scenarios, CP-052 to CP-057, plus the sandbox setup script. All six enter th
 
 ---
 
-## 3. SCENARIO CONTRACT
+## 3. CONTENTS
 
 Each scenario is one Markdown file named for its topic. Its sections follow the per-feature order: OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, SOURCE FILES and SOURCE METADATA. The table lists each file with its CP ID and the claim it proves.
 

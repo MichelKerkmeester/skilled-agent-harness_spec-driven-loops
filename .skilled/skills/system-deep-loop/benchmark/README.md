@@ -31,9 +31,9 @@ Note: the harness lived inside this hub, so `system-deep-loop` was scored by the
 | Corpus | system-deep-loop `manual_testing_playbook` (20 scenarios across 5 categories) |
 | Baseline verdict | CONDITIONAL · aggregate 71/100 (router mode) |
 | Scenario outcomes | 16/16 scored routing scenarios passed; 4 MR (mode-routing) scenarios are browser-class and route out to live mode |
-| D1 intra (router) | 100/100 |
-| D2 discovery | 100/100 |
-| D5 connectivity (hard gate) | 100/100 (every `hub-router.json` router resource resolves on disk; no orphaned vocabulary classes) |
+| D1 intra (router) | 100 of 100 |
+| D2 discovery | 100 of 100 |
+| D5 connectivity (hard gate) | 100 of 100 (every `hub-router.json` router resource resolves on disk; no orphaned vocabulary classes) |
 
 ### Known measurement gaps in this baseline
 

@@ -4,7 +4,7 @@ description: "The isolated rollout-mode core for command injection in the deep-l
 trigger_phrases:
   - "command injection rollout"
   - "rollout mode"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Command Injection Rollout
@@ -52,10 +52,3 @@ node .skilled/skills/system-deep-loop/shared/rollout/tests/validate-rollout.test
 ```
 
 Expected: the validator prints `[command-injection-rollout] evidence validation passed: <path>`, and the test files print `resolve-injection-mode tests passed (12 assertions)` and `validate-rollout tests passed (12 assertions)` after the `[command-injection-rollout]` prefix.
-
----
-
-## 4. DEFERRED SCOPE
-
-- Manifest capture: add emitter wiring later to capture fallback/fix manifests and fallback hashes from the live command-injection path.
-- Comparator: add the CI comparator later after capture data exists; do not stub fake capture or synthetic comparator logic here.
