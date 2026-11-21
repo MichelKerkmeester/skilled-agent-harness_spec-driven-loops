@@ -132,7 +132,7 @@ if [[ -r "$_bounded_git_lib" ]]; then
   git_bound_arm
 else
   echo "WARNING [gate:git-timeout]: $_bounded_git_lib is missing, so git calls here run without a time bound." >&2
-  echo "Next: bash $(_shell_words "$(cd "$(dirname "$_trust_self")/.." && pwd -P)/install-git-hooks.sh")" >&2
+  echo "Next: $(_from_root) bash $(_shell_words "$(cd "$(dirname "$_trust_self")/.." && pwd -P)/install-git-hooks.sh")" >&2
   # Unbounded fallbacks, used only when the bounded-git library is unreadable.
   git_bounded() { git -c core.fsmonitor=false "$@"; }
   git_bound_finish() { exit "$1"; }

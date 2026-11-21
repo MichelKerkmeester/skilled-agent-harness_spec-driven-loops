@@ -359,7 +359,8 @@ check_rc "allocator failure exits 0" 0 "$RC"
 check_same "allocator failure leaves the message untouched" "$TMP/before.txt" "$TMP/message.txt"
 check_absent "allocator failure stamps no id" '^Commit-Id:' "$TMP/message.txt"
 check_count "allocator failure reports one line" 'allocator failed' 1 "$TMP/out.log"
-check_count "allocator failure names the real allocate call" 'Next: bash .*commit-id-naming\.sh allocate$' 1 "$TMP/out.log"
+check_count "allocator failure names the real allocate call, from the repository root" \
+  "^  Next: from $(cd "$TMP" && pwd -P): bash .*commit-id-naming\\.sh allocate\$" 1 "$TMP/out.log"
 check_count "allocator failure warns that the rerun reserves an id" 'reserves' 1 "$TMP/out.log"
 
 # ── 14b. a lone hook copy names an installer that runs as pasted for any path ──
@@ -372,8 +373,8 @@ mkdir -p "$LONE/scripts/git-hooks"
 cp "$HOOK" "$LONE/scripts/git-hooks/prepare-commit-msg"
 printf 'feat(sk-git): probe the lone hook\n' > "$TMP/message.txt"
 ( cd "$TMP" && bash "$LONE/scripts/git-hooks/prepare-commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
-NEXT_LINE="$(grep -m1 -F 'Next: bash ' "$TMP/out.log" || true)"
-NEXT_WORDS="$(cd "$ODD_BASE" && eval "set -- ${NEXT_LINE#*Next: bash }" && printf '%s\n' "$@")"
+NEXT_LINE="$(grep -m1 -F "Next: from $(cd "$TMP" && pwd -P): bash " "$TMP/out.log" || true)"
+NEXT_WORDS="$(cd "$ODD_BASE" && eval "set -- ${NEXT_LINE#*: bash }" && printf '%s\n' "$@")"
 check_rc "a lone hook copy exits 0" 0 "$RC"
 if [[ -z "$NEXT_LINE" ]]; then
   fail "an odd-path installer runs as pasted" "no Next line in the log"

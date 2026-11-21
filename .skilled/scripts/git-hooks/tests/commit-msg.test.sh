@@ -586,7 +586,7 @@ cp "$HOOK" "$LONE/scripts/git-hooks/commit-msg"
 LONE_REAL="$(cd "$LONE" && pwd -P)"
 printf 'chore(sk-git): probe the lone hook\n' > "$TMP/message.txt"
 ( cd "$TMP" && bash "$LONE/scripts/git-hooks/commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
-check "a lone hook copy blocks on its missing helpers" 1 "$RC" "Next: bash $LONE_REAL/scripts/install-git-hooks.sh"
+check "a lone hook copy blocks on its missing helpers" 1 "$RC" "Next: from $(cd "$TMP" && pwd -P): bash $LONE_REAL/scripts/install-git-hooks.sh"
 rm -rf "$LONE"
 
 # ── the installer it names runs as pasted when its path holds a space and a $( ──
@@ -599,8 +599,8 @@ mkdir -p "$LONE/scripts/git-hooks"
 cp "$HOOK" "$LONE/scripts/git-hooks/commit-msg"
 printf 'chore(sk-git): probe the lone hook\n' > "$TMP/message.txt"
 ( cd "$TMP" && bash "$LONE/scripts/git-hooks/commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
-NEXT_LINE="$(grep -m1 -F 'Next: bash ' "$TMP/out.log" || true)"
-NEXT_WORDS="$(cd "$ODD_BASE" && eval "set -- ${NEXT_LINE#*Next: bash }" && printf '%s\n' "$@")"
+NEXT_LINE="$(grep -m1 -F "Next: from $(cd "$TMP" && pwd -P): bash " "$TMP/out.log" || true)"
+NEXT_WORDS="$(cd "$ODD_BASE" && eval "set -- ${NEXT_LINE#*: bash }" && printf '%s\n' "$@")"
 if [[ "$RC" -ne 1 || -z "$NEXT_LINE" ]]; then
   echo "FAIL  an odd-path lone hook names its installer: rc $RC, line '$NEXT_LINE'"; FAIL=$((FAIL + 1))
 elif [[ -e "$ODD_BASE/MARKER" ]]; then

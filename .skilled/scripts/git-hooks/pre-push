@@ -331,7 +331,7 @@ while read -r _ local_sha remote_ref remote_sha; do
         echo "  Next: git push" >&2
       else
         echo "  The validator and helpers sit beside the hook script; relink the hooks to a checkout that has them." >&2
-        echo "  Next: bash $(_shell_words "$INSTALLER")" >&2
+        echo "  Next: from $(_shell_words "$REPO_ROOT"): bash $(_shell_words "$INSTALLER")" >&2
       fi
       REJECTED=1
       continue
@@ -382,7 +382,7 @@ while read -r _ local_sha remote_ref remote_sha; do
   if [[ ! "$local_sha" =~ ^0+$ ]]; then
     if [[ "$COMMIT_ID_BROKEN" -eq 1 ]]; then
       echo "BLOCKED [gate:commit-id]: the hook helpers are missing at $HOOK_DIR/lib, so Commit-Id trailers cannot be checked." >&2
-      echo "  Next: bash $(_shell_words "$INSTALLER")" >&2
+      echo "  Next: from $(_shell_words "$REPO_ROOT"): bash $(_shell_words "$INSTALLER")" >&2
       REJECTED=1
       continue
     fi
