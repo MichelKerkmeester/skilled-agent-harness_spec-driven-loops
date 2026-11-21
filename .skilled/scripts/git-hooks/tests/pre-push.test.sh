@@ -393,6 +393,20 @@ cid_expect "skilled.commitId false exempts the repository" 0 \
   "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA"
 rm -rf "$CID"
 
+# ── an autosync live push over the deletion ceiling names the manual publish ──
+# The publisher sits under the fixture's .opencode source root and runs from the repository root.
+mkdir -p "$TMP/.opencode/scripts/git-hooks/lib"
+cp "$REPO_ROOT/.opencode/scripts/git-hooks/lib/mass-deletion-guard.sh" "$TMP/.opencode/scripts/git-hooks/lib/"
+printf 'a\n' > "$TMP/del-a.txt"; printf 'b\n' > "$TMP/del-b.txt"
+git -C "$TMP" add del-a.txt del-b.txt; git -C "$TMP" commit -q -m 'two files'
+DEL_BASE="$(git -C "$TMP" rev-parse HEAD)"
+git -C "$TMP" rm -q del-a.txt del-b.txt; git -C "$TMP" commit -q -m 'drop two files'
+expect_hook_says "a blocked autosync publish names the manual publish under the source root" \
+  1 "Manual publish:  from $(cd "$TMP" && pwd -P): bash .opencode/bin/git-sync.sh --live live" \
+  "refs/heads/live $(git -C "$TMP" rev-parse HEAD) refs/heads/live $DEL_BASE" \
+  SPECKIT_AUTOSYNC=1 SPECKIT_LIVE_BRANCH=live SPECKIT_MASS_DELETION_THRESHOLD=1
+rm -rf "$TMP/.opencode/scripts"
+
 # ── report ──────────────────────────────────────────────────────
 echo "pre-push tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]

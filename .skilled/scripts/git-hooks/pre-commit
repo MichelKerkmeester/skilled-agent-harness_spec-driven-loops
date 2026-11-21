@@ -74,6 +74,8 @@ _shell_words() {
   printf '%s' "${_words% }"
 }
 _shown_word() { _shell_words "$(_shown_path "$1")"; }
+# Those paths resolve only from the repository root, so a Next line naming one says where to run it.
+_from_root() { printf 'from %s:' "$(_shell_words "$REPO_ROOT")"; }
 # Quotes the NUL-separated paths on stdin as one word list.
 _shell_words_nul() {
   local _item _items=()
@@ -97,10 +99,10 @@ if [ -n "$REPO_ROOT" ] && [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
 elif _in_toolchain_repo && [ -e "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
   # Restoring would overwrite any edit to a file that is only unreadable.
   echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is unreadable; commit gates remain enabled." >&2
-  echo "Next: chmod +r $(_shown_word "$SOURCE_ROOT/hooks/shared/hook-flags.sh")" >&2
+  echo "Next: $(_from_root) chmod +r $(_shown_word "$SOURCE_ROOT/hooks/shared/hook-flags.sh")" >&2
 elif _in_toolchain_repo; then
   echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is missing; commit gates remain enabled." >&2
-  echo "Next: git restore --source=HEAD --staged --worktree -- $(_shown_word "$SOURCE_ROOT/hooks/shared/hook-flags.sh")" >&2
+  echo "Next: $(_from_root) git restore --source=HEAD --staged --worktree -- $(_shown_word "$SOURCE_ROOT/hooks/shared/hook-flags.sh")" >&2
   echo "$RESTORE_NOTE" >&2
 fi
 
@@ -284,7 +286,7 @@ if [[ "${SPECKIT_SKIP_PHRASE_LINT:-0}" != "1" ]] && _in_toolchain_repo; then
     echo "" >&2
     echo "BLOCKED [gate:template-phrase-lint]: staged trigger phrases contain a template or editor fallback." >&2
     echo "Fix the phrase named above and git add its file, then re-check with:" >&2
-    echo "Next: node $(_shown_word "$PHRASE_LINTER")" >&2
+    echo "Next: $(_from_root) node $(_shown_word "$PHRASE_LINTER")" >&2
     echo "Fix the phrase, or bypass with SPECKIT_SKIP_PHRASE_LINT=1 git commit ..." >&2
     exit 1
   fi

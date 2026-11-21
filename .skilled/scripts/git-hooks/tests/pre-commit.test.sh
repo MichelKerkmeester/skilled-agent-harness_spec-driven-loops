@@ -430,7 +430,8 @@ setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 run_hook; RC=$?
 check "a missing kill switch warns and leaves gates on" 0 "$RC" "hook-flags.sh is missing"
-check "a missing kill switch is restored from HEAD" 0 "$RC" "Next: git restore --source=HEAD"
+check "a missing kill switch is restored from HEAD, from the repository root" 0 "$RC" \
+  "Next: from $(cd "$TMP" && pwd -P): git restore --source=HEAD --staged --worktree -- .opencode/hooks/shared/hook-flags.sh"
 
 # ── 23b. a kill switch that is present but unreadable is made readable, not restored ──
 setup_gate_fixture toolchain
@@ -441,13 +442,25 @@ chmod 000 "$SR/hooks/shared/hook-flags.sh"
 stage_new "notes.md" "note"
 run_hook; RC=$?
 check "an unreadable kill switch warns and leaves gates on" 0 "$RC" "hook-flags.sh is unreadable"
-check "an unreadable kill switch is made readable" 0 "$RC" "Next: chmod +r"
+check "an unreadable kill switch is made readable, from the repository root" 0 "$RC" \
+  "Next: from $(cd "$TMP" && pwd -P): chmod +r .opencode/hooks/shared/hook-flags.sh"
 if grep -q "git restore.*hook-flags" "$TMP/out.log"; then
   echo "FAIL  an unreadable kill switch is not restored over"; FAIL=$((FAIL + 1))
 else
   echo "PASS  an unreadable kill switch is not restored over"; PASS=$((PASS + 1))
 fi
 chmod 644 "$SR/hooks/shared/hook-flags.sh"
+
+# ── 23c. a phrase-lint refusal names the re-check from the repository root ──
+setup_gate_fixture toolchain
+PL=".opencode/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs"
+mkdir -p "$TMP/$(dirname "$PL")"
+printf 'process.exit(1);\n' > "$TMP/$PL"
+stage_new "notes.md" "note"
+run_hook; RC=$?
+check "a phrase-lint finding blocks" 1 "$RC" "BLOCKED \[gate:template-phrase-lint\]"
+check "the phrase-lint re-check runs from the repository root" 1 "$RC" \
+  "Next: from $(cd "$TMP" && pwd -P): node $PL"
 
 # ── 24. a missing comment checker blocks where the toolchain ships ──
 setup_gate_fixture toolchain

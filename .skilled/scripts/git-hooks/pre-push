@@ -302,7 +302,7 @@ while read -r _ local_sha remote_ref remote_sha; do
         echo "AUTOSYNC BLOCKED [gate:mass-deletion]: live branch '$branch_name'." >&2
         echo "   The mass-deletion ceiling (${SPECKIT_MASS_DELETION_THRESHOLD:-100} tracked files) blocked it." >&2
         echo "   A session likely committed against a stale tree. Inspect the range, then publish manually." >&2
-        echo "   Manual publish:  bash .skilled/bin/git-sync.sh --live $branch_name" >&2
+        printf '   Manual publish:  from %q: bash %q --live %q\n' "$REPO_ROOT" "${SOURCE_ROOT#"$REPO_ROOT"/}/bin/git-sync.sh" "$branch_name" >&2
       fi
       REJECTED=1
       continue
