@@ -56,6 +56,10 @@ function writeCompletedLineageState(lineageDir, loopTypes = ['research', 'review
 
 if (require.main === module) {
   const [lineageDir, ...loopTypes] = process.argv.slice(2);
+  if (!lineageDir) {
+    process.stderr.write('Usage: node completed-lineage-state.cjs <lineageDir> [research|review ...]\n');
+    process.exit(2);
+  }
   writeCompletedLineageState(lineageDir, loopTypes.length > 0 ? loopTypes : undefined);
 }
 

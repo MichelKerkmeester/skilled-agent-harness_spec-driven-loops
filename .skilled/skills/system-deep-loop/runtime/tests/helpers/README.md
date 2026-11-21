@@ -20,7 +20,7 @@ This folder contains the shared helpers for tests that invoke CommonJS runtime s
 
 | File | Responsibility |
 |---|---|
-| `completed-lineage-state.cjs` | Writes the state rows and one ledger frame of a finished lineage, so a stub executor passes the runner's checks. Callable with `require` or as `node completed-lineage-state.cjs <lineageDir> [research\|review ...]`. |
+| `completed-lineage-state.cjs` | Writes the state rows and one ledger frame of a finished lineage, so a stub executor passes the runner's checks. Callable with `require` or as `node completed-lineage-state.cjs <lineageDir> [research\|review ...]`, which prints usage and exits 2 when `<lineageDir>` is missing. |
 | `gateway-backed-lineage.ts` | Builds shell and Node snippets that let a stub executor append its state rows through the real `append-mode-event.cjs` gateway. Also exports `resolveRepositoryRoot`. |
 | `legacy-real-log.ts` | Reads the captured legacy research, review and journal JSONL logs and lists the records a compatibility decision blocks as `unknown-legacy-record`. |
 | `spawn-cjs.ts` | Spawns a CommonJS runtime entry point and captures its process result for assertions. Also builds the hermetic child environment (`createHermeticEnv`). |

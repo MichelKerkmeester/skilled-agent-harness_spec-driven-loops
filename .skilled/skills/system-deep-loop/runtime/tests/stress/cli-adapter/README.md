@@ -90,7 +90,7 @@ Run from the repository root. The validator loads the manifest, discovers the re
 node .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/validate-playbook-package.cjs
 ```
 
-Expected result: a `PASS: CLI adapter stress matrix bijection` line followed by the cell, test and playbook counts, and exit code 0. Gaps are listed after a `Gaps:` heading and set a non-zero exit code. The validator currently prints FAIL with `0 discovered` tests: the runtime config's `parallel` and `serial` projects make `vitest list` prefix each line with `[serial]`, and its discovery step keeps only lines that start with the test directory.
+Expected result: a `PASS: CLI adapter stress matrix bijection` line followed by the cell, test and playbook counts, and exit code 0. Gaps are listed after a `Gaps:` heading and set a non-zero exit code. Discovery strips the project name that the runtime config's `parallel` and `serial` projects put in front of each `vitest list` line, as in `[serial] `.
 
 Run the suites themselves with the runtime test configuration.
 

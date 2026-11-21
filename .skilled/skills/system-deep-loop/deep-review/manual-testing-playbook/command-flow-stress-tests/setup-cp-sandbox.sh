@@ -53,11 +53,17 @@ require_path() {
   exit 1
 }
 
-# Guard the destructive rm -rf: the sandbox dir must be a concrete absolute
-# path strictly under /tmp/ with no '..' traversal, so a stray or malicious
-# --sandbox-dir value can never wipe a real directory outside the sandbox.
+# Guard the destructive rm -rf: the sandbox dir must name a child of /tmp, not
+# /tmp itself, and must still sit inside /tmp once symlinks are resolved, so a
+# stray or malicious --sandbox-dir value can never wipe /tmp or a directory a
+# link under /tmp points to.
 validate_sandbox_dir() {
   local dir="$1"
+  local trimmed
+  local existing
+  local tail=""
+  local resolved
+  local tmp_real
   if [[ -z "$dir" ]]; then
     echo "ERROR: sandbox dir must not be empty" >&2
     exit 2
@@ -66,14 +72,36 @@ validate_sandbox_dir() {
     echo "ERROR: sandbox dir must be an absolute path: $dir" >&2
     exit 2
   fi
-  case "$dir" in
-    ..|../*|*/..|*/../*)
-      echo "ERROR: sandbox dir must not contain '..': $dir" >&2
+  case "/${dir}/" in
+    */./*|*/../*)
+      echo "ERROR: sandbox dir must not contain '.' or '..' segments: $dir" >&2
       exit 2
       ;;
   esac
   if [[ "$dir" != /tmp/* ]]; then
     echo "ERROR: sandbox dir must be under /tmp/: $dir" >&2
+    exit 2
+  fi
+
+  # Resolve the deepest part of the path that exists (a link counts, even a
+  # dangling one), then append the parts that do not exist yet.
+  trimmed="$dir"
+  while [[ "$trimmed" == */ ]]; do
+    trimmed="${trimmed%/}"
+  done
+  existing="$trimmed"
+  while [[ ! -e "$existing" && ! -L "$existing" ]]; do
+    tail="/${existing##*/}${tail}"
+    existing="${existing%/*}"
+  done
+  tmp_real="$(CDPATH='' cd -- /tmp && pwd -P)"
+  if ! resolved="$(CDPATH='' cd -- "$existing" 2>/dev/null && pwd -P)"; then
+    echo "ERROR: sandbox dir must resolve inside /tmp/: $dir" >&2
+    exit 2
+  fi
+  resolved="${resolved}${tail}"
+  if [[ "$resolved" != "$tmp_real"/?* ]]; then
+    echo "ERROR: sandbox dir must resolve inside /tmp/: $dir" >&2
     exit 2
   fi
 }

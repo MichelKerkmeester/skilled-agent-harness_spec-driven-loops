@@ -270,6 +270,7 @@ function writeNegControlHelper(helperPath: string): void {
   const helper = `import { createDeepResearchDeltasProjectionContract } from ${JSON.stringify(CONTRACT_PATH.replace(/\\.ts$/, '.js'))};
 import { foldLegacyProjectionSurface } from ${JSON.stringify(resolve(runtimeRoot, 'lib', 'legacy-projections', 'legacy-projection-surface-fold.js'))};
 import type { EventReadResult } from ${JSON.stringify(resolve(runtimeRoot, 'lib', 'event-envelope', 'index.js'))};
+import type { LedgerHead } from ${JSON.stringify(resolve(runtimeRoot, 'lib', 'authorized-ledger', 'index.js'))};
 const TS = ${JSON.stringify(FIXED_TS)};
 function ev(stem: string, scope: Record<string, unknown>, data: Record<string, unknown>): EventReadResult {
   return { effective: { envelope: { event_type: 'x', occurred_at: TS, payload: { stem, scope, data } } } } as unknown as EventReadResult;
@@ -279,8 +280,8 @@ const events: EventReadResult[] = [
   ev('deep_research.iteration_completed', { runId: 'r', lineageId: 'l', iteration: 2 }, { status: 'insight', rawNewInfoRatio: 0.6, trustedEvidenceYield: 0.4, outputDigest: 'd', ruledOutApproachRefs: [], nextFocusCausationId: 'c' }),
 ];
 const surface = createDeepResearchDeltasProjectionContract();
-const head = { ledgerId: 'deep-research-ledger', sequence: 0, recordHash: '0'.repeat(64) };
-const folded = foldLegacyProjectionSurface(surface, events, head as any);
+const head: LedgerHead = { ledgerId: 'deep-research-ledger', sequence: 0, recordHash: '0'.repeat(64) };
+const folded = foldLegacyProjectionSurface(surface, events, head);
 const artifactCount = folded.length;
 const paths = folded.map((a) => a.relativePath);
 const iter1Rows = folded.find((a) => a.relativePath === 'research/deltas/iter-001.jsonl');

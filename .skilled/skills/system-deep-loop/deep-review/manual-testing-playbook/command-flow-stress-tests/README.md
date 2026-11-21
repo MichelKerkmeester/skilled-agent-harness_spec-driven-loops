@@ -1,7 +1,7 @@
 ---
 title: "Command-Flow Stress Tests: deep-review CP-05x scenarios"
 description: "Sandboxed scenarios validating the /deep:review command-level entrypoint, write boundary and leaf refusal behavior."
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Command-Flow Stress Tests
@@ -38,7 +38,7 @@ Each scenario is one Markdown file named for its topic. Its sections follow the 
 
 ## 4. TEST ENVIRONMENTS
 
-Scenarios run under `/tmp/cp-0xx-sandbox/` and `/tmp/cp-0xx-spec/`, against a synthetic spec folder. Provision the shared fixture tree with `setup-cp-sandbox.sh` before the first run, as the root playbook index describes. The script builds `/tmp/cp-deep-review-sandbox` by default and takes `--sandbox-dir PATH` to build it elsewhere.
+Scenarios run under `/tmp/cp-0xx-sandbox/` and `/tmp/cp-0xx-spec/`, against a synthetic spec folder. Provision the shared fixture tree with `setup-cp-sandbox.sh` before the first run, as the root playbook index describes. The script builds `/tmp/cp-deep-review-sandbox` by default and takes `--sandbox-dir PATH` to build it elsewhere under `/tmp/`. Because it deletes that path first, it refuses `/tmp` itself, any `.` or `..` segment and a path that resolves outside `/tmp` through a symlink, with exit code 2.
 
 ---
 

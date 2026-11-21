@@ -287,6 +287,7 @@ function writeNegControlHelper(helperPath: string): void {
   const helper = `import { createDeepResearchProjectionsProjectionContract } from ${JSON.stringify(CONTRACT_PATH.replace(/\\.ts$/, '.js'))};
 import { foldLegacyProjectionSurface } from ${JSON.stringify(resolve(runtimeRoot, 'lib', 'legacy-projections', 'legacy-projection-surface-fold.js'))};
 import type { EventReadResult } from ${JSON.stringify(resolve(runtimeRoot, 'lib', 'event-envelope', 'index.js'))};
+import type { LedgerHead } from ${JSON.stringify(resolve(runtimeRoot, 'lib', 'authorized-ledger', 'index.js'))};
 const TS = ${JSON.stringify(FIXED_TS)};
 function ev(stem: string, scope: Record<string, unknown>, data: Record<string, unknown>): EventReadResult {
   return { effective: { envelope: { event_type: 'x', occurred_at: TS, payload: { stem, scope, data } } } } as unknown as EventReadResult;
@@ -297,8 +298,8 @@ const events: EventReadResult[] = [
   ev('deep_research.claim_relation_recorded', { runId: 'r', lineageId: 'l', iteration: 1, claimVersionId: 'cv2' }, { claimId: 'c1', relatedClaimVersionId: 'cv1', evidenceIds: [], relation: 'supports', independenceGroup: 'ig', rawConfidence: 0.5, claimStatus: 'supported' }),
 ];
 const surface = createDeepResearchProjectionsProjectionContract();
-const head = { ledgerId: 'deep-research-ledger', sequence: 0, recordHash: '0'.repeat(64) };
-const folded = foldLegacyProjectionSurface(surface, events, head as any);
+const head: LedgerHead = { ledgerId: 'deep-research-ledger', sequence: 0, recordHash: '0'.repeat(64) };
+const folded = foldLegacyProjectionSurface(surface, events, head);
 const registry = JSON.parse(new TextDecoder().decode(folded[0].bytes));
 const claimsCount = registry.claims.length;
 const sourcesCount = registry.sources.length;
