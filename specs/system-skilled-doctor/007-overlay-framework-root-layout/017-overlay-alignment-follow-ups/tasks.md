@@ -56,8 +56,8 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T009 Run `@review` over `bf6806ad4b3..7153a45a8b9` and this branch, and fix until it approves (`implementation-summary.md`). Verify: the last round prints an APPROVE verdict with no P0 or P1.
-- [ ] T010 Merge into local main with `--no-ff` and a `Spec:` trailer, then remove the worktree and branch without force (`main`). Verify: `git branch --list 'worktrees/500-*'` prints nothing.
-- [ ] T011 Rerun the gates and strict recursive validation on merged main (`007` parent). Verify: every suite exits 0 and validation prints 17 `RESULT: PASSED` lines.
+- [x] T010 Merge into local main with `--no-ff` and a `Spec:` trailer, then remove the worktree and branch without force (`main`). Verify: `git branch --list 'worktrees/500-*'` prints nothing.
+- [x] T011 Rerun the gates and strict recursive validation on merged main (`007` parent). Verify: every suite exits 0 and validation prints 17 `RESULT: PASSED` lines.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 - [x] The final review verdict is recorded in `implementation-summary.md`
 <!-- /ANCHOR:completion -->
 

@@ -56,9 +56,9 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] Each fix has a test that failed on the unfixed script and passes on merged main.
-- [ ] The final `@review` round approves with no P0 or P1, recorded in `implementation-summary.md`.
-- [ ] `validate.sh` on the 007 parent with `--recursive --strict` prints `RESULT: PASSED` for every folder.
+- [x] Each fix has a test that failed on the unfixed script and passes on merged main.
+- [x] The final `@review` round approves with no P0 or P1, recorded in `implementation-summary.md`.
+- [x] `validate.sh` on the 007 parent with `--recursive --strict` prints `RESULT: PASSED` for every folder.
 <!-- /ANCHOR:completion -->
 
 ---

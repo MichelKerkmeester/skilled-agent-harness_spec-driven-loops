@@ -40,9 +40,9 @@ Two scripts change: the router-sync guard's orphan walk and the overlay engine's
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` and the router-sync suite exit 0 on merged main
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` and the router-sync suite exit 0 on merged main
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
