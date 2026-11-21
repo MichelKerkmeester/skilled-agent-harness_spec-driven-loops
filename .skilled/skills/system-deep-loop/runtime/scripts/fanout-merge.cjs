@@ -398,7 +398,7 @@ function titleOverlap(aTokens, bTokens) {
 // "retry") while genuinely-distinct titles share no content token at all.
 const TITLE_DISTINCT_OVERLAP_THRESHOLD = 0.15;
 
-// Title-aware near-dup match (deep-review P2-15 fix): two findings are near-duplicates
+// Title-aware near-dup match: two findings are near-duplicates
 // only if their body-content key matches AND their titles are not substantively divergent.
 // This closes the title blind spot — genuinely-distinct findings that share an identical
 // body but carry different distinguishing titles no longer collapse — without breaking the
@@ -531,7 +531,7 @@ function getFindingBucket(index, id, finding, enableNearDuplicateDedup) {
     return exactBucket;
   }
 
-  // Title-aware bucketing (deep-review P2-15 fix): a content key can host MORE than one
+  // Title-aware bucketing: a content key can host MORE than one
   // bucket when several genuinely-distinct findings share an identical body but carry
   // divergent titles. byContent maps a content key to the LIST of buckets seen for it; a
   // same-body finding joins the bucket whose records its title actually matches, and
@@ -782,6 +782,7 @@ function shouldMergeFrontier(lineageData, frontierPartition) {
   return Object.values(frontierPartition).some((ids) => Array.isArray(ids) && ids.length > 0);
 }
 
+/** Merges every lineage's frontier nodes under lineage-qualified ids with per-status counts, and when a partition is given reports any assigned node no lineage returned. */
 function mergeResearchFrontier(lineageData, frontierPartition) {
   const nodes = [];
   for (const { label, registry } of [...lineageData].sort((left, right) => compareText(left.label, right.label))) {

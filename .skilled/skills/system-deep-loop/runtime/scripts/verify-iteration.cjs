@@ -89,6 +89,7 @@ const INVOCATION_METADATA = 'invocation-metadata.json';
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────────
 
+/** Left-pads an iteration number with zeros to three digits. */
 function pad3(n) {
   return String(n).padStart(3, '0');
 }
@@ -112,6 +113,7 @@ function readJsonlRecords(filePath) {
   return readJsonlRecordsDetailed(filePath).records;
 }
 
+/** Parses a JSONL file into its records and the line numbers that failed to parse; `records` is null when the file cannot be read. */
 function readJsonlRecordsDetailed(filePath) {
   let raw;
   try {
@@ -467,6 +469,7 @@ function dispatchFailure(artifactDir, iteration) {
   return `dispatch ${dispatchId}: ${parts.join(', ')}; no iterations/iteration-${pad3(iteration)}*.md written`;
 }
 
+/** Checks that an iteration left its narrative, state-log record, delta file, route proof and, for a non-native executor, its provenance; returns `ok` with a reason and detail, plus the ledger backing and any warnings on success. */
 function verify(loopType, artifactDir, iteration) {
   const leaf = LEAF_BY_LOOP[loopType];
   const stateLogName = STATE_LOG_BY_LOOP[loopType];

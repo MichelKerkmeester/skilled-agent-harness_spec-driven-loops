@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: runtime/ Vitest Config
+// ───────────────────────────────────────────────────────────────────
 //
 // Self-contained discovery config so the runtime suite runs from this skill
 // root (npm test) without borrowing the system-spec-kit runtime config.

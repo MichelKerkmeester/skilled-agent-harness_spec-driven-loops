@@ -55,6 +55,7 @@ if (require.main === module && !isTsxLoaded) {
 // 2. MAIN IMPLEMENTATION (under tsx)
 // ─────────────────────────────────────────────────────────────────────────────
 
+/** Parses `--flag value` pairs into a camelCase object, where a flag with no value becomes `true`; a positional argument throws. */
 function parseArgs(argv = process.argv.slice(2)) {
   const args = {};
   for (let i = 0; i < argv.length; i += 1) {
@@ -83,6 +84,7 @@ function flagName(key) {
   return `--${key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)}`;
 }
 
+/** Checks that a legacy projection file still matches the watermark the ledger gateway last published, prints one JSON verdict and exits 0 when it matches or the mode is not enforced, 2 on a violation and 1 on bad arguments. */
 async function main() {
   const fs = require('node:fs');
   const path = require('node:path');

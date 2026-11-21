@@ -108,6 +108,7 @@ function fail(error) {
   process.exit(1);
 }
 
+/** Parses `--repo-root` and `--help`; an unknown flag is recorded in `error` rather than thrown. */
 function parseArgs(argv) {
   const out = { repoRoot: null };
   for (let index = 0; index < argv.length; index += 1) {
@@ -207,6 +208,7 @@ function parseCensus(text, declaration) {
   return entries;
 }
 
+/** Scans the producer files for emitted and interpolated ledger stems, and records each producer file that cannot be read instead of failing. */
 function scanEmitters(repoRoot) {
   const emitters = [];
   const interpolated = [];
@@ -378,6 +380,7 @@ function evaluateMode(spec, repoRoot, emitters, missingFiles, interpolated = [])
   };
 }
 
+/** Prints one JSON report of registered, spoken and reserved stems and returns 0 when no violation is found, 2 on violations and 1 on a bad flag or repo root. */
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   if (args.help) {
