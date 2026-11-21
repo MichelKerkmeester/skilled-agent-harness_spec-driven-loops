@@ -34,6 +34,10 @@ import { deriveReceiptKey, signReceipt } from './receipt-crypto.js';
 
 export const CLI_DISPATCH_STACK_ENV = 'SPECKIT_CLI_DISPATCH_STACK' as const;
 export const FANOUT_LINEAGE_ENV = 'SPECKIT_FANOUT_LINEAGE_ID' as const;
+// An operator who starts a dispatch from their own CLI session on purpose sets this to
+// exactly '1'. It relaxes only the two checks that detect that host session, never the
+// lineage, stack or lockfile layers, and the child never inherits it.
+export const HOST_SESSION_EXECUTOR_ENV = 'SPECKIT_ALLOW_HOST_SESSION_EXECUTOR' as const;
 
 // A guard refusal is a route violation, not an executor outcome. It must not read as
 // a clean dispatch to the caller, so it exits distinctly from success (0) and from the
@@ -59,7 +63,7 @@ export type RecursionGuardFailureReason =
   | 'recursion-guard-lockfile';
 
 export type ExecutorDispatchAllowedResult =
-  | { allowed: true }
+  | { allowed: true; relaxedLayers?: RecursionGuardLayer[] }
   | {
       allowed: false;
       reason: RecursionGuardFailureReason;
@@ -306,6 +310,23 @@ function isAllowedExecutorEnvKey(key: string, kind: ExecutorKind): boolean {
 
 function recursionReasonForLayer(layer: RecursionGuardLayer): RecursionGuardFailureReason {
   return `recursion-guard-${layer}` as RecursionGuardFailureReason;
+}
+
+// A relaxed verdict is reported where the dispatch runs, so the operator sees it once and
+// every receipt and failure row of that dispatch carries the layers it skipped.
+function applyHostSessionRelaxation(
+  input: RunAuditedExecutorCommandInput,
+  verdict: Extract<ExecutorDispatchAllowedResult, { allowed: true }>,
+): RunAuditedExecutorCommandInput {
+  if (!verdict.relaxedLayers) {
+    return input;
+  }
+  const kind = getExecutorKind(input.executor);
+  process.stderr.write(
+    `${HOST_SESSION_EXECUTOR_ENV}=1 relaxed the ${kind} recursion guard`
+      + ` [${verdict.relaxedLayers.join(', ')}]: dispatching from the host session on purpose\n`,
+  );
+  return { ...input, executor: { ...input.executor, recursionGuardRelaxed: verdict.relaxedLayers } as ExecutorConfig };
 }
 
 function splitDispatchStack(stack: string | undefined): string[] {
@@ -1018,26 +1039,38 @@ export function validateExecutorDispatchAllowed(
   }
 
   const selfPresenceExempt = SELF_PRESENCE_EXEMPT_KINDS.has(kind);
+  const hostSessionAllowed = env[HOST_SESSION_EXECUTOR_ENV] === '1';
+  const relaxedLayers: RecursionGuardLayer[] = [];
 
   if (!selfPresenceExempt && detectFromAncestry(kind, context.ancestryCmdlines)) {
-    return {
-      allowed: false,
-      layer: 'ancestry',
-      reason: recursionReasonForLayer('ancestry'),
-      detail: `${kind} executor binary appears in process ancestry`,
-    };
+    if (hostSessionAllowed) {
+      relaxedLayers.push('ancestry');
+    } else {
+      return {
+        allowed: false,
+        layer: 'ancestry',
+        reason: recursionReasonForLayer('ancestry'),
+        detail: `${kind} executor binary appears in process ancestry`,
+      };
+    }
   }
 
   if (detectFromRuntimeEnv(kind, env)) {
-    const envName = EXECUTOR_SESSION_ENV_BY_KIND[kind] ?? 'runtime session env';
-    return {
-      allowed: false,
-      layer: 'env',
-      reason: recursionReasonForLayer('env'),
-      detail: `${envName} is set for ${kind}`,
-    };
+    if (hostSessionAllowed) {
+      relaxedLayers.push('env');
+    } else {
+      const envName = EXECUTOR_SESSION_ENV_BY_KIND[kind] ?? 'runtime session env';
+      return {
+        allowed: false,
+        layer: 'env',
+        reason: recursionReasonForLayer('env'),
+        detail: `${envName} is set for ${kind}`,
+      };
+    }
   }
 
+  // The switch does not reach this check: an inherited harness state env points a leaf at
+  // the operator's harness state, which is a lineage hazard, not a sign of the host session.
   if (
     kind === 'cli-deepseek-harness'
     && (EXECUTOR_STATE_ENV_BY_KIND[kind] ?? [])
@@ -1064,7 +1097,7 @@ export function validateExecutorDispatchAllowed(
     };
   }
 
-  return { allowed: true };
+  return relaxedLayers.length > 0 ? { allowed: true, relaxedLayers } : { allowed: true };
 }
 
 /**
@@ -1134,6 +1167,7 @@ export function buildExecutorAuditRecord(
     sandboxNarrowedFrom?: string;
     sandboxWidenedFrom?: string;
     sandboxEnforcement?: string;
+    recursionGuardRelaxed?: RecursionGuardLayer[];
   },
   lineageId?: string,
 ): Record<string, unknown> {
@@ -1152,6 +1186,7 @@ export function buildExecutorAuditRecord(
     governor: executor.governor,
     executable: executor.kind,
     ...(lineageId !== undefined ? { lineageId } : {}),
+    ...(executor.recursionGuardRelaxed !== undefined ? { recursionGuardRelaxed: executor.recursionGuardRelaxed } : {}),
   };
 }
 
@@ -1509,11 +1544,12 @@ function echoStdoutFile(filePath: string): void {
  * Detects timeout, crash, and non-zero exit conditions and translates
  * them into typed dispatch_failure JSONL events.
  *
- * @param input - Command input with executor config and state log path.
+ * @param requested - Command input with executor config and state log path.
  * @returns 0 for executor outcomes (failures are logged, not thrown), or
  *   RECURSION_GUARD_EXIT_CODE when the recursion guard refused before spawn.
  */
-export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput): number {
+export function runAuditedExecutorCommand(requested: RunAuditedExecutorCommandInput): number {
+  let input = requested;
   const dispatchAllowed = validateExecutorDispatchAllowed(input.executor, input.guardContext);
   if (!dispatchAllowed.allowed) {
     // Loud and non-zero: a refusal that returned 0 with no message read as a clean
@@ -1523,6 +1559,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
     emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail, null, input.sessionId);
     return RECURSION_GUARD_EXIT_CODE;
   }
+  input = applyHostSessionRelaxation(input, dispatchAllowed);
 
   // A refused key must fail before the INTENT receipt, so no receipt records a dispatch
   // whose environment the runner would not have allowed.
@@ -1695,17 +1732,19 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
  * Uses spawn + detached process group for graceful timeout handling with
  * SIGTERM escalation to SIGKILL after the grace period.
  *
- * @param input - Command input with executor config and state log path.
+ * @param requested - Command input with executor config and state log path.
  * @returns Promise resolving to 0 after the process completes, or
  *   RECURSION_GUARD_EXIT_CODE when the recursion guard refused before spawn.
  */
-export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCommandInput): Promise<number> {
+export async function runAuditedExecutorCommandAsync(requested: RunAuditedExecutorCommandInput): Promise<number> {
+  let input = requested;
   const dispatchAllowed = validateExecutorDispatchAllowed(input.executor, input.guardContext);
   if (!dispatchAllowed.allowed) {
     process.stderr.write(`${formatRecursionGuardRefusal(dispatchAllowed, input.executor)}\n`);
     emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail, null, input.sessionId);
     return RECURSION_GUARD_EXIT_CODE;
   }
+  input = applyHostSessionRelaxation(input, dispatchAllowed);
 
   // Pre-dispatch INTENT receipt (engine-signed, no child id yet).
   const receiptCtx = beginReceipt(input);

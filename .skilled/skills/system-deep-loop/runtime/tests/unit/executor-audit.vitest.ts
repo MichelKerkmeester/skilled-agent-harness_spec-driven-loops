@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Executor Audit Tests
 // ───────────────────────────────────────────────────────────────────
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { createRequire } from 'node:module';
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
@@ -1306,5 +1306,132 @@ describe('executor-audit: cli-mistral-vibe environment filter', () => {
     );
 
     expect(nextEnv).not.toHaveProperty('MISTRAL_API_KEY');
+  });
+});
+
+describe('executor-audit recursion guard: operator host-session switch', () => {
+  const SWITCH = 'SPECKIT_ALLOW_HOST_SESSION_EXECUTOR';
+  // What a dispatch run from inside a Claude Code session carries: the claude binary in
+  // its ancestry and the host's session id in its environment.
+  const HOST_ANCESTRY = ['/opt/homebrew/bin/claude --model opus'];
+  const HOST_ENV = { CLAUDE_CODE_SESSION_ID: 'host-session' };
+
+  it('lets a verdict through that only the host-session layers caught, and names them', () => {
+    expect(
+      validateExecutorDispatchAllowed(cliClaudeExecutor(), {
+        env: { ...HOST_ENV, [SWITCH]: '1' },
+        ancestryCmdlines: HOST_ANCESTRY,
+        statePaths: [],
+      }),
+    ).toEqual({ allowed: true, relaxedLayers: ['ancestry', 'env'] });
+  });
+
+  it('reports no relaxation when no host-session layer would have fired', () => {
+    expect(
+      validateExecutorDispatchAllowed(cliClaudeExecutor(), {
+        env: { [SWITCH]: '1' },
+        ancestryCmdlines: [],
+        statePaths: [],
+      }),
+    ).toEqual({ allowed: true });
+  });
+
+  it('still refuses a stack, lineage or lockfile verdict with the switch on', () => {
+    const base = { ...HOST_ENV, [SWITCH]: '1' };
+    expect(
+      validateExecutorDispatchAllowed(cliClaudeExecutor(), {
+        env: { ...base, SPECKIT_CLI_DISPATCH_STACK: 'cli-claude-code' },
+        ancestryCmdlines: HOST_ANCESTRY,
+        statePaths: [],
+      }),
+    ).toMatchObject({ allowed: false, layer: 'stack' });
+    expect(
+      validateExecutorDispatchAllowed(cliClaudeExecutor(), {
+        env: { ...base, SPECKIT_FANOUT_LINEAGE_ID: 'lineage-a' },
+        ancestryCmdlines: HOST_ANCESTRY,
+        statePaths: [],
+      }),
+    ).toMatchObject({ allowed: false, layer: 'lineage' });
+
+    const lockDir = mkdtempSync(join(tmpdir(), 'executor-guard-host-lock-'));
+    try {
+      writeFileSync(join(lockDir, 'cli-claude-code.lock'), 'pid=123\n', 'utf8');
+      expect(
+        validateExecutorDispatchAllowed(cliClaudeExecutor(), {
+          env: base,
+          ancestryCmdlines: HOST_ANCESTRY,
+          statePaths: [lockDir],
+        }),
+      ).toMatchObject({ allowed: false, layer: 'lockfile' });
+    } finally {
+      rmSync(lockDir, { recursive: true, force: true });
+    }
+  });
+
+  it.each([
+    ['unset', undefined],
+    ['0', '0'],
+    ['true', 'true'],
+    ['a padded 1', ' 1'],
+  ])('still refuses when the switch is %s', (_label, value) => {
+    expect(
+      validateExecutorDispatchAllowed(cliClaudeExecutor(), {
+        env: { ...HOST_ENV, ...(value === undefined ? {} : { [SWITCH]: value }) },
+        ancestryCmdlines: HOST_ANCESTRY,
+        statePaths: [],
+      }),
+    ).toMatchObject({ allowed: false, layer: 'ancestry' });
+  });
+
+  it('dispatches, says so on stderr, records it on the receipt and keeps the switch from the child', () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'executor-guard-host-run-'));
+    const stateLogPath = join(tempDir, 'state.jsonl');
+    const receiptDir = join(tempDir, 'receipts');
+    const childEnvPath = join(tempDir, 'child-env.json');
+    writeFileSync(stateLogPath, '{"type":"event","event":"start"}\n', 'utf8');
+    const stderrLines: string[] = [];
+    const stderrSpy = vi.spyOn(process.stderr, 'write').mockImplementation((chunk: unknown) => {
+      stderrLines.push(String(chunk));
+      return true;
+    });
+
+    try {
+      const exitCode = runAuditedExecutorCommand({
+        command: process.execPath,
+        args: ['-e', "require('fs').writeFileSync(process.argv[1], JSON.stringify(Object.keys(process.env)))", childEnvPath],
+        cwd: tempDir,
+        timeoutSeconds: 30,
+        stateLogPath,
+        executor: cliClaudeExecutor(),
+        iteration: 1,
+        receiptDir,
+        dispatchId: 'host-switch',
+        guardContext: {
+          env: { PATH: process.env.PATH, HOME: process.env.HOME, ...HOST_ENV, [SWITCH]: '1' },
+          ancestryCmdlines: HOST_ANCESTRY,
+          statePaths: [],
+        },
+      });
+      stderrSpy.mockRestore();
+
+      expect(exitCode).toBe(0);
+      const relaxedNotes = stderrLines.filter((line) => line.includes(SWITCH));
+      expect(relaxedNotes).toHaveLength(1);
+      expect(relaxedNotes[0]).toContain('ancestry, env');
+      const intent = JSON.parse(readFileSync(join(receiptDir, 'dispatch-host-switch.intent.json'), 'utf8'));
+      expect(intent.facts.executor.recursionGuardRelaxed).toEqual(['ancestry', 'env']);
+      const childKeys = JSON.parse(readFileSync(childEnvPath, 'utf8')) as string[];
+      expect(childKeys).not.toContain(SWITCH);
+    } finally {
+      stderrSpy.mockRestore();
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('keeps the switch out of every child env the filter builds', () => {
+    for (const executor of [cliClaudeExecutor(), cliCodexExecutor()]) {
+      const nextEnv = buildExecutorDispatchEnv(executor, { PATH: '/usr/bin', [SWITCH]: '1' });
+      expect(nextEnv).not.toHaveProperty(SWITCH);
+    }
   });
 });
