@@ -84,7 +84,7 @@
       "title": "181 archived lineages carry deltas/iter-*.jsonl and their state records hold newInfoRatio, findingsCount and s",
       "description": "181 archived lineages carry deltas/iter-*.jsonl and their state records hold newInfoRatio, findingsCount and sourceDiversity, so a stop replay needs no new labels and no iteration prose",
       "iteration": 4,
-      "source": "specs/mcp-tooling/z_archive/010-mcp-mobbin/001-research/research/lineages/luna/deep-research-state.jsonl",
+      "source": "specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/001-research/research/lineages/luna/deep-research-state.jsonl",
       "severity": "P2",
       "findingClass": "research-finding",
       "status": "open",

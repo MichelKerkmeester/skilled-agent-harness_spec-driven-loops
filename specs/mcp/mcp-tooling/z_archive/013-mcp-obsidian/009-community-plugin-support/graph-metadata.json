@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/009-community-plugin-support",
+  "spec_folder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/009-community-plugin-support",
+  "parent_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "obsidian community plugins",
+      "obsidian beancount flat-financing",
+      "obsidian tables table.md",
+      "obsidian brat beta plugin",
+      "obsidian community plugins plan",
+      "beancount tables brat knowledge",
+      "mcp-obsidian phase 9 plan",
+      "obsidian community plugins tasks",
+      "mcp-obsidian phase 9 tasks",
+      "beancount tables brat tasks",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "obsidian",
+      "community",
+      "plugins",
+      "beancount",
+      "flat-financing",
+      "tables",
+      "table",
+      "brat",
+      "beta",
+      "plugin",
+      "plan",
+      "knowledge"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "references/flat-financing.md",
+      "references/obsidian-tables.md",
+      "references/obsidian42-brat.md",
+      "references/plugin-operation-logic.md",
+      "assets/beancount-example.beancount",
+      "assets/table-example.table.md",
+      "assets/brat-data-entry.example.json",
+      "assets/workflows.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "flat-financing.md",
+        "kind": "doc",
+        "path": "references/flat-financing.md",
+        "source": "derived"
+      },
+      {
+        "name": "obsidian-tables.md",
+        "kind": "doc",
+        "path": "references/obsidian-tables.md",
+        "source": "derived"
+      },
+      {
+        "name": "obsidian42-brat.md",
+        "kind": "doc",
+        "path": "references/obsidian42-brat.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-operation-logic.md",
+        "kind": "doc",
+        "path": "references/plugin-operation-logic.md",
+        "source": "derived"
+      },
+      {
+        "name": "beancount-example.beancount",
+        "kind": "file",
+        "path": "assets/beancount-example.beancount",
+        "source": "derived"
+      },
+      {
+        "name": "table-example.table.md",
+        "kind": "doc",
+        "path": "assets/table-example.table.md",
+        "source": "derived"
+      },
+      {
+        "name": "brat-data-entry.example.json",
+        "kind": "config",
+        "path": "assets/brat-data-entry.example.json",
+        "source": "derived"
+      },
+      {
+        "name": "workflows.md",
+        "kind": "doc",
+        "path": "assets/workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Turn",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Knowledge",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcp-obsidian` mode operates a vault at the file layer (read/write/search markdown and data files via CLI/MCP), but it has no knowledge of how specific community plugins encode their data",
+    "created_at": "2026-08-02T07:14:34Z",
+    "last_save_at": "2026-11-21T07:55:09.977Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:002a5b3bbf26224960528db89e328d3893298ccf137462b15d1316a43f2fa29a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "90b7f9c751b65b8f505765180329d655b3ba6a43bf083930b392c74c13e7af1d",
+      "plan.md": "af6498f5685e09fc72d5c8b9731bc6cc098f6d1089f512d7e622fb362b18c3c0",
+      "tasks.md": "678b47070a96eb70b0bb7c8c0fa21f5deae7ca08019bdb5c8fd9f1a0a50ebb62",
+      "implementation-summary.md": "cb3510e760090abf4f6c0c4d51499b046efbc066b3aa03cf7cbaf0a4994bfc92"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

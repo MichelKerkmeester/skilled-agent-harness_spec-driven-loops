@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-code-mode/002-clickup-hosted-route-fix",
+  "description": "The `clickupofficial` manual in `.utcpconfig.json` runs `npx -y @clickup/mcp-server`, and `npm view @clickup/mcp-server` returns a 404",
+  "keywords": [
+    "clickupofficial",
+    "manual",
+    "utcpconfig",
+    "json",
+    "runs",
+    "npx",
+    "clickup",
+    "mcp-server",
+    "npm",
+    "view",
+    "returns"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.651Z",
+  "specId": "002",
+  "folderSlug": "clickup-hosted-route-fix",
+  "parentChain": [
+    "mcp",
+    "mcp-code-mode"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "09-10-26_13-44__clickup-code-mode-route-fixed-and-pushed-to.md"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath/005-playbook-and-verification",
+  "description": "Four phases will each have proven their own piece",
+  "keywords": [
+    "four",
+    "phases",
+    "proven",
+    "own",
+    "piece"
+  ],
+  "lastUpdated": "2026-11-21T06:30:05.879Z",
+  "specId": "005",
+  "folderSlug": "playbook-and-verification",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "017-mcp-magicpath"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

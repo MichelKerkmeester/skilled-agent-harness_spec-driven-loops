@@ -100823,7 +100823,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/checklist.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100833,7 +100833,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/context-index.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/context-index.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100843,7 +100843,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100853,7 +100853,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/graph-metadata.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100863,7 +100863,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100873,7 +100873,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100883,7 +100883,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/research/deep-research-config.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/research/deep-research-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100893,7 +100893,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/research/deep-research-state.jsonl",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/research/deep-research-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100903,7 +100903,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/research/deep-research-strategy.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/research/deep-research-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100913,7 +100913,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/research/iterations/iteration-001.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/research/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100923,7 +100923,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/research/iterations/iteration-002.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/research/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100933,7 +100933,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/research/research.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/research/research.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100943,7 +100943,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/scratch/cross-cli-auto-usage-test-results.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/scratch/cross-cli-auto-usage-test-results.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100953,7 +100953,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100963,7 +100963,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/001-mcp-coco-integration/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100973,7 +100973,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/002-mcp-testing-playbooks/checklist.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100983,7 +100983,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/002-mcp-testing-playbooks/decision-record.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks/decision-record.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -100993,7 +100993,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/002-mcp-testing-playbooks/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101003,7 +101003,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/002-mcp-testing-playbooks/graph-metadata.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101013,7 +101013,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/002-mcp-testing-playbooks/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101023,7 +101023,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/002-mcp-testing-playbooks/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101033,7 +101033,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/002-mcp-testing-playbooks/research.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks/research.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101043,7 +101043,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/002-mcp-testing-playbooks/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101053,7 +101053,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/002-mcp-testing-playbooks/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101063,7 +101063,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/.gitkeep",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/.gitkeep",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101073,7 +101073,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101083,7 +101083,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101093,7 +101093,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101103,7 +101103,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101113,7 +101113,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101123,7 +101123,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/checklist.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101133,7 +101133,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/decision-record.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/decision-record.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101143,7 +101143,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101153,7 +101153,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/graph-metadata.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101163,7 +101163,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101173,7 +101173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101183,7 +101183,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/scratch/.gitkeep",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/scratch/.gitkeep",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101193,7 +101193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101203,7 +101203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101213,7 +101213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101223,7 +101223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101233,7 +101233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101243,7 +101243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101253,7 +101253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101263,7 +101263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/checklist.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101273,7 +101273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/decision-record.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/decision-record.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101283,7 +101283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101293,7 +101293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/graph-metadata.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101303,7 +101303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101313,7 +101313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101323,7 +101323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/scratch/.gitkeep",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/scratch/.gitkeep",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101333,7 +101333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101343,7 +101343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101353,7 +101353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101363,7 +101363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101373,7 +101373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101383,7 +101383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101393,7 +101393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101403,7 +101403,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/checklist.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101413,7 +101413,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/decision-record.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/decision-record.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101423,7 +101423,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101433,7 +101433,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/graph-metadata.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101443,7 +101443,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101453,7 +101453,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101463,7 +101463,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/scratch/.gitkeep",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/scratch/.gitkeep",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101473,7 +101473,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101483,7 +101483,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101493,7 +101493,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/checklist.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101503,7 +101503,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101513,7 +101513,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/graph-metadata.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101523,7 +101523,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101533,7 +101533,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/job1-report.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/job1-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101543,7 +101543,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/job2-report.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/job2-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101553,7 +101553,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/job3-report.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/job3-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101563,7 +101563,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101573,7 +101573,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101583,7 +101583,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101593,7 +101593,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101603,7 +101603,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/graph-metadata.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101613,7 +101613,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/review/deep-review-state.jsonl",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/review/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101623,7 +101623,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/review/deep-review-strategy.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/review/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101633,7 +101633,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-001.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101643,7 +101643,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-002.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101653,7 +101653,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-003.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101663,7 +101663,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-004.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101673,7 +101673,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-005.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101683,7 +101683,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-006.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101693,7 +101693,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-007.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/review/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101703,7 +101703,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/review/review-report.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/review/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101713,7 +101713,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101723,7 +101723,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/.gitkeep",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/.gitkeep",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101733,7 +101733,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/changelog/changelog-124-root.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/changelog/changelog-124-root.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101743,7 +101743,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/checklist.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101753,7 +101753,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/complete-config.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/complete-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101763,7 +101763,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/decision-record.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/decision-record.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101773,7 +101773,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101783,7 +101783,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/graph-metadata.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101793,7 +101793,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101803,7 +101803,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101813,7 +101813,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101823,7 +101823,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101833,7 +101833,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/005-nested-mcp-readme-sync/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/005-nested-mcp-readme-sync/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101843,7 +101843,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/005-nested-mcp-readme-sync/graph-metadata.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/005-nested-mcp-readme-sync/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101853,7 +101853,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/005-nested-mcp-readme-sync/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/005-nested-mcp-readme-sync/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101863,7 +101863,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/005-nested-mcp-readme-sync/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/005-nested-mcp-readme-sync/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101873,7 +101873,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/005-nested-mcp-readme-sync/scratch/.gitkeep",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/005-nested-mcp-readme-sync/scratch/.gitkeep",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101883,7 +101883,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/005-nested-mcp-readme-sync/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/005-nested-mcp-readme-sync/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101893,7 +101893,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/005-nested-mcp-readme-sync/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/005-nested-mcp-readme-sync/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101903,7 +101903,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/before-vs-after.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/before-vs-after.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101913,7 +101913,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/changelog/changelog-148-root.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/changelog/changelog-148-root.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101923,7 +101923,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/checklist.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101933,7 +101933,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/description.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101943,7 +101943,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/graph-metadata.json",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101953,7 +101953,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/implementation-summary.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101963,7 +101963,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/plan.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101973,7 +101973,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/scratch/.gitkeep",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/scratch/.gitkeep",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101983,7 +101983,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/scratch/brief-chrome-devtools-doctor.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/scratch/brief-chrome-devtools-doctor.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -101993,7 +101993,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/scratch/brief-clickup-doctor.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/scratch/brief-clickup-doctor.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102003,7 +102003,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/scratch/brief-open-design-scripts.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/scratch/brief-open-design-scripts.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102013,7 +102013,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/spec.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102023,7 +102023,7 @@
       }
     },
     {
-      "path": ".opencode/specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/tasks.md",
+      "path": ".opencode/specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {

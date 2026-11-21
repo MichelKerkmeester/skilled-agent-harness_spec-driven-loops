@@ -3500,840 +3500,840 @@
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/001-mcp-coco-integration",
+    "folder": "specs/mcp/mcp-tooling/z_archive/001-mcp-coco-integration",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/002-mcp-testing-playbooks",
+    "folder": "specs/mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/003-mcp-figma-transfer",
+    "folder": "specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent",
+    "folder": "specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155",
+    "folder": "specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/.backup-20260505-095155",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent",
+    "folder": "specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156",
+    "folder": "specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/.backup-20260505-095156",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
+    "folder": "specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158",
+    "folder": "specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/.backup-20260505-095158",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation",
+    "folder": "specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/004-mcp-click-up-task-management",
+    "folder": "specs/mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/005-nested-mcp-readme-sync",
+    "folder": "specs/mcp/mcp-tooling/z_archive/005-nested-mcp-readme-sync",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization",
+    "folder": "specs/mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent/001-research-and-context",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/001-research-and-context",
     "status": "pass",
     "messages": [
       "Anchors well formed in 3 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent/002-architecture-decision",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/002-architecture-decision",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent/003-scaffold-hub",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/003-scaffold-hub",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent/004-onboard-chrome-devtools",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/004-onboard-chrome-devtools",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent/006-advisor-and-integration",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/006-advisor-and-integration",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent/007-routing-benchmark-and-review",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/007-routing-benchmark-and-review",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent/008-cutover-and-rollout",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/008-cutover-and-rollout",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent/009-incumbent-inventory-parity",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/009-incumbent-inventory-parity",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
+    "folder": "specs/mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/008-mcp-aside",
+    "folder": "specs/mcp/mcp-tooling/z_archive/008-mcp-aside",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/008-mcp-aside/001-research",
+    "folder": "specs/mcp/mcp-tooling/z_archive/008-mcp-aside/001-research",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/008-mcp-aside/002-skill-authoring",
+    "folder": "specs/mcp/mcp-tooling/z_archive/008-mcp-aside/002-skill-authoring",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/008-mcp-aside/003-hub-integration",
+    "folder": "specs/mcp/mcp-tooling/z_archive/008-mcp-aside/003-hub-integration",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/008-mcp-aside/004-validation-and-handoff",
+    "folder": "specs/mcp/mcp-tooling/z_archive/008-mcp-aside/004-validation-and-handoff",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth",
+    "folder": "specs/mcp/mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/008-mcp-aside/006-live-verification-capture",
+    "folder": "specs/mcp/mcp-tooling/z_archive/008-mcp-aside/006-live-verification-capture",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/009-mcp-refero",
+    "folder": "specs/mcp/mcp-tooling/z_archive/009-mcp-refero",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/009-mcp-refero/001-research",
+    "folder": "specs/mcp/mcp-tooling/z_archive/009-mcp-refero/001-research",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/009-mcp-refero/002-skill-authoring",
+    "folder": "specs/mcp/mcp-tooling/z_archive/009-mcp-refero/002-skill-authoring",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/009-mcp-refero/003-hub-integration",
+    "folder": "specs/mcp/mcp-tooling/z_archive/009-mcp-refero/003-hub-integration",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/009-mcp-refero/004-validation-and-handoff",
+    "folder": "specs/mcp/mcp-tooling/z_archive/009-mcp-refero/004-validation-and-handoff",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/009-mcp-refero/005-inventory-parity-and-doc-truth",
+    "folder": "specs/mcp/mcp-tooling/z_archive/009-mcp-refero/005-inventory-parity-and-doc-truth",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/009-mcp-refero/006-live-verification-capture",
+    "folder": "specs/mcp/mcp-tooling/z_archive/009-mcp-refero/006-live-verification-capture",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/010-mcp-mobbin",
+    "folder": "specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/010-mcp-mobbin/001-research",
+    "folder": "specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/001-research",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/010-mcp-mobbin/002-skill-authoring",
+    "folder": "specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/002-skill-authoring",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/010-mcp-mobbin/003-hub-integration",
+    "folder": "specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/003-hub-integration",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/010-mcp-mobbin/004-validation-and-handoff",
+    "folder": "specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/004-validation-and-handoff",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
+    "folder": "specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/010-mcp-mobbin/006-live-verification-capture",
+    "folder": "specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/006-live-verification-capture",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/010-mcp-mobbin/007-code-mode-transport-leak",
+    "folder": "specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/007-code-mode-transport-leak",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/011-routing-remediation",
+    "folder": "specs/mcp/mcp-tooling/z_archive/011-routing-remediation",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/012-template-alignment",
+    "folder": "specs/mcp/mcp-tooling/z_archive/012-template-alignment",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/001-deep-research",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/001-deep-research",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/002-tool-selection-and-scaffold",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/002-tool-selection-and-scaffold",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/003-cli-tool-integration",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/003-cli-tool-integration",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/004-mcp-server-integration",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/004-mcp-server-integration",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/005-skill-authoring",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/005-skill-authoring",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/006-feature-catalog-and-playbook",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/006-feature-catalog-and-playbook",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/007-hub-registration-and-advisor",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/007-hub-registration-and-advisor",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/008-verification-and-closeout",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/008-verification-and-closeout",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/009-community-plugin-support",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/009-community-plugin-support",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/001-provisioning",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/001-provisioning",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/005-routing-skill-benchmark",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/005-routing-skill-benchmark",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/011-plugin-installation",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/011-plugin-installation",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/012-skill-support-extension",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/012-skill-support-extension",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/013-iconic-integration",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/013-iconic-integration",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/014-health-md-reference-remediation",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/014-health-md-reference-remediation",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/016-health-md-catalog-and-playbook",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/016-health-md-catalog-and-playbook",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/017-health-md-live-validation-closeout",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/017-health-md-live-validation-closeout",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/020-readme-and-message-refinement",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/020-readme-and-message-refinement",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/021-plugin-installation-batch",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/021-plugin-installation-batch",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/022-plugin-skill-support-references",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/022-plugin-skill-support-references",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/024-plugin-routing-integration-validation",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/024-plugin-routing-integration-validation",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/029-feature-catalog-divider-conformance",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/029-feature-catalog-divider-conformance",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes",
+    "folder": "specs/mcp/mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/014-mcp-notion",
+    "folder": "specs/mcp/mcp-tooling/z_archive/014-mcp-notion",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/014-mcp-notion/001-deep-research",
+    "folder": "specs/mcp/mcp-tooling/z_archive/014-mcp-notion/001-deep-research",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/014-mcp-notion/002-skill-authoring",
+    "folder": "specs/mcp/mcp-tooling/z_archive/014-mcp-notion/002-skill-authoring",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/014-mcp-notion/003-knowledge-references",
+    "folder": "specs/mcp/mcp-tooling/z_archive/014-mcp-notion/003-knowledge-references",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/014-mcp-notion/004-hub-registration-and-advisor",
+    "folder": "specs/mcp/mcp-tooling/z_archive/014-mcp-notion/004-hub-registration-and-advisor",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/014-mcp-notion/005-verification-and-closeout",
+    "folder": "specs/mcp/mcp-tooling/z_archive/014-mcp-notion/005-verification-and-closeout",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/001-deep-research",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/001-deep-research",
     "status": "pass",
     "messages": [
       "Anchors well formed in 3 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
     "status": "pass",
     "messages": [
       "Anchors well formed in 3 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
     "status": "pass",
     "messages": [
       "Anchors well formed in 3 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
     "status": "pass",
     "messages": [
       "Anchors well formed in 3 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
     "status": "pass",
     "messages": [
       "Anchors well formed in 3 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
     "status": "pass",
     "messages": [
       "Anchors well formed in 3 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
     "status": "pass",
     "messages": [
       "Anchors well formed in 3 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine",
     "status": "pass",
     "messages": [
       "Anchors well formed in 3 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/008-notion-bases-closeout",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/008-notion-bases-closeout",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+    "folder": "specs/mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/016-code-mode-node-resolution",
+    "folder": "specs/mcp/mcp-tooling/z_archive/016-code-mode-node-resolution",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/016-code-mode-node-resolution/001-resolution-contract",
+    "folder": "specs/mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/001-resolution-contract",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/016-code-mode-node-resolution/002-launcher-shim",
+    "folder": "specs/mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/002-launcher-shim",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/016-code-mode-node-resolution/003-host-config-cutover",
+    "folder": "specs/mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/003-host-config-cutover",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/016-code-mode-node-resolution/004-install-and-doctor",
+    "folder": "specs/mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/004-install-and-doctor",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/016-code-mode-node-resolution/005-resolution-hardening",
+    "folder": "specs/mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/005-resolution-hardening",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/017-mcp-magicpath",
+    "folder": "specs/mcp/mcp-tooling/z_archive/017-mcp-magicpath",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/017-mcp-magicpath/001-cli-transport-proof",
+    "folder": "specs/mcp/mcp-tooling/z_archive/017-mcp-magicpath/001-cli-transport-proof",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/017-mcp-magicpath/002-manual-and-auth",
+    "folder": "specs/mcp/mcp-tooling/z_archive/017-mcp-magicpath/002-manual-and-auth",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/017-mcp-magicpath/003-skill-packet",
+    "folder": "specs/mcp/mcp-tooling/z_archive/017-mcp-magicpath/003-skill-packet",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/017-mcp-magicpath/004-hub-integration",
+    "folder": "specs/mcp/mcp-tooling/z_archive/017-mcp-magicpath/004-hub-integration",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/017-mcp-magicpath/005-playbook-and-verification",
+    "folder": "specs/mcp/mcp-tooling/z_archive/017-mcp-magicpath/005-playbook-and-verification",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/017-mcp-magicpath/006-design-authority",
+    "folder": "specs/mcp/mcp-tooling/z_archive/017-mcp-magicpath/006-design-authority",
     "status": "pass",
     "messages": [
       "Anchors well formed in 6 file(s)"
     ]
   },
   {
-    "folder": "specs/mcp-tooling/z_archive/018-code-mode-variable-prefixes",
+    "folder": "specs/mcp/mcp-tooling/z_archive/018-code-mode-variable-prefixes",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"

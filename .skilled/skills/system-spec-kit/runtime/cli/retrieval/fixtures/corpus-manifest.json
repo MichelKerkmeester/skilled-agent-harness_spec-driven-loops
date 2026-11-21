@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b64de2264325859bb272c9942c8dce2b48b5e953fa4d6b05d16e88f038cdac49",
+  "corpusHash": "bb60a41b47d215ce460bec4084782e537ae77565bd44cb38886a05e9fd52e60e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28918,
+  "includedPathCount": 28957,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -93,6 +93,7 @@
     ".skilled/changelog/skilled/v4.0.1.0.md",
     ".skilled/changelog/skilled/v4.0.2.0.md",
     ".skilled/changelog/skilled/v4.1.0.0.md",
+    ".skilled/changelog/skilled/v4.2.0.0.md",
     ".skilled/hooks/README.md",
     ".skilled/hooks/ask-surface-guard/README.md",
     ".skilled/hooks/classifier-injection-screen/README.md",
@@ -1642,6 +1643,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.9.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v2.0.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -13229,63 +13231,63 @@
     "specs/hooks-plugins-extensions/spec-gate/001-spec-gate-question-noise/resume-prompt.md",
     "specs/hooks-plugins-extensions/spec-gate/001-spec-gate-question-noise/spec.md",
     "specs/hooks-plugins-extensions/spec-gate/001-spec-gate-question-noise/tasks.md",
-    "specs/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/acceptance-criteria.md",
-    "specs/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/goal.md",
-    "specs/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/implementation-summary.md",
-    "specs/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/plan.md",
-    "specs/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/spec.md",
-    "specs/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/tasks.md",
-    "specs/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/implementation-summary.md",
-    "specs/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/plan.md",
-    "specs/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/spec.md",
-    "specs/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/tasks.md",
-    "specs/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/implementation-summary.md",
-    "specs/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/plan.md",
-    "specs/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/spec.md",
-    "specs/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/tasks.md",
-    "specs/mcp-tooling/code-mode/001-code-mode-fresh-clone-build/implementation-summary.md",
-    "specs/mcp-tooling/code-mode/001-code-mode-fresh-clone-build/plan.md",
-    "specs/mcp-tooling/code-mode/001-code-mode-fresh-clone-build/spec.md",
-    "specs/mcp-tooling/code-mode/001-code-mode-fresh-clone-build/tasks.md",
-    "specs/mcp-tooling/code-mode/002-clickup-hosted-route-fix/handover.md",
-    "specs/mcp-tooling/code-mode/002-clickup-hosted-route-fix/implementation-summary.md",
-    "specs/mcp-tooling/code-mode/002-clickup-hosted-route-fix/plan.md",
-    "specs/mcp-tooling/code-mode/002-clickup-hosted-route-fix/spec.md",
-    "specs/mcp-tooling/code-mode/002-clickup-hosted-route-fix/tasks.md",
-    "specs/mcp-tooling/code-mode/003-code-mode-js-yaml-override/acceptance-criteria.md",
-    "specs/mcp-tooling/code-mode/003-code-mode-js-yaml-override/goal.md",
-    "specs/mcp-tooling/code-mode/003-code-mode-js-yaml-override/implementation-summary.md",
-    "specs/mcp-tooling/code-mode/003-code-mode-js-yaml-override/plan.md",
-    "specs/mcp-tooling/code-mode/003-code-mode-js-yaml-override/spec.md",
-    "specs/mcp-tooling/code-mode/003-code-mode-js-yaml-override/tasks.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/acceptance-criteria.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/goal.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/implementation-summary.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/plan.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/spec.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/tasks.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/acceptance-criteria.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/goal.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/implementation-summary.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/plan.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/spec.md",
-    "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/tasks.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/acceptance-criteria.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/implementation-summary.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/plan.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/spec.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/tasks.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/acceptance-criteria.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/implementation-summary.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/plan.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/spec.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/tasks.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/acceptance-criteria.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/implementation-summary.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/plan.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/spec.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/tasks.md",
-    "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/spec.md",
+    "specs/mcp/mcp-code-mode/001-code-mode-fresh-clone-build/implementation-summary.md",
+    "specs/mcp/mcp-code-mode/001-code-mode-fresh-clone-build/plan.md",
+    "specs/mcp/mcp-code-mode/001-code-mode-fresh-clone-build/spec.md",
+    "specs/mcp/mcp-code-mode/001-code-mode-fresh-clone-build/tasks.md",
+    "specs/mcp/mcp-code-mode/002-clickup-hosted-route-fix/handover.md",
+    "specs/mcp/mcp-code-mode/002-clickup-hosted-route-fix/implementation-summary.md",
+    "specs/mcp/mcp-code-mode/002-clickup-hosted-route-fix/plan.md",
+    "specs/mcp/mcp-code-mode/002-clickup-hosted-route-fix/spec.md",
+    "specs/mcp/mcp-code-mode/002-clickup-hosted-route-fix/tasks.md",
+    "specs/mcp/mcp-code-mode/003-code-mode-js-yaml-override/acceptance-criteria.md",
+    "specs/mcp/mcp-code-mode/003-code-mode-js-yaml-override/goal.md",
+    "specs/mcp/mcp-code-mode/003-code-mode-js-yaml-override/implementation-summary.md",
+    "specs/mcp/mcp-code-mode/003-code-mode-js-yaml-override/plan.md",
+    "specs/mcp/mcp-code-mode/003-code-mode-js-yaml-override/spec.md",
+    "specs/mcp/mcp-code-mode/003-code-mode-js-yaml-override/tasks.md",
+    "specs/mcp/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/acceptance-criteria.md",
+    "specs/mcp/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/goal.md",
+    "specs/mcp/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/implementation-summary.md",
+    "specs/mcp/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/plan.md",
+    "specs/mcp/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/spec.md",
+    "specs/mcp/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes/tasks.md",
+    "specs/mcp/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/implementation-summary.md",
+    "specs/mcp/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/plan.md",
+    "specs/mcp/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/spec.md",
+    "specs/mcp/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/tasks.md",
+    "specs/mcp/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/implementation-summary.md",
+    "specs/mcp/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/plan.md",
+    "specs/mcp/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/spec.md",
+    "specs/mcp/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/tasks.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/acceptance-criteria.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/goal.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/implementation-summary.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/plan.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/spec.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/tasks.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/acceptance-criteria.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/goal.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/implementation-summary.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/plan.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/spec.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/tasks.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/acceptance-criteria.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/implementation-summary.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/plan.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/spec.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/tasks.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/acceptance-criteria.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/implementation-summary.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/plan.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/spec.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/tasks.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/acceptance-criteria.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/implementation-summary.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/plan.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/spec.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/tasks.md",
+    "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/spec.md",
     "specs/sk-code/code-surfaces/001-surface-consistency-research/acceptance-criteria.md",
     "specs/sk-code/code-surfaces/001-surface-consistency-research/decision-record.md",
     "specs/sk-code/code-surfaces/001-surface-consistency-research/implementation-summary.md",
@@ -19704,6 +19706,14 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/022-verification-fixes/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/research.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research_archive/20261120T185112Z/deep-research-strategy.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research_archive/20261120T185112Z/prompts/iteration-1.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/delegation-strategy.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md",
@@ -20320,9 +20330,33 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/acceptance-criteria.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/tasks.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/plan.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/spec.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/fanout-attribution.md",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/review-report.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/fanout-attribution.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/review-report.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/spec.md",
@@ -28947,10 +28981,15 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/implementation-summary.md",
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/plan.md",
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/spec.md",
-    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
+    "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/acceptance-criteria.md",
+    "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/plan.md",
+    "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/spec.md",
+    "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "541bad0cc79b0c53b45e511b7a17ba78f149e800c7b1c1a0cac0ff863a29fbc1",
+  "manifestHash": "a1fd9b4b16d2c1c3bdfc0f773566f96ce9c77abbde9d26a4cc325cb0d0ae5d4b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33465,55 +33504,63 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/scratch",
+      "path": "specs/mcp/mcp-browser-use/z_archive",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/scratch",
+      "path": "specs/mcp/mcp-code-mode/001-code-mode-fresh-clone-build/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/clickup-figma/z_archive",
+      "path": "specs/mcp/mcp-code-mode/002-clickup-hosted-route-fix/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/code-mode/001-code-mode-fresh-clone-build/scratch",
+      "path": "specs/mcp/mcp-code-mode/z_archive",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/code-mode/002-clickup-hosted-route-fix/scratch",
+      "path": "specs/mcp/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/code-mode/z_archive",
+      "path": "specs/mcp/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/scratch",
+      "path": "specs/mcp/mcp-tooling/clickup-figma/z_archive",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/scratch",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/scratch",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/scratch",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/scratch",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/z_archive",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/z_archive",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -37617,6 +37664,34 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/host-integrations/z_archive",
       "reason": "excluded directory"
     },
@@ -38109,7 +38184,23 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/lineages",
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
@@ -42234,6 +42325,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/scratch",
       "reason": "excluded directory"
     },
     {

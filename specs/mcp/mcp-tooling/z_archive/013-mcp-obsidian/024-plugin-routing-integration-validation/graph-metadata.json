@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/024-plugin-routing-integration-validation",
+  "spec_folder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/024-plugin-routing-integration-validation",
+  "parent_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plugin routing integration",
+      "charts dataview excalidraw git outliner minimal routing",
+      "plugin validation closeout",
+      "phase 024-plugin-routing-integration-validation summary"
+    ],
+    "key_topics": [
+      "plugin",
+      "routing",
+      "integration",
+      "charts",
+      "dataview",
+      "excalidraw",
+      "git",
+      "outliner",
+      "minimal",
+      "validation",
+      "closeout",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Extend",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "throwaway-vault",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "six",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Extend",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "keyword",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Router",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
+    "created_at": "2026-08-04T06:00:18.002Z",
+    "last_save_at": "2026-11-21T07:55:10.159Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9dc228c9cb9446729c14b24c7ce92b0c105730712602e3cf806746a25cebfbfe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "83f871310ae59b1a007fbd21858d47823c1245f75de0f4bdae0e4e2f904c2896",
+      "plan.md": "9695e4be302e7c9f7393526765768f1c9a42d569e47bf7da997b04b6c52b3d4d",
+      "tasks.md": "732015e715a1eb7bf421e0ec7ac84699ee27803eb3e1341cb88eaf2fe01dfe66",
+      "implementation-summary.md": "606a4c17ed8529c723bc91d757d40b441b887302f889abd1b78fa7f4293754cd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

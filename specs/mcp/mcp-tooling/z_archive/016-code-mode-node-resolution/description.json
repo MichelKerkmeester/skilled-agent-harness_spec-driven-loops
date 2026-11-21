@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution",
+  "description": "Six host configurations launch the `codemode` MCP server with `/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node`",
+  "keywords": [
+    "six",
+    "host",
+    "configurations",
+    "launch",
+    "codemode",
+    "mcp",
+    "server",
+    "users",
+    "michelkerkmeester",
+    "nvm",
+    "versions",
+    "node",
+    "v24",
+    "bin"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.863Z",
+  "specId": "016",
+  "folderSlug": "code-mode-node-resolution",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

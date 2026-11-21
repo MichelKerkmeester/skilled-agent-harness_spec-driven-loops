@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook",
+  "spec_folder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook",
+  "parent_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 migration playbook",
+      "notion obsidian migration playbook",
+      "migration playbook reference",
+      "notion-migration.md",
+      "migration-inventory.md",
+      "015 migration playbook plan",
+      "notion-migration.md plan",
+      "migration-inventory.md plan",
+      "015 migration playbook tasks",
+      "notion-migration.md tasks",
+      "migration-inventory.md tasks",
+      "015 migration playbook summary"
+    ],
+    "key_topics": [
+      "migration",
+      "playbook",
+      "notion",
+      "obsidian",
+      "reference",
+      "notion-migration",
+      "migration-inventory",
+      "plan",
+      "tasks",
+      "summary",
+      "research",
+      "verdict"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/references/migration-inventory.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/SKILL.md",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      ".opencode/skills/mcp-tooling/mcp-notion/references/api-gap-tools.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "notion-migration.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration-inventory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/references/migration-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "api-gap-tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/references/api-gap-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Obsidian Importer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 001 research verdict decided the flawless-migration method, but nothing in `mcp-obsidian` or `mcp-notion` carries it",
+    "created_at": "2026-08-21T21:51:45.157Z",
+    "last_save_at": "2026-11-21T07:55:10.269Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b808f0c4efe9e77781ce4172a77b038f804f5f4f50af14965960bd309357990b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "58b092c54ea9fb0861e0e520533b525d5333773f97255f122a50e2c72bbf3254",
+      "plan.md": "866a46cd650f033e3e67c667959199107fbad611acaba4ee05ff62ece9ec6c5e",
+      "tasks.md": "c4938c5eeb66349d8133c44770d0b6b494e713782b15772bb39d60ddd24ba2b2",
+      "implementation-summary.md": "4cc75c6692b0edf931b377a60ca220c3c4d09beb4d488ea199c01e03b3115731"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

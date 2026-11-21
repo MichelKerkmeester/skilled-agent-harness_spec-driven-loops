@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/009-mcp-refero/002-skill-authoring",
+  "spec_folder": "mcp/mcp-tooling/z_archive/009-mcp-refero/002-skill-authoring",
+  "parent_id": "mcp/mcp-tooling/z_archive/009-mcp-refero",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-refero skill authoring",
+      "refero transport packet",
+      "author mcp-refero",
+      "refero skill md",
+      "phase 002 skill-authoring",
+      "mcp-refero authoring plan",
+      "refero transport packet plan",
+      "refero skill plan",
+      "phase 002 plan",
+      "mcp-refero authoring tasks",
+      "refero packet tasks",
+      "refero skill tasks"
+    ],
+    "key_topics": [
+      "mcp-refero",
+      "skill",
+      "authoring",
+      "refero",
+      "transport",
+      "packet",
+      "author",
+      "phase",
+      "skill-authoring",
+      "plan",
+      "tasks",
+      "utcp"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Exemplar",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `refero` UTCP manual is reachable through Code Mode but has no skill surface: no SKILL.md contract, no documented tool inventory, no routing recall scenarios, no troubleshooting path",
+    "created_at": "2026-07-16T09:39:28Z",
+    "last_save_at": "2026-11-21T07:55:09.717Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7fb27ad5f4d42f7ed36684945219fdcf22dfec0ab9636e22c7513ea724e51fc8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "937155661972cc0d0544591220b1577ba458855745d324592e827b5fe4acf4ec",
+      "plan.md": "0a48f7b2e28e6b696bb11a4a9434d606b18bcdbfdbb89ff47ad6934908f2bf2d",
+      "tasks.md": "2755ea4a61533a27582d689819316006f47c3d8950d48aef6935773ce2adb267",
+      "implementation-summary.md": "a2ee80b572ad011a929fdbb03547d928f0dba10e7992f3a6f971d4d1cdf808cc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -287,6 +287,121 @@
           "to": "hooks-plugins-extensions/hook-platform/008-hook-library-cleanup-and-readme-rewrite"
         }
       ]
+    },
+    {
+      "applied_at": "2026-11-21T07:56:22.095Z",
+      "base_commit": "b0b3c8d9bf10db5c811396ade69c4ae39ed13d28",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "mcp-tooling/code-mode/001-code-mode-fresh-clone-build",
+          "to": "mcp/mcp-code-mode/001-code-mode-fresh-clone-build"
+        },
+        {
+          "from": "mcp-tooling/code-mode/002-clickup-hosted-route-fix",
+          "to": "mcp/mcp-code-mode/002-clickup-hosted-route-fix"
+        },
+        {
+          "from": "mcp-tooling/code-mode/003-code-mode-js-yaml-override",
+          "to": "mcp/mcp-code-mode/003-code-mode-js-yaml-override"
+        },
+        {
+          "from": "mcp-tooling/clickup-figma/001-vendored-copy-review-fixes",
+          "to": "mcp/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes"
+        },
+        {
+          "from": "mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children",
+          "to": "mcp/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children"
+        },
+        {
+          "from": "mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing",
+          "to": "mcp/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing"
+        },
+        {
+          "from": "mcp-tooling/mcp-obsidian/001-official-obsidian-cli",
+          "to": "mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli"
+        },
+        {
+          "from": "mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction",
+          "to": "mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction"
+        },
+        {
+          "from": "mcp-tooling/z_archive/001-mcp-coco-integration",
+          "to": "mcp/mcp-tooling/z_archive/001-mcp-coco-integration"
+        },
+        {
+          "from": "mcp-tooling/z_archive/002-mcp-testing-playbooks",
+          "to": "mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks"
+        },
+        {
+          "from": "mcp-tooling/z_archive/003-mcp-figma-transfer",
+          "to": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer"
+        },
+        {
+          "from": "mcp-tooling/z_archive/004-mcp-click-up-task-management",
+          "to": "mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management"
+        },
+        {
+          "from": "mcp-tooling/z_archive/005-nested-mcp-readme-sync",
+          "to": "mcp/mcp-tooling/z_archive/005-nested-mcp-readme-sync"
+        },
+        {
+          "from": "mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization",
+          "to": "mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization"
+        },
+        {
+          "from": "mcp-tooling/z_archive/007-mcp-tooling-parent",
+          "to": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent"
+        },
+        {
+          "from": "mcp-tooling/z_archive/008-mcp-aside",
+          "to": "mcp/mcp-tooling/z_archive/008-mcp-aside"
+        },
+        {
+          "from": "mcp-tooling/z_archive/009-mcp-refero",
+          "to": "mcp/mcp-tooling/z_archive/009-mcp-refero"
+        },
+        {
+          "from": "mcp-tooling/z_archive/010-mcp-mobbin",
+          "to": "mcp/mcp-tooling/z_archive/010-mcp-mobbin"
+        },
+        {
+          "from": "mcp-tooling/z_archive/011-routing-remediation",
+          "to": "mcp/mcp-tooling/z_archive/011-routing-remediation"
+        },
+        {
+          "from": "mcp-tooling/z_archive/012-template-alignment",
+          "to": "mcp/mcp-tooling/z_archive/012-template-alignment"
+        },
+        {
+          "from": "mcp-tooling/z_archive/013-mcp-obsidian",
+          "to": "mcp/mcp-tooling/z_archive/013-mcp-obsidian"
+        },
+        {
+          "from": "mcp-tooling/z_archive/014-mcp-notion",
+          "to": "mcp/mcp-tooling/z_archive/014-mcp-notion"
+        },
+        {
+          "from": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+          "to": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration"
+        },
+        {
+          "from": "mcp-tooling/z_archive/016-code-mode-node-resolution",
+          "to": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution"
+        },
+        {
+          "from": "mcp-tooling/z_archive/017-mcp-magicpath",
+          "to": "mcp/mcp-tooling/z_archive/017-mcp-magicpath"
+        },
+        {
+          "from": "mcp-tooling/z_archive/018-code-mode-variable-prefixes",
+          "to": "mcp/mcp-tooling/z_archive/018-code-mode-variable-prefixes"
+        }
+      ]
     }
   ]
 }

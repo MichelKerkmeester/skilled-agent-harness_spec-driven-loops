@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/003-scaffold-hub",
+  "description": "Phases 004-005 need a hub skeleton to move content INTO, but that skeleton does not exist yet",
+  "keywords": [
+    "phases",
+    "need",
+    "hub",
+    "skeleton",
+    "move",
+    "content",
+    "exist"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.684Z",
+  "specId": "003",
+  "folderSlug": "scaffold-hub",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "007-mcp-tooling-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

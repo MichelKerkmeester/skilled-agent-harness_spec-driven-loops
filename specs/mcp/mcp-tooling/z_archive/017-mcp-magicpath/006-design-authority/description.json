@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath/006-design-authority",
+  "description": "The packet declined to issue design judgment and said so plainly: \"this packet is a read-only transport and issues no such verdict.\" That sentence is",
+  "keywords": [
+    "packet",
+    "declined",
+    "issue",
+    "design",
+    "judgment",
+    "said",
+    "plainly",
+    "read-only",
+    "transport",
+    "issues",
+    "verdict",
+    "sentence"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.868Z",
+  "specId": "006",
+  "folderSlug": "design-authority",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "017-mcp-magicpath"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

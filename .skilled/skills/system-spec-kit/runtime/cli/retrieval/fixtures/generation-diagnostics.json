@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7088,
-    "ok": 20202,
+    "ok": 20241,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28918,
+  "documentsScanned": 28957,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "541bad0cc79b0c53b45e511b7a17ba78f149e800c7b1c1a0cac0ff863a29fbc1",
+  "manifestHash": "a1fd9b4b16d2c1c3bdfc0f773566f96ce9c77abbde9d26a4cc325cb0d0ae5d4b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45737,
+      "ok": 45805,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -42715,6 +42715,18 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research_archive/20261120T185112Z/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -42940,18 +42952,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/research.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/fanout-attribution.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -58484,55 +58484,63 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/scratch",
+      "path": "specs/mcp/mcp-browser-use/z_archive",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/scratch",
+      "path": "specs/mcp/mcp-code-mode/001-code-mode-fresh-clone-build/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/clickup-figma/z_archive",
+      "path": "specs/mcp/mcp-code-mode/002-clickup-hosted-route-fix/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/code-mode/001-code-mode-fresh-clone-build/scratch",
+      "path": "specs/mcp/mcp-code-mode/z_archive",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/code-mode/002-clickup-hosted-route-fix/scratch",
+      "path": "specs/mcp/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/code-mode/z_archive",
+      "path": "specs/mcp/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/scratch",
+      "path": "specs/mcp/mcp-tooling/clickup-figma/z_archive",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/scratch",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/scratch",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/scratch",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/scratch",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/mcp-obsidian/z_archive",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/z_archive",
+      "path": "specs/mcp/mcp-tooling/mcp-obsidian/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-tooling/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -62636,6 +62644,34 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/023-ollama-deprecation-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/host-integrations/z_archive",
       "reason": "excluded directory"
     },
@@ -63128,7 +63164,23 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/lineages",
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/012-review-round-2-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/015-alignment-command-overlay-targets/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/016-upstream-code-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
@@ -67253,6 +67305,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/scratch",
       "reason": "excluded directory"
     },
     {

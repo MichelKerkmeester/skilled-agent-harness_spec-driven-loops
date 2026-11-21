@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath/001-cli-transport-proof",
+  "description": "Every manual this repository has ever registered is `calltemplatetype: \"mcp\"`",
+  "keywords": [
+    "every",
+    "manual",
+    "repository",
+    "ever",
+    "registered",
+    "calltemplatetype",
+    "mcp"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.864Z",
+  "specId": "001",
+  "folderSlug": "cli-transport-proof",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "017-mcp-magicpath"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

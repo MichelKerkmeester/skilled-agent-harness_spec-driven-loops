@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+  "spec_folder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+  "parent_id": null,
+  "children_ids": [
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/001-deep-research",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/008-notion-bases-closeout",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+    "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015-notion-to-obisidian-migration",
+      "notion to obsidian migration",
+      "migrate notion obsidian",
+      "flawless notion obsidian migration",
+      "complex notion workspace migration"
+    ],
+    "key_topics": [
+      "015-notion-to-obisidian-migration",
+      "notion",
+      "obsidian",
+      "migration",
+      "migrate",
+      "flawless",
+      "complex",
+      "workspace",
+      "phase",
+      "parent",
+      "complex-notion",
+      "capability"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-deep-research/research/research.md",
+      "002-migration-playbook/spec.md",
+      "003-notion-bases-plugin-tie-in/spec.md",
+      "004-plugin-install-and-verification/spec.md",
+      "005-obsidian-plugin-expansion/spec.md",
+      "006-plugin-docs-deep-research/spec.md",
+      "007-excalidraw-deprecation/spec.md",
+      "009-apply-plugin-doc-recs/spec.md",
+      "010-plugin-doc-recs-followup/spec.md",
+      "011-migration-playbook-refresh/spec.md",
+      "001-deep-research/prior-findings.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "prior-findings.md",
+        "kind": "doc",
+        "path": "001-deep-research/prior-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advanced Canvas",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Project Manager",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Meta Bind",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Transition Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for a flawless complex-Notion→Obsidian migration capability: research first (20 iterations, GLM-5.2 via cli-devin + DeepSeek V4 Flash xhigh via cli-opencode/Cline, no early convergence), then synthesize into whatever phase children mcp-obsidian + mcp-notion need — including any Obsidian plugins that close a gap.",
+    "created_at": "2026-08-21T10:35:33.158Z",
+    "last_save_at": "2026-11-21T07:55:10.250Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:64c014327715b046716b221f820ae8d6da38490b9a6f6f4ff53083bfb7138e6f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "10f4687d1acbded6fd2c41f137c53742dde41e77307cd709959ca8218b354f54"
+    },
+    "last_active_child_id": "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+    "last_active_at": "2026-08-22T09:00:00.000Z"
+  }
+}

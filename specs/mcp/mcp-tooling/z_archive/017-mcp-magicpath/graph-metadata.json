@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/017-mcp-magicpath",
+  "spec_folder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath",
+  "parent_id": null,
+  "children_ids": [
+    "mcp/mcp-tooling/z_archive/017-mcp-magicpath/001-cli-transport-proof",
+    "mcp/mcp-tooling/z_archive/017-mcp-magicpath/002-manual-and-auth",
+    "mcp/mcp-tooling/z_archive/017-mcp-magicpath/003-skill-packet",
+    "mcp/mcp-tooling/z_archive/017-mcp-magicpath/004-hub-integration",
+    "mcp/mcp-tooling/z_archive/017-mcp-magicpath/005-playbook-and-verification",
+    "mcp/mcp-tooling/z_archive/017-mcp-magicpath/006-design-authority"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "magicpath skill",
+      "magicpath cli bridge",
+      "utcp cli manual",
+      "magicpath code mode",
+      "mcp-magicpath"
+    ],
+    "key_topics": [
+      "magicpath",
+      "skill",
+      "cli",
+      "bridge",
+      "utcp",
+      "manual",
+      "code",
+      "mode",
+      "mcp-magicpath",
+      "mcp",
+      "server",
+      "feature"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      ".opencode/skills/mcp-tooling/ROUTER.md",
+      ".opencode/skills/mcp-tooling/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "MagicPath has no MCP server",
+    "created_at": "2026-08-29T11:35:18.007Z",
+    "last_save_at": "2026-11-21T07:55:10.533Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a22388b9104d4987a18063e233c5f9ce4e7726932d3a94bded2076286ea98719",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0823567ab4848c9a657737e07c3fd8e89c3b195418ca967a2335d298a4e244c3"
+    },
+    "last_active_child_id": "mcp-tooling/017-mcp-magicpath/001-cli-transport-proof",
+    "last_active_at": null
+  }
+}

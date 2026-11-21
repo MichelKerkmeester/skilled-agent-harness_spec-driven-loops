@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-code-mode/003-code-mode-js-yaml-override",
+  "spec_folder": "mcp/mcp-code-mode/003-code-mode-js-yaml-override",
+  "parent_id": "mcp/mcp-code-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code mode js yaml override",
+      "code mode js yaml override plan",
+      "code mode js yaml override tasks",
+      "code mode js yaml override acceptance criteria",
+      "code mode js yaml override goal",
+      "code mode js yaml override implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "mode",
+      "yaml",
+      "override",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "fresh"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-code-mode/mcp-server/package.json",
+      ".skilled/skills/mcp-code-mode/mcp-server/package-lock.json",
+      ".skilled/skills/mcp-code-mode/SKILL.md",
+      ".skilled/skills/mcp-code-mode/changelog/v1.0.11.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-code-mode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.11.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.11.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fresh npm ci of the mcp-code-mode server builds a server that crashes at start-up, because the global js-yaml ^4.3.2 override forces @apidevtools/json-schema-ref-parser 15.5.1, which needs js-yaml 5, onto 4.3.2",
+    "created_at": "2026-10-21T14:17:07.703Z",
+    "last_save_at": "2026-11-21T07:55:09.241Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d9bf2c6b0b9be0f75c3a76fc404ce80de13bef407235d9d9a1a711d2dedf3f27",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a29f3b458478ed683982b7a31b6650d3909f2c761511040b082dc50ace57dc36",
+      "plan.md": "caff2774f9fc84f30ce16228de78ab6c3f0f8ee15eb8b2154ec9c81710713b57",
+      "tasks.md": "aa020c22f8481bf7eae7458b7cba3bd306756c9454658b9a4d7891e1326e6edd",
+      "implementation-summary.md": "0a916b86c13fc4990839a892a4f0a5774d7e991f1416b0f3e62e43b093629be8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

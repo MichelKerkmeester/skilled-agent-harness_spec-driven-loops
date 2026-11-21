@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/011-plugin-installation",
+  "description": "The user wants [health-md](https://community.obsidian.md/plugins/health-md) — an Apple Health visualization plugin — installed for Obsidian across all",
+  "keywords": [
+    "user",
+    "wants",
+    "health-md",
+    "https",
+    "community",
+    "obsidian",
+    "plugins",
+    "apple",
+    "health",
+    "visualization",
+    "plugin",
+    "installed",
+    "across"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.779Z",
+  "specId": "011",
+  "folderSlug": "plugin-installation",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

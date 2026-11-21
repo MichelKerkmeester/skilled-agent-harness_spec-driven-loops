@@ -5,6 +5,7 @@
   "parent_id": null,
   "children_ids": [
     "mcp/mcp-browser-use",
+    "mcp/mcp-code-mode",
     "mcp/mcp-tooling"
   ],
   "manual": {

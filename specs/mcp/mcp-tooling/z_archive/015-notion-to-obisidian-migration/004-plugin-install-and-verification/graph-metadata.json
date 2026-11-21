@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+  "spec_folder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+  "parent_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 plugin install verification",
+      "notion bases dataview install real vault",
+      "migration parity verification script",
+      "015 plugin install plan",
+      "verify-notion-migration-parity plan",
+      "015 plugin install tasks",
+      "015 plugin install summary"
+    ],
+    "key_topics": [
+      "plugin",
+      "install",
+      "verification",
+      "notion",
+      "bases",
+      "dataview",
+      "real",
+      "vault",
+      "migration",
+      "parity",
+      "script",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/verify-notion-migration-parity.sh",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/README.md",
+      "scripts/README.md",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-notion-migration-parity.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/verify-notion-migration-parity.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mobile Documents",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Michel Kerkmeester",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Orchestration Process",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation column it cannot yet write, because neither Notion Bases nor (potentially) Dataview is confirmed present in the operator's actual vault",
+    "created_at": "2026-08-21T22:01:25.732Z",
+    "last_save_at": "2026-11-21T07:55:10.290Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e3e4c252bc2850b461b3176e11cf8cec4f28104859605e9bdc3113d079bcf22c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7d957d8a5263fe324f9f9d2eceadb1bcfe339bb97c7610b8639710d0325dc7ea",
+      "plan.md": "cf48ab0a6cb5e6e9eed90cb947ebd55a060a638d040a30fdd0c28d4215f69c62",
+      "tasks.md": "eea68f85df8904b0a9b1cd6655a953e94b8e86e0f38656ddfb4ec780e3af168a",
+      "implementation-summary.md": "7550e159df5a07c59f52e4af84b39c61a4850b66a5cb2c490c916177189df667"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth",
+  "description": "The `aside` UTCP manual is now registered in `.utcpconfig.json`, but the `mcp-aside-devtools` packet still documents registration as a \"later phase\"",
+  "keywords": [
+    "aside",
+    "utcp",
+    "manual",
+    "now",
+    "registered",
+    "utcpconfig",
+    "json",
+    "mcp-aside-devtools",
+    "packet",
+    "still",
+    "documents",
+    "registration",
+    "later",
+    "phase"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.707Z",
+  "specId": "005",
+  "folderSlug": "inventory-parity-and-doc-truth",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "008-mcp-aside"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

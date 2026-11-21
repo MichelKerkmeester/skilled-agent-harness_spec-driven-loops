@@ -89,4 +89,4 @@ This map was emitted at synthesis. No parent `resource-map.md` was present at ph
 
 | Resource | Role |
 |---|---|
-| `specs/mcp-tooling/z_archive/010-mcp-mobbin/001-research/research/lineages/luna/*` | Detached-lineage artifact shapes for config, state, dashboard, deltas |
+| `specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/001-research/research/lineages/luna/*` | Detached-lineage artifact shapes for config, state, dashboard, deltas |

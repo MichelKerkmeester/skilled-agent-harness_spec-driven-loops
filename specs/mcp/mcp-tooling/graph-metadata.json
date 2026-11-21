@@ -3,7 +3,10 @@
   "packet_id": "mcp/mcp-tooling",
   "spec_folder": "mcp/mcp-tooling",
   "parent_id": "mcp",
-  "children_ids": [],
+  "children_ids": [
+    "mcp/mcp-tooling/clickup-figma",
+    "mcp/mcp-tooling/mcp-obsidian"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],

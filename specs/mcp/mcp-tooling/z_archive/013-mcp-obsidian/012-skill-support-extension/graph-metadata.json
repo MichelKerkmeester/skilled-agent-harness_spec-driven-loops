@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/012-skill-support-extension",
+  "spec_folder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/012-skill-support-extension",
+  "parent_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-obsidian health-md support",
+      "skill plugin extension",
+      "phase 12 plan",
+      "skill support extension plan",
+      "phase 12 tasks",
+      "phase 12 results",
+      "mcp-obsidian v1.2.0.0",
+      "health-md support shipped"
+    ],
+    "key_topics": [
+      "mcp-obsidian",
+      "health-md",
+      "support",
+      "skill",
+      "plugin",
+      "extension",
+      "phase",
+      "plan",
+      "tasks",
+      "results",
+      "shipped",
+      "put"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/plugin-operation-logic.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/health-md.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/health-md-data.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+      "research/lineages/codex/research.md",
+      ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
+      ".opencode/commands/deep/research.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-operation-logic.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/plugin-operation-logic.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "health-md.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/health-md.md",
+        "source": "derived"
+      },
+      {
+        "name": "health-md-data.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/health-md-data.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "file-layer",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "PASS",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex GPT-5.6 SOL HIGH FAST",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Run Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "health-md",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 11 put health-md in every vault, but the `mcp-obsidian` mode knows nothing about it",
+    "created_at": "2026-08-03T08:46:10.530Z",
+    "last_save_at": "2026-11-21T07:55:10.042Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7d843d3fa270ccc7fdadbc3b4839f9f8fd55bb1f48a58100800ae064c8758800",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7fae7b2e13984086e78b9090432392b5b194aa77e7910d91770f4eecc7c1cadb",
+      "plan.md": "8427a4a55754e958611e73ee297878c72b971298075456d840fb3aa4db0114bc",
+      "tasks.md": "43f6b1feba70fd45a26443a2124c8d697ebe0128f6ca1a54327737fda46fbf41",
+      "implementation-summary.md": "7d5b1047a7888d222731ed8b9c746add792a5a54d7f800596772ef6c91e3d6df"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

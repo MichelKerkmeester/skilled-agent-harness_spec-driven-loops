@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath/003-skill-packet",
+  "description": "A registered manual is reachable but not discoverable",
+  "keywords": [
+    "registered",
+    "manual",
+    "reachable",
+    "discoverable"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.866Z",
+  "specId": "003",
+  "folderSlug": "skill-packet",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "017-mcp-magicpath"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

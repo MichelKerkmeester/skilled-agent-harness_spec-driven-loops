@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-tooling/z_archive/014-mcp-notion/004-hub-registration-and-advisor",
+  "description": "The `mcp-notion` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for Notion prompts (its hub",
+  "keywords": [
+    "mcp-notion",
+    "package",
+    "exists",
+    "disk",
+    "invisible",
+    "skill-advisor",
+    "surface",
+    "mcp-tooling",
+    "notion",
+    "prompts",
+    "hub"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.823Z",
+  "specId": "004",
+  "folderSlug": "hub-registration-and-advisor",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "014-mcp-notion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

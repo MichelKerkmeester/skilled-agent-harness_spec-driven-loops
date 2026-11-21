@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+  "spec_folder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+  "parent_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 migration playbook refresh",
+      "notion migration view recovery",
+      "notion migration interactive elements meta bind",
+      "migration inventory recovery routing",
+      "015 migration playbook refresh plan",
+      "notion migration playbook refresh plan",
+      "015 migration playbook refresh tasks",
+      "015 migration playbook refresh summary"
+    ],
+    "key_topics": [
+      "migration",
+      "playbook",
+      "refresh",
+      "notion",
+      "view",
+      "recovery",
+      "interactive",
+      "elements",
+      "meta",
+      "bind",
+      "inventory",
+      "routing"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/references/migration-inventory.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "notion-migration.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration-inventory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/references/migration-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Meta Bind",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Actual Effort",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The migration playbook lagged the 006 plugin research",
+    "created_at": "2026-08-23T04:48:36.563Z",
+    "last_save_at": "2026-11-21T07:55:10.433Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:90d3243dfe8e02752cd6f855228d76f360a2cf0451a1a5947d493d1e7fe5f1f0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a828c4092053206da4836ac5bee3f685282a51011534c81f922e8c6baca5f576",
+      "plan.md": "1b4692b91653b0d6987d433eef03e4242d677634c7376bb2d64a47edc9eb273d",
+      "tasks.md": "e8239538af9bbe3d6310fbda6f79c59bde20ce83f303c4d3c1a85d871e180305",
+      "implementation-summary.md": "a1df3a3064c3f42fcc78968223ef0a4a5093ca308c78ccadbf51feac2fa7b949"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

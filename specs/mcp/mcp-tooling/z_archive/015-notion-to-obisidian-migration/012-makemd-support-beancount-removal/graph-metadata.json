@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+  "spec_folder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+  "parent_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 makemd support beancount removal",
+      "mcp-obsidian make-md plugin support",
+      "mcp-obsidian remove beancount finance",
+      "PLUGIN_MAKEMD router intent",
+      "phase 012 makemd beancount",
+      "015 makemd beancount plan",
+      "mcp-obsidian make-md support plan",
+      "PLUGIN_MAKEMD wiring plan",
+      "phase 012 plan",
+      "015 makemd beancount tasks",
+      "mcp-obsidian make-md support tasks",
+      "PLUGIN_MAKEMD wiring tasks"
+    ],
+    "key_topics": [
+      "makemd",
+      "support",
+      "beancount",
+      "removal",
+      "mcp-obsidian",
+      "make-md",
+      "plugin",
+      "remove",
+      "finance",
+      "router",
+      "intent",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v0.22.0.0.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "feature-catalog/FEATURE-CATALOG.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.22.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v0.22.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "FEATURE-CATALOG.md",
+        "kind": "doc",
+        "path": "feature-catalog/FEATURE-CATALOG.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Retire Beancount",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-obsidian skill still documented Beancount Finance as a supported plugin after its double-entry paradigm was dropped from the vault's finance workflow, and the plugin is `isDesktopOnly` so it cannot serve the mobile use case the skill targets",
+    "created_at": "2026-08-23T17:58:57.913Z",
+    "last_save_at": "2026-11-21T07:55:10.446Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e24b06b6f77a33a443383aa3dc9c64747a4424bd64ba35c0ef77ec4171e6ef07",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ba7dfd98f5881f2b1148f71d8c58b4943ffc2847a815aa29db66f96844a81511",
+      "plan.md": "7e982557800cd6a99524ecb1ee7bcc581d48ab4f7035356bb3bed7efd02a0ecf",
+      "tasks.md": "317d8513e1cfce99fea9cdd5746636b969d37d1867d15563686b2cc604ae9fc1",
+      "implementation-summary.md": "794fe189b826a5d116223371752a22d04c18777949f530bc53764fe7931f6f73"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

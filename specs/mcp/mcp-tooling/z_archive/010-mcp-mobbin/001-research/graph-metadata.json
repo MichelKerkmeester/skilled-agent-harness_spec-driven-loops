@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/001-research",
+  "spec_folder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/001-research",
+  "parent_id": "mcp/mcp-tooling/z_archive/010-mcp-mobbin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-mobbin research",
+      "mobbin deep research",
+      "mobbin mcp tool surface",
+      "mobbin transport eligibility",
+      "phase 001 research",
+      "mcp-mobbin research plan",
+      "mobbin fan-out plan",
+      "mobbin deep research iterations",
+      "phase 001 plan",
+      "mcp-mobbin research tasks",
+      "mobbin fan-out tasks",
+      "mobbin synthesis verification"
+    ],
+    "key_topics": [
+      "mcp-mobbin",
+      "research",
+      "mobbin",
+      "deep",
+      "mcp",
+      "tool",
+      "surface",
+      "transport",
+      "eligibility",
+      "phase",
+      "plan",
+      "fan-out"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Which Mobbin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Skill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 002 and 003 must author a transport packet and a `.utcpconfig.json` manual for an MCP server this repo has never run",
+    "created_at": "2026-07-16T09:39:32Z",
+    "last_save_at": "2026-11-21T07:55:09.797Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:824cf5eb136a54e94662bf01c31f1c49f54721ef6d208ddfb2157cbed8349e2a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4e97d32e6bcd33df247654e283ea21f29fe1734d549efc7b5f986458cd3ade7d",
+      "plan.md": "993554bd8c09f5e20f3b98f45a4bcb01a47d266ab9ceaf401710b75275198f63",
+      "tasks.md": "259d98cb9692d180ef29907bf148f7722cb831860e75aa63b9dbe10efb3aa6a0",
+      "implementation-summary.md": "ed2eb4f03138c3804c43146ed06551ab4efb9ff82e31e2e89b169425ddeb7766",
+      "research/research.md": "2a44bf6b5ec30fab634b70e67ae966b073ffa61be6e4b858381cef918ed514e9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

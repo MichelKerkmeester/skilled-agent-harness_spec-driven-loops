@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/009-incumbent-inventory-parity",
+  "description": "The three incumbent mcp-tooling modes carried uneven inventories",
+  "keywords": [
+    "three",
+    "incumbent",
+    "mcp-tooling",
+    "modes",
+    "carried",
+    "uneven",
+    "inventories"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.695Z",
+  "specId": "009",
+  "folderSlug": "incumbent-inventory-parity",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "007-mcp-tooling-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+  "spec_folder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+  "parent_id": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 obsidian plugin expansion",
+      "install nine obsidian plugins",
+      "advanced canvas claudian project manager skill folders",
+      "installed plugins roster",
+      "015 plugin expansion plan",
+      "advanced canvas claudian project manager plan",
+      "015 plugin expansion tasks",
+      "015 plugin expansion summary"
+    ],
+    "key_topics": [
+      "obsidian",
+      "plugin",
+      "expansion",
+      "install",
+      "nine",
+      "plugins",
+      "advanced",
+      "canvas",
+      "claudian",
+      "project",
+      "manager",
+      "skill"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v0.20.0.0.md",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "installed-plugins.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.20.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v0.20.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Advanced Canvas",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Project Manager",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notion Bases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Actual Effort",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcp-obsidian` skill documented thirteen plugins (twelve community plugins plus the Minimal theme), but the operator's vault stack was growing",
+    "created_at": "2026-08-22T06:59:23.392Z",
+    "last_save_at": "2026-11-21T07:55:10.300Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:afc8d4c387d7574fa8daaca556705d1f134b762f62a2ac6016b53647a554c1b3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "30e71fd69d47ed7f167a8be9b49197336b001370333cb2b9a41256e741bb8950",
+      "plan.md": "2fd3846b60e5d579b9b43c0c9939eb07e4cf954710c7e174330cf679ce297c1c",
+      "tasks.md": "3de543b6a5a726cb0df956c3ab68d448e06b3bdbbe5b417ea845fe4d2bac4146",
+      "implementation-summary.md": "f56c5af96aee083537feef9322e04629d21b1b19866bd695861225b121f9cc40"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
