@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1d7885aaa2621b8fa35ce0038916a1f64b6d0cc890731c517869d81f04325f17",
+  "corpusHash": "99283e3d0ab605308e0d300f01e797c2689ed8900168b94041c00bd2175263a1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29027,
+  "includedPathCount": 29028,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8416,6 +8416,7 @@
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.7.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.8.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.3.0.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-an-unowned-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
@@ -29059,7 +29060,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2243c24c42d8b81440ed474fe982a442d7974d81fda6ceda34fb309d0dfeb3ea",
+  "manifestHash": "4f1833be415d4f43ee81ece66a350b738759fae7b9ced27da1e6afbf5d92e81f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

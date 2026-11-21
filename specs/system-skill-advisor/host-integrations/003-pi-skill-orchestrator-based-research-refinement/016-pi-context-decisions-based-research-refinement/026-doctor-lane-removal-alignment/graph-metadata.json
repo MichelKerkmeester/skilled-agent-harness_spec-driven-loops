@@ -33,7 +33,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,15 +43,17 @@
       ".skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md",
       ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
       ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
       ".skilled/commands/doctor/scripts/tests/doctor-helper-match.test.cjs",
       ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
       ".skilled/skills/system-skilled-doctor/SKILL.md",
+      ".skilled/skills/system-skilled-doctor/changelog/v1.3.0.0.md",
       ".skilled/skills/system-skilled-doctor/README.md",
       ".skilled/manual-testing-playbook/doctor-commands/doctor-setup-run.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
       ".skilled/skills/system-skilled-doctor/leaf-manifest.json",
       "runtime/data/trigger-index.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs"
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+      ".skilled/skills/.state/advisor/skill-graph-generation.json"
     ],
     "entities": [
       {
@@ -103,12 +105,6 @@
         "source": "derived"
       },
       {
-        "name": "command-bridges.generated.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
-        "source": "derived"
-      },
-      {
         "name": "doctor-helper-match.test.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/tests/doctor-helper-match.test.cjs",
@@ -127,6 +123,12 @@
         "source": "derived"
       },
       {
+        "name": "v1.3.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/changelog/v1.3.0.0.md",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-doctor/README.md",
@@ -136,6 +138,12 @@
         "name": "doctor-setup-run.md",
         "kind": "doc",
         "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-setup-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridges.generated.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
         "source": "derived"
       },
       {
@@ -157,7 +165,19 @@
         "source": "derived"
       },
       {
+        "name": "skill-graph-generation.json",
+        "kind": "config",
+        "path": ".skilled/skills/.state/advisor/skill-graph-generation.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -179,29 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 024 deleted the advisor's embedding lane, and the doctor commands already run the new surface",
     "created_at": "2026-11-21T16:16:42Z",
-    "last_save_at": "2026-11-21T16:25:00.315Z",
+    "last_save_at": "2026-11-21T17:22:56.199Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09bf7975b124170f7f504b3fc63dd3c7bb55a761e0dbf6bce8f1712c3f002197",
+    "source_fingerprint": "sha256:35ac738dc8b97e5356dc455fb85994c025004fdec7d77681127c29a877e82757",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3234b72388ec12435fba447a1d57bed8bf8da5bbad2436650bf9e5d75f4bf8d3",
-      "plan.md": "854f86691d081f56efe852010b5469f0601ff8e3ba6aa49ed0244d49c38ebae5",
-      "tasks.md": "0dd19cf64dce172e088125c8b17b73b18c8b30220daa26a5f44d5783c4e7584e",
-      "implementation-summary.md": "ec8833e605a610158d29fa19337ab5848d671588001141db3843ecdf3e3f545a"
+      "spec.md": "e788f29b019b15b8b9f28ad03a24040c32007ea2b39afb600bb9181c11bb1285",
+      "plan.md": "e12ff4e6bb08525fb39e152e1011823a0ee9a78bb7fbc1bfb87164ec38450e9e",
+      "tasks.md": "bde393c0e065da7d6a7e6f4779249a031d5a671e30778633ed388563a1f5c8ae",
+      "implementation-summary.md": "50377b92fb51c7308e6363a4b66caef23751ce83384f84e3a76ca8b66bb326db"
     },
     "last_active_at": null
   }

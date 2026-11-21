@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2243c24c42d8b81440ed474fe982a442d7974d81fda6ceda34fb309d0dfeb3ea",
+  "manifestHash": "4f1833be415d4f43ee81ece66a350b738759fae7b9ced27da1e6afbf5d92e81f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -45160,6 +45160,9 @@
     ],
     "doctor update handover": [
       "/doctor:update handover"
+    ],
+    "doctor update lane cleanup": [
+      "doctor update lane cleanup"
     ],
     "doctor update local state": [
       "doctor update local state"
@@ -101039,6 +101042,9 @@
     "retired advisor command ids": [
       "retired advisor command ids"
     ],
+    "retired advisor lane cleanup": [
+      "retired advisor lane cleanup"
+    ],
     "retired benchmark handling": [
       "retired benchmark handling"
     ],
@@ -127322,6 +127328,9 @@
     "system skilled doctor 1 2 0 0 release evidence": [
       "system-skilled-doctor 1.2.0.0 release evidence"
     ],
+    "system skilled doctor 1 3 0 0": [
+      "system-skilled-doctor 1.3.0.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -127390,6 +127399,9 @@
     ],
     "system skilled doctor v1 2 0 0 release": [
       "system-skilled-doctor v1.2.0.0 release"
+    ],
+    "system skilled doctor v1 3 0 0": [
+      "system-skilled-doctor v1.3.0.0"
     ],
     "system spec gate": [
       "system-spec-gate"

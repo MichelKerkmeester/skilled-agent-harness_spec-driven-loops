@@ -456,7 +456,7 @@ Lane cleanup: [clean|cleaned|remaining|failed|not_applicable]
 
 Take every bracketed value from the tool's report. Do not write a path, file name, question or command of your own. The `--json` report holds the full list of items. A cleanup exit 1 is `remaining` and an exit 2 is `failed`. Neither one changes the update's STATUS, which the release write and its battery decide.
 
-No other `/doctor` command or action runs this cleanup. An operator who asks to clear what the retired embedding lane left on the machine is pointed to `/doctor:update apply`, which reaches the cleanup after its rebuild prompt. A dry run never reaches it.
+No other `/doctor` command or action runs this cleanup. An operator who asks to clear what the retired embedding lane left on the machine is pointed to `/doctor:update apply`, which reaches the cleanup after its rebuild prompt. A dry run never reaches it. In a linked project, whose `.skilled` is a link to a Skilled checkout, `/doctor:update` stops at the link with `path parent is not a real directory: <project>/.skilled`. That operator is pointed to `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs machine`, run from the Skilled checkout, then the same script's `apply` when it lists leftovers. When the `machine` report lists an `askFirst` question, show it verbatim and pass the answer as `--shared-model delete` or `--shared-model keep` on that one apply, because without a terminal apply keeps the shared model without asking.
 
 ## 10. Result Templates
 

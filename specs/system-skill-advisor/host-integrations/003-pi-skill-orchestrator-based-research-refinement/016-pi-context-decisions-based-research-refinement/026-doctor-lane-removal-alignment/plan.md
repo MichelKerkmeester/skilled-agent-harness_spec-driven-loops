@@ -40,10 +40,10 @@ The change aligns the doctor surface with the lane that 024 removed. It makes th
 - [x] Dependencies identified (section 6)
 
 ### Definition of Done
-- [ ] All acceptance criteria in `acceptance-criteria.md` are Met, each with its observed output
-- [ ] `node --test .skilled/commands/doctor/scripts/tests/*.test.cjs` exits 0 with zero failures
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` on this packet and on 016
-- [ ] The planning documents match the implementation's observed results
+- [x] All acceptance criteria in `acceptance-criteria.md` are Met, each with its observed output
+- [x] `node --test .skilled/commands/doctor/scripts/tests/*.test.cjs` exits 0 with zero failures (`ℹ pass 1437`, `ℹ fail 0`)
+- [x] `validate.sh --strict` prints `RESULT: PASSED` on this packet and on 016
+- [x] The planning documents match the implementation's observed results. REQ-002, AC-002 and T002 now name the one recorded-base write, and AC-001 and T005 use the pattern `doctor:update apply`
 <!-- /ANCHOR:quality-gates -->
 
 ---

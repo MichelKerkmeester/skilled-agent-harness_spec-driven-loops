@@ -383,7 +383,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     category: 'command',
     name: '/doctor:update',
     description: '',
-    keywords: ['doctor update command', 'update skills to latest release', 'skilled release update', 'update skilled to the latest release', 'check for skilled updates', 'is there a newer skilled release', 'update my project to a newer skilled release', 'move my project to the newer spec-kit release', 'is there a newer release of the toolkit'],
+    keywords: ['doctor update command', 'update skills to latest release', 'skilled release update', 'update skilled to the latest release', 'check for skilled updates', 'is there a newer skilled release', 'update my project to a newer skilled release', 'move my project to the newer spec-kit release', 'is there a newer release of the toolkit', 'remove leftovers from the retired advisor lane', 'clean up what the retired lane left behind', 'remove the retired advisor lane model files', 'old advisor embedding model', 'advisor model server still running', 'lane residue gate failing', 'model the advisor lane pulled', 'retired advisor lane cleanup'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:update'],
     derivedTriggers: [],

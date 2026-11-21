@@ -305,7 +305,7 @@ If you already keep overlays with a script of your own, the engine reads the sam
 | When | Linked project | Copied project |
 | --- | --- | --- |
 | **After a `git pull` in the checkout** | Run `/doctor:symlink check --root <dir>`, and run `link` again if it lists missing entries | Nothing until you re-pin |
-| **To adopt a new Skilled release** | The `git pull` already did | Run `/doctor:overlay repin` |
+| **To adopt a new Skilled release** | The `git pull` already did. Then clear what the retired advisor lane left on your machine. From the checkout, run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs machine`. When it lists leftovers, run the same script's `apply`. In a terminal, apply asks before it deletes the pulled shared model. Without a terminal it keeps that model unless you pass `--shared-model delete`, and the `machine` report shows the question under `askFirst`. `/doctor:update` cannot do this here, because it stops at the link with `path parent is not a real directory: <project>/.skilled` | Run `/doctor:overlay repin`, then `/doctor:update record-base` as the re-pin names. Then run `/doctor:update apply`. On a copy already at the release, its plan holds one write, the recorded base. After its rebuild prompt it clears what the retired advisor lane left on your machine, and it asks before it deletes the pulled shared model |
 | **When something looks wrong** | Run `/doctor:setup` in your project | Run `/doctor:overlay status`, then `/doctor:setup` |
 | **To find the right command** | Run `/doctor:helper` and describe the problem | Same as linked |
 

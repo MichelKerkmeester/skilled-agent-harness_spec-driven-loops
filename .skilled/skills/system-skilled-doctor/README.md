@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # system-skilled-doctor
@@ -39,7 +39,7 @@ Each command below has its own router and workflow. The table says what each one
 |---|---|
 | `/doctor:install` | Prints the checks and the ordered steps that install Skilled in your own project repo. It writes nothing |
 | `/doctor:symlink` | Checks a project repo's links to the Skilled checkout and creates or removes them. `link` writes only with the digest its own plan printed |
-| `/doctor:update` | Moves a checkout to a newer spec-kit release through six actions: `check`, `align`, `apply`, `rollback`, `record-base`, `compat`. A bare run is the read-only `check`. `compat` asks for two separate approvals |
+| `/doctor:update` | Moves a checkout to a newer spec-kit release through six actions: `check`, `align`, `apply`, `rollback`, `record-base`, `compat`. A bare run is the read-only `check`. `compat` asks for two separate approvals. `apply` ends with the post-upgrade cleanup of what the retired advisor lane left on the machine. A linked project runs that cleanup from the Skilled checkout, as `INSTALL-SKILLED.md` section 5 says |
 | `/doctor:agents-md` | Checks the sections Skilled ships in a project's `AGENTS.md` and embeds or restores them after showing the plan. `check` reports twelve rows and writes nothing |
 | `/doctor:runtime-mirrors` | Checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled`. Each drifting surface is reported with its repair command |
 | `/doctor:env` | Shows the switches documented in `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` and every other setting in the root `.env.example`, with where each is set. It saves a preference after you approve the exact line |

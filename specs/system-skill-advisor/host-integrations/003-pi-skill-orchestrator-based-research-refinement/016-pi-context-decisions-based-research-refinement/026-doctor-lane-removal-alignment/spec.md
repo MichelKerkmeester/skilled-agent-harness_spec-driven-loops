@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-21 |
 | **Branch** | `worktrees/497-ollama-lane-removal` |
 | **Parent Spec** | ../spec.md |
@@ -131,7 +131,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | `INSTALL-SKILLED.md` section 5, the update row, names the post-upgrade lane cleanup for each install type. Copied installs run `/doctor:update apply`. Linked installs run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs machine` from the Skilled checkout, then the same script's `apply`, and answer its shared-model question |
-| REQ-002 | The current-copy claim is observed, not inferred. On a fixture repo with a fixture HOME, a second `release-update.cjs apply` at the release already applied exits 0 with an empty write list, and the workflow reaches phase 7 (`doctor-update-apply.yaml`, `phase_7_lane_cleanup`). If it does not, the guide names the path a current copy takes to run the cleanup |
+| REQ-002 | The current-copy claim is observed, not inferred. On a fixture repo with a fixture HOME, a second `release-update.cjs apply` at the release already applied exits 0, applies no unit, and writes only the recorded base `.skilled/skills/.state/doctor-update/base.json`, with `followUps.rebuildDatabases` true. Reaching phase 7 (`doctor-update-apply.yaml`, `phase_7_lane_cleanup`) is derived from that exit and the workflow text, because no fixture can run the workflow. If the engine refused, the guide would name another path. Planning expected an empty write list, and the implementation run observed the one recorded-base write instead |
 | REQ-003 | The linked-project refusal is observed on a fixture: `release-update.cjs apply --dry-run` run from a project whose `.skilled` is a symlink to an outside checkout. The guide quotes the message the command printed, and the test at `release-update.test.cjs:2027` is cited only for `record-base` |
 | REQ-004 | Each of the four cited cleanup prompts returns a `/doctor:update` candidate from `doctor-helper-match.cjs -- "<prompt>"`, not `STATUS=NO_MATCH`. The prompt that names `ollama` matches through its other words only, and that limit is recorded in this spec |
 | REQ-005 | Every new cleanup phrase in `_routes.yaml` holds no entry of `IDENTIFIER_TERMS` or `PROSE_TERMS` in `sweep-lane-residue.mjs`, has three or more words, and `sweep-lane-residue.mjs repo --json` still exits 0 with `allowlistRowsMatched` 47 of 47 and `live` 0 |
@@ -174,7 +174,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Risk | New cleanup phrases pull other doctor routes or move the held-out ranking | High: the held-out set must clear top-1, top-3 and the negative bar | Run the held-out test. Drop any phrase that breaks it, and leave the fixture unedited |
 | Risk | A fixture apply touches the operator's real HOME or the worktree's state folder | High: apply deletes files | Every apply runs in a temp repo with a fixture HOME, and no live apply runs in the worktree (024 D6) |
 | Risk | The version bump changes the leaf manifest or a runtime mirror | Med | Run `generate-leaf-manifest.cjs --check` and `sync-runtime-mirrors.cjs --check` after the bump |
-| Known limit | A prompt that names `ollama` matches only through its other words | Low | Recorded here. The residue term list is not allowlisted for `_routes.yaml` |
+| Known limit | A prompt that names `ollama` matches only through its other words. The helper ranks `/doctor:update` first for "remove Ollama leftovers" through "remove" and "leftovers", and the advisor returns no recommendation for that prompt | Low | Recorded here. The residue term list is not allowlisted for `_routes.yaml` |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -222,8 +222,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Does `/doctor:update apply` on an already-current copy reach phase 7 (the lane cleanup)? Code reading gives a yes: the engine has no zero-write exit, `followUps` always sets `rebuildDatabases`, and phase 7 runs on every path that reached the rebuild prompt. No fixture proves it, and REQ-002 decides. The guide's copied-install wording follows that result.
-- Does `apply` in a linked project refuse with the same message as the `record-base` case at `release-update.test.cjs:2027`? REQ-003 decides, and the guide quotes the observed message.
+No question is open. The two planning questions were answered on fixtures in the implementation run.
+
+- Answered: a second `apply` on an already-current copy exits 0, applies no unit and writes only the recorded base. The engine half is observed and pinned by the test 'an apply at the release already applied writes only the recorded base and exits 0'. Reaching phase 7 is derived: the workflow has no stop for a plan with nothing to update, and `phase_7_lane_cleanup` runs on every path that reached the rebuild prompt.
+- Answered: `apply --dry-run` in a project whose `.skilled` links to an outside checkout exits 1 with `path parent is not a real directory: <project>/.skilled`, the same message as the `record-base` case. The test 'apply in a project whose .skilled links to an outside checkout stops at the link' pins it, and the guide quotes it.
 <!-- /ANCHOR:questions -->
 
 ---

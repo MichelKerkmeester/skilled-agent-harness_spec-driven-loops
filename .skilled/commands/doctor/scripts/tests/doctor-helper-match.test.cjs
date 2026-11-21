@@ -504,6 +504,44 @@ test('every standalone action phrase ranks its own action first', () => {
   }
 });
 
+// The ways an operator asks to clear what the retired advisor lane left behind.
+// Only `/doctor:update apply` runs that cleanup, so each one must reach it. The
+// retired product's own name cannot sit in a tracked file outside specs/, because
+// the lane residue gate scans them, so `acme` stands in for it. A word the
+// manifest never carries scores nothing, which is also why a request that names
+// the product reaches the route through its other words only.
+for (const prompt of [
+  'remove acme leftovers',
+  'clean embedding model',
+  'advisor model server still running',
+  'lane residue CI failing',
+]) {
+  test(`the cleanup request "${prompt}" ranks /doctor:update first`, () => {
+    const { entries } = matcher.loadEntries(REPO_ROOT);
+    const result = matcher.rankProblem(entries, prompt, {});
+    assert.equal(result.status, 'match', prompt);
+    assert.equal(result.candidates[0].runnable, '/doctor:update', prompt);
+    assert.ok(!result.candidates[0].matchedTerms.includes('acme'), result.candidates[0].reason);
+  });
+}
+
+// The cleanup phrases name the advisor or its lane, so an ordinary CI failure,
+// cache or model question that shares a word with them is not sent to the update
+// command. A request to remove leftovers after an upgrade does reach it, because
+// those two words are all a request naming the retired product carries.
+for (const prompt of [
+  'my CI is failing on lint',
+  'CI failing',
+  'clean model cache',
+  'delete the shared model',
+]) {
+  test(`the unrelated request "${prompt}" does not rank /doctor:update first`, () => {
+    const { entries } = matcher.loadEntries(REPO_ROOT);
+    const result = matcher.rankProblem(entries, prompt, {});
+    if (result.status === 'match') assert.notEqual(result.candidates[0].runnable, '/doctor:update', prompt);
+  });
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 7. THE HELD-OUT BAR
 // ─────────────────────────────────────────────────────────────────────────────
