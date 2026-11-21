@@ -249,6 +249,17 @@ function isDirectory(filePath) {
   }
 }
 
+// Whether a path names, without following a link at its end, the same file as
+// stats taken of another path.
+function isSameFile(filePath, stats) {
+  try {
+    const other = fs.lstatSync(filePath);
+    return other.isFile() && other.dev === stats.dev && other.ino === stats.ino;
+  } catch {
+    return false;
+  }
+}
+
 function isWithin(basePath, candidatePath) {
   const relative = path.relative(basePath, candidatePath);
   return relative === '' || (!path.isAbsolute(relative) && relative !== '..' && !relative.startsWith('..' + path.sep));
@@ -2468,13 +2479,16 @@ function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
       const folderKey = relativeKey(ctx.root, folderPath);
       const recordedKey = recordedKeys.includes(folderKey) ? folderKey
         : recordedKeys.find((candidate) => fold(candidate) === fold(folderKey));
-      if (!hashMatches(fs.readFileSync(folderPath), acceptedHashFor(acceptedSha256, recordedKey))) {
+      // The removal names the file as the state spells it, and the fold can
+      // join two names the volume keeps apart, so the file is the engine's own
+      // only when that spelling is this very file and its bytes are the ones
+      // recorded there.
+      const ownedPath = recordedKey === undefined ? null : path.join(ctx.root, recordedKey);
+      if (!ownedPath || !isSameFile(ownedPath, stats)
+        || !hashMatches(fs.readFileSync(ownedPath), acceptedHashFor(acceptedSha256, recordedKey))) {
         problems.push(unownedShapeProblem(entry, folderKey, 'file', 'folder', ctx.root));
         return { writes: [], deletes: [], outputs: [] };
       }
-      // The removal is checked against the recorded hash at the path it names,
-      // so it names the file as the state spells it.
-      const ownedPath = path.join(ctx.root, recordedKey);
       unwalked.add(fold(folderRel));
       deletes.push(ownedPath);
       outputs.push({ filePath: ownedPath, buffer: null, sourcePath: path.join(sourceDir, folderRel), replacedSubtree: true });

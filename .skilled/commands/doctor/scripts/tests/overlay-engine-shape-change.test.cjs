@@ -935,6 +935,38 @@ for (const [label, links, landing] of [
   });
 }
 
+// The engine folds a dotless i to a plain one, where a volume that ignores
+// case keeps sıb and sib as two files. A recorded sıb is then a
+// different file from the sib a folder now ships over, so matching bytes at
+// sib do not make it the engine's own: it stays, and so does sıb.
+test('a file someone else put where a directory entry ships a folder stays when the state records another file under a name the engine folds to it', (t) => {
+  const links = [{ path: 'up', target: 'target' }];
+  const fixture = createShapeFixture(t, [], links);
+  const probe = path.join(fixture.workspace, 'fold-probe');
+  fs.mkdirSync(probe);
+  fs.writeFileSync(path.join(probe, 'sıb'), 'a');
+  const isSplit = !fs.existsSync(path.join(probe, 'sib'));
+  fs.rmSync(probe, { recursive: true });
+  if (!isCaseInsensitive(fixture.workspace) || !isSplit) {
+    t.skip('the volume does not fold case while keeping a dotless i apart from a plain one');
+    return;
+  }
+  applyOk(fixture);
+  fixture.setManifest([{ ...DIRECTORY_ENTRY, destination: 'up' }], links);
+  writeFile(fixture.overlayDir, 'bundle/sıb', 'owned\n');
+  applyOk(fixture);
+  fs.rmSync(path.join(fixture.overlayDir, 'bundle', 'sıb'));
+  writeFile(fixture.overlayDir, 'bundle/sib/x', 'x\n');
+  writeFile(fixture.tree, 'target/sib', 'owned\n');
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, /^BLOCKED {2}tool: up\/sib is a file that does not match what apply last wrote there, where overlay tool writes a folder; /m,
+    apply.output);
+  assert.match(apply.output, /^ {2}this apply wrote nothing: /m, apply.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'sib'), 'utf8'), 'owned\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'sıb'), 'utf8'), 'owned\n');
+});
+
 // Apply takes back a layout link it made before it prints a refusal, so a
 // keep-aside line names the path at the link's target, which is still there
 // once apply returns, and the line works as pasted.
