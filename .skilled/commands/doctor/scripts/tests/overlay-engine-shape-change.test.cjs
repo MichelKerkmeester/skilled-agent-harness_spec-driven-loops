@@ -400,3 +400,44 @@ test('a layout link the manifest names keeps its old handling when its target is
   assert.equal(result.code, 0, result.output);
   assert.equal(fs.readFileSync(path.join(outside, 'tool', 'a.md'), 'utf8'), 'bundle a\n');
 });
+
+// A link the engine made whose own target stays inside the tree is followed only
+// as far as the tree: a later link on its chain that leads outside is refused at
+// that link, so the remedy names the link someone else made.
+test('a layout link inside the tree whose target became a link outside it is refused, and nothing lands outside', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'up/tool' }], [{ path: 'up', target: 'target' }]);
+  fs.symlinkSync('target', path.join(fixture.tree, 'up'));
+  fs.rmSync(path.join(fixture.tree, 'target'), { recursive: true });
+  fs.symlinkSync(outside, path.join(fixture.tree, 'target'));
+  assertOutsideRefusal(fixture, outside, 'target');
+  assert.equal(fs.existsSync(path.join(outside, 'tool')), false);
+});
+
+// A dangling link's target is read from the folder the link really sits in, as
+// the operating system reads it, never from the path as written.
+test('a dangling link whose target climbs out of the tree from its real folder is refused', (t) => {
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'a/b/alias/tool' }]);
+  fs.mkdirSync(path.join(fixture.tree, 'a', 'b'), { recursive: true });
+  fs.mkdirSync(path.join(fixture.tree, 't'));
+  fs.symlinkSync('../../t', path.join(fixture.tree, 'a', 'b', 'alias'));
+  fs.symlinkSync('../../x.md', path.join(fixture.tree, 't', 'tool'));
+  const escaped = path.join(path.dirname(fixture.tree), 'x.md');
+  t.after(() => fs.rmSync(escaped, { force: true }));
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 1, result.output);
+  assert.match(result.output, /a\/b\/alias\/tool is a link that leads outside the tree/, result.output);
+  assert.equal(fs.existsSync(escaped), false);
+});
+
+test('a dangling link whose target stays in the tree from its real folder is not refused', (t) => {
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'alias/tool' }]);
+  fs.mkdirSync(path.join(fixture.tree, 'deep', 'inner'), { recursive: true });
+  fs.symlinkSync('deep/inner', path.join(fixture.tree, 'alias'));
+  fs.symlinkSync('../../x.md', path.join(fixture.tree, 'deep', 'inner', 'tool'));
+  const result = fixture.run(['apply']);
+  assert.equal(result.output.includes('is a link that leads outside the tree'), false, result.output);
+  assert.equal(result.code, 0, result.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'alias', 'tool'), 'utf8'), 'tool file\n');
+  assert.equal(fs.existsSync(path.join(path.dirname(fixture.tree), 'x.md')), false);
+});

@@ -2179,7 +2179,9 @@ function keepAsideRemedy(root, key) {
  * that exists is resolved, the leaf only when the write follows it; a dangling
  * link is judged by where its target would be made. A link the engine made, one
  * the manifest names or the state records at the target it has now, is the
- * manifest's own layout, so it is followed and never refused.
+ * manifest's own layout: when that target is outside the tree it is followed and
+ * never refused, and when it is inside, the chain must still land inside, or the
+ * link someone else made further on is refused.
  * @param {string} root Destination tree root.
  * @param {string} filePath Absolute path inside the tree.
  * @param {{followLeaf?: boolean, removed?: Set<string>, cache?: Map<string, object|null>,
@@ -2214,14 +2216,20 @@ function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set
     }
     let found = null;
     const key = toPosix(path.relative(absoluteRoot, current));
-    if (stats.isSymbolicLink() && engineLinks[key] !== fs.readlinkSync(current)) {
+    const linkText = stats.isSymbolicLink() ? fs.readlinkSync(current) : null;
+    const engineMade = linkText !== null && engineLinks[key] === linkText;
+    const declared = engineMade ? path.resolve(canonicalPath(path.dirname(current)), linkText) : null;
+    if (linkText !== null && !(engineMade && !isWithin(realRoot, declared) && !isWithin(absoluteRoot, declared))) {
       let landed;
       try {
         landed = fs.realpathSync.native(current);
       } catch (error) {
         landed = error && error.code === 'ENOENT' ? danglingLinkLanding(current) : null;
       }
-      if (landed === null || !isWithin(realRoot, landed)) found = { key, landed };
+      if (landed === null || !isWithin(realRoot, landed)) {
+        found = (engineMade && laterLinkLeavingTree(root, absoluteRoot, realRoot, declared, parts.slice(index + 1),
+          { followLeaf, removed, engineLinks, key })) || { key, landed };
+      }
     }
     cache.set(current, found);
     if (found) return found;
@@ -2230,16 +2238,29 @@ function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set
   return null;
 }
 
+// The link someone else made that takes an engine-made link's chain outside the
+// tree, found by walking on from the engine-made link's own target, so the remedy
+// names that link rather than one the next apply would make again. The walk
+// leaves the engine-made link out of the exemptions, so a loop of them ends.
+function laterLinkLeavingTree(root, absoluteRoot, realRoot, declared, rest, { followLeaf, removed, engineLinks, key }) {
+  const inTree = isWithin(realRoot, declared) ? path.join(absoluteRoot, path.relative(realRoot, declared)) : declared;
+  if (!isWithin(absoluteRoot, inTree)) return null;
+  const otherLinks = { ...engineLinks };
+  delete otherLinks[key];
+  return linkLeavingTree(root, path.join(inTree, ...rest), { followLeaf, removed, engineLinks: otherLinks });
+}
+
 // Where a write through a dangling link would make its file: each link in the
 // chain is followed to the first path that is not a link, so a chain that leaves
-// the tree through a later hop is judged where it ends. A chain that runs past
-// the hop limit resolves nowhere.
+// the tree through a later hop is judged where it ends. Each target is read from
+// the folder its link really sits in, as the operating system reads it. A chain
+// that runs past the hop limit resolves nowhere.
 function danglingLinkLanding(linkPath) {
   let at = linkPath;
   for (let hops = 0; hops < 40; hops += 1) {
     let next;
     try {
-      next = path.resolve(path.dirname(at), fs.readlinkSync(at));
+      next = path.resolve(canonicalPath(path.dirname(at)), fs.readlinkSync(at));
     } catch {
       return null;
     }
