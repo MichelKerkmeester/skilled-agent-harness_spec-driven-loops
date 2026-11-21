@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass"
     last_updated_at: "2026-11-21T15:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded the fixes, five review rounds and the branch gates"
-    next_safe_action: "Merge into local main and rerun the gates there"
+    recent_action: "Merged into local main as 058e6091759 and reran every gate there"
+    next_safe_action: "None: a separate step pushes main"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/overlay-engine.cjs"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "impl-013-ux-and-alignment-pass"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -150,8 +150,10 @@ Three alignment runs at `65751f8d61a` found 75 findings: 22 on the doctor skill,
 <!-- ANCHOR:verification -->
 ## Verification
 
-| Check | Base main | Branch tip |
-|-------|-----------|------------|
+Each count below was read on the branch tip and again on the merged main `058e6091759`, and the two runs agree.
+
+| Check | Base main | Branch tip and merged main |
+|-------|-----------|----------------------------|
 | Overlay engine suites | 362 pass | 466 pass, 0 fail |
 | Full doctor suite | not run | 1598 pass, 0 fail |
 | Overlay guard | 34 | 35 |
@@ -164,6 +166,7 @@ Three alignment runs at `65751f8d61a` found 75 findings: 22 on the doctor skill,
 | Deep-loop vitest | 1 failed, 3887 passed | 3892 passed, 0 failed |
 | Git hook suites | not run on base, 166, 50, 46 and 82 after round 1 | pre-commit 176, pre-push 59, commit-msg 48, prepare-commit-msg 87, all 0 fail |
 | Advisor scorer | not run on base, 406 after round 1 | 408 |
+| Strict recursive validation of the 007 parent | 17 folders PASSED | 18 of 18 `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---

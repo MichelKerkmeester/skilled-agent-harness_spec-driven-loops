@@ -53,10 +53,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The engine suite passes with 362 or more tests and 0 failing on the merged main
-- [ ] `run-all-drift-guards.sh` exits 0 on the merged main
-- [ ] The final `@review` prints `Review status: APPROVED` with no P0 or P1
-- [ ] `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` for every folder
+- [x] The engine suite passes with 362 or more tests and 0 failing on the merged main
+- [x] `run-all-drift-guards.sh` exits 0 on the merged main
+- [x] The final `@review` prints `Review status: APPROVED` with no P0 or P1
+- [x] `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` for every folder
 <!-- /ANCHOR:completion -->
 
 ---
@@ -74,6 +74,8 @@ and findings belong here.
 |------|-------|----------|
 | Baseline gates on main | Done | `g013/gates-base-main.txt` in the session scratchpad |
 | Drift guard archive scope | Done | `84d61dd6edf`, unittest 39 of 39 |
+| Review rounds | Done | Nine rounds. The final verdicts are APPROVED with no P0 or P1 |
+| Merge into local main | Done | `058e6091759`, every gate on the merged main at or above its baseline |
 
 ### Deviations and findings
 

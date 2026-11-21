@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-21 |
 | **Branch** | `worktrees/506-ux-and-alignment-pass` |
 | **Parent Spec** | ../spec.md |

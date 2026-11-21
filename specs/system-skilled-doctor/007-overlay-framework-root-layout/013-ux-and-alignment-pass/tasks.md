@@ -64,8 +64,8 @@ contextType: "implementation"
 
 - [x] T016 Review round 1 over `65751f8d61a..373ec7de88e`, two slices. Verify: both REQUESTED_CHANGES with 0 P0, 4 P1 and 8 P2, all fixed in `2f188045e55`, `9a95e0ff0f6`, `2dd39dfe897`, `e3e885ebe50`, `299bf658411`.
 - [x] T017 Review rounds after round 1 until APPROVED with no P0 or P1. Verify: the final `Review status:` line reads APPROVED, recorded in `implementation-summary.md`. Evidence: engine round 9, hooks and code round 6, docs round 7, each `Review status: APPROVED`.
-- [ ] T018 Rebuild the trigger index and strict-validate the 007 parent. Verify: `generate-trigger-index.mjs --check` exits 0 and every folder prints `RESULT: PASSED`.
-- [ ] T019 Merge into local main with `--no-ff` and rerun every gate there. Verify: each gate is at or above its baseline.
+- [x] T018 Rebuild the trigger index and strict-validate the 007 parent. Verify: `generate-trigger-index.mjs --check` exits 0 and every folder prints `RESULT: PASSED`. Evidence: the index rebuild commit after this one, and 18 of 18 folders `RESULT: PASSED` on the merged main.
+- [x] T019 Merge into local main with `--no-ff` and rerun every gate there. Verify: each gate is at or above its baseline. Evidence: merge `058e6091759`, gates in `implementation-summary.md` Verification.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -73,9 +73,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every gate on the merged main at or above its baseline, as recorded in `implementation-summary.md`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every gate on the merged main at or above its baseline, as recorded in `implementation-summary.md`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -130,7 +130,7 @@ A blocked task keeps its committed work and is reported with the failing command
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Evidence: `acceptance-criteria.md`.
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: every row of `acceptance-criteria.md` is `Met`.
 - [x] CHK-021 [P0] Each behavior fix has a test that failed first. Evidence: the red runs named in the commit bodies.
 - [x] CHK-022 [P1] Edge cases tested. Evidence: an unowned shape, an unreadable kill switch, a vendored subfolder root, a `.git/config` literal fix.
 - [x] CHK-023 [P1] Error scenarios validated. Evidence: invalid manifest JSON is named, and a REGEN pending makes `status` fail.
@@ -176,7 +176,7 @@ A blocked task keeps its committed work and is reported with the failing command
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch only. Evidence: test fixtures live under `mktemp -d` and are removed.
-- [ ] CHK-051 [P1] Scratch cleaned before completion. Evidence: `git status --porcelain` on the merged main.
+- [x] CHK-051 [P1] Scratch cleaned before completion. Evidence: `git status --porcelain` on the merged main lists only another session's `.pi/settings.json`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -186,8 +186,8 @@ A blocked task keeps its committed work and is reported with the failing command
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 12/13 |
-| P1 Items | 14 | 13/14 |
+| P0 Items | 13 | 13/13 |
+| P1 Items | 14 | 14/14 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-21

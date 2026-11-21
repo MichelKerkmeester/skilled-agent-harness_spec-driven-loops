@@ -34,7 +34,7 @@
       "four"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -115,12 +115,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -140,6 +134,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Phase 017 left four P2s in the overlay engine's cache handling and its README role, and an apply that turns a folder into a file or a link still fails",
     "created_at": "2026-11-21T07:47:43Z",
-    "last_save_at": "2026-11-21T15:48:59.779Z",
+    "last_save_at": "2026-11-21T16:11:20.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04c2e25b618594d1d1980014da994d4a6a01106d7519a58b476b7204f9a1fc81",
+    "source_fingerprint": "sha256:5bf98083dc34042668cc100a4d72b13b035283811d27e554324f6b61483c7c1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a5d93e5e59510d3c621ac60241ba1f346b336dd76bcb8179c2eb5fe34277f1d7",
+      "spec.md": "f2eefeeed138430836e67fcf0868445221691b59b66cedc242887ded330256e8",
       "plan.md": "1b5f4732bb0f2a27869e79ece7d05d4a957057929692417afb2293c5249e0062",
-      "tasks.md": "d9ac85b4af46e6a09e33785b7440eeda40acecd69d988fa84a2f5be649bf1bde",
-      "implementation-summary.md": "5f5d8f2ca96b7fdb18051681c06c8c1f56febd393665f84571e38e1d7f81b175"
+      "tasks.md": "293d5847c58ed452bbcdef5119c5bcd6e7cc2056773f92c7a76f283a03dfcf0c",
+      "implementation-summary.md": "93fc6c9085c10e8e5a2b4e3917c5182950b07f9b1b837c3a2ddfb17e1129c792"
     },
     "last_active_at": null
   }
