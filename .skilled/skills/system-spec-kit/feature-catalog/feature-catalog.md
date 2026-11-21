@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-15"
-version: 2.1.43.0
+version: 2.1.44.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -324,6 +324,22 @@ Operator guidance documents JSON-first save workflows without claiming positiona
 #### Source Files
 
 See [`tooling-and-scripts/json-primary-deprecation-posture.md`](tooling-and-scripts/json-primary-deprecation-posture.md) for full implementation and test file listings.
+
+---
+
+### Lane residue gate and cleanup
+
+#### Description
+
+`sweep-lane-residue.mjs` answers with an exit code whether anything of the skill advisor's retired embedding route is left, in the tracked repository or on this machine, and its apply mode removes what this checkout owns.
+
+#### Current Reality
+
+Repo mode is the blocking `lane-residue` CI job, with exact-path allowlist rows and the trigger index outputs judged entry by entry. Machine and apply modes are the lane cleanup step of `/doctor:update apply`, which deletes only what this checkout owns and asks before deleting the pulled shared model.
+
+#### Source Files
+
+See [`tooling-and-scripts/lane-residue-gate-and-cleanup.md`](tooling-and-scripts/lane-residue-gate-and-cleanup.md) for full implementation and test file listings.
 
 ---
 

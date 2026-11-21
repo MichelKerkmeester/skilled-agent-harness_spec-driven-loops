@@ -41,7 +41,7 @@ const TUNE = path.join(FIXTURES, 'tune.jsonl');
 // changed hash means the bar moved, so the suite fails rather than re-baselines.
 // It was re-pinned once, when /doctor:sk-skill split into check and convert
 // targets: two expected labels gained the target name and no prompt changed.
-// It was re-pinned a second time when the local embedding server was retired:
+// It was re-pinned a second time when the advisor's model server was retired:
 // the one prompt about switching that server off left the set, and no other
 // prompt or label changed.
 const HELDOUT_SHA256 = '4b90f1fa6ec1df05f3bbfa56face73f85d32e0df3fa3e7ce3edeeeb6a27ec45c';

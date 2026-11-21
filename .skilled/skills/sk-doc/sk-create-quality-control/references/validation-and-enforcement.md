@@ -8,7 +8,7 @@ trigger_phrases:
   - "doc quality troubleshooting"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Validation and Enforcement Operations
@@ -103,7 +103,7 @@ cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env   # then 
 
 A switched-off validator prints one line on stderr naming where the switch was set, then exits 0 without checking. A run that asked for JSON also gets `{"skipped": true, "valid": true, ...}` on stdout, so a caller that parses the output still can. The environment wins over the file even when it holds `0` or nothing, so `SKDOC_SKIP_VALIDATION=0` brings validation back for one run.
 
-The switch covers the check path of the document, skill, catalog, playbook, goal, repo-rules and README validators, the naming guards, the frontmatter version `gate` and `verify`, the doc-model reference check, the link resolver and the HVR scanner. It leaves these running, because they write or test rather than judge:
+The switch covers the check path of the document, skill, catalog, playbook, goal, repo-rules and README validators, the naming guards, the frontmatter version `gate` and `verify`, the link resolver and the HVR scanner. It leaves these running, because they write or test rather than judge:
 
 - `validate_document.py --fix`
 - `--self-test` in the two README checkers and the link resolver

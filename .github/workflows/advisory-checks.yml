@@ -19,8 +19,8 @@ on:
 # of reporting the rot again.
 #
 # `lane-residue` blocks too. It runs the retired embedding lane's residue check over every
-# tracked file outside specs/, so a lane term that comes back in any file turns the check
-# red. It lives here because this file runs on every push and pull request with no path
+# tracked file outside specs/, so a lane term that comes back in a file its exact-path
+# allowlist does not name turns the check red. It lives here because this file runs on every push and pull request with no path
 # filter, and the check needs only git and Node, so the job installs nothing.
 
 concurrency:
@@ -146,7 +146,7 @@ jobs:
         with:
           node-version: '22'
       # Repo mode reads tracked files through git and loads only Node built-ins and
-      # two sibling modules, so it needs no install or build.
+      # three sibling modules, so it needs no install or build.
       - name: Lane residue check
         run: |
           set -euo pipefail

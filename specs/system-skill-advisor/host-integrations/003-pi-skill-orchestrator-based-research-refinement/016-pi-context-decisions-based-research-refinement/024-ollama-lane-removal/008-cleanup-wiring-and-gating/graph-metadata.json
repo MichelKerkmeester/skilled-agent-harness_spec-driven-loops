@@ -57,10 +57,10 @@
       ".github/workflows/advisory-checks.yml",
       ".github/workflows/README.md",
       ".skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md",
-      ".skilled/hooks/env-secret-guard/cli/env-secret.cjs",
-      ".skilled/bin/lib/launcher-ipc-bridge.cjs",
-      ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md",
-      ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md"
+      ".skilled/skills/system-skill-advisor/runtime/bench/latency-bench.ts",
+      ".skilled/skills/system-spec-kit/shared/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph/README.md"
     ],
     "entities": [
       {
@@ -154,27 +154,9 @@
         "source": "derived"
       },
       {
-        "name": "env-secret.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/env-secret-guard/cli/env-secret.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-ipc-bridge.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/lib/launcher-ipc-bridge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-update-apply.md",
-        "kind": "doc",
-        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-update-apply-conversation.md",
-        "kind": "doc",
-        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md",
+        "name": "latency-bench.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/bench/latency-bench.ts",
         "source": "derived"
       },
       {
@@ -206,11 +188,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 built `sweep-lane-residue.mjs` report-only and unwired, and nothing calls it today",
     "created_at": "2026-11-20T21:51:24Z",
-    "last_save_at": "2026-11-21T07:50:22.478Z",
+    "last_save_at": "2026-11-21T09:32:28.463Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7e8dd7b9abb78e48b7c85b6bf891a3fdedef7efd986984ce7fe05644449cc9a",
+    "source_fingerprint": "sha256:48514142249cfd23173ff7944ba362fd247f8295b762fe5f100402233aea6d23",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "314c9a04cc21136d9a0c3924771dc0e094ef2635587937231839b7a55cc1ccd6",
       "plan.md": "c4f623f549d27be624a50ff76eaa9950a29e6bdb871814925ba042caa8f675c4",
       "tasks.md": "7018db21d5fac30cb36fd6e4a9121c0a1ee3bbb13a2e36000e6221fd35ccb3a9",
-      "implementation-summary.md": "fac6856bed02b4e6ce3c5fa4e1ad114275ee19600359396c383d3a6d8a38e4b4"
+      "implementation-summary.md": "6539cb5cd3aedcd3fa48803bc9dc12ab2ab4bf8f7a8a91faa7feb544b77b9efc"
     },
     "last_active_at": null
   }

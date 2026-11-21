@@ -445,13 +445,18 @@ Then show the cleanup report:
 ```text
 Lane cleanup
 Deleted: [each target the apply report lists as deleted, or none]
+Stopped: [each process the apply report lists as stopped, or none]
 Kept: [each kept target with its reason, or none]
+Refused: [each refused target with its reason, or none]
+Failed: [each failed target with its reason, or none]
 For you to remove: [each reported target with its remedy line, a count per linked worktree rather than one line per item, or none]
 After-check: exit [0|1|2] ([nothing left|remnants remain|a check could not run])
 Lane cleanup: [clean|cleaned|remaining|failed|not_applicable]
 ```
 
 Take every bracketed value from the tool's report. Do not write a path, file name, question or command of your own. The `--json` report holds the full list of items. A cleanup exit 1 is `remaining` and an exit 2 is `failed`. Neither one changes the update's STATUS, which the release write and its battery decide.
+
+No other `/doctor` command or action runs this cleanup. An operator who asks to clear what the retired embedding lane left on the machine is pointed to `/doctor:update apply`, which reaches the cleanup after its rebuild prompt. A dry run never reaches it.
 
 ## 10. Result Templates
 

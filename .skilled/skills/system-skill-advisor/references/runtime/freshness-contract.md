@@ -8,7 +8,7 @@ trigger_phrases:
   - "daemon contract"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.5.0
+version: 0.8.6.0
 ---
 
 # Freshness Contract
@@ -63,7 +63,7 @@ The advisor reports one of four trust states in every response that touches the 
 | `absent` | The index is missing. The SQLite database file does not exist or was deleted. No recommendation can be computed. |
 | `unavailable` | The advisor subsystem cannot be reached. Either the daemon is down or a hard error blocks all reads. |
 
-State source-of-truth: `runtime/lib/freshness/trust-state.ts` plus `runtime/lib/freshness/freshness-detector.ts`.
+State source-of-truth: `runtime/lib/freshness/trust-state.ts`.
 
 ---
 

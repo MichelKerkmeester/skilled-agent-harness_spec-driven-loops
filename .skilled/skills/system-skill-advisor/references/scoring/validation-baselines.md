@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_validate troubleshooting"
 importance_tier: "normal"
 contextType: "research"
-version: 0.8.5.0
+version: 0.8.6.0
 ---
 
 # Validation Baselines + Troubleshooting
@@ -53,7 +53,7 @@ The measurement authority is [`scorer-eval-baseline.json`](../../runtime/scripts
 | Advisor vitest tests | not measured for this baseline | `runtime/tests/` |
 | Watcher idle CPU | 0.031% | `runtime/lib/daemon/watcher.ts` benchmark |
 | Watcher idle RSS | 5.516 MB | same |
-| Cache-hit p95 latency | ~6.989 ms | `runtime/bench/cache-latency.bench.ts` |
+| Cache-hit p95 latency | ~6.989 ms | `runtime/bench/latency-bench.ts` |
 | Uncached p95 latency | ~11.45 ms | same |
 
 **Bounded-delta gate (policy accepted 2026-08-02):** do not regress more than the bounded amount below the baseline captured on **2026-07-30**.

@@ -1,10 +1,10 @@
 ---
 title: "bin/lib: Launcher Support Libraries"
-description: "Shared CommonJS helpers for MCP launcher supervision, stdio-to-socket bridging and sidecar env allowlisting."
+description: "Shared CommonJS helpers for launcher stdio-to-socket bridging and the compiled-routing serving surface."
 trigger_phrases:
-  - "model server supervision"
+  - "launcher session proxy"
   - "launcher ipc bridge"
-  - "sidecar env allowlist"
+  - "compiled routing serving surface"
 ---
 
 # bin/lib: Launcher Support Libraries

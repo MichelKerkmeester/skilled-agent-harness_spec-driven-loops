@@ -8,7 +8,7 @@ trigger_phrases:
   - "lane ablation"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.4.0
+version: 0.8.5.0
 ---
 
 # Lane Weight Tuning Guide
@@ -77,7 +77,7 @@ Follow the ablation scenario in `manual-testing-playbook/scorer-fusion/ablation.
 
 **Step 3: Make the change.**
 
-Edit `runtime/lib/scorer/lane-registry.ts:8-19` (live and shadow weights per lane) or `lane-registry.ts:44-46` (`DEFAULT_SHADOW_WEIGHTS`). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`.
+Edit `runtime/lib/scorer/lane-registry.ts:8-18` (live and shadow weights per lane) or `lane-registry.ts:43-45` (`DEFAULT_SHADOW_WEIGHTS`). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`.
 
 For experiments:
 
@@ -153,5 +153,5 @@ Confirm the baseline numbers return. Document the rollback rationale in the orig
 - [`feature-catalog/scorer-fusion/weights-config.md`](../../feature-catalog/scorer-fusion/weights-config.md), canonical current weights.
 - [`manual-testing-playbook/scorer-fusion/ablation.md`](../../manual-testing-playbook/scorer-fusion/ablation.md), ablation scenario for measuring lane contributions.
 - `runtime/lib/scorer/ablation.ts`, lane ablation harness.
-- `runtime/lib/scorer/lane-registry.ts:8-19,44-46`, live + shadow weight source-of-truth.
+- `runtime/lib/scorer/lane-registry.ts:8-18,43-45`, live + shadow weight source-of-truth.
 - `runtime/lib/scorer/scoring-constants.ts:141-170`, confidence calibration constants.

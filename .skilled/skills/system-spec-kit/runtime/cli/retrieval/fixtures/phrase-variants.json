@@ -1,5 +1,5 @@
 {
-  "manifestHash": "392db18ed786aeddc9b8aefa9867eb1db250ed698b5024d072489e4c720f8999",
+  "manifestHash": "551412b72708ffd9a161929b58f12a2787160acb40f588f2f7be936c80d40fc0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8614,9 +8614,6 @@
     ],
     "additive hub registration adr": [
       "additive hub registration adr"
-    ],
-    "additive migration": [
-      "additive migration"
     ],
     "additive skill advertising advisor": [
       "additive skill advertising advisor"
@@ -47555,9 +47552,6 @@
     "embedding coverage tasks": [
       "embedding coverage tasks"
     ],
-    "embedding coverage test": [
-      "embedding coverage test"
-    ],
     "embedding default drift": [
       "embedding default drift"
     ],
@@ -65316,6 +65310,9 @@
     "lane champion backfill recall": [
       "lane champion backfill recall"
     ],
+    "lane cleanup": [
+      "lane cleanup"
+    ],
     "lane cleanup doctor wiring plan": [
       "lane cleanup doctor wiring plan"
     ],
@@ -65387,6 +65384,12 @@
     ],
     "lane repair tasks": [
       "lane repair tasks"
+    ],
+    "lane residue check": [
+      "lane residue check"
+    ],
+    "lane residue gate and cleanup": [
+      "lane residue gate and cleanup"
     ],
     "lane residue sweep": [
       "lane residue sweep"
@@ -81263,6 +81266,9 @@
     ],
     "outcome emitter task": [
       "outcome emitter task"
+    ],
+    "outdated database discard": [
+      "outdated database discard"
     ],
     "outlier identification": [
       "outlier identification"
@@ -101009,6 +101015,9 @@
     "retired checklist fixture": [
       "retired checklist fixture"
     ],
+    "retired embedding route residue": [
+      "retired embedding route residue"
+    ],
     "retired jev features removed": [
       "retired jev features removed"
     ],
@@ -106324,6 +106333,9 @@
     ],
     "schema v5 parser quarantine": [
       "schema v5 parser quarantine"
+    ],
+    "schema version rescan": [
+      "schema version rescan"
     ],
     "schema warn to error": [
       "schema warn to error"
@@ -118528,6 +118540,9 @@
     "skill graph database": [
       "skill graph database"
     ],
+    "skill graph database tests": [
+      "skill graph database tests"
+    ],
     "skill graph db availability": [
       "skill graph db availability"
     ],
@@ -125790,6 +125805,9 @@
     ],
     "sweep lane residue": [
       "sweep lane residue"
+    ],
+    "sweep lane residue mjs": [
+      "sweep-lane-residue.mjs"
     ],
     "sweep live zero trigger index": [
       "sweep live zero trigger index"
@@ -133502,9 +133520,6 @@
     ],
     "v1 search pipeline": [
       "v1 search pipeline"
-    ],
-    "v1 to v2 backfill": [
-      "v1 to v2 backfill"
     ],
     "v1 v2 additive": [
       "v1 v2 additive"

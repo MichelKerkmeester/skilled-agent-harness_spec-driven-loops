@@ -165,7 +165,6 @@ The `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.
 
 ### Security
 
-- `VOYAGE_API_KEY` is read from the process environment only. It must never be logged, written into spec docs, or persisted to disk by Spec Kit. Operators should set it in shell init files owned by the operator with mode `600`.
 - Tests may mutate env vars, but must restore them in `afterEach`. Production code paths should not treat mutable process env as request-time configuration.
 
 ### Validation and Recovery

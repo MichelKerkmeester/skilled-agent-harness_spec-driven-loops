@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.16.0
+version: 0.8.17.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -263,7 +263,7 @@ This category validates lifecycle routing scenarios `LC-001..LC-005`.
 | LC-001 | Derived-Lane-Only Age Haircut | [001-age-haircut.md](lifecycle-routing/age-haircut.md) |
 | LC-002 | Asymmetric Supersession Redirects | [002-supersession.md](lifecycle-routing/supersession.md) |
 | LC-003 | Archive and Future Skills Indexed But Not Routed | [003-archive-handling.md](lifecycle-routing/archive-handling.md) |
-| LC-004 | Schema v1 to v2 Additive Backfill | [004-schema-migration.md](lifecycle-routing/schema-migration.md) |
+| LC-004 | Outdated Skill Graph Database Discard and Rescan | [004-schema-migration.md](lifecycle-routing/schema-migration.md) |
 | LC-005 | Lifecycle-Level Rollback | [005-rollback-lifecycle.md](lifecycle-routing/rollback-lifecycle.md) |
 
 ---

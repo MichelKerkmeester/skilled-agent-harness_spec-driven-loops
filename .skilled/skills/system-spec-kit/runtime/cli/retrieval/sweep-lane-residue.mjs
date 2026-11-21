@@ -122,7 +122,13 @@ export const IDENTIFIER_TERMS = Object.freeze([
   'embedder',
 ]);
 
-/** Prose vocabulary: how docs describe the lane without naming its code. */
+/**
+ * Prose vocabulary: how docs describe the lane without naming its code. The
+ * spaced names of the model server and its two helper modules are here because
+ * a description or trigger phrase spells them with spaces, which the hyphenated
+ * identifiers never match. A bare "model server" is left out on purpose: the
+ * cleanup's own docs name the server they remove.
+ */
 export const PROSE_TERMS = Object.freeze([
   'semantic lane',
   'meaning match',
@@ -137,6 +143,11 @@ export const PROSE_TERMS = Object.freeze([
   'hf-local',
   '@huggingface/transformers',
   'sqlite-vec',
+  'hf model server',
+  'hf embed server',
+  'local embedding server',
+  'model server supervision',
+  'sidecar env allowlist',
 ]);
 
 export const IDENTIFIER_PATTERN = IDENTIFIER_TERMS.join('|');

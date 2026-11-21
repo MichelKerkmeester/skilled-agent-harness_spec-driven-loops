@@ -6,7 +6,7 @@ trigger_phrases:
   - "lane weights canonical"
   - "fusion scorer"
   - "advisor analytical fusion"
-version: 0.8.5.0
+version: 0.8.6.0
 ---
 
 # Analytical Lane Fusion
@@ -32,7 +32,7 @@ Weight configuration is exposed via `advisor_status.laneWeights`.
 
 ### Reciprocal Rank Fusion
 
-The opt-in `SPECKIT_ADVISOR_RRF_FUSION` flag (default off) routes the same four lanes through Reciprocal Rank Fusion instead of the weighted blend, fusing each lane's ranked list with `ADVISOR_RRF_K = 8`. The conflict-rerank seam ships with the RRF core as its regression net: it repairs the one regression plain RRF introduces and corrects conflicting-recommendation cases. Phase 007 benchmarked the RRF spine and the seam on a 42-prompt set and verdicted GRADUATE the core paired with the seam, but the committed flag default stays off, so the weighted blend remains the live path until the flag is enabled.
+The opt-in `SPECKIT_ADVISOR_RRF_FUSION` flag (default off) routes the same four lanes through Reciprocal Rank Fusion instead of the weighted blend, fusing each lane's ranked list with `ADVISOR_RRF_K = 8`. The conflict-rerank seam ships with the RRF core as its regression net: it repairs the one regression plain RRF introduces and corrects conflicting-recommendation cases. Phase 007 benchmarked the RRF spine and the seam on a 42-prompt set and verdicted GRADUATE the core paired with the seam, but the committed flag default stays off, so the weighted blend remains the live path until the flag is enabled. The launcher's `CHILD_ENV_ALLOWLIST` does not forward the flag to the daemon, so setting it in a shell or dotenv file does not reach a daemon-run scorer.
 
 ### Self-recommendation penalty
 

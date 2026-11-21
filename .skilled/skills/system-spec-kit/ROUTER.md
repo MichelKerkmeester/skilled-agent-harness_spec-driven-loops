@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-spec-kit routing"
 importance_tier: normal
 contextType: general
-version: 1.0.11.0
+version: 1.0.12.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -76,7 +76,7 @@ It then applies intent scoring from `RESOURCE_MAP` to load real, guarded resourc
 Keep this section focused on domains rather than static file inventories.
 
 - `references/retrieval/` for the trigger-index lookup and the ripgrep recipes.
-- `references/memory/` for continuity save workflows, trigger-phrase behavior, and the shared embedding stack.
+- `references/memory/` for continuity save workflows, trigger-phrase behavior and epistemic vectors.
 - `references/templates/` for level selection, template selection, and structure guides.
 - `references/validation/` for checklist policy, verification rules, decision formats, and template compliance contracts.
 - `references/structure/` for folder organization and sub-folder versioning.

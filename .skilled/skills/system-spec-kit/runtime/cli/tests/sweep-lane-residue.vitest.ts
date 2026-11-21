@@ -67,7 +67,6 @@ import {
   attributeTerms,
   confirmOnTerminal,
   formatMachineSummary,
-  IDENTIFIER_TERMS,
   INDEX_OUTPUTS,
   isOwnedModelServer,
   loadAllowlist,
@@ -117,6 +116,9 @@ const SCRUBBED_ENV = [
 type RunResult = { status: number | null; stderr: string; stdout: string };
 type Call = { body: string; method: string; url: string };
 type Action = { action: string; reason?: string; target: string };
+// The tool's JSON reports are read field by field in the assertions, so the
+// suite types them loosely rather than restating the tool's report schema.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Report = Record<string, any>;
 type MachineFixture = {
   dbDir: string;
@@ -166,6 +168,13 @@ afterEach(async () => {
 
 function makeTempDir(prefix: string): string {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  tempRoots.add(dir);
+  return dir;
+}
+
+/** A temp folder whose path length does not depend on TMPDIR, for a socket path that must fit sun_path. */
+function makeShortTempDir(prefix: string): string {
+  const dir = fs.mkdtempSync(path.join('/tmp', prefix));
   tempRoots.add(dir);
   return dir;
 }
@@ -434,6 +443,29 @@ describe('repo mode', () => {
     expect(byPath['lib/embeddings']).toEqual({ symlink: '../pkg/embeddings' });
   });
 
+  it('catches the spaced names of the model server and its helpers that a description or trigger phrase uses', () => {
+    const root = makeRepo({
+      'bin/README.md': [
+        'description: "Launchers and the local embedding server."',
+        'trigger_phrases:',
+        '  - "HF model server"',
+        '  - "hf embed server url"',
+        '',
+      ].join('\n'),
+      'bin/lib/README.md': 'Helpers for model server supervision and the sidecar env allowlist.\n',
+      'docs/cleanup.md': 'Apply stops a local model server this checkout owns.\n',
+    });
+
+    const run = runCli(['repo', '--root', root, '--allowlist', writeAllowlist([]), '--json']);
+
+    expect(run.status).toBe(1);
+    const byPath = Object.fromEntries(JSON.parse(run.stdout).live.map((entry: { matched: unknown; path: string }) => [entry.path, entry.matched]));
+    expect(byPath['bin/README.md']).toEqual({ prose: ['hf model server', 'hf embed server', 'local embedding server'] });
+    expect(byPath['bin/lib/README.md']).toEqual({ prose: ['model server supervision', 'sidecar env allowlist'] });
+    // A bare "model server" names what the cleanup removes, so it is no lane term.
+    expect(byPath['docs/cleanup.md']).toBeUndefined();
+  });
+
   it('exits 0 once the file is deleted, both before and after the deletion is committed', () => {
     const root = makeRepo({ 'docs/notes.md': 'the embedder route\n', 'docs/clean.md': 'nothing here\n' });
     const allowlist = writeAllowlist([]);
@@ -698,15 +730,17 @@ describe('machine mode', () => {
   });
 
   // Each variable moves where the model server writes its files. The pinned
-  // folder is the launcher's own derivation; a short temp path keeps it from
-  // being relocated, so it is the database folder itself.
+  // folder is the launcher's own derivation, which relocates a socket folder
+  // whose socket path would pass the sun_path limit. The fixture lives under
+  // /tmp rather than the ambient temp folder, whose length varies by machine,
+  // so the folder is never relocated and stays the database folder itself.
   it.each([
     ['SPECKIT_IPC_SOCKET_DIR', (dir: string) => dir],
     ['HF_EMBED_SERVER_URL', (dir: string) => `unix://${path.join(dir, 'custom.sock')}`],
     ['SYSTEM_SKILL_ADVISOR_DB_DIR', (dir: string) => dir],
   ])('exits 1 for a model server pid file left in the folder %s points at', async (variable, valueFor) => {
     const fixture = makeMachineFixture();
-    const dir = fs.realpathSync(makeTempDir('lane-residue-srv-'));
+    const dir = fs.realpathSync(makeShortTempDir('lane-residue-srv-'));
     const pidFile = writeFile(dir, 'hf-embed.pid', '123');
     writeFile(dir, 'daemon-ipc.sock', '');
 

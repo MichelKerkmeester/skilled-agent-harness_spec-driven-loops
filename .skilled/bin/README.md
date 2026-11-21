@@ -1,9 +1,9 @@
 ---
 title: "bin: MCP Launchers, Daemon CLIs, Compiled Routing and Repo Tooling"
-description: "Executable entrypoints for the OpenCode runtime: the MCP launchers and their daemon-backed CLI shims, the local embedding server, the compiled-routing serving and publication tools, and the git, worktree and hook helpers."
+description: "Executable entrypoints for the OpenCode runtime: the MCP launchers and their daemon-backed CLI shims, the compiled-routing serving and publication tools, and the git, worktree and hook helpers."
 trigger_phrases:
   - "mcp launcher"
-  - "hf model server"
+  - "worktree helper scripts"
   - "code-index cli"
   - "skill-advisor cli"
   - "compiled route cli"
@@ -12,7 +12,7 @@ trigger_phrases:
 
 # bin: MCP Launchers, Daemon CLIs, Compiled Routing and Repo Tooling
 
-> Executable entrypoints for the OpenCode runtime include MCP launchers, daemon-backed CLI shims, the local embedding server and repository tools.
+> Executable entrypoints for the OpenCode runtime include MCP launchers, daemon-backed CLI shims, the compiled-routing tools and repository tools.
 
 `bin/` contains MCP launchers and repository tools, including `skilled-loop`, the runtime wrapper for session handover.
 

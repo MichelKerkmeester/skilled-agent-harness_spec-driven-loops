@@ -8,7 +8,7 @@ trigger_phrases:
   - "advisor daemon"
   - "skill graph"
 importance_tier: "important"
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # Architecture: system-skill-advisor
@@ -74,8 +74,8 @@ system-skill-advisor/
 │   ├── skill-advisor-cli.ts # Nine-command CLI over the daemon IPC
 │   ├── handlers/            # Command handlers
 │   ├── tools/               # Command definitions and dispatcher
-│   ├── lib/                 # 18 flat modules (caller-context, df-idf, route-exclusions,
-│   │                        # render, prompt-cache, ...) and 15 domain folders: scorer,
+│   ├── lib/                 # 21 flat modules (caller-context, df-idf, route-exclusions,
+│   │                        # render, prompt-cache, ...) and 13 domain folders: scorer,
 │   │                        # daemon, freshness, lifecycle, skill-graph, ipc, ...
 │   ├── schemas/             # Zod and JSON contracts
 │   ├── compat/              # Public compatibility export barrel
@@ -107,7 +107,7 @@ Allowed dependency direction:
 
 The advisor treats its SQLite skill graph as the durable record. Recommendations are read-only over that record; the daemon refreshes it from authored skill metadata.
 
-**Read path (`advisor_recommend`):** input prompt enters the CLI, crosses the unix socket, and lands in `runtime/handlers/advisor-recommend.ts`; the scorer fuses 5 lanes; the result joins with trust-state metadata; the handler returns a calibrated `recommendations[]` array with prompt-safe attribution.
+**Read path (`advisor_recommend`):** input prompt enters the CLI, crosses the unix socket, and lands in `runtime/handlers/advisor-recommend.ts`; the scorer fuses four lanes; the result joins with trust-state metadata; the handler returns a calibrated `recommendations[]` array with prompt-safe attribution.
 
 **Write path (`advisor_rebuild`):** the rebuilder scans `.skilled/skills/*/SKILL.md`, `ROUTER.md` and `graph-metadata.json`, applies the affordance normalizer, persists rows to the skill graph, and bumps the generation counter. The daemon watches the same paths and triggers incremental rebuilds on file change.
 

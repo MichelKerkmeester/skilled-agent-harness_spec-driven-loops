@@ -1,10 +1,10 @@
 ---
 title: "Skill Advisor Skill-Graph Tests"
-description: "Focused Vitest coverage for advisor skill-graph embedding coverage and database invariants."
+description: "Folder README for advisor skill-graph tests, which now run from the package-level skill-graph-db suite."
 trigger_phrases:
   - "skill graph tests"
   - "advisor skill graph tests"
-  - "embedding coverage test"
+  - "skill graph database tests"
 ---
 
 # Skill Advisor Skill-Graph Tests
@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/skill-graph/` contains targeted regression tests for advisor skill-graph database flows that are too specific for the broader root test suites.
+`tests/skill-graph/` once held targeted regression tests for advisor skill-graph database flows. It now holds only this README, and the database cases run from the package-level `../skill-graph-db.vitest.ts`.
 
 ---
 
@@ -43,7 +43,7 @@ No test file lives in this folder now. The skill-graph database cases run from `
 ## 5. ENTRYPOINTS
 
 ```bash
-npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/skill-graph
+npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/skill-graph-db.vitest.ts
 ```
 
 ---
@@ -53,7 +53,7 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/skil
 Run from the repository root.
 
 ```bash
-npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/skill-graph
+npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/skill-graph-db.vitest.ts
 python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/tests/skill-graph/README.md
 ```
 

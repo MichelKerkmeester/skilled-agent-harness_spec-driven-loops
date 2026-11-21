@@ -7,7 +7,7 @@ trigger_phrases:
   - "single writer lease"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.3.0
+version: 0.8.4.0
 ---
 
 # Daemon Lease Contract
@@ -69,7 +69,7 @@ If the lease is held by another live process, acquisition fails. The blocking pr
 
 ### Heartbeat
 
-The lease-holder updates the heartbeat timestamp every 30 seconds. Other daemon instances inspect the timestamp to decide whether the lease is still held.
+The lease-holder updates the heartbeat timestamp every 5 seconds. Other daemon instances inspect the timestamp to decide whether the lease is still held, and treat it as stale once the heartbeat is 30 seconds old.
 
 ### Release
 
@@ -85,7 +85,7 @@ Every skill-graph database open sets `PRAGMA journal_mode=WAL` and `PRAGMA busy_
 
 When two daemons start within the heartbeat window, both attempt acquisition. The lease database enforces a single row per canonical database-directory `workspace_key`, so only one owner can hold the lease for a given SQLite directory. The loser logs `lease-busy holder=<pid>` plus retries with exponential backoff: 1s, 2s, 4s, 8s, 16s, capped at 30s.
 
-If the lease holder answers an `advisor_status` call showing `live` trust state, the waiter accepts the holder as canonical plus exits without competing. If the holder is unresponsive past 3 retry cycles, the waiter inspects the heartbeat timestamp. If stale (>2x heartbeat interval), the waiter triggers stale-lease recovery (see §4).
+If the lease holder answers an `advisor_status` call showing `live` trust state, the waiter accepts the holder as canonical plus exits without competing. If the holder is unresponsive past 3 retry cycles, the waiter inspects the heartbeat timestamp. If stale (heartbeat 30 seconds old or more), the waiter triggers stale-lease recovery (see §4).
 
 ---
 
@@ -94,13 +94,13 @@ If the lease holder answers an `advisor_status` call showing `live` trust state,
 A lease is stale when:
 
 1. The recorded PID does not exist in the process table, OR
-2. The heartbeat timestamp is older than 2x the heartbeat interval (default 60s), OR
+2. The heartbeat timestamp is 30 seconds old or more (the default stale threshold), OR
 3. The lease row is present but no live owner can be verified.
 
 Stale-lease recovery procedure:
 
 1. Verify the PID is dead via `kill -0 <pid>`. If `ESRCH`, PID is gone.
-2. Verify heartbeat timestamp is older than 60s.
+2. Verify heartbeat timestamp is 30 seconds old or more.
 3. If both confirmed, log `stale-lease detected holder=<pid> age=<seconds>`.
 4. Delete the lease row.
 5. Retry acquisition once via the normal lifecycle.

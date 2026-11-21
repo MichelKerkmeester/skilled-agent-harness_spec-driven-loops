@@ -53,7 +53,7 @@ scorer/
 
 | File | Responsibility |
 |---|---|
-| `fusion.ts` | Combines lane scores into final advisor ranking signals through RRF fusion, with a conflict-match rerank seam and a self-recommendation guard that penalizes advisor self-recommendations. `requireCommandPhraseAnchor` keeps a passing command row passing only when the explicit-author lane matched one of its own phrases or its slash string. |
+| `fusion.ts` | Combines lane scores into final advisor ranking signals through the weighted lane blend by default and through RRF fusion when `SPECKIT_ADVISOR_RRF_FUSION` is enabled, with a conflict-match rerank seam and a self-recommendation guard that penalizes advisor self-recommendations. `requireCommandPhraseAnchor` keeps a passing command row passing only when the explicit-author lane matched one of its own phrases or its slash string. |
 | `lane-registry.ts` | Registers available scoring lanes. |
 | `aliases.ts` | Canonicalizes explicit command/skill alias groups for route comparisons. |
 | `attribution.ts` | Builds prompt-safe lane attribution details. |

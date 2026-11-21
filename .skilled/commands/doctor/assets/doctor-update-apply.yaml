@@ -216,7 +216,7 @@ workflow:
 
   phase_7_lane_cleanup:
     approval: "Covered by the one startup approval, whose plan shows the lane cleanup line. The only question is the tool's own about the pulled shared model, asked on every run where the tool lists it."
-    when: "Run on every path that reached phase_6_rebuild_prompt, whether the rebuild ran, was skipped or failed. A backup copy of the advisor database goes only when it still holds a table of the retired lane, and a copy of a database without one stays. Never run it on DRY_RUN, DECLINED, CANCELLED, or a failure or rollback before the rebuild prompt."
+    when: "Run on every path that reached phase_6_rebuild_prompt, whether the rebuild ran, was skipped or failed. A backup or quarantine copy of the advisor database goes when it holds a vector object, an embedding column or the lane model's name in its bytes, or when it cannot be opened to look, and a copy that holds none of them stays. Never run it on DRY_RUN, DECLINED, CANCELLED, or a failure or rollback before the rebuild prompt."
     missing_tool: "If upstream_assets.lane_cleanup is absent, because the update scope excluded spec-kit, record lane_cleanup=not_applicable and run nothing."
     report_command: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs machine --json"
     apply_command: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs apply --json [--shared-model delete|keep] </dev/null"
