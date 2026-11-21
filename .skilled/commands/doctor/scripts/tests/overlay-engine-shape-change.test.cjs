@@ -857,6 +857,37 @@ test('a file the engine wrote through a layout link becomes a folder of a direct
   assert.match(fixture.run(['status']).output, /^in-sync=3 overlay-edited=0 live-edited=0 /m);
 });
 
+// Apply takes back a layout link it made before it prints a refusal, so a
+// keep-aside line names the path at the link's target, which is still there
+// once apply returns, and the line works as pasted.
+function keepAsidePaths(output) {
+  return [...output.matchAll(/Next: mv ('([^']*)'|(\S+))/g)].map((match) => match[2] !== undefined ? match[2] : match[3]);
+}
+
+for (const [label, overlays, links, setUp] of [
+  ['a file entry with a folder in its place', [{ ...FILE_ENTRY, destination: 'my up/tool.md' }], [{ path: 'my up', target: 'real' }],
+    (fixture) => writeFile(fixture.tree, 'real/tool.md/user.md', 'user work\n')],
+  ['a directory entry with a file in a folder\'s place', [{ ...DIRECTORY_ENTRY, destination: 'up' }], [{ path: 'up', target: 'target' }],
+    (fixture) => {
+      writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+      writeFile(fixture.tree, 'target/sub', 'user work\n');
+    }],
+]) {
+  test(`an apply that takes back the layout link it made names a keep-aside path that exists, for ${label}`, (t) => {
+    const fixture = createShapeFixture(t, overlays, links);
+    setUp(fixture);
+    const apply = fixture.run(['apply']);
+    assert.equal(apply.code, 1, apply.output);
+    assert.equal(kindOf(path.join(fixture.tree, links[0].path)), 'missing');
+    const paths = keepAsidePaths(apply.output);
+    assert.ok(paths.length > 0, apply.output);
+    for (const keptAside of paths) {
+      assert.equal(path.isAbsolute(keptAside), true, apply.output);
+      assert.notEqual(kindOf(keptAside), 'missing', apply.output);
+    }
+  });
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 8. LAYOUT LINKS APPLY CANNOT WRITE THROUGH AS PLANNED
 // ─────────────────────────────────────────────────────────────────────────────

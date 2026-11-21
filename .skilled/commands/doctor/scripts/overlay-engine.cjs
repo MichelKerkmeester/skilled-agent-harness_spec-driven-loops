@@ -2173,9 +2173,20 @@ function unownedShapeProblem(entry, key, kind, wanted, root) {
 }
 
 // The remedy for an unowned shape in the way: move it aside by its absolute path,
-// so the line works from any folder, then rerun apply from the tree root.
+// so the line works from any folder, then rerun apply from the tree root. The
+// folder it sits in is named through the links standing when the remedy is
+// made, since apply takes back a link it made for the run before it prints;
+// the path itself, and a folder that is missing or leads outside the tree, is
+// named as it is.
 function keepAsideRemedy(root, key) {
-  const filePath = path.join(root, key);
+  let filePath = path.join(root, key);
+  try {
+    const realRoot = fs.realpathSync(root);
+    const realFolder = fs.realpathSync(path.dirname(filePath));
+    if (isWithin(realRoot, realFolder)) filePath = path.join(root, path.relative(realRoot, realFolder), path.basename(filePath));
+  } catch {
+    // A missing folder has no links to resolve, so the path stays as given.
+  }
   return `Next: mv ${shellPath(filePath)} ${shellPath(filePath + '.keep')}, then ` +
     nextEngine(root, 'apply').slice('Next: '.length);
 }
