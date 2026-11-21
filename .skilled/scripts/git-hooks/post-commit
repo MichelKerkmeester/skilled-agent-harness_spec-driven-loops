@@ -85,8 +85,12 @@ if [ "${SPECKIT_AUTOSYNC:-0}" = "1" ] && [ -n "${SPECKIT_LIVE_BRANCH:-}" ]; then
     else
       echo "WARNING [gate:hook-flags]: resolver unavailable; continuing with live-sync enabled." >&2
     fi
+  elif _in_toolchain_repo && [ -e "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
+    echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is unreadable; continuing with live-sync enabled." >&2
+    echo "Next: chmod +r ${SOURCE_ROOT#"$REPO_ROOT"/}/hooks/shared/hook-flags.sh" >&2
   elif _in_toolchain_repo; then
-    echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is missing or unreadable; continuing with live-sync enabled." >&2
+    echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is missing; continuing with live-sync enabled." >&2
+    echo "Next: git restore --source=HEAD --staged --worktree -- ${SOURCE_ROOT#"$REPO_ROOT"/}/hooks/shared/hook-flags.sh" >&2
   fi
   if [ "$__pc_ls_enabled" = "1" ]; then
     _as_git_dir="$(git rev-parse --absolute-git-dir 2>/dev/null || true)"

@@ -389,6 +389,24 @@ setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 run_hook; RC=$?
 check "a missing kill switch warns and leaves gates on" 0 "$RC" "hook-flags.sh is missing"
+check "a missing kill switch is restored from HEAD" 0 "$RC" "Next: git restore --source=HEAD"
+
+# ── 23b. a kill switch that is present but unreadable is made readable, not restored ──
+setup_gate_fixture toolchain
+SR="$TMP/.skilled"; [[ -f "$SR/skills/system-spec-kit/SKILL.md" ]] || SR="$TMP/.opencode"
+mkdir -p "$SR/hooks/shared"
+echo ': ' > "$SR/hooks/shared/hook-flags.sh"
+chmod 000 "$SR/hooks/shared/hook-flags.sh"
+stage_new "notes.md" "note"
+run_hook; RC=$?
+check "an unreadable kill switch warns and leaves gates on" 0 "$RC" "hook-flags.sh is unreadable"
+check "an unreadable kill switch is made readable" 0 "$RC" "Next: chmod +r"
+if grep -q "git restore.*hook-flags" "$TMP/out.log"; then
+  echo "FAIL  an unreadable kill switch is not restored over"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  an unreadable kill switch is not restored over"; PASS=$((PASS + 1))
+fi
+chmod 644 "$SR/hooks/shared/hook-flags.sh"
 
 # ── 24. a missing comment checker blocks where the toolchain ships ──
 setup_gate_fixture toolchain

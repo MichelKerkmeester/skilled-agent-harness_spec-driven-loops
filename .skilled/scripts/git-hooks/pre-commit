@@ -78,8 +78,12 @@ if [ -n "$REPO_ROOT" ] && [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
   else
     hook_enabled git-commit-hooks || exit 0
   fi
+elif _in_toolchain_repo && [ -e "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
+  # Restoring would overwrite any edit to a file that is only unreadable.
+  echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is unreadable; commit gates remain enabled." >&2
+  echo "Next: chmod +r $(_shown_path "$SOURCE_ROOT/hooks/shared/hook-flags.sh")" >&2
 elif _in_toolchain_repo; then
-  echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is missing or unreadable; commit gates remain enabled." >&2
+  echo "WARNING [gate:hook-flags]: $SOURCE_ROOT/hooks/shared/hook-flags.sh is missing; commit gates remain enabled." >&2
   echo "Next: git restore --source=HEAD --staged --worktree -- $(_shown_path "$SOURCE_ROOT/hooks/shared/hook-flags.sh")" >&2
 fi
 
