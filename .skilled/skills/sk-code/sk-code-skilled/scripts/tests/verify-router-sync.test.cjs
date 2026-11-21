@@ -74,6 +74,16 @@ test('an unrouted doc is still reported, in the shared tier and in a packet', (t
   assert.doesNotMatch(out, /workflow-debug/);
 });
 
+test('leg 1b treats a folder README as navigation, not as an orphan', (t) => {
+  const { hub, guard } = buildHub(t);
+  write(path.join(hub, 'sk-code-demo', 'references', 'README.md'), '# references\n');
+  write(path.join(hub, 'shared', 'references', 'nested', 'README.md'), '# nested\n');
+  const { status, out } = runGuard(guard, ['--checks', '1b']);
+  assert.equal(status, 0, out);
+  assert.match(out, /PASS check 1b/);
+  assert.doesNotMatch(out, /README/);
+});
+
 test('leg 1b skips ignored markdown but still reports untracked unrouted docs', (t) => {
   const { root, hub, guard } = buildHub(t);
   const init = spawnSync('git', ['init', '-q'], { cwd: root, encoding: 'utf8' });
