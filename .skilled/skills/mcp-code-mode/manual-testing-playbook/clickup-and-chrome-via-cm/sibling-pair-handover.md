@@ -1,7 +1,7 @@
 ---
 title: "CM-016 -- Sibling-pair handover"
 description: "This scenario validates the cross-MCP handover pattern for `CM-016`. It focuses on confirming a chain can capture a Chrome screenshot then create a ClickUp task referencing the screenshot — both MCPs in one execution."
-version: 1.0.1.0
+version: 1.0.2.0
 id: CM-016
 category: clickup_and_chrome_via_cm
 stage: routing
@@ -91,7 +91,7 @@ Capture the chain response with both ids and the description-contains check.
 
 | File | Role |
 |---|---|
-| `.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | Chrome MCP catalog |
+| `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md` | Chrome MCP catalog |
 
 ---
 

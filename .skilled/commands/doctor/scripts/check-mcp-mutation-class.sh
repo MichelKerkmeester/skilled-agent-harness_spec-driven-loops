@@ -17,8 +17,8 @@
 #
 # Coverage: every script the pre-commit hook sends here must have a manifest
 # row. Discovery uses the hook's own path pattern under .skilled/ and .opencode/:
-#   skills/(mcp-tooling/)?mcp-*/scripts/{doctor,install}*.sh
-#   skills/(mcp-tooling/)?mcp-*/mcp-servers/*/setup.sh
+#   skills/(mcp-tooling/|mcp-browser-use/)?mcp-*/scripts/{doctor,install}*.sh
+#   skills/(mcp-tooling/|mcp-browser-use/)?mcp-*/mcp-servers/*/setup.sh
 # A discovered script with no row fails.
 #
 # Contract enforced:
@@ -121,14 +121,16 @@ SECTIONS = ("servers", "cli_skill_diagnostics")
 SCRIPT_KINDS = ("install", "doctor", "setup")
 # Mirrors the pre-commit trigger so every script the hook sends here needs a row.
 HOOK_PATTERN = re.compile(
-    r"^skills/(mcp-tooling/)?mcp-[a-z-]+/"
+    r"^skills/(mcp-tooling/|mcp-browser-use/)?mcp-[a-z-]+/"
     r"(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)$"
 )
 DISCOVERY_GLOBS = (
     "skills/mcp-*/scripts/*.sh",
     "skills/mcp-tooling/mcp-*/scripts/*.sh",
+    "skills/mcp-browser-use/mcp-*/scripts/*.sh",
     "skills/mcp-*/mcp-servers/*/setup.sh",
     "skills/mcp-tooling/mcp-*/mcp-servers/*/setup.sh",
+    "skills/mcp-browser-use/mcp-*/mcp-servers/*/setup.sh",
 )
 
 

@@ -26,7 +26,7 @@ const { describe, test } = require('node:test');
 const SKILLS = path.resolve(__dirname, '..', '..', 'skills');
 const INSTALLERS = [
   { name: 'Code Mode', dir: path.join(SKILLS, 'mcp-code-mode', 'scripts') },
-  { name: 'Chrome DevTools', dir: path.join(SKILLS, 'mcp-tooling', 'mcp-chrome-devtools', 'scripts') },
+  { name: 'Chrome DevTools', dir: path.join(SKILLS, 'mcp-browser-use', 'mcp-chrome-devtools', 'scripts') },
 ];
 const RETIRED_NAMES = ['install-code-mode.sh', 'install-chrome-devtools.sh', 'install-all.sh'];
 

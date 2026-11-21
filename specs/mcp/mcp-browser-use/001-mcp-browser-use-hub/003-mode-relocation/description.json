@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation",
+  "description": "Phase 3: mode-relocation",
+  "keywords": [
+    "phase",
+    "mode-relocation"
+  ],
+  "lastUpdated": "2026-11-21T13:24:39.916Z",
+  "specId": "003",
+  "folderSlug": "mode-relocation",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_14-24__ac-002-residuals.md"
+  ]
+}

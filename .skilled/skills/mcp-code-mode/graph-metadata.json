@@ -18,7 +18,12 @@
       {
         "target": "mcp-tooling",
         "weight": 0.7,
-        "context": "MCP fallback via Code Mode for the mcp-tooling modes, among them devtools MCP fallback (mcp-chrome-devtools), official ClickUp MCP for advanced operations (mcp-click-up), and the optional Figma MCP (Framelink) when MCP context is needed (mcp-figma). Repointed from the three former flat bridge identities to the mcp-tooling hub (ADR-004/ADR-005 carve-out) -- this is a metadata-only edit; the code_mode registration and server are unchanged."
+        "context": "MCP fallback via Code Mode for the mcp-tooling modes, among them the official ClickUp MCP for advanced operations (mcp-click-up) and the optional Figma MCP (Framelink) when MCP context is needed (mcp-figma). This is a metadata-only edge; the code_mode registration and server are unchanged."
+      },
+      {
+        "target": "mcp-browser-use",
+        "weight": 0.7,
+        "context": "MCP lane via Code Mode for the browser modes: the Chrome DevTools MCP instances, including Lighthouse and performance traces (mcp-chrome-devtools), the Aside MCP (mcp-aside-devtools) and the Bladebro MCP (mcp-bladebro). This is a metadata-only edge; the code_mode registration and server are unchanged."
       }
     ]
   },

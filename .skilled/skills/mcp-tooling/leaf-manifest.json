@@ -2,29 +2,6 @@
   "modes": [
     {
       "leaves": [
-        "assets/utcp-aside-manual.md",
-        "references/aside-cli-reference.md",
-        "references/aside-online-research-2026-07-17.md",
-        "references/discovery-fixture-2026-07-16.json",
-        "references/mcp-wiring.md",
-        "references/session-management.md",
-        "references/troubleshooting.md"
-      ],
-      "packet": "mcp-aside-devtools",
-      "workflowMode": "mcp-aside-devtools"
-    },
-    {
-      "leaves": [
-        "assets/utcp-chrome-devtools-manuals.md",
-        "references/cdp-patterns.md",
-        "references/session-management.md",
-        "references/troubleshooting.md"
-      ],
-      "packet": "mcp-chrome-devtools",
-      "workflowMode": "mcp-chrome-devtools"
-    },
-    {
-      "leaves": [
         "references/cupt-commands.md",
         "references/mcp-tools.md",
         "references/troubleshooting.md"

@@ -202,7 +202,7 @@
     },
     {
       "from": ".opencode/skills/mcp-chrome-devtools/",
-      "to": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/",
+      "to": ".opencode/skills/mcp-browser-use/mcp-chrome-devtools/",
       "records": 80,
       "agreement": 1
     },

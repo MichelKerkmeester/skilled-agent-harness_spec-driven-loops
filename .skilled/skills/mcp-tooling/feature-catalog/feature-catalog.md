@@ -1,28 +1,28 @@
 ---
 title: "mcp-tooling: Feature Catalog"
-description: "Current-state inventory for the mcp-tooling hub, covering eight workflow-vs-transport modes, metadata routing, generated leaf resources, and the conditional compiled-routing front door."
+description: "Current-state inventory for the mcp-tooling hub, covering six workflow-vs-transport modes, metadata routing, generated leaf resources, and the conditional compiled-routing front door."
 trigger_phrases:
   - "mcp-tooling feature catalog"
   - "mcp-tooling hub capabilities"
   - "workflow vs transport routing"
   - "mcp-tooling compiled routing"
 last_updated: "2026-09-20"
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # mcp-tooling: Feature Catalog
 
-This catalog inventories the live `mcp-tooling` hub surface. The hub scores and dispatches eight MCP-bridge packets across a workspace-mutating workflow axis and a read-only external-transport axis. A conditional compiled-routing front door may resolve the same decision ahead of registry-driven routing when its activation manifest is fresh; otherwise the legacy hub router remains authoritative.
+This catalog inventories the live `mcp-tooling` hub surface. The hub scores and dispatches six MCP-bridge packets across a workspace-mutating workflow axis and a read-only external-transport axis. A conditional compiled-routing front door may resolve the same decision ahead of registry-driven routing when its activation manifest is fresh; otherwise the legacy hub router remains authoritative.
 
 ---
 
 ## 1. OVERVIEW
 
-Use this catalog as the current-state inventory for the `mcp-tooling` hub. The hub does not call an external tool itself — it selects one of five workflow packets, one of three transports, an ordered bundle, or a deferred disambiguation, then hands off to the selected packet.
+Use this catalog as the current-state inventory for the `mcp-tooling` hub. The hub does not call an external tool itself — it selects one of three workflow packets, one of three transports, an ordered bundle, or a deferred disambiguation, then hands off to the selected packet.
 
 | Axis | Modes | Contract |
 |---|---|---|
-| Workflow | `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion` | May change local or external workflow state and must apply packet-specific authorization and verification gates |
+| Workflow | `mcp-click-up`, `mcp-obsidian`, `mcp-notion` | May change local or external workflow state and must apply packet-specific authorization and verification gates |
 | Transport | `mcp-figma`, `mcp-refero`, `mcp-mobbin` | External read or explicit-export surfaces; remain `mutatesWorkspace:false` in this workspace |
 
 Orca CLI work left this hub for the standalone `cli-orca` skill, which owns Orca-managed worktrees, repositories, terminals, handoffs, automations, artifacts, skill sharing, comments, and embedded browser state.
@@ -33,7 +33,7 @@ Orca CLI work left this hub for the standalone `cli-orca` skill, which owns Orca
 
 ### Workflow-Vs-Transport Two-Axis Routing
 
-`mode-registry.json` and `hub-router.json` jointly resolve a request to a single mode, an ordered bundle, or a deferred disambiguation across the eight packets. `routerPolicy.tieBreak` keeps workflow modes before transports when signals are near-tied.
+`mode-registry.json` and `hub-router.json` jointly resolve a request to a single mode, an ordered bundle, or a deferred disambiguation across the six packets. `routerPolicy.tieBreak` keeps workflow modes before transports when signals are near-tied.
 
 Workflow packets own state-changing lifecycle boundaries. Transport packets bridge external design surfaces and do not decide design themselves: Figma, Refero, and Mobbin pair with `sk-design-md-generator` when measured reference extraction is needed.
 
@@ -51,7 +51,7 @@ The activation manifest is not promoted by adding an ordinary packet. After a hu
 
 ```bash
 node .skilled/bin/compiled-route-status.cjs --hub mcp-tooling
-node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use Chrome DevTools to capture a HAR for the staging dashboard"
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use ClickUp to mark the onboarding task done"
 ```
 
 See [`compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md`](compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md) for the flag, activation, and fallback contract.

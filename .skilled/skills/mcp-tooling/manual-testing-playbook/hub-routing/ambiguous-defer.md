@@ -9,7 +9,7 @@ expected_resources: []
 expected_workflow_mode: defer
 expected_leaf_resources: []
 created: 2026-07-10
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # MT-004: Genuinely ambiguous tool request defers rather than silently defaulting
@@ -20,7 +20,7 @@ This document captures the routing contract, expected behavior, execution flow, 
 
 ## 1. OVERVIEW
 
-No specific tool named (no browser, ClickUp, or Figma signal), so the router does not have a strong per-mode signal. `routerPolicy.defaultMode` (`mcp-chrome-devtools`) is a WEAK default per ADR-006 — the router should `defer`/disambiguate on genuinely ambiguous, non-matching intent rather than silently resolving to `mcp-chrome-devtools` on hub-identity vocabulary alone.
+No specific tool named (no ClickUp, Obsidian, or Figma signal), so the router does not have a strong per-mode signal. `routerPolicy.defaultMode` is `null`, so the router should `defer`/disambiguate on genuinely ambiguous, non-matching intent rather than silently resolving to any one mode on hub-identity vocabulary alone.
 
 Hub-identity vocabulary ("mcp tool bridge" here) is discovery evidence only (`routerPolicy.discoveryClasses`): it scores NO mode, so this prompt takes the zero-signal branch. This scenario asserts the **fallback-only** contract for `routerPolicy.defaultResource` (`defaultResourceSemantics: "fallback-only"`): on defer, NO packet resources are assembled — `expected_resources` is empty by design — and the Chrome default is at most the defer-time suggestion offered alongside the disambiguation question, never a silent load.
 
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `MT-004` and confirm the
 
 ### Success Criteria
 
-The router does not silently resolve to `mcp-chrome-devtools` on bare hub-identity vocabulary with no per-mode signal: zero modes score, the outcome is `defer`, and no mode resources (including `defaultResource`) are silently assembled.
+The router does not silently resolve to any one mode on bare hub-identity vocabulary with no per-mode signal: zero modes score, the outcome is `defer`, and no mode resources (including `defaultResource`) are silently assembled.
 
 ---
 

@@ -1,14 +1,12 @@
 {
   "skill": "mcp-tooling",
-  "version": "1.9.16.0",
+  "version": "1.10.0.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
     "tieBreak": [
-      "mcp-chrome-devtools",
       "mcp-click-up",
       "mcp-obsidian",
-      "mcp-aside-devtools",
       "mcp-notion",
       "mcp-figma",
       "mcp-refero",
@@ -32,16 +30,6 @@
     "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: a prompt matching only discovery vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode."
   },
   "routerSignals": {
-    "mcp-chrome-devtools": {
-      "weight": 4,
-      "classes": [
-        "chrome-devtools-aliases",
-        "browser-debug"
-      ],
-      "resources": [
-        "mcp-chrome-devtools/SKILL.md"
-      ]
-    },
     "mcp-click-up": {
       "weight": 4,
       "classes": [
@@ -64,16 +52,6 @@
       ],
       "resources": [
         "mcp-obsidian/SKILL.md"
-      ]
-    },
-    "mcp-aside-devtools": {
-      "weight": 4,
-      "classes": [
-        "aside-devtools-aliases",
-        "agentic-browser"
-      ],
-      "resources": [
-        "mcp-aside-devtools/SKILL.md"
       ]
     },
     "mcp-notion": {
@@ -131,37 +109,6 @@
       "note": "Discovery-only (see routerPolicy.discoveryClasses): generic design-research phrasing naming neither provider. Reserved for defer between mcp-refero and mcp-mobbin per MT-008/MT-009 scenario contracts; never provider-scoring vocabulary.",
       "keywords": [
         "screen examples"
-      ]
-    },
-    "chrome-devtools-aliases": {
-      "keywords": [
-        "chrome devtools",
-        "browser debug",
-        "lighthouse",
-        "bdg",
-        "cdp",
-        "chrome-devtools",
-        "mcp-chrome-devtools",
-        "chrome_devtools_live",
-        "chrome devtools live",
-        "chrome live manual",
-        "remote debugging",
-        "chrome autoconnect",
-        "my own chrome",
-        "signed-in chrome",
-        "logged in chrome"
-      ]
-    },
-    "browser-debug": {
-      "keywords": [
-        "inspect the dom",
-        "screenshot capture",
-        "console errors",
-        "network requests",
-        "har export",
-        "performance trace",
-        "cdp domain",
-        "capture browser screenshots"
       ]
     },
     "clickup-aliases": {
@@ -241,29 +188,6 @@
         "export from figma",
         "figma export",
         "design file"
-      ]
-    },
-    "aside-devtools-aliases": {
-      "keywords": [
-        "aside",
-        "aside browser",
-        "aside cli",
-        "aside mcp",
-        "aside repl",
-        "ai browser automation",
-        "agentic browser"
-      ]
-    },
-    "agentic-browser": {
-      "keywords": [
-        "agentic browser task",
-        "natural language browser",
-        "browser agent",
-        "aside daemon",
-        "aside account",
-        "capture repl evidence",
-        "repl evidence capture",
-        "click through"
       ]
     },
     "notion-aliases": {
