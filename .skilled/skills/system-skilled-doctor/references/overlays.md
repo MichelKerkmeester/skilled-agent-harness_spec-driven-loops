@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.39.0
+version: 1.0.40.0
 ---
 
 # Vendored Skilled Overlays
@@ -119,7 +119,7 @@ Three more `status` lines name work no destination state covers.
 |----------|---------------|------------------|
 | `STALE    root-file <path>` | Upstream changed a root file named in `repin.rootFiles` that a `file` or `marked-section` overlay owns and pins in `pinnedSha256`. A re-pin never copies a root file, so no destination line reports it | Rebase the overlay onto the new upstream file, then update its `pinnedSha256` |
 | `REGEN    pending: <ids>` | An earlier `apply` wrote and recorded the destinations, then a `regenerate` step failed. The line names every `regenerate` step id in the manifest, comma-separated, because the next `apply` reruns them all. A why line and `Next: from <root>: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply` follow it. A manifest with no `regenerate` steps prints no line. `status --json` names the same ids in `regeneratePending`, after `staleRootFiles`. The field is always present and holds `[]` when nothing is pending. A REGEN line fails the status | Fix the step that failed, then run `/doctor:overlay apply` |
-| `LAYOUT   <overlay>: <field> <from> belongs at <to>` | The copy the entry names sits off its layout path. A destination under `.skilled/` lays out under `framework/`, so `.skilled/skills/x` belongs at `framework/skills/x`, and `.skilled` itself at `framework`. Any other destination lays out under `root/`, with its leading dots dropped, so `.claude/settings.json` belongs at `root/claude/settings.json`. `<field>` is `source`, `fragment` or `base`, and a `marked-section` entry can print one line for each. The `base` path carries `.base` before the extension. `status` prints at most 20 of these lines, then one overflow line: `LAYOUT   … <n> more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout` when no hidden move sits under `root/skilled`, `LAYOUT   … <n> more under root/skilled; change the destination or remove the entry` when every hidden move does, and `LAYOUT   … <n> more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout for <m>, and change the destination or remove the entry for the <b> under root/skilled` when they mix. An indented `Next:` line follows the overflow line. When a hidden move can go and any move, shown or hidden, sits under `root/skilled`, it reads `Next: change the destination of each entry under root/skilled in <manifest path>, or remove the entry, then from <root>: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout`, because relayout refuses every move until those entries change. `status --json` keeps every move in `offLayout`. A LAYOUT line never fails the status | `/doctor:overlay apply --relayout`; when `<to>` sits under `root/skilled` the line ends `change the destination or remove the entry` instead, because relayout refuses that move |
+| `LAYOUT   <overlay>: <field> <from> belongs at <to>` | The copy the entry names sits off its layout path. A destination under `.skilled/` lays out under `framework/`, so `.skilled/skills/x` belongs at `framework/skills/x`, and `.skilled` itself at `framework`. Any other destination lays out under `root/`, with its leading dots dropped, so `.claude/settings.json` belongs at `root/claude/settings.json`. `<field>` is `source`, `fragment` or `base`, and a `marked-section` entry can print one line for each. The `base` path carries `.base` before the extension. `status` prints at most 20 of these lines, then one overflow line: `LAYOUT   … <n> more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout` when no hidden move sits under `root/skilled`, `LAYOUT   … <n> more under root/skilled; change the destination or remove the entry` when every hidden move does, and `LAYOUT   … <n> more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout for <m>, and change the destination or remove the entry for the <b> under root/skilled` when they mix. An indented `Next:` line follows the overflow line. When a hidden move can go and any move, shown or hidden, sits under `root/skilled`, it reads `Next: change the destination of each entry under root/skilled in <manifest path>, or remove the entry, then from <root>: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout`, because relayout refuses every move until those entries change. `status --json` keeps every move in `offLayout`. A LAYOUT line never fails the status | `/doctor:overlay apply --relayout`. When `<to>` sits under `root/skilled` the line ends `change the destination or remove the entry` instead, because relayout refuses that move |
 
 `STALE` names a root file owned by a `file` or a `marked-section` overlay that carries `pinnedSha256`. Both scopes pin upstream's copy of the destination. A `file` entry copies that file whole, and a `marked-section` entry keeps it as its `base`. One comparison against the pinned commit therefore catches an upstream move for either one. The line prints even while the entry itself still applies cleanly, which is why it is the only sign the pin is out of date. Without a readable checkout at the pin the check cannot run, and `status` prints a `NOTE` line saying it skipped the check.
 
@@ -198,6 +198,19 @@ BLOCKED  t: thing is a folder that does not match what apply last wrote there, w
 ```
 
 Move the unowned copy aside as the `Next:` line says, then compare it with the overlay before you delete it.
+
+A link on the path is refused the same way when it leads outside the tree or resolves nowhere, because apply writes only inside the tree. The entry writes nothing, the link stays and the run exits 1:
+
+```text
+BLOCKED  t: thing is a link that leads outside the tree, to /elsewhere/thing, where overlay t writes
+  apply writes only inside the tree, and a write through this link would land outside it, so the link stays
+  Next: mv /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+BLOCKED  t: thing is a link that does not resolve, where overlay t writes
+  apply cannot tell where a write through it would land, so it writes nothing and the link stays
+  Next: mv /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same text on a `MISS` line. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
 
 ### An Edit to an Owned File
 
