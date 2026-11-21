@@ -32,7 +32,20 @@ Convergence-detection primitives for research, review, and context coverage grap
 
 ---
 
-## 4. RELATED RESOURCES
+## 4. VALIDATION
+
+Run the three coverage graph suites from the runtime folder. They cover the database lifecycle, the graph queries and the convergence signals.
+
+```bash
+cd .skilled/skills/system-deep-loop/runtime
+npx vitest run tests/unit/coverage-graph-db.vitest.ts tests/unit/coverage-graph-query.vitest.ts tests/unit/coverage-graph-signals.vitest.ts
+```
+
+Expected result: every test passes and the command exits 0.
+
+---
+
+## 5. RELATED RESOURCES
 
 - `../deep-loop/` - shared state primitives used alongside coverage-graph
 - `../../database/` - persistence layer. `coverage-graph-db.ts` opens deep-loop-graph.sqlite in this directory by default, and the `DEEP_LOOP_COVERAGE_DB_DIR` environment variable points it at another directory.
