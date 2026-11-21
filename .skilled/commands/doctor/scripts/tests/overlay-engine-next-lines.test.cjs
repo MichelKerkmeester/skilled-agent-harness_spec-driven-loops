@@ -194,3 +194,22 @@ test('a stuck Python cache folder with a space in its path names a quoted absolu
     fs.chmodSync(cacheDir, 0o755);
   }
 });
+
+test('a rollback line names a root with a space and a quote so a shell reads it back as that root', () => {
+  const root = "/tmp/a b'c";
+  const line = engine.rollbackCommand({ root }, '20261121T000000Z-abc123');
+  const prefix = `rollback: ${ENGINE} repin --rollback 20261121T000000Z-abc123 --root `;
+  assert.ok(line.startsWith(prefix), line);
+  const printed = spawnSync('sh', ['-c', 'printf %s ' + line.slice(prefix.length)], { encoding: 'utf8' });
+  assert.equal(printed.status, 0, printed.stderr);
+  assert.equal(printed.stdout, root);
+});
+
+test('the capture fix for a live edit at a path with a space quotes that path', (t) => {
+  const fixture = createSyncFixture(t);
+  assert.equal(fixture.run(['apply']).code, 0);
+  writeFile(fixture.tree, 'directory-live/my file.md', 'hand edit\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.ok(status.output.includes(`fix: ${ENGINE} apply --capture 'directory-live/my file.md'`), status.output);
+});

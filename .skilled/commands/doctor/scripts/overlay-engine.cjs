@@ -4440,7 +4440,7 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
 
 function fixFor(ctx, record) {
   if (record.state === 'overlay-edited') return ENGINE_COMMAND + ' apply';
-  if (record.state === 'live-edited') return ENGINE_COMMAND + ' apply --capture ' + record.key;
+  if (record.state === 'live-edited') return ENGINE_COMMAND + ' apply --capture ' + shellPath(record.key);
   if (record.state === 'cannot-apply') {
     // The fix column is one line, so each reason keeps only its first line; the
     // why and Next lines under a problem print with the BLOCKED line itself.
@@ -6095,7 +6095,7 @@ function makeRunId() {
 }
 
 function rollbackCommand(ctx, runId) {
-  const root = ctx.root === DEFAULT_ROOT ? '' : ' --root ' + (/\s/.test(ctx.root) ? `'${ctx.root}'` : ctx.root);
+  const root = ctx.root === DEFAULT_ROOT ? '' : ' --root ' + shellPath(ctx.root);
   return `rollback: ${ENGINE_COMMAND} repin --rollback ${runId}${root}`;
 }
 
@@ -8690,6 +8690,7 @@ module.exports = {
   treeShapeProblems,
   resolveOverlayDir,
   resolveRemoveRootPath,
+  rollbackCommand,
   runCheck,
   sha256,
   shellPath,
