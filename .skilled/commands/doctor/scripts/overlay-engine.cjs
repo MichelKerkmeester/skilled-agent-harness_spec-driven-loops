@@ -154,10 +154,10 @@ function toPosix(filePath) {
 // Why an entry that edits a file in place cannot plan when a folder sits on its
 // destination: there are no live bytes to merge into, and writing would replace
 // whatever the folder holds.
-function folderInTheWay(entry) {
-  const destination = shellPath(entry.destination);
-  return `${entry.destination} is a folder, where overlay ${entry.id} edits a file, so there is nothing to merge into; ` +
-    `move it aside (mv ${destination} ${destination}.aside), then rerun`;
+function folderInTheWay(entry, root) {
+  return withRemedy(`${entry.destination} is a folder, where overlay ${entry.id} edits a file, so there is nothing to merge into`,
+    'writing the file there would replace whatever the folder holds, so apply leaves it',
+    keepAsideRemedy(root, path.posix.normalize(entry.destination)));
 }
 
 // Whether a path, read through any link on it, is a folder.
@@ -471,8 +471,9 @@ function unshippedFolderTest(entry, overlayRoot) {
   const isSourceFolder = (relative) => isDirectory(path.join(sourceDir, relative));
   if (entry.scope === 'directory') return (relative) => !isSourceFolder(relative);
   const matchesPrefix = (prefixes, relative) => prefixes.some((prefix) => relative === prefix || relative.startsWith(`${prefix}/`));
-  const replacedSubtrees = entry.replace.filter((relative) => isSourceFolder(relative));
-  const isShipped = (relative) => entry.replace.some((prefix) => prefix.startsWith(`${relative}/`)) ||
+  const replacePaths = manifestFolderPaths(entry.replace);
+  const replacedSubtrees = replacePaths.filter((relative) => isSourceFolder(relative));
+  const isShipped = (relative) => replacePaths.some((prefix) => prefix.startsWith(`${relative}/`)) ||
     (matchesPrefix(replacedSubtrees, relative) && isSourceFolder(relative));
   return (relative) => matchesPrefix([...manifestFolderPaths(entry.remove), ...replacedSubtrees], relative) &&
     !isShipped(relative);
@@ -825,18 +826,19 @@ function emptyState(pin) {
  *   version the file was written with, or null when there is no file.
  */
 function loadState(ctx, manifest) {
+  const stateRestore = `Next: restore the state file from git: git -C ${shellPath(ctx.root)} checkout -- ` +
+    shellPath(toPosix(path.relative(ctx.root, ctx.statePath)));
   const stateShape = (detail) => withRemedy(`${STATE_FILE} has an unsupported shape`,
-    `${detail}, and every command reads the state file, so none runs until it can`,
-    `Next: restore the state file from git: git -C ${shellPath(ctx.root)} checkout -- ` +
-    shellPath(toPosix(path.relative(ctx.root, ctx.statePath))));
+    `${detail}, and every command reads the state file, so none runs until it can`, stateRestore);
   const buffer = readBufferOrNull(ctx.statePath);
   if (!buffer) return emptyState(manifest.pin.commit);
   let parsed;
   try {
     parsed = JSON.parse(buffer.toString('utf8'));
   } catch (error) {
-    throw new Error(STATE_FILE + ' is not valid JSON: ' + error.message +
-      '; restore it from version control, because every command reads it');
+    throw new Error(withRemedy(STATE_FILE + ' is not valid JSON: ' + error.message,
+      'every command reads the state file, so none runs until it parses',
+      stateRestore));
   }
   if (!parsed || !READABLE_STATE_VERSIONS.has(parsed.schemaVersion) || typeof parsed.pin !== 'string' ||
       !parsed.files || typeof parsed.files !== 'object' || Array.isArray(parsed.files)) {
@@ -2300,7 +2302,7 @@ function planFileOverlay(entry, ctx, problems, acceptedSha256, { recordedLinks }
   // A link the engine did not make that leads to a folder holds no file bytes to
   // compare, and a write through it would land inside that folder.
   if (shape.kind === 'link' && leadsToFolder(destinationPath)) {
-    problems.push(folderInTheWay(entry));
+    problems.push(folderInTheWay(entry, ctx.root));
     return { writes: [], deletes: [], outputs: [] };
   }
   const current = readBufferOrNull(destinationPath);
@@ -2462,7 +2464,7 @@ function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
     return { writes: [], deletes: [], outputs: [] };
   }
   if (leadsToFolder(destinationPath)) {
-    problems.push(folderInTheWay(entry));
+    problems.push(folderInTheWay(entry, ctx.root));
     return { writes: [], deletes: [], outputs: [] };
   }
   const current = readBufferOrNull(destinationPath);
@@ -2555,7 +2557,7 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
     return { writes: [], deletes: [], outputs: [] };
   }
   if (leadsToFolder(destinationPath)) {
-    problems.push(folderInTheWay(entry));
+    problems.push(folderInTheWay(entry, ctx.root));
     return { writes: [], deletes: [], outputs: [] };
   }
   const current = readBufferOrNull(destinationPath);
@@ -3296,8 +3298,11 @@ const EXACT_CAPTURE_SCOPES = new Set(['file', 'marked-section']);
 const NO_EXACT_PATHS = new Set();
 
 // This template name holds no secret by convention, so it is read, copied and
-// re-pinned like any vendored file. Only the exact basename is exempt, and it is
-// the one name the env-secret guard hook allows, so the two refuse the same files.
+// re-pinned like any vendored file. It is also the one name the env-secret guard
+// hook exempts. The engine is the stricter of the two: it folds case and refuses
+// any name that starts with `.env`, where the hook matches `.env` and `.env.<suffix>`
+// as spelled, so the engine refuses every name the hook does and more. Folding
+// case also exempts the template's other spellings, which the hook refuses.
 const ENV_TEMPLATE_NAMES = new Set(['.env.example']);
 
 function isEnvName(filePath) {
@@ -4905,7 +4910,7 @@ function captureRecordForPath(ctx, manifest, candidate) {
     if (entry.scope === 'skill-root') {
       const relative = directoryRelative(destinationPath, candidate);
       if (relative === null || isPythonCachePath(relative, isDirectory(candidate))) continue;
-      const isReplacement = (entry.replace || []).some((replacement) =>
+      const isReplacement = manifestFolderPaths(entry.replace).some((replacement) =>
         relative === replacement || relative.startsWith(replacement + '/'));
       const sourcePath = path.resolve(ctx.overlayRoot, entry.source, relative);
       const isKept = [...keptRetainedPaths(entry, path.resolve(ctx.overlayRoot, entry.source))].some((kept) =>
@@ -5668,9 +5673,11 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
   // Apply's prune takes a Python cache only together with a folder the entry no
   // longer ships, and no record names a cache. So the caches under such a folder
   // are backed up for a rollback to put back, by the same test the prune applies.
-  // That test also covers a folder a directory or skill-root entry now ships as
-  // a file, which apply clears before the write. A folder a file entry replaces
-  // is its record key, so the engine paths above already take every cache below it.
+  // That test also covers a folder a directory entry, or a skill-root entry below
+  // one of its replace paths, now ships as a file, which apply clears before the
+  // write. A folder a file entry replaces, or that a skill-root replace path itself
+  // now ships as a file, is its record key, so the engine paths above already take
+  // every cache below it.
   // Any other cache stays where it is, and copying it would only grow the backup.
   for (const entry of manifest.overlays || []) {
     if ((entry.scope !== 'directory' && entry.scope !== 'skill-root') || typeof entry.destination !== 'string') continue;

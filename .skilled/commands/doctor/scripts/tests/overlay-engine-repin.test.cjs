@@ -487,6 +487,33 @@ for (const [direction, before, after, cache] of [
   });
 }
 
+test('the backup takes the Python cache under a skill-root replace folder the source now ships as a file', (t) => {
+  const fixture = createRepinFixture(t);
+  const { tree, overlayDir } = fixture;
+  writeFile(overlayDir, 'vendor/keep/sub/x.md', 'sub x\n');
+  fixture.manifest.overlays.push({
+    id: 'vendor', scope: 'skill-root', source: 'vendor', destination: '.skilled/vendor',
+    replace: ['keep/sub'], remove: [], retained: [],
+  });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cache = '.skilled/vendor/keep/sub/__pycache__/x.cpython-39.pyc';
+  const cacheBytes = Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0x05]);
+  writeFile(tree, cache, cacheBytes);
+  fs.rmSync(path.join(overlayDir, 'vendor/keep/sub'), { recursive: true });
+  writeFile(overlayDir, 'vendor/keep/sub', 'now a file\n');
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  assert.equal(fs.readFileSync(path.join(tree, '.skilled/vendor/keep/sub'), 'utf8'), 'now a file\n');
+  const runId = fs.readdirSync(fixture.runsDir)[0];
+  const backedUp = readJson(path.join(fixture.runsDir, runId, 'backup.json')).entries.map((entry) => entry.path);
+  assert.ok(backedUp.includes(cache), backedUp.join('\n'));
+  const rolledBack = fixture.run(['repin', '--rollback', runId]);
+  assert.equal(rolledBack.code, 0, rolledBack.output);
+  assert.deepEqual(fs.readFileSync(path.join(tree, cache)), cacheBytes);
+});
+
 test('--rollback refuses a backed-up file whose bytes no longer match the recorded hash', (t) => {
   const fixture = createRepinFixture(t);
   const result = fixture.repin();

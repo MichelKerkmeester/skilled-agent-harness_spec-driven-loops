@@ -30,7 +30,8 @@ for (const [id, destination] of [['json-entry', 'settings.json'], ['marked-block
     assert.equal(status.output.includes('EISDIR'), false, status.output);
     assert.notEqual(status.code, 0, status.output);
     assert.match(status.output, new RegExp(`${destination.replace('.', '\\.')} is a folder`), status.output);
-    assert.ok(status.output.includes(`move it aside (mv ${destination} ${destination}.aside)`), status.output);
+    const live = path.join(fixture.tree, destination);
+    assert.ok(status.output.includes(`  Next: mv ${live} ${live}.keep, then from ${fixture.tree}: ${ENGINE_COMMAND} apply`), status.output);
 
     const applied = fixture.run(['apply']);
     assert.equal(applied.code, 1, applied.output);
@@ -89,7 +90,9 @@ test('a link to a folder where a whole-file overlay writes a file is refused, no
     const result = fixture.run([command]);
     assert.equal(result.output.includes('EISDIR'), false, result.output);
     assert.equal(result.code, 1, result.output);
-    assert.ok(result.output.includes('move it aside (mv guarded.txt guarded.txt.aside)'), result.output);
+    assert.match(result.output, /guarded\.txt is a folder, where overlay \S+ edits a file, so there is nothing to merge into\n/);
+    const live = path.join(fixture.tree, 'guarded.txt');
+    assert.ok(result.output.includes(`  Next: mv ${live} ${live}.keep, then from ${fixture.tree}: ${ENGINE_COMMAND} apply`), result.output);
   }
 });
 
@@ -119,6 +122,50 @@ test('a state file of an unsupported shape names the field and the git command t
   assert.match(status.output, /\[overlay-engine\] \S+ has an unsupported shape\n {2}its links field is not a map of link targets/);
   assert.ok(status.output.includes(`  Next: restore the state file from git: git -C ${fixture.tree} checkout -- ` +
     path.relative(fixture.tree, statePath)), status.output);
+});
+
+test('a state file that is not valid JSON names why and the git command that restores it', (t) => {
+  const fixture = createSyncFixture(t);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const statePath = engine.createContext(fixture.tree).statePath;
+  fs.writeFileSync(statePath, '{ "files": \n');
+
+  const status = fixture.run(['status']);
+
+  assert.equal(status.code, 2, status.output);
+  assert.match(status.output, /\[overlay-engine\] sync-state\.json is not valid JSON: [^\n]+\n {2}every command reads the state file/);
+  assert.ok(status.output.includes(`  Next: restore the state file from git: git -C ${fixture.tree} checkout -- ` +
+    path.relative(fixture.tree, statePath)), status.output);
+});
+
+test('a replace folder written with a trailing slash prunes a dropped subfolder of Python caches', (t) => {
+  const fixture = createSyncFixture(t);
+  const entry = fixture.manifest.overlays.find((item) => item.id === 'skill-root');
+  entry.replace = ['SKILL.md', 'docs/'];
+  writeFile(fixture.overlayDir, 'skill-root-source/docs/sub/tool.md', 'sub tool\n');
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  writeFile(fixture.tree, 'skill/docs/sub/__pycache__/tool.cpython-39.pyc', 'cache\n');
+  fs.rmSync(path.join(fixture.overlayDir, 'skill-root-source/docs/sub'), { recursive: true });
+
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'skill/docs/sub')), false, applied.output);
+});
+
+test('a file under a replace folder written with a trailing slash is captured into that folder', (t) => {
+  const fixture = createSyncFixture(t);
+  const entry = fixture.manifest.overlays.find((item) => item.id === 'skill-root');
+  entry.replace = ['SKILL.md', 'docs/'];
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  writeFile(fixture.tree, 'skill/docs/readme.md', 'live doc edit\n');
+
+  const captured = fixture.run(['apply', '--capture', 'skill/docs/readme.md']);
+
+  assert.equal(captured.code, 0, captured.output);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'skill-root-source/docs/readme.md'), 'utf8'), 'live doc edit\n');
 });
 
 test('a setting file that names no folder says which value to set and the command to check it', (t) => {
