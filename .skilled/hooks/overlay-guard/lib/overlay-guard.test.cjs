@@ -273,7 +273,7 @@ test('an engine error fails open with a one-line note', () => {
   assert.doesNotMatch(result.notes[0], /\n/);
   assert.match(result.notes[0], /overlay-guard: could not judge/);
   assert.match(result.notes[0], /JSON/);
-  assert.match(result.notes[0], / Next: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs status$/);
+  assert.ok(result.notes[0].endsWith(` Next: from ${path.resolve(root)}: node .skilled/commands/doctor/scripts/overlay-engine.cjs status`), result.notes[0]);
 });
 
 test('an engine timeout fails open with a note', () => {
@@ -283,7 +283,7 @@ test('an engine timeout fails open with a note', () => {
   assert.equal(result.decision, 'allow');
   assert.equal(result.notes.length, 1);
   assert.match(result.notes[0], /ETIMEDOUT/);
-  assert.match(result.notes[0], / Next: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs status$/);
+  assert.ok(result.notes[0].endsWith(` Next: from ${path.resolve(root)}: node .skilled/commands/doctor/scripts/overlay-engine.cjs status`), result.notes[0]);
 });
 
 test('an unreadable overlay setting fails open with a note', () => {

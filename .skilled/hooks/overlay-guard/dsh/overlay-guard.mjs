@@ -51,7 +51,7 @@ export function registerOverlayGuard(ctx, {
       for (const note of result.notes ?? []) log(ctx, note);
       if (result.decision === 'deny') return { kind: 'deny', reason: result.reason };
     } catch (error) {
-      log(ctx, `repo-guards overlay-guard: ${String(error)} -- the write was allowed unguarded. Next: node .skilled/commands/doctor/scripts/overlay-engine.cjs status`);
+      log(ctx, `repo-guards overlay-guard: ${String(error)} -- the write was allowed unguarded. ${overlayCore.statusRemedy()}`);
     }
     return next();
   });

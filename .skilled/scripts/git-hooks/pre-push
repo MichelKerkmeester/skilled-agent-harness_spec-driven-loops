@@ -177,6 +177,9 @@ while [[ -L "$_self" ]]; do
   case "$_link" in /*) _self="$_link" ;; *) _self="$(dirname "$_self")/$_link" ;; esac
 done
 HOOK_DIR="$(cd "$(dirname "$_self")" && pwd -P)"
+# The installer beside these hooks, as an absolute path: the hooks also run from a
+# global hooks dir in repositories that carry no toolchain at a repo-relative path.
+INSTALLER="$(cd "$HOOK_DIR/.." && pwd -P)/install-git-hooks.sh"
 # Gate settings: a gate the operator switched off in git config (speckit.hooks.<key>)
 # runs as if its SPECKIT_SKIP_* variable were set. Without the helper every gate runs.
 # Other repositories run none of these gates, so they read no setting and print nothing.
@@ -295,7 +298,7 @@ while read -r _ local_sha remote_ref remote_sha; do
         echo "  Next: git push" >&2
       else
         echo "  The validator and helpers sit beside the hook script; relink the hooks to a checkout that has them." >&2
-        echo "  Next: bash .skilled/scripts/install-git-hooks.sh" >&2
+        echo "  Next: bash $INSTALLER" >&2
       fi
       REJECTED=1
       continue
@@ -317,7 +320,7 @@ while read -r _ local_sha remote_ref remote_sha; do
       elif [[ "$_contract_rc" -ne 0 ]]; then
         echo "BLOCKED [gate:message-contract]: the message validator could not check the commits pushed to '$branch_name' (exit $_contract_rc); its error is above." >&2
         echo "  The push stays blocked until the validator can run. Rerun it alone to see the error:" >&2
-        echo "  Next: node $CONTRACT_VALIDATOR --repo $REPO_ROOT --rev-list \"$_range\"" >&2
+        echo "  Next: node $CONTRACT_VALIDATOR --repo $REPO_ROOT --rev-list \"$_range\" --exclude-ref \"refs/remotes/$REMOTE_NAME/$branch_name\"" >&2
         REJECTED=1
         continue
       fi
@@ -338,7 +341,7 @@ while read -r _ local_sha remote_ref remote_sha; do
   if [[ ! "$local_sha" =~ ^0+$ ]]; then
     if [[ "$COMMIT_ID_BROKEN" -eq 1 ]]; then
       echo "BLOCKED [gate:commit-id]: the hook helpers are missing at $HOOK_DIR/lib, so Commit-Id trailers cannot be checked." >&2
-      echo "  Next: bash .skilled/scripts/install-git-hooks.sh" >&2
+      echo "  Next: bash $INSTALLER" >&2
       REJECTED=1
       continue
     fi

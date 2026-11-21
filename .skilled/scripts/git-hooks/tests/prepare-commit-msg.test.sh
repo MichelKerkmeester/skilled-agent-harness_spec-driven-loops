@@ -350,6 +350,8 @@ check_rc "allocator failure exits 0" 0 "$RC"
 check_same "allocator failure leaves the message untouched" "$TMP/before.txt" "$TMP/message.txt"
 check_absent "allocator failure stamps no id" '^Commit-Id:' "$TMP/message.txt"
 check_count "allocator failure reports one line" 'allocator failed' 1 "$TMP/out.log"
+check_count "allocator failure names the real allocate call" 'Next: bash .*commit-id-naming\.sh allocate$' 1 "$TMP/out.log"
+check_count "allocator failure warns that the rerun reserves an id" 'reserves' 1 "$TMP/out.log"
 
 # ── 15. attribution lines are stripped before stamping ──────────────────────
 setup_repo

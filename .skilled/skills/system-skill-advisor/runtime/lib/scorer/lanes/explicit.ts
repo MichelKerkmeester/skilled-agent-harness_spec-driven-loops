@@ -209,7 +209,8 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'overlay status': [['system-skilled-doctor', 1]],
 };
 
-const WRITE_VERBS = /\b(add|build|change|configure|create|edit|fix|generate|implement|modify|patch|refactor|rename|replace|run|update|write)\b/;
+const WRITE_VERB_WORDS = ['add', 'build', 'change', 'configure', 'create', 'edit', 'fix', 'generate', 'implement', 'modify', 'patch', 'refactor', 'rename', 'replace', 'run', 'update', 'write'];
+const WRITE_VERBS = new RegExp(`\\b(${WRITE_VERB_WORDS.join('|')})\\b`);
 // A write verb that the prompt negates ("don't write anything back", "do not edit
 // files") forbids the write rather than asking for it, so it must not award a
 // write-surface boost. Both apostrophe forms are matched because prompts arrive
@@ -226,7 +227,10 @@ const TAG_CONTEXT = /\b(?:git\s+tag|(?:push|create)\s+(?:the\s+|a\s+|an\s+(?:ann
 // authors one; running the audit is not a README write.
 // The doc penalty outweighs the README token plus its author phrase, which both fire here.
 const OVERLAY_README_CHECK = /\boverlay(?:s)?\b(?:\s+[\w-]+){0,6}?\s+(?:a\s+|the\s+)?readme\b/;
-const README_AUTHORING = /\b(?:add|create|draft|edit|fix|generate|patch|rewrite|update|write)\b/;
+// Every write verb authors a README except `run`, which runs the audit, plus the
+// verbs that only ever reword prose.
+const README_AUTHORING_WORDS = [...WRITE_VERB_WORDS.filter((verb) => verb !== 'run'), 'draft', 'improve', 'polish', 'revise', 'rewrite'];
+const README_AUTHORING = new RegExp(`\\b(?:${README_AUTHORING_WORDS.join('|')})\\b`);
 const MEMORY_PRESERVATION_SESSION_INTENT = /\b(preserve|remember|capture|keep|store)\b.*\b(next|future|later)\s+session\b|\b(next|future|later)\s+session\b.*\b(lose|lost|preserve|remember|capture|keep|store)\b/;
 
 // ───────────────────────────────────────────────────────────────────

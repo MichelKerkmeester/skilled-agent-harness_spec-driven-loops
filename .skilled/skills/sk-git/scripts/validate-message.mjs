@@ -24,6 +24,7 @@
 import fs from 'node:fs';
 import v8 from 'node:v8';
 import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
 import {
   ContractError,
@@ -222,12 +223,15 @@ function main() {
 }
 
 /** Name the unreadable rules file and the exact command that checks the repair. */
+// The remedy runs from wherever the operator stands, so it names this file absolutely.
+const VALIDATOR = fileURLToPath(import.meta.url);
+
 function contractRemedy(err) {
   if (!err.file) return '  Next: git config --unset skgit.contractDir\n';
   const base = err.file.split(/[\\/]/).pop();
   const kind = Object.keys(TEMPLATE_FILES).find((k) => TEMPLATE_FILES[k] === base);
   const lines = [`  Rules: ${err.file}`];
-  if (kind) lines.push(`  Next: node .skilled/skills/sk-git/scripts/validate-message.mjs --check-template ${err.file} --kind ${kind}`);
+  if (kind) lines.push(`  Next: node ${VALIDATOR} --check-template ${err.file} --kind ${kind}`);
   return lines.join('\n') + '\n';
 }
 

@@ -576,6 +576,19 @@ git -C "$TMP" config --unset skilled.commitId
 run_hook; RC=$?
 check "a repository that ships the allocator is covered without config" 1 "$RC" "requires a Commit-Id"
 
+# ── a hook copy without its helpers names the installer beside itself ──
+# The hook runs from a global hooks dir in repositories that carry no toolchain, so a
+# repo-relative installer path would name a file that does not exist there.
+setup_repo
+LONE="$(mktemp -d)"
+mkdir -p "$LONE/scripts/git-hooks"
+cp "$HOOK" "$LONE/scripts/git-hooks/commit-msg"
+LONE_REAL="$(cd "$LONE" && pwd -P)"
+printf 'chore(sk-git): probe the lone hook\n' > "$TMP/message.txt"
+( cd "$TMP" && bash "$LONE/scripts/git-hooks/commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
+check "a lone hook copy blocks on its missing helpers" 1 "$RC" "Next: bash $LONE_REAL/scripts/install-git-hooks.sh"
+rm -rf "$LONE"
+
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
 [[ "$FAIL" -eq 0 ]]

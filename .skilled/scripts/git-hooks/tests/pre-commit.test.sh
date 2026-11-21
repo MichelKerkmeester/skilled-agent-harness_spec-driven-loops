@@ -394,15 +394,43 @@ check "a missing kill switch warns and leaves gates on" 0 "$RC" "hook-flags.sh i
 setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
-check "a missing comment checker blocks" 1 "$RC" "checker is missing or not executable: "
-check "a missing comment checker names its restore command" 1 "$RC" "Next: git checkout -- .opencode/skills/sk-code/"
+check "a missing comment checker blocks" 1 "$RC" "comment-hygiene]: checker is missing: "
+check "a missing comment checker names its restore command" 1 "$RC" "Next: git restore --source=HEAD --staged --worktree -- .opencode/skills/sk-code/"
+
+# ── 24b. a present comment checker without the execute bit names chmod, not a restore ──
+# A restore would overwrite an unstaged edit to the checker, so it must not be offered.
+setup_gate_fixture toolchain
+CHK=".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+mkdir -p "$TMP/$(dirname "$CHK")"
+printf '#!/usr/bin/env bash\nexit 0\n' > "$TMP/$CHK"
+chmod -x "$TMP/$CHK"
+stage_new "notes.md" "note"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a non-executable comment checker blocks" 1 "$RC" "checker is not executable: "
+check "a non-executable comment checker names chmod" 1 "$RC" "Next: chmod +x $CHK"
+if grep -qE "git (checkout|restore) .*check-comment-hygiene" "$TMP/out.log"; then
+  echo "FAIL  a non-executable comment checker offers no restore"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  a non-executable comment checker offers no restore"; PASS=$((PASS + 1))
+fi
+
+# ── 24c. a crashing comment checker names a command that matches how the hook ran it ──
+setup_gate_fixture toolchain
+mkdir -p "$TMP/$(dirname "$CHK")"
+printf '#!/usr/bin/env bash\nexit 3\n' > "$TMP/$CHK"
+chmod +x "$TMP/$CHK"
+stage_new "notes.md" "note"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a crashing comment checker blocks" 1 "$RC" "the checker failed (exit 3)"
+check "a crashing comment checker offers a close check, not a rerun" 1 "$RC" "a close check over the working tree"
+check "the close check passes the paths after --" 1 "$RC" "$CHK -- "
 
 # ── 25. a missing agent mirror checker blocks where the toolchain ships ──
 setup_gate_fixture toolchain
 stage_new ".opencode/agents/probe.md" "agent"
 run_hook; RC=$?
 check "a missing agent mirror checker blocks" 1 "$RC" "agent-mirror-sync]: checker is missing"
-check "a missing agent mirror checker names its restore command" 1 "$RC" "Next: git checkout -- .opencode/bin/check-agent-mirror-sync.cjs"
+check "a missing agent mirror checker names its restore command" 1 "$RC" "Next: git restore --source=HEAD --staged --worktree -- .opencode/bin/check-agent-mirror-sync.cjs"
 check "a missing agent mirror checker names the chain's off switch" 1 "$RC" "SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit"
 
 # ── 26. a missing mirror parity script blocks where the toolchain ships ──
@@ -410,7 +438,7 @@ setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
 check "a missing mirror parity script blocks" 1 "$RC" "mirror-parity]: script is missing"
-check "a missing mirror parity script names its restore command" 1 "$RC" "Next: git checkout -- .opencode/skills/"
+check "a missing mirror parity script names its restore command" 1 "$RC" "Next: git restore --source=HEAD --staged --worktree -- .opencode/skills/"
 
 # ── 27. a staged .skilled prompt surface reaches the card-sync guard ──
 setup_gate_fixture
@@ -805,7 +833,12 @@ setup_gate_fixture toolchain
 git -C "$TMP" config --unset skilled.trustRepoHooks
 stage_new "notes.md" "note"
 run_hook; RC=$?
-check "an untrusted clone is not blocked" 0 "$RC" "git config --local skilled.trustRepoHooks true"
+check "an untrusted clone is not blocked" 0 "$RC" "To enable, only in a clone you trust: git config --local skilled.trustRepoHooks true"
+if grep -qF "Next: git config --local skilled.trustRepoHooks" "$TMP/out.log"; then
+  echo "FAIL  the trust opt-in is not offered as a Next step"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  the trust opt-in is not offered as a Next step"; PASS=$((PASS + 1))
+fi
 
 # ── 57. an untrusted repository without the toolchain hears nothing ──
 setup_gate_fixture

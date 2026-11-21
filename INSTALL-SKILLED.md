@@ -218,7 +218,7 @@ Commit the result in your project. The commit you exported is your pin.
 
 ### Step 2: Create The Overlay Folder
 
-The engine looks for `skilled-overlays/` at the root of your project. To use another folder, add `.skilled-overlays.json` at the root, for example `{ "overlayDir": "my-overlays" }`. The setting can also name a folder beside the copy, such as `{ "overlayDir": "../my-overlays" }`. That works only when one git repository holds both, for example with the copy in a subfolder of the repository. A folder outside the repository stops every `/doctor:overlay` command with exit 2.
+The engine looks for `skilled-overlays/` at the root of your project. To use another folder, add `.skilled-overlays.json` at the root, for example `{ "overlayDir": "my-overlays" }`. The setting can also name a folder beside the copy, such as `{ "overlayDir": "../my-overlays" }`. That works only when one git repository holds both, for example with the copy in a subfolder of the repository, or when the copy is in no git repository. A folder outside the repository stops every `/doctor:overlay` command with exit 2.
 
 The folder holds `overlay-manifest.json` and your overlay files. This manifest replaces one Skilled file and adds a folder of team commands:
 

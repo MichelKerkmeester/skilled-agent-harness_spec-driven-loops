@@ -94,9 +94,12 @@ if _in_toolchain_repo && [[ -r "$_gate_config" ]]; then
 fi
 
 HOOK_DIR="$(cd "$(dirname "$_trust_self")" && pwd -P)"
+# The installer beside these hooks, as an absolute path: the hooks also run from a
+# global hooks dir in repositories that carry no toolchain at a repo-relative path.
+INSTALLER="$(cd "$HOOK_DIR/.." && pwd -P)/install-git-hooks.sh"
 if [[ ! -r "$HOOK_DIR/lib/commit-id-policy.sh" ]]; then
   printf 'prepare-commit-msg: helpers are missing at %s/lib; leaving the message unstamped.\n' "$HOOK_DIR" >&2
-  printf '  Next: bash .skilled/scripts/install-git-hooks.sh\n' >&2
+  printf '  Next: bash %s\n' "$INSTALLER" >&2
   exit 0
 fi
 # shellcheck source=lib/commit-id-policy.sh
@@ -116,7 +119,7 @@ if [[ ! -f "$ALLOCATOR" ]]; then
   if [[ ! -f "$ALLOCATOR" ]]; then
     printf 'prepare-commit-msg: allocator is missing: %s; leaving the message unstamped.\n' "$ALLOCATOR" >&2
     printf '  The allocator sits beside the hook script; relink the hooks to a checkout that has it.\n' >&2
-    printf '  Next: bash .skilled/scripts/install-git-hooks.sh\n' >&2
+    printf '  Next: bash %s\n' "$INSTALLER" >&2
     exit 0
   fi
 fi
@@ -313,8 +316,8 @@ NEW_ID=""
 if (( REQUIRE_ID == 1 )); then
   if ! NEW_ID="$(bash "$ALLOCATOR" allocate 2>/dev/null)"; then
     printf 'prepare-commit-msg: allocator failed; leaving the message unstamped.\n' >&2
-    printf '  Its error was hidden; preview the next id without allocating one to see it:\n' >&2
-    printf '  Next: bash %s next\n' "$ALLOCATOR" >&2
+    printf '  Its error was hidden; rerun the allocation to see it. A rerun that succeeds reserves an id.\n' >&2
+    printf '  Next: bash %s allocate\n' "$ALLOCATOR" >&2
     exit 0
   fi
 fi

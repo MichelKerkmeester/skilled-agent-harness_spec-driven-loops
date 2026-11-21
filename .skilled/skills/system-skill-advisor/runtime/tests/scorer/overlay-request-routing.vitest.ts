@@ -83,6 +83,22 @@ describe('overlay request routing', () => {
     expect(topSkill('Write a README for my overlay folder')).toBe('sk-doc');
   });
 
+  it('keeps "Change the overlay README intro" on the doc hub', () => {
+    expect(topSkill('Change the overlay README intro')).toBe('sk-doc');
+  });
+
+  it('keeps "Revise the overlay section of the README" on the doc hub', () => {
+    expect(topSkill('Revise the overlay section of the README')).toBe('sk-doc');
+  });
+
+  it('keeps "Improve the overlay docs in the README" on the doc hub', () => {
+    expect(topSkill('Improve the overlay docs in the README')).toBe('sk-doc');
+  });
+
+  it('keeps "Polish the overlays README wording" on the doc hub', () => {
+    expect(topSkill('Polish the overlays README wording')).toBe('sk-doc');
+  });
+
   it('keeps a plain README writing request on the doc hub', () => {
     expect(topSkill('Write a README for this project folder')).toBe('sk-doc');
   });

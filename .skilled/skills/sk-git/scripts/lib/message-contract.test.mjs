@@ -470,6 +470,24 @@ test('a backtracking contract pattern cannot hang the validator', () => {
   assert.equal(run.status, 1, run.stderr);
 });
 
+test('an unreadable rules file names a check command that runs from any directory', () => {
+  const dir = tempRepo(false);
+  fs.mkdirSync(path.join(dir, '.sk-git'));
+  fs.writeFileSync(
+    path.join(dir, '.sk-git', TEMPLATE_FILES.commit),
+    '## Enforced rules\n\n```json\n{ not json\n```\n',
+  );
+  const message = path.join(dir, 'message.txt');
+  fs.writeFileSync(message, 'feat(a): add a thing\n');
+  const cli = fs.realpathSync(path.resolve(HERE, '../validate-message.mjs'));
+  const run = spawnSync(process.execPath, [cli, '--repo', dir, '--commit', message], {
+    cwd: dir,
+    encoding: 'utf8',
+  });
+  assert.equal(run.status, 2, run.stderr);
+  assert.ok(run.stderr.includes(`  Next: node ${cli} --check-template `), run.stderr);
+});
+
 test('the stamper drops exactly the attribution keys the commit template forbids', () => {
   const hook = fs.readFileSync(path.resolve(HERE, '../../../../scripts/git-hooks/prepare-commit-msg'), 'utf8');
   const line = hook.split('\n').find((l) => l.startsWith('FORBIDDEN_KEY_RE='));
