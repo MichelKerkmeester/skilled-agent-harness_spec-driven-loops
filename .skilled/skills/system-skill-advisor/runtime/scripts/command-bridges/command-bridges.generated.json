@@ -1409,7 +1409,7 @@
             "run the doctor setup checks",
             "getting started with skilled",
             "overview of every doctor command",
-            "model server or helper process still running after the session closed",
+            "helper process still running after the session closed",
             "list every check this project has",
             "run every check in this project"
           ],

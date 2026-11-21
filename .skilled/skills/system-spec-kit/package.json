@@ -45,7 +45,6 @@
     }
   },
   "devDependencies": {
-    "@huggingface/transformers": "^3.8.1",
     "@types/node": "^25.2.1",
     "typescript": "^5.9.3"
   },

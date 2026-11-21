@@ -6,7 +6,7 @@ trigger_phrases:
   - "spec kit shared package"
   - "shared TypeScript modules"
   - "embedding provider stack"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Shared Library Modules
@@ -23,7 +23,7 @@ version: 1.0.2.0
 
 - **The spec-kit engine** (`runtime/`) - the validation orchestrator, generated metadata, the Gate 3 classifier and the hook adapters
 - **The CLI package** (`runtime/cli/`) - the continuity save pipeline and the spec-folder tooling
-- **The skill advisor** - the embedding provider stack under `embeddings/`, the RRF primitives and the IPC socket server
+- **The skill advisor** - the RRF primitives and the IPC socket server
 
 Nothing here opens a database or talks to a network on import. Modules take their inputs from callers and hand results back; the consumer decides where anything persists.
 
@@ -35,9 +35,8 @@ Nothing here opens a database or talks to a network on import. Modules take thei
 | Gate 3 | `gate-3-classifier.ts` | the prompt hooks of every runtime, the pi plugin, the spec-root registry |
 | Compaction | `compact-merger.ts`, `budget-allocator.ts` | the PreCompact hook adapters |
 | Paths and workspace | `workspace/repo-root.mjs`, `workspace/package-root.ts`, `config.ts`, `utils/path-containment.ts`, `utils/path-security.ts`, `review-research-paths.cjs` | build scripts, CI, the deep-loop artifact root, the telemetry store |
-| Text helpers | `chunking.ts`, `trigger-extractor.ts`, `unicode-normalization.ts`, `context-types.ts`, `utils/jsonc-strip.ts`, `utils/token-estimate.ts`, `utils/retry.ts` | `chunking.ts` and `utils/retry.ts` serve the embedding providers in this package; the rest serve the engine, the CLI and the hooks |
+| Text helpers | `trigger-extractor.ts`, `unicode-normalization.ts`, `context-types.ts`, `utils/jsonc-strip.ts`, `utils/token-estimate.ts` | the engine, the CLI and the hooks |
 | Predicate grammar | `predicates/boolean-expr.ts` | the typed `when:` form the speckit and deep command contracts cite as their grammar |
-| Embedding providers | `embeddings/` (factory, profile, registry, auto-select, adapters, providers) | the skill advisor and the HF model server launcher |
 | Ranking | `algorithms/rrf-fusion.ts` | the skill advisor's fusion scorer |
 | IPC | `ipc/socket-server.ts` | the skill advisor daemon |
 
@@ -51,8 +50,6 @@ The package used to carry a second half that nothing imported once the memory da
 | --- | --- |
 | Node.js | 22.23.4, 24.22.1, 26.12.1 or newer on those lines |
 
-The embedding stack talks to Ollama, the local HF model server under `.skilled/bin`, OpenAI or Voyage over HTTP; it does not load a model in-process, so this package declares no ML dependency.
-
 ---
 
 ### Boundary and Import Policy
@@ -63,7 +60,7 @@ The embedding stack talks to Ollama, the local HF model server under `.skilled/b
 - **Stability**: a breaking change here needs coordination with every consumer in the table above.
 - **Root resolution**: three implementations survive, one per runtime boundary, and a parity test in the CLI feeds them the same trees.
   - `workspace/repo-root.mjs` finds the repository root by sentinel and ships as source because build and CI scripts run it before any build exists.
-  - `workspace/package-root.ts` finds the skill package root by its marker directories (`shared`, `runtime`, `runtime/cli`) and is the compiled walk every TypeScript caller uses: `config.ts`, `embeddings/factory.ts` and the CLI's architecture and dist-alignment checks call it rather than walking themselves.
+  - `workspace/package-root.ts` finds the skill package root by its marker directories (`shared`, `runtime`, `runtime/cli`) and is the compiled walk every TypeScript caller uses: `config.ts` and the CLI's architecture and dist-alignment checks call it rather than walking themselves.
   - `runtime/cli/lib/shell-common.sh` and `runtime/cli/common.sh` resolve the repository root for bash, where no Node module can be imported.
 
 ---
@@ -82,16 +79,15 @@ npm install
 import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
 import { classifyPrompt } from '@spec-kit/shared/gate-3-classifier';
 import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion';
-import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
 ```
 
 ### Verify Installation
 
 ```bash
 ls .skilled/skills/system-spec-kit/shared/
-# budget-allocator.ts, chunking.ts, compact-merger.ts, config.ts, context-types.ts,
+# budget-allocator.ts, compact-merger.ts, config.ts, context-types.ts,
 # gate-3-classifier.ts, review-research-paths.cjs, trigger-extractor.ts, types.ts,
-# unicode-normalization.ts, algorithms/, embeddings/, frontmatter/, ipc/, parsing/,
+# unicode-normalization.ts, algorithms/, frontmatter/, ipc/, parsing/,
 # predicates/, utils/, workspace/, dist/
 ```
 
@@ -102,7 +98,6 @@ ls .skilled/skills/system-spec-kit/shared/
 ```
 shared/
 ├── budget-allocator.ts         # Prompt/token budget allocation for compaction
-├── chunking.ts                 # Semantic chunking of long text
 ├── compact-merger.ts           # Compacted context merge helpers
 ├── config.ts                   # Telemetry store directory and its env override
 ├── context-types.ts            # Canonical context types and legacy aliases
@@ -113,13 +108,6 @@ shared/
 ├── unicode-normalization.ts    # Unicode normalization helpers
 ├── algorithms/
 │   └── rrf-fusion.ts           # Reciprocal rank fusion primitives
-├── embeddings/                 # Provider stack owned by the skill advisor
-│   ├── factory.ts              # Provider selection and auto-cascade
-│   ├── profile.ts              # Embedding profiles and database naming
-│   ├── registry.ts             # Model manifests and canonical fallbacks
-│   ├── auto-select.ts          # Reachability probes for the cascade
-│   ├── adapters/               # Backend adapters
-│   └── providers/              # ollama, hf-local, openai, voyage
 ├── frontmatter/
 │   └── parse-frontmatter.ts    # The frontmatter parser every reader shares
 ├── ipc/
@@ -134,7 +122,6 @@ shared/
 │   ├── jsonc-strip.ts          # JSONC comment stripping
 │   ├── path-containment.ts     # Path containment checks
 │   ├── path-security.ts        # Path validation
-│   ├── retry.ts                # Retry and backoff classification for the cloud providers
 │   └── token-estimate.ts       # Token count estimation
 ├── workspace/
 │   └── repo-root.mjs           # Repository root resolution, shipped as source
@@ -154,8 +141,7 @@ shared/
 | `frontmatter/parse-frontmatter.ts` | The one frontmatter parser; more than twenty importers |
 | `gate-3-classifier.ts` | Decides whether a prompt will write, for every runtime's prompt hook |
 | `compact-merger.ts`, `budget-allocator.ts` | Merge and budget the payload the PreCompact hooks carry |
-| `config.ts` | Resolves the telemetry store directory and honours the same database-directory override the provider factory reads, though the two resolve their default directory differently: the telemetry store is skill-root-relative, the factory's candidates are working-directory-relative |
-| `embeddings/factory.ts` | Selects and constructs the embedding provider the skill advisor runs |
+| `config.ts` | Resolves the telemetry store directory from the database-directory override, else `runtime/database/` under the skill root |
 | `algorithms/rrf-fusion.ts` | Rank fusion for the advisor's five-lane scorer |
 | `workspace/repo-root.mjs` | Repository root resolution for scripts that run before a build |
 | `review-research-paths.cjs` | The artifact-root contract the deep-loop runtime requires |
@@ -176,10 +162,6 @@ shared/
 
 The PreCompact adapters merge the payload through `compact-merger.ts` and size it through `budget-allocator.ts`.
 
-### Embedding Providers
-
-`embeddings/factory.ts` selects a provider, either the explicit `EMBEDDINGS_PROVIDER` or the local-first cascade (Ollama, then the local HF model server, then OpenAI, then Voyage), and constructs it. `profile.ts` names the database a profile writes so two profiles never share one. The stack produces vectors and returns them; the skill advisor, its only consumer, decides where they are stored.
-
 ### Rank Fusion
 
 `algorithms/rrf-fusion.ts` fuses ranked lists deterministically. The advisor's scorer imports it directly.
@@ -192,38 +174,16 @@ Every variable this package reads, one row per variable, with the files that rea
 
 | Group | Variable | Read by |
 | --- | --- | --- |
-| Provider selection | `EMBEDDINGS_PROVIDER` | `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts` |
-| Provider selection | `EMBEDDING_DIM` | `embeddings/factory.ts`, `embeddings/profile.ts` |
-| Ollama | `OLLAMA_EMBEDDINGS_MODEL` | `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/ollama.ts` |
-| Ollama | `OLLAMA_BASE_URL` | `embeddings/adapters/ollama.ts`, `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts` |
-| Ollama | `OLLAMA_REQUEST_TIMEOUT_MS` | `embeddings/adapters/ollama.ts` |
-| Local HF model server | `HF_EMBEDDINGS_MODEL` | `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/hf-local.ts` |
-| Local HF model server | `HF_EMBEDDINGS_DTYPE` | `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/hf-local.ts` |
-| Local HF model server | `HF_EMBED_AUTH_TOKEN` | `embeddings/providers/hf-local.ts` |
-| Local HF model server | `HF_EMBED_SERVER_READY_TIMEOUT_MS` | `embeddings/providers/hf-local.ts` |
-| Local HF model server | `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` | `embeddings/providers/hf-local.ts` |
-| Local HF model server | `SPECKIT_HF_READY_LATCH_TTL_MS` | `embeddings/providers/hf-local.ts` |
-| OpenAI | `OPENAI_API_KEY` | `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/openai.ts` |
-| OpenAI | `OPENAI_EMBEDDINGS_MODEL` | `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/openai.ts` |
-| OpenAI | `OPENAI_BASE_URL` | `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/providers/openai.ts` |
-| Voyage | `VOYAGE_API_KEY` | `embeddings/auto-select.ts`, `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/voyage.ts` |
-| Voyage | `VOYAGE_EMBEDDINGS_MODEL` | `embeddings/factory.ts`, `embeddings/profile.ts`, `embeddings/providers/voyage.ts` |
-| Voyage | `VOYAGE_BASE_URL` | `embeddings/auto-select.ts`, `embeddings/profile.ts`, `embeddings/providers/voyage.ts` |
-| Cascade probes | `SPECKIT_CASCADE_PROBE_TIMEOUT_MS` | `embeddings/auto-select.ts` |
-| Cascade probes | `SPECKIT_CASCADE_LOCK_STALE_MS` | `embeddings/auto-select.ts` |
-| Cascade probes | `SPECKIT_CASCADE_SLEEP_MS` | `embeddings/auto-select.ts` |
-| Database directory | `SPEC_KIT_DB_DIR` | `config.ts`, `embeddings/factory.ts` |
-| Database directory | `SPECKIT_DB_DIR` | `config.ts`, `embeddings/factory.ts` |
-| Database directory | `MEMORY_DB_PATH` | `embeddings/factory.ts`, `embeddings/providers/hf-local.ts` |
-| IPC | `SPECKIT_IPC_SOCKET_DIR` | `embeddings/providers/hf-local.ts`, `ipc/socket-server.ts` |
+| Database directory | `SPEC_KIT_DB_DIR` | `config.ts` |
+| Database directory | `SPECKIT_DB_DIR` | `config.ts` |
+| IPC | `SPECKIT_IPC_SOCKET_DIR` | `ipc/socket-server.ts` |
 | IPC | `SPECKIT_MAX_SECONDARY_CLIENTS` | `ipc/socket-server.ts` |
 | Rank fusion | `SPECKIT_RRF` | `algorithms/rrf-fusion.ts` |
 | Rank fusion | `SPECKIT_RRF_K` | `algorithms/rrf-fusion.ts` |
 | Rank fusion | `SPECKIT_SCORE_NORMALIZATION` | `algorithms/rrf-fusion.ts` |
 | Rank fusion | `SPECKIT_CALIBRATED_OVERLAP_BONUS` | `algorithms/rrf-fusion.ts` |
-| Other | `HF_EMBED_SERVER_URL` | `embeddings/providers/hf-local.ts` |
 
-Two spellings of the database-directory override are honoured because both appear in operator configs; `SPEC_KIT_DB_DIR` is checked first. `MEMORY_DB_PATH` keeps its historical name: the retired memory server was the directory's original owner, and the skill-advisor launcher now points the variable at its own database.
+Two spellings of the database-directory override are honoured because both appear in operator configs; `SPEC_KIT_DB_DIR` is checked first.
 
 ### Where embeddings are stored
 
@@ -260,25 +220,12 @@ const fused = fuseResultsMulti([lexicalHits, graphHits]);
 console.log(fused[0].rrfScore, fused[0].sources);
 ```
 
-### Construct the advisor's embedding provider
-
-```typescript
-import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
-
-const provider = await createEmbeddingsProvider();
-const vector = await provider.embedQuery('routing parity for parent hubs');
-console.log(provider.getMetadata().model, vector.length);
-```
-
 ---
 
 ## 7. TROUBLESHOOTING
 
 | Problem | What to check |
 | --- | --- |
-| A provider is not selected | `echo $EMBEDDINGS_PROVIDER`; with `auto`, confirm Ollama or the HF model server is reachable, or that a cloud key is set |
-| The HF client waits and gives up | The socket directory the client expects must equal the one the model server binds; `tests/model-server-constants.test.ts` asserts it |
-| A vector store rejects a dimension | The profile filename encodes provider, model, dimension and dtype; a store built under another profile has to be rebuilt |
 | Telemetry lands in the wrong place | `config.ts` derives the directory from `SPEC_KIT_DB_DIR` or `SPECKIT_DB_DIR`, else `runtime/database/` under the skill root |
 
 ### Diagnostic Commands
@@ -295,9 +242,8 @@ node --input-type=module -e "const { extractTriggerPhrases } = await import('./d
 
 | Document | Purpose |
 | --- | --- |
-| [embeddings/README.md](./embeddings/README.md) | The provider stack in detail |
 | [algorithms/README.md](./algorithms/README.md) | The RRF primitives |
-| [utils/README.md](./utils/README.md) | Path, retry and estimation helpers |
+| [utils/README.md](./utils/README.md) | Path and estimation helpers |
 | [runtime/ENV-REFERENCE.md](../runtime/ENV-REFERENCE.md) | Every environment variable the packages read |
 | [ARCHITECTURE.md](../ARCHITECTURE.md) | The dependency matrix between the three packages |
 | [SKILL.md](../SKILL.md) | Parent skill documentation |

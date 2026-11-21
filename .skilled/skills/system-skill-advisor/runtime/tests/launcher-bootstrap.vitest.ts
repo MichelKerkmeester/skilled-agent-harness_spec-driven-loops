@@ -21,19 +21,12 @@ const require = createRequire(import.meta.url);
 const ipcBridge = require('../../../../bin/lib/launcher-ipc-bridge.cjs') as {
   resolveIpcSocketDir: (serviceName: string, options?: { dbDir?: string; env?: NodeJS.ProcessEnv }) => string;
 };
-const modelServerSupervision = require('../../../../bin/lib/model-server-supervision.cjs') as {
-  DEFAULT_MODEL_SERVER_SOCKET_DIR: string;
-};
 const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as {
   acquireBootstrapLock: (options?: { staleMs?: number; timeoutMs?: number; retrySleepMs?: number }) => Promise<boolean>;
   advisorDbPath: () => string;
   artifactsReady: () => boolean;
   configureLauncherPathsForTesting: (paths: { runtimeDir: string; dbDir: string; lockDir: string; stateFile: string }) => void;
   createChildEnv: (sourceEnv?: NodeJS.ProcessEnv) => Record<string, string>;
-  resolveModelServerSocketPath: (
-    env?: NodeJS.ProcessEnv,
-    options?: { dbDir?: string },
-  ) => string;
 };
 
 // The child's socket directory is resolved by the shared IPC bridge, which since the
@@ -41,14 +34,6 @@ const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as
 // asks the bridge the same question the launcher does instead of assuming the answer.
 function expectedChildSocketDir(memoryDbPath: string): string {
   return ipcBridge.resolveIpcSocketDir('system-skill-advisor', { dbDir: dirname(memoryDbPath), env: {} });
-}
-
-// configureTempLauncher leaves the model-server file directory on the supervision
-// default. The child address is the launcher resolver's answer for that source env.
-function expectedModelServerUrl(sourceEnv: NodeJS.ProcessEnv): string {
-  return launcher.resolveModelServerSocketPath(sourceEnv, {
-    dbDir: modelServerSupervision.DEFAULT_MODEL_SERVER_SOCKET_DIR,
-  });
 }
 
 describe('system-skill-advisor launcher bootstrap', () => {
@@ -116,9 +101,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
       HOME: '/tmp/home',
       SYSTEM_SKILL_ADVISOR_DB_DIR: '/tmp/db',
       SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
-      MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
-      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
@@ -140,9 +123,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
       // always carries it even when the parent did not set one.
       SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
       SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
-      MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
-      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
@@ -164,9 +145,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
       // always carries it even when the parent did not set one.
       SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
       SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
-      MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
-      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
@@ -186,96 +165,24 @@ describe('system-skill-advisor launcher bootstrap', () => {
       // always carries it even when the parent did not set one.
       SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
       SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
-      MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
-      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
-  it('defaults the child MEMORY_DB_PATH to the advisor own database, not a foreign context-index.sqlite', () => {
+  it('drops the retired database and model-server keys from the child environment', () => {
     configureTempLauncher();
-    const childEnv = launcher.createChildEnv({ PATH: '/bin' });
-
-    expect(childEnv.MEMORY_DB_PATH).toBe(launcher.advisorDbPath());
-    expect(childEnv.MEMORY_DB_PATH).toMatch(/skill-graph\.sqlite$/);
-    expect(childEnv.MEMORY_DB_PATH).not.toMatch(/context-index\.sqlite$/);
-  });
-
-  it('honors an explicit SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH override instead of the default', () => {
-    configureTempLauncher();
-    const explicitOverride = '/tmp/some-other-test-or-external-db/custom.sqlite';
-
+    // Nothing in the daemon reads these keys any more, so an operator who still
+    // exports them must not see them reach the child.
     const childEnv = launcher.createChildEnv({
       PATH: '/bin',
-      SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH: explicitOverride,
+      MEMORY_DB_PATH: '/tmp/some-other-service/context-index.sqlite',
+      SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH: '/tmp/some-other-test-or-external-db/custom.sqlite',
+      SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED: '1',
     });
 
-    expect(childEnv.MEMORY_DB_PATH).toBe(explicitOverride);
-  });
-
-  it('009-REQ-004/005: ignores an ambient MEMORY_DB_PATH that was not set via the dedicated override var', () => {
-    configureTempLauncher();
-    const memoryDbPath = launcher.advisorDbPath();
-    // MEMORY_DB_PATH is a generic name any other service may already export —
-    // a legacy shell/script exporting it must not silently reopen the
-    // cross-server DB-path leak the advisor default protects against.
-    const ambientMemoryDbPath = '/tmp/some-other-service/context-index.sqlite';
-
-    const childEnv = launcher.createChildEnv({ PATH: '/bin', MEMORY_DB_PATH: ambientMemoryDbPath });
-
-    expect(childEnv.MEMORY_DB_PATH).toBe(memoryDbPath);
-    expect(childEnv.MEMORY_DB_PATH).not.toBe(ambientMemoryDbPath);
-  });
-
-  it('009-REQ-004: the dedicated override wins even when a hostile ambient MEMORY_DB_PATH is also present', () => {
-    configureTempLauncher();
-    const explicitOverride = '/tmp/some-other-test-or-external-db/custom.sqlite';
-    const ambientMemoryDbPath = '/tmp/some-other-service/context-index.sqlite';
-
-    const childEnv = launcher.createChildEnv({
-      PATH: '/bin',
-      MEMORY_DB_PATH: ambientMemoryDbPath,
-      SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH: explicitOverride,
-    });
-
-    expect(childEnv.MEMORY_DB_PATH).toBe(explicitOverride);
-  });
-
-  it('points the child at the model server socket while the daemon socket stays in its database scope', () => {
-    configureTempLauncher();
-    const memoryDbPath = launcher.advisorDbPath();
-    // Only the shared default socket directory is database-scoped. A private
-    // directory is left as-is, so this root is the one that splits the two paths.
-    const socketRoot = '/tmp/system-skill-advisor';
-    const sourceEnv = {
-      PATH: '/bin',
-      SPECKIT_IPC_SOCKET_DIR: socketRoot,
-    };
-    const childEnv = launcher.createChildEnv(sourceEnv);
-
-    expect(childEnv.HF_EMBED_SERVER_URL).toBe(join(socketRoot, 'hf-embed.sock'));
-    expect(childEnv.HF_EMBED_SERVER_URL).toBe(expectedModelServerUrl(sourceEnv));
-    expect(childEnv.SPECKIT_IPC_SOCKET_DIR).toBe(
-      ipcBridge.resolveIpcSocketDir('system-skill-advisor', {
-        dbDir: dirname(memoryDbPath),
-        env: sourceEnv,
-      }),
-    );
-    expect(childEnv.SPECKIT_IPC_SOCKET_DIR.startsWith(`${socketRoot}/`)).toBe(true);
-    expect(dirname(childEnv.HF_EMBED_SERVER_URL)).not.toBe(childEnv.SPECKIT_IPC_SOCKET_DIR);
-  });
-
-  it('forwards an explicit model server address to the child unchanged', () => {
-    configureTempLauncher();
-    // The resolver rewrites http to tcp. An unchanged forward keeps the parent string.
-    const explicit = 'http://127.0.0.1:9';
-    const childEnv = launcher.createChildEnv({
-      PATH: '/bin',
-      HF_EMBED_SERVER_URL: explicit,
-      SPECKIT_IPC_SOCKET_DIR: '/tmp/system-skill-advisor',
-    });
-
-    expect(childEnv.HF_EMBED_SERVER_URL).toBe(explicit);
+    expect(childEnv).not.toHaveProperty('MEMORY_DB_PATH');
+    expect(childEnv).not.toHaveProperty('SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH');
+    expect(childEnv).not.toHaveProperty('SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED');
   });
 });
 

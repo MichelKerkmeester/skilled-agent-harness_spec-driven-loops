@@ -21,10 +21,6 @@ const MAX_PS_BUFFER = 4 * 1024 * 1024;
 const MAX_REAP_WAIT_MS = 3000;
 const REAP_POLL_INTERVAL_MS = 100;
 const SCRIPT_PATH_MARKERS = ['/.skilled/', '/.opencode/'];
-const MODEL_SERVER_SCRIPT_SUFFIXES = [
-  '/.skilled/bin/hf-model-server.cjs',
-  '.skilled/bin/hf-model-server.cjs',
-];
 const SETUP_COMMAND = 'node .skilled/commands/doctor/scripts/orphan-process-check.cjs';
 const SHELL_EXECUTABLES = new Set(['bash', 'csh', 'dash', 'fish', 'ksh', 'sh', 'tcsh', 'zsh']);
 
@@ -225,25 +221,6 @@ function classify(command, pathExists = () => false) {
     pathExists,
   ) : null;
   if (advisorKind) return advisorKind;
-
-  const scriptIndex = isNodeExecutable
-    ? tokens.findIndex((token, index) => index > 0 && /\.(?:js|cjs|mjs|sh)$/.test(token))
-    : -1;
-  const modelScriptPath = scriptIndex > 0
-    ? tokens.slice(1, scriptIndex + 1).join(' ').replace(/\\/g, '/')
-    : '';
-  const isModelServerScript = MODEL_SERVER_SCRIPT_SUFFIXES.some(
-    (suffix) => modelScriptPath.endsWith(suffix),
-  );
-  if (isModelServerScript) {
-    const modelKind = staleCheckoutKind(
-      command,
-      MODEL_SERVER_SCRIPT_SUFFIXES,
-      'stale-model-server',
-      pathExists,
-    );
-    return modelKind || 'unsupervised-model-server';
-  }
 
   const followExecutable = ['git-live-follow', 'git-live-follow.sh'].includes(executableName);
   const followScriptSuffixes = [

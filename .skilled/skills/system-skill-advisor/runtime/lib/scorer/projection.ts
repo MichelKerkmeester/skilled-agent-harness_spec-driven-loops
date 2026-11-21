@@ -121,7 +121,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     category: 'command',
     name: '/doctor:setup',
     description: '',
-    keywords: ['set up skilled', 'help me set up skilled', 'is my skilled install healthy', 'skilled setup check', 'run the doctor setup checks', 'getting started with skilled', 'overview of every doctor command', 'model server or helper process still running after the session closed', 'list every check this project has', 'run every check in this project'],
+    keywords: ['set up skilled', 'help me set up skilled', 'is my skilled install healthy', 'skilled setup check', 'run the doctor setup checks', 'getting started with skilled', 'overview of every doctor command', 'helper process still running after the session closed', 'list every check this project has', 'run every check in this project'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:setup'],
     readOnly: true,

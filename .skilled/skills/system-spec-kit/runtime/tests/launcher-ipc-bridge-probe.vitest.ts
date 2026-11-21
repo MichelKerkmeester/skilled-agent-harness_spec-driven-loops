@@ -14,20 +14,11 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 const require = createRequire(import.meta.url);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const bridgeModulePath = join(repoRoot, '.skilled/bin/lib/launcher-ipc-bridge.cjs');
-const supervisionModulePath = join(repoRoot, '.skilled/bin/lib/model-server-supervision.cjs');
-const { getIpcSocketPath, resolveIpcSocketDir, maybeBridgeLeaseHolder, probeDaemon, probeModelServer } = require(bridgeModulePath) as {
+const { getIpcSocketPath, resolveIpcSocketDir, maybeBridgeLeaseHolder, probeDaemon } = require(bridgeModulePath) as {
   getIpcSocketPath: (serviceName: string, options?: { dbDir?: string }) => string;
+  resolveIpcSocketDir: (serviceName: string, options?: { dbDir?: string; socketDir?: string; env?: NodeJS.ProcessEnv }) => string;
   maybeBridgeLeaseHolder: (options: Record<string, unknown>) => Promise<{ action: string; reason?: string; socketPath?: string }>;
   probeDaemon: (socketPath: string, options: Record<string, unknown>) => Promise<{ status: string; reason?: string }>;
-  probeModelServer: (socketPath: string, options: Record<string, unknown>) => Promise<{ status: string; reason?: string }>;
-};
-const { buildLeaseObject } = require(supervisionModulePath) as {
-  buildLeaseObject: (
-    childPid?: number | null,
-    startedAt?: string | null,
-    modelServerPid?: number | null,
-    socketPath?: string | null,
-  ) => Record<string, unknown>;
 };
 
 const originalSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR;
@@ -89,24 +80,6 @@ function createErrorConnect(): () => FakeSocket {
   return () => {
     const socket = new FakeSocket();
     queueMicrotask(() => socket.emit('error', new Error('ECONNREFUSED')));
-    return socket;
-  };
-}
-
-function createModelHealthConnect(body: Record<string, unknown>): () => FakeSocket {
-  return () => {
-    const socket = new FakeSocket();
-    socket.write = (chunk: string): boolean => {
-      socket.writes.push(String(chunk));
-      const responseBody = JSON.stringify(body);
-      const response = `HTTP/1.1 200 OK\r\ncontent-type: application/json\r\ncontent-length: ${Buffer.byteLength(responseBody)}\r\n\r\n${responseBody}`;
-      queueMicrotask(() => {
-        socket.emit('data', Buffer.from(response));
-        socket.emit('end');
-      });
-      return true;
-    };
-    queueMicrotask(() => socket.emit('connect'));
     return socket;
   };
 }
@@ -239,36 +212,6 @@ describe('launcher IPC bridge liveness probe', () => {
     })).resolves.toMatchObject({ status: 'dead' });
   });
 
-  it('classifies over-age model-server loading per load attempt but keeps fresh or legacy loading alive', async () => {
-    await expect(probeModelServer('tcp://127.0.0.1:65535', {
-      connect: createModelHealthConnect({ state: 'loading', loadStartedAt: 1000 }),
-      loadingMaxMs: 150,
-      nowMs: () => 1200,
-      timeoutMs: 100,
-    })).resolves.toMatchObject({ status: 'dead', reason: 'loading-wedged' });
-
-    await expect(probeModelServer('tcp://127.0.0.1:65535', {
-      connect: createModelHealthConnect({ state: 'loading', loadStartedAt: 1000, loadProgressAt: 1125 }),
-      loadingMaxMs: 150,
-      nowMs: () => 1200,
-      timeoutMs: 100,
-    })).resolves.toMatchObject({ status: 'alive', reason: 'health-loading' });
-
-    await expect(probeModelServer('tcp://127.0.0.1:65535', {
-      connect: createModelHealthConnect({ state: 'loading', loadStartedAt: 1100 }),
-      loadingMaxMs: 150,
-      nowMs: () => 1200,
-      timeoutMs: 100,
-    })).resolves.toMatchObject({ status: 'alive', reason: 'health-loading' });
-
-    await expect(probeModelServer('tcp://127.0.0.1:65535', {
-      connect: createModelHealthConnect({ state: 'loading' }),
-      loadingMaxMs: 150,
-      nowMs: () => 1200,
-      timeoutMs: 100,
-    })).resolves.toMatchObject({ status: 'alive', reason: 'health-loading' });
-  });
-
   it('returns a respawn verdict when the liveness probe is dead', async () => {
     vi.useFakeTimers();
     // Single-probe respawn verdict: the consecutive-failure retry has its own coverage in
@@ -325,19 +268,6 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
 
     expect(firstSocket).toMatch(/^\/tmp\/system-skill-advisor\/[0-9a-f]{12}\/daemon-ipc\.sock$/);
     expect(secondSocket).not.toBe(firstSocket);
-  });
-
-  // (1) A freshly written lease carries the owner's actual socket path.
-  it('emits socketPath in the lease payload when the owner supplies one', () => {
-    const lease = buildLeaseObject(4242, '2026-05-28T00:00:00.000Z', null, '/tmp/owner-env/daemon-ipc.sock');
-    expect(lease.socketPath).toBe('/tmp/owner-env/daemon-ipc.sock');
-  });
-
-  // (4) Leases without a socketPath (skill-advisor and code-index leases never record one) omit
-  // the field entirely so existing readers and the recompute fallback are unaffected.
-  it('omits socketPath entirely when no owner path is supplied', () => {
-    const lease = buildLeaseObject(4242, '2026-05-28T00:00:00.000Z');
-    expect(Object.prototype.hasOwnProperty.call(lease, 'socketPath')).toBe(false);
   });
 
   // (2) The bridge prefers the stored path when present and still on disk, even when the env-based

@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-spec-kit routing"
 importance_tier: normal
 contextType: general
-version: 1.0.10.0
+version: 1.0.11.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -43,7 +43,7 @@ A request that matches no intent returns `UNKNOWN_FALLBACK` and its checklist ra
 - **MEMORY** — "memory", "save context", "resume", "checkpoint", "context", "history lookup", "session history" and "earlier turns" requests, and the `/speckit:search`, `/speckit:save` and `/speckit:resume` boosts, load `references/memory/memory-system.md`, `references/memory/save-workflow.md`, `references/memory/trigger-config.md` and `references/structure/folder-routing.md`.
 - **HANDOVER** — "handover", "continue later", "next session" and "pause" requests load `references/workflows/quick-reference.md` and nothing else, so the session-end handoff never pulls a packet template.
 - **PHASE** — "phase", "decompose", "split", "workstream", "multi-phase", "phased approach", "phased" and "multi-session" requests, and the `/speckit:plan :with-phases` boost, load `references/structure/phase-definitions.md`, `references/structure/sub-folder-versioning.md`, `references/validation/phase-checklists.md` and `references/structure/phase-system.md`.
-- **RETRIEVAL_TUNING** — "retrieval", "search tuning", "fusion", "scoring" and "pipeline" requests load `references/memory/embedder-pluggability.md` and `references/memory/trigger-config.md`.
+- **RETRIEVAL_TUNING** — "retrieval", "search tuning", "fusion", "scoring" and "pipeline" requests load `references/memory/trigger-config.md`.
 - **INTAKE** — "intake", "folder_state", "start_state", "repair-mode" and "intake-only" requests, and the `/speckit:plan --intake-only` boost, load `references/workflows/intake-contract.md`, `references/workflows/spec-authoring-card.md` and `references/validation/template-compliance-contract.md`.
 - **HOOKS** — "hook", "skill advisor hook", "advisor hook", "prompt-time advisor", "advisor_validate", "goal plugin", "opencode-goal", "/goal", "active_goal", "session goal", "set goal", "bind goal", "update the goal", "resend goal" and "durable slice" requests load `references/config/hook-system.md` and `references/workflows/goal-set-string-playbook.md`.
 - **LAUNCHER** — "launcher", "lease", "pid file", "single-writer" and "lease_held_by" requests load `references/config/launcher-lease.md` and `references/memory/memory-system.md`.
@@ -240,7 +240,6 @@ RESOURCE_MAP = {
         "references/structure/phase-system.md",
     ],
     "RETRIEVAL_TUNING": [
-        "references/memory/embedder-pluggability.md",
         "references/memory/trigger-config.md",
     ],
     "INTAKE": [

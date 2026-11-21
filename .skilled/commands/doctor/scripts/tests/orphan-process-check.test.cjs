@@ -21,8 +21,6 @@ const CURRENT_UID = 501;
 const LIVE_PATHS = new Set([
   '/existing/advisor-checkout',
   '/existing/advisor checkout',
-  '/existing/model-checkout',
-  '/existing/model checkout',
   '/existing/live-repo',
   '/existing/live repo',
 ]);
@@ -69,36 +67,6 @@ const PROCESS_TABLE = [
     pid: 1010,
     rssKb: 1024,
     command: 'node /existing/advisor-checkout/.skilled/bin/system-skill-advisor-launcher.cjs',
-  }),
-  psRow({
-    pid: 1011,
-    rssKb: 1024,
-    command: 'node /missing/model-checkout/.skilled/bin/hf-model-server.cjs',
-  }),
-  psRow({
-    pid: 1012,
-    rssKb: 1024,
-    command: 'node /existing/model-checkout/.skilled/bin/hf-model-server.cjs',
-  }),
-  psRow({
-    pid: 1032,
-    rssKb: 1024,
-    command: 'node .skilled/bin/hf-model-server.cjs',
-  }),
-  psRow({
-    pid: 1033,
-    rssKb: 1024,
-    command: 'node /existing/model checkout/.skilled/bin/hf-model-server.cjs',
-  }),
-  psRow({
-    pid: 1034,
-    rssKb: 1024,
-    command: 'node /missing/model checkout/.skilled/bin/hf-model-server.cjs',
-  }),
-  psRow({
-    pid: 1035,
-    rssKb: 1024,
-    command: 'node --max-old-space-size=4096 /existing/model-checkout/.skilled/bin/hf-model-server.cjs',
   }),
   psRow({
     pid: 1013,
@@ -194,21 +162,13 @@ test('selectOrphans reports stale and unsupervised helpers while filtering unrel
       'relaunch-test-helper',
       'stale-advisor-launcher',
       'stale-live-follow',
-      'stale-model-server',
       'tail-monitor',
-      'unsupervised-model-server',
       'vitest',
     ],
   );
   assert.equal(kindsByPid.get(1001), 'node-test');
   assert.equal(kindsByPid.get(1005), 'relaunch-test-helper');
   assert.equal(kindsByPid.get(1009), 'stale-advisor-launcher');
-  assert.equal(kindsByPid.get(1011), 'stale-model-server');
-  assert.equal(kindsByPid.get(1012), 'unsupervised-model-server');
-  assert.equal(kindsByPid.get(1032), 'unsupervised-model-server');
-  assert.equal(kindsByPid.get(1033), 'unsupervised-model-server');
-  assert.equal(kindsByPid.get(1034), 'stale-model-server');
-  assert.equal(kindsByPid.get(1035), 'unsupervised-model-server');
   assert.equal(kindsByPid.get(1013), 'stale-live-follow');
   assert.equal(kindsByPid.get(1023), 'tail-monitor');
   assert.equal(kindsByPid.get(1024), 'tail-monitor');
@@ -221,40 +181,13 @@ test('selectOrphans reports stale and unsupervised helpers while filtering unrel
   }
 });
 
-test('classify keeps live advisor and live-follow daemons unlisted and reports model servers', () => {
+test('classify keeps live advisor and live-follow daemons unlisted', () => {
   assert.equal(
     classify(
       'node /existing/advisor-checkout/.skilled/bin/system-skill-advisor-launcher.cjs',
       pathExists,
     ),
     null,
-  );
-  assert.equal(
-    classify('node /existing/model-checkout/.skilled/bin/hf-model-server.cjs', pathExists),
-    'unsupervised-model-server',
-  );
-  assert.equal(
-    classify('node .skilled/bin/hf-model-server.cjs', pathExists),
-    'unsupervised-model-server',
-  );
-  assert.equal(
-    classify('node /missing/model-checkout/.skilled/bin/hf-model-server.cjs', pathExists),
-    'stale-model-server',
-  );
-  assert.equal(
-    classify('node /existing/model checkout/.skilled/bin/hf-model-server.cjs', pathExists),
-    'unsupervised-model-server',
-  );
-  assert.equal(
-    classify('node /missing/model checkout/.skilled/bin/hf-model-server.cjs', pathExists),
-    'stale-model-server',
-  );
-  assert.equal(
-    classify(
-      'node --max-old-space-size=4096 /existing/model-checkout/.skilled/bin/hf-model-server.cjs',
-      pathExists,
-    ),
-    'unsupervised-model-server',
   );
   assert.equal(
     classify('bash /existing/live-repo/.skilled/bin/git-live-follow.sh --live main', pathExists),
@@ -264,10 +197,6 @@ test('classify keeps live advisor and live-follow daemons unlisted and reports m
 
 test('classify ignores shell command text and app arguments that resemble helpers', () => {
   assert.equal(classify("bash -lc 'node --test /tmp/wrapped.test.cjs'"), null);
-  assert.equal(
-    classify('node /tmp/other-process.cjs .skilled/bin/hf-model-server.cjs', pathExists),
-    null,
-  );
   assert.equal(
     classify('/Applications/Editor.app/Contents/MacOS/Electron node --test /tmp/app.test.cjs'),
     null,
@@ -305,7 +234,7 @@ test('renderTable keeps the age column aligned across kinds', async () => {
   const rowLines = lines.filter((line) => /^\d+\s/.test(line));
 
   assert.ok(rowLines.length > 1);
-  assert.ok(rowLines.some((line) => line.includes('unsupervised-model-server')));
+  assert.ok(rowLines.some((line) => line.includes('stale-advisor-launcher')));
   for (const line of rowLines) {
     assert.match(line.slice(ageOffset), /^(?:\d+-)?\d{2}:\d{2}(?::\d{2})?\s/);
   }

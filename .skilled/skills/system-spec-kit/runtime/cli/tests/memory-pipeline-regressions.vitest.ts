@@ -2,36 +2,11 @@
 // MODULE: Memory Pipeline Regression Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { truncateMemoryTitle } from '../core/title-builder';
 import { generateImplementationSummary } from '../lib/semantic-summarizer';
 import { extractTriggerPhrases as extractSharedTriggerPhrases } from '@spec-kit/shared/trigger-extractor';
-
-const ORIGINAL_ENV: Record<string, string | undefined> = {
-  EMBEDDINGS_PROVIDER: process.env.EMBEDDINGS_PROVIDER,
-  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-  OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL,
-  VOYAGE_API_KEY: process.env.VOYAGE_API_KEY,
-  VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL,
-  HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL,
-};
-
-function restoreEnv(): void {
-  for (const [key, value] of Object.entries(ORIGINAL_ENV)) {
-    if (value === undefined) {
-      delete process.env[key];
-    } else {
-      process.env[key] = value;
-    }
-  }
-}
-
-afterEach(() => {
-  vi.resetModules();
-  vi.doUnmock('../../shared/embeddings/factory');
-  restoreEnv();
-});
 
 describe('memory pipeline regressions', () => {
   it('truncates memory titles at the last whole word', () => {

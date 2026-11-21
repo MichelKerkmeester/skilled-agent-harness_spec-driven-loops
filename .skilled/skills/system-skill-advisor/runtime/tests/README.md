@@ -130,7 +130,6 @@ tests/
 +-- launcher-idle-timeout.vitest.ts
 +-- launcher-install-guard.vitest.ts
 +-- launcher-lease.vitest.ts
-+-- launcher-model-server-default.vitest.ts
 +-- launcher-reap-pid-reuse.vitest.ts
 +-- launcher-stale-build-recycle.vitest.ts
 +-- lifecycle-derived-metadata.vitest.ts

@@ -116,6 +116,10 @@
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/tests/routing-parity-deep-skills.vitest.ts",
       "reason": "Two routing prompts name an embedder investigation as the research topic. Prompt text about a topic, not the advisor lane; rewording it would move the routing scores the test asserts."
+    },
+    {
+      "path": ".skilled/scripts/orphan-mcp-sweeper.sh",
+      "reason": "The ollama-preserve guard keeps the sweeper from reaping an unrelated local Ollama runner or server. A guard kept on purpose, not the advisor lane; the file names no other lane term."
     }
   ]
 }

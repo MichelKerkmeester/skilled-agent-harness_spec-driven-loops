@@ -63,10 +63,8 @@ tests/
 ├── adversarial/         # Adversarial input handling
 ├── advisor-fixtures/    # Fixture inputs for advisor-facing suites
 ├── description/         # description.json generation and repair suites
-├── embedders/           # Embedder-facing suites
 ├── fixtures/            # Shared document and data fixtures
 ├── hooks/               # node:test suites for the hook adapters and spec-gate core
-├── local-llm-features/  # Local model feature suites
 ├── security/            # Security and sanitization suites
 ├── validation/          # Spec folder validation rule suites
 └── README.md

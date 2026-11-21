@@ -18,23 +18,12 @@ const { spawn, spawnSync } = require('child_process');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const mss = loadModelServerSupervisionModule();
-
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.skilled');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. ENV BOOTSTRAP HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
-
-function loadModelServerSupervisionModule() {
-  try {
-    return require('./lib/model-server-supervision.cjs');
-  } catch (error) {
-    if (error.code !== 'MODULE_NOT_FOUND') throw error;
-    return null;
-  }
-}
 
 // Load project-local env overrides BEFORE spawning the daemon child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
@@ -101,16 +90,7 @@ let dbDir = path.join(runtimeDir, 'database');
 let lockDir = path.join(dbDir, '.system-skill-advisor-launcher.lockdir');
 const PID_FILE_NAME = '.system-skill-advisor-launcher.json';
 const OWNER_LEASE_FILE_NAME = '.skill-advisor-owner.json';
-// Lease field telling the embedding client whether this launcher arms the shared
-// model server. MUST stay byte-identical to ADVISOR_LEASE_SUPERVISION_FIELD in
-// .skilled/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts.
-const OWNER_LEASE_SUPERVISION_FIELD = 'supervisesModelServer';
 let stateFile = path.join(dbDir, PID_FILE_NAME);
-// Files the model server shares with its clients (pid, respawn lock, give-up marker)
-// live beside its socket in the short default directory the embedding client also
-// uses. They used to sit in the memory server's database directory, which no
-// longer exists and, inside a worktree, exceeds the Unix socket path limit.
-let modelServerFilesDir = mss ? mss.DEFAULT_MODEL_SERVER_SOCKET_DIR : '/tmp/system-hf-embed';
 
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -176,19 +156,9 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_METRICS_ENABLED',
   'SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS',
   'SPECKIT_IPC_SOCKET_DIR',
-  'SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED',
-  'SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN',
-  'HF_EMBEDDINGS_MODEL',
-  'HF_EMBED_SERVER_URL',
   'SPECKIT_LAUNCHER_BRIDGE_DISABLED',
   'SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN',
   'SPECKIT_MAX_SECONDARY_CLIENTS',
-  // Dedicated skill-advisor-namespaced override for the child's MEMORY_DB_PATH
-  // pointer; see createChildEnv() for why the bare MEMORY_DB_PATH name is
-  // deliberately NOT in this allowlist (it is an ambient repo-wide name that no
-  // single component owns, so blindly forwarding it would silently reopen the
-  // cross-database path leak createChildEnv() closes).
-  'SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH',
 ]);
 let childProcess = null;
 let leaseStartedAt = null;
@@ -323,24 +293,6 @@ function createChildEnv(sourceEnv = process.env) {
   if (filtered.SYSTEM_SKILL_ADVISOR_DB_DIR === undefined) {
     filtered.SYSTEM_SKILL_ADVISOR_DB_DIR = resolvedAdvisorDbDir();
   }
-  // Without an explicit MEMORY_DB_PATH, shared/embeddings/factory.ts's
-  // resolveConfiguredDatabaseCandidates() falls back to walking up from its own
-  // on-disk realpath, which resolves through the @spec-kit/shared symlink to that
-  // package's root — not this advisor's own database. Compute the child's
-  // MEMORY_DB_PATH explicitly from the dedicated skill-advisor override var
-  // (never from a blindly-forwarded ambient MEMORY_DB_PATH — that name belongs to
-  // no single component, so treating it as "already configured for skill-advisor"
-  // would silently reopen the exact leak this pointer exists to prevent).
-  const explicitOverride = typeof sourceEnv.SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH === 'string'
-    && sourceEnv.SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH.length > 0
-    ? sourceEnv.SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH
-    : undefined;
-  filtered.MEMORY_DB_PATH = explicitOverride ?? advisorDbPath();
-  // The child's socket directory is scoped to its database, the model server is not,
-  // and the child must reach the server the launcher arms.
-  if (mss && filtered.HF_EMBED_SERVER_URL === undefined) {
-    filtered.HF_EMBED_SERVER_URL = mss.resolveModelServerSocketPath(sourceEnv, { dbDir: modelServerFilesDir });
-  }
   const bridge = loadBridgeModule();
   if (typeof bridge.resolveIpcSocketDir === 'function') {
     filtered.SPECKIT_IPC_SOCKET_DIR = bridge.resolveIpcSocketDir(
@@ -364,7 +316,6 @@ function refreshPaths() {
     : path.join(runtimeDir, 'database');
   lockDir = path.join(dbDir, '.system-skill-advisor-launcher.lockdir');
   stateFile = path.join(dbDir, PID_FILE_NAME);
-  modelServerFilesDir = mss ? mss.DEFAULT_MODEL_SERVER_SOCKET_DIR : '/tmp/system-hf-embed';
 }
 
 function exists(p) {
@@ -517,10 +468,6 @@ function buildOwnerLease(ownerPid = process.pid) {
     lastHeartbeatIso: new Date().toISOString(),
     ttlMs: 60000,
     canonicalDbDir: resolvedAdvisorDbDir(),
-    // The client cannot see this process's environment, so the lease carries the
-    // answer: a launcher that will not start a server is no reason to wait for one.
-    // That covers the flag being off and the supervision library being absent.
-    [OWNER_LEASE_SUPERVISION_FIELD]: isModelServerEnabled() && Boolean(hfControl),
   };
 }
 
@@ -1106,132 +1053,8 @@ function clearAllLeaseFiles() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 11. MODEL SERVER CONTROL
+// 11. CHILD PROCESS HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
-
-// The spawner is opt-in because the advisor's prompt path cannot use hf-local
-// vectors. Setting the flag to 1 turns it on and makes a missing supervision
-// library fatal.
-function modelServerSetting() {
-  const raw = (process.env.SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED ?? '').trim();
-  if (raw === '') return 'off';
-  if (raw === '1') return 'explicit-on';
-  return 'off';
-}
-
-function isModelServerEnabled() {
-  return modelServerSetting() !== 'off';
-}
-
-function modelServerSupervisionAvailable(context) {
-  if (hfControl) return true;
-  if (modelServerSetting() === 'explicit-on') {
-    throw new Error('SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1 but model-server supervision lib is unavailable');
-  }
-  log(`model server spawn skipped (${context}): supervision lib unavailable, embeddings use the other providers`);
-  return false;
-}
-
-function requireModelServerSupervision() {
-  if (!mss) {
-    throw new Error('model-server-supervision.cjs is unavailable');
-  }
-  return mss;
-}
-
-function resolveModelServerSocketPath(env = process.env, options = {}) {
-  // No unconditional dbDir default here: when a caller doesn't supply one AND
-  // neither HF_EMBED_SERVER_URL nor SPECKIT_IPC_SOCKET_DIR are set in env (the
-  // exact condition reachable through the plugin bridge's filtered child env),
-  // fall through to mss's own canonical short default instead of reconstructing
-  // the long system-spec-kit database path, which overflows macOS's sun_path
-  // limit. An explicit options.dbDir is still honored when a caller provides one.
-  return requireModelServerSupervision().resolveModelServerSocketPath(env, options);
-}
-
-// A launcher pointed at its own advisor database also gets its own model
-// server. Otherwise the demand listener, pid file, respawn lock and give-up
-// marker resolve from the shared socket directory, and a sandboxed launcher's
-// shutdown reads the shared pid file and signals the model server that the
-// workspace launcher serves. The address travels in HF_EMBED_SERVER_URL
-// because this launcher, the model server it spawns and the daemon child's
-// embedding client all honour it, and the daemon socket keeps its own scoping.
-function pinModelServerToAdvisorDatabase(env = process.env) {
-  const overrideDbDir = env.SYSTEM_SKILL_ADVISOR_DB_DIR;
-  if (!overrideDbDir || env.HF_EMBED_SERVER_URL || !mss) return null;
-  if (typeof env.SPECKIT_IPC_SOCKET_DIR === 'string' && env.SPECKIT_IPC_SOCKET_DIR.startsWith('tcp://')) return null;
-  const bridge = loadBridgeModule();
-  if (typeof bridge.resolveIpcSocketDir !== 'function') return null;
-  const socketDir = bridge.resolveIpcSocketDir('system-skill-advisor', {
-    dbDir: canonicalizePath(overrideDbDir),
-    env,
-  });
-  if (typeof socketDir !== 'string' || socketDir.startsWith('tcp://')) return null;
-  const socketPath = path.join(socketDir, mss.HF_MODEL_SERVER_SOCKET_FILE_NAME);
-  env.HF_EMBED_SERVER_URL = socketPath;
-  return socketPath;
-}
-
-function sharedModelServerPidPath(socketPath = resolveModelServerSocketPath()) {
-  const pidDir = socketPath.startsWith('tcp://') ? modelServerFilesDir : path.dirname(socketPath);
-  return path.join(pidDir, requireModelServerSupervision().HF_MODEL_SERVER_PID_FILE_NAME);
-}
-
-function writeSharedModelServerPid(pid) {
-  const socketPath = resolveModelServerSocketPath();
-  const pidPath = sharedModelServerPidPath(socketPath);
-  if (!Number.isInteger(pid) || pid <= 0) {
-    try {
-      fs.unlinkSync(pidPath);
-    } catch (error) {
-      if (error.code !== 'ENOENT') throw error;
-    }
-    return;
-  }
-
-  const currentPidPath = path.join(ensureCanonicalDir(path.dirname(pidPath)), path.basename(pidPath));
-  const tmp = `${currentPidPath}.tmp.${process.pid}`;
-  fs.writeFileSync(tmp, JSON.stringify({
-    pid,
-    startedAt: new Date().toISOString(),
-    ownerLauncher: 'system-skill-advisor',
-    socketPath,
-  }, null, 2), { mode: 0o600 });
-  fs.renameSync(tmp, currentPidPath);
-}
-
-function readSharedModelServerPid() {
-  try {
-    const parsed = JSON.parse(fs.readFileSync(sharedModelServerPidPath(), 'utf8'));
-    if (Number.isInteger(parsed.pid) && parsed.pid > 0) return parsed.pid;
-  } catch {
-    // Advisor never falls back to its own launcher lease for model-server ownership.
-  }
-  return null;
-}
-
-const hfControl = mss ? mss.createModelServerControl({
-  log,
-  env: process.env,
-  rootDir: root,
-  opencodeDir,
-  dbDir: () => modelServerFilesDir,
-  getLauncherShutdownInProgress: () => launcherShutdownInProgress,
-  onRssBreach: (cfg = {}) => {
-    void (async () => {
-      hfControl.clearTimers();
-      await hfControl.stopDemandListener();
-      await shutdownModelServerRoot('RSS ceiling sustained', cfg.graceMs);
-    })().catch((error) => {
-      log(`model-server RSS cleanup failed: ${error.message}`);
-      debug(error.stack || error.message);
-      writeSharedModelServerPid(null);
-    });
-  },
-  bridge: loadBridgeModule(),
-  writeModelServerPid: writeSharedModelServerPid,
-  readModelServerPid: readSharedModelServerPid,
-}) : null;
 
 function isChildRunning(child) {
   return child && child.exitCode === null && child.signalCode === null;
@@ -1253,55 +1076,6 @@ function waitForChildExit(child, timeoutMs) {
     timer.unref?.();
     child.once('exit', onExit);
   });
-}
-
-function signalModelServerRoot(pid, signal) {
-  const child = hfControl?.getChild?.();
-  if (child?.pid === pid && isChildRunning(child)) {
-    child.kill(signal);
-    return;
-  }
-  try {
-    process.kill(pid, signal);
-  } catch (error) {
-    if (error.code !== 'ESRCH') throw error;
-  }
-}
-
-async function shutdownModelServerRoot(reason, graceMs = RESPAWN_REAP_GRACE_MS) {
-  if (!hfControl) return;
-  const child = hfControl.getChild?.();
-  const pid = child?.pid ?? hfControl.getPid() ?? readSharedModelServerPid();
-  if (!Number.isInteger(pid) || pid <= 0) {
-    writeSharedModelServerPid(null);
-    return;
-  }
-
-  log(`${reason}; sending SIGTERM to hf-model-server pid ${pid}`);
-  signalModelServerRoot(pid, 'SIGTERM');
-  hfControl.reapProcessTree(pid);
-  const exitedAfterTerm = child?.pid === pid
-    ? await waitForChildExit(child, graceMs)
-    : await waitForPidExit(pid, graceMs);
-  if (!exitedAfterTerm && processLiveness(pid) !== 'dead') {
-    log(`hf-model-server pid ${pid} exceeded ${graceMs}ms grace; sending SIGKILL`);
-    signalModelServerRoot(pid, 'SIGKILL');
-    if (child?.pid === pid) {
-      await waitForChildExit(child, 1000);
-    } else {
-      await waitForPidExit(pid, 1000);
-    }
-  }
-  writeSharedModelServerPid(null);
-}
-
-async function shutdownModelServerForLauncherExit() {
-  if (!isModelServerEnabled()) return;
-  if (!modelServerSupervisionAvailable('launcher exit')) return;
-  launcherShutdownInProgress = true;
-  hfControl.clearTimers();
-  await hfControl.stopDemandListener();
-  await shutdownModelServerRoot('launcher exiting');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1659,7 +1433,6 @@ function launchServer() {
     childHeartbeatWatchdog?.stop();
     childHeartbeatWatchdog = null;
     void (async () => {
-      await shutdownModelServerForLauncherExit();
       if (signal) {
         // Clear lease before signal mirror; process.on('exit') doesn't fire on SIGKILL.
         clearAllLeaseFiles();
@@ -1692,7 +1465,6 @@ function installSignalHandlers() {
       void (async () => {
         if (launcherShutdownInProgress) return;
         launcherShutdownInProgress = true;
-        await shutdownModelServerForLauncherExit();
         if (childProcess && !childProcess.killed) {
           childProcess.kill(signal);
           const exited = await waitForChildExit(childProcess, 5000);
@@ -1730,7 +1502,6 @@ async function main() {
   let lockHeld = false;
 
   try {
-    pinModelServerToAdvisorDatabase();
     installSignalHandlers();
     // Lease cleanup runs unconditionally regardless of child termination path.
     process.on('exit', clearAllLeaseFiles);
@@ -1791,11 +1562,6 @@ async function main() {
 
     const launched = launchServer();
     if (!launched) return;
-    if (isModelServerEnabled() && modelServerSupervisionAvailable('launcher start')) {
-      void hfControl.startDemandListener().catch((error) => {
-        log(error.stack || error.message);
-      });
-    }
   } catch (error) {
     try {
       writeState({
@@ -1825,7 +1591,6 @@ async function main() {
 
 const TESTING_PATH_KEYS = new Set([
   'skillsDir', 'kitDir', 'runtimeDir', 'dbDir', 'lockDir', 'stateFile',
-  'modelServerFilesDir', 'systemSpecKitDbDir',
 ]);
 
 function configureLauncherPathsForTesting(nextPaths) {
@@ -1843,8 +1608,6 @@ function configureLauncherPathsForTesting(nextPaths) {
   if (nextPaths.dbDir) dbDir = nextPaths.dbDir;
   if (nextPaths.lockDir) lockDir = nextPaths.lockDir;
   if (nextPaths.stateFile) stateFile = nextPaths.stateFile;
-  modelServerFilesDir = nextPaths.modelServerFilesDir || nextPaths.systemSpecKitDbDir
-    || (mss ? mss.DEFAULT_MODEL_SERVER_SOCKET_DIR : '/tmp/system-hf-embed');
 }
 
 if (require.main === module) {
@@ -1871,15 +1634,11 @@ module.exports = {
   HEARTBEAT_STARTUP_GRACE_MS,
   HEARTBEAT_STALE_MS,
   installedTreeMatchesLockfile,
-  isModelServerEnabled,
   latestSourceMtimeMs,
   launchedDaemonPredatesBuild,
-  modelServerSetting,
   ownerLeasePath,
-  pinModelServerToAdvisorDatabase,
   readOwnerLeaseFile,
   readProcessExecutableBasename,
-  resolveModelServerSocketPath,
   reapOwnerBeforeRespawn,
   removeStaleBootstrapLock,
   startOwnerLeaseHeartbeat,
