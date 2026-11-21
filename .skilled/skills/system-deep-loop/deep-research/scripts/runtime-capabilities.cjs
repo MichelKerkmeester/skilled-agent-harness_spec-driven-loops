@@ -1,12 +1,11 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep Research Runtime Capabilities Resolver                              ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Compatibility shim. The resolver now lives in the shared backend at      ║
-// ║ runtime/lib/deep-loop/runtime-capabilities.cjs; this file                ║
-// ║ binds the "deep-research" label and this skill's default matrix path,    ║
-// ║ then re-exports the same surface so CLI output and module API are        ║
-// ║ unchanged for existing callers.                                          ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Research Runtime Capabilities Resolver
+// ───────────────────────────────────────────────────────────────────
+// Compatibility shim. The resolver now lives in the shared backend at
+// runtime/lib/deep-loop/runtime-capabilities.cjs; this file
+// binds the "deep-research" label and this skill's default matrix path,
+// then re-exports the same surface so CLI output and module API are
+// unchanged for existing callers.
 
 'use strict';
 

@@ -1,6 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep Review Contract Snapshot Renderer                                   ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Review Contract Snapshot Renderer
+// ───────────────────────────────────────────────────────────────────
 //
 // Renders review-mode-contract.yaml into a human-readable Markdown snapshot.
 // This is the single real render target declared under the manifest's

@@ -1,13 +1,12 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Resource-Map Synthesis Primitive (system-deep-loop/shared/synthesis)     ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Shared synthesis helper for the deep-loop workflow modes. emitResourceMap ║
-// ║ is workflow output rendering, NOT runtime backend plumbing, so it lives   ║
-// ║ here (a non-discoverable shared location) rather than in the runtime/    ║
-// ║ backend. The single implementation continues to live in system-spec-kit; ║
-// ║ this re-export is the seam research/review reducers consume so the       ║
-// ║ rendered markdown stays byte-identical to the original renderer.         ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Resource-Map Synthesis Primitive (system-deep-loop/shared/synthesis)
+// ───────────────────────────────────────────────────────────────────
+// Shared synthesis helper for the deep-loop workflow modes. emitResourceMap
+// is workflow output rendering, NOT runtime backend plumbing, so it lives
+// here (a non-discoverable shared location) rather than in the runtime/
+// backend. The single implementation continues to live in system-spec-kit;
+// this re-export is the seam research/review reducers consume so the
+// rendered markdown stays byte-identical to the original renderer.
 
 'use strict';
 
