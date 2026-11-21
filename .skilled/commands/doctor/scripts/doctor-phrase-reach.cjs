@@ -160,13 +160,11 @@ function baselineInstant() {
 let tempDbDir = null;
 
 // Freeze scoring to the reproducible filesystem projection: an empty database
-// directory makes the SQLite loader return null, semantic embeddings are disabled,
-// and the native lane-ranking overrides are cleared so the top-1 decision is
-// deterministic.
+// directory makes the SQLite loader return null, and the native lane-ranking
+// overrides are cleared so the top-1 decision is deterministic.
 function freezeRegime(instant) {
   tempDbDir = fs.mkdtempSync(path.join(os.tmpdir(), 'doctor-phrase-reach-'));
   process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = tempDbDir;
-  process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
   process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
   delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
   delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;

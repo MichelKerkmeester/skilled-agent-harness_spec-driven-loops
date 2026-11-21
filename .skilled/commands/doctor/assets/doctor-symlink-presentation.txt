@@ -214,7 +214,6 @@ Folders created: [each folder the apply created, or none]
 Ignore lines: [the file and each line it gained, or none]
 Run record: [the run directory the engine wrote, which unlink reads]
 Re-read: [the engine's post-apply check summary, with any entry that is still not a pass]
-Advisor vector coverage: skills [current]/[total] current or unavailable, commands [current]/[total] current or unavailable; backend [reachable|unreachable|model_missing|unavailable]. Informational only; missing Ollama does not fail the link step.
 Refusals: [each refusal the plan named and the apply left alone, or none]
 Undo: [the engine's undo line, quoted whole: the unlink command with its run directory and --dry-run]
 Next: [the repair the lines above name, or none]
@@ -249,7 +248,6 @@ Target: link
 Root: [the repository]
 State: [the engine's NOTHING TO DO line, quoted as printed]
 Changed: none
-Advisor vector coverage: skills [current]/[total] current or unavailable, commands [current]/[total] current or unavailable; backend [reachable|unreachable|model_missing|unavailable]. Informational only; missing Ollama does not fail the link step.
 STATUS=OK
 ```
 

@@ -209,7 +209,6 @@ workflow:
       skipped: "Record reindex=skipped and show the stale-index warning."
       failed: "Record reindex=failed, show the stale-index warning and report the failure."
     stale_index_rule: "Skipped or failed database rebuild must never be reported as a silent success."
-    coverage_report: "After the rebuild outcome on an applied run, run one read-only `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --include-semantic-health true --format json --timeout-ms 1500 --warm-only` call. Report skills and command vectors as current/total, using total minus stale minus missing for current. If the daemon is absent or the status cannot be read, report coverage as unavailable; if Ollama is missing, report its backend state without counting this informational check as a failed step. Skip this call on dry-run."
     daemon_restart: "Name a restart of the advisor daemon to load updated command bridges and lane weights, which are read once at startup."
 
   phase_7_state_log:

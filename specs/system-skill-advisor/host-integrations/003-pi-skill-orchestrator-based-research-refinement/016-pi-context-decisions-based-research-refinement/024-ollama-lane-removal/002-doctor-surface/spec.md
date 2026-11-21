@@ -33,7 +33,7 @@ The doctor still offers `/doctor:skill-advisor embedder`, runs an embedder leg i
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-20 |
 | **Branch** | `worktrees/497-ollama-lane-removal` |
 | **Parent Spec** | ../spec.md |
@@ -143,6 +143,7 @@ $ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/deri
 | `.skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs` | Delete | The cost script only the embedder asset calls |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/README.md` | Modify | Delete the row at 62 and the paragraph at 66 |
 | `INSTALL-SKILLED.md` | Modify | Delete section 86 to 99, row 157 (158 becomes step 5) and row 342; reword 351 |
+| `.skilled/skills/system-skilled-doctor/README.md` | Modify | Line 46: `/doctor:setup` runs six read-only checks, not seven. [DEVIATION: added during implementation; the leg count this phase changed was stated here too.] |
 | `.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md` | Modify | Delete 54, section 12 at 275 to 378 and row 387; line 105 imports `lanes/lexical.js`; sections 13 and 14 become 12 and 13 |
 <!-- /ANCHOR:scope -->
 

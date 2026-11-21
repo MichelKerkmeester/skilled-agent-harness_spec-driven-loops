@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,19 +48,19 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
       ".skilled/commands/doctor/skill-advisor.md",
+      ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/README.md",
+      ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md",
+      ".skilled/skills/system-skilled-doctor/README.md",
       ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt",
       ".skilled/commands/doctor/assets/doctor-setup.yaml",
       ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
       ".skilled/commands/doctor/setup.md",
-      ".skilled/commands/doctor/assets/doctor-install.yaml",
-      ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
-      ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs",
-      ".skilled/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs",
-      ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
-      ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
-      ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml"
+      ".skilled/commands/doctor/assets/doctor-install.yaml"
     ],
     "entities": [
       {
@@ -106,15 +106,45 @@
         "source": "derived"
       },
       {
-        "name": "doctor-skill-advisor-embedder.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
-        "source": "derived"
-      },
-      {
         "name": "skill-advisor.md",
         "kind": "doc",
         "path": ".skilled/commands/doctor/skill-advisor.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-phrase-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-compatibility.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridges.generated.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL-GUIDE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md",
         "source": "derived"
       },
       {
@@ -148,42 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "doctor-install-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-install-contract.test.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/tests/doctor-install-contract.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-route-contract.test.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-update-apply.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-update-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-overlay-apply.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,12 +200,18 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The lane ships at weight 0, yet the doctor still sets it up, checks it and reports its vectors: 18 files under `.skilled/commands/doctor/` name it and 8 pass `--include-semantic-health`",
     "created_at": "2026-11-20T21:51:19Z",
-    "last_save_at": "2026-11-20T22:34:37.016Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-21T00:05:10.253Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9305787ebaa9d3a358fe83ee0810583d39455f8b441dd3804ef79976c36aaf8b",
+    "source_fingerprint": "sha256:6ab555c326a198f9e8af03a4ae1d514bc1865d0ff88aec44fbd8694a0a32ead8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "62d78fc1ddb254160bb93a055b22e5c009d9278fc7597b6ce3055b59c687b78c",
+      "spec.md": "6681800869a8e4094387ddf986e33bdeb9c69d4e74d6335795ff54f39cb4752a",
       "plan.md": "f0b816f899811bab59442b8cf9162c92ef830d067da38aae075e96ee7bda07bf",
-      "tasks.md": "f49b9d2f50e8046b00de5dd565b05a6dde8deb1a7ced1dad78739f9a5ec63123",
-      "implementation-summary.md": "3cc539ebe783c50175d6a78b138af573b78ca8f80559e2603186c5d3308d31e6"
+      "tasks.md": "5dd350637d7059d6d3ed0319d26ef829deb172eca0190afa7662a665834874f4",
+      "implementation-summary.md": "8466ff0e328729834b780c791e42bc7fa2c6cf00bb2a550276ebe6fb67f1af07"
     },
     "last_active_at": null
   }

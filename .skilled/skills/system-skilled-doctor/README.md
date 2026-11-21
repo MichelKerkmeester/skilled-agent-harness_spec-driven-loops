@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # system-skilled-doctor
@@ -43,7 +43,7 @@ Each command below has its own router and workflow. The table says what each one
 | `/doctor:agents-md` | Checks the sections Skilled ships in a project's `AGENTS.md` and embeds or restores them after showing the plan. `check` reports twelve rows and writes nothing |
 | `/doctor:runtime-mirrors` | Checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled`. Each drifting surface is reported with its repair command |
 | `/doctor:env` | Shows the switches documented in `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` and every other setting in the root `.env.example`, with where each is set. It saves a preference after you approve the exact line |
-| `/doctor:setup` | Lists every doctor command and target and runs seven read-only checks. A failing leg names its repair command, then the report shows the last session hop, any unclaimed handoff note, the context window the relaunch nudge measures against and the orphaned processes still running |
+| `/doctor:setup` | Lists every doctor command and target and runs six read-only checks. A failing leg names its repair command, then the report shows the last session hop, any unclaimed handoff note, the context window the relaunch nudge measures against and the orphaned processes still running |
 | `/doctor:helper` | Reads the problem in plain words and ranks up to three doctor commands that fit, with the reason and a command ready to run |
 | `/doctor:speckit` | Checks that the trigger index is fresh and that its lookup and the ripgrep recipes return results. A stale index is reported with its regeneration command |
 | `/doctor:mcp` | Installs or debugs Code Mode with its UTCP configuration and runtime registration. Every repair asks for approval first |

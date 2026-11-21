@@ -1,24 +1,33 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The doctor commands no longer offer, run or describe the embedder route. /doctor:skill-advisor has six targets, /doctor:setup six legs, and the install docs no longer walk a user through pulling a model."
 trigger_phrases:
   - "doctor surface implementation summary"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/002-doctor-surface"
-    last_updated_at: "2026-11-20T21:51:20Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-21T00:04:37Z"
+    last_updated_by: "generate-context"
+    recent_action: "Implemented and verified phase 002"
+    next_safe_action: "Run /speckit:implement on 003-lane-feeders"
+    packet_purpose: "Purpose: No doctor file and neither install doc names the embedder route or passes the semantic-health flag, and every doctor gate stays as green as phase 001 recorded it."
     blockers: []
-    key_files: []
+    key_files:
+      - "002-doctor-surface/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:005f93e9be39b83f63046f675210746a58381aade16be434776284e4746f129c"
       session_id: "scaffold-002-doctor-surface"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
+      workspace: "/Users/michelkerkmeester/worktrees/public/497-ollama-lane-removal"
+      savedAt: "2026-11-21T00:04:37Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +41,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-doctor-surface |
-| **Completed** | 2026-11-20 |
+| **Completed** | 2026-11-21 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,63 +53,75 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. This phase is planned: `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` describe the change, and this summary records what changes once `/speckit:implement` runs.
+A user can no longer reach the lane through a doctor command. The `/doctor:skill-advisor embedder` route, its workflow, the setup leg that probed semantic health and the install steps that pulled an Ollama model are gone, and the residue check's live count fell from 309 to 283.
 
 ### Phase 2: doctor-surface
 
-When this phase lands, the doctor stops offering, checking and reporting the lane: `/doctor:skill-advisor` lists six targets, `/doctor:setup` runs six legs, `/doctor:install` prints five steps, and no doctor workflow passes `--include-semantic-health`. That lets phase 004 remove the flag without a doctor step being refused.
+`/doctor:skill-advisor` now lists six targets and `/doctor:setup` runs six legs. The install, overlay, symlink and update workflows no longer pass `--include-semantic-health` or describe the route. The two embedder rows left `scoring-compatibility.json`, and the generator rewrote the four bridge outputs from it. The operator cost script for the embedder went with the route.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | Pending | The planned list is `spec.md` Files to Change; this table records what actually changed after implementation |
+| `.skilled/commands/doctor/_routes.yaml` | Modified | Embedder route block removed |
+| `.skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml` | Deleted | The route's workflow |
+| `.skilled/commands/doctor/skill-advisor.md`, `setup.md` and 11 workflow and presentation assets | Modified | Route, leg and flag mentions removed |
+| `.skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` and two contract tests | Modified | Embedder rows and their 5 cases removed |
+| `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`, `lib/scorer/projection.ts`, `scripts/skill_advisor.py` | Modified | Embedder route ids dropped from the command tables |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json` | Modified | Two embedder rows removed |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json` | Regenerated | Generator output, 35 doctor routes |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs` | Deleted | Cost script with no remaining caller |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/README.md` | Modified | Its row and paragraph |
+| `INSTALL-SKILLED.md`, `.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md` | Modified | Model pull and route steps removed, sections renumbered |
+| `.skilled/skills/system-skilled-doctor/README.md` | Modified | Setup check count seven to six |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered yet. The plan is one commit on `worktrees/497-ollama-lane-removal`, checked by tasks T031 to T038 in `tasks.md`.
+An Opus worker made the edits in `tasks.md` order on top of `35983033f76`, ran the generator after the route and compatibility rows were gone, and ran each gate. The conductor added the doctor README count fix the worker found, then sent the diff to a read-only review before the commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| The orphan check's model-server class stays until phase 005 | It is the only doctor code that finds a running model server, and that server exists until phase 005 deletes it (`plan.md` ADR-002) |
-| The cost script is deleted here | The embedder asset is its only caller and nothing on the advisor runtime path loads it (`plan.md` ADR-003) |
-| One commit for the route, its displays, the install step, the tests and the bridges | `route-validate.sh` J1, the install contract test and the generator all read the route manifest together (`plan.md` ADR-001) |
+| One commit for the route, displays, install steps, tests and regenerated bridges | A route removed without its bridge rows fails the bridge freshness check |
+| The orphan check's model-server class stays until phase 005 | The server it watches still exists until that phase deletes it |
+| Delete the cost script here | Nothing on the advisor's prompt, daemon or status path loads it; its only purpose was the route |
+| Keep the presentations' closing line | It predates the embedder section and closes every doctor presentation |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| Implementation gates, tasks T031 to T038 | Not run: nothing is built yet |
+| `npm run typecheck` (advisor `runtime/`) | exit 0 |
+| `npm run clean && npm run build` (advisor `runtime/`) | exit 0 |
+| `npm test` (advisor `runtime/`) | exit 0: 196 files, 2568 passed, 8 skipped. Two fewer than baseline because `command-head-length.vitest.ts` builds one case per command-table entry and each table lost the embedder entry |
+| `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | 7 suites passed; node:test total 1422 to 1417, the 5 deleted embedder cases |
+| `derive-command-bridges.cjs --check` | exit 0, fresh: doctorRoutes 35, generated 62, typescriptActive 46, pythonActive 52 |
+| `check-markdown-links.cjs` | exit 0, 15275 links, 0 broken |
+| Advisor leaf manifest check | OK |
+| `sweep-lane-residue.mjs repo` | exit 1: 310 files, 27 allowlisted, 283 live (was 309) |
+| Lane-word grep over `.skilled/commands/doctor` | prints only `orphan-process-check.cjs` and its test, kept until phase 005 |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **Eight doctor files still name the model server.** The orphan check's model-server class and its wordings stay until phase 005, so phase 001's residue check keeps listing those files until then.
+1. **`command-routing-baseline.json` still records the old bridge counts (36, 63, 47, 53).** No test asserts them; phase 007, which owns generated surfaces, recaptures it.
+2. **The v4.1.0.0 changelog still names the route and the leg.** Phase 006 rewrites the changelogs.
+3. **The orphan check still reports model-server processes.** Phase 005 removes that class with the server.
 <!-- /ANCHOR:limitations -->
-
----
-
-
