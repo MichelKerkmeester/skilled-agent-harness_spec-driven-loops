@@ -63,7 +63,7 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T016 Review round 1 over `65751f8d61a..373ec7de88e`, two slices. Verify: both REQUESTED_CHANGES with 0 P0, 4 P1 and 8 P2, all fixed in `2f188045e55`, `9a95e0ff0f6`, `2dd39dfe897`, `e3e885ebe50`, `299bf658411`.
-- [ ] T017 Review rounds after round 1 until APPROVED with no P0 or P1. Verify: the final `Review status:` line reads APPROVED, recorded in `implementation-summary.md`. Rounds 2 to 8 are recorded there; round 9 is the last engine round.
+- [x] T017 Review rounds after round 1 until APPROVED with no P0 or P1. Verify: the final `Review status:` line reads APPROVED, recorded in `implementation-summary.md`. Evidence: engine round 9, hooks and code round 6, docs round 7, each `Review status: APPROVED`.
 - [ ] T018 Rebuild the trigger index and strict-validate the 007 parent. Verify: `generate-trigger-index.mjs --check` exits 0 and every folder prints `RESULT: PASSED`.
 - [ ] T019 Merge into local main with `--no-ff` and rerun every gate there. Verify: each gate is at or above its baseline.
 <!-- /ANCHOR:phase-3 -->

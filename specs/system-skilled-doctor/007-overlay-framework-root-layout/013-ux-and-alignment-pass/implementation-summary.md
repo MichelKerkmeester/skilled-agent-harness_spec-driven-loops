@@ -52,7 +52,7 @@ When an overlay engine, doctor script or git hook refuses now, its first line re
 
 ### Phase 13: ux-and-alignment-pass
 
-The work ran on `worktrees/506-ux-and-alignment-pass` in 56 commits over two sessions. The first session stopped on a usage limit during review round 2, so the second session reran that round.
+The work ran on `worktrees/506-ux-and-alignment-pass` over two sessions. The first session stopped on a usage limit during review round 2, so the second session reran that round.
 
 **Engine items from phase 017:**
 - A folder named `*.pyc` ships as content. A cache that cannot be deleted gives a `NOTE` and no longer makes apply exit 2. The re-pin backup copies only removable caches. Commit `78f8792461a`.
@@ -62,7 +62,7 @@ The work ran on `worktrees/506-ux-and-alignment-pass` in 56 commits over two ses
 **Link safety, found by review:**
 - A write through a link that leads outside the tree, or through one that resolves nowhere, is refused before anything is written. The engine judges each link where it really lands. Commits `7b58dbab3d9`, `68fc9264d7c` and `3d48db9bd25`.
 - A fresh tree with a layout link above an entry used to crash with `EPERM`. Apply now makes the missing link first and plans the entries again through it. Commits `1abb77229e0` and `de69bd168cb`.
-- A layout link the manifest retargets while an entry writes under it is refused in planning, with a two-step remedy: move the link alone, then put the entry back. A link to a missing, dangling or file target with an entry under it is refused, not crashed on. `status` and `apply` print the same refusal from one planning path. Commits `159ae961388`, `196fa2b1bfd` and `4b118208464`.
+- A layout link the manifest retargets while an entry writes under it is refused in planning, with a two-step remedy: move the link alone, then put the entry back. A link to a missing, dangling or file target with an entry under it is refused, not crashed on. `status` and `apply` print the same refusal from one planning path. Commits `159ae961388`, `196fa2b1bfd`, `4b118208464` and `db5bf1cd339`. A link that another link reads through is refused the same way when it moves.
 
 **UX by surface:**
 - **Engine and doctor scripts:** every refusal has a why line and a rooted `Next:` line, and `status` reports a pending `REGEN`. An invalid manifest or state file names the file. The MCP and route scripts name their real tree root.
@@ -110,7 +110,7 @@ Each behavior change started with a test that failed, and each commit names its 
 | 6 | Engine since round 4, `3bfd5e111fc`, docs since round 5 | A: APPROVED, 4 P2 (a file or dangling target, a nested-link step, the capture rerun). B: APPROVED, 1 P2 | `4b118208464`, `0f005bce510`, `4e46316a040`, `dcdaa8e5e13`, `e3fc34bf147` |
 | 7 | Engine since round 6, docs since round 5 | A: APPROVED, 2 P2 (a `.keep` move that could overwrite an earlier one, and a target that is a manifest link not made yet). C: APPROVED, 1 P2 | `f759ad457aa` for C. The engine P2 fixes were tried in `0f282b48e6d` and `6ce61dee0f8` |
 | 8 | Engine since round 7 | REQUESTED_CHANGES, 2 P1 and 3 P2. One P1 came from the new link-chain step. The other, a retarget of a link that another link reads through, predates the branch | Both round 7 P2 fixes reverted exactly in `420f4a760f6`. The older P1 is refused in the next commit |
-| 9 | Engine since the revert | In progress | In progress |
+| 9 | Engine since the revert | APPROVED, no findings. Final verdicts: engine round 9, hooks and code round 6, docs round 7, all APPROVED with no P0 or P1 | `db5bf1cd339` refuses a moved link that another link reads through |
 
 One round 2 P2 was not changed: the scratch contract doc in phase 014 fails sk-doc's README rules. It is a spec-folder scratch doc, which sk-doc does not own, and it fails the same way at the base commit.
 
@@ -152,8 +152,8 @@ Three alignment runs at `65751f8d61a` found 75 findings: 22 on the doctor skill,
 
 | Check | Base main | Branch tip |
 |-------|-----------|------------|
-| Overlay engine suites | 362 pass | 465 pass, 0 fail |
-| Full doctor suite | not run | 1597 pass, 0 fail |
+| Overlay engine suites | 362 pass | 466 pass, 0 fail |
+| Full doctor suite | not run | 1598 pass, 0 fail |
 | Overlay guard | 34 | 35 |
 | Doctor contract | 9 | 9 |
 | Router sync | 56 | 56 |
@@ -178,4 +178,5 @@ Three alignment runs at `65751f8d61a` found 75 findings: 22 on the doctor skill,
 5. **A keep-aside move can overwrite an earlier `.keep`.** Every keep-aside `Next:` line moves `<path>` to `<path>.keep`. If that name is taken, rename the old `.keep` first.
 6. **A layout link that targets another manifest link not made yet loops.** With `inner -> realdir` and `up -> inner` and an entry under `up`, the engine refuses `up` as missing, and `mkdir -p inner` leads to the next refusal. Make `inner` first with an apply that has no entry under `up`.
 7. **A dangling user link under a made layout link crashes apply.** With `realdir/x -> ../nowhere` and an entry at `up/x/tool`, apply exits 2 with `ENOENT` after it makes the links and leaves them standing. Remove or fix the dangling link, then run `apply`.
+8. **A moved link that another link reads through gets the moved-link refusal only.** When `inner` moves to a folder that does not exist while `up -> inner` has an entry under it, the refusal is the moved-link one, not the missing-target one, and its `Next:` line may not name a link under `up`. Make the new target first, then follow the `Next:` line.
 <!-- /ANCHOR:limitations -->
