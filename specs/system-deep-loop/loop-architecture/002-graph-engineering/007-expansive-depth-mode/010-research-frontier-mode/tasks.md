@@ -115,9 +115,9 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked `[x]` Open 2026-11-21: 33 of 34 tasks are `[x]`; T030 is still `[B]`.
+- [ ] No `[B]` blocked tasks remaining Open 2026-11-21: T030 is `[B]`. The parent goal log's final gate row (2026-11-19, 3520 passed, 0 failed) may be the run T030 waits for; closing T030 is that task's own step.
+- [x] Manual verification passed Evidence 2026-11-21: pilot run 2 (`scratch/pilot-run-2.md`) meets the amended AC-014 with 16 of 16 nodes answered, 0 open and 0 active; T031 and T032 are `[x]` and AC-014 reads Met.
 - [x] The golden test passes and the pilot registry shows every frontier node terminal
 <!-- /ANCHOR:completion -->
 
@@ -153,9 +153,9 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Phases 004-007 and 012 merged, per T001
+- [x] CHK-001 [P0] Requirements documented in spec.md Evidence 2026-11-21: `spec.md` section 4 holds 18 `REQ-` rows.
+- [x] CHK-002 [P0] Technical approach defined in plan.md Evidence 2026-11-21: `plan.md` section 3 (pattern, key components, data flow), the affected-surfaces table and ADR-001 to ADR-005.
+- [x] CHK-003 [P1] Phases 004-007 and 012 merged, per T001 Evidence 2026-11-21: `git merge-base --is-ancestor <sha> HEAD` exits 0 for all five T001 commits (`11bc7693a27`, `f34e06123f9`, `dbeddaf20ba`, `42fdf690604`, `51cd0448c24`).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -174,7 +174,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-020 [P0] All acceptance criteria met Evidence 2026-11-21: `acceptance-criteria.md` has 19 rows Met and AC-001 Waived under ADR-006, which the operator ratified 2026-11-18 (`decision-record.md` Q004); no row is Unmet.
 - [x] CHK-021 [P0] Golden byte-identity test passes for absent key and `--depth-mode=default` Evidence 2026-11-17: `research-depth-mode-golden.vitest` 12 of 12.
 - [x] CHK-022 [P1] Admission, veto, close, stuck and fan-out edge cases tested Evidence 2026-11-17: Admission table, veto precedence table, close, stuck wording and fan-out partition cases all pass.
 - [x] CHK-023 [P1] Pilot run on target 2 completed [EVIDENCE: `scratch/pilot-run-2.md`, 16 iterations, 16 of 16 nodes answered]
@@ -185,13 +185,13 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] Not a fix packet; every shared-file edit is classed `cross-consumer` and covered by the golden test.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory from plan.md affected surfaces completed.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for `frontier`, `depthMode` and `frontier_proposal`.
-- [ ] CHK-FIX-004 [P0] Admission table covers malformed, duplicate, too-deep, over-fan-out, budget-growing and cyclic proposals.
-- [ ] CHK-FIX-005 [P1] Matrix axes from plan.md listed with their row count before completion is claimed.
-- [ ] CHK-FIX-006 [P1] No test reads process-wide state without restoring it.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA.
+- [ ] CHK-FIX-001 [P0] Not a fix packet; every shared-file edit is classed `cross-consumer` and covered by the golden test. Open 2026-11-21: the `plan.md` affected-surfaces table classes each edit by its default-path effect, not as `cross-consumer`, and verifies the `convergence.cjs`, fan-out and presentation edits with their own suites, not the golden test.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory from plan.md affected surfaces completed. Evidence 2026-11-21: the `plan.md` producer `rg` finds the research producer only in `deep-research/scripts/reduce-state.cjs` (7 hits), the file this phase changed. Its other code hits are the review reducer (phase 011's) and the review deltas contract.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for `frontier`, `depthMode` and `frontier_proposal`. Open 2026-11-21: no inventory is recorded. The `plan.md` consumer `rg` matches 37 non-test `.cjs`, `.ts` and `.yaml` files at HEAD, and this pass did not review each one.
+- [x] CHK-FIX-004 [P0] Admission table covers malformed, duplicate, too-deep, over-fan-out, budget-growing and cyclic proposals. Evidence 2026-11-21: the `pruneCases` table in `runtime/tests/unit/frontier-admit.vitest.ts` has rows for empty evidence and an unknown parent (`relevance`), a known text (`dedupe`), the depth ceiling (`depth`), a full child budget (`fanout`), a child claiming more budget than its parent (`budget`) and a looping parent chain (`cycle`). The no-question case covers a proposal with no question. No case feeds a non-object row. It passes 2026-11-21 in a run with both golden files, 108 of 108.
+- [ ] CHK-FIX-005 [P1] Matrix axes from plan.md listed with their row count before completion is claimed. Open 2026-11-21: `plan.md` lists the four axes (3 x 3 x 2 x 2, 36 combinations) but records no row count, and nothing shows which combinations ran.
+- [ ] CHK-FIX-006 [P1] No test reads process-wide state without restoring it. Open 2026-11-21, partly checked: the phase's own suites (`frontier-admit.vitest.ts`, `research-depth-mode-golden.vitest.ts`) set no environment, working directory or timer, and the golden file only reads `GOLDEN_UPDATE`. The cases this phase added to the shared suites (`fanout-run`, `stop-decision`, the reducers) were not traced.
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA. Open 2026-11-21: the build evidence carries dates, not commits. Only the pilot fixes (`1642d622a3b`) and T033 (`f7d5fb9cbf8`) name a SHA.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -209,7 +209,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized Open 2026-11-21: `tasks.md` keeps T030 at `[B]`, while `implementation-summary.md` says the full suite is green at the integration gate and its continuity still names T030 as the next action.
 - [x] CHK-041 [P1] `research.md` command flag table and the agent definition describe the same flag and row Evidence 2026-11-17: `research.md` flag row and the agent Step 9 row both name `--depth-mode`/`frontier_proposal`.
 - [x] CHK-042 [P2] `wave_orchestration` carries a pointer to the frontier mode Evidence 2026-11-17: `wave_orchestration.summary` points at the live frontier.
 - [x] CHK-043 [P1] Reference docs, playbook scenarios and the changelog entry name `--depth-mode`, per T026-T028 Evidence 2026-11-17: `rg -l -- '--depth-mode'` prints the SKILL.md, the README, the four reference docs, the playbook root and DR-068, and the changelog entry.
@@ -232,11 +232,11 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | 0/14 |
-| P1 Items | 25 | 0/25 |
-| P2 Items | 9 | 0/9 |
+| P0 Items | 14 | 11/14 |
+| P1 Items | 25 | 18/25 |
+| P2 Items | 9 | 9/9 |
 
-**Verification Date**: Not yet verified; this phase is Planned.
+**Verification Date**: 2026-11-21: each box still open before that date was checked one by one at HEAD, and earlier ticks were not rechecked. Counts are ticked boxes; each open box names its reason inline.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -246,7 +246,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 - [x] CHK-100 [P0] ADR-001 to ADR-005 in `plan.md` are Accepted or replaced in T000, before any Phase 2 task runs. Accepted as proposed 2026-11-17.
 - [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted). Each reads Accepted since 2026-11-17.
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale Evidence 2026-11-21: ADR-001 to ADR-005 in `plan.md` each carry an **Alternatives Rejected** block, and each of the five operator questions in `decision-record.md` lists the options put to the operator.
 - [x] CHK-103 [P2] No migration needed: an absent key reads as default Evidence 2026-11-17: An absent `depthMode` reads as default; the golden absent-key variant proves it.
 <!-- /ANCHOR:arch-verify -->
 
@@ -258,7 +258,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 - [x] CHK-110 [P1] NFR-P01: no new process per iteration; the admission suite runs inside the existing vitest run Evidence 2026-11-17: No new process per iteration beyond the admit, block and graph helper calls under expansive; the suites run inside vitest.
 - [x] CHK-111 [P1] Pilot iteration count stays within its stated `maxIterations` [EVIDENCE: run 2 stopped at 16 of 16]
 - [x] CHK-112 [P2] Frontier size per depth recorded from the pilot dashboard [EVIDENCE: `scratch/pilot-run-2.md` budget block, depth1 spent 4, depth2 spent 10, depth3 spent 0]
-- [ ] CHK-113 [P2] Budget spent per depth recorded from the pilot dashboard
+- [x] CHK-113 [P2] Budget spent per depth recorded from the pilot dashboard Evidence 2026-11-21: `scratch/pilot-run-2.md` records the run's `frontier.budget`: depth 1 spent 4 of 8, depth 2 spent 10 of 9.6, depth 3 spent 0 of 2.4. The values come from the registry projection the dashboard renders, not a dashboard copy.
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -266,10 +266,10 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback is `git revert` of this phase's commits; confirmed by running the golden test on the reverted tree
+- [ ] CHK-120 [P0] Rollback is `git revert` of this phase's commits; confirmed by running the golden test on the reverted tree Open 2026-11-21: no run on a reverted tree is recorded. The golden baseline was captured on the untouched tree (T002), but a revert run was out of bounds in the shared integration worktree.
 - [x] CHK-121 [P1] `--depth-mode` documented in the command flag table Evidence 2026-11-17: Row at `.skilled/commands/deep/research.md` line 104.
-- [ ] CHK-123 [P1] Pilot run steps recorded in `implementation-summary.md`
-- [ ] CHK-124 [P2] Operator reviewed the pilot result
+- [ ] CHK-123 [P1] Pilot run steps recorded in `implementation-summary.md` Open 2026-11-21: the summary's Known Limitations item 1 records each run's setup and result and points to `scratch/pilot-run-1.md` and `scratch/pilot-run-2.md`. The run steps themselves are only in those scratch files.
+- [x] CHK-124 [P2] Operator reviewed the pilot result Evidence 2026-11-21: the operator ruled on run 2's result on 2026-11-18, `decision-record.md` Q003 (answer "Decouple, amend AC-014").
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -279,8 +279,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 - [x] CHK-130 [P1] No new dependency added Evidence 2026-11-17: No dependency added; the YAML contract test loads `js-yaml` through the declared shared package.
 - [x] CHK-131 [P1] No license changed Evidence 2026-11-17: No license changed.
-- [ ] CHK-132 [P2] N/A: no web surface
-- [ ] CHK-133 [P2] N/A: no personal data handled
+- [x] CHK-132 [P2] N/A: no web surface N/A 2026-11-21: the summary's Files Changed table lists scripts, YAML, agent files, JSON and docs, with no web file.
+- [x] CHK-133 [P2] N/A: no personal data handled N/A 2026-11-21: the changed files hold frontier nodes, budgets and stop facts only.
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -288,10 +288,10 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] Prompt-pack allowed-write list matches the agent definition
-- [ ] CHK-142 [P2] User-facing docs beyond the command doc are listed in T026-T028
-- [ ] CHK-143 [P2] N/A: knowledge lives in this packet and the parent research
+- [ ] CHK-140 [P1] All spec documents synchronized Open 2026-11-21: `tasks.md` keeps T030 at `[B]`, while `implementation-summary.md` says the full suite is green at the integration gate and its continuity still names T030 as the next action.
+- [ ] CHK-141 [P1] Prompt-pack allowed-write list matches the agent definition Open 2026-11-21: the lists differ. `deep-research/assets/prompt-pack-iteration.md.tmpl` (ALLOWED WRITE PATHS) lists the iteration file, the delta, `research.md` under `progressiveSynthesis` and the gateway's writes. `.skilled/agents/deep-research.md` also allows `research/research-ideas.md` when idea capture is explicitly allowed.
+- [x] CHK-142 [P2] User-facing docs beyond the command doc are listed in T026-T028 Evidence 2026-11-21: T026 names `convergence.md`, `loop-protocol.md`, `state-format.md`, the quick reference, `SKILL.md` and `README.md`. T027 names the playbook scenarios and T028 the changelog.
+- [x] CHK-143 [P2] N/A: knowledge lives in this packet and the parent research N/A 2026-11-21: knowledge lives in this packet and the parent research.
 <!-- /ANCHOR:docs-verify -->
 
 ---

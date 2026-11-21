@@ -46,7 +46,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Build order: 001 merges first; 005 before 004; 012 before 010 and 011; 010 after 004-007; 011 after 003, 004 and 008-010; 014 last. |
-| D2 | `--depth-mode=expansive` is opt-in: without the flag it adds nothing to a run. Default runs change only where a phase's spec names the defect fix, and each such change carries a test. |
+| D2 | `--depth-mode=expansive` is opt-in and adds nothing without the flag. Default runs change only through a defect fix a phase's spec names, each with a test. |
 | D3 | No new mode-registry entry, no change to the gateway upcast beyond phase 006's accepted decision, and `wave_orchestration` stays reference-only. |
 
 <!-- /ANCHOR:directive -->
@@ -76,6 +76,7 @@ phase and binds as if written here.
 | 012-pivot-hygiene | `012-pivot-hygiene/goal.md` |
 | 013-no-redispatch-landed-iteration | `013-no-redispatch-landed-iteration/goal.md` |
 | 014-docs-playbooks-alignment | `014-docs-playbooks-alignment/goal.md` |
+| 015-reducer-test-focus-contract | `015-reducer-test-focus-contract/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -90,11 +91,11 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [x] `rg -c '^- \[ \]' 0*/goal.md` run in this folder prints nothing, so every completion criterion in all 14 phase goals is checked.
-- [x] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs` prints `RESULT: PASSED` for this folder and for each of its 14 phase folders.
+- [x] `rg -c '^- \[ \]' 0*/goal.md` run in this folder prints nothing: no open criterion in any of the 15 phase goals.
+- [x] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs` prints `RESULT: PASSED` for this folder and each of its 15 phase folders.
 - [x] `rg -c '\| Unmet \|' 0*/acceptance-criteria.md` run in this folder prints nothing.
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict --recursive` prints `RESULT: PASSED` for all 15 folders.
-- [x] After phase 014 lands, `npx vitest run` in `.skilled/skills/system-deep-loop/runtime` prints no failure that is absent from the runtime suite baseline in this goal's log.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict --recursive` prints `RESULT: PASSED` for all 16 folders.
+- [x] After phase 014 lands, `npx vitest run` in `.skilled/skills/system-deep-loop/runtime` prints no failure absent from the runtime suite baseline in this goal's log.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -120,6 +121,7 @@ and findings belong here.
 | Final gate 2026-11-19 | Done | Integration tip 1d2b49e4306: vitest 190 files, 3520 passed, 11 skipped, 0 failed; ledger-stem, projection-coverage and contract drift exit 0; spec-kit parity 18 of 18; validate --strict --recursive 15 of 15 PASSED; check-goal PASSED on parent and 14 phases; no open criterion and no Unmet row; review snapshot --check OK. Phase 014 criterion 5 closed on doc run-11 and skilled run-17 under the ame... |
 | Operator routing 2026-11-18 | Recorded | Chat rulings: use cli vibe with deepseek flash max; do all remaining work with opus medium agents natively; testing, playbook and busy work on deepseek flash via cli-vibe or opencode-go, implementation and review on native Opus; increase parallelism; continue autonomously until perfection |
 | Post-program dogfood and fix rounds 4-6 | done | gen 3-4 research, gen 3 live review 90b12e8b176, rounds landed on main through 8170db46079; gate 3845 passed, 0 failed |
+| Phase 015 bound, 2026-11-21 | Done | Added the 015-reducer-test-focus-contract binding row and its goal.md. Criteria now count 15 phase goals and 16 validate folders. D2 and three criteria reworded, same meaning, to fit the 4,000-character budget (3999). check-goal.cjs RESULT: PASSED (5/5 checks) |
 
 ### Deviations and findings
 

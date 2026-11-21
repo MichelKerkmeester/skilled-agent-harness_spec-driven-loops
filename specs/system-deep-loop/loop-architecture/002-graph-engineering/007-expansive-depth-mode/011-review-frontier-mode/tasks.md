@@ -119,10 +119,10 @@ Mark the task `[B]`, name the blocking phase, file or failing check on the same 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] The golden review test passes and the pilot registry shows every frontier node terminal with no frontier debt
+- [x] All tasks marked `[x]` Evidence 2026-11-21: all 38 tasks are `[x]`.
+- [x] No `[B]` blocked tasks remaining Evidence 2026-11-21: no task is `[B]`.
+- [x] Manual verification passed Evidence 2026-11-21: pilot run 2 (`scratch/pilot-run-2.md`) meets AC-011 as amended by `decision-record.md` Q008, with 8 depth-1 nodes answered and merged stats at 0 open and 0 active. T030 and T031 are `[x]` and AC-011 reads Met.
+- [ ] The golden review test passes and the pilot registry shows every frontier node terminal with no frontier debt Open 2026-11-21, partly met. `review-depth-mode-golden.vitest.ts` passes, and in pilot run 2 every node is terminal (22 nodes: 12 answered, 7 exhausted, 3 pruned). The merged verdict still reports search debt 2 (`SL-004`, `SL-2-04`), and the record does not say whether either entry is frontier-owned. The pilot fixture was never merged, so this cannot be rechecked.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -178,10 +178,10 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-020 [P0] All acceptance criteria met Evidence 2026-11-21: `acceptance-criteria.md` has 19 rows Met and AC-001 Waived under ADR-005, which the operator ratified (`decision-record.md` Q004); no row is Unmet.
 - [x] CHK-021 [P0] Golden review test passes for absent key and `--depth-mode=default`, pivot seeds and lineage prompt included review-depth-mode-golden: 14 of 14, pivot seeds and lineage prompt included (lineage prompt with the one stripped paragraph, ADR-005).
 - [x] CHK-022 [P1] Admission, veto, close, stuck and fan-out edge cases tested Admission (frontier-admit-review), veto (stop-decision), close and stuck (reducer, yaml-contract), and fan-out (fanout-run, fanout-merge) edge cases all pass.
-- [ ] CHK-023 [P1] Pilot run on target 1 completed
+- [x] CHK-023 [P1] Pilot run on target 1 completed Evidence 2026-11-21: pilot run 2 (`scratch/pilot-run-2.md`) ran all 6 lineages to `fulfilled` with exit 0, and `fanout-merge.cjs` exited 0 with the partition guard passed.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -215,7 +215,7 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized spec.md status In Progress; plan ADRs, tasks and acceptance rows carry the build evidence.
 - [x] CHK-041 [P1] `review.md` command flag table and the review agent definition describe the same flag and row review.md flag row and the review agent's frontier_proposal paragraph name the same flag and row.
-- [ ] CHK-042 [P2] The review synthesis names frontier-derived `deferred` entries as follow-up work
+- [ ] CHK-042 [P2] The review synthesis names frontier-derived `deferred` entries as follow-up work Open 2026-11-21: ADR-001 writes no frontier node as `deferred`, and says to list `exhausted` and `blocked` nodes in the synthesis as follow-up review work instead. `rg` over `deep-review.yaml` and the `deep-review/` skill finds no synthesis step or template that lists them.
 - [x] CHK-043 [P1] Reference docs, playbook scenarios and the changelog entry name `--depth-mode`, per T025-T027 Reference docs, SKILL.md and README name --depth-mode (T025); the playbook scenarios (T026) and the changelog (T027) were written 2026-11-18. Evidence: `rg -l -- '--depth-mode'` over `deep-review/` lists ten files, including `changelog/v1.13.0.0.md` and the DRV-076 scenario, the only new scenario that carries the flag literal.
 - [x] CHK-044 [P1] The review compiled contract is regenerated and the agent mirrors show no drift, per T009 and T028 Both compiled contracts regenerated (no diff after the last digested change); check-contract-drift OK commands=2; check-contract-drift + compile-command-contracts 26 passed; agent mirrors in sync.
 <!-- /ANCHOR:docs -->
@@ -236,11 +236,11 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | 0/14 |
-| P1 Items | 25 | 0/25 |
-| P2 Items | 9 | 0/9 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 25 | 24/25 |
+| P2 Items | 9 | 7/9 |
 
-**Verification Date**: Not yet verified; this phase is Planned.
+**Verification Date**: 2026-11-21: each box still open before that date was checked one by one at HEAD, and earlier ticks were not rechecked. Counts are ticked boxes; each open box names its reason inline.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -260,9 +260,9 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 ## L3+: Performance Verification
 
 - [x] CHK-110 [P1] NFR-P01: no new process per iteration; the admission suite runs inside the existing vitest run Admission runs as one frontier-admit.cjs call per iteration inside the existing step order; the review admit suite runs inside the vitest run.
-- [ ] CHK-111 [P1] Pilot iteration count stays within its stated `maxIterations`
-- [ ] CHK-112 [P2] Frontier size per depth recorded from the pilot dashboard
-- [ ] CHK-113 [P2] Budget spent per depth recorded from the pilot dashboard
+- [x] CHK-111 [P1] Pilot iteration count stays within its stated `maxIterations` Evidence 2026-11-21: in pilot run 2 the six lineages ran 14, 16, 11, 13, 8 and 6 iterations against `maxIterations` 16.
+- [x] CHK-112 [P2] Frontier size per depth recorded from the pilot dashboard Evidence 2026-11-21: `scratch/pilot-run-2.md` records depth 1 = 8 nodes and depth 2 = 14 nodes. The counts come from the merged node list, because the merged stats carry no depth breakdown, not from a dashboard copy.
+- [ ] CHK-113 [P2] Budget spent per depth recorded from the pilot dashboard Open 2026-11-21: neither `scratch/pilot-run-1.md` nor `scratch/pilot-run-2.md` records budget spent per depth.
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -272,8 +272,8 @@ A task blocked by an unmerged predecessor phase is marked `[B]` with the phase n
 
 - [x] CHK-120 [P0] Rollback is `git revert` of this phase's commits; confirmed by running the golden test on the reverted tree Rollback is git revert of this branch's commits: the golden baselines were captured on the pre-phase tree 5e583331cc9 and passed there 14 of 14 (T003), so a revert restores a tree the golden already passed on.
 - [x] CHK-121 [P1] `--depth-mode` documented in the command flag table review.md flag table row for --depth-mode.
-- [ ] CHK-123 [P1] Pilot run steps recorded in `implementation-summary.md`
-- [ ] CHK-124 [P2] Operator reviewed the pilot result
+- [ ] CHK-123 [P1] Pilot run steps recorded in `implementation-summary.md` Open 2026-11-21: the summary's Known Limitations item 1 records both runs' setup and result and points to `scratch/pilot-run-1.md` and `scratch/pilot-run-2.md`. The run steps themselves are only in those scratch files.
+- [x] CHK-124 [P2] Operator reviewed the pilot result Evidence 2026-11-21: the operator ruled on run 2's result, `decision-record.md` Q008 (answer "Amend AC-011, log defects").
 <!-- /ANCHOR:deploy-ready -->
 
 ---

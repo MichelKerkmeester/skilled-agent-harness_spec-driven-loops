@@ -45,10 +45,10 @@ contextType: "general"
 ## Phase 2: Implementation
 <!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
-- [ ] T004 Run the iteration loop to convergence or ten iterations (`research/iterations/`). Verify: `ls research/iterations | wc -l` prints the iteration count.
-- [ ] T005 Emit the resource map (`research/resource-map.md`). Verify: `ls research/resource-map.md` lists it.
-- [ ] T006 Compile the synthesis (`research/research.md`). Verify: `rg -n 'Convergence Report' research/research.md` prints one line.
-- [ ] T007 Write the bounded findings fence back into `spec.md`. Verify: `rg -c 'deep-research/spec-findings' spec.md` prints 2.
+- [x] T004 Run the iteration loop to convergence or ten iterations (`research/iterations/`). Verify: `ls research/iterations | wc -l` prints the iteration count. Done 2026-11-17, rechecked 2026-11-21: This generation 1 run moved to `research_archive/20261117T103614Z/` when generation 2 began, so the Verify paths read there. `ls research_archive/20261117T103614Z/iterations | wc -l` prints 7, and the state log's `synthesis_complete` row records `stopReason: converged` with `totalIterations: 7`.
+- [x] T005 Emit the resource map (`research/resource-map.md`). Verify: `ls research/resource-map.md` lists it. Done 2026-11-17, rechecked 2026-11-21: `ls research_archive/20261117T103614Z/resource-map.md` lists it.
+- [x] T006 Compile the synthesis (`research/research.md`). Verify: `rg -n 'Convergence Report' research/research.md` prints one line. Done 2026-11-17, rechecked 2026-11-21: on `research_archive/20261117T103614Z/research.md` it prints one line, `349:## 17. Convergence Report`.
+- [x] T007 Write the bounded findings fence back into `spec.md`. Verify: `rg -c 'deep-research/spec-findings' spec.md` prints 2. Done 2026-11-17, rechecked 2026-11-21: prints 2.
 
 <!-- /ANCHOR:phase-2 -->
 
@@ -58,9 +58,9 @@ contextType: "general"
 ## Phase 3: Verification
 <!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [ ] T008 Check each iteration with the verifier (`research/iterations/`). Verify: `verify-iteration.cjs --loop-type research` exits 0 for every run.
-- [ ] T009 Confirm the synthesis answers all seven key questions (`research/research.md`). Verify: each question has a cited answer section.
-- [ ] T010 Validate the packet (`spec.md`). Verify: `validate.sh <this packet> --strict` prints `RESULT: PASSED`.
+- [x] T008 Check each iteration with the verifier (`research/iterations/`). Verify: `verify-iteration.cjs --loop-type research` exits 0 for every run. Done 2026-11-21: `verify-iteration.cjs --loop-type research --artifact-dir research_archive/20261117T103614Z --iteration N` exits 0 with `ok: true` for N = 1 to 7. Each run warns that route proof came from the delta file, not the state row.
+- [x] T009 Confirm the synthesis answers all seven key questions (`research/research.md`). Verify: each question has a cited answer section. Done 2026-11-21 on `research_archive/20261117T103614Z/research.md`: Q1 to Q6 have sections 4 to 8 and 10, and Q7 is answered in the executive summary and the D2 row of section 13, with `dispatch-iteration.cjs` line citations. The strategy file ticks all seven.
+- [ ] T010 Validate the packet (`spec.md`). Verify: `validate.sh <this packet> --strict` prints `RESULT: PASSED`. Open 2026-11-21: it printed `RESULT: PASSED` for all 16 folders at HEAD before this pass. After this pass's doc edits it prints `RESULT: FAILED` for the parent, 001, 010, 011 and 015 on generated metadata only: each edited folder's `graph-metadata.json` fingerprint is stale (`SOURCE_FINGERPRINT_MISMATCH`), and four of them also report a drifted derived field. `repair-derived.cjs` without `--apply` reports each as repairable. Tick it once the save path regenerates that metadata and the command passes again.
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -70,9 +70,9 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked `[x]` Open 2026-11-21: T010 is open; T001 to T009 are `[x]`.
+- [x] No `[B]` blocked tasks remaining Evidence 2026-11-21: no task is `[B]`.
+- [x] Manual verification passed Evidence 2026-11-21: T008 ran the verifier on all seven archived iterations, and T009 read each key question's answer section in the archived synthesis.
 <!-- /ANCHOR:completion -->
 
 ---
