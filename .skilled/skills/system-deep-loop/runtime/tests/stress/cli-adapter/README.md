@@ -22,7 +22,7 @@ Current state:
 - One suite file per adapter subject, plus `fanout.vitest.ts` for the scheduler and its manifest integrity.
 - The codex suite asserts the dispatch contracts directly. The other seven adapter suites register the shared factory in `fixtures/adapter-suite.ts`. The mistral-vibe suite also asserts its own argv and export-record contracts.
 - Test names are fixed strings, so a renamed or removed test breaks the bijection check instead of passing silently.
-- Live provider probes stay skipped unless their opt-in flag is set. The fan-out live probe has no flag and is always skipped. DSH coverage uses its shim only and never runs a live binary.
+- Live provider probes stay skipped unless their opt-in flag is set. The fan-out live probe runs only when `DEEP_LOOP_FANOUT_LIVE=1` is set and the codex preflight passes. DSH coverage uses its shim only and never runs a live binary.
 
 ---
 
@@ -98,7 +98,7 @@ Run the suites themselves with the runtime test configuration.
 .skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts
 ```
 
-Expected result: the hermetic suites pass. Live provider probes report as skipped unless their opt-in environment variable is set. The fan-out live probe always reports as skipped.
+Expected result: the hermetic suites pass. Live provider probes report as skipped unless their opt-in environment variable is set. The fan-out live probe's variable is `DEEP_LOOP_FANOUT_LIVE=1`.
 
 ---
 

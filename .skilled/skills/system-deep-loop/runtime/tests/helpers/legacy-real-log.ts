@@ -19,6 +19,8 @@ const OPEN_CODE_ROOT = resolve(
   '../../../../../',
 );
 
+// These are real captured logs, read in place on purpose: a copied fixture would freeze a snapshot
+// and stop testing what an actual run wrote. Moving or renaming a source log means updating its path here.
 export const REAL_LEGACY_LOGS = Object.freeze({
   research: 'specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/research/lineages/sol/deep-research-state.jsonl',
   // The count below tracks a real captured review log; re-measure it if the log is ever replaced.

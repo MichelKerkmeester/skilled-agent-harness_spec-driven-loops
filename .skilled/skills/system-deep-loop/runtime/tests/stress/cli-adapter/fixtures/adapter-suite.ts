@@ -15,7 +15,7 @@ import { afterAll, afterEach, describe, expect, it } from 'vitest';
 
 import {
   CLI_ADAPTER_MATRIX_AUDIT,
-  CLI_ADAPTER_PHASE_TWO_ROWS,
+  CLI_ADAPTER_SHARED_SUITE_ROWS,
   EDGE_CASE_ROWS,
 } from '../matrix-manifest';
 import {
@@ -198,7 +198,7 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
   const fixtures: AdapterShimFixture[] = [];
   const worktrees: IsolatedWorktreeFixture[] = [];
   const observedPids = new Set<number>();
-  const matrixCells = CLI_ADAPTER_PHASE_TWO_ROWS.filter((cell) => cell.subject === kind);
+  const matrixCells = CLI_ADAPTER_SHARED_SUITE_ROWS.filter((cell) => cell.subject === kind);
   const testName = (index: number): string => matrixCells[index]?.testName
     ?? `missing matrix test name for ${kind} row ${index}`;
 

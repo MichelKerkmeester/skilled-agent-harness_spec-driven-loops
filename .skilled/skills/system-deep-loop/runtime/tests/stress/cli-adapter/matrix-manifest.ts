@@ -60,7 +60,7 @@ export const CLI_ADAPTER_STRESS_MATRIX: readonly MatrixCell[] = EDGE_CASE_ROWS.f
   }))
 ));
 
-export const PHASE_TWO_ADAPTER_SUBJECTS = [
+export const SHARED_SUITE_ADAPTER_SUBJECTS = [
   'cli-opencode',
   'cli-pi',
   'cli-claude-code',
@@ -70,9 +70,9 @@ export const PHASE_TWO_ADAPTER_SUBJECTS = [
   'cli-mistral-vibe',
 ] as const satisfies readonly CliAdapterSubject[];
 
-export type PhaseTwoAdapterSubject = typeof PHASE_TWO_ADAPTER_SUBJECTS[number];
+export type SharedSuiteAdapterSubject = typeof SHARED_SUITE_ADAPTER_SUBJECTS[number];
 
-function phaseTwoTestNames(subject: PhaseTwoAdapterSubject): readonly string[] {
+function sharedSuiteTestNames(subject: SharedSuiteAdapterSubject): readonly string[] {
   return [
     `retains ${subject} authentication diagnostics in bounded lineage output`,
     `retains ${subject} model-or-balance diagnostics in bounded lineage output`,
@@ -91,8 +91,8 @@ function phaseTwoTestNames(subject: PhaseTwoAdapterSubject): readonly string[] {
   ];
 }
 
-export const CLI_ADAPTER_PHASE_TWO_ROWS: readonly MatrixCell[] = PHASE_TWO_ADAPTER_SUBJECTS.flatMap(
-  (subject) => phaseTwoTestNames(subject).map((testName, index) => ({
+export const CLI_ADAPTER_SHARED_SUITE_ROWS: readonly MatrixCell[] = SHARED_SUITE_ADAPTER_SUBJECTS.flatMap(
+  (subject) => sharedSuiteTestNames(subject).map((testName, index) => ({
     edgeCaseId: EDGE_CASE_ROWS[index].id,
     subject,
     testName,
@@ -128,15 +128,15 @@ export const CLI_ADAPTER_FANOUT_ROWS: readonly MatrixCell[] = FANOUT_TEST_NAMES.
   }),
 );
 
-const phaseTwoCellsByKey = new Map(
-  CLI_ADAPTER_PHASE_TWO_ROWS.map((cell) => [`${cell.subject}:${cell.edgeCaseId}`, cell]),
+const sharedSuiteCellsByKey = new Map(
+  CLI_ADAPTER_SHARED_SUITE_ROWS.map((cell) => [`${cell.subject}:${cell.edgeCaseId}`, cell]),
 );
 const fanoutCellsByKey = new Map(
   CLI_ADAPTER_FANOUT_ROWS.map((cell) => [`${cell.subject}:${cell.edgeCaseId}`, cell]),
 );
 
 export const CLI_ADAPTER_CURRENT_MATRIX: readonly MatrixCell[] = CLI_ADAPTER_STRESS_MATRIX.map((cell) => (
-  phaseTwoCellsByKey.get(`${cell.subject}:${cell.edgeCaseId}`)
+  sharedSuiteCellsByKey.get(`${cell.subject}:${cell.edgeCaseId}`)
     ?? fanoutCellsByKey.get(`${cell.subject}:${cell.edgeCaseId}`)
     ?? cell
 ));

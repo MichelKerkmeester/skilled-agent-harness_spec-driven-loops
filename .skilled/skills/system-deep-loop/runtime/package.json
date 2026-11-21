@@ -9,6 +9,7 @@
   },
   "scripts": {
     "typecheck": "../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json",
+    "typecheck:tests": "../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.tests.json",
     "test": "vitest run --no-coverage"
   },
   "dependencies": {

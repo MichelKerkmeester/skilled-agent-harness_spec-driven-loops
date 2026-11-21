@@ -52,7 +52,7 @@ The helpers are the test harness seam between runtime scripts and process-level 
 .skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/unit/spawn-cjs.vitest.ts tests/unit/hermetic-env.vitest.ts
 ```
 
-Expected result: `Test Files  2 passed (2)`. These suites exercise `spawn-cjs.ts` directly. No type check covers this folder, because the runtime [`../../tsconfig.json`](../../tsconfig.json) includes only the library sources and excludes every test file.
+Expected result: `Test Files  2 passed (2)`. These suites exercise `spawn-cjs.ts` directly. The default `npm run typecheck` does not cover this folder, because the runtime [`../../tsconfig.json`](../../tsconfig.json) includes only the library sources. The opt-in `npm run typecheck:tests` checks it through [`../../tsconfig.tests.json`](../../tsconfig.tests.json). That check is not part of `typecheck` or CI, and it still reports errors.
 
 ---
 

@@ -38,6 +38,7 @@ import {
   runAdapterFanout,
   type AdapterShimFixture,
 } from './fixtures/adapter-fixture';
+import { preflightCodexLive, type LivePreflight } from './fixtures/live-preflight';
 import { processIsAlive, runBoundedProcess } from './fixtures/process-fixture';
 import {
   claimOwnership,
@@ -915,9 +916,21 @@ describe.sequential('fan-out scheduler contracts', () => {
   });
 });
 
-it.skip(
-  'live fan-out transport probe (dependency SKIP: hermetic phase forbids provider access)',
-  () => {
-    throw new Error('Live provider access is outside this hermetic stress phase');
-  },
-);
+// The hermetic suites above never reach a provider, so the live probe is opt-in.
+// It reuses the codex preflight because codex is the reference transport for live checks.
+const fanoutLivePreflight: LivePreflight = process.env.DEEP_LOOP_FANOUT_LIVE === '1'
+  ? preflightCodexLive({ enabled: true, env: process.env, runtimeRoot: resolve(import.meta.dirname, '../../..') })
+  : { ready: false, reason: 'live probe disabled: set DEEP_LOOP_FANOUT_LIVE=1' };
+const fanoutLiveTestName = fanoutLivePreflight.ready
+  ? 'runs the opt-in live fan-out transport probe'
+  : `live fan-out transport probe (dependency SKIP: ${fanoutLivePreflight.reason})`;
+
+it.skipIf(!fanoutLivePreflight.ready)(fanoutLiveTestName, () => {
+  const result = spawnSync('codex', ['--version'], {
+    env: process.env,
+    encoding: 'utf8',
+    timeout: 2_000,
+    input: '',
+  });
+  expect(result.status).toBe(0);
+});
