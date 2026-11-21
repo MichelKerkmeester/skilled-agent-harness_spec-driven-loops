@@ -1,5 +1,5 @@
 {
-  "manifestHash": "529eb46d308d5ff5de2ddbb41556ab21909276d8e88ebb34ddef3330d4db9b81",
+  "manifestHash": "dce92ef3617c3abe31341aa032966063ad9c291a183067eb53c07f002c6744dd",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15909,6 +15909,9 @@
     ],
     "blocked stops carry context": [
       "blocked stops carry context"
+    ],
+    "blocked streak stop": [
+      "blocked streak stop"
     ],
     "blocker 1 parity harness": [
       "blocker 1 parity harness"
@@ -50947,6 +50950,9 @@
     ],
     "fan out automation task breakdown": [
       "fan-out automation task breakdown"
+    ],
+    "fan out budget table": [
+      "fan-out budget table"
     ],
     "fan out cli lineage driver": [
       "fan-out cli lineage driver"
@@ -95355,6 +95361,9 @@
     "reducer test focus contract": [
       "reducer test focus contract"
     ],
+    "reducer test focus contract goal": [
+      "reducer test focus contract goal"
+    ],
     "reducer test focus contract implementation summary": [
       "reducer test focus contract implementation summary"
     ],
@@ -126287,6 +126296,9 @@
     "system deep loop 2 1 7 0": [
       "system-deep-loop 2.1.7.0"
     ],
+    "system deep loop 2 2 0 0": [
+      "system-deep-loop 2.2.0.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -126550,6 +126562,9 @@
     ],
     "system deep loop v2 1 7 0": [
       "system-deep-loop v2.1.7.0"
+    ],
+    "system deep loop v2 2 0 0": [
+      "system-deep-loop v2.2.0.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"

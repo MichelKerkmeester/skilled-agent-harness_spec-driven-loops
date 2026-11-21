@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7092,
-    "ok": 20242,
+    "missing-frontmatter": 7093,
+    "ok": 20244,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28962,
+  "documentsScanned": 28965,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "529eb46d308d5ff5de2ddbb41556ab21909276d8e88ebb34ddef3330d4db9b81",
+  "manifestHash": "dce92ef3617c3abe31341aa032966063ad9c291a183067eb53c07f002c6744dd",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45804,
+      "ok": 45809,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -32610,6 +32610,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-preview.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

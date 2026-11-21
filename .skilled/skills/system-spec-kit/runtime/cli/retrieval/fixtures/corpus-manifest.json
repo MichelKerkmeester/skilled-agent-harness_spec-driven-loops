@@ -1,5 +1,5 @@
 {
-  "corpusHash": "80b17e9efc307885e0438e5e32a160f9279059e2561dd82baaa8eb2ade44294e",
+  "corpusHash": "845492a2854862dfef37637961510c0a551cc463e17549a56802474d86875044",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28962,
+  "includedPathCount": 28965,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7559,6 +7559,7 @@
     ".skilled/skills/system-deep-loop/changelog/v2.1.5.0.md",
     ".skilled/skills/system-deep-loop/changelog/v2.1.6.0.md",
     ".skilled/skills/system-deep-loop/changelog/v2.1.7.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v2.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-research/README.md",
     ".skilled/skills/system-deep-loop/deep-research/ROUTER.md",
     ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
@@ -8088,6 +8089,7 @@
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pool-concurrency-cap.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-preview.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-salvage-recovery.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-stall-watchdog.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fixed-rate-overrun-accounting.md",
@@ -18805,6 +18807,7 @@
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/spec.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/014-docs-playbooks-alignment/tasks.md",
+    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/goal.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/plan.md",
     "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/spec.md",
@@ -28994,7 +28997,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "529eb46d308d5ff5de2ddbb41556ab21909276d8e88ebb34ddef3330d4db9b81",
+  "manifestHash": "dce92ef3617c3abe31341aa032966063ad9c291a183067eb53c07f002c6744dd",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
