@@ -4,8 +4,8 @@
 # Runtime-agnostic: the launcher boots under any AI CLI runtime (Claude Code,
 # OpenCode, Codex), so this applies to whichever runtime starts the next session.
 #
-# Install: bash .opencode/scripts/install-git-hooks.sh
-# Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
+# Install: bash .skilled/scripts/install-git-hooks.sh
+# Uninstall: bash .skilled/scripts/install-git-hooks.sh --uninstall
 
 set -euo pipefail
 
@@ -59,6 +59,7 @@ if [[ -f "$SOURCE_ROOT/scripts/git-hooks/lib/autostash-orphan-guard.sh" ]]; then
   autostash_orphan_guard || true
 elif _in_toolchain_repo; then
   echo "WARNING [gate:autostash-guard]: guard library is missing: $SOURCE_ROOT/scripts/git-hooks/lib/autostash-orphan-guard.sh (post-commit)" >&2
+  echo "  Next: bash .skilled/scripts/install-git-hooks.sh" >&2
 fi
 
 # Continuous-integration autosync: publish this commit to the shared "live" branch

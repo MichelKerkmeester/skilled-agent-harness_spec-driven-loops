@@ -8,8 +8,8 @@
 # autostash can never be silently lost. Never blocks the merge: the guard is
 # best-effort.
 #
-# Install: bash .opencode/scripts/install-git-hooks.sh
-# Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
+# Install: bash .skilled/scripts/install-git-hooks.sh
+# Uninstall: bash .skilled/scripts/install-git-hooks.sh --uninstall
 
 set -euo pipefail
 
@@ -60,6 +60,7 @@ if [ -f "$SOURCE_ROOT/scripts/git-hooks/lib/autostash-orphan-guard.sh" ]; then
   autostash_orphan_guard || true
 elif _in_toolchain_repo; then
   echo "WARNING [gate:autostash-guard]: guard library is missing: $SOURCE_ROOT/scripts/git-hooks/lib/autostash-orphan-guard.sh (post-merge)" >&2
+  echo "  Next: bash .skilled/scripts/install-git-hooks.sh" >&2
 fi
 
 exit 0

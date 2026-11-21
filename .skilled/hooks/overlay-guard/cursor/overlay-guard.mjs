@@ -65,6 +65,6 @@ async function main() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 main().catch((error) => {
-  process.stderr.write(`overlay-guard: ${error instanceof Error ? error.message : String(error)}\n`);
+  process.stderr.write(`overlay-guard: ${error instanceof Error ? error.message : String(error)} -- the write was allowed unguarded. Next: node .skilled/commands/doctor/scripts/overlay-engine.cjs status\n`);
   approve();
 });

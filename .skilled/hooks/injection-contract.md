@@ -140,7 +140,7 @@ Fire around a specific tool call, not the whole turn.
 
 ### Spec-Gate Enforcement Denial
 
-**Injects:** the denial reason is `GATE_3_DENY_DETAIL`. It holds the DENIED sentence, the same mutation notice the advised path carries, and `Then retry the same call.` It is delivered in place of a successful tool result. An *advised* first mutation (enforcement off) is not a block: it carries `GATE_3_MUTATION_NOTICE` as ordinary tool-time context.
+**Injects:** the denial reason is `GATE_3_DENY_DETAIL`. It holds the DENIED sentence, the same mutation notice the advised path carries, and `Next: ask the operator the question above, then retry the same call.` It is delivered in place of a successful tool result. An *advised* first mutation (enforcement off) is not a block: it carries `GATE_3_MUTATION_NOTICE` as ordinary tool-time context.
 
 - **Trigger:** a mutating tool call (`write`/`edit`) the shared gate evaluates as denied. `bash` is never denied, only advised.
 - **Owning module:** `spec-gate-core.mjs` (`evaluateMutation`).
