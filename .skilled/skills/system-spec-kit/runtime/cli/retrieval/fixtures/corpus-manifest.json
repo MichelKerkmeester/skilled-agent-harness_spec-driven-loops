@@ -1,5 +1,5 @@
 {
-  "corpusHash": "23c5cd73830df00c13f235ad45a252a6087f2695d8d7f241890fa4d2a81884dd",
+  "corpusHash": "80b17e9efc307885e0438e5e32a160f9279059e2561dd82baaa8eb2ade44294e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28960,
+  "includedPathCount": 28962,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -20365,6 +20365,8 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/fanout-attribution.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/review-report.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/fanout-attribution.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/review-report.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/spec.md",
@@ -28992,7 +28994,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "94a980fe18bd845d05cc341f7da657db844f56fab41590ea2aedc739959c515c",
+  "manifestHash": "529eb46d308d5ff5de2ddbb41556ab21909276d8e88ebb34ddef3330d4db9b81",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -38204,6 +38206,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/lineages",
       "reason": "excluded directory"
     },
     {
