@@ -43,6 +43,7 @@ The FILES table lists every direct file in this folder. Test names are the publi
 | `cli-matrix.vitest.ts` | Executable checks for the cli matrix runtime contract. |
 | `combo-matrix.vitest.ts` | Executable checks for the combo matrix runtime contract. |
 | `compile-command-contracts.vitest.ts` | Executable checks for the compile command contracts runtime contract. |
+| `completed-lineage-state-cli.vitest.ts` | Checks the `completed-lineage-state.cjs` CLI: it writes the terminal row for the named loop and exits 2 with usage when the lineage dir is missing. |
 | `conditional-fanin.vitest.ts` | Executable checks for the conditional fanin runtime contract. |
 | `continuity-identities.vitest.ts` | Executable checks for the continuity identities runtime contract. |
 | `continuity-thread.vitest.ts` | Executable checks for the continuity thread runtime contract. |
@@ -68,6 +69,7 @@ The FILES table lists every direct file in this folder. Test names are the publi
 | `deep-research-novelty-inertness.vitest.ts` | Executable checks for the deep research novelty inertness runtime contract. |
 | `deep-research-projections-contract.vitest.ts` | Checks the deep-research-projections surface: the findings-registry byte proof, a negative control and the state-log leaf fields. |
 | `deep-research-reduce-state.vitest.ts` | Executable checks for the deep research reduce state runtime contract. |
+| `deep-research-reduce-state-usage.vitest.ts` | Checks that the research reducer's usage line names every flag it accepts. |
 | `deep-research-reducers.vitest.ts` | Executable checks for the deep research reducers runtime contract. |
 | `deep-research-run-open.vitest.ts` | Checks how a deep-research run opens. |
 | `deep-research-sealed-artifacts.vitest.ts` | Executable checks for the deep research sealed artifacts runtime contract. |
@@ -92,6 +94,7 @@ The FILES table lists every direct file in this folder. Test names are the publi
 | `divergent-pivot-cli.vitest.ts` | Checks the divergent-pivot CLI usage failures and its retry contract. |
 | `divergent-pivot-seat-scope.vitest.ts` | Executable checks that a divergent pivot counts only its own seat outputs against the per-attempt cap. |
 | `event-envelope.vitest.ts` | Executable checks for the event envelope runtime contract. |
+| `event-envelope-upcast-cause.vitest.ts` | Checks that a failed upcast carries the upcaster's error as a non-enumerable `cause`. |
 | `evidence-contract.vitest.ts` | Executable checks for the evidence contract runtime contract. |
 | `executor-adapter-capabilities.vitest.ts` | Checks the executor adapter capability record, including the single-iteration dispatcher. |
 | `executor-audit-ledger-projection.vitest.ts` | Checks the executor audit rows written to a ledger-backed state log, from the first record through failure, verification and write-containment rows. |
@@ -105,6 +108,7 @@ The FILES table lists every direct file in this folder. Test names are the publi
 | `fanout-budget-redact.vitest.ts` | Checks that an explicit `--max-iterations` binds the lineage budget and that `fanout-run.cjs` masks lineage logs. |
 | `fanout-claude-stream-json.vitest.ts` | Checks the Claude stream-json lineage argv, provider cost and final text. |
 | `fanout-effect-dispatch.vitest.ts` | Executable checks that a resumed lineage dispatches again under a fresh effect id instead of replaying its first dispatch. |
+| `fanout-executable-version.vitest.ts` | Checks that an executable but unreadable first PATH match records an unknown executable version instead of hashing a later binary. |
 | `fanout-effective-config.vitest.ts` | Checks that `effective_config` reports what each executor kind's command enforces. |
 | `fanout-lineage-config.vitest.ts` | Checks the lineage config block and the review scope seed that `fanout-run.cjs` writes. |
 | `fanout-merge-latest-record.vitest.ts` | Checks that fanout-merge reads the latest iteration records. |
@@ -129,6 +133,7 @@ The FILES table lists every direct file in this folder. Test names are the publi
 | `graph-read-only.vitest.ts` | Checks the read-only mode of the graph scripts. |
 | `health-degeneration-harness.vitest.ts` | Executable checks for the health degeneration runtime contract. |
 | `hermetic-env.vitest.ts` | Checks the `createHermeticEnv` and `resolveRepositoryRoot` test helpers. |
+| `hierarchical-budgets-errors.vitest.ts` | Checks that budget reducer errors name the missing scope or reservation. |
 | `iteration-findings.vitest.ts` | Checks `parseIterationMarkdownFindings`. |
 | `jsonl-repair.vitest.ts` | Executable checks for the jsonl repair runtime contract. |
 | `ledger-read-cache.vitest.ts` | Checks the single-writer read cache of `AppendOnlyLedger`. |
@@ -174,9 +179,11 @@ The FILES table lists every direct file in this folder. Test names are the publi
 | `sealed-reference-artifacts.vitest.ts` | Executable checks for the sealed reference artifacts runtime contract. |
 | `self-check-adjudication.vitest.ts` | Checks self-check adjudication through the append gateway. |
 | `semantic-communities.vitest.ts` | Executable checks for the semantic communities runtime contract. |
+| `setup-cp-sandbox-guard.vitest.ts` | Checks that both command-flow `setup-cp-sandbox.sh` scripts refuse `/tmp` itself, `.` and `..` segments and a symlink escape before any `rm -rf`, with `rm`, `cp` and `ln` stubbed. |
 | `sleep.vitest.ts` | Executable checks for the sleep runtime contract. |
 | `spawn-cjs.vitest.ts` | Executable checks for the spawn cjs runtime contract. |
 | `speckit-autopilot-contract.vitest.ts` | Executable checks for the speckit autopilot contract runtime contract. |
+| `state-record-containment.vitest.ts` | Checks that `append-state-record.cjs` refuses a target whose real path leaves the working directory, including dot-dot, symlinked and dangling targets. |
 | `stop-decision-yaml-contract.vitest.ts` | Checks that the research and review workflows bind `depth_mode` beside `convergence_mode` and wire the expansive frontier steps. |
 | `stop-decision.vitest.ts` | Checks the stop decision thresholds, signals and quality guards. |
 | `stop-policy-yaml-parity.vitest.ts` | Checks stop policy parity across the runtime-loop workflows and the convergence algorithm contract. |
@@ -192,6 +199,7 @@ The FILES table lists every direct file in this folder. Test names are the publi
 | `trustworthy-state-records.vitest.ts` | Executable checks for the trustworthy state records runtime contract. |
 | `typo-flags.vitest.ts` | Checks that the deep-loop CLIs reject typo flags. |
 | `unknown-options.vitest.ts` | Checks that the deep-loop CLIs reject unknown options. |
+| `validate-playbook-package-list.vitest.ts` | Checks that the stress playbook validator reads `vitest list` lines with and without a project-name prefix. |
 | `verify-authority-cli.vitest.ts` | Checks the independent verify-authority CLI. |
 | `verify-iteration.vitest.ts` | Executable checks for the verify iteration runtime contract. |
 | `voc-allocation.vitest.ts` | Executable checks for the voc allocation runtime contract. |
