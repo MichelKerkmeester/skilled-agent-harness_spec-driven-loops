@@ -80,7 +80,7 @@ contextType: "implementation"
 - [x] All tasks marked `[x]`, with T002 and T003 closed by their observed output
 - [x] No `[B]` blocked tasks remaining
 - [x] Each Met acceptance criterion names the output it observed
-- [ ] The implementation commit holds every file in `spec.md` Files to Change, and nothing outside it. Pending: the implementation run was barred from committing, so no commit exists yet
+- [x] The implementation commit holds every file in `spec.md` Files to Change, and nothing outside it. Evidence: commit `092ebd6c256` on `worktrees/497-ollama-lane-removal`; `git show --name-only 092ebd6c256` lists the planned files, the packet docs, the 016 phase map and the regenerated index outputs
 <!-- /ANCHOR:completion -->
 
 ---

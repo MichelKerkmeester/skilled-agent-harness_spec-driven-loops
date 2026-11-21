@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Implemented and verified, with the commit pending. Cleanup requests now reach /doctor:update, the install guide names the cleanup for linked and copied projects, and doctor 1.3.0.0 records what the lane removal changed."
+description: "Complete and committed as 092ebd6c256. Cleanup requests now reach /doctor:update, the install guide names the cleanup for linked and copied projects, and doctor 1.3.0.0 records what the lane removal changed."
 trigger_phrases:
   - "doctor lane removal alignment implementation summary"
 importance_tier: "normal"
@@ -54,8 +54,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 026-doctor-lane-removal-alignment |
-| **Status** | In Progress |
-| **Completed** | Not yet. Implemented and verified on 2026-11-21, and the commit is pending |
+| **Status** | Complete |
+| **Completed** | 2026-11-21, commit `092ebd6c256` |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 

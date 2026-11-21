@@ -33,7 +33,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -177,12 +177,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -199,11 +193,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 024 deleted the advisor's embedding lane, and the doctor commands already run the new surface",
     "created_at": "2026-11-21T16:16:42Z",
-    "last_save_at": "2026-11-21T17:22:56.199Z",
+    "last_save_at": "2026-11-21T17:24:20.083Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:35ac738dc8b97e5356dc455fb85994c025004fdec7d77681127c29a877e82757",
+    "source_fingerprint": "sha256:79a7fa64879a60cc3bc648b3fa7c05b4c1afa8145129373d828125e9aea4a6d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e788f29b019b15b8b9f28ad03a24040c32007ea2b39afb600bb9181c11bb1285",
+      "spec.md": "24366f615c772b95ea407e4c8baf722b7064c2d67783bc56c00c8949d85d5354",
       "plan.md": "e12ff4e6bb08525fb39e152e1011823a0ee9a78bb7fbc1bfb87164ec38450e9e",
-      "tasks.md": "bde393c0e065da7d6a7e6f4779249a031d5a671e30778633ed388563a1f5c8ae",
-      "implementation-summary.md": "50377b92fb51c7308e6363a4b66caef23751ce83384f84e3a76ca8b66bb326db"
+      "tasks.md": "586f63cea2154f79ddc21a65d4fa79b5c68df6b8a889b0deb938efcab4e7d412",
+      "implementation-summary.md": "cfbc5c49e165e52190064314e52813862c49fadfb96c6bcdb9caab3a1d1c42bc"
     },
     "last_active_at": null
   }

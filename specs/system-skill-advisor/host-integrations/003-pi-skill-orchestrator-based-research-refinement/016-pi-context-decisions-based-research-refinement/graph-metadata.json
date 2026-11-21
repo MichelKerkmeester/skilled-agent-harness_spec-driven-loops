@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The skill advisor picks skills with a local five-lane scorer and pushes a brief into every prompt",
     "created_at": "2026-11-18T06:49:25Z",
-    "last_save_at": "2026-11-21T17:22:59.468Z",
+    "last_save_at": "2026-11-21T17:24:22.215Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d941fcfba0fd1269d852cc7533c298eea34b08d6f5102d5ad7e472204a96761d",
+    "source_fingerprint": "sha256:d08e6f08271f7743f8d64d125de4250c5545ea10c8936f97ff0bf34068f3051c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87099a35a6d5e4d7a2ae4849595a2efab3100153fc3182d37051941f028cf7a6",
+      "spec.md": "4f6b1fadf9542a3c36f7dde5de60e1c3ce0d2987e1e9fe4ec474c966d94a708a",
       "decision-record.md": "9efcaf1024dee7424460dd801bed42db50bebcdfaf89f1514231d5e91922ba16"
     },
     "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment",
