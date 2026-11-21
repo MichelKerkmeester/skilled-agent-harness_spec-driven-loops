@@ -1,0 +1,26 @@
+The requested helper is in place. Both ACCEPT counts returned `1`, and the command exited `0`.
+
+**Changed file:** [skill-advisor-brief.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:446)
+
+```ts
+/**
+ * Return the skipped result shown when a weak follow-up is held back against the
+ * session's earlier route, so it renders like any other prompt the policy declines.
+ */
+export function skippedWeakFollowUpResult(): AdvisorHookResult {
+  return result({
+    startedAt: performance.now(),
+    status: 'skipped',
+    freshness: 'unavailable',
+    brief: null,
+    diagnostics: { policyReason: 'weak_follow_up_receipt' },
+    freshnessResult: null,
+  });
+}
+```
+
+The requested anchor matched the file; there were no mismatches. TypeScript checks, tests and build were not run, as directed for this worker. The final worktree is dirty and lists other modified and untracked files; I edited only the named file, but no pre-edit status was captured to establish who owns those other changes.
+
+SKILL ROUTING: User directed → `sk-code`; the compiled router returned `sk-code-skilled`. ARTIFACT: `sk-code` TypeScript and skill-authoring references. COMMAND: `[/doctor:setup]` → declined; I followed the requested `sk-code` workflow.
+
+Branch: `worktrees/474-advisor-pasted-context-and-crash-fallback`. The conductor’s checks remain to be run.

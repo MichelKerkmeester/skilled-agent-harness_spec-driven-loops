@@ -1,0 +1,38 @@
+**The requested file replacement is verified:** `cmp` exited 0. I changed [user-prompt-submit.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts).
+
+Compared with the pre-copy file, the change is confined to the crash handler. The final text of that block is:
+
+```ts
+  } catch {
+    emitDiagnostic({
+      runtime,
+      workspaceRoot: workspaceRoot ?? process.cwd(),
+      status: 'fail_open',
+      freshness: 'unavailable',
+      durationMs: elapsed(),
+      cacheHit: false,
+      errorCode: 'UNKNOWN',
+      errorDetails: 'Unhandled UserPromptSubmit hook exception',
+    }, writeDiagnostic);
+    // A crash shows the model what a timeout would show for this turn, deduplicated the
+    // same way. If any of that throws as well, there is nothing safe left to show.
+    try {
+      const renderOptions = { deliveryState, setupWording: prompt !== null && SETUP_WORDING.test(prompt) };
+      const emitted = skippedResult
+        ? renderAdvisorFallbackDirective(renderOptions, skippedResult)
+        : renderAdvisorTimeoutFallback(renderOptions);
+      const delivery = input
+        ? applyDirectiveLifecycle(emitted, input, dependencies)
+        : { effectiveEmitted: emitted };
+      return finishAdvisorDelivery(delivery.effectiveEmitted, delivery.commitFullReceipt, deliveryState, runtime);
+    } catch {
+      return {};
+    }
+  }
+```
+
+One risk: when `workspaceRoot` is unset, `process.cwd()` is evaluated before `emitDiagnostic` runs and outside the nested `try`. If the current directory is unavailable, that call could throw before the fallback reaches its last resort. The fallback rendering, lifecycle handling, and delivery calls are inside the nested `try`. This copy introduced no normal-path changes; the broader diff against `HEAD` was already present before the copy.
+
+No mismatch with the task: the final file matches `tmp/p009-briefs/ups.v3.ts` byte-for-byte. Tests, typecheck, and build were not run; the run context assigns those to the conductor.
+
+`REPO RULES`: blast-radius, evidence-and-proof, delegation-and-orchestration, uncertainty-and-honesty, communication, communication-handoff. `SKILL ROUTING`: User specified “Follow the coding standards in .skilled/skills/sk-code/.” → `sk-code`; TypeScript implementation resources loaded.

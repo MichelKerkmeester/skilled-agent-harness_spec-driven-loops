@@ -1,0 +1,42 @@
+Inserted the requested test in [claude-user-prompt-submit-hook.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:481).
+
+The exact `rg` acceptance check returned one match at line 481 with exit 0. `git diff --check` also passed. Vitest, typecheck, and build were not run, per the task’s sandbox instructions; the conductor still needs to run them.
+
+**Final added block:**
+
+```ts
+  it('emits the outage fallback when the hook itself throws while rendering', async () => {
+    const diagnostics = diagnosticsSink();
+    const buildCliBrief = vi.fn(async () => fixture('livePassingSkill.json'));
+    const renderBrief = vi.fn(() => {
+      throw new Error('render failed');
+    });
+    const output = await handleClaudeUserPromptSubmit({
+      session_id: 's1',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, {
+      buildCliBrief,
+      renderBrief,
+      writeDiagnostic: diagnostics.writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+    });
+
+    expect(renderBrief).toHaveBeenCalledOnce();
+    expect(output).toEqual({
+      hookSpecificOutput: {
+        hookEventName: 'UserPromptSubmit',
+        additionalContext: expectedOutageContext('fail_open'),
+      },
+    });
+    const diagnostic = parseDiagnostic(diagnostics.records.at(-1) ?? '{}');
+    expect(diagnostic.status).toBe('fail_open');
+    expect(diagnostic.errorCode).toBe('UNKNOWN');
+  });
+```
+
+Nothing in the requested insertion anchor mismatched the file. The overlay status diagnostic returned exit 2 because this checkout has no `skilled-overlays/overlay-manifest.json`. I edited only the requested file; other existing working-tree changes were left untouched. An unrelated `ENV-REFERENCE.md` also appeared dirty after the initial status check, and I left it untouched.
+
+`SKILL ROUTING: sk-code → sk-code-skilled (SKILLED, TypeScript, hooks)`  
+`REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication.md, communication-handoff.md`

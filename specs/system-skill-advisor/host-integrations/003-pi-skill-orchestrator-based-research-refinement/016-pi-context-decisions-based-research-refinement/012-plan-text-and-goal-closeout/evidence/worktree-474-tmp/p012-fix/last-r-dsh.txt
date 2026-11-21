@@ -1,0 +1,37 @@
+The requested copy was applied to [.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs). The required `cmp` exited 0.
+
+The diff contains these two additions:
+
+```js
+test('route receipts: a named session whose clock did not move is logged', async () => {
+  const brief = 'Advisor: route sk-code\nDirectives: keep comments durable';
+  const { ctx, fire, handlers, logs } = pluginHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: { ...advisorCore(brief), advanceBoundary: async () => false },
+    createNotice: plainNotice,
+  });
+  const { agent } = fakeAgent({ id: 'session-rotate-unmoved' });
+  await handlers.get('agent/created')[0]({ agent, source: 'startup' });
+  const first = await step(fire, agent, [humanMessage('Fix the parser.')]);
+  assert.equal(noticeText(first.messages[0]), brief);
+  assert.equal(logs.length, 1);
+});
+
+test('route receipts: a session with no id logs no unmoved clock', async () => {
+  const { ctx, handlers, logs } = pluginHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    core: { ...advisorCore('Advisor: route sk-code'), advanceBoundary: async () => false },
+    createNotice: plainNotice,
+  });
+  const { agent } = fakeAgent({ id: '' });
+  await handlers.get('agent/created')[0]({ agent, source: 'startup' });
+  assert.equal(logs.length, 0);
+});
+```
+
+**HANDBACK:** Nothing in the diff falls outside the description. Tests were not run in this leaf; the run context assigns them to the conductor, who should run the suite.

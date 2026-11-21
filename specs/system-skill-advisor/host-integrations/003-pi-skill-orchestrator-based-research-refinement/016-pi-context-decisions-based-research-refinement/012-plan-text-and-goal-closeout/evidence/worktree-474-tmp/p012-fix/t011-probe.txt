@@ -1,0 +1,2 @@
+daemon: sk-code 0.82, sk-doc 0.82, cli-external-orchestration 0.82
+daemon: sk-code 0.82, sk-doc 0.82, cli-external-orchestration 0.82

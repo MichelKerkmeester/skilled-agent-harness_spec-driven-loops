@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/ups-hook.v3.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+The prepared file adds one test: a degraded turn that shows another skill clears the held route receipt, and the next floored weak follow-up delivers. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/ups-hook.v3.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` exits 0.

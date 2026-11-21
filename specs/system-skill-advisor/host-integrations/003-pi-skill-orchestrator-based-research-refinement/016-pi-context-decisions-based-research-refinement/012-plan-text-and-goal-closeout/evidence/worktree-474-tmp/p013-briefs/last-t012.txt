@@ -1,0 +1,13 @@
+Changed exactly one line in [arena-provenance.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-5/probes/arena-provenance.sh:6):
+
+```bash
+set -uo pipefail
+```
+
+`sed -n 6p` printed the expected text and exited 0. `bash -n` exited 0. The scoped diff shows only that line changed. I did not run the archived probe or broader test gates.
+
+The requested old line matched exactly: `set -u`. No task mismatch. The worktree is dirty on `worktrees/474-advisor-pasted-context-and-crash-fallback`; status also shows other modified files whose origin I can’t determine because I didn’t capture the starting status. My only write was to the requested file.
+
+SKILL ROUTING: User specified `sk-code`; the action-focused route resolved to `sk-code-skilled` shell guidance. REPO RULES: `evidence-and-proof.md`, `communication.md` and `communication-handoff.md` loaded.
+
+Ready for the conductor’s remaining checks.

@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p011-briefs/dsh-tests.v2.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs
+The prepared file adds a test that runs advanceBoundary against the real file lifecycle store and checks only the named session's clock moves. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p011-briefs/dsh-tests.v2.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs` exits 0.

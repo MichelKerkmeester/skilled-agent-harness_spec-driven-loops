@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p011-briefs/dsh.v1.mjs .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs
+The prepared file adds an exported advanceBoundary over runtime/dist/hooks/lib/directive-lifecycle.js and calls it, through core.advanceBoundary, from the agent/created handler and the clean compaction/end branch. Read the resulting diff and report in HANDBACK any input with which advanceBoundary could call advanceDirectiveLifecycleBoundary without a non-empty session id. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p011-briefs/dsh.v1.mjs .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` exits 0 and `node --check .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` exits 0.

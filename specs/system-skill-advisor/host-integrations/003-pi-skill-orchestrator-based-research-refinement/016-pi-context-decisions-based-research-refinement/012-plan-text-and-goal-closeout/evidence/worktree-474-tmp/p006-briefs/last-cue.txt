@@ -1,0 +1,15 @@
+The requested cue change is in place and the `ACCEPT` checks match. `TASK_MARKER`, `stripPastedReplyOnce`, and `stripLeadingPastedReply` are unchanged.
+
+Changed file: [.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:227)
+
+```ts
+// A quote mark or `>` only shows that text is quoted, not that the assistant wrote it,
+// so a cue needs an attribution header such as "You said:" or "Assistant response:".
+const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)|(?:the\s+)?(?:assistant|claude)\s+(?:response|reply|answer))\s*:/i;
+```
+
+`rg -n 'const PASTED_REPLY_CUE' …` returned one line ending in `\s*:/i;` with exit 0. `rg -c '\["“>\]' …` printed nothing with exit 1, as expected when there are no matches.
+
+The exact original line matched at line 225; the new regex is at line 227 after adding the two comment lines. No task text failed to match. TypeScript tests, typecheck, and build were not run here; the run context assigns them to the conductor.
+
+The file is modified and uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`. Skill routing resolved to `sk-code` / SKILLED TypeScript implementation. No repository rule matched the in-scope edit. The conductor’s remaining action is to run the package checks.

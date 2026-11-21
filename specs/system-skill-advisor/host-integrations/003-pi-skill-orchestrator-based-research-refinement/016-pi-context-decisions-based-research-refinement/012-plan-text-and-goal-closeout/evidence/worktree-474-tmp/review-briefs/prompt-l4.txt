@@ -1,0 +1,62 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement
+(pre-approved, skip Gate 3). This is a READ-ONLY review: write no file anywhere, run no build,
+test, install, commit or daemon command. Reading files and read-only git commands (git show,
+git diff, git log) are allowed.
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+Code standards: load sk-code and let it pick the surface for these files (TypeScript, Python,
+shell). Use its code-review mode for findings-first output.
+
+`A` below is `.skilled/skills/system-skill-advisor/`. `P` is the spec folder above. The branch
+under review starts at merge base `538d2f789ecfdc2ce162396cd96c7a4c2edeffe4` (main).
+
+TASK: review lane 4, every phase's docs against the code (phases 001 to 013).
+The packet P has thirteen phase folders. Each phase's spec.md, tasks.md, goal.md and
+implementation-summary.md make claims: what was built, which file and line holds it, which
+command proves it, what a test covers, what a measured number was, and what is a known
+limitation. The parent P/goal.md, P/spec.md and P/delegation-strategy.md summarize them.
+Check those claims against the code at HEAD and the git history
+(`git log --oneline 538d2f789ecfdc2ce162396cd96c7a4c2edeffe4..HEAD`).
+Priority order:
+  1. Every `file:line` citation in the implementation-summary.md files of 002, 003, 004, 006,
+     007, 008, 009, 011 and 013: does the cited line hold what the text says?
+  2. Every "Files Changed" table: does it match `git show --name-only` for that phase's commits?
+  3. Every claim that a test covers a behavior: does a test with that assertion exist?
+  4. The research phases 001, 005 and 010: did the build phases implement what their
+     research.md recommended, and is every departure recorded as a correction or deviation?
+  5. P/goal.md completion criteria and P/spec.md phase map: does each describe the code as it is?
+Phase 012 is not finished yet; report only claims in it that are already false.
+A finding here is a doc claim that the code or history contradicts, or a recommendation that
+was silently dropped. Wording, style and missing detail are not findings.
+
+WHAT COUNTS AS A FINDING
+A defect you can show from the code: wrong output, a crash, a contract the code breaks, a
+regression against main, a race or a security hole, or a test that would stay green while the
+behavior it names is broken. Style, naming and "could be cleaner" are not findings.
+Each phase's `implementation-summary.md` has a Known Limitations section. Do not report an item
+already recorded there unless you can show its recorded verdict is wrong; then say so.
+
+HANDBACK FORMAT
+Start with one line: `FINDINGS: <n>`. Then, most severe first, one block per finding:
+  [P0|P1|P2] <one-sentence defect>
+  Where: <file:line> (and any second location)
+  Scenario: <concrete input or state> -> <wrong result>
+  Evidence: <what you read that shows it; quote the line>
+  Confidence: confirmed (you traced it end to end) or plausible (say what would confirm it)
+P0 = wrong behavior on a normal path or data loss. P1 = wrong behavior on a reachable edge.
+P2 = a test or doc gap that hides a real failure.
+If you find nothing, write `FINDINGS: 0` and list the paths you checked.
+End with `FILES READ:` and the list.

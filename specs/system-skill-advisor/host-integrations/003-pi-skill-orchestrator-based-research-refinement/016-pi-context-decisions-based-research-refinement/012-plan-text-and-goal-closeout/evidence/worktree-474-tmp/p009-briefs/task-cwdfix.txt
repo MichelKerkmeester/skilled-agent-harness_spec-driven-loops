@@ -1,0 +1,4 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts)
+Replace this file's whole content with the prepared file by running exactly: cp tmp/p009-briefs/ups.v4.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+The prepared file wraps the outer catch's emitDiagnostic call in its own try, because process.cwd() throws when the working directory was removed and its argument is evaluated before emitDiagnostic's internal guard. Change nothing else. Report in HANDBACK anything left in the outer catch that could still throw outside a try.
+ACCEPT: `cmp tmp/p009-briefs/ups.v4.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` exits 0.

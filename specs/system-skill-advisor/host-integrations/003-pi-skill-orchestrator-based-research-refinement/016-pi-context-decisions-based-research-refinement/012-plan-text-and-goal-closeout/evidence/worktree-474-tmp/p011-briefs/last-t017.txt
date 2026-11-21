@@ -1,0 +1,136 @@
+The prepared file was copied exactly, and the required `cmp` passed with exit code 0.
+
+**Changed file:** [.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts)
+
+**Changed blocks:**
+
+```typescript
+import { shouldFireAdvisor, stripLeadingPastedReply } from '../../runtime/lib/prompt-policy.js';
+import {
+  buildSkillAdvisorBrief,
+  skippedAdvisorResultFor,
+  skippedWeakFollowUpResult,
+  type AdvisorHookResult,
+  type AdvisorHookStatus,
+  type AdvisorHookFreshness,
+  ...
+} from '../../runtime/lib/skill-advisor-brief.js';
+...
+import {
+  decideRouteReceiptGuard,
+  defaultRouteReceiptStore,
+  ROUTE_RECEIPT_VERSION,
+  type RouteReceiptStore,
+} from '../lib/route-receipt.js';
+```
+
+```typescript
+  /** Per-session record of the last confident route; defaults to the durable file-backed store. */
+  readonly routeReceiptStore?: RouteReceiptStore;
+```
+
+```typescript
+// A session's last confident route lets a weak follow-up that would route
+// elsewhere only on the confidence floor be held back, because the earlier
+// brief is still in context and the floored one would steer the model off the
+// session's task. Receipts are advisory: any fault keeps the turn as it was.
+function receiptSessionId(input: ClaudeUserPromptSubmitInput): string | null {
+  return typeof input.session_id === 'string' && input.session_id.trim().length > 0
+    ? input.session_id.trim()
+    : null;
+}
+
+function transcriptBytesFor(input: ClaudeUserPromptSubmitInput): number | null {
+  if (typeof input.transcript_path !== 'string' || input.transcript_path.length === 0) return null;
+  try {
+    return statSync(input.transcript_path).size;
+  } catch {
+    return null;
+  }
+}
+
+function topPassingRecommendation(result: AdvisorHookResult): AdvisorHookResult['recommendations'][number] | null {
+  return result.status === 'ok'
+    ? result.recommendations.find((recommendation) => recommendation.passes_threshold === true) ?? null
+    : null;
+}
+
+function guardWeakFollowUp(
+  result: AdvisorHookResult,
+  prompt: string,
+  input: ClaudeUserPromptSubmitInput,
+  dependencies: UserPromptSubmitDependencies,
+): AdvisorHookResult {
+  try {
+    const sessionId = receiptSessionId(input);
+    const top = topPassingRecommendation(result);
+    if (!sessionId || !top || top.confidenceFloored !== true) return result;
+    const receipt = (dependencies.routeReceiptStore ?? defaultRouteReceiptStore()).read(sessionId);
+    if (!receipt) return result;
+    const strippedPrompt = stripLeadingPastedReply(prompt);
+    const lifecycle = dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore();
+    const decision = decideRouteReceiptGuard({
+      receipt,
+      clock: () => lifecycle.clock(sessionId),
+      transcriptBytes: transcriptBytesFor(input),
+      strippedPrompt,
+      // Read from stripped text: the hook's own skip check reads the raw prompt,
+      // where a pasted reply that names a skill reads as an explicit marker.
+      policyReason: shouldFireAdvisor(strippedPrompt).reason,
+      topSkill: top.skill,
+      topFloored: true,
+    });
+    return decision === 'suppress' ? skippedWeakFollowUpResult() : result;
+  } catch {
+    return result;
+  }
+}
+
+function recordRouteReceipt(
+  result: AdvisorHookResult,
+  brief: string | null,
+  input: ClaudeUserPromptSubmitInput,
+  dependencies: UserPromptSubmitDependencies,
+): void {
+  try {
+    const sessionId = receiptSessionId(input);
+    const top = topPassingRecommendation(result);
+    // Only a route the model was shown on its own evidence is worth holding to.
+    if (!sessionId || !brief || !top || top.confidenceFloored === true) return;
+    const clock = (dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore()).clock(sessionId);
+    if (!clock) return;
+    (dependencies.routeReceiptStore ?? defaultRouteReceiptStore()).write({
+      version: ROUTE_RECEIPT_VERSION,
+      sessionId,
+      skill: top.skill,
+      storeGeneration: clock.storeGeneration,
+      lifecycleEpoch: clock.lifecycleEpoch,
+      transcriptBytes: transcriptBytesFor(input),
+    });
+  } catch {
+    // A lost receipt only means the next follow-up is routed on its own evidence.
+  }
+}
+```
+
+```typescript
+result = guardWeakFollowUp(result, prompt, input, dependencies);
+```
+
+```typescript
+const brief = renderBrief(result, { deliveryState });
+recordRouteReceipt(result, brief, input, dependencies);
+```
+
+**Behavior review:** Receipt faults in either new helper are caught locally, so I found no receipt fault path that reaches the outer catch. When the guard finds no receipt, it returns the original result. The brief is rendered before a new receipt is recorded. One possible no-receipt difference is with a custom injected `directiveLifecycleStore`: recording calls its `clock()` before `applyDirectiveLifecycle()`. A side-effectful custom clock could affect that later decision. The built-in clocks are read-only.
+
+No task mismatch found. The diff contains the described dependency, helpers and call sites.
+
+`run-all-drift-guards.sh` exited 1: alignment-drift reported 57 findings, including 11 errors in other paths. Stack-folders, router-sync and doc-claims passed. The changed file was not listed among the findings. Tests, typecheck and build were not run, per the dispatch instructions.
+
+The final working tree is dirty on `worktrees/474-advisor-pasted-context-and-crash-fallback`. It also contains other modified and untracked paths; I did not write them. No commit or push was made.
+
+`SKILL ROUTING: User directed → sk-code; ARTIFACT: sk-code-skilled hooks and TypeScript references.`  
+`REPO RULES: blast-radius, communication, communication-handoff, evidence-and-proof and uncertainty-and-honesty loaded.`
+
+Next, the conductor runs the deferred tests, typecheck and build, and triages the repository-wide drift errors.

@@ -1,0 +1,51 @@
+FINDINGS: 2
+
+[P1] `isWeakFollowUp` counts `that` as a back-reference in every position, so a complete standalone task reads as a weak follow-up and the guard withholds its route.
+Where: `.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:82-85` (the word list) and `:145-150` (`isWeakFollowUp`), reached from `:168` in `decideRouteReceiptGuard`
+Scenario: a session whose receipt is `sk-doc` (from "Update the advisor README to document the new corpus file layout") then gets "Check that the build passes". `shouldFireAdvisor` returns `work_intent_with_meaningful_tokens` (meaningful = `check, that, build, passes`; `check` is a work verb). `isWeakFollowUp` returns `true` because `that` is in `BACK_REFERENCE_WORDS` and the content words are `build, passes` (2 ≤ 3). If the top route is floored and is not `sk-doc`, `decideRouteReceiptGuard` returns `suppress` and the hook renders `Advisor: prompt skipped.` instead of the route.
+Evidence: `const BACK_REFERENCE_WORDS = new Set([ 'that', 'it', 'this', 'there', 'them', 'those', 'these', 'same', 'again', 'remaining', 'ones', ]);` and `if (!tokens.some((token) => BACK_REFERENCE_WORDS.has(token))) return false;` — the test runs on the raw token list, so a complementizer `that` counts. `runtime/data/prompt-policy.default.json` has no `that` in `STOP_WORDS` and has `check` in `WORK_INTENT_VERBS`. The same shape holds for the forward demonstrative `this` in "Fix this: the export button is broken" (content words `export, button, broken`). Known Limitation 7 records "a real back-reference with few words"; this prompt has no back-reference at all, so that verdict does not cover it.
+Confidence: confirmed (predicate traced end to end; the floored top route is the remaining gate, and the 003 spec's Measured Behavior shows a floored 0.82 top is the shape of every short work-intent prompt)
+
+[P2] `rotateSessionClock` discards `advanceBoundary`'s `false` return, so a failed DSH clock rotation is silent, and the test named for that behavior covers only a thrown error.
+Where: `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:90-98` (`rotateSessionClock`), `:155-159` (`advanceBoundary`), and `.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs:244-259`
+Scenario: DSH's `agent/created` or `compaction/end` fires and the python helper fails (no `python3`, the 750 ms timeout, a permission error). `advanceBoundary` returns `false`; `rotateSessionClock` awaits it and drops the value, so nothing is logged. The receipt keeps its old `lifecycleEpoch`, and because the DSH adapter passes no `transcript_path` (`:204-209`), the shrink check never fires either. A weak follow-up after the compaction is then suppressed against a route the model no longer has in context.
+Evidence: `await core.advanceBoundary?.(sessionId);` with no return check, under the comment "A clock rotation is advisory: when it fails, a stored route still expires on its own transcript check, so the failure is logged and never reaches the host." `advanceBoundary` returns `lifecycle.advanceDirectiveLifecycleBoundary(...)` (`hooks/lib/directive-lifecycle.ts:183`), which returns `state.advanceSessionEpoch(...)` (`hooks/lib/directive-lifecycle-file-store.ts:79`), which returns `false` when the helper fails (`:100-101`, `const committed = this.invoke<boolean>(request) === true;`). The test at `:244` injects `advanceBoundary: async () => { throw new Error('rotate failed'); }`, so only the throw path is covered.
+Confidence: confirmed
+
+Checked and clean, for the record: the 011 refutation pass's five verdicts all hold against HEAD (additive words removed, confirmed-identity rule applied, Known Limitation 5 accurate, `ownedFolder` owner/mode rule in place, overlapping-writer and real-file-store DSH cases present). The bench numbers match their labels — `H`/`Hsame` in `advisor-follow-up-routing` and `H`/`H_after`/`receiptWritten`/`falseCarry` in `advisor-follow-up-receipts` use the 003 spec's own definitions, and `collateral` is exactly the spec's `C`. `confidenceFloored` is additive on a strict schema that the handler re-parses, no consumer does an exact-shape check, and the scorer stays free of receipt vocabulary.
+
+Review status: REQUESTED_CHANGES
+
+FILES READ:
+- `.skilled/skills/sk-code/SKILL.md`
+- `.skilled/skills/sk-code/sk-code-review/SKILL.md`
+- `.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts`
+- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`
+- `.skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`
+- `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`
+- `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-contract.ts`
+- `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts`
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` (350-430)
+- `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs`
+- `.skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs`
+- `.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs`
+- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts` (318-500)
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` (470-676)
+- `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts` (25-95)
+- `.skilled/skills/system-skill-advisor/runtime/lib/shared/shared-payload.ts` (955-1025)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` (1360-1668)
+- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` (295-365)
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` (255-315)
+- `.skilled/skills/system-skill-advisor/runtime/data/prompt-policy.default.json`
+- `.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` (1050-1196)
+- `.skilled/skills/system-skill-advisor/runtime/vitest.config.ts`
+- `.github/workflows/advisory-checks.yml`, `.github/workflows/spec-kit-check.yml` (build steps)
+- `specs/.../003-follow-up-routing-benchmark/spec.md` and `implementation-summary.md`
+- `specs/.../010-route-receipts-research/research/research.md` (sections 3-8)
+- `specs/.../011-route-receipts-build/spec.md`, `implementation-summary.md`, `plan.md`, `tasks.md`
+- `git diff 663f6af140b^ 663f6af140b`, `git diff c27addb7117^ c27addb7117` (file lists and the bench, Vibe and envelope test hunks)
+
+Not checked: the `quality-gate.cjs --explain` surface resolver and the two report checkers under `sk-code-review/scripts/` — the sandbox denied every `node` invocation, so surfaces were resolved by hand (SKILLED, this repository's own code) and the report was not machine-checked.

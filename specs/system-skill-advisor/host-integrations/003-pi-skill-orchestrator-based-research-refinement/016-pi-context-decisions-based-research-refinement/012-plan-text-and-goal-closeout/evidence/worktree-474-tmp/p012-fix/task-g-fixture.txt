@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/strip-cases.v3.json .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json
+The prepared file drops the period before the line-start marker in the newline-marker row's input. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/strip-cases.v3.json .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json` exits 0.

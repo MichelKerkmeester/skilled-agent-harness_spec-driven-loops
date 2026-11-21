@@ -1,0 +1,3 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts)
+Make exactly one change: append the exact contents of tmp/p011-briefs/vibe-test.ts.txt (it starts with a blank line) to the end of the file. Use a short Python script or `cat >>`; do not retype it. Change nothing else.
+ACCEPT: `grep -c "reduceRepeatedHead with a held-back follow-up" .skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts` prints 1.

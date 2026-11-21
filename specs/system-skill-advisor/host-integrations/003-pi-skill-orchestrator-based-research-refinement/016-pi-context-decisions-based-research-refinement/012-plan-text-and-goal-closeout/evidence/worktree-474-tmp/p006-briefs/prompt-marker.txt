@@ -1,0 +1,59 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges
+(Spec folder: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges (pre-approved, skip Gate 3). Write no spec docs; edit only the file in TASK.)
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command in ACCEPT has been run.
+
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts)
+One edit. Replace exactly these lines (currently lines 228-236):
+const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/i;
+
+function stripPastedReplyOnce(prompt: string): string {
+  if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
+  const marker = TASK_MARKER.exec(prompt);
+  if (!marker) return prompt;
+  const task = prompt.slice(marker.index + marker[0].length).trim();
+  return task.length > 0 ? task : prompt;
+}
+with:
+const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/gi;
+
+// The last marker wins: a pasted reply can hold its own "Task:" line, and cutting there
+// would keep the reply's skill names in the scored text.
+function stripPastedReplyOnce(prompt: string): string {
+  if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
+  const markers = [...prompt.matchAll(TASK_MARKER)];
+  const marker = markers[markers.length - 1];
+  if (!marker) return prompt;
+  const task = prompt.slice((marker.index ?? 0) + marker[0].length).trim();
+  return task.length > 0 ? task : prompt;
+}
+Leave PASTED_REPLY_CUE, its comment and stripLeadingPastedReply unchanged.
+ACCEPT: `rg -n 'matchAll\(TASK_MARKER\)|/gi;' .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts` prints 2 lines.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

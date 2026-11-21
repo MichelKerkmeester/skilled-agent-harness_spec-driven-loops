@@ -1,0 +1,65 @@
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py)
+Two edits in this one file.
+
+EDIT 1. Insert this block immediately before the line `def analyze_request(prompt: str) -> List[Dict[str, Any]]:` (currently line 4787), followed by two blank lines before that def. Copy it exactly, including every \u escape as written (they are Python string escapes, not raw characters):
+
+# JavaScript's \s and String.prototype.trim() set. Python's own \s also matches
+# U+001C to U+001F and U+0085 and misses U+FEFF, so the set is spelled out here
+# to keep this strip equal to the native scorer's for every input.
+_JS_SPACE_CHARS = (
+    "\t\n\v\f\r          "
+    "        　﻿"
+)
+_JS_SPACE = "[" + _JS_SPACE_CHARS + "]"
+# re.ASCII keeps case folding to ASCII letters, as a JavaScript /i regex without
+# the u flag does. Unicode folding would read "ſ" as "s".
+_STRIP_FLAGS = re.IGNORECASE | re.ASCII
+_PASTED_REPLY_CUE = re.compile(
+    rf"^{_JS_SPACE}*(?:(?:earlier|previously|above),?{_JS_SPACE}+)?"
+    rf"(?:(?:you|the assistant|claude){_JS_SPACE}+(?:replied|said|wrote|answered|responded)"
+    rf"|(?:the{_JS_SPACE}+)?(?:assistant|claude){_JS_SPACE}+(?:response|reply|answer)){_JS_SPACE}*:",
+    _STRIP_FLAGS,
+)
+_TASK_MARKER = re.compile(rf"(?:^|[.!?\n]{_JS_SPACE}*)(?:now|task){_JS_SPACE}*:{_JS_SPACE}*", _STRIP_FLAGS)
+
+
+def _strip_pasted_reply_once(prompt: str) -> str:
+    if not _PASTED_REPLY_CUE.search(prompt):
+        return prompt
+    markers = list(_TASK_MARKER.finditer(prompt))
+    if not markers:
+        return prompt
+    # The last marker wins: a pasted reply can hold its own "Task:" line.
+    marker = markers[-1]
+    task = prompt[marker.end():].strip(_JS_SPACE_CHARS)
+    return task if task else prompt
+
+
+def strip_leading_pasted_reply(prompt: str) -> str:
+    """Drop an earlier reply pasted ahead of the task, as the native scorer does.
+
+    The skill names in a pasted reply would otherwise steer routing away from the
+    task. Repeats until nothing changes, so a second call returns the same text.
+    """
+    current = prompt
+    while True:
+        stripped = _strip_pasted_reply_once(current)
+        if stripped == current:
+            return current
+        current = stripped
+
+EDIT 2. Inside analyze_request, replace exactly:
+    if not prompt:
+        return []
+
+    prompt_lower = prompt.lower()
+with:
+    if not prompt:
+        return []
+
+    prompt = strip_leading_pasted_reply(prompt)
+    prompt_lower = prompt.lower()
+
+Note: inside the rf-strings, `{_JS_SPACE}` is an f-string substitution and must stay single-braced.
+ACCEPT: `rg -n 'def strip_leading_pasted_reply|prompt = strip_leading_pasted_reply\(prompt\)' .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` prints 2 lines, and `python3 -c "import ast,sys; ast.parse(open(sys.argv[1]).read())" .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` exits 0.

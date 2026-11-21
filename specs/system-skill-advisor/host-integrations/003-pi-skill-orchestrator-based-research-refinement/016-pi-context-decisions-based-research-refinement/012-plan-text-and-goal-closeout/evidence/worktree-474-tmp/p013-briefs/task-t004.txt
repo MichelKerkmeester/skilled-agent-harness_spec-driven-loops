@@ -1,0 +1,8 @@
+TASK (1 file: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-attach-4/probes/vitest.config.ts)
+This is an archived review probe. Never run it. Edit only its top lines as below.
+Insert exactly these three lines above line 1 (the import line), changing nothing else:
+// ───────────────────────────────────────────────────────────────
+// MODULE: Scorer probe Vitest config
+// ───────────────────────────────────────────────────────────────
+If a quoted line does not match the file, change nothing and report both texts.
+ACCEPT on that file: `sed -n 2p` prints `// MODULE: Scorer probe Vitest config` and `sed -n 4p` starts with `import base from`.

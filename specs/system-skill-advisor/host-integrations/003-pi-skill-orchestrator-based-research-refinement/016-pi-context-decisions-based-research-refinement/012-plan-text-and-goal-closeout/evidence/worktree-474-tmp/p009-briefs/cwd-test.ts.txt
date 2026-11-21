@@ -1,0 +1,25 @@
+
+  it('returns the outage fallback when the clock and the working directory both throw', async () => {
+    const cwd = vi.spyOn(process, 'cwd').mockImplementation(() => {
+      throw new Error('cwd');
+    });
+    try {
+      const output = await handleClaudeUserPromptSubmit({
+        hook_event_name: 'UserPromptSubmit',
+        prompt: 'implement a TypeScript hook',
+        cwd: '/workspace/project',
+      }, {
+        buildCliBrief: vi.fn(async () => fixture('livePassingSkill.json')),
+        renderBrief: renderAdvisorBrief,
+        writeDiagnostic: diagnosticsSink().writeDiagnostic,
+        directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+        now: throwingClock,
+      });
+
+      expect(output).toEqual({
+        hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedOutageContext('fail_open') },
+      });
+    } finally {
+      cwd.mockRestore();
+    }
+  });

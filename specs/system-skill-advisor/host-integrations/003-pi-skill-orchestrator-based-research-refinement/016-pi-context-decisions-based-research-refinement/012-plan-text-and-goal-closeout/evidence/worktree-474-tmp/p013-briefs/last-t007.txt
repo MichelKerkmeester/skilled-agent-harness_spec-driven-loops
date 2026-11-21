@@ -1,0 +1,16 @@
+The requested line is inserted, and both task acceptance checks pass. The repository completion gate remains blocked because `/doctor:sk-code setup` exited 1.
+
+- **Changed:** [make-heredoc-variant.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/make-heredoc-variant.sh:5)
+
+  ```bash
+  set -uo pipefail
+  ```
+
+- **Anchors:** No task text mismatch. The file had the specified usage line followed by a `RAD=` line.
+- **Acceptance:** `sed -n 5p` printed `set -uo pipefail` and exited 0. `bash -n` exited 0. I did not execute the archived probe.
+- **Setup battery:** `STATUS=FAIL failed=3 skipped=0`. The sync check failed, the alignment-drift guard failed, and the quality test reported `unit: dist adapter`.
+- **Workspace:** Uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`. Git status also shows six other modified files; I did not edit them, and their origin is unknown because I did not capture the initial full status.
+
+`SKILL ROUTING: User specified: “Follow the coding standards in .skilled/skills/sk-code/.”` Shell-specific guidance was loaded. `COMMAND: [/doctor:sk-code setup] → started.` `REPO RULES: no mutation-rule trigger matched; closeout rules loaded.`
+
+The conductor should assess the three setup failures before treating the work as complete.

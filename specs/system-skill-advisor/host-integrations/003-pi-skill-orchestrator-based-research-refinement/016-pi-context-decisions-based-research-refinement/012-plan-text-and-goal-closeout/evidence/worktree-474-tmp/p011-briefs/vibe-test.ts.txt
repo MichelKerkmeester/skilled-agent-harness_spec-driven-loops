@@ -1,0 +1,21 @@
+
+describe('reduceRepeatedHead with a held-back follow-up', () => {
+  it('delivers the route, the skipped head once, nothing on the repeat and then the next route', () => {
+    const heads = new Map<string, string>();
+    const receipts = {
+      read: (sessionId: string) => heads.get(sessionId) ?? null,
+      write: (sessionId: string, head: string) => {
+        heads.set(sessionId, head);
+      },
+      env: {},
+    };
+    const directives = '\nDirectives:\n- Comment hygiene [HARD BLOCK]: keep the durable why.';
+    const route = 'Advisor: live; use sk-doc 0.94/0.20 pass.';
+    const skipped = 'Advisor: prompt skipped.';
+
+    expect(vibeAdvisor.reduceRepeatedHead(`${route}${directives}`, 'vibe-session', receipts)).toBe(`${route}${directives}`);
+    expect(vibeAdvisor.reduceRepeatedHead(skipped, 'vibe-session', receipts)).toBe(skipped);
+    expect(vibeAdvisor.reduceRepeatedHead(skipped, 'vibe-session', receipts)).toBe('');
+    expect(vibeAdvisor.reduceRepeatedHead(route, 'vibe-session', receipts)).toBe(route);
+  });
+});

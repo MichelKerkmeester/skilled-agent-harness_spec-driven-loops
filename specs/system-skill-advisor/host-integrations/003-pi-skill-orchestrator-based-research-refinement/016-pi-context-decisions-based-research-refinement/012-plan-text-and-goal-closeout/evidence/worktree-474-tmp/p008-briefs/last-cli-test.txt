@@ -1,0 +1,20 @@
+Inserted the requested test in [cli-degraded-command-contract.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts).
+
+The acceptance commands returned `1`, `3`, and `});`, each with exit status 0. The scoped diff shows only the requested insertion. The supplied ending matched the file; no mismatch.
+
+```ts
+  it('ignores a command named only in a pasted reply', () => {
+    const result = degradedRecommendations(
+      [entry('command-speckit-save')],
+      'Earlier you replied: Run /speckit:save to keep this. Now: Refactor the session store module to remove duplicated locking code',
+    );
+
+    expect(result).toHaveLength(1);
+    expect(result).toMatchObject([{ skillId: 'system-spec-kit' }]);
+    expect(result[0]).not.toHaveProperty('command');
+  });
+```
+
+Vitest, typecheck, and build were not run, as directed; full verification remains with the conductor. `git status` also shows modified `goal.md`, `spec.md`, and `tasks.md` in the spec folder. I did not edit them, and their prior state is unknown.
+
+SKILL ROUTING: User specified `sk-code`. ARTIFACT: Routed through `sk-code` for the SKILLED TypeScript surface. The conductor’s test run is the remaining action.

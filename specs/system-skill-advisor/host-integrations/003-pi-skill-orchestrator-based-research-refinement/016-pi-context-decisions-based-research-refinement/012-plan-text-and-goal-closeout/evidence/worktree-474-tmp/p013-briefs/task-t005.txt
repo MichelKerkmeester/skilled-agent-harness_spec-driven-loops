@@ -1,0 +1,5 @@
+TASK (1 file: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/cli-rows.sh)
+This is an archived review probe. Never run it. Edit only its top lines as below.
+Insert one new line holding exactly `set -uo pipefail` directly after line 2, so it sits between the line `# Prints the first three public rows (skill, command, policy) the advisor CLI returns per prompt.` and the line that starts `cd /Users/`.
+If a quoted line does not match the file, change nothing and report both texts.
+ACCEPT on that file: `sed -n 3p` prints `set -uo pipefail` and `bash -n` exits 0.

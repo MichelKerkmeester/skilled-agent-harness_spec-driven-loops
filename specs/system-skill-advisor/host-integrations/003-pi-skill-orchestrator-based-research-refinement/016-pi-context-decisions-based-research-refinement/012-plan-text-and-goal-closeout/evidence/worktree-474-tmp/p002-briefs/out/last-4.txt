@@ -1,0 +1,11 @@
+Appended the requested record to [labeled-prompts.jsonl](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl:196). `wc -l` printed 196; the final line parsed as JSON, ended with a newline and matched the supplied text exactly. `git diff --check` exited 0.
+
+```json
+{"id": "rr-paste-208", "bucket": "true_write", "source_type": "synthetic-realistic", "prompt": "Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: Refactor the session store module to remove duplicated locking code", "gate3_triggers": "yes", "gate3_reason_category": "file_write", "skill_top_1": "sk-code", "skill_correct": "yes", "notes": "pasted earlier reply ahead of a code task must not steer routing"}
+```
+
+The task-scoped diff contains one added line in the requested file. The full worktree status lists eight modified files: this file, two TypeScript files and five spec files. The initial status showed the five spec files already modified. My write targeted only the JSONL file, so the workspace-wide interpretation of “exactly one file changed” does not match the final status.
+
+Skill routing: User directed → sk-code; compiled route selected sk-code-skilled. Repo rules loaded: evidence-and-proof, communication and communication-handoff. No test suite was run; the requested acceptance checks were run. The branch is `worktrees/474-advisor-pasted-context-and-crash-fallback`; no commit or push was made.
+
+If the one-file criterion applies to the entire worktree, review the other seven modified paths before treating that criterion as met.

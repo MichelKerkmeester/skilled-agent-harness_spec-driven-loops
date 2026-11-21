@@ -1,0 +1,67 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping
+(Spec folder: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/002-pasted-context-stripping (pre-approved, skip Gate 3). Write no spec docs; edit only the file in TASK.)
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command in ACCEPT has been run.
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts)
+Four edits in this one file, all inside or above `computeRecommendationOutput`.
+
+EDIT 1. Line 16, replace:
+import { extractMetalinguisticSkillMentions } from '../lib/prompt-policy.js';
+with:
+import { extractMetalinguisticSkillMentions, stripLeadingPastedReply } from '../lib/prompt-policy.js';
+
+EDIT 2. Replace exactly (lines 533-536):
+  const sourceSignature = cacheSourceSignature(status);
+  advisorPromptCache.invalidateSourceSignatureChange(sourceSignature);
+  const key = advisorPromptCache.makeKey({
+    canonicalPrompt: input.prompt.trim(),
+with:
+  const sourceSignature = cacheSourceSignature(status);
+  advisorPromptCache.invalidateSourceSignatureChange(sourceSignature);
+  // Stripped once here so the embedding, the cache key and the scorer all see the same text.
+  const scoredPrompt = stripLeadingPastedReply(input.prompt);
+  const key = advisorPromptCache.makeKey({
+    canonicalPrompt: scoredPrompt.trim(),
+
+EDIT 3. Replace exactly (currently line 569):
+  const result = await withSemanticShadowPromptEmbedding(input.prompt, () => scoreAdvisorPrompt(input.prompt, {
+with:
+  const result = await withSemanticShadowPromptEmbedding(scoredPrompt, () => scoreAdvisorPrompt(scoredPrompt, {
+
+EDIT 4. In the `.map((recommendation) => publicRecommendation(` call a few lines below EDIT 3, replace its third argument line:
+      input.prompt,
+    ))
+with:
+      scoredPrompt,
+    ))
+
+Do not change the other `input.prompt` uses (enrichCompiledRoutes, attachTypedCommand and the rest).
+ACCEPT: exactly one file changed; `rg -c 'scoredPrompt' .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` prints 5.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

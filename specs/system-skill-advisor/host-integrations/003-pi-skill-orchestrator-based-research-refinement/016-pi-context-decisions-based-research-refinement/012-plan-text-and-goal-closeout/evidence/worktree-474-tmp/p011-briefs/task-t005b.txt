@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p011-briefs/route-receipt.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts
+The only difference is in the test 'leaves one valid receipt when two writers share a session': it now also asserts exactly one .json receipt file. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p011-briefs/route-receipt.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts` exits 0.

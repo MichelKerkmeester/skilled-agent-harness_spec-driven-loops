@@ -1,0 +1,89 @@
+
+function boundaryCore(context, rotated) {
+  return {
+    ...advisorCore(context),
+    advanceBoundary: async (sessionId) => {
+      rotated.push(sessionId);
+      return true;
+    },
+  };
+}
+
+test('route receipts: a session start and a clean compaction rotate that session clock, delivery unchanged', async () => {
+  const brief = 'Advisor: route sk-code\nDirectives: keep comments durable';
+  const rotated = [];
+  const { ctx, fire, handlers } = pluginHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: boundaryCore(brief, rotated),
+    createNotice: plainNotice,
+  });
+  const { agent } = fakeAgent({ id: 'session-boundary' });
+
+  await handlers.get('agent/created')[0]({ agent, source: 'startup' });
+  const first = await step(fire, agent, [humanMessage('Fix the parser.')]);
+  assert.equal(noticeText(first.messages[0]), brief);
+  const repeat = await step(fire, agent, [humanMessage('Now the tests.')]);
+  assert.equal(noticeText(repeat.messages[0]), 'Advisor: route sk-code');
+
+  handlers.get('session/event')[0](agent.session, { type: 'compaction/end', data: { compactionId: 'c1', turn: 2 } });
+  await new Promise((resolve) => setImmediate(resolve));
+  const afterCompaction = await step(fire, agent, [humanMessage('Continue.')]);
+  assert.equal(noticeText(afterCompaction.messages[0]), brief);
+
+  assert.deepEqual(rotated, ['session-boundary', 'session-boundary']);
+});
+
+test('route receipts: a failed compaction rotates nothing', async () => {
+  const rotated = [];
+  const { ctx, handlers } = pluginHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    core: boundaryCore('Advisor: fixture', rotated),
+    createNotice: plainNotice,
+  });
+  const { agent } = fakeAgent({ id: 'session-failed-compaction' });
+  handlers.get('session/event')[0](agent.session, { type: 'compaction/end', data: { compactionId: 'c2', turn: 3, error: 'boom' } });
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.deepEqual(rotated, []);
+});
+
+test('route receipts: a rotation failure is logged and the brief still arrives', async () => {
+  const brief = 'Advisor: route sk-code\nDirectives: keep comments durable';
+  const { ctx, fire, handlers, logs } = pluginHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    isLeaf: interactive,
+    isEnabled: enabled,
+    core: { ...advisorCore(brief), advanceBoundary: async () => { throw new Error('rotate failed'); } },
+    createNotice: plainNotice,
+  });
+  const { agent } = fakeAgent({ id: 'session-rotate-failure' });
+  await handlers.get('agent/created')[0]({ agent, source: 'startup' });
+  const first = await step(fire, agent, [humanMessage('Fix the parser.')]);
+  assert.equal(noticeText(first.messages[0]), brief);
+  assert.equal(logs.length, 1);
+});
+
+test('route receipts: advanceBoundary rotates only a named session', async () => {
+  const { advanceBoundary } = await import('../dsh/prompt-advisor.mjs');
+  const calls = [];
+  const store = { name: 'fixture-store' };
+  const load = async () => ({
+    defaultDirectiveLifecycleStore: () => store,
+    advanceDirectiveLifecycleBoundary: (state, sessionId) => {
+      calls.push([state, sessionId]);
+      return true;
+    },
+  });
+  // Without an id the shared call would reset every session, so nothing loads.
+  assert.equal(await advanceBoundary(undefined, load), false);
+  assert.equal(await advanceBoundary('', load), false);
+  assert.equal(await advanceBoundary('   ', load), false);
+  assert.deepEqual(calls, []);
+  assert.equal(await advanceBoundary('session-1', load), true);
+  assert.deepEqual(calls, [[store, 'session-1']]);
+});

@@ -1,0 +1,14 @@
+
+TASK (2 files: .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json and .skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md)
+
+EDIT 1. Create the new file .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json
+as a byte-for-byte copy of tmp/p006-briefs/fixture.json. Use `cp tmp/p006-briefs/fixture.json .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json`. Do not reformat it.
+
+EDIT 2. In .skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md, section "2. DIRECTORY TREE", replace exactly:
++-- errors.ts                             # MemoryError and buildErrorResponse
+with:
++-- errors.ts                             # MemoryError and buildErrorResponse
++-- pasted-reply-strip-cases.json         # Pasted-reply strip inputs and outputs
+Keep the column alignment of the `#` comments as shown.
+
+ACCEPT: `cmp tmp/p006-briefs/fixture.json .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json && echo SAME` prints SAME, and `rg -n 'pasted-reply-strip-cases' .skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md` prints 1 line.

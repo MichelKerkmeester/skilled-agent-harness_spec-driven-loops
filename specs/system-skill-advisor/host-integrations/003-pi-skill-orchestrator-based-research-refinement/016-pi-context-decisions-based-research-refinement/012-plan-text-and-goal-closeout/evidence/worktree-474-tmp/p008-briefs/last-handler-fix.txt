@@ -1,0 +1,29 @@
+Changed only [advisor-recommend.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts).
+
+Cache-hit block:
+
+```ts
+    return attachTypedCommand(
+      input.options?.includeCompiledRoute === false
+        ? parsedCachedOutput
+        : enrichCompiledRoutes(parsedCachedOutput, scoredPrompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
+      scoredPrompt,
+    );
+```
+
+Cache-miss block:
+
+```ts
+  return attachTypedCommand(
+    input.options?.includeCompiledRoute === false
+      ? parsed
+      : enrichCompiledRoutes(parsed, scoredPrompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
+    scoredPrompt,
+  );
+```
+
+Both acceptance checks passed: `grep -c` printed `1`; `git diff --numstat` printed `4  4`. No requested text failed to match. I did not run tests, typecheck, or build, as directed for this code leaf. The pre-existing test and spec edits remain untouched. The worktree is dirty on `worktrees/474-advisor-pasted-context-and-crash-fallback`; nothing was committed or pushed.
+
+SKILL ROUTING: User specified → `sk-code`. ARTIFACT: `sk-code` → SKILLED TypeScript surface.
+
+Conductor’s next step is to run the broader verification gates.

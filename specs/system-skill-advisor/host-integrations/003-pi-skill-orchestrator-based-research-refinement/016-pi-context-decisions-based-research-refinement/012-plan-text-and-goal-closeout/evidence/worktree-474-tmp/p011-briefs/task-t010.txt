@@ -1,0 +1,29 @@
+TASK (2 coupled files: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts and .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts)
+Make exactly one edit in each file and change nothing else.
+
+Edit 1, file .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts, interface AdvisorRecommendation.
+Old lines (exact, about line 44-45):
+  // True when a hub held back its command because the prompt names no single mode.
+  readonly needsMode?: boolean;
+New lines:
+  // True when a hub held back its command because the prompt names no single mode.
+  readonly needsMode?: boolean;
+  // True when the confidence sits on the task-intent floor rather than the
+  // recommendation's own evidence.
+  readonly confidenceFloored?: true;
+
+Edit 2, file .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts, function recommendationFromCli.
+Old lines (exact, about line 389-391):
+    // A hub that held back its command for want of a mode keeps that signal, so
+    // the head can say why no command came with it.
+    ...(value.needsMode === true ? { needsMode: true } : {}),
+New lines:
+    // A hub that held back its command for want of a mode keeps that signal, so
+    // the head can say why no command came with it.
+    ...(value.needsMode === true ? { needsMode: true } : {}),
+    // A floored route is held back against the session's earlier route, so the
+    // floor has to survive the trip from the CLI.
+    ...(value.confidenceFloored === true ? { confidenceFloored: true as const } : {}),
+
+Each old text must match exactly once in its file; if not, change nothing and report it.
+ACCEPT: `grep -c "readonly confidenceFloored?: true;" .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts` prints 1 and `grep -c "value.confidenceFloored === true ? { confidenceFloored: true as const }" .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` prints 1.

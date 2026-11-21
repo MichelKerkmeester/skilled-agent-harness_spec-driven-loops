@@ -1,0 +1,22 @@
+The requested copy is applied. `cmp` exited 0, and the only diff hunk matches the described change.
+
+**Changed file:** [skill_advisor.py](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py)
+
+**Final text of the changed block:**
+
+```python
+    """Return native recommendations when the compiled advisor runtime is available."""
+    # Drop a pasted earlier reply before the head cut and the routing layers below,
+    # so a long paste cannot push the task past the cut or steer the layers.
+    prompt = strip_leading_pasted_reply(prompt)
+    response = _run_native_bridge({
+```
+
+**Description mismatches:** None. The post-copy diff contains only this block.
+
+The Python AST syntax check passed. I did not run the test suite, typecheck or build because the run context assigns those to the conductor. The working tree is uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`. Its final status also lists other modified files outside this task; this turn’s only write command targeted the requested file, and I can’t establish the other files’ origin.
+
+**Routing:** `sk-code`; compiled route selected `sk-code-skilled`.  
+**Repository rules loaded:** blast-radius, evidence-and-proof, uncertainty-and-honesty, communication and communication-handoff.
+
+**Next:** The conductor runs the assigned suite.

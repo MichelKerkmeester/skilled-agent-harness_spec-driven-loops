@@ -1,0 +1,4 @@
+"Check that the build passes" true
+"Fix this: the export button is broken" true
+"fix that too" true
+"Refactor the session store module to remove duplicated locking code" false

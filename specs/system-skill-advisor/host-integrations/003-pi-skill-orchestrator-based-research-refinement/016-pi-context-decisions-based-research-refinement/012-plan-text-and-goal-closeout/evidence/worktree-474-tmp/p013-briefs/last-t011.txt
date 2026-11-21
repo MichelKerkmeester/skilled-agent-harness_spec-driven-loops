@@ -1,0 +1,17 @@
+Inserted the requested line in [top-only-sweep.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/top-only-sweep.sh:5). The quoted comment and following `cd` line matched exactly. The archived probe was not run.
+
+```bash
+# top-only request and under the every-row request. Prompts are never printed.
+set -uo pipefail
+cd /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research || exit 2
+```
+
+Final checks passed: `sed -n 5p` printed `set -uo pipefail` (exit 0), and `bash -n` exited 0. No quoted line mismatch.
+
+The final `/doctor:sk-code setup` run returned `STATUS=FAIL failed=3 skipped=0`: sync, alignment drift, and the quality test `not ok 66 - unit: dist adapter`. I left those non-target failures unchanged, so overall completion remains blocked on that setup gate.
+
+`git status` also lists modified paths outside this task; I did not edit them. The requested file is uncommitted on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+
+SKILL ROUTING: User specified “Follow the coding standards in .skilled/skills/sk-code/.” ARTIFACT: `sk-code` → `sk-code-skilled` shell references. COMMAND: `/doctor:sk-code setup` → started; final run failed as noted. REPO RULES: `evidence-and-proof.md`, `communication.md`, `communication-handoff.md`.
+
+A separate task with scope to repair the setup failures is needed to clear that gate.

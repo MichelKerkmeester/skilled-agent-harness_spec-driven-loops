@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p011-briefs/route-receipt.v3.ts .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts
+The prepared file removes the additive words also, too and well from BACK_REFERENCE_WORDS and says why in the comment above it. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p011-briefs/route-receipt.v3.ts .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts` exits 0.

@@ -1,0 +1,38 @@
+The exact copy command exited 0, and the requested `cmp` exited 0.
+
+**Changed file:** [.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts)
+
+**Final text of changed blocks:**
+
+```ts
+  /** Drop a session's receipt. True when none is left, including when there was none. */
+  remove(sessionId: string): boolean;
+```
+
+```ts
+  remove(sessionId: string): boolean {
+    this.receipts.delete(sessionId);
+    return true;
+  }
+```
+
+```ts
+  remove(sessionId: string): boolean {
+    try {
+      if (!this.ownedFolder()) return false;
+      unlinkSync(join(this.dir, receiptFileName(sessionId)));
+      return true;
+    } catch (error) {
+      // A folder or file that is not there holds no receipt either.
+      return (error as NodeJS.ErrnoException).code === 'ENOENT';
+    }
+  }
+```
+
+**Task mismatch:** None. The diff adds the interface method and both implementations. The file store treats `ENOENT` from a missing file or folder as removed.
+
+Tests, typecheck and build were not run in this leaf; the run context assigns those to the conductor. The target was clean before the copy. The working tree is now dirty on `worktrees/474-advisor-pasted-context-and-crash-fallback`; `git status` also lists other modified files that I did not touch, and their prior state was not checked.
+
+SKILL ROUTING: User directed, sk-code. ARTIFACT: sk-code resolved to SKILLED TypeScript guidance. REPO RULES: blast-radius, evidence-and-proof, communication, communication-handoff.
+
+Nothing is blocked on you; the conductor runs the remaining checks.

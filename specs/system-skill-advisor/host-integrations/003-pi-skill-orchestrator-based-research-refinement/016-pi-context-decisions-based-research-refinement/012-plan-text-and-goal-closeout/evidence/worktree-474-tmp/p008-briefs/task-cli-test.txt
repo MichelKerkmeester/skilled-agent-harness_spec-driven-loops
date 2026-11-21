@@ -1,0 +1,26 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts)
+Make exactly one insertion in this file and change nothing else.
+
+The file ends with:
+    expect(result).toHaveLength(1);
+    expect(result).toMatchObject([{ skillId: 'sk-doc' }]);
+    expect(result[0]).not.toHaveProperty('command');
+  });
+});
+
+Insert this block between the `  });` that closes the test `collapses an untyped row to one owner skill that offers no command` and the final `});`:
+
+  it('ignores a command named only in a pasted reply', () => {
+    const result = degradedRecommendations(
+      [entry('command-speckit-save')],
+      'Earlier you replied: Run /speckit:save to keep this. Now: Refactor the session store module to remove duplicated locking code',
+    );
+
+    expect(result).toHaveLength(1);
+    expect(result).toMatchObject([{ skillId: 'system-spec-kit' }]);
+    expect(result[0]).not.toHaveProperty('command');
+  });
+
+Keep one blank line between the two tests, as the existing tests do.
+
+ACCEPT: `grep -c "ignores a command named only in a pasted reply" .skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts` prints 1, `grep -c "^  it(" .skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts` prints 3, and `tail -1 .skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts` prints `});`.

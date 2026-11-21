@@ -1,0 +1,4 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts)
+Replace this file's whole content with the prepared file by running exactly: cp tmp/p009-briefs/test.v2.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+The prepared file adds one test at the end of the describe block, `returns the outage fallback when the clock and the working directory both throw`. Change nothing else. Do not run the tests; the conductor runs them.
+ACCEPT: `cmp tmp/p009-briefs/test.v2.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` exits 0.

@@ -1,0 +1,22 @@
+TASK: review lane 1, pasted-reply stripping (phases 002, 006, 007, 008).
+What it should do: when a prompt starts with a pasted earlier assistant reply followed by the
+user's new task, the advisor scores and routes only the new task, so the route is the same with
+or without the pasted reply. The strip needs an attribution header (006). The Python scorer
+strips the same way as the TypeScript one (007). Commands and compiled routes attach from the
+stripped task, not the raw prompt (008).
+Commits: `git show 6c4af5fb5eb 2bc4de2fd66 4de695d3095 b8c862443b3`.
+Read the code at HEAD:
+  A/runtime/lib/prompt-policy.ts (stripLeadingPastedReply and its callers)
+  A/runtime/lib/scorer/fusion.ts
+  A/runtime/handlers/advisor-recommend.ts
+  A/runtime/skill-advisor-cli.ts
+  A/runtime/scripts/skill_advisor.py (the strip and where it is applied)
+  A/runtime/tests/fixtures/pasted-reply-strip-cases.json and the tests that read it
+  A/runtime/tests/parity/python-ts-parity.vitest.ts, A/runtime/tests/python/test_skill_advisor.py
+  A/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts
+For intent, read P/002-*/spec.md, P/006-*/spec.md, P/007-*/spec.md, P/008-*/spec.md and each
+one's implementation-summary.md.
+Look hardest at: a real user prompt that is wrongly stripped (lost task text), a pasted reply
+that is not stripped, any divergence between the Python and TypeScript strip on the same input,
+any consumer that still reads the raw prompt where the stripped one is meant, and a fixture or
+parity test that would pass while the two strips disagree.

@@ -1,0 +1,18 @@
+Inserted the requested line in [cli-rows.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/cli-rows.sh). Both ACCEPT checks pass. I can’t report closure because the requested setup doctor exited 1.
+
+```bash
+#!/usr/bin/env bash
+# Prints the first three public rows (skill, command, policy) the advisor CLI returns per prompt.
+set -uo pipefail
+cd /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research || exit 2
+```
+
+`sed -n 3p` printed `set -uo pipefail` and exited 0. `bash -n` exited 0. The archived probe was not run. Both original anchor lines matched.
+
+`/doctor:sk-code setup` failed in `sync`, `drift-guards`, and quality test `unit: dist adapter` (`not ok 66`), with exit 1. The failed gate blocks a completion claim.
+
+**Routing:** User directed: “Follow the coding standards in .skilled/skills/sk-code/.” The implementation route resolved to `sk-code-skilled`, and its shell guidance was loaded. **Command:** `/doctor:sk-code setup` was started and failed as reported above.
+
+The patch changes only the named file. `git status` also shows modifications to `hook-probe.sh`, `vitest.config.ts`, and `holdout-guard-emulation.sh`; I did not edit them, and their initial status was not captured, so I can’t determine their origin. The named file remains modified and uncommitted on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`; nothing was pushed.
+
+The conductor must resolve the three setup doctor failures before this work can be reported closed.

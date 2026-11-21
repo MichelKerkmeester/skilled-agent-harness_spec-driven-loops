@@ -1,0 +1,26 @@
+The requested text replacements are present, and all three acceptance checks passed. I can’t claim completion because the required SKILLED drift gate failed.
+
+Changed file: [skill_advisor.py](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py)
+
+Final changed blocks:
+
+```python
+_JS_SPACE_CHARS = (
+    "\t\n\v\f\r \u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006"
+    "\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff"
+)
+```
+
+```python
+# the u flag does. Unicode folding would read "\u017f" as "s".
+```
+
+The acceptance commands returned `1`, `1` and `True`, each with exit 0. The scoped quality gate reported `NO_BLOCKER_FOUND` with exit 0, and `git diff --check` passed. The drift guard exited 1: alignment-drift reported 11 errors and 46 warnings in spec research files. Its other three guards passed. The diagnostic showed no alignment error for the requested Python file.
+
+[sk-code-skilled/SKILL.md](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/sk-code/sk-code-skilled/SKILL.md) requires: “Before any completion claim, re-run the four live sk-code drift guards on a system-code change through the single entry point `scripts/run-all-drift-guards.sh`.” That gate ran and failed. Its findings are outside the authorized file scope, so I left them unchanged.
+
+Both requested anchors matched the source. Nothing in the task was missing or mismatched. The target file already contained a larger uncommitted change before this edit, which I preserved. Current status also shows modified test and fixture files; I did not write to them, and their starting status is unknown. The branch is `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+
+SKILL ROUTING: Advisor selected `sk-code`; the compiled route resolved to `sk-code-skilled` for SKILLED/Python. REPO RULES: evidence-and-proof, communication and communication-handoff loaded.
+
+Operator action: decide whether to broaden scope to resolve the unrelated alignment-drift findings.

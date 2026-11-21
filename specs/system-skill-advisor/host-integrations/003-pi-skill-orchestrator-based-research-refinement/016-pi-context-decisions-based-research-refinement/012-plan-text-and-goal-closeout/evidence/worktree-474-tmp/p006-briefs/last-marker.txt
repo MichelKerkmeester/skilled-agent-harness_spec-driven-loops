@@ -1,0 +1,22 @@
+Changed the requested block in [prompt-policy.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:228).
+
+```ts
+const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/gi;
+
+// The last marker wins: a pasted reply can hold its own "Task:" line, and cutting there
+// would keep the reply's skill names in the scored text.
+function stripPastedReplyOnce(prompt: string): string {
+  if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
+  const markers = [...prompt.matchAll(TASK_MARKER)];
+  const marker = markers[markers.length - 1];
+  if (!marker) return prompt;
+  const task = prompt.slice((marker.index ?? 0) + marker[0].length).trim();
+  return task.length > 0 ? task : prompt;
+}
+```
+
+The supplied original block matched the file; no mismatch. `rg -n 'matchAll\(TASK_MARKER\)|/gi;' ...` printed the two expected lines and exited 0. `git diff --check` passed. Tests, typecheck, and build were not run per the task instructions; the conductor runs them.
+
+The worktree was already dirty, including a prior `PASTED_REPLY_CUE` change in this file. I left it and the other existing changes untouched. No commit or push was made.
+
+The conductor’s remaining action is to run the full suite.

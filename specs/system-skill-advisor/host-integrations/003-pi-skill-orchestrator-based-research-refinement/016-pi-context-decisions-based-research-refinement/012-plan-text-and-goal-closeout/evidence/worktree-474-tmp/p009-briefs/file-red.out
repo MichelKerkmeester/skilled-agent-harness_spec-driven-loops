@@ -1,0 +1,164 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime
+
+ ❯ tests/hooks/claude-user-prompt-submit-hook.vitest.ts (49 tests | 7 failed) 109ms
+     × keeps the setup hint when the hook throws on a setup prompt 4ms
+     × keeps the skipped fallback when the hook throws on a skipped prompt 1ms
+     × drops the repeated directive block on a second crashing turn 1ms
+     × commits the crash fallback receipt only after the output handoff 1ms
+     × records the crash fallback policy once under the runtime 0ms
+     × returns the outage fallback when the clock throws 0ms
+     × keeps a disabled hook and an invalid payload silent when the clock throws 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hooks/claude-user-prompt-submit-hook.vitest.ts > Claude UserPromptSubmit advisor hook > keeps the setup hint when the hook throws on a setup prompt
+AssertionError: expected { hookSpecificOutput: { …(2) } } to deeply equal { hookSpecificOutput: { …(2) } }
+
+- Expected
++ Received
+
+  {
+    "hookSpecificOutput": {
+-     "additionalContext": "Advisor: outage (fail_open); for setup or health checks, run /doctor:setup; route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"<request>\"}' --format json
++     "additionalContext": "Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"<request>\"}' --format json
+  Directives:
+  - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.",
+      "hookEventName": "UserPromptSubmit",
+    },
+  }
+
+ ❯ tests/hooks/claude-user-prompt-submit-hook.vitest.ts:864:30
+    862|
+    863|     expect(JSON.stringify(timeoutPath.output)).toContain('/doctor:setu…
+    864|     expect(crashPath.output).toEqual(timeoutPath.output);
+       |                              ^
+    865|   });
+    866|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/hooks/claude-user-prompt-submit-hook.vitest.ts > Claude UserPromptSubmit advisor hook > keeps the skipped fallback when the hook throws on a skipped prompt
+AssertionError: expected { hookSpecificOutput: { …(2) } } to deeply equal { hookSpecificOutput: { …(2) } }
+
+- Expected
++ Received
+
+  {
+    "hookSpecificOutput": {
+-     "additionalContext": "Advisor: prompt skipped.
++     "additionalContext": "Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"<request>\"}' --format json
+  Directives:
+  - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.",
+      "hookEventName": "UserPromptSubmit",
+    },
+  }
+
+ ❯ tests/hooks/claude-user-prompt-submit-hook.vitest.ts:875:20
+    873|     }, fixture('livePassingSkill.json'), new InMemoryDirectiveLifecycl…
+    874|
+    875|     expect(output).toEqual({
+       |                    ^
+    876|       hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additio…
+    877|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/hooks/claude-user-prompt-submit-hook.vitest.ts > Claude UserPromptSubmit advisor hook > drops the repeated directive block on a second crashing turn
+AssertionError: expected { hookSpecificOutput: { …(2) } } to deeply equal { hookSpecificOutput: { …(2) } }
+
+- Expected
++ Received
+
+  {
+    "hookSpecificOutput": {
+-     "additionalContext": "Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"<request>\"}' --format json",
++     "additionalContext": "Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"<request>\"}' --format json
++ Directives:
++ - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.",
+      "hookEventName": "UserPromptSubmit",
+    },
+  }
+
+ ❯ tests/hooks/claude-user-prompt-submit-hook.vitest.ts:900:27
+    898|       hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additio…
+    899|     });
+    900|     expect(second.output).toEqual({
+       |                           ^
+    901|       hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additio…
+    902|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/hooks/claude-user-prompt-submit-hook.vitest.ts > Claude UserPromptSubmit advisor hook > commits the crash fallback receipt only after the output handoff
+AssertionError: expected { hookSpecificOutput: { …(2) } } to deeply equal { hookSpecificOutput: { …(2) } }
+
+- Expected
++ Received
+
+  {
+    "hookSpecificOutput": {
+-     "additionalContext": "Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"<request>\"}' --format json",
++     "additionalContext": "Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"<request>\"}' --format json
++ Directives:
++ - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.",
+      "hookEventName": "UserPromptSubmit",
+    },
+  }
+
+ ❯ tests/hooks/claude-user-prompt-submit-hook.vitest.ts:934:32
+    932|       cwd: '/workspace/project',
+    933|     }, fixture('livePassingSkill.json'), store, true, throwingRender);
+    934|     expect(afterCommit.output).toEqual({
+       |                                ^
+    935|       hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additio…
+    936|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/hooks/claude-user-prompt-submit-hook.vitest.ts > Claude UserPromptSubmit advisor hook > records the crash fallback policy once under the runtime
+AssertionError: expected 0 to be greater than 0
+ ❯ tests/hooks/claude-user-prompt-submit-hook.vitest.ts:988:33
+    986|     const timeoutRecords = getPolicyObservationRecords();
+    987|
+    988|     expect(crashRecords.length).toBeGreaterThan(0);
+       |                                 ^
+    989|     expect(crashRecords.length).toBe(timeoutRecords.length);
+    990|     expect(crashRecords.every((record) => record.binding.runtime === '…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/hooks/claude-user-prompt-submit-hook.vitest.ts > Claude UserPromptSubmit advisor hook > returns the outage fallback when the clock throws
+Error: clock
+ ❯ Object.throwingClock [as now] tests/hooks/claude-user-prompt-submit-hook.vitest.ts:51:9
+     49|
+     50| const throwingClock = (): number => {
+     51|   throw new Error('clock');
+       |         ^
+     52| };
+     53|
+ ❯ handleClaudeUserPromptSubmit ../hooks/claude/user-prompt-submit.ts:313:34
+ ❯ tests/hooks/claude-user-prompt-submit-hook.vitest.ts:994:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  tests/hooks/claude-user-prompt-submit-hook.vitest.ts > Claude UserPromptSubmit advisor hook > keeps a disabled hook and an invalid payload silent when the clock throws
+Error: clock
+ ❯ Object.throwingClock [as now] tests/hooks/claude-user-prompt-submit-hook.vitest.ts:51:9
+     49|
+     50| const throwingClock = (): number => {
+     51|   throw new Error('clock');
+       |         ^
+     52| };
+     53|
+ ❯ handleClaudeUserPromptSubmit ../hooks/claude/user-prompt-submit.ts:313:34
+ ❯ tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1020:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 42 passed (49)
+   Start at  19:14:01
+   Duration  473ms (transform 186ms, setup 17ms, import 270ms, tests 109ms, environment 0ms)
+

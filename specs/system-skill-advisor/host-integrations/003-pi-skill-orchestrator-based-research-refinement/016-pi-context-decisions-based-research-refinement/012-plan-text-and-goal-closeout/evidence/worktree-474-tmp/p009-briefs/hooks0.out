@@ -1,0 +1,9 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime
+
+
+ Test Files  19 passed (19)
+      Tests  235 passed (235)
+   Start at  19:13:10
+   Duration  46.27s (transform 670ms, setup 81ms, import 930ms, tests 44.13s, environment 1ms)
+

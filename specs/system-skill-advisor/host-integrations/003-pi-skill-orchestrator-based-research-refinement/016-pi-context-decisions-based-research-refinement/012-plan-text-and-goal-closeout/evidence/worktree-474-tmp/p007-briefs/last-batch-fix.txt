@@ -1,0 +1,19 @@
+Implemented the literal replacement in [skill_advisor.py](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5321).
+
+```python
+    for prompt in prompts:
+        # JavaScript's trim set, not Python's: str.strip() also drops
+        # U+001C to U+001F and U+0085, which would expose a pasted reply
+        # that the native scorer keeps.
+        trimmed = prompt.strip(_JS_SPACE_CHARS)
+        if not trimmed:
+            continue
+```
+
+Acceptance checks: the new-line count printed `1`; the old-line count printed `0`; `py_compile` passed using a temporary writable cache. The plain compile attempt first hit a permission error writing to the default cache under `~/Library/Caches`. Strict spec validation returned `RESULT: PASSED`, and `git diff --check` passed.
+
+**Mismatch:** None. The old block matched, and `_JS_SPACE_CHARS` was already defined.
+
+This turn changed only the requested file. The workspace also shows five modified test and fixture files that I did not touch; the target file had other pasted-reply changes already present when I inspected it. REPO RULES: no edit-specific trigger matched; evidence, debugging, and blast-radius rules were loaded for verification and close-out. SKILL ROUTING: user directed → `sk-code`; Python implementation guidance loaded.
+
+No follow-up is needed.

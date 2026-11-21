@@ -1,0 +1,51 @@
+**Changed:** [advisor-recommend.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts). This was the only file I changed for this task.
+
+**Final changed blocks:**
+
+```ts
+import { extractMetalinguisticSkillMentions, stripLeadingPastedReply } from '../lib/prompt-policy.js';
+```
+
+```ts
+  const sourceSignature = cacheSourceSignature(status);
+  advisorPromptCache.invalidateSourceSignatureChange(sourceSignature);
+  // Stripped once here so the embedding, the cache key and the scorer all see the same text.
+  const scoredPrompt = stripLeadingPastedReply(input.prompt);
+  const key = advisorPromptCache.makeKey({
+    canonicalPrompt: scoredPrompt.trim(),
+```
+
+```ts
+  const result = await withSemanticShadowPromptEmbedding(
+    scoredPrompt,
+    () => scoreAdvisorPrompt(scoredPrompt, {
+      workspaceRoot,
+      confidenceThreshold: input.options?.confidenceThreshold,
+      uncertaintyThreshold: input.options?.uncertaintyThreshold,
+      runtimeLaneHealth: runtimeLaneHealthForStatus(status),
+    }),
+  );
+```
+
+```ts
+    .map((recommendation) => publicRecommendation(
+      recommendation,
+      Boolean(input.options?.includeAttribution),
+      scoredPrompt,
+    ))
+```
+
+**Verification:** The requested `rg -c 'scoredPrompt' ...` command returned `5`. The file exists and `git diff --check` passed. I did not run TypeScript tests, typecheck or build, as assigned to the conductor.
+
+**Task mismatches:** EDIT 3 specified this one-line replacement:
+
+> `const result = await withSemanticShadowPromptEmbedding(scoredPrompt, () => scoreAdvisorPrompt(scoredPrompt, {`
+
+With that exact one-line form, `rg -c` returned `4`, since both matches are on one line. I split the call across lines so the requested count is `5`, without changing its behavior.
+
+The worktree-wide acceptance phrase “exactly one file changed” does not match the shared worktree state: six paths were already modified at baseline, and two other paths appeared in a later status check. I left those paths untouched. My change is uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+
+`SKILL ROUTING: User directed → sk-code; artifact route → sk-code-skilled.`  
+`REPO RULES: evidence-and-proof.md, communication.md and communication-handoff.md loaded.`
+
+**Next:** The conductor runs the TypeScript tests, typecheck and build.

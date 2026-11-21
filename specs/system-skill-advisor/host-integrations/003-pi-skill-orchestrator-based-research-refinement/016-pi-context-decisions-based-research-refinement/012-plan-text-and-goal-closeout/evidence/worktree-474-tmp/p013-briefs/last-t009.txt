@@ -1,0 +1,14 @@
+Updated [paired-arm.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/paired-arm.sh:4). `sed -n 4p` printed `set -uo pipefail`, and `bash -n` exited 0. I did not execute the probe.
+
+```bash
+# Scores a two-line run log whose arms are `zzz` and `paired` (both unloadable, so
+# unscored) and prints the text summary and the JSON arm keys. Usage: paired-arm.sh <tmpdir>
+set -uo pipefail
+S=/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+```
+
+Task mismatches: none. Both quoted anchors matched.
+
+The edit is uncommitted on branch `worktrees/474-advisor-context-and-crash-fallback`. Workspace status also lists six sibling probes as modified; this leaf changed only `paired-arm.sh`. The phase-wide drift-guard gate remains for the conductor.
+
+Routing: user specified `sk-code`, and the compiled route selected `sk-code-skilled/SHELL`. `/doctor:sk-code setup` declined.

@@ -1,0 +1,28 @@
+Inserted the requested `FOLLOW_UP_PAIRS` array in [scorer-calibration.bench.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts). The `rg -c 'fix that too' .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts` acceptance check printed `2` and exited 0.
+
+```ts
+// A session task, then a short follow-up that names no skill. The task's own
+// top-1 is the reference, so no gold label is needed. Negative controls carry
+// no task verb in the follow-up; the last pair repeats the first follow-up
+// behind a pasted reply that names skills.
+const FOLLOW_UP_PAIRS: readonly { readonly task: string; readonly followUp: string; readonly negativeControl: boolean }[] = [
+  { task: 'Update the advisor README to document the new corpus file layout', followUp: 'fix that too', negativeControl: false },
+  { task: 'Commit the staged changes and open a pull request on github', followUp: 'do the same for the other branch', negativeControl: true },
+  { task: 'Create a spec folder for the new routing benchmark work', followUp: 'add one more task there', negativeControl: false },
+  { task: 'Design a pricing card component with a dark theme', followUp: 'make it a bit tighter', negativeControl: true },
+  { task: 'Search Notion for the onboarding checklist page', followUp: 'update it again with the new name', negativeControl: false },
+  { task: 'Run a deep review of the advisor hook changes', followUp: 'now fix the remaining ones', negativeControl: false },
+  { task: 'Write a changelog entry for the last release', followUp: 'apply that change to the second file as well', negativeControl: false },
+  { task: 'Refactor the session store module to remove duplicated locking code', followUp: 'add tests for it as well', negativeControl: false },
+  { task: 'Update the advisor README to document the new corpus file layout', followUp: 'Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: fix that too', negativeControl: false },
+];
+```
+
+The requested anchor matched the file:
+
+- TASK: `// The policy reason a prompt with task intent and enough content words gets.` and `const WORK_INTENT_REASON = 'work_intent_with_meaningful_tokens';`
+- File: the same two lines were present before insertion.
+
+No task/file mismatches. Routing used your direction: `sk-code` for the TypeScript edit. The repository proof, communication and handoff rules were loaded.
+
+The branch is `worktrees/474-advisor-pasted-context-and-crash-fallback`. This edit is uncommitted and unpushed. The worktree has other modified files and additional diff hunks in the target file; I applied only the requested array, but I did not capture an initial status to verify when those other changes appeared. TypeScript, test and build checks were not run here per RUN CONTEXT. The conductor still needs to run those gates.

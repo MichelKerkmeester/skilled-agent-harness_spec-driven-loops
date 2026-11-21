@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p011-briefs/route-receipt.v4.ts .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts
+Starting from the additive-words change already on disk, the prepared file makes ownedFolder also require that the base and receipt folders belong to the current user and grant no group or other permission bits. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p011-briefs/route-receipt.v4.ts .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts` exits 0.

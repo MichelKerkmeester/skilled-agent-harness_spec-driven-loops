@@ -1,0 +1,4 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts)
+Replace this file's whole content with the prepared file tmp/p009-briefs/ups.v3.ts by running exactly: cp tmp/p009-briefs/ups.v3.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+The prepared file rewrites the outer catch of handleClaudeUserPromptSubmit so a crash renders the turn's own fallback (skipped or outage, with its setup wording and delivery state), runs it through applyDirectiveLifecycle and returns it through finishAdvisorDelivery, all inside a nested try whose last resort is {}. Read the resulting diff and report in HANDBACK anything in the added code that could throw outside a try or change the normal path's behavior. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p009-briefs/ups.v3.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` exits 0.

@@ -1,0 +1,49 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity
+(Spec folder: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity (pre-approved, skip Gate 3). Write no spec docs; edit only the file in TASK.)
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command in ACCEPT has been run.
+
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py)
+The `_JS_SPACE_CHARS` string literal (just above `def analyze_request`) and the comment line about case folding currently contain raw invisible Unicode characters. They must instead contain ASCII backslash escape sequences, so the source file holds only ASCII in these lines.
+
+Rewrite these lines so that the FILE BYTES are exactly the ASCII text below (a backslash followed by `u00a0` etc., not the decoded character). Use a Python script that writes the literal backslashes, for example by reading the file, locating the `_JS_SPACE_CHARS = (` block and the comment line `# the u flag does. Unicode folding would read`, and replacing them with the text below:
+
+_JS_SPACE_CHARS = (
+    "\t\n\v\f\r          "
+    "        　﻿"
+)
+
+and
+
+# the u flag does. Unicode folding would read "ſ" as "s".
+
+Change nothing else in the file.
+ACCEPT: `grep -c 'u00a0\\u1680' .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` prints 1, `grep -c 'read "\\u017f"' .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` prints 1, and `python3 -c "import re,sys; t=open(sys.argv[1],encoding='utf-8').read(); i=t.index('_JS_SPACE_CHARS = ('); j=t.index('def analyze_request'); print(all(ord(c)<128 for c in t[i:j]))" .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` prints True.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

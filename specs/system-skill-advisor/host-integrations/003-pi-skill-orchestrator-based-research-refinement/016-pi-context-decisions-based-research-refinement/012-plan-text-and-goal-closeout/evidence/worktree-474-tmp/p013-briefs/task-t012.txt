@@ -1,0 +1,6 @@
+TASK (1 file: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-5/probes/arena-provenance.sh)
+This is an archived review probe. Never run it. Edit only its top lines as below.
+Make exactly one one-line replacement and change nothing else.
+Replace line 6, exactly `set -u`, with `set -uo pipefail`.
+If a quoted line does not match the file, change nothing and report both texts.
+ACCEPT on that file: `sed -n 6p` prints `set -uo pipefail` and `bash -n` exits 0.

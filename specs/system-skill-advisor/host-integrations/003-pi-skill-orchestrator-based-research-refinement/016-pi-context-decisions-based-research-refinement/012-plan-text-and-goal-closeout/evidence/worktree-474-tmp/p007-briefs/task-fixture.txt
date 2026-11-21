@@ -1,0 +1,6 @@
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json)
+Replace the whole file with a byte-for-byte copy of tmp/p007-briefs/fixture.json:
+`cp tmp/p007-briefs/fixture.json .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json`
+The copy only appends six rows at the end of "cases". Do not reformat it.
+ACCEPT: `cmp tmp/p007-briefs/fixture.json .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json && echo SAME` prints SAME.

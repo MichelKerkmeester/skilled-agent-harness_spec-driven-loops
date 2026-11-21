@@ -1,0 +1,24 @@
+**The requested copy is in place, and the required `cmp` exits 0. I found a separate conflict with the packet’s frozen scope, so packet-level completion is unresolved.**
+
+**LOGIC-SYNC REQUIRED:** The task says, “Replace this file’s whole content with the prepared file.” The packet’s [`spec.md`](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/012-plan-text-and-goal-closeout/spec.md) §3 says code changes are allowed only for a D6-confirmed review finding listed in “Files to Change.” This task names no such finding, and the target is not listed. Gate 3 remains resolved as you specified. The scope decision is pending.
+
+Changed file: [skill-advisor-cli-fallback.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts).
+
+Final text of the changed blocks:
+
+```ts
+import { stripLeadingPastedReply } from '../../runtime/lib/prompt-policy.js';
+```
+
+```ts
+    // The CLI refuses a longer prompt, so a longer one is sent as its head. A
+    // pasted earlier reply is dropped first, or a long paste would push the task
+    // past the cut and the CLI would route the paste alone.
+    prompt: stripLeadingPastedReply(args.prompt).slice(0, ADVISOR_PROMPT_MAX_CHARS),
+```
+
+No part of the resulting diff falls outside the task’s description. The `cmp` exited 0, `git diff --check` exited 0, and the drift guards exited 0 with 46 non-blocking warnings. I did not run tests, typecheck, or build, as assigned to the conductor.
+
+The target is modified and uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`. The worktree lists other modified files that I did not write; their origin is unverified. I should have halted when I read the packet scope, but I ran the drift guard afterward. No further file changes were made.
+
+Please resolve the pending scope question: treat this as a D6-confirmed finding and keep the replacement, or let the frozen spec scope prevail and restore the target.

@@ -1,0 +1,31 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts)
+Make exactly four edits in this file and change nothing else. Copy the two block files byte for byte with a short Python script that reads them and splices them in. Do not retype them.
+
+Edit 1. In function runHookWithStore, old lines (exact, 2 spaces):
+  deferDirectiveReceipt = false,
+) {
+New lines:
+  deferDirectiveReceipt = false,
+  renderBrief: typeof renderAdvisorBrief = renderAdvisorBrief,
+) {
+
+Edit 2. In the same function, old lines (exact):
+  const output = await handleClaudeUserPromptSubmit(effectiveInput, {
+    buildCliBrief,
+    renderBrief: renderAdvisorBrief,
+New lines:
+  const output = await handleClaudeUserPromptSubmit(effectiveInput, {
+    buildCliBrief,
+    renderBrief,
+
+Edit 3. Directly after the closing brace line of function fixture (the function that reads the fixtures directory and returns an AdvisorHookResult), insert the exact contents of tmp/p009-briefs/helpers.ts.txt (it starts with a blank line).
+
+Edit 4. The file ends with:
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+});
+Insert the exact contents of tmp/p009-briefs/crash-tests.ts.txt (it starts with a blank line) between the `  });` that closes the last test and the final `});` that closes the describe block.
+
+ACCEPT: `grep -c "throwingRender" .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` prints 9, `grep -c "throwingClock" .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` prints 3, `grep -c "renderBrief: typeof renderAdvisorBrief = renderAdvisorBrief" .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` prints 1, and `tail -1 .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` prints `});`.

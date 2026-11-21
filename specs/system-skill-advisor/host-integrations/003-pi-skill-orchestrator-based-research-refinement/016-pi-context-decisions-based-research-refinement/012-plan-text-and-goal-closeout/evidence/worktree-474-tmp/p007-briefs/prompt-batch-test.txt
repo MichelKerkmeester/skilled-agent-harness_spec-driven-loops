@@ -1,0 +1,73 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity
+(Spec folder: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity (pre-approved, skip Gate 3). Write no spec docs; edit only the file in TASK.)
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command in ACCEPT has been run.
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py)
+Make exactly one literal insertion in this file and change nothing else. The inserted bytes must stay ASCII: write the two-character escape sequences `\x1c` and `\x85` as a backslash followed by letters and digits inside Python string literals, never as the decoded control characters.
+
+Anchor (exact existing text, the last two lines of function test_pasted_reply_strip_parity, indentation 4 and 8 spaces):
+    else:
+        fail_test(name, f"pasted={pasted[:3]} bare={bare[:3]}")
+
+Insert directly after that anchor, keeping the blank lines that already follow it before `def main():`, this block (a blank line first, indentation as shown, 4 spaces per level):
+
+    # Batch mode trims each prompt before scoring. It must trim JavaScript's
+    # whitespace set, or a control character the native scorer keeps would
+    # expose a pasted reply that the native scorer leaves in place.
+    for label, lead in (("U+001C", "\x1c"), ("U+0085", "\x85")):
+        name = f"STRIP-BATCH: analyze_batch keeps a {label}-led pasted reply as native does"
+        raw = lead + probe["input"]
+        try:
+            batch = advisor.analyze_batch(
+                prompts=[raw],
+                confidence_threshold=0.8,
+                uncertainty_threshold=0.35,
+                confidence_only=False,
+                show_rejections=False,
+            )
+            single = advisor.analyze_prompt(
+                prompt=raw,
+                confidence_threshold=0.8,
+                uncertainty_threshold=0.35,
+                confidence_only=False,
+                show_rejections=False,
+            )
+        except Exception as exc:
+            fail_test(name, str(exc))
+            continue
+        batch_top = [r["skill"] for r in batch[0]["recommendations"]][:1] if batch else []
+        single_top = [r["skill"] for r in single][:1]
+        if batch and batch[0]["prompt"] == raw and batch_top == single_top:
+            ok(name, f"top={batch_top}")
+        else:
+            fail_test(name, f"batch={batch_top} single={single_top}")
+
+ACCEPT: `grep -c 'STRIP-BATCH' .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` prints 1, `grep -c '"\\x1c"' .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` prints 1, `python3 -c "import sys; d=open(sys.argv[1],'rb').read(); print(d.count(b'\\x1c'), d.count(bytes([28])), d.count(bytes([0xc2,0x85])))" .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` prints `1 0 0`, and `python3 -m py_compile .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` exits 0.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

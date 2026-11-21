@@ -1,0 +1,15 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts)
+Make exactly one edit in function publicRecommendation and change nothing else.
+Old lines (exact, about line 284-286):
+    // Hook briefs re-derive ambiguity from the public list, so a skill the typed
+    // command already ranked below its seed has to say so here.
+    ...(heldBelow ? { heldBelow } : {}),
+New lines:
+    // Hook briefs re-derive ambiguity from the public list, so a skill the typed
+    // command already ranked below its seed has to say so here.
+    ...(heldBelow ? { heldBelow } : {}),
+    // A hook holds back a floored route against the session's earlier one, so
+    // the floor has to survive into the public list.
+    ...(recommendation.confidenceFloored === true ? { confidenceFloored: true as const } : {}),
+The old text must match exactly once in the file; if not, change nothing and report it.
+ACCEPT: `grep -c "recommendation.confidenceFloored === true ? { confidenceFloored: true as const }" .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` prints 1.

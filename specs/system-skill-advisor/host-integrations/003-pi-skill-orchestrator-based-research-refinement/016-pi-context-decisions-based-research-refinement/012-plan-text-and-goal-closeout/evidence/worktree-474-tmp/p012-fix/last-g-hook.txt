@@ -1,0 +1,26 @@
+`cp` exited 0, and the acceptance `cmp` exited 0. The target matches the prepared file byte-for-byte.
+
+**File written:** [.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts)
+
+**Added block:**
+
+```ts
+    it('clears a held receipt when a degraded turn shows another skill', async () => {
+      const stores = freshStores();
+      await receiptTurn(README_TASK, docsRoute(), stores);
+      const degraded = routedResult('sk-code', 0.9, false);
+      await receiptTurn(REFACTOR_TASK, { ...degraded, metrics: { ...degraded.metrics, degraded: true } }, stores);
+      expect(stores.receipts.read('receipt-session')).toBeNull();
+      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores)).toContain('use sk-code');
+    });
+```
+
+The prepared-file diff against the starting target contained only that test, matching the TASK description: “a degraded turn that shows another skill clears the held route receipt, and the next floored weak follow-up delivers.”
+
+The final Git diff against `HEAD` also shows earlier changes that were already present before the copy: the `userPromptSubmitHook` import, directive lifecycle environment cleanup, other route receipt tests, and the crash path/output handoff tests. For example, it includes `it('delivers a weak follow-up on the topic a floored turn moved the session to', ...)` and `describe('crash path and output handoff', ...)`. These are outside the one-test description, but were in the starting target’s diff.
+
+Vitest, typecheck and build were not run; the conductor owns those checks. The worktree is dirty on `worktrees/474-advisor-pasted-context-and-crash-fallback`, with other modified paths outside this task left untouched.
+
+`REPO RULES`: `blast-radius.md` and `evidence-and-proof.md`. `SKILL ROUTING`: user specified `sk-code`; the compiled route resolved to `sk-code-skilled` / TypeScript.
+
+Next action: the conductor runs the deferred checks.

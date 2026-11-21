@@ -1,0 +1,40 @@
+The prepared file is copied exactly and the required `cmp` exits 0. I can’t claim overall completion: strict spec validation and the system code drift guard both failed, and the DSH test was not run in this sandbox.
+
+**File written:** [dsh-prompt-advisor.test.mjs](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs)
+
+**Changed blocks:**
+
+```js
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+```
+
+```js
+test('route receipts: advanceBoundary moves only the named session clock in the real lifecycle store', async () => {
+  const { advanceBoundary } = await import('../dsh/prompt-advisor.mjs');
+  const lifecycle = await import('../../runtime/dist/hooks/lib/directive-lifecycle.js');
+  const { FileDirectiveLifecycleStore } = await import('../../runtime/dist/hooks/lib/directive-lifecycle-file-store.js');
+  const base = mkdtempSync(join(tmpdir(), 'dsh-boundary-'));
+  try {
+    const store = new FileDirectiveLifecycleStore({ baseDir: base });
+    const load = async () => ({ ...lifecycle, defaultDirectiveLifecycleStore: () => store });
+    const named = store.clock('session-1');
+    const other = store.clock('session-2');
+    assert.ok(named && other);
+    assert.equal(await advanceBoundary('session-1', load), true);
+    const rotated = store.clock('session-1');
+    assert.notEqual(rotated.lifecycleEpoch, named.lifecycleEpoch);
+    assert.equal(rotated.storeGeneration, named.storeGeneration);
+    assert.deepEqual(store.clock('session-2'), other);
+  } finally {
+    rmSync(base, { recursive: true, force: true });
+  }
+});
+```
+
+**Diff note:** TASK says, “The prepared file adds a test that runs advanceBoundary against the real file lifecycle store and checks only the named session's clock moves.” The delta from the pre-copy file matches that description. The Git diff against `HEAD` also shows four route-receipt tests already present before the copy: “a session start and a clean compaction,” “a failed compaction,” “a rotation failure,” and the mocked “advanceBoundary rotates only a named session” test. They were preserved from the prepared file, not added by this copy.
+
+**Checks:** `cmp` and `git diff --check` exited 0. The quality gate reported `NO_BLOCKER_FOUND` with zero P0 blockers. Strict spec validation returned `RESULT: FAILED` with `SOURCE_FINGERPRINT_MISMATCH` and a stale generated description; I left spec files untouched as required. The drift guard exited 1 with 11 errors and 46 warnings outside the target file. Build and tests were not run; the conductor is responsible for them.
+
+The working tree is dirty on `worktrees/474-advisor-pasted-context-and-crash-fallback`; other modified and untracked paths remain untouched. The conductor’s next step is to run the build and DSH test. The spec metadata and global drift failures need separate follow-up.

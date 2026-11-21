@@ -1,0 +1,15 @@
+Changed [.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:382).
+
+**Final changed line:**
+
+```md
+| `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` | `0.8` | number (0..1) | Override the confidence threshold used by the 5-lane fusion scorer. Below this value, a recommendation is filtered out, and `confidenceOnly` mode skips only the uncertainty check. Parsed as a float. Values outside [0,1] fall back to the default. The value is read once when the daemon starts, so a later change has no effect until a restart; the per-request `confidenceThreshold` option of `advisor_recommend` is the supported override, and hook briefs always send `confidenceThreshold` 0.8, so the variable never reaches them. | `runtime/lib/compat/contract.ts` |
+```
+
+**Task mismatch:** None. The specified old sentence was present on line 382 and replaced exactly. The daemon sentence and rest of the row remain intact.
+
+The acceptance checks printed `0` for the old phrase, `382` for both required phrases, and `1 1` for the scoped diff. The old-phrase `grep` exited 1 because it found no matches, as expected. No test suites were run.
+
+The change is uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`. Two other modified paths appear in the worktree; I left them untouched. Nothing is blocked on you.
+
+**Skill routing:** User specified → `sk-code`. The `sk-doc` router deferred; no authoring workflow matched this exact in-place correction.

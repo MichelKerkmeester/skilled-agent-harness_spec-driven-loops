@@ -1,0 +1,22 @@
+I made the requested replacement in [advisor-corpus-parity.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts).
+
+```ts
+      // The Python fallback now also answers rr-iter3-076 correctly.
+      // 117 -> 118 and 112 -> 113: the Python reference now drops a pasted
+      // earlier reply before scoring, as the native scorer does, so the
+      // pasted-reply row reaches its gold on both.
+      expect(pythonCorrect).toBe(118);
+      expect(hookPreservedPythonCorrect).toBe(113);
+```
+
+The supplied acceptance checks passed: each `grep -c` printed `1`, and `git diff --numstat` printed `5  2`. The file-scoped quality gate returned `NO_BLOCKER_FOUND`; strict packet validation printed `RESULT: PASSED`.
+
+The full SKILLED drift wrapper exited `1`: alignment drift reported 11 errors and 46 warnings in other files. Its other three guards passed. I left those findings untouched because the task restricts edits to one file. Vitest, typecheck, and build were not run; the task assigns them to the conductor.
+
+**Task/file mismatch:** None. The supplied old block matched the file verbatim.
+
+The worktree is uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`. Status also showed five other modified files that I did not edit; their pre-edit state is unknown. Overall workspace verification remains blocked by the drift-wrapper failure.
+
+**Routing:** User-directed `sk-code`, resolved to `sk-code-skilled`. Loaded repo rules: `evidence-and-proof.md`, `communication.md`, and `communication-handoff.md`.
+
+Conductor: run the package checks and triage the out-of-scope drift findings.

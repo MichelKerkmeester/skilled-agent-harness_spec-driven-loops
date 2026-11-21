@@ -1,0 +1,1 @@
+Read the first line of the file /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts and reply with that line verbatim and nothing else. Write no file.

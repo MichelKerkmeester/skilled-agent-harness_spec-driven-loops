@@ -1,0 +1,24 @@
+Both task acceptance commands pass. The two requested edits are in place, though the repository’s strict spec validation still fails on metadata outside the two-file scope.
+
+- [pasted-reply-strip-cases.json](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json)
+
+  ```json
+  {
+    "id": "two-markers-in-user-task",
+    "input": "Earlier you replied: Done. Task: Refactor the session store module. Now: also update its tests.",
+    "expected": "also update its tests.",
+    "ideal": "Refactor the session store module. Now: also update its tests."
+  }
+  ```
+
+- [README.md](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md)
+
+  ```markdown
+  | `pasted-reply-strip-cases.json` | Pasted-reply inputs and the text the strip rule must leave for scoring. Read by `legacy/advisor-prompt-policy.vitest.ts`. A row with an `ideal` field is a known miss of the shipped rule. |
+  ```
+
+`ACCEPT` passed with `17 [ 'two-markers-in-user-task' ]` and `2`, both exit 0. `git diff --check` also passed. The README’s directory-tree entry for this fixture was already present in the working file before my edit; I left it unchanged. No requested anchors or content mismatched.
+
+Strict spec validation returned `RESULT: FAILED` (exit 2), citing a generated source-fingerprint mismatch and description drift in the [spec folder’s metadata](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges/graph-metadata.json). I did not edit spec files. TypeScript, Vitest, typecheck and build remain for the conductor as instructed.
+
+The worktree is dirty on `worktrees/474-advisor-pasted-context-and-crash-fallback`; I made no commit. The outstanding item is resolving that separate metadata validation failure outside this task’s scope.

@@ -1,0 +1,194 @@
+diff --git a/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts b/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
+index f236982e1c8..e3a035c93f8 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
+@@ -222,14 +222,19 @@ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
+   };
+ }
+ 
+-const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)\s*:|["“>])/i;
+-const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/i;
++// A quote mark or `>` only shows that text is quoted, not that the assistant wrote it,
++// so a cue needs an attribution header such as "You said:" or "Assistant response:".
++const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)|(?:the\s+)?(?:assistant|claude)\s+(?:response|reply|answer))\s*:/i;
++const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/gi;
+ 
++// The last marker wins: a pasted reply can hold its own "Task:" line, and cutting there
++// would keep the reply's skill names in the scored text.
+ function stripPastedReplyOnce(prompt: string): string {
+   if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
+-  const marker = TASK_MARKER.exec(prompt);
++  const markers = [...prompt.matchAll(TASK_MARKER)];
++  const marker = markers[markers.length - 1];
+   if (!marker) return prompt;
+-  const task = prompt.slice(marker.index + marker[0].length).trim();
++  const task = prompt.slice((marker.index ?? 0) + marker[0].length).trim();
+   return task.length > 0 ? task : prompt;
+ }
+ 
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md b/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md
+index f43a85d3492..d9dcb5ee43d 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md
+@@ -33,6 +33,7 @@ fixtures/
+ |   `-- index.ts                          # Lifecycle metadata fixture exports
+ +-- affordance-injection-fixtures.json    # Injection, benign and privacy phrases
+ +-- errors.ts                             # MemoryError and buildErrorResponse
+++-- pasted-reply-strip-cases.json         # Pasted-reply strip inputs and outputs
+ +-- skill-graph-db.ts                     # writeGraphMetadata helper
+ `-- README.md
+ ```
+@@ -45,6 +46,7 @@ fixtures/
+ |---|---|
+ | `lifecycle/index.ts` | Exports `lifecycleFixtures` for redirect, archive, future and version-mix scenarios. |
+ | `affordance-injection-fixtures.json` | Injection phrases that must be dropped, benign phrases that must survive normalization, and privacy phrases. Read by `affordance-normalizer.test.ts` and `python/test_skill_advisor.py`, so both sanitizers stay row-for-row identical. |
++| `pasted-reply-strip-cases.json` | Pasted-reply inputs and the text the strip rule must leave for scoring. Read by `legacy/advisor-prompt-policy.vitest.ts`. A row with an `ideal` field is a known miss of the shipped rule. |
+ | `errors.ts` | `MemoryError` (a named error with a `code` and `context`) and `buildErrorResponse(toolName, error, input)`, which redacts the raw prompt out of the message, context and echoed input. Used by `handlers/advisor-recommend.vitest.ts`. |
+ | `skill-graph-db.ts` | `writeGraphMetadata()`, which writes skill graph metadata files for tests that build a graph database. |
+ 
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts b/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts
+index 7928901096c..6ef018e014e 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts
+@@ -3,11 +3,30 @@
+ // ───────────────────────────────────────────────────────────────
+ 
+ import { describe, expect, it } from 'vitest';
++import { readFileSync } from 'node:fs';
++import { dirname, resolve } from 'node:path';
++import { fileURLToPath } from 'node:url';
+ import {
+   extractMetalinguisticSkillMentions,
+   shouldFireAdvisor,
++  stripLeadingPastedReply,
+ } from '../../lib/prompt-policy.js';
+ 
++interface PastedReplyStripCase {
++  readonly id: string;
++  readonly input: string;
++  readonly expected: string;
++  readonly ideal?: string;
++}
++
++// The Python advisor test reads the same file, so both scorers drop the same text.
++const PASTED_REPLY_STRIP_CASES: readonly PastedReplyStripCase[] = (JSON.parse(
++  readFileSync(
++    resolve(dirname(fileURLToPath(import.meta.url)), '../fixtures/pasted-reply-strip-cases.json'),
++    'utf8',
++  ),
++) as { cases: PastedReplyStripCase[] }).cases;
++
+ describe('skill advisor prompt policy', () => {
+   it('skips empty, whitespace, and exact navigation commands', () => {
+     expect(shouldFireAdvisor('').fire).toBe(false);
+@@ -67,3 +86,12 @@ describe('skill advisor prompt policy', () => {
+     expect(extractMetalinguisticSkillMentions(prompt)).toEqual(['sk-git']);
+   });
+ });
++
++describe('pasted reply stripping', () => {
++  it.each(PASTED_REPLY_STRIP_CASES.map((row) => [row.id, row] as const))('%s', (_id, row) => {
++    const stripped = stripLeadingPastedReply(row.input);
++    expect(stripped).toBe(row.expected);
++    // The handler and the scorer both strip, so a second pass must return the same text.
++    expect(stripLeadingPastedReply(stripped)).toBe(stripped);
++  });
++});
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json b/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json
+new file mode 100644
+index 00000000000..597dd335956
+--- /dev/null
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json
+@@ -0,0 +1,92 @@
++{
++  "$comment": "Shared pasted-reply strip cases. Read by the TypeScript prompt-policy test and the Python advisor test, so both scorers drop the same text. A row with an ideal field is a known miss of the shipped rule.",
++  "schema_version": 1,
++  "cases": [
++    {
++      "id": "probe",
++      "input": "Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: Refactor the session store module to remove duplicated locking code",
++      "expected": "Refactor the session store module to remove duplicated locking code"
++    },
++    {
++      "id": "you-said-variant",
++      "input": "You said: run the tests. Task: fix the failing parser test",
++      "expected": "fix the failing parser test"
++    },
++    {
++      "id": "nested-two-cues",
++      "input": "Earlier you replied: A. Now: You said: B. Task: fix the parser",
++      "expected": "fix the parser"
++    },
++    {
++      "id": "nested-plan",
++      "input": "Earlier you replied: You said: run the tests. Now: Refactor the session store module to remove duplicated locking code",
++      "expected": "Refactor the session store module to remove duplicated locking code"
++    },
++    {
++      "id": "plain-task",
++      "input": "Refactor the session store module to remove duplicated locking code",
++      "expected": "Refactor the session store module to remove duplicated locking code"
++    },
++    {
++      "id": "neg-cue-inside",
++      "input": "Fix the bug where the bot prints \"you said:\" twice",
++      "expected": "Fix the bug where the bot prints \"you said:\" twice"
++    },
++    {
++      "id": "neg-cue-inside-plan",
++      "input": "Fix the parser so a line with \"you said:\" in it is kept",
++      "expected": "Fix the parser so a line with \"you said:\" in it is kept"
++    },
++    {
++      "id": "neg-now-mid",
++      "input": "Update the docs. Now: also add a changelog entry",
++      "expected": "Update the docs. Now: also add a changelog entry"
++    },
++    {
++      "id": "neg-now-mid-plan",
++      "input": "Refactor the timer so the label Now: shows the current time",
++      "expected": "Refactor the timer so the label Now: shows the current time"
++    },
++    {
++      "id": "neg-no-marker",
++      "input": "Earlier you replied: done with the README",
++      "expected": "Earlier you replied: done with the README"
++    },
++    {
++      "id": "neg-no-marker-plan",
++      "input": "You said: the build is green, so commit it",
++      "expected": "You said: the build is green, so commit it"
++    },
++    {
++      "id": "quote-requirement-kept",
++      "input": "> Keep the public API backward compatible.\nTask: Refactor the session store module to remove duplicated locking code.",
++      "expected": "> Keep the public API backward compatible.\nTask: Refactor the session store module to remove duplicated locking code."
++    },
++    {
++      "id": "marker-inside-reply",
++      "input": "Earlier you replied: The report is done. Task: Create a README with sk-doc. Now: Refactor the session store module to remove duplicated locking code.",
++      "expected": "Refactor the session store module to remove duplicated locking code."
++    },
++    {
++      "id": "assistant-response-header",
++      "input": "Assistant response: I updated the README with sk-doc conventions and committed it with sk-git. Task: Refactor the session store module to remove duplicated locking code.",
++      "expected": "Refactor the session store module to remove duplicated locking code."
++    },
++    {
++      "id": "two-markers-in-user-task",
++      "input": "Earlier you replied: Done. Task: Refactor the session store module. Now: also update its tests.",
++      "expected": "also update its tests.",
++      "ideal": "Refactor the session store module. Now: also update its tests."
++    },
++    {
++      "id": "quote-led-straight",
++      "input": "\"I updated the README with sk-doc conventions.\"\nNow: Refactor the session store module to remove duplicated locking code",
++      "expected": "\"I updated the README with sk-doc conventions.\"\nNow: Refactor the session store module to remove duplicated locking code"
++    },
++    {
++      "id": "quote-led-curly",
++      "input": "\u201cI updated the README with sk-doc conventions.\u201d\nNow: Refactor the session store module to remove duplicated locking code",
++      "expected": "\u201cI updated the README with sk-doc conventions.\u201d\nNow: Refactor the session store module to remove duplicated locking code"
++    }
++  ]
++}

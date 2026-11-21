@@ -1,0 +1,27 @@
+{
+  "status": "ok",
+  "degraded": true,
+  "source": "local-scorer",
+  "data": {
+    "recommendations": [
+      {
+        "skillId": "system-spec-kit",
+        "kind": "skill",
+        "confidence": 0.95,
+        "uncertainty": 0.2,
+        "reason": "Matched: !intent:memory, context, memory, save(name)"
+      },
+      {
+        "skillId": "system-spec-kit",
+        "confidence": 0.82,
+        "uncertainty": 0.28,
+        "reason": "Matched: !session, !session(multi), !store, context"
+      }
+    ],
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    }
+  }
+}

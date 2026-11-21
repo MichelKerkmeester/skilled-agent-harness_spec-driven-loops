@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p011-briefs/route-receipt.v3.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts
+The prepared file adds weak-follow-up rows for additive words, creates receipt folders at mode 0700, adds two tests that refuse a base or receipt folder other users can open, and adds a test where a reader and three writers in separate processes overlap on one session. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p011-briefs/route-receipt.v3.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts` exits 0.

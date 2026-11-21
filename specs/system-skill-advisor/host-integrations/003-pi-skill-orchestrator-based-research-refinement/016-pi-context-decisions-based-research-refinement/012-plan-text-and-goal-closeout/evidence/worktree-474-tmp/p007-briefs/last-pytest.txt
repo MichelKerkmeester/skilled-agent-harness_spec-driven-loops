@@ -1,0 +1,73 @@
+The requested test and `main()` registration are in [test_skill_advisor.py](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py). Both acceptance checks passed.
+
+**Function added:**
+
+```python
+def test_pasted_reply_strip_parity():
+    """The local scorer drops a pasted earlier reply exactly as the native scorer does."""
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        fixture_path = os.path.realpath(os.path.join(
+            os.path.dirname(os.path.realpath(__file__)),
+            "..",
+            "fixtures",
+            "pasted-reply-strip-cases.json",
+        ))
+        with open(fixture_path, "r", encoding="utf-8") as fh:
+            cases = json.load(fh)["cases"]
+    except Exception as exc:
+        fail_test("STRIP: load scorer and shared fixture", str(exc))
+        return
+
+    # The TypeScript prompt-policy test reads the same rows, so both scorers
+    # drop the same text before scoring.
+    for case in cases:
+        name = f"STRIP-{case['id']}"
+        try:
+            stripped = advisor.strip_leading_pasted_reply(case["input"])
+            again = advisor.strip_leading_pasted_reply(stripped)
+        except Exception as exc:
+            fail_test(name, str(exc))
+            continue
+        if stripped == case["expected"] and again == stripped:
+            ok(name)
+        else:
+            fail_test(name, f"got={stripped!r} expected={case['expected']!r}")
+
+    # The strip runs at the entry of analyze_request, so a pasted reply and the
+    # bare task score the same.
+    probe = next((case for case in cases if case["id"] == "probe"), None)
+    name = "STRIP-ENTRY: analyze_request scores the probe as its bare task"
+    if probe is None:
+        fail_test(name, "probe row missing")
+        return
+    try:
+        pasted = [r["skill"] for r in advisor.analyze_request(probe["input"])]
+        bare = [r["skill"] for r in advisor.analyze_request(probe["expected"])]
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if pasted == bare:
+        ok(name, f"top={pasted[:1]}")
+    else:
+        fail_test(name, f"pasted={pasted[:3]} bare={bare[:3]}")
+```
+
+**Registration added in `main()`:**
+
+```python
+    test_declared_phrase_specificity()
+    test_pasted_reply_strip_parity()
+
+    print(f"\nSummary: pass={passed}, fail={failed}")
+```
+
+**Checks and handoff**
+
+- `rg -c 'test_pasted_reply_strip_parity' ...` printed `2`, exit 0.
+- The requested Python AST parse command exited 0.
+- I did not run the Python test suite. Its scorer function is assigned to the other leaf, as specified.
+- Final workspace status also lists `runtime/tests/fixtures/pasted-reply-strip-cases.json` as modified. I did not edit it. This work is uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+- No task anchors or replacement text differed from the file. Routing selected `sk-code-skilled` with Python guidance. Repository rules loaded: `prevent-overengineering`, `evidence-and-proof`, `communication`, and `communication-handoff`.
+
+The conductor can run the broader Python and parity checks after the companion scorer implementation lands.

@@ -1,0 +1,55 @@
+Updated [scorer-calibration.bench.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts:216).
+
+The helper block added:
+
+```ts
+// Logs whether a floored follow-up on work-intent text routes away from its own
+// session task. A measurement only: the rule that reads it lives outside the bench.
+function logFollowUpRouting(root: string, projection: ReturnType<typeof loadAdvisorProjection>): void {
+  const scoreTop = (prompt: string) => {
+    const result = scoreAdvisorPrompt(prompt, { workspaceRoot: root, projection, includeAllCandidates: true });
+    const top = result.topSkill === null
+      ? null
+      : result.recommendations.find((recommendation) => recommendation.skill === result.topSkill) ?? null;
+    return { result, top };
+  };
+  let harm = 0;
+  let harmSame = 0;
+  const pairs = FOLLOW_UP_PAIRS.map((pair, index) => {
+    const taskTop = scoreTop(pair.task).top?.skill ?? null;
+    const { result, top } = scoreTop(pair.followUp);
+    const followUpTop = top?.skill ?? null;
+    const floored = top?.confidenceFloored === true;
+    const policyReason = shouldFireAdvisor(stripLeadingPastedReply(pair.followUp)).reason;
+    const guarded = floored && policyReason === WORK_INTENT_REASON;
+    if (guarded && followUpTop !== taskTop) harm += 1;
+    if (guarded && followUpTop === taskTop) harmSame += 1;
+    return {
+      pair: index + 1,
+      negativeControl: pair.negativeControl,
+      taskTop,
+      followUpTop,
+      floored,
+      policyReason,
+      flooredSet: result.recommendations
+        .filter((recommendation) => recommendation.confidenceFloored === true)
+        .map((recommendation) => ({
+          skill: recommendation.skill,
+          confidence: recommendation.confidence,
+          passes: recommendation.passes_threshold,
+        })),
+    };
+  });
+  console.log(`advisor-follow-up-routing ${JSON.stringify({ N: FOLLOW_UP_PAIRS.length, H: harm, Hsame: harmSame, pairs })}`);
+}
+```
+
+The invocation added:
+
+```ts
+logFollowUpRouting(root, projection);
+```
+
+The requested `rg` acceptance command printed two matches, at lines 216 and 332, and exited 0. Both edit anchors matched; nothing in the task failed to match. I did not run tests, typecheck, or build, as the task assigns those to the conductor. Other modified paths appear in the worktree status; I did not edit them.
+
+SKILL ROUTING: User specified `sk-code`; artifact routed to `sk-code-skilled` for SKILLED/TypeScript. REPO RULES: evidence and reply rules loaded; no other action trigger matched.

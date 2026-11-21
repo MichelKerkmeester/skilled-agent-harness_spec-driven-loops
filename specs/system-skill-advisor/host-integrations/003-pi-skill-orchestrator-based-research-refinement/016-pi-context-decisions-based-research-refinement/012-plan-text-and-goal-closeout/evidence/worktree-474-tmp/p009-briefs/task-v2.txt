@@ -1,0 +1,4 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts)
+Replace this file's whole content with the prepared file tmp/p009-briefs/ups.v2.ts by running exactly: cp tmp/p009-briefs/ups.v2.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+The prepared file hoists prompt, workspaceRoot, skippedResult and deliveryState above the try in handleClaudeUserPromptSubmit, reads the clock inside the try after the invalid-payload return, and makes elapsed return 0 when the clock throws or has not been read. Read the resulting diff and report in HANDBACK anything in the added code that could throw outside a try or change the normal path's behavior. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p009-briefs/ups.v2.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` exits 0.

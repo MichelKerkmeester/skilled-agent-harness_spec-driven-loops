@@ -1,0 +1,30 @@
+Two P1 findings refute the diff.
+
+### 1. Quote-only pasted replies still reach the scorer
+
+- **Input:**
+  ```text
+  "I updated the README with sk-doc conventions and committed it with sk-git."
+  Now: Refactor the session store module to remove duplicated locking code
+  ```
+- **Returns now:** The entire input, unchanged.
+- **Should return:** `Refactor the session store module to remove duplicated locking code`
+- **Evidence:** The new cue at [prompt-policy.ts:227] no longer accepts a leading quote. The handler and scorer both pass prompts through this helper at [advisor-recommend.ts:536] and [fusion.ts:1277], so the quoted `sk-doc` and `sk-git` mentions remain in the scoring input and can steer routing.
+- **Finding class:** cross-consumer. **Scope proof:** These are the production handler and scoring call sites.
+
+### 2. A new cue matches ordinary prose about the literal heading
+
+- **Input:**
+  ```text
+  Claude reply: is the exact title used in the sample document. Task: preserve that title in normalization.
+  ```
+- **Returns now:** `preserve that title in normalization.`
+- **Should return:** The entire input; the first sentence identifies the literal title the task refers to.
+- **Evidence:** The new `Claude reply:` alternative at [prompt-policy.ts:227] treats that prose as pasted output, and the marker cut at [prompt-policy.ts:234-238] removes the title and its context.
+- **Finding class:** cross-consumer. **Scope proof:** Both production call sites above use the same helper.
+
+I found no catastrophic-backtracking pattern: the regexes have no nested ambiguous quantifiers. I also found no fixed-point defect: the helper loops until unchanged, and each successful cut shortens the string ([prompt-policy.ts:247-253]). I did not report the disclosed two-marker miss separately because it is marked as accepted.
+
+**Review context:** Skill routing selected `sk-code` / `sk-code-review`; the resolved surface is `SKILLED`. The read-only `quality-gate --explain` returned exit 2 with `nothing was run`; no tests were run. No files were changed by this review.
+
+REFUTED (with findings)

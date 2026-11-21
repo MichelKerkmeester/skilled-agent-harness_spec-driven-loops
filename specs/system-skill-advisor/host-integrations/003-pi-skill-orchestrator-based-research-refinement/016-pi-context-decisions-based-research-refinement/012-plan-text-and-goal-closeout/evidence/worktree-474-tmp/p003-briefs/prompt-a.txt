@@ -1,0 +1,81 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark
+(Spec folder: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/003-follow-up-routing-benchmark (pre-approved, skip Gate 3). Write no spec docs; edit only the file in TASK.)
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command in ACCEPT has been run.
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts)
+Count floored top-1 passes on the labeled corpus and log them. Four edits in this one file. No new assertion.
+
+EDIT 1. After the line (line 18):
+import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
+add this line:
+import { shouldFireAdvisor, stripLeadingPastedReply } from '../lib/prompt-policy.js';
+
+EDIT 2. After the line (line 85):
+const BENCH_TIMEOUT_MS = process.env.CI ? 300_000 : 180_000;
+add these lines:
+// The policy reason a prompt with task intent and enough content words gets.
+const WORK_INTENT_REASON = 'work_intent_with_meaningful_tokens';
+
+EDIT 3. Replace exactly (lines 201 and 208, with the six lines between them unchanged):
+  const predictions = rows.map((row) => {
+with:
+  // A floored top-1 passes on the task-intent floor rather than its own evidence.
+  // Floored passes on work-intent rows that are also correct are the routes a
+  // guard on floored follow-ups would hide.
+  const floored = { correct: 0, wrong: 0, workIntent: 0, workIntentCorrect: 0 };
+  const collateralIds: string[] = [];
+  const predictions = rows.map((row) => {
+and replace exactly:
+    const correct: 0 | 1 = predictedSkill === goldSkill(row) ? 1 : 0;
+with:
+    const correct: 0 | 1 = predictedSkill === goldSkill(row) ? 1 : 0;
+    if (top?.confidenceFloored === true) {
+      if (correct === 1) floored.correct += 1;
+      else floored.wrong += 1;
+      if (shouldFireAdvisor(stripLeadingPastedReply(row.prompt)).reason === WORK_INTENT_REASON) {
+        floored.workIntent += 1;
+        if (correct === 1) {
+          floored.workIntentCorrect += 1;
+          collateralIds.push(row.id);
+        }
+      }
+    }
+
+EDIT 4. In the `advisor-scorer-calibration` console.log object, replace exactly:
+    metricBrierMean: brierMean === undefined ? null : roundMetric(brierMean),
+  })}`);
+with:
+    metricBrierMean: brierMean === undefined ? null : roundMetric(brierMean),
+    floored: { ...floored, collateral: collateralIds.length, collateralIds },
+  })}`);
+
+Do not change createBaseline, the baseline file, the Prediction objects or any expect().
+ACCEPT: `rg -n 'collateralIds' .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts` prints 3 lines, and `git diff --stat -- .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration-baseline.json` shows no new change from you.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

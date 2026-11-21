@@ -1,0 +1,10 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+You are a read-only reviewer. Do not edit, create or delete any file. Do not run tests, builds or git commands that change state.
+
+TASK
+The file tmp/p011-briefs/phase.diff is the full diff of one change to the skill advisor. It adds "route receipts": after the advisor delivers an unfloored top route in a session, the hook stores that skill with the session's lifecycle clock. On a later turn, a weak follow-up (back-reference words, at most 3 content words, work-intent policy reason read from stripped text) whose top route is floored and differs from the receipt is suppressed to "Advisor: prompt skipped." A receipt expires when the lifecycle clock changes or the transcript shrinks. It also carries a confidenceFloored flag from the scorer to the hook, and rotates the lifecycle clock on DSH boundaries.
+
+Refute it. For each finding give: the file:line in the post-change tree, a concrete input or sequence of turns, the wrong outcome it produces, and what the right outcome is. Read the surrounding code in the repository to confirm each finding before you report it. Focus on: a turn that suppresses when it should deliver, a turn whose output changes when no receipt exists, a receipt fault or exception that escapes to the user, a DSH call that could reset every session, a store race or path that writes outside its folder, and tests that pass without testing their claim.
+"Looks good" is not an acceptable answer. If after a real search you find nothing that survives your own check, say so and list the five strongest attacks you tried and why each failed.
+
+End your report with a line `FILES READ:` listing every file you opened.

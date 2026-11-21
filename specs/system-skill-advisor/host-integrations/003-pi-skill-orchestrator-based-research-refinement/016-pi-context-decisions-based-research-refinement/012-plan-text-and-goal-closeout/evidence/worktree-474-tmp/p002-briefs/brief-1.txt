@@ -1,0 +1,44 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts)
+Append the block below at the very end of the file, after the closing `}` of `shouldFireAdvisor` (currently the last line, line 223), separated by one blank line. Add nothing else.
+
+NEW TEXT (paste exactly):
+
+const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)\s*:|["“>])/i;
+const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/i;
+
+function stripPastedReplyOnce(prompt: string): string {
+  if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
+  const marker = TASK_MARKER.exec(prompt);
+  if (!marker) return prompt;
+  const task = prompt.slice(marker.index + marker[0].length).trim();
+  return task.length > 0 ? task : prompt;
+}
+
+/**
+ * Drop an earlier reply pasted ahead of the task, keeping the text after its task marker.
+ * The skill names in a pasted reply would otherwise steer routing away from the task.
+ * Repeats until nothing changes, so a second call returns the same text; the handler and
+ * the scorer both call it, and the semantic lane matches its embedding by exact text.
+ */
+export function stripLeadingPastedReply(prompt: string): string {
+  let current = prompt;
+  for (;;) {
+    const next = stripPastedReplyOnce(current);
+    if (next === current) return current;
+    current = next;
+  }
+}
+
+ACCEPT: exactly one file changed; `rg -n '^export function stripLeadingPastedReply' .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts` prints one line.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

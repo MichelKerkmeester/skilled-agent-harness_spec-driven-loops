@@ -1,0 +1,29 @@
+The prepared file was copied to [route-receipt.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts). The `cp` command exited 0, and the requested `cmp` exited 0 with no output. The diff changes only the comment and `ownedFolder()`; the additive-words change remains unchanged.
+
+**Changed block**
+
+```ts
+  // A symlinked base or folder could point a shared temp directory's receipts
+  // at a path another user controls, so either one disables the store. Both
+  // must also belong to this user and stay closed to everyone else, the rule
+  // the lifecycle store holds its own state to. That rule is what refuses a
+  // folder reached through a symlinked parent, which lstat alone lets through.
+  private ownedFolder(): boolean {
+    const uid = typeof process.getuid === 'function' ? process.getuid() : null;
+    for (const path of [this.baseDir, this.dir]) {
+      const stat = lstatSync(path);
+      if (stat.isSymbolicLink() || !stat.isDirectory()) return false;
+      if (uid !== null && stat.uid !== uid) return false;
+      if ((stat.mode & 0o077) !== 0) return false;
+    }
+    return true;
+  }
+```
+
+**Mismatch to report**
+
+The task says the folders “belong to the current user.” The file checks ownership only when `process.getuid` exists: `const uid = typeof process.getuid === 'function' ? process.getuid() : null;` followed by `if (uid !== null && stat.uid !== uid) return false;`. On runtimes without `getuid`, ownership is not checked. In this runtime, `typeof process.getuid` returned `function`, so the check is active here. The permission-bit check matches the task.
+
+I did not run tests, typecheck, or build; the task assigns those to the conductor. The target was untracked before the copy, and its original bytes are captured in this session for rollback. Final workspace status also lists other modified and untracked paths; I did not capture the full status beforehand, so I cannot attribute them.
+
+The conductor’s remaining step is to run the test, typecheck, and build gates.

@@ -1,0 +1,28 @@
+## HANDBACK
+
+**Changed file:** [skill-advisor-brief.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts)
+
+**Final changed blocks:**
+
+```ts
+import { shouldFireAdvisor, stripLeadingPastedReply } from './prompt-policy.js';
+```
+
+```ts
+    // advisor_recommend refuses a longer prompt, so a longer one is routed on its head
+    // instead of failing open as an outage. A pasted earlier reply is dropped before
+    // the cut, so a long paste cannot push the task past it, and before the prompt is
+    // folded to one line, which would hide a task marker that starts a line.
+    const routedPrompt = shouldFireAdvisor(stripLeadingPastedReply(prompt)).canonicalPrompt
+      .slice(0, ADVISOR_PROMPT_MAX_CHARS);
+```
+
+**Mismatch:** None. The diff matches the description: it strips a leading pasted reply before canonicalization and truncation.
+
+The exact `cp` command ran with exit 0. `cmp tmp/p012-fix/brief.v2.ts .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts` also exited 0. Tests, typecheck, and build were not run here; the run context assigns them to the conductor.
+
+The working tree is dirty on `worktrees/474-advisor-pasted-context-and-crash-fallback`; status lists other modified paths outside this task, which I left untouched. No commit or push was made.
+
+**Routing:** User directed → `sk-code`; compiled route resolved to the `sk-code-skilled` surface with TypeScript guidance. Loaded the applicable blast-radius, evidence-and-proof, communication, and handoff rules.
+
+The conductor owns the remaining checks; nothing else is needed from you for this leaf.

@@ -1,0 +1,18 @@
+The diff has one **P1 mismatch**: Python’s batch caller removes U+001C before the new strip rule runs, while TypeScript preserves it. The same prompt then ranks differently.
+
+### P1 — Batch preprocessing changes the input before stripping
+
+**Input:** `"\u001cYou said: I updated the README with sk-doc conventions and committed it with sk-git. Task: Refactor the session store module to remove duplicated locking code"`
+
+- Python’s `analyze_batch` removes U+001C with `prompt.strip()` at [skill_advisor.py](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5324), then passes that trimmed text to analysis at [skill_advisor.py](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:5331). The new call strips the pasted reply at [skill_advisor.py](/Users/michelkerkme/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4842). The effective scoring text is `"Refactor the session store module to remove duplicated locking code"` and Python batch ranks **`sk-code`** first.
+- TypeScript’s rule leaves U+001C intact because it is outside JavaScript’s `\s` set. The compiled TypeScript scorer keeps the full prompt and ranks **`sk-doc`** first. Its strip call is at [fusion.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1277), using [prompt-policy.ts](/Users/michelkerkme/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:247).
+
+I ran both paths on that exact input. Calling the two strip helpers directly preserved the input on both sides, so the mismatch is in the batch caller’s preprocessing. The shared fixture checks the helper directly at [test_skill_advisor.py](/Users/michelkerkme/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2551), but does not cover this batch path.
+
+The direct helper comparison matched on all 23 fixture cases and 15 constructed probes, including the whitespace and case-folding edge cases. Disabling the strip call made the probe’s rankings differ from the bare task, so the new entry-point assertion would catch that call being removed. The quality-gate resolver exited 2 with `status: advisory` and `nothing was run`; I did not run the full suites or the divergence capture script. No files were changed during this review. The worktree shows the six modified paths from the supplied diff.
+
+**Overall assessment:** REQUESTED_CHANGES. **Baseline:** `sk-code-review`. **Surface:** SKILLED. **Quality-gate evidence:** absent. **Residual risk:** the updated count pins and ledger regeneration were not verified by running their test or capture workflows.
+
+Next action: preserve the original prompt through Python batch analysis, then add a batch-level U+001C parity case.
+
+REFUTED (with findings)

@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p011-briefs/ups.v1.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+The prepared file adds a routeReceiptStore dependency, the helpers receiptSessionId, transcriptBytesFor, topPassingRecommendation, guardWeakFollowUp and recordRouteReceipt above applyDirectiveLifecycle, one guard call after the result build and one receipt write after the render. Read the resulting diff and report in HANDBACK any path where a receipt fault could reach the outer catch, or where a turn with no receipt could render differently than before. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p011-briefs/ups.v1.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` exits 0.

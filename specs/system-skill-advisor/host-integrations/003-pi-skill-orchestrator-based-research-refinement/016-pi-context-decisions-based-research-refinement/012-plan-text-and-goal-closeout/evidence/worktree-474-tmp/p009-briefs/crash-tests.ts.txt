@@ -1,0 +1,182 @@
+
+  it('keeps the setup hint when the hook throws on a setup prompt', async () => {
+    const setupPrompt = 'set up the hooks and install the toolchain';
+    const timeoutPath = await runHookWithStore({
+      session_id: 'setup-timeout',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: setupPrompt,
+      cwd: '/workspace/project',
+    }, fixture('failOpenTimeout.json'), new InMemoryDirectiveLifecycleStore());
+    const crashPath = await runHookWithStore({
+      session_id: 'setup-crash',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: setupPrompt,
+      cwd: '/workspace/project',
+    }, fixture('livePassingSkill.json'), new InMemoryDirectiveLifecycleStore(), false, throwingRender);
+
+    expect(JSON.stringify(timeoutPath.output)).toContain('/doctor:setup');
+    expect(crashPath.output).toEqual(timeoutPath.output);
+  });
+
+  it('keeps the skipped fallback when the hook throws on a skipped prompt', async () => {
+    const { output } = await runHookWithStore({
+      session_id: 'skip-crash',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: '/help',
+      cwd: '/workspace/project',
+    }, fixture('livePassingSkill.json'), new InMemoryDirectiveLifecycleStore(), false, throwingRender);
+
+    expect(output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_SKIPPED_CONTEXT },
+    });
+  });
+
+  it('drops the repeated directive block on a second crashing turn', async () => {
+    const store = new InMemoryDirectiveLifecycleStore();
+    const expectedFullContext = expectedOutageContext('fail_open');
+    const expectedHead = expectedFullContext.split('\n', 1)[0] ?? '';
+    const first = await runHookWithStore({
+      session_id: 'crash-dl',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, fixture('livePassingSkill.json'), store, false, throwingRender);
+    const second = await runHookWithStore({
+      session_id: 'crash-dl',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook again',
+      cwd: '/workspace/project',
+    }, fixture('livePassingSkill.json'), store, false, throwingRender);
+
+    expect(first.output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedFullContext },
+    });
+    expect(second.output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedHead },
+    });
+  });
+
+  it('commits the crash fallback receipt only after the output handoff', async () => {
+    const store = new InMemoryDirectiveLifecycleStore();
+    const expectedFullContext = expectedOutageContext('fail_open');
+    const expectedHead = expectedFullContext.split('\n', 1)[0] ?? '';
+    const first = await runHookWithStore({
+      session_id: 'crash-receipt',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, fixture('livePassingSkill.json'), store, true, throwingRender);
+    const beforeCommit = await runHookWithStore({
+      session_id: 'crash-receipt',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'repeat before receipt commit',
+      cwd: '/workspace/project',
+    }, fixture('livePassingSkill.json'), store, true, throwingRender);
+    expect(first.output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedFullContext },
+    });
+    expect(beforeCommit.output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedFullContext },
+    });
+    expect(commitClaudeDirectiveDeliveryReceipt(first.output)).toBe(true);
+    const afterCommit = await runHookWithStore({
+      session_id: 'crash-receipt',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'repeat after receipt commit',
+      cwd: '/workspace/project',
+    }, fixture('livePassingSkill.json'), store, true, throwingRender);
+    expect(afterCommit.output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedHead },
+    });
+  });
+
+  it('keeps the full crash fallback when the dedup store throws', async () => {
+    const throwingStore = {
+      clock: () => {
+        throw new Error('store failed');
+      },
+    } as unknown as InMemoryDirectiveLifecycleStore;
+    const { output } = await runHookWithStore({
+      session_id: 'crash-store',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, fixture('livePassingSkill.json'), throwingStore, false, throwingRender);
+
+    expect(output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedOutageContext('fail_open') },
+    });
+  });
+
+  it('records the crash fallback policy once under the runtime', async () => {
+    // A startup event gives each shadow session its epoch, without which the
+    // sink holds no record to count.
+    const turn = (sessionId: string) => ({
+      session_id: sessionId,
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+      lifecycle_event: 'startup',
+    });
+
+    clearPolicyObservationSink();
+    await handleClaudeUserPromptSubmit(turn('crash-policy'), {
+      runtime: 'pi',
+      buildCliBrief: vi.fn(async () => fixture('livePassingSkill.json')),
+      renderBrief: throwingRender,
+      writeDiagnostic: diagnosticsSink().writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+    });
+    const crashRecords = getPolicyObservationRecords();
+
+    clearPolicyObservationSink();
+    await handleClaudeUserPromptSubmit(turn('timeout-policy'), {
+      runtime: 'pi',
+      buildCliBrief: vi.fn(async () => fixture('failOpenTimeout.json')),
+      renderBrief: renderAdvisorBrief,
+      writeDiagnostic: diagnosticsSink().writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+    });
+    const timeoutRecords = getPolicyObservationRecords();
+
+    expect(crashRecords.length).toBeGreaterThan(0);
+    expect(crashRecords.length).toBe(timeoutRecords.length);
+    expect(crashRecords.every((record) => record.binding.runtime === 'pi')).toBe(true);
+  });
+
+  it('returns the outage fallback when the clock throws', async () => {
+    const output = await handleClaudeUserPromptSubmit({
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, {
+      buildCliBrief: vi.fn(async () => fixture('livePassingSkill.json')),
+      renderBrief: renderAdvisorBrief,
+      writeDiagnostic: diagnosticsSink().writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+      now: throwingClock,
+    });
+
+    expect(output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedOutageContext('fail_open') },
+    });
+  });
+
+  it('keeps a disabled hook and an invalid payload silent when the clock throws', async () => {
+    const dependencies = {
+      buildCliBrief: vi.fn(async () => fixture('livePassingSkill.json')),
+      renderBrief: renderAdvisorBrief,
+      writeDiagnostic: diagnosticsSink().writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+      now: throwingClock,
+    };
+
+    expect(await handleClaudeUserPromptSubmit(null, dependencies)).toEqual({});
+    process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED = '1';
+    expect(await handleClaudeUserPromptSubmit({
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, dependencies)).toEqual({});
+    expect(dependencies.buildCliBrief).not.toHaveBeenCalled();
+  });

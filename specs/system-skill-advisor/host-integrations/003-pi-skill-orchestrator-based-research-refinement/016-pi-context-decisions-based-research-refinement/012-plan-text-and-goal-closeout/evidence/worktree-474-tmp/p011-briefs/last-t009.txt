@@ -1,0 +1,25 @@
+Inserted the requested block in [prompt-policy.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:128).
+
+```ts
+/**
+ * Split a prompt into the policy's own tokens, the meaningful ones and the
+ * work-intent verbs among them, so callers that judge prompt shape count words
+ * exactly as the policy reason does.
+ */
+export function promptPolicyTokens(prompt: string): {
+  readonly tokens: string[];
+  readonly meaningful: string[];
+  readonly workVerbs: string[];
+} {
+  const tokens = tokenize(normalizePrompt(prompt));
+  return {
+    tokens,
+    meaningful: meaningfulTokens(tokens),
+    workVerbs: tokens.filter((token) => WORK_INTENT_VERBS.has(token)),
+  };
+}
+```
+
+`grep -c "export function promptPolicyTokens" ...` printed `1` and exited 0. The scoped diff contains only this insertion. No task mismatch: the specified anchor matched the file. Package tests and build were not run; the task assigns those to the conductor.
+
+The worktree is dirty on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`. Other dirty paths were present at final status; I did not edit them, and their starting state was not captured. The conductor’s next step is to run the package checks.

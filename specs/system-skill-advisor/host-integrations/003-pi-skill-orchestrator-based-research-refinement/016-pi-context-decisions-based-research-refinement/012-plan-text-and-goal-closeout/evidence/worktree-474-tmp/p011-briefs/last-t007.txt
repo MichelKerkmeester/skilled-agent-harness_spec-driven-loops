@@ -1,0 +1,17 @@
+The requested one-file edit is in place. The ACCEPT command printed `1` and exited 0.
+
+Changed [advisor-tool-schemas.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:329). The final block is:
+
+```ts
+  // Set only when a hub held back its command because the prompt names no
+  // single mode, so the head can say so.
+  needsMode: z.literal(true).optional(),
+  // Set only when the confidence was raised to the task-intent floor rather
+  // than earned by the recommendation's own evidence, so a hook can tell a
+  // floored route from a confident one.
+  confidenceFloored: z.literal(true).optional(),
+```
+
+The old block matched exactly once. Nothing in the requested text failed to match. I did not run `tsx`, Vitest, typecheck or build; the run context assigns those to the conductor. Current workspace status also lists changes outside this task, which I left untouched.
+
+SKILL ROUTING: User specified `sk-code`; compiled routing resolved to `sk-code-skilled`. REPO RULES: loaded the applicable restraint, blast-radius, evidence and reply rules. Nothing further is needed from you.

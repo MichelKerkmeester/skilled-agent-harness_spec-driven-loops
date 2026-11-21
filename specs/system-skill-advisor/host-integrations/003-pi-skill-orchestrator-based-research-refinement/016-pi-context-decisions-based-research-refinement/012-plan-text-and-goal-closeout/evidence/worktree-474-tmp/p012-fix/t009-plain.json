@@ -1,0 +1,103 @@
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [
+      {
+        "skillId": "system-spec-kit",
+        "score": 0.155966,
+        "confidence": 0.82,
+        "uncertainty": 0.26,
+        "dominantLane": "lexical",
+        "status": "active",
+        "kind": "skill",
+        "confidenceFloored": true
+      },
+      {
+        "skillId": "sk-doc",
+        "score": 0.154331,
+        "confidence": 0.82,
+        "uncertainty": 0.26,
+        "dominantLane": "lexical",
+        "status": "active",
+        "compiledRoute": {
+          "hubId": "sk-doc",
+          "action": "defer",
+          "selectionKind": null,
+          "targets": [],
+          "effectivePolicyHash": "7d4bb86f5c38a128e4e632e6fd497e488834084dbe5232f5c2fe21f4b34bb820",
+          "generation": 5
+        },
+        "kind": "skill",
+        "confidenceFloored": true
+      },
+      {
+        "skillId": "cli-external-orchestration",
+        "score": 0.096676,
+        "confidence": 0.82,
+        "uncertainty": 0.3,
+        "dominantLane": "lexical",
+        "status": "active",
+        "compiledRoute": {
+          "hubId": "cli-external-orchestration",
+          "action": "defer",
+          "selectionKind": null,
+          "targets": [],
+          "effectivePolicyHash": "91a59d241d011f3d1b275fcc0e6232fb03ec715f31850291733b315f7d8997b5",
+          "generation": 5
+        },
+        "kind": "skill",
+        "confidenceFloored": true
+      }
+    ],
+    "ambiguous": true,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 49,
+      "checkedAt": "2026-11-18T22:27:41.265Z",
+      "lastLiveAt": "2026-11-18T22:25:56.298Z"
+    },
+    "generatedAt": "2026-11-18T22:27:41.291Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": true
+    },
+    "warnings": [
+      "semantic_lane_off:adapter_unavailable"
+    ],
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": [
+        {
+          "skillId": "system-spec-kit",
+          "liveScore": 0.155966,
+          "shadowScore": 0.152357,
+          "delta": -0.003609,
+          "dominantShadowLane": "lexical"
+        },
+        {
+          "skillId": "sk-doc",
+          "liveScore": 0.154331,
+          "shadowScore": 0.147047,
+          "delta": -0.007284,
+          "dominantShadowLane": "lexical"
+        },
+        {
+          "skillId": "cli-external-orchestration",
+          "liveScore": 0.096676,
+          "shadowScore": 0.094375,
+          "delta": -0.002301,
+          "dominantShadowLane": "lexical"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+Added `set -uo pipefail` at line 6 of [holdout-guard-emulation.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/holdout-guard-emulation.sh:6).
+
+```bash
+# The leaked id is the first plain holdout id, so the live fit- prefix check cannot catch it.
+set -uo pipefail
+RAD=/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy
+```
+
+`sed -n '6p'` printed `set -uo pipefail` and exited 0. `bash -n` exited 0. I did not run the archived probe. The requested anchor matched; there were no mismatches.
+
+The final status also lists three other modified files that my patch did not touch: [hook-probe.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/noedit-close-3c/probes/hook-probe.sh), [vitest.config.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-attach-4/probes/vitest.config.ts) and [cli-rows.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/cli-rows.sh). I did not capture their initial full-tree status, so I can’t confirm whether they predated this run.
+
+SKILL ROUTING: advisor → `sk-code` (0.95).  
+COMMAND: `/doctor:sk-code setup` was started, but returned no output or exit status within the 30-second wait. Process inspection was denied, so its final status is unknown.
+
+Nothing is blocked on you for the requested file change.

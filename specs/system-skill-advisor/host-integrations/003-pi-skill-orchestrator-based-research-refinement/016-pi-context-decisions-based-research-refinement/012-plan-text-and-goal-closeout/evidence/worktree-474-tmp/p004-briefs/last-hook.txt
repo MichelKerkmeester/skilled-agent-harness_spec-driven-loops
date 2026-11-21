@@ -1,0 +1,38 @@
+Updated only [user-prompt-submit.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts).
+
+**Changed blocks**
+
+```ts
+import {
+  renderAdvisorBrief,
+  renderAdvisorFallbackDirective,
+  renderAdvisorTimeoutFallback,
+  observeEmittedAdvisorPolicy,
+} from '../../runtime/lib/render.js';
+```
+
+```ts
+    }, writeDiagnostic);
+    // A crash still shows the model the outage line and directives, as a timeout does.
+    // If rendering that line throws as well, there is nothing safe left to show.
+    try {
+      return {
+        hookSpecificOutput: {
+          hookEventName: 'UserPromptSubmit',
+          additionalContext: renderAdvisorTimeoutFallback(),
+        },
+      };
+    } catch {
+      return {};
+    }
+```
+
+**Verification:** The required `rg` command printed two lines and exited 0. `git diff --check` exited 0. Strict spec validation reported `RESULT: PASSED` for Level 1. I did not run typecheck, build, or tests; those are for the conductor as specified.
+
+Both requested anchors matched the file; no TASK mismatch to quote. The inner catch and other `return {}` sites are unchanged.
+
+**State:** Edited, uncommitted, on `worktrees/474-advisor-pasted-context-and-crash-fallback`. The worktree also reports other modified paths outside this task; I left them untouched and did not capture their starting state.
+
+**Next:** The conductor runs the typecheck, build, and test suite.
+
+SKILL ROUTING: User specified `sk-code` → SKILLED TypeScript and hook guidance. REPO RULES loaded: communication, communication handoff, evidence and proof, root cause and debugging, and scope discipline.

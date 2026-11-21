@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p011-briefs/ups-hook.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+The prepared file adds route-receipt tests showing that an unconfirmed or ambiguous session identity keeps no receipt and reads none. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p011-briefs/ups-hook.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` exits 0.

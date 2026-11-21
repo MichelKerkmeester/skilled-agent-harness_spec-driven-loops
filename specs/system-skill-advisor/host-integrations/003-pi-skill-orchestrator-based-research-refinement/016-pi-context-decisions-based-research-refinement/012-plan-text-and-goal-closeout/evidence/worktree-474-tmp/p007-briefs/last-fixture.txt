@@ -1,0 +1,42 @@
+Copied the fixture byte-for-byte to [pasted-reply-strip-cases.json](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json). Skill routing followed your direction to `sk-code`.
+
+The acceptance command printed `SAME` and exited 0. JSON syntax validation printed `JSON_VALID` and exited 0. The project tests and builds were not run; the run context assigns them to the conductor.
+
+The changed block is the comma after the existing `quote-led-curly` case and these six appended cases:
+
+```json
+    {
+      "id": "js-space-nbsp",
+      "input": "You\u00a0said: run the tests. Task: fix the failing parser test",
+      "expected": "fix the failing parser test"
+    },
+    {
+      "id": "js-space-info-separator",
+      "input": "\u001cYou said: run the tests. Task: fix the failing parser test",
+      "expected": "\u001cYou said: run the tests. Task: fix the failing parser test"
+    },
+    {
+      "id": "js-space-bom",
+      "input": "\ufeffYou said: run the tests. Task: fix the failing parser test",
+      "expected": "fix the failing parser test"
+    },
+    {
+      "id": "ascii-case-fold",
+      "input": "You \u017faid: run the tests. Task: fix the failing parser test",
+      "expected": "You \u017faid: run the failing parser test"
+    },
+    {
+      "id": "js-trim-trailing-separator",
+      "input": "You said: run the tests. Task: fix the failing parser test\u001c",
+      "expected": "fix the failing parser test\u001c"
+    },
+    {
+      "id": "js-space-nel",
+      "input": "You\u0085said: run the tests. Task: fix the failing parser test",
+      "expected": "You\u0085said: run the tests. Task: fix the failing parser test"
+    }
+```
+
+No task/source mismatch: the destination’s 17 cases match the source prefix, which adds exactly six cases. A pre-existing change to [test_skill_advisor.py](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py) remains untouched. The branch is `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+
+Operator action: have the conductor run the remaining phase checks.

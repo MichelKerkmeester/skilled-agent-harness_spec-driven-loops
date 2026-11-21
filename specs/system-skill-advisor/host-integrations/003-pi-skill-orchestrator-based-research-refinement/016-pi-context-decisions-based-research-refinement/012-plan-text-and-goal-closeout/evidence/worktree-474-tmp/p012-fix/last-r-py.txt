@@ -1,0 +1,38 @@
+The requested replacement is applied to [.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2579).
+
+The resulting diff contains only the requested check. No content in it mismatches the description.
+
+```python
+    # The native path drops the pasted reply before it cuts the prompt to the
+    # advisor limit, so a long paste cannot push the task past the cut.
+    name = "STRIP-NATIVE: recommend_with_native_advisor sends the task behind a long pasted reply"
+    sent = {}
+
+    def capture_bridge(payload, timeout=None):
+        sent.update(payload)
+        return {"status": "ok", "data": {"recommendations": []}}
+
+    original_bridge = advisor._run_native_bridge
+    advisor._run_native_bridge = capture_bridge
+    try:
+        long_paste = (
+            "Earlier you replied: "
+            + "I updated the README with sk-doc conventions. " * 300
+            + "Now: "
+            + probe["expected"]
+        )
+        advisor.recommend_with_native_advisor(long_paste)
+    except Exception as exc:
+        fail_test(name, str(exc))
+    else:
+        if sent.get("prompt") == probe["expected"]:
+            ok(name)
+        else:
+            fail_test(name, f"sent={str(sent.get('prompt'))[:80]!r}")
+    finally:
+        advisor._run_native_bridge = original_bridge
+```
+
+`cmp tmp/p012-fix/test_skill_advisor.v2.py .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` exited 0. Tests were not run; the conductor runs them. The final status also lists modified files outside this task. I left them untouched, and their prior state is unknown because I did not capture a full-tree baseline.
+
+SKILL ROUTING: User specified → `sk-code`; the router resolved the SKILLED surface. Nothing else is blocked on you.

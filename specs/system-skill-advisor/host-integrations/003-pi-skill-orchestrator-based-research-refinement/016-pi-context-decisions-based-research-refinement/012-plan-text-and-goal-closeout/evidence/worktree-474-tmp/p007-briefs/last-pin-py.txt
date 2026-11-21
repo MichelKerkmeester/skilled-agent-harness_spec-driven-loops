@@ -1,0 +1,19 @@
+Updated only [python-ts-parity.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts:269).
+
+The changed blocks now read:
+
+```ts
+    // 112 -> 113: the Python fallback now also answers rr-iter3-076 correctly.
+    // 113 -> 114 and 108 -> 109: the Python reference now drops a pasted earlier
+    // reply before scoring, as the native scorer does, so the pasted-reply row
+    // reaches its gold on both.
+    expect(pythonCorrect).toBe(114);
+```
+
+```ts
+    expect(tsAlsoCorrect).toBe(109);
+```
+
+Both supplied old anchors matched exactly. No task details were mismatched.
+
+The acceptance checks returned `1`, `1` and `5 2`. The file-scoped quality gate reported `NO_BLOCKER_FOUND` with exit 0. I did not run Vitest, typecheck or build, as directed. The branch is `worktrees/474-advisor-pasted-context-and-crash-fallback`, with the target file modified. The conductor’s test run remains outstanding.

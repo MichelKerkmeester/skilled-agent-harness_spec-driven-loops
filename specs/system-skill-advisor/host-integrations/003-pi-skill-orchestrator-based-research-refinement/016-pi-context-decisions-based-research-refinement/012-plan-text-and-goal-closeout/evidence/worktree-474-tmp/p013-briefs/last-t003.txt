@@ -1,0 +1,12 @@
+Updated only [hook-probe.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/noedit-close-3c/probes/hook-probe.sh).
+
+Changed lines:
+
+- Line 1: `#!/usr/bin/env bash`
+- Line 4: `set -uo pipefail`
+
+Both `sed` checks printed the expected text and exited 0. `bash -n` exited 0. I did not execute the probe. The requested original lines matched, so there were no task mismatches.
+
+The worktree is dirty on `worktrees/474-advisor-pasted-context-and-crash-fallback`. Git also lists `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/cli-rows.sh` as modified. I did not edit it, but its state before this task is unknown.
+
+Nothing else is needed from you.

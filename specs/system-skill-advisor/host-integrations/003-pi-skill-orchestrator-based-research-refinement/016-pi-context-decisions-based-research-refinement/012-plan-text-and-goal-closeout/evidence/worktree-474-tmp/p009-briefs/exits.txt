@@ -1,0 +1,8 @@
+tests EXIT=0
+hookmd EXIT=0
+env EXIT=0
+v1 EXIT=0
+v2 EXIT=0
+v3 EXIT=0
+cwdtest EXIT=0
+cwdfix EXIT=0

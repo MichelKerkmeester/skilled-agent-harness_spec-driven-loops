@@ -1,0 +1,20 @@
+Changed [.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts).
+
+The changed blocks now read:
+
+```ts
+describe('advisor 196-prompt corpus regression-protection parity', () => {
+```
+
+```ts
+// for the mcp-tooling hub projection, so the authoritative size is 196.
+expect(rows).toHaveLength(196);
+```
+
+```ts
+// On the current 196-row corpus the Python reference scorer (built-in
+```
+
+Acceptance checks: `rg -n '\b195\b' ...` printed nothing (exit 1); `git diff --numstat -- ...` returned `4	4`. The diff confirms 117 and 112 remain unchanged.
+
+All four requested originals matched the file; no mismatches. TypeScript, Vitest, typecheck, and build were not run here, per the run context; they remain for the conductor. The file is modified in the working tree and uncommitted.
