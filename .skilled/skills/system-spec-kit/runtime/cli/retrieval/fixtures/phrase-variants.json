@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dce92ef3617c3abe31341aa032966063ad9c291a183067eb53c07f002c6744dd",
+  "manifestHash": "9919352a9603f9263119925caec99bdd0488484394d75f8bbe304c4cb637902d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49731,9 +49731,6 @@
     ],
     "expansive depth mode": [
       "expansive depth mode"
-    ],
-    "expansive depth mode implementation summary": [
-      "expansive depth mode implementation summary"
     ],
     "expansive depth mode plan": [
       "expansive depth mode plan"
