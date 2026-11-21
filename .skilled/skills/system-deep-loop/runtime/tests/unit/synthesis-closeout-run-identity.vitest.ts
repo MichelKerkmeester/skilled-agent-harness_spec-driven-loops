@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Synthesis Closeout Run Identity Tests
+// ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
 import * as fs from 'node:fs';

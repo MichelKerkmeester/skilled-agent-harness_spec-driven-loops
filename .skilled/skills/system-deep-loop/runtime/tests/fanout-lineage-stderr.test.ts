@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: fan-out lineage runner — stderr retention
+// ───────────────────────────────────────────────────────────────────
 //
 // An executor refusal (usage limit, auth, sandbox) is reported on stderr and
 // nowhere else. The runner used to drain it, so a failed lineage showed only an

@@ -91,6 +91,8 @@ describe.each(FILES)('%s', (file) => {
     expect(invocation).not.toContain('--read-only');
     expect(invocation).toContain('{convergence_write_arg}');
 
+    // The workflow shape is checked key by key below, so the parsed tree stays loosely typed.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const binding = (parseYaml(text) as any)?.workflow?.step_bind_convergence_write_arg;
     expect(binding?.branch_on).toBe('dry_run == true');
     expect(binding?.if_dry_run?.bind?.convergence_write_arg).toBe('--read-only');
@@ -530,6 +532,7 @@ describe.each(FILES)('%s sizes a defaulted expansive budget after the seed', (fi
   // The fan-out parent seeds at the top level and a single-executor run seeds in
   // phase_init; both copies run the same command, so their outputs agree.
   it('runs one seed command in both seed steps', () => {
+    // The workflow shape is checked key by key below, so the parsed tree stays loosely typed.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const wf = (parseYaml(text) as any).workflow;
     expect(wf.step_frontier_seed.command).toBe(wf.phase_init.steps.step_frontier_seed.command);
@@ -616,6 +619,8 @@ describe('deep-review terminal stop reason', () => {
 // keep the stop this session bound, or the report names a stale or default reason.
 describe('deep-research synthesis stop reason', () => {
   const text = readFileSync(resolve(ASSETS, 'deep-research.yaml'), 'utf8');
+  // The workflow shape is checked key by key below, so the parsed tree stays loosely typed.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const hydrate = (parseYaml(text) as any).workflow.phase_synthesis.steps.step_hydrate_summary_metrics;
   const rule: string = hydrate.extract.find((entry: Record<string, string>) => 'reason' in entry).reason;
   const sessionClause = rule.slice(0, rule.indexOf(String.raw`{state_paths.state_log}`));

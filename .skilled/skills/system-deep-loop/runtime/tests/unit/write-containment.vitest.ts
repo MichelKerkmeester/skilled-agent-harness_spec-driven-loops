@@ -119,7 +119,7 @@ afterEach(() => {
     try {
       rmSync(root, { recursive: true, force: true });
     } catch {
-      // best-effort cleanup
+      // A leaked temp directory is cleanup noise, not a test result.
     }
   }
 });
