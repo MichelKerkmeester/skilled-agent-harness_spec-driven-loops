@@ -122,7 +122,7 @@ Setup creates the worktree, runs the baseline gates on main and the two alignmen
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: a gate on the merged main falls below its baseline.
-- **Procedure**: `git revert -m 1 <merge>` on local main. Nothing is pushed, so nothing else needs undoing.
+- **Procedure**: `git revert -m 1 <merge>` on main. Main is pushed as `13eae0c562b` and Barter is pinned to it, so the revert goes out as a new commit and Barter re-pins onto that.
 <!-- /ANCHOR:rollback -->
 
 ---

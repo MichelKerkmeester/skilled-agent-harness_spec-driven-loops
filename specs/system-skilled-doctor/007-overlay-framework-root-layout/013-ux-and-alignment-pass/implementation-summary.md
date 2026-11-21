@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass"
-    last_updated_at: "2026-11-21T15:00:00Z"
+    last_updated_at: "2026-11-21T17:50:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Merged into local main as 058e6091759 and reran every gate there"
-    next_safe_action: "None: a separate step pushes main"
+    recent_action: "Recorded the push of 13eae0c562b and Barter's re-pin onto it"
+    next_safe_action: "None: a later phase takes the route-parity pathspecs and the layout-link limits"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/overlay-engine.cjs"
@@ -128,6 +128,22 @@ Three alignment runs at `65751f8d61a` found 75 findings: 22 on the doctor skill,
 | 4. Doctor docs and playbooks drifting from the engine | Fixed: `25391f947a6` to `de2fa53e0d3` |
 | 5. More nested-root gaps in the alignment assets | Fixed in the same gitignored assets |
 | 6. `--fix literal` writing into a git folder | Fixed in the same gitignored assets, with tests that fail on the old code |
+
+### Push and re-pin
+
+**Push.** Local main `4fbfe469c7b` was merged with origin `1e9b8e3a6ff`, which carried 36 commits, as `13eae0c562b` (`merge(skilled): bring origin/main's deep-loop round into main`). Only four generated files conflicted. The trigger index and its three fixtures took origin's copies and were rebuilt. Every gate passed on the merge tip: overlay engine 466, the full doctor suite 1598, overlay guard 35, the git hook suites with 0 failed, deep-loop vitest 3955 passed, advisor scorer 408, route-validate 32 routes, the trigger index check exit 0 and 18 of 18 folders `RESULT: PASSED`. The push printed `1e9b8e3a6ff..13eae0c562b  HEAD -> main`, and `ls-remote` returned `13eae0c562bb5a3c4cde33974d9420fb128dd904`, the pushed SHA. gh is back on `michelkerkmeester-barter`.
+
+The remote accepted the push but listed bypassed branch rules: changes must go through a pull request, the branch must not hold merge commits, commits must carry verified signatures, and checks were still pending. It also reports 22 Dependabot alerts on the default branch, 9 of them high.
+
+**Re-pin.** ai-speckit moved its pin from `542748515e8` to `13eae0c562b` on `skilled/v4.1.0.0`. The first stage printed BLOCKED on 11 overlays, which were rebased. The second stage printed STAGED, and live run `20261121T164357Z-f79dd7` printed PASSED. The ClickUp `SKILL.md` overlay was retired, because it is byte-identical to upstream. `record-base` exited 0 with 74 of 74 units on `13eae0c`, and `status --audit` went from 140/140 to 139/139 with `docs=0`.
+
+| ai-speckit commit | Subject |
+|-------------------|---------|
+| `0da88a0d05c8` | chore(overlays): re-pin Skilled to 13eae0c |
+| `84cef11b371e` | fix(overlays): say why an alignment literal fix was skipped |
+| `64f987869333` | docs(specs): record the re-pin onto Skilled 13eae0c |
+
+The three ai-speckit commits are not pushed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -182,4 +198,6 @@ Each count below was read on the branch tip and again on the merged main `058e60
 6. **A layout link that targets another manifest link not made yet loops.** With `inner -> realdir` and `up -> inner` and an entry under `up`, the engine refuses `up` as missing, and `mkdir -p inner` leads to the next refusal. Make `inner` first with an apply that has no entry under `up`.
 7. **A dangling user link under a made layout link crashes apply.** With `realdir/x -> ../nowhere` and an entry at `up/x/tool`, apply exits 2 with `ENOENT` after it makes the links and leaves them standing. Remove or fix the dangling link, then run `apply`.
 8. **A moved link that another link reads through gets the moved-link refusal only.** When `inner` moves to a folder that does not exist while `up -> inner` has an entry under it, the refusal is the moved-link one, not the missing-target one, and its `Next:` line may not name a link under `up`. Make the new target first, then follow the `Next:` line.
+9. **The pre-push route-parity gate never fires in Barter.** Its pathspecs are literal `.skilled/...` paths. In a vendored tree whose `.skilled` is a link they match nothing, so the gate always passes there. The fix belongs in Skilled's pre-push hook, in a later phase.
+10. **Limitations 1 to 8 stay open.** The push and re-pin changed none of them. A later phase takes the layout-link limits 3 to 8.
 <!-- /ANCHOR:limitations -->

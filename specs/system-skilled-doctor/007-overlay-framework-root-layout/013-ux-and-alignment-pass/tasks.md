@@ -66,6 +66,7 @@ contextType: "implementation"
 - [x] T017 Review rounds after round 1 until APPROVED with no P0 or P1. Verify: the final `Review status:` line reads APPROVED, recorded in `implementation-summary.md`. Evidence: engine round 9, hooks and code round 6, docs round 7, each `Review status: APPROVED`.
 - [x] T018 Rebuild the trigger index and strict-validate the 007 parent. Verify: `generate-trigger-index.mjs --check` exits 0 and every folder prints `RESULT: PASSED`. Evidence: the index rebuild commit after this one, and 18 of 18 folders `RESULT: PASSED` on the merged main.
 - [x] T019 Merge into local main with `--no-ff` and rerun every gate there. Verify: each gate is at or above its baseline. Evidence: merge `058e6091759`, gates in `implementation-summary.md` Verification.
+- [x] T020 Merge origin into main and push it, then re-pin Barter onto the pushed commit (Skilled `main`, ai-speckit `skilled/`). Verify: `git ls-remote origin refs/heads/main` prints the pushed SHA, and `record-base` names it in every unit. Evidence: `13eae0c562bb5a3c4cde33974d9420fb128dd904` on the remote; ai-speckit commits `0da88a0d05c8`, `84cef11b371e` and `64f987869333`, 74 of 74 units on `13eae0c`, `status --audit` 139/139.
 <!-- /ANCHOR:phase-3 -->
 
 ---
