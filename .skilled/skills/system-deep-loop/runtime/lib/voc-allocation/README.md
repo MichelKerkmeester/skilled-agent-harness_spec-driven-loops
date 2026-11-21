@@ -30,7 +30,7 @@ Decides which outstanding branches are worth continuing to fund when budget pres
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/`
+- `../mode-contracts/`
 
 It depends on `hierarchical-budgets` for pressure ratios and `conditional-fanin` for the outstanding-branch and policy types it hands ranks back to.
 
@@ -38,10 +38,10 @@ It depends on `hierarchical-budgets` for pressure ratios and `conditional-fanin`
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/voc-allocation.vitest.ts`
+- `../../tests/unit/voc-allocation.vitest.ts`
 
 ---
 
 ## 5. RELATED
 
-- [`system-deep-loop/SKILL.md`](../../../SKILL.md)
+- [`../../../SKILL.md`](../../../SKILL.md)

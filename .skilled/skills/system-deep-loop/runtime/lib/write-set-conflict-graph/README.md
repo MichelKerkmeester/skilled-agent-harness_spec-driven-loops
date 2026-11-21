@@ -31,16 +31,16 @@ Works out which parts of a run can safely happen at the same time. Each shipped 
 
 ## 3. CONSUMERS
 
-No sibling `runtime/lib` domain imports this yet. It has no cross-domain dependencies beyond Node's `path` module.
+No sibling `runtime/lib` domain imports this yet. It has no cross-domain dependencies beyond Node's `path` and `crypto` modules.
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts`
+- `../../tests/unit/write-set-conflict-graph.vitest.ts`
 
 ---
 
 ## 5. RELATED
 
-- [`system-deep-loop/SKILL.md`](../../../SKILL.md)
+- [`../../../SKILL.md`](../../../SKILL.md)

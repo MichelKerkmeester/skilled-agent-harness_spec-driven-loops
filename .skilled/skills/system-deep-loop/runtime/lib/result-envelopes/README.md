@@ -21,7 +21,7 @@ Records what a dispatched leaf task actually did. A leaf can succeed, fail, time
 | `event-contracts.ts` | Typed ledger-event contracts for leaf result, salvage and recovery events |
 | `identity.ts` | Deterministic id and idempotency-key derivation for result, salvage and recovery events |
 | `index.ts` | Public API surface |
-| `legacy-shadow.ts` | Extracts result text from raw executor stdout for shadow comparison against the legacy parser |
+| `legacy-shadow.ts` | Shadow projections of the legacy sweep for comparison: result text from raw executor stdout, salvage counts, failure class and retry verdict, the reconstructed state-log registry and per-lineage attribution (label, model, iterations and verdict) |
 | `recorder.ts` | Authorized writer that appends leaf result, salvage and recovery events to the ledger |
 | `resume-reducer.ts` | Rebuilds verified leaf-result state by replaying the ledger from genesis |
 | `types.ts` | Status, provenance, usage and cost accounting and payload type contracts |
@@ -30,20 +30,20 @@ Records what a dispatched leaf task actually did. A leaf can succeed, fail, time
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/conditional-fanin/` (decision and reduction)
-- `.skilled/skills/system-deep-loop/runtime/lib/partial-failure-policy/` (evaluator and ledger events)
-- `.skilled/skills/system-deep-loop/runtime/lib/provenance-reduction/` (reducer)
+- `../conditional-fanin/` (decision and reduction)
+- `../partial-failure-policy/` (evaluator and ledger events)
+- `../provenance-reduction/` (reducer)
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/result-envelopes.vitest.ts`
+- `../../tests/unit/result-envelopes.vitest.ts`
 - Also exercised by `conditional-fanin.vitest.ts`, `partial-failure-policy.vitest.ts` and `provenance-reduction.vitest.ts`.
 
 ---
 
 ## 5. RELATED
 
-- [`runtime/lib/README.md`](../README.md)
-- [`system-deep-loop/SKILL.md`](../../../SKILL.md)
+- [`../README.md`](../README.md)
+- [`../../../SKILL.md`](../../../SKILL.md)
