@@ -1,58 +1,76 @@
-# Iteration 002 - Frontier node F-1-004: correctness
+# Iteration 002 - Frontier node F-1-003: correctness
 
 ## Dispatcher
-- Lineage opus-medium, iteration 2 (1 prior iteration record in the state log). steer.md absent.
-- Node F-1-004 marked active with frontier-admit close --status active; dimension correctness.
-- Review focus addressed: docs against code. Every behavioral sentence the change added to the doctor overlay command doc, the apply/repin/update workflow YAML, the presentation text, references/overlays.md, the SKD-013 playbook scenario and the v1.2.0.0 release note was checked against the engine function that implements it, including the stated single migration step (re-pin, then `apply --relayout` once).
+
+- Lineage: opus-medium, session fanout-opus-medium-1795192401900-xpt66n
+- Node: F-1-003 (doctor docs against the engine), dimension correctness
+- Review focus addressed: verified prior R8-P2-001 (one LAYOUT remedy documented) and the LAYOUT overflow fix against the engine, and read the relayout failure contract in references/overlays.md and the apply workflow for claims the code does not back.
+- Sources: steer.md absent; strategy; frontier block F-1-003.
 
 ## Files Reviewed
-- .skilled/commands/doctor/overlay.md (diff 57c01fb4c11^..d42bafc890c)
-- .skilled/commands/doctor/_routes.yaml:696-700
-- .skilled/commands/doctor/assets/doctor-overlay-apply.yaml, doctor-overlay-repin.yaml, doctor-update-apply.yaml, doctor-overlay-presentation.txt (diff)
-- .skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:1-57
-- .skilled/skills/system-skilled-doctor/references/overlays.md:51
-- .skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/sibling-folder-relayout.md
-- .skilled/commands/doctor/scripts/overlay-engine.cjs:3397-3432 (layoutMoves), :3611-3660 (status LAYOUT cap and --json offLayout), :5482-5492 (adoptSource, legacyAdoptSource), :5634-5668 (adopt prefers the current place), :6097-6175 (groupLayoutMoves, planRelayout)
-- specs/.../003-engine-docs-and-release/scratch/evidence/scenario-runs.md, implementation-summary.md:89,117
 
-## Findings - New
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:3689-3710` (LAYOUT line and overflow remedies), `.skilled/commands/doctor/scripts/overlay-engine.cjs:6207-6211` (root/skilled refusal), `.skilled/commands/doctor/scripts/overlay-engine.cjs:6531-6549` (failure lines)
+- `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:87-96, 118, 276-295, 542, 563-566, 595`
+- `.skilled/skills/system-skilled-doctor/references/overlays.md:92, 96, 263-268`
+- `.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:60, 105, 111-117, 126`
+
+## Findings by Severity
 
 ### P0 Findings
+
 None.
 
 ### P1 Findings
+
 None.
 
 ### P2 Findings
-1. **layoutMoves JSDoc still describes the old dot-dropped layout** -- .skilled/commands/doctor/scripts/overlay-engine.cjs:3398 -- The doc comment says a copy is on layout when it sits "inside the overlay folder at its destination path with the leading dot dropped". The function now compares against adoptSource (:3415), which returns `framework/<X>` for `.skilled/<X>` and `root/<dots dropped>` otherwise (:5485-5487). The comment describes exactly the layout the function now reports as off-layout, so a maintainer reading it gets the rule backwards.
-   Finding class: stale code comment
-   Scope proof: grep for "leading dot dropped" in .skilled/commands/doctor and system-skilled-doctor finds this comment plus the intentional legacy notes at :5490 and in follow-up.test.cjs:1486, which correctly label the old layout as older.
-   Affected surface hints: overlay-engine.cjs layoutMoves header
-   Case: a maintainer edits layoutMoves trusting the comment and treats `skilled/skills/x` (the old place) as the layout path, which reintroduces the old layout.
+
+1. **The presentation's next-step rows send every LAYOUT line to apply --relayout, including the root/skilled lines relayout refuses** -- .skilled/commands/doctor/assets/doctor-overlay-presentation.txt:563 -- The fix table row "A LAYOUT line in a status report | Run /doctor:overlay apply --relayout" (`.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:563`) and the next-command row at `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:595` make no exception for a LAYOUT line whose target sits under root/skilled. The same file says that line names "change the destination or remove the entry" instead (`.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:88, 96`), and the engine refuses the move (`.skilled/commands/doctor/scripts/overlay-engine.cjs:6207-6211`) and prints that remedy (`.skilled/commands/doctor/scripts/overlay-engine.cjs:3693-3695`). An agent reading the fix table offers a relayout that exits 2.
+   - Finding class: doc-contradiction
+   - Scope proof: the two rows are the only generic LAYOUT next-step entries; lines 87-96 and 118 already carry the exception.
+   - Affected surface hints: doctor-overlay-presentation.txt fix table and next-command table.
+   - Case: status prints LAYOUT for an entry whose destination is skilled/notes.md at the tree root; the next-step row says run apply --relayout, which refuses with exit 2.
+
+2. **references/overlays.md repeats the claim that a kept relayout backup holds every moved copy** -- .skilled/skills/system-skilled-doctor/references/overlays.md:96 -- The restore-failed paragraph says the line "names relayout-runs/<stamp> as the place that holds every moved copy and the manifest as it was". The backup skips token-named files inside a moved folder (`.skilled/commands/doctor/scripts/overlay-engine.cjs:6278-6281`), as the presentation itself admits at `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:542, 565`. The reference page is where an operator goes to recover by hand.
+   - Finding class: doc-overclaim
+   - Scope proof: only the restore-failed sentence; the success-path sentences are accurate.
+   - Affected surface hints: overlays.md relayout paragraph; same root cause as R1-P2-001.
+   - Case: a moved folder with assets/api-token.js and a failed restore; overlays.md tells the operator the backup holds the whole folder.
+
+## Prior-Finding Verification
+
+- R8-P2-001 (presentation documents one LAYOUT remedy): FIXED. Both forms at `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:87-88`, explained at `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:96`, matching `.skilled/commands/doctor/scripts/overlay-engine.cjs:3693-3696`.
+- R1-P2-001 overflow variant (overflow line advises relayout for refused entries): FIXED. The engine splits hidden moves into movable and blocked (`.skilled/commands/doctor/scripts/overlay-engine.cjs:3698-3708`), and `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:118` and `.skilled/skills/system-skilled-doctor/references/overlays.md:92` document all three forms with the engine's exact wording.
 
 ## Traceability Checks
-- spec_code (pass): release note bullets map to code: framework/root mapping (:5485-5487), LAYOUT cap 20 plus overflow line (:3652-3660, LAYOUT_SHOWN :88), status --json offLayout (:3631), root/skilled refusal in plan, adopt and relayout (:2824, :5650-5656, :6137), adopt prefers current over legacy copy (:5637-5640), duplicate targets refused (:6158-6161).
-- checklist_evidence (pass): 003 implementation-summary.md:89,117 says SKD-006/007/010 failed as written and passed after the quoting fix; the current scenario docs carry no unescaped `"source"` fragment (grep), and scenario-runs.md:250 records `bash -n` exit 0 on every extracted step.
-- playbook_capability (pass): SKD-013 step 13 counts `"field": "source"` lines, which works because status --json pretty-prints with 2-space indentation (overlay-engine.cjs:3636 JSON.stringify(report, null, 2)).
+
+- spec_code: partial. Engine and docs agree on LAYOUT text, the relayout-then-apply sequence (`.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:105`, `.skilled/skills/system-skilled-doctor/references/overlays.md:96`), and the three failure-line endings; two doc rows disagree (findings 1-2).
+- playbook_capability: pass for the apply workflow's relayout branches (`.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:111-117`) against the engine's printed lines.
 
 ## Integration Evidence
-- /doctor:overlay apply workflow (.skilled/commands/doctor/assets/doctor-overlay-apply.yaml) now builds the relayout plan from `status --json` offLayout rather than the capped text lines, matching the engine cap.
+
+- `.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:105` runs plain apply after relayout, matching `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:563` "and then applies" and `.skilled/skills/system-skilled-doctor/references/overlays.md:96`.
 
 ## Edge Cases
-- A marked-section entry whose source differs from its fragment keeps its source where it is (:3420-3423), so the "one relayout settles the layout" claim holds only for the fields the engine reports; the docs say "the overlay sources the manifest keeps off their layout paths", which is consistent.
+
+- `.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:114` lists the refuse reasons without the root/skilled one; the step still says to quote every refuse line, so the outcome is right. Recorded as advisory, not a finding.
+- "Leading dots dropped" under root/ (`.skilled/skills/system-skilled-doctor/references/overlays.md:92`, `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:118`) is the current layout, not the retired dot-dropped-without-prefix layout (`.skilled/skills/system-skilled-doctor/references/overlays.md:263`).
 
 ## Confirmed-Clean Surfaces
-- overlay.md error table for `.skilled-overlays.json` refusals matches the two engine messages and the pre-commit message verbatim.
-- Repin rollback path in doctor-overlay-repin.yaml resolves `../<name>` against the tree root, matching createContext.
+
+- LAYOUT line format, overflow forms, relayout-runs backup location, failure-line wording.
 
 ## Ruled Out
-- Relayout overwriting when two off-layout sources map to the same layout path: refused by the claimed map (:6158-6161).
-- SKD-013 grep miscount: ruled out, JSON output is indented.
+
+- Docs claiming relayout applies by itself: the workflow runs apply as a second call (`.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:105`), and the engine prints "run ... apply" (`.skilled/commands/doctor/scripts/overlay-engine.cjs:6557`).
 
 ## Next Focus
+
 - Dimension: correctness
-- Focus area: F-1-006 Barter relayout and move to overlays/ in the nested ai-speckit repo
-- Reason: frontier rotation
-- Rotation status: F-1-002 and F-1-004 correctness done
+- Focus area: frontier node F-1-005 (Barter hygiene, nested repo)
+- Reason: rotate frontier nodes
+- Rotation status: F-1-001 and F-1-003 correctness done
+- Required evidence: barter/ai-speckit .gitignore, fixture rename, hooks reading overlayDir, pre-commit fail-closed
 
 Review verdict: PASS

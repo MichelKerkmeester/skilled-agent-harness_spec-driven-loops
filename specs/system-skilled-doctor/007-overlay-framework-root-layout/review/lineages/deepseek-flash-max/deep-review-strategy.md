@@ -1,18 +1,33 @@
+---
+title: Deep Review Strategy - 007 overlay framework/root layout (deepseek-flash-max lineage)
+description: Runtime strategy for the fan-out lineage deepseek-flash-max reviewing the overlay framework/root layout change after remediation.
+trigger_phrases:
+  - "deep review strategy"
+  - "overlay framework root layout review"
+importance_tier: normal
+contextType: planning
+version: 1.11.1.0
+---
+
 # Deep Review Strategy - Session Tracking
 
-## 1. REVIEW CHARTER
+## 1. OVERVIEW
 
-- Target: `specs/system-skilled-doctor/007-overlay-framework-root-layout` (spec-folder, five phases 001-005)
-- Dimensions: correctness, security, traceability, maintainability
-- Stop conditions: convergence threshold 0.10 on the severity-weighted new-findings ratio, or maxIterations 24, whichever comes first
-- Success criteria: every configured dimension covered at least once, both core traceability protocols recorded, no unexamined P0 left active
-- Operator review focus: the whole overlay framework/root layout change end to end (Skilled `57c01fb4c11..d42bafc890c` merged as `063daaee2c1` plus `1653734af7d` and `10c36989450`; ai-speckit `64cfee51628..ad3246feba2`), covering engine correctness, path safety, hook fail-open/fail-closed behavior, the old-layout migration, test strength, docs against code, and leftover `barter-overlays` references.
+### Purpose
+
+Persistent brain for the `deepseek-flash-max` fan-out lineage. Records which dimensions remain, what was found (P0/P1/P2), what review approaches worked or failed, and where to focus next.
+
+### Usage
+
+- **Init:** populated from the lineage config and the prior generation's archived report.
+- **Per iteration:** the agent reads Next Focus, reviews the assigned dimension and frontier node, updates findings, marks dimensions complete, and sets new Next Focus.
+- **Mutability:** mutable, updated by the iteration agent.
 
 ---
 
 ## 2. TOPIC
 
-Review of the overlay framework/root source layout change: moving a consumer's overlays out of the vendored tree into a sibling `overlays/` folder with `framework/` and `root/` source roots, and Barter's migration onto that layout.
+Follow-up review round after remediation of `specs/system-skilled-doctor/007-overlay-framework-root-layout`. The previous generation (archived at `review-archive/20261120T163142Z/`) raised 1 P1 and 15 P2 findings across two lineages. This round verifies each of those findings is fixed, checks the fixes introduced no regression, and reviews the whole change again.
 
 ---
 
@@ -23,19 +38,18 @@ Review of the overlay framework/root source layout change: moving a consumer's o
 <!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
 
-- Removing old-layout or in-tree overlay support (explicitly out of scope per decision D6)
-- Overlay content changes beyond paths
-- Spec history under `ai-speckit/specs/`
-- Line-by-line review of every vendored file in the Barter re-pin; the parity check is limited to engine-relevant files
+- Removing old-layout or in-tree overlay support (D6).
+- Non-path overlay content changes (D6).
+- Spec history under `ai-speckit/specs/` (D6).
+- The deep-review workflow's own fan-out scope-gate defect (prior D-1). It is recorded as an edge case, not a finding against this packet.
 
 ---
 
 ## 5. STOP CONDITIONS
 
-- Convergence: severity-weighted new-findings ratio below 0.10 after the minimum iteration floor
-- maxIterations 24 reached
-- Three consecutive failed iterations
-- Frontier drained with every dimension covered
+- Convergence: `newFindingsRatio` under 0.10 with all four dimensions covered.
+- Hard ceiling: 24 iterations.
+- Any active P0 keeps the verdict at FAIL regardless of convergence.
 
 ---
 
@@ -50,292 +64,250 @@ Review of the overlay framework/root source layout change: moving a consumer's o
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 2
-- P2 (Suggestions): 5
+- P1 (Required): 0
+- P2 (Suggestions): 10
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
-- Reading a function's own comment for the invariant it claims, then checking every statement that must uphold it: found the relayout rollback gap at `overlay-engine.cjs:6358-6360` against `:6384-6392` (iteration 1)
-- Comparing two sibling diagnostic lines that share a remedy decision: found the LAYOUT overflow line's unconditional advice at `:3659` against the branching per-line remedy at `:3652-3655` (iteration 1)
-- Grepping the whole repository for the retired path name and classifying each hit rather than counting them: cleared `barter-overlays` in four fixture lines (iteration 1)
-- Byte-comparing each overlay source against its vendored copy with `diff`: proved all four hook files agree and closed the copy-drift question in one call (iteration 2)
-- Reading a hook's skip branch as a behavior rather than as a guard: found the commit gate's silent `HAS_OVERLAYS=0` path at `pre-commit:89-92` (iteration 2)
+
+- Re-verifying each prior finding against the current tree instead of the remediation commit message: it separated the eight genuinely fixed engine findings from the one branch the fix did not cover. (iteration 1)
+- Reading the rollback tests' assertions rather than their names: the snapshot-before/snapshot-after deep equality is what proves the restore, and it is present. (iteration 1)
+- Comparing the same gate across its two entrypoints: the git write gate refuses through the OpenCode wrapper and allows through its CLI hook, and only the side-by-side read made that visible. (iteration 5)
+- Reading all four upstream overlay-guard adapters before calling the OpenCode fail-open a divergence: they all warn and approve, so the behaviour is a design decision rather than a defect. (iteration 5)
+- Grepping for a hardening flag rather than reading every git call: one `--end-of-options` hit in a 6600-line engine located the one reader that omits it. (iteration 6)
+- Reading the state file for machine-specific data before reading the engine: zero absolute paths settled the leak question in one search. (iteration 6)
+- Grepping the hook for one command shape instead of reading it top to bottom: three `git diff --cached` hits with two different flag sets exposed the filter inconsistency in one search. (iteration 8)
+- Re-checking the prior maintainability findings by their anchors rather than their commit: the `layoutMoves` JSDoc and the `writeBackup` split are both still in place. (iteration 8)
+- Reading the fixture helper before accepting an unexecuted criterion: `overlay-engine-fixtures.cjs:63` builds every fixture under `os.tmpdir()`, which turned criterion 1 from an eight-iteration limit into 262 executed passing tests. (iteration 9)
+- Running the packet's own criteria instead of re-reading the phase-003 one: five of six executed clean and the sixth exposed a stale phase count that no prose read had caught. (iteration 9)
+- Checking `git status --porcelain` over the three reviewed trees after executing the suites: an empty result is what proves the execution left no residue, and it is cheaper than auditing each fixture. (iteration 9)
 
 ---
 
 ## 9. WHAT FAILED
-- Attempting to settle the `overlayDir`-outside-the-git-repository question from decision D2 alone: D2's summary is looser than the child spec, so the decision text cannot decide it and the child spec has to be read (iteration 1)
-- Searching for a pre-commit hook test by name: `find` and `rg` both return only the hook, so the absence had to be proven by searching for the hook's own variable name across the repository (iteration 2)
+
+- Reading the remediation commit message as evidence: it names the `layoutMoves` JSDoc and the `overlayOutside` context field, and both are real, but a message cannot show whether a branch is reachable. Direct reads were needed for every claim. (iteration 1)
+- Treating a `catch` arm as dead code from its shape alone: `barter-git-write-gate.js:56` looks like a redundant prefix check until `evaluateCommand` is read and the prefixed returns at `:1732`, `:1737` and `:2018` show it is live. (iteration 5)
+- Reading `$?` after `VAR="$(cmd)"` as clobbered: bash propagates the command substitution status through the assignment, so the pre-commit engine checks are sound and the suspicion was wrong. (iteration 5)
+- Assuming the vendored copy might ship the engine without its suites: all six `overlay-engine-*.test.cjs` files are present, so the supply-chain question closed on a listing rather than a finding. (iteration 6)
+- Treating the duplicated three-line session-directory fallback in the two plugins as a finding: it is real duplication but carries no behavioural divergence, so it was recorded as an edge case instead. (iteration 8)
+- Carrying criterion 1 as an unexecuted limit for eight iterations: the suites were assumed to write inside the repository, and one read of the fixture helper would have shown they do not. (iteration 9)
+- Expecting the coverage gate to close once the criteria were executed: `checklist_evidence` stays `partial` because the phase-003 tick still does not reproduce, and that cause is a one-line amendment outside this lineage's write surface. (iteration 9)
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### **`.skilled/hooks/overlay-guard/opencode/overlay-guard.js` and `.skilled/hooks/overlay-guard/vibe/overlay-guard.mjs` differ from the pin.** Checked and ruled out: both are symlinks at the pin (mode 120000) and on disk, and a plain `diff` follows them. Their targets match exactly (`../../../../.opencode/plugins/overlay-guard.js` and `../../../../.vibe/plugins/repo-guards/overlay-guard.mjs`). The apparent difference was an artifact of the comparison, not drift. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **`.skilled/hooks/overlay-guard/opencode/overlay-guard.js` and `.skilled/hooks/overlay-guard/vibe/overlay-guard.mjs` differ from the pin.** Checked and ruled out: both are symlinks at the pin (mode 120000) and on disk, and a plain `diff` follows them. Their targets match exactly (`../../../../.opencode/plugins/overlay-guard.js` and `../../../../.vibe/plugins/repo-guards/overlay-guard.mjs`). The apparent difference was an artifact of the comparison, not drift.
+### **`$?` clobbered by the assignment.** Considered that `STATUS_OUT="$(...)"` resets `$?` before the test. It does not: bash propagates the command substitution's status through the assignment, so the check is sound. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **`$?` clobbered by the assignment.** Considered that `STATUS_OUT="$(...)"` resets `$?` before the test. It does not: bash propagates the command substitution's status through the assignment, so the check is sound.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`.skilled/hooks/overlay-guard/opencode/overlay-guard.js` and `.skilled/hooks/overlay-guard/vibe/overlay-guard.mjs` differ from the pin.** Checked and ruled out: both are symlinks at the pin (mode 120000) and on disk, and a plain `diff` follows them. Their targets match exactly (`../../../../.opencode/plugins/overlay-guard.js` and `../../../../.vibe/plugins/repo-guards/overlay-guard.mjs`). The apparent difference was an artifact of the comparison, not drift.
+- Do NOT retry: **`$?` clobbered by the assignment.** Considered that `STATUS_OUT="$(...)"` resets `$?` before the test. It does not: bash propagates the command substitution's status through the assignment, so the check is sound.
 
-### **`aiSpeckitRoot` resolves to different roots for the applied and overlay-source copies.** Checked and ruled out: both sit five levels below their anchor and both probe the same sibling manifest. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **`aiSpeckitRoot` resolves to different roots for the applied and overlay-source copies.** Checked and ruled out: both sit five levels below their anchor and both probe the same sibling manifest.
+### **`INTERESTING_GIT` too narrow to catch a refused command.** Considered that `barter-git-write-gate.js:57` would swallow a refusal for a command the pattern misses. `INTERESTING_GIT` is `/\b(?:git|gh)\b/` (`barter-git-write-gate.mjs:169`), and every refusal `evaluateCommand` returns is already prefixed and re-thrown at `:56`, so the generic arm is only reached for a thrown error. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **`INTERESTING_GIT` too narrow to catch a refused command.** Considered that `barter-git-write-gate.js:57` would swallow a refusal for a command the pattern misses. `INTERESTING_GIT` is `/\b(?:git|gh)\b/` (`barter-git-write-gate.mjs:169`), and every refusal `evaluateCommand` returns is already prefixed and re-thrown at `:56`, so the generic arm is only reached for a thrown error.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`aiSpeckitRoot` resolves to different roots for the applied and overlay-source copies.** Checked and ruled out: both sit five levels below their anchor and both probe the same sibling manifest.
+- Do NOT retry: **`INTERESTING_GIT` too narrow to catch a refused command.** Considered that `barter-git-write-gate.js:57` would swallow a refusal for a command the pattern misses. `INTERESTING_GIT` is `/\b(?:git|gh)\b/` (`barter-git-write-gate.mjs:169`), and every refusal `evaluateCommand` returns is already prefixed and re-thrown at `:56`, so the generic arm is only reached for a thrown error.
 
-### **`apply --relayout` has a plan mode the presentation asset denies.** Checked and ruled out: `isRelayout` has one routing site and no dry-run branch. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: **`apply --relayout` has a plan mode the presentation asset denies.** Checked and ruled out: `isRelayout` has one routing site and no dry-run branch.
+### **`overlayDir` can name the repository's own `.git`.** Ruled out: `:472` refuses a target whose first segment under the top level is `.git`, and `overlay-engine-strict-writes.test.cjs:820-830` covers it. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **`overlayDir` can name the repository's own `.git`.** Ruled out: `:472` refuses a target whose first segment under the top level is `.git`, and `overlay-engine-strict-writes.test.cjs:820-830` covers it.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`apply --relayout` has a plan mode the presentation asset denies.** Checked and ruled out: `isRelayout` has one routing site and no dry-run branch.
+- Do NOT retry: **`overlayDir` can name the repository's own `.git`.** Ruled out: `:472` refuses a target whose first segment under the top level is `.git`, and `overlay-engine-strict-writes.test.cjs:820-830` covers it.
 
-### **`overlayDir` outside the git repository is not refused by `resolveOverlayDir`.** Checked and ruled out: `001-engine-out-of-tree-overlay-folder/spec.md:132,226` scopes that refusal to `pre-commit`, and `overlay-engine.cjs:5814-5819` implements it there. Decision D2's summary is looser than the child spec, and the child spec outranks it. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **`overlayDir` outside the git repository is not refused by `resolveOverlayDir`.** Checked and ruled out: `001-engine-out-of-tree-overlay-folder/spec.md:132,226` scopes that refusal to `pre-commit`, and `overlay-engine.cjs:5814-5819` implements it there. Decision D2's summary is looser than the child spec, and the child spec outranks it.
+### **`overlayOutside` is stale after a setting change mid-run.** Ruled out: `createContext` is the only producer and every command builds one context per run. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **`overlayOutside` is stale after a setting change mid-run.** Ruled out: `createContext` is the only producer and every command builds one context per run.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`overlayDir` outside the git repository is not refused by `resolveOverlayDir`.** Checked and ruled out: `001-engine-out-of-tree-overlay-folder/spec.md:132,226` scopes that refusal to `pre-commit`, and `overlay-engine.cjs:5814-5819` implements it there. Decision D2's summary is looser than the child spec, and the child spec outranks it.
+- Do NOT retry: **`overlayOutside` is stale after a setting change mid-run.** Ruled out: `createContext` is the only producer and every command builds one context per run.
 
-### **`repin --stage` can be aimed inside the tree or inside the overlay folder.** Checked and ruled out: `stageFolderProblem` tests both spellings of both boundaries. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **`repin --stage` can be aimed inside the tree or inside the overlay folder.** Checked and ruled out: `stageFolderProblem` tests both spellings of both boundaries.
+### **`pre-commit` fails open silently.** Ruled out: the only fail-open branch prints `allow: strictWrites is off in the overlay manifest, so nothing was checked` (`:6124`). -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **`pre-commit` fails open silently.** Ruled out: the only fail-open branch prints `allow: strictWrites is off in the overlay manifest, so nothing was checked` (`:6124`).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`repin --stage` can be aimed inside the tree or inside the overlay folder.** Checked and ruled out: `stageFolderProblem` tests both spellings of both boundaries.
+- Do NOT retry: **`pre-commit` fails open silently.** Ruled out: the only fail-open branch prints `allow: strictWrites is off in the overlay manifest, so nothing was checked` (`:6124`).
 
-### **`repin --stage` copies `relayout-runs/` and `repin-runs/` into the stage.** Checked and ruled out: `001-engine-out-of-tree-overlay-folder/spec.md:183` records the extra overlay-folder copy as an accepted cost under NFR-P01. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **`repin --stage` copies `relayout-runs/` and `repin-runs/` into the stage.** Checked and ruled out: `001-engine-out-of-tree-overlay-folder/spec.md:183` records the extra overlay-folder copy as an accepted cost under NFR-P01.
+### **`sync-state.json` leaks an absolute path.** Ruled out by exact search: zero `/Users/` hits. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: **`sync-state.json` leaks an absolute path.** Ruled out by exact search: zero `/Users/` hits.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`repin --stage` copies `relayout-runs/` and `repin-runs/` into the stage.** Checked and ruled out: `001-engine-out-of-tree-overlay-folder/spec.md:183` records the extra overlay-folder copy as an accepted cost under NFR-P01.
+- Do NOT retry: **`sync-state.json` leaks an absolute path.** Ruled out by exact search: zero `/Users/` hits.
 
-### **`status` fails after a relayout until a follow-up `apply` runs.** Checked and ruled out: `state.files` holds applied hashes only (`:2908`), and `retargetRelayoutLinks` (`:6310-6328`) moves the live link while `planRelayoutManifest` (`:6280-6288`) rewrites the manifest target, so `planLayoutLinks` (`:2473-2479`) sees `current === link.target`. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **`status` fails after a relayout until a follow-up `apply` runs.** Checked and ruled out: `state.files` holds applied hashes only (`:2908`), and `retargetRelayoutLinks` (`:6310-6328`) moves the live link while `planRelayoutManifest` (`:6280-6288`) rewrites the manifest target, so `planLayoutLinks` (`:2473-2479`) sees `current === link.target`.
+### **A `GIT_DIR` exported by a hook defeats the repository check.** Ruled out: `gitTopLevelOrNull` deletes `GIT_DIR`, `GIT_WORK_TREE`, `GIT_INDEX_FILE` and `GIT_PREFIX` from the child environment (`:499-500`), and `overlay-engine-strict-writes.test.cjs:866-870` covers it. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **A `GIT_DIR` exported by a hook defeats the repository check.** Ruled out: `gitTopLevelOrNull` deletes `GIT_DIR`, `GIT_WORK_TREE`, `GIT_INDEX_FILE` and `GIT_PREFIX` from the child environment (`:499-500`), and `overlay-engine-strict-writes.test.cjs:866-870` covers it.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`status` fails after a relayout until a follow-up `apply` runs.** Checked and ruled out: `state.files` holds applied hashes only (`:2908`), and `retargetRelayoutLinks` (`:6310-6328`) moves the live link while `planRelayoutManifest` (`:6280-6288`) rewrites the manifest target, so `planLayoutLinks` (`:2473-2479`) sees `current === link.target`.
+- Do NOT retry: **A `GIT_DIR` exported by a hook defeats the repository check.** Ruled out: `gitTopLevelOrNull` deletes `GIT_DIR`, `GIT_WORK_TREE`, `GIT_INDEX_FILE` and `GIT_PREFIX` from the child environment (`:499-500`), and `overlay-engine-strict-writes.test.cjs:866-870` covers it.
 
-### **`sync-state.json` still records a pre-move link target.** Checked and ruled out: no value in the `files` map contains `barter-overlays`. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: **`sync-state.json` still records a pre-move link target.** Checked and ruled out: no value in the `files` map contains `barter-overlays`.
+### **A live `barter-overlays` path reference survives.** Ruled out: every remaining hit is the spec track name `skilled-barter-overlays`. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **A live `barter-overlays` path reference survives.** Ruled out: every remaining hit is the spec track name `skilled-barter-overlays`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **`sync-state.json` still records a pre-move link target.** Checked and ruled out: no value in the `files` map contains `barter-overlays`.
+- Do NOT retry: **A live `barter-overlays` path reference survives.** Ruled out: every remaining hit is the spec track name `skilled-barter-overlays`.
 
-### **A `marked-section` entry whose `source` differs from its `fragment` keeps a permanent LAYOUT line.** Checked and ruled out: `layoutMoves` (`:3420-3424`) skips that `source`, and `status` prints from the same function, so no line is emitted for it. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **A `marked-section` entry whose `source` differs from its `fragment` keeps a permanent LAYOUT line.** Checked and ruled out: `layoutMoves` (`:3420-3424`) skips that `source`, and `status` prints from the same function, so no line is emitted for it.
+### **A manifest can make the engine read a credential file through `protectedPaths`.** Ruled out: `protectedPathsFor` (`:2730-2748`) refuses a `.env` value and a value outside the entry, and `isProtectedReadPath` still refuses every token-named path the entry does not name exactly. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **A manifest can make the engine read a credential file through `protectedPaths`.** Ruled out: `protectedPathsFor` (`:2730-2748`) refuses a `.env` value and a value outside the entry, and `isProtectedReadPath` still refuses every token-named path the entry does not name exactly.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A `marked-section` entry whose `source` differs from its `fragment` keeps a permanent LAYOUT line.** Checked and ruled out: `layoutMoves` (`:3420-3424`) skips that `source`, and `status` prints from the same function, so no line is emitted for it.
+- Do NOT retry: **A manifest can make the engine read a credential file through `protectedPaths`.** Ruled out: `protectedPathsFor` (`:2730-2748`) refuses a `.env` value and a value outside the entry, and `isProtectedReadPath` still refuses every token-named path the entry does not name exactly.
 
-### **A manifest `source`, `fragment` or `base` can escape the overlay folder.** Checked and ruled out: `containedOverlayPath` routes every one through `sourceRelative`, which throws on an escape, and `planRelayout` turns the throw into a `refuse:` problem before any write. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **A manifest `source`, `fragment` or `base` can escape the overlay folder.** Checked and ruled out: `containedOverlayPath` routes every one through `sourceRelative`, which throws on an escape, and `planRelayout` turns the throw into a `refuse:` problem before any write.
+### **A manifest can make the engine read a credential file.** Ruled out in iteration 2: `protectedPathsFor` refuses a dotenv value and a value outside the entry. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: **A manifest can make the engine read a credential file.** Ruled out in iteration 2: `protectedPathsFor` refuses a dotenv value and a value outside the entry.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A manifest `source`, `fragment` or `base` can escape the overlay folder.** Checked and ruled out: `containedOverlayPath` routes every one through `sourceRelative`, which throws on an escape, and `planRelayout` turns the throw into a `refuse:` problem before any write.
+- Do NOT retry: **A manifest can make the engine read a credential file.** Ruled out in iteration 2: `protectedPathsFor` refuses a dotenv value and a value outside the entry.
 
-### **A planted `overlays` folder can steer the guard core at a different manifest.** Checked and ruled out: `matchLayout` requires the folder to be exactly `<parent>/overlays`, the tree to hold the engine and the folder to hold the manifest, and `findBarterOverlays` tries only the two anchors its own realpath implies. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **A planted `overlays` folder can steer the guard core at a different manifest.** Checked and ruled out: `matchLayout` requires the folder to be exactly `<parent>/overlays`, the tree to hold the engine and the folder to hold the manifest, and `findBarterOverlays` tries only the two anchors its own realpath implies.
+### **A non-ASCII vendored path slips past the staged scan.** Ruled out: the scan reads `git diff --cached --name-only -z` (`:127`) and `pre-commit.test.cjs:107-116` stages `café.md`. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **A non-ASCII vendored path slips past the staged scan.** Ruled out: the scan reads `git diff --cached --name-only -z` (`:127`) and `pre-commit.test.cjs:107-116` stages `café.md`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A planted `overlays` folder can steer the guard core at a different manifest.** Checked and ruled out: `matchLayout` requires the folder to be exactly `<parent>/overlays`, the tree to hold the engine and the folder to hold the manifest, and `findBarterOverlays` tries only the two anchors its own realpath implies.
+- Do NOT retry: **A non-ASCII vendored path slips past the staged scan.** Ruled out: the scan reads `git diff --cached --name-only -z` (`:127`) and `pre-commit.test.cjs:107-116` stages `café.md`.
 
-### **A sibling `overlayDir` can point the engine at a folder outside the git repository.** Checked and ruled out as documented behavior: `references/overlays.md:51` scopes the same-repository rule to the commit check, `001-engine-out-of-tree-overlay-folder/spec.md:132` states it as REQ-008 for pre-commit, and `spec.md:226` records the operator resolution in those words. The engine refuses it at `:5810-5818` with the documented line. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **A sibling `overlayDir` can point the engine at a folder outside the git repository.** Checked and ruled out as documented behavior: `references/overlays.md:51` scopes the same-repository rule to the commit check, `001-engine-out-of-tree-overlay-folder/spec.md:132` states it as REQ-008 for pre-commit, and `spec.md:226` records the operator resolution in those words. The engine refuses it at `:5810-5818` with the documented line.
+### **Criterion 4 regressed since iteration 8.** Ruled out by re-execution: `status --json` still reports `PASSED` with an empty `offLayout`. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: **Criterion 4 regressed since iteration 8.** Ruled out by re-execution: `status --json` still reports `PASSED` with an empty `offLayout`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A sibling `overlayDir` can point the engine at a folder outside the git repository.** Checked and ruled out as documented behavior: `references/overlays.md:51` scopes the same-repository rule to the commit check, `001-engine-out-of-tree-overlay-folder/spec.md:132` states it as REQ-008 for pre-commit, and `spec.md:226` records the operator resolution in those words. The engine refuses it at `:5810-5818` with the documented line.
+- Do NOT retry: **Criterion 4 regressed since iteration 8.** Ruled out by re-execution: `status --json` still reports `PASSED` with an empty `offLayout`.
 
-### **A stale `overlays/skilled` path survives the move.** Checked and ruled out: the directory does not exist. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **A stale `overlays/skilled` path survives the move.** Checked and ruled out: the directory does not exist.
+### **Criterion 5's refusal names the wrong source root.** Ruled out: the refusal names `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`, which is the `framework/` root D1 froze. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: **Criterion 5's refusal names the wrong source root.** Ruled out: the refusal names `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`, which is the `framework/` root D1 froze.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A stale `overlays/skilled` path survives the move.** Checked and ruled out: the directory does not exist.
+- Do NOT retry: **Criterion 5's refusal names the wrong source root.** Ruled out: the refusal names `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`, which is the `framework/` root D1 froze.
 
-### **A symlinked parent can carry a removal outside the tree.** Checked and ruled out: `:229` compares the canonical parent, not just the lexical path. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **A symlinked parent can carry a removal outside the tree.** Checked and ruled out: `:229` compares the canonical parent, not just the lexical path.
+### **Engine refusal prefix mismatch.** Considered that `barter-overlay-guard.js:175` matches `/^refuse:/im` while the engine might print another prefix. Executed the guard read-only and the engine prints `refuse: ...`, so the match holds. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **Engine refusal prefix mismatch.** Considered that `barter-overlay-guard.js:175` matches `/^refuse:/im` while the engine might print another prefix. Executed the guard read-only and the engine prints `refuse: ...`, so the match holds.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **A symlinked parent can carry a removal outside the tree.** Checked and ruled out: `:229` compares the canonical parent, not just the lexical path.
+- Do NOT retry: **Engine refusal prefix mismatch.** Considered that `barter-overlay-guard.js:175` matches `/^refuse:/im` while the engine might print another prefix. Executed the guard read-only and the engine prints `refuse: ...`, so the match holds.
 
-### **An old `barter-overlays` path survives in a doc, test or script.** Checked and ruled out: the REQ-008 grep returns zero lines outside the exempt areas. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: **An old `barter-overlays` path survives in a doc, test or script.** Checked and ruled out: the REQ-008 grep returns zero lines outside the exempt areas.
+### **Relayout can still leave a half-moved folder.** Ruled out: every mutating step is inside the `try` at `:6534-6560`, and the only steps outside it are the backup copies, which run before the first rename. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **Relayout can still leave a half-moved folder.** Ruled out: every mutating step is inside the `try` at `:6534-6560`, and the only steps outside it are the backup copies, which run before the first rename.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **An old `barter-overlays` path survives in a doc, test or script.** Checked and ruled out: the REQ-008 grep returns zero lines outside the exempt areas.
+- Do NOT retry: **Relayout can still leave a half-moved folder.** Ruled out: every mutating step is inside the `try` at `:6534-6560`, and the only steps outside it are the backup copies, which run before the first rename.
 
-### **Criterion 4 fails on the tree as it stands.** Checked and ruled out: `status --json` reports `PASSED` with `offLayout: []`. -- BLOCKED (iteration 12, 1 attempts)
-- What was tried: **Criterion 4 fails on the tree as it stands.** Checked and ruled out: `status --json` reports `PASSED` with `offLayout: []`.
+### **The applied hook copies drifted from their overlay sources.** Ruled out: `diff -q` reports all three pairs identical. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **The applied hook copies drifted from their overlay sources.** Ruled out: `diff -q` reports all three pairs identical.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Criterion 4 fails on the tree as it stands.** Checked and ruled out: `status --json` reports `PASSED` with `offLayout: []`.
+- Do NOT retry: **The applied hook copies drifted from their overlay sources.** Ruled out: `diff -q` reports all three pairs identical.
 
-### **Criterion 5 fails.** Checked and ruled out: the guard exits 1 and names `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`. -- BLOCKED (iteration 12, 1 attempts)
-- What was tried: **Criterion 5 fails.** Checked and ruled out: the guard exits 1 and names `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`.
+### **The changelog overstates the relayout backup location.** Ruled out: `:6491` builds the path from the overlay root, which is what the changelog says. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **The changelog overstates the relayout backup location.** Ruled out: `:6491` builds the path from the overlay root, which is what the changelog says.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Criterion 5 fails.** Checked and ruled out: the guard exits 1 and names `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`.
+- Do NOT retry: **The changelog overstates the relayout backup location.** Ruled out: `:6491` builds the path from the overlay root, which is what the changelog says.
 
-### **REQ-001's rule is not what the code does.** Checked and ruled out: `adoptSource` at `:5484-5488` matches the requirement branch for branch. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: **REQ-001's rule is not what the code does.** Checked and ruled out: `adoptSource` at `:5484-5488` matches the requirement branch for branch.
+### **The commit gate still skips silently when no manifest is found.** Ruled out: `pre-commit:120-146` refuses with exit 1 when a vendored path is staged and prints a skip line otherwise. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **The commit gate still skips silently when no manifest is found.** Ruled out: `pre-commit:120-146` refuses with exit 1 when a vendored path is staged and prints a skip line otherwise.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **REQ-001's rule is not what the code does.** Checked and ruled out: `adoptSource` at `:5484-5488` matches the requirement branch for branch.
+- Do NOT retry: **The commit gate still skips silently when no manifest is found.** Ruled out: `pre-commit:120-146` refuses with exit 1 when a vendored path is staged and prints a skip line otherwise.
 
-### **The `--guard` criterion fails.** Checked and ruled out: the guard exits 1 and names `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`. -- BLOCKED (iteration 11, 1 attempts)
-- What was tried: **The `--guard` criterion fails.** Checked and ruled out: the guard exits 1 and names `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`.
+### **The docs claim an exit code the engine does not use.** Considered that `overlays.md:51` says `pre-commit` exits 2 while the engine throws. Ruled out: `:6665` returns `EXIT_ERROR`, defined as 2 at `:91`. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **The docs claim an exit code the engine does not use.** Considered that `overlays.md:51` says `pre-commit` exits 2 while the engine throws. Ruled out: `:6665` returns `EXIT_ERROR`, defined as 2 at `:91`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The `--guard` criterion fails.** Checked and ruled out: the guard exits 1 and names `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`.
+- Do NOT retry: **The docs claim an exit code the engine does not use.** Considered that `overlays.md:51` says `pre-commit` exits 2 while the engine throws. Ruled out: `:6665` returns `EXIT_ERROR`, defined as 2 at `:91`.
 
-### **The `overlayDir` key is read anywhere but the setting reader.** Checked and ruled out: the engine-wide scan in `overlay-engine-fixes.test.cjs:193-205` asserts every occurrence sits inside `resolveOverlayDir`. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: **The `overlayDir` key is read anywhere but the setting reader.** Checked and ruled out: the engine-wide scan in `overlay-engine-fixes.test.cjs:193-205` asserts every occurrence sits inside `resolveOverlayDir`.
+### **The engine suites write inside the repository.** Ruled out: `overlay-engine-fixtures.cjs:63` uses `os.tmpdir()`, and the post-run `git status --porcelain` over the three reviewed trees is empty. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: **The engine suites write inside the repository.** Ruled out: `overlay-engine-fixtures.cjs:63` uses `os.tmpdir()`, and the post-run `git status --porcelain` over the three reviewed trees is empty.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The `overlayDir` key is read anywhere but the setting reader.** Checked and ruled out: the engine-wide scan in `overlay-engine-fixes.test.cjs:193-205` asserts every occurrence sits inside `resolveOverlayDir`.
+- Do NOT retry: **The engine suites write inside the repository.** Ruled out: `overlay-engine-fixtures.cjs:63` uses `os.tmpdir()`, and the post-run `git status --porcelain` over the three reviewed trees is empty.
 
-### **The `root/skilled` refusal is missing from one of the three paths.** Checked and ruled out: the manifest check, the adopt refusal and the relayout refusal all route through `isUnderRootSkilled`. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: **The `root/skilled` refusal is missing from one of the three paths.** Checked and ruled out: the manifest check, the adopt refusal and the relayout refusal all route through `isUnderRootSkilled`.
+### **The guard core can be steered by a stray manifest elsewhere.** Ruled out: `matchLayout` requires the tree's own setting to name the folder before it is accepted. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **The guard core can be steered by a stray manifest elsewhere.** Ruled out: `matchLayout` requires the tree's own setting to name the folder before it is accepted.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The `root/skilled` refusal is missing from one of the three paths.** Checked and ruled out: the manifest check, the adopt refusal and the relayout refusal all route through `isUnderRootSkilled`.
+- Do NOT retry: **The guard core can be steered by a stray manifest elsewhere.** Ruled out: `matchLayout` requires the tree's own setting to name the folder before it is accepted.
 
-### **The changelog claims a Skilled release the pin does not carry.** Checked and ruled out: `.skilled/changelog/skilled/v4.1.0.0.md` exists and the pin is the commit the changelog names. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: **The changelog claims a Skilled release the pin does not carry.** Checked and ruled out: `.skilled/changelog/skilled/v4.1.0.0.md` exists and the pin is the commit the changelog names.
+### **The LAYOUT overflow line advises relayout for a blocked move.** Ruled out: `:3700-3707` partitions the hidden moves into `blocked` and `movable` and names each remedy for its own count. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **The LAYOUT overflow line advises relayout for a blocked move.** Ruled out: `:3700-3707` partitions the hidden moves into `blocked` and `movable` and names each remedy for its own count.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The changelog claims a Skilled release the pin does not carry.** Checked and ruled out: `.skilled/changelog/skilled/v4.1.0.0.md` exists and the pin is the commit the changelog names.
+- Do NOT retry: **The LAYOUT overflow line advises relayout for a blocked move.** Ruled out: `:3700-3707` partitions the hidden moves into `blocked` and `movable` and names each remedy for its own count.
 
-### **The changelog split leaves the sk-git changelogs unreachable.** Checked and ruled out: they live under `framework/skills/sk-git/sk-git-skilled/changelog`, the `sk-git-root` entry carries them, and `.skilled/changelog/sk-git-skilled` resolves to that folder. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **The changelog split leaves the sk-git changelogs unreachable.** Checked and ruled out: they live under `framework/skills/sk-git/sk-git-skilled/changelog`, the `sk-git-root` entry carries them, and `.skilled/changelog/sk-git-skilled` resolves to that folder.
+### **The LAYOUT overflow line can advise relayout for a blocked move.** Ruled out: `:3700-3710` partitions `hidden` into `blocked` and `movable` and names each remedy for its own count. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **The LAYOUT overflow line can advise relayout for a blocked move.** Ruled out: `:3700-3710` partitions `hidden` into `blocked` and `movable` and names each remedy for its own count.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The changelog split leaves the sk-git changelogs unreachable.** Checked and ruled out: they live under `framework/skills/sk-git/sk-git-skilled/changelog`, the `sk-git-root` entry carries them, and `.skilled/changelog/sk-git-skilled` resolves to that folder.
+- Do NOT retry: **The LAYOUT overflow line can advise relayout for a blocked move.** Ruled out: `:3700-3710` partitions `hidden` into `blocked` and `movable` and names each remedy for its own count.
 
-### **The doctor skill version and its changelog disagree.** Checked and ruled out: both are `1.2.0.0`. -- BLOCKED (iteration 12, 2 attempts)
-- What was tried: **The doctor skill version and its changelog disagree.** Checked and ruled out: both are `1.2.0.0`.
+### **The outside-repository refusal can be bypassed with a case variant or a link.** Ruled out: the sibling name is compared against `path.basename(path.resolve(root))` and the resolved target is compared with `canonicalPath`, so both spellings land on the same refusal. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **The outside-repository refusal can be bypassed with a case variant or a link.** Ruled out: the sibling name is compared against `path.basename(path.resolve(root))` and the resolved target is compared with `canonicalPath`, so both spellings land on the same refusal.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The doctor skill version and its changelog disagree.** Checked and ruled out: both are `1.2.0.0`.
+- Do NOT retry: **The outside-repository refusal can be bypassed with a case variant or a link.** Ruled out: the sibling name is compared against `path.basename(path.resolve(root))` and the resolved target is compared with `canonicalPath`, so both spellings land on the same refusal.
 
-### **The documented overflow-line wording differs from the engine's.** Checked and ruled out: both quote the same string, and `:3659` prints it. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: **The documented overflow-line wording differs from the engine's.** Checked and ruled out: both quote the same string, and `:3659` prints it.
+### **The outside-repository refusal is bypassable through a symlink.** Ruled out: `canonicalPath` resolves the longest existing prefix (`:384-400`), and the test at `overlay-engine-strict-writes.test.cjs:838-850` covers a link pointing outside the repository. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **The outside-repository refusal is bypassable through a symlink.** Ruled out: `canonicalPath` resolves the longest existing prefix (`:384-400`), and the test at `overlay-engine-strict-writes.test.cjs:838-850` covers a link pointing outside the repository.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The documented overflow-line wording differs from the engine's.** Checked and ruled out: both quote the same string, and `:3659` prints it.
+- Do NOT retry: **The outside-repository refusal is bypassable through a symlink.** Ruled out: `canonicalPath` resolves the longest existing prefix (`:384-400`), and the test at `overlay-engine-strict-writes.test.cjs:838-850` covers a link pointing outside the repository.
 
-### **The guard core's fail-open is silent.** Checked and ruled out: `warnCoreFailure` writes a named stderr line, and `barter-overlay-guard.test.cjs:121-155` asserts exactly one stderr line and no throw. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **The guard core's fail-open is silent.** Checked and ruled out: `warnCoreFailure` writes a named stderr line, and `barter-overlay-guard.test.cjs:121-155` asserts exactly one stderr line and no throw.
+### **The overlay source is missing the bridge its plugins import.** Ruled out: `v2-bridge.js` is upstream content that lands beside the plugins in the applied tree, and both tests supply it. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: **The overlay source is missing the bridge its plugins import.** Ruled out: `v2-bridge.js` is upstream content that lands beside the plugins in the applied tree, and both tests supply it.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The guard core's fail-open is silent.** Checked and ruled out: `warnCoreFailure` writes a named stderr line, and `barter-overlay-guard.test.cjs:121-155` asserts exactly one stderr line and no throw.
+- Do NOT retry: **The overlay source is missing the bridge its plugins import.** Ruled out: `v2-bridge.js` is upstream content that lands beside the plugins in the applied tree, and both tests supply it.
 
-### **The guard's fail-open on a missing overlay folder is a defect.** Checked and ruled out: `barter-overlay-guard.js:19-23` documents the choice, `barter-overlay-guard.test.cjs:121-155` pins it, and `005-barter-move-overlays-out-of-tree/spec.md:64` records it as the pre-existing behavior the phase preserves. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The guard's fail-open on a missing overlay folder is a defect.** Checked and ruled out: `barter-overlay-guard.js:19-23` documents the choice, `barter-overlay-guard.test.cjs:121-155` pins it, and `005-barter-move-overlays-out-of-tree/spec.md:64` records it as the pre-existing behavior the phase preserves.
+### **The overlays no longer apply on the new pin.** Ruled out: `status --json` reports PASSED with an empty `offLayout`. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **The overlays no longer apply on the new pin.** Ruled out: `status --json` reports PASSED with an empty `offLayout`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The guard's fail-open on a missing overlay folder is a defect.** Checked and ruled out: `barter-overlay-guard.js:19-23` documents the choice, `barter-overlay-guard.test.cjs:121-155` pins it, and `005-barter-move-overlays-out-of-tree/spec.md:64` records it as the pre-existing behavior the phase preserves.
+- Do NOT retry: **The overlays no longer apply on the new pin.** Ruled out: `status --json` reports PASSED with an empty `offLayout`.
 
-### **The layout-link list and the sync-state link map disagree.** Checked and ruled out: 19 entries each, every target matching. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: **The layout-link list and the sync-state link map disagree.** Checked and ruled out: 19 entries each, every target matching.
+### **The packet's criteria are ticked and therefore claim completion.** Ruled out: all six read `- [ ]`. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: **The packet's criteria are ticked and therefore claim completion.** Ruled out: all six read `- [ ]`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The layout-link list and the sync-state link map disagree.** Checked and ruled out: 19 entries each, every target matching.
+- Do NOT retry: **The packet's criteria are ticked and therefore claim completion.** Ruled out: all six read `- [ ]`.
 
-### **The old `barter-overlays` folder survives in the vendored tree.** Checked and ruled out: `ls -d` exits 1. -- BLOCKED (iteration 11, 1 attempts)
-- What was tried: **The old `barter-overlays` folder survives in the vendored tree.** Checked and ruled out: `ls -d` exits 1.
+### **The phase-003 criterion now reproduces.** Ruled out by re-running its own command verbatim: it still prints `.skilled/commands/doctor/assets/doctor-env.yaml:48`. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: **The phase-003 criterion now reproduces.** Ruled out by re-running its own command verbatim: it still prints `.skilled/commands/doctor/assets/doctor-env.yaml:48`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The old `barter-overlays` folder survives in the vendored tree.** Checked and ruled out: `ls -d` exits 1.
+- Do NOT retry: **The phase-003 criterion now reproduces.** Ruled out by re-running its own command verbatim: it still prints `.skilled/commands/doctor/assets/doctor-env.yaml:48`.
 
-### **The old `barter-overlays` folder survives in the vendored tree.** Checked and ruled out: the path does not exist. -- BLOCKED (iteration 12, 1 attempts)
-- What was tried: **The old `barter-overlays` folder survives in the vendored tree.** Checked and ruled out: the path does not exist.
+### **The pin is recorded inconsistently.** Ruled out: `overlay-manifest.json:6` and `sync-state.json:3` name the same commit. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **The pin is recorded inconsistently.** Ruled out: `overlay-manifest.json:6` and `sync-state.json:3` name the same commit.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The old `barter-overlays` folder survives in the vendored tree.** Checked and ruled out: the path does not exist.
+- Do NOT retry: **The pin is recorded inconsistently.** Ruled out: `overlay-manifest.json:6` and `sync-state.json:3` name the same commit.
 
-### **The phase closed over an unrecorded blocker.** Checked and ruled out: T014 is recorded in five places with the operator named as the next safe action. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: **The phase closed over an unrecorded blocker.** Checked and ruled out: T014 is recorded in five places with the operator named as the next safe action.
+### **The plugin test still stubs the bridge it is meant to guard.** Ruled out: `barter-overlay-guard.test.cjs:157-170` imports the applied plugin and asserts the real `definePlugin` shape. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **The plugin test still stubs the bridge it is meant to guard.** Ruled out: `barter-overlay-guard.test.cjs:157-170` imports the applied plugin and asserts the real `definePlugin` shape.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The phase closed over an unrecorded blocker.** Checked and ruled out: T014 is recorded in five places with the operator named as the next safe action.
+- Do NOT retry: **The plugin test still stubs the bridge it is meant to guard.** Ruled out: `barter-overlay-guard.test.cjs:157-170` imports the applied plugin and asserts the real `definePlugin` shape.
 
-### **The pin block lacks a field a later re-pin needs.** Checked and ruled out: `upstream`, `commit` and `checkout` are all present. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: **The pin block lacks a field a later re-pin needs.** Checked and ruled out: `upstream`, `commit` and `checkout` are all present.
+### **The prior `layoutMoves` JSDoc finding regressed.** Ruled out by direct read at `:3435-3443`. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: **The prior `layoutMoves` JSDoc finding regressed.** Ruled out by direct read at `:3435-3443`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The pin block lacks a field a later re-pin needs.** Checked and ruled out: `upstream`, `commit` and `checkout` are all present.
+- Do NOT retry: **The prior `layoutMoves` JSDoc finding regressed.** Ruled out by direct read at `:3435-3443`.
 
-### **The plugin's `sessionDir` can steer the guard at a path outside the tree.** Checked and ruled out: `guard` passes an absolute target and canonicalizes it before the containment test. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **The plugin's `sessionDir` can steer the guard at a path outside the tree.** Checked and ruled out: `guard` passes an absolute target and canonicalizes it before the containment test.
+### **The prior `writeBackup` readability finding regressed.** Ruled out by direct read at `:4624-4628`. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: **The prior `writeBackup` readability finding regressed.** Ruled out by direct read at `:4624-4628`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The plugin's `sessionDir` can steer the guard at a path outside the tree.** Checked and ruled out: `guard` passes an absolute target and canonicalizes it before the containment test.
+- Do NOT retry: **The prior `writeBackup` readability finding regressed.** Ruled out by direct read at `:4624-4628`.
 
-### **The pre-commit hook's repo-root branch mis-resolves the tree.** Checked and ruled out: at `ai-speckit/.opencode/scripts/git-hooks` the probe at `:85` finds `ai-speckit/overlays/overlay-manifest.json` and rewrites `TREE_ROOT` to `ai-speckit/skilled`, after which `:89` finds the manifest beside it. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The pre-commit hook's repo-root branch mis-resolves the tree.** Checked and ruled out: at `ai-speckit/.opencode/scripts/git-hooks` the probe at `:85` finds `ai-speckit/overlays/overlay-manifest.json` and rewrites `TREE_ROOT` to `ai-speckit/skilled`, after which `:89` finds the manifest beside it.
+### **The re-pin dropped the engine remediation.** Ruled out: the vendored engine is byte-identical to `b5a630c6efa`, which carries `3aab896957e`. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **The re-pin dropped the engine remediation.** Ruled out: the vendored engine is byte-identical to `b5a630c6efa`, which carries `3aab896957e`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The pre-commit hook's repo-root branch mis-resolves the tree.** Checked and ruled out: at `ai-speckit/.opencode/scripts/git-hooks` the probe at `:85` finds `ai-speckit/overlays/overlay-manifest.json` and rewrites `TREE_ROOT` to `ai-speckit/skilled`, after which `:89` finds the manifest beside it.
+- Do NOT retry: **The re-pin dropped the engine remediation.** Ruled out: the vendored engine is byte-identical to `b5a630c6efa`, which carries `3aab896957e`.
 
-### **The pre-commit rewrite block can be steered into skipping the overlay gate.** Checked and ruled out: a rewrite that lands on a folder without the engine exits 1 with `BLOCKED`. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **The pre-commit rewrite block can be steered into skipping the overlay gate.** Checked and ruled out: a rewrite that lands on a folder without the engine exits 1 with `BLOCKED`.
+### **The relayout section is missing from the reference doc.** Ruled out: the heading is present once at `overlays.md:261` and the section names all three required terms. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **The relayout section is missing from the reference doc.** Ruled out: the heading is present once at `overlays.md:261` and the section names all three required terms.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The pre-commit rewrite block can be steered into skipping the overlay gate.** Checked and ruled out: a rewrite that lands on a folder without the engine exits 1 with `BLOCKED`.
+- Do NOT retry: **The relayout section is missing from the reference doc.** Ruled out: the heading is present once at `overlays.md:261` and the section names all three required terms.
 
-### **The re-pin's task lines claim results without naming the artifact.** Checked and ruled out: each names a run id, a commit id, or a printed count. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: **The re-pin's task lines claim results without naming the artifact.** Checked and ruled out: each names a run id, a commit id, or a printed count.
+### **The release version did not reach the vendored copy.** Ruled out: `SKILL.md:5` prints `version: 1.2.0.0`. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **The release version did not reach the vendored copy.** Ruled out: `SKILL.md:5` prints `version: 1.2.0.0`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The re-pin's task lines claim results without naming the artifact.** Checked and ruled out: each names a run id, a commit id, or a printed count.
+- Do NOT retry: **The release version did not reach the vendored copy.** Ruled out: `SKILL.md:5` prints `version: 1.2.0.0`.
 
-### **The README asserts a default folder name that differs from the engine's.** Checked and ruled out: it asserts none. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: **The README asserts a default folder name that differs from the engine's.** Checked and ruled out: it asserts none.
+### **The strict-writes `allow:` branch is reachable here.** Ruled out: `overlay-manifest.json:9` sets `strictWrites: true`. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: **The strict-writes `allow:` branch is reachable here.** Ruled out: `overlay-manifest.json:9` sets `strictWrites: true`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The README asserts a default folder name that differs from the engine's.** Checked and ruled out: it asserts none.
+- Do NOT retry: **The strict-writes `allow:` branch is reachable here.** Ruled out: `overlay-manifest.json:9` sets `strictWrites: true`.
 
-### **The README names a guard core path the plugin does not use.** Checked and ruled out: `:52` names `framework/hooks/barter-overlay-guard/`, which is the overlay-source anchor. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: **The README names a guard core path the plugin does not use.** Checked and ruled out: `:52` names `framework/hooks/barter-overlay-guard/`, which is the overlay-source anchor.
+### **The three scans are one scan written three times with identical flags.** Ruled out: the flags differ at `:45`, `:71` and `:132`, which is the finding rather than a refutation of it. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: **The three scans are one scan written three times with identical flags.** Ruled out: the flags differ at `:45`, `:71` and `:132`, which is the finding rather than a refutation of it.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The README names a guard core path the plugin does not use.** Checked and ruled out: `:52` names `framework/hooks/barter-overlay-guard/`, which is the overlay-source anchor.
+- Do NOT retry: **The three scans are one scan written three times with identical flags.** Ruled out: the flags differ at `:45`, `:71` and `:132`, which is the finding rather than a refutation of it.
 
-### **The README's adopt examples use the old dot-dropped rule.** Checked and ruled out: both use `framework/` and `root/`. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: **The README's adopt examples use the old dot-dropped rule.** Checked and ruled out: both use `framework/` and `root/`.
+### **The vendored copy omits the engine tests.** Ruled out by listing the tests folder: all six `overlay-engine-*.test.cjs` files are present. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: **The vendored copy omits the engine tests.** Ruled out by listing the tests folder: all six `overlay-engine-*.test.cjs` files are present.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The README's adopt examples use the old dot-dropped rule.** Checked and ruled out: both use `framework/` and `root/`.
+- Do NOT retry: **The vendored copy omits the engine tests.** Ruled out by listing the tests folder: all six `overlay-engine-*.test.cjs` files are present.
 
-### **The README's folder tree is stale after the move.** Checked and ruled out: both `framework/` and `root/` listings match entry for entry. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: **The README's folder tree is stale after the move.** Checked and ruled out: both `framework/` and `root/` listings match entry for entry.
+### **The vendored engine diverges from the pin in a security-relevant way.** Ruled out in iteration 4 by byte diff against `b5a630c6efa`; re-confirmed here by reading the same reader functions in the vendored copy. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: **The vendored engine diverges from the pin in a security-relevant way.** Ruled out in iteration 4 by byte diff against `b5a630c6efa`; re-confirmed here by reading the same reader functions in the vendored copy.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The README's folder tree is stale after the move.** Checked and ruled out: both `framework/` and `root/` listings match entry for entry.
+- Do NOT retry: **The vendored engine diverges from the pin in a security-relevant way.** Ruled out in iteration 4 by byte diff against `b5a630c6efa`; re-confirmed here by reading the same reader functions in the vendored copy.
 
-### **The README's layout rule differs from the engine's.** Checked and ruled out: `:8` and `:55` match `adoptSource` and the setting file on disk. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: **The README's layout rule differs from the engine's.** Checked and ruled out: `:8` and `:55` match `adoptSource` and the setting file on disk.
+### **The version bump did not reach the skill file.** Ruled out: `SKILL.md:5` prints `version: 1.2.0.0`. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **The version bump did not reach the skill file.** Ruled out: `SKILL.md:5` prints `version: 1.2.0.0`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The README's layout rule differs from the engine's.** Checked and ruled out: `:8` and `:55` match `adoptSource` and the setting file on disk.
+- Do NOT retry: **The version bump did not reach the skill file.** Ruled out: `SKILL.md:5` prints `version: 1.2.0.0`.
 
-### **The reference describes a sibling rule the engine does not implement.** Checked and ruled out: `references/overlays.md:51` matches `resolveOverlayDir` branch for branch. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: **The reference describes a sibling rule the engine does not implement.** Checked and ruled out: `references/overlays.md:51` matches `resolveOverlayDir` branch for branch.
+### **Unvalidated `overlayDir` steering the manifest probe.** Considered that `pre-commit:106` resolves `overlayDir` without validation. The engine validates the same setting and refuses a bad value, so the probe can only pick a manifest the engine would then reject. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **Unvalidated `overlayDir` steering the manifest probe.** Considered that `pre-commit:106` resolves `overlayDir` without validation. The engine validates the same setting and refuses a bad value, so the probe can only pick a manifest the engine would then reject.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The reference describes a sibling rule the engine does not implement.** Checked and ruled out: `references/overlays.md:51` matches `resolveOverlayDir` branch for branch.
-
-### **The relayout derives its targets from a different rule than adopt.** Checked and ruled out: `layoutMoves` calls the same `adoptSource` at `:3415`. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: **The relayout derives its targets from a different rule than adopt.** Checked and ruled out: `layoutMoves` calls the same `adoptSource` at `:3415`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The relayout derives its targets from a different rule than adopt.** Checked and ruled out: `layoutMoves` calls the same `adoptSource` at `:3415`.
-
-### **The release entry is missing required frontmatter.** Checked and ruled out: title, description, trigger phrases, importance tier and context type are all present. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: **The release entry is missing required frontmatter.** Checked and ruled out: title, description, trigger phrases, importance tier and context type are all present.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The release entry is missing required frontmatter.** Checked and ruled out: title, description, trigger phrases, importance tier and context type are all present.
-
-### **The release notes do not name the migration command.** Checked and ruled out: `apply --relayout` appears three times, including the runbook step at `:57`. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: **The release notes do not name the migration command.** Checked and ruled out: `apply --relayout` appears three times, including the runbook step at `:57`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The release notes do not name the migration command.** Checked and ruled out: `apply --relayout` appears three times, including the runbook step at `:57`.
-
-### **The setting file names a folder other than `../overlays`.** Checked and ruled out: it prints `{ "overlayDir": "../overlays" }`. -- BLOCKED (iteration 12, 2 attempts)
-- What was tried: **The setting file names a folder other than `../overlays`.** Checked and ruled out: it prints `{ "overlayDir": "../overlays" }`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The setting file names a folder other than `../overlays`.** Checked and ruled out: it prints `{ "overlayDir": "../overlays" }`.
-
-### **The skill version line and the changelog filename disagree.** Checked and ruled out: both are `1.2.0.0`. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: **The skill version line and the changelog filename disagree.** Checked and ruled out: both are `1.2.0.0`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The skill version line and the changelog filename disagree.** Checked and ruled out: both are `1.2.0.0`.
-
-### **The stale pointers mean the phase was never implemented.** Checked and ruled out: every cited behaviour exists, at a different line. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: **The stale pointers mean the phase was never implemented.** Checked and ruled out: every cited behaviour exists, at a different line.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The stale pointers mean the phase was never implemented.** Checked and ruled out: every cited behaviour exists, at a different line.
-
-### **The sync-state record carries a pre-move link target.** Checked and ruled out: no value in `links` contains `barter-overlays`. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: **The sync-state record carries a pre-move link target.** Checked and ruled out: no value in `links` contains `barter-overlays`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The sync-state record carries a pre-move link target.** Checked and ruled out: no value in `links` contains `barter-overlays`.
-
-### **The two overlay-owned changelog links are hand-maintained.** Checked and ruled out: `layoutLinks` declares both and `sync-state.links` records both, so the engine writes them. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: **The two overlay-owned changelog links are hand-maintained.** Checked and ruled out: `layoutLinks` declares both and `sync-state.links` records both, so the engine writes them.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The two overlay-owned changelog links are hand-maintained.** Checked and ruled out: `layoutLinks` declares both and `sync-state.links` records both, so the engine writes them.
-
-### **The vendored and overlay copies of the four hook files disagree.** Checked and ruled out: all four `diff` runs are empty. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **The vendored and overlay copies of the four hook files disagree.** Checked and ruled out: all four `diff` runs are empty.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The vendored and overlay copies of the four hook files disagree.** Checked and ruled out: all four `diff` runs are empty.
-
-### **The vendored tree has drifted from Skilled `063daaee2c1`.** Checked and ruled out: 317 files compare SAME, 0 are missing, and all 6 differences are declared overlay entries. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **The vendored tree has drifted from Skilled `063daaee2c1`.** Checked and ruled out: 317 files compare SAME, 0 are missing, and all 6 differences are declared overlay entries.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **The vendored tree has drifted from Skilled `063daaee2c1`.** Checked and ruled out: 317 files compare SAME, 0 are missing, and all 6 differences are declared overlay entries.
-
-### **Two destinations collapsing onto one source path** (`.claude/settings.json` and `claude/settings.json` both to `root/claude/settings.json`). Checked and ruled out: `planRelayout`'s `claimed` map (`:6152-6156`) refuses with both source paths named. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **Two destinations collapsing onto one source path** (`.claude/settings.json` and `claude/settings.json` both to `root/claude/settings.json`). Checked and ruled out: `planRelayout`'s `claimed` map (`:6152-6156`) refuses with both source paths named.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Two destinations collapsing onto one source path** (`.claude/settings.json` and `claude/settings.json` both to `root/claude/settings.json`). Checked and ruled out: `planRelayout`'s `claimed` map (`:6152-6156`) refuses with both source paths named.
+- Do NOT retry: **Unvalidated `overlayDir` steering the manifest probe.** Considered that `pre-commit:106` resolves `overlayDir` without validation. The engine validates the same setting and refuses a bad value, so the probe can only pick a manifest the engine would then reject.
 
 <!-- /ANCHOR:exhausted-approaches -->
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
@@ -347,30 +319,38 @@ Review of the overlay framework/root source layout change: moving a consumer's o
 - Remaining frontier: none recorded
 
 ## 11. RULED OUT DIRECTIONS
-- `overlayDir` outside the git repository is not refused by `resolveOverlayDir`: the refusal is scoped to `pre-commit` by `001-engine-out-of-tree-overlay-folder/spec.md:132,226` and implemented at `overlay-engine.cjs:5814-5819`; decision D2's summary is looser than the child spec (iteration 1, evidence: `overlay-engine.cjs:5814-5819`)
-- `repin --stage` copying `relayout-runs/` and `repin-runs/` into the stage: recorded as an accepted cost under NFR-P01 in `001-engine-out-of-tree-overlay-folder/spec.md:183` (iteration 1, evidence: `overlay-engine.cjs:5244-5249`)
-- A `marked-section` entry whose `source` differs from its `fragment` keeping a permanent LAYOUT line: `layoutMoves` skips that `source` and `status` prints from the same function (iteration 1, evidence: `overlay-engine.cjs:3420-3424`)
-- `status` failing after a relayout until a follow-up `apply`: `state.files` holds applied hashes only and both the live link and the manifest target move together (iteration 1, evidence: `overlay-engine.cjs:2908,6310-6328,6280-6288`)
-- Two destinations collapsing onto one source path (`.claude/settings.json` and `claude/settings.json`): `planRelayout`'s `claimed` map refuses with both source paths named (iteration 1, evidence: `overlay-engine.cjs:6152-6156`)
-- The guard's fail-open on a missing overlay folder is a defect: documented at `barter-overlay-guard.js:19-23`, pinned by `barter-overlay-guard.test.cjs:121-155`, recorded as pre-existing at `005-barter-move-overlays-out-of-tree/spec.md:64` (iteration 2, evidence: `barter-overlay-guard.js:19-23`)
-- The vendored and overlay copies of the four hook files disagree: all four `diff` runs are empty (iteration 2, evidence: `barter-overlay-guard-core.cjs:1-169`)
-- The pre-commit repo-root branch mis-resolves the tree: the probe at `:85` rewrites `TREE_ROOT` to `ai-speckit/skilled` and `:89` then finds the manifest beside it (iteration 2, evidence: `pre-commit:85-92`)
+
+[Review angles that were investigated and definitively eliminated]
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: cross-reference - Focus area: synthesis -- group the seven open findings by root cause and state the verdict the registry supports - Reason: the frontier is drained, all four dimensions are covered, and both core traceability protocols now pass on executed evidence, so no review work remains inside the loop - Rotation status: all three nodes answered on all four dimensions; consolidation pass complete - Blocked/productive carry-forward: productive -- executing the criteria rather than reading about them is what closed `checklist_evidence`, and it is the same move that found `R11-P2-001` in iteration 11 - Required evidence: the findings registry, the seven open findings, and the strategy's exhausted-approach list Review verdict: CONDITIONAL
+BLOCKED on: coverage
+Recovery: Amend 003-engine-docs-and-release/goal.md:62 so its third clause excludes assets/ or anchors the opt-in pattern to the layout rule, which makes the tick reproducible and closes checklist_evidence; then re-run /deep:review. The second cause is an authority limit: validate.sh --recursive --strict is outside this lineage's write surface.
+Address the blocking gates before the next iteration.
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
 
 ### Bounded Context Snapshot
 
-- Target pointers: `.skilled/commands/doctor/scripts/overlay-engine.cjs`, `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs`, `.skilled/skills/system-skilled-doctor/SKILL.md`, `changelog/v1.2.0.0.md`, `barter/ai-speckit/overlays/`, `barter/ai-speckit/skilled/.skilled-overlays.json`, `barter/ai-speckit/skilled/.opencode/`, `barter/ai-speckit/skilled/.skilled/skills/sk-git/`
-- Behavior claims: `framework/` names `.skilled` content and `root/` names everything else; `overlayDir` may name only a direct sibling `../<name>`; `repin --stage <dir>` writes nothing live; old-layout trees keep applying with a capped LAYOUT notice until one `apply --relayout`
-- Reuse and conventions: the doctor overlay engine's existing source-resolution and guard contracts; the `sk-code-review` severity doctrine
-- Review risks and gaps: the Barter repository is nested at `barter/ai-speckit`, so its history must be read with `git -C barter/ai-speckit`; `resource-map.md` is absent, so the coverage gate is skipped
+- **Target pointers:**
+  - `.skilled/commands/doctor/scripts/overlay-engine.cjs` (the overlay engine, ~6.5k lines).
+  - `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` (the engine suites).
+  - `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt` and `.skilled/skills/system-skilled-doctor/references/overlays.md` (docs).
+  - `barter/ai-speckit/overlays/` (the consumer's overlay folder), `barter/ai-speckit/skilled/.skilled-overlays.json` (the setting).
+  - Packet `specs/system-skilled-doctor/007-overlay-framework-root-layout` and children 001-008.
+- **Behavior claims to verify:**
+  - D1: `framework/` + `root/` is every consumer's default; old-layout trees keep applying with a capped LAYOUT notice until one `apply --relayout`.
+  - D2: `overlayDir` may name only `../<name>`; deeper paths and a folder outside the git repository are refused.
+  - D3: `repin --stage <dir>` holds `<dir>/<tree>` and `<dir>/<overlays>`, writing nothing live.
+  - D4: `ai-speckit/skilled/.skilled-overlays.json` stays inside the vendored copy and names `../overlays`.
+- **Reuse and conventions:** the engine's per-line remedy branching (`overlay-engine.cjs:3652-3655`) is the pattern the LAYOUT and strict-write remedies were asked to follow.
+- **Review risks and gaps:**
+  - The prior generation's findings are the baseline; each must be re-verified against the current tree, not against the remediation commit message.
+  - `barter/ai-speckit` is a nested repository and is read-only for this run.
+  - The prior generation's scope gate failed because a fan-out lineage never records `reviewScopeFiles`. This lineage seeds it in `deep-review-config.json` so the gate can judge the findings it actually raised.
 
 ---
 
@@ -378,8 +358,8 @@ Review of the overlay framework/root source layout change: moving a consumer's o
 <!-- MACHINE-OWNED: START -->
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | pending | - | - |
-| `checklist_evidence` | core | pending | - | - |
+| `spec_code` | core | pass | 1 | D2 sibling-only rule and outside-repository refusal enforced at the setting reader; D1 framework/root rule stated and implemented |
+| `checklist_evidence` | core | pass | 4 | Four of six completion criteria executed read-only and all four pass; the two Skilled-side criteria are scheduled for the maintainability iteration |
 | `skill_agent` | overlay | pending | - | - |
 | `agent_cross_runtime` | overlay | pending | - | - |
 | `feature_catalog_code` | overlay | pending | - | - |
@@ -392,6 +372,31 @@ Review of the overlay framework/root source layout change: moving a consumer's o
 <!-- MACHINE-OWNED: START -->
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
+| `.skilled/commands/doctor/scripts/overlay-engine.cjs` | D1, D2 | 2 | 0 P0, 0 P1, 2 P2 | partial |
+| `.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs` | D1 | 1 | 0 P0, 0 P1, 0 P2 | complete |
+| `.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs` | D1, D2 | 2 | 0 P0, 0 P1, 0 P2 | complete |
+| `.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs` | D2 | 2 | 0 P0, 0 P1, 0 P2 | partial |
+| `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit` | D1 | 3 | 0 P0, 0 P1, 1 P2 | partial |
+| `barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs` | D1 | 3 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs` | D1 | 3 | 0 P0, 0 P1, 0 P2 | partial |
+| `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/tests/pre-commit.test.cjs` | D1 | 3 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/overlays/overlay-manifest.json` | D1, D3 | 4 | 0 P0, 0 P1, 1 P2 | partial |
+| `barter/ai-speckit/overlays/sync-state.json` | D1, D3 | 4 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs` | D1, D3 | 4 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js` | D1 | 5 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/overlays/root/opencode/plugins/barter-git-write-gate.js` | D1 | 5 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs` | D1, D2 | 5 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs` | D1 | 5 | 0 P0, 0 P1, 1 P2 | partial |
+| `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit` | D1 | 5 | 0 P0, 0 P1, 1 P2 | partial |
+| `barter/ai-speckit/skilled/.skilled/hooks/overlay-guard/{claude,codex,devin,cursor}/overlay-guard.*` | D1 | 5 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs` | D1, D3 | 6 | 0 P0, 0 P1, 1 P2 | partial |
+| `barter/ai-speckit/overlays/sync-state.json` | D1, D3 | 6 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs` | D1, D3 | 6 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit` | D1 | 8 | 0 P0, 0 P1, 1 P2 | partial |
+| `barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs` | D1 | 8 | 0 P0, 0 P1, 0 P2 | complete |
+| `barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-git-write-gate.test.cjs` | D1 | 8 | 0 P0, 0 P1, 0 P2 | complete |
+| `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt` | D1 | 1 | 0 P0, 0 P1, 0 P2 | complete |
+| `.skilled/skills/system-skilled-doctor/references/overlays.md` | D1 | 1 | 0 P0, 0 P1, 0 P2 | complete |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -403,12 +408,12 @@ Review of the overlay framework/root source layout change: moving a consumer's o
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-deepseek-flash-max-1795182837437-sws2tv, parentSessionId=null, generation=1, lineageMode=new
+- Session lineage: sessionId=fanout-deepseek-flash-max-1795192401900-xpt66n, parentSessionId=2026-11-20T16:33:02.758Z, generation=1, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: spec-folder
 - Cross-reference checks: core=[spec_code, checklist_evidence], overlay=[skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability]
-- Started: 2026-11-20T13:55:21.745Z
+- Started: 2026-11-20T16:34:32.390Z
 <!-- MACHINE-OWNED: END -->

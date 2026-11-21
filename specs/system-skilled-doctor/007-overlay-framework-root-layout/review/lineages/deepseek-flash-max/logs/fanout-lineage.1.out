@@ -1,0 +1,20 @@
+The lineage is complete and verified.
+
+## Result
+
+**Verdict: PASS with advisories** — 0 P0, 0 P1, 9 P2 across 8 iterations, all four dimensions covered.
+
+**The remediation held.** All 16 prior-generation findings (1 P1 + 15 P2) were re-verified against the current tree and all 16 are fixed: relayout rollback with injected-failure tests, outside-repository refusal from `resolveOverlayDir`, both LAYOUT and strict-write remedies branched and documented, `overlayOutside` on the context, `writeBackup` split, commit gate failing closed without a manifest, hooks reading `overlayDir`, the plugin test loading the real bridge, and no live `barter-overlays` reference.
+
+**Nine new P2 findings, none a regression.** They cluster in three places:
+- Two fail-open asymmetries in the Barter hooks — the git write gate exits 0 on a `main()` rejection through its CLI entrypoint while its OpenCode wrapper refuses (`barter-git-write-gate.mjs:2313`), and a missing prompt-card guard skips silently where the adjacent hygiene check warns (`pre-commit:73`).
+- One argument-hardening omission — `commitBytesReader:4241` passes a manifest value to `git cat-file` without `--end-of-options`, while its sibling `resolveCommit:4281` carries the flag.
+- One ticked completion criterion that no longer reproduces — phase 003's first criterion promises no output and prints a hit at `doctor-env.yaml:48`.
+
+**Two limits, recorded not passed.** `node --test` on the engine suites and `validate.sh --recursive --strict` both write outside the lineage's write surface, so they were read rather than executed. The report carries them as unverified.
+
+**One conflict recorded.** The loop protocol's synthesis step asks for `status: "complete"` in `deep-review-config.json`; the persona's write-safety table forbids writing it. I followed the persona and left the config untouched — the completed status is carried by the ledger and the dashboard the reducer derives from it.
+
+The run stopped on dimension coverage, not convergence: the score finished at 0.889 against a 0.10 threshold, which is unreachable while every iteration still surfaces a P2.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-flash-max

@@ -1,102 +1,143 @@
-# Deep Review Report: overlay framework/root layout (fan-out root)
+# Deep Review Report: overlay framework/root layout, follow-up round (fan-out root, generation 2)
 
-Review of `specs/system-skilled-doctor/007-overlay-framework-root-layout` (spec-folder), depth mode `expansive`, fan-out of two lineages: `opus-medium` (cli-claude-code, claude-opus-5-5, reasoning medium, danger-full-access) and `deepseek-flash-max` (cli-mistral-vibe, deepseek-flash). 29 iterations in total (17 + 12). Both lineages stopped on `converged`. Merge run `1795182837437-sws2tv`.
+Review of `specs/system-skilled-doctor/007-overlay-framework-root-layout` (spec-folder), depth mode `expansive`, lineage mode `restart` (generation 2; generation 1 archived at `review-archive/20261120T163142Z/`). Fan-out of two lineages:
+
+- `opus-medium`: cli-claude-code, claude-opus-5-5, reasoning medium, danger-full-access. 17 iterations, stop `converged`, gates evidence/scope/coverage all pass.
+- `deepseek-flash-max`: cli-mistral-vibe, deepseek-flash. 9 iterations, stop `converged`, required gate `coverage` failed (`traceability-incomplete`).
+
+26 iterations in total. Merge run: `fanout-merge.cjs` over both lineages, frontier partition guard passed.
 
 ## 1. Executive Summary
 
-- **Overall verdict: FAIL**, from `review-verdict.cjs` on the merged counts: `--active-p0 0 --active-p1 2 --active-p2 14 --search-debt 4 --failed-gate-ids ["scope"]`.
+- **Overall verdict: FAIL**, from `review-verdict.cjs` on the merged counts: `--active-p0 0 --active-p1 1 --active-p2 20 --search-debt 3 --failed-gate-ids ["coverage"]`.
 - **hasAdvisories: false**, because the verdict is not PASS.
-- **P0/P1/P2 counts the verdict used: 0 / 2 / 14**, with search debt 4. These are the merged lineage counts, which the contract makes the authority on a fan-out root.
-- **What drives the FAIL.** No P0 drives it. The required `scope` terminal gate failed in both lineages with `findings-out-of-scope`. `terminal-gates.cjs:168-179` builds the scope from `reviewScopeFiles` plus the spec folder. On this fan-out run `reviewScopeFiles` is `[]` in the root config, because `deep-review.yaml:434` hard-codes it, and it is also `[]` in both lineage configs. `step_scope_discovery` (`deep-review.yaml:713-745`) runs only in `phase_init`, which fan-out skips. Every finding in `.skilled/` or `barter/ai-speckit/` therefore counts as out of scope by construction, even though the operator focus asks for exactly those paths. This is a defect in the deep-review workflow, not in the reviewed change (see Deferred Items, D-1).
-- **Findings-only reading.** With the scope gate set aside and the root self-check below applied, the counts are P0=0, P1=1, P2=15 with search debt 4. That gives **CONDITIONAL**.
-- **Self-check outcomes (root Referee, recorded here only; a fan-out root appends no adjudication rows):**
-  - `R1-P1-001`: **confirmed P1.** A re-read of `overlay-engine.cjs:6340-6396` shows the `try`/`catch` covers only `planRelayoutManifest` (`:6362-6367`). The rename loop (`:6384-6389`) and `writeRelayoutManifest` (`:6391`) are unguarded. The comment at `:6356-6358` names the half-moved state as "a folder nobody can read", and `references/overlays.md:96` documents no restore path from `relayout-runs/`.
-  - `R2-P1-001`: **downgraded to P2.** A re-read of `pre-commit:83-118` confirms the silent skip: `HAS_OVERLAYS=0` and exit 0 with no output when `../overlays/overlay-manifest.json` is absent. The behaviour itself existed before this change. `git -C barter/ai-speckit show a954fc956ce^:skilled/.opencode/scripts/git-hooks/pre-commit`, lines 89-112, gated the whole overlay block on `[ -d "$TREE_ROOT/barter-overlays" ]` and fell through to `exit 0` with no output when that folder was absent. The lineage's Skeptic cited `005 spec.md:64`, but that line names the skip as what the move would cause if the hooks were not updated. Phase 005 fixed that trigger, since the hook now finds `../overlays`. No Barter checkout fails today. The `opus-medium` lineage read the same branch and ruled `fail_open` out (its report, Deferred Items). It remains a worthwhile hardening item, together with `R2-P2-001` (untested skip branch) and `R14-P2-001` (hard-coded folder name).
-- **Review scope summary.** Skilled:
-  - `d2d2e839456`: sibling overlay folder.
-  - `5913aebc267`: framework/ and root/ layout and `apply --relayout`.
-  - `d42bafc890c`: docs and the 1.2.0.0 release.
-  - Merge `063daaee2c1`, pruned as `merge-no-own-diff`.
-  - Packet commits `1653734af7d` and `10c36989450`.
-
-  ai-speckit:
-  - `c8cd005b173` and `fd6dd18b66d`: re-pin.
-  - `51e218edf2e`: relayout.
-  - `a954fc956ce`: hooks learn both locations.
-  - `2a8f454c8d1`: move to `overlays/`.
-  - `ad3246feba2`: close-out.
-
-  The two sk-create-goal commits inside the Skilled range (`a3b5ce327da`, `a78ba6b834a`) are off-topic and were excluded from the frontier.
-- **Operator review focus:** Review the whole overlay framework/root layout change end to end: Skilled commits 57c01fb4c11..d42bafc890c, merged as 063daaee2c1 plus 1653734af7d and 10c36989450 on main; and ai-speckit (/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit) commits 64cfee51628..ad3246feba2 (re-pin, relayout, hooks learning both locations, the move to overlays/). Check engine correctness, path safety and hook fail-open or fail-closed behavior, the migration for old-layout consumers, test strength, docs against code, and any leftover reference to the old barter-overlays path.
+- **P0/P1/P2 counts the verdict used: 0 / 1 / 20**, search debt 3. These are the merged lineage counts, which are the authority on a fan-out root.
+- **What drives the FAIL.** No P0. The `deepseek-flash-max` lineage failed its required `coverage` gate with `traceability-incomplete`, because its `checklist_evidence` protocol stayed `partial` for two reasons:
+  - R7-P2-001: the phase 003 criterion at `003-engine-docs-and-release/goal.md:62` is ticked, but its third `rg` command prints `.skilled/commands/doctor/assets/doctor-env.yaml:48`. The root re-ran that command and got the same hit (`opt-in` in a boolean-parsing description, unrelated to the layout).
+  - The lineage was not allowed to run `validate.sh --recursive --strict`, the packet's sixth criterion.
+  The `opus-medium` lineage passed all three gates.
+- **Findings-only reading.** Without the failed gate, the counts are P0=0, P1=1 (confirmed below), P2=20, search debt 3. That gives **CONDITIONAL**.
+- **Last generation's scope-gate defect did not recur.** Last generation's FAIL came from an empty `reviewScopeFiles` in fan-out lineage configs. This round, both lineage configs carry a non-empty `reviewScopeFiles` and both scope gates passed.
+- **Root self-check (Hunter / Skeptic / Referee, P0 and P1 only; recorded here, no append on a fan-out root):**
+  - `R5-P1-001`: **confirmed P1.**
+    - The root re-read `overlay-engine.cjs`. `stagedUnownedChanges` (`:5862-5866`) gets the top level through `gitTextOrNull` → `runGit` (`:4227-4231`, `:5820-5823`), and `runGit` passes the caller's environment through.
+    - The neighbouring `gitTopLevelOrNull` (`:491-495`) deletes `GIT_DIR`, `GIT_WORK_TREE`, `GIT_INDEX_FILE` and `GIT_PREFIX` first. Its comment says why: "A git hook exports GIT_DIR without GIT_WORK_TREE".
+    - Barter's hook calls `overlay-engine.cjs pre-commit --root "$TREE_ROOT"` with the hook environment unchanged (`barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:164`).
+    - The lineage reproduced the problem in `/tmp`: a linked worktree's hook exports `GIT_DIR`, and the same staged unowned edit goes from exit 1 `refuse` to exit 0 `allow` (opus iteration 5, probes a and b; iteration 6 counter-check).
+    - On reachability: `git -C barter/ai-speckit worktree list` shows only the main checkout today, and Barter's own sk-git is a read-only routing mode. So the P1 does not rest on Barter's workflow. It rests on the engine:
+      - Any consumer whose vendored tree sits in a subfolder and that commits from a linked worktree gets a silent `allow`.
+      - One `git worktree add` reaches it.
+      - A gate that fails open silently is the same class as last generation's `R2-P1-001`, which was rated P1.
+    - The Referee keeps P1.
+    - Age: `git blame` puts `:5862-5866` in `d8e2d349842` (strict overlay writes), which predates this change, so the defect is pre-existing. The `overlayOutside` branch below it (`:5878`) is new, and the remediation did not route the probe through `gitTopLevelOrNull`.
+    - The concurrent session's new phase `009-skilled-open-items` (uncommitted, not part of this review's evidence) already lists "the pre-commit probe misreading a hook-exported `GIT_DIR`" as an item to fix.
+  - Disputed P2, recorded for reference: `R3-P2-001--c84285021935` (`overlay-engine-fixes.test.cjs:79`). The test uses `barter-overlays` on purpose as a custom `overlayFolder` setting value. Last generation's root sweep recorded this as intended, and 005 AC-009 and ai-speckit record 039 Known Limitation 6 keep it by decision. The opus lineage itself says the finding "disputes a recorded decision rather than reporting an oversight". It stays in the counts because the self-check covers only P0 and P1.
+- **Prior generation: all 16 findings fixed.** Both lineages re-checked all 16 independently and both found every one fixed (table in section 7). opus-medium reports that the 3 new rollback tests fail on the engine before `3aab896957e` and pass after it. deepseek-flash-max ran the full engine suite: `tests 262, pass 262, fail 0`.
+- **Review scope summary.**
+  - Skilled remediation up to `b5a630c6efa`:
+    - `3aab896957e`: relayout rollback and the outside-repository refusal.
+    - `4ee628578ed` and `81f0ca4cade`: docs.
+    - `cb751e06e38`, `0557b1b8b43`, `f7247772c85` and `28aa6f9f83d`: phases 006-008 records.
+  - ai-speckit `64cfee51628..e63bd038a5d`, especially:
+    - `5dd004f3faa`: hooks fail closed, read `overlayDir`, real-bridge test, hygiene.
+    - `488ea9f49f5`: re-pin onto `b5a630c`.
+  - The whole change was reviewed again through seven depth-1 frontier nodes: F-1-001 to F-1-007, seeded from `frontier-seed.json`.
+- **Operator review focus:** Follow-up round after remediation. Verify every finding of the previous generation is fixed and that the fixes introduced no regression, then review the whole change again. Skilled: the remediation commits on origin/main up to b5a630c6efa (phase 006 engine fixes: relayout rollback, outside-repository refusal at resolveOverlayDir, LAYOUT and strict-write remedies, overlayOutside on the context, writeBackup split; phases 007 and 008 records). ai-speckit (/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit, read-only): commits 64cfee51628..e63bd038a5d, especially 5dd004f3faa (commit gate fails closed without a manifest, hooks read overlayDir, real-bridge plugin test, relayout-runs ignore, fixture rename) and 488ea9f49f5 (re-pin onto b5a630c). Check engine correctness, path safety, hook fail-open or fail-closed behavior, rollback correctness, test strength, docs against code, and leftover barter-overlays references.
 
 **Bottom line on the change.**
-- **Engine:** the sibling-folder support and the framework/ and root/ layout hold up under both lineages. Every engine path that assumed an in-tree overlay folder has a sibling branch and a test.
-- **Hooks:** the edit guards fail open and the git-write gate fails closed for writes, as designed.
-- **Migration:** old-layout consumers keep applying until one `apply --relayout`. That relayout is the one real correctness gap: it is not atomic once a rename succeeds (`R1-P1-001`).
-- **Barter:** it is on pin `063daae`, every source sits under `framework/` or `root/`, and the only live leftover `barter-overlays` reference is a temp fixture name (`R3-P2-002`). A root sweep confirmed this: `rg barter-overlays` outside spec history and changelogs finds only that fixture and Skilled's own engine test, which uses the name on purpose as a custom setting value.
+- **Remediation:** it fixed what the last round found, and none of the 16 prior findings came back. `firstSeen == lastSeen` holds by construction in a fresh generation, so it proves nothing about regressions.
+- **Regressions.** To tell new findings from old ones, the root ran `git blame` on each finding's cited lines: Skilled at `b5a630c6efa` against `3aab896957e`, and ai-speckit at `e63bd038a5d` against `5dd004f3faa`. Blame on a cited line is approximate, because a defect can span more lines than the one cited.
+  - **Introduced by the remediation (5):**
+    - `R1-P2-002`, `R1-P2-001--1fbac54788f2`, `R14-P2-001`: the new rollback and guard, `:6530-6556` from `3aab896957e`.
+    - `R1-P2-001--40e5071d1f73`: the new refusal, `:476-480`, mostly `3aab896957e`.
+    - `R3-P2-001--deb1240fa825`: the hook's new lookup, `pre-commit:86-90` from `5dd004f3faa`.
+  - **Widened by the remediation (1):** `R2-P2-001--b44c96030294`. The missing `layoutLinks` validation predates the change (`:2510-2518`, `f965c658d49`), but the new rollback now writes through those paths.
+  - **Records and docs of the remediation (3):** `R4-P2-001--a5ce3a081123` and `R4-P2-002` (phase 008 and 007 summaries), and `R3-P2-002` (the README omits the new no-manifest refusal).
+  - **From the original change, not the remediation (5):**
+    - `R5-P2-001--d2ff9ac05502`: `:446-452`, `d2d2e839456`.
+    - `R2-P2-001--2d0a48b35503` and `R6-P2-001--c8d87cc9fb5d`: presentation lines from `d42bafc890c` and older.
+    - `R7-P2-001` and `R9-P2-001`: packet criteria.
+  - **Predating the whole change (7):**
+    - `R5-P1-001`: `d8e2d349842`.
+    - `R6-P2-001--3e24643ff86e`: `dd67165bd31`.
+    - `R3-P2-001--c84285021935`: test value, kept by decision.
+    - `R5-P2-001--1f6b4cd5c51b`, `R5-P2-002`, `R8-P2-001` and `R4-P2-001--d183e347ac6b`: ai-speckit `d10121d9af8`, the v4 vendoring.
+- **One real gap remains:** the engine's commit check fails open under a hook-exported `GIT_DIR` in a linked worktree (`R5-P1-001`).
+- **The P2s split into three groups:**
+  - The new relayout error contract: the backup wording, the unguarded backup and prune steps, and no test for a failed rollback.
+  - Barter hook failure messages and fail-open arms.
+  - Packet record drift, including the irreproducible phase 003 tick that fails the coverage gate.
 
 ## 2. Planning Trigger
 
-`/speckit:plan` is required. The machine verdict is FAIL, and one P1 stays confirmed after the self-check (`R1-P1-001`). The scope-gate part of the FAIL is a workflow defect, and a remediation plan for this packet should not try to fix it. It belongs to the system-deep-loop owners (D-1).
+`/speckit:plan` is required. The machine verdict is FAIL because a required gate failed, and one P1 stays confirmed after the self-check. Closing R7-P2-001 (amend the phase 003 criterion) and running the packet's `validate.sh --recursive --strict` criterion lets `checklist_evidence` close. Fixing `R5-P1-001` removes the CONDITIONAL cause.
 
 ```json
 {
   "label": "Planning Packet",
   "triggered": true,
   "verdict": "FAIL",
-  "verdictCause": "failed required gate: scope (fan-out root and lineage configs carry reviewScopeFiles: [] so code findings count as out of scope); one confirmed P1",
+  "verdictCause": "failed required gate: coverage (deepseek-flash-max lineage, traceability-incomplete: checklist_evidence partial); one confirmed P1",
   "hasAdvisories": false,
   "activeFindings": [
-    {"id": "R1-P1-001", "severity": "P1", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:6384", "lineage": "deepseek-flash-max", "selfCheck": "confirmed"},
-    {"id": "R2-P1-001", "severity": "P1", "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:85", "lineage": "deepseek-flash-max", "selfCheck": "downgraded-to-P2"},
-    {"id": "R1-P2-001--6d7230d0ece0", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:452"},
-    {"id": "R1-P2-001--4f4ffdfd250a", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:3658"},
-    {"id": "R2-P2-001--4e5c79954247", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:3398"},
-    {"id": "R2-P2-001--e1e7b8a500f3", "severity": "P2", "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:85"},
-    {"id": "R3-P2-001", "severity": "P2", "file": "barter/ai-speckit/.gitignore:68"},
-    {"id": "R3-P2-002", "severity": "P2", "file": "barter/ai-speckit/overlays/tests/compiled-routing-byte-parity.test.cjs:64"},
-    {"id": "R4-P2-001", "severity": "P2", "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/acceptance-criteria.md:66"},
-    {"id": "R6-P2-001", "severity": "P2", "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/spec.md:109"},
-    {"id": "R8-P2-001", "severity": "P2", "file": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt:87"},
-    {"id": "R11-P2-001", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552"},
-    {"id": "R12-P2-001", "severity": "P2", "file": "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs:63"},
-    {"id": "R13-P2-001", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:4582"},
-    {"id": "R13-P2-002", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:4603"},
-    {"id": "R14-P2-001", "severity": "P2", "file": "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:52"}
+    {"id": "R5-P1-001", "severity": "P1", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:5864", "lineage": "opus-medium", "findingClass": "fail-open-gate", "selfCheck": "confirmed"},
+    {"id": "R7-P2-001", "severity": "P2", "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62", "lineage": "deepseek-flash-max", "findingClass": "traceability"},
+    {"id": "R9-P2-001", "severity": "P2", "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md:93", "lineage": "deepseek-flash-max", "findingClass": "traceability"},
+    {"id": "R1-P2-001--1fbac54788f2", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:6534", "lineage": "opus-medium", "findingClass": "message-contract-drift"},
+    {"id": "R1-P2-002", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:6533", "lineage": "opus-medium", "findingClass": "test-gap"},
+    {"id": "R14-P2-001", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:6554", "lineage": "opus-medium", "findingClass": "error-contract-gap"},
+    {"id": "R2-P2-001--b44c96030294", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:2514", "lineage": "deepseek-flash-max", "findingClass": "path-safety hardening"},
+    {"id": "R5-P2-001--d2ff9ac05502", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:450", "lineage": "opus-medium", "findingClass": "containment-gap"},
+    {"id": "R1-P2-001--40e5071d1f73", "severity": "P2", "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs:478", "lineage": "deepseek-flash-max", "findingClass": "misleading-diagnostic"},
+    {"id": "R6-P2-001--3e24643ff86e", "severity": "P2", "file": "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4241", "lineage": "deepseek-flash-max", "findingClass": "security-hardening"},
+    {"id": "R2-P2-001--2d0a48b35503", "severity": "P2", "file": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt:563", "lineage": "opus-medium", "findingClass": "doc-contradiction"},
+    {"id": "R6-P2-001--c8d87cc9fb5d", "severity": "P2", "file": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt:560", "lineage": "opus-medium", "findingClass": "doc-code-drift"},
+    {"id": "R3-P2-001--c84285021935", "severity": "P2", "file": ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:79", "lineage": "opus-medium", "findingClass": "naming-leftover", "rootNote": "disputes a recorded decision"},
+    {"id": "R5-P2-001--1f6b4cd5c51b", "severity": "P2", "file": "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:2313", "lineage": "deepseek-flash-max", "findingClass": "security-hardening"},
+    {"id": "R5-P2-002", "severity": "P2", "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:73", "lineage": "deepseek-flash-max", "findingClass": "security-hardening"},
+    {"id": "R3-P2-001--deb1240fa825", "severity": "P2", "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:88", "lineage": "deepseek-flash-max", "findingClass": "misleading-diagnostic"},
+    {"id": "R8-P2-001", "severity": "P2", "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:45", "lineage": "deepseek-flash-max", "findingClass": "maintainability"},
+    {"id": "R3-P2-002", "severity": "P2", "file": "barter/ai-speckit/overlays/README.md:47", "lineage": "opus-medium", "findingClass": "doc-gap"},
+    {"id": "R4-P2-001--d183e347ac6b", "severity": "P2", "file": "barter/ai-speckit/overlays/overlay-manifest.json:7", "lineage": "deepseek-flash-max", "findingClass": "portability"},
+    {"id": "R4-P2-001--a5ce3a081123", "severity": "P2", "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md:115", "lineage": "opus-medium", "findingClass": "stale-status-claim"},
+    {"id": "R4-P2-002", "severity": "P2", "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/implementation-summary.md:91", "lineage": "opus-medium", "findingClass": "contradicting-records"}
   ],
   "remediationWorkstreams": [
-    {"name": "relayout atomicity", "findings": ["R1-P1-001"]},
-    {"name": "Barter commit-gate and hook hardening", "findings": ["R2-P1-001", "R2-P2-001--e1e7b8a500f3", "R14-P2-001", "R12-P2-001"]},
-    {"name": "engine remedies and path safety", "findings": ["R1-P2-001--4f4ffdfd250a", "R8-P2-001", "R11-P2-001", "R1-P2-001--6d7230d0ece0"]},
-    {"name": "Barter hygiene", "findings": ["R3-P2-001", "R3-P2-002"]},
-    {"name": "engine maintainability", "findings": ["R2-P2-001--4e5c79954247", "R13-P2-001", "R13-P2-002"]},
-    {"name": "packet closure accuracy", "findings": ["R4-P2-001", "R6-P2-001"]}
+    {"name": "commit check under a hook-exported GIT_DIR", "findings": ["R5-P1-001"]},
+    {"name": "packet criteria reproducibility (gate)", "findings": ["R7-P2-001", "R9-P2-001"]},
+    {"name": "relayout error contract", "findings": ["R1-P2-001--1fbac54788f2", "R1-P2-002", "R14-P2-001"]},
+    {"name": "engine path safety hardening", "findings": ["R2-P2-001--b44c96030294", "R5-P2-001--d2ff9ac05502", "R1-P2-001--40e5071d1f73", "R6-P2-001--3e24643ff86e"]},
+    {"name": "doctor doc drift", "findings": ["R2-P2-001--2d0a48b35503", "R6-P2-001--c8d87cc9fb5d", "R3-P2-001--c84285021935"]},
+    {"name": "Barter hook failure modes and docs", "findings": ["R5-P2-001--1f6b4cd5c51b", "R5-P2-002", "R3-P2-001--deb1240fa825", "R8-P2-001", "R3-P2-002", "R4-P2-001--d183e347ac6b"]},
+    {"name": "phase record accuracy", "findings": ["R4-P2-001--a5ce3a081123", "R4-P2-002"]}
   ],
   "specSeed": [
-    "State the relayout's failure contract: either it restores moved copies on a mid-run failure, or the docs name the relayout-runs/ restore step",
-    "Decide whether resolveOverlayDir refuses a sibling outside the git repository on every command, or reword 001 spec.md:226 to the pre-commit-only check",
-    "Decide whether the Barter commit gate fails closed, or prints a skip line, when no overlay manifest is found"
+    "Make the engine's commit check find the repository the way gitTopLevelOrNull does, so a hook-exported GIT_DIR cannot turn a refusal into an allow",
+    "State the relayout error contract for the steps outside the guarded block (backup copy, prune) and for a failed rollback, and say which files the kept backup holds",
+    "Amend phase 003 goal.md:62 so its third clause reproduces, and the packet goal.md:93 phase count"
   ],
   "planSeed": [
-    "Guard the relayout rename loop and manifest write, restoring moved copies on failure, with a test that injects a mid-loop rename failure",
-    "Add a Barter pre-commit test for the lookup, skip and refusal branches, and make the skip visible",
-    "Branch the LAYOUT overflow remedy and the strict-write remedy the way the per-line remedy already does; document both remedies in doctor-overlay-presentation.txt",
-    "Ignore overlays/relayout-runs/ in ai-speckit; rename the barter-overlays fixture folder",
-    "Re-derive phase 002 evidence pointers; correct phase 005 AC-008/AC-009 status wording"
+    "Route stagedUnownedChanges and trackedTreeKeys through a GIT_DIR-stripped git call; add a strict-writes test that runs pre-commit with GIT_DIR set from a linked worktree",
+    "Guard the relayout backup copy and prune, add a two-failure rollback test, and correct the restore-failed wording about token-named files",
+    "Validate layoutLinks paths against the tree root; apply the outside-repository test to an in-tree overlayDir that links out; add --end-of-options to the pinned-blob reader",
+    "Make the Barter write-gate CLI and the prompt-card guard fail with a message; align the three staged-list scans; document the no-manifest refusal in overlays/README.md",
+    "Fix the 007 and 008 implementation-summary status lines; decide whether the barter-overlays test value stays by decision"
   ],
-  "findingClasses": ["partial-failure", "fail-open-without-signal", "path-safety hardening", "misleading-remedy", "docs-code-drift", "test-gap", "test strength", "repository hygiene", "leftover reference", "stale code comment", "duplicated invariant", "readability", "duplicated configuration", "stale-evidence-pointer", "completion-claim drift"],
+  "findingClasses": ["fail-open-gate", "traceability", "message-contract-drift", "test-gap", "error-contract-gap", "path-safety hardening", "containment-gap", "misleading-diagnostic", "security-hardening", "doc-contradiction", "doc-code-drift", "naming-leftover", "maintainability", "doc-gap", "portability", "stale-status-claim", "contradicting-records"],
   "affectedSurfacesSeed": [
     ".skilled/commands/doctor/scripts/overlay-engine.cjs",
     ".skilled/commands/doctor/scripts/tests",
     ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+    ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
     ".skilled/skills/system-skilled-doctor/references/overlays.md",
     "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
-    "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard",
-    "barter/ai-speckit/overlays/root/opencode/plugins/tests",
-    "barter/ai-speckit/.gitignore",
-    "barter/ai-speckit/overlays/tests/compiled-routing-byte-parity.test.cjs",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree"
+    "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs",
+    "barter/ai-speckit/overlays/README.md",
+    "barter/ai-speckit/overlays/overlay-manifest.json",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/implementation-summary.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md"
   ],
   "fixCompletenessRequired": true
 }
@@ -104,152 +145,165 @@ Review of `specs/system-skilled-doctor/007-overlay-framework-root-layout` (spec-
 
 ## 3. Active Finding Registry
 
-Merged from `deep-review-findings-registry.json` (16 open findings). Full evidence, scope proof and affected-surface hints for each are in the owning lineage's `review-report.md` and `iterations/`.
+Merged from `deep-review-findings-registry.json` (21 open findings). IDs with a hash suffix were renamed by the merge because both lineages used the same short ID. Full evidence, scope proof and affected-surface hints for each finding are in the owning lineage's `review-report.md` and `iterations/`. findingClass for `opus-medium` rows comes from that lineage's Planning Packet, because the merged registry leaves it empty.
 
-| ID | Sev | Lineage | Dimension | file:line | Finding | Fix recommendation | findingClass |
-|----|-----|---------|-----------|-----------|---------|--------------------|--------------|
-| R1-P1-001 | P1 | deepseek-flash-max | correctness | `.skilled/commands/doctor/scripts/overlay-engine.cjs:6384` | Relayout leaves a half-moved overlay folder when a rename or the manifest write fails after the first move. Only `planRelayoutManifest` is guarded (`:6362-6367`), and `main` turns the throw into exit 2 (`:6497-6502`). | Guard the rename loop and `writeRelayoutManifest`, roll back the moved copies on failure, and add a mid-loop failure test. | partial-failure |
-| R2-P1-001 | P1, root self-check P2 | deepseek-flash-max | correctness | `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:85` | The commit gate skips every overlay check, with exit 0 and no message, when `../overlays/overlay-manifest.json` is absent. | Fail closed, or print a skip line naming the path looked for. | fail-open-without-signal |
-| R1-P2-001--6d7230d0ece0 | P2 | opus-medium | correctness / security | `.skilled/commands/doctor/scripts/overlay-engine.cjs:452` | The sibling check tests only containment against the tree, so `../.git` or a sibling link that resolves outside the repository passes. Only pre-commit checks the repository (`:5813-5818`), while 001 `spec.md:226` states the refusal generally. | Refuse at `resolveOverlayDir`, or reword the spec. | path-safety hardening |
-| R1-P2-001--4f4ffdfd250a | P2 | deepseek-flash-max | correctness | `.skilled/commands/doctor/scripts/overlay-engine.cjs:3658` | The LAYOUT overflow line always advises `apply --relayout`, even for `root/skilled` entries that relayout refuses. | Branch on `isUnderRootSkilled`, as `:3652-3655` does. | misleading-remedy |
-| R11-P2-001 | P2 | deepseek-flash-max | correctness | `.skilled/commands/doctor/scripts/overlay-engine.cjs:5552` | The strict-write refusal tells the operator to create an overlay copy for a path on the entry's `remove` list, which `apply` never installs. | Branch the remedy on `replace` vs `remove`. | misleading-remedy |
-| R8-P2-001 | P2 | deepseek-flash-max | maintainability | `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:87` | Documents only one of the two LAYOUT remedies the engine emits. | Document both. | docs-code-drift |
-| R2-P2-001--e1e7b8a500f3 | P2 | deepseek-flash-max | correctness | `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:85` | No test covers the hook's overlay lookup or its skip branch. | Add a hook test for lookup, skip and refusal. | test-gap |
-| R14-P2-001 | P2 | opus-medium | maintainability | `barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:52` | The edit guard core, pre-commit (`:85-89`) and git-write gate (`:182`) each hard-code `overlays` beside the tree and never read `.skilled-overlays.json`. | Resolve the folder through the setting or the engine context. | duplicated configuration |
-| R12-P2-001 | P2 | opus-medium | traceability | `barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs:63` | The plugin tests stub `v2-bridge.js`, so they could not catch the `dualPlugin` → `definePlugin` rename that disabled both plugins after the re-pin. | Load the vendored bridge in at least one case. | test strength |
-| R3-P2-001 | P2 | opus-medium | correctness | `barter/ai-speckit/.gitignore:68` | `/overlays/repin-runs/` is ignored, but `overlays/relayout-runs/` (the relayout backup) is not. | Add the ignore rule and mention it in `overlays/README.md`. | repository hygiene |
-| R3-P2-002 | P2 | opus-medium | correctness | `barter/ai-speckit/overlays/tests/compiled-routing-byte-parity.test.cjs:64` | A temp fixture still names its overlay folder `barter-overlays`. It is the only live leftover reference. | Rename it to `overlays`. | leftover reference |
-| R2-P2-001--4e5c79954247 | P2 | opus-medium | correctness | `.skilled/commands/doctor/scripts/overlay-engine.cjs:3398` | The `layoutMoves` JSDoc still describes the old dot-dropped layout. | Restate the framework/ and root/ rule. | stale code comment |
-| R13-P2-001 | P2 | opus-medium | maintainability | `.skilled/commands/doctor/scripts/overlay-engine.cjs:4582` | `!isWithin(root, overlayRoot)` is recomputed in four command paths (`:4582`, `:5228`, `:5814`, `:6374`). | Put `overlayOutside` on the context. | duplicated invariant |
-| R13-P2-002 | P2 | opus-medium | maintainability | `.skilled/commands/doctor/scripts/overlay-engine.cjs:4603` | `writeBackup` nests two loops on one line, and an `if (area) continue` hides the asymmetry. | Split the overlay-area pass out. | readability |
-| R6-P2-001 | P2 | deepseek-flash-max | traceability | `specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/spec.md:109` | The `adoptSource`, `layoutMoves` and strict-write line pointers are stale, and the caller count is six where `rg` finds eight. | Re-derive the pointers and the count. | stale-evidence-pointer |
-| R4-P2-001 | P2 | opus-medium | traceability | `specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/acceptance-criteria.md:66` | AC-008 and AC-009 are marked Met while their cells record a deviation from the Then clause. | Reword them to the baseline-equal bar, or mark them Superseded with a decision. | completion-claim drift |
-
-Disposition: all active. `R2-P1-001` is carried at P1 in the merged counts and called P2 by the root self-check.
+| ID | Sev | Lineage | Dimension | file:line | Finding | findingClass |
+|----|-----|---------|-----------|-----------|---------|--------------|
+| R5-P1-001 | P1 | opus-medium | security | `.skilled/commands/doctor/scripts/overlay-engine.cjs:5864` | The engine's commit check allows every unowned vendored change when git runs it from a hook in a linked worktree, and no test runs pre-commit under that environment | fail-open-gate |
+| R7-P2-001 | P2 | deepseek-flash-max | traceability | `specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62` | A checked completion criterion does not reproduce (root re-ran it: prints `doctor-env.yaml:48`) | traceability |
+| R9-P2-001 | P2 | deepseek-flash-max | traceability | `specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md:93` | The packet's last completion criterion understates the phase count | traceability |
+| R1-P2-001--1fbac54788f2 | P2 | opus-medium | correctness | `.skilled/commands/doctor/scripts/overlay-engine.cjs:6534` | The restore-failed relayout line and references/overlays.md say the kept backup holds every moved copy, but the backup skips token-named files | message-contract-drift |
+| R1-P2-002 | P2 | opus-medium | correctness | `.skilled/commands/doctor/scripts/overlay-engine.cjs:6533` | No test covers the branch where the relayout rollback itself fails or the backup cannot be removed | test-gap |
+| R14-P2-001 | P2 | opus-medium | correctness | `.skilled/commands/doctor/scripts/overlay-engine.cjs:6554` | A relayout that fails outside its guarded block exits 2 with a raw engine error the apply workflow has no rule for | error-contract-gap |
+| R2-P2-001--b44c96030294 | P2 | deepseek-flash-max | security | `.skilled/commands/doctor/scripts/overlay-engine.cjs:2514` | layoutLinks paths escape the tree root unvalidated, and the relayout rollback now writes through them | path-safety hardening |
+| R5-P2-001--d2ff9ac05502 | P2 | opus-medium | security | `.skilled/commands/doctor/scripts/overlay-engine.cjs:450` | An in-tree overlayDir that links outside the repository skips the outside-repository refusal | containment-gap |
+| R1-P2-001--40e5071d1f73 | P2 | deepseek-flash-max | correctness | `.skilled/commands/doctor/scripts/overlay-engine.cjs:478` | A sibling link that resolves back inside the tree is refused with the wrong reason | misleading-diagnostic |
+| R6-P2-001--3e24643ff86e | P2 | deepseek-flash-max | security | `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4241` | The pinned-blob reader passes a manifest value to git without --end-of-options | security-hardening |
+| R2-P2-001--2d0a48b35503 | P2 | opus-medium | correctness | `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:563` | Generic LAYOUT guidance sends root/skilled lines to relayout in the presentation's next-step rows and the status workflow | doc-contradiction |
+| R6-P2-001--c8d87cc9fb5d | P2 | opus-medium | security | `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:560` | The docs attribute the outside-repository refusal to a pre-commit check that never prints it | doc-code-drift |
+| R3-P2-001--c84285021935 | P2 | opus-medium | correctness | `.skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:79` | A Skilled engine test still names its overlay folder barter-overlays (root note: intended custom value, kept by decision) | naming-leftover |
+| R5-P2-001--1f6b4cd5c51b | P2 | deepseek-flash-max | security | `barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:2313` | Git write gate fails open and silently through its CLI entrypoint | security-hardening |
+| R5-P2-002 | P2 | deepseek-flash-max | security | `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:73` | A missing prompt-card guard skips its check with no message | security-hardening |
+| R3-P2-001--deb1240fa825 | P2 | deepseek-flash-max | correctness | `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:88` | The commit gate can resolve the tree one level too deep and then report a missing engine instead of a missing manifest | misleading-diagnostic |
+| R8-P2-001 | P2 | deepseek-flash-max | traceability | `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:45` | The three staged-list scans in pre-commit disagree on which change types they see | maintainability |
+| R3-P2-002 | P2 | opus-medium | correctness | `barter/ai-speckit/overlays/README.md:47` | overlays/README.md does not document that the commit hook refuses a vendored commit when no manifest is found | doc-gap |
+| R4-P2-001--d183e347ac6b | P2 | deepseek-flash-max | correctness | `barter/ai-speckit/overlays/overlay-manifest.json:7` | The committed overlay manifest pins an absolute local checkout path | portability |
+| R4-P2-001--a5ce3a081123 | P2 | opus-medium | traceability | `specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md:115` | Phase 008 summary says its folder is uncommitted, in the commit that commits it | stale-status-claim |
+| R4-P2-002 | P2 | opus-medium | traceability | `specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/implementation-summary.md:91` | Phase 007 summary says the ai-speckit fix reaches origin with phase 008, which pushed nothing in ai-speckit | contradicting-records |
 
 ## 4. Remediation Workstreams
 
-1. **P1: relayout atomicity** (`R1-P1-001`). Fix this first. It is the one migration step every old-layout consumer runs.
-2. **Barter commit-gate and hook hardening** (`R2-P1-001`, `R2-P2-001--e1e7b8a500f3`, `R14-P2-001`, `R12-P2-001`).
-3. **Engine remedies and path safety**, P2 (`R1-P2-001--4f4ffdfd250a`, `R8-P2-001`, `R11-P2-001`, `R1-P2-001--6d7230d0ece0`).
-4. **Barter hygiene**, P2 (`R3-P2-001`, `R3-P2-002`).
-5. **Engine maintainability**, P2 (`R2-P2-001--4e5c79954247`, `R13-P2-001`, `R13-P2-002`).
-6. **Packet closure accuracy**, P2 (`R4-P2-001`, `R6-P2-001`).
+1. **P1, fix first: commit check under a hook-exported `GIT_DIR`** (`R5-P1-001`). Route the top-level probe in `stagedUnownedChanges`, and in `trackedTreeKeys`, which uses the same probe (opus iteration 5), through a git call that strips the hook variables. Add a strict-writes test that runs `pre-commit` with `GIT_DIR` set.
+2. **Gate: packet criteria reproducibility** (`R7-P2-001`, `R9-P2-001`). Amend the phase 003 criterion so its third clause reproduces, correct the packet phase count, and run the packet's `validate.sh --recursive --strict` criterion.
+3. **P2: relayout error contract** (`R1-P2-001--1fbac54788f2`, `R1-P2-002`, `R14-P2-001`).
+4. **P2: engine path safety hardening** (`R2-P2-001--b44c96030294`, `R5-P2-001--d2ff9ac05502`, `R1-P2-001--40e5071d1f73`, `R6-P2-001--3e24643ff86e`).
+5. **P2: doctor doc drift** (`R2-P2-001--2d0a48b35503`, `R6-P2-001--c8d87cc9fb5d`, `R3-P2-001--c84285021935`).
+6. **P2: Barter hook failure modes and docs** (`R5-P2-001--1f6b4cd5c51b`, `R5-P2-002`, `R3-P2-001--deb1240fa825`, `R8-P2-001`, `R3-P2-002`, `R4-P2-001--d183e347ac6b`). These belong to an ai-speckit session.
+7. **P2: phase record accuracy** (`R4-P2-001--a5ce3a081123`, `R4-P2-002`).
 
 ## 5. Spec Seed
 
-- Write down the relayout's failure contract (rollback, or a documented restore from `relayout-runs/<stamp>/`).
-- Settle the outside-repository rule for a sibling overlay folder (every command, or pre-commit only).
-- Settle the Barter commit gate's behaviour when no overlay manifest is found (fail closed, or a visible skip).
-- Add `relayout-runs/` beside `repin-runs/` as an engine run folder a consumer must ignore.
+- The engine's commit check finds the repository from the tree folder and ignores a hook-exported `GIT_DIR`, `GIT_WORK_TREE`, `GIT_INDEX_FILE` and `GIT_PREFIX`, the same way `gitTopLevelOrNull` does.
+- The relayout's failure contract covers the backup copy and prune steps and a failed rollback, and names what the kept backup holds, token-named files included.
+- The phase 003 and packet completion criteria reproduce verbatim from a clean tree.
 
 ## 6. Plan Seed
 
-- Skilled: wrap the relayout rename loop and manifest write, restore the moved copies on error, and add a fault-injection test.
-- Skilled: branch the LAYOUT overflow and strict-write remedies, update `doctor-overlay-presentation.txt`, fix the `layoutMoves` JSDoc, add `overlayOutside` to the context and split `writeBackup`.
-- ai-speckit: make the pre-commit skip visible or fail closed, add its test, route the three hooks through `.skilled-overlays.json`, load the vendored bridge in one plugin test, ignore `overlays/relayout-runs/` and rename the fixture folder.
-- Packet: re-derive phase 002 evidence pointers and correct phase 005 AC-008/AC-009.
+- Add a git helper with the hook variables stripped for `stagedUnownedChanges` and `trackedTreeKeys`. Test it with `GIT_DIR` pointing at a linked worktree's git dir.
+- Guard `relayoutUnderLock`'s backup copy and prune. Add a test where both the rename and the rollback fail.
+- Validate `layoutLinks` against the tree root. Resolve an in-tree `overlayDir` before the outside-repository test. Add `--end-of-options` to the pinned-blob reader.
+- Barter (ai-speckit session):
+  - Fail the write-gate CLI with a message.
+  - Print a skip line for a missing prompt-card guard.
+  - Align the three staged-list scans.
+  - Document the no-manifest refusal.
+  - Make the manifest `pin.checkout` portable.
+- Correct the 007 and 008 summaries, `003/goal.md:62` and `goal.md:93`.
 
 ## 7. Traceability Status
 
-Core protocols:
-- `spec_code`: pass, with drift.
-  - Phase 001-002 REQs trace to engine lines and named tests. Doc and release-note claims trace to engine lines. Barter's pin (`063daaee2c1`), the source layout and the overlay count hold.
-  - Drift: 001 `spec.md:226` against the pre-commit-only repository check (`R1-P2-001--6d7230d0ece0`), and the stale phase 002 pointers (`R6-P2-001`).
-- `checklist_evidence`: partial.
-  - Both live criteria re-executed in the deepseek lineage passed: `status --json` reports PASSED with an empty `offLayout`, and `--guard` exits 1 naming `../overlays/framework/...`.
-  - Phase 005 AC-008/AC-009 are marked Met against a deviated bar (`R4-P2-001`).
-  - Phase 004 closed without recording that the re-pin left both Barter OpenCode plugins unloadable until `a954fc956ce` (opus iteration 12).
+**Core protocols**
+- `spec_code`: pass in both lineages, except that phase 006 Known Limitation 1 predicts a refusal where the code allows (`R5-P1-001`, opus iteration 5).
+- `checklist_evidence`:
+  - opus-medium: pass.
+  - deepseek-flash-max: partial. Five of the packet's six criteria ran and passed, including `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` at 262/262. `validate.sh --recursive --strict` did not run. The phase 003 tick does not reproduce (`R7-P2-001`).
 
-Overlay protocols:
-- `playbook_capability`: pass (SKD-013 is reachable and registered).
-- `feature_catalog_code`: not applicable.
-- `skill_agent`: not applicable.
-- `agent_cross_runtime`: spot-checked. The git-write gate's runtime copies resolve to one core.
+**Overlay protocols**
+- `playbook_capability`: pass. The apply workflow's relayout branches match the printed lines, with one gap (`R14-P2-001`).
+- `skill_agent`, `agent_cross_runtime`, `feature_catalog_code`: no drift reported by either lineage.
 
-AC_COVERAGE: advisory, not computed. `validate.sh` was outside this run's write and run limits.
+**AC_COVERAGE**: exempt. The packet root is a phase parent with no `acceptance-criteria.md`. The child phases were reviewed through their own records.
+
+**Prior-generation findings (16), all fixed.** Both lineages re-checked all 16. Locations are as cited by opus-medium (its report, section 7); deepseek-flash-max confirmed the same set in each iteration's Confirmed-Clean Surfaces.
+
+| Prior ID | Status | Fixed by / verified at |
+|----------|--------|------------------------|
+| R1-P1-001 relayout half-move | fixed | rollbackRelayout and done record, `overlay-engine.cjs:6420-6549`; tests fail before the fix (opus iterations 1, 16) |
+| R2-P1-001 commit gate silent skip | fixed | ai-speckit pre-commit `:120-146` fails closed without a manifest (opus iteration 3) |
+| R1-P2-001--6d7230d0ece0 sibling accepts `../.git` | fixed | `overlay-engine.cjs:466-474` (opus iteration 5) |
+| R1-P2-001--4f4ffdfd250a LAYOUT overflow remedy | fixed | `:3698-3708`, presentation line 118, overlays.md line 92 (opus iteration 2) |
+| R11-P2-001 strict-write remove-list remedy | fixed | `:5605-5614` (opus iteration 8) |
+| R8-P2-001 one LAYOUT remedy documented | fixed | presentation lines 87-88, 96 (opus iteration 2) |
+| R2-P2-001--e1e7b8a500f3 pre-commit untested | fixed | `pre-commit.test.cjs` 6/6 (opus iterations 4, 11) |
+| R14-P2-001 hooks hard-code the folder | fixed | `overlaysRootFor` in all three hooks (opus iteration 3) |
+| R12-P2-001 plugin tests stub the bridge | fixed | real-bridge case, 3/3 (opus iteration 7) |
+| R3-P2-001 relayout-runs not ignored | fixed | ai-speckit `.gitignore:69`, README `:459` (opus iteration 3) |
+| R3-P2-002 barter-overlays fixture | fixed | compiled-routing-byte-parity test renamed (opus iteration 3) |
+| R2-P2-001--4e5c79954247 layoutMoves JSDoc | fixed | `:3434-3440` (opus iteration 8) |
+| R13-P2-001 overlayOutside recomputed | fixed | single containment test at `:524` (opus iteration 5) |
+| R13-P2-002 writeBackup one-line loop | fixed | two loops, `:4684-4697` (opus iteration 1) |
+| R4-P2-001 005 AC rows Met with deviation | fixed | AC-008 and AC-009 rewritten; the REQ text gap recorded as 006 limitation 4 (opus iteration 4) |
+| R6-P2-001 002 pointers stale | fixed | 002 `spec.md:109` matches HEAD (opus iteration 4) |
+
+No prior finding came back. Five new P2s sit in remediation code and one more is widened by it; the blame split is in section 1.
 
 ## 8. Deferred Items
 
-- **D-1, a deep-review workflow defect, not in this packet's scope.** A fan-out run over a spec-folder target never records `reviewScopeFiles`:
-  - `step_fanout_root_config` populates `reviewScopeFiles: []` (`.skilled/commands/deep/assets/deep-review.yaml:434`).
-  - Each lineage copies it.
-  - `step_scope_discovery` lives only in `phase_init`.
-
-  So the `scope` terminal gate (`.skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs:168-179`) fails on any finding outside the packet folder. Any fan-out review of a spec folder whose code lives elsewhere gets a forced FAIL. Suggested fix: run scope discovery once at the fan-out root and pass the list to each lineage, or seed `reviewScopeFiles` from the admitted frontier scopes.
-- **Search debt (4 rows).** Frontier nodes F-1-002, F-1-004, F-1-006 and F-1-008 (opus-medium) closed exhausted on their per-node budget before a node-level maintainability pass. Maintainability was covered at run level (opus iterations 13, 14 and 17).
-- **Edge cases recorded but not raised** (opus-medium):
-  - `sourceRelative` checks containment lexically, which predates this change.
-  - The doctor repin YAML lists a run folder before the engine validates the run id. It is read-only and predates the change.
+- 006 Known Limitation 3 (`managedPathTest` keeps a trailing slash) predates this round and was left unreviewed (opus-medium).
+- The `sniffPayload` patch path in `barter-overlay-guard-core.cjs:129-138` is untested for the `patch` field. This was recorded as unverified coverage, not a finding (deepseek-flash-max).
+- `pre-commit:6` computes `TREE_ROOT` one level high for a `.git/hooks` symlink install, which the repository does not use (deepseek-flash-max).
+- The concurrent session's phases 009-011 (uncommitted, created during this run) already plan the `GIT_DIR` probe fix and the fan-out review scope item. They were not reviewed as evidence.
 
 ## Dimension Expansion Map
 
-- Seeded frontier: 8 depth-1 sub-targets. F-1-001 (merge `063daaee2c1`) was pruned as `merge-no-own-diff`. The other 7 were admitted and split round-robin across the lineages:
-  - opus-medium: F-1-002, F-1-004, F-1-006, F-1-008.
-  - deepseek-flash-max: F-1-003, F-1-005, F-1-007.
-- deepseek-flash-max: all 3 nodes answered with all four dimensions.
-- opus-medium: all 4 nodes exhausted with correctness, security and traceability. Maintainability ran at run level. One stuck-recovery after iteration 16 (strategy change-granularity), resolved by iteration 17.
-- Pivots: none. Remaining frontier: none open. No frontier_proposal was emitted.
-- Partition guard: passed (`frontier_partition_guard.passed: true`, none missing).
+- Seeded depth-1 nodes: F-1-001 to F-1-007, all admitted on the second seed pass and split between the lineages by the runner:
+  - opus-medium: F-1-001, F-1-003, F-1-005 and F-1-007.
+  - deepseek-flash-max: F-1-002, F-1-004 and F-1-006.
+- No depth-2 growth was admitted in either lineage.
+- Remaining frontier, as deepseek-flash-max search debt: F-1-002 maintainability, F-1-004 traceability, F-1-006 maintainability.
+- No pivots, overrides or Council artifacts.
+
+This section records breadth only and does not change the verdict.
 
 ## 9. Search Ledger
 
-- hasSearchDebt: true, with 4 rows, all `frontier:F-1-00N` blocked, from the opus nodes that closed exhausted. The verdict counts them. If the scope gate and the P1 were cleared, they alone would keep it CONDITIONAL. The next step for them is another `/deep:review` over the maintainability of those nodes, not `/speckit:plan`.
-- Covered bug classes, combined: path_traversal, partial-failure, fail-open, doc_code_drift, misleading-remedy, leftover_reference, repo_hygiene, test_strength, test-gap, completion_claim, stale-evidence-pointer, duplicated_invariant, readability, duplicated_configuration.
-- Ruled out (opus-medium): state_transition, guard_bypass, command_injection, pin_mismatch, playbook_signal, root_detection, secret_exposure, severity_calibration, spec_drift, cross_reference_drift. opus-medium also ruled fail_open out, while deepseek-flash-max raised it as `R2-P1-001`. The root self-check sided with P2.
-- Per-iteration ledgers: `lineages/*/deltas/iter-NNN.jsonl`.
+- **hasSearchDebt: true.** 3 entries, all `disposition: deferred`, all frontier (deepseek-flash-max): `frontier-F-1-002` (maintainability), `frontier-F-1-004` (traceability), `frontier-F-1-006` (maintainability). On its own this debt would make the verdict CONDITIONAL; the failed coverage gate makes it FAIL.
+- opus-medium: searchDebt none.
+- Ruled-out candidates and clean-search proof are in each lineage's report, section 9, and in its delta `ruled_out` rows.
 
 ## 10. Audit Appendix
 
-**Convergence summary.**
-- opus-medium: 17 iterations, newFindingsRatio 1.0 → 0. STOP converged (all_dimensions_clean) at iteration 17.
-- deepseek-flash-max: 12 of 24 iterations. STOP converged (composite_converged, graph decision STOP_ALLOWED).
-- Terminal gates in both: evidence pass, coverage pass, scope fail (`findings-out-of-scope`).
+**Convergence.**
+- opus-medium: 17 iterations, `converged`, gates evidence/scope/coverage pass.
+- deepseek-flash-max: 9 iteration records and 9 iteration files, but its `terminal_gates` row names `iteration-010` / run 10. The mismatch is recorded as found. Stop `converged`, coverage `traceability-incomplete`.
 
-**Coverage summary.** dimensionCoverage: correctness, security, traceability and maintainability all true in the merged registry.
+**Run events and deviations, recorded for audit.**
+- **Frontier re-seed.** The first seed pass pruned F-1-004 to F-1-006 on `relevance`, because their questions exceeded the 500-character cap. The root removed the `frontier-nodes.jsonl` it had just written, shortened the three questions and re-seeded, and all seven nodes were admitted. Nothing else had been written.
+- **deepseek-flash-max rerun.** Its first run exited 0 after 8 iterations without a `terminal_gates` row (runner `no_terminal_event`; its config was still `initialized`, its frontier nodes still open). The root reran it once with the runner's printed `--only-lineage deepseek-flash-max` command. It resumed, recorded iteration 9 and the terminal row, and exited 0. The runner flags the 10 rows from the first run as timestamp anomalies before its window; that is expected for a resumed lineage.
+- **Containment advisory (opus-medium).** The runner reported modified `spec.md` and `graph-metadata.json` in the packet root. The diff adds phases 009-011 and comes from a concurrent session, not from a lineage. It was left untouched.
+- **Write-once slip (opus-medium).** Its iteration 6 says it corrected line citations in `iteration-005.md` in place (`sed -i`) before handing the record to the gateway. The recorded content matches the file.
+- **ai-speckit read-only limit.**
+  - Containment watches only the Skilled tree. ai-speckit shows 87 working-tree changes: 13 deletions and 74 untracked files, including `specs/clickup-cli/` deletions, `z_archive/` folders and `orchestration-status.log` files. Its `specs/` folder mtime is 17:18:24, inside the deepseek rerun window.
+  - A search of both lineages' command logs found no write command (`rm`, `mv`, `cp`, `sed -i`, `git add/mv/rm/commit/restore`) aimed at ai-speckit. The only `sed -i` edits target lineage-local files, and no command names `ai-speckit/specs`, `clickup` or `z_archive`.
+  - The changes match a parallel ai-speckit session's spec archiving. That attribution is inference; the lineages' absence from it is backed by the logs.
+- **Iteration budget.** The root config keeps `maxIterations: 7` from the template, while the seed derived a 24-iteration budget for each lineage, which the runner applied.
+- **Skipped steps.**
+  - `step_stage_artifact_dir` (`git add`) was skipped under the operator's "no git writes" limit.
+  - `phase_save` (`generate-context.js`) was skipped under the "write only in the bound spec folder's `review/` artifacts" limit.
 
-**Route proof.** Every iteration record in both lineage state logs (17 + 12) carries:
-- `target_agent: "deep-review"`
-- `resolved_route: "Resolved route: mode=review target_agent=deep-review"`
-- `agent_definition_loaded: true`
-- `mode: "review"`
+**Closeout.**
+- `synthesis-closeout.cjs` recorded `synthesis_incomplete` (severity `warning`, reason `synthesis_artifact_invariant_failed`, invariant `structured_state_findings_missing_from_registry`). It found 4 of 19 identifiable iteration-level findings without a matching registry key, out of 28 iteration findings against 21 registry findings.
+- The root checked the merge: the two lineage registries hold 11 + 10 = 21 open findings, and the merged registry holds 21, so no lineage-active finding was dropped.
+- The root listed the iteration `findingDetails` with no merged-registry key, and every one is accounted for. Two kinds:
+  - Short IDs both lineages used (`R1-P2-001` to `R6-P2-001`). The merge renamed them with a hash suffix, and each one sits in its lineage registry under the original ID.
+  - opus-medium refinements whose `refines` target the rename hid:
+    - `R2-P2-002` and `R15-P2-002` refine `R1-P2-001`.
+    - `R10-P2-001` and `R15-P2-001` refine `R2-P2-001`.
+    - `R15-P1-001` and `R16-P1-001` refine `R5-P1-001`.
+  - No live finding is missing.
+- The review contract records this warning and does not halt on it.
 
-None was missing.
+**Route proof.**
+- opus-medium: 17/17 iteration records carry `target_agent: "deep-review"`, `resolved_route`, `agent_definition_loaded: true` and `mode: "review"`.
+- deepseek-flash-max: 9/9 do.
+
+**Cross-reference appendix.**
+- **Core Protocols:** `spec_code` pass (one drift, `R5-P1-001`); `checklist_evidence` pass (opus-medium) and partial (deepseek-flash-max).
+- **Overlay Protocols:** `playbook_capability` pass with one gap (`R14-P2-001`); `skill_agent`, `agent_cross_runtime` and `feature_catalog_code` show no drift.
 
 **Sources reviewed.**
-- Skilled:
-  - `overlay-engine.cjs`, the `overlay-engine-*.test.cjs` suites and fixtures, and the overlay-guard lib and tests.
-  - Doctor `overlay.md`, `_routes.yaml`, the apply, repin and update YAML, and the presentation text.
-  - system-skilled-doctor `SKILL.md`, `references/overlays.md`, the playbook and `changelog/v1.2.0.0.md`.
-  - Packet 007 and children 001-005 with their scratch evidence.
-- ai-speckit:
-  - `.skilled-overlays.json` and `overlays/` (manifest, README, checks, tests, hooks, plugins).
-  - `.gitignore`, `init-repository.sh` and `tests/*.sh`.
-  - The pre-commit hook and the git-write gate copies.
-  - The re-pin, relayout, hooks, move and close-out commits.
-- Root sweep: `rg barter-overlays` across both repos.
+- Skilled `.skilled/commands/doctor/**` and `.skilled/skills/system-skilled-doctor/**`.
+- ai-speckit `overlays/**` and the vendored `skilled/` copies of the hooks, engine and doctor docs.
+- The packet's phase 001-008 records.
 
-Core Protocols: spec_code (pass with drift), checklist_evidence (partial).
-Overlay Protocols: playbook_capability (pass), feature_catalog_code (not applicable), skill_agent (not applicable), agent_cross_runtime (spot-checked).
-
-**Process deviations, recorded honestly.**
-- **Seed re-run.** The first `frontier-admit.cjs seed` pruned the relayout and move node on `relevance`, because its question ran to 518 characters against the 500 limit. The node store had been written seconds earlier from that input and nothing had read it. It was removed, the question was shortened to 418 characters, and the seed ran again: 7 admitted, 1 pruned.
-- **Detached runner.** `fanout-run.cjs` ran detached (`nohup`), with its log in `fanout-run.log` and exit code 0 in `fanout-run.exit`, because two 24-iteration lineages could outlast the Bash tool ceiling.
-- **Lineage synthesis warning.** The opus-medium closeout recorded `deep_review.synthesis_incomplete` at warning severity: 10 iteration findings against 9 registry entries. R5-P2-001 refines R1-P2-001 and was folded into it, so `missingStructuredFindingCount` is 0.
-- **Skipped by dispatch limits.** These steps are skipped because the dispatch allows writes only under `review/` and forbids git writes:
-  - `step_stage_artifact_dir` (`git add`).
-  - `phase_save` (`generate-context.js --full-auto`, which writes outside `review/`).
-  - `step_release_lock`, since a fan-out root takes no lock.
-- **Skipped by the workflow on a fan-out root:** `step_emit_resource_map` and `step_refresh_completed_dashboard`. The lineage map is at `lineages/opus-medium/resource-map.md`.
-- **Root closeout warning.** `synthesis-closeout.cjs` recorded `deep_review.synthesis_incomplete` at warning severity in the root state log, with invariant `structured_state_findings_missing_from_registry`: 17 iteration findings against 16 merged registry entries, `missingStructuredFindingCount` 1. The one missing is opus `R5-P2-001`, which carries `refines: R1-P2-001` and was folded into `R1-P2-001--6d7230d0ece0`, so no finding is lost. The root config status was then set to `complete`.
-- **Containment gap for the nested repository.** The runner's containment baseline (`lineages/*/containment/baseline/`) covers only the Skilled checkout. The nested `barter/ai-speckit` repository was not watched. Both lineages could have written there: opus-medium ran under `bypassPermissions`, and cli-mistral-vibe has no sandbox enforcement. After the run, `git -C barter/ai-speckit status` showed:
-  - tracked deletions under `specs/clickup-cli/`;
-  - untracked `specs/*/z_archive/` folders, `specs/gaia-services/.gitkeep` and `specs/skilled-barter-overlays/006-sk-git-releases/`.
-
-  None of these is attributed to this run:
-  - The untracked paths were created on Nov 13, or on Nov 20 at 09:53 local time.
-  - The last change to `specs/` was at 14:01:30 local, which is 13:01 UTC, 52 minutes before the runner started at 13:53:57 UTC.
-  - No lineage artifact names `clickup-cli`, `gaia-services` or `006-sk-git-releases`. An unfiltered `rg -il` over `lineages/` returns nothing.
-
-  Nothing in ai-speckit was touched.
-- **Root self-check.** It downgraded `R2-P1-001` in this report only. On a fan-out root the contract keeps the merged lineage counts as the verdict's input.
+Per-lineage maps: `lineages/opus-medium/resource-map.md`. deepseek-flash-max emitted none.

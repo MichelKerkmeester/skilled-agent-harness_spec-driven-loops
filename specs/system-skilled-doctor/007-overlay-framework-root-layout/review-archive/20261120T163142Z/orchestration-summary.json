@@ -1,0 +1,64 @@
+{
+  "run_id": "1795182837437-sws2tv",
+  "loop_type": "review",
+  "spec_folder": "specs/system-skilled-doctor/007-overlay-framework-root-layout",
+  "base_artifact_dir": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review",
+  "total_cli_lineages": 2,
+  "frontier_partition": {
+    "opus-medium": [
+      "F-1-002",
+      "F-1-004",
+      "F-1-006",
+      "F-1-008"
+    ],
+    "deepseek-flash-max": [
+      "F-1-003",
+      "F-1-005",
+      "F-1-007"
+    ]
+  },
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  },
+  "lineages": [
+    {
+      "label": "opus-medium",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
+    {
+      "label": "deepseek-flash-max",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    }
+  ],
+  "provider_cost_usd": {
+    "total": null,
+    "by_lineage": {
+      "opus-medium": null,
+      "deepseek-flash-max": null
+    }
+  }
+}

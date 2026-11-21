@@ -1,19 +1,37 @@
-The lineage is complete. Twelve iterations ran inline, the loop stopped on `converged` with all nine legal-stop gates passing, and synthesis closed out through the gateway.
+The lineage is complete. Here is what happened.
 
-**What the run found** — 7 open findings, 0 P0, 2 P1, 5 P2:
+## Resumed state
 
-- `R1-P1-001` — `relayoutUnderLock` guards only the manifest planning failure; the rename loop (`overlay-engine.cjs:6384-6389`) and `writeRelayoutManifest` (`:6391`) are unguarded, so a mid-loop EACCES/ENOSPC leaves copies at layout paths behind a manifest naming the old ones.
-- `R2-P1-001` — the Barter pre-commit hook sets `HAS_OVERLAYS=0` when the overlay folder is missing and exits 0 with no output, silently skipping every overlay check. Phase 005's own spec names this as the defect it exists to fix.
-- Five P2s: the LAYOUT overflow line's unusable `--relayout` advice, the undocumented second remedy in the presentation asset, the strict-write refusal offering a create-it-as remedy for a `remove`-listed path, no test for the pre-commit hook, and stale `adoptSource` pointers in the phase 002 spec.
+The lineage had 8 iterations and all four dimensions covered, but the fanout runner had rejected it: `exited 0 but is not complete: the state log holds no terminal stop row (terminal_gates)`. The prior run jumped straight to synthesis and skipped `record_terminal_gates`.
 
-**Two things worth your attention:**
+## Iteration 9 — traceability
 
-1. **The synthesis verdict is FAIL, and it is not a code verdict.** `review-verdict.cjs` returns FAIL because the terminal `scope` gate fails with `findings-out-of-scope`. The cause is the immutable lineage config: `reviewTargetType: "spec-folder"` with `reviewScopeFiles: []` makes the packet folder the only scope entry, while six of seven findings sit on the engine and Barter hook the dispatch's `review_focus` points at. Every finding is inside the declared review scope; none is inside the scope the config recorded. I reported the gate as computed rather than relabelling it, and documented the mismatch in the Executive Summary and Audit Appendix. A future run of this packet should declare the code paths in `reviewScopeFiles` at init.
+`reviewUnfinishedCoreProtocols` named `checklist_evidence` as the one core protocol the stop still owed, so I steered iteration 9 at it and executed the packet's own six completion criteria:
 
-2. **The coverage graph was seeded late.** `step_graph_upsert` had not run for iterations 1–11, so `hotspotSaturationGate` read `null` and could never pass — the run would have gone to the 24-iteration cap with every legal-stop gate permanently blocked. Iteration 12 backfilled the graph from each iteration's own record (104 nodes, 113 edges), after which the gate evaluated and the loop stopped legally.
+| # | Criterion | Result |
+|---|-----------|--------|
+| 1 | `node --test overlay-engine-*.test.cjs` | **pass** — 262 tests, 0 failures |
+| 2 | `version: 1.2.0.0` + changelog names `--relayout` | pass |
+| 3 | `.skilled-overlays.json` = `../overlays`, no `barter-overlays` | pass |
+| 4 | `status --json` PASSED, empty `offLayout` | pass |
+| 5 | `--guard` exits 1, names `../overlays/framework/` | pass |
+| 6 | `validate.sh --recursive --strict` | not executed — forbidden by the dispatch |
 
-Two completion criteria were executed live rather than inferred: `status --json` reports `PASSED` with an empty `offLayout` and `check` 135/135, and `--guard .skilled/skills/sk-git/sk-git-skilled/SKILL.md` exits 1 naming `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`. Criteria 1 and 6 were not run — the engine suite writes to OS temp and `validate.sh` is outside the write surface.
+Criterion 1 had been carried as an unexecuted limit for eight iterations on the assumption the suites write inside the repo. `overlay-engine-fixtures.cjs:63` shows they use `os.tmpdir()`, so I ran them: 262 pass, and `git status --porcelain` over the three reviewed trees is empty afterwards. One new P2: `goal.md:93` says "its six phases" while the packet holds eleven.
 
-All writes stayed inside `specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/deepseek-flash-max`; `git status` confirms no file outside it was touched by this run.
+## Verdict: FAIL
+
+`review-verdict.cjs` returns `{"verdict":"FAIL","active_p0":0,"active_p1":0,"active_p2":10,"search_debt":3,"failed_required_gate_ids":["coverage"]}`.
+
+The FAIL is a traceability failure, not a code failure. No P0 or P1 was ever active. The coverage gate fails because `checklist_evidence` is `partial`, for two reasons: the phase-003 tick at `goal.md:62` still prints one hit (`doctor-env.yaml:48`, the word `opt-in` in an unrelated boolean description), and criterion 6 is outside my authority. The first is a one-line amendment; that single change flips the verdict to PASS on a re-run.
+
+## Judgment calls
+
+- **`stopReason: converged` in the terminal row.** The ledger schema's enum has no `blockedStop`, and the workflow maps every non-cap, non-manual, non-error stop to `converged`. The block is recorded durably in a separate `blocked_stop_recorded` row with `blockedGateIds: ["coverage"]` and the recovery hint. That row, not the label, is the honest record.
+- **Config left untouched.** The workflow's `step_update_config_status` asks for `status: complete`; the persona forbids writing the config. I followed the persona and recorded the conflict in the report and the strategy.
+- **Three frontier node-dimensions left open.** F-1-002 `maintainability`, F-1-004 `traceability`, F-1-006 `maintainability`. Closing them as `answered` would have been inaccurate, so they stay as `searchDebt` (3 entries).
+- **`generate-context.js` not run**, per the dispatch. `phase_save` is skipped and the report says so.
+
+Files written, all inside the lineage: `iterations/iteration-009.md`, `deltas/iter-009.jsonl`, `review-report.md` (all 9 sections plus the Planning Packet the prior report was missing), `deep-review-strategy.md`, `resource-map.md`, and the gateway/reducer outputs. No file outside the lineage was modified.
 
 FANOUT_LINEAGE_COMPLETE:deepseek-flash-max

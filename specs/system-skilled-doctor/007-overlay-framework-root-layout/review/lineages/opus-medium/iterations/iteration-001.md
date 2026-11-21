@@ -1,66 +1,81 @@
-# Iteration 001 - Frontier node F-1-002: correctness
+# Iteration 001 - Frontier node F-1-001: correctness
 
 ## Dispatcher
-- Lineage: opus-medium, session fanout-opus-medium-1795182837437-sws2tv, generation 1, lineageMode new.
-- Iteration number derived from state log (0 prior iteration records) = 1.
-- steer.md: absent at init and before this iteration.
-- Node F-1-002, dimension correctness. FRONTIER block printed with frontier-admit.cjs block.
-- Review focus addressed: engine correctness and path safety of the sibling overlay folder across apply, status, adopt, repin (live, stage, rollback), relayout, pre-commit and the guard, plus the strength of the new tests (Skilled commits d2d2e839456 and 5913aebc267 inside 57c01fb4c11..d42bafc890c).
+
+- Lineage: opus-medium (fan-out), session fanout-opus-medium-1795192401900-xpt66n, generation 1
+- Node: F-1-001 (relayout rollback, writeBackup split, mid-loop failure test), dimension correctness
+- Review focus addressed: verified prior R1-P1-001 (relayout half-move) and R13-P2-002 (writeBackup one-line nested loop) against the remediated engine, and checked the new rollback for regressions.
+- Sources: steer.md absent; strategy, config, frontier block for F-1-001.
 
 ## Files Reviewed
-- .skilled/commands/doctor/scripts/overlay-engine.cjs:426-493 (resolveOverlayDir, createContext)
-- .skilled/commands/doctor/scripts/overlay-engine.cjs:4577-4640 (writeBackup areas)
-- .skilled/commands/doctor/scripts/overlay-engine.cjs:5060-5135 (repinUnderLock)
-- .skilled/commands/doctor/scripts/overlay-engine.cjs:5136-5260 (stageFolderProblem, repinRun stage)
-- .skilled/commands/doctor/scripts/overlay-engine.cjs:5266-5330 (rollbackUnderLock areas)
-- .skilled/commands/doctor/scripts/overlay-engine.cjs:5808-5820 (stagedUnownedChanges outside-repo refusal)
-- .skilled/commands/doctor/scripts/overlay-engine.cjs:6369-6383 (relayout backup base)
-- .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:61-130 (fail-open policy)
-- .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:116-190, strict-writes:677-762, repin:1151-1334, follow-up:1208, sync:1738-1770
-- specs/.../001-engine-out-of-tree-overlay-folder/spec.md:125-141,225-229
-- specs/.../001-engine-out-of-tree-overlay-folder/scratch/evidence/negative-control-engine-suite.txt
 
-## Findings - New
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:6190-6559` (planRelayout, copyForBackup, relayoutLinkTargets, planRelayoutManifest, retargetRelayoutLink, missingRelayoutParents, rollbackRelayout, relayoutUnderLock)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:4624-4700` (writeBackup)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:272-299` (writeFileAtomic, ensureSymlink), `:2690-2758` (isEnvName, isProtectedReadPath)
+- `.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1110-1227, 1394-1415`
+- `.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:116`
+- Test run: `node --test --test-name-pattern=relayout overlay-engine-follow-up.test.cjs` -> 19 pass, 0 fail, exit 0.
+
+## Findings by Severity
 
 ### P0 Findings
+
 None.
 
 ### P1 Findings
+
 None.
 
 ### P2 Findings
-1. **A sibling link that resolves anywhere outside the tree is accepted, and only pre-commit checks the git repository** -- .skilled/commands/doctor/scripts/overlay-engine.cjs:452 -- resolveOverlayDir accepts `../<name>` when the resolved target neither contains nor sits inside the tree (:463-465). A sibling that is a link to an arbitrary folder (another repository, a home folder) passes, and apply --capture, adopt, relayout and repin then write into that folder. The only same-repository check is in stagedUnownedChanges (:5813-5818), so the operator resolution in the phase spec ("an overlay folder outside the git repository that holds the tree is refused", 001 spec.md:226) holds for pre-commit alone. overlays.md:51 scopes it correctly ("For the commit check"), so this is hardening plus a spec wording gap, not a broken promise.
-   Finding class: path-safety hardening
-   Scope proof: resolveOverlayDir is the only reader of the setting (fixes test "only the setting reader in the engine mentions the overlayDir key"); grep for "outside the git repository" finds only :5817-5818.
-   Affected surface hints: overlay-engine.cjs resolveOverlayDir; 001 spec.md:226 wording
-   Case: `.skilled-overlays.json` names `../overlays` and `../overlays` is a link to `~/elsewhere`; `apply --capture` writes the live edit into `~/elsewhere` with no refusal.
+
+1. **The restore-failed message says the backup holds every moved copy, but the backup skips token-named files** -- .skilled/commands/doctor/scripts/overlay-engine.cjs:6534 -- When a rollback rename fails, the operator is told "the backup at ... holds every moved copy and the manifest as it was". copyForBackup (`overlay-engine.cjs:6278-6281`) skips every token-named file the manifest does not name exactly, and the test at `overlay-engine-follow-up.test.cjs:1140` confirms such a file is absent from the backup. The apply workflow (`doctor-overlay-apply.yaml:116`) then tells the operator to restore the overlay folder from that backup, so following the message replaces a moved folder with a copy missing its token file.
+   - Finding class: message-contract drift
+   - Scope proof: only the restore-failed branch at overlay-engine.cjs:6533-6536 makes the claim; the success and clean-rollback branches do not.
+   - Affected surface hints: overlay-engine.cjs relayoutUnderLock catch block; doctor-overlay-apply.yaml relayout failure guidance.
+   - Case: a directory entry whose source holds assets/api-token.js not named in protectedPaths, relayout moves it, the relink fails and the rollback rename of that folder also fails; the operator restores from the backup and the token file is not in it.
+
+2. **No test covers the branch where the relayout rollback itself fails** -- .skilled/commands/doctor/scripts/overlay-engine.cjs:6533 -- The three failure tests (`overlay-engine-follow-up.test.cjs:1196, 1212, 1394`) all inject one failure and let the rollback succeed. The restore-failed branch, which keeps the backup and prints the line the apply workflow parses ("the restore also failed"), and the backup-not-removed branch at `:6541-6546`, run under no test. A change that deletes the backup in the restore-failed branch, or rewords the line the workflow keys on, passes the suite.
+   - Finding class: test-gap
+   - Scope proof: grep for "restore also failed" finds it only in the engine and the apply YAML, never in tests/.
+   - Affected surface hints: overlay-engine-follow-up.test.cjs relayoutWithFailingRename helper (can fail call N and a later call).
+   - Case: relayoutWithFailingRename failing the second move and also the rollback rename of the first move; no current test runs this.
+
+## Prior-Finding Verification
+
+- R1-P1-001 (relayout half-move): FIXED. Every step after the backup is recorded in `done` (`overlay-engine.cjs:6512-6529`) and undone newest-first by rollbackRelayout (`:6420-6444`); manifest refusals moved ahead of the first rename via planRelayoutManifest (`:6482-6488`); pruning deferred to after success (`:6554`). Tests at `follow-up.test.cjs:1196` and `:1212` compare a full folder snapshot before and after, so without the rollback they fail (one copy would stay moved).
+- R13-P2-002 (writeBackup one-line nested loop): FIXED. Tree and overlay areas now back up in two separate loops (`overlay-engine.cjs:4684-4697`) with a shared backUpEntry closure.
 
 ## Traceability Checks
-- spec_code (partial): REQ-001, REQ-004..REQ-010 each have a matching code path and a named test; spec.md:226 states a general outside-repo refusal that the code enforces only at pre-commit (REQ-008 itself is scoped to pre-commit).
-- checklist_evidence (pass): implementation-summary.md:90 claims 17 new sibling tests failed against the unchanged engine; negative-control-engine-suite.txt lists exactly 17 distinct failing sibling tests.
+
+- spec_code: partial. Engine behavior matches the phase 006 rollback claim (code above); restore-failed message overclaims (finding 1).
+- checklist_evidence: not run this iteration (node F-1-007 owns it).
 
 ## Integration Evidence
-- .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:107-130: the guard only denies on an engine exit 1 with a `refuse:` line and allows (with a note) on every error, so a sibling folder misconfiguration fails open, as documented at :101-104.
+
+- `.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:116` keys on the "restore also failed" and "back as they were" line endings; the engine prints both (`overlay-engine.cjs:6534, 6548`).
 
 ## Edge Cases
-- BINDING lines were printed after init writes rather than before; recorded here once.
-- The negative control ran against the unchanged engine, where every sibling test fails at resolveOverlayDir first. That proves the tests need the setting change, not that each downstream fix (backup area, stage refusal) is individually load-bearing. By reading: without the area split, writeBackup's relativeKey(root, manifestPath) (:4588) throws "destination escapes the sync root", and without the overlayRoot stage check the stage-inside-overlay test (repin:1245) passes the refusal step, so the downstream tests do discriminate. Not raised as a finding.
+
+- Backup copy failure (copyForBackup throws before the try at `:6501-6504`) leaves a partial relayout-runs/<stamp> folder but moves nothing; not a half-move, recorded as ruled out.
+- A move whose destination sits inside another move's source is impossible because destinations are always under framework/ or root/ and sources are off-layout; ruled out.
+- Link rollback: retargetRelayoutLink records the change after the unlink (`:6391-6392`), so a failed ensureSymlink still gets the old link back through ensureSymlink in rollback (`:6430`).
 
 ## Confirmed-Clean Surfaces
-- writeBackup overlay area: manifest and state keyed from overlayRoot, stored under overlay-backup/; `if (area) continue` skipping createdDirs is safe because the overlay-area entries are files directly in the overlay root, which always exists during a run.
-- rollbackUnderLock: unknown area throws; each entry is confined by relativeKey(base, ...).
-- repinRun stage: stagedRoot and the overlay copy sit side by side under their own basenames, and resolveOverlayDir refuses a sibling named after the tree, so the two never collide.
-- relayout backup base switches to overlayRoot for a sibling folder.
+
+- writeFileAtomic temp-and-rename (`:272-288`); manifest restore only when written (`:6525, 6432`).
+- createdDirs removed only when empty (`:6440`).
 
 ## Ruled Out
-- Engine paths still keyed tree-relative against the overlay folder: grep for relativeKey/relative(root, overlayRoot|manifestPath|statePath|lockPath) finds only :503 (display), :4588 (in-tree branch only), :5813 (guarded by the sibling branch) and :6382 (in-tree branch only).
-- Missing createdDirs for the overlay area in rollback: ruled out as above.
+
+- Half-moved folder on manifest-plan refusal: refusal happens before the first rename (`:6482-6488`).
+- Double-counted created folders across moves: missingRelayoutParents runs per move after earlier mkdirs (`:6517`).
 
 ## Next Focus
+
 - Dimension: correctness
-- Focus area: F-1-004 doctor overlay docs, YAML assets, playbook and release note against engine behavior
-- Reason: frontier rotation, one node per iteration
-- Rotation status: F-1-002 correctness done
-- Required evidence: doc line vs engine line pairs
+- Focus area: frontier node F-1-003 (docs against engine)
+- Reason: rotate across frontier nodes, one node and its next uncovered dimension per iteration
+- Rotation status: F-1-001 correctness done; security, traceability, maintainability remain for F-1-001
+- Required evidence: doctor-overlay-presentation.txt LAYOUT remedies vs overlay-engine.cjs:3689-3710
 
 Review verdict: PASS

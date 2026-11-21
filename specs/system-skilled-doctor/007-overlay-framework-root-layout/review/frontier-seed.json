@@ -1,43 +1,68 @@
 [
   {
-    "question": "Is the sibling overlay folder support correct and path-safe: resolveOverlayDir accepting only a direct ../<name> sibling, refusing an overlay folder outside the git repository, and every engine path (apply, status, adopt, repin, sync, strict writes) that once assumed the overlay folder sits inside the vendored tree; do the new tests actually fail without the change?",
-    "scope": [".skilled/commands/doctor/scripts/overlay-engine.cjs", ".skilled/commands/doctor/scripts/tests", ".skilled/hooks/overlay-guard"],
-    "evidence": "git show d2d2e839456"
+    "question": "Follow-up on the relayout rollback: does apply --relayout now restore every moved copy and leave no half-moved overlay folder when a rename or writeRelayoutManifest fails mid-run (prior R1-P1-001)? Is the rollback itself correct when a restore rename fails, is the writeBackup split sound, and does the new mid-loop failure test fail without the fix?",
+    "scope": [
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs"
+    ],
+    "evidence": "git show 3aab896957e"
   },
   {
-    "question": "Is the framework/ and root/ source layout correct as the default for every consumer: adoptSource naming, refusal of a root/skilled/ source, the capped LAYOUT notice for old-layout trees, and the one-shot apply --relayout migration (idempotence, partial failure, relayout-runs records, collisions with README.md, checks/, tests/ bookkeeping); are the tests strong enough?",
-    "scope": [".skilled/commands/doctor/scripts/overlay-engine.cjs", ".skilled/commands/doctor/scripts/tests"],
-    "evidence": "git show 5913aebc267"
+    "question": "Follow-up on engine path safety and remedies: does resolveOverlayDir now refuse a sibling overlay folder outside the git repository on every command (prior R1-P2-001 at :452), is overlayOutside on the context set and read consistently, and are the LAYOUT overflow remedy (prior :3658) and the strict-write replace-versus-remove remedy (prior :5552) branched correctly? Check the remaining prior engine maintainability findings (:3398, :4582, :4603) and any regression the new branches add.",
+    "scope": [
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests"
+    ],
+    "evidence": "git show 3aab896957e"
   },
   {
-    "question": "Do the doctor overlay docs, workflow YAML assets, presentation text, system-skilled-doctor references, manual testing playbook scenarios and the v1.2.0.0 release note match what the engine code actually does, including the stated single migration step (apply --relayout after the re-pin)?",
-    "scope": [".skilled/commands/doctor", ".skilled/skills/system-skilled-doctor"],
-    "evidence": "git show d42bafc890c"
+    "question": "Do the doctor docs now match the engine: both LAYOUT remedies in doctor-overlay-presentation.txt (prior R8-P2-001), the relayout failure contract in references/overlays.md, and the apply workflow's guidance on reading a failed relayout in doctor-overlay-apply.yaml? Does any doc claim behavior the code does not have?",
+    "scope": [
+      ".skilled/commands/doctor/assets",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md"
+    ],
+    "evidence": "git show 4ee628578ed 81f0ca4cade"
   },
   {
-    "question": "Do the Barter hooks (barter-overlay-guard-core.cjs, barter-git-write-gate.mjs, the OpenCode plugins and the pre-commit git hook) learn both overlay locations correctly, and do they fail open or fail closed in the right cases when the overlay folder is missing, moved or ambiguous? Check every vendored and overlay copy agrees. The repo is nested: read it with git -C barter/ai-speckit show a954fc956ce.",
-    "scope": ["barter/ai-speckit/overlays", "barter/ai-speckit/skilled/.opencode", "barter/ai-speckit/skilled/.skilled/skills/sk-git"],
-    "evidence": "git -C barter/ai-speckit show a954fc956ce"
+    "question": "Barter hooks follow-up: does pre-commit now fail closed without an overlay manifest (prior R2-P1-001), with tests for lookup, skip and refusal (R2-P2-001); do guard core, pre-commit and git-write gate read overlayDir (R14-P2-001); does the plugin test load the real v2 bridge (R12-P2-001)? Check fail-open vs fail-closed per missing, moved or malformed case, and overlays/ vs skilled/ copies byte-identical. Read-only: git -C barter/ai-speckit show 5dd004f3faa.",
+    "scope": [
+      "barter/ai-speckit/overlays/root/opencode",
+      "barter/ai-speckit/overlays/framework/hooks",
+      "barter/ai-speckit/overlays/framework/skills",
+      "barter/ai-speckit/skilled/.opencode/scripts/git-hooks",
+      "barter/ai-speckit/skilled/.opencode/plugins/tests",
+      "barter/ai-speckit/skilled/.skilled/hooks",
+      "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks"
+    ],
+    "evidence": "git -C barter/ai-speckit show 5dd004f3faa"
   },
   {
-    "question": "Are the Barter relayout onto framework/ and root/ and the move to overlays/ complete: init-repository.sh, .gitignore, README.md, CONTRIBUTING.md, overlays/README.md, overlays/checks, overlays/sync-state.json, tests/*.sh? Is any reference to the old barter-overlays path or dot-dropped layout left in either repo? Nested repo: git -C barter/ai-speckit show 51e218edf2e 2a8f454c8d1; rg barter-overlays across both repos.",
-    "scope": ["barter/ai-speckit/overlays", "barter/ai-speckit/init-repository.sh", "barter/ai-speckit/tests", "barter/ai-speckit/README.md", "barter/ai-speckit/CONTRIBUTING.md", "barter/ai-speckit/.gitignore"],
-    "evidence": "git -C barter/ai-speckit show 51e218edf2e 2a8f454c8d1"
+    "question": "Barter hygiene: is overlays/relayout-runs/ ignored and documented (prior R3-P2-001), is the barter-overlays fixture renamed (R3-P2-002), does any live barter-overlays or dot-dropped layout reference remain in either repo outside spec history and changelogs, and do the barter-overlay-first rule and overlays/README.md match the hooks? Read-only nested repo.",
+    "scope": [
+      "barter/ai-speckit/.gitignore",
+      "barter/ai-speckit/overlays/README.md",
+      "barter/ai-speckit/overlays/tests",
+      "barter/ai-speckit/overlays/framework/repo-rules",
+      "barter/ai-speckit/overlays/overlay-manifest.json",
+      "barter/ai-speckit/overlays/sync-state.json"
+    ],
+    "evidence": "git -C barter/ai-speckit show 5dd004f3faa"
   },
   {
-    "question": "Does the Barter re-pin to Skilled 063daae vendor the overlay engine, overlay-guard hook and doctor docs byte-identical to Skilled at 063daaee2c1 (a parity check of the engine-relevant files, not a line-by-line review of all vendored files), and is the pin recorded consistently in the pin record, sync-state and the v4.1.0.0 changelog?",
-    "scope": ["barter/ai-speckit/skilled/.skilled/commands/doctor", "barter/ai-speckit/overlays/sync-state.json", "barter/ai-speckit/overlays/framework/changelog"],
-    "evidence": "git -C barter/ai-speckit show c8cd005b173 fd6dd18b66d"
+    "question": "Does the Barter re-pin onto Skilled b5a630c vendor the overlay engine, its tests, the overlay-guard hook and doctor overlay docs byte-identical to Skilled b5a630c6efa (engine-relevant parity only), is the pin recorded consistently in pin record, sync-state.json and overlay-manifest.json, and do the overlays still apply cleanly on the new pin? Read-only: git -C barter/ai-speckit show 488ea9f49f5.",
+    "scope": [
+      "barter/ai-speckit/skilled/.skilled/commands/doctor",
+      "barter/ai-speckit/overlays/sync-state.json",
+      "barter/ai-speckit/overlays/overlay-manifest.json"
+    ],
+    "evidence": "git -C barter/ai-speckit show 488ea9f49f5"
   },
   {
-    "question": "Are the packet's claims traceable: do the five child phase specs, tasks, acceptance criteria, implementation summaries and scratch evidence in Skilled (1653734af7d, 10c36989450) and the ai-speckit close-out record (ad3246feba2) match the code and the test runs they cite, with no completion claim the evidence does not back?",
-    "scope": ["specs/system-skilled-doctor/007-overlay-framework-root-layout"],
-    "evidence": "git show 1653734af7d 10c36989450"
-  },
-  {
-    "question": "Merge commit bringing the engine branch into main; its diff against its first parent is the union of the reviewed commits.",
-    "scope": [".skilled/commands/doctor"],
-    "evidence": "git show 063daaee2c1",
-    "pruneReason": "merge-no-own-diff"
+    "question": "Are the remediation records traceable: do phases 006-review-remediation, 007-barter-review-fixes and 008-push-and-repin (spec, tasks, acceptance criteria, implementation summaries) and the ai-speckit record (e63bd038a5d) match the code and the test runs they cite, are prior R4-P2-001 (005 acceptance-criteria.md:66) and R6-P2-001 (002 spec.md:109) corrected, and is any completion claim, including the push and the blocked merge of main with origin, made without evidence?",
+    "scope": [
+      "specs/system-skilled-doctor/007-overlay-framework-root-layout"
+    ],
+    "evidence": "git show cb751e06e38 0557b1b8b43 f7247772c85 28aa6f9f83d"
   }
 ]

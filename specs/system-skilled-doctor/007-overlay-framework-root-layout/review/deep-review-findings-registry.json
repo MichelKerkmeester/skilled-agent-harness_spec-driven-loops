@@ -17,95 +17,29 @@
   },
   "mergedVerdict": "FAIL",
   "failedRequiredGateIds": [
-    "scope"
+    "coverage"
   ],
   "openFindings": [
     {
-      "findingId": "R3-P2-001",
+      "findingId": "R7-P2-001",
       "severity": "P2",
-      "title": ".gitignore ignores overlays/repin-runs/ but not overlays/relayout-runs/",
-      "file": "barter/ai-speckit/.gitignore",
-      "line": 68,
+      "title": "A checked completion criterion does not reproduce",
+      "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md",
+      "line": 62,
       "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "opus-medium"
-      ]
-    },
-    {
-      "findingId": "R3-P2-002",
-      "severity": "P2",
-      "title": "A test fixture still names the overlay folder barter-overlays",
-      "file": "barter/ai-speckit/overlays/tests/compiled-routing-byte-parity.test.cjs",
-      "line": 64,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "opus-medium"
-      ]
-    },
-    {
-      "findingId": "R12-P2-001",
-      "severity": "P2",
-      "title": "Barter OpenCode plugin tests stub the upstream bridge, so they cannot catch the bridge rename that disabled both plugins",
-      "file": "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs",
-      "line": 63,
-      "description": "",
-      "findingClass": null,
+      "findingClass": "traceability",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
       "dimension": "traceability",
-      "firstSeen": 12,
-      "lastSeen": 12,
+      "firstSeen": 7,
+      "lastSeen": 7,
       "status": "active",
       "transitions": [
         {
-          "iteration": 12,
+          "iteration": 7,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
@@ -116,15 +50,48 @@
       ],
       "mergedFindingIds": [],
       "_lineages": [
-        "opus-medium"
+        "deepseek-flash-max"
+      ]
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "A missing prompt-card guard skips its check with no message",
+      "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
+      "line": 73,
+      "description": "",
+      "findingClass": "security-hardening",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
       ]
     },
     {
       "findingId": "R14-P2-001",
       "severity": "P2",
-      "title": "Barter's three hooks hard-code the overlays folder name instead of reading .skilled-overlays.json",
-      "file": "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs",
-      "line": 52,
+      "title": "A relayout that fails outside its guarded block exits 2 with a raw engine error the apply workflow has no rule for",
+      "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      "line": 6554,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -153,204 +120,13 @@
       ]
     },
     {
-      "findingId": "R2-P2-001--4e5c79954247",
+      "findingId": "R1-P2-001--40e5071d1f73",
       "severity": "P2",
-      "title": "layoutMoves JSDoc still describes the old dot-dropped layout",
+      "title": "A sibling link that resolves back inside the tree is refused with the wrong reason",
       "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-      "line": 3398,
+      "line": 478,
       "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "opus-medium"
-      ],
-      "_conflictOf": "R2-P2-001",
-      "_conflict_id": "R2-P2-001--4e5c79954247",
-      "_conflicts": [
-        {
-          "relation": "CONTRADICTS",
-          "originalId": "R2-P2-001",
-          "peerId": "R2-P2-001--e1e7b8a500f3",
-          "peerLineages": [
-            "deepseek-flash-max"
-          ],
-          "basis": "same-id-different-content"
-        }
-      ]
-    },
-    {
-      "findingId": "R2-P2-001--e1e7b8a500f3",
-      "severity": "P2",
-      "title": "No test covers the pre-commit git hook overlay lookup or its skip branch",
-      "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
-      "line": 85,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "deepseek-flash-max"
-      ],
-      "_conflictOf": "R2-P2-001",
-      "_conflict_id": "R2-P2-001--e1e7b8a500f3",
-      "_conflicts": [
-        {
-          "relation": "CONTRADICTS",
-          "originalId": "R2-P2-001",
-          "peerId": "R2-P2-001--4e5c79954247",
-          "peerLineages": [
-            "opus-medium"
-          ],
-          "basis": "same-id-different-content"
-        }
-      ]
-    },
-    {
-      "findingId": "R1-P1-001",
-      "severity": "P1",
-      "title": "Relayout leaves a half-moved overlay folder when a rename or the manifest write fails after the first move",
-      "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-      "line": 6384,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "deepseek-flash-max"
-      ]
-    },
-    {
-      "findingId": "R2-P1-001",
-      "severity": "P1",
-      "title": "The commit gate silently skips every overlay check when the overlay folder is not found",
-      "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
-      "line": 85,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "deepseek-flash-max"
-      ]
-    },
-    {
-      "findingId": "R8-P2-001",
-      "severity": "P2",
-      "title": "The doctor overlay presentation asset documents only one of the two LAYOUT remedies the engine emits",
-      "file": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
-      "line": 87,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "maintainability",
-      "firstSeen": 8,
-      "lastSeen": 8,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 8,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "deepseek-flash-max"
-      ]
-    },
-    {
-      "findingId": "R1-P2-001--4f4ffdfd250a",
-      "severity": "P2",
-      "title": "The LAYOUT overflow line advises apply --relayout even when the entries it counts are ones relayout refuses",
-      "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-      "line": 3658,
-      "description": "",
-      "findingClass": null,
+      "findingClass": "misleading-diagnostic",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -376,12 +152,12 @@
         "deepseek-flash-max"
       ],
       "_conflictOf": "R1-P2-001",
-      "_conflict_id": "R1-P2-001--4f4ffdfd250a",
+      "_conflict_id": "R1-P2-001--40e5071d1f73",
       "_conflicts": [
         {
           "relation": "CONTRADICTS",
           "originalId": "R1-P2-001",
-          "peerId": "R1-P2-001--6d7230d0ece0",
+          "peerId": "R1-P2-001--1fbac54788f2",
           "peerLineages": [
             "opus-medium"
           ],
@@ -390,11 +166,11 @@
       ]
     },
     {
-      "findingId": "R13-P2-001",
+      "findingId": "R3-P2-001--c84285021935",
       "severity": "P2",
-      "title": "The overlay-folder-outside-the-tree test is recomputed in four command paths instead of living on the context",
-      "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-      "line": 4582,
+      "title": "A Skilled engine test still names its overlay folder barter-overlays",
+      "file": ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+      "line": 79,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -403,12 +179,12 @@
       "contentHash": null,
       "refines": null,
       "dimension": "correctness",
-      "firstSeen": 13,
-      "lastSeen": 13,
+      "firstSeen": 3,
+      "lastSeen": 3,
       "status": "active",
       "transitions": [
         {
-          "iteration": 13,
+          "iteration": 3,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
@@ -420,14 +196,27 @@
       "mergedFindingIds": [],
       "_lineages": [
         "opus-medium"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--c84285021935",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--deb1240fa825",
+          "peerLineages": [
+            "deepseek-flash-max"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "findingId": "R6-P2-001",
+      "findingId": "R5-P2-001--d2ff9ac05502",
       "severity": "P2",
-      "title": "The phase 002 spec's adoptSource evidence pointers no longer resolve, and its caller count is stale",
-      "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/spec.md",
-      "line": 109,
+      "title": "An in-tree overlayDir that links outside the repository skips the outside-repository refusal",
+      "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      "line": 450,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -435,32 +224,45 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "traceability",
-      "firstSeen": 6,
-      "lastSeen": 6,
+      "dimension": "security",
+      "firstSeen": 5,
+      "lastSeen": 5,
       "status": "active",
       "transitions": [
         {
-          "iteration": 6,
+          "iteration": 5,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "traceability"
+        "security"
       ],
       "mergedFindingIds": [],
       "_lineages": [
-        "deepseek-flash-max"
+        "opus-medium"
+      ],
+      "_conflictOf": "R5-P2-001",
+      "_conflict_id": "R5-P2-001--d2ff9ac05502",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--1f6b4cd5c51b",
+          "peerLineages": [
+            "deepseek-flash-max"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "findingId": "R1-P2-001--6d7230d0ece0",
+      "findingId": "R2-P2-001--2d0a48b35503",
       "severity": "P2",
-      "title": "The sibling check also accepts ../.git and other non-overlay siblings",
-      "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-      "line": 452,
+      "title": "Generic LAYOUT guidance sends root/skilled lines to relayout in the presentation's next-step rows and the status workflow",
+      "file": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+      "line": 563,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -469,18 +271,24 @@
       "contentHash": null,
       "refines": null,
       "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
+      "firstSeen": 2,
+      "lastSeen": 15,
       "status": "active",
       "transitions": [
         {
-          "iteration": 1,
+          "iteration": 2,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
         },
         {
-          "iteration": 5,
+          "iteration": 10,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        },
+        {
+          "iteration": 15,
           "from": "P2",
           "to": "P2",
           "reason": "Refinement of an earlier finding"
@@ -493,13 +301,13 @@
       "_lineages": [
         "opus-medium"
       ],
-      "_conflictOf": "R1-P2-001",
-      "_conflict_id": "R1-P2-001--6d7230d0ece0",
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--2d0a48b35503",
       "_conflicts": [
         {
           "relation": "CONTRADICTS",
-          "originalId": "R1-P2-001",
-          "peerId": "R1-P2-001--4f4ffdfd250a",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--b44c96030294",
           "peerLineages": [
             "deepseek-flash-max"
           ],
@@ -508,11 +316,103 @@
       ]
     },
     {
-      "findingId": "R11-P2-001",
+      "findingId": "R5-P2-001--1f6b4cd5c51b",
       "severity": "P2",
-      "title": "The strict-write refusal tells an operator to create a copy for a path the overlay removes, and apply never installs it",
+      "title": "Git write gate fails open and silently through its CLI entrypoint",
+      "file": "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs",
+      "line": 2313,
+      "description": "",
+      "findingClass": "security-hardening",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ],
+      "_conflictOf": "R5-P2-001",
+      "_conflict_id": "R5-P2-001--1f6b4cd5c51b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R5-P2-001",
+          "peerId": "R5-P2-001--d2ff9ac05502",
+          "peerLineages": [
+            "opus-medium"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--b44c96030294",
+      "severity": "P2",
+      "title": "layoutLinks paths escape the tree root unvalidated, and the relayout rollback now writes through them",
       "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-      "line": 5552,
+      "line": 2514,
+      "description": "",
+      "findingClass": "path-safety hardening",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--b44c96030294",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--2d0a48b35503",
+          "peerLineages": [
+            "opus-medium"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "No test covers the branch where the relayout rollback itself fails or the backup cannot be removed",
+      "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      "line": 6533,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -521,12 +421,157 @@
       "contentHash": null,
       "refines": null,
       "dimension": "correctness",
-      "firstSeen": 11,
-      "lastSeen": 11,
+      "firstSeen": 1,
+      "lastSeen": 1,
       "status": "active",
       "transitions": [
         {
-          "iteration": 11,
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-medium"
+      ]
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "overlays/README.md does not document that the commit hook refuses a vendored commit when no manifest is found",
+      "file": "barter/ai-speckit/overlays/README.md",
+      "line": 47,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-medium"
+      ]
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Phase 007 summary says the ai-speckit fix reaches origin with phase 008, which pushed nothing in ai-speckit",
+      "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/007-barter-review-fixes/implementation-summary.md",
+      "line": 91,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-medium"
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--a5ce3a081123",
+      "severity": "P2",
+      "title": "Phase 008 summary says its folder is uncommitted, in the commit that commits it",
+      "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md",
+      "line": 115,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-medium"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--a5ce3a081123",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--d183e347ac6b",
+          "peerLineages": [
+            "deepseek-flash-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--deb1240fa825",
+      "severity": "P2",
+      "title": "The commit gate can resolve the tree one level too deep and then report a missing engine instead of a missing manifest",
+      "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
+      "line": 88,
+      "description": "",
+      "findingClass": "misleading-diagnostic",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
@@ -538,16 +583,29 @@
       "mergedFindingIds": [],
       "_lineages": [
         "deepseek-flash-max"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--deb1240fa825",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--c84285021935",
+          "peerLineages": [
+            "opus-medium"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
-      "findingId": "R4-P2-001",
+      "findingId": "R4-P2-001--d183e347ac6b",
       "severity": "P2",
-      "title": "Two 005 acceptance rows are marked Met while their cells record a deviation from the Then clause",
-      "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/acceptance-criteria.md",
-      "line": 66,
+      "title": "The committed overlay manifest pins an absolute local checkout path",
+      "file": "barter/ai-speckit/overlays/overlay-manifest.json",
+      "line": 7,
       "description": "",
-      "findingClass": null,
+      "findingClass": "portability",
       "deltaStatus": null,
       "scopeProof": null,
       "affectedSurfaceHints": [],
@@ -570,15 +628,198 @@
       ],
       "mergedFindingIds": [],
       "_lineages": [
+        "deepseek-flash-max"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--d183e347ac6b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--a5ce3a081123",
+          "peerLineages": [
+            "opus-medium"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R6-P2-001--c8d87cc9fb5d",
+      "severity": "P2",
+      "title": "The docs attribute the outside-repository refusal to a pre-commit check that never prints it",
+      "file": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+      "line": 560,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "opus-medium"
+      ],
+      "_conflictOf": "R6-P2-001",
+      "_conflict_id": "R6-P2-001--c8d87cc9fb5d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R6-P2-001",
+          "peerId": "R6-P2-001--3e24643ff86e",
+          "peerLineages": [
+            "deepseek-flash-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P1-001",
+      "severity": "P1",
+      "title": "The engine's commit check allows every unowned vendored change when git runs it from a hook in a linked worktree, and no test runs pre-commit under that environment",
+      "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      "line": 5864,
+      "description": "Under a hook-exported GIT_DIR, overlay-engine pre-commit returns allow for a staged unowned vendored change in a tree below the git top level, and no test covers that environment for pre-commit",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 5,
+      "lastSeen": 16,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 9,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        },
+        {
+          "iteration": 16,
+          "from": "P2",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
         "opus-medium"
       ]
     },
     {
-      "findingId": "R13-P2-002",
+      "findingId": "R9-P2-001",
       "severity": "P2",
-      "title": "writeBackup folds two backup areas into one nested loop written on a single line",
+      "title": "The packet's last completion criterion understates the phase count",
+      "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
+      "line": 93,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ]
+    },
+    {
+      "findingId": "R6-P2-001--3e24643ff86e",
+      "severity": "P2",
+      "title": "The pinned-blob reader passes a manifest value to git without --end-of-options",
+      "file": "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs",
+      "line": 4241,
+      "description": "",
+      "findingClass": "security-hardening",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ],
+      "_conflictOf": "R6-P2-001",
+      "_conflict_id": "R6-P2-001--3e24643ff86e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R6-P2-001",
+          "peerId": "R6-P2-001--c8d87cc9fb5d",
+          "peerLineages": [
+            "opus-medium"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001--1fbac54788f2",
+      "severity": "P2",
+      "title": "The restore-failed relayout line and references/overlays.md say the kept backup holds every moved copy, but the backup skips token-named files",
       "file": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-      "line": 4603,
+      "line": 6534,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -587,15 +828,27 @@
       "contentHash": null,
       "refines": null,
       "dimension": "correctness",
-      "firstSeen": 13,
-      "lastSeen": 13,
+      "firstSeen": 1,
+      "lastSeen": 15,
       "status": "active",
       "transitions": [
         {
-          "iteration": 13,
+          "iteration": 1,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        },
+        {
+          "iteration": 15,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
         }
       ],
       "dimensions": [
@@ -604,87 +857,119 @@
       "mergedFindingIds": [],
       "_lineages": [
         "opus-medium"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--1fbac54788f2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--40e5071d1f73",
+          "peerLineages": [
+            "deepseek-flash-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "The three staged-list scans in pre-commit disagree on which change types they see",
+      "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
+      "line": 45,
+      "description": "",
+      "findingClass": "maintainability",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
       ]
     }
   ],
   "resolvedFindings": [],
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 2,
-    "P2": 14
+    "P1": 1,
+    "P2": 20
   },
-  "openFindingsCount": 16,
+  "openFindingsCount": 21,
   "resolvedFindingsCount": 0,
   "activeP0": 0,
-  "activeP1": 2,
-  "activeP2": 14,
+  "activeP1": 1,
+  "activeP2": 20,
   "searchDebt": [
     {
       "id": "frontier-F-1-002",
-      "iteration": 1,
+      "iteration": 0,
       "targetRefs": [
         ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-        ".skilled/commands/doctor/scripts/tests",
-        ".skilled/hooks/overlay-guard"
+        ".skilled/commands/doctor/scripts/tests"
       ],
       "bugClass": "frontier:F-1-002",
-      "disposition": "blocked",
-      "rationale": "Frontier node F-1-002 closed exhausted with maintainability unreviewed: Is the sibling overlay folder support correct and path-safe: resolveOverlayDir accepting only a direct ../<name> sibling, refusing an overlay folder outside the git repository, and every engine path (apply, status, adopt, repin, sync, strict writes) that once assumed the overlay folder sits inside the vendored tree; do the new tests actually fail without the change?",
+      "disposition": "deferred",
+      "rationale": "Frontier node F-1-002 is still open: Follow-up on engine path safety and remedies: does resolveOverlayDir now refuse a sibling overlay folder outside the git repository on every command (prior R1-P2-001 at :452), is overlayOutside on the context set and read consistently, and are the LAYOUT overflow remedy (prior :3658) and the strict-write replace-versus-remove remedy (prior :5552) branched correctly? Check the remaining prior engine maintainability findings (:3398, :4582, :4603) and any regression the new branches add.",
       "evidenceRefs": [
         "frontier-nodes.jsonl#F-1-002"
       ],
-      "reason": "frontier node closed exhausted (budget) short of its dimensions",
+      "reason": "frontier node open",
       "frontier": true
     },
     {
       "id": "frontier-F-1-004",
-      "iteration": 2,
+      "iteration": 0,
       "targetRefs": [
-        ".skilled/commands/doctor",
-        ".skilled/skills/system-skilled-doctor"
+        "barter/ai-speckit/overlays/root/opencode",
+        "barter/ai-speckit/overlays/framework/hooks",
+        "barter/ai-speckit/overlays/framework/skills",
+        "barter/ai-speckit/skilled/.opencode/scripts/git-hooks",
+        "barter/ai-speckit/skilled/.opencode/plugins/tests",
+        "barter/ai-speckit/skilled/.skilled/hooks",
+        "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks"
       ],
       "bugClass": "frontier:F-1-004",
-      "disposition": "blocked",
-      "rationale": "Frontier node F-1-004 closed exhausted with maintainability unreviewed: Do the doctor overlay docs, workflow YAML assets, presentation text, system-skilled-doctor references, manual testing playbook scenarios and the v1.2.0.0 release note match what the engine code actually does, including the stated single migration step (apply --relayout after the re-pin)?",
+      "disposition": "deferred",
+      "rationale": "Frontier node F-1-004 is still open: Barter hooks follow-up: does pre-commit now fail closed without an overlay manifest (prior R2-P1-001), with tests for lookup, skip and refusal (R2-P2-001); do guard core, pre-commit and git-write gate read overlayDir (R14-P2-001); does the plugin test load the real v2 bridge (R12-P2-001)? Check fail-open vs fail-closed per missing, moved or malformed case, and overlays/ vs skilled/ copies byte-identical. Read-only: git -C barter/ai-speckit show 5dd004f3faa.",
       "evidenceRefs": [
         "frontier-nodes.jsonl#F-1-004"
       ],
-      "reason": "frontier node closed exhausted (budget) short of its dimensions",
+      "reason": "frontier node open",
       "frontier": true
     },
     {
       "id": "frontier-F-1-006",
-      "iteration": 3,
+      "iteration": 0,
       "targetRefs": [
-        "barter/ai-speckit/overlays",
-        "barter/ai-speckit/init-repository.sh",
-        "barter/ai-speckit/tests",
-        "barter/ai-speckit/README.md",
-        "barter/ai-speckit/CONTRIBUTING.md",
-        "barter/ai-speckit/.gitignore"
+        "barter/ai-speckit/skilled/.skilled/commands/doctor",
+        "barter/ai-speckit/overlays/sync-state.json",
+        "barter/ai-speckit/overlays/overlay-manifest.json"
       ],
       "bugClass": "frontier:F-1-006",
-      "disposition": "blocked",
-      "rationale": "Frontier node F-1-006 closed exhausted with maintainability unreviewed: Are the Barter relayout onto framework/ and root/ and the move to overlays/ complete: init-repository.sh, .gitignore, README.md, CONTRIBUTING.md, overlays/README.md, overlays/checks, overlays/sync-state.json, tests/*.sh? Is any reference to the old barter-overlays path or dot-dropped layout left in either repo? Nested repo: git -C barter/ai-speckit show 51e218edf2e 2a8f454c8d1; rg barter-overlays across both repos.",
+      "disposition": "deferred",
+      "rationale": "Frontier node F-1-006 is still open: Does the Barter re-pin onto Skilled b5a630c vendor the overlay engine, its tests, the overlay-guard hook and doctor overlay docs byte-identical to Skilled b5a630c6efa (engine-relevant parity only), is the pin recorded consistently in pin record, sync-state.json and overlay-manifest.json, and do the overlays still apply cleanly on the new pin? Read-only: git -C barter/ai-speckit show 488ea9f49f5.",
       "evidenceRefs": [
         "frontier-nodes.jsonl#F-1-006"
       ],
-      "reason": "frontier node closed exhausted (budget) short of its dimensions",
-      "frontier": true
-    },
-    {
-      "id": "frontier-F-1-008",
-      "iteration": 4,
-      "targetRefs": [
-        "specs/system-skilled-doctor/007-overlay-framework-root-layout"
-      ],
-      "bugClass": "frontier:F-1-008",
-      "disposition": "blocked",
-      "rationale": "Frontier node F-1-008 closed exhausted with maintainability unreviewed: Are the packet's claims traceable: do the five child phase specs, tasks, acceptance criteria, implementation summaries and scratch evidence in Skilled (1653734af7d, 10c36989450) and the ai-speckit close-out record (ad3246feba2) match the code and the test runs they cite, with no completion claim the evidence does not back?",
-      "evidenceRefs": [
-        "frontier-nodes.jsonl#F-1-008"
-      ],
-      "reason": "frontier node closed exhausted (budget) short of its dimensions",
+      "reason": "frontier node open",
       "frontier": true
     }
   ],
@@ -696,272 +981,238 @@
   },
   "traceability": {
     "summary": {
-      "required": 4,
-      "executed": 4,
+      "required": 5,
+      "executed": 5,
       "pass": 4,
-      "partial": 0,
+      "partial": 1,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 1,
-      "gatingFailures": 0
+      "notApplicable": 0,
+      "gatingFailures": 1
     },
     "results": [
       {
         "applicable": true,
-        "evidence": [
-          ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556",
-          "barter/ai-speckit/overlays/overlay-manifest.json",
-          "barter/ai-speckit/skilled/.skilled-overlays.json"
+        "evidenceRefs": [
+          "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md:93",
+          "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62",
+          ".skilled/commands/doctor/assets/doctor-env.yaml:48"
         ],
-        "gateClass": "hard",
+        "notes": "five of the packet's six criteria executed read-only and all five pass, including the engine suites at 262 pass and 0 fail; the sixth is validate.sh --recursive --strict, which this lineage's dispatch forbids it to run; the phase-003 ticked criterion R7-P2-001 still does not reproduce, so one unsupported completion mark remains",
         "protocolId": "checklist_evidence",
-        "status": "pass",
-        "summary": "Criterion 5 was executed: --guard exits 1 and names ../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md. Criterion 4 was executed: status --json reports PASSED with an empty offLayout. The remedy wording on that line is still wrong and is carried as the open P2 R11-P2-001, not as a gap in this protocol's evidence."
+        "status": "partial",
+        "gateClass": "hard"
       },
       {
-        "applicable": false,
-        "evidence": [],
-        "gateClass": "advisory",
-        "protocolId": "feature_catalog_code",
-        "status": "notApplicable",
-        "summary": "no feature catalog for system-skilled-doctor"
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/skilled/.skilled-overlays.json:1"
+        ],
+        "notes": "criterion 3 matches D4 exactly: the vendored copy's manifest prints { \"overlayDir\": \"../overlays\" } and ls -d barter-overlays fails",
+        "protocolId": "decision_alignment",
+        "status": "pass",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs"
+        ],
+        "notes": "criterion 5 names the guard surface and the engine answers on it: --guard exits 1 and its refusal names ../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md",
+        "protocolId": "integration_naming",
+        "status": "pass",
+        "gateClass": "advisory"
       },
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md:217"
+          ".skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs:114"
         ],
-        "gateClass": "advisory",
+        "gateClass": "overlay",
         "protocolId": "playbook_capability",
         "status": "pass",
-        "summary": "SKD-013 indexed and registered"
+        "summary": "contract test 9 of 9"
       },
       {
         "applicable": true,
-        "evidence": [
-          "barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md:1-11"
-        ],
-        "gateClass": "soft",
-        "protocolId": "skill_agent",
-        "status": "pass",
-        "summary": "The release entry carries the frontmatter the changelog convention requires."
-      },
-      {
-        "applicable": true,
-        "evidence": [
-          "barter/ai-speckit/skilled/.skilled-overlays.json",
-          "barter/ai-speckit/skilled/barter-overlays",
+        "evidenceRefs": [
           ".skilled/skills/system-skilled-doctor/SKILL.md:5",
-          ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md"
+          ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:16"
         ],
-        "gateClass": "hard",
+        "notes": "criterion 2's two clauses match the code and the docs: SKILL.md:5 prints version: 1.2.0.0 and the changelog names /doctor:overlay apply --relayout at :16, :29 and :57",
         "protocolId": "spec_code",
         "status": "pass",
-        "summary": "Criteria 2, 3 and 5 hold on the tree as it stands; criterion 5 was executed this iteration rather than inferred."
+        "gateClass": "hard"
       }
     ],
-    "unfinishedCoreProtocols": []
+    "unfinishedCoreProtocols": [
+      "checklist_evidence"
+    ]
   },
   "searchCoverage": {
     "requiredBugClasses": [
-      "criterion_failure",
-      "misleading_remedy",
-      "readability",
-      "stale_setting_file"
+      "checklist_evidence",
+      "regressed_criterion",
+      "spec_code_alignment",
+      "stale_criterion",
+      "unexecuted_criterion",
+      "unreproducible_tick"
     ],
     "covered": [
-      "criterion_failure",
-      "misleading_remedy",
-      "readability",
-      "stale_setting_file"
+      "checklist_evidence",
+      "spec_code_alignment",
+      "stale_criterion",
+      "unexecuted_criterion",
+      "unreproducible_tick"
     ],
     "ruledOut": [
-      "criterion_failure",
-      "readability",
-      "stale_setting_file"
+      "checklist_evidence",
+      "regressed_criterion",
+      "spec_code_alignment"
     ],
-    "deferred": [
-      "engine suite exit code",
-      "validate.sh --recursive --strict"
-    ],
+    "deferred": [],
     "blocked": [],
-    "graphCoverageMode": null
+    "graphCoverageMode": "graphless_fallback"
   },
   "candidateCoverage": {
     "covered": [
-      "completion_claim",
-      "copy_drift",
-      "criterion_failure",
-      "dangling_symlink",
-      "diagnostic_consistency",
+      "argument_injection",
+      "checklist_evidence",
       "doc_code_drift",
-      "docs_code_drift",
-      "duplicated_configuration",
-      "duplicated_invariant",
-      "fail_open_on_missing_input",
-      "fail_open_without_signal",
+      "doc_overclaim",
+      "error_contract",
+      "error_message_accuracy",
+      "fail_open",
+      "fail_open_gate",
+      "frontier:F-1-001",
       "frontier:F-1-003",
       "frontier:F-1-005",
       "frontier:F-1-007",
-      "guard_scope_mismatch",
-      "hand_maintained_link",
-      "leftover_reference",
-      "link_map_disagreement",
-      "misleading_remedy",
-      "partial_failure",
+      "hidden_bypass",
+      "inconsistent_filter",
+      "misleading-diagnostic",
+      "naming_leftover",
+      "partial-failure",
+      "path_containment",
       "path_traversal",
-      "pin_record_disagreement",
-      "readability",
-      "record_shape_gap",
-      "repo_hygiene",
-      "requirement_code_mismatch",
-      "stale_caller_count",
-      "stale_command_reference",
-      "stale_evidence_pointer",
-      "stale_folder_tree",
-      "stale_old_layout_path",
-      "stale_setting_file",
-      "symlink_escape",
-      "test_gap",
+      "portability",
+      "record_contradiction",
+      "registry_integrity",
+      "secret_exposure",
+      "severity_escalation",
+      "silent_skip",
+      "spec_code_alignment",
+      "stale_checklist",
+      "stale_criterion",
+      "stale_status",
+      "test_coverage",
       "test_strength",
-      "undocumented_default",
-      "undocumented_output_form",
-      "unrecorded_blocker",
-      "unsupported_release_claim"
+      "unexecuted_criterion",
+      "unreproducible_tick"
     ],
     "ruledOut": [
-      "command_injection",
-      "completion_claim",
-      "copy_drift",
-      "criterion_failure",
-      "cross_reference_drift",
-      "dangling_symlink",
+      "broken_cross_reference",
+      "bypass_path",
+      "checklist_evidence",
+      "comment_hygiene",
       "doc_code_drift",
-      "docs_code_drift",
+      "duplicated_logic",
+      "duplication",
       "fail_open",
-      "fail_open_on_missing_input",
+      "fail_open_gate",
       "guard_bypass",
-      "guard_scope_mismatch",
-      "hand_maintained_link",
+      "hidden_bypass",
       "leftover_reference",
-      "link_map_disagreement",
-      "path_containment",
-      "path_resolution",
+      "missing_remedy",
+      "partial-failure",
       "path_traversal",
       "pin_mismatch",
-      "pin_record_disagreement",
-      "playbook_signal",
-      "readability",
-      "record_shape_gap",
-      "requirement_code_mismatch",
-      "root_detection",
+      "record_contradiction",
+      "regressed_criterion",
+      "regressed_fix",
+      "rollback_completeness",
       "secret_exposure",
-      "severity_calibration",
-      "spec_drift",
-      "stale_command_reference",
-      "stale_folder_tree",
-      "stale_old_layout_path",
-      "stale_setting_file",
-      "state_transition",
-      "symlink_escape",
+      "secret_leak",
+      "severity_escalation",
+      "shell_injection",
+      "sibling_escape",
+      "spec_code_alignment",
+      "stale_comment",
+      "stale_pointer",
+      "supply_chain_drift",
+      "test_coverage",
+      "test_gap",
       "test_strength",
-      "undocumented_default",
-      "unrecorded_blocker",
-      "unsupported_release_claim"
+      "unevidenced_completion",
+      "unexecuted_criterion",
+      "unsafe_guidance",
+      "workflow_sequence"
     ],
-    "deferred": [],
-    "blocked": [
+    "deferred": [
       "frontier:F-1-002",
       "frontier:F-1-004",
-      "frontier:F-1-006",
-      "frontier:F-1-008"
+      "frontier:F-1-006"
     ],
+    "blocked": [],
     "byBugClass": {
-      "command_injection": {
-        "covered": false,
-        "ruledOut": true,
+      "argument_injection": {
+        "covered": true,
+        "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
           6
         ],
         "lineages": [
-          "opus-medium"
-        ]
-      },
-      "completion_claim": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4,
-          12
-        ],
-        "lineages": [
-          "opus-medium"
-        ]
-      },
-      "copy_drift": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2,
-          3
-        ],
-        "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "criterion_failure": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          11,
-          12
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "cross_reference_drift": {
+      "broken_cross_reference": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          10
+          7
         ],
         "lineages": [
-          "opus-medium"
+          "deepseek-flash-max"
         ]
       },
-      "dangling_symlink": {
+      "bypass_path": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ],
+        "lineages": [
+          "deepseek-flash-max"
+        ]
+      },
+      "checklist_evidence": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          3
+          17
         ],
         "lineages": [
-          "deepseek-flash-max"
+          "opus-medium"
         ]
       },
-      "diagnostic_consistency": {
-        "covered": true,
-        "ruledOut": false,
+      "comment_hygiene": {
+        "covered": false,
+        "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          1
+          9
         ],
         "lineages": [
-          "deepseek-flash-max"
+          "opus-medium"
         ]
       },
       "doc_code_drift": {
@@ -971,26 +1222,56 @@
         "blocked": false,
         "iterations": [
           2,
-          16
+          3,
+          6,
+          7,
+          8,
+          10,
+          15
+        ],
+        "lineages": [
+          "deepseek-flash-max",
+          "opus-medium"
+        ]
+      },
+      "doc_overclaim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          15
         ],
         "lineages": [
           "opus-medium"
         ]
       },
-      "docs_code_drift": {
-        "covered": true,
+      "duplicated_logic": {
+        "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          8,
-          9
+          8
         ],
         "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "duplicated_configuration": {
+      "duplication": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          11
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "error_contract": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -1002,80 +1283,68 @@
           "opus-medium"
         ]
       },
-      "duplicated_invariant": {
+      "error_message_accuracy": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          13
+          1
         ],
         "lineages": [
           "opus-medium"
         ]
       },
-      "engine suite exit code": {
-        "covered": false,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          11,
-          12
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
       "fail_open": {
-        "covered": false,
+        "covered": true,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
           3,
-          5,
-          7
-        ],
-        "lineages": [
-          "opus-medium"
-        ]
-      },
-      "fail_open_on_missing_input": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4,
           5
         ],
         "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "fail_open_without_signal": {
+      "fail_open_gate": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5,
+          7,
+          13
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "frontier:F-1-001": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          2
+          1
         ],
         "lineages": [
-          "deepseek-flash-max"
+          "opus-medium"
         ]
       },
       "frontier:F-1-002": {
         "covered": false,
         "ruledOut": false,
-        "deferred": false,
-        "blocked": true,
+        "deferred": true,
+        "blocked": false,
         "iterations": [
-          1
+          0
         ],
         "lineages": [
-          "opus-medium"
+          "deepseek-flash-max"
         ]
       },
       "frontier:F-1-003": {
@@ -1084,22 +1353,22 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          10
+          2
         ],
         "lineages": [
-          "deepseek-flash-max"
+          "opus-medium"
         ]
       },
       "frontier:F-1-004": {
         "covered": false,
         "ruledOut": false,
-        "deferred": false,
-        "blocked": true,
+        "deferred": true,
+        "blocked": false,
         "iterations": [
-          2
+          0
         ],
         "lineages": [
-          "opus-medium"
+          "deepseek-flash-max"
         ]
       },
       "frontier:F-1-005": {
@@ -1108,22 +1377,22 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          10
+          3
         ],
         "lineages": [
-          "deepseek-flash-max"
+          "opus-medium"
         ]
       },
       "frontier:F-1-006": {
         "covered": false,
         "ruledOut": false,
-        "deferred": false,
-        "blocked": true,
+        "deferred": true,
+        "blocked": false,
         "iterations": [
-          3
+          0
         ],
         "lineages": [
-          "opus-medium"
+          "deepseek-flash-max"
         ]
       },
       "frontier:F-1-007": {
@@ -1131,18 +1400,6 @@
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
-        "iterations": [
-          10
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "frontier:F-1-008": {
-        "covered": false,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": true,
         "iterations": [
           4
         ],
@@ -1156,129 +1413,38 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          5
-        ],
-        "lineages": [
-          "opus-medium"
-        ]
-      },
-      "guard_scope_mismatch": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4,
-          5
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "hand_maintained_link": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          10
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "leftover_reference": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          3,
-          11
-        ],
-        "lineages": [
-          "opus-medium"
-        ]
-      },
-      "link_map_disagreement": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          10
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "misleading_remedy": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          11,
-          12
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "partial_failure": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "path_containment": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "path_resolution": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
           2
         ],
         "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "path_traversal": {
+      "hidden_bypass": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          1,
-          4,
-          5,
-          6,
-          16
+          12,
+          13
         ],
         "lineages": [
-          "deepseek-flash-max",
           "opus-medium"
         ]
       },
-      "pin_mismatch": {
+      "inconsistent_filter": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ],
+        "lineages": [
+          "deepseek-flash-max"
+        ]
+      },
+      "leftover_reference": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -1287,60 +1453,35 @@
           4
         ],
         "lineages": [
-          "opus-medium"
+          "deepseek-flash-max"
         ]
       },
-      "pin_record_disagreement": {
+      "misleading-diagnostic": {
         "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ],
+        "lineages": [
+          "deepseek-flash-max"
+        ]
+      },
+      "missing_remedy": {
+        "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          3,
           7
         ],
         "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "playbook_signal": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ],
-        "lineages": [
-          "opus-medium"
-        ]
-      },
-      "readability": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          13,
-          17
-        ],
-        "lineages": [
-          "opus-medium"
-        ]
-      },
-      "record_shape_gap": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          10
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "repo_hygiene": {
+      "naming_leftover": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -1352,104 +1493,96 @@
           "opus-medium"
         ]
       },
-      "requirement_code_mismatch": {
+      "partial-failure": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          6
+          1
         ],
         "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "root_detection": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          7
-        ],
-        "lineages": [
-          "opus-medium"
-        ]
-      },
-      "secret_exposure": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          8
-        ],
-        "lineages": [
-          "opus-medium"
-        ]
-      },
-      "severity_calibration": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          15
-        ],
-        "lineages": [
-          "opus-medium"
-        ]
-      },
-      "spec_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          9
-        ],
-        "lineages": [
-          "opus-medium"
-        ]
-      },
-      "stale_caller_count": {
+      "path_containment": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          6
+          5
         ],
         "lineages": [
-          "deepseek-flash-max"
+          "opus-medium"
         ]
       },
-      "stale_command_reference": {
+      "path_traversal": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          8
+          1,
+          2,
+          5
         ],
         "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "stale_evidence_pointer": {
+      "pin_mismatch": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ],
+        "lineages": [
+          "deepseek-flash-max"
+        ]
+      },
+      "portability": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          6
+          4
         ],
         "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "stale_folder_tree": {
+      "record_contradiction": {
         "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          11
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "registry_integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          15,
+          16
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "regressed_criterion": {
+        "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
@@ -1460,34 +1593,19 @@
           "deepseek-flash-max"
         ]
       },
-      "stale_old_layout_path": {
-        "covered": true,
+      "regressed_fix": {
+        "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          3,
-          7,
-          10
+          8
         ],
         "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "stale_setting_file": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          11,
-          12
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "state_transition": {
+      "rollback_completeness": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -1496,42 +1614,189 @@
           1
         ],
         "lineages": [
-          "deepseek-flash-max",
           "opus-medium"
         ]
       },
-      "status --json offLayout": {
-        "covered": false,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          11
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "symlink_escape": {
+      "secret_exposure": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          4,
+          2,
+          12,
+          13
+        ],
+        "lineages": [
+          "deepseek-flash-max",
+          "opus-medium"
+        ]
+      },
+      "secret_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ],
+        "lineages": [
+          "deepseek-flash-max"
+        ]
+      },
+      "severity_escalation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          14
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "shell_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ],
+        "lineages": [
+          "deepseek-flash-max"
+        ]
+      },
+      "sibling_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "silent_skip": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
           5
         ],
         "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "test_gap": {
+      "spec_code_alignment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          17
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "stale_checklist": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          2
+          7
+        ],
+        "lineages": [
+          "deepseek-flash-max"
+        ]
+      },
+      "stale_comment": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ],
+        "lineages": [
+          "deepseek-flash-max"
+        ]
+      },
+      "stale_criterion": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ],
+        "lineages": [
+          "deepseek-flash-max"
+        ]
+      },
+      "stale_pointer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "stale_status": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "supply_chain_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ],
+        "lineages": [
+          "deepseek-flash-max"
+        ]
+      },
+      "test_coverage": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          7,
+          9
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "test_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
         ],
         "lineages": [
           "deepseek-flash-max"
@@ -1543,15 +1808,26 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          1,
-          9,
-          12
+          16
         ],
         "lineages": [
           "opus-medium"
         ]
       },
-      "undocumented_default": {
+      "unevidenced_completion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          8
+        ],
+        "lineages": [
+          "opus-medium"
+        ]
+      },
+      "unexecuted_criterion": {
         "covered": true,
         "ruledOut": true,
         "deferred": false,
@@ -1563,53 +1839,40 @@
           "deepseek-flash-max"
         ]
       },
-      "undocumented_output_form": {
+      "unreproducible_tick": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          8
+          9
         ],
         "lineages": [
           "deepseek-flash-max"
         ]
       },
-      "unrecorded_blocker": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          7
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "unsupported_release_claim": {
-        "covered": true,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          7
-        ],
-        "lineages": [
-          "deepseek-flash-max"
-        ]
-      },
-      "validate.sh --recursive --strict": {
+      "unsafe_guidance": {
         "covered": false,
-        "ruledOut": false,
+        "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          11,
-          12
+          6
         ],
         "lineages": [
-          "deepseek-flash-max"
+          "opus-medium"
+        ]
+      },
+      "workflow_sequence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ],
+        "lineages": [
+          "opus-medium"
         ]
       }
     }
@@ -1637,66 +1900,86 @@
   "ruledOutCandidates": [
     {
       "iteration": 1,
-      "id": "SL-003",
+      "id": "SL-001",
       "dimension": "correctness",
       "targetRefs": [
         ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       ],
-      "bugClass": "path_containment",
+      "bugClass": "partial-failure",
       "disposition": "ruled_out",
-      "rationale": "Spec and code agree; only the decision summary is looser.",
+      "rationale": "the guarded block covers every mutating step and the rollback restores links, manifest, moves and folders",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:5814-5819"
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:6534-6560",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1206"
       ],
-      "reason": "001-engine-out-of-tree-overlay-folder/spec.md:132,226 scopes the refusal to pre-commit, and the code matches.",
+      "reason": "verified by direct read and by the injected-failure tests",
       "lineage": "deepseek-flash-max"
     },
     {
       "iteration": 1,
-      "id": "SL-004",
+      "id": "SL-002",
       "dimension": "correctness",
       "targetRefs": [
         ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       ],
-      "bugClass": "state_transition",
+      "bugClass": "path_traversal",
       "disposition": "ruled_out",
-      "rationale": "No stale state survives the relayout.",
+      "rationale": "the refusal runs at the only setting reader, so every command inherits it",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:6310-6328"
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:470-476",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:838"
       ],
-      "reason": "planLayoutLinks compares the live target with the manifest target, and both were rewritten by the same run.",
+      "reason": "verified by direct read and by the refusal tests",
       "lineage": "deepseek-flash-max"
     },
     {
       "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+      ],
+      "bugClass": "guard_bypass",
+      "disposition": "ruled_out",
+      "rationale": "both boundaries canonicalize or announce their skip",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:4181",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:6124"
+      ],
+      "reason": "verified by direct read",
+      "lineage": "deepseek-flash-max"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "the allow-list is built from entry fields only",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:2755"
+      ],
+      "reason": "verified by direct read",
+      "lineage": "deepseek-flash-max"
+    },
+    {
+      "iteration": 3,
       "id": "SL-007",
       "dimension": "correctness",
       "targetRefs": [
-        "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs"
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit"
       ],
-      "bugClass": "copy_drift",
+      "bugClass": "fail_open",
       "disposition": "ruled_out",
-      "rationale": "The re-pin and the relayout kept the copies in step.",
+      "rationale": "the gate fails closed and the skip is visible",
       "evidenceRefs": [
-        "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:1-169"
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:120-146",
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/tests/pre-commit.test.cjs:107-116"
       ],
-      "reason": "All four byte comparisons are identical.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-008",
-      "dimension": "correctness",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js"
-      ],
-      "bugClass": "path_resolution",
-      "disposition": "ruled_out",
-      "rationale": "One candidate per copy covers both without a scan.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:60-84"
-      ],
-      "reason": "Both candidates are covered and each rejects the other anchor.",
+      "reason": "verified by direct read and by the new tests",
       "lineage": "deepseek-flash-max"
     },
     {
@@ -1704,215 +1987,161 @@
       "id": "SL-009",
       "dimension": "correctness",
       "targetRefs": [
-        "barter/ai-speckit/skilled/.skilled/commands/doctor",
-        "barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor",
-        "barter/ai-speckit/skilled/.skilled/hooks/overlay-guard",
-        "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard"
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/tests/pre-commit.test.cjs"
       ],
-      "bugClass": "copy_drift",
+      "bugClass": "test_gap",
       "disposition": "ruled_out",
-      "rationale": "The vendored tree is the pin plus the declared overlay set.",
+      "rationale": "the branches the prior generation named are covered",
       "evidenceRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json"
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/tests/pre-commit.test.cjs:107"
       ],
-      "reason": "Every difference is an overlay-owned entry the manifest declares.",
+      "reason": "verified by direct read",
       "lineage": "deepseek-flash-max"
     },
     {
-      "iteration": 3,
+      "iteration": 4,
       "id": "SL-010",
       "dimension": "correctness",
       "targetRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json",
-        "barter/ai-speckit/overlays/sync-state.json"
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs"
       ],
-      "bugClass": "pin_record_disagreement",
+      "bugClass": "pin_mismatch",
       "disposition": "ruled_out",
-      "rationale": "Two independent records agree.",
+      "rationale": "the vendored engine-relevant subset matches the pin byte for byte",
       "evidenceRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json",
-        "barter/ai-speckit/overlays/sync-state.json"
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor/references/overlays.md"
       ],
-      "reason": "The two pin strings are identical and the changelog names the same short commit.",
+      "reason": "verified by byte diff",
       "lineage": "deepseek-flash-max"
     },
     {
-      "iteration": 3,
+      "iteration": 4,
       "id": "SL-011",
       "dimension": "correctness",
       "targetRefs": [
-        "barter/ai-speckit/skilled/.skilled/changelog/sk-git-skilled",
-        "barter/ai-speckit/skilled/.skilled/changelog/skilled-coder"
+        "barter/ai-speckit"
       ],
-      "bugClass": "dangling_symlink",
+      "bugClass": "leftover_reference",
       "disposition": "ruled_out",
-      "rationale": "The ../../../ hop lands on ai-speckit/ from ai-speckit/skilled/.skilled/changelog/.",
+      "rationale": "the track name is a directory name, not a path to the old overlay folder",
       "evidenceRefs": [
-        "barter/ai-speckit/skilled/.skilled/changelog/sk-git-skilled",
-        "barter/ai-speckit/skilled/.skilled/changelog/skilled-coder"
+        "barter/ai-speckit/README.md:135"
       ],
-      "reason": "Both links resolve and their targets hold the expected changelog files.",
+      "reason": "verified by exact search",
       "lineage": "deepseek-flash-max"
     },
     {
-      "iteration": 3,
-      "id": "SL-012",
-      "dimension": "correctness",
-      "targetRefs": [
-        "barter/ai-speckit/overlays"
-      ],
-      "bugClass": "stale_old_layout_path",
-      "disposition": "ruled_out",
-      "rationale": "The move left no compatibility shim behind.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/README.md:440-460"
-      ],
-      "reason": "The old dot-dropped folder does not exist.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-013",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
-      ],
-      "bugClass": "symlink_escape",
-      "disposition": "ruled_out",
-      "rationale": "The gate resolves links rather than trusting the spelling.",
-      "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:441-468"
-      ],
-      "reason": "Every link case falls through to the refusal at :469 and each is pinned by a test.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-014",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
-      ],
-      "bugClass": "path_traversal",
-      "disposition": "ruled_out",
-      "rationale": "Containment is applied at the point of use, not only at load.",
-      "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:675-681"
-      ],
-      "reason": "Every manifest path reaches a containment test that throws or refuses before a write.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 4,
+      "iteration": 5,
       "id": "SL-015",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+        "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs"
       ],
-      "bugClass": "guard_scope_mismatch",
+      "bugClass": "path_traversal",
       "disposition": "ruled_out",
-      "rationale": "A code-only read would have called this a defect; the reference and the spec settle it.",
+      "rationale": "both sides of the containment test are canonicalised and the engine is invoked without a shell",
       "evidenceRefs": [
-        ".skilled/skills/system-skilled-doctor/references/overlays.md:51",
-        "specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/spec.md:132"
+        "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:170",
+        "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:77"
       ],
-      "reason": "The documented scope is the commit check, and the code refuses there.",
+      "reason": "verified by direct read of the canonicalisation and invocation paths",
       "lineage": "deepseek-flash-max"
     },
     {
-      "iteration": 4,
+      "iteration": 5,
       "id": "SL-016",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
-      ],
-      "bugClass": "fail_open_on_missing_input",
-      "disposition": "ruled_out",
-      "rationale": "The stage refusal is the one guard that already resolves links.",
-      "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:5139-5150"
-      ],
-      "reason": "Both spellings of both boundaries are refused before the copy starts.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-017",
-      "dimension": "security",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs"
-      ],
-      "bugClass": "symlink_escape",
-      "disposition": "ruled_out",
-      "rationale": "The guard resolves from its own realpath rather than scanning.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:52-58"
-      ],
-      "reason": "All three layout conditions are name-locked and each candidate rejects the other anchor.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-018",
       "dimension": "security",
       "targetRefs": [
         "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js"
       ],
-      "bugClass": "path_traversal",
+      "bugClass": "fail_open",
       "disposition": "ruled_out",
-      "rationale": "The cwd-relative resolution in the engine is neutralised by the absolute argument.",
+      "rationale": "the fail-open is uniform across every adapter and each arm reports it, so it is a design decision rather than a divergence",
       "evidenceRefs": [
-        "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:138-158"
+        "barter/ai-speckit/skilled/.skilled/hooks/overlay-guard/claude/overlay-guard.cjs:71-74"
       ],
-      "reason": "The target reaches the engine as an absolute canonical path.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-019",
-      "dimension": "security",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs"
-      ],
-      "bugClass": "guard_scope_mismatch",
-      "disposition": "ruled_out",
-      "rationale": "The move preserved the depth deliberately.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:178-187"
-      ],
-      "reason": "Both copies land on <ai-speckit> and probe the same sibling manifest.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-020",
-      "dimension": "security",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit"
-      ],
-      "bugClass": "fail_open_on_missing_input",
-      "disposition": "ruled_out",
-      "rationale": "The rewrite can only move TREE_ROOT to a folder that must then hold the engine.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:95-100"
-      ],
-      "reason": "The engine probe after the rewrite fails closed with exit 1.",
+      "reason": "verified by reading all four adapter entrypoints",
       "lineage": "deepseek-flash-max"
     },
     {
       "iteration": 6,
+      "id": "SL-018",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs"
+      ],
+      "bugClass": "shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "every git argument is an argv element, so no manifest value reaches a shell",
+      "evidenceRefs": [
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4228"
+      ],
+      "reason": "verified by direct read of the invocation helper",
+      "lineage": "deepseek-flash-max"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/sync-state.json"
+      ],
+      "bugClass": "secret_leak",
+      "disposition": "ruled_out",
+      "rationale": "the file holds relative paths and SHA-256 digests only",
+      "evidenceRefs": [
+        "barter/ai-speckit/overlays/sync-state.json"
+      ],
+      "reason": "verified by exact search",
+      "lineage": "deepseek-flash-max"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-020",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests"
+      ],
+      "bugClass": "supply_chain_drift",
+      "disposition": "ruled_out",
+      "rationale": "a consumer can run the same assertions the pin carries",
+      "evidenceRefs": [
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs"
+      ],
+      "reason": "verified by listing the tests folder",
+      "lineage": "deepseek-flash-max"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-022",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skilled-doctor/references/overlays.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "the documented exit code matches the constant the handler returns",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:91"
+      ],
+      "reason": "verified by direct read of the throw site and the exit constant",
+      "lineage": "deepseek-flash-max"
+    },
+    {
+      "iteration": 7,
       "id": "SL-023",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+        ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt"
       ],
-      "bugClass": "requirement_code_mismatch",
+      "bugClass": "missing_remedy",
       "disposition": "ruled_out",
-      "rationale": "The drift is a documentation problem, not a behaviour problem.",
+      "rationale": "every branch the code can take has a documented form",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:5484-5488"
+        ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt:118"
       ],
-      "reason": "Every requirement's substance is present; only the pointers drifted.",
+      "reason": "verified by reading both sides branch for branch",
       "lineage": "deepseek-flash-max"
     },
     {
@@ -1920,385 +2149,162 @@
       "id": "SL-024",
       "dimension": "traceability",
       "targetRefs": [
-        "barter/ai-speckit"
-      ],
-      "bugClass": "stale_old_layout_path",
-      "disposition": "ruled_out",
-      "rationale": "Every surviving hit is the skilled-barter-overlays track name.",
-      "evidenceRefs": [
-        "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:145"
-      ],
-      "reason": "The grep returns zero lines, stronger than the two exceptions REQ-008 allows.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-025",
-      "dimension": "traceability",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/sync-state.json"
-      ],
-      "bugClass": "pin_record_disagreement",
-      "disposition": "ruled_out",
-      "rationale": "The state record carries no stale link target.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/sync-state.json"
-      ],
-      "reason": "No value in the files map contains barter-overlays.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-026",
-      "dimension": "traceability",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md"
-      ],
-      "bugClass": "unsupported_release_claim",
-      "disposition": "ruled_out",
-      "rationale": "Three independent records name the same commit.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md:310"
-      ],
-      "reason": "The release the notes claim is the release the pin carries.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 7,
-      "id": "SL-027",
-      "dimension": "traceability",
-      "targetRefs": [
-        "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/tasks.md"
-      ],
-      "bugClass": "unrecorded_blocker",
-      "disposition": "ruled_out",
-      "rationale": "An honest open item is not a traceability defect.",
-      "evidenceRefs": [
-        "specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/tasks.md:68"
-      ],
-      "reason": "The blocker is recorded in five places and escalated rather than dropped.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 8,
-      "id": "SL-029",
-      "dimension": "maintainability",
-      "targetRefs": [
         ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md"
       ],
-      "bugClass": "stale_command_reference",
+      "bugClass": "broken_cross_reference",
       "disposition": "ruled_out",
-      "rationale": "The completion criterion holds.",
+      "rationale": "each named command and path exists in the tree",
       "evidenceRefs": [
-        ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:57"
+        ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:51"
       ],
-      "reason": "The command is named three times.",
+      "reason": "verified by direct read of each named surface",
       "lineage": "deepseek-flash-max"
     },
     {
       "iteration": 8,
-      "id": "SL-030",
+      "id": "SL-026",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt"
+        "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js"
       ],
-      "bugClass": "docs_code_drift",
+      "bugClass": "duplicated_logic",
       "disposition": "ruled_out",
-      "rationale": "The cap and the overflow wording are documented accurately.",
+      "rationale": "three lines across two files with no behavioural divergence is cleanup rather than an active finding",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:3659"
+        "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:26"
       ],
-      "reason": "Both quote the same string.",
+      "reason": "recorded as an edge case instead of a finding",
       "lineage": "deepseek-flash-max"
     },
     {
       "iteration": 8,
-      "id": "SL-031",
+      "id": "SL-027",
       "dimension": "maintainability",
       "targetRefs": [
         ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       ],
-      "bugClass": "docs_code_drift",
+      "bugClass": "regressed_fix",
       "disposition": "ruled_out",
-      "rationale": "The asset's claim is true.",
+      "rationale": "both prior fixes are in place",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:6494"
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:3435"
       ],
-      "reason": "The flag only routes to commandRelayout.",
+      "reason": "verified by direct read",
+      "lineage": "deepseek-flash-max"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-028",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/root/opencode/plugins"
+      ],
+      "bugClass": "stale_comment",
+      "disposition": "ruled_out",
+      "rationale": "the bridge is upstream content that lands beside the plugins, and the tests account for it",
+      "evidenceRefs": [
+        "barter/ai-speckit/skilled/.opencode/plugins/lib/v2-bridge.js",
+        "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-git-write-gate.test.cjs:176"
+      ],
+      "reason": "verified by listing both trees and reading both tests",
+      "lineage": "deepseek-flash-max"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-031",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs"
+      ],
+      "bugClass": "unexecuted_criterion",
+      "disposition": "ruled_out",
+      "rationale": "the suites write only under os.tmpdir(), so criterion 1 is executable and it passes",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs:63",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs:63"
+      ],
+      "reason": "executed read-only with no repository residue",
       "lineage": "deepseek-flash-max"
     },
     {
       "iteration": 9,
       "id": "SL-032",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/README.md"
-      ],
-      "bugClass": "stale_folder_tree",
-      "disposition": "ruled_out",
-      "rationale": "The move rewrote the tree with the folder.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/README.md:440-460"
-      ],
-      "reason": "Every folder the tree names exists and no folder it omits exists.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 9,
-      "id": "SL-033",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/README.md"
-      ],
-      "bugClass": "docs_code_drift",
-      "disposition": "ruled_out",
-      "rationale": "The README was rewritten with the rule.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/README.md:55"
-      ],
-      "reason": "Both examples follow the shipped rule exactly.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 9,
-      "id": "SL-034",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/README.md"
-      ],
-      "bugClass": "undocumented_default",
-      "disposition": "ruled_out",
-      "rationale": "The reference states the default; the README does not.",
-      "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:73"
-      ],
-      "reason": "No default name is asserted.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 9,
-      "id": "SL-035",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/README.md"
-      ],
-      "bugClass": "docs_code_drift",
-      "disposition": "ruled_out",
-      "rationale": "The README names the source copy, which is what the plugin loads.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:60-84"
-      ],
-      "reason": "The named path is the anchor the resolver matches.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 10,
-      "id": "SL-036",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json",
-        "barter/ai-speckit/overlays/sync-state.json"
-      ],
-      "bugClass": "link_map_disagreement",
-      "disposition": "ruled_out",
-      "rationale": "The engine writes the link map from the manifest list.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json",
-        "barter/ai-speckit/overlays/sync-state.json"
-      ],
-      "reason": "Both maps hold the same 19 entries with the same targets.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 10,
-      "id": "SL-037",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json"
-      ],
-      "bugClass": "hand_maintained_link",
-      "disposition": "ruled_out",
-      "rationale": "This corrects the iteration 3 edge case that called them unmanaged.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json"
-      ],
-      "reason": "layoutLinks declares both and sync-state.links records both.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 10,
-      "id": "SL-038",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json"
-      ],
-      "bugClass": "record_shape_gap",
-      "disposition": "ruled_out",
-      "rationale": "The block is complete for its purpose.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json"
-      ],
-      "reason": "All three fields a re-pin reads are present.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 10,
-      "id": "SL-039",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "barter/ai-speckit/overlays/sync-state.json"
-      ],
-      "bugClass": "stale_old_layout_path",
-      "disposition": "ruled_out",
-      "rationale": "The relayout retargeted the map with the links.",
-      "evidenceRefs": [
-        "barter/ai-speckit/overlays/sync-state.json"
-      ],
-      "reason": "No link value names the pre-move folder.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 11,
-      "id": "SL-041",
       "dimension": "traceability",
       "targetRefs": [
         "barter/ai-speckit/skilled/.skilled-overlays.json"
       ],
-      "bugClass": "stale_setting_file",
+      "bugClass": "regressed_criterion",
       "disposition": "ruled_out",
-      "rationale": "Criterion 3 holds.",
+      "rationale": "all three criteria reproduce on the current tree",
       "evidenceRefs": [
-        "barter/ai-speckit/skilled/.skilled-overlays.json"
+        "barter/ai-speckit/skilled/.skilled-overlays.json:1"
       ],
-      "reason": "The file holds exactly the value decision D4 requires.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 11,
-      "id": "SL-042",
-      "dimension": "traceability",
-      "targetRefs": [
-        "barter/ai-speckit/skilled/barter-overlays"
-      ],
-      "bugClass": "criterion_failure",
-      "disposition": "ruled_out",
-      "rationale": "Criterion 3's second half holds.",
-      "evidenceRefs": [
-        "barter/ai-speckit/skilled/barter-overlays"
-      ],
-      "reason": "The folder does not exist.",
-      "lineage": "deepseek-flash-max"
-    },
-    {
-      "iteration": 11,
-      "id": "SL-043",
-      "dimension": "traceability",
-      "targetRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
-      ],
-      "bugClass": "criterion_failure",
-      "disposition": "ruled_out",
-      "rationale": "The guard fails closed and names the right source.",
-      "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:5552-5556"
-      ],
-      "reason": "The criterion is satisfied in form; only the remedy is wrong.",
+      "reason": "re-executed read-only",
       "lineage": "deepseek-flash-max"
     },
     {
       "iteration": 1,
-      "id": "SL-001-2",
+      "id": "SL-001-1",
       "dimension": "correctness",
       "targetRefs": [
         ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       ],
-      "bugClass": "state_transition",
+      "bugClass": "rollback_completeness",
       "disposition": "ruled_out",
-      "rationale": "every remaining hit is guarded",
+      "rationale": "every completed step is undone newest first; snapshot tests prove it",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:4588"
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:6420",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1208"
       ],
-      "reason": "verified by grep and direct read",
-      "lineage": "opus-medium"
-    },
-    {
-      "iteration": 1,
-      "id": "SL-001-3",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/commands/doctor/scripts/tests"
-      ],
-      "bugClass": "test_strength",
-      "disposition": "ruled_out",
-      "rationale": "control matches claim; downstream tests discriminate by reading",
-      "evidenceRefs": [
-        "specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/implementation-summary.md:90"
-      ],
-      "reason": "negative control evidence plus code reading",
+      "reason": "every completed step is undone newest first; snapshot tests prove it",
       "lineage": "opus-medium"
     },
     {
       "iteration": 2,
-      "id": "SL-002-2",
+      "id": "SL-002-3",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/sibling-folder-relayout.md"
+        ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml"
       ],
-      "bugClass": "playbook_signal",
+      "bugClass": "workflow_sequence",
       "disposition": "ruled_out",
-      "rationale": "one field per line",
+      "rationale": "workflow runs apply as a second call",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:3636"
+        ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml:105"
       ],
-      "reason": "indented output",
+      "reason": "workflow runs apply as a second call",
       "lineage": "opus-medium"
     },
     {
       "iteration": 3,
-      "id": "SL-003-3",
+      "id": "SL-003-1",
       "dimension": "correctness",
       "targetRefs": [
-        "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js"
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit"
       ],
-      "bugClass": "fail_open",
+      "bugClass": "fail_open_gate",
       "disposition": "ruled_out",
-      "rationale": "fail-open by design",
+      "rationale": "blocks with exit 1 when vendored paths are staged",
       "evidenceRefs": [
-        "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:41"
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:134"
       ],
-      "reason": "catch allows with stderr note",
+      "reason": "blocks with exit 1 when vendored paths are staged",
       "lineage": "opus-medium"
     },
     {
       "iteration": 4,
-      "id": "SL-004-2",
-      "dimension": "correctness",
+      "id": "SL-004-1",
+      "dimension": "traceability",
       "targetRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json"
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/tasks.md"
       ],
-      "bugClass": "pin_mismatch",
+      "bugClass": "unevidenced_completion",
       "disposition": "ruled_out",
-      "rationale": "hashes equal",
+      "rationale": "b5a630c6efa is an ancestor of origin/main",
       "evidenceRefs": [
-        "barter/ai-speckit/overlays/overlay-manifest.json:1"
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/tasks.md:47"
       ],
-      "reason": "verified",
-      "lineage": "opus-medium"
-    },
-    {
-      "iteration": 5,
-      "id": "SL-005-2",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
-      ],
-      "bugClass": "guard_bypass",
-      "disposition": "ruled_out",
-      "rationale": "canonicalized",
-      "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:4148"
-      ],
-      "reason": "verified by reading",
+      "reason": "b5a630c6efa is an ancestor of origin/main",
       "lineage": "opus-medium"
     },
     {
@@ -2306,31 +2312,15 @@
       "id": "SL-005-3",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs"
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       ],
-      "bugClass": "fail_open",
+      "bugClass": "sibling_escape",
       "disposition": "ruled_out",
-      "rationale": "policy as documented",
+      "rationale": "refused by the git top-level check",
       "evidenceRefs": [
-        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs:107"
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:474"
       ],
-      "reason": "matches stated policy",
-      "lineage": "opus-medium"
-    },
-    {
-      "iteration": 6,
-      "id": "SL-006-1",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml"
-      ],
-      "bugClass": "path_traversal",
-      "disposition": "ruled_out",
-      "rationale": "engine refuses; YAML listing is read-only and predates the change",
-      "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:5340"
-      ],
-      "reason": "verified",
+      "reason": "refused by the git top-level check",
       "lineage": "opus-medium"
     },
     {
@@ -2338,15 +2328,16 @@
       "id": "SL-006-2",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml"
+        ".skilled/skills/system-skilled-doctor/references/overlays.md"
       ],
-      "bugClass": "command_injection",
+      "bugClass": "unsafe_guidance",
       "disposition": "ruled_out",
-      "rationale": "quoted; agent-side quoting outside target",
+      "rationale": "protected reads and bypass text match the engine",
       "evidenceRefs": [
-        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:107"
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:140",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:2755"
       ],
-      "reason": "no shell path in code",
+      "reason": "protected reads and bypass text match the engine",
       "lineage": "opus-medium"
     },
     {
@@ -2354,15 +2345,16 @@
       "id": "SL-007-1",
       "dimension": "security",
       "targetRefs": [
-        "barter/ai-speckit/skilled/.vibe/plugins/repo-guards/barter-git-write-gate.mjs"
+        "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs"
       ],
-      "bugClass": "root_detection",
+      "bugClass": "fail_open_gate",
       "disposition": "ruled_out",
-      "rationale": "all resolve to the core",
+      "rationale": "null root refuses every write",
       "evidenceRefs": [
-        "barter/ai-speckit/skilled/.vibe/plugins/repo-guards/barter-git-write-gate.mjs:1"
+        "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:226",
+        "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:1731"
       ],
-      "reason": "verified",
+      "reason": "null root refuses every write",
       "lineage": "opus-medium"
     },
     {
@@ -2370,47 +2362,47 @@
       "id": "SL-007-2",
       "dimension": "security",
       "targetRefs": [
-        "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js"
+        "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs"
       ],
-      "bugClass": "fail_open",
+      "bugClass": "test_coverage",
       "disposition": "ruled_out",
-      "rationale": "matches each header",
+      "rationale": "real-bridge case imports the applied plugin",
       "evidenceRefs": [
-        "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:41"
+        "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs:157"
       ],
-      "reason": "verified",
+      "reason": "real-bridge case imports the applied plugin",
       "lineage": "opus-medium"
     },
     {
       "iteration": 8,
       "id": "SL-008-1",
-      "dimension": "security",
+      "dimension": "correctness",
       "targetRefs": [
-        "specs/system-skilled-doctor/007-overlay-framework-root-layout"
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/tasks.md"
       ],
-      "bugClass": "secret_exposure",
+      "bugClass": "unevidenced_completion",
       "disposition": "ruled_out",
-      "rationale": "no secret",
+      "rationale": "status, pre-commit and engine parity all match",
       "evidenceRefs": [
-        "specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/scratch/evidence/baseline-engine-suite.txt:13"
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/tasks.md:62"
       ],
-      "reason": "scan clean; home paths are a repo-wide convention",
+      "reason": "status, pre-commit and engine parity all match",
       "lineage": "opus-medium"
     },
     {
-      "iteration": 9,
-      "id": "SL-009-1",
-      "dimension": "traceability",
+      "iteration": 8,
+      "id": "SL-008-2",
+      "dimension": "correctness",
       "targetRefs": [
-        "specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/scratch/evidence/negative-control.txt"
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       ],
-      "bugClass": "test_strength",
+      "bugClass": "doc_code_drift",
       "disposition": "ruled_out",
-      "rationale": "framework/ strings unproducible by old rule",
+      "rationale": "JSDoc names framework/ and root/",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:202"
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:3434"
       ],
-      "reason": "verified by reading",
+      "reason": "JSDoc names framework/ and root/",
       "lineage": "opus-medium"
     },
     {
@@ -2418,31 +2410,32 @@
       "id": "SL-009-2",
       "dimension": "traceability",
       "targetRefs": [
-        "specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/spec.md"
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       ],
-      "bugClass": "spec_drift",
+      "bugClass": "comment_hygiene",
       "disposition": "ruled_out",
-      "rationale": "all mapped",
+      "rationale": "none in added comment lines",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:2824"
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:6413"
       ],
-      "reason": "verified",
+      "reason": "none in added comment lines",
       "lineage": "opus-medium"
     },
     {
       "iteration": 10,
-      "id": "SL-010-1",
+      "id": "SL-010-2",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-skilled-doctor"
+        ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt"
       ],
-      "bugClass": "cross_reference_drift",
+      "bugClass": "stale_pointer",
       "disposition": "ruled_out",
-      "rationale": "consistent",
+      "rationale": "no engine line pointers in doctor docs",
       "evidenceRefs": [
-        ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md:201"
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:92"
       ],
-      "reason": "verified",
+      "reason": "no engine line pointers in doctor docs",
       "lineage": "opus-medium"
     },
     {
@@ -2450,64 +2443,130 @@
       "id": "SL-011-1",
       "dimension": "traceability",
       "targetRefs": [
-        "barter/ai-speckit"
+        "barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/039-overlays-framework-root-layout/implementation-summary.md"
       ],
-      "bugClass": "leftover_reference",
+      "bugClass": "record_contradiction",
       "disposition": "ruled_out",
-      "rationale": "track name only",
+      "rationale": "all eight rows trace",
       "evidenceRefs": [
-        "barter/ai-speckit/README.md:135"
+        "barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/039-overlays-framework-root-layout/implementation-summary.md:80"
       ],
-      "reason": "verified",
+      "reason": "all eight rows trace",
+      "lineage": "opus-medium"
+    },
+    {
+      "iteration": 11,
+      "id": "SL-011-2",
+      "dimension": "traceability",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
+        "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs",
+        "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs"
+      ],
+      "bugClass": "duplication",
+      "disposition": "ruled_out",
+      "rationale": "three copies agree; reason recorded",
+      "evidenceRefs": [
+        "barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:60",
+        "barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:177"
+      ],
+      "reason": "three copies agree; reason recorded",
+      "lineage": "opus-medium"
+    },
+    {
+      "iteration": 12,
+      "id": "SL-012-1",
+      "dimension": "security",
+      "targetRefs": [
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "credential scan clean",
+      "evidenceRefs": [
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/goal.md:87"
+      ],
+      "reason": "credential scan clean",
       "lineage": "opus-medium"
     },
     {
       "iteration": 12,
       "id": "SL-012-2",
-      "dimension": "traceability",
+      "dimension": "security",
       "targetRefs": [
-        "barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/039-overlays-framework-root-layout/implementation-summary.md"
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md"
       ],
-      "bugClass": "completion_claim",
+      "bugClass": "hidden_bypass",
       "disposition": "ruled_out",
-      "rationale": "commits match",
+      "rationale": "bypass disclosed in limitations and goal",
       "evidenceRefs": [
-        "barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/039-overlays-framework-root-layout/implementation-summary.md:58"
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md:113"
       ],
-      "reason": "verified",
+      "reason": "bypass disclosed in limitations and goal",
       "lineage": "opus-medium"
     },
     {
-      "iteration": 15,
-      "id": "SL-015-1",
-      "dimension": "correctness",
-      "targetRefs": [
-        "barter/ai-speckit/.gitignore",
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
-      ],
-      "bugClass": "severity_calibration",
-      "disposition": "ruled_out",
-      "rationale": "no in-contract reach",
-      "evidenceRefs": [
-        "barter/ai-speckit/.gitignore:68"
-      ],
-      "reason": "reach rule keeps P2",
-      "lineage": "opus-medium"
-    },
-    {
-      "iteration": 16,
-      "id": "SL-016-1",
+      "iteration": 13,
+      "id": "SL-013-1",
       "dimension": "correctness",
       "targetRefs": [
         ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       ],
-      "bugClass": "path_traversal",
+      "bugClass": "fail_open_gate",
       "disposition": "ruled_out",
-      "rationale": "label and containment correct",
+      "rationale": "AGENTS.md offers worktrees and core.hooksPath is shared, so it is reachable",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/overlay-engine.cjs:3962"
+        "barter/ai-speckit/AGENTS.md:222"
       ],
-      "reason": "verified",
+      "reason": "AGENTS.md offers worktrees and core.hooksPath is shared, so it is reachable",
+      "lineage": "opus-medium"
+    },
+    {
+      "iteration": 13,
+      "id": "SL-013-2",
+      "dimension": "correctness",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "hook prints only engine lines and the bypass name",
+      "evidenceRefs": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:156"
+      ],
+      "reason": "hook prints only engine lines and the bypass name",
+      "lineage": "opus-medium"
+    },
+    {
+      "iteration": 13,
+      "id": "SL-013-3",
+      "dimension": "correctness",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "hidden_bypass",
+      "disposition": "ruled_out",
+      "rationale": "SPECKIT_SKIP_OVERLAY_SYNC is printed beside every refusal",
+      "evidenceRefs": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:142"
+      ],
+      "reason": "SPECKIT_SKIP_OVERLAY_SYNC is printed beside every refusal",
+      "lineage": "opus-medium"
+    },
+    {
+      "iteration": 14,
+      "id": "SL-014-2",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+      ],
+      "bugClass": "severity_escalation",
+      "disposition": "ruled_out",
+      "rationale": "none reaches a broken tree or bypassed gate",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:6534"
+      ],
+      "reason": "none reaches a broken tree or bypassed gate",
       "lineage": "opus-medium"
     },
     {
@@ -2515,72 +2574,91 @@
       "id": "SL-016-2",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs"
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs"
       ],
-      "bugClass": "doc_code_drift",
+      "bugClass": "test_strength",
       "disposition": "ruled_out",
-      "rationale": "asserted by test",
+      "rationale": "3 of 3 fail on the pre-fix engine",
       "evidenceRefs": [
-        ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:1766"
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1196"
       ],
-      "reason": "verified",
+      "reason": "3 of 3 fail on the pre-fix engine",
       "lineage": "opus-medium"
     },
     {
       "iteration": 17,
       "id": "SL-017-1",
-      "dimension": "maintainability",
+      "dimension": "traceability",
       "targetRefs": [
-        ".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs"
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout"
       ],
-      "bugClass": "readability",
+      "bugClass": "spec_code_alignment",
       "disposition": "ruled_out",
-      "rationale": "one entry point, cleanup registered",
+      "rationale": "all 19 REQ rows met",
       "evidenceRefs": [
-        ".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs:196"
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/006-review-remediation/spec.md:128"
       ],
-      "reason": "verified",
+      "reason": "all 19 REQ rows met",
+      "lineage": "opus-medium"
+    },
+    {
+      "iteration": 17,
+      "id": "SL-017-2",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "ruled_out",
+      "rationale": "all rerunnable clauses reproduce",
+      "evidenceRefs": [
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/tasks.md:62"
+      ],
+      "reason": "all rerunnable clauses reproduce",
       "lineage": "opus-medium"
     }
   ],
   "frontier": {
     "nodes": [
       {
-        "nodeId": "deepseek-flash-max:F-1-003",
+        "nodeId": "deepseek-flash-max:F-1-002",
         "parentId": "root",
         "depth": 1,
         "scope": [
           ".skilled/commands/doctor/scripts/overlay-engine.cjs",
           ".skilled/commands/doctor/scripts/tests"
         ],
-        "question": "Is the framework/ and root/ source layout correct as the default for every consumer: adoptSource naming, refusal of a root/skilled/ source, the capped LAYOUT notice for old-layout trees, and the one-shot apply --relayout migration (idempotence, partial failure, relayout-runs records, collisions with README.md, checks/, tests/ bookkeeping); are the tests strong enough?",
-        "status": "answered",
-        "reason": "all four dimensions reviewed across iterations 1-10",
-        "iteration": 10,
+        "question": "Follow-up on engine path safety and remedies: does resolveOverlayDir now refuse a sibling overlay folder outside the git repository on every command (prior R1-P2-001 at :452), is overlayOutside on the context set and read consistently, and are the LAYOUT overflow remedy (prior :3658) and the strict-write replace-versus-remove remedy (prior :5552) branched correctly? Check the remaining prior engine maintainability findings (:3398, :4582, :4603) and any regression the new branches add.",
+        "status": "open",
+        "reason": null,
+        "iteration": 0,
         "coveredDimensions": [
           "correctness",
           "security",
-          "traceability",
-          "maintainability"
+          "traceability"
         ],
-        "nextDimension": null,
-        "visits": 4,
-        "lineageNodeId": "F-1-003",
+        "nextDimension": "maintainability",
+        "visits": 3,
+        "lineageNodeId": "F-1-002",
         "lineage": "deepseek-flash-max"
       },
       {
-        "nodeId": "deepseek-flash-max:F-1-005",
+        "nodeId": "deepseek-flash-max:F-1-004",
         "parentId": "root",
         "depth": 1,
         "scope": [
-          "barter/ai-speckit/overlays",
-          "barter/ai-speckit/skilled/.opencode",
-          "barter/ai-speckit/skilled/.skilled/skills/sk-git"
+          "barter/ai-speckit/overlays/root/opencode",
+          "barter/ai-speckit/overlays/framework/hooks",
+          "barter/ai-speckit/overlays/framework/skills",
+          "barter/ai-speckit/skilled/.opencode/scripts/git-hooks",
+          "barter/ai-speckit/skilled/.opencode/plugins/tests",
+          "barter/ai-speckit/skilled/.skilled/hooks",
+          "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks"
         ],
-        "question": "Do the Barter hooks (barter-overlay-guard-core.cjs, barter-git-write-gate.mjs, the OpenCode plugins and the pre-commit git hook) learn both overlay locations correctly, and do they fail open or fail closed in the right cases when the overlay folder is missing, moved or ambiguous? Check every vendored and overlay copy agrees. The repo is nested: read it with git -C barter/ai-speckit show a954fc956ce.",
-        "status": "answered",
-        "reason": "all four dimensions reviewed across iterations 1-10",
-        "iteration": 10,
+        "question": "Barter hooks follow-up: does pre-commit now fail closed without an overlay manifest (prior R2-P1-001), with tests for lookup, skip and refusal (R2-P2-001); do guard core, pre-commit and git-write gate read overlayDir (R14-P2-001); does the plugin test load the real v2 bridge (R12-P2-001)? Check fail-open vs fail-closed per missing, moved or malformed case, and overlays/ vs skilled/ copies byte-identical. Read-only: git -C barter/ai-speckit show 5dd004f3faa.",
+        "status": "open",
+        "reason": null,
+        "iteration": 0,
         "coveredDimensions": [
           "correctness",
           "security",
@@ -2588,136 +2666,136 @@
         ],
         "nextDimension": "traceability",
         "visits": 3,
-        "lineageNodeId": "F-1-005",
+        "lineageNodeId": "F-1-004",
         "lineage": "deepseek-flash-max"
       },
       {
-        "nodeId": "deepseek-flash-max:F-1-007",
+        "nodeId": "deepseek-flash-max:F-1-006",
         "parentId": "root",
         "depth": 1,
         "scope": [
           "barter/ai-speckit/skilled/.skilled/commands/doctor",
           "barter/ai-speckit/overlays/sync-state.json",
-          "barter/ai-speckit/overlays/framework/changelog"
+          "barter/ai-speckit/overlays/overlay-manifest.json"
         ],
-        "question": "Does the Barter re-pin to Skilled 063daae vendor the overlay engine, overlay-guard hook and doctor docs byte-identical to Skilled at 063daaee2c1 (a parity check of the engine-relevant files, not a line-by-line review of all vendored files), and is the pin recorded consistently in the pin record, sync-state and the v4.1.0.0 changelog?",
-        "status": "answered",
-        "reason": "all four dimensions reviewed across iterations 1-10",
-        "iteration": 10,
+        "question": "Does the Barter re-pin onto Skilled b5a630c vendor the overlay engine, its tests, the overlay-guard hook and doctor overlay docs byte-identical to Skilled b5a630c6efa (engine-relevant parity only), is the pin recorded consistently in pin record, sync-state.json and overlay-manifest.json, and do the overlays still apply cleanly on the new pin? Read-only: git -C barter/ai-speckit show 488ea9f49f5.",
+        "status": "open",
+        "reason": null,
+        "iteration": 0,
         "coveredDimensions": [
           "correctness",
-          "traceability",
-          "maintainability"
+          "security",
+          "traceability"
         ],
-        "nextDimension": "security",
+        "nextDimension": "maintainability",
         "visits": 3,
-        "lineageNodeId": "F-1-007",
+        "lineageNodeId": "F-1-006",
         "lineage": "deepseek-flash-max"
       },
       {
-        "nodeId": "opus-medium:F-1-002",
+        "nodeId": "opus-medium:F-1-001",
         "parentId": "root",
         "depth": 1,
         "scope": [
           ".skilled/commands/doctor/scripts/overlay-engine.cjs",
-          ".skilled/commands/doctor/scripts/tests",
-          ".skilled/hooks/overlay-guard"
+          ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
+          ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs"
         ],
-        "question": "Is the sibling overlay folder support correct and path-safe: resolveOverlayDir accepting only a direct ../<name> sibling, refusing an overlay folder outside the git repository, and every engine path (apply, status, adopt, repin, sync, strict writes) that once assumed the overlay folder sits inside the vendored tree; do the new tests actually fail without the change?",
-        "status": "exhausted",
-        "reason": "budget",
+        "question": "Follow-up on the relayout rollback: does apply --relayout now restore every moved copy and leave no half-moved overlay folder when a rename or writeRelayoutManifest fails mid-run (prior R1-P1-001)? Is the rollback itself correct when a restore rename fails, is the writeBackup split sound, and does the new mid-loop failure test fail without the fix?",
+        "status": "answered",
+        "reason": null,
         "iteration": 1,
         "coveredDimensions": [
           "correctness",
           "security",
-          "traceability"
+          "traceability",
+          "maintainability"
         ],
-        "nextDimension": "maintainability",
+        "nextDimension": null,
         "visits": 3,
-        "closedAtIteration": 12,
-        "lineageNodeId": "F-1-002",
+        "lineageNodeId": "F-1-001",
         "lineage": "opus-medium"
       },
       {
-        "nodeId": "opus-medium:F-1-004",
+        "nodeId": "opus-medium:F-1-003",
         "parentId": "root",
         "depth": 1,
         "scope": [
-          ".skilled/commands/doctor",
-          ".skilled/skills/system-skilled-doctor"
+          ".skilled/commands/doctor/assets",
+          ".skilled/skills/system-skilled-doctor/references/overlays.md"
         ],
-        "question": "Do the doctor overlay docs, workflow YAML assets, presentation text, system-skilled-doctor references, manual testing playbook scenarios and the v1.2.0.0 release note match what the engine code actually does, including the stated single migration step (apply --relayout after the re-pin)?",
-        "status": "exhausted",
-        "reason": "budget",
+        "question": "Do the doctor docs now match the engine: both LAYOUT remedies in doctor-overlay-presentation.txt (prior R8-P2-001), the relayout failure contract in references/overlays.md, and the apply workflow's guidance on reading a failed relayout in doctor-overlay-apply.yaml? Does any doc claim behavior the code does not have?",
+        "status": "answered",
+        "reason": null,
         "iteration": 2,
         "coveredDimensions": [
           "correctness",
           "security",
-          "traceability"
+          "traceability",
+          "maintainability"
         ],
-        "nextDimension": "maintainability",
+        "nextDimension": null,
         "visits": 3,
-        "closedAtIteration": 12,
-        "lineageNodeId": "F-1-004",
+        "lineageNodeId": "F-1-003",
         "lineage": "opus-medium"
       },
       {
-        "nodeId": "opus-medium:F-1-006",
+        "nodeId": "opus-medium:F-1-005",
         "parentId": "root",
         "depth": 1,
         "scope": [
-          "barter/ai-speckit/overlays",
-          "barter/ai-speckit/init-repository.sh",
-          "barter/ai-speckit/tests",
-          "barter/ai-speckit/README.md",
-          "barter/ai-speckit/CONTRIBUTING.md",
-          "barter/ai-speckit/.gitignore"
+          "barter/ai-speckit/.gitignore",
+          "barter/ai-speckit/overlays/README.md",
+          "barter/ai-speckit/overlays/tests",
+          "barter/ai-speckit/overlays/framework/repo-rules",
+          "barter/ai-speckit/overlays/overlay-manifest.json",
+          "barter/ai-speckit/overlays/sync-state.json"
         ],
-        "question": "Are the Barter relayout onto framework/ and root/ and the move to overlays/ complete: init-repository.sh, .gitignore, README.md, CONTRIBUTING.md, overlays/README.md, overlays/checks, overlays/sync-state.json, tests/*.sh? Is any reference to the old barter-overlays path or dot-dropped layout left in either repo? Nested repo: git -C barter/ai-speckit show 51e218edf2e 2a8f454c8d1; rg barter-overlays across both repos.",
-        "status": "exhausted",
-        "reason": "budget",
+        "question": "Barter hygiene: is overlays/relayout-runs/ ignored and documented (prior R3-P2-001), is the barter-overlays fixture renamed (R3-P2-002), does any live barter-overlays or dot-dropped layout reference remain in either repo outside spec history and changelogs, and do the barter-overlay-first rule and overlays/README.md match the hooks? Read-only nested repo.",
+        "status": "answered",
+        "reason": null,
         "iteration": 3,
         "coveredDimensions": [
           "correctness",
           "security",
-          "traceability"
+          "traceability",
+          "maintainability"
         ],
-        "nextDimension": "maintainability",
+        "nextDimension": null,
         "visits": 3,
-        "closedAtIteration": 12,
-        "lineageNodeId": "F-1-006",
+        "lineageNodeId": "F-1-005",
         "lineage": "opus-medium"
       },
       {
-        "nodeId": "opus-medium:F-1-008",
+        "nodeId": "opus-medium:F-1-007",
         "parentId": "root",
         "depth": 1,
         "scope": [
           "specs/system-skilled-doctor/007-overlay-framework-root-layout"
         ],
-        "question": "Are the packet's claims traceable: do the five child phase specs, tasks, acceptance criteria, implementation summaries and scratch evidence in Skilled (1653734af7d, 10c36989450) and the ai-speckit close-out record (ad3246feba2) match the code and the test runs they cite, with no completion claim the evidence does not back?",
-        "status": "exhausted",
-        "reason": "budget",
+        "question": "Are the remediation records traceable: do phases 006-review-remediation, 007-barter-review-fixes and 008-push-and-repin (spec, tasks, acceptance criteria, implementation summaries) and the ai-speckit record (e63bd038a5d) match the code and the test runs they cite, are prior R4-P2-001 (005 acceptance-criteria.md:66) and R6-P2-001 (002 spec.md:109) corrected, and is any completion claim, including the push and the blocked merge of main with origin, made without evidence?",
+        "status": "answered",
+        "reason": null,
         "iteration": 4,
         "coveredDimensions": [
           "correctness",
           "security",
-          "traceability"
+          "traceability",
+          "maintainability"
         ],
-        "nextDimension": "maintainability",
+        "nextDimension": null,
         "visits": 3,
-        "closedAtIteration": 12,
-        "lineageNodeId": "F-1-008",
+        "lineageNodeId": "F-1-007",
         "lineage": "opus-medium"
       }
     ],
     "stats": {
       "total": 7,
-      "open": 0,
+      "open": 3,
       "active": 0,
-      "answered": 3,
+      "answered": 4,
       "blocked": 0,
-      "exhausted": 4,
+      "exhausted": 0,
       "abstained": 0,
       "pruned": 0
     },

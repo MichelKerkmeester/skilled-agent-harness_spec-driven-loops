@@ -1,0 +1,27 @@
+// Lineage helper: build the canonical iteration record + delta from a spec, record via gateway, reduce.
+const fs=require('fs'),path=require('path'),cp=require('child_process');
+const [specPath,L,started]=process.argv.slice(2);
+const s=JSON.parse(fs.readFileSync(specPath,'utf8'));
+const n=s.iteration, NNN=String(n).padStart(3,'0');
+const details=s.findings.map(f=>({id:f.id,severity:f.severity,title:f.title,file:f.file,dimension:s.dimension,findingClass:f.findingClass||'defect',status:'active',...(f.refines?{refines:f.refines}:{}),...(f.extra||{})}));
+const sum={P0:0,P1:0,P2:0}; for(const f of details) sum[f.severity]++;
+const w={P0:10,P1:5,P2:1}; const wNew=details.reduce((a,f)=>a+w[f.severity],0);
+const prior=s.priorWeighted||0; const ratio=wNew===0?0:Math.round((wNew/(wNew+prior))*1000)/1000;
+const now=new Date().toISOString();
+const rec={type:'iteration',iteration:n,mode:'review',target_agent:'deep-review',agent_definition_loaded:true,resolved_route:'Resolved route: mode=review target_agent=deep-review',run:'fanout-opus-medium-1795192401900-xpt66n-i'+n,status:'complete',focus:s.focusOverride||`Frontier node ${s.node}: ${(s.dimensionsOverride||[s.dimension]).join(" and ")}`,...(s.node?{frontierNodeId:s.node}:{}),dimensions:s.dimensionsOverride||[s.dimension],filesReviewed:s.filesReviewed,findingsCount:details.length,findingsSummary:sum,findingsNew:details.map(d=>d.id),findingDetails:details,traceabilityChecks:{results:s.traceability},newFindingsRatio:s.ratioOverride??ratio,noveltyJustification:s.novelty,sessionId:'fanout-opus-medium-1795192401900-xpt66n',generation:1,lineageMode:'new',timestamp:now,durationMs:Date.now()-Date.parse(started),reviewDepthSchemaVersion:2,reviewDepthApplicability:{scopeClass:'standard',enforcement:'strict',reason:'multi-file engine, docs and nested-repo change',evidenceRefs:s.filesReviewed.slice(0,2)},targetSelection:{selectedTargets:s.scope,selectionReason:`frontier node ${s.node} scope`,discoveryMethods:['direct_read','exact_search'],omittedHighRiskTargets:[],graphStatus:'unavailable',semanticSearchStatus:'unavailable',evidenceRefs:s.filesReviewed.slice(0,2)},searchCoverage:{requiredBugClasses:s.ledger.map(r=>r.bugClass),covered:s.ledger.map(r=>r.bugClass),ruledOut:s.ledger.filter(r=>r.disposition==='ruled_out').map(r=>r.bugClass),deferred:[],blocked:[],graphCoverageMode:'graphless_fallback'},searchLedger:s.ledger.map((r,i)=>({id:`SL-${NNN}-${i+1}`,dimension:s.dimension,targetRefs:r.targetRefs,bugClass:r.bugClass,hypothesis:r.hypothesis,searchActions:[{method:'direct_read',queryOrPath:r.targetRefs[0],result:r.result,evidenceRefs:r.evidenceRefs}],disposition:r.disposition,rationale:r.result,...(r.disposition==='finding'?{linkedFindingId:r.linkedFindingId}:{ruledOutReason:r.result})}))};
+if(s.graphEvents) rec.graphEvents=s.graphEvents;
+const recFile=path.join(L,'prompts',`record-${NNN}.json`);
+fs.writeFileSync(recFile,JSON.stringify(rec)+'\n');
+const deltaFile=path.join(L,'deltas',`iter-${NNN}.jsonl`);
+if(fs.existsSync(deltaFile)) throw new Error('delta exists');
+const r=cp.spawnSync('node',['.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs','--mode','review','--run-directory',L,'--event-json',recFile],{encoding:'utf8'});
+console.log('gateway rc='+r.status, (r.stdout||'').slice(0,300), r.stderr);
+if(r.status!==0) process.exit(2);
+const lines=[JSON.stringify(rec)];
+for(const f of s.findings) lines.push(JSON.stringify({type:'finding',id:f.id,severity:f.severity,title:f.title,file:f.file,dimension:s.dimension,iteration:n,...(f.refines?{refines:f.refines}:{}),...(f.extra||{})}));
+for(const t of s.traceability) lines.push(JSON.stringify({type:'traceability_check',protocolId:t.protocolId,status:t.status,iteration:n}));
+for(const ro of s.ruledOut||[]) lines.push(JSON.stringify({type:'ruled_out',direction:ro.direction,reason:ro.reason,iteration:n}));
+for(const p of s.proposals||[]) lines.push(JSON.stringify({type:'frontier_proposal',parentId:s.node,...p}));
+fs.writeFileSync(deltaFile,lines.join('\n')+'\n');
+const red=cp.spawnSync('node',['.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs','specs/system-skilled-doctor/007-overlay-framework-root-layout','--artifact-dir',L,'--create-missing-anchors'],{encoding:'utf8'});
+console.log('reduce rc='+red.status, (red.stdout||'').replace(/\s+/g,' ').slice(0,400), (red.stderr||'').slice(0,400));

@@ -1,0 +1,228 @@
+{
+  "type": "iteration",
+  "iteration": 9,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "status": "complete",
+  "focus": "Frontier node F-1-006: traceability, closing the checklist_evidence core protocol",
+  "frontierNodeId": "F-1-006",
+  "dimensions": ["traceability"],
+  "filesReviewed": [
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md",
+    ".skilled/commands/doctor/assets/doctor-env.yaml",
+    ".skilled/skills/system-skilled-doctor/SKILL.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md",
+    "barter/ai-speckit/skilled/.skilled-overlays.json",
+    ".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 1 },
+  "findingsNew": ["R9-P2-001"],
+  "findingDetails": [
+    {
+      "id": "R9-P2-001",
+      "severity": "P2",
+      "title": "The packet's last completion criterion understates the phase count",
+      "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md:93",
+      "dimension": "traceability",
+      "findingClass": "traceability",
+      "scopeProof": "listed the packet directory and counted eleven 0*/ phase folders; read goal.md:93 verbatim; the criterion names no glob and no explicit folder list, so its scope is fixed by the numeral alone",
+      "affectedSurfaceHints": [
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/009-skilled-open-items",
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items",
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items"
+      ],
+      "case": "an operator runs the criterion's command, sees RESULT: PASSED, and records the packet as validated while phases 007 to 011 were never in the validated set",
+      "type": "claim",
+      "claim": "The packet's sixth completion criterion validates six phases while the packet holds eleven, so its PASS cannot cover the packet it names.",
+      "evidenceRefs": [
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md:93",
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items"
+      ],
+      "counterevidenceSought": "checked whether --recursive on the packet folder would reach every child regardless of the numeral: it would, so the numeral is descriptive rather than operative. That reading makes the criterion's command correct and its wording wrong, which is still a traceability defect because the wording is what a reader checks the result against. Checked whether a later phase records the eleven-folder run: no phase records a recursive run after 006.",
+      "alternativeExplanation": "the numeral may be a leftover from the packet's original six-phase shape that nobody re-read after 007 was added. That is the same defect stated as a cause rather than a refutation.",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "drop if the criterion is reworded to name the packet folder alone, or to name all eleven phases, which makes the wording match what the command validates"
+    }
+  ],
+  "traceabilityChecks": {
+    "results": [
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "applicable": true,
+        "evidenceRefs": [
+          "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md:93",
+          "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62",
+          ".skilled/commands/doctor/assets/doctor-env.yaml:48"
+        ],
+        "notes": "five of the packet's six criteria executed read-only and all five pass, including the engine suites at 262 pass and 0 fail; the sixth is validate.sh --recursive --strict, which this lineage's dispatch forbids it to run; the phase-003 ticked criterion R7-P2-001 still does not reproduce, so one unsupported completion mark remains"
+      },
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/skills/system-skilled-doctor/SKILL.md:5",
+          ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:16"
+        ],
+        "notes": "criterion 2's two clauses match the code and the docs: SKILL.md:5 prints version: 1.2.0.0 and the changelog names /doctor:overlay apply --relayout at :16, :29 and :57"
+      },
+      {
+        "protocolId": "decision_alignment",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/skilled/.skilled-overlays.json:1"
+        ],
+        "notes": "criterion 3 matches D4 exactly: the vendored copy's manifest prints { \"overlayDir\": \"../overlays\" } and ls -d barter-overlays fails"
+      },
+      {
+        "protocolId": "integration_naming",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs"
+        ],
+        "notes": "criterion 5 names the guard surface and the engine answers on it: --guard exits 1 and its refusal names ../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md"
+      }
+    ]
+  },
+  "newFindingsRatio": 0.1,
+  "noveltyJustification": "one new P2 (weight 1) against nine carried P2 findings (weight 9) gives a weighted new share of 0.1; the finding is a stale numeral in the packet's own completion criterion that only a criterion-by-criterion execution exposes, and the same pass converted criterion 1 from an unexecuted limit into 262 executed passing tests",
+  "sessionId": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-20T17:22:41.000Z",
+  "durationMs": 231000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "traceability review of the packet's own completion criteria against the remediated tree",
+    "evidenceRefs": [
+      "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md:93"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md",
+      "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs",
+      "barter/ai-speckit/skilled/.skilled-overlays.json"
+    ],
+    "selectionReason": "the unfinished core protocol is checklist_evidence, so the targets are the two goal documents that carry the criteria and the fixture helper that decides whether the engine suites can be executed",
+    "discoveryMethods": ["direct_read", "exact_search", "command_execution"],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "partial",
+    "evidenceRefs": [
+      "specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md:93"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "stale_criterion",
+      "unreproducible_tick",
+      "unexecuted_criterion",
+      "regressed_criterion"
+    ],
+    "covered": ["stale_criterion", "unreproducible_tick", "unexecuted_criterion"],
+    "ruledOut": ["regressed_criterion"],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-029",
+      "dimension": "traceability",
+      "targetRefs": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md"],
+      "bugClass": "stale_criterion",
+      "hypothesis": "a completion criterion names a scope the packet has outgrown",
+      "searchActions": [
+        {
+          "method": "exact_search",
+          "queryOrPath": "grep -n 'validate.sh --recursive' goal.md",
+          "result": "one hit at :93 naming six phases",
+          "evidenceRefs": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/goal.md:93"]
+        },
+        {
+          "method": "command_execution",
+          "queryOrPath": "ls -d 0*/ | wc -l",
+          "result": "eleven phase folders, 001 through 011",
+          "evidenceRefs": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items"]
+        }
+      ],
+      "disposition": "confirmed",
+      "rationale": "the numeral is the only thing that fixes the criterion's scope, and it is five phases short",
+      "ruledOutReason": null
+    },
+    {
+      "id": "SL-030",
+      "dimension": "traceability",
+      "targetRefs": ["specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md"],
+      "bugClass": "unreproducible_tick",
+      "hypothesis": "the ticked phase-003 criterion R7-P2-001 now reproduces",
+      "searchActions": [
+        {
+          "method": "command_execution",
+          "queryOrPath": "rg -n -e 'source[L]ayout' -e 'framework-root' -e 'opt[-]in' .skilled/commands/doctor .skilled/skills/system-skilled-doctor -g '!**/scripts/**' -g '!**/changelog/v1.1*'",
+          "result": "one hit at .skilled/commands/doctor/assets/doctor-env.yaml:48, the word opt-in inside a boolean-parsing description",
+          "evidenceRefs": [".skilled/commands/doctor/assets/doctor-env.yaml:48"]
+        }
+      ],
+      "disposition": "confirmed",
+      "rationale": "the tick still cannot be reproduced, so checklist_evidence stays partial",
+      "ruledOutReason": null
+    },
+    {
+      "id": "SL-031",
+      "dimension": "traceability",
+      "targetRefs": [".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs"],
+      "bugClass": "unexecuted_criterion",
+      "hypothesis": "criterion 1 cannot be executed because the engine suites write inside the repository",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "overlay-engine-fixtures.cjs:63",
+          "result": "every fixture is built with fs.mkdtempSync(path.join(os.tmpdir(), prefix))",
+          "evidenceRefs": [".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs:63"]
+        },
+        {
+          "method": "command_execution",
+          "queryOrPath": "node --test .skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs",
+          "result": "tests 262, pass 262, fail 0, duration_ms 28548; git status --porcelain over the three reviewed trees is empty afterwards",
+          "evidenceRefs": [".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs:63"]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the suites write only under os.tmpdir(), so criterion 1 is executable and it passes",
+      "ruledOutReason": "executed read-only with no repository residue"
+    },
+    {
+      "id": "SL-032",
+      "dimension": "traceability",
+      "targetRefs": ["barter/ai-speckit/skilled/.skilled-overlays.json"],
+      "bugClass": "regressed_criterion",
+      "hypothesis": "criteria 3, 4 and 5 regressed since iteration 8",
+      "searchActions": [
+        {
+          "method": "command_execution",
+          "queryOrPath": "cat .skilled-overlays.json; node overlay-engine.cjs status --json; node overlay-engine.cjs --guard .skilled/skills/sk-git/sk-git-skilled/SKILL.md",
+          "result": "the manifest prints the sibling object, status reports PASSED with offLayout [], and the guard exits 1 naming ../overlays/framework/",
+          "evidenceRefs": ["barter/ai-speckit/skilled/.skilled-overlays.json:1"]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "all three criteria reproduce on the current tree",
+      "ruledOutReason": "re-executed read-only"
+    }
+  ]
+}

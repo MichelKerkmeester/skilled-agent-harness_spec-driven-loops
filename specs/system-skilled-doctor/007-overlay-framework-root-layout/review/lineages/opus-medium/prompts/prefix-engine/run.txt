@@ -1,0 +1,55 @@
+✖ relayout that fails on a later move puts every copy back and keeps no backup (19.52725ms)
+✖ relayout that fails writing the manifest puts every moved copy back (9.871875ms)
+✖ relayout that fails while relinking puts the copies and the live link back (43.248375ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 124.525125
+
+✖ failing tests:
+
+test at specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1196:1
+✖ relayout that fails on a later move puts every copy back and keeps no backup (19.52725ms)
+  Error: injected rename failure
+      at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1183:43)
+      at Object.apply (node:internal/test_runner/mock/mock:805:20)
+      at relayoutUnderLock (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6386:8)
+      at /Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6404:57
+      at withLock (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:3332:12)
+      at Object.commandRelayout (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6404:10)
+      at relayoutWithFailingRename (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1188:23)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1200:27)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+
+test at specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1212:1
+✖ relayout that fails writing the manifest puts every moved copy back (9.871875ms)
+  Error: injected rename failure
+      at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1183:43)
+      at Object.apply (node:internal/test_runner/mock/mock:805:20)
+      at writeFileAtomic (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:283:8)
+      at writeRelayoutManifest (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6297:3)
+      at relayoutUnderLock (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6391:3)
+      at /Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6404:57
+      at withLock (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:3332:12)
+      at Object.commandRelayout (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6404:10)
+      at relayoutWithFailingRename (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1188:23)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1216:27)
+
+test at specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1394:1
+✖ relayout that fails while relinking puts the copies and the live link back (43.248375ms)
+  Error: injected link failure
+      at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1401:28)
+      at Object.apply (node:internal/test_runner/mock/mock:805:20)
+      at ensureSymlink (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:297:6)
+      at retargetRelayoutLinks (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6321:5)
+      at relayoutUnderLock (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6392:3)
+      at /Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6404:57
+      at withLock (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:3332:12)
+      at Object.commandRelayout (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/overlay-engine.cjs:6404:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/opus-medium/prompts/prefix-engine/tests/overlay-engine-follow-up.test.cjs:1406:23)
+      at Test.runInAsyncScope (node:async_hooks:226:14)

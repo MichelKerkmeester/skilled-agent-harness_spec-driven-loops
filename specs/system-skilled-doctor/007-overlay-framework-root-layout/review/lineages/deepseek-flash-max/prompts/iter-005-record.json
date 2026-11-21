@@ -1,0 +1,305 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "status": "complete",
+  "focus": "Frontier node F-1-004: security",
+  "frontierNodeId": "F-1-004",
+  "dimensions": [
+    "security"
+  ],
+  "filesReviewed": [
+    "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js",
+    "barter/ai-speckit/overlays/root/opencode/plugins/barter-git-write-gate.js",
+    "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs",
+    "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs",
+    "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
+    "barter/ai-speckit/skilled/.skilled/hooks/overlay-guard/claude/overlay-guard.cjs",
+    "barter/ai-speckit/skilled/.skilled/hooks/overlay-guard/codex/overlay-guard.cjs",
+    "barter/ai-speckit/skilled/.skilled/hooks/overlay-guard/devin/overlay-guard.cjs",
+    "barter/ai-speckit/skilled/.skilled/hooks/overlay-guard/cursor/overlay-guard.mjs",
+    "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-git-write-gate.test.cjs",
+    "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.test.mjs"
+  ],
+  "findingsCount": 2,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "findingsNew": [
+    "R5-P2-001",
+    "R5-P2-002"
+  ],
+  "findingDetails": [
+    {
+      "id": "R5-P2-001",
+      "severity": "P2",
+      "title": "Git write gate fails open and silently through its CLI entrypoint",
+      "file": "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:2313",
+      "dimension": "security",
+      "findingClass": "security-hardening",
+      "scopeProof": "read barter-git-write-gate.mjs:2310-2320 (both catch arms) and barter-git-write-gate.js:48-63 (the plugin catch); the asymmetry is visible in the two files alone",
+      "affectedSurfaceHints": [
+        "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs",
+        "barter/ai-speckit/overlays/root/opencode/plugins/barter-git-write-gate.js",
+        "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.test.mjs"
+      ],
+      "case": "a runtime invokes the hook, main() rejects after readStdin() resolves but before deny() writes, and the hook exits 0; the shell command the gate was asked to judge then runs unchecked and nothing on stderr says the gate failed",
+      "type": "security",
+      "claim": "The CLI entrypoint of the git write gate treats any main() rejection as an allow and reports nothing, while the OpenCode wrapper over the same evaluator refuses.",
+      "evidenceRefs": [
+        "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:2313",
+        "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:2317",
+        "barter/ai-speckit/overlays/root/opencode/plugins/barter-git-write-gate.js:57"
+      ],
+      "counterevidenceSought": "checked whether main() can reject at all: readStdin() resolves rather than rejects, JSON.parse is caught at :2286, evaluateCommand is caught at :2298-2306, and runtimeSessionDir at :2239-2245 only reads env vars and payload fields; the residual throw surface is deny()'s stdout write and any future edit to main()",
+      "alternativeExplanation": "the exit-0 arm may be deliberate so a broken hook never blocks a commit; that reading is contradicted by the plugin wrapper, which refuses in the same situation, and by the absence of any stderr note, which the overlay guards do write before approving",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "drop to informational if a maintainer records that the CLI hook is intentionally advisory and the plugin is the only enforcing entrypoint"
+    },
+    {
+      "id": "R5-P2-002",
+      "severity": "P2",
+      "title": "A missing prompt-card guard skips its check with no message",
+      "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:73",
+      "dimension": "security",
+      "findingClass": "security-hardening",
+      "scopeProof": "read pre-commit:59-81 end to end; the -f test is the only gate on the card check and there is no else arm",
+      "affectedSurfaceHints": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/tests/pre-commit.test.cjs"
+      ],
+      "case": "a vendored tree is copied without check-prompt-quality-card-sync.sh, a commit stages .skilled/skills/sk-prompt/SKILL.md, and the commit passes with no output about the missing guard",
+      "type": "security",
+      "claim": "The pre-commit card-sync check is skipped silently when its guard script is missing, unlike the hygiene check which warns.",
+      "evidenceRefs": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:73",
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:55"
+      ],
+      "counterevidenceSought": "confirmed the guard exists in the current tree (check-prompt-quality-card-sync.sh, 6278 bytes), so no live commit reaches the silent branch today; searched the hook for any other diagnostic on this path and found none",
+      "alternativeExplanation": "the author may have judged a missing optional guard not worth a message, which does not explain why the adjacent block warns for the same condition",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "drop if the vendored tree is guaranteed complete by the apply step and a test asserts that guarantee"
+    }
+  ],
+  "traceabilityChecks": {
+    "results": [
+      {
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs",
+          "barter/ai-speckit/skilled/.skilled/skills/sk-git/sk-git-skilled/SKILL.md"
+        ],
+        "notes": "completion criterion 5 re-executed read-only: --guard prints refuse: and names ../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md"
+      },
+      {
+        "protocolId": "decision_alignment",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:60-70",
+          "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:75-80"
+        ],
+        "notes": "D2 holds in the guard core: the setting is resolved against the tree and a folder that is not the one the setting names is refused"
+      },
+      {
+        "protocolId": "integration_naming",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:7",
+          "barter/ai-speckit/overlays/root/opencode/plugins/barter-git-write-gate.js:14",
+          "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:6"
+        ],
+        "notes": "each hook names the module it delegates to, and core.hooksPath resolves the pre-commit TREE_ROOT to barter/ai-speckit/skilled"
+      }
+    ]
+  },
+  "newFindingsRatio": 0.333,
+  "noveltyJustification": "two new P2 findings (weight 2) against four carried P2 findings (weight 4) gives a weighted new share of 0.333; both findings sit in hook entrypoints that no earlier iteration opened, and both are fail-open asymmetries rather than restatements of the prior hook findings",
+  "sessionId": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-20T16:41:41.806Z",
+  "durationMs": 96000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "security review of the hook and plugin trust boundaries",
+    "evidenceRefs": [
+      "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:2313"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js",
+      "barter/ai-speckit/overlays/root/opencode/plugins/barter-git-write-gate.js",
+      "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs",
+      "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs",
+      "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit"
+    ],
+    "selectionReason": "frontier node F-1-004 names the overlay hooks, the opencode plugins and the git-hook scripts, which are the three trust boundaries a write can cross",
+    "discoveryMethods": [
+      "direct_read",
+      "exact_search",
+      "config_read"
+    ],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "partial",
+    "evidenceRefs": [
+      "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:73"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "fail_open",
+      "bypass_path",
+      "path_traversal",
+      "silent_skip"
+    ],
+    "covered": [
+      "fail_open",
+      "silent_skip"
+    ],
+    "ruledOut": [
+      "bypass_path",
+      "path_traversal"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-013",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs"
+      ],
+      "bugClass": "fail_open",
+      "hypothesis": "a gate entrypoint treats an internal failure as an allow",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "barter-git-write-gate.mjs:2310-2320",
+          "result": "both entrypoint arms end in main().catch(() => process.exit(0)) with no diagnostic",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:2313"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "barter-git-write-gate.js:48-63",
+          "result": "the plugin wrapper refuses an interesting git command when evaluation throws",
+          "evidenceRefs": [
+            "barter/ai-speckit/overlays/root/opencode/plugins/barter-git-write-gate.js:57"
+          ]
+        },
+        {
+          "method": "exact_search",
+          "queryOrPath": "process.exit(0) in barter-git-write-gate.test.mjs",
+          "result": "no test asserts the rejection path across 26 tests",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.test.mjs"
+          ]
+        }
+      ],
+      "disposition": "confirmed",
+      "rationale": "the same evaluator is enforced fail-closed through one entrypoint and fail-open through the other",
+      "ruledOutReason": null
+    },
+    {
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "silent_skip",
+      "hypothesis": "a missing helper script drops a check without saying so",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "pre-commit:59-81",
+          "result": "the card check is gated on -f with no else arm, while the hygiene block at :54-56 warns",
+          "evidenceRefs": [
+            "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:73"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "ls skilled/.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh",
+          "result": "the guard exists today, so the silent branch is latent",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh"
+          ]
+        }
+      ],
+      "disposition": "confirmed",
+      "rationale": "the asymmetry with the adjacent block is real and one line fixes it",
+      "ruledOutReason": null
+    },
+    {
+      "id": "SL-015",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "hypothesis": "a symlink or a relative path lets a write reach a managed destination unguarded",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "barter-overlay-guard-core.cjs:25-41 and :157-180",
+          "result": "canonicalPath resolves symlinks on both sides and the engine receives an argv element, not shell text",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:170"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "barter-overlay-guard-core.cjs:75-80",
+          "result": "a layout is accepted only when the tree holds the engine and the overlays root holds the manifest",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:77"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "both sides of the containment test are canonicalised and the engine is invoked without a shell",
+      "ruledOutReason": "verified by direct read of the canonicalisation and invocation paths"
+    },
+    {
+      "id": "SL-016",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js"
+      ],
+      "bugClass": "fail_open",
+      "hypothesis": "the OpenCode overlay guard fails open where the other adapters fail closed",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "claude, codex, devin and cursor overlay-guard entrypoints",
+          "result": "all four write a stderr note and approve on a main() rejection, matching the plugin's warnCoreFailure",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled/hooks/overlay-guard/claude/overlay-guard.cjs:71-74"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the fail-open is uniform across every adapter and each arm reports it, so it is a design decision rather than a divergence",
+      "ruledOutReason": "verified by reading all four adapter entrypoints"
+    }
+  ]
+}

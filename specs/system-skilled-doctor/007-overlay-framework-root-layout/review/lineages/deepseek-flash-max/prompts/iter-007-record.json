@@ -1,0 +1,258 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "status": "complete",
+  "focus": "Frontier node F-1-002: traceability",
+  "frontierNodeId": "F-1-002",
+  "dimensions": [
+    "traceability"
+  ],
+  "filesReviewed": [
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md",
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+    ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+    ".skilled/commands/doctor/assets/doctor-env.yaml",
+    ".skilled/skills/system-skilled-doctor/references/overlays.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md",
+    ".skilled/skills/system-skilled-doctor/SKILL.md"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingsNew": [
+    "R7-P2-001"
+  ],
+  "findingDetails": [
+    {
+      "id": "R7-P2-001",
+      "severity": "P2",
+      "title": "A checked completion criterion does not reproduce",
+      "file": "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62",
+      "dimension": "traceability",
+      "findingClass": "traceability",
+      "scopeProof": "ran the criterion's own command verbatim from the repository root; the single hit is in a file the criterion's two globs do not exclude",
+      "affectedSurfaceHints": [
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md",
+        ".skilled/commands/doctor/assets/doctor-env.yaml"
+      ],
+      "case": "an evaluator or a later reviewer re-runs the criterion to confirm the phase is done, sees one hit where the criterion promises none, and cannot tell whether the layout rule regressed or the pattern is too broad",
+      "type": "traceability",
+      "claim": "The first completion criterion of phase 003 is marked done but its third command prints a hit.",
+      "evidenceRefs": [
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62",
+        ".skilled/commands/doctor/assets/doctor-env.yaml:48"
+      ],
+      "counterevidenceSought": "ran the other two clauses of the same criterion and both hold: 'inside the tree' appears only on the line that also names ../<name> at doctor-overlay-presentation.txt:560, and the leading-dot search prints nothing; ran the second criterion and it prints exactly one heading at overlays.md:261",
+      "alternativeExplanation": "the pattern was written before doctor-env.yaml gained the word opt-in, so the criterion was true when it was ticked and drifted afterwards; that is still a traceability defect, because a ticked criterion is read as reproducible",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "drop if the criterion is amended to exclude assets/ or to anchor the phrase to the layout rule, which makes the tick reproducible again"
+    }
+  ],
+  "traceabilityChecks": {
+    "results": [
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "applicable": true,
+        "evidenceRefs": [
+          "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62",
+          ".skilled/commands/doctor/assets/doctor-env.yaml:48"
+        ],
+        "notes": "six of the seven phase-003 criteria re-ran clean; the first criterion's third clause prints one hit, recorded as R7-P2-001"
+      },
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt:118",
+          ".skilled/commands/doctor/scripts/overlay-engine.cjs:3702-3708"
+        ],
+        "notes": "every documented LAYOUT form matches the code, including the mixed overflow line"
+      },
+      {
+        "protocolId": "decision_alignment",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:3",
+          ".skilled/skills/system-skilled-doctor/references/overlays.md:51"
+        ],
+        "notes": "D1 holds with no opt-in field, and the sibling rule D2 froze is stated with its exact refusal"
+      },
+      {
+        "protocolId": "integration_naming",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:16",
+          ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt:118"
+        ],
+        "notes": "each remedy names the exact command an operator runs"
+      }
+    ]
+  },
+  "newFindingsRatio": 0.125,
+  "noveltyJustification": "one new P2 (weight 1) against seven carried P2 findings (weight 7) gives a weighted new share of 0.125; the finding comes from executing the packet's own checklist rather than from reading code, which no earlier iteration did",
+  "sessionId": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-20T16:43:58.249Z",
+  "durationMs": 88000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "traceability review of the packet checklist against the shipped tree",
+    "evidenceRefs": [
+      "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md"
+    ],
+    "selectionReason": "frontier node F-1-002 names the engine and its tests; the traceability dimension adds the docs and the packet checklist that describe them",
+    "discoveryMethods": [
+      "direct_read",
+      "exact_search",
+      "checklist_replay"
+    ],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "partial",
+    "evidenceRefs": [
+      "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "stale_checklist",
+      "doc_code_drift",
+      "missing_remedy",
+      "broken_cross_reference"
+    ],
+    "covered": [
+      "stale_checklist"
+    ],
+    "ruledOut": [
+      "doc_code_drift",
+      "missing_remedy",
+      "broken_cross_reference"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md"
+      ],
+      "bugClass": "stale_checklist",
+      "hypothesis": "a ticked criterion no longer reproduces",
+      "searchActions": [
+        {
+          "method": "checklist_replay",
+          "queryOrPath": "rg -n -e 'source[L]ayout' -e 'framework-root' -e 'opt[-]in' .skilled/commands/doctor .skilled/skills/system-skilled-doctor -g '!**/scripts/**' -g '!**/changelog/v1.1*'",
+          "result": "one hit at .skilled/commands/doctor/assets/doctor-env.yaml:48",
+          "evidenceRefs": [
+            ".skilled/commands/doctor/assets/doctor-env.yaml:48"
+          ]
+        },
+        {
+          "method": "checklist_replay",
+          "queryOrPath": "the other two clauses of the same criterion and the second criterion",
+          "result": "all hold",
+          "evidenceRefs": [
+            ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt:560"
+          ]
+        }
+      ],
+      "disposition": "confirmed",
+      "rationale": "the criterion promises no output and the tree produces one",
+      "ruledOutReason": null
+    },
+    {
+      "id": "SL-022",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skilled-doctor/references/overlays.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "hypothesis": "the docs claim an exit code the engine does not use",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "overlays.md:51 against overlay-engine.cjs:5887 and :6665",
+          "result": "the throw reaches EXIT_ERROR, defined as 2 at :91",
+          "evidenceRefs": [
+            ".skilled/commands/doctor/scripts/overlay-engine.cjs:91"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the documented exit code matches the constant the handler returns",
+      "ruledOutReason": "verified by direct read of the throw site and the exit constant"
+    },
+    {
+      "id": "SL-023",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt"
+      ],
+      "bugClass": "missing_remedy",
+      "hypothesis": "a LAYOUT form the code emits is undocumented",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "overlay-engine.cjs:3692-3708 against doctor-overlay-presentation.txt:87-88 and :118",
+          "result": "two per-line remedies and three overflow forms, all documented",
+          "evidenceRefs": [
+            ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt:118"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "every branch the code can take has a documented form",
+      "ruledOutReason": "verified by reading both sides branch for branch"
+    },
+    {
+      "id": "SL-024",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md"
+      ],
+      "bugClass": "broken_cross_reference",
+      "hypothesis": "the release note names a command or a path the tree does not carry",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "changelog:16, :51 and :57 against overlay-engine.cjs:6491 and SKILL.md:5",
+          "result": "the command, the backup path and the version all match",
+          "evidenceRefs": [
+            ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:51"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "each named command and path exists in the tree",
+      "ruledOutReason": "verified by direct read of each named surface"
+    }
+  ]
+}

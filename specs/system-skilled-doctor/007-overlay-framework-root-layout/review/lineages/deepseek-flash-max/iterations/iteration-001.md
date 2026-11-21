@@ -2,30 +2,29 @@
 
 ## Dispatcher
 
-- Mode: review, single iteration, LEAF executor (no nested dispatch)
-- Run: `fanout-deepseek-flash-max-1795182837437-sws2tv`, generation 1, lineageMode `new`
-- Frontier node: `F-1-003` at depth 1 of 3
+- Mode: review (fan-out lineage `deepseek-flash-max`, cli-mistral-vibe, model `deepseek-flash`)
+- Session: `fanout-deepseek-flash-max-1795192401900-xpt66n`, generation 1, lineageMode `new`
+- Iteration: 1 of 24
 - Dimension: correctness
-- Operator review focus: the whole overlay framework/root layout change end to end. This iteration addressed the focus through its engine-correctness clause: whether the `framework/` + `root/` source layout is correct as the default for every consumer, and whether the one-shot `apply --relayout` migration is safe.
+- Frontier node: F-1-002 (depth 1 of 3), scope `.skilled/commands/doctor/scripts/overlay-engine.cjs`, `.skilled/commands/doctor/scripts/tests`
+- Review target: `specs/system-skilled-doctor/007-overlay-framework-root-layout` (spec-folder)
+- Operator review focus: follow-up round after remediation. This iteration addressed the focus by re-verifying every prior-generation engine finding against the current tree rather than against the remediation commit message, then reviewing the new branches for regression.
 
 ## Files Reviewed
 
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:426-478` (`resolveOverlayDir`, sibling gate)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:2776-2786` (`isUnderRootSkilled`, `rootSkilledProblem`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:3406-3436` (`layoutMoves`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:3595-3672` (`commandStatus`, LAYOUT notice and cap)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5482-5492` (`adoptSource`, `legacyAdoptSource`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5630-5670` (`adoptUnderLock` root/skilled refusal)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:6071-6404` (relayout: plan, backup, move, manifest rewrite, link retarget)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:6466-6510` (`main` error boundary)
-- `.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:899-1740` (layout, cap, relayout, root/skilled suites)
-- `.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:765-830` (root/skilled blocked-entry suites)
-- `.skilled/skills/system-skilled-doctor/SKILL.md:5` (version line)
-- `.skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:16,29,33,51,57`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/spec.md:88,130,134,167,183,192`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/spec.md`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/spec.md:183`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/implementation-summary.md:53-70`
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:426-505` (`resolveOverlayDir`, `gitTopLevelOrNull`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:508-530` (`createContext`, `overlayOutside`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:272-300` (`writeFileAtomic`, `ensureSymlink`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:3425-3475` (`layoutMoves` and its JSDoc)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:3660-3712` (LAYOUT lines and the overflow remedy)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:4624-4700` (`writeBackup`, split passes)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5586-5630` (`strictWriteRefusal`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:6293-6600` (`relayoutLinkTargets`, `planRelayoutManifest`, `writeRelayoutManifest`, `retargetRelayoutLink`, `rollbackRelayout`, `relayoutUnderLock`)
+- `.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs:1150-1240` (relayout rollback tests)
+- `.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs:760-870` (outside-repository refusal tests)
+- `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:87-96,118`
+- `.skilled/skills/system-skilled-doctor/references/overlays.md:76,92,96,228,257`
+- `git show 3aab896957e` (the remediation commit)
 
 ## Findings - New
 
@@ -35,84 +34,64 @@ None.
 
 ### P1 Findings
 
-1. **Relayout leaves a half-moved overlay folder when a rename or the manifest write fails after the first move** -- `.skilled/commands/doctor/scripts/overlay-engine.cjs:6384-6392` -- `relayoutUnderLock` states its own invariant at `:6358-6360`: "copies already at their layout paths behind a manifest that still names the old ones is a folder nobody can read, and no backup restores it on its own." The guard that enforces it wraps only `planRelayoutManifest` (`:6362-6367`). The rename loop at `:6384-6389` and the manifest write at `:6391` run unguarded, so a `fs.renameSync` that throws (EACCES on a read-only destination parent, ENOSPC, EIO) or a `writeFileAtomic` that throws at `:6391` propagates to `main`'s catch at `:6497-6502`, which prints `[overlay-engine] <message>` and returns exit 2 with the tree already partly moved and the manifest still naming the old paths. The `relayout-runs/<stamp>/` backup at `:6376-6381` is the only recovery and it is manual.
-   Finding class: `incomplete-implementation`
-   Scope proof: the finding is inside the declared review target's engine file and names the exact statements that violate the invariant the same function declares.
-   Affected surface hints: `overlay-engine.cjs` relayout path; `relayout-runs/` backup contract; the `apply --relayout` operator instruction in `changelog/v1.2.0.0.md:57`.
-   Case: a consumer runs `apply --relayout` on a 130-entry folder where one destination parent is read-only. The first 60 copies move, the 61st rename throws, and the run exits 2 with 60 copies at `framework/`/`root/` paths that the manifest does not name.
-
-```json
-{
-  "type": "claim",
-  "claim": "relayoutUnderLock enforces its stated no-half-moved invariant only for the manifest-planning failure, not for the rename loop or the manifest write that follow it",
-  "evidenceRefs": [
-    ".skilled/commands/doctor/scripts/overlay-engine.cjs:6358-6360",
-    ".skilled/commands/doctor/scripts/overlay-engine.cjs:6362-6367",
-    ".skilled/commands/doctor/scripts/overlay-engine.cjs:6384-6389",
-    ".skilled/commands/doctor/scripts/overlay-engine.cjs:6391",
-    ".skilled/commands/doctor/scripts/overlay-engine.cjs:6497-6502"
-  ],
-  "counterevidenceSought": "Searched for a try/catch, a rollback helper, or a two-phase rename around the loop; found none. Checked whether main() restores anything on error: it only prints and returns EXIT_ERROR. Checked whether the backup is applied automatically on failure: copyForBackup only writes, nothing reads it back in this path.",
-  "alternativeExplanation": "The author may have judged a rename inside one folder as unable to fail. It can fail: the destination parent is created with mkdirSync at :6385, which throws on a read-only overlay folder, and renameSync throws on ENOSPC or EIO. The comment at :6358-6360 shows the author considered exactly this end state and chose to prevent it, so the gap is an omission rather than a deliberate trade-off.",
-  "finalSeverity": "P1",
-  "confidence": "medium",
-  "downgradeTrigger": "Downgrade to P2 if the maintainers document that a relayout failure is recovered by hand from relayout-runs/ and add that instruction to the changelog's relayout section."
-}
-```
+None.
 
 ### P2 Findings
 
-1. **The LAYOUT overflow line advises `apply --relayout` even when the entries it counts are ones relayout refuses** -- `.skilled/commands/doctor/scripts/overlay-engine.cjs:3658-3660` -- the per-line remedy at `:3652-3655` branches on `isUnderRootSkilled(move.to)` and prints "change the destination or remove the entry" for those entries. The overflow line at `:3659` is unconditional: `LAYOUT   … <n> more; run <engine> apply --relayout`. A manifest with 21 or more off-layout entries whose tail includes a `root/skilled` destination therefore tells the operator to run a command that refuses the whole run at `:6136-6141`, and the operator has no line naming the entry to fix.
-   Finding class: `diagnostic-gap`
-   Scope proof: the finding is inside the declared review target's engine file and names the two statements whose remedies disagree.
-   Affected surface hints: `status` LAYOUT output; `changelog/v1.2.0.0.md:29` which documents the overflow line as always naming relayout; the `root/skilled` refusal contract in `overlay-engine.cjs:6136-6141`.
-   Case: a manifest holds 25 off-layout entries where entries 21-25 have destinations under `skilled/`. `status` prints 20 correct lines plus `LAYOUT   … 5 more; run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout`; that command exits 2 naming only the first `root/skilled` entry.
+1. **A sibling link that resolves back inside the tree is refused with the wrong reason** -- `.skilled/commands/doctor/scripts/overlay-engine.cjs:478` -- `resolveOverlayDir` accepts a `../<name>` sibling only when it resolves outside the tree (`:466`). When the sibling is a symlink whose target resolves *inside* the tree, the `isWithin` guard at `:466` is false, so the sibling branch is skipped and control reaches the fall-through throw at `:478`, which reports `names a folder outside the tree root`. The folder is inside the tree, not outside it, so the operator is told to look for a path escape that is not there. The refusal itself is correct; only the reason is wrong.
+   Finding class: misleading-diagnostic
+   Scope proof: the branch is reachable from the documented setting contract, which allows `../<name>` (D2) and does not forbid a link; the sibling branch at `:452-477` is the only place a `../` value can be accepted, and every path through it that does not `return` lands on `:478`.
+   Affected surface hints: `.skilled/commands/doctor/scripts/overlay-engine.cjs`, `.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs`, `.skilled/skills/system-skilled-doctor/references/overlays.md`
+   Case: a tree at `<ws>/skilled` with `.skilled-overlays.json` naming `"overlayDir": "../linked"`, where `<ws>/linked` is a symlink to `<ws>/skilled/overlays`. `status` exits 2 with `names a folder outside the tree root: ../linked`, although the folder resolves inside the tree.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|----------|--------|----------|---------|
-| `spec_code` | pass | `001-engine-out-of-tree-overlay-folder/spec.md:88,130,134`; `overlay-engine.cjs:426-478,5244-5249,6369-6381` | The sibling gate, the staged layout and the relayout backup paths match REQ-006 and REQ-010 as written. |
-| `checklist_evidence` | pass | `002-engine-framework-root-source-layout/tasks.md`; `003-engine-docs-and-release/tasks.md:42,56,58` | Every checked task carries an observed result or a Verify command output; the `root/skilled` and overflow-line tasks cite the engine lines this iteration read. |
+- `spec_code` -- pass. D2's "may name only a direct sibling, `../<name>`" is enforced at `overlay-engine.cjs:452-477`; the outside-repository refusal the prior generation asked for is at `:470-476` and is reached from `createContext` (`:519`), so it applies to every command rather than to `pre-commit` alone. D1's `framework/` + `root/` rule is stated in the `layoutMoves` JSDoc (`:3435-3443`) and implemented by `adoptSource` (`:5542-5546`).
+- `checklist_evidence` -- partial. The packet's live criteria were not re-executed in this iteration; they are scheduled for the traceability iteration. The engine's own suites were read, not run, because this lineage may not write outside its directory and the suites create fixtures under the system temp folder.
 
 ## Integration Evidence
 
-- `.skilled/skills/system-skilled-doctor/SKILL.md:5` prints `version: 1.2.0.0`, matching the completion criterion.
-- `.skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:16` names `/doctor:overlay apply --relayout`, matching the completion criterion.
-- `barter/ai-speckit/skilled/.skilled-overlays.json` reads `{ "overlayDir": "../overlays" }` and `barter/ai-speckit/overlays/` holds `framework/`, `root/`, `checks/`, `tests/`, `README.md`, `overlay-manifest.json`, `sync-state.json` and `repin-runs/`, matching decision D4 and completion criterion 3.
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs` is the single engine the `/doctor:overlay` command surface (`apply`, `status`, `repin`, `pre-commit`, `guard`) routes through; `main` (`:6636-6667`) dispatches every one of those commands from the same `createContext`, which is why the outside-repository refusal now covers all of them.
+- `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:87-88,96` and `.skilled/skills/system-skilled-doctor/references/overlays.md:92,96` are the two documentation surfaces that describe the LAYOUT remedies and the relayout failure contract; both were read against the engine's actual strings.
 
 ## Edge Cases
 
-- **Config/dispatch iteration-cap disagreement.** `review/deep-review-config.json` records `maxIterations: 7` while the dispatch binds `config.maxIterations: 24`. The lineage config was written with 24 from the dispatch binding, which is the authority for this run; the root config is a separate file the fan-out root owns. Recorded rather than resolved.
-- **`resource-map.md` is absent** from the spec folder, so the Resource Map Coverage Gate is skipped and `resource_map_present` is false. Not treated as a pass.
-- **Tests were not re-run.** The containment rule for this lineage forbids running repo tooling that writes outside the lineage directory, and `node --test` writes fixtures under the OS temp directory. Test strength is judged from the suite source and from the recorded evidence under `001-engine-out-of-tree-overlay-folder/scratch/evidence/` and `002-engine-framework-root-source-layout/scratch/evidence/`, not from a fresh run.
-- **`barter-overlays` leftovers.** `rg -n barter-overlays` over the repository outside `specs/` returns four hits, all in `.skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:79,91,96,99`, where it is an arbitrary custom folder name in a fixture, not a reference to Barter's old path. No leftover reference found.
+- **Prior-generation findings re-verified, all fixed.** Each was checked against the current tree, not the commit message:
+  - `R1-P1-001` (relayout atomicity): fixed. `relayoutUnderLock` (`:6455-6600`) guards every rename, the manifest write and each relink inside one `try`; `rollbackRelayout` (`:6420-6443`) restores links, manifest bytes, moves and created folders newest-first. Tests at `overlay-engine-follow-up.test.cjs:1196-1226` snapshot the whole overlay folder before and after and assert deep equality plus the absence of `relayout-runs/`.
+  - `R1-P2-001--6d7230d0ece0` (outside-repository refusal): fixed at `:470-476`, with tests for the outside folder, the repository's own `.git`, a link pointing outside, a tree in no repository, and a `GIT_DIR` exported by a hook (`overlay-engine-strict-writes.test.cjs:790-870`).
+  - `R1-P2-001--4f4ffdfd250a` (LAYOUT remedy): fixed at `:3693-3696` and `:3700-3710`; the overflow line now splits movable from blocked.
+  - `R11-P2-001` (strict-write remedy): fixed at `:5603-5615`; the remove-list case names the remove list instead of a copy apply never installs.
+  - `R8-P2-001` (docs): fixed at `doctor-overlay-presentation.txt:87-88,96`.
+  - `R2-P2-001--4e5c79954247` (`layoutMoves` JSDoc): fixed at `:3435-3443`.
+  - `R13-P2-001` (`overlayOutside` duplicated): fixed; the context carries it (`:524`) and the four former recomputations read it (`:4631`, `:5286`, `:5884`, `:6499`).
+  - `R13-P2-002` (`writeBackup` readability): fixed at `:4676-4694`; the tree pass and the overlay pass are separate loops.
+- **`remove` on a `directory` entry is inert but not refused.** `folderEntryHolding` (`:3945-3960`) honours `entry.remove` for both `directory` and `skill-root` scopes, while `planDirectoryOverlay` (`:1917-2000`) mirrors the whole folder and never reads `remove`. The documented contract names `remove` as a skill-root field (`references/overlays.md:76,228`), so this is a latent inconsistency rather than a defect; recorded, not raised.
+- **A backup failure is outside the documented failure contract.** `copyForBackup` (`:6455-6470`) runs before the guarded block, so a failure there exits 2 through `main`'s catch (`:6661-6665`) with a raw `[overlay-engine]` line and leaves a partial `relayout-runs/<stamp>/`. Nothing has moved, so no copy is at risk; recorded as an edge case because the docs promise the one-line contract only for a move, manifest or relink failure.
+- **Scope gate.** The prior generation's fan-out root failed the `scope` terminal gate because a fan-out lineage never records `reviewScopeFiles`. This lineage seeds it in `deep-review-config.json` (`.skilled/commands/doctor`, `.skilled/skills/system-skilled-doctor`, `barter/ai-speckit`) so the gate can judge the findings this run actually raises. The workflow defect itself is out of this packet's scope and is not raised as a finding.
 
 ## Confirmed-Clean Surfaces
 
-- `adoptSource` (`overlay-engine.cjs:5484-5488`) maps `.skilled` to `framework`, `.skilled/<rest>` to `framework/<rest>`, and every other key to `root/` with its leading dots dropped, exactly as decision D1 states.
-- `isUnderRootSkilled` (`:2778-2782`) normalizes before comparing, so `root/skilled`, `root/skilled/`, `root/./skilled/x` and `root/skilled/x` are all refused; `framework` and `root/skilledfoo` are not.
-- `resolveOverlayDir` (`:426-478`) refuses `..`, `.`, absolute paths, backslashes, NUL, deeper climbs (`../a/b`, `../../x`), a sibling carrying the tree's own name, a sibling that resolves inside the tree, and a sibling that contains the tree. A dangling link is refused until it resolves.
-- Relayout idempotence holds: `layoutMoves` returns `[]` on a settled tree and `relayoutUnderLock` prints `0 moved` without creating `relayout-runs/` (`:6335-6338`; test `overlay-engine-follow-up.test.cjs:1197-1218`).
-- Relayout refuses before writing when a destination already exists, when a source is missing, when two moves nest, when two entries claim one destination, when a field's manifest text changed since planning, and when a destination lands under `root/skilled` (`:6118-6160`, `:6362-6367`).
-- The LAYOUT cap prints exactly 20 lines plus one overflow line, and `status --json` keeps all entries in `offLayout` (`:3652-3661`; tests `overlay-engine-follow-up.test.cjs:1541-1570`).
-- `pruneEmptyParents` (`:6330-6335`) stops at the overlay root, so a relayout cannot remove `framework/` or `root/` themselves.
+- `rollbackRelayout` ordering: links are restored before the moves they point at, which is safe because `ensureSymlink` (`:290-298`) unlinks and re-creates without requiring the target to exist, and the moves are restored immediately after.
+- `retargetRelayoutLink` (`:6381-6397`) records a change in `retargeted` after the unlink and before the new link, so a failed `symlinkSync` still leaves the rollback able to restore the old link.
+- `writeFileAtomic` (`:272-288`) writes a temp file and renames, so a throw leaves the manifest bytes untouched and `isManifestWritten` correctly stays false.
+- `pruneEmptyParents` runs only after the guarded block succeeds, so a rollback never has to recreate a folder the run removed.
+- `strictWriteRefusal`'s `isUnder` closure is used with `Array.prototype.some`, which passes extra arguments that the closure ignores; the replace-list check and the remove-list check therefore compare the same way.
 
 ## Ruled Out
 
-- **`overlayDir` outside the git repository is not refused by `resolveOverlayDir`.** Checked and ruled out: `001-engine-out-of-tree-overlay-folder/spec.md:132,226` scopes that refusal to `pre-commit`, and `overlay-engine.cjs:5814-5819` implements it there. Decision D2's summary is looser than the child spec, and the child spec outranks it.
-- **`repin --stage` copies `relayout-runs/` and `repin-runs/` into the stage.** Checked and ruled out: `001-engine-out-of-tree-overlay-folder/spec.md:183` records the extra overlay-folder copy as an accepted cost under NFR-P01.
-- **A `marked-section` entry whose `source` differs from its `fragment` keeps a permanent LAYOUT line.** Checked and ruled out: `layoutMoves` (`:3420-3424`) skips that `source`, and `status` prints from the same function, so no line is emitted for it.
-- **`status` fails after a relayout until a follow-up `apply` runs.** Checked and ruled out: `state.files` holds applied hashes only (`:2908`), and `retargetRelayoutLinks` (`:6310-6328`) moves the live link while `planRelayoutManifest` (`:6280-6288`) rewrites the manifest target, so `planLayoutLinks` (`:2473-2479`) sees `current === link.target`.
-- **Two destinations collapsing onto one source path** (`.claude/settings.json` and `claude/settings.json` both to `root/claude/settings.json`). Checked and ruled out: `planRelayout`'s `claimed` map (`:6152-6156`) refuses with both source paths named.
+- **Relayout can still leave a half-moved folder.** Ruled out: every mutating step is inside the `try` at `:6534-6560`, and the only steps outside it are the backup copies, which run before the first rename.
+- **The outside-repository refusal is bypassable through a symlink.** Ruled out: `canonicalPath` resolves the longest existing prefix (`:384-400`), and the test at `overlay-engine-strict-writes.test.cjs:838-850` covers a link pointing outside the repository.
+- **`overlayOutside` is stale after a setting change mid-run.** Ruled out: `createContext` is the only producer and every command builds one context per run.
+- **The LAYOUT overflow line can advise relayout for a blocked move.** Ruled out: `:3700-3710` partitions `hidden` into `blocked` and `movable` and names each remedy for its own count.
 
 ## Next Focus
 
-- Dimension: correctness
-- Focus area: frontier node `F-1-005` -- the Barter hooks learning both overlay locations and their fail-open/fail-closed behavior
-- Reason: the next seeded depth-1 node, and the operator focus names hook fail-open/fail-closed behavior explicitly
-- Rotation status: first pass on F-1-005; F-1-003 correctness is complete but the node stays open for its remaining dimensions
-- Blocked/productive carry-forward: productive -- reading the engine's refusal and remedy lines produced both findings, so the same technique applies to the hook scripts
-- Required evidence: `barter-overlay-guard-core.cjs`, `barter-git-write-gate.mjs`, the OpenCode plugins and the pre-commit hook, each with file:line, read through `git -C barter/ai-speckit`
+- Dimension: security
+- Frontier node: F-1-002 (engine path safety and remedies)
+- Focus area: `.skilled/commands/doctor/scripts/overlay-engine.cjs` path containment, the setting reader, and the guard/pre-commit trust boundary
+- Reason: correctness is clean apart from one diagnostic; the same code is the trust boundary for a consumer's overlay folder, so containment and refusal paths need their own pass.
+- Rotation status: correctness complete for F-1-002; security next on the same node.
+- Blocked/productive carry-forward: none blocked. The `resolveOverlayDir` diagnostic finding is productive for the security pass because the same branch decides containment.
+- Required evidence: `isWithin`, `canonicalPath`, `canonicalPathWithoutLeaf`, `resolveRemoveRootPath`, `isProtectedReadPath`, and the `guard`/`pre-commit` entry points.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS
