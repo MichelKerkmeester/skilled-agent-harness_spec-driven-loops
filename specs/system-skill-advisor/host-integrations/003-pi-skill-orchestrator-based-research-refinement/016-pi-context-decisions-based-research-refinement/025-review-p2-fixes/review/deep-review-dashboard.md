@@ -18,14 +18,13 @@ Reducer-generated observability surface for the active review packet.
 - Review Target: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes (spec-folder)
 - Started: 2026-11-21T14:42:00.001Z
 - Status: COMPLETE
-- Iteration: 3 of 3
-- Provisional Verdict: FAIL
-- Failed required gates at stop: coverage
+- Iteration: 4 of 4
+- Provisional Verdict: PASS
 - hasSearchDebt: false
-- hasAdvisories: false
+- hasAdvisories: true
 - Session ID: 2026-11-21T14:41:59Z
 - Parent Session: none
-- Lifecycle Mode: new
+- Lifecycle Mode: completed-continue
 - Generation: 1
 - continuedFromRun: none
 - stopReason: maxIterationsReached
@@ -48,8 +47,8 @@ Reducer-generated observability surface for the active review packet.
 |----------|------:|
 | P0 (Blockers) | 0 |
 | P1 (Required) | 0 |
-| P2 (Suggestions) | 7 |
-| Resolved | 0 |
+| P2 (Suggestions) | 1 |
+| Resolved | 7 |
 
 <!-- /ANCHOR:findings-summary -->
 <!-- ANCHOR:progress -->
@@ -60,6 +59,7 @@ Reducer-generated observability surface for the active review packet.
 | 1 | correctness | correctness | 1.00 | 0/0/2 | complete |
 | 2 | security | security | 0.33 | 0/0/1 | complete |
 | 3 | traceability+maintainability | traceability/maintainability | 0.57 | 0/0/4 | complete |
+| 4 | traceability: replay of the seven P2 findings at dfdaee3a064 and core protocol rerun | traceability | 0.13 | 0/0/1 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -67,8 +67,8 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 6 |
-| security | covered | 1 |
+| correctness | covered | 1 |
+| security | covered | 0 |
 | traceability | covered | 0 |
 | maintainability | covered | 0 |
 
@@ -87,9 +87,9 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 1.00 -> 0.33 -> 0.57
-- convergenceScore: 0.43
-- openFindings: 7
+- Last 3 ratios: 0.33 -> 0.57 -> 0.13
+- convergenceScore: 0.88
+- openFindings: 1
 - persistentSameSeverity: 0
 - severityChanged: 0
 - repeatedFindings (deprecated combined bucket): 0
@@ -103,7 +103,7 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=6, ruledOut=8, deferred=0, blocked=0
+- candidateCoverage: covered=7, ruledOut=11, deferred=0, blocked=0
 
 ### Search Debt
 [None yet]
@@ -118,6 +118,10 @@ No corrupt JSONL lines detected.
 - iteration 2 remote_destructive_call (ruled_out): verified by direct read; evidence=.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1852
 - iteration 3 comment_hygiene (ruled_out): verified by grep and direct read; evidence=.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1368, .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1561
 - iteration 3 fixture_realism (ruled_out): real socket bound where behavior depends on a socket; evidence=.skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:914, .skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:922
+- iteration 4 input_parsing (ruled_out): fixed at HEAD; resolved; evidence=.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:206, .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1279, .skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:901
+- iteration 4 completion_metadata (ruled_out): fixed at HEAD; resolved; evidence=specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/goal.md:57
+- iteration 4 destructive_path (ruled_out): fixed at HEAD; resolved; evidence=.skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:1136, .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:2011
+- iteration 4 doc_drift (ruled_out): fixed at HEAD; resolved; evidence=specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:64, specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:94, specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:156, specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:172
 
 ### Clean Search Proof
 - iteration 1 fixture_realism (ruled_out): SL4-005 closed: real net.createServer socket at vitest :914-922, regular file at :936-955, fixed names type-agnostic at :1368-1370; evidence=.skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:914, .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1371
@@ -129,15 +133,19 @@ No corrupt JSONL lines detected.
 - iteration 2 remote_destructive_call (ruled_out): verified by direct read; evidence=.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1852
 - iteration 3 comment_hygiene (ruled_out): verified by grep and direct read; evidence=.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1368, .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1561
 - iteration 3 fixture_realism (ruled_out): real socket bound where behavior depends on a socket; evidence=.skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:914, .skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:922
+- iteration 4 input_parsing (ruled_out): fixed at HEAD; resolved; evidence=.skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:206, .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1279, .skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:901
+- iteration 4 completion_metadata (ruled_out): fixed at HEAD; resolved; evidence=specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/goal.md:57
+- iteration 4 destructive_path (ruled_out): fixed at HEAD; resolved; evidence=.skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:1136, .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:2011
+- iteration 4 doc_drift (ruled_out): fixed at HEAD; resolved; evidence=specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:64, specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:94, specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:156, specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:172
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none. All four dimensions are covered, and the iteration cap is reached. - Focus area: synthesis. - Reason: this is the last iteration under the cap. - Rotation status: correctness, security, traceability and maintainability are complete. - Blocked/productive carry-forward: diffing a commit with `git show` against the packet's Observed cells was productive. `fixture_realism` stays exhausted. - Required evidence: synthesis should state that SL4-005 is ruled out for AC-024 and list the seven active P2 findings. Review verdict: PASS
+- Dimension: none. The extended cap of 4 is reached, and all four dimensions are covered. - Focus area: synthesis. - Reason: last iteration. - Rotation status: correctness, security, traceability and maintainability are complete. - Blocked/productive carry-forward: replaying each finding against `git show <fix>` plus a probe of the current file was productive. `fixture_realism` stays exhausted. - Required evidence: synthesis should record all seven prior P2 findings as resolved at `dfdaee3a064`, carry R4-P2-001 as the one active P2, and state SL4-005 as ruled out for AC-024. Review verdict: PASS
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 7 active P2 finding(s) — advisory only; release is not blocked by P2 alone, but the debt is tracked here so it does not disappear.
+- 1 active P2 finding(s) — advisory only; release is not blocked by P2 alone, but the debt is tracked here so it does not disappear.
 
 <!-- /ANCHOR:active-risks -->

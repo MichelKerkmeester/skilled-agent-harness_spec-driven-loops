@@ -61,14 +61,15 @@ Follow-up review of `specs/system-skill-advisor/host-integrations/003-pi-skill-o
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
 - P1 (Required): 0
-- P2 (Suggestions): 7
-- Resolved: 0
+- P2 (Suggestions): 1
+- Resolved: 7
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
 - Iteration 1: direct reads of each fix site plus small `node` probes of exported functions (`runsModelServer`, `nodeScriptOf`); reading the retired supervisor at merge-base `bf6806ad4b3` settled reach.
 - Iteration 2: a scratchpad probe of `resolveContainedTarget` with a linked root proved the `:1996` folder check is load-bearing; a grep of every `symlinkSync` fixture showed no test reaches it.
 - Iteration 3: diffing the fix commit (`git show 1d1bfadab67 -- <doc>`) against the packet's Observed cells and Known Limitations surfaced four doc-to-commit drifts; a grep of current definition lines exposed the stale V:/T: pins.
+- Iteration 4: replaying each finding against `git show dfdaee3a064` plus probes of `nodeScriptOf`/`runsModelServer` and a full Vitest run (106/106) resolved all seven P2 findings; a grep for `every push` surfaced R4-P2-001 at `025/spec.md:201`.
 
 ---
 
@@ -76,6 +77,7 @@ Follow-up review of `specs/system-skill-advisor/host-integrations/003-pi-skill-o
 - Iteration 1: a probe command naming a dotenv file was refused by the env-secret hook; use neutral file names in probes.
 - Iteration 2: nothing failed; the check-to-apply race and printed command lines were read and ruled out rather than filed.
 - Iteration 3: nothing failed; the skill_agent, agent_cross_runtime and playbook_capability overlays were not run for budget.
+- Iteration 4: T036's negative control was not rerun; its dependency was proven from the single producer of the refusal reason string instead.
 
 ---
 
@@ -85,6 +87,11 @@ Follow-up review of `specs/system-skill-advisor/host-integrations/003-pi-skill-o
 - What was tried: **SL4-005 `fixture_realism`: ruled out.** The only branch whose behavior depends on a file being a socket is `sweep-lane-residue.mjs:1371`, and it is tested both ways: a real socket bound with `net.createServer().listen(custom)` and asserted with `lstatSync(custom).isSocket()` (vitest `:914-922`), and a regular file kept (vitest `:936-955`). The fixed names are type-agnostic by design (`:1368-1370`), so the empty regular files written for them at vitest `:1032`, `:1122` and `:1134` match the code's contract rather than faking a socket. The apply delete path was proven on a real socket too: the `:905` test deletes `custom.sock` through the same `deleteServerFile` route.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: **SL4-005 `fixture_realism`: ruled out.** The only branch whose behavior depends on a file being a socket is `sweep-lane-residue.mjs:1371`, and it is tested both ways: a real socket bound with `net.createServer().listen(custom)` and asserted with `lstatSync(custom).isSocket()` (vitest `:914-922`), and a regular file kept (vitest `:936-955`). The fixed names are type-agnostic by design (`:1368-1370`), so the empty regular files written for them at vitest `:1032`, `:1122` and `:1134` match the code's contract rather than faking a socket. The apply delete path was proven on a real socket too: the `:905` test deletes `custom.sock` through the same `deleteServerFile` route.
+
+### `spec.md:39` "every push": it describes what the 024 review found, not the current trigger. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: `spec.md:39` "every push": it describes what the 024 review found, not the current trigger.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `spec.md:39` "every push": it describes what the 024 review found, not the current trigger.
 
 ### 005 `acceptance-criteria.md` `**Status:** Draft` while every row is Met: seven of eight phases carry Draft, so it is a convention, not drift from this packet. -- BLOCKED (iteration 1, 1 attempts)
 - What was tried: 005 `acceptance-criteria.md` `**Status:** Draft` while every row is Met: seven of eight phases carry Draft, so it is a convention, not drift from this packet.
@@ -116,6 +123,11 @@ Follow-up review of `specs/system-skill-advisor/host-integrations/003-pi-skill-o
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Process command lines printed at `:2127`: they come from the user's own `ps` output on the user's own terminal, are filtered to model server and Ollama processes, and the known launcher passes no secret on argv.
 
+### SL4-005 `fixture_realism`: exhausted, not searched again. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: SL4-005 `fixture_realism`: exhausted, not searched again.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: SL4-005 `fixture_realism`: exhausted, not searched again.
+
 ### SL4-005 `fixture_realism`: ruled out in iteration 1 and exhausted. It was not searched again; the citations above were rechecked at HEAD. -- BLOCKED (iteration 3, 1 attempts)
 - What was tried: SL4-005 `fixture_realism`: ruled out in iteration 1 and exhausted. It was not searched again; the citations above were rechecked at HEAD.
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -125,6 +137,11 @@ Follow-up review of `specs/system-skill-advisor/host-integrations/003-pi-skill-o
 - What was tried: The 005 `acceptance-criteria.md` Draft status is a convention, and old goal-log rows are superseded. Both are exhausted per the strategy.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: The 005 `acceptance-criteria.md` Draft status is a convention, and old goal-log rows are superseded. Both are exhausted per the strategy.
+
+### The unlisted-option residual of R1-P2-001: it is documented in the constant's comment and in Known Limitation 4, and no known launcher passes such an option, so it is not refiled. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: The unlisted-option residual of R1-P2-001: it is documented in the constant's comment and in Known Limitation 4, and no known launcher passes such an option, so it is not refiled.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: The unlisted-option residual of R1-P2-001: it is documented in the constant's comment and in Known Limitation 4, and no known launcher passes such an option, so it is not refiled.
 
 <!-- /ANCHOR:exhausted-approaches -->
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
@@ -144,12 +161,13 @@ Follow-up review of `specs/system-skill-advisor/host-integrations/003-pi-skill-o
 - Iteration 2: process command lines printed at `sweep-lane-residue.mjs:2127` ruled out (user's own `ps`, filtered, no known secret on argv).
 - Iteration 2: Ollama host output ruled out as a credential leak (`url.origin` at `:846` drops userinfo; DELETE only after explicit yes).
 - Iteration 3: SL4-005 disposition for AC-024 restated as ruled out (citations rechecked at HEAD: vitest `:905`, `:914`, `:922`, `:926`, `:936`); the test-header coverage matrix omitting the two new cells judged too small to file.
+- Iteration 4: `025/spec.md:39` "every push" ruled out (describes the 024 review's finding); R1-P2-001's unlisted-option residual not refiled (documented in code and Known Limitation 4).
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none. All four dimensions are covered, and the iteration cap is reached. - Focus area: synthesis. - Reason: this is the last iteration under the cap. - Rotation status: correctness, security, traceability and maintainability are complete. - Blocked/productive carry-forward: diffing a commit with `git show` against the packet's Observed cells was productive. `fixture_realism` stays exhausted. - Required evidence: synthesis should state that SL4-005 is ruled out for AC-024 and list the seven active P2 findings. Review verdict: PASS
+- Dimension: none. The extended cap of 4 is reached, and all four dimensions are covered. - Focus area: synthesis. - Reason: last iteration. - Rotation status: correctness, security, traceability and maintainability are complete. - Blocked/productive carry-forward: replaying each finding against `git show <fix>` plus a probe of the current file was productive. `fixture_realism` stays exhausted. - Required evidence: synthesis should record all seven prior P2 findings as resolved at `dfdaee3a064`, carry R4-P2-001 as the one active P2, and state SL4-005 as ruled out for AC-024. Review verdict: PASS
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT

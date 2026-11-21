@@ -45,8 +45,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 025-review-p2-fixes |
-| **Status** | In Progress |
-| **Completed** | Not yet: AC-024 waits on the follow-up `/deep:review` |
+| **Status** | Complete |
+| **Completed** | 2026-11-21 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -103,6 +103,10 @@ The follow-up `/deep:review` ran three iterations on `1d1bfadab67` (`review/iter
 4. **R3-P2-001 to R3-P2-004.** These docs described the tree before `1d1bfadab67`. They now record the five 024 ticks, the commit and the README change, the remaining `nodeScriptOf` limit and the `statSync`, and they cite functions and test titles in place of line numbers.
 
 The Vitest file went from 103 to 106 passing tests.
+
+### Follow-up review
+
+The first three-iteration stop was FAIL on the coverage gate (`traceability-incomplete`); that report is kept as `review/review-report-v1-r3.md`. A one-iteration `--extend=1` extension then replayed the seven P2s against `dfdaee3a064` and resolved all of them. The final verdict from `review-verdict.cjs` is PASS with one advisory, 0 P0, 0 P1 and 1 P2, and traceability passes 3 of 3 protocols. The advisory, R4-P2-001, said the `spec.md` risk row claimed the gate runs on every push. That row now names the pull-request trigger and the `main` and `skilled/**` push filter. The edit came after the review stopped, so no iteration re-verified it. SL4-005 was ruled out in iteration 1 and reconfirmed in iteration 3, because the socket-dependent branch has a real-socket test.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -142,7 +146,9 @@ The Vitest file went from 103 to 106 passing tests.
 | G11 comment hygiene | No line |
 | `npm run typecheck` in `runtime/cli` | Exit 0 |
 | Measured `runsModelServer` command | `true true`; the spaced row returned false on the unfixed tool |
-| G12 follow-up `/deep:review` | Three iterations ran and found seven P2 findings, all fixed above. The report and the verdict wait on the orchestrator's re-review |
+| G12 follow-up `/deep:review` | PASS with one advisory after four iterations: FAIL on the coverage gate at three, then PASS after the `--extend=1` iteration; the advisory was fixed after the stop |
+| sk-code quality gate on `dfdaee3a064` | 0 P0, 0 P1, 0 P2 |
+| Strict validation on the final docs | 025 1/1, 024 9/9, 016 26/26 `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -150,11 +156,10 @@ The Vitest file went from 103 to 106 passing tests.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **AC-024 is still open.** The follow-up review's iterations rule SL4-005 out, but AC-024 and T034 wait on the orchestrator's re-review to record the verdict and SL4-005's disposition in the report. The packet stays In Progress until it does.
-2. **024 goal criterion 4 is ticked on dispositions, not fixes.** Its text says the alignment findings are "fixed and committed", and C-08 and BAT-01 were dispositioned instead, in 008's implementation summary. The criterion's text was not amended the way criterion 3 was. Amending it would make the text and the tick agree, and that is the operator's call.
-3. **The `npm ci` flags are not on record.** The conducting session reports exit 0 in the three packages, but not whether `--offline --no-audit --no-fund` were passed. This run observed the absence checks, both typechecks and the shared tests.
-4. **Some cases have no test, and one command shape is still misread.** A directory or a symlink at an address name takes the same `isSocket()` rule as the regular file, with no test of its own. A node option missing from `NODE_VALUE_OPTIONS` and written with its value as a separate word still has that value read as the script: `node --test-reporter spec /x/.skilled/bin/hf-model-server.cjs` reads `spec` and is not seen as a model server. Machine mode can then report the server absent while it runs, and apply can delete its socket and pid files. No known launcher passes such an option.
-5. **The continuity frontmatter is stale.** No `/speckit:save` ran, so `_memory.continuity` in this packet still describes the planning session.
+1. **024 goal criterion 4 is ticked on dispositions, not fixes.** Its text says the alignment findings are "fixed and committed", and C-08 and BAT-01 were dispositioned instead, in 008's implementation summary. The criterion's text was not amended the way criterion 3 was. Amending it would make the text and the tick agree, and that is the operator's call.
+2. **The `npm ci` flags are not on record.** The conducting session reports exit 0 in the three packages, but not whether `--offline --no-audit --no-fund` were passed. This run observed the absence checks, both typechecks and the shared tests.
+3. **Some cases have no test, and one command shape is still misread.** A directory or a symlink at an address name takes the same `isSocket()` rule as the regular file, with no test of its own. A node option missing from `NODE_VALUE_OPTIONS` and written with its value as a separate word still has that value read as the script: `node --test-reporter spec /x/.skilled/bin/hf-model-server.cjs` reads `spec` and is not seen as a model server. Machine mode can then report the server absent while it runs, and apply can delete its socket and pid files. No known launcher passes such an option.
+4. **The continuity frontmatter is stale.** No `/speckit:save` ran, so `_memory.continuity` in this packet still describes the planning session.
 <!-- /ANCHOR:limitations -->
 
 ---

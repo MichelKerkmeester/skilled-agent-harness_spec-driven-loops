@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7122,
-    "ok": 20269,
+    "missing-frontmatter": 7124,
+    "ok": 20270,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29019,
+  "documentsScanned": 29022,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1a11013529320f85cd0656ba2d35848787e98f16d178994bf13962460d74f016",
+  "manifestHash": "5fe9b2de4e5eea69a20f0edec3b3cad886cef7092da036d66a970f02d5a1aaa7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -42908,6 +42908,12 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/review/prompts/iteration-1.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -42921,6 +42927,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/review/prompts/iteration-4.md",
       "reason": "no opening frontmatter delimiter"
     },
     {

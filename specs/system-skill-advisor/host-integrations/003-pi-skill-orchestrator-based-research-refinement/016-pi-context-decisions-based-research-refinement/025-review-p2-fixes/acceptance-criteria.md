@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-21T13:34:37Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    next_safe_action: "None: every criterion is Met"
     blockers: []
     key_files: []
     session_dedup:
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 025-review-p2-fixes
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-21
 <!-- /ANCHOR:metadata -->
 
@@ -70,11 +70,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-017 | REQ-007 | Given the allowlist reasons, When they are read, Then none cites a line number and all 47 paths are unchanged | `rg -n '[Ll]ines? [0-9]' ALLOW` prints no line, and repo mode still matches 47 of 47 (AC-008). Observed: the `rg` printed no line; the 47 paths are unchanged in order; repo mode matches 47 of 47 | Met | - |
 | AC-018 | REQ-008 | Given the 024 parent goal, When criteria are ticked and the log is appended, Then each tick cites its check, and the new progress row is written through `goal.cjs packet-log` | `rg -n 'Complete'` in the 024 progress log shows the new row, and `git diff` on the goal shows additions only. Observed: `git show 1d1bfadab67` on the goal ticks all five criteria and adds two log rows. The `Phases 001 to 008` row cites the checks for criteria 1, 2, 3 and 5 and says criterion 4 is open. The later `Criterion 4` row reads Complete, resting on the C-08 and BAT-01 dispositions in `008-cleanup-wiring-and-gating/implementation-summary.md`. The log is append-only, so the later row supersedes the earlier. Criterion 4 is ticked on those two dispositions, not fixes, and its "fixed and committed" text was not amended. Besides the two rows, the five ticks are the only changed lines. The first row went through `goal.cjs packet-log`, and how the second was written is not recorded | Met | - |
 | AC-019 | REQ-009 | Given phase 005 T053 and AC-014, When they close, Then the typecheck and shared tests exit 0 and the absence checks print `No such file` twice, and the operator's `npm ci` exit status is cited from the operator's report | G10 commands exit 0; the `ls` check prints two `No such file` lines; phase commit `1f85a9dd6dd` exists. Observed: G10 typechecks exit 0 and the shared tests exit 0 with 9 of 9; the `ls` check printed two `No such file` lines; `git cat-file -t 1f85a9dd6dd` prints `commit`; the `npm ci` exit status is the conducting session's report | Met | - |
-| AC-020 | REQ-009 | Given phase 005 closes, When its documents and the parents are read, Then each status field reads Complete, and the 016 row 24 reads Complete | `rg -n 'Blocked|Unmet|not committed'` shows no status field left in the 005 documents, and `rg -n '^\| 24 \|' ../spec.md` shows Complete. Observed: the 005 `rg` leaves only the notation row, the AC legend, the dependency table's Impact-if-Blocked text and the superseded log row 78; the 005 and 024 status fields and 016 row 24 read Complete | Met | - |
+| AC-020 | REQ-009 | Given phase 005 closes, When its documents and the parents are read, Then each status field reads Complete, and the 016 row 24 reads Complete | `rg -n 'Blocked\|Unmet\|not committed'` shows no status field left in the 005 documents, and `rg -n '^\| 24 \|' ../spec.md` shows Complete. Observed: the 005 `rg` leaves only the notation row, the AC legend, the dependency table's Impact-if-Blocked text and the superseded log row 78; the 005 and 024 status fields and 016 row 24 read Complete | Met | - |
 | AC-021 | REQ-010 | Given the 23 checked CHK rows in 001 and 006, When they are read, Then each carries an Evidence clause that names a file line or a command, and CHK-022 and CHK-023 cite the Vitest cases that back them | The count of checked rows with an Evidence clause equals the count of checked rows in both files. Observed: 001 has 34 of 34 checked CHK rows with Evidence and 006 has 35 of 35; CHK-022 cites `exits 0 for a repository with no tracked files` and `exits 0 when the only hit is allowlisted by its exact path`, and CHK-023 cites `exits 2 when git cannot be found` and the `refuses %s` table, each with its line number at `bf3bca7a8b1` (`:514`, `:497`, `:529`, `:404`) | Met | - |
 | AC-022 | REQ-011 | Given the 016 phase map, When it is read, Then row 25 names `025-review-p2-fixes` beside rows 23 and 24 | `rg -n '025-review-p2-fixes' ../spec.md` prints one line. Observed: `rg -n '025-review-p2-fixes' ../spec.md` prints line 161 only | Met | - |
 | AC-023 | REQ-004 | Given the tool and its test, When the comment-hygiene check runs, Then no finding id, packet number or test id appears in a code comment or a test name | `rg -n -e 'R[0-9]+-P2-' -e 'SL4-00' -e '025-review'` on the tool and the test prints no line. Observed: the `rg` printed no line (exit 1) | Met | - |
-| AC-024 | REQ-012 | Given the fixes are in place, When the follow-up `/deep:review` on the native executor replays them, Then its report records a verdict and states SL4-005's disposition | The review's report names the verdict and SL4-005's disposition | Unmet | - |
+| AC-024 | REQ-012 | Given the fixes are in place, When the follow-up `/deep:review` on the native executor replays them, Then its report records a verdict and states SL4-005's disposition | The review's report names the verdict and SL4-005's disposition. Observed: after a three-iteration stop that was FAIL on the coverage gate (`traceability-incomplete`, kept as `review/review-report-v1-r3.md`) and a one-iteration `--extend=1` extension, `review-verdict.cjs` returned `{"verdict":"PASS","has_advisories":true,"active_p0":0,"active_p1":0,"active_p2":1,"search_debt":0,"failed_required_gate_ids":[]}`; traceability 3 of 3 protocols pass with 0 gating failures. Iteration 4 resolved the seven earlier P2s against `dfdaee3a064`. SL4-005 was ruled out in iteration 1 and reconfirmed in iteration 3, because the socket-dependent branch has a real-socket test. The one advisory, R4-P2-001, was fixed in `spec.md` after the review stopped and was not re-verified by an iteration | Met | - |
 
 ### Status values
 
@@ -99,7 +99,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-No. AC-001 to AC-023 are Met: the three fixes landed with their tests, and every gate in plan.md section 5 except G12 passed on the tree of `1d1bfadab67`. After the follow-up review fixes, G1, G3, G7 and G11 were rerun and pass. AC-024 stays Unmet until the follow-up `/deep:review` records a verdict and decides SL4-005.
+Yes. AC-001 to AC-024 are Met. The three fixes landed with their tests in `1d1bfadab67`, and the follow-up review fixes landed in `dfdaee3a064`, the pinned code SHA. On that tree Vitest passes 106 of 106, repo mode exits 0 at 47 of 47 with live 0, the gate test passes 2 of 2, the typecheck exits 0 and the sk-code quality gate reports no finding. The follow-up `/deep:review` closed PASS with one advisory, R4-P2-001, which was fixed after the review stopped and not re-verified by an iteration, and it ruled SL4-005 out.
 <!-- /ANCHOR:closure -->

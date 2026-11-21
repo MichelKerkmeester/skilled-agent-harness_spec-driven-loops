@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-21 |
 | **Branch** | `worktrees/497-ollama-lane-removal` |
 | **Parent Spec** | ../spec.md |
@@ -198,7 +198,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Dimension | Score | Notes |
 |-----------|-------|-------|
 | Scope | 10/25 | About 25 files: one tool, one test file, one allowlist, two docs, one workflow comment, the 024, 005 and 016 metadata, two checklists and four generated index outputs |
-| Risk | 12/25 | The apply path deletes files, and repo mode gates every push and pull request |
+| Risk | 12/25 | The apply path deletes files, and repo mode gates every pull request and pushes to `main` and `skilled/**` |
 | Research | 4/20 | The 024 review located each defect at file and line, and the reproduction is one command |
 | **Total** | **26/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
@@ -208,8 +208,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Does the follow-up `/deep:review` accept the real-socket fixture as closing SL4-005? The registry record (`../024-ollama-lane-removal/review/deep-review-findings-registry.json`, id SL4-005) carries class `fixture_realism` and evidence `sweep-lane-residue.vitest.ts:175`, and it does not describe a plain-file socket. The review decides.
-- Is the operator's report that `npm ci --offline` exited 0 in each of the three packages enough to tick T053? This packet observes the absence checks and runs the typecheck and shared tests itself, but it does not observe the install's exit status.
+- Does the follow-up `/deep:review` accept the real-socket fixture as closing SL4-005? The registry record (`../024-ollama-lane-removal/review/deep-review-findings-registry.json`, id SL4-005) carries class `fixture_realism` and evidence `sweep-lane-residue.vitest.ts:175`, and it does not describe a plain-file socket. The review decides. Answered: yes. Iteration 1 ruled SL4-005 out and iteration 3 reconfirmed it, because the socket-dependent branch has a real-socket test (`review/iterations/iteration-001.md`, `iteration-003.md`).
+- Is the operator's report that `npm ci --offline` exited 0 in each of the three packages enough to tick T053? This packet observes the absence checks and runs the typecheck and shared tests itself, but it does not observe the install's exit status. Answered: yes. AC-019 is Met with the install's exit status cited from the operator's report, and Known Limitation 2 in `implementation-summary.md` records that the flags are not on record.
 <!-- /ANCHOR:questions -->
 
 ---

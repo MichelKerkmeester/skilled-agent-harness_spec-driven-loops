@@ -2,15 +2,47 @@
   "sessionId": "2026-11-21T14:41:59Z",
   "parentSessionId": null,
   "generation": 1,
-  "lineageMode": "new",
+  "lineageMode": "completed-continue",
   "continuedFromRun": null,
   "terminalStop": {
     "stopReason": "maxIterationsReached",
-    "totalIterations": 3,
-    "timestamp": "2026-11-21T15:08:30.926Z"
+    "totalIterations": 4,
+    "timestamp": "2026-11-21T15:30:04.273Z"
   },
   "status": "COMPLETE",
   "openFindings": [
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The 025 spec's complexity table still says repo mode gates every push, the claim REQ-005 removes from the three named sites",
+      "file": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md",
+      "line": 201,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
     {
       "findingId": "R1-P2-001",
       "severity": "P2",
@@ -27,7 +59,7 @@
       "dimension": "correctness",
       "firstSeen": 1,
       "lastSeen": 1,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 1,
@@ -57,7 +89,7 @@
       "dimension": "correctness",
       "firstSeen": 1,
       "lastSeen": 1,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 1,
@@ -87,7 +119,7 @@
       "dimension": "security",
       "firstSeen": 2,
       "lastSeen": 2,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 2,
@@ -117,7 +149,7 @@
       "dimension": "correctness",
       "firstSeen": 3,
       "lastSeen": 3,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 3,
@@ -147,7 +179,7 @@
       "dimension": "correctness",
       "firstSeen": 3,
       "lastSeen": 3,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 3,
@@ -177,7 +209,7 @@
       "dimension": "correctness",
       "firstSeen": 3,
       "lastSeen": 3,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 3,
@@ -207,7 +239,7 @@
       "dimension": "correctness",
       "firstSeen": 3,
       "lastSeen": 3,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 3,
@@ -222,14 +254,11 @@
       "mergedFindingIds": []
     }
   ],
-  "resolvedFindings": [],
   "blockedStopHistory": [],
   "terminalGates": {
-    "run": 4,
+    "run": 5,
     "stopReason": "maxIterationsReached",
-    "failedRequiredGateIds": [
-      "coverage"
-    ]
+    "failedRequiredGateIds": []
   },
   "persistentSameSeverity": [],
   "severityChanged": [],
@@ -243,36 +272,40 @@
   "findingsBySeverity": {
     "P0": 0,
     "P1": 0,
-    "P2": 7
+    "P2": 1
   },
-  "openFindingsCount": 7,
-  "resolvedFindingsCount": 0,
-  "convergenceScore": 0.42900000000000005,
-  "graphConvergenceScore": 0.967,
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 7,
+  "convergenceScore": 0.875,
+  "graphConvergenceScore": 0.97,
   "graphDecision": "CONTINUE",
   "graphBlockers": [],
   "graphSignals": {
     "dimensionCoverage": 1,
-    "evidenceDensity": 0.7777777777777778,
+    "evidenceDensity": 0.8,
     "findingStability": 1,
     "hotspotSaturation": 1,
     "p0ResolutionRate": 1,
-    "score": 0.967
+    "score": 0.97
   },
   "candidateCoverage": {
     "covered": [
       "completion_state_drift",
       "doc_code_drift",
       "doc_commit_drift",
+      "doc_drift",
       "input_parsing",
       "stale_evidence_pin",
       "symlink_redirect"
     ],
     "ruledOut": [
       "comment_hygiene",
+      "completion_metadata",
       "destructive_path",
+      "doc_drift",
       "false_negative_status",
       "fixture_realism",
+      "input_parsing",
       "path_containment",
       "remote_destructive_call",
       "secret_exposure",
@@ -283,11 +316,12 @@
     "byBugClass": {
       "input_parsing": {
         "covered": true,
-        "ruledOut": false,
+        "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          1
+          1,
+          4
         ]
       },
       "completion_state_drift": {
@@ -306,7 +340,8 @@
         "deferred": false,
         "blocked": false,
         "iterations": [
-          1
+          1,
+          4
         ]
       },
       "false_negative_status": {
@@ -407,6 +442,24 @@
         "blocked": false,
         "iterations": [
           3
+        ]
+      },
+      "doc_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "completion_metadata": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
         ]
       }
     }
@@ -553,6 +606,78 @@
         ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:922"
       ],
       "reason": "real socket bound where behavior depends on a socket"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:206",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1279",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:901"
+      ],
+      "bugClass": "input_parsing",
+      "disposition": "ruled_out",
+      "rationale": "probe prints the server path and true for --env-file and --inspect-port",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:206",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1279",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:901"
+      ],
+      "reason": "fixed at HEAD; resolved"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/goal.md:57"
+      ],
+      "bugClass": "completion_metadata",
+      "disposition": "ruled_out",
+      "rationale": "six criteria ticked, narrowed criterion 4 matches git grep, T054 names 1f85a9dd6dd",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/goal.md:57"
+      ],
+      "reason": "fixed at HEAD; resolved"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:1136",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:2011"
+      ],
+      "bugClass": "destructive_path",
+      "disposition": "ruled_out",
+      "rationale": "case asserts the refusal reason only :2011 produces; 106 of 106 pass",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:1136",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:2011"
+      ],
+      "reason": "fixed at HEAD; resolved"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:64",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:94",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:156",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:172"
+      ],
+      "bugClass": "doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "stale phrases and T:/V: pins grep to nothing; KL4 and NFR-P01 match probes and code",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:64",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:94",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:156",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:172"
+      ],
+      "reason": "fixed at HEAD; resolved"
     }
   ],
   "cleanSearchProof": [
@@ -696,26 +821,94 @@
         ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:922"
       ],
       "proof": "real socket bound where behavior depends on a socket"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:206",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1279",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:901"
+      ],
+      "bugClass": "input_parsing",
+      "disposition": "ruled_out",
+      "rationale": "probe prints the server path and true for --env-file and --inspect-port",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:206",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1279",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:901"
+      ],
+      "proof": "fixed at HEAD; resolved"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/goal.md:57"
+      ],
+      "bugClass": "completion_metadata",
+      "disposition": "ruled_out",
+      "rationale": "six criteria ticked, narrowed criterion 4 matches git grep, T054 names 1f85a9dd6dd",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/goal.md:57"
+      ],
+      "proof": "fixed at HEAD; resolved"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:1136",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:2011"
+      ],
+      "bugClass": "destructive_path",
+      "disposition": "ruled_out",
+      "rationale": "case asserts the refusal reason only :2011 produces; 106 of 106 pass",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:1136",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:2011"
+      ],
+      "proof": "fixed at HEAD; resolved"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:64",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:94",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:156",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:172"
+      ],
+      "bugClass": "doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "stale phrases and T:/V: pins grep to nothing; KL4 and NFR-P01 match probes and code",
+      "evidenceRefs": [
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:64",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:94",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md:156",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:172"
+      ],
+      "proof": "fixed at HEAD; resolved"
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "completion_state_drift",
-      "doc_commit_drift",
-      "doc_code_drift",
-      "stale_evidence_pin",
-      "comment_hygiene",
-      "fixture_realism"
+      "input_parsing",
+      "completion_metadata",
+      "destructive_path",
+      "doc_drift"
     ],
     "covered": [
-      "completion_state_drift",
-      "doc_commit_drift",
-      "doc_code_drift",
-      "stale_evidence_pin"
+      "doc_drift"
     ],
     "ruledOut": [
-      "comment_hygiene",
-      "fixture_realism"
+      "input_parsing",
+      "completion_metadata",
+      "destructive_path"
     ],
     "deferred": [],
     "blocked": [],
@@ -725,48 +918,71 @@
     "summary": {
       "required": 3,
       "executed": 3,
-      "pass": 1,
-      "partial": 2,
+      "pass": 3,
+      "partial": 0,
       "fail": 0,
       "blocked": 0,
       "notApplicable": 0,
-      "gatingFailures": 2
+      "gatingFailures": 0
     },
     "results": [
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1371",
-          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1564",
-          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1259",
-          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:36",
-          ".github/workflows/advisory-checks.yml:24",
-          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:171"
+          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:206",
+          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1279",
+          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1303",
+          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:2011",
+          ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:901",
+          ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:1136",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:119",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:172",
+          ".github/workflows/advisory-checks.yml:2",
+          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md:25"
         ],
         "evidenceRefs": [
-          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1371",
-          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:171"
+          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:206",
+          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1279",
+          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:1303",
+          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs:2011",
+          ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:901",
+          ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts:1136",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:119",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md:172",
+          ".github/workflows/advisory-checks.yml:2",
+          ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md:25"
         ],
         "gateClass": "hard",
         "protocolId": "spec_code",
-        "status": "partial",
-        "summary": "REQ-001/002/003/005/006/007 hold in code; NFR-P01 filesystem-call claim no longer holds"
+        "status": "pass",
+        "summary": "REQ-001 to REQ-011 hold at HEAD and NFR-P01 now matches the code; R4-P2-001 is in the complexity table, not a requirement"
       },
       {
         "applicable": true,
         "evidence": [
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:64",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:87",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:170",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:174",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:183",
           "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/acceptance-criteria.md:71",
-          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:172",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/goal.md:57",
           "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/goal.md:91"
         ],
         "evidenceRefs": [
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:64",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:87",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:170",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:174",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:183",
           "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/acceptance-criteria.md:71",
-          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md:172"
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/goal.md:57",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/goal.md:91"
         ],
         "gateClass": "hard",
         "protocolId": "checklist_evidence",
-        "status": "partial",
-        "summary": "AC-018 observation contradicts the commit; several line pins miss HEAD; AC-024 honestly Unmet"
+        "status": "pass",
+        "summary": "checked rows match HEAD (Vitest 106/106 exit 0, probes, no T:/V: pins); T034, CHK-020 and CHK-FIX-007 are honestly open"
       },
       {
         "applicable": true,
@@ -784,10 +1000,7 @@
         "summary": "catalog states the real trigger and the whole-file allowlist limit"
       }
     ],
-    "unfinishedCoreProtocols": [
-      "spec_code",
-      "checklist_evidence"
-    ]
+    "unfinishedCoreProtocols": []
   },
   "divergence": {
     "started": [],

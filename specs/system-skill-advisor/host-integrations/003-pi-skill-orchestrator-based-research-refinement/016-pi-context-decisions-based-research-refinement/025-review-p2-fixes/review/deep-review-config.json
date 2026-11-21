@@ -2,11 +2,11 @@
   "topic": "Review: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes",
   "sessionId": "2026-11-21T14:41:59Z",
   "parentSessionId": null,
-  "lineageMode": "new",
+  "lineageMode": "completed-continue",
   "generation": 1,
-  "continuedFromRun": null,
+  "continuedFromRun": 3,
   "migrationWindowEndsAt": "",
-  "maxIterations": 3,
+  "maxIterations": 4,
   "convergenceThreshold": 0.1,
   "antiConvergence": {
     "minIterations": 2,
@@ -26,7 +26,7 @@
     "maxFrontierNodes": null
   },
   "stuckThreshold": 2,
-  "maxDurationMinutes": 120,
+  "maxDurationMinutes": 240,
   "maxToolCallsPerIteration": 24,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
@@ -52,7 +52,7 @@
     "traceability",
     "maintainability"
   ],
-  "reviewFocus": "Replay each of the ten P2 fixes from 024-ollama-lane-removal/review/review-report.md against the code, and finish the deferred fixture_realism search: do the residue tests bind real sockets where the behavior depends on a socket.",
+  "reviewFocus": "Replay the seven P2 findings of iterations 1 to 3 against commit dfdaee3a064 and mark each resolved or still active, then rerun the core traceability protocols spec_code and checklist_evidence over the 025 packet docs and record each as pass, partial or fail with evidence.",
   "severityThreshold": "P2",
   "crossReference": {
     "core": [
