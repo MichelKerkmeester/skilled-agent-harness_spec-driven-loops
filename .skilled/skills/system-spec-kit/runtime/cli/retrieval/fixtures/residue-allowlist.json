@@ -135,7 +135,7 @@
     },
     {
       "pathPrefixOrGlob": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
-      "reason": "Captured scorer baseline; dated evidence that is never rewritten."
+      "reason": "Captured scorer baseline: dated evidence that only capture-scorer-eval-baseline.mjs writes, replaying the recorded capture date. Never edited by hand."
     },
     {
       "pathPrefixOrGlob": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts",
