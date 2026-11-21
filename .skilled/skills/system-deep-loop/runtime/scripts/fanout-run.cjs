@@ -981,10 +981,32 @@ const DEFAULT_POST_EXIT_GRACE_MS = 5 * 60 * 1000;
 // The iteration count fan-out assumes for a lineage the matrix gives none: the budget
 // and timeout bounds size every such lineage from it.
 const DEFAULT_LINEAGE_ITERATIONS = 12;
-function stopActiveLineageProcesses(signal) {
+/**
+ * Signal every lineage process this runner still holds, as an operator's --stop would.
+ *
+ * Each child is named by the latest spawned row for its pid and goes through the classify
+ * step --stop uses, so a leader that still answers is signalled as a group, an exited
+ * leader's members one by one, and a member --stop would spare is left alone. A child with
+ * no spawned row cannot be named, and only this runner can reach it, so it is signalled as
+ * before.
+ *
+ * @param {string} signal - The signal that is stopping the runner.
+ * @param {Object[]} records - The run's status ledger rows.
+ * @returns {{live: Array<{label: string, pid: number, members?: number[]}>, refused: Array<{label: string, pid: number, reason: string}>, spared: Array<{label: string, pid: number, process_start: string}>}}
+ */
+function stopActiveLineageProcesses(signal, records) {
+  const lineages = [];
   for (const child of activeLineageProcesses) {
-    terminateLineageProcess(child, signal);
+    const spawnedRow = records.filter((record) => record
+      && record.event === 'spawned'
+      && typeof record.label === 'string'
+      && Number(record.pid) === child.pid).at(-1);
+    if (spawnedRow) lineages.push({ label: spawnedRow.label, pid: child.pid });
+    else terminateLineageProcess(child, signal);
   }
+  const outcome = classifyLineagesForStop(records, lineages);
+  for (const lineage of outcome.live) signalStoppingLineage(lineage, signal);
+  return outcome;
 }
 
 function expandHomeDir(inputPath) {
@@ -1330,6 +1352,45 @@ function exitedLeaderGroupMembers(recordedStart, groupId) {
 }
 
 /**
+ * Sort the lineages a stop is about to signal into the ones it may signal and the ones it
+ * must refuse, and list the group members it must spare.
+ *
+ * Both stop paths call this, so the runner ending its own lineages on a signal spares the
+ * same processes an operator's --stop reports as spared. A live lineage whose leader exited
+ * carries the member pids to signal one by one; the rest are signalled as a group.
+ *
+ * @param {Object[]} records - The run's status ledger rows.
+ * @param {Array<{label: string, pid: number}>} lineages - The lineages to stop.
+ * @returns {{live: Array<{label: string, pid: number, members?: number[]}>, refused: Array<{label: string, pid: number, reason: string}>, spared: Array<{label: string, pid: number, process_start: string}>}}
+ */
+function classifyLineagesForStop(records, lineages) {
+  const live = [];
+  const refused = [];
+  const spared = [];
+  for (const lineage of lineages) {
+    const reason = lineageIdentityRefusal(records, lineage);
+    // Only an unreadable start time can mean an exited leader; a mismatch is a reused pid,
+    // whose new group must never be searched for members.
+    const group = reason === 'identity_unreadable'
+      ? exitedLeaderGroupMembers(recordedProcessStart(records, lineage), lineage.pid)
+      : null;
+    if (group) spared.push(...group.spared.map((member) => ({ label: lineage.label, ...member })));
+    if (group && group.members.length > 0) live.push({ ...lineage, members: group.members });
+    else if (reason) refused.push({ label: lineage.label, pid: lineage.pid, reason });
+    else live.push(lineage);
+  }
+  return { live, refused, spared };
+}
+
+function signalStoppingLineage(lineage, signal) {
+  if (lineage.members) {
+    for (const memberPid of lineage.members) signalIfPresent(memberPid, signal);
+    return;
+  }
+  signalIfPresent(process.platform === 'win32' ? lineage.pid : -lineage.pid, signal);
+}
+
+/**
  * Stop the lineages the ledger shows as live, from a process other than their runner.
  *
  * Live means what a re-run refuses on: a spawned row after the lineage's latest start, no
@@ -1347,21 +1408,7 @@ function exitedLeaderGroupMembers(recordedStart, groupId) {
  */
 async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
   const records = readLedgerRecords(ledgerPath);
-  const live = [];
-  const refused = [];
-  const spared = [];
-  for (const lineage of detectLiveLineages(records)) {
-    const reason = lineageIdentityRefusal(records, lineage);
-    // Only an unreadable start time can mean an exited leader; a mismatch is a reused pid,
-    // whose new group must never be searched for members.
-    const group = reason === 'identity_unreadable'
-      ? exitedLeaderGroupMembers(recordedProcessStart(records, lineage), lineage.pid)
-      : null;
-    if (group) spared.push(...group.spared.map((member) => ({ label: lineage.label, ...member })));
-    if (group && group.members.length > 0) live.push({ ...lineage, members: group.members });
-    else if (reason) refused.push({ label: lineage.label, pid: lineage.pid, reason });
-    else live.push(lineage);
-  }
+  const { live, refused, spared } = classifyLineagesForStop(records, detectLiveLineages(records));
   // A runner still waiting on a leaderless group would settle the lineage again once its
   // members end, so it is stopped first and closes the lineage itself, as it does when the
   // leader still answers.
@@ -1370,10 +1417,7 @@ async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
     : fanoutRunnerPidOf(lineage.pid));
   const runnerPids = new Set(live.map(runnerOf).filter(Boolean));
   for (const runnerPid of runnerPids) signalIfPresent(runnerPid, 'SIGTERM');
-  for (const lineage of live) {
-    if (lineage.members) for (const memberPid of lineage.members) signalIfPresent(memberPid, 'SIGTERM');
-    else signalIfPresent(process.platform === 'win32' ? lineage.pid : -lineage.pid, 'SIGTERM');
-  }
+  for (const lineage of live) signalStoppingLineage(lineage, 'SIGTERM');
   // A spared member keeps the group answering, so a lineage stopped member by member is
   // confirmed by its signalled members alone.
   const answers = (lineage) => (lineage.members
@@ -5099,11 +5143,11 @@ async function main() {
   const writeStoppedSummary = (signal) => {
     if (stoppedSummaryWritten) return;
     stoppedSummaryWritten = true;
-    stopActiveLineageProcesses(signal);
+    const ledgerRecords = readLedgerRecords(ledgerPath);
+    stopActiveLineageProcesses(signal, ledgerRecords);
     const stoppedAtIso = new Date().toISOString();
     // Each lineage still running is closed with its own row, so the next run neither
     // requeues it as an orphan nor charges it a retry, and the summary reads it as stopped.
-    const ledgerRecords = readLedgerRecords(ledgerPath);
     for (const lineage of cliLineages) {
       const snapshot = lineageSnapshots.get(lineage.label);
       if (!snapshot || snapshot.status !== 'running') continue;

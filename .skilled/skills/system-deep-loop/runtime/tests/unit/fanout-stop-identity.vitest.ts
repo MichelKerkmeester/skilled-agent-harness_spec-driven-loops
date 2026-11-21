@@ -76,12 +76,16 @@ function readLedger(baseDir: string): LedgerRow[] {
 
 type RunFixture = { hermetic: HermeticEnv; baseDir: string; args: string[]; env: NodeJS.ProcessEnv };
 
-function makeSleepingRun(testId: string, executorBody = 'sleep 60\nexit 0'): RunFixture {
+function makeSleepingRun(
+  testId: string,
+  executorBody: string | ((tmpDir: string) => string) = 'sleep 60\nexit 0',
+): RunFixture {
   const hermetic = createHermeticEnv(testId);
   hermeticEnvs.push(hermetic);
   const binDir = join(hermetic.tmpDir, 'bin');
   mkdirSync(binDir, { recursive: true });
-  writeFileSync(join(binDir, 'opencode'), `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\n${executorBody}\n`, { mode: 0o755 });
+  const body = typeof executorBody === 'function' ? executorBody(hermetic.tmpDir) : executorBody;
+  writeFileSync(join(binDir, 'opencode'), `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\n${body}\n`, { mode: 0o755 });
   const baseDir = join(hermetic.tmpDir, SPEC_FOLDER, 'research');
   mkdirSync(baseDir, { recursive: true });
   const fanoutConfig = JSON.stringify({
@@ -293,5 +297,45 @@ describe('fanout-run.cjs --stop — lineage identity', () => {
     expect(lastJson(stop.stdout)).toMatchObject({ status: 'ok', stopped: [{ label: 'slow', pid: leaderPid }] });
     expect(groupAlive(leaderPid)).toBe(false);
     expect(terminalRows().map((row) => row.event)).toEqual(['stopped']);
+  }, 40_000);
+
+  it('a runner stopped by a signal spares the members --stop would spare, and still stops the others', async () => {
+    // The executor starts one member, waits past the one-second resolution of a start time,
+    // starts a second and exits; both members keep its output pipe open, so the runner still
+    // holds the exited leader as a running lineage.
+    const fixture = makeSleepingRun('fanout-stop-identity-runner-spare', (tmpDir) => [
+      `sleep 60 & echo $! >> "${tmpDir}/members"`,
+      'sleep 2',
+      `sleep 60 & echo $! >> "${tmpDir}/members"`,
+      'exit 0',
+    ].join('\n'));
+    const run = startRun(fixture);
+    const runExited = new Promise((resolvePromise) => run.on('exit', resolvePromise));
+    const spawned = await waitFor(() => readLedger(fixture.baseDir).find((row) => row.event === 'spawned'));
+    const leaderPid = spawned.pid as number;
+    ownedGroups.push(leaderPid);
+    const membersPath = join(fixture.hermetic.tmpDir, 'members');
+    const [olderPid, newerPid] = await waitFor(() => {
+      if (!existsSync(membersPath)) return null;
+      const pids = readFileSync(membersPath, 'utf8').trim().split('\n').filter(Boolean).map(Number);
+      return pids.length === 2 && processStart(leaderPid) === '' && groupAlive(leaderPid) ? pids : null;
+    });
+
+    // Every member of a real lineage group descends from its leader, so none starts before
+    // the recorded spawn and the spare branch cannot be reached honestly. This row is the
+    // injection: it repeats the spawn with the newer member's start, and the latest row for
+    // a pid is the one a stop reads.
+    writeFileSync(join(fixture.baseDir, 'orchestration-status.log'), `${JSON.stringify({
+      ...spawned,
+      process_start: processStart(newerPid),
+    })}\n`, { flag: 'a' });
+
+    run.kill('SIGTERM');
+    await runExited;
+
+    const pidAlive = (pid: number) => processStart(pid) !== '';
+    expect(pidAlive(olderPid)).toBe(true);
+    expect(pidAlive(newerPid)).toBe(false);
+    expect(readLedger(fixture.baseDir).filter((row) => row.event === 'stopped').map((row) => row.label)).toEqual(['slow']);
   }, 40_000);
 });
