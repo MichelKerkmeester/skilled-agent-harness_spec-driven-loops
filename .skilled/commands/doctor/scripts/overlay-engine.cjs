@@ -7013,10 +7013,17 @@ function rollbackRun(ctx, runId) {
     return refuseRepin([`refuse: no backup for run ${runId} in ${ctx.overlayLabel}/${RUNS_FOLDER}`,
       '  only a run that wrote the tree keeps a backup, and rollback restores from it', listRuns]);
   }
-  const backup = JSON.parse(buffer.toString('utf8'));
-  if (backup.schemaVersion !== 1 || !Array.isArray(backup.entries)) {
-    return refuseRepin([`refuse: the backup for run ${runId} has an unsupported shape`,
-      '  rollback reads backup.json only in the shape a re-pin writes it', listRuns]);
+  const unsupported = `refuse: the backup for run ${runId} has an unsupported shape`;
+  const shapeWhy = 'rollback reads backup.json only in the shape a re-pin writes it';
+  let backup;
+  try {
+    backup = JSON.parse(buffer.toString('utf8'));
+  } catch (error) {
+    return refuseRepin([unsupported,
+      `  ${ctx.overlayLabel}/${RUNS_FOLDER}/${runId}/backup.json is not JSON (${error.message}), and ${shapeWhy}`, listRuns]);
+  }
+  if (!backup || backup.schemaVersion !== 1 || !Array.isArray(backup.entries)) {
+    return refuseRepin([unsupported, '  ' + shapeWhy, listRuns]);
   }
   return withLock(ctx, 'overlay-engine repin rollback', () => rollbackUnderLock(ctx, runDir, backup));
 }
