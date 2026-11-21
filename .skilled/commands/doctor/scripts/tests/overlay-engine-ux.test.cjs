@@ -220,3 +220,16 @@ test('relayout onto a layout path that already holds a file names the file to mo
     `compared it with ${path.join(fixture.overlayDir, 'files/guarded.txt')}, then from ${fixture.tree}: ` +
     `${ENGINE_COMMAND} apply --relayout`, relayout.output);
 });
+
+test('a manifest that is not valid JSON is named, with the fix and the command after it', (t) => {
+  const fixture = createSyncFixture(t);
+  const manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+  fs.writeFileSync(manifestPath, '{ "overlays": [\n');
+
+  const status = fixture.run(['status']);
+
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes(`${manifestPath} is not valid JSON`), status.output);
+  assert.ok(status.output.includes(`  Next: fix the JSON in ${manifestPath}, then from ${fixture.tree}: ${ENGINE_COMMAND} status`),
+    status.output);
+});

@@ -774,7 +774,14 @@ function loadManifest(ctx) {
         nextEngine(ctx.root, 'status').slice('Next: '.length),
     });
   }
-  const manifest = JSON.parse(buffer.toString('utf8'));
+  let manifest;
+  try {
+    manifest = JSON.parse(buffer.toString('utf8'));
+  } catch (error) {
+    throw new Error(withRemedy(`${ctx.manifestPath} is not valid JSON: ${error.message}`,
+      'every command reads its overlays from this file first, so none can run until it parses',
+      `Next: fix the JSON in ${shellPath(ctx.manifestPath)}, then ` + nextEngine(ctx.root, 'status').slice('Next: '.length)));
+  }
   if (!manifest || !Array.isArray(manifest.overlays)) {
     throw new Error(withRemedy('overlay manifest has no overlays array',
       'every overlay is one entry in that array, so the engine has nothing to read',
