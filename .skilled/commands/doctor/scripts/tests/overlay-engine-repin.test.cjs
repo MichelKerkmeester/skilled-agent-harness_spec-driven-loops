@@ -405,6 +405,49 @@ test('the backup takes only the Python caches apply could remove, not every cach
   assert.deepEqual(backedUp.filter((relativePath) => /__pycache__|\.py[co]$/.test(relativePath)), [removable]);
 });
 
+test('the backup takes the Python cache under a folder a directory entry now ships as a file', (t) => {
+  const fixture = createRepinFixture(t);
+  const { tree, overlayDir } = fixture;
+  writeFile(overlayDir, 'vendor/keep/a.py', 'a\n');
+  writeFile(overlayDir, 'vendor/sub/b.py', 'b\n');
+  fixture.manifest.overlays.push({ id: 'vendor', scope: 'directory', source: 'vendor', destination: '.skilled/vendor' });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cache = '.skilled/vendor/sub/__pycache__/b.cpython-39.pyc';
+  writeFile(tree, cache, Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0x02]));
+  fs.rmSync(path.join(overlayDir, 'vendor/sub'), { recursive: true });
+  writeFile(overlayDir, 'vendor/sub', 'now a file\n');
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  assert.equal(fs.readFileSync(path.join(tree, '.skilled/vendor/sub'), 'utf8'), 'now a file\n');
+  const runDir = path.join(fixture.runsDir, fs.readdirSync(fixture.runsDir)[0]);
+  const backedUp = readJson(path.join(runDir, 'backup.json')).entries.map((entry) => entry.path);
+  assert.ok(backedUp.includes(cache), backedUp.join('\n'));
+});
+
+test('the backup takes the Python cache under an owned folder a file entry now replaces', (t) => {
+  const fixture = createRepinFixture(t);
+  const { tree, overlayDir } = fixture;
+  writeFile(overlayDir, 'vendor/sub/a.py', 'a\n');
+  fixture.manifest.overlays.push({ id: 'vendor', scope: 'directory', source: 'vendor/sub', destination: '.skilled/vendor-sub' });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cache = '.skilled/vendor-sub/__pycache__/a.cpython-39.pyc';
+  writeFile(tree, cache, Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0x03]));
+  writeFile(overlayDir, 'vendor/sub-file.md', 'file now\n');
+  fixture.manifest.overlays = fixture.manifest.overlays.filter((entry) => entry.id !== 'vendor');
+  fixture.manifest.overlays.push({ id: 'vendor', scope: 'file', source: 'vendor/sub-file.md', destination: '.skilled/vendor-sub' });
+  writeManifest(fixture);
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  assert.equal(fs.readFileSync(path.join(tree, '.skilled/vendor-sub'), 'utf8'), 'file now\n');
+  const runDir = path.join(fixture.runsDir, fs.readdirSync(fixture.runsDir)[0]);
+  const backedUp = readJson(path.join(runDir, 'backup.json')).entries.map((entry) => entry.path);
+  assert.ok(backedUp.includes(cache), backedUp.join('\n'));
+});
+
 test('--rollback refuses a backed-up file whose bytes no longer match the recorded hash', (t) => {
   const fixture = createRepinFixture(t);
   const result = fixture.repin();
@@ -467,7 +510,7 @@ test('a .env path upstream ships refuses the repin before any read or write', (t
 });
 
 test('a secret-free .env template upstream changes is refreshed like any vendored file', (t) => {
-  const templates = ['.claude/.env.example', '.claude/.env.sample', '.claude/.env.template'];
+  const templates = ['.claude/.env.example'];
   const oldEntries = Object.fromEntries(templates.map((rel) => [rel, 'KEY=old\n']));
   const newEntries = Object.fromEntries(templates.map((rel) => [rel, 'KEY=\nOTHER=\n']));
   const fixture = createRepinFixture(t, { oldEntries, newEntries });
@@ -475,8 +518,23 @@ test('a secret-free .env template upstream changes is refreshed like any vendore
   const result = fixture.repin();
   assert.equal(result.code, 0, result.output);
   for (const rel of templates) assert.equal(read(fixture.tree, rel), 'KEY=\nOTHER=\n', rel);
-  assert.doesNotMatch(result.output, /\.env\.(example|sample|template) is a \.env path/);
+  assert.doesNotMatch(result.output, /\.env\.example is a \.env path/);
 });
+
+// Only the one template name the secret guard allows is read; the others are
+// refused like any .env file, so the two guards agree.
+for (const name of ['sample', 'template'].map((suffix) => '.env.' + suffix)) {
+  test(`a ${name} upstream changes refuses the repin, as the secret guard refuses it`, (t) => {
+    const fixture = createRepinFixture(t, {
+      oldEntries: { ['.claude/' + name]: 'KEY=old\n' },
+      newEntries: { ['.claude/' + name]: 'KEY=new\n' },
+    });
+    const result = fixture.repin();
+    assert.equal(result.code, 2, result.output);
+    assert.ok(result.output.includes('.claude/' + name + ' is a .env path, which is never read'), result.output);
+  });
+}
+
 
 test('a .env.local upstream changes still refuses the repin', (t) => {
   const fixture = createRepinFixture(t, {

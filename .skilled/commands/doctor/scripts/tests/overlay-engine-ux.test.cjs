@@ -116,7 +116,7 @@ test('a state file of an unsupported shape names the field and the git command t
   const status = fixture.run(['status']);
 
   assert.equal(status.code, 2, status.output);
-  assert.match(status.output, /\[overlay-engine\] \S+ has an unsupported shape: its links field is not a map of link targets/);
+  assert.match(status.output, /\[overlay-engine\] \S+ has an unsupported shape\n {2}its links field is not a map of link targets/);
   assert.ok(status.output.includes(`  Next: restore the state file from git: git -C ${fixture.tree} checkout -- ` +
     path.relative(fixture.tree, statePath)), status.output);
 });

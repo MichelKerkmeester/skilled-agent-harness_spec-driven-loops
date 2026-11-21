@@ -179,7 +179,7 @@ test('an unowned folder where a file entry writes is refused, and nothing is wri
   const result = fixture.run(['apply']);
   assert.notEqual(result.code, 0, result.output);
   assert.match(result.output, /tool is a folder that does not match what apply last wrote there/);
-  assert.match(result.output, /Next: mv tool tool\.keep && node \S+overlay-engine\.cjs apply/);
+  assert.ok(result.output.includes(`Next: mv ${path.join(fixture.tree, 'tool')} ${path.join(fixture.tree, 'tool')}.keep, then from ${fixture.tree}: node `), result.output);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool', 'project.md'), 'utf8'), 'project file\n');
 });
 
@@ -189,7 +189,7 @@ test('an unowned file where a directory entry writes is refused, and nothing is 
   const result = fixture.run(['apply']);
   assert.notEqual(result.code, 0, result.output);
   assert.match(result.output, /tool is a file that does not match what apply last wrote there/);
-  assert.match(result.output, /Next: mv tool tool\.keep && node \S+overlay-engine\.cjs apply/);
+  assert.ok(result.output.includes(`Next: mv ${path.join(fixture.tree, 'tool')} ${path.join(fixture.tree, 'tool')}.keep, then from ${fixture.tree}: node `), result.output);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool'), 'utf8'), 'project file\n');
 });
 

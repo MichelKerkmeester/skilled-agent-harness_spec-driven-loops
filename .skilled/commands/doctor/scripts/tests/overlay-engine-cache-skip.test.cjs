@@ -268,7 +268,7 @@ test('a Python cache folder apply cannot remove leaves one notice with the fix, 
     assert.match(notices[0], /directory-live\/sub\/inner/);
     assert.match(notices[0], /E[A-Z]+/);
     assert.match(notices[0], /not overlay content/);
-    assert.match(applied.stdout, /^ {2}Next: chmod -R u\+w directory-live\/sub\/inner\b/m);
+    assert.ok(applied.stdout.includes(`  Next: chmod -R u+w ${path.join(fixture.tree, 'directory-live/sub/inner')} && rm -r `), applied.stdout);
     assert.equal(fs.existsSync(path.join(fixture.tree, 'directory-live/sub/a.py')), false);
     assert.equal(fs.existsSync(path.join(fixture.tree, 'directory-live/sub/inner/b.py')), false);
     assert.deepEqual(fs.readFileSync(path.join(cacheDir, 'b.cpython-39.pyc')), CACHE_BYTES);

@@ -194,6 +194,12 @@ function withNext(error, next) {
   return Object.assign(error, { next });
 }
 
+// A refusal's first line is what a consumer matches on, so a reason added to it
+// goes on an indented line below, and the first line stays as it always was.
+function withWhy(message, why) {
+  return message + '\n  ' + why;
+}
+
 function parseVersion(tag) {
   if (typeof tag !== 'string') return null;
   const match = VERSION_RE.exec(tag);
@@ -1554,8 +1560,8 @@ function assertRunDirectory(runDir) {
       throw new Error('run path must be a real directory');
     }
     if (fs.readdirSync(resolved).length) {
-      throw new Error('run directory already exists and is not empty: ' + resolved
-        + '; a run never writes over an earlier one, so pass --out with a new empty directory');
+      throw new Error(withWhy('run directory already exists and is not empty: ' + resolved,
+        'a run never writes over an earlier one, so pass --out with a new empty directory'));
     }
   } else {
     fs.mkdirSync(resolved);
@@ -1780,12 +1786,12 @@ function decisionTarget(repo, run, file, record) {
   const redecide = SCRIPT_COMMAND + ' decide --repo ' + shellQuote(repo) + ' --run '
     + shellQuote(run.runDir) + ' --path ' + shellQuote(file.path) + ' --decision ' + decision;
   if (!record.proposalSha256 || sha256 !== record.proposalSha256) {
-    throw withNext(new Error('proposal changed after decision: ' + file.path
-      + ', so the recorded decision no longer covers ' + proposalPath + '; record it again'), redecide);
+    throw withNext(new Error(withWhy('proposal changed after decision: ' + file.path,
+      'the recorded decision no longer covers ' + proposalPath + ', so record it again')), redecide);
   }
   if (CONFLICT_MARKER_RE.test(content.toString('utf8'))) {
-    throw withNext(new Error('proposal still contains conflict markers: ' + file.path
-      + '; resolve them in ' + proposalPath + ', then record the decision again'), redecide);
+    throw withNext(new Error(withWhy('proposal still contains conflict markers: ' + file.path,
+      'resolve them in ' + proposalPath + ', then record the decision again')), redecide);
   }
   const mode = file.local ? file.local.mode : file.release ? file.release.mode : '100644';
   return { mode, blob: gitBlobId(repo, content), content };
@@ -1910,6 +1916,26 @@ function shellQuote(value) {
   return /^[\w./@:+-]+$/.test(value) ? value : "'" + value.replace(/'/g, "'\\''") + "'";
 }
 
+// The dry-run that plans an apply again from the same inputs. Apply finds its
+// run through --decisions, so a run names its decisions file; an apply that
+// planned without a run repeats the release choices the caller made.
+function applyDryRunCommand(repo, run, options = {}) {
+  let command = SCRIPT_COMMAND + ' apply --repo ' + shellQuote(repo);
+  if (!run.withoutRun) {
+    const decisions = options.decisions
+      ? path.resolve(repo, options.decisions)
+      : path.join(run.runDir, 'decisions.json');
+    command += ' --decisions ' + shellQuote(decisions);
+  } else {
+    if (options.remoteSource === 'flag' && options.remote) command += ' --remote ' + shellQuote(options.remote);
+    if (options.release) command += ' --release ' + shellQuote(options.release);
+    if (options.scope) command += ' --scope ' + shellQuote(options.scope);
+    if (options.offline) command += ' --offline';
+    if (options.includePrerelease) command += ' --include-prerelease';
+  }
+  return command + ' --dry-run';
+}
+
 function rollbackCommand(repo, runDir) {
   return SCRIPT_COMMAND + ' rollback --repo ' + shellQuote(repo) + ' --run ' + shellQuote(runDir);
 }
@@ -1925,14 +1951,14 @@ function assertPlanFresh(repo, run, paths) {
       : null;
     const plannedLocal = file.local ? { mode: file.local.mode, blob: file.local.blob } : null;
     if (!sameState(local, plannedLocal)) {
-      throw withNext(new Error('drift since align: local blob changed for ' + file.path
-        + ', so this run no longer describes the checkout; align a fresh run'),
+      throw withNext(new Error(withWhy('drift since align: local blob changed for ' + file.path,
+        'this run no longer describes the checkout, so align a fresh run')),
       SCRIPT_COMMAND + ' align --repo ' + shellQuote(repo));
     }
     const actualRelease = releaseFiles.get(file.path) || null;
     if (!sameState(actualRelease, file.release)) {
-      throw withNext(new Error('drift since align: release blob changed for ' + file.path
-        + ', so this run no longer describes the release; align a fresh run'),
+      throw withNext(new Error(withWhy('drift since align: release blob changed for ' + file.path,
+        'this run no longer describes the release, so align a fresh run')),
       SCRIPT_COMMAND + ' align --repo ' + shellQuote(repo));
     }
   }
@@ -2134,8 +2160,9 @@ function lockConflictError(repo) {
     const command = typeof owner.command === 'string' && owner.command
       ? owner.command
       : 'unknown command';
-    return withNext(new Error(prefix + ', held by running process ' + owner.pid + ' (' + command
-      + '), so wait for it to finish, then rerun this command'), 'ps -p ' + owner.pid + ' -o pid,command');
+    return withNext(new Error(withWhy(prefix + ', held by running process ' + owner.pid + ' (' + command
+      + '), so wait for it to finish', 'once that process has ended, rerun this command')),
+    'ps -p ' + owner.pid + ' -o pid,command');
   }
   if (state === 'stale') {
     const command = typeof owner.command === 'string' && owner.command
@@ -2155,9 +2182,9 @@ function lockConflictError(repo) {
     return withNext(new Error(message), next);
   }
   const lockPath = shellQuote(path.join(repo, LOCK_FILE));
-  return withNext(new Error(prefix + ', and it has no readable owner, so confirm that no apply, rollback'
-    + ' or record-base is running (ps -ax -o pid,command | grep release-update.cjs) before'
-    + ' removing it by hand'), 'rm ' + lockPath);
+  return withNext(new Error(withWhy(prefix + ', and it has no readable owner, so confirm that no apply, rollback'
+    + ' or record-base is running before removing it by hand',
+  'list the running ones with ps -ax -o pid,command | grep release-update.cjs')), 'rm ' + lockPath);
 }
 
 function acquireLock(repo, owner) {
@@ -2314,8 +2341,7 @@ function applyPlan(repo, options) {
   if (options.planDigest && options.planDigest !== digest) {
     throw withNext(new Error('plan changed since the dry-run: its digest no longer matches. '
       + 'Run apply --dry-run again and approve the new plan'),
-    SCRIPT_COMMAND + ' apply --repo ' + shellQuote(repo)
-      + (run.withoutRun ? '' : ' --run ' + shellQuote(run.runDir)) + ' --dry-run');
+    applyDryRunCommand(repo, run, options));
   }
   if (options.dryRun) {
     return {
@@ -2585,8 +2611,7 @@ function rollbackPlan(repo, runPath, options = {}) {
   if (!rollback) {
     throw withNext(new Error('this run has no rollback.json: ' + run.runDir
       + '; apply has not written from it, so there is nothing to roll back'),
-    SCRIPT_COMMAND + ' apply --repo ' + shellQuote(repo) + ' --run ' + shellQuote(run.runDir)
-      + ' --dry-run');
+    applyDryRunCommand(repo, run));
   }
   if (!Array.isArray(rollback.paths)) {
     throw new Error('rollback.json has no paths array: ' + run.runDir);

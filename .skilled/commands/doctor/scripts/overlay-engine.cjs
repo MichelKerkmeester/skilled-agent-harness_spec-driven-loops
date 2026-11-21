@@ -825,8 +825,8 @@ function emptyState(pin) {
  *   version the file was written with, or null when there is no file.
  */
 function loadState(ctx, manifest) {
-  const stateShape = (detail) => withRemedy(`${STATE_FILE} has an unsupported shape: ${detail}`,
-    'every command reads the state file, so none runs until it can',
+  const stateShape = (detail) => withRemedy(`${STATE_FILE} has an unsupported shape`,
+    `${detail}, and every command reads the state file, so none runs until it can`,
     `Next: restore the state file from git: git -C ${shellPath(ctx.root)} checkout -- ` +
     shellPath(toPosix(path.relative(ctx.root, ctx.statePath))));
   const buffer = readBufferOrNull(ctx.statePath);
@@ -1502,7 +1502,7 @@ function planOperation(operation, root, text, style, edits, options) {
     return 'changed';
   }
 
-  throw new Error(`unknown operation "${operation.op}"; the operations are set, setKeyOnItem, insertItems, appendItems ` +
+  throw new Error(`unknown operation "${operation.op}"\n  the operations are set, setKeyOnItem, insertItems, appendItems ` +
     'and insertObjectKeys');
 }
 
@@ -2155,12 +2155,20 @@ function destinationShape(filePath, key, recordedFiles, recordedLinks = {}) {
  * @param {string} key The destination relative to the tree root.
  * @param {string} kind What stands there now.
  * @param {string} wanted What the entry writes there.
+ * @param {string} root Destination tree root, for the remedy's paths.
  * @returns {string} The problem, with its remedy on an indented `Next:` line.
  */
-function unownedShapeProblem(entry, key, kind, wanted) {
+function unownedShapeProblem(entry, key, kind, wanted, root) {
   return `${key} is a ${kind} that does not match what apply last wrote there, where overlay ${entry.id} ` +
-    `writes a ${wanted}; apply removes only its own output, so it stays\n` +
-    `  Next: mv ${key} ${key}.keep && ${ENGINE_COMMAND} apply`;
+    `writes a ${wanted}; apply removes only its own output, so it stays\n  ` + keepAsideRemedy(root, key);
+}
+
+// The remedy for an unowned shape in the way: move it aside by its absolute path,
+// so the line works from any folder, then rerun apply from the tree root.
+function keepAsideRemedy(root, key) {
+  const filePath = path.join(root, key);
+  return `Next: mv ${shellPath(filePath)} ${shellPath(filePath + '.keep')}, then ` +
+    nextEngine(root, 'apply').slice('Next: '.length);
 }
 
 /**
@@ -2187,7 +2195,7 @@ function planFileOverlay(entry, ctx, problems, acceptedSha256, { recordedLinks }
   const shape = destinationShape(destinationPath, key, acceptedSha256, recordedLinks);
   if (shape.kind === 'folder' || (shape.kind === 'link' && shape.isOwned)) {
     if (!shape.isOwned) {
-      problems.push(unownedShapeProblem(entry, key, shape.kind, 'file'));
+      problems.push(unownedShapeProblem(entry, key, shape.kind, 'file', ctx.root));
       return { writes: [], deletes: [], outputs: [] };
     }
     return { writes: [output], deletes: [destinationPath], outputs: [output] };
@@ -2247,7 +2255,7 @@ function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
   let current;
   if (shape.kind === 'file' || (shape.kind === 'link' && shape.isOwned)) {
     if (!shape.isOwned) {
-      problems.push(unownedShapeProblem(entry, key, shape.kind, 'folder'));
+      problems.push(unownedShapeProblem(entry, key, shape.kind, 'folder', ctx.root));
       return { writes: [], deletes: [], outputs: [] };
     }
     deletes.push(destinationDir);
@@ -2796,7 +2804,7 @@ function applyOnePlan(plan, root, overlayRoot = null, notices = []) {
     const isUnshippedFolder = overlayRoot ? unshippedFolderTest(plan.entry, overlayRoot) : null;
     const blocked = [];
     pruneEmptyDirs(path.join(root, plan.entry.destination), isUnshippedFolder, '', blocked);
-    for (const { dir, code } of blocked) notices.push(cacheFolderNotice(toPosix(path.relative(root, dir)), code));
+    for (const { dir, code } of blocked) notices.push(cacheFolderNotice(root, dir, code));
   }
   return plan.writes.length + plan.deletes.length;
 }
@@ -2820,22 +2828,24 @@ function clearReplacedFolder(filePath, root) {
   if (!stats.isDirectory()) return;
   if (listTreePaths(filePath).length > 0) {
     const folder = toPosix(path.relative(root, filePath));
-    throw new Error(`${folder} still holds files the overlay did not write, so apply did not replace the folder\n` +
-      `  Next: ${ENGINE_COMMAND} status`);
+    throw new Error(`${folder} still holds files the overlay did not write, so apply did not replace the folder\n  ` +
+      nextEngine(root, 'status'));
   }
   fs.rmSync(filePath, { recursive: true, force: true });
 }
 
 /**
  * The notice for a folder of Python caches the prune could not remove.
- * @param {string} folder Posix path of the folder relative to the tree root.
+ * @param {string} root Destination tree root.
+ * @param {string} dir Absolute path of the folder.
  * @param {string} code Error code of the failed removal.
  * @returns {string} The notice, with its remedy on an indented `Next:` line.
  */
-function cacheFolderNotice(folder, code) {
+function cacheFolderNotice(root, dir, code) {
+  const folder = toPosix(path.relative(root, dir));
   return `could not remove the Python cache folder ${folder} (${code}): apply was only clearing ` +
     'Python caches from a folder its overlay no longer ships, not overlay content, so the folder stays\n' +
-    `  Next: chmod -R u+w ${folder} && rm -r ${folder}`;
+    `  Next: chmod -R u+w ${shellPath(dir)} && rm -r ${shellPath(dir)}`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2966,11 +2976,11 @@ function planLayoutLinks(manifest, root, state) {
       // is the engine's own earlier output: the link takes its place.
       missing.push({ link, linkPath, replacesOwned: stats.isDirectory() ? 'folder' : 'file' });
     } else if (current !== link.target) {
-      problems.push(`${link.path} exists but is not the link to ${link.target}` +
-        (current === null
-          ? `, and the ${stats.isDirectory() ? 'folder' : 'file'} there does not match what apply last wrote, so it stays\n` +
-            `  Next: mv ${link.path} ${link.path}.keep && ${ENGINE_COMMAND} apply`
-          : ''));
+      const message = `${link.path} exists but is not the link to ${link.target}`;
+      problems.push(current === null
+        ? withRemedy(message, `the ${stats.isDirectory() ? 'folder' : 'file'} there does not match what apply last ` +
+          'wrote, so it stays', keepAsideRemedy(root, link.path))
+        : message);
     }
   }
   return { missing, problems };
@@ -3030,8 +3040,8 @@ function applyLayoutLink(root, link, isRetarget, replacesOwned = null) {
     const linkPath = path.join(root, link.path);
     const stats = fs.lstatSync(linkPath);
     if (stats.isSymbolicLink() || stats.isDirectory() !== (replacesOwned === 'folder')) {
-      throw new Error(link.path + ' changed since apply planned it, so apply did not replace it\n' +
-        `  Next: ${ENGINE_COMMAND} status`);
+      throw new Error(link.path + ' changed since apply planned it, so apply did not replace it\n  ' +
+        nextEngine(root, 'status'));
     }
     removePath(linkPath);
   }
@@ -3148,9 +3158,10 @@ function regenerate(manifest, root, watched = []) {
 const EXACT_CAPTURE_SCOPES = new Set(['file', 'marked-section']);
 const NO_EXACT_PATHS = new Set();
 
-// These template names hold no secret by convention, so they are read, copied
-// and re-pinned like any vendored file. Only the exact basename is exempt.
-const ENV_TEMPLATE_NAMES = new Set(['.env.example', '.env.sample', '.env.template']);
+// This template name holds no secret by convention, so it is read, copied and
+// re-pinned like any vendored file. Only the exact basename is exempt, and it is
+// the one name the env-secret guard hook allows, so the two refuse the same files.
+const ENV_TEMPLATE_NAMES = new Set(['.env.example']);
 
 function isEnvName(filePath) {
   const name = path.basename(filePath).toLowerCase();
@@ -4849,7 +4860,7 @@ function captureUnderLock(ctx, manifest, inputPath) {
     return EXIT_ERROR;
   }
   if (!['directory', 'skill-root'].includes(record.entry.scope) && !isFile(record.sourcePath)) {
-    console.log('refuse: ' + record.entry.id + ': canonical source is missing: ' + sourceRelative(ctx, record.sourcePath));
+    console.log(record.entry.id + ': canonical source is missing: ' + sourceRelative(ctx, record.sourcePath));
     console.log('  capture updates an overlay copy that exists, and never creates one');
     console.log('  Next: restore the overlay copy (git -C ' + shellPath(ctx.root) + ' checkout -- ' +
       shellPath(toPosix(path.relative(ctx.root, record.sourcePath))) + ') or copy ' + record.key + ' to ' +
@@ -5520,6 +5531,9 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
   // Apply's prune takes a Python cache only together with a folder the entry no
   // longer ships, and no record names a cache. So the caches under such a folder
   // are backed up for a rollback to put back, by the same test the prune applies.
+  // That test also covers a folder a directory entry now ships as a file, which
+  // apply clears before the write. A folder a file entry replaces is its record
+  // key, so the engine paths above already take every cache below it.
   // Any other cache stays where it is, and copying it would only grow the backup.
   for (const entry of manifest.overlays || []) {
     if ((entry.scope !== 'directory' && entry.scope !== 'skill-root') || typeof entry.destination !== 'string') continue;
