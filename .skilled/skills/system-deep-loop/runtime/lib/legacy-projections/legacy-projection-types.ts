@@ -83,12 +83,14 @@ export interface LegacyProjectionContract<TState extends LegacyProjectionJsonObj
   readonly serialize: (state: Readonly<TState>) => Uint8Array | string;
 }
 
-// A census surface that projects more than one file composes a set of
-// single-artifact contracts rather than rewriting the fold engine. The
-// surface receives the verified events so a per-iteration delta surface can
-// partition them into one artifact per iteration; a static multi-file
-// surface ignores them and returns a fixed artifact set. Each artifact's
-// reduce remains the authority over which events it absorbs.
+/**
+ * A census surface that projects more than one file composes a set of
+ * single-artifact contracts rather than rewriting the fold engine. The
+ * surface receives the verified events so a per-iteration delta surface can
+ * partition them into one artifact per iteration; a static multi-file
+ * surface ignores them and returns a fixed artifact set. Each artifact's
+ * reduce remains the authority over which events it absorbs.
+ */
 export interface LegacyProjectionSurfaceContract {
   readonly surfaceId: string;
   readonly ledgerId: string;

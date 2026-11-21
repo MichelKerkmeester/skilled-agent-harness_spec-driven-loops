@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Sleep
+// ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES & CONSTANTS
@@ -12,6 +14,7 @@ type SleepSignalInput = AbortSignal | readonly AbortSignal[];
 // 2. HELPERS
 // ───────────────────────────────────────────────────────────────────
 
+/** One signal that aborts when any input aborts; undefined for no signals and the signal itself for one. */
 export function composeAbortSignals(signals: readonly AbortSignal[]): AbortSignal | undefined {
   if (signals.length === 0) {
     return undefined;
@@ -74,6 +77,10 @@ function sleepChunk(ms: number, signal?: AbortSignal): Promise<void> {
 // 3. EXPORTS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Resolve after `ms` milliseconds, waiting in chunks; rejects with the abort reason when a given
+ * signal is already aborted or aborts while waiting.
+ */
 export async function abortableSleep(ms: number, signal?: AbortSignal): Promise<void>;
 export async function abortableSleep(ms: number, signals: readonly AbortSignal[]): Promise<void>;
 export async function abortableSleep(ms: number, signalOrSignals?: SleepSignalInput): Promise<void> {

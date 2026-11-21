@@ -581,10 +581,12 @@ export function createContinuityReplayComponentRegistry(): ReplayComponentRegist
   return new ReplayComponentRegistry([definition]);
 }
 
+/** Fresh replay fingerprint version registry for continuity replay, built by the shared replay registry factory. */
 export function createContinuityFingerprintVersionRegistry(): FingerprintVersionRegistry {
   return createReplayFingerprintVersionRegistry();
 }
 
+/** Fresh empty continuity identity state that seeds a replay fold. */
 export function continuityInitialState(): ContinuityIdentityState {
   return createEmptyContinuityIdentityState();
 }

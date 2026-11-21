@@ -69,6 +69,10 @@ function requirePositiveCompleteVector(vector: BudgetVector): void {
 // 3. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Read the budget projection and freeze its ledger head, the scope path and the scope balances as
+ * decision evidence.
+ */
 export async function captureFanInBudgetSnapshot(
   authority: HierarchicalBudgetAuthority,
   scopeId: string,
@@ -87,6 +91,7 @@ export async function captureFanInBudgetSnapshot(
   });
 }
 
+/** Inputs for reserving budget for one more result from an outstanding branch at the cut. */
 export interface ReserveContinuationBudgetInput {
   readonly authority: HierarchicalBudgetAuthority;
   readonly scopeId: string;
@@ -103,6 +108,10 @@ export interface ReserveContinuationBudgetInput {
   > & { readonly causationId?: string | null };
 }
 
+/**
+ * Reserve the next-result estimate plus the settlement margin for the top-ranked eligible outstanding
+ * branch, with before and after snapshots; `not-applicable` when no branch is eligible.
+ */
 export async function reserveContinuationBudget(
   input: ReserveContinuationBudgetInput,
 ): Promise<ContinuationBudgetEvidence> {

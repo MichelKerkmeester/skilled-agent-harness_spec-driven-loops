@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Prompt Pack Renderer
+// ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -24,6 +26,7 @@ const promptPackVariableNameSchema = z.string().regex(/^[a-zA-Z_][a-zA-Z0-9_]*$/
 // 4. DOMAIN ERRORS
 // ───────────────────────────────────────────────────────────────────
 
+/** Thrown when a prompt pack template names variables the caller did not supply; `missingVariables` lists them. */
 export class PromptPackError extends Error {
   missingVariables: string[];
 

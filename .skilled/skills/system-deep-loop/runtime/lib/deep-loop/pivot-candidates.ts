@@ -64,10 +64,12 @@ export type RejectedPivotCandidateDeduplication = Extract<
   { readonly accepted: false }
 >;
 
+/** Override for the similarity threshold above which two candidates count as duplicates. */
 export interface PivotCandidateDeduplicationOptions {
   readonly candidateSimilarityThreshold?: number;
 }
 
+/** A candidate set split into the candidates kept and the duplicates dropped, with why each was dropped. */
 export interface PivotCandidateSetDeduplication {
   readonly accepted: readonly PivotCandidate[];
   readonly rejected: readonly RejectedPivotCandidateDeduplication[];

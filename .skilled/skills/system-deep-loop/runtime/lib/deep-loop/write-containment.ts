@@ -82,6 +82,7 @@ export type ContainmentViolationKind =
   | 'untracked'
   | 'other';
 
+/** A path a leaf changed outside its artifact boundary, as git reports it. */
 export interface ContainmentViolation {
   /** Repo-root-relative POSIX path as git reports it. */
   path: string;
@@ -113,6 +114,7 @@ export interface ContainmentViolation {
   baselineDirty?: true;
 }
 
+/** What the containment remedy did to one guarded path. */
 export interface ContainmentRevertAction {
   path: string;
   /**
@@ -137,10 +139,12 @@ export interface ContainmentRevertAction {
   reason?: string;
 }
 
+/** The remedy outcome for every guarded path, including paths it could not recover. */
 export interface ContainmentRevertResult {
   reverted: ContainmentRevertAction[];
 }
 
+/** The repository and artifact boundary a containment check measures writes against. */
 export interface ContainmentOptions {
   repoRoot: string;
   artifactDir: string;
@@ -193,6 +197,7 @@ export interface ContainmentOptions {
   env?: NodeJS.ProcessEnv;
 }
 
+/** An out-of-scope path that was already dirty before the dispatch, with the hash that tells a later change apart. */
 export interface DirtyPathEntry {
   path: string;
   hash: string;
@@ -222,11 +227,13 @@ export interface DirtyPathEntry {
   untracked?: boolean;
 }
 
+/** Containment options plus the pre-dispatch baseline, so only paths changed during the dispatch count. */
 export interface DetectOptions extends ContainmentOptions {
   /** Dirty out-of-scope paths captured BEFORE the dispatch (the baseline). */
   preDispatchDirtyPaths: DirtyPathEntry[];
 }
 
+/** The state-log event recording a containment breach and what the remedy did about it. */
 export interface ContainmentViolationEvent {
   type: 'event';
   event: 'containment_violation';
@@ -279,6 +286,7 @@ export interface ContainmentContestedEvent {
   timestamp: string;
 }
 
+/** Inputs for a full containment pass: detection plus where to log the outcome and which dispatch it belongs to. */
 export interface EnforceInput extends DetectOptions {
   /**
    * When set, a containment_violation event for the lane's paths and a containment_contested
@@ -311,6 +319,10 @@ export interface EnforceInput extends DetectOptions {
   baselineContentRoot?: string;
 }
 
+/**
+ * A containment pass outcome: breaches for the caller to judge, advisories that never fail a run, and
+ * the remedy taken.
+ */
 export interface EnforceResult {
   /** In-HEAD out-of-scope breaches, reported not undone under the default remedy; the caller decides fatality. */
   violations: ContainmentViolation[];
@@ -351,6 +363,7 @@ export interface EnforceResult {
   contestedNote: string | null;
 }
 
+/** The quarantine record for one guarded path: its hash and whether its bytes were kept. */
 export interface QuarantineEntry {
   /** Repo-relative POSIX path of the guarded path this entry records. */
   path: string;
@@ -370,6 +383,7 @@ export interface QuarantineEntry {
   error?: string;
 }
 
+/** A quarantine destination the writer would not write through. */
 export interface QuarantineRefusal {
   /** Repo-relative POSIX path of the destination that was refused. */
   path: string;
@@ -377,6 +391,7 @@ export interface QuarantineRefusal {
   reason: string;
 }
 
+/** The quarantine written for a breach, with one entry per guarded path and any destinations refused. */
 export interface QuarantineResult {
   /** Repo-relative POSIX path of the quarantine dir, or null when it could not be created. */
   dirPath: string | null;
@@ -392,6 +407,7 @@ export interface QuarantineResult {
   error?: string;
 }
 
+/** Where to look for other live runs whose artifact directories this leaf must not treat as its own writes. */
 export interface ForeignLiveRunDiscoveryOptions {
   repoRoot: string;
   artifactDir: string;
@@ -437,6 +453,7 @@ export function discoverForeignLiveRunDirs(input: ForeignLiveRunDiscoveryOptions
     let visited = 0;
 
     while (queue.length > 0 && visited < FOREIGN_RUN_SCAN_MAX_DIRS) {
+      // The loop guard checked queue.length > 0, so shift() returns an entry.
       const { dir, depth } = queue.shift()!;
       visited += 1;
       // This run's tree is covered by its artifact boundary and sibling lineages; another run's
@@ -618,7 +635,7 @@ function spawnGit(input: {
         stdout: typeof result.stdout === 'string' ? result.stdout : '',
         stderr: typeof result.stderr === 'string' ? result.stderr : '',
       };
-    } catch (error) {
+    } catch (error: unknown) {
       // A synchronous spawn failure cannot be lock contention; keep the fail-open result.
       return { ok: false, stdout: '', stderr: (error as Error).message };
     }
@@ -739,7 +756,7 @@ function diffAgainstHeldBytes(input: {
     );
     if (!diff.ok) return { ok: false, error: 'git diff <scratch index> -- <path> failed' };
     return { ok: true, diff: diff.stdout };
-  } catch (error) {
+  } catch (error: unknown) {
     return { ok: false, error: (error as Error).message };
   } finally {
     if (scratchDir !== '') {
@@ -768,6 +785,10 @@ function checkoutFromHead(repoRoot: string, pathSpec: string, env?: NodeJS.Proce
 // 4. CLASSIFICATION
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Map a git porcelain status code to a violation kind: `??` is untracked, then deleted, added and
+ * modified by status letter, anything else is other.
+ */
 export function classifyViolation(status: string): ContainmentViolationKind {
   if (status === '??') return 'untracked';
   if (status.includes('D')) return 'deleted';
@@ -944,7 +965,7 @@ function ensureContainedDirectory(directory: string, root: ContainmentRoot): Con
     if (lstatSync(next, { throwIfNoEntry: false }) === undefined) {
       try {
         mkdirSync(next);
-      } catch (error) {
+      } catch (error: unknown) {
         // Losing the create to another maker is not a failure: the level is judged by what is on
         // disk now, exactly as a directory that was already there is.
         if (lstatSync(next, { throwIfNoEntry: false }) === undefined) {
@@ -978,7 +999,7 @@ function openContainedRead(source: string, root: ContainmentRoot): ContainedResu
   if (refusal !== null) return { ok: false, kind: 'refused', reason: refusal };
   try {
     return { ok: true, value: openSync(source, constants.O_RDONLY | constants.O_NOFOLLOW) };
-  } catch (error) {
+  } catch (error: unknown) {
     return { ok: false, kind: 'failed', reason: (error as Error).message };
   }
 }
@@ -989,7 +1010,7 @@ function readContainedFile(source: string, root: ContainmentRoot): ContainedResu
   if (!opened.ok) return opened;
   try {
     return { ok: true, value: readFileSync(opened.value) };
-  } catch (error) {
+  } catch (error: unknown) {
     return { ok: false, kind: 'failed', reason: (error as Error).message };
   } finally {
     closeSync(opened.value);
@@ -1022,7 +1043,7 @@ function openContainedWrite(
       : constants.O_WRONLY | constants.O_CREAT | constants.O_TRUNC | constants.O_NOFOLLOW;
   try {
     return { ok: true, value: openSync(destination, flags) };
-  } catch (error) {
+  } catch (error: unknown) {
     return { ok: false, kind: 'failed', reason: (error as Error).message };
   }
 }
@@ -1482,7 +1503,7 @@ function captureRevertPatch(input: {
   }
   try {
     writeFileSync(opened.value, stdout, 'utf8');
-  } catch (error) {
+  } catch (error: unknown) {
     return { path: null, error: `patch write failed: ${(error as Error).message}` };
   } finally {
     closeSync(opened.value);
@@ -1538,7 +1559,7 @@ function writeQuarantineFile(
   try {
     write(opened.value);
     return null;
-  } catch (error) {
+  } catch (error: unknown) {
     return (error as Error).message;
   } finally {
     closeSync(opened.value);
@@ -1610,7 +1631,7 @@ function quarantineOnePath(input: {
           entry.content_path = contentPath;
         }
       }
-    } catch (error) {
+    } catch (error: unknown) {
       // A deleted or dangling path has nothing to copy; its hash and its patches still stand.
       fail(`content copy failed: ${(error as Error).message}`);
     } finally {
@@ -1880,7 +1901,7 @@ export function revertOutOfScopeViolations(opts: {
               try {
                 writeFileSync(opened.value, baselineBytes);
                 reverted.push({ path: violation.path, action: 'restored_from_baseline', ok: true });
-              } catch (error) {
+              } catch (error: unknown) {
                 reverted.push({
                   path: violation.path,
                   action: 'restored_from_baseline',
@@ -1942,7 +1963,7 @@ export function revertOutOfScopeViolations(opts: {
           try {
             writeFileSync(opened.value, baselineBytes);
             reverted.push({ path: violation.path, action: 'restored_from_baseline', ok: true });
-          } catch (error) {
+          } catch (error: unknown) {
             reverted.push({
               path: violation.path,
               action: 'restored_from_baseline',

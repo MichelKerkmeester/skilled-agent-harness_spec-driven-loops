@@ -30,6 +30,10 @@ function outstandingOrder(
     );
 }
 
+/**
+ * Check a decision view (identities, policy digest, partial-failure reference, result envelopes at or
+ * before the cut and no duplicates) and return it; throws on any violation.
+ */
 export function buildFanInDecisionView(
   input: FanInDecisionView,
 ): FanInDecisionView {

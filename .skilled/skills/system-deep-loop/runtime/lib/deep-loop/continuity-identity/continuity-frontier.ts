@@ -46,6 +46,7 @@ import type {
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/** The replay fingerprint and the live identity refs a continuity frontier freezes for one attempt. */
 export interface CreateContinuityFrontierInput {
   readonly fingerprint: DerivedReplayFingerprint<ContinuityIdentityState>;
   readonly modeSessionRef: ContinuityIdentityRef;
@@ -55,6 +56,7 @@ export interface CreateContinuityFrontierInput {
   readonly attempt: ContinuityFrontierAttempt;
 }
 
+/** A frontier restored from the ledger, with the replayed state and fingerprint it was checked against. */
 export interface RestoredContinuityFrontier {
   readonly frontier: ContinuityIdentityFrontier;
   readonly state: Readonly<ContinuityIdentityState>;

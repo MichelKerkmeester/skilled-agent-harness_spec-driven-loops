@@ -1,5 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Evidence Contract
-//
+// ───────────────────────────────────────────────────────────────────
+
 // A fixed, machine-checkable shape for the proof a load-bearing claim should
 // carry at the dispatch boundary. The point is to give the doctrine "a finding
 // is a hypothesis until verified" a place to land instead of relying on prose

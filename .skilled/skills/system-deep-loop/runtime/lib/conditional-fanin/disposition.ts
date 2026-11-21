@@ -41,6 +41,10 @@ function stableDispositionKey(
 // 3. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Plan one disposition per outstanding branch at the cut, ordered by logical branch id; throws when a
+ * branch appears twice.
+ */
 export function planOutstandingDispositions(
   decisionIdentity: string,
   branches: readonly OutstandingBranchAtCut[],
@@ -132,6 +136,7 @@ export function planOutstandingDispositions(
 // 4. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/** Side effects each disposition kind needs, supplied by the caller. */
 export interface OutstandingDispositionPorts {
   withdrawQueued(disposition: OutstandingDisposition): Promise<void>;
   proveNoDispatch(disposition: OutstandingDisposition): Promise<string>;
@@ -139,6 +144,7 @@ export interface OutstandingDispositionPorts {
   detachToSalvage(disposition: OutstandingDisposition): Promise<void>;
 }
 
+/** Planned dispositions plus the ports and budget authority that carry them out. */
 export interface ApplyOutstandingDispositionsInput {
   readonly dispositions: readonly OutstandingDisposition[];
   readonly budgetAuthority: HierarchicalBudgetAuthority;
@@ -152,6 +158,10 @@ export interface ApplyOutstandingDispositionsInput {
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Apply planned dispositions in order through the ports; returns the budget cancellation result for a
+ * reservation cancellation and null for every other kind.
+ */
 export async function applyOutstandingDispositions(
   input: ApplyOutstandingDispositionsInput,
 ): Promise<readonly (BudgetMutationResult | null)[]> {

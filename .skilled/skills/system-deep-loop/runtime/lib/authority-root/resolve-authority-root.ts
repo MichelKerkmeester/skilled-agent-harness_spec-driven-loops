@@ -19,6 +19,7 @@
 import { execFileSync } from 'node:child_process';
 import { isAbsolute, join, resolve } from 'node:path';
 
+/** Overrides and seams for locating the authority root; with none given, the environment and git discovery decide. */
 export interface ResolveAuthorityRootOptions {
   /**
    * Repository root. Supply this only when the caller genuinely knows the

@@ -9,6 +9,10 @@ import type {
   SufficiencyEvidence,
 } from './types.js';
 
+/**
+ * Group the eligible accepted results by provenance group and measure their agreement against the
+ * policy thresholds.
+ */
 export function evaluateSufficiency(
   acceptedResults: readonly AcceptedResultAtCut[],
   policy: ConditionalFanInPolicy,

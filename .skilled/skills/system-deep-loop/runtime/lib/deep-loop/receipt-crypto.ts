@@ -1,5 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Dispatch Receipt Cryptography
-//
+// ───────────────────────────────────────────────────────────────────
+
 // Pure HMAC primitives for deep-loop dispatch receipts. The per-dispatch
 // signing key is derived deterministically from a run-master secret + dispatchId
 // so a receipt re-verifies on resume without persisting any per-dispatch key.

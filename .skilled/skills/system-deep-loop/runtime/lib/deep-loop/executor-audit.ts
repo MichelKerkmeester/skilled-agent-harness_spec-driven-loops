@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Executor Audit
+// ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -224,6 +226,10 @@ const EXECUTOR_ENV_DENY_KEYS_BY_KIND: Partial<Record<ExecutorKind, readonly stri
 // key is read from the keychain and taking it keeps the dispatch on the budget it belongs to.
 let cachedMistralSignInKey: string | null | undefined;
 
+/**
+ * Read the Mistral Vibe API key from the macOS keychain once per process and cache it; null off macOS
+ * or when the keychain holds no key.
+ */
 export function readMistralVibeSignInKey(): string | null {
   if (cachedMistralSignInKey !== undefined) {
     return cachedMistralSignInKey;
@@ -574,6 +580,7 @@ function killProcessGroup(pid: number | undefined, signal: NodeJS.Signals): void
   try {
     process.kill(process.platform === 'win32' ? pid : -pid, signal);
   } catch {
+    // Best-effort: the process group may already have exited.
   }
 }
 
@@ -585,18 +592,20 @@ function normalizeModelId(model: string): string {
   return model.trim().toLowerCase();
 }
 
-// Extract the model an executor actually ran, but only where the CLI reliably
-// reports it on stdout. Returning null means "cannot tell" — the caller must
-// then skip the mismatch check rather than guess, so an unknown actual model is
-// never treated as a substitution. This is deliberately conservative: a false
-// loud failure would block a legitimate run.
-//
-// cli-opencode is the only kind whose stdout carries a machine-readable event
-// stream (`opencode run --format json`). Even there, a successful run's
-// step/text events may omit the model on some builds; this parser pulls a model
-// id only when an event actually surfaces one, otherwise returns null.
-// cli-codex / cli-claude-code / native do not reliably report the actual model on stdout,
-// so they always return null and are skipped.
+/**
+ * Extract the model an executor actually ran, but only where the CLI reliably
+ * reports it on stdout. Returning null means "cannot tell" — the caller must
+ * then skip the mismatch check rather than guess, so an unknown actual model is
+ * never treated as a substitution. This is deliberately conservative: a false
+ * loud failure would block a legitimate run.
+ *
+ * cli-opencode is the only kind whose stdout carries a machine-readable event
+ * stream (`opencode run --format json`). Even there, a successful run's
+ * step/text events may omit the model on some builds; this parser pulls a model
+ * id only when an event actually surfaces one, otherwise returns null.
+ * cli-codex / cli-claude-code / native do not reliably report the actual model on stdout,
+ * so they always return null and are skipped.
+ */
 export function extractActualModel(stdout: string, kind: ExecutorKind): string | null {
   if (kind !== 'cli-opencode') {
     return null;
@@ -823,7 +832,7 @@ function tryWriteReceipt(
 ): void {
   try {
     writeReceiptAtomic(receiptPath, record);
-  } catch (err) {
+  } catch (err: unknown) {
     emitReceiptWriteFailure(stateLogPath, executor, iteration, phase, (err as Error).message ?? String(err), sessionId);
   }
 }
@@ -1200,9 +1209,11 @@ const LEDGER_MODES = Object.freeze([
   { ledgerDirectory: 'deep-research-ledger', mode: 'research' },
 ] as const);
 
-// A state log beside a ledger with frames is a projection the append gateway
-// rebuilds from that ledger, so a row written straight into it is dropped at
-// the next refresh.
+/**
+ * A state log beside a ledger with frames is a projection the append gateway
+ * rebuilds from that ledger, so a row written straight into it is dropped at
+ * the next refresh.
+ */
 export function ledgerModeFor(stateLogPath: string): 'review' | 'research' | null {
   for (const { ledgerDirectory, mode } of LEDGER_MODES) {
     try {
@@ -1226,9 +1237,11 @@ function iterationNamesExecutor(lines: string[], iteration: number): boolean {
   });
 }
 
-// The gateway runs from the checkout that holds this module. Reached through a
-// symlinked .skilled, that is not the caller's project, so a relative state-log
-// path is fixed against the caller's directory before it crosses the spawn.
+/**
+ * The gateway runs from the checkout that holds this module. Reached through a
+ * symlinked .skilled, that is not the caller's project, so a relative state-log
+ * path is fixed against the caller's directory before it crosses the spawn.
+ */
 export function gatewayRunDirectory(stateLogPath: string): string {
   return dirname(resolve(stateLogPath));
 }
@@ -1271,11 +1284,13 @@ function canonicalJson(value: unknown): string | undefined {
   return JSON.stringify(value);
 }
 
-// A failure row on a ledger-backed state log goes through the append gateway,
-// or the next refresh drops it. Recording a failure never throws: when the run
-// names no session id or the gateway refuses, the row is written straight into
-// the state log, where the steps that read it right after the dispatch still
-// find it, and stderr says why it will not last.
+/**
+ * A failure row on a ledger-backed state log goes through the append gateway,
+ * or the next refresh drops it. Recording a failure never throws: when the run
+ * names no session id or the gateway refuses, the row is written straight into
+ * the state log, where the steps that read it right after the dispatch still
+ * find it, and stderr says why it will not last.
+ */
 export function appendFailureRow(stateLogPath: string, row: Record<string, unknown>, sessionId: string | undefined): void {
   const ledgerMode = ledgerModeFor(stateLogPath);
   if (ledgerMode !== null) {
@@ -1285,7 +1300,7 @@ export function appendFailureRow(stateLogPath: string, row: Record<string, unkno
       try {
         appendThroughGateway(ledgerMode, stateLogPath, { ...row, sessionId });
         return;
-      } catch (error) {
+      } catch (error: unknown) {
         process.stderr.write(`${error instanceof Error ? error.message : String(error)}. The next refresh drops the row written in its place\n`);
       }
     }

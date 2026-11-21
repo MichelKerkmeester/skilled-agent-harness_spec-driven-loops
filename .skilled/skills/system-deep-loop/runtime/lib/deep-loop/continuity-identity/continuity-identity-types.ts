@@ -110,6 +110,10 @@ export interface ContinuityWriteContext {
   readonly policy: PolicyReference;
 }
 
+/**
+ * A request to mint a new identity, keyed by its request token so a retry mints nothing new,
+ * optionally linked to a parent.
+ */
 export interface MintIdentityInput {
   readonly kind: ContinuityIdentityKind;
   readonly mintRequestToken: string;
@@ -121,6 +125,7 @@ export interface MintIdentityInput {
   readonly context: ContinuityWriteContext;
 }
 
+/** A request to bind a legacy id in a namespace to an existing identity. */
 export interface BindAliasInput {
   readonly namespace: string;
   readonly legacyId: string;
@@ -128,6 +133,7 @@ export interface BindAliasInput {
   readonly context: ContinuityWriteContext;
 }
 
+/** A request to record a typed relationship between two existing identities. */
 export interface LinkIdentitiesInput {
   readonly subjectRef: ContinuityIdentityRef;
   readonly relatedRef: ContinuityIdentityRef;
@@ -135,6 +141,7 @@ export interface LinkIdentitiesInput {
   readonly context: ContinuityWriteContext;
 }
 
+/** A request to record one attempt transition under a mode session. */
 export interface RecordAttemptInput {
   readonly modeSessionRef: ContinuityIdentityRef;
   readonly attemptId: string;
@@ -143,6 +150,7 @@ export interface RecordAttemptInput {
   readonly context: ContinuityWriteContext;
 }
 
+/** A request to record that a subject moved from a session in one mode to a session in another. */
 export interface RecordCrossModeReferenceInput {
   readonly subjectRef: ContinuityIdentityRef;
   readonly sourceModeSessionRef: ContinuityIdentityRef;
@@ -152,6 +160,7 @@ export interface RecordCrossModeReferenceInput {
   readonly context: ContinuityWriteContext;
 }
 
+/** A continuity write outcome; an idempotent repeat may carry no new receipt. */
 export interface ContinuityWriteResult<TValue> {
   readonly status: 'appended' | 'idempotent';
   readonly value: TValue;
@@ -162,12 +171,14 @@ export interface ContinuityWriteResult<TValue> {
 // 3. HANDOVER CONTRACT
 // ───────────────────────────────────────────────────────────────────
 
+/** A position in a continuity ledger, pinned by sequence and record hash. */
 export interface ContinuityLedgerCursor extends JsonObject {
   readonly ledger_id: string;
   readonly sequence: number;
   readonly record_hash: string;
 }
 
+/** The ledger range and digests a replay covered, so a frontier can be re-verified against the same replay. */
 export interface ContinuityReplayReference extends JsonObject {
   readonly fingerprint_version: number;
   readonly run_id: string;
@@ -178,6 +189,7 @@ export interface ContinuityReplayReference extends JsonObject {
   readonly final_digest: string;
 }
 
+/** The attempt a frontier was frozen for. */
 export interface ContinuityFrontierAttempt extends JsonObject {
   readonly attempt_id: string;
   readonly attempt_number: number;

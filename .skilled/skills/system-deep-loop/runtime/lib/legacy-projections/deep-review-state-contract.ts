@@ -32,10 +32,15 @@ import type {
 // only by the negative-control run to prove the test can go red.
 const EMIT_ITERATION_ROWS = true;
 
+/** The state-log rows folded so far, in ledger order. */
 export interface DeepReviewProjectionState extends LegacyProjectionJsonObject {
   readonly rows: readonly JsonObject[];
 }
 
+/**
+ * Overrides for the deep-review state-log projection; omitted fields use the review ledger and the
+ * default state-log path.
+ */
 export interface CreateDeepReviewStateProjectionContractOptions {
   readonly ledgerId?: string;
   readonly streamIds?: readonly string[];

@@ -60,6 +60,10 @@ function classificationFor(trigger: FanInPrimaryTrigger): FanInClassification {
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Decide whether the fan-in must keep waiting at the view's cut, from sufficiency, anomalies and the
+ * budget outcome, reporting the triggered conditions in precedence order.
+ */
 export function evaluateAwaitPredicate(view: FanInDecisionView): AwaitPredicateResult {
   const sufficiency = evaluateSufficiency(view.acceptedResults, view.policy);
   const eligibleOutstanding = view.outstandingBranches.filter((branch) => (
@@ -90,6 +94,10 @@ export function evaluateAwaitPredicate(view: FanInDecisionView): AwaitPredicateR
   });
 }
 
+/**
+ * Digest of the ordered result envelope ids and result digests, binding a reduction to the exact
+ * inputs a decision froze.
+ */
 export function reducerInputDigest(inputs: readonly FrozenReducerInput[]): string {
   return sha256Bytes(canonicalBytes({
     reducer_binding_version: 1,
@@ -111,6 +119,10 @@ function decisionIdentity(view: FanInDecisionView, supersedesDecisionId: string 
   }))}`;
 }
 
+/**
+ * Freeze a decision from a view whose await predicate is false, splitting accepted results into
+ * included and excluded; throws while the predicate still says wait.
+ */
 export function finalizeFanInDecisionCandidate(
   view: FanInDecisionView,
   supersedesDecisionId: string | null = null,
@@ -166,6 +178,10 @@ export function finalizeFanInDecisionCandidate(
   });
 }
 
+/**
+ * Record a result that arrived after a finalized decision for salvage; refuses an invalid envelope,
+ * one at or before the decision cut, or one the decision already includes.
+ */
 export function recordLateResultForSalvage(
   decision: FinalizedFanInDecision,
   envelope: LeafResultPayload,

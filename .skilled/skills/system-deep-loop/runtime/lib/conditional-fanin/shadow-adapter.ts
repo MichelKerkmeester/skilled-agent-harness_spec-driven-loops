@@ -10,6 +10,7 @@ import type {
   FinalizedFanInDecision,
 } from './types.js';
 
+/** A shadow evaluation: what the conditional fan-in would decide while wait-for-all stays in charge. */
 export interface ConditionalFanInShadowEvaluation {
   readonly authority: 'shadow';
   readonly legacyWaitForAllAuthoritative: true;
@@ -17,6 +18,10 @@ export interface ConditionalFanInShadowEvaluation {
   readonly candidateDecision: FinalizedFanInDecision | null;
 }
 
+/**
+ * Evaluate the conditional fan-in in shadow: the await predicate plus, when it would not wait, the
+ * candidate decision, while wait-for-all stays authoritative.
+ */
 export function evaluateConditionalFanInShadow(
   view: FanInDecisionView,
 ): ConditionalFanInShadowEvaluation {

@@ -234,6 +234,7 @@ export type PostDispatchValidateResult =
 // 3. DOMAIN ERRORS
 // ───────────────────────────────────────────────────────────────────
 
+/** Carries a failed post-dispatch result as `result`, so a caller that throws keeps the reason and details. */
 export class PostDispatchValidationError extends Error {
   result: PostDispatchValidateResult;
 
@@ -811,7 +812,7 @@ function loadAndVerifyReceipt(
   let parsed: unknown;
   try {
     parsed = JSON.parse(readFileSync(receiptPath, 'utf8'));
-  } catch (error) {
+  } catch (error: unknown) {
     return {
       ok: false,
       result: {
@@ -1135,7 +1136,7 @@ function writeBufferAtomic(filePath: string, content: Buffer): void {
   try {
     writeFileSync(tempPath, content);
     renameSync(tempPath, filePath);
-  } catch (error) {
+  } catch (error: unknown) {
     rmSync(tempPath, { force: true });
     throw error;
   }
@@ -1586,6 +1587,11 @@ function computeBehavioralAdvisories(text: string): PostDispatchAdvisory[] {
   return out;
 }
 
+/**
+ * Check that a dispatched iteration appended its state-log record (after repairing a torn JSONL tail)
+ * and wrote its required outputs; returns ok with any advisories, or the first failure reason with
+ * details.
+ */
 export function validateIterationOutputs(input: PostDispatchValidateInput): PostDispatchValidateResult {
   const warnings: PostDispatchAdvisory[] = [];
 
