@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9919352a9603f9263119925caec99bdd0488484394d75f8bbe304c4cb637902d",
+  "manifestHash": "a5114d74ffe1e0d039cdeba424f1b064d077012c1c15e8cfa9d27be93cb16542",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49731,12 +49731,6 @@
     ],
     "expansive depth mode": [
       "expansive depth mode"
-    ],
-    "expansive depth mode plan": [
-      "expansive depth mode plan"
-    ],
-    "expansive depth mode tasks": [
-      "expansive depth mode tasks"
     ],
     "expansive depth playbook coverage": [
       "expansive depth playbook coverage"
