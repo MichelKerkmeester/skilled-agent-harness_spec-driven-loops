@@ -254,7 +254,11 @@ function walkMarkdown(base, out) {
     for (const entry of fs.readdirSync(cur, { withFileTypes: true })) {
       const full = path.join(cur, entry.name);
       if (entry.isDirectory()) stack.push(full);
-      else if (entry.isFile() && entry.name.endsWith('.md')) out.push(path.relative(SKCODE, full).split(path.sep).join('/'));
+      // A folder README is navigation, not routable evidence, so the orphan walk skips it the way
+      // the playbook walk does. A README a router does name stays routed through that router.
+      else if (entry.isFile() && entry.name.endsWith('.md') && entry.name.toLowerCase() !== 'readme.md') {
+        out.push(path.relative(SKCODE, full).split(path.sep).join('/'));
+      }
     }
   }
   return out;

@@ -348,6 +348,36 @@ test('a failure after the backup names the run, and --rollback restores the tree
   assert.match(status.output, /RESULT: PASSED/);
 });
 
+test('--rollback restores the Python cache in a folder a directory overlay stopped shipping', (t) => {
+  const fixture = createRepinFixture(t);
+  const { tree, overlayDir } = fixture;
+  writeFile(overlayDir, 'vendor/keep/a.py', 'a\n');
+  writeFile(overlayDir, 'vendor/sub/b.py', 'b\n');
+  fixture.manifest.overlays.push({ id: 'vendor', scope: 'directory', source: 'vendor', destination: '.skilled/vendor' });
+  fixture.manifest.regenerate.push({
+    id: 'fails-after-copy',
+    argv: ['node', '-e', "process.exit(require('fs').existsSync('.skilled/skills/hub/added.md') ? 3 : 0)"],
+  });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cacheBytes = Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0xff, 0x63]);
+  const cachePath = path.join(tree, '.skilled/vendor/sub/__pycache__/b.cpython-39.pyc');
+  fs.mkdirSync(path.dirname(cachePath), { recursive: true });
+  fs.writeFileSync(cachePath, cacheBytes);
+  fs.rmSync(path.join(overlayDir, 'vendor/sub'), { recursive: true });
+
+  const failed = fixture.repin();
+  assert.equal(failed.code, 1, failed.output);
+  const match = failed.output.match(ROLLBACK_LINE);
+  assert.ok(match, failed.output);
+  assert.equal(fs.existsSync(path.join(tree, '.skilled/vendor/sub')), false);
+
+  const rolledBack = fixture.run(['repin', '--rollback', match[1]]);
+  assert.equal(rolledBack.code, 0, rolledBack.output);
+  assert.equal(fs.readFileSync(path.join(tree, '.skilled/vendor/sub/b.py'), 'utf8'), 'b\n');
+  assert.deepEqual(fs.readFileSync(cachePath), cacheBytes);
+});
+
 test('--rollback refuses a backed-up file whose bytes no longer match the recorded hash', (t) => {
   const fixture = createRepinFixture(t);
   const result = fixture.repin();
