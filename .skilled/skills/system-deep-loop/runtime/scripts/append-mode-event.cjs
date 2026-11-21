@@ -117,18 +117,27 @@ function stableJson(value) {
   return JSON.stringify(value);
 }
 
-// A model-written row's own event id, idempotency key, producer and epoch are
-// dropped, not kept: neither mode's schema has a claim field for them, and a row
-// that named an earlier row's key or id would read as its retry or collide with
-// it. The builder's defaults then mint all four, and the key is derived from the
-// row as handed over, so a retried row is still stored once.
+// A model-written row's own identity fields are dropped, not kept: neither
+// mode's schema has a claim field for them, and a row that named an earlier
+// row's key or id would read as its retry or collide with it, while one that
+// named a stream position or recording time would label the event with a place
+// and a clock the ledger never gave it. The builder's defaults then mint every
+// one, and the key is derived from the row as handed over, so a retried row is
+// still stored once.
 const GATEWAY_IDENTITY_FIELDS = Object.freeze([
   'eventId', 'event_id', 'idempotencyKey', 'idempotency_key', 'producer', 'authorityEpoch', 'authority_epoch',
+  'streamId', 'stream_id', 'streamSequence', 'stream_sequence', 'correlationId', 'correlation_id',
+  'causationId', 'causation_id', 'recordedAt', 'recorded_at',
 ]);
 
-function withoutGatewayIdentity(row) {
+// A stem or event_type row is addressed by the workflow or the reducer, which
+// name its event id and idempotency key on purpose so that a re-emitted row is
+// recognized as the same event. Those two stay; the rest is still minted.
+const CALLER_KEYED_FIELDS = Object.freeze(['eventId', 'event_id', 'idempotencyKey', 'idempotency_key']);
+
+function withoutGatewayIdentity(row, kept = []) {
   return Object.fromEntries(
-    Object.entries(row).filter(([key]) => !GATEWAY_IDENTITY_FIELDS.includes(key)),
+    Object.entries(row).filter(([key]) => !GATEWAY_IDENTITY_FIELDS.includes(key) || kept.includes(key)),
   );
 }
 
@@ -411,26 +420,27 @@ async function main() {
       data: rawEvent.data || {},
       prevEventHash: rawEvent.prevEventHash || rawEvent.prev_event_hash || currentHead.recordHash,
       replay: rawEvent.replay || defaultReplay,
-    }, rawEvent);
+    }, withoutGatewayIdentity(rawEvent, CALLER_KEYED_FIELDS));
     eventRecord = adapter.prepareEvent(preparedInput, registry);
   } else if (rawEvent && typeof rawEvent === 'object' && (rawEvent.event_type || rawEvent.eventType)) {
+    const meta = withoutGatewayIdentity(rawEvent, CALLER_KEYED_FIELDS);
     const envelope = {
-      envelope_version: rawEvent.envelope_version ?? rawEvent.envelopeVersion ?? 1,
-      event_id: rawEvent.event_id || rawEvent.eventId || `event-${crypto.randomUUID()}`,
-      event_type: rawEvent.event_type || rawEvent.eventType,
-      event_version: rawEvent.event_version ?? rawEvent.eventVersion ?? 1,
-      stream_id: rawEvent.stream_id || rawEvent.streamId || ledgerId,
-      stream_sequence: rawEvent.stream_sequence ?? rawEvent.streamSequence ?? (currentHead.sequence + 1),
-      occurred_at: rawEvent.occurred_at || rawEvent.occurredAt || nowIso,
-      recorded_at: rawEvent.recorded_at || rawEvent.recordedAt || nowIso,
-      producer: rawEvent.producer || { name: 'deep-loop-cli', version: '1.0.0' },
-      authority_epoch: rawEvent.authority_epoch ?? rawEvent.authorityEpoch ?? authority.epoch,
-      correlation_id: rawEvent.correlation_id || rawEvent.correlationId || crypto.randomUUID(),
-      causation_id: rawEvent.causation_id !== undefined
-        ? rawEvent.causation_id
-        : (rawEvent.causationId !== undefined ? rawEvent.causationId : null),
-      idempotency_key: rawEvent.idempotency_key || rawEvent.idempotencyKey || defaultIdempotencyKey,
-      payload: rawEvent.payload || {},
+      envelope_version: meta.envelope_version ?? meta.envelopeVersion ?? 1,
+      event_id: meta.event_id || meta.eventId || `event-${crypto.randomUUID()}`,
+      event_type: meta.event_type || meta.eventType,
+      event_version: meta.event_version ?? meta.eventVersion ?? 1,
+      stream_id: meta.stream_id || meta.streamId || ledgerId,
+      stream_sequence: meta.stream_sequence ?? meta.streamSequence ?? (currentHead.sequence + 1),
+      occurred_at: meta.occurred_at || meta.occurredAt || nowIso,
+      recorded_at: meta.recorded_at || meta.recordedAt || nowIso,
+      producer: meta.producer || { name: 'deep-loop-cli', version: '1.0.0' },
+      authority_epoch: meta.authority_epoch ?? meta.authorityEpoch ?? authority.epoch,
+      correlation_id: meta.correlation_id || meta.correlationId || crypto.randomUUID(),
+      causation_id: meta.causation_id !== undefined
+        ? meta.causation_id
+        : (meta.causationId !== undefined ? meta.causationId : null),
+      idempotency_key: meta.idempotency_key || meta.idempotencyKey || defaultIdempotencyKey,
+      payload: meta.payload || {},
     };
     eventRecord = prepareEventWrite(envelope, registry);
   } else if (

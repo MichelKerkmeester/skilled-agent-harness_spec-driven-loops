@@ -665,3 +665,85 @@ describe('append-mode-event review identity and reused keys', () => {
     expect(ledgerEvents(runDir, 'deep-research-ledger')).toHaveLength(2);
   });
 });
+
+// Every row shape the gateway builds an envelope for, not only the two
+// model-written ones, gets its stream position, correlation, causation and
+// recording time from the gateway. A row that names them is not believed.
+describe('append-mode-event mints stream identity on every branch', () => {
+  const claimedIdentity = {
+    streamId: 'model-stream',
+    stream_id: 'model-stream-snake',
+    streamSequence: 99,
+    stream_sequence: 98,
+    correlationId: 'model-correlation',
+    correlation_id: 'model-correlation-snake',
+    causationId: 'model-cause',
+    causation_id: 'model-cause-snake',
+    recordedAt: '2099-01-01T00:00:00Z',
+    recorded_at: '2098-01-01T00:00:00Z',
+  };
+
+  function onlyEvent(runDir: string, ledgerId: string): Record<string, unknown> {
+    const names = readdirSync(framesDirectory(runDir, ledgerId)).sort();
+    expect(names).toHaveLength(1);
+    const frame = JSON.parse(readFileSync(join(framesDirectory(runDir, ledgerId), names[0] as string), 'utf8'));
+    return JSON.parse(Buffer.from(frame.canonical_event_bytes, 'base64').toString('utf8'));
+  }
+
+  function appendFresh(mode: 'deep-research' | 'deep-review', row: Record<string, unknown>) {
+    const runDir = createTempDir('stream-identity');
+    const env = { DEEP_LOOP_AUTHORITY_ROOT: createTempDir('stream-identity-auth') };
+    const before = Date.now();
+    const result = runCli(['--mode', mode, '--run-directory', runDir, '--event-json', writeEvent(runDir, row)], env);
+    const after = Date.now();
+    return { runDir, result, before, after };
+  }
+
+  // The event_type branch takes a prepared payload, so the payload is the one the
+  // stem branch prepares for the same row on an empty ledger.
+  function eventTypeRow(): Record<string, unknown> {
+    const { runDir, result } = appendFresh('deep-research', canonicalRunInitializedEvent());
+    expect(result.exitCode, result.stderr + result.rawStdout).toBe(0);
+    const event = onlyEvent(runDir, 'deep-research-ledger');
+    return { event_type: event.event_type, event_version: event.event_version, payload: event.payload };
+  }
+
+  const branches: Array<[string, 'deep-research' | 'deep-review', () => Record<string, unknown>]> = [
+    ['stem', 'deep-research', canonicalRunInitializedEvent],
+    ['event_type', 'deep-research', eventTypeRow],
+    ['legacy research', 'deep-research', legacyConfigRow],
+    ['review record', 'deep-review', () => ({
+      type: 'iteration', iteration: 1, run: 1, mode: 'review', status: 'complete', focus: 'correctness',
+      sessionId: 'review-s1', generation: 1, findingsCount: 0, newFindingsRatio: 0,
+    })],
+  ];
+
+  for (const [branch, mode, row] of branches) {
+    it(`replaces a ${branch} row's own stream identity and recording time with the gateway's`, () => {
+      const { runDir, result, before, after } = appendFresh(mode, { ...row(), ...claimedIdentity });
+      expect(result.exitCode, result.stderr + result.rawStdout).toBe(0);
+
+      const event = onlyEvent(runDir, `${mode}-ledger`);
+      expect(event.stream_id).toBe(`${mode}-ledger`);
+      expect(event.stream_sequence).toBe(1);
+      expect(event.correlation_id).not.toMatch(/model-correlation/);
+      expect(event.causation_id).toBeNull();
+      const recordedAt = Date.parse(event.recorded_at as string);
+      expect(recordedAt).toBeGreaterThanOrEqual(before);
+      expect(recordedAt).toBeLessThanOrEqual(after);
+    });
+  }
+
+  it('leaves a stem row that names none of them as it was handed over', () => {
+    const row = canonicalRunInitializedEvent();
+    const { runDir, result } = appendFresh('deep-research', row);
+    expect(result.exitCode, result.stderr + result.rawStdout).toBe(0);
+
+    const event = onlyEvent(runDir, 'deep-research-ledger');
+    const payload = event.payload as Record<string, unknown>;
+    expect(payload.scope).toEqual(row.scope);
+    expect(payload.data).toEqual(row.data);
+    expect(event.stream_id).toBe('deep-research-ledger');
+    expect(event.stream_sequence).toBe(1);
+  });
+});
