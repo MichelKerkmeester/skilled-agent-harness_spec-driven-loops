@@ -40,6 +40,9 @@ _memory:
 | Q004 | The lane cleanup gets no advisor routing vocabulary; the docs say it is reached through /doctor:update apply. | Not stated. | None | .skilled/commands/doctor/update.md section 6; doctor-update-presentation.txt section 9 |
 | Q005 | Both alignment commands default to a native preset whose lanes and critic run as subagents of the conducting runtime on its own model. | Not stated. | None | operator-local executors.json, the four alignment workflow YAMLs and both router docs |
 | Q006 | The advisory CI job is renamed after the steps it runs now. | Not stated. | None | .github/workflows/advisory-checks.yml |
+| Q007 | Criterion 3 takes the machine-mode proof on a fixture home and checkout; exit 0 on the operator's machine follows the merge. | Not stated. | None | goal.md completion criteria |
+| Q008 | The pulled nomic-embed-text model is removed by hand on the operator's machine. | Not stated. | None | 008 implementation-summary.md |
+| Q009 | The operator closes the session goal; the work stays on the worktree branch. | Not stated. | None | goal.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -165,6 +168,65 @@ Keep the old name
 Answer:
 ```text
 Rename it (Recommended)
+```
+
+### Q007
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01Vw42v9fjMMZBRVaETTEKgP:0 -->
+
+Question:
+```text
+Criterion 3 requires machine mode to exit 0 on this Mac, but M8 scans every worktree including your primary checkout on main, which keeps the lane until this branch merges, and decision D2 says nothing merges. 26 other session worktrees also hold it. Which truth prevails?
+```
+
+Options:
+```text
+Amend: fixture proof counts (Recommended)
+Keep criterion, goal stays open
+Lift D2 and merge now
+```
+
+Answer:
+```text
+Amend: fixture proof counts (Recommended)
+```
+
+### Q008
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01Vw42v9fjMMZBRVaETTEKgP:1 -->
+
+Question:
+```text
+Separately, M6 is the pulled Ollama model nomic-embed-text in ~/.ollama. D6 keeps the cleanup tool's apply off this machine. Do you want it removed now by hand with `ollama rm nomic-embed-text`? Undo: `ollama pull nomic-embed-text`.
+```
+
+Options:
+```text
+Leave it (Recommended)
+Remove it now
+```
+
+Answer:
+```text
+Remove it now
+```
+
+### Q009
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01D5bGuJ43uEdVELiWy4gXqi:0 -->
+
+Question:
+```text
+The session goal still has the old criterion 3: machine mode must exit 0 on this Mac. Only M8 blocks it now, meaning the lane still sits in your primary checkout on main plus 26 other session worktrees. How do you want to close it?
+```
+
+Options:
+```text
+I'll resend /goal myself (Recommended)
+I'll clear the goal
+Leave it open
+```
+
+Answer:
+```text
+I'll clear the goal
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

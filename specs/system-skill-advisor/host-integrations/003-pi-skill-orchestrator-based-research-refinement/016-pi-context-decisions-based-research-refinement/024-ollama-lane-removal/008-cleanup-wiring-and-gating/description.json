@@ -6,7 +6,7 @@
     "phase",
     "cleanup-wiring-and-gating"
   ],
-  "lastUpdated": "2026-11-21T10:43:20.924Z",
+  "lastUpdated": "2026-11-21T11:18:13.165Z",
   "specId": "008",
   "folderSlug": "cleanup-wiring-and-gating",
   "parentChain": [
@@ -16,9 +16,10 @@
     "016-pi-context-decisions-based-research-refinement",
     "024-ollama-lane-removal"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "21-11-26_08-50__wired-the-lane-cleanup-into-doctor-update-apply.md",
-    "21-11-26_11-43__lane-residue-cleanup-wiring-and-gating-alignment.md"
+    "21-11-26_11-43__lane-residue-cleanup-wiring-and-gating-alignment.md",
+    "21-11-26_12-18__lane-residue-cleanup-wiring-and-gating-the.md"
   ]
 }
