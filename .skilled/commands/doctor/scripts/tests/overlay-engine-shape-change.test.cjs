@@ -857,7 +857,7 @@ test('a layout link standing at a target that does not exist is refused once an 
 // make the folder, or point the link elsewhere.
 function setAsideNext(fixture, target) {
   const targetPath = path.join(fixture.tree, target);
-  return `  Next: mv ${targetPath} ${targetPath}.keep and mkdir -p ${targetPath}, or point the layout link up in ` +
+  return `  Next: mv ${targetPath} ${targetPath}.keep && mkdir -p ${targetPath}, or point the layout link up in ` +
     `${path.join(fixture.overlayDir, 'overlay-manifest.json')} at a folder that exists, then from ${fixture.tree}: ` +
     'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply';
 }

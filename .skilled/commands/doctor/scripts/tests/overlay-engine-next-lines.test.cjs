@@ -11,6 +11,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
+const { spawnSync } = require('node:child_process');
 
 const engine = require('../overlay-engine.cjs');
 const {
@@ -24,9 +25,9 @@ const {
 const ENGINE = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
 
 // The quoting the engine promises: bare when the path is plain, otherwise in
-// double quotes with the shell's special characters escaped.
+// single quotes, which stop every expansion, with an embedded quote as '\''.
 function quoted(value) {
-  return /^[A-Za-z0-9._\/-]+$/.test(value) ? value : '"' + value.replace(/(["\\$`])/g, '\\$1') + '"';
+  return /^[A-Za-z0-9._\/-]+$/.test(value) ? value : "'" + value.replace(/'/g, "'\\''") + "'";
 }
 
 function createFixture(t, overlays, layoutLinks = []) {
@@ -46,6 +47,40 @@ function createFixture(t, overlays, layoutLinks = []) {
   fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
   return fixture;
 }
+
+test('a printed path survives a shell round trip whatever characters it holds', () => {
+  const paths = ['/plain/dir/file.md', '/a b/c', '/bang !dir/x', '/dollar $HOME/x', '/dq "x"/y',
+    "/sq it's/x", '/tick `id`/x', '/back \\slash/x', "/all !$\"'`\\ mixed"];
+  assert.equal(engine.shellPath('/plain/dir/file.md'), '/plain/dir/file.md');
+  for (const value of paths) {
+    const printed = spawnSync('sh', ['-c', 'printf %s ' + engine.shellPath(value)], { encoding: 'utf8' });
+    assert.equal(printed.status, 0, printed.stderr);
+    assert.equal(printed.stdout, value);
+  }
+});
+
+test('a path with a bang is single-quoted in a keep-aside Next line, so an interactive shell does not expand it', (t) => {
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'my !dir/tool' }]);
+  writeFile(fixture.tree, 'my !dir/tool/user.md', 'user work\n');
+  assert.match(fixture.tree, /^[A-Za-z0-9._\/-]+$/);
+  const result = fixture.run(['apply']);
+  assert.notEqual(result.code, 0, result.output);
+  const moved = `${fixture.tree}/my !dir/tool`;
+  const expected = `  Next: mv '${moved}' '${moved}.keep', then from ${fixture.tree}: ${ENGINE} apply`;
+  assert.ok(result.output.split('\n').includes(expected), result.output);
+});
+
+test('a layout link to a file names the move aside and the mkdir as one pasteable command', (t) => {
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'up/tool.md' }],
+    [{ path: 'up', target: 'real' }]);
+  writeFile(fixture.tree, 'real', 'a file where the folder belongs\n');
+  assert.match(fixture.tree, /^[A-Za-z0-9._\/-]+$/);
+  const result = fixture.run(['apply']);
+  assert.notEqual(result.code, 0, result.output);
+  const real = path.join(fixture.tree, 'real');
+  assert.ok(result.output.includes(`Next: mv ${real} ${real}.keep && mkdir -p ${real}, or point the layout link up `),
+    result.output);
+});
 
 test('an unowned folder in the way names a quoted absolute mv and the folder to rerun apply from', (t) => {
   const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'my tool' }]);

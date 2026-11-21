@@ -3443,7 +3443,7 @@ function refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans) {
       const targetPath = path.resolve(path.dirname(path.resolve(linkPath)), link.target);
       const makeFolder = fault === 'missing'
         ? `mkdir -p ${shellPath(targetPath)}`
-        : `mv ${shellPath(targetPath)} ${shellPath(targetPath + '.keep')} and mkdir -p ${shellPath(targetPath)}`;
+        : `mv ${shellPath(targetPath)} ${shellPath(targetPath + '.keep')} && mkdir -p ${shellPath(targetPath)}`;
       const linkedTo = { missing: 'a folder that does not exist', dangling: 'a link that does not resolve', file: 'a file' }[fault];
       layout.problems.push(withRemedy(
         `${link.path} links to ${link.target}, which ${fault === 'file' ? 'is a file' : 'does not exist'}, and ${named(writersUnder)} under it`,
@@ -7154,8 +7154,10 @@ function isIgnoredByGit(root, filePath) {
 
 // A path as a command line takes it: quoted when it holds a space or another
 // character a shell would split or expand, so a printed command can be pasted.
+// Single quotes stop every expansion, including the history expansion of ! in
+// an interactive bash or zsh, which double quotes leave on.
 function shellPath(key) {
-  return /^[A-Za-z0-9._\/-]+$/.test(key) ? key : '"' + key.replace(/(["\\$`])/g, '\\$1') + '"';
+  return /^[A-Za-z0-9._\/-]+$/.test(key) ? key : "'" + key.replace(/'/g, "'\\''") + "'";
 }
 
 // Where adopt keeps a destination inside the overlay folder: the framework's
@@ -8690,6 +8692,7 @@ module.exports = {
   resolveRemoveRootPath,
   runCheck,
   sha256,
+  shellPath,
   verifyGenerated,
   withLock,
   writeStateIfChanged,
