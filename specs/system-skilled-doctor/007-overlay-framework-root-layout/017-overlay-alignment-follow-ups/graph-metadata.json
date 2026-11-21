@@ -35,7 +35,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -123,12 +123,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -148,6 +142,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Leg",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Leg 1b of the router-sync guard walks every markdown file under a mode's `references/` and `assets/` folders, so a folder README that no router names fails the guard as an orphan",
     "created_at": "2026-11-21T00:41:47Z",
-    "last_save_at": "2026-11-21T01:49:49.350Z",
+    "last_save_at": "2026-11-21T01:54:44.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c6b0b98980eba6d4bda82832bd93a65790e910b627de4a9da500cc043cc7ad7",
+    "source_fingerprint": "sha256:25bed7b0bf76615357535f3451a2530bad2cf500665846323c8ace961d9a7dd7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d27cd059106988e2bfd75cb8119d26670e395811822825b38bc0c94ab0219f7c",
-      "plan.md": "50129a73996fe565556871c734913a560e4177f614f69da328939be531918538",
-      "tasks.md": "f299088b40fe0deeda33655ca8d43adb3bdc0cd0deb387698e0dd36b0f221c1b",
-      "implementation-summary.md": "fdd0f659538a765cd73255d2db952fdbd113e8b2f635c550451c3adfe5391e33"
+      "spec.md": "36aa8b2ac6ca3d83fcd85ec391701454d64d4fb00247656aa33c9a7bd81383de",
+      "plan.md": "72b4c2e13284eb7f4e0dc2d9f40e263e7b5ebb5708801f154858bd2d3b552b87",
+      "tasks.md": "640005814ba9102099c4c48b4f320e240ffcd3f8284c5f30493ed956e57c9d60",
+      "implementation-summary.md": "3fd42fffe92d0443c0c6d2b987835dbf52f721394c58c54f939ee91bd9cb34c7"
     },
     "last_active_at": null
   }

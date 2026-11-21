@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/017-overlay-alignment-follow-ups"
     last_updated_at: "2026-11-21T06:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Review round 3 approved; docs closed before the merge"
-    next_safe_action: "Merge into local main and rerun the gates there"
+    recent_action: "Merged into local main as b4e147b3622 with every gate at baseline or above"
+    next_safe_action: "The operator pushes Skilled main"
     blockers: []
     key_files:
       - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "overlay-alignment-follow-ups"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -114,7 +114,8 @@ The review ran in three rounds, each by `@review`:
 | Engine suite on the branch | 362 of 362, exit 0 (354 before) |
 | Guard and contract suites | 20 of 20 and 9 of 9, exit 0 |
 | Final `@review` round | `Review status: APPROVED`, no P0 or P1 |
-| Gates on merged main | Recorded in the parent's merge commit and the phase report |
+| Gates on merged main `b4e147b3622` | engine 362, guard 20, contract 9, lsa 76, ldoc 10 and router-sync 56, each exit 0. `route-validate.sh` validates 32 routes. Strict recursive validation of the 007 parent prints 17 `RESULT: PASSED` |
+| Router-sync guard vs Barter's copy on main | `diff` exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
