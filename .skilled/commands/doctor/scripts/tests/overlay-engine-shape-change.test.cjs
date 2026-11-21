@@ -808,6 +808,55 @@ test('a nested missing layout link whose folder leads outside the tree through t
   assert.deepEqual(fs.readdirSync(outside).sort(), before);
 });
 
+// A directory entry whose destination is the layout link itself writes its
+// folders through the link, at its target, where a file the engine did not
+// write can stand in a folder's place. That file is refused before any write,
+// as any unowned shape in the way is, and a link apply made for the run is
+// taken back; a file the engine wrote there is replaced in the same apply.
+const UNOWNED_SUB_REFUSED = /^BLOCKED  tool: up\/sub is a file that does not match what apply last wrote there, where overlay tool writes a folder; apply removes only its own output, so it stays$/m;
+
+test('a directory entry at a missing layout link refuses a file its target holds where the entry writes a folder, and takes the link back', (t) => {
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'up' }], [{ path: 'up', target: 'target' }]);
+  writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+  writeFile(fixture.tree, 'target/sub', 'user work\n');
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, UNOWNED_SUB_REFUSED, apply.output);
+  assert.match(apply.output, /^ {2}this apply wrote nothing: a blocked overlay stops it before any write$/m, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'sub'), 'utf8'), 'user work\n');
+  assert.equal(kindOf(path.join(fixture.tree, 'target', 'a.md')), 'missing');
+});
+
+test('a directory entry at a standing layout link refuses a file its target holds where the entry writes a folder, in status and apply', (t) => {
+  const fixture = createShapeFixture(t, [], [{ path: 'up', target: 'target' }]);
+  applyOk(fixture);
+  fixture.setManifest([{ ...DIRECTORY_ENTRY, destination: 'up' }], [{ path: 'up', target: 'target' }]);
+  writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+  writeFile(fixture.tree, 'target/sub', 'user work\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: up\/sub is a file that does not match what apply last wrote there, where overlay tool writes a folder;/m, status.output);
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, UNOWNED_SUB_REFUSED, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'link');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'sub'), 'utf8'), 'user work\n');
+  assert.equal(kindOf(path.join(fixture.tree, 'target', 'a.md')), 'missing');
+});
+
+test('a file the engine wrote through a layout link becomes a folder of a directory entry at that link, in one apply', (t) => {
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up/sub' }], [{ path: 'up', target: 'target' }]);
+  applyOk(fixture);
+  assert.equal(kindOf(path.join(fixture.tree, 'target', 'sub')), 'file');
+  fixture.setManifest([{ ...DIRECTORY_ENTRY, destination: 'up' }], [{ path: 'up', target: 'target' }]);
+  writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'sub', 'x'), 'utf8'), 'x\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'a.md'), 'utf8'), 'bundle a\n');
+  assert.match(fixture.run(['status']).output, /^in-sync=3 overlay-edited=0 live-edited=0 /m);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 8. LAYOUT LINKS APPLY CANNOT WRITE THROUGH AS PLANNED
 // ─────────────────────────────────────────────────────────────────────────────

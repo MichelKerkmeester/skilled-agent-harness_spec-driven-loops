@@ -2426,6 +2426,38 @@ function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
   } else {
     current = walkTree(destinationDir);
   }
+  // The walk never reads through a link at the destination itself, so a file
+  // at its target where the source ships a folder is judged here, before any
+  // write lands on it: a file the engine wrote goes first, as any owned shape
+  // change does, and any other file stays and refuses the entry. A link in a
+  // folder's place is never read through, and a destination already deleted as
+  // another shape has nothing under it to judge.
+  const unwalked = new Set();
+  for (const rel of isDestinationReplaced ? [] : desired.keys()) {
+    const parts = rel.split('/');
+    for (let depth = 1; depth < parts.length; depth += 1) {
+      const folderRel = parts.slice(0, depth).join('/');
+      if (current.has(folderRel) || unwalked.has(folderRel)) break;
+      const folderPath = path.join(destinationDir, folderRel);
+      let stats;
+      try {
+        stats = fs.lstatSync(folderPath);
+      } catch {
+        break;
+      }
+      if (stats.isDirectory()) continue;
+      if (!stats.isFile()) break;
+      const folderKey = relativeKey(ctx.root, folderPath);
+      if (!hashMatches(fs.readFileSync(folderPath), acceptedHashFor(acceptedSha256, folderKey))) {
+        problems.push(unownedShapeProblem(entry, folderKey, 'file', 'folder', ctx.root));
+        return { writes: [], deletes: [], outputs: [] };
+      }
+      unwalked.add(folderRel);
+      deletes.push(folderPath);
+      outputs.push({ filePath: folderPath, buffer: null, sourcePath: path.join(sourceDir, folderRel), replacedSubtree: true });
+      break;
+    }
+  }
   // A live folder where the source now ships a file or a link is cleared by
   // the write once this plan's deletes have taken its files, so only empty
   // folders and Python caches may remain. A destination already deleted as
