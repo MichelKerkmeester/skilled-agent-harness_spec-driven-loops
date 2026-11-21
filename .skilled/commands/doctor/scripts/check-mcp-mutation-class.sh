@@ -56,6 +56,18 @@ show_help() {
   sed -n '2,/^set -euo pipefail$/p' "${BASH_SOURCE[0]}" | sed '$d' | sed 's/^# \{0,1\}//'
 }
 
+# The tree that ships this guard. Every remedy command is relative to it, so
+# each Next line names it as the folder to run from.
+tree_root() {
+  (cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)
+}
+
+# Print a remedy that reruns this guard on one root from the guard's own tree
+# Args: $1=what to do first, ending in ", then " (may be empty) $2=root to check
+next_rerun() {
+  printf 'Next: %sfrom %q: %s %q\n' "$1" "$(tree_root)" "bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh" "$2" >&2
+}
+
 ROOT=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -65,13 +77,13 @@ while [[ $# -gt 0 ]]; do
       ;;
     -*)
       echo "ERROR: unknown option: $1" >&2
-      echo "Next: bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh [<repo-root>]" >&2
+      next_rerun "" "$(tree_root)"
       exit 2
       ;;
     *)
       if [[ -n "$ROOT" ]]; then
         echo "ERROR: only one repo-root argument is accepted" >&2
-        echo "Next: bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh <repo-root>" >&2
+        next_rerun "" "$(tree_root)"
         exit 2
       fi
       ROOT="$1"
@@ -85,7 +97,7 @@ if [[ -z "$ROOT" ]]; then
 fi
 if [[ ! -d "$ROOT" ]]; then
   echo "ERROR: repo root not found: $ROOT" >&2
-  echo "Next: bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh <repo-root>" >&2
+  next_rerun "" "$(tree_root)"
   exit 2
 fi
 ROOT="$(cd "$ROOT" && pwd)"
@@ -93,12 +105,12 @@ MANIFEST="$ROOT/.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml
 
 command -v python3 >/dev/null 2>&1 || {
   echo "ERROR: python3 required" >&2
-  echo "Next: install python3, then rerun bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh" >&2
+  next_rerun "install python3, then " "$ROOT"
   exit 2
 }
 [[ -f "$MANIFEST" ]] || {
   echo "ERROR: manifest not found: $MANIFEST" >&2
-  echo "Next: bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh <repo-root that ships the doctor command>" >&2
+  next_rerun "" "$(tree_root)"
   exit 2
 }
 
@@ -226,7 +238,7 @@ fi
 
 if [[ -z "${WORKLIST//[$'\n\t ']/}" ]]; then
   echo "ERROR: no scripts resolved from manifest or discovery" >&2
-  echo "Next: add a row per MCP script to $MANIFEST, then rerun bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh" >&2
+  next_rerun "add a row per MCP script to $MANIFEST, then " "$ROOT"
   exit 2
 fi
 

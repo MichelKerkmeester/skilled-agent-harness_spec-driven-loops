@@ -50,7 +50,9 @@ while [[ $# -gt 0 ]]; do
     --help|-h)   show_help; exit 0 ;;
     *)
       echo "ERROR: unknown argument: $1" >&2
-      echo "Next: bash .skilled/commands/doctor/scripts/route-validate.sh --help" >&2
+      # The command is relative to the tree that ships this script, which an
+      # overridden REPO_ROOT may not be, so the line names that tree.
+      printf 'Next: from %q: %s --help\n' "$(cd "$SCRIPT_DIR/../../../.." && pwd)" "bash .skilled/commands/doctor/scripts/route-validate.sh" >&2
       show_help >&2
       exit 2
       ;;
