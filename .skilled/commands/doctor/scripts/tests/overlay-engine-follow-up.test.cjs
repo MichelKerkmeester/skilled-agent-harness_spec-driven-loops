@@ -1273,12 +1273,12 @@ test('relayout whose rollback also fails names the backup it keeps', (t) => {
 test('relayout whose rollback also fails says which copies the backup lacks', (t) => {
   const fixture = createRelayoutFixture(t);
   writeFile(fixture.overlayDir, 'custom/bundle/assets/api-token.js', 'SECRET-BYTES-123\n');
-  writeFile(fixture.overlayDir, 'custom/.env.sample', 'KEY=value\n');
+  writeFile(fixture.overlayDir, 'custom/.env.local', 'KEY=value\n');
   fixture.manifest.overlays.push({
     id: 'hub-env',
     scope: 'file',
-    source: 'custom/.env.sample',
-    destination: '.skilled/skills/hub/.env.sample',
+    source: 'custom/.env.local',
+    destination: '.skilled/skills/hub/.env.local',
   });
   writeManifest(fixture);
 
@@ -1286,10 +1286,10 @@ test('relayout whose rollback also fails says which copies the backup lacks', (t
 
   assert.equal(code, 2, lines.join('\n'));
   assert.ok(lines.includes('skipped custom/bundle/assets/api-token.js'), lines.join('\n'));
-  assert.ok(lines.includes('skipped custom/.env.sample'), lines.join('\n'));
+  assert.ok(lines.includes('skipped custom/.env.local'), lines.join('\n'));
   const errors = lines.filter((line) => line.startsWith('error: '));
   assert.equal(errors.length, 1, lines.join('\n'));
-  assert.equal(errors[0].includes('.env.sample'), false, errors[0]);
+  assert.equal(errors[0].includes('.env.local'), false, errors[0]);
   const backupLabel = lines.find((line) => line.startsWith('backup ')).slice('backup '.length);
   assert.ok(errors[0].endsWith(`the backup at ${backupLabel} holds the manifest as it was and every moved copy ` +
     'except these files it skipped: custom/bundle/assets/api-token.js'), errors[0]);

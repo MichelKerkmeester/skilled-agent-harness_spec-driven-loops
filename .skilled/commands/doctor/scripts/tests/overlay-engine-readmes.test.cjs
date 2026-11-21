@@ -231,6 +231,25 @@ for (const placement of PLACEMENTS) {
     assert.equal(after.docOnly, before.docOnly - 1);
   });
 
+  test(`a README the retained list keeps inside a replaced folder is documentation only, with ${placement.name}`, (t) => {
+    const fixture = createReadmeFixture(t, placement.options);
+    const before = auditJson(fixture).report.docs;
+    // A retained path inside a replaced folder keeps the vendor's live bytes,
+    // so the overlay folder's copy at that path is never applied.
+    writeFile(fixture.tree, 'skill/guide/README.md', 'vendor guide readme\n');
+    fixture.manifest.overlays.find((entry) => entry.id === 'skill').retained.push({ path: 'guide/README.md' });
+    writeManifest(fixture);
+    const after = auditJson(fixture).report.docs;
+    assert.equal(after.shipping, before.shipping - 1);
+    assert.equal(after.docOnly, before.docOnly + 1);
+    const applied = fixture.run(['apply']);
+    assert.equal(applied.code, 0, applied.output);
+    assert.equal(fs.readFileSync(path.join(fixture.tree, 'skill', 'guide', 'README.md'), 'utf8'), 'vendor guide readme\n');
+    // Re-classifying it must not make a status check read the kept copy as drift.
+    const status = fixture.run(['status', '--audit']);
+    assert.equal(status.code, 0, status.output);
+  });
+
   test(`status --audit prints one missing-readme line per folder without one, after the audit and before checked=, with ${placement.name}`, (t) => {
     const fixture = createReadmeFixture(t, placement.options);
     fs.rmSync(path.join(fixture.overlayDir, 'README.md'));

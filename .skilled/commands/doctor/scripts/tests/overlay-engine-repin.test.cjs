@@ -466,6 +466,31 @@ test('a .env path upstream ships refuses the repin before any read or write', (t
   assert.equal(fs.existsSync(fixture.runsDir), false);
 });
 
+test('a secret-free .env template upstream changes is refreshed like any vendored file', (t) => {
+  const templates = ['.claude/.env.example', '.claude/.env.sample', '.claude/.env.template'];
+  const oldEntries = Object.fromEntries(templates.map((rel) => [rel, 'KEY=old\n']));
+  const newEntries = Object.fromEntries(templates.map((rel) => [rel, 'KEY=\nOTHER=\n']));
+  const fixture = createRepinFixture(t, { oldEntries, newEntries });
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  for (const rel of templates) assert.equal(read(fixture.tree, rel), 'KEY=\nOTHER=\n', rel);
+  assert.doesNotMatch(result.output, /\.env\.(example|sample|template) is a \.env path/);
+});
+
+test('a .env.local upstream changes still refuses the repin', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: { '.claude/.env.local': 'SECRET=old\n' },
+    newEntries: { '.claude/.env.local': 'SECRET=new\n' },
+  });
+  const before = treeDigest(fixture.tree);
+
+  const result = fixture.repin();
+  assert.equal(result.code, 2, result.output);
+  assert.match(result.output, /\.claude\/\.env\.local is a \.env path, which is never read/);
+  assert.equal(treeDigest(fixture.tree), before);
+});
+
 test('a repin to the commit already pinned reports nothing to copy and writes nothing', (t) => {
   const fixture = createRepinFixture(t);
   const before = treeDigest(fixture.tree);
