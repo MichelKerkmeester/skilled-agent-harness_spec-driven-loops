@@ -383,3 +383,20 @@ test('a link that loops where a whole-file entry writes is refused, not a crash'
   assert.equal(result.output.includes('ELOOP'), false, result.output);
   assert.match(result.output, /tool is a link that does not resolve/, result.output);
 });
+
+test('a dangling link that reaches outside the tree through a second link is refused', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [FILE_ENTRY]);
+  fs.symlinkSync('hop', path.join(fixture.tree, 'tool'));
+  fs.symlinkSync(path.join(outside, 'not-yet.md'), path.join(fixture.tree, 'hop'));
+  assertOutsideRefusal(fixture, outside, 'tool');
+});
+
+test('a layout link the manifest names keeps its old handling when its target is outside the tree', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'up/tool' }], [{ path: 'up', target: outside }]);
+  fs.symlinkSync(outside, path.join(fixture.tree, 'up'));
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 0, result.output);
+  assert.equal(fs.readFileSync(path.join(outside, 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+});

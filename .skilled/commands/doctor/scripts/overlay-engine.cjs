@@ -2177,17 +2177,21 @@ function keepAsideRemedy(root, key) {
  * Find a link on a path that leads outside the tree, or that resolves nowhere,
  * so a write or delete on the path could land outside it. Each part of the path
  * that exists is resolved, the leaf only when the write follows it; a dangling
- * link is judged by where its target would be made.
+ * link is judged by where its target would be made. A link the engine made, one
+ * the manifest names or the state records at the target it has now, is the
+ * manifest's own layout, so it is followed and never refused.
  * @param {string} root Destination tree root.
  * @param {string} filePath Absolute path inside the tree.
- * @param {{followLeaf?: boolean, removed?: Set<string>, cache?: Map<string, object|null>}} [options]
+ * @param {{followLeaf?: boolean, removed?: Set<string>, cache?: Map<string, object|null>,
+ *   engineLinks?: Record<string, string>}} [options]
  *   `removed` holds paths the plan deletes first, so nothing below one is read
- *   through it, and `cache` keeps each part's answer for one plan.
+ *   through it, `cache` keeps each part's answer for one plan, and `engineLinks`
+ *   maps each link the engine made, relative to the root, to its target.
  * @returns {{key: string, landed: string|null}|null} The link, relative to the
  *   root, and where it lands (null when it does not resolve), or null when every
  *   part stays inside the tree.
  */
-function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set(), cache = new Map() } = {}) {
+function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set(), cache = new Map(), engineLinks = {} } = {}) {
   const absoluteRoot = path.resolve(root);
   const realRoot = canonicalPath(absoluteRoot);
   const parts = path.relative(absoluteRoot, path.resolve(filePath)).split(path.sep).filter(Boolean);
@@ -2209,21 +2213,15 @@ function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set
       throw error;
     }
     let found = null;
-    if (stats.isSymbolicLink()) {
+    const key = toPosix(path.relative(absoluteRoot, current));
+    if (stats.isSymbolicLink() && engineLinks[key] !== fs.readlinkSync(current)) {
       let landed;
       try {
         landed = fs.realpathSync.native(current);
       } catch (error) {
-        landed = null;
-        if (error && error.code === 'ENOENT') {
-          try {
-            landed = canonicalPath(path.resolve(path.dirname(current), fs.readlinkSync(current)));
-          } catch {
-            landed = null;
-          }
-        }
+        landed = error && error.code === 'ENOENT' ? danglingLinkLanding(current) : null;
       }
-      if (landed === null || !isWithin(realRoot, landed)) found = { key: toPosix(path.relative(absoluteRoot, current)), landed };
+      if (landed === null || !isWithin(realRoot, landed)) found = { key, landed };
     }
     cache.set(current, found);
     if (found) return found;
@@ -2232,20 +2230,46 @@ function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set
   return null;
 }
 
+// Where a write through a dangling link would make its file: each link in the
+// chain is followed to the first path that is not a link, so a chain that leaves
+// the tree through a later hop is judged where it ends. A chain that runs past
+// the hop limit resolves nowhere.
+function danglingLinkLanding(linkPath) {
+  let at = linkPath;
+  for (let hops = 0; hops < 40; hops += 1) {
+    let next;
+    try {
+      next = path.resolve(path.dirname(at), fs.readlinkSync(at));
+    } catch {
+      return null;
+    }
+    let stats;
+    try {
+      stats = fs.lstatSync(next);
+    } catch (error) {
+      if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) return canonicalPath(next);
+      return null;
+    }
+    if (!stats.isSymbolicLink()) return canonicalPath(next);
+    at = next;
+  }
+  return null;
+}
+
 // The first link a plan's writes or deletes would go through to land outside
 // the tree. A file write follows its leaf; a link write and a delete replace
 // theirs unopened, and anything below a path the plan deletes is made fresh.
-function planLeavingTree(root, plan) {
+function planLeavingTree(root, plan, engineLinks) {
   const removed = new Set(plan.deletes.map((filePath) => path.resolve(filePath)));
   const cache = new Map();
   for (const write of plan.writes) {
     const filePath = path.resolve(write.filePath);
     const followLeaf = write.symlinkTarget === undefined && !removed.has(filePath);
-    const found = linkLeavingTree(root, filePath, { followLeaf, removed, cache });
+    const found = linkLeavingTree(root, filePath, { followLeaf, removed, cache, engineLinks });
     if (found) return found;
   }
   for (const filePath of plan.deletes) {
-    const found = linkLeavingTree(root, filePath, { cache });
+    const found = linkLeavingTree(root, filePath, { cache, engineLinks });
     if (found) return found;
   }
   return null;
@@ -2889,7 +2913,9 @@ const PLANNERS = {
  *   the sets it still names and `listedKeys` its `setKeyOnItem` keys, all for
  *   the state write. `warnings` are notes that never block the plan.
  */
-function planOverlay(entry, ctx, { acceptedSha256, recordedLinks, recordedItems, recordedSets, recordedKeys, upstreamBytes } = {}) {
+function planOverlay(entry, ctx, {
+  acceptedSha256, recordedLinks, recordedItems, recordedSets, recordedKeys, upstreamBytes, engineLinks = {},
+} = {}) {
   const problems = [];
   const planner = PLANNERS[entry.scope];
   if (!planner) {
@@ -2900,11 +2926,11 @@ function planOverlay(entry, ctx, { acceptedSha256, recordedLinks, recordedItems,
   }
   const empty = { writes: [], deletes: [], outputs: [] };
   const leavesBefore = typeof entry.destination === 'string' && entry.scope !== 'remove-root'
-    ? linkLeavingTree(ctx.root, path.join(ctx.root, entry.destination), { followLeaf: true }) : null;
+    ? linkLeavingTree(ctx.root, path.join(ctx.root, entry.destination), { followLeaf: true, engineLinks }) : null;
   if (leavesBefore) problems.push(linkLeavingTreeProblem(entry, leavesBefore, ctx.root));
   let plan = leavesBefore ? empty
     : planner(entry, ctx, problems, acceptedSha256, { recordedLinks, recordedItems, recordedSets, recordedKeys, upstreamBytes });
-  const leavesAfter = leavesBefore ? null : planLeavingTree(ctx.root, plan);
+  const leavesAfter = leavesBefore ? null : planLeavingTree(ctx.root, plan, engineLinks);
   if (leavesAfter) {
     problems.push(linkLeavingTreeProblem(entry, leavesAfter, ctx.root));
     plan = empty;
@@ -3301,8 +3327,9 @@ const NO_EXACT_PATHS = new Set();
 // re-pinned like any vendored file. It is also the one name the env-secret guard
 // hook exempts. The engine is the stricter of the two: it folds case and refuses
 // any name that starts with `.env`, where the hook matches `.env` and `.env.<suffix>`
-// as spelled, so the engine refuses every name the hook does and more. Folding
-// case also exempts the template's other spellings, which the hook refuses.
+// as spelled, so the engine refuses many names the hook allows. The one name it
+// reads that the hook refuses is this template spelled in another case, since
+// folding case exempts those spellings too.
 const ENV_TEMPLATE_NAMES = new Set(['.env.example']);
 
 function isEnvName(filePath) {
@@ -3904,6 +3931,17 @@ function unnamedRecordedLinks(manifest, state) {
   return links;
 }
 
+// Every link the engine made, relative to the root, at the target it made it
+// with: the links the state records, and the layout links the manifest names.
+function engineMadeLinks(manifest, state) {
+  const links = {};
+  for (const [linkPath, target] of Object.entries((state && state.links) || {})) links[path.posix.normalize(linkPath)] = target;
+  for (const link of manifest.layoutLinks || []) {
+    if (link && typeof link.path === 'string' && typeof link.target === 'string') links[path.posix.normalize(link.path)] = link.target;
+  }
+  return links;
+}
+
 // A layout link the manifest names is part of the delivered tree, not of the pin,
 // so a tree that lost one cannot be repaired by copying anything: the report has
 // to carry it as outstanding work or the link stays missing silently.
@@ -3933,11 +3971,13 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
   const root = ctx.root;
   const { exact, refused } = assertSafeToPlan(ctx, manifest);
   const recordedLinks = unnamedRecordedLinks(manifest, state);
+  const engineLinks = engineMadeLinks(manifest, state);
   const plans = manifest.overlays.map((entry) => (refused.has(entry.id)
     ? refusedPlan(entry, refused.get(entry.id))
     : planOverlay(entry, ctx, {
       acceptedSha256: state.files,
       recordedLinks,
+      engineLinks,
       recordedItems: (state.items || {})[entry.destination] || [],
       recordedSets: (state.sets || {})[entry.destination] || [],
       recordedKeys: (state.keys || {})[entry.destination] || [],
@@ -6208,6 +6248,7 @@ function repinUnderLock(ctx, job, report) {
       !touched.copy.includes(entry.destination) && !touched.delete.includes(entry.destination))
     .map((entry) => planOverlay(entry, ctx, {
       acceptedSha256: state.files,
+      engineLinks: engineMadeLinks(manifest, state),
       recordedItems: (state.items || {})[entry.destination] || [],
       recordedSets: (state.sets || {})[entry.destination] || [],
       recordedKeys: (state.keys || {})[entry.destination] || [],
