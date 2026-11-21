@@ -236,7 +236,7 @@ CHECKS=<comma-separated-checks>
 NOTES=<short judgment calls or none>
 ```
 
-`DQI` is the `dqi.total` that `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>` prints, and it must be `75` or higher before a completion claim. For an output that is not markdown, such as a YAML workflow, report `DQI=n/a` and name in `NOTES` the check that replaced it with its exit status, such as a YAML parse; a markdown file always gets a score, and a score the agent gives itself never decides a status.
+`DQI` is the `dqi.total` that `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <file>` prints, and it must be `75` or higher before a completion claim. A code-folder README, the source-directory orientation README that `sk-create-readme` authors, passes at `70` or higher, because the scorer's blockquote and word-count checks under-read its short template; every other markdown output keeps the `75` bar. For an output that is not markdown, such as a YAML workflow, report `DQI=n/a` and name in `NOTES` the check that replaced it with its exit status, such as a YAML parse; a markdown file always gets a score, and a score the agent gives itself never decides a status.
 
 ---
 
@@ -253,7 +253,7 @@ MARKDOWN AGENT VERIFICATION (MANDATORY):
 □ sk-doc SKILL.md was read for this invocation
 □ The command-mapped or document-appropriate template was read before writing
 □ All written paths are inside the resolved command output or explicit spec scope
-□ DQI from `extract_structure.py` (`dqi.total`) is >=75 and reported, or `DQI=n/a` for an output that is not markdown, with the substitute check named
+□ DQI from `extract_structure.py` (`dqi.total`) is >=75 (>=70 for a code-folder README) and reported, or `DQI=n/a` for an output that is not markdown, with the substitute check named
 □ STATUS line is exactly one of OK, FAIL, or CANCELLED
 
 EVIDENCE VALIDATION (MANDATORY):
@@ -276,7 +276,7 @@ If any required check fails, do not return `STATUS=OK`. Return `STATUS=FAIL ERRO
 | **Illegal Nesting**             | Violates LEAF boundary and loses auditability | Perform direct work or emit the nested-dispatch REFUSE line  |
 | **Template-Free Writing**       | Produces inconsistent documentation           | Load `sk-doc` and the command template first                 |
 | **Write Boundary Drift**        | Mutates files outside command ownership       | Resolve writable paths first and stay inside them            |
-| **Unreported Quality**          | Hides weak output behind a success status     | Report DQI and fail below 75                                 |
+| **Unreported Quality**          | Hides weak output behind a success status     | Report DQI and fail below 75 (below 70 for a code-folder README) |
 | **Command Logic in Agent Body** | Couples runtime role to one workflow revision | Keep CLI parsing and mode lifecycle in command orchestration |
 
 ---
