@@ -581,6 +581,8 @@ test('a nested missing layout link whose folder leads outside the tree through t
       command + ': ' + result.output);
     assert.match(result.output, /^ {2}Next: mv .*\/target .*\/target\.keep, then from .*: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs apply$/m,
       command + ': ' + result.output);
+    assert.equal(/^ {2}this apply wrote nothing: it stopped while planning, before any write$/m.test(result.output), command === 'apply',
+      command + ': ' + result.output);
   }
   assert.equal(kindOf(path.join(fixture.tree, 'a')), 'missing');
   assert.deepEqual(fs.readdirSync(outside).sort(), before);
@@ -708,9 +710,9 @@ test('a layout link moved back to a target that holds an earlier copy is refused
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'inside.md'), 'utf8'), 'link target\n');
 });
 
-function assertMissingTargetLines(lines, fixture, target) {
+function assertMissingTargetLines(lines, fixture, target, linkPath = 'up') {
   assert.equal(lines[0], '  a write under a link that resolves nowhere has no folder to land in, so apply writes nothing');
-  assert.equal(lines[1], `  Next: mkdir -p ${path.join(fixture.tree, target)}, or point the layout link up in ` +
+  assert.equal(lines[1], `  Next: mkdir -p ${path.join(fixture.tree, target)}, or point the layout link ${linkPath} in ` +
     `${path.join(fixture.overlayDir, 'overlay-manifest.json')} at a folder that exists, then from ${fixture.tree}: ` +
     'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply');
 }
@@ -747,6 +749,17 @@ test('a layout link not made yet whose target does not exist with an entry under
   fs.mkdirSync(path.join(fixture.tree, 'nothere'));
   applyOk(fixture);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'nothere', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a layout link not made yet in a folder not made yet, whose target does not exist, is refused by status and apply alike', (t) => {
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'a/up/tool' }], [{ path: 'a/up', target: 'nothere' }]);
+  assertMissingTargetLines(assertRefusedByBoth(fixture, 'a/up links to nothere, which does not exist, and overlay tool writes under it'),
+    fixture, 'a/nothere', 'a/up');
+  assert.equal(kindOf(path.join(fixture.tree, 'a')), 'missing');
+  fs.mkdirSync(path.join(fixture.tree, 'a', 'nothere'), { recursive: true });
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'a', 'nothere', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
   assert.equal(fixture.run(['status']).code, 0);
 });
 

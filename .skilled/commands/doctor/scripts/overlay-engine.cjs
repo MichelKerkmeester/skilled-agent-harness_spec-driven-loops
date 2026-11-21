@@ -3323,12 +3323,26 @@ function refuseLinksInsideOverlayWrites(ctx, layout, plans) {
 }
 
 // Whether a layout link's target is missing, read from the folder the link sits
-// in as the operating system reads it. A link whose own folder is not there yet
-// is left to apply, since a link above it decides where that folder lands.
-function isLayoutTargetMissing(root, link) {
+// in as the operating system reads it. A folder not there yet is read as
+// written, the way apply makes it, unless another manifest link sits on its
+// way: that link, once made, decides where the folder lands, so the target is
+// left to apply, as is a folder that cannot be resolved at all, such as one
+// behind a looping link the layout replaces.
+function isLayoutTargetMissing(root, manifest, link) {
   const folder = path.dirname(path.resolve(root, link.path));
-  if (!fs.existsSync(folder)) return false;
-  return !fs.existsSync(path.resolve(canonicalPath(folder), link.target));
+  if (!fs.existsSync(folder)) {
+    const fold = pathFold(root);
+    const isLinkOnTheWay = (manifest.layoutLinks || []).some((other) => other !== link && other &&
+      typeof other.path === 'string' && isWithin(fold(path.resolve(root, other.path)), fold(folder)));
+    if (isLinkOnTheWay) return false;
+  }
+  let realFolder;
+  try {
+    realFolder = canonicalPath(folder);
+  } catch {
+    return false;
+  }
+  return !fs.existsSync(path.resolve(realFolder, link.target));
 }
 
 // A layout link with entries at or below it that apply cannot write through as
@@ -3369,7 +3383,8 @@ function refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans) {
     }
     const isStanding = !record && current === link.target;
     if ((!record && !isStanding) || (record && record.replacesOwned)) continue;
-    const missingUnder = isLayoutTargetMissing(root, link) ? entriesUnder(link, true) : [];
+    const writersUnder = entriesUnder(link, true);
+    const missingUnder = writersUnder.length > 0 && isLayoutTargetMissing(root, manifest, link) ? writersUnder : [];
     if (missingUnder.length > 0) {
       layout.problems.push(withRemedy(
         `${link.path} links to ${link.target}, which does not exist, and ${named(missingUnder)} under it`,
@@ -5096,6 +5111,20 @@ function printStoppedByDestination(ctx) {
   console.log('  Next: run the fix on each line above, then ' + nextEngine(ctx.root, 'apply').slice('Next: '.length));
 }
 
+// An apply that stops while it plans has written nothing, so the error it stops
+// on says so beneath its own reason, as every other refusal does.
+function stopsBeforeWriting(plan) {
+  try {
+    return plan();
+  } catch (error) {
+    if (error instanceof Error) {
+      error.remedy = (error.remedy ? error.remedy + '\n' : '') +
+        '  this apply wrote nothing: it stopped while planning, before any write';
+    }
+    throw error;
+  }
+}
+
 // Print why an apply cannot run, and say whether it stops before any write.
 function reportApplyBlocked(ctx, analysis) {
   const blockers = analysis.records.filter((record) => BLOCKING_STATES.has(record.state));
@@ -5140,8 +5169,8 @@ function reportApplyBlocked(ctx, analysis) {
  */
 function applyUnderLock(ctx, manifest, options = {}) {
   const root = ctx.root;
-  const state = loadState(ctx, manifest);
-  let analysis = analyze(ctx, manifest, state, options.upstreamBytes);
+  const state = stopsBeforeWriting(() => loadState(ctx, manifest));
+  let analysis = stopsBeforeWriting(() => analyze(ctx, manifest, state, options.upstreamBytes));
 
   // The entries under a layout link the tree lacks were planned with no link
   // there, so a first plan may block them only because the link is missing.
@@ -5154,7 +5183,7 @@ function applyUnderLock(ctx, manifest, options = {}) {
   if (linkedFirst.length > 0) {
     const undoLinks = makeLinksFirst(root, linkedFirst);
     try {
-      analysis = analyze(ctx, manifest, state, options.upstreamBytes);
+      analysis = stopsBeforeWriting(() => analyze(ctx, manifest, state, options.upstreamBytes));
     } catch (error) {
       undoLinks();
       throw error;
