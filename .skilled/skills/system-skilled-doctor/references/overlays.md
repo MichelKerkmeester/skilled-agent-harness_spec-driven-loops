@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.46.0
+version: 1.0.47.0
 ---
 
 # Vendored Skilled Overlays
@@ -222,7 +222,7 @@ BLOCKED  layout: up moves from target to target2, and overlay tool writes under 
   Next: take overlay tool out of /path/to/tree/skilled-overlays/overlay-manifest.json, run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply from /path/to/tree to move the link alone, then put the entry back and run apply again
 ```
 
-The general form is `<link> moves from <old> to <new>, and overlay <id> writes under it`. With more than one entry under the link it reads `overlays <a, b> write under it`, and the `Next:` line reads `take overlays <a, b> out of` and `put the entries back`. Follow the two steps. The first apply moves the link alone, and the second writes the entries through its new target. What an earlier apply wrote through the old target stays there. When another layout link sits inside the moved one, such as `a/b` inside `a`, the `Next:` line ends `, which makes a/b if the first apply reports it`. The first apply then exits 1 with `overlay-edited a/b  (layout link)`, and the second apply makes that link.
+The general form is `<link> moves from <old> to <new>, and overlay <id> writes under it`. With more than one entry under the link it reads `overlays <a, b> write under it`, and the `Next:` line reads `take overlays <a, b> out of` and `put the entries back`. Follow the two steps. The first apply moves the link alone, and the second writes the entries through its new target. What an earlier apply wrote through the old target stays there. When another layout link sits inside the moved one, such as `a/b` inside `a`, the `Next:` line ends `, which makes a/b if the first apply reports it`. The first apply may then exit 1 with `overlay-edited a/b  (layout link)`, when that link already stood in the old target, and the second apply makes it.
 
 A layout link whose target does not exist, with an entry destination at or under it, is refused the same way, whether apply would make it or move it, or it already stands there:
 
