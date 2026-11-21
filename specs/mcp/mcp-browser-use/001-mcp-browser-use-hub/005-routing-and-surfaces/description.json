@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces",
+  "description": "The advisor still sends browser requests to `mcp-tooling`: a Chrome DevTools request scores `mcp-tooling` at 0.95 today",
+  "keywords": [
+    "advisor",
+    "still",
+    "sends",
+    "browser",
+    "requests",
+    "mcp-tooling",
+    "chrome",
+    "devtools",
+    "request",
+    "scores",
+    "today"
+  ],
+  "lastUpdated": "2026-11-21T14:30:45.334Z",
+  "specId": "005",
+  "folderSlug": "routing-and-surfaces",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_15-30__manual-context-save.md"
+  ]
+}

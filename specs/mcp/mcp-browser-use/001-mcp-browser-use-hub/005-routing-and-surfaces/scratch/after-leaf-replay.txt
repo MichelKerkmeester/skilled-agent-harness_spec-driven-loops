@@ -1,0 +1,7 @@
+keys equal: True
+all resources exist
+run a lighthouse audit on this page -> {'LIGHTHOUSE_TRACE': 2} -> ['mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md', 'mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md']
+record a performance trace of the checkout -> {'LIGHTHOUSE_TRACE': 1} -> ['mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md', 'mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md']
+debug this page with chrome devtools and take a screenshot -> {'CHROME_DEVTOOLS': 1} -> ['mcp-chrome-devtools/references/cdp-patterns.md', 'mcp-chrome-devtools/references/session-management.md']
+use aside to fill this form in my signed-in account -> {'ASIDE_DEVTOOLS': 1} -> ['mcp-aside-devtools/references/aside-cli-reference.md', 'mcp-aside-devtools/references/mcp-wiring.md']
+use bladebro to attach to my open browser and finish the checkout flow -> {'BLADEBRO': 2} -> ['mcp-bladebro/references/cli-reference.md', 'mcp-bladebro/references/mcp-wiring.md']

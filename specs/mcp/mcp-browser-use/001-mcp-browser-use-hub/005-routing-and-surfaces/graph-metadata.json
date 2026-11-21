@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces",
+  "spec_folder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces",
+  "parent_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 5 routing and surfaces",
+      "mcp-browser-use advisor routing",
+      "routing-and-surfaces plan",
+      "routing-and-surfaces tasks",
+      "routing and surfaces goal",
+      "routing and surfaces implementation summary"
+    ],
+    "key_topics": [
+      "phase",
+      "routing",
+      "surfaces",
+      "mcp-browser-use",
+      "advisor",
+      "routing-and-surfaces",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "still"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-browser-use/graph-metadata.json",
+      ".skilled/skills/mcp-browser-use/hub-router.json",
+      ".skilled/skills/mcp-browser-use/ROUTER.md",
+      ".skilled/skills/mcp-browser-use/leaf-scopes.json",
+      ".skilled/skills/mcp-browser-use/leaf-manifest.json",
+      ".skilled/skills/mcp-browser-use/SKILL.md",
+      ".skilled/skills/mcp-browser-use/changelog/v1.1.0.0.md",
+      ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md",
+      ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/feature-catalog.md",
+      ".skilled/skills/mcp-tooling/graph-metadata.json",
+      ".skilled/skills/mcp-code-mode/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-browser-use/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-browser-use/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-scopes.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-browser-use/leaf-scopes.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-browser-use/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "lighthouse-and-performance-trace.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-scorer.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+        "source": "derived"
+      },
+      {
+        "name": "capture-local-native-divergence-ledger.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "gate2-golden-prompts.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor still sends browser requests to `mcp-tooling`: a Chrome DevTools request scores `mcp-tooling` at 0.95 today",
+    "created_at": "2026-11-21T08:11:45Z",
+    "last_save_at": "2026-11-21T15:04:28.876Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd47719c5e718b9fe3a01e8d025d08184f45a32b6e9a23ee88badb5a2079d3c6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4c109c039bd298e529aac5531de061e2337e109dc49fcacc1144e401b8fbc8ca",
+      "plan.md": "eb241935cb3d3370aa661285a103886e9f144b618787e7ea86e3a049005eeef7",
+      "tasks.md": "4240c18b0756ef9a1ef93ac7685bc526a9a7ec5e1dd98a70e090f22e7a7f2003",
+      "implementation-summary.md": "b1781ea54bdc77ca4538b4356742b37fcce76d0b325c3884629d07e8db9081bb"
+    },
+    "last_active_at": null
+  }
+}

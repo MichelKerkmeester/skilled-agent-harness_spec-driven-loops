@@ -739,7 +739,7 @@ export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection
   // Browser/devtools inspection is a genuine chrome-devtools task even though
   // its verb ("inspect") reads as a read-only explainer. Lift it off the
   // explainer floor when the prompt carries devtools-specific vocabulary.
-  if (skillId === 'mcp-tooling'
+  if (skillId === 'mcp-browser-use'
     && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|performance trace|inspect (the )?(network|dom|page|element|browser))\b/.test(promptLower)) {
     return true;
   }

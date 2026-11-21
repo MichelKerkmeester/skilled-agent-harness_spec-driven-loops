@@ -30,7 +30,9 @@ const DEBUG_FLAG = 'SPECKIT_COMPILED_ROUTING_DEBUG';
 // compiled-serving by the legacy-parity harness before it was retired;
 // cli-classifier joined at its own first activation, admitted on its own canary
 // corpus and a fresh manifest, when it absorbed the Jev transport as a mode.
-// sk-design joins the same way, on this rollout's admission.
+// sk-design joins the same way, on this rollout's admission, and so does
+// mcp-browser-use, admitted on its own canary corpus after it split out of
+// mcp-tooling.
 // An unset flag resolves to compiled for every hub listed here;
 // SPECKIT_COMPILED_ROUTING=0 remains the explicit fleet-wide kill-switch back
 // to legacy.
@@ -42,6 +44,7 @@ const DEFAULT_ON_HUBS = new Set([
   'cli-classifier',
   'sk-doc',
   'sk-design',
+  'mcp-browser-use',
 ]);
 
 // Emit-only diagnostic. Gated behind an explicit debug flag and written to
