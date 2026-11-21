@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The advisor's semantic lane, which scores prompts with Ollama or HuggingFace embeddings, ships at live weight 0 after three negative measurements",
     "created_at": "2026-11-20T21:51:18Z",
-    "last_save_at": "2026-11-21T10:43:20.992Z",
+    "last_save_at": "2026-11-21T10:54:16.238Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:6c074d93890c80732798fc7d2c2ecfef53bee3f88e2e4afb86ada4ceb34d23a1",
+    "source_fingerprint": "sha256:da394ceb6dc45c8576217eaf2d373eb389a5f696d1ae6948d45a2ad0c82ac941",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "32b32acf3aa50dfe3c3ca80282554c27452ca99b3b1ad27d089f3664c1ef99eb",

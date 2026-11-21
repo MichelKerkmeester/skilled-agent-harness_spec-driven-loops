@@ -87,7 +87,7 @@ string, not these files.
 
 - [ ] Each of phases 001 to 008 has a commit on `worktrees/497-ollama-lane-removal`, and `git log --reverse` shows them in folder order.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal --recursive --strict` prints `RESULT: PASSED`.
-- [ ] The residue check in `.skilled/skills/system-spec-kit/runtime/cli/retrieval/` exits 0 in repo mode and in machine mode, and exits 1 on its planted-term fixture.
+- [ ] The residue check in `.skilled/skills/system-spec-kit/runtime/cli/retrieval/` exits 0 in repo mode, exits 1 on its planted-term fixture, and in machine mode exits 0 on a fixture home and checkout after apply. Exit 0 on the operator's machine follows the merge, the operator's `/doctor:update apply` and retiring older worktrees.
 - [ ] Findings from `/local-doc-alignment` and `/local-skilled-alignment`, run after phase 008, are fixed and committed on `worktrees/497-ollama-lane-removal`.
 - [ ] `git branch -a --contains <branch tip>` lists only `worktrees/497-ollama-lane-removal`, so nothing merged to `main` and nothing was pushed.
 <!-- /ANCHOR:completion -->
@@ -106,6 +106,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phases 001 to 008 | Pending | Phase map in `spec.md` |
+| Criterion 3 amended | done | operator answer: fixture proof counts; machine mode on the operator's Mac cannot reach exit 0 while D2 keeps the primary checkout unmerged |
 
 ### Deviations and findings
 
