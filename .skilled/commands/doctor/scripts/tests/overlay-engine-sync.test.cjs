@@ -142,7 +142,7 @@ test('capture is a no-op for an in-sync destination', (t) => {
 
   const captured = fixture.run(['apply', '--capture', 'marked.md']);
   assert.equal(captured.code, 0, captured.output);
-  assert.equal(captured.output.trim(), 'nothing to capture');
+  assert.equal(captured.output.trim(), 'nothing to capture: marked.md is in sync with skilled-overlays/marked/block.md');
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'marked/block.md'), 'utf8'), sourceBefore);
   assert.equal(fs.readFileSync(fixture.statePath, 'utf8'), stateBefore);
 });

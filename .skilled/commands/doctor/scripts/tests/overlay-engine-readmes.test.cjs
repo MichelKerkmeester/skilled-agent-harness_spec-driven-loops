@@ -250,6 +250,19 @@ for (const placement of PLACEMENTS) {
     assert.equal(status.code, 0, status.output);
   });
 
+  test(`a replace folder named with a trailing slash still keeps the retained README apply leaves alone, with ${placement.name}`, (t) => {
+    const fixture = createReadmeFixture(t, placement.options);
+    writeFile(fixture.tree, 'skill/guide/README.md', 'vendor guide readme\n');
+    const skill = fixture.manifest.overlays.find((entry) => entry.id === 'skill');
+    skill.replace = skill.replace.map((item) => (item === 'guide' ? 'guide/' : item));
+    skill.retained.push({ path: 'guide/README.md' });
+    writeManifest(fixture);
+    const applied = fixture.run(['apply']);
+    assert.equal(applied.code, 0, applied.output);
+    // The docs leg calls this README documentation only, so apply must keep the vendor's bytes.
+    assert.equal(fs.readFileSync(path.join(fixture.tree, 'skill', 'guide', 'README.md'), 'utf8'), 'vendor guide readme\n');
+  });
+
   test(`status --audit prints one missing-readme line per folder without one, after the audit and before checked=, with ${placement.name}`, (t) => {
     const fixture = createReadmeFixture(t, placement.options);
     fs.rmSync(path.join(fixture.overlayDir, 'README.md'));

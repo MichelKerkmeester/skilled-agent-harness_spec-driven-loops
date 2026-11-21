@@ -86,6 +86,22 @@ const READABLE_STATE_VERSIONS = new Set([1, STATE_SCHEMA_VERSION]);
 const STATUS_NAMES = ['in-sync', 'overlay-edited', 'live-edited', 'both-changed', 'upstream-moved', 'cannot-apply'];
 const BLOCKING_STATES = new Set(['live-edited', 'both-changed', 'upstream-moved', 'cannot-apply']);
 const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
+
+// A remedy line that runs the engine. ENGINE_COMMAND is relative to the tree
+// root, so the line names the folder to run it from.
+function nextEngine(root, subcommand) {
+  return `Next: from ${shellPath(root)}: ${ENGINE_COMMAND} ${subcommand}`;
+}
+
+// What to do about a lock another run holds. The pid is only worth checking on
+// the host that wrote it, so a lock from another machine is named by its host.
+function lockRemedy(lockPath, ownerLine) {
+  const pid = /\bpid=(\d+)/.exec(ownerLine || '');
+  const host = /\bhost=(\S+)/.exec(ownerLine || '');
+  if (!pid) return `Next: once no overlay run is writing this tree, rm ${shellPath(lockPath)}`;
+  const where = host && host[1] !== os.hostname() ? ` on ${host[1]}` : '';
+  return `Next: check that pid ${pid[1]}${where} has ended (ps -p ${pid[1]}), then rm ${shellPath(lockPath)}`;
+}
 // The most LAYOUT lines status prints; status --json keeps every move.
 const LAYOUT_SHOWN = 20;
 const EXIT_OK = 0;
@@ -127,6 +143,15 @@ function sha256(buffer) {
 
 function toPosix(filePath) {
   return filePath.split(path.sep).join('/');
+}
+
+// Why an entry that edits a file in place cannot plan when a folder sits on its
+// destination: there are no live bytes to merge into, and writing would replace
+// whatever the folder holds.
+function folderInTheWay(entry) {
+  const destination = shellPath(entry.destination);
+  return `${entry.destination} is a folder, where overlay ${entry.id} edits a file, so there is nothing to merge into; ` +
+    `move it aside (mv ${destination} ${destination}.aside), then rerun`;
 }
 
 function readBufferOrNull(filePath) {
@@ -2244,6 +2269,10 @@ function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
     problems.push(`canonical fragment or base copy is missing for ${entry.destination}`);
     return { writes: [], deletes: [], outputs: [] };
   }
+  if (isDirectory(destinationPath)) {
+    problems.push(folderInTheWay(entry));
+    return { writes: [], deletes: [], outputs: [] };
+  }
   const current = readBufferOrNull(destinationPath);
   const baseText = base.toString('utf8');
   const fragmentText = fragment.toString('utf8');
@@ -2331,6 +2360,10 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
   const specBuffer = readBufferOrNull(specPath);
   if (!specBuffer) {
     problems.push(`entry set is missing: ${entry.source}`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
+  if (isDirectory(destinationPath)) {
+    problems.push(folderInTheWay(entry));
     return { writes: [], deletes: [], outputs: [] };
   }
   const current = readBufferOrNull(destinationPath);
@@ -2428,10 +2461,15 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
  * @returns {Set<string>} Kept paths, relative to the skill root.
  */
 function keptRetainedPaths(entry, sourceDir) {
-  const replacedFolders = (entry.replace || []).filter((rel) => isDirectory(path.join(sourceDir, rel)));
+  // Read each path the way the docs leg reads it, so a trailing slash on a
+  // replace folder cannot hide a kept README from apply.
+  const replacedFolders = (entry.replace || []).filter((rel) => typeof rel === 'string')
+    .map(manifestFolderPath).filter((rel) => isDirectory(path.join(sourceDir, rel)));
   const kept = new Set();
   for (const item of entry.retained || []) {
-    if (replacedFolders.some((prefix) => item.path === prefix || item.path.startsWith(prefix + '/'))) kept.add(item.path);
+    if (!item || typeof item.path !== 'string') continue;
+    const keptPath = manifestFolderPath(item.path);
+    if (replacedFolders.some((prefix) => keptPath === prefix || keptPath.startsWith(prefix + '/'))) kept.add(keptPath);
   }
   return kept;
 }
@@ -2464,7 +2502,10 @@ function planSkillRootOverlay(entry, ctx, problems) {
     return { writes: [], deletes: [], outputs: [] };
   }
 
-  const replacedSubtrees = new Set(entry.replace.filter((rel) => isDirectory(path.join(sourceDir, rel))));
+  // A trailing slash names the same folder, so each replace path is compared in
+  // its normal form, the form the docs leg and the kept-path test read.
+  const replacedSubtrees = new Set(entry.replace.map(manifestFolderPath)
+    .filter((rel) => isDirectory(path.join(sourceDir, rel))));
   const snapshot = new Map();
   for (const item of retained) {
     const isUnderReplaced = [...replacedSubtrees].some((prefix) => item.path === prefix || item.path.startsWith(`${prefix}/`));
@@ -2512,7 +2553,8 @@ function planSkillRootOverlay(entry, ctx, problems) {
   const isRemoved = (rel) => matchesPrefix(removedPrefixes, rel);
   // A replaced subtree is the overlay's to capture into; only a path the entry
   // removes without also replacing is a removal the overlay performs.
-  const isDeclaredRemoval = (rel) => matchesPrefix(entry.remove, rel) && !matchesPrefix(entry.replace, rel);
+  const isDeclaredRemoval = (rel) => matchesPrefix(entry.remove, rel) &&
+    !matchesPrefix(entry.replace.map(manifestFolderPath), rel);
   const isReplacedSubtree = (rel) => matchesPrefix([...replacedSubtrees], rel);
 
   for (const [rel, wanted] of desired) {
@@ -3655,7 +3697,7 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
     })));
   const records = [];
   const blocked = [];
-  const seen = new Set();
+  const seen = new Map();
 
   for (let index = 0; index < plans.length; index += 1) {
     const plan = plans[index];
@@ -3677,8 +3719,12 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
     }
     for (const output of plan.outputs) {
       const key = relativeKey(root, output.filePath);
-      if (seen.has(key)) throw new Error('multiple overlays own the same destination: ' + key);
-      seen.add(key);
+      if (seen.has(key)) {
+        throw new Error('multiple overlays own the same destination: ' + key +
+          `\n  overlays ${seen.get(key)} and ${plan.entry.id} both write it, and the second would overwrite the first` +
+          `\n  Next: keep ${key} in one of those two entries in ${ctx.overlayLabel}/${MANIFEST_FILE}, then rerun`);
+      }
+      seen.set(key, plan.entry.id);
       let stateName = plan.entry.scope === 'remove-root'
         ? (pathExists(output.filePath) ? 'overlay-edited' : 'in-sync')
         : classifyDestination({
@@ -3870,7 +3916,7 @@ function acquireLock(ctx, owner) {
       isHeld: false,
       lockPath: ctx.lockPath,
       ownerLine: otherLine,
-      remedy: remedy === undefined ? 'remove ' + ctx.lockPath + ' by hand once that run has ended' : remedy,
+      remedy: remedy === undefined ? lockRemedy(ctx.lockPath, otherLine) : remedy,
     };
   }
 
@@ -3993,6 +4039,7 @@ function withLock(ctx, owner, run, options = {}) {
   const lock = acquireLock(ctx, owner);
   if (!lock.isHeld) {
     console.log('refuse: the overlay lock is held: ' + lock.ownerLine);
+    console.log('  one run writes the tree at a time, so this one stopped before writing anything');
     console.log('  ' + lock.remedy);
     return EXIT_ERROR;
   }
@@ -4340,6 +4387,14 @@ function commandStatus(ctx, options = {}) {
         : `; run ${ENGINE_COMMAND} apply --relayout for ${movable}, and change the destination or remove the ` +
           `entry for the ${blocked} under root/skilled`;
     console.log(`LAYOUT   … ${hidden.length} more${remedy}`);
+    // One remedy covers every hidden line, whichever of the two fixes each needs.
+    if (movable > 0) {
+      const rest = blocked > 0 ? `; it leaves the ${blocked} under root/skilled, whose destination you change or ` +
+        'whose entry you remove' : '';
+      console.log('  ' + nextEngine(ctx.root, 'apply --relayout') + rest);
+    } else {
+      console.log('  Next: change the destination of each entry under root/skilled, or remove the entry');
+    }
   }
   for (const note of notes) console.log(`NOTE     ${note}`);
   if (audit) {
@@ -4449,6 +4504,8 @@ function applyUnderLock(ctx, manifest, options = {}) {
     for (const problem of layoutProblems) console.log(`BLOCKED  layout: ${problem}`);
     if (analysis.blocked.length > 0 || layoutProblems.length > 0) {
       console.log(`blocked=${analysis.blocked.length + (layoutProblems.length > 0 ? 1 : 0)} changed=0`);
+      console.log('  this apply wrote nothing: a blocked overlay stops it before any write');
+      console.log('  ' + nextEngine(ctx.root, 'apply') + ', after fixing each BLOCKED line above');
     }
     return EXIT_CONFLICT;
   }
@@ -4673,7 +4730,7 @@ function captureUnderLock(ctx, manifest, inputPath) {
     return EXIT_ERROR;
   }
   if (classified.state === 'in-sync') {
-    console.log('nothing to capture');
+    console.log(`nothing to capture: ${record.key} is in sync with ${ctx.overlayLabel}/${classified.source}`);
     return EXIT_OK;
   }
   if (classified.state !== 'live-edited') {
@@ -4839,6 +4896,9 @@ function commandGuard(ctx, inputPath) {
     const source = sourceRelative(ctx, record.sourcePath);
     console.log('refuse: ' + destination + ' is owned by ' + ctx.overlayLabel + '/' + source +
       '; edit the overlay, then run ' + ENGINE_COMMAND + ' apply');
+    console.log('  apply writes the overlay copy over this path, so it would overwrite an edit made here');
+    console.log('  Next: edit ' + shellPath(ctx.overlayLabel + '/' + source) + ', then ' +
+      nextEngine(root, 'apply').slice('Next: '.length));
     return EXIT_CONFLICT;
   }
   const refusal = strictWriteRefusal(ctx, manifest, inputPath);
@@ -5760,17 +5820,24 @@ function repinUnderLock(ctx, job, report) {
   const blockers = analysis.records.filter((record) => BLOCKING_STATES.has(record.state));
   if (blockers.length > 0) {
     for (const record of blockers) console.log(problemLine(ctx, record));
-    return refuseRepin([`refuse: status shows ${blockers.length} live or conflicting destination(s); resolve them before a re-pin`]);
+    return refuseRepin([`refuse: status shows ${blockers.length} live or conflicting destination(s); resolve them before a re-pin`,
+      '  a re-pin copies upstream over these paths, so the edits they hold would be lost',
+      '  ' + nextEngine(ctx.root, 'status') + ', fix each line above, then rerun the re-pin']);
   }
   // A refused overlay would block the apply that follows the copy, after the copy
   // had already written, so it stops the run before the backup instead.
   if (analysis.blocked.length > 0) {
     const lines = analysis.blocked.flatMap((plan) => plan.problems.map((problem) => `blocked ${plan.entry.id}: refused ${problem}`));
     lines.push(`refuse: status shows ${analysis.blocked.length} refused overlay(s); fix them before a re-pin`);
+    lines.push('  the apply after the copy would stop on them, with the copy already written');
+    lines.push('  ' + nextEngine(ctx.root, 'status') + ', fix each blocked line above, then rerun the re-pin');
     return refuseRepin(lines);
   }
   if (isUnderAny(ctx.overlayLabel, job.settings.roots)) {
-    return refuseRepin([`refuse: the overlay folder ${ctx.overlayLabel} sits inside a folder the re-pin copies`]);
+    return refuseRepin([`refuse: the overlay folder ${ctx.overlayLabel} sits inside a folder the re-pin copies`,
+      '  the copy would overwrite the overlays it is meant to put back',
+      `  Next: move ${ctx.overlayLabel} outside ${job.settings.roots.join(', ')} and point the overlay settings at it, ` +
+      'then rerun the re-pin']);
   }
 
   job.oldBlobs = listBlobs(job.upstream, job.oldCommit, job.settings.roots);
@@ -5855,6 +5922,8 @@ function repinUnderLock(ctx, job, report) {
  * Why a stage folder cannot be used, or null when it can.
  * @param {string} root Live tree root.
  * @param {string} stageDir Requested stage folder.
+ * @param {string|null} overlayRoot Overlay folder when it sits beside the tree,
+ *   or null when it sits inside the tree.
  * @returns {string|null}
  */
 function stageFolderProblem(root, stageDir, overlayRoot) {
@@ -5925,9 +5994,13 @@ function repinRun(liveCtx, options, report) {
   if (!oldPin) return refuseRepin(['refuse: the overlay manifest has no pin.commit']);
   const settings = repinSettings(manifest);
   const oldCommit = resolveCommit(upstream, oldPin);
-  if (!oldCommit) return refuseRepin([`refuse: the pinned ${oldPin} is not a commit in ${upstream}`]);
+  const fetchFirst = [
+    '  the re-pin compares the old pin with the new commit, so the upstream checkout must hold both',
+    `  Next: git -C ${shellPath(upstream)} fetch, then rerun the re-pin`,
+  ];
+  if (!oldCommit) return refuseRepin([`refuse: the pinned ${oldPin} is not a commit in ${upstream}`, ...fetchFirst]);
   const newCommit = resolveCommit(upstream, options.to);
-  if (!newCommit) return refuseRepin([`refuse: ${options.to} is not a commit in ${upstream}`]);
+  if (!newCommit) return refuseRepin([`refuse: ${options.to} is not a commit in ${upstream}`, ...fetchFirst]);
   report.from = oldCommit;
   report.to = newCommit;
   if (newCommit === oldCommit) {
@@ -5948,7 +6021,12 @@ function repinRun(liveCtx, options, report) {
     // name, so the staged setting file reaches the staged overlay folder.
     const overlayOutside = liveCtx.overlayOutside;
     const problem = stageFolderProblem(liveCtx.root, stageDir, overlayOutside ? liveCtx.overlayRoot : null);
-    if (problem) return refuseRepin([problem]);
+    if (problem) {
+      return refuseRepin([problem,
+        '  a stage is a full copy of the tree, written only into an empty folder outside the tree and the overlay folder',
+        '  ' + nextEngine(liveCtx.root, `repin --upstream ${shellPath(upstream)} --to ${shellPath(options.to)} ` +
+          '--stage <empty folder outside the tree>')]);
+    }
     // Reading the tree while another run writes it would stage a torn copy, so a
     // lock that may still have a live owner is refused here as every other mode
     // refuses it. A lock whose writer has ended on this host is only leftover
@@ -5958,7 +6036,9 @@ function repinRun(liveCtx, options, report) {
       const current = readBufferOrNull(liveCtx.lockPath);
       const owner = (current || Buffer.from('(empty lock file)')).toString('utf8').trim();
       if (!current || !isLockOwnerGone(owner)) {
-        return refuseRepin(['refuse: the overlay lock is held: ' + owner, '  remove ' + liveCtx.lockPath + ' by hand once that run has ended']);
+        return refuseRepin(['refuse: the overlay lock is held: ' + owner,
+          '  another run may still be writing the tree, so a stage copied now could be torn',
+          '  ' + lockRemedy(liveCtx.lockPath, owner)]);
       }
       console.log('note: the overlay lock belongs to a run that has ended: ' + owner);
     }
@@ -6062,10 +6142,18 @@ function rollbackUnderLock(ctx, runDir, backup) {
 }
 
 function rollbackRun(ctx, runId) {
-  if (!RUN_ID_PATTERN.test(runId)) return refuseRepin(['refuse: not a run id: ' + runId]);
+  const listRuns = `  Next: ls ${shellPath(path.join(ctx.overlayRoot, RUNS_FOLDER))}, then rerun ` +
+    `${ENGINE_COMMAND} repin --rollback <run-id> from ${shellPath(ctx.root)}`;
+  if (!RUN_ID_PATTERN.test(runId)) {
+    return refuseRepin(['refuse: not a run id: ' + runId,
+      '  a run id is the name of a folder a re-pin wrote under ' + ctx.overlayLabel + '/' + RUNS_FOLDER, listRuns]);
+  }
   const runDir = path.join(ctx.overlayRoot, RUNS_FOLDER, runId);
   const buffer = readBufferOrNull(path.join(runDir, 'backup.json'));
-  if (!buffer) return refuseRepin([`refuse: no backup for run ${runId} in ${ctx.overlayLabel}/${RUNS_FOLDER}`]);
+  if (!buffer) {
+    return refuseRepin([`refuse: no backup for run ${runId} in ${ctx.overlayLabel}/${RUNS_FOLDER}`,
+      '  only a run that wrote the tree keeps a backup, and rollback restores from it', listRuns]);
+  }
   const backup = JSON.parse(buffer.toString('utf8'));
   if (backup.schemaVersion !== 1 || !Array.isArray(backup.entries)) {
     return refuseRepin([`refuse: the backup for run ${runId} has an unsupported shape`]);
@@ -7050,6 +7138,7 @@ function commandPreCommit(ctx) {
   const manifest = loadManifest(ctx);
   if (!isStrictWrites(manifest)) {
     console.log('allow: strictWrites is off in the overlay manifest, so nothing was checked');
+    console.log(`  to refuse unowned vendored commits, set "strictWrites": true in ${ctx.overlayLabel}/${MANIFEST_FILE}`);
     return EXIT_OK;
   }
   const unowned = stagedUnownedChanges(ctx, manifest);
@@ -7057,11 +7146,21 @@ function commandPreCommit(ctx) {
     console.log('allow');
     return EXIT_OK;
   }
+  const gitRoot = shellPath(ctx.root);
   for (const change of unowned) {
-    console.log(`refuse: staged ${change.status === 'D' ? 'deletion of' : 'change to'} ${change.key} is under a vendored root and no overlay owns it`);
+    const isDeletion = change.status === 'D';
+    const key = shellPath(change.key);
+    console.log(`refuse: staged ${isDeletion ? 'deletion of' : 'change to'} ${change.key} is under a vendored root and no overlay owns it`);
+    if (isDeletion) {
+      console.log('  a re-pin copies the vendored file back, so the next re-pin would undo this deletion');
+      console.log(`  Next: put it back: git -C ${gitRoot} restore --staged --worktree -- ${key}`);
+    } else {
+      console.log('  a re-pin copies upstream over this path, so the next re-pin would overwrite this change');
+      console.log('  ' + nextEngine(ctx.root, `apply --adopt ${key}`));
+      console.log(`    or drop it: git -C ${gitRoot} restore --staged -- ${key}`);
+    }
   }
-  console.log(`  bring each path under an overlay with ${ENGINE_COMMAND} apply --adopt <path>, add a generator's output to ` +
-    'the manifest\'s generated list, or unstage it');
+  console.log('  A path a generator writes belongs on the overlay manifest\'s generated list instead.');
   return EXIT_CONFLICT;
 }
 

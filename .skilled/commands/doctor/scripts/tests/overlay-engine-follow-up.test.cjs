@@ -434,7 +434,8 @@ test('repin --stage refuses a lock naming a live pid on this host and stages not
 
   assert.equal(staged.code, 2, staged.output);
   assert.ok(staged.output.includes(REFUSAL), staged.output);
-  assert.ok(staged.output.includes('  remove ' + fixture.lockPath + ' by hand once that run has ended'), staged.output);
+  assert.ok(staged.output.includes(`  Next: check that pid ${process.pid} has ended (ps -p ${process.pid}), then rm ` +
+    fixture.lockPath), staged.output);
   assert.deepEqual(stageNotes(staged.output), [], staged.output);
   assert.equal(fs.existsSync(stageDir), false);
   assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), held);
