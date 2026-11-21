@@ -3627,6 +3627,8 @@ function reduceResearchState(specFolder, options = {}) {
 
 if (require.main === module) {
   const args = process.argv.slice(2);
+  // --create-missing-anchors is a compatibility no-op: nothing here reads it, but it stays
+  // accepted so a caller that still passes it does not hit the unknown-flag exit 3 below.
   const knownFlags = new Set([
     '--artifact-dir', '--lenient', '--create-missing-anchors', '--emit-resource-map',
     '--fanout-resource-map-only', '--require-existing-state',

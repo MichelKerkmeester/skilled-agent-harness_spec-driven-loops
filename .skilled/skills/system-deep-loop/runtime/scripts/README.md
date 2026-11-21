@@ -98,6 +98,8 @@ Scripts are the command boundary between mode workflow YAML and the runtime spin
 
 Fan-out scripts additionally own subprocess coordination and salvage. State and graph ownership remains in the library modules and database layer.
 
+`fanout-run.cjs`, `reduce-state.cjs`, `convergence.cjs` and `fanout-merge.cjs` are a reviewed exception to single responsibility. Each carries several concerns in one file, and `fanout-run.cjs` holds budget, Vibe, status-table and watchdog logic side by side. Their exports are imported widely across the test suite and other scripts, so a split would move a wide surface with no defect behind it. A concern moves into `../lib/` when a change touches that concern.
+
 ---
 
 ## 6. VALIDATION
