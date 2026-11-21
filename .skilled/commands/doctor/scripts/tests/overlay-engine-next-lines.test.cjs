@@ -71,6 +71,24 @@ test('a folder where a layout link belongs keeps its first line and names a quot
   assert.ok(lines.includes(expected), result.output);
 });
 
+test('a folder that replaced an engine-made link before its retarget keeps its first line and names a quoted absolute mv', (t) => {
+  const fixture = createFixture(t, []);
+  writeFile(fixture.tree, 'my link/project.md', 'project file\n');
+  let error = null;
+  try {
+    engine.applyLayoutLink(fixture.tree, { path: 'my link', target: 'target' }, true);
+  } catch (caught) {
+    error = caught;
+  }
+  assert.ok(error, 'the retarget must refuse a real folder');
+  const lines = error.message.split('\n');
+  assert.equal(lines[0], 'my link is no longer the link this engine made; refusing to replace it');
+  const moved = path.join(fixture.tree, 'my link');
+  const expected = `  Next: mv ${quoted(moved)} ${quoted(moved + '.keep')}, then from ${quoted(fixture.tree)}: ${ENGINE} apply`;
+  assert.ok(lines.includes(expected), error.message);
+  assert.equal(fs.readFileSync(path.join(moved, 'project.md'), 'utf8'), 'project file\n');
+});
+
 test('the first line of a state file of an unsupported shape is the line it always was', (t) => {
   const fixture = createSyncFixture(t);
   assert.equal(fixture.run(['apply']).code, 0);

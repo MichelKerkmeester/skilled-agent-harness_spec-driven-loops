@@ -3195,7 +3195,7 @@ function applyLayoutLink(root, link, isRetarget, replacesOwned = null) {
     if (stats && !stats.isSymbolicLink()) {
       throw new Error(withRemedy(link.path + ' is no longer the link this engine made; refusing to replace it',
         'a real file or folder stands there now, and replacing it would delete that work',
-        `Next: move it aside (mv ${shellPath(link.path)} ${shellPath(link.path + '.aside')}) from ${shellPath(root)}, then rerun`));
+        keepAsideRemedy(root, link.path)));
     }
     if (stats) fs.unlinkSync(linkPath);
   }
@@ -7386,7 +7386,7 @@ function readmeShipTest(manifest) {
 
 /**
  * List every folder the docs leg reads, in sorted order. The engine's own run
- * folders, dot folders and node_modules hold no overlay content, and a link is
+ * folders, dot folders, node_modules and __pycache__ hold no overlay content, and a link is
  * never followed, so a loop or a link out of the folder cannot widen the walk.
  * @param {string} overlayRoot The overlay folder.
  * @returns {{relative: string, readmeNames: string[]}[]} `relative` is '' for the overlay folder
