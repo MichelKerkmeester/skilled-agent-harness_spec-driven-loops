@@ -2957,15 +2957,17 @@ function isCaseInsensitiveDir(dir) {
  * apart still lets two such names look alike in a manifest. Where the tree root
  * sits on a filesystem that ignores case, case is folded too, with full case
  * mapping rather than toLowerCase alone, because such a filesystem treats
- * `STRASSE` and `straße`, or `OFF` and a ligature spelling, as one name. Folding
- * a little more than the disk does only adds refusals.
+ * `STRASSE` and `straße`, or `OFF` and a ligature spelling, as one name. The
+ * first lower-casing turns the capital sharp s into `ß`, which upper-casing then
+ * expands, so `STRAẞE` folds with them. Folding a little more than the disk does
+ * only adds refusals.
  * @param {string} p Path, relative or absolute.
  * @param {boolean} foldCase Whether the tree root's filesystem ignores case.
  * @returns {string} The comparison key, never a path to read or write.
  */
 function layoutPathKey(p, foldCase) {
   const composed = path.normalize(p).replace(/(.)[\\/]+$/, '$1').normalize('NFC');
-  return foldCase ? composed.toUpperCase().toLowerCase().normalize('NFC') : composed;
+  return foldCase ? composed.toLowerCase().toUpperCase().toLowerCase().normalize('NFC') : composed;
 }
 
 /**

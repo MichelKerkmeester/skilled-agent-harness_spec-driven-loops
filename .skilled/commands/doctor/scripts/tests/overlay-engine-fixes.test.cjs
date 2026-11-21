@@ -944,10 +944,10 @@ test('a layout link below a link spelled in another case that points out is refu
 
 // Whether a folder's filesystem treats `STRASSE` and `straße` as one name, which a
 // case-insensitive volume such as APFS does through full case folding.
-function foldsSharpS(dir) {
+function foldsSharpS(dir, upper = 'STRASSE') {
   const scratch = fs.mkdtempSync(path.join(path.dirname(dir), 'fold-'));
   try {
-    fs.writeFileSync(path.join(scratch, 'STRASSE'), '');
+    fs.writeFileSync(path.join(scratch, upper), '');
     try {
       fs.lstatSync(path.join(scratch, 'stra\u00dfe'));
       return true;
@@ -960,29 +960,32 @@ function foldsSharpS(dir) {
 }
 
 // toLowerCase leaves `straße` apart from `strasse`, so a key built with it let a
-// link nested under the other spelling half-apply. Full case folding refuses it.
+// link nested under the other spelling half-apply. Full case folding refuses it,
+// and the capital sharp s, which lower-cases to `ß`, folds the same way.
 test('a layout link spelled with a sharp s below its upper-case spelling is refused in either order', (t) => {
-  const outer = { path: 'STRASSE', target: '../outside' };
-  const inner = { path: 'stra\u00dfe/planted', target: 'anything' };
-  const twice = [{ path: 'STRASSE', target: 'real-dir' }, { path: 'stra\u00dfe', target: 'real-dir' }];
-  for (const links of [[outer, inner], [inner, outer], twice]) {
-    const label = links.map((link) => link.path).join(', ');
-    const fixture = createSyncFixture(t);
-    if (!foldsSharpS(fixture.tree)) {
-      t.skip('this filesystem keeps STRASSE and stra\u00dfe apart');
-      return;
+  for (const upper of ['STRASSE', 'STRA\u1e9eE']) {
+    const outer = { path: upper, target: '../outside' };
+    const inner = { path: 'stra\u00dfe/planted', target: 'anything' };
+    const twice = [{ path: upper, target: 'real-dir' }, { path: 'stra\u00dfe', target: 'real-dir' }];
+    for (const links of [[outer, inner], [inner, outer], twice]) {
+      const label = links.map((link) => link.path).join(', ');
+      const fixture = createSyncFixture(t);
+      if (!foldsSharpS(fixture.tree, upper)) {
+        t.skip('this filesystem keeps ' + upper + ' and stra\u00dfe apart');
+        return;
+      }
+      const outside = path.resolve(fixture.tree, '../outside');
+      fs.mkdirSync(outside);
+      fixture.manifest.layoutLinks = links;
+      writeManifest(fixture);
+      const before = treeDigest(fixture.tree);
+      for (const command of ['status', 'apply']) {
+        const result = fixture.run([command]);
+        assert.equal(result.code, 2, label + ' ' + command + ': ' + result.output);
+      }
+      assert.deepEqual(fs.readdirSync(outside), [], label);
+      assert.equal(treeDigest(fixture.tree), before, label);
     }
-    const outside = path.resolve(fixture.tree, '../outside');
-    fs.mkdirSync(outside);
-    fixture.manifest.layoutLinks = links;
-    writeManifest(fixture);
-    const before = treeDigest(fixture.tree);
-    for (const command of ['status', 'apply']) {
-      const result = fixture.run([command]);
-      assert.equal(result.code, 2, label + ' ' + command + ': ' + result.output);
-    }
-    assert.deepEqual(fs.readdirSync(outside), [], label);
-    assert.equal(treeDigest(fixture.tree), before, label);
   }
 });
 
