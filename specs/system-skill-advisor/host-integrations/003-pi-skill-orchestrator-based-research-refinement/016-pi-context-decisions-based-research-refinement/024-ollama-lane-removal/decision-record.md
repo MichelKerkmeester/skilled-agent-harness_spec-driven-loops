@@ -43,6 +43,7 @@ _memory:
 | Q007 | Criterion 3 takes the machine-mode proof on a fixture home and checkout; exit 0 on the operator's machine follows the merge. | Not stated. | None | goal.md completion criteria |
 | Q008 | The pulled nomic-embed-text model is removed by hand on the operator's machine. | Not stated. | None | 008 implementation-summary.md |
 | Q009 | The operator closes the session goal; the work stays on the worktree branch. | Not stated. | None | goal.md |
+| Q010 | Criterion 3 drops the operator-machine sentence; that follow-up is a pending operator step in the packet log. | Not stated. | None | goal.md completion criteria and log |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -227,6 +228,26 @@ Leave it open
 Answer:
 ```text
 I'll clear the goal
+```
+
+### Q010
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01V258KPjQxwvaze8YBFTjhj:0 -->
+
+Question:
+```text
+The evaluator treats criterion 3's last sentence ('Exit 0 on the operator's machine follows the merge, /doctor:update apply and retiring older worktrees') as a requirement, which D2 forbids (no merge). Everything else is proven. How do you want to resolve it?
+```
+
+Options:
+```text
+Move that sentence out (Recommended)
+I'll clear the goal
+Merge and retire now
+```
+
+Answer:
+```text
+Move that sentence out (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
