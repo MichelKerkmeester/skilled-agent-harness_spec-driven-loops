@@ -31,7 +31,7 @@ for (const [id, destination] of [['json-entry', 'settings.json'], ['marked-block
     assert.notEqual(status.code, 0, status.output);
     assert.match(status.output, new RegExp(`${destination.replace('.', '\\.')} is a folder`), status.output);
     const live = path.join(fixture.tree, destination);
-    assert.ok(status.output.includes(`  Next: mv ${live} ${live}.keep, then from ${fixture.tree}: ${ENGINE_COMMAND} apply`), status.output);
+    assert.ok(status.output.includes(`  Next: mv -n ${live} ${live}.keep, then from ${fixture.tree}: ${ENGINE_COMMAND} apply`), status.output);
 
     const applied = fixture.run(['apply']);
     assert.equal(applied.code, 1, applied.output);
@@ -92,7 +92,7 @@ test('a link to a folder where a whole-file overlay writes a file is refused, no
     assert.equal(result.code, 1, result.output);
     assert.match(result.output, /guarded\.txt is a folder, where overlay \S+ edits a file, so there is nothing to merge into\n/);
     const live = path.join(fixture.tree, 'guarded.txt');
-    assert.ok(result.output.includes(`  Next: mv ${live} ${live}.keep, then from ${fixture.tree}: ${ENGINE_COMMAND} apply`), result.output);
+    assert.ok(result.output.includes(`  Next: mv -n ${live} ${live}.keep, then from ${fixture.tree}: ${ENGINE_COMMAND} apply`), result.output);
   }
 });
 

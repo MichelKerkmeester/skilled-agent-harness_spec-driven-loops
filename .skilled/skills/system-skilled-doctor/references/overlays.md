@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.47.0
+version: 1.0.48.0
 ---
 
 # Vendored Skilled Overlays
@@ -194,7 +194,7 @@ An entry can change what it writes at a destination between a file, a folder and
 
 ```text
 BLOCKED  t: thing is a folder that does not match what apply last wrote there, where overlay t writes a file; apply removes only its own output, so it stays
-  Next: mv /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  Next: mv -n /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
 Move the unowned copy aside as the `Next:` line says, then compare it with the overlay before you delete it.
@@ -204,10 +204,10 @@ A link on the path is refused the same way when it leads outside the tree, becau
 ```text
 BLOCKED  t: thing is a link that leads outside the tree, to /elsewhere/thing, where overlay t writes
   apply writes only inside the tree, and a write through this link would land outside it, so the link stays
-  Next: mv /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  Next: mv -n /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 BLOCKED  u: other is a link that does not resolve, where overlay u writes
   apply cannot tell where a write through it would land, so it writes nothing and the link stays
-  Next: mv /path/to/tree/other /path/to/tree/other.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  Next: mv -n /path/to/tree/other /path/to/tree/other.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
 The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same lines with `MISS` in place of `BLOCKED`. That holds for a write through a layout link `apply` makes before the writes, too. `status` cannot make that link, so it judges the write where the link will send it. A link beyond it that leads outside the tree prints as `MISS     tool: target is a link that leads outside the tree, to <landed>, where overlay tool writes`, after `MISS     layout: up is missing (link to target)`. Only that refusal is judged ahead. A block that shows only through the link, such as a project file where the entry writes a folder, shows first in `apply`, after it makes the link, and `apply` then writes nothing. That refusal names the link someone else made further along the chain, such as `target`, never the layout link apply makes again. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
@@ -237,7 +237,7 @@ The general form is `<link> links to <target>, which does not exist, and overlay
 A target that is a file is refused the same way, with `<link> links to <target>, which is a file, and overlay <id> writes under it` and the why line `a write under a link to a file has no folder to land in, so apply writes nothing`. A target that is itself a link that does not resolve keeps the `which does not exist` first line, and its why line reads `a write under a link to a link that does not resolve has no folder to land in, so apply writes nothing`. A `mkdir -p` fails on what stands at either target, so the `Next:` line sets that file or link aside first:
 
 ```text
-  Next: mv /path/to/tree/tfile /path/to/tree/tfile.keep and mkdir -p /path/to/tree/tfile, or point the layout link up in /path/to/tree/skilled-overlays/overlay-manifest.json at a folder that exists, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  Next: mv -n /path/to/tree/tfile /path/to/tree/tfile.keep and mkdir -p /path/to/tree/tfile, or point the layout link up in /path/to/tree/skilled-overlays/overlay-manifest.json at a folder that exists, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
 An apply stopped by a blocked overlay or a `BLOCKED  layout:` refusal ends with `blocked=<n> changed=0`, `  this apply wrote nothing: a blocked overlay stops it before any write` and a `Next:` line that reruns apply after the fixes. An apply or a capture that only a destination's own state stops, such as a `both-changed` line, prints no `blocked=` line and ends with these lines instead:
@@ -264,7 +264,7 @@ A layout link whose folder leads outside the tree is refused while the manifest 
 ```text
 [overlay-engine] layout link path escapes the tree root: a/b
   the folder it sits in leads outside the tree through target, so a link made there would land outside it
-  Next: mv /path/to/tree/target /path/to/tree/target.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  Next: mv -n /path/to/tree/target /path/to/tree/target.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
 That is the `status` output. `apply` prints the same three lines and adds `  this apply wrote nothing: it stopped while planning, before any write`, which it adds under any error it stops on while planning.
@@ -276,7 +276,7 @@ Planning refuses a file or folder already standing at a layout link path, with `
 ```text
 [overlay-engine] up is a folder, not the layout link to target; refusing to replace it
   a real file or folder stands there now, and replacing it would delete that work
-  Next: mv /path/to/tree/up /path/to/tree/up.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  Next: mv -n /path/to/tree/up /path/to/tree/up.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
 A file reads `is a file` in place of `is a folder`.

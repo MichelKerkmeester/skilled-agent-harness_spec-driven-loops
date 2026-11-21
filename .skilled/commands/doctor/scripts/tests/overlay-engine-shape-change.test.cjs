@@ -14,6 +14,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const assert = require('node:assert/strict');
+const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
@@ -184,7 +185,7 @@ test('an unowned folder where a file entry writes is refused, and nothing is wri
   const result = fixture.run(['apply']);
   assert.notEqual(result.code, 0, result.output);
   assert.match(result.output, /tool is a folder that does not match what apply last wrote there/);
-  assert.ok(result.output.includes(`Next: mv ${path.join(fixture.tree, 'tool')} ${path.join(fixture.tree, 'tool')}.keep, then from ${fixture.tree}: node `), result.output);
+  assert.ok(result.output.includes(`Next: mv -n ${path.join(fixture.tree, 'tool')} ${path.join(fixture.tree, 'tool')}.keep, then from ${fixture.tree}: node `), result.output);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool', 'project.md'), 'utf8'), 'project file\n');
 });
 
@@ -194,7 +195,7 @@ test('an unowned file where a directory entry writes is refused, and nothing is 
   const result = fixture.run(['apply']);
   assert.notEqual(result.code, 0, result.output);
   assert.match(result.output, /tool is a file that does not match what apply last wrote there/);
-  assert.ok(result.output.includes(`Next: mv ${path.join(fixture.tree, 'tool')} ${path.join(fixture.tree, 'tool')}.keep, then from ${fixture.tree}: node `), result.output);
+  assert.ok(result.output.includes(`Next: mv -n ${path.join(fixture.tree, 'tool')} ${path.join(fixture.tree, 'tool')}.keep, then from ${fixture.tree}: node `), result.output);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool'), 'utf8'), 'project file\n');
 });
 
@@ -283,7 +284,7 @@ test('an unowned folder where a skill-root replace path writes a file is refused
   assert.notEqual(result.code, 0, result.output);
   const target = path.join(fixture.tree, 'vendor', 'keep', 'sub');
   assert.match(result.output, /vendor\/keep\/sub is a folder that does not match what apply last wrote there/);
-  assert.ok(result.output.includes(`Next: mv ${target} ${target}.keep, then from ${fixture.tree}: node `), result.output);
+  assert.ok(result.output.includes(`Next: mv -n ${target} ${target}.keep, then from ${fixture.tree}: node `), result.output);
   assert.equal(fs.readFileSync(path.join(target, 'project.md'), 'utf8'), 'project file\n');
 });
 
@@ -295,7 +296,7 @@ test('an unowned file where a skill-root replace path writes a folder is refused
   assert.notEqual(result.code, 0, result.output);
   const target = path.join(fixture.tree, 'vendor', 'keep', 'sub');
   assert.match(result.output, /vendor\/keep\/sub is a file that does not match what apply last wrote there/);
-  assert.ok(result.output.includes(`Next: mv ${target} ${target}.keep, then from ${fixture.tree}: node `), result.output);
+  assert.ok(result.output.includes(`Next: mv -n ${target} ${target}.keep, then from ${fixture.tree}: node `), result.output);
   assert.equal(fs.readFileSync(target, 'utf8'), 'project file\n');
 });
 
@@ -320,7 +321,7 @@ function assertOutsideRefusal(fixture, outside, linkKey) {
     assert.equal(result.code, 1, result.output);
     assert.match(result.output, new RegExp(`${linkKey.replace(/[/.]/g, '\\$&')} is a link that leads outside the tree`), result.output);
     const linkPath = path.join(fixture.tree, linkKey);
-    assert.ok(result.output.includes(`Next: mv ${linkPath} ${linkPath}.keep, then from ${fixture.tree}: node `), result.output);
+    assert.ok(result.output.includes(`Next: mv -n ${linkPath} ${linkPath}.keep, then from ${fixture.tree}: node `), result.output);
   }
   assert.deepEqual(fs.readdirSync(outside).sort(), before);
   assert.equal(fs.readFileSync(path.join(outside, 'outside.md'), 'utf8'), 'outside\n');
@@ -579,7 +580,7 @@ test('a nested missing layout link whose folder leads outside the tree through t
     assert.match(result.output, /^\[overlay-engine\] layout link path escapes the tree root: a\/b$/m, command + ': ' + result.output);
     assert.match(result.output, /^ {2}the folder it sits in leads outside the tree through target, so a link made there would land outside it$/m,
       command + ': ' + result.output);
-    assert.match(result.output, /^ {2}Next: mv .*\/target .*\/target\.keep, then from .*: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs apply$/m,
+    assert.match(result.output, /^ {2}Next: mv -n .*\/target .*\/target\.keep, then from .*: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs apply$/m,
       command + ': ' + result.output);
     assert.equal(/^ {2}this apply wrote nothing: it stopped while planning, before any write$/m.test(result.output), command === 'apply',
       command + ': ' + result.output);
@@ -780,7 +781,7 @@ test('a layout link standing at a target that does not exist is refused once an 
 // make the folder, or point the link elsewhere.
 function setAsideNext(fixture, target) {
   const targetPath = path.join(fixture.tree, target);
-  return `  Next: mv ${targetPath} ${targetPath}.keep and mkdir -p ${targetPath}, or point the layout link up in ` +
+  return `  Next: mv -n ${targetPath} ${targetPath}.keep and mkdir -p ${targetPath}, or point the layout link up in ` +
     `${path.join(fixture.overlayDir, 'overlay-manifest.json')} at a folder that exists, then from ${fixture.tree}: ` +
     'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply';
 }
@@ -849,6 +850,54 @@ test('a layout link whose target is a link that does not resolve is refused with
   assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
   setAsideAndApply(fixture, 'tdang');
   assert.equal(fs.readlinkSync(path.join(fixture.tree, 'tdang.keep')), 'nowhere');
+});
+
+// The set-aside move names the first free keep name, so running it keeps a copy
+// set aside before.
+test('a set-aside Next line for a file target skips a keep name already taken, and running it keeps both files', (t) => {
+  const fixture = createShapeFixture(t, [UP_ENTRY], [{ path: 'up', target: 'tfile' }]);
+  writeFile(fixture.tree, 'tfile', 'a project file\n');
+  writeFile(fixture.tree, 'tfile.keep', 'set aside before\n');
+  const lines = assertRefusedByBoth(fixture, 'up links to tfile, which is a file, and overlay tool writes under it');
+  const targetPath = path.join(fixture.tree, 'tfile');
+  assert.equal(lines[1], setAsideNext(fixture, 'tfile').replace(`${targetPath}.keep `, `${targetPath}.keep.1 `));
+  execFileSync('/bin/sh', ['-c', lines[1].slice('  Next: '.length).split(', or point')[0].replace(' and mkdir', ' && mkdir')]);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'tfile.keep'), 'utf8'), 'set aside before\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'tfile.keep.1'), 'utf8'), 'a project file\n');
+  applyOk(fixture);
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+// A layout link whose target is another manifest link not made yet writes
+// through that link, so apply makes both and the tree ends in sync.
+test('a layout link whose target is a layout link not made yet is made with it, and the tree ends in sync', (t) => {
+  const links = [{ path: 'inner', target: 'realdir' }, { path: 'up', target: 'inner' }];
+  const fixture = createShapeFixture(t, [UP_ENTRY], links);
+  fs.mkdirSync(path.join(fixture.tree, 'realdir'));
+  const before = fixture.run(['status']);
+  assert.equal(before.code, 1, before.output);
+  assert.equal(before.output.includes('which does not exist'), false, before.output);
+  const result = applyOk(fixture);
+  assert.match(result.output, /^linked inner -> realdir$/m, result.output);
+  assert.match(result.output, /^linked up -> inner$/m, result.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'inner')), 'realdir');
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'up')), 'inner');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'realdir', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.deepEqual(fs.readdirSync(fixture.workspace), ['tree']);
+});
+
+test('a layout link whose target lies under a layout link not made yet is made with it, and the tree ends in sync', (t) => {
+  const links = [{ path: 'inner', target: 'realdir' }, { path: 'up', target: 'inner/sub' }];
+  const fixture = createShapeFixture(t, [UP_ENTRY], links);
+  fs.mkdirSync(path.join(fixture.tree, 'realdir', 'sub'), { recursive: true });
+  assert.equal(fixture.run(['status']).output.includes('which does not exist'), false);
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'realdir', 'sub', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.deepEqual(fs.readdirSync(fixture.workspace), ['tree']);
 });
 
 // A moved link with another layout link inside it: the apply that moves the
