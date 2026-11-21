@@ -306,6 +306,8 @@ expect_hook_says "a pushed packet its track root does not list blocks the push" 
   1 "[gate:track-roots]" "refs/heads/main $TRACK_DRIFT_SHA refs/heads/main $TRACK_OK_SHA" "${TRACK_ENV[@]}"
 if grep -qF "on disk, not declared: 002-unlisted" "$TMP/last.err"; then PASS=$((PASS+1))
 else FAIL=$((FAIL+1)); echo "FAIL: the track-root block does not name the unlisted packet"; fi
+if grep -qE '^Fix: from [^ ]+: node [^ ]*refresh-track-roots\.mjs --apply$' "$TMP/last.err"; then PASS=$((PASS+1))
+else FAIL=$((FAIL+1)); echo "FAIL: the track-root Fix line does not name the folder to run from"; grep -F 'Fix:' "$TMP/last.err"; fi
 expect_hook "...unless SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 skips it" \
   0 "refs/heads/main $TRACK_DRIFT_SHA refs/heads/main $TRACK_OK_SHA" "${TRACK_ENV[@]}" SPECKIT_SKIP_PREPUSH_TRACK_GATE=1
 # The working tree still holds 002-unlisted; the pushed commit does not.

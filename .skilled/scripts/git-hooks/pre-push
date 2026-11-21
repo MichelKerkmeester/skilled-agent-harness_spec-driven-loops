@@ -680,7 +680,7 @@ if [[ "${SPECKIT_SKIP_PREPUSH_TRACK_GATE:-0}" != "1" ]] && _in_toolchain_repo &&
           echo "BLOCKED [gate:track-roots]: in commit ${pushed_sha:0:10}, a track root's children_ids"
           echo "do not list exactly the packets that track holds:"
           echo "$_track_out" | sed 's/^/  /'
-          echo "Fix: node $(_shell_words "$(dirname "${TRACK_SWEEP#"$REPO_ROOT"/}")/refresh-track-roots.mjs") --apply"
+          printf 'Fix: from %q: node %q --apply\n' "$REPO_ROOT" "$(dirname "${TRACK_SWEEP#"$REPO_ROOT"/}")/refresh-track-roots.mjs"
           echo "     then commit each changed graph-metadata.json together with the packets it"
           echo "     lists, and push again."
           echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 git push ..."
