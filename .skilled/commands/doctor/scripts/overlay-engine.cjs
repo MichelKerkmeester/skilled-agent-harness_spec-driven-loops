@@ -3365,7 +3365,10 @@ function refuseLinksInsideOverlayWrites(ctx, layout, plans) {
 // written, the way apply makes it, unless another manifest link sits on its
 // way: that link, once made, decides where the folder lands, so the target is
 // left to apply, as is a folder that cannot be resolved at all, such as one
-// behind a looping link the layout replaces.
+// behind a looping link the layout replaces. A target at or under another
+// manifest link apply has not made yet is read through that link's own target,
+// since apply makes it first. The fault comes back with the path it was found
+// at, named from the tree root, so the remedy points at the folder to make.
 function layoutTargetFault(root, manifest, link) {
   const folder = path.dirname(path.resolve(root, link.path));
   if (!fs.existsSync(folder)) {
@@ -3380,46 +3383,58 @@ function layoutTargetFault(root, manifest, link) {
   } catch {
     return null;
   }
-  const targetPath = path.resolve(realFolder, link.target);
-  if (isAtUnmadeLayoutLink(root, manifest, link, targetPath)) return null;
+  const through = throughUnmadeLayoutLinks(root, manifest, path.resolve(realFolder, link.target));
+  const at = through.shown || path.resolve(path.dirname(path.resolve(root, link.path)), link.target);
   let stats;
   try {
-    stats = fs.statSync(targetPath);
+    stats = fs.statSync(through.real);
   } catch {
     try {
-      return fs.lstatSync(targetPath).isSymbolicLink() ? 'dangling' : 'missing';
+      return { kind: fs.lstatSync(through.real).isSymbolicLink() ? 'dangling' : 'missing', at };
     } catch {
-      return 'missing';
+      return { kind: 'missing', at };
     }
   }
-  return stats.isDirectory() ? null : 'file';
+  return stats.isDirectory() ? null : { kind: 'file', at };
 }
 
-// Whether a layout link's target is, or lies under, another manifest link that
-// does not yet stand at its own target. Apply makes that link first, so what
-// the target holds now does not decide where the write lands. Both sides are
-// read from the tree root as the operating system names it, with case folded
-// where its filesystem ignores case.
-function isAtUnmadeLayoutLink(root, manifest, link, targetPath) {
+// Follow a target path through each manifest link on it that does not yet
+// stand at its own target, the way the path reads once apply has made it. The
+// match is read from the tree root as the operating system names it, with case
+// folded where its filesystem ignores case; `shown` names the same place from
+// the tree root as given, or is null when no such link is on the path. A chain
+// is followed at most once per manifest link, so links that point at each
+// other cannot spin.
+function throughUnmadeLayoutLinks(root, manifest, targetPath) {
+  const result = { real: targetPath, shown: null };
   let realRoot;
   try {
     realRoot = canonicalPath(root);
   } catch {
-    return false;
+    return result;
   }
-  if (!isWithin(realRoot, targetPath)) return false;
   const fold = pathFold(root);
-  const targetKey = fold(path.relative(realRoot, targetPath));
-  return (manifest.layoutLinks || []).some((other) => {
-    if (other === link || !other || typeof other.path !== 'string' || typeof other.target !== 'string') return false;
-    const otherKey = fold(path.normalize(other.path));
-    if (targetKey !== otherKey && !targetKey.startsWith(otherKey + path.sep)) return false;
-    try {
-      return fs.readlinkSync(path.join(root, other.path)) !== other.target;
-    } catch {
-      return true;
-    }
-  });
+  const links = (manifest.layoutLinks || []).filter((other) => other &&
+    typeof other.path === 'string' && typeof other.target === 'string');
+  for (let hops = 0; hops < links.length && isWithin(realRoot, result.real); hops += 1) {
+    const parts = path.relative(realRoot, result.real).split(path.sep).filter(Boolean);
+    const key = fold(parts.join(path.sep));
+    const other = links.find((candidate) => {
+      const otherKey = fold(path.normalize(candidate.path));
+      if (key !== otherKey && !key.startsWith(otherKey + path.sep)) return false;
+      try {
+        return fs.readlinkSync(path.join(root, candidate.path)) !== candidate.target;
+      } catch {
+        return true;
+      }
+    });
+    if (!other) break;
+    const rest = parts.slice(fold(path.normalize(other.path)).split(path.sep).length);
+    const linkFolder = path.dirname(path.normalize(other.path));
+    result.real = path.resolve(realRoot, linkFolder, other.target, ...rest);
+    result.shown = path.resolve(path.resolve(root), linkFolder, other.target, ...rest);
+  }
+  return result;
 }
 
 // A layout link with entries at or below it that apply cannot write through as
@@ -3462,9 +3477,9 @@ function refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans) {
     const isStanding = !record && current === link.target;
     if ((!record && !isStanding) || (record && record.replacesOwned)) continue;
     const writersUnder = entriesUnder(link, true);
-    const fault = writersUnder.length > 0 ? layoutTargetFault(root, manifest, link) : null;
-    if (fault) {
-      const targetPath = path.resolve(path.dirname(path.resolve(linkPath)), link.target);
+    const found = writersUnder.length > 0 ? layoutTargetFault(root, manifest, link) : null;
+    if (found) {
+      const { kind: fault, at: targetPath } = found;
       const makeFolder = fault === 'missing'
         ? `mkdir -p ${shellPath(targetPath)}`
         : `${keepAsideMove(targetPath)} and mkdir -p ${shellPath(targetPath)}`;

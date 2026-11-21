@@ -888,6 +888,23 @@ test('a layout link whose target is a layout link not made yet is made with it, 
   assert.deepEqual(fs.readdirSync(fixture.workspace), ['tree']);
 });
 
+// Read through the link apply makes first, the missing folder is that link's
+// own target, so status and apply name it alike and the fix ends in sync.
+test('a layout link whose target is a layout link not made yet to a missing folder names that folder, and the fix ends in sync', (t) => {
+  const links = [{ path: 'inner', target: 'realdir' }, { path: 'up', target: 'inner' }];
+  const fixture = createShapeFixture(t, [UP_ENTRY], links);
+  const lines = assertRefusedByBoth(fixture, 'up links to inner, which does not exist, and overlay tool writes under it');
+  assertMissingTargetLines(lines, fixture, 'realdir');
+  assert.equal(kindOf(path.join(fixture.tree, 'inner')), 'missing');
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  fs.mkdirSync(path.join(fixture.tree, 'realdir'));
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'realdir', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  assert.deepEqual(fs.readdirSync(fixture.workspace), ['tree']);
+});
+
 test('a layout link whose target lies under a layout link not made yet is made with it, and the tree ends in sync', (t) => {
   const links = [{ path: 'inner', target: 'realdir' }, { path: 'up', target: 'inner/sub' }];
   const fixture = createShapeFixture(t, [UP_ENTRY], links);
