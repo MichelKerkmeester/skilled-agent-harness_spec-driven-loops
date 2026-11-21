@@ -31,8 +31,6 @@
       "expansive depth sub mode for deep research",
       "depth-mode expansive",
       "frontier veto",
-      "expansive depth mode plan",
-      "expansive depth mode tasks",
       "packet goal",
       "durable directive",
       "completion criteria",
@@ -49,24 +47,19 @@
       "depth-mode",
       "frontier",
       "veto",
-      "plan",
-      "tasks",
-      "packet"
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
       "goal.md",
       "decision-record.md",
       "research/research.md",
       "research/inbox.jsonl",
       "scratch/cross-phase-handoff.md",
-      "research/deep-research-state.jsonl",
-      "research/resource-map.md",
-      "research_archive/20261117T103614Z/research.md",
       "001-completed-run-extension/goal.md",
       "002-research-claude-config-dir/goal.md",
       "003-review-min-iterations-floor/goal.md",
@@ -75,25 +68,18 @@
       "006-state-log-leaf-fields/goal.md",
       "007-source-diversity-quality-class/goal.md",
       "008-review-dimension-coverage/goal.md",
-      "009-fanout-review-coverage-merge/goal.md"
+      "009-fanout-review-coverage-merge/goal.md",
+      "010-research-frontier-mode/goal.md",
+      "011-review-frontier-mode/goal.md",
+      "012-pivot-hygiene/goal.md",
+      "013-no-redispatch-landed-iteration/goal.md",
+      "014-docs-playbooks-alignment/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -124,12 +110,6 @@
         "name": "cross-phase-handoff.md",
         "kind": "doc",
         "path": "scratch/cross-phase-handoff.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
         "source": "derived"
       },
       {
@@ -169,79 +149,93 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Decisions Frozen",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Phase Parent Output Location",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Overview This",
+        "name": "Convergence Report",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Iterative",
+        "name": "Claude Code",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Operator Decisions",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Seed Level",
+        "name": "Phase Documentation Map",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fresh Opus",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Leave Unmet",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
     "created_at": "2026-11-17T07:53:58Z",
-    "last_save_at": "2026-11-21T11:41:46.725Z",
+    "last_save_at": "2026-11-21T12:48:27.472Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
       "goal.md",
       "decision-record.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d7542a3ce556737e19bb5dd44d36b6bc932e4e01ff640db83ed44556dc5a57a2",
+    "source_fingerprint": "sha256:19081881070f439faf27cad0670a7d1dc27fc94d1cffb6bc2e6f5e5c92086cac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17826dc7ac4ef581f272b710b03c7d7a55a51d1bcfe7252a1e6758123c85acd7",
-      "plan.md": "6a56a3aaa01f0331b6c583bb878c61d031938abfeddad6ebb39c9e3ea0cac9fd",
-      "tasks.md": "d97984ca685fdd50c78d5c7103182b4c78d54b0a823b8d68e74c7018725c4386",
+      "spec.md": "9f05295749c2350f6919f66c97a4d0f1ca0f8927a80c4467940610da70c2ea98",
       "decision-record.md": "529509eb4d67f2ba66c424f13b56d6476363ec32ab1db23255154ef604d22018",
       "research/research.md": "4dc6968b9335b3350db858934e7b9dff7d64c49061dcd8c7d4a81e6b666a27f2"
     },
