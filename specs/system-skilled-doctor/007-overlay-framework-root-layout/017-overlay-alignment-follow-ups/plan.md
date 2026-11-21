@@ -75,7 +75,7 @@ Setup creates the worktree and this phase, and runs the gates on main. Implement
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-The router-sync suite must pass 56 tests and the engine suite 354 plus the new cache tests, each with exit 0. The guard 20, contract 9, lsa 76 and ldoc 10 suites keep their counts, and `route-validate.sh` reports 32 routes.
+The router-sync suite must pass 56 tests and the engine suite 354 plus the new cache tests, each with exit 0. The guard 20, or 34 with the hook tests under `tests/`, contract 9, lsa 76 and ldoc 10 suites keep their counts, and `route-validate.sh` reports 32 routes.
 <!-- /ANCHOR:testing -->
 
 ---
