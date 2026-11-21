@@ -942,6 +942,50 @@ test('a layout link below a link spelled in another case that points out is refu
   }
 });
 
+// Whether a folder's filesystem treats `STRASSE` and `straße` as one name, which a
+// case-insensitive volume such as APFS does through full case folding.
+function foldsSharpS(dir) {
+  const scratch = fs.mkdtempSync(path.join(path.dirname(dir), 'fold-'));
+  try {
+    fs.writeFileSync(path.join(scratch, 'STRASSE'), '');
+    try {
+      fs.lstatSync(path.join(scratch, 'stra\u00dfe'));
+      return true;
+    } catch {
+      return false;
+    }
+  } finally {
+    fs.rmSync(scratch, { recursive: true, force: true });
+  }
+}
+
+// toLowerCase leaves `straße` apart from `strasse`, so a key built with it let a
+// link nested under the other spelling half-apply. Full case folding refuses it.
+test('a layout link spelled with a sharp s below its upper-case spelling is refused in either order', (t) => {
+  const outer = { path: 'STRASSE', target: '../outside' };
+  const inner = { path: 'stra\u00dfe/planted', target: 'anything' };
+  const twice = [{ path: 'STRASSE', target: 'real-dir' }, { path: 'stra\u00dfe', target: 'real-dir' }];
+  for (const links of [[outer, inner], [inner, outer], twice]) {
+    const label = links.map((link) => link.path).join(', ');
+    const fixture = createSyncFixture(t);
+    if (!foldsSharpS(fixture.tree)) {
+      t.skip('this filesystem keeps STRASSE and stra\u00dfe apart');
+      return;
+    }
+    const outside = path.resolve(fixture.tree, '../outside');
+    fs.mkdirSync(outside);
+    fixture.manifest.layoutLinks = links;
+    writeManifest(fixture);
+    const before = treeDigest(fixture.tree);
+    for (const command of ['status', 'apply']) {
+      const result = fixture.run([command]);
+      assert.equal(result.code, 2, label + ' ' + command + ': ' + result.output);
+    }
+    assert.deepEqual(fs.readdirSync(outside), [], label);
+    assert.equal(treeDigest(fixture.tree), before, label);
+  }
+});
+
 // Whether a folder's filesystem treats the composed and decomposed forms of one
 // name as one entry, read from the disk in a scratch folder beside it.
 function foldsUnicodeForms(dir) {

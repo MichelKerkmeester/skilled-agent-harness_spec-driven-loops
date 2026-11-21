@@ -2914,7 +2914,9 @@ function isCaseInsensitiveDir(dir) {
       }
       return other !== null && other.dev === original.dev && other.ino === original.ino;
     };
-    const inside = fs.readdirSync(real).find((name) => flip(name) !== name);
+    // A name whose flipped spelling does not flip back, such as a dotless i,
+    // can fold to another entry, so only a name that round-trips is a fair probe.
+    const inside = fs.readdirSync(real).find((name) => flip(name) !== name && flip(flip(name)) === name);
     if (inside !== undefined) {
       answer = sameEntry(path.join(real, inside), path.join(real, flip(inside)));
       caseInsensitiveDirs.set(dir, answer);
@@ -2953,14 +2955,17 @@ function isCaseInsensitiveDir(dir) {
  * The path is normalized without trailing slashes, and composed to Unicode NFC,
  * since a filesystem that stores the composed and decomposed forms of a name
  * apart still lets two such names look alike in a manifest. Where the tree root
- * sits on a filesystem that ignores case, case is folded too.
+ * sits on a filesystem that ignores case, case is folded too, with full case
+ * mapping rather than toLowerCase alone, because such a filesystem treats
+ * `STRASSE` and `straße`, or `OFF` and a ligature spelling, as one name. Folding
+ * a little more than the disk does only adds refusals.
  * @param {string} p Path, relative or absolute.
  * @param {boolean} foldCase Whether the tree root's filesystem ignores case.
  * @returns {string} The comparison key, never a path to read or write.
  */
 function layoutPathKey(p, foldCase) {
   const composed = path.normalize(p).replace(/(.)[\\/]+$/, '$1').normalize('NFC');
-  return foldCase ? composed.toLowerCase() : composed;
+  return foldCase ? composed.toUpperCase().toLowerCase().normalize('NFC') : composed;
 }
 
 /**
