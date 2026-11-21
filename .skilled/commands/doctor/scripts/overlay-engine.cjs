@@ -3265,6 +3265,38 @@ function linksAboveOverlays(manifest, root, layoutRecords) {
   });
 }
 
+// A layout link the tree lacks outright, inside a folder an entry writes, where
+// the entry writes files of its own at or below the link. Those writes would
+// make a real folder in the link's place, so the link is refused while it is
+// planned and nothing is written, rather than left to fail after the writes.
+function refuseLinksInsideOverlayWrites(ctx, layout, plans) {
+  const root = ctx.root;
+  const kept = [];
+  for (const record of layout.missing) {
+    const { link, linkPath, isRetarget, replacesOwned } = record;
+    const key = path.posix.normalize(link.path).replace(/\/+$/, '');
+    const owner = !isRetarget && !replacesOwned && replacedLinkState(root, link).state === 'none' &&
+      !pathExists(linkPath) && plans.find((plan) => {
+        if (typeof plan.entry.destination !== 'string') return false;
+        const destination = path.posix.normalize(plan.entry.destination).replace(/\/+$/, '');
+        if (!key.startsWith(destination + '/')) return false;
+        const absoluteLink = path.resolve(linkPath);
+        return plan.writes.some((write) => isWithin(absoluteLink, path.resolve(write.filePath)));
+      });
+    if (!owner) {
+      kept.push(record);
+      continue;
+    }
+    layout.problems.push(withRemedy(
+      `${link.path} is a layout link inside ${owner.entry.destination}, the folder overlay ${owner.entry.id} writes`,
+      `overlay ${owner.entry.id} writes files at that path, and they would stand where the link goes`,
+      `Next: move the layout link ${link.path} out of ${owner.entry.destination} in ${shellPath(ctx.manifestPath)}, ` +
+        'or drop those files from the overlay, then ' + nextEngine(root, 'apply').slice('Next: '.length)));
+  }
+  layout.missing = kept;
+  return layout;
+}
+
 // Make the links above overlays, each with the folders it needs, and say how to
 // take every one back, so a run that stops before any overlay write leaves the
 // tree as it found it.
@@ -4126,7 +4158,7 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
       });
     }
   }
-  const layout = planLayoutLinks(manifest, root, state);
+  const layout = refuseLinksInsideOverlayWrites(ctx, planLayoutLinks(manifest, root, state), plans);
   for (const record of layoutLinkRecords(layout, root)) records.push(record);
   return { plans, records, blocked, layout };
 }
@@ -4442,7 +4474,7 @@ function runCheck(ctx, manifest, state, plans) {
   const root = ctx.root;
   const problems = [];
   let misses = 0;
-  const layout = planLayoutLinks(manifest, root, state);
+  const layout = refuseLinksInsideOverlayWrites(ctx, planLayoutLinks(manifest, root, state), plans);
   const layoutCount = (manifest.layoutLinks || []).length > 0 ? 1 : 0;
   for (const problem of layout.problems) problems.push(`layout: ${problem}`);
   for (const { link } of layout.missing) problems.push(`layout: ${link.path} is missing (link to ${link.target})`);
@@ -4906,13 +4938,15 @@ function applyUnderLock(ctx, manifest, options = {}) {
   const root = ctx.root;
   const state = loadState(ctx, manifest);
   let analysis = analyze(ctx, manifest, state, options.upstreamBytes);
-  if (reportApplyBlocked(ctx, analysis)) return EXIT_CONFLICT;
 
   // The entries under a layout link the tree lacks were planned with no link
-  // there, so they are planned again through it once it is made, and judged
-  // there like any write through a link. When that plan blocks, the links are
-  // taken back before anything else is written.
-  const linkedFirst = linksAboveOverlays(manifest, root, analysis.records.filter((record) => record.layout));
+  // there, so a first plan may block them only because the link is missing.
+  // They are planned again through the link once it is made, and judged there
+  // like any write through a link; when that plan blocks, the links are taken
+  // back before anything else is written, and its blocks are the ones reported.
+  const linkedFirst = analysis.layout.problems.length > 0 ? []
+    : linksAboveOverlays(manifest, root, analysis.records.filter((record) => record.layout));
+  if (linkedFirst.length === 0 && reportApplyBlocked(ctx, analysis)) return EXIT_CONFLICT;
   if (linkedFirst.length > 0) {
     const undoLinks = makeLinksFirst(root, linkedFirst);
     try {

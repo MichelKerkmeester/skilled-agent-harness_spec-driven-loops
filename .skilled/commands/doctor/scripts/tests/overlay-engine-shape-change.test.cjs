@@ -440,6 +440,29 @@ test('a layout link not made yet at a directory entry\'s own path is made first,
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'inside.md'), 'utf8'), 'link target\n');
 });
 
+test('a layout link not made yet above a pinned whole-file entry is made first, and the pinned file is read through it', (t) => {
+  const pinned = 'upstream tool\n';
+  const pinnedSha256 = require('node:crypto').createHash('sha256').update(pinned).digest('hex');
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up/tool', pinnedSha256 }], [{ path: 'up', target: 'target' }]);
+  writeFile(fixture.tree, 'target/tool', pinned);
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 0, result.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'up')), 'target');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool'), 'utf8'), 'tool file\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a layout link not made yet inside a folder a directory entry writes is refused before any write', (t) => {
+  const fixture = createShapeFixture(t, [DIRECTORY_ENTRY], [{ path: 'tool/deep', target: '../target' }]);
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 1, result.output);
+  assert.match(result.output, /tool\/deep is a layout link inside tool, the folder overlay tool writes/, result.output);
+  assert.match(result.output, /Next: move the layout link tool\/deep out of tool in /, result.output);
+  assert.match(result.output, /this apply wrote nothing/, result.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'tool')), 'missing');
+  assert.deepEqual(fs.readdirSync(path.join(fixture.tree, 'target')), ['inside.md']);
+});
+
 test('a layout link not made yet whose target leads outside the tree is refused, and the link is not left behind', (t) => {
   const outside = outsideFolder(t);
   const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'up/tool' }], [{ path: 'up', target: 'target' }]);
