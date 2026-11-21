@@ -202,6 +202,7 @@ check "--root without a value names a runnable root, not a placeholder" '[[ "$ER
 
 run_doctor -- --root "$WORK/does-not-exist" --json
 check "--root at a missing directory exits 3" '[[ "$RC" -eq 3 && "$ERR" == *"does-not-exist"* ]]'
+check "--root at a missing directory names a runnable root, not a placeholder" '[[ "$ERR" == *"$NEXT_ROOT"* && "$ERR" != *"<repository root>"* ]]'
 check "--root at a missing directory never diagnoses another tree" '[[ "$OUT" != *"Project root"* && "$OUT" != *"checks"* ]]'
 
 run_doctor -- --help
