@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # system-skilled-doctor
@@ -143,7 +143,7 @@ A doctor command about one skill's own checks stays with that skill.
 | `apply` writes nothing and reports `both-changed` or `upstream-moved` | The overlay and the live copy hold edits the engine cannot reconcile | Read both copies, decide, update the overlay, then run `status` again |
 | A run refuses and prints an overlay lock owner line | The run cannot confirm the lock's owner has ended | Run the `Next:` line it prints: check with `ps -p <pid>` that the owner has ended, then remove the lock file it names |
 | `status` prints `LAYOUT` lines after a re-pin | Overlay copies still sit at their older paths, off the `framework/` and `root/` layout | Run `/doctor:overlay apply --relayout` once. The lines never fail `status`, so this can wait |
-| `apply` reports a path that `does not match what apply last wrote there`, `is a link that leads outside the tree` or `is a link that does not resolve` | An unowned file, folder or link stands where an overlay now writes another shape, or a link on the path leads outside the tree or nowhere | Run the `Next:` line it prints, which moves the path aside to `<path>.keep` and applies again |
+| `apply` reports a path that `does not match what apply last wrote there`, `is a link that leads outside the tree` or `is a link that does not resolve` | An unowned file, folder or link stands where an overlay now writes another shape, or a link on the path leads outside the tree or loops | Run the `Next:` line it prints, which moves the path aside to `<path>.keep` and applies again |
 
 ---
 
