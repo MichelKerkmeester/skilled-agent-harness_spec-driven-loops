@@ -10,14 +10,17 @@ function identity(prefix: string, value: JsonObject): string {
   return `${prefix}:${sha256Bytes(canonicalBytes(value))}`;
 }
 
+/** Returns `leaf-result:` plus the SHA-256 of the canonical bytes of the dispatch receipt id. */
 export function deriveResultEnvelopeId(dispatchReceiptId: string): string {
   return identity('leaf-result', { dispatch_receipt_id: dispatchReceiptId });
 }
 
+/** Returns `leaf-result-write:` plus the SHA-256 of the canonical bytes of the dispatch receipt id. */
 export function deriveResultIdempotencyKey(dispatchReceiptId: string): string {
   return identity('leaf-result-write', { dispatch_receipt_id: dispatchReceiptId });
 }
 
+/** Returns `leaf-salvage:` plus the SHA-256 of the canonical receipt, parser, recovered scope and source fields. */
 export function deriveSalvageEventId(input: Readonly<{
   dispatchReceiptId: string;
   parserName: string;
@@ -36,10 +39,12 @@ export function deriveSalvageEventId(input: Readonly<{
   });
 }
 
+/** Returns `leaf-salvage-write:` plus the SHA-256 of the canonical bytes of the salvage event id. */
 export function deriveSalvageIdempotencyKey(salvageEventId: string): string {
   return identity('leaf-salvage-write', { salvage_event_id: salvageEventId });
 }
 
+/** Returns `leaf-recovery:` plus the SHA-256 of the canonical dispatch receipt and source effect event ids. */
 export function deriveRecoveryLinkId(
   dispatchReceiptId: string,
   sourceEffectEventId: string,
@@ -50,6 +55,7 @@ export function deriveRecoveryLinkId(
   });
 }
 
+/** Returns `leaf-recovery-write:` plus the SHA-256 of the canonical bytes of the recovery link id. */
 export function deriveRecoveryIdempotencyKey(recoveryLinkId: string): string {
   return identity('leaf-recovery-write', { recovery_link_id: recoveryLinkId });
 }

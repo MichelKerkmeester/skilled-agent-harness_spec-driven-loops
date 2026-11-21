@@ -46,6 +46,7 @@ import type {
 // 2. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/** Whether a leaf counts as complete, with the reason code for the verdict. */
 export interface CompletionVerification {
   readonly complete: boolean;
   readonly reasonCode: string;
@@ -257,6 +258,7 @@ async function reduceLeaf(
       recovery: null, result: null,
     });
   }
+  // The guards above return unless exactly one receipt exists.
   const dispatch = asDispatchReceiptPayload(receipts[0]!.event.effective.envelope.payload);
   if (dispatch.dispatch_id !== leaf.dispatchId || dispatch.leaf_id !== leaf.leafId) {
     return leafState({
@@ -274,6 +276,7 @@ async function reduceLeaf(
     });
   }
   const recovery = recoveries.length === 1
+    // This branch runs only when recoveries.length === 1.
     ? asLeafRecoveryPayload(recoveries[0]!.event.effective.envelope.payload)
     : null;
   if (results.length === 0) {
@@ -310,6 +313,7 @@ async function reduceLeaf(
       result: null,
     });
   }
+  // Earlier returns handle zero and multiple results, so exactly one remains.
   const resultEvent = results[0]!;
   const result = asLeafResultPayload(resultEvent.event.effective.envelope.payload);
   if (

@@ -36,6 +36,7 @@ export function extractLegacyShadowText(stdout: string | null): string | null {
   return stdout.trim().length > 50 ? stdout.slice(0, 50_000) : null;
 }
 
+/** Salvage counts and the per-iteration fragments the legacy salvage path would report. */
 export interface LegacySalvageShadow {
   readonly failed: number;
   readonly fragments: readonly {
@@ -49,6 +50,10 @@ export interface LegacySalvageShadow {
   readonly salvaged: number;
 }
 
+/**
+ * Projects one salvage fragment per state-record iteration not already present, marked salvaged or failed by
+ * whether stdout text was captured.
+ */
 export function projectLegacySalvageShadow(input: Readonly<{
   capturedStdout: string | null;
   existingIterations: readonly number[];
@@ -76,6 +81,7 @@ export function projectLegacySalvageShadow(input: Readonly<{
   });
 }
 
+/** The legacy failure class, normalized exit code and retry verdict for one leaf. */
 export interface LegacyFailureShadow {
   readonly exit_code: number | null;
   readonly failure_class: 'artifact_miss' | 'exit' | 'salvage_miss' | 'timeout';
@@ -85,6 +91,7 @@ export interface LegacyFailureShadow {
   readonly timed_out: boolean;
 }
 
+/** Classifies a legacy failure as timeout, salvage or artifact miss (retryable) or a plain exit (fatal). */
 export function classifyLegacyFailureShadow(input: Readonly<{
   exitCode: number | null;
   salvage: { readonly failed: number; readonly salvaged: number } | null;
@@ -271,6 +278,10 @@ export function reconstructLegacyRegistryShadow(
   };
 }
 
+/**
+ * Projects the legacy attribution row: label, kind, model, iteration and salvage counts, convergence and a
+ * P0/P1-derived verdict.
+ */
 export function projectLegacyAttribution(input: Readonly<{
   kind: string | null;
   label: string;

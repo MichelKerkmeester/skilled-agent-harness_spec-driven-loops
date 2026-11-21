@@ -25,6 +25,7 @@ import type { AuthorizedEvidenceWriter } from '../receipts-and-effect-recovery/i
 export type LeafResultStatus = 'cancelled' | 'failed' | 'partial' | 'succeeded' | 'timed_out';
 export type ProvenanceKind = 'estimated' | 'measured' | 'unknown';
 
+/** A digest-pinned reference to an artifact or piece of evidence, marked required or optional. */
 export interface DigestReference extends JsonObject {
   readonly digest: string;
   readonly kind: string;
@@ -32,6 +33,7 @@ export interface DigestReference extends JsonObject {
   readonly required: boolean;
 }
 
+/** Token counts for a leaf run, each null when unknown, with where the numbers came from. */
 export interface UsageAccounting extends JsonObject {
   readonly input_tokens: number | null;
   readonly output_tokens: number | null;
@@ -39,17 +41,20 @@ export interface UsageAccounting extends JsonObject {
   readonly total_tokens: number | null;
 }
 
+/** Cost amount and currency for a leaf run, null when unknown, with where the figure came from. */
 export interface CostAccounting extends JsonObject {
   readonly amount: number | null;
   readonly currency: string | null;
   readonly provenance: ProvenanceKind;
 }
 
+/** Whether a result was salvaged fully, partly or not at all, and how many fragments it used. */
 export interface ResultSalvageSummary extends JsonObject {
   readonly disposition: 'failed' | 'none' | 'partial';
   readonly fragment_count: number;
 }
 
+/** Ledger payload of one leaf result, bound to its dispatch receipt and sealed by its result digest. */
 export interface LeafResultPayload extends JsonObject {
   readonly artifacts: DigestReference[];
   readonly attempt_id: string;
@@ -80,6 +85,7 @@ export interface LeafResultPayload extends JsonObject {
   readonly usage: UsageAccounting;
 }
 
+/** Caller-side facts about a finished leaf that the result payload is built from. */
 export interface LeafResultFacts {
   readonly artifacts: readonly DigestReference[];
   readonly completedAt: string;
@@ -99,6 +105,7 @@ export interface LeafResultFacts {
   readonly usage: UsageAccounting;
 }
 
+/** Authority epoch, producer and stream position for a result-envelope event. */
 export interface ResultEventContext {
   readonly authorityEpoch: number;
   readonly producer: EventProducer;
@@ -106,6 +113,7 @@ export interface ResultEventContext {
   readonly streamSequence: number;
 }
 
+/** A dispatch receipt's result facts to record, with the event context, registry and authorized writer. */
 export interface RecordLeafResultInput {
   readonly context: ResultEventContext;
   readonly dispatchReceiptId: string;
@@ -114,6 +122,7 @@ export interface RecordLeafResultInput {
   readonly writer: AuthorizedEvidenceWriter;
 }
 
+/** A shadow-authority result event, marked appended or idempotent, with its receipt and verified ledger event. */
 export interface RecordedLeafResult {
   readonly authority: 'shadow';
   readonly event: EventWritePreflight;
@@ -129,6 +138,7 @@ export type SalvageSourceKind =
   | 'registry'
   | 'state_event';
 
+/** Ledger payload of one salvaged fragment, recording its completeness, confidence and content digest. */
 export interface SalvageFragmentPayload extends JsonObject {
   readonly authority_epoch: number;
   readonly byte_identical_original: boolean;
@@ -155,6 +165,7 @@ export interface SalvageFragmentPayload extends JsonObject {
   readonly verdict: 'conflict' | 'recovered' | 'rejected' | 'unrecoverable';
 }
 
+/** Caller-side facts about a salvaged fragment that the salvage payload is built from. */
 export interface SalvageFragmentFacts {
   readonly byteIdenticalOriginal: boolean;
   readonly byteLength: number;
@@ -177,6 +188,7 @@ export interface SalvageFragmentFacts {
   readonly verdict: SalvageFragmentPayload['verdict'];
 }
 
+/** A dispatch receipt's salvage facts to record, with the event context, registry and authorized writer. */
 export interface RecordSalvageFragmentInput {
   readonly context: ResultEventContext;
   readonly dispatchReceiptId: string;
@@ -185,6 +197,7 @@ export interface RecordSalvageFragmentInput {
   readonly writer: AuthorizedEvidenceWriter;
 }
 
+/** Ledger payload linking a dispatch receipt to the effect event it recovers from and the retry decision taken. */
 export interface LeafRecoveryPayload extends JsonObject {
   readonly attempt: number;
   readonly authority_epoch: number;
@@ -201,6 +214,7 @@ export interface LeafRecoveryPayload extends JsonObject {
   readonly verdict: 'applied' | 'conflict' | 'in_doubt' | 'not_applied';
 }
 
+/** A verified source event to record as a recovery, with the correlation id it must share with the receipt. */
 export interface RecordLeafRecoveryInput {
   readonly context: ResultEventContext;
   readonly dispatchReceiptId: string;
@@ -211,6 +225,7 @@ export interface RecordLeafRecoveryInput {
   readonly writer: AuthorizedEvidenceWriter;
 }
 
+/** Byte length and digest a resolver returns for an artifact reference. */
 export interface ArtifactResolution {
   readonly byteLength: number;
   readonly digest: string;
@@ -220,6 +235,7 @@ export type DigestResolver = (
   reference: Readonly<DigestReference>,
 ) => ArtifactResolution | null | Promise<ArtifactResolution | null>;
 
+/** A leaf the resume fold expects to find, with its dispatch and whether retry policy applies. */
 export interface ExpectedLeafAttempt {
   readonly dispatchId: string;
   readonly leafId: string;
@@ -238,6 +254,7 @@ export type LeafProgressClassification =
   | 'timed_out'
   | 'unreadable';
 
+/** One leaf's resume classification: its dispatch, whether it may be dispatched again and its terminal status. */
 export interface LeafProgressState extends JsonObject {
   readonly classification: LeafProgressClassification;
   readonly dispatch_id: string;
@@ -250,6 +267,10 @@ export interface LeafProgressState extends JsonObject {
   readonly terminal_status: LeafResultStatus | null;
 }
 
+/**
+ * Shadow-authority resume snapshot: per-leaf progress, completed and dispatchable ids, and the ledger head it
+ * was folded at.
+ */
 export interface ResumeProgressSnapshot extends JsonObject {
   readonly authority: 'shadow';
   readonly completed_leaf_ids: string[];
@@ -265,6 +286,7 @@ export interface ResumeProgressSnapshot extends JsonObject {
   readonly scheduling_exclusions: string[];
 }
 
+/** Expected leaves, ledger, registry version and digest resolver the resume fold reads. */
 export interface FoldResumeInput {
   readonly expectedLeaves: readonly ExpectedLeafAttempt[];
   readonly ledger: AppendOnlyLedger;
@@ -272,6 +294,7 @@ export interface FoldResumeInput {
   readonly resolver: DigestResolver;
 }
 
+/** The resume snapshot with its canonical bytes and digest. */
 export interface FoldResumeResult {
   readonly canonicalBytes: string;
   readonly canonicalDigest: string;

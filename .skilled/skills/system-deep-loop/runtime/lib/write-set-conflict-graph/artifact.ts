@@ -46,12 +46,14 @@ export const PairClassificationFailureCodes = {
 export type PairClassificationFailureCode =
   typeof PairClassificationFailureCodes[keyof typeof PairClassificationFailureCodes];
 
+/** Why a workstream pair could not be classified, with the issue codes and messages behind it. */
 export interface PairClassificationFailure {
   readonly code: PairClassificationFailureCode;
   readonly issue_codes: readonly string[];
   readonly messages: readonly string[];
 }
 
+/** Whether two workstreams must serialize or may run in parallel, with the edges and resources that decide it. */
 export interface WorkstreamPairClassification {
   readonly left: Phase013Workstream;
   readonly right: Phase013Workstream;
@@ -62,6 +64,7 @@ export interface WorkstreamPairClassification {
   readonly failure: PairClassificationFailure | null;
 }
 
+/** The graph and every workstream pair classification, sealed with a digest over the canonical payload. */
 export interface WriteSetConflictArtifact {
   readonly schema_version: typeof WRITE_SET_CONFLICT_ARTIFACT_SCHEMA_VERSION;
   readonly graph: WriteSetConflictGraph;
@@ -174,6 +177,7 @@ function artifactPayload(graph: WriteSetConflictGraph): ArtifactPayload {
 // 6. EXPORTS
 // ───────────────────────────────────────────────────────────────────
 
+/** Wraps a derived graph in an artifact whose digest is computed over its canonical payload. */
 export function createWriteSetConflictArtifact(
   graph: WriteSetConflictGraph,
 ): WriteSetConflictArtifact {
@@ -184,12 +188,14 @@ export function createWriteSetConflictArtifact(
   };
 }
 
+/** Derives the conflict graph from build input and returns it as a digested artifact. */
 export function buildWriteSetConflictArtifact(
   input: GraphBuildInput,
 ): WriteSetConflictArtifact {
   return createWriteSetConflictArtifact(deriveWriteSetConflictGraph(input));
 }
 
+/** Serializes an artifact to canonical bytes, throwing when its stored digest does not match the payload. */
 export function serializeWriteSetConflictArtifact(
   artifact: WriteSetConflictArtifact,
 ): Uint8Array {
@@ -205,6 +211,7 @@ export function serializeWriteSetConflictArtifact(
   return new TextEncoder().encode(`${stableStringify(artifact)}\n`);
 }
 
+/** Builds the artifact from input and returns its verified canonical bytes in one step. */
 export function buildWriteSetConflictArtifactBytes(
   input: GraphBuildInput,
 ): Uint8Array {

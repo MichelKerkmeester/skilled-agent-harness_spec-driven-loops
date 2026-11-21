@@ -74,6 +74,7 @@ export interface BudgetEnvelope {
   readonly limits: BudgetVector;
 }
 
+/** Definition of a budget scope: its identity, parent, policy version, creation time and limits. */
 export interface BudgetEnvelopeInput {
   readonly budgetId: string;
   readonly scope: BudgetScopeIdentity;

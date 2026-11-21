@@ -11,6 +11,7 @@ import type {
   ProjectionSnapshot,
 } from './transactional-projection-types.js';
 
+/** A legacy result and a projection value for one surface, compared against the snapshot they were read at. */
 export interface LegacyProjectionComparisonInput<TLegacy> {
   readonly surface: string;
   readonly legacyResult: TLegacy;
@@ -43,6 +44,7 @@ function differingPaths(
   for (const key of keys) {
     if (output.length >= maximum) break;
     if (!(key in left) || !(key in right)) output.push(`${path}.${key}`);
+    // Both sides hold the key (checked on the line above), so neither index read is undefined.
     else differingPaths(left[key]!, right[key]!, maximum, `${path}.${key}`, output);
   }
   return output;

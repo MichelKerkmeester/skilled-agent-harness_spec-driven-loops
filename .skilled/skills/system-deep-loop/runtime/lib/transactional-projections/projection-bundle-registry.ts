@@ -29,6 +29,7 @@ import type {
 // 1. INTERNAL CONTRACTS
 // ───────────────────────────────────────────────────────────────────
 
+/** A view definition accepted by the registry, resolved to its events, dependencies, configuration and digests. */
 export interface RegisteredProjectionView extends ProjectionViewDefinition {
   readonly acceptedEvents: readonly AcceptedProjectionEvent[];
   readonly dependencies: readonly string[];
@@ -39,6 +40,7 @@ export interface RegisteredProjectionView extends ProjectionViewDefinition {
   readonly definitionDigest: string;
 }
 
+/** A registered bundle: its manifest, the view dependency order, the resolved views and the gauge bindings. */
 export interface RegisteredProjectionBundle {
   readonly manifest: ProjectionBundleManifest;
   readonly dependencyOrder: readonly string[];
