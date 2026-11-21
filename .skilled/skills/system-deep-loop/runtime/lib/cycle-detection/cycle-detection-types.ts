@@ -28,6 +28,7 @@ import type {
 // 1. POLICY AND SOURCE CONTRACTS
 // ───────────────────────────────────────────────────────────────────
 
+/** Schema, reducer and policy versions of every source projection the cycle detector reads. */
 export interface CycleDetectorSourceVersions extends JsonObject {
   readonly claim_continuity_schema_version: number;
   readonly claim_reducer_version: string;
@@ -57,12 +58,14 @@ export interface CycleDetectorPolicy extends JsonObject {
   readonly source_versions: CycleDetectorSourceVersions;
 }
 
+/** Ledger position as ledger id, sequence and record hash. */
 export interface CycleLedgerCursor extends JsonObject {
   readonly ledger_id: string;
   readonly sequence: number;
   readonly record_hash: string;
 }
 
+/** The run, iteration, ledger cursor and projection watermark an observation is taken at. */
 export interface CycleBoundaryInput {
   readonly runLineageId: string;
   readonly iteration: number;
@@ -70,6 +73,7 @@ export interface CycleBoundaryInput {
   readonly projectionWatermark: string;
 }
 
+/** Path and community coverage, in basis points and covered ids, at one projection watermark. */
 export interface CycleCoverageSnapshot extends JsonObject {
   readonly projection_watermark: string;
   readonly reducer_version: string;
@@ -80,6 +84,7 @@ export interface CycleCoverageSnapshot extends JsonObject {
   readonly source_fingerprint: string;
 }
 
+/** Unresolved blocker ids at one projection watermark, with the reducer version that produced them. */
 export interface CycleBlockerSnapshot extends JsonObject {
   readonly projection_watermark: string;
   readonly reducer_version: string;
@@ -87,6 +92,7 @@ export interface CycleBlockerSnapshot extends JsonObject {
   readonly source_fingerprint: string;
 }
 
+/** An evidence reference with the independence key used to tell new evidence from repeats. */
 export interface CycleIndependentEvidenceRef extends JsonObject {
   readonly evidence_ref: string;
   readonly independence_key: string;
@@ -101,6 +107,10 @@ export const CycleClaimChangeKinds = {
 export type CycleClaimChangeKind =
   typeof CycleClaimChangeKinds[keyof typeof CycleClaimChangeKinds];
 
+/**
+ * A material claim change, as lifecycle and epistemic status before and after; the before values are null for a new
+ * claim.
+ */
 export interface CycleClaimChange extends JsonObject {
   readonly kind: CycleClaimChangeKind;
   readonly claim_ref: ContinuityIdentityRef;
@@ -110,6 +120,10 @@ export interface CycleClaimChange extends JsonObject {
   readonly epistemic_after: ClaimEpistemicStatus;
 }
 
+/**
+ * Progress signals for an iteration when every field was available: new evidence, claim changes, resolutions and
+ * coverage.
+ */
 export interface CompleteCycleProgressVector extends JsonObject {
   readonly status: 'complete';
   readonly signal_version: string;
@@ -123,6 +137,7 @@ export interface CompleteCycleProgressVector extends JsonObject {
   readonly progress_fingerprint: string;
 }
 
+/** Progress vector for an iteration where some signals were unavailable, naming the missing fields. */
 export interface MissingCycleProgressVector extends JsonObject {
   readonly status: 'missing';
   readonly signal_version: string;
@@ -135,6 +150,10 @@ export type CycleProgressVector =
   | CompleteCycleProgressVector
   | MissingCycleProgressVector;
 
+/**
+ * Every projection an observation is built from: boundary, next-focus decision, claim frontier and state, coverage,
+ * blockers and progress.
+ */
 export interface ProjectCycleObservationInput {
   readonly boundary: CycleBoundaryInput;
   readonly nextFocusDecision: NextFocusSelectedDecision;
@@ -151,12 +170,14 @@ export interface ProjectCycleObservationInput {
 // 2. OBSERVATION AND HISTORY
 // ───────────────────────────────────────────────────────────────────
 
+/** Candidate and region identity of a next-focus candidate, as used inside a focus signature. */
 export interface CycleFocusCandidateIdentity extends JsonObject {
   readonly candidate_id: string;
   readonly region_kind: string;
   readonly region_id: string;
 }
 
+/** A ranked next-focus candidate inside the typed candidate frontier of a focus signature. */
 export interface CycleFocusFrontierIdentity extends JsonObject {
   readonly rank: number;
   readonly candidate_id: string;
@@ -164,6 +185,7 @@ export interface CycleFocusFrontierIdentity extends JsonObject {
   readonly region_id: string;
 }
 
+/** Fingerprinted content of a focus signature: the selected candidate and the ranked candidate frontier. */
 export interface CycleFocusSignaturePayload extends JsonObject {
   readonly signature_schema_version: number;
   readonly policy_version: string;
@@ -172,18 +194,21 @@ export interface CycleFocusSignaturePayload extends JsonObject {
   readonly typed_candidate_set_fingerprint: string;
 }
 
+/** One active claim reduced to its reference, lifecycle and epistemic status for a claim-frontier signature. */
 export interface CycleClaimStateIdentity extends JsonObject {
   readonly claim_ref: ContinuityIdentityRef;
   readonly lifecycle: ClaimLifecycleState;
   readonly epistemic_status: ClaimEpistemicStatus;
 }
 
+/** An unresolved contradiction between two claims, identified by its relationship id. */
 export interface CycleContradictionIdentity extends JsonObject {
   readonly relationship_id: string;
   readonly left_claim_ref: ContinuityIdentityRef;
   readonly right_claim_ref: ContinuityIdentityRef;
 }
 
+/** Fingerprinted content of a claim-frontier signature: active claims, unresolved matches and contradictions. */
 export interface CycleClaimFrontierSignaturePayload extends JsonObject {
   readonly signature_schema_version: number;
   readonly claim_reducer_version: string;
@@ -193,6 +218,10 @@ export interface CycleClaimFrontierSignaturePayload extends JsonObject {
   readonly unresolved_contradictions: CycleContradictionIdentity[];
 }
 
+/**
+ * Fingerprinted content of the composite signature, joining the focus and claim fingerprints with coverage and
+ * blockers.
+ */
 export interface CycleCompositeSignaturePayload extends JsonObject {
   readonly signature_schema_version: number;
   readonly detector_policy_version: string;
@@ -207,11 +236,13 @@ export interface CycleCompositeSignaturePayload extends JsonObject {
   readonly unresolved_blocker_ids: string[];
 }
 
+/** A signature payload together with the fingerprint used to compare it across iterations. */
 export interface CycleSignature<TPayload extends JsonObject> extends JsonObject {
   readonly payload: TPayload;
   readonly fingerprint: string;
 }
 
+/** Digests and fingerprints of the source projections an observation was built from, so it can be traced back. */
 export interface CycleObservationSourceEvidence extends JsonObject {
   readonly next_focus_decision_id: string;
   readonly next_focus_recorded_candidate_set_fingerprint: string;
@@ -241,6 +272,7 @@ export interface CycleObservation extends JsonObject {
   readonly observation_fingerprint: string;
 }
 
+/** Identity of the most recently evicted observation, marking where the bounded history was cut. */
 export interface CycleHistoryEvictionBoundary extends JsonObject {
   readonly iteration: number;
   readonly ledger_cursor: CycleLedgerCursor;
@@ -275,6 +307,7 @@ export const CycleProgressVerdicts = {
 export type CycleProgressVerdict =
   typeof CycleProgressVerdicts[keyof typeof CycleProgressVerdicts];
 
+/** Progress gate verdict over an iteration window, with its basis and the coverage gain in basis points when known. */
 export interface CycleProgressAssessment extends JsonObject {
   readonly gate_version: string;
   readonly verdict: CycleProgressVerdict;
@@ -294,12 +327,17 @@ export const CycleSignatureKinds = {
 export type CycleSignatureKind =
   typeof CycleSignatureKinds[keyof typeof CycleSignatureKinds];
 
+/** One iteration in a cycle trace, as its ledger cursor and signature fingerprint. */
 export interface CycleTraceEntry extends JsonObject {
   readonly iteration: number;
   readonly ledger_cursor: CycleLedgerCursor;
   readonly fingerprint: string;
 }
 
+/**
+ * Evidence for a detected cycle: signature kind, period, occurrences, the iteration and cursor span, its trace and the
+ * progress assessment.
+ */
 export interface CycleEvidence extends JsonObject {
   readonly run_lineage_id: string;
   readonly detector_policy_version: string;
@@ -326,18 +364,24 @@ export const CycleEvaluationStatuses = {
 export type CycleEvaluationStatus =
   typeof CycleEvaluationStatuses[keyof typeof CycleEvaluationStatuses];
 
+/** Detector result when the history cannot be evaluated, with the reason. */
 export interface CycleNotEvaluableResult {
   readonly status: 'not_evaluable';
   readonly reason: string;
   readonly detectorPolicyVersion: string;
 }
 
+/** Detector result when no cycle was found among the evaluated observations. */
 export interface CycleNoCycleResult {
   readonly status: 'no_cycle';
   readonly detectorPolicyVersion: string;
   readonly evaluatedObservationCount: number;
 }
 
+/**
+ * Detector result for a suspected, confirmed or cleared cycle, with the primary evidence and optionally the full
+ * evidence set.
+ */
 export interface CycleEvidenceResult {
   readonly status: 'cycle_suspected' | 'cycle_confirmed' | 'cycle_cleared';
   readonly detectorPolicyVersion: string;
@@ -359,6 +403,7 @@ export type CycleHealthState =
   | 'cycle_confirmed'
   | 'cycle_cleared';
 
+/** Ledger payload of a cycle health event, carrying the cycle evidence fields and their digest. */
 export interface CycleHealthEventPayload extends JsonObject {
   readonly health_event_id: string;
   readonly health_state: CycleHealthState;
@@ -378,6 +423,7 @@ export interface CycleHealthEventPayload extends JsonObject {
   readonly evidence_digest: string;
 }
 
+/** Stream position, timestamps, producer, authority epoch and correlation ids for a cycle health event envelope. */
 export interface CycleHealthEventEnvelopeInput {
   readonly streamId: string;
   readonly streamSequence: number;
@@ -389,11 +435,13 @@ export interface CycleHealthEventEnvelopeInput {
   readonly causationId: string | null;
 }
 
+/** Outcome of recording a cycle health event, appended or idempotent, with its durable receipt. */
 export interface CycleHealthRecordResult {
   readonly status: 'appended' | 'idempotent';
   readonly receipt: DurableAppendReceipt;
 }
 
+/** Mode, actor, capability, evidence digest and policy the gateway authorizes a cycle health write against. */
 export interface CycleHealthWriteContext {
   readonly mode: string;
   readonly actorId: string;

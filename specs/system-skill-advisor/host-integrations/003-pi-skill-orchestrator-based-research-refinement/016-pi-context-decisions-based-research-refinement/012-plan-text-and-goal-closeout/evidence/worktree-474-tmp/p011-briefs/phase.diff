@@ -1,0 +1,1316 @@
+diff --git a/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts b/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+index 446fa1c1fdc..3c75d8f64f9 100644
+--- a/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
++++ b/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+@@ -16,9 +16,11 @@ import { dirname, join, resolve } from 'node:path';
+ import { fileURLToPath } from 'node:url';
+ import { isAdvisorRuntime, type AdvisorRuntime } from '../../runtime/lib/advisor-runtime-values.js';
+ import { findAdvisorWorkspaceRoot } from '../../runtime/lib/utils/workspace-root.js';
++import { shouldFireAdvisor, stripLeadingPastedReply } from '../../runtime/lib/prompt-policy.js';
+ import {
+   buildSkillAdvisorBrief,
+   skippedAdvisorResultFor,
++  skippedWeakFollowUpResult,
+   type AdvisorHookResult,
+   type AdvisorHookStatus,
+   type AdvisorHookFreshness,
+@@ -29,6 +31,12 @@ import {
+   isDirectiveLifecycleDedupEnabled,
+   type DirectiveLifecycleState,
+ } from '../lib/directive-lifecycle.js';
++import {
++  decideRouteReceiptGuard,
++  defaultRouteReceiptStore,
++  ROUTE_RECEIPT_VERSION,
++  type RouteReceiptStore,
++} from '../lib/route-receipt.js';
+ import {
+   renderAdvisorBrief,
+   renderAdvisorFallbackDirective,
+@@ -134,6 +142,8 @@ export interface UserPromptSubmitDependencies {
+   readonly writeDiagnostic?: (line: string) => void;
+   /** Per-session directive-lifecycle dedup state; defaults to the durable file-backed store. */
+   readonly directiveLifecycleStore?: DirectiveLifecycleState;
++  /** Per-session record of the last confident route; defaults to the durable file-backed store. */
++  readonly routeReceiptStore?: RouteReceiptStore;
+   /** Delay a full-delivery receipt until the process handoff acknowledges stdout. */
+   readonly deferDirectiveReceipt?: boolean;
+ }
+@@ -303,6 +313,88 @@ export function parseClaudeUserPromptSubmitInput(raw: string): ClaudeUserPromptS
+ // 6. CORE LOGIC
+ // ───────────────────────────────────────────────────────────────
+ 
++// A session's last confident route lets a weak follow-up that would route
++// elsewhere only on the confidence floor be held back, because the earlier
++// brief is still in context and the floored one would steer the model off the
++// session's task. Receipts are advisory: any fault keeps the turn as it was.
++function receiptSessionId(input: ClaudeUserPromptSubmitInput): string | null {
++  return typeof input.session_id === 'string' && input.session_id.trim().length > 0
++    ? input.session_id.trim()
++    : null;
++}
++
++function transcriptBytesFor(input: ClaudeUserPromptSubmitInput): number | null {
++  if (typeof input.transcript_path !== 'string' || input.transcript_path.length === 0) return null;
++  try {
++    return statSync(input.transcript_path).size;
++  } catch {
++    return null;
++  }
++}
++
++function topPassingRecommendation(result: AdvisorHookResult): AdvisorHookResult['recommendations'][number] | null {
++  return result.status === 'ok'
++    ? result.recommendations.find((recommendation) => recommendation.passes_threshold === true) ?? null
++    : null;
++}
++
++function guardWeakFollowUp(
++  result: AdvisorHookResult,
++  prompt: string,
++  input: ClaudeUserPromptSubmitInput,
++  dependencies: UserPromptSubmitDependencies,
++): AdvisorHookResult {
++  try {
++    const sessionId = receiptSessionId(input);
++    const top = topPassingRecommendation(result);
++    if (!sessionId || !top || top.confidenceFloored !== true) return result;
++    const receipt = (dependencies.routeReceiptStore ?? defaultRouteReceiptStore()).read(sessionId);
++    if (!receipt) return result;
++    const strippedPrompt = stripLeadingPastedReply(prompt);
++    const lifecycle = dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore();
++    const decision = decideRouteReceiptGuard({
++      receipt,
++      clock: () => lifecycle.clock(sessionId),
++      transcriptBytes: transcriptBytesFor(input),
++      strippedPrompt,
++      // Read from stripped text: the hook's own skip check reads the raw prompt,
++      // where a pasted reply that names a skill reads as an explicit marker.
++      policyReason: shouldFireAdvisor(strippedPrompt).reason,
++      topSkill: top.skill,
++      topFloored: true,
++    });
++    return decision === 'suppress' ? skippedWeakFollowUpResult() : result;
++  } catch {
++    return result;
++  }
++}
++
++function recordRouteReceipt(
++  result: AdvisorHookResult,
++  brief: string | null,
++  input: ClaudeUserPromptSubmitInput,
++  dependencies: UserPromptSubmitDependencies,
++): void {
++  try {
++    const sessionId = receiptSessionId(input);
++    const top = topPassingRecommendation(result);
++    // Only a route the model was shown on its own evidence is worth holding to.
++    if (!sessionId || !brief || !top || top.confidenceFloored === true) return;
++    const clock = (dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore()).clock(sessionId);
++    if (!clock) return;
++    (dependencies.routeReceiptStore ?? defaultRouteReceiptStore()).write({
++      version: ROUTE_RECEIPT_VERSION,
++      sessionId,
++      skill: top.skill,
++      storeGeneration: clock.storeGeneration,
++      lifecycleEpoch: clock.lifecycleEpoch,
++      transcriptBytes: transcriptBytesFor(input),
++    });
++  } catch {
++    // A lost receipt only means the next follow-up is routed on its own evidence.
++  }
++}
++
+ // Directive-lifecycle dedup delivers the full brief on the first message
+ // and after lifecycle boundaries or transcript shrink. On proven repeats,
+ // it keeps the head and drops the constant directive block. A headed
+@@ -468,6 +560,7 @@ export async function handleClaudeUserPromptSubmit(
+       }, {
+         now: dependencies.now,
+       });
++    result = guardWeakFollowUp(result, prompt, input, dependencies);
+ 
+     result = {
+       ...result,
+@@ -478,6 +571,7 @@ export async function handleClaudeUserPromptSubmit(
+     };
+     deliveryState = deliveryStateOptionsFor(input);
+     const brief = renderBrief(result, { deliveryState });
++    recordRouteReceipt(result, brief, input, dependencies);
+     const renderOptions = { deliveryState, setupWording: !brief && SETUP_WORDING.test(prompt) };
+     const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions, result);
+     const { effectiveEmitted, commitFullReceipt } = applyDirectiveLifecycle(emitted, input, dependencies);
+diff --git a/.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs b/.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs
+index 0e5783a3aee..9789ae7a02e 100644
+--- a/.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs
++++ b/.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs
+@@ -18,6 +18,10 @@ const ADVISOR_MODULE_URL = new URL(
+   '../../runtime/dist/hooks/claude/user-prompt-submit.js',
+   import.meta.url,
+ ).href;
++const LIFECYCLE_MODULE_URL = new URL(
++  '../../runtime/dist/hooks/lib/directive-lifecycle.js',
++  import.meta.url,
++).href;
+ 
+ // Mirrors the advisor renderer's directive label. A brief that drifts past it is
+ // never split, so it is always delivered whole.
+@@ -83,6 +87,16 @@ function deliveredContext(context, sessionId, dedupEnabled) {
+   return context;
+ }
+ 
++// A clock rotation is advisory: when it fails, a stored route still expires on
++// its own transcript check, so the failure is logged and never reaches the host.
++async function rotateSessionClock(ctx, core, sessionId) {
++  try {
++    await core.advanceBoundary?.(sessionId);
++  } catch (error) {
++    logFailure(ctx, error);
++  }
++}
++
+ function concernEnabled(isEnabled, concern) {
+   try {
+     return isEnabled(concern) !== false;
+@@ -127,6 +141,23 @@ export async function runAdvisor(input, load = () => import(ADVISOR_MODULE_URL))
+   });
+ }
+ 
++/**
++ * Rotate the shared lifecycle clock for one session at a DSH boundary, so advisor
++ * state stamped with that clock expires with the context it described.
++ *
++ * Without a session id nothing rotates, because the shared call would then
++ * advance the store generation and reset every session.
++ *
++ * @param {string|undefined} sessionId - The DSH session id.
++ * @param {Function} [load] - Loads the lifecycle module, injectable for tests.
++ * @returns {Promise<boolean>} Whether a session clock was rotated.
++ */
++export async function advanceBoundary(sessionId, load = () => import(LIFECYCLE_MODULE_URL)) {
++  if (typeof sessionId !== 'string' || !sessionId.trim()) return false;
++  const lifecycle = await load();
++  return lifecycle.advanceDirectiveLifecycleBoundary(lifecycle.defaultDirectiveLifecycleStore(), sessionId);
++}
++
+ /**
+  * Register the advisor brief on the DSH pre-step waterfall for interactive sessions.
+  *
+@@ -139,7 +170,7 @@ export async function runAdvisor(input, load = () => import(ADVISOR_MODULE_URL))
+  */
+ export function registerPromptAdvisor(ctx, {
+   enabled = false,
+-  core = { runAdvisor },
++  core = { runAdvisor, advanceBoundary },
+   createNotice = makeNotice,
+   isLeaf = isLineageLeaf,
+   isEnabled = isHookEnabled,
+@@ -148,11 +179,16 @@ export function registerPromptAdvisor(ctx, {
+ 
+   ctx.on('agent/created', async ({ agent }) => {
+     forgetReceipt(agent?.session?.id);
++    await rotateSessionClock(ctx, core, agent?.session?.id);
+     return undefined;
+   });
+ 
+   ctx.on('session/event', (session, event) => {
+-    if (event?.type === 'compaction/end' && !event.data?.error) forgetReceipt(session?.id);
++    if (event?.type === 'compaction/end' && !event.data?.error) {
++      forgetReceipt(session?.id);
++      // This handler is synchronous, so the rotation runs detached.
++      void rotateSessionClock(ctx, core, session?.id);
++    }
+   });
+ 
+   ctx.on('agent/pre-step', async (payload, next) => {
+diff --git a/.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts b/.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts
+new file mode 100644
+index 00000000000..7179feb4005
+--- /dev/null
++++ b/.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts
+@@ -0,0 +1,305 @@
++// ───────────────────────────────────────────────────────────────────
++// MODULE: Route Receipt
++// ───────────────────────────────────────────────────────────────────
++// A route receipt records the skill the advisor last delivered on its own
++// evidence in a session, stamped with that session's lifecycle clock. A later
++// weak follow-up that would route elsewhere only on the confidence floor is
++// held back against it, because the earlier brief is still in the model's
++// context and the floored route would steer the model off the session's task.
++// Every fault reads as no receipt, and no receipt means the turn delivers.
++
++// ───────────────────────────────────────────────────────────────────
++// 1. IMPORTS
++// ───────────────────────────────────────────────────────────────────
++
++import { createHash, randomBytes } from 'node:crypto';
++import {
++  existsSync,
++  lstatSync,
++  mkdirSync,
++  readdirSync,
++  readFileSync,
++  renameSync,
++  unlinkSync,
++  writeFileSync,
++} from 'node:fs';
++import { tmpdir } from 'node:os';
++import { join, resolve } from 'node:path';
++
++import { promptPolicyTokens } from '../../runtime/lib/prompt-policy.js';
++import {
++  DIRECTIVE_LIFECYCLE_STATE_DIR_ENV,
++  MAX_DIRECTIVE_LIFECYCLE_SESSIONS,
++  type DirectiveLifecycleClock,
++} from './directive-lifecycle-contract.js';
++
++// ───────────────────────────────────────────────────────────────────
++// 2. TYPE DEFINITIONS
++// ───────────────────────────────────────────────────────────────────
++
++export const ROUTE_RECEIPT_VERSION = 1;
++
++export interface RouteReceipt {
++  readonly version: typeof ROUTE_RECEIPT_VERSION;
++  readonly sessionId: string;
++  readonly skill: string;
++  readonly storeGeneration: string;
++  readonly lifecycleEpoch: string;
++  readonly transcriptBytes: number | null;
++}
++
++export interface RouteReceiptStore {
++  read(sessionId: string): RouteReceipt | null;
++  write(receipt: RouteReceipt): boolean;
++}
++
++export interface RouteReceiptGuardInput {
++  readonly receipt: RouteReceipt | null;
++  // Called last, because the durable clock costs a helper spawn and most turns
++  // fail a cheaper check first.
++  readonly clock: () => DirectiveLifecycleClock | null;
++  readonly transcriptBytes: number | null;
++  readonly strippedPrompt: string;
++  readonly policyReason: string;
++  readonly topSkill: string | null;
++  readonly topFloored: boolean;
++}
++
++export type RouteReceiptGuardDecision = 'deliver' | 'suppress';
++
++// ───────────────────────────────────────────────────────────────────
++// 3. CONSTANTS
++// ───────────────────────────────────────────────────────────────────
++
++const ROUTE_RECEIPT_DIR = 'route-receipts';
++const MAX_ROUTE_RECEIPT_BYTES = 4096;
++const STALE_TEMP_FILE_MS = 5 * 60 * 1000;
++const WORK_INTENT_REASON = 'work_intent_with_meaningful_tokens';
++
++// Words that point back at the earlier turn instead of naming new work.
++const BACK_REFERENCE_WORDS = new Set([
++  'that', 'it', 'this', 'there', 'them', 'those', 'these',
++  'same', 'again', 'too', 'also', 'well', 'remaining', 'ones',
++]);
++
++// A follow-up that names more words of its own than this carries enough
++// evidence to be routed on its own terms.
++const MAX_WEAK_FOLLOW_UP_CONTENT_WORDS = 3;
++
++// ───────────────────────────────────────────────────────────────────
++// 4. HELPERS
++// ───────────────────────────────────────────────────────────────────
++
++function routeReceiptBaseDir(): string {
++  const envBase = process.env[DIRECTIVE_LIFECYCLE_STATE_DIR_ENV];
++  return resolve(envBase?.trim() ? envBase.trim() : join(tmpdir(), 'speckit-advisor'));
++}
++
++function receiptFileName(sessionId: string): string {
++  return `${createHash('sha256').update(sessionId).digest('hex').slice(0, 16)}.json`;
++}
++
++function parseReceipt(raw: string, sessionId: string): RouteReceipt | null {
++  let value: unknown;
++  try {
++    value = JSON.parse(raw);
++  } catch {
++    return null;
++  }
++  if (typeof value !== 'object' || value === null) return null;
++  const record = value as Record<string, unknown>;
++  const transcriptBytes = record.transcriptBytes;
++  if (record.version !== ROUTE_RECEIPT_VERSION
++    || record.sessionId !== sessionId
++    || typeof record.skill !== 'string'
++    || record.skill.length === 0
++    || typeof record.storeGeneration !== 'string'
++    || typeof record.lifecycleEpoch !== 'string'
++    || !(transcriptBytes === null
++      || (typeof transcriptBytes === 'number' && Number.isFinite(transcriptBytes) && transcriptBytes >= 0))) {
++    return null;
++  }
++  return {
++    version: ROUTE_RECEIPT_VERSION,
++    sessionId,
++    skill: record.skill,
++    storeGeneration: record.storeGeneration,
++    lifecycleEpoch: record.lifecycleEpoch,
++    transcriptBytes,
++  };
++}
++
++// ───────────────────────────────────────────────────────────────────
++// 5. CORE LOGIC
++// ───────────────────────────────────────────────────────────────────
++
++/**
++ * True when a prompt points back at earlier work and names little of its own.
++ *
++ * Back-reference words are read from every token, because some of them, such
++ * as "it", are policy stop words. Content words are the policy's meaningful
++ * tokens minus back-reference words and work-intent verbs.
++ */
++export function isWeakFollowUp(strippedPrompt: string): boolean {
++  const { tokens, meaningful, workVerbs } = promptPolicyTokens(strippedPrompt);
++  if (!tokens.some((token) => BACK_REFERENCE_WORDS.has(token))) return false;
++  const verbs = new Set(workVerbs);
++  const contentWords = meaningful.filter((token) => !BACK_REFERENCE_WORDS.has(token) && !verbs.has(token));
++  return contentWords.length <= MAX_WEAK_FOLLOW_UP_CONTENT_WORDS;
++}
++
++/**
++ * Decide whether a turn's brief is held back against the session's earlier route.
++ *
++ * Suppresses only a floored work-intent weak follow-up whose top skill differs
++ * from a receipt that is still current: same lifecycle clock and a transcript
++ * that has not shrunk. Anything else delivers, so a missing or stale receipt
++ * leaves the turn as it would be without receipts.
++ */
++export function decideRouteReceiptGuard(input: RouteReceiptGuardInput): RouteReceiptGuardDecision {
++  const { receipt } = input;
++  if (receipt === null
++    || input.policyReason !== WORK_INTENT_REASON
++    || !input.topFloored
++    || input.topSkill === null
++    || input.topSkill === receipt.skill
++    || !isWeakFollowUp(input.strippedPrompt)) {
++    return 'deliver';
++  }
++  if (typeof receipt.transcriptBytes === 'number'
++    && typeof input.transcriptBytes === 'number'
++    && input.transcriptBytes < receipt.transcriptBytes) {
++    return 'deliver';
++  }
++  const clock = input.clock();
++  if (clock === null
++    || clock.storeGeneration !== receipt.storeGeneration
++    || clock.lifecycleEpoch !== receipt.lifecycleEpoch) {
++    return 'deliver';
++  }
++  return 'suppress';
++}
++
++/** Process-local receipts for tests and in-process callers. */
++export class InMemoryRouteReceiptStore implements RouteReceiptStore {
++  private readonly receipts = new Map<string, RouteReceipt>();
++
++  read(sessionId: string): RouteReceipt | null {
++    return this.receipts.get(sessionId) ?? null;
++  }
++
++  write(receipt: RouteReceipt): boolean {
++    while (this.receipts.size >= MAX_DIRECTIVE_LIFECYCLE_SESSIONS && !this.receipts.has(receipt.sessionId)) {
++      const oldest = this.receipts.keys().next().value;
++      if (typeof oldest !== 'string') break;
++      this.receipts.delete(oldest);
++    }
++    this.receipts.set(receipt.sessionId, receipt);
++    return true;
++  }
++}
++
++/**
++ * One small JSON file per session beside the other per-session advisor state.
++ *
++ * A write lands through a same-folder temp file and a rename, so a reader sees
++ * the old receipt or the new one, never a torn file. No lock is taken: two
++ * writers on one session each leave a valid receipt, and any unreadable file
++ * reads as no receipt, which delivers.
++ */
++export class FileRouteReceiptStore implements RouteReceiptStore {
++  private readonly baseDir: string;
++  private readonly dir: string;
++
++  constructor(baseDir: string = routeReceiptBaseDir()) {
++    this.baseDir = resolve(baseDir);
++    this.dir = join(this.baseDir, ROUTE_RECEIPT_DIR);
++  }
++
++  read(sessionId: string): RouteReceipt | null {
++    try {
++      if (!this.ownedFolder()) return null;
++      const path = join(this.dir, receiptFileName(sessionId));
++      const stat = lstatSync(path);
++      if (!stat.isFile() || stat.size > MAX_ROUTE_RECEIPT_BYTES) return null;
++      return parseReceipt(readFileSync(path, 'utf8'), sessionId);
++    } catch {
++      return null;
++    }
++  }
++
++  write(receipt: RouteReceipt): boolean {
++    let tempPath: string | null = null;
++    try {
++      const body = JSON.stringify(receipt);
++      if (Buffer.byteLength(body, 'utf8') > MAX_ROUTE_RECEIPT_BYTES) return false;
++      mkdirSync(this.dir, { recursive: true, mode: 0o700 });
++      if (!this.ownedFolder()) return false;
++      const target = join(this.dir, receiptFileName(receipt.sessionId));
++      if (!existsSync(target)) this.makeRoom();
++      tempPath = join(this.dir, `.${process.pid}-${randomBytes(6).toString('hex')}.tmp`);
++      writeFileSync(tempPath, body, { encoding: 'utf8', flag: 'wx', mode: 0o600 });
++      renameSync(tempPath, target);
++      tempPath = null;
++      return true;
++    } catch {
++      return false;
++    } finally {
++      if (tempPath) {
++        try {
++          unlinkSync(tempPath);
++        } catch {
++          // The temp file never landed or a concurrent cleanup removed it.
++        }
++      }
++    }
++  }
++
++  // A symlinked base or folder could point a shared temp directory's receipts
++  // at a path another user controls, so either one disables the store.
++  private ownedFolder(): boolean {
++    for (const path of [this.baseDir, this.dir]) {
++      const stat = lstatSync(path);
++      if (stat.isSymbolicLink() || !stat.isDirectory()) return false;
++    }
++    return true;
++  }
++
++  // Keeps the folder within the shared session bound, oldest first, and drops
++  // temp files a crashed writer left behind.
++  private makeRoom(): void {
++    const now = Date.now();
++    const receipts: { path: string; mtimeMs: number }[] = [];
++    for (const name of readdirSync(this.dir)) {
++      const path = join(this.dir, name);
++      try {
++        const stat = lstatSync(path);
++        if (!stat.isFile()) continue;
++        if (name.endsWith('.tmp')) {
++          if (now - stat.mtimeMs > STALE_TEMP_FILE_MS) unlinkSync(path);
++        } else if (name.endsWith('.json')) {
++          receipts.push({ path, mtimeMs: stat.mtimeMs });
++        }
++      } catch {
++        // A concurrent writer renamed or removed the entry.
++      }
++    }
++    receipts.sort((left, right) => left.mtimeMs - right.mtimeMs);
++    const excess = receipts.length - (MAX_DIRECTIVE_LIFECYCLE_SESSIONS - 1);
++    for (const entry of receipts.slice(0, Math.max(0, excess))) {
++      try {
++        unlinkSync(entry.path);
++      } catch {
++        // Already evicted by a concurrent writer.
++      }
++    }
++  }
++}
++
++let defaultStore: FileRouteReceiptStore | null = null;
++
++/** Return the process-local handle to the durable receipt store. */
++export function defaultRouteReceiptStore(): FileRouteReceiptStore {
++  defaultStore ??= new FileRouteReceiptStore();
++  return defaultStore;
++}
+diff --git a/.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts b/.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
+index 1d32fe10d04..9fad63fcc7c 100644
+--- a/.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
++++ b/.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
+@@ -387,6 +387,9 @@ function recommendationFromCli(value: unknown, thresholds: { readonly confidence
+     // A hub that held back its command for want of a mode keeps that signal, so
+     // the head can say why no command came with it.
+     ...(value.needsMode === true ? { needsMode: true } : {}),
++    // A floored route is held back against the session's earlier route, so the
++    // floor has to survive the trip from the CLI.
++    ...(value.confidenceFloored === true ? { confidenceFloored: true as const } : {}),
+   };
+ }
+ 
+diff --git a/.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs b/.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs
+index c187b18ec70..59b4f40bcf8 100644
+--- a/.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs
++++ b/.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs
+@@ -186,3 +186,92 @@ test('directive lifecycle: its kill switch restores the full brief on every turn
+   const repeat = await step(fire, agent, [humanMessage('Two.')]);
+   assert.equal(noticeText(repeat.messages[0]), brief);
+ });
++
++function boundaryCore(context, rotated) {
++  return {
++    ...advisorCore(context),
++    advanceBoundary: async (sessionId) => {
++      rotated.push(sessionId);
++      return true;
++    },
++  };
++}
++
++test('route receipts: a session start and a clean compaction rotate that session clock, delivery unchanged', async () => {
++  const brief = 'Advisor: route sk-code\nDirectives: keep comments durable';
++  const rotated = [];
++  const { ctx, fire, handlers } = pluginHarness();
++  registerPromptAdvisor(ctx, {
++    enabled: true,
++    isLeaf: interactive,
++    isEnabled: enabled,
++    core: boundaryCore(brief, rotated),
++    createNotice: plainNotice,
++  });
++  const { agent } = fakeAgent({ id: 'session-boundary' });
++
++  await handlers.get('agent/created')[0]({ agent, source: 'startup' });
++  const first = await step(fire, agent, [humanMessage('Fix the parser.')]);
++  assert.equal(noticeText(first.messages[0]), brief);
++  const repeat = await step(fire, agent, [humanMessage('Now the tests.')]);
++  assert.equal(noticeText(repeat.messages[0]), 'Advisor: route sk-code');
++
++  handlers.get('session/event')[0](agent.session, { type: 'compaction/end', data: { compactionId: 'c1', turn: 2 } });
++  await new Promise((resolve) => setImmediate(resolve));
++  const afterCompaction = await step(fire, agent, [humanMessage('Continue.')]);
++  assert.equal(noticeText(afterCompaction.messages[0]), brief);
++
++  assert.deepEqual(rotated, ['session-boundary', 'session-boundary']);
++});
++
++test('route receipts: a failed compaction rotates nothing', async () => {
++  const rotated = [];
++  const { ctx, handlers } = pluginHarness();
++  registerPromptAdvisor(ctx, {
++    enabled: true,
++    isLeaf: interactive,
++    core: boundaryCore('Advisor: fixture', rotated),
++    createNotice: plainNotice,
++  });
++  const { agent } = fakeAgent({ id: 'session-failed-compaction' });
++  handlers.get('session/event')[0](agent.session, { type: 'compaction/end', data: { compactionId: 'c2', turn: 3, error: 'boom' } });
++  await new Promise((resolve) => setImmediate(resolve));
++  assert.deepEqual(rotated, []);
++});
++
++test('route receipts: a rotation failure is logged and the brief still arrives', async () => {
++  const brief = 'Advisor: route sk-code\nDirectives: keep comments durable';
++  const { ctx, fire, handlers, logs } = pluginHarness();
++  registerPromptAdvisor(ctx, {
++    enabled: true,
++    isLeaf: interactive,
++    isEnabled: enabled,
++    core: { ...advisorCore(brief), advanceBoundary: async () => { throw new Error('rotate failed'); } },
++    createNotice: plainNotice,
++  });
++  const { agent } = fakeAgent({ id: 'session-rotate-failure' });
++  await handlers.get('agent/created')[0]({ agent, source: 'startup' });
++  const first = await step(fire, agent, [humanMessage('Fix the parser.')]);
++  assert.equal(noticeText(first.messages[0]), brief);
++  assert.equal(logs.length, 1);
++});
++
++test('route receipts: advanceBoundary rotates only a named session', async () => {
++  const { advanceBoundary } = await import('../dsh/prompt-advisor.mjs');
++  const calls = [];
++  const store = { name: 'fixture-store' };
++  const load = async () => ({
++    defaultDirectiveLifecycleStore: () => store,
++    advanceDirectiveLifecycleBoundary: (state, sessionId) => {
++      calls.push([state, sessionId]);
++      return true;
++    },
++  });
++  // Without an id the shared call would reset every session, so nothing loads.
++  assert.equal(await advanceBoundary(undefined, load), false);
++  assert.equal(await advanceBoundary('', load), false);
++  assert.equal(await advanceBoundary('   ', load), false);
++  assert.deepEqual(calls, []);
++  assert.equal(await advanceBoundary('session-1', load), true);
++  assert.deepEqual(calls, [[store, 'session-1']]);
++});
+diff --git a/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts b/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts
+index 96cb1dd522c..3ea16166d12 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts
+@@ -19,6 +19,7 @@ import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
+ import { shouldFireAdvisor, stripLeadingPastedReply } from '../lib/prompt-policy.js';
+ import { loadAdvisorProjection } from '../lib/scorer/projection.js';
+ import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
++import { decideRouteReceiptGuard, ROUTE_RECEIPT_VERSION, type RouteReceipt } from '../../hooks/lib/route-receipt.js';
+ 
+ process.env.SPECKIT_METRICS_ENABLED = 'true';
+ 
+@@ -103,6 +104,13 @@ const FOLLOW_UP_PAIRS: readonly { readonly task: string; readonly followUp: stri
+   { task: 'Update the advisor README to document the new corpus file layout', followUp: 'Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: fix that too', negativeControl: false },
+ ];
+ 
++// A complete task on a new topic that is floored on work intent: the shape a
++// stored route must not carry the session's earlier route into.
++const FALSE_CARRY_PAIR = {
++  task: 'Update the advisor README to document the new corpus file layout',
++  followUp: 'Refactor the session store module to remove duplicated locking code',
++} as const;
++
+ // ───────────────────────────────────────────────────────────────
+ // 4. HELPERS
+ // ───────────────────────────────────────────────────────────────
+@@ -251,6 +259,75 @@ function logFollowUpRouting(root: string, projection: ReturnType<typeof loadAdvi
+   console.log(`advisor-follow-up-routing ${JSON.stringify({ N: FOLLOW_UP_PAIRS.length, H: harm, Hsame: harmSame, pairs })}`);
+ }
+ 
++// Runs each follow-up pair through the receipt guard the hook ships. A task
++// leaves a receipt only when its own top route is unfloored, as in the hook,
++// and the clock is fixed so only the prompt and the routes decide. A
++// measurement only, like the line above it.
++function logFollowUpReceipts(root: string, projection: ReturnType<typeof loadAdvisorProjection>): void {
++  const clock = { storeGeneration: 'bench', lifecycleEpoch: 'bench' };
++  const scoreTop = (prompt: string) => {
++    const result = scoreAdvisorPrompt(prompt, { workspaceRoot: root, projection, includeAllCandidates: true });
++    return result.topSkill === null
++      ? null
++      : result.recommendations.find((recommendation) => recommendation.skill === result.topSkill) ?? null;
++  };
++  const receiptFor = (task: string) => {
++    const top = scoreTop(task);
++    const taskFloored = top?.confidenceFloored === true;
++    const receipt: RouteReceipt | null = top && !taskFloored
++      ? { version: ROUTE_RECEIPT_VERSION, sessionId: 'bench', skill: top.skill, ...clock, transcriptBytes: null }
++      : null;
++    return { taskTop: top?.skill ?? null, taskFloored, receipt };
++  };
++  const guardFollowUp = (receipt: RouteReceipt | null, followUp: string) => {
++    const top = scoreTop(followUp);
++    const strippedPrompt = stripLeadingPastedReply(followUp);
++    const policyReason = shouldFireAdvisor(strippedPrompt).reason;
++    const guard = decideRouteReceiptGuard({
++      receipt,
++      clock: () => clock,
++      transcriptBytes: null,
++      strippedPrompt,
++      policyReason,
++      topSkill: top?.skill ?? null,
++      topFloored: top?.confidenceFloored === true,
++    });
++    return { followUpTop: top?.skill ?? null, floored: top?.confidenceFloored === true, policyReason, guard };
++  };
++  let harm = 0;
++  let harmAfter = 0;
++  const pairs = FOLLOW_UP_PAIRS.map((pair, index) => {
++    const { taskTop, taskFloored, receipt } = receiptFor(pair.task);
++    const { followUpTop, floored, policyReason, guard } = guardFollowUp(receipt, pair.followUp);
++    const harmful = floored && policyReason === WORK_INTENT_REASON && followUpTop !== taskTop;
++    if (harmful) harm += 1;
++    if (harmful && guard === 'deliver') harmAfter += 1;
++    return {
++      pair: index + 1,
++      negativeControl: pair.negativeControl,
++      taskTop,
++      taskFloored,
++      receiptWritten: receipt !== null,
++      followUpTop,
++      guard,
++    };
++  });
++  const falseCarryTask = receiptFor(FALSE_CARRY_PAIR.task);
++  const falseCarry = guardFollowUp(falseCarryTask.receipt, FALSE_CARRY_PAIR.followUp);
++  console.log(`advisor-follow-up-receipts ${JSON.stringify({
++    N: FOLLOW_UP_PAIRS.length,
++    H: harm,
++    H_after: harmAfter,
++    pairs,
++    falseCarry: {
++      taskTop: falseCarryTask.taskTop,
++      receiptWritten: falseCarryTask.receipt !== null,
++      followUpTop: falseCarry.followUpTop,
++      guard: falseCarry.guard,
++    },
++  })}`);
++}
++
+ export function runScorerCalibrationBench(root = workspaceRoot()): CalibrationReport {
+   const corpusPath = resolve(root, SPECKIT_BENCH_CORPUS_PATH);
+   const rows = readCorpus(corpusPath);
+@@ -330,6 +407,7 @@ export function runScorerCalibrationBench(root = workspaceRoot()): CalibrationRe
+     floored: { ...floored, collateral: collateralIds.length, collateralIds },
+   })}`);
+   logFollowUpRouting(root, projection);
++  logFollowUpReceipts(root, projection);
+ 
+   expect(isSpeckitMetricsEnabled()).toBe(true);
+   expect(roundMetric(brierMean ?? -1)).toBe(brierScore);
+diff --git a/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts b/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
+index 7454d5d60eb..54a5c82b308 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
+@@ -284,6 +284,9 @@ function publicRecommendation(
+     // Hook briefs re-derive ambiguity from the public list, so a skill the typed
+     // command already ranked below its seed has to say so here.
+     ...(heldBelow ? { heldBelow } : {}),
++    // A hook holds back a floored route against the session's earlier one, so
++    // the floor has to survive into the public list.
++    ...(recommendation.confidenceFloored === true ? { confidenceFloored: true as const } : {}),
+     ...(status ? { status } : {}),
+     ...(workflowMode ? { workflowMode } : {}),
+     // A command row is the contract a reader acts on, so its runnable string,
+diff --git a/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts b/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
+index e3a035c93f8..1cc7d249d3c 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
+@@ -122,6 +122,24 @@ export function extractMetalinguisticSkillMentions(prompt: string): string[] {
+   return [...new Set(canonicalLower.match(SKILL_NAME_PATTERN) ?? [])].sort();
+ }
+ 
++/**
++ * Split a prompt into the policy's own tokens, the meaningful ones and the
++ * work-intent verbs among them, so callers that judge prompt shape count words
++ * exactly as the policy reason does.
++ */
++export function promptPolicyTokens(prompt: string): {
++  readonly tokens: string[];
++  readonly meaningful: string[];
++  readonly workVerbs: string[];
++} {
++  const tokens = tokenize(normalizePrompt(prompt));
++  return {
++    tokens,
++    meaningful: meaningfulTokens(tokens),
++    workVerbs: tokens.filter((token) => WORK_INTENT_VERBS.has(token)),
++  };
++}
++
+ /** Decide whether a user prompt should invoke the advisor producer. */
+ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
+   const canonicalPrompt = normalizePrompt(prompt);
+diff --git a/.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts b/.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts
+index ec38fda8f4c..b4b5942d35c 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts
+@@ -442,6 +442,21 @@ export function skippedAdvisorResultFor(prompt: string): AdvisorHookResult | nul
+   });
+ }
+ 
++/**
++ * Return the skipped result shown when a weak follow-up is held back against the
++ * session's earlier route, so it renders like any other prompt the policy declines.
++ */
++export function skippedWeakFollowUpResult(): AdvisorHookResult {
++  return result({
++    startedAt: performance.now(),
++    status: 'skipped',
++    freshness: 'unavailable',
++    brief: null,
++    diagnostics: { policyReason: 'weak_follow_up_receipt' },
++    freshnessResult: null,
++  });
++}
++
+ // ───────────────────────────────────────────────────────────────────
+ // 5. CORE LOGIC
+ // ───────────────────────────────────────────────────────────────────
+diff --git a/.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts b/.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts
+index e2a390a2e06..869e2b554f4 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts
+@@ -44,6 +44,9 @@ export interface AdvisorRecommendation {
+   readonly ownerSkillId?: string;
+   // True when a hub held back its command because the prompt names no single mode.
+   readonly needsMode?: boolean;
++  // True when the confidence sits on the task-intent floor rather than the
++  // recommendation's own evidence.
++  readonly confidenceFloored?: true;
+   readonly confidence: number;
+   readonly uncertainty: number;
+   readonly passes_threshold?: boolean;
+diff --git a/.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts b/.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts
+index 02e7d6321e1..4e3c2691648 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts
+@@ -329,6 +329,10 @@ export const AdvisorRecommendationSchema = z.object({
+   // Set only when a hub held back its command because the prompt names no
+   // single mode, so the head can say so.
+   needsMode: z.literal(true).optional(),
++  // Set only when the confidence was raised to the task-intent floor rather
++  // than earned by the recommendation's own evidence, so a hook can tell a
++  // floored route from a confident one.
++  confidenceFloored: z.literal(true).optional(),
+ }).strict();
+ 
+ export const AdvisorRecommendOutputSchema = z.object({
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts b/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+index a655f29b3e6..f26a7e1bbb6 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+@@ -17,6 +17,7 @@ import {
+   type ClaudeUserPromptSubmitInput,
+ } from '../../../hooks/claude/user-prompt-submit.js';
+ import { DIRECTIVE_LIFECYCLE_DEDUP_ENV, InMemoryDirectiveLifecycleStore } from '../../../hooks/lib/directive-lifecycle.js';
++import { InMemoryRouteReceiptStore, type RouteReceiptStore } from '../../../hooks/lib/route-receipt.js';
+ import { normalizeRuntimeOutput } from '../../lib/normalize-adapter-output.js';
+ import { clearPolicyObservationSink, getPolicyObservationRecords } from '../../lib/policy-plan.js';
+ import { renderAdvisorBrief } from '../../lib/render.js';
+@@ -1051,4 +1052,127 @@ describe('Claude UserPromptSubmit advisor hook', () => {
+       cwd.mockRestore();
+     }
+   });
++
++  describe('route receipts', () => {
++    const README_TASK = 'Update the advisor README to document the new corpus file layout';
++    const REFACTOR_TASK = 'Refactor the session store module to remove duplicated locking code';
++    const PASTED_FIX_THAT_TOO = 'Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: fix that too';
++    // What the floored follow-up shows with no receipt, the same text the hook showed before receipts existed.
++    const UNGUARDED_FOLLOW_UP_CONTEXT = EXPECTED_ADVISOR_CONTEXT.replace('0.91/0.23', '0.82/0.20');
++
++    // A live result whose top route is the given skill, floored or confident,
++    // in the shape the CLI fallback hands the hook.
++    function routedResult(skill: string, confidence: number, floored: boolean): AdvisorHookResult {
++      return {
++        ...fixture('livePassingSkill.json'),
++        recommendations: [{
++          skill,
++          confidence,
++          uncertainty: 0.2,
++          passes_threshold: true,
++          ...(floored ? { confidenceFloored: true as const } : {}),
++        }],
++      };
++    }
++
++    function freshStores(): { lifecycle: InMemoryDirectiveLifecycleStore; receipts: RouteReceiptStore } {
++      return { lifecycle: new InMemoryDirectiveLifecycleStore(), receipts: new InMemoryRouteReceiptStore() };
++    }
++
++    async function receiptTurn(
++      prompt: string,
++      result: AdvisorHookResult,
++      stores: { lifecycle: InMemoryDirectiveLifecycleStore; receipts: RouteReceiptStore },
++      input: Partial<ClaudeUserPromptSubmitInput> = { session_id: 'receipt-session' },
++    ): Promise<string | undefined> {
++      const output = await handleClaudeUserPromptSubmit({
++        hook_event_name: 'UserPromptSubmit',
++        cwd: '/workspace/project',
++        prompt,
++        ...input,
++      }, {
++        buildCliBrief: vi.fn(async () => result),
++        renderBrief: renderAdvisorBrief,
++        writeDiagnostic: () => {},
++        directiveLifecycleStore: stores.lifecycle,
++        routeReceiptStore: stores.receipts,
++      });
++      return 'hookSpecificOutput' in output ? output.hookSpecificOutput.additionalContext : undefined;
++    }
++
++    const docsRoute = () => routedResult('sk-doc', 0.9373, false);
++    const flooredCodeRoute = () => routedResult('sk-code', 0.82, true);
++
++    it('holds back a floored weak follow-up that routes away from the session route', async () => {
++      const stores = freshStores();
++      expect(await receiptTurn(README_TASK, docsRoute(), stores)).toContain('use sk-doc');
++      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores)).toBe(EXPECTED_SKIPPED_CONTEXT);
++    });
++
++    it('decides a pasted earlier reply the same as the bare follow-up', async () => {
++      const stores = freshStores();
++      await receiptTurn(README_TASK, docsRoute(), stores);
++      expect(await receiptTurn(PASTED_FIX_THAT_TOO, flooredCodeRoute(), stores)).toBe(EXPECTED_SKIPPED_CONTEXT);
++    });
++
++    it('keeps a floored topic change that names its own work', async () => {
++      const stores = freshStores();
++      await receiptTurn(README_TASK, docsRoute(), stores);
++      expect(await receiptTurn(REFACTOR_TASK, flooredCodeRoute(), stores)).toContain('use sk-code');
++    });
++
++    it('delivers after a lifecycle boundary advanced the session epoch', async () => {
++      const stores = freshStores();
++      await receiptTurn(README_TASK, docsRoute(), stores);
++      stores.lifecycle.advanceSessionEpoch('receipt-session');
++      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores)).toContain('use sk-code');
++    });
++
++    it('delivers after the transcript shrank and holds back while it grew', async () => {
++      const dir = mkdtempSync(join(tmpdir(), 'route-receipt-transcript-'));
++      try {
++        const transcriptPath = join(dir, 'session.jsonl');
++        const input = { session_id: 'receipt-session', transcript_path: transcriptPath };
++        const grown = freshStores();
++        writeFileSync(transcriptPath, 'x'.repeat(200));
++        await receiptTurn(README_TASK, docsRoute(), grown, input);
++        writeFileSync(transcriptPath, 'x'.repeat(300));
++        const afterGrowth = await receiptTurn('fix that too', flooredCodeRoute(), grown, input);
++        expect(afterGrowth).toContain('Advisor: prompt skipped.');
++        expect(afterGrowth).not.toContain('use sk-code');
++
++        const shrunk = freshStores();
++        writeFileSync(transcriptPath, 'x'.repeat(200));
++        await receiptTurn(README_TASK, docsRoute(), shrunk, input);
++        writeFileSync(transcriptPath, 'x'.repeat(10));
++        expect(await receiptTurn('fix that too', flooredCodeRoute(), shrunk, input)).toContain('use sk-code');
++      } finally {
++        rmSync(dir, { recursive: true, force: true });
++      }
++    });
++
++    it('routes a follow-up with no session id as it would with no receipt', async () => {
++      const stores = freshStores();
++      await receiptTurn(README_TASK, docsRoute(), stores, {});
++      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores, {})).toBe(UNGUARDED_FOLLOW_UP_CONTEXT);
++    });
++
++    it('routes a follow-up with an empty receipt store as it would with no receipt', async () => {
++      expect(await receiptTurn('fix that too', flooredCodeRoute(), freshStores())).toBe(UNGUARDED_FOLLOW_UP_CONTEXT);
++    });
++
++    it('keeps the turn when the receipt store throws', async () => {
++      const throwingStore: RouteReceiptStore = {
++        read: () => {
++          throw new Error('read failed');
++        },
++        write: () => {
++          throw new Error('write failed');
++        },
++      };
++      const stores = { lifecycle: new InMemoryDirectiveLifecycleStore(), receipts: throwingStore };
++      expect(await receiptTurn(README_TASK, docsRoute(), stores)).toContain('use sk-doc');
++      expect(await receiptTurn('fix that too', flooredCodeRoute(), stores)).toBe(UNGUARDED_FOLLOW_UP_CONTEXT);
++    });
++  });
+ });
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts b/.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts
+new file mode 100644
+index 00000000000..393f9b01292
+--- /dev/null
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts
+@@ -0,0 +1,257 @@
++// ───────────────────────────────────────────────────────────────────
++// MODULE: Route Receipt Tests
++// ───────────────────────────────────────────────────────────────────
++
++import { createHash } from 'node:crypto';
++import {
++  existsSync,
++  mkdirSync,
++  mkdtempSync,
++  readdirSync,
++  rmSync,
++  symlinkSync,
++  utimesSync,
++  writeFileSync,
++} from 'node:fs';
++import { tmpdir } from 'node:os';
++import { join } from 'node:path';
++import { afterEach, describe, expect, it } from 'vitest';
++
++import {
++  FileRouteReceiptStore,
++  InMemoryRouteReceiptStore,
++  ROUTE_RECEIPT_VERSION,
++  decideRouteReceiptGuard,
++  isWeakFollowUp,
++  type RouteReceipt,
++  type RouteReceiptGuardInput,
++} from '../../../hooks/lib/route-receipt.js';
++import { MAX_DIRECTIVE_LIFECYCLE_SESSIONS } from '../../../hooks/lib/directive-lifecycle-contract.js';
++import { shouldFireAdvisor, stripLeadingPastedReply } from '../../lib/prompt-policy.js';
++
++const CLOCK = Object.freeze({ storeGeneration: 'generation-1', lifecycleEpoch: 'epoch-1' });
++const FALSE_CARRY_FOLLOW_UP = 'Refactor the session store module to remove duplicated locking code';
++const PASTED_FIX_THAT_TOO = 'Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: fix that too';
++
++const tempDirs: string[] = [];
++
++function tempBase(): string {
++  const dir = mkdtempSync(join(tmpdir(), 'route-receipt-'));
++  tempDirs.push(dir);
++  return dir;
++}
++
++function receipt(overrides: Partial<RouteReceipt> = {}): RouteReceipt {
++  return {
++    version: ROUTE_RECEIPT_VERSION,
++    sessionId: 'session-1',
++    skill: 'sk-doc',
++    storeGeneration: CLOCK.storeGeneration,
++    lifecycleEpoch: CLOCK.lifecycleEpoch,
++    transcriptBytes: 100,
++    ...overrides,
++  };
++}
++
++// A floored work-intent follow-up routed to another skill than the receipt's,
++// the shape of "fix that too" after a documentation task.
++function guardInput(overrides: Partial<RouteReceiptGuardInput> = {}): RouteReceiptGuardInput {
++  const strippedPrompt = overrides.strippedPrompt ?? 'fix that too';
++  return {
++    receipt: receipt(),
++    clock: () => CLOCK,
++    transcriptBytes: 120,
++    strippedPrompt,
++    policyReason: shouldFireAdvisor(strippedPrompt).reason,
++    topSkill: 'sk-code',
++    topFloored: true,
++    ...overrides,
++  };
++}
++
++function receiptPath(base: string, sessionId: string): string {
++  const name = `${createHash('sha256').update(sessionId).digest('hex').slice(0, 16)}.json`;
++  return join(base, 'route-receipts', name);
++}
++
++afterEach(() => {
++  for (const dir of tempDirs.splice(0)) rmSync(dir, { recursive: true, force: true });
++});
++
++describe('isWeakFollowUp', () => {
++  it.each([
++    ['fix that too', true],
++    ['add one more task there', true],
++    ['update it again with the new name', true],
++    ['now fix the remaining ones', true],
++    ['apply that change to the second file as well', false],
++    ['add tests for it as well', true],
++    [FALSE_CARRY_FOLLOW_UP, false],
++  ])('reads %j as weak: %s', (prompt, expected) => {
++    expect(isWeakFollowUp(prompt)).toBe(expected);
++  });
++
++  it('reads the pasted form of a follow-up the same as the follow-up once stripped', () => {
++    expect(isWeakFollowUp(stripLeadingPastedReply(PASTED_FIX_THAT_TOO))).toBe(true);
++  });
++});
++
++describe('decideRouteReceiptGuard', () => {
++  it('suppresses a floored weak follow-up that routes away from a current receipt', () => {
++    expect(decideRouteReceiptGuard(guardInput())).toBe('suppress');
++  });
++
++  it('delivers a floored topic change that names its own work', () => {
++    expect(decideRouteReceiptGuard(guardInput({ strippedPrompt: FALSE_CARRY_FOLLOW_UP }))).toBe('deliver');
++  });
++
++  it('delivers with no receipt', () => {
++    expect(decideRouteReceiptGuard(guardInput({ receipt: null }))).toBe('deliver');
++  });
++
++  it('delivers when the policy reason is not work intent', () => {
++    expect(decideRouteReceiptGuard(guardInput({ policyReason: 'length_and_token_threshold' }))).toBe('deliver');
++  });
++
++  it('delivers an unfloored top skill', () => {
++    expect(decideRouteReceiptGuard(guardInput({ topFloored: false }))).toBe('deliver');
++  });
++
++  it('delivers when the follow-up routes to the receipt skill', () => {
++    expect(decideRouteReceiptGuard(guardInput({ topSkill: 'sk-doc' }))).toBe('deliver');
++  });
++
++  it('delivers with no top skill', () => {
++    expect(decideRouteReceiptGuard(guardInput({ topSkill: null }))).toBe('deliver');
++  });
++
++  it('delivers after a lifecycle boundary advanced the session epoch', () => {
++    expect(decideRouteReceiptGuard(guardInput({
++      clock: () => ({ ...CLOCK, lifecycleEpoch: 'epoch-2' }),
++    }))).toBe('deliver');
++  });
++
++  it('delivers after the store generation moved', () => {
++    expect(decideRouteReceiptGuard(guardInput({
++      clock: () => ({ ...CLOCK, storeGeneration: 'generation-2' }),
++    }))).toBe('deliver');
++  });
++
++  it('delivers when the clock cannot be read', () => {
++    expect(decideRouteReceiptGuard(guardInput({ clock: () => null }))).toBe('deliver');
++  });
++
++  it('delivers after the transcript shrank below the receipt', () => {
++    expect(decideRouteReceiptGuard(guardInput({ transcriptBytes: 50 }))).toBe('deliver');
++  });
++
++  it('suppresses when either transcript size is unknown', () => {
++    expect(decideRouteReceiptGuard(guardInput({ transcriptBytes: null }))).toBe('suppress');
++    expect(decideRouteReceiptGuard(guardInput({ receipt: receipt({ transcriptBytes: null }) }))).toBe('suppress');
++  });
++
++  it('reads the clock only after every cheaper check holds', () => {
++    let reads = 0;
++    const clock = () => {
++      reads += 1;
++      return CLOCK;
++    };
++    decideRouteReceiptGuard(guardInput({ clock, strippedPrompt: FALSE_CARRY_FOLLOW_UP }));
++    decideRouteReceiptGuard(guardInput({ clock, topFloored: false }));
++    expect(reads).toBe(0);
++    decideRouteReceiptGuard(guardInput({ clock }));
++    expect(reads).toBe(1);
++  });
++});
++
++describe('InMemoryRouteReceiptStore', () => {
++  it('returns the last receipt written for a session', () => {
++    const store = new InMemoryRouteReceiptStore();
++    expect(store.read('session-1')).toBeNull();
++    store.write(receipt());
++    store.write(receipt({ skill: 'system-spec-kit' }));
++    expect(store.read('session-1')?.skill).toBe('system-spec-kit');
++  });
++});
++
++describe('FileRouteReceiptStore', () => {
++  it('round-trips a receipt', () => {
++    const store = new FileRouteReceiptStore(tempBase());
++    expect(store.write(receipt())).toBe(true);
++    expect(store.read('session-1')).toEqual(receipt());
++  });
++
++  it('reads a missing receipt as none', () => {
++    expect(new FileRouteReceiptStore(tempBase()).read('session-1')).toBeNull();
++  });
++
++  it.each([
++    ['unparsable', 'not json'],
++    ['wrong version', JSON.stringify({ ...receipt(), version: 2 })],
++    ['another session', JSON.stringify({ ...receipt(), sessionId: 'session-2' })],
++    ['an empty skill', JSON.stringify({ ...receipt(), skill: '' })],
++    ['a negative transcript size', JSON.stringify({ ...receipt(), transcriptBytes: -1 })],
++    ['oversized', JSON.stringify({ ...receipt(), padding: 'x'.repeat(5000) })],
++  ])('reads a receipt file that is %s as none', (_label, body) => {
++    const base = tempBase();
++    mkdirSync(join(base, 'route-receipts'), { recursive: true });
++    writeFileSync(receiptPath(base, 'session-1'), body);
++    expect(new FileRouteReceiptStore(base).read('session-1')).toBeNull();
++  });
++
++  it('refuses a symlinked receipt folder', () => {
++    const base = tempBase();
++    const elsewhere = tempBase();
++    symlinkSync(elsewhere, join(base, 'route-receipts'));
++    const store = new FileRouteReceiptStore(base);
++    expect(store.write(receipt())).toBe(false);
++    expect(readdirSync(elsewhere)).toEqual([]);
++    expect(store.read('session-1')).toBeNull();
++  });
++
++  it('leaves one valid receipt when two writers share a session', () => {
++    const base = tempBase();
++    const first = new FileRouteReceiptStore(base);
++    const second = new FileRouteReceiptStore(base);
++    for (let round = 0; round < 20; round += 1) {
++      first.write(receipt({ skill: 'sk-doc' }));
++      second.write(receipt({ skill: 'system-spec-kit' }));
++    }
++    expect(['sk-doc', 'system-spec-kit']).toContain(first.read('session-1')?.skill);
++    const names = readdirSync(join(base, 'route-receipts'));
++    expect(names.filter((name) => name.endsWith('.json'))).toHaveLength(1);
++    expect(names.filter((name) => name.endsWith('.tmp'))).toEqual([]);
++  });
++
++  it('evicts the oldest receipt when a new session passes the bound', () => {
++    const base = tempBase();
++    const store = new FileRouteReceiptStore(base);
++    for (let index = 0; index < MAX_DIRECTIVE_LIFECYCLE_SESSIONS; index += 1) {
++      const sessionId = `session-${index}`;
++      store.write(receipt({ sessionId }));
++      const seconds = 1_000_000 + index;
++      utimesSync(receiptPath(base, sessionId), seconds, seconds);
++    }
++    store.write(receipt({ sessionId: 'session-new' }));
++    const files = readdirSync(join(base, 'route-receipts')).filter((name) => name.endsWith('.json'));
++    expect(files).toHaveLength(MAX_DIRECTIVE_LIFECYCLE_SESSIONS);
++    expect(store.read('session-0')).toBeNull();
++    expect(store.read('session-1')?.sessionId).toBe('session-1');
++    expect(store.read('session-new')?.sessionId).toBe('session-new');
++  });
++
++  it('removes a stale temp file and keeps a fresh one', () => {
++    const base = tempBase();
++    const dir = join(base, 'route-receipts');
++    mkdirSync(dir, { recursive: true });
++    const stale = join(dir, '.1-stale.tmp');
++    const fresh = join(dir, '.1-fresh.tmp');
++    writeFileSync(stale, '{}');
++    writeFileSync(fresh, '{}');
++    const tenMinutesAgo = (Date.now() - 10 * 60 * 1000) / 1000;
++    utimesSync(stale, tenMinutesAgo, tenMinutesAgo);
++    new FileRouteReceiptStore(base).write(receipt());
++    expect(existsSync(stale)).toBe(false);
++    expect(existsSync(fresh)).toBe(true);
++  });
++});
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts b/.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts
+index 7fe240328ff..5997a086aad 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts
+@@ -117,4 +117,23 @@ describe('skill advisor CLI fallback envelope', () => {
+     expect(rendered).not.toBeNull();
+     expect(rendered?.split('\n')[0]).toContain('use system-deep-loop (needs a mode)');
+   });
++
++  it('keeps the confidence-floor flag from the CLI row', () => {
++    const result = resultFromCliData({
++      data: {
++        freshness: 'live',
++        recommendations: [
++          { skillId: 'sk-code', confidence: 0.82, uncertainty: 0.2, confidenceFloored: true },
++          { skillId: 'sk-doc', confidence: 0.9, uncertainty: 0.1 },
++        ],
++      },
++      options: { maxTokens: 80 } as never,
++      startedAt: 0,
++      now: () => 1,
++    });
++
++    const bySkill = new Map(result.recommendations.map((recommendation) => [recommendation.skill, recommendation]));
++    expect(bySkill.get('sk-code')).toHaveProperty('confidenceFloored', true);
++    expect(bySkill.get('sk-doc')).not.toHaveProperty('confidenceFloored');
++  });
+ });
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts b/.skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts
+index cadd74d5a89..00dec1bf589 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts
+@@ -271,3 +271,24 @@ describe('buildAdvisorPart head receipt location', () => {
+     }
+   });
+ });
++
++describe('reduceRepeatedHead with a held-back follow-up', () => {
++  it('delivers the route, the skipped head once, nothing on the repeat and then the next route', () => {
++    const heads = new Map<string, string>();
++    const receipts = {
++      read: (sessionId: string) => heads.get(sessionId) ?? null,
++      write: (sessionId: string, head: string) => {
++        heads.set(sessionId, head);
++      },
++      env: {},
++    };
++    const directives = '\nDirectives:\n- Comment hygiene [HARD BLOCK]: keep the durable why.';
++    const route = 'Advisor: live; use sk-doc 0.94/0.20 pass.';
++    const skipped = 'Advisor: prompt skipped.';
++
++    expect(vibeAdvisor.reduceRepeatedHead(`${route}${directives}`, 'vibe-session', receipts)).toBe(`${route}${directives}`);
++    expect(vibeAdvisor.reduceRepeatedHead(skipped, 'vibe-session', receipts)).toBe(skipped);
++    expect(vibeAdvisor.reduceRepeatedHead(skipped, 'vibe-session', receipts)).toBe('');
++    expect(vibeAdvisor.reduceRepeatedHead(route, 'vibe-session', receipts)).toBe(route);
++  });
++});

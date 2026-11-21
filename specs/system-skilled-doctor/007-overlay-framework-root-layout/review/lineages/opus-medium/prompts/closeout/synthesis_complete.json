@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-opus-medium-1795192401900-xpt66n","sessionId":"fanout-opus-medium-1795192401900-xpt66n"},"data":{"mode":"review","totalIterations":17,"activeP0":0,"activeP1":1,"activeP2":10,"dimensionCoverage":1,"verdict":"CONDITIONAL","releaseReadinessState":"converged","stopReason":"converged"}}

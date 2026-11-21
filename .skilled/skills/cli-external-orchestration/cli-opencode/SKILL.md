@@ -77,7 +77,7 @@ Do not add a packet-local wrapper, spawn path or command builder. Direct `openco
 **Pinned version.** The repository pins OpenCode 2 at 2.3.2, and the setup helper installs exactly that pin.
 Flag and provider observations naming 2.0.32 were read on that release, not re-read on 2.3.2.
 Two subcommands moved in 2.3.0: credentials are under `opencode auth`, and agents are listed by `opencode debug agents`.
-A binary that reports major 1 is `unsupported`, and a deep-loop lineage refuses it; anything that is neither major 1 nor major 2 is `unknown`.
+A binary that reports any major other than 2 is `unknown`, and a deep-loop lineage refuses it.
 The install reference is [`references/install-and-versions.md`](./references/install-and-versions.md).
 
 The resolver probes `opencode` on `PATH`. `OPENCODE_BIN` names a different binary when it is set.
@@ -85,7 +85,7 @@ The resolver probes `opencode` on `PATH`. `OPENCODE_BIN` names a different binar
 ```bash
 # Binary pick and version check: references/install-and-versions.md §4-5.
 OC=${OPENCODE_BIN:-opencode}
-"$OC" --version   # `opencode v2.3.2` = OpenCode 2; a major-1 line is unsupported, and a deep-loop lineage refuses it
+"$OC" --version   # `opencode v2.3.2` = OpenCode 2; any other line is unknown, and a deep-loop lineage refuses it
 
 # Self-invocation guard. OPENCODE_API_KEY is a provider key an operator exports, not a session marker.
 env | grep -v '^OPENCODE_API_KEY=' | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
@@ -127,7 +127,7 @@ Core flags on OpenCode 2:
 - `run` also takes `--worktree` and `--archived`, neither of which this skill passes.
 - `--share` and `--port` are absent on `run`.
 
-> **Non-interactive invocation stdin**: always append `</dev/null` to any non-interactive `opencode run` invocation, because a run that leaves stdin open can hang at 0% CPU with no output (see `references/integration-patterns.md` §6). The recorded hang is from OpenCode 1 (v1.14.39), and no OpenCode 2 reproduction is recorded, so the redirect stays required.
+> **Non-interactive invocation stdin**: always append `</dev/null` to any non-interactive `opencode run` invocation, because a run that leaves stdin open can hang at 0% CPU with no output (see `references/integration-patterns.md` §6). No OpenCode 2 reproduction of the hang is recorded, and the redirect stays required.
 
 > **Always pin the model with `-m <provider/model>`**: a run that inherits an out-of-quota default provider retries the `429` forever and prints nothing, which looks like a deadlock. It is the most common cause of a "hung" `opencode run`. Diagnose with `--print-logs --log-level debug` and look for `stream error … Error 429`, then pin a provider/model with live quota.
 
@@ -333,7 +333,7 @@ Key integrations:
 - [opencode-tools.md](./references/opencode-tools.md) - Unique value props vs sibling cli-* skills
 - [agent-delegation.md](./references/agent-delegation.md) - Agent routing matrix, leaf-agent constraints
 - [destructive-scope-violations.md](./references/destructive-scope-violations.md) - RM-8 incident, root cause, four-layer prevention playbook
-- [install-and-versions.md](./references/install-and-versions.md) - Install reference, version detection, upgrade, uninstall and removing an older install
+- [install-and-versions.md](./references/install-and-versions.md) - Install reference, version detection, upgrade and uninstall
 - [providers-and-models.md](./references/providers-and-models.md) - The provider, model and variant-effort roster
 - [permissions-matrix.md](./references/permissions-matrix.md) - Matrix schema, resolution semantics and RM-8 replay reasoning
 - [context-budget.md](./references/context-budget.md) - Model context windows and the truncation marker for bounded prompts

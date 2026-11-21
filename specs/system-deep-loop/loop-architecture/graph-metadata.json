@@ -8,7 +8,8 @@
     "system-deep-loop/loop-architecture/002-graph-engineering",
     "system-deep-loop/loop-architecture/003-deprecate-improvement-modes",
     "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
-    "system-deep-loop/loop-architecture/005-state-log-route-proof"
+    "system-deep-loop/loop-architecture/005-state-log-route-proof",
+    "system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment"
   ],
   "manual": {
     "depends_on": [],

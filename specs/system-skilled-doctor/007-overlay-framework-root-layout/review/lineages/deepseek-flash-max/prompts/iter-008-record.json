@@ -1,0 +1,253 @@
+{
+  "type": "iteration",
+  "iteration": 8,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "status": "complete",
+  "focus": "Frontier node F-1-004: maintainability",
+  "frontierNodeId": "F-1-004",
+  "dimensions": [
+    "maintainability"
+  ],
+  "filesReviewed": [
+    "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
+    "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js",
+    "barter/ai-speckit/overlays/root/opencode/plugins/barter-git-write-gate.js",
+    "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs",
+    "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-git-write-gate.test.cjs",
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingsNew": [
+    "R8-P2-001"
+  ],
+  "findingDetails": [
+    {
+      "id": "R8-P2-001",
+      "severity": "P2",
+      "title": "The three staged-list scans in pre-commit disagree on which change types they see",
+      "file": "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:45",
+      "dimension": "maintainability",
+      "findingClass": "maintainability",
+      "scopeProof": "read pre-commit:1-172 end to end; the three git -C \"$TREE_ROOT\" diff --cached invocations are the only staged-list reads in the file, and their flags differ at :45, :71 and :132",
+      "affectedSurfaceHints": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/tests/pre-commit.test.cjs"
+      ],
+      "case": "a commit deletes .skilled/skills/sk-prompt/SKILL.md; the card-sync scan at :62-71 filters the deletion out, so CARD_SURFACE_STAGED stays 0 and the prompt-knowledge drift guard never runs even though the card surface changed",
+      "type": "maintainability",
+      "claim": "Two of the three staged-list scans exclude deletions while the third includes them, so the card-sync check cannot see a staged deletion of a prompt-skill file.",
+      "evidenceRefs": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:45",
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:71",
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:132"
+      ],
+      "counterevidenceSought": "checked whether a deletion could reach the card check another way: the only producer of CARD_SURFACE_STAGED is the loop at :62-71, and it reads the filtered list; checked whether the hygiene scan needs deletions: it does not, because a deleted file has no comments, so only the card scan is affected",
+      "alternativeExplanation": "the filter may be deliberate for the card check on the theory that a deletion cannot introduce drift; that reading does not explain why the vendored scan at :132 deliberately omits the filter, which shows the author knew the difference mattered",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "drop if a maintainer records that a deletion cannot cause prompt-knowledge drift and adds a test asserting the card check stays silent on a deletion"
+    }
+  ],
+  "traceabilityChecks": {
+    "results": [
+      {
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs"
+        ],
+        "notes": "completion criterion 4 re-executed read-only: status --json reports PASSED with an empty offLayout"
+      },
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/commands/doctor/scripts/overlay-engine.cjs:3435-3443",
+          ".skilled/commands/doctor/scripts/overlay-engine.cjs:4624-4628"
+        ],
+        "notes": "the prior maintainability findings stay fixed: the layoutMoves JSDoc names both layout paths and the .base rule, and writeBackup keeps its groups map split"
+      },
+      {
+        "protocolId": "integration_naming",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:45",
+          "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/tests/pre-commit.test.cjs"
+        ],
+        "notes": "the three scans are named by line and the test surface that would cover the gap is named by path"
+      }
+    ]
+  },
+  "newFindingsRatio": 0.111,
+  "noveltyJustification": "one new P2 (weight 1) against eight carried P2 findings (weight 8) gives a weighted new share of 0.111; the finding is a behavioural inconsistency between the three scans that only a whole-file read of the hook exposes",
+  "sessionId": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-20T16:44:35.991Z",
+  "durationMs": 82000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "maintainability review of the remediated commit hook",
+    "evidenceRefs": [
+      "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:45"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit",
+      "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js",
+      "barter/ai-speckit/overlays/root/opencode/plugins/barter-git-write-gate.js",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+    ],
+    "selectionReason": "frontier node F-1-004 names the hooks and plugins; the maintainability dimension adds the prior engine findings that must stay fixed",
+    "discoveryMethods": [
+      "direct_read",
+      "exact_search"
+    ],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "partial",
+    "evidenceRefs": [
+      "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:45"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "duplicated_logic",
+      "inconsistent_filter",
+      "stale_comment",
+      "regressed_fix"
+    ],
+    "covered": [
+      "inconsistent_filter"
+    ],
+    "ruledOut": [
+      "duplicated_logic",
+      "stale_comment",
+      "regressed_fix"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-025",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit"
+      ],
+      "bugClass": "inconsistent_filter",
+      "hypothesis": "the three staged-list scans do not agree on which change types they see",
+      "searchActions": [
+        {
+          "method": "exact_search",
+          "queryOrPath": "grep -n 'git -C \"$TREE_ROOT\" diff --cached' pre-commit",
+          "result": "three hits at :45, :71 and :132; the first two pass --diff-filter=ACM, the third passes -z and no filter",
+          "evidenceRefs": [
+            "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:132"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "pre-commit:59-81",
+          "result": "CARD_SURFACE_STAGED is produced only by the filtered loop, so a deletion never sets it",
+          "evidenceRefs": [
+            "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:71"
+          ]
+        }
+      ],
+      "disposition": "confirmed",
+      "rationale": "the third scan shows the author knew the filter mattered, so the omission in the card scan is an inconsistency rather than a decision",
+      "ruledOutReason": null
+    },
+    {
+      "id": "SL-026",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js"
+      ],
+      "bugClass": "duplicated_logic",
+      "hypothesis": "the two plugins repeat the same session-directory fallback",
+      "searchActions": [
+        {
+          "method": "exact_search",
+          "queryOrPath": "grep -n 'ctx?.directory' overlays/root/opencode/plugins/*.js",
+          "result": "two hits, at barter-git-write-gate.js:34 and barter-overlay-guard.js:26, with identical three-line bodies",
+          "evidenceRefs": [
+            "barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:26"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "three lines across two files with no behavioural divergence is cleanup rather than an active finding",
+      "ruledOutReason": "recorded as an edge case instead of a finding"
+    },
+    {
+      "id": "SL-027",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+      ],
+      "bugClass": "regressed_fix",
+      "hypothesis": "a prior maintainability fix was lost in the remediation",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "overlay-engine.cjs:3435-3443 and :4624-4628",
+          "result": "the layoutMoves JSDoc and the writeBackup groups split are both present",
+          "evidenceRefs": [
+            ".skilled/commands/doctor/scripts/overlay-engine.cjs:3435"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "both prior fixes are in place",
+      "ruledOutReason": "verified by direct read"
+    },
+    {
+      "id": "SL-028",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/root/opencode/plugins"
+      ],
+      "bugClass": "stale_comment",
+      "hypothesis": "the overlay source is missing the bridge its plugins import",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "ls overlays/root/opencode/plugins/lib and skilled/.opencode/plugins/lib",
+          "result": "the overlay source has no lib/; the applied tree carries v2-bridge.js at 23130 bytes",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.opencode/plugins/lib/v2-bridge.js"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "barter-git-write-gate.test.cjs:176-178 and barter-overlay-guard.test.cjs:157-170",
+          "result": "both tests supply the bridge themselves",
+          "evidenceRefs": [
+            "barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-git-write-gate.test.cjs:176"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the bridge is upstream content that lands beside the plugins, and the tests account for it",
+      "ruledOutReason": "verified by listing both trees and reading both tests"
+    }
+  ]
+}

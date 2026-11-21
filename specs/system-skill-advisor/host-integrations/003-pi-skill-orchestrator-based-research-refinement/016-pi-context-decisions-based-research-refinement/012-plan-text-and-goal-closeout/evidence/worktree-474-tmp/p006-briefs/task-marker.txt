@@ -1,0 +1,27 @@
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts)
+One edit. Replace exactly these lines (currently lines 228-236):
+const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/i;
+
+function stripPastedReplyOnce(prompt: string): string {
+  if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
+  const marker = TASK_MARKER.exec(prompt);
+  if (!marker) return prompt;
+  const task = prompt.slice(marker.index + marker[0].length).trim();
+  return task.length > 0 ? task : prompt;
+}
+with:
+const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/gi;
+
+// The last marker wins: a pasted reply can hold its own "Task:" line, and cutting there
+// would keep the reply's skill names in the scored text.
+function stripPastedReplyOnce(prompt: string): string {
+  if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
+  const markers = [...prompt.matchAll(TASK_MARKER)];
+  const marker = markers[markers.length - 1];
+  if (!marker) return prompt;
+  const task = prompt.slice((marker.index ?? 0) + marker[0].length).trim();
+  return task.length > 0 ? task : prompt;
+}
+Leave PASTED_REPLY_CUE, its comment and stripLeadingPastedReply unchanged.
+ACCEPT: `rg -n 'matchAll\(TASK_MARKER\)|/gi;' .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts` prints 2 lines.

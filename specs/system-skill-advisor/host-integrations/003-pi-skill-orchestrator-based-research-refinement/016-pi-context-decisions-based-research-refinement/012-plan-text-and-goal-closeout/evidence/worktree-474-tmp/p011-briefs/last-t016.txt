@@ -1,0 +1,36 @@
+Appended the supplied text verbatim to [vibe-prompt-advisor.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts). The requested grep printed `1` with exit status 0, and a byte check confirmed the file ends with the source text.
+
+```ts
+
+describe('reduceRepeatedHead with a held-back follow-up', () => {
+  it('delivers the route, the skipped head once, nothing on the repeat and then the next route', () => {
+    const heads = new Map<string, string>();
+    const receipts = {
+      read: (sessionId: string) => heads.get(sessionId) ?? null,
+      write: (sessionId: string, head: string) => {
+        heads.set(sessionId, head);
+      },
+      env: {},
+    };
+    const directives = '\nDirectives:\n- Comment hygiene [HARD BLOCK]: keep the durable why.';
+    const route = 'Advisor: live; use sk-doc 0.94/0.20 pass.';
+    const skipped = 'Advisor: prompt skipped.';
+
+    expect(vibeAdvisor.reduceRepeatedHead(`${route}${directives}`, 'vibe-session', receipts)).toBe(`${route}${directives}`);
+    expect(vibeAdvisor.reduceRepeatedHead(skipped, 'vibe-session', receipts)).toBe(skipped);
+    expect(vibeAdvisor.reduceRepeatedHead(skipped, 'vibe-session', receipts)).toBe('');
+    expect(vibeAdvisor.reduceRepeatedHead(route, 'vibe-session', receipts)).toBe(route);
+  });
+});
+```
+
+**TASK mismatch:** None. The appended suffix matches the source file exactly.
+
+Vitest, typecheck and build were not run, as instructed. The strict spec validator returned `RESULT: FAILED` with `SOURCE_FINGERPRINT_MISMATCH` and description drift in the bound packet. `AGENTS.md` §4 requires: “Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict`. **Require an explicit `RESULT: PASSED`.**” The suggested metadata repair is outside the one-file scope, so I left it untouched.
+
+My scoped diff contains only the requested file. The worktree remains dirty on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`. The bound packet goal remains open; `goal.cjs packet` reported `packet_budget=unknown`, so I did not resend its chat slice.
+
+**SKILL ROUTING:** User directed → sk-code; compiled route selected sk-code-skilled.  
+**REPO RULES:** `prevent-overengineering.md`, `evidence-and-proof.md`, `communication.md` and `communication-handoff.md` loaded.
+
+The conductor needs to resolve the packet metadata drift and run the prescribed test gates before closing the bound packet.

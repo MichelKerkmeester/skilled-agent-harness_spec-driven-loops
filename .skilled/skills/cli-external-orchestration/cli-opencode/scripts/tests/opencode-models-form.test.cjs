@@ -57,8 +57,8 @@ const SERVER_FORM_PATTERN = /(?:^|\s)--(?:standalone|server)\b/;
 const REMAINDER_END_PATTERN = /[`|&;)]|(?:^|\s)\d*>/;
 
 function commandsIn(markdown) {
-  // A bare `opencode models` with no server form is left alone: the docs quote that form
-  // only in dated OpenCode 1 observations, which keep the command as it was run then.
+  // A bare `opencode models` with no server form is left alone, so prose that names the
+  // subcommand is not read as a command to check.
   return [...markdown.matchAll(COMMAND_PATTERN)].flatMap((match) => {
     const lineEnd = markdown.indexOf('\n', match.index + match[0].length);
     const restOfLine = markdown.slice(

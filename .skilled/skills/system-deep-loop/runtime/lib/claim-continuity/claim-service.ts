@@ -91,6 +91,7 @@ import type {
 // 2. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/** Storage root, ledger ids, authority provider and optional clock and fault hooks for building a claim runtime. */
 export interface ClaimContinuityRuntimeOptions {
   readonly rootDirectory: string;
   readonly ledgerId?: string;
@@ -100,6 +101,7 @@ export interface ClaimContinuityRuntimeOptions {
   readonly faultInjection?: AuthorizedLedgerOptions['faultInjection'];
 }
 
+/** The wired claim runtime: event registry, ledger, gateway, service and policy, with legacy kept as the authority. */
 export interface ClaimContinuityRuntime {
   readonly eventRegistry: EventTypeRegistry;
   readonly ledger: AppendOnlyLedger;

@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Fanout Merge Latest Iteration Tests
+// ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
 import { createRequire } from 'node:module';

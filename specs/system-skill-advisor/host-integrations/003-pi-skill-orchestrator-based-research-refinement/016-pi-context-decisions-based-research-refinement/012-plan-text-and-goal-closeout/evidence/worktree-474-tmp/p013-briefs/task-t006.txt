@@ -1,0 +1,5 @@
+TASK (1 file: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/holdout-guard-emulation.sh)
+This is an archived review probe. Never run it. Edit only its top lines as below.
+Insert one new line holding exactly `set -uo pipefail` directly after line 5, so it sits between the line `# The leaked id is the first plain holdout id, so the live fit- prefix check cannot catch it.` and the line that starts `RAD=`.
+If a quoted line does not match the file, change nothing and report both texts.
+ACCEPT on that file: `sed -n 6p` prints `set -uo pipefail` and `bash -n` exits 0.

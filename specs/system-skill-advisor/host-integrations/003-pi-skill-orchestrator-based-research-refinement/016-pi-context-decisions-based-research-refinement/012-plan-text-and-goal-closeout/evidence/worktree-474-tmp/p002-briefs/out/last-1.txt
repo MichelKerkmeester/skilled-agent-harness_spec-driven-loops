@@ -1,0 +1,35 @@
+Added the requested block to [prompt-policy.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:224). The ACCEPT `rg` command exited 0 and printed one match at line 242. `git diff --check` also exited 0.
+
+Final text added:
+
+```ts
+const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)\s*:|["“>])/i;
+const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/i;
+
+function stripPastedReplyOnce(prompt: string): string {
+  if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
+  const marker = TASK_MARKER.exec(prompt);
+  if (!marker) return prompt;
+  const task = prompt.slice(marker.index + marker[0].length).trim();
+  return task.length > 0 ? task : prompt;
+}
+
+/**
+ * Drop an earlier reply pasted ahead of the task, keeping the text after its task marker.
+ * The skill names in a pasted reply would otherwise steer routing away from the task.
+ * Repeats until nothing changes, so a second call returns the same text; the handler and
+ * the scorer both call it, and the semantic lane matches its embedding by exact text.
+ */
+export function stripLeadingPastedReply(prompt: string): string {
+  let current = prompt;
+  for (;;) {
+    const next = stripPastedReplyOnce(current);
+    if (next === current) return current;
+    current = next;
+  }
+}
+```
+
+The requested code change touched one file. The acceptance phrase “exactly one file changed” does not describe the whole worktree: five spec files were already modified before this edit, and remain untouched. I did not run TypeScript checks or tests, as directed; the conductor runs them.
+
+The conductor’s next action is to run the planned TypeScript checks and tests.

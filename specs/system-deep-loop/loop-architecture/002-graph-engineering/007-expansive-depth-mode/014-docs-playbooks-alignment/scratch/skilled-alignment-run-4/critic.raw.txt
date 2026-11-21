@@ -2390,7 +2390,7 @@ Related references:
 [0m$ [0mcd /Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration && git -c core.fsmonitor=false show --stat 65eb3c029d0 | head -20 && git -c core.fsmonitor=false show 65eb3c029d0 | head -100
 commit 65eb3c029d0c2c0a29dcfcc0039d7343692c2d83
 Merge: 70be3187a9f 33b6f92ac14
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:33:40 2026 +0100
 
     feat(system-deep-loop): integrate the review frontier seed reduce
@@ -2406,7 +2406,7 @@ Date:   Wed Nov 18 01:33:40 2026 +0100
  3 files changed, 99 insertions(+), 1 deletion(-)
 commit 65eb3c029d0c2c0a29dcfcc0039d7343692c2d83
 Merge: 70be3187a9f 33b6f92ac14
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:33:40 2026 +0100
 
     feat(system-deep-loop): integrate the review frontier seed reduce
@@ -5846,7 +5846,7 @@ EOF
 49c67419b92 Merge remote-tracking branch 'origin/main' into worktrees/403-dsh-verify-iteration-executor
 aa7164583f4 feat(system-deep-loop): fail a non-native iteration that names no executor
 commit 98082bf517770c5bc0515afacc1de94726eca7d9
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 01:08:32 2026 +0100
 
     docs(system-deep-loop): fix alignment findings in catalogs and READMEs

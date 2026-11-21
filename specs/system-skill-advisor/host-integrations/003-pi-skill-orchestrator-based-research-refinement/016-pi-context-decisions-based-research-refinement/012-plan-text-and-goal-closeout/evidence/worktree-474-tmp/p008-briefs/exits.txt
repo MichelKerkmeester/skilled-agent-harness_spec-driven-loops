@@ -1,0 +1,4 @@
+cli-test EXIT=0
+handler-tests EXIT=0
+handler-fix EXIT=0
+cli-fix EXIT=0

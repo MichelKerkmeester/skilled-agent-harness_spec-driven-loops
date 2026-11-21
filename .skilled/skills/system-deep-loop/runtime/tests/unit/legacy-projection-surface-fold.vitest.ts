@@ -51,6 +51,8 @@ function surfaceEvent(iteration: number, label: string): EventReadResult {
   } as unknown as EventReadResult;
 }
 
+// A surface returns contracts of different state shapes as LegacyProjectionContract<any>,
+// so this stub keeps the same loose state type the real surfaces use.
 function jsonlRowsArtifact(
   artifactId: string,
   relativePath: string,
@@ -101,6 +103,8 @@ function jsonlRowsArtifact(
   } as unknown as LegacyProjectionContract<any>;
 }
 
+// A surface returns contracts of different state shapes as LegacyProjectionContract<any>,
+// so this stub keeps the same loose state type the real surfaces use.
 function mdSummaryArtifact(
   artifactId: string,
   relativePath: string,

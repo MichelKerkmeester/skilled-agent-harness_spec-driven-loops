@@ -1,23 +1,25 @@
-# Iteration 2 - F-1-005 correctness: reducers, convergence, verification and the ledger/projection layer
+# Review Iteration 002
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-005, dimension correctness. Node scope: `reduce-state.cjs` (review and research), `upsert.cjs`, `convergence.cjs`, `verify-iteration.cjs`, `dispatch-iteration.cjs` and the five `runtime/lib` ledger, projection and reducer folders.
-- Operator review focus covered in this iteration: overengineering (extension payload and projection duplication judged against `prevent-overengineering.md` section 4), operator UX (`--extend` output, warning text and persisted `continuedFromRun` meaning), cross-CLI/OS parity (`dispatch-iteration.cjs` claude config-dir handling and locale-dependent frontier ordering).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 2 of 24
+- Focus: **Frontier node F-1-004: correctness**
+- Dimension: correctness
+- Frontier node: F-1-004 (depth 1 of 3), scope `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts`, `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs`, `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts`
+- Node selection note: the reducer moved the active node from F-1-002 to F-1-004 because its breadth-first rule prefers the shallowest node with the fewest visits (`reduce-state.cjs:2013-2019`). F-1-002 keeps its correctness coverage and returns for its next dimension after the other depth-1 nodes have one visit.
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, the three node files, `deep-research-contract.ts`, `legacy-compatibility.ts`, `lineage-timestamp-window.ts`, `runtime/scripts/README.md`.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` -- frontier store projection, visit attribution, node status derivation, band budget, lineage and extension bookkeeping, strategy and dashboard rendering.
-- `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` -- frontier store projection, visit records, focus ranking, band budget, question-resolution close rule.
-- `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` -- review and research stop facts, `frontier_drained` candidate, `frontierOpen` veto, traceability gate, counters.
-- `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` -- review finding-evidence derivation, finding-id folding, orphan-edge skip.
-- `.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` -- route-proof source preference and delta fallback.
-- `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs` -- `cli-claude-code` config-dir validation and env pass-through.
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts` and `deep-review-ledger-types.ts` -- `run_extended` payload shape and cross-field check.
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts`, `deep-research-reducers`, `legacy-projections/deep-review-state-contract.ts`, `legacy-projections/deep-research-contract.ts` -- extension projection to the run ceiling.
-- `.skilled/commands/deep/assets/deep-review.yaml` -- `step_extend_completed_run`, `step_reduce_review_state` and `step_graph_upsert` order.
-- Traceability sources: `001-completed-run-extension` AC-004/AC-005, `010-research-frontier-mode` REQ-005/REQ-008, `011-review-frontier-mode` REQ-017/REQ-018, and `deep-review/references/convergence/convergence.md` section 4 (iteration status handling).
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts:182-186,370-440,540-580` (error codes, `findIdempotentReplay`, `payloadHead`, `eventContentDigest`, conflict return)
+- `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:101-115,300-370,429-495,532-540` (`GATEWAY_IDENTITY_FIELDS`, `withoutGatewayIdentity`, `defaultIdempotencyKey`, `buildPreparedInput`, review and legacy meta, conflict stderr)
+- `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:280-310` (iteration row projection, `claimedTimestamp`)
+- `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts:326-360` (research iteration row projection)
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:715-725` (research `claimedTimestamp` upcast)
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:95-105,310-315` (claim-aware stamp checks)
+- `.skilled/skills/system-deep-loop/runtime/scripts/README.md:36` (documented gateway contract)
 
 ## Findings - New
 
@@ -27,82 +29,62 @@ None.
 
 ### P1 Findings
 
-1. **A `thought` iteration covers a frontier dimension and spends node depth** -- .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1971 -- `buildReviewFrontier` removes only `FAILED_VISIT_STATUSES` (`error`, `failed`, `failure`, `timeout`) from a node's records, then collects every surviving record's `dimensions` and projects the node `answered` once all four are present (`:1975-1984`). `thought` is a valid iteration status and the review contract states it produces no evidence: "`thought`: Skipped entirely -- analytical iterations produce no evidence to measure" (`deep-review/references/convergence/convergence.md:238`) and "Skip if `status == "thought"` (no change)" (`references/protocol/loop-protocol.md:369`). The research reducer already treats it that way for question coverage (`deep-research/scripts/reduce-state.cjs:2614` excludes `stuck` and `thought`), but the shared visit filter at `frontier-admit.cjs:90` omits both, so the review frontier accepts a record the loop's own doctrine says proves nothing.
-Finding class: class-of-bug
-Scope proof: `grep -n "FAILED_VISIT_STATUSES" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` returns the import at `:21` and the single use at `:1971`; `frontier-admit.cjs:90` defines the set as `['error','failed','failure','timeout']`; no other status filter exists between the state rows and `buildReviewFrontier`.
-Affected surface hints: ["reduce-state.cjs buildReviewFrontier", "reduce-state.cjs reviewRecordsForNode", "frontier-admit.cjs FAILED_VISIT_STATUSES", "registry.frontier answered status", "frontier_drained stop candidate"]
-Case: a leaf dispatched to F-1-005 for security returns `{"status":"thought","dimensions":["security"],"frontierNodeId":"F-1-005"}`; the reducer counts the visit, marks security covered, and after four such records the node projects `answered`, releases the `frontierOpen` veto and lets `frontier_drained` form even though no review evidence was produced.
-
-Claim adjudication:
-```json
-{
-  "type": "contract-contradiction",
-  "claim": "A thought-status iteration is counted as a frontier visit and its dimensions as node coverage, so a node can answer without evidence.",
-  "evidenceRefs": [
-    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1971",
-    ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1975",
-    ".skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:90",
-    ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md:238",
-    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:369",
-    ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2614"
-  ],
-  "counterevidenceSought": "Checked whether thought rows are filtered before the frontier projection (no status filter in main; iterationRecords carries every type:'iteration' row), whether the global dimension coverage applies a status filter (it does not, which predates this range), and whether the research reducer treats a thought visit the same way (it excludes thought from question coverage but still counts the visit for budget and ranking).",
-  "alternativeExplanation": "A thought visit may be intended to spend the node's budget because the iteration was dispatched, but the record's dimensions were not reviewed; the projection labels the node 'answered', which is the evidence claim the veto release reads.",
-  "finalSeverity": "P1",
-  "confidence": "high",
-  "downgradeTrigger": "Downgrade to P2 if the state-record schema or the review workflow refuses a thought status on a frontier-dispatched iteration, or if the leaf contract forbids dimensions on a thought record."
-}
-```
+None.
 
 ### P2 Findings
 
-2. **Frontier steering and projection order by locale collation while the merge orders by code unit** -- .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2016 -- The active node is chosen with `left.nodeId.localeCompare(right.nodeId)` after depth, visits and iteration, and the projected node list sorts the same way (`:1924`); the research reducer mirrors both sorts (`deep-research/scripts/reduce-state.cjs:2447`, `:2512`). The fan-out merge and its `compareText` helper order node ids by code unit (`fanout-merge.cjs:928`), so the same store can project a different active node and budget order on a host whose ICU collation orders the ids differently. This is the same root cause as R1-P2-002 on the reducer and steering surface.
-Finding class: class-of-bug
-Scope proof: `grep -n "localeCompare" .../runtime/scripts/reduce-state.cjs` returns `:1924` and `:2016` in the new frontier block; the research reducer returns `:2447` and `:2512`; every other node-id ordering in the merge uses `compareText`.
-Affected surface hints: ["reduce-state.cjs pickReviewFrontierFocus/activeNodeId", "reduce-state.cjs readReviewFrontierStore", "deep-research/scripts/reduce-state.cjs pickFrontierFocus", "fanout-merge.cjs compareText"]
-Case: two nodes with equal visits and creation iteration are steered on a host whose collation orders `F-1-005` and `F-1-007` differently from the merge host, so the lineage reviews a different node order than the orchestration summary records.
+1. **The gateway strips a model row's identity fields from the envelope but the projected state-log row still carries them** -- `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:483-489` -- `withoutGatewayIdentity` removes `eventId`, `idempotencyKey`, `producer` and `authorityEpoch` from the metadata handed to `buildPreparedInput`, so the ledger event mints all four. The record itself is still passed whole as `data: { record: rawEvent }`, and the projection spreads it back (`deep-review-state-contract.ts:291-296`), so a model that writes `eventId` or `idempotencyKey` into its iteration record gets those values into `deep-review-state.jsonl` beside the ledger's minted identity. The rationale in the code comment ("a row that named an earlier row's key or id would read as its retry or collide with it") and the README line ("minted by the gateway, never taken from the row") therefore describe the envelope only, not the projection.
+   - Finding class: instance-only
+   - Scope proof: `rg -n "eventId" .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` returns no hit, so no current consumer correlates a state-log row to a ledger event by that field; the mismatch is latent rather than breaking. The strip site is the only one (`append-mode-event.cjs:108-115`) and the only whole-record hand-over is the review branch (`:483-489`).
+   - Affected surface hints: ["append-mode-event CLI", "deep-review-state-contract projection", "runtime/scripts/README.md"]
+   - Case: a leaf writes its iteration record with `"eventId":"event-<its own uuid>"` (a plausible copy of the shape it saw in a ledger row). The ledger stores the row under a gateway-minted id, and the projected state log stores the leaf's id. A later reader that treats the state-log `eventId` as the ledger id resolves to an event that does not exist, and the documented "never taken from the row" guarantee is false for that field.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | pass | `001` AC-004/AC-005 rule `newMaxIterations = continuedFromRun + N` and `max(prior, elapsed) + M`; the step implements both (`deep-review.yaml:551-568`) and the schema enforces the iteration identity (`deep-review-ledger-schema.ts:951-956`). `010` REQ-005's terminal-status close resolves the inbox question (`deep-research/scripts/reduce-state.cjs:2652-2662`). `011` REQ-017's review-only `frontier_drained` candidate and its cap/floor order match the code (`convergence.cjs:1169-1211`). |
-| `checklist_evidence` | pass | AC-004's cap half is the fixture rule the step implements; AC-019's evidence-edge contract is implemented in `upsert.cjs:236-300` and guarded by the integration suite named in the phase; AC-018's candidate order and gate chain match `convergence.cjs:1164-1217`. |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | pass | `.skilled/skills/system-deep-loop/runtime/scripts/README.md:36` | The README's gateway paragraph matches the envelope behavior (gateway-timed iteration rows, `claimedTimestamp`, minted identity, exit 2 on a reused key with other content). The one drift found is the projection, reported as P2-1, so the protocol passes on the envelope contract it describes. |
+| `checklist_evidence` | notApplicable | - | No spec checklist for a commit-range target. |
+| `skill_agent` | notApplicable | - | No agent definition in the range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in the range. |
+| `feature_catalog_code` | pending | - | `runtime/feature-catalog/script-entry-points/append-mode-event-script.md` is in scope and belongs to node F-1-006. |
+| `playbook_capability` | pending | - | Belongs to F-1-006. |
 
 ## Integration Evidence
 
-- `.skilled/commands/deep/assets/deep-review.yaml:514-620` (`step_extend_completed_run`) writes the `run_extended` event before the config, sets `status: "initialized"`, `lineageMode: "completed-continue"` and `continuedFromRun` to the distinct iteration count, and prints the re-stop warning.
-- `.skilled/commands/deep/assets/deep-review.yaml:2057-2098` runs `step_reduce_review_state` before `step_graph_upsert`, so the reducer's frontier projection is the one the graph and the next iteration read.
-- `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` and `deep-review-state-contract.ts` project the extension to `type: "event", event: "extended"` with the budget payload; the research legacy upcast refuses a legacy `extended` row without the full budget (`legacy-compatibility.ts:655-672`).
-- `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:210-220` and `:350-447` now accept `--claude-config-dir` for either loop type and pass `CLAUDE_CONFIG_DIR` through the executor guard env; `buildExecutorDispatchEnv` admits it through the `CLAUDE_` allowlist (`executor-audit.ts:1455`).
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:100-102,313` reads `claimedTimestamp` when present and falls back to `timestamp`, so the gateway's clock override does not blind the lineage stamp-window check; the model's claim is still judged.
+- `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:721` sets `data.claimedTimestamp` from the legacy row's own stamp, and `deep-research-contract.ts:358` projects it, so review and research agree on the claim field.
+- `.skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:343-346` prefers `claimedTimestamp` for `stampedAt`, so salvage timing follows the same rule.
 
 ## Edge Cases
 
-- `--extend=N` sets `continuedFromRun` to the number of distinct iteration rows, so extending a run that stopped at 7 of 10 by 3 produces a ceiling of 10 and exactly 3 more dispatches. That matches AC-004 but means the new ceiling can sit below the prior cap; I did not treat it as a defect because the flag reads as "N more iterations", not "raise the cap by N".
-- The same `continuedFromRun` field is a lineage field elsewhere and an iteration count after an extension; the strategy renders it without a unit. Recorded as operator-facing ambiguity, not a separate finding, because REQ-002 mandates the field name.
-- `applyBandBudget` closes an open node as `exhausted` when its band's visits reach the share, using only records attributed to a node; pivot and blocked-stop iterations spend no node visit, so band spend can lag the loop's iteration count by design.
-- A `stuck` record is treated like `thought` by the visit filter but, unlike `thought`, the review doctrine has no explicit "produces no evidence" sentence; the finding rests on the `thought` case and names `stuck` only as the same filter gap.
+- **Replay after the head moved.** `eventContentDigest` deletes `prevEventHash`/`payloadDigest` and nulls any value equal to either event's head, so a retry built on a moved head still compares equal and replays the original receipt. Verified by reading the digest construction, not by running a concurrent append.
+- **Different content under the same key.** The digest compares the payload minus head-derived fields; a genuinely different record produces a different digest and is refused with `IDEMPOTENCY_CONFLICT`, whose reason now also reaches stderr (`append-mode-event.cjs:535-539`).
+- **Model-supplied `idempotencyKey`.** It is stripped from the metadata, so the key is the derived default. The derived key still hashes the raw record, which includes that field; a retry that hands over the same bytes therefore still replays.
+- **Non-iteration review rows.** `reviewMeta` only overrides the clock for `type === "iteration"`; an event row keeps its own stamp, matching the projection's `else` branch.
 
 ## Confirmed-Clean Surfaces
 
-- The extension arithmetic and event/config ordering are correct against AC-004/AC-005: the event is appended before the config write, the config keeps `createdAt`, and a failed append leaves the run complete.
-- `reviewTraceabilityCovered` and `reviewOmitsTraceability` read the raw config, not the reduced stop config, so `crossReference.core` and `reviewDimensions` are present at the gate (`convergence.cjs:1601-1631`, `:1683-1710`).
-- The `frontier_drained` candidate is review-only and requires `frontierTotal >= 1` and `frontierAnswered >= 1`; a frontier that closed with nothing answered forms no candidate, as REQ-017 requires.
-- `upsert.cjs` folds leaf finding ids case-insensitively onto stored findings, skips an edge to an undeclared node with a stderr notice, and derives no edge from a ref without a line.
-- `verify-iteration.cjs` now prefers the projected route proof and falls back to the delta only when the state row fails it; the projected review row carries `target_agent`, `resolved_route` and `agent_definition_loaded` (read from this lineage's iteration 1 row).
+- **Conflict refusal before append.** `append-mode-event.ts:568-575` returns the refusal before the authorize/append loop, so a reused key with other content cannot write a second event.
+- **Same-kind, same-content replay.** `findIdempotentReplay` returns the durable receipt for a matching digest, and `maxRetries` is 0 on a replay, so no second append is attempted.
+- **Producer and epoch minting.** `buildPreparedInput` falls back to the CLI producer and `authority.epoch` when the metadata carries neither, and the strip removes both from a model row.
+- **Research iteration timing.** The research projection already used `occurredAt` before this range, so the review change aligns the two modes rather than diverging from them.
 
 ## Ruled Out
 
-- Abstracting the two reducers' frontier visit, marker and ranking blocks: exactly two instances with contract-driven divergence, and `prevent-overengineering.md` section 4 says two is a coincidence, so extracting them now would buy a wrong abstraction. Named what would change the judgment: a third frontier consumer.
-- `maxIterations` extension lowering the ceiling after an early convergence: AC-004 defines the count-plus-N rule, and the schema check enforces the same identity; not a defect.
-- Research `all_questions_answered` after an exhausted node: REQ-005 deliberately marks the terminal node's question resolved so it leaves the open set; the code matches.
-- `thought` records in the global `buildDimensionCoverage`: the missing status filter predates the range; only the new frontier `answered` projection is reported.
+- **A P1 for the projected identity fields.** Ruled out after searching for a consumer: neither the reducer nor the verifier reads `eventId` from a state-log row, so nothing mis-correlates today. Kept at P2 as a contract/comment mismatch with latent confusion.
+- **A digest collision risk from `withoutHeads`.** Ruled out: it only nulls a value equal to one of the two event heads, which a review record's content cannot plausibly contain, and both sides are transformed identically.
+- **A timestamp regression for the stamp-window check.** Ruled out: `lineage-timestamp-window.ts` prefers `claimedTimestamp`, so the model's claim is still the value judged.
 
 ## Next Focus
 
-- Dimension: correctness on F-1-007 (divergent pivot, continuity thread and coverage-graph signals).
-- Reason: the three dealt nodes now have F-1-003 and F-1-005 opened on correctness; F-1-007 is the only one with no dimension covered, and its pivot and graph signals feed the stop gates.
-- Required evidence: `divergent-pivot.ts` seat and quorum rules, `divergent-pivot.cjs` CLI, `continuity-thread.cjs` and the `coverage-graph` query/signal functions the stop gates read.
-- Rotation status: F-1-003 and F-1-005 each have correctness covered; F-1-007 has none.
+- Dimension: correctness
+- Frontier node: F-1-006 (open, zero visits; the reducer's breadth-first rule selects it next)
+- Focus area: docs and contracts — whether the command docs, compiled contracts, references, feature catalogs and playbooks describe what the round 5 and 6 code now does, starting with the `deep-review.yaml` stop-decision contract against `convergence.cjs` and the compiled `deep-review.contract.markdown`.
+- Reason: F-1-004 correctness produced one P2 and no P0/P1; the remaining depth-1 node has no visit, and the reducer steers breadth before depth.
+- Rotation status: F-1-004 correctness complete; F-1-006 correctness next.
+- Blocked/productive carry-forward: productive (tracing the strip site to the projection found the mismatch); no blocked approaches.
+- Required evidence: `deep-review.yaml` stop-decision bindings, `convergence.cjs` gate names, and the compiled contract markdown.
+- Recovery note: none.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

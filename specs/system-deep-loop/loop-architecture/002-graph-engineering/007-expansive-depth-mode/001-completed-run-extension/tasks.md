@@ -200,7 +200,7 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only. The gitignored `tmp/dispatch` kit was removed; test temp folders are removed by each suite's `afterEach`.
-- [ ] CHK-051 [P1] scratch/ cleaned before completion Open: `scratch/` keeps `baseline.txt`, `run-resumed-sites.txt` and `confirm-branch-trace.md`, which tasks cite as evidence.
+- [ ] CHK-051 [P1] scratch/ cleaned before completion Open: `scratch/` keeps `baseline.txt`, `run-resumed-sites.txt` and `confirm-branch-trace.md`, which tasks cite as evidence. Still open 2026-11-21.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -210,11 +210,11 @@ A blocked task is marked `[B]` with the blocker named on the line; a `[B]` task 
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | 0/14 |
-| P1 Items | 17 | 0/17 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 17 | 16/17 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Not yet verified (status Planned)
+**Verification Date**: 2026-11-21.
 <!-- /ANCHOR:summary -->
 
 ---

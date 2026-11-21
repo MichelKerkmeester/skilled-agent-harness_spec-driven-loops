@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Synthesis Closeout Latest Iteration Tests
+// ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
 import * as fs from 'node:fs';

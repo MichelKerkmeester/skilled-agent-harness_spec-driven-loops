@@ -68,7 +68,7 @@ N/A: this packet is research only. The deep-research loop in research/ measures 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `research/` | Create | Deep-research loop state, iterations and the `research.md` synthesis |
-| `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `goal.md` | Create | Packet docs for the research stage and the phase parent |
+| `spec.md`, `goal.md`, `decision-record.md` | Create | Packet docs for the research stage and the phase parent. As a phase parent it keeps the lean trio, plus the decision record for decisions that span its phases, and holds no `plan.md`, `tasks.md` or `implementation-summary.md`. Its continuity is the `graph-metadata.json` pointer, and the research-stage plan, tasks and verification record live in the `goal.md` log |
 | `001-*/` to `014-*/` | Create | One child packet per build phase; each child's spec names the runtime, workflow and doc files it changes |
 <!-- /ANCHOR:scope -->
 

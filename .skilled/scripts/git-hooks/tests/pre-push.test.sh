@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
-# Test harness for the pre-push hook's two independent gates (naming +
-# remote-push-permission), and for how its gates treat a pushed range under
-# .skilled/ and a gate script that is missing. Runs entirely inside a throwaway git repo
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: PRE-PUSH HOOK TESTS
+# ───────────────────────────────────────────────────────────────
+# Test harness for the pre-push hook's gates (remote-push permission, skill
+# metadata, compiled routing, track roots and Commit-Id), and for how its gates
+# treat a pushed range under .skilled/ and a gate script that is missing.
+# Runs entirely inside a throwaway git repo
 # (symlinking the real worktree-naming.sh and a fixture SKILL.md so owner
 # resolution works) so it never touches real refs, the real clone's hooks,
 # or the operator's global git config.
+#
+# Exit Codes:
+#   0 - every scenario passed
+#   1 - at least one scenario failed; each FAIL line names it
 set -uo pipefail
 
 # git resolves its repository from these variables in preference to -C/cwd. Clear them so the
@@ -58,7 +66,8 @@ _hook_rc() {
   printf '%s\n' "$line" | ( cd "$TMP" && env "$@" bash "$HOOK" ) \
     >"$TMP/last.out" 2>"$TMP/last.err"
 }
-expect_hook() { # expect_hook <desc> <expected-rc> <line> [env-assignment...]
+# expect_hook <desc> <expected-rc> <line> [env-assignment...]
+expect_hook() {
   local desc="$1" exp="$2" line="$3"; shift 3
   local rc=0
   _hook_rc "$line" "$@" || rc=$?
@@ -71,8 +80,8 @@ expect_hook() { # expect_hook <desc> <expected-rc> <line> [env-assignment...]
   fi
 }
 
-# ── naming-gate scenarios (unaffected by the permission gate: rejected before
-#    it, or exempted before the gate runs) ────────────────────────────────
+# ── branch-creation scenarios: each new branch is refused by the permission
+#    gate, and a release branch is exempted before that gate runs ──────────
 mkdir -p "$TMP/.opencode/skills/untracked-owner"
 printf 'name: untracked-owner\n' > "$TMP/.opencode/skills/untracked-owner/SKILL.md"
 expect_hook "branch under an untracked owner rejected (creation)" \
@@ -123,9 +132,9 @@ expect_hook "main push (update form) allowed with no env vars" \
   0 "refs/heads/main $SHA_A refs/heads/main $SHA_B"
 
 # ── operator-editable allowlist file extends the built-in exemptions ────────
-# Use an UPDATE ref (docs/foo doesn't match the owner-first grammar, so as a
-# NEW branch it would be rejected by Gate 1 before ever reaching Gate 2;
-# updates are naming-tolerant, so this isolates the allowlist-file check).
+# Use an UPDATE ref: the allowlist exempts an update and a creation alike, and an
+# update reaches the allowlist-file check without the creation-only refusal, so
+# this isolates that check.
 printf 'docs/*\n' > "$TMP/.opencode/skills/sk-git/scripts/remote-branch-allowlist.txt"
 expect_hook "custom allowlist-file pattern (docs/*) exempts an update push" \
   0 "refs/heads/docs/foo $SHA_A refs/heads/docs/foo $SHA_B"
@@ -158,7 +167,8 @@ ln -s "$REAL_NAMING" "$TMP/.opencode/skills/sk-git/scripts/worktree-naming.sh"
 # silence. These cases push real commits, because both gates read the pushed range
 # rather than the ref line. The spec-kit sentinel marks such a checkout; without it
 # the fixture stands in for any other repository the global hook runs in.
-expect_hook_says() { # expect_hook_says <desc> <expected-rc> <stderr substring> <line> [env-assignment...]
+# expect_hook_says <desc> <expected-rc> <stderr substring> <line> [env-assignment...]
+expect_hook_says() {
   local desc="$1" exp="$2" needle="$3" line="$4"; shift 4
   local rc=0
   _hook_rc "$line" "$@" || rc=$?
@@ -170,7 +180,8 @@ expect_hook_says() { # expect_hook_says <desc> <expected-rc> <stderr substring> 
     sed 's/^/    err> /' "$TMP/last.err" >&2 || true
   fi
 }
-expect_quiet() { # expect_quiet <desc> <substring the last run's stderr must not carry>
+# expect_quiet <desc> <substring the last run's stderr must not carry>
+expect_quiet() {
   if grep -qF -- "$2" "$TMP/last.err"; then
     FAIL=$((FAIL+1)); echo "FAIL: $1 (stderr carried '$2')"
   else
@@ -194,6 +205,14 @@ expect_hook "a range that changes only .skilled/skills passes the skill gate" \
 if grep -q called "$TMP/skill-gate-calls.log" 2>/dev/null; then PASS=$((PASS+1))
 else FAIL=$((FAIL+1)); echo "FAIL: a range under .skilled/skills never reached the skill-root metadata checker"; fi
 rm -f "$SKILL_CHECKER" "$TMP/skill-gate-calls.log"
+
+# The fix runs from the repository root, under the fixture's .opencode source root.
+mkdir -p "$(dirname "$SKILL_CHECKER")"
+printf '%s\n' "process.exit(1);" > "$SKILL_CHECKER"
+expect_hook_says "stale skill metadata names the fix under the source root it was found in" \
+  0 "Next: from $(cd "$TMP" && pwd -P): node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix" \
+  "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA"
+rm -f "$SKILL_CHECKER"
 
 mkdir -p "$(dirname "$SENTINEL")"; printf 'name: system-spec-kit\n' > "$SENTINEL"
 expect_hook_says "a missing skill checker warns with its path where the toolchain ships" \
@@ -220,6 +239,10 @@ expect_hook_says "drift in a .skilled routing input blocks the push" \
   1 "routing-commit-parity" "refs/heads/main $OPENCODE_SHA refs/heads/main $SKILLED_SHA"
 expect_hook "a pushed commit other than HEAD is not compared with the working tree" \
   0 "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA"
+printf '%s\n' "process.exit(1);" > "$TMP/.opencode/bin/compiled-route-guard.cjs"
+expect_hook_says "a stale route names the re-check from the repository root" \
+  1 "Next: from $(cd "$TMP" && pwd -P): node .opencode/bin/compiled-route-guard.cjs" \
+  "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA"
 rm -rf "$TMP/.opencode/bin"
 git -C "$TMP" checkout -q -- .skilled/skills/demo/hub-router.json
 
@@ -246,6 +269,9 @@ expect_hook "...unless SPECKIT_ALLOW_MASS_DELETION=1 approves it" \
   SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 SPECKIT_ALLOW_MASS_DELETION=1
 expect_hook_says "a missing route guard blocks the push" \
   1 "route guard is missing" "refs/heads/main $SHA_A refs/heads/main $SHA_B" \
+  SPECKIT_ALLOW_MASS_DELETION=1
+expect_hook_says "...and its restore says it discards a staged version too" \
+  1 "staged or unstaged edit to the file is lost" "refs/heads/main $SHA_A refs/heads/main $SHA_B" \
   SPECKIT_ALLOW_MASS_DELETION=1
 rm -f "$SENTINEL"
 
@@ -280,6 +306,8 @@ expect_hook_says "a pushed packet its track root does not list blocks the push" 
   1 "[gate:track-roots]" "refs/heads/main $TRACK_DRIFT_SHA refs/heads/main $TRACK_OK_SHA" "${TRACK_ENV[@]}"
 if grep -qF "on disk, not declared: 002-unlisted" "$TMP/last.err"; then PASS=$((PASS+1))
 else FAIL=$((FAIL+1)); echo "FAIL: the track-root block does not name the unlisted packet"; fi
+if grep -qE '^Fix: from [^ ]+: node [^ ]*refresh-track-roots\.mjs --apply$' "$TMP/last.err"; then PASS=$((PASS+1))
+else FAIL=$((FAIL+1)); echo "FAIL: the track-root Fix line does not name the folder to run from"; grep -F 'Fix:' "$TMP/last.err"; fi
 expect_hook "...unless SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 skips it" \
   0 "refs/heads/main $TRACK_DRIFT_SHA refs/heads/main $TRACK_OK_SHA" "${TRACK_ENV[@]}" SPECKIT_SKIP_PREPUSH_TRACK_GATE=1
 # The working tree still holds 002-unlisted; the pushed commit does not.
@@ -303,7 +331,8 @@ expect_quiet "...and the gate says nothing there" "track-roots"
 # go through `git push` from a worktree.
 PUSH_REMOTE="$TMP/.push-remote.git"; git init -q --bare "$PUSH_REMOTE"
 PUSH_HOOKS="$TMP/.push-hooks"; mkdir -p "$PUSH_HOOKS"; ln -s "$HOOK" "$PUSH_HOOKS/pre-push"
-push_from_worktree() { # push_from_worktree <sha>; returns git push's exit code, stderr in last.err
+# push_from_worktree <sha>; returns git push's exit code, stderr in last.err
+push_from_worktree() {
   local wt="$TMP/.push-wt" rc=0
   git -C "$TMP" worktree add -q --detach "$wt" "$1"
   mkdir -p "$wt/.opencode/skills/system-spec-kit/runtime/cli/spec" "$wt/.opencode/skills/system-spec-kit/runtime/cli/lib"
@@ -330,12 +359,14 @@ git -C "$CID" config core.hooksPath "$TMP/.nohooks"
 git -C "$CID" config user.email t@t.t
 git -C "$CID" config user.name t
 git -C "$CID" config skilled.commitId true
-cid_rc() { # cid_rc <stdin-line>; the hook's exit code, stderr in last.err
+# cid_rc <stdin-line>; the hook's exit code, stderr in last.err
+cid_rc() {
   local rc=0
   printf '%s\n' "$1" | ( cd "$CID" && bash "$HOOK" ) >"$TMP/last.out" 2>"$TMP/last.err" || rc=$?
   return $rc
 }
-cid_expect() { # cid_expect <desc> <expected-rc> <stdin-line> [<stderr substring>]
+# cid_expect <desc> <expected-rc> <stdin-line> [<stderr substring>]
+cid_expect() {
   local rc=0
   cid_rc "$3" || rc=$?
   if [ "$rc" = "$2" ] && { [ -z "${4:-}" ] || grep -qF "$4" "$TMP/last.err"; }; then PASS=$((PASS+1))
@@ -345,20 +376,54 @@ git -C "$CID" commit -q --allow-empty -m "chore(x): unstamped base" -m "Body."
 CID_BASE="$(git -C "$CID" rev-parse HEAD)"
 cid_expect "a pushed commit without a Commit-Id is blocked" 1 \
   "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA" "[gate:commit-id]"
+cid_expect "a range that starts at the root commit rebases from --root" 1 \
+  "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA" \
+  "Next: git rebase -x 'git commit --amend --no-edit' --root"
 git -C "$CID" commit -q --allow-empty -m "chore(x): stamped" -m "Body." -m "Commit-Id: 0000001"
 CID_STAMPED="$(git -C "$CID" rev-parse HEAD)"
 cid_expect "an update adding only stamped commits passes" 0 \
   "refs/heads/main $CID_STAMPED refs/heads/main $CID_BASE"
+git -C "$CID" commit -q --allow-empty -m "chore(x): unstamped on top" -m "Body."
+cid_expect "an update rebases from the commit the pushed range starts after" 1 \
+  "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_STAMPED" \
+  "Next: git rebase -x 'git commit --amend --no-edit' $CID_STAMPED"
+git -C "$CID" reset -q --hard "$CID_STAMPED"
 git -C "$CID" checkout -q -b side "$CID_BASE"
 git -C "$CID" commit -q --allow-empty -m "chore(x): side" -m "Body." -m "Commit-Id: 0000002"
 git -C "$CID" checkout -q main
 git -C "$CID" merge -q --no-ff --no-edit side
 cid_expect "a merge commit needs no Commit-Id" 0 \
   "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_STAMPED"
+# A merged-in unstamped commit leaves no one base that spans only the pushed range.
+CID_MERGED="$(git -C "$CID" rev-parse HEAD)"
+git -C "$CID" checkout -q -b side2 "$CID_BASE"
+git -C "$CID" commit -q --allow-empty -m "chore(x): side unstamped" -m "Body."
+git -C "$CID" checkout -q main
+git -C "$CID" merge -q --no-ff --no-edit side2
+cid_expect "a range holding a merge keeps the stamping base placeholder" 1 \
+  "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_MERGED" \
+  "Next: git rebase -x 'git commit --amend --no-edit' <the commit before the first one>"
+cid_expect "the stamping base placeholder says the base is the operator's to name" 1 \
+  "refs/heads/main $(git -C "$CID" rev-parse HEAD) refs/heads/main $CID_MERGED" \
+  "No one base spans exactly the pushed range, so replace the placeholder with the commit before the first one to fix."
 git -C "$CID" config skilled.commitId false
 cid_expect "skilled.commitId false exempts the repository" 0 \
   "refs/heads/main $CID_BASE refs/heads/main $ZERO_SHA"
 rm -rf "$CID"
+
+# ── an autosync live push over the deletion ceiling names the manual publish ──
+# The publisher sits under the fixture's .opencode source root and runs from the repository root.
+mkdir -p "$TMP/.opencode/scripts/git-hooks/lib"
+cp "$REPO_ROOT/.opencode/scripts/git-hooks/lib/mass-deletion-guard.sh" "$TMP/.opencode/scripts/git-hooks/lib/"
+printf 'a\n' > "$TMP/del-a.txt"; printf 'b\n' > "$TMP/del-b.txt"
+git -C "$TMP" add del-a.txt del-b.txt; git -C "$TMP" commit -q -m 'two files'
+DEL_BASE="$(git -C "$TMP" rev-parse HEAD)"
+git -C "$TMP" rm -q del-a.txt del-b.txt; git -C "$TMP" commit -q -m 'drop two files'
+expect_hook_says "a blocked autosync publish names the manual publish under the source root" \
+  1 "Manual publish:  from $(cd "$TMP" && pwd -P): bash .opencode/bin/git-sync.sh --live live" \
+  "refs/heads/live $(git -C "$TMP" rev-parse HEAD) refs/heads/live $DEL_BASE" \
+  SPECKIT_AUTOSYNC=1 SPECKIT_LIVE_BRANCH=live SPECKIT_MASS_DELETION_THRESHOLD=1
+rm -rf "$TMP/.opencode/scripts"
 
 # ── report ──────────────────────────────────────────────────────
 echo "pre-push tests: PASS=$PASS FAIL=$FAIL"

@@ -187,9 +187,13 @@ DOCTOR TARGET FAILED
 Target: [target]
 Step: [setup|workflow phase]
 Error: [message]
-Next: [recommended command or manual action]
+Why: [the reason the script printed under the error, else what the failed step protects]
+Changed: [what was written before the failure, such as a restored database, or none]
+Next: [the script's own Next: line when it printed one, else the command from the matching Troubleshooting row, or the accepted invocation]
 STATUS=FAIL ERROR="[message]"
 ```
+
+When the advisor CLI or a doctor script prints a `Next:` line, show it as printed rather than a paraphrase.
 
 ## 7. Troubleshooting Display
 

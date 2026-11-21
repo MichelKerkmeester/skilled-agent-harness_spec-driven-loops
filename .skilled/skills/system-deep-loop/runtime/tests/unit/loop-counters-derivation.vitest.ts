@@ -32,6 +32,8 @@ type LoopType = 'research' | 'review';
 interface LoopCounters {
   stuckCount: number;
   consecutiveFailureCount: number;
+  blockedStreak: number;
+  blockedKey: string | null;
 }
 
 interface StopConfig {
@@ -104,10 +106,14 @@ describe('deriveLoopCounters', () => {
     expect(deriveLoopCounters([], { loopType: 'research' })).toEqual({
       stuckCount: 0,
       consecutiveFailureCount: 0,
+      blockedStreak: 0,
+      blockedKey: null,
     });
     expect(deriveLoopCounters([], { loopType: 'review' })).toEqual({
       stuckCount: 0,
       consecutiveFailureCount: 0,
+      blockedStreak: 0,
+      blockedKey: null,
     });
   });
 
@@ -130,6 +136,8 @@ describe('deriveLoopCounters', () => {
     expect(deriveLoopCounters(log, { loopType: 'research' })).toEqual({
       stuckCount: 1,
       consecutiveFailureCount: 1,
+      blockedStreak: 0,
+      blockedKey: null,
     });
   });
 
@@ -144,7 +152,7 @@ describe('deriveLoopCounters', () => {
       { loopType: 'research' },
     );
 
-    expect(counters).toEqual({ stuckCount: 2, consecutiveFailureCount: 2 });
+    expect(counters).toEqual({ stuckCount: 2, consecutiveFailureCount: 2, blockedStreak: 0, blockedKey: null });
   });
 
   it('consecutive failures: three trailing failed runs give 3', () => {
@@ -166,8 +174,8 @@ describe('deriveLoopCounters', () => {
       { loopType: 'research' },
     );
 
-    expect(trailing).toEqual({ stuckCount: 0, consecutiveFailureCount: 3 });
-    expect(recovered).toEqual({ stuckCount: 0, consecutiveFailureCount: 0 });
+    expect(trailing).toEqual({ stuckCount: 0, consecutiveFailureCount: 3, blockedStreak: 0, blockedKey: null });
+    expect(recovered).toEqual({ stuckCount: 0, consecutiveFailureCount: 0, blockedStreak: 0, blockedKey: null });
   });
 
   it('counts a failure row appended last', () => {
@@ -181,7 +189,7 @@ describe('deriveLoopCounters', () => {
     const after = deriveLoopCounters(log, { loopType: 'research' });
 
     expect(after.consecutiveFailureCount).toBe(before.consecutiveFailureCount + 1);
-    expect(after).toEqual({ stuckCount: 0, consecutiveFailureCount: 2 });
+    expect(after).toEqual({ stuckCount: 0, consecutiveFailureCount: 2, blockedStreak: 0, blockedKey: null });
   });
 
   it('recovery: a research stuckRecovery event resets the stuck count', () => {
@@ -195,7 +203,7 @@ describe('deriveLoopCounters', () => {
       { loopType: 'research' },
     );
 
-    expect(counters).toEqual({ stuckCount: 1, consecutiveFailureCount: 0 });
+    expect(counters).toEqual({ stuckCount: 1, consecutiveFailureCount: 0, blockedStreak: 0, blockedKey: null });
   });
 
   it('recovery: a review recovery event resets the stuck count', () => {
@@ -226,8 +234,8 @@ describe('deriveLoopCounters', () => {
       options,
     );
 
-    expect(eventRow).toEqual({ stuckCount: 1, consecutiveFailureCount: 0 });
-    expect(stemRow).toEqual({ stuckCount: 1, consecutiveFailureCount: 0 });
+    expect(eventRow).toEqual({ stuckCount: 1, consecutiveFailureCount: 0, blockedStreak: 0, blockedKey: null });
+    expect(stemRow).toEqual({ stuckCount: 1, consecutiveFailureCount: 0, blockedStreak: 0, blockedKey: null });
   });
 
   it('counts a redispatched run once, by its latest row', () => {
@@ -240,7 +248,7 @@ describe('deriveLoopCounters', () => {
       { loopType: 'research' },
     );
 
-    expect(counters).toEqual({ stuckCount: 0, consecutiveFailureCount: 0 });
+    expect(counters).toEqual({ stuckCount: 0, consecutiveFailureCount: 0, blockedStreak: 0, blockedKey: null });
   });
 
   it('lets the still-fails error row supersede a landed iteration with the same number', () => {
@@ -255,7 +263,7 @@ describe('deriveLoopCounters', () => {
       { loopType: 'research' },
     );
 
-    expect(counters).toEqual({ stuckCount: 0, consecutiveFailureCount: 1 });
+    expect(counters).toEqual({ stuckCount: 0, consecutiveFailureCount: 1, blockedStreak: 0, blockedKey: null });
   });
 
   it('thought leaves both counters unchanged, insight resets the stuck count', () => {
@@ -268,18 +276,24 @@ describe('deriveLoopCounters', () => {
     expect(deriveLoopCounters(log, { loopType: 'research' })).toEqual({
       stuckCount: 2,
       consecutiveFailureCount: 1,
+      blockedStreak: 0,
+      blockedKey: null,
     });
 
     log.push({ type: 'iteration', iteration: 4, status: 'thought' });
     expect(deriveLoopCounters(log, { loopType: 'research' })).toEqual({
       stuckCount: 2,
       consecutiveFailureCount: 1,
+      blockedStreak: 0,
+      blockedKey: null,
     });
 
     log.push({ type: 'iteration', iteration: 5, status: 'insight' });
     expect(deriveLoopCounters(log, { loopType: 'research' })).toEqual({
       stuckCount: 0,
       consecutiveFailureCount: 0,
+      blockedStreak: 0,
+      blockedKey: null,
     });
   });
 
@@ -295,10 +309,14 @@ describe('deriveLoopCounters', () => {
     expect(deriveLoopCounters([iterationRow(0.1)], options)).toEqual({
       stuckCount: 1,
       consecutiveFailureCount: 0,
+      blockedStreak: 0,
+      blockedKey: null,
     });
     expect(deriveLoopCounters([iterationRow(0.11)], options)).toEqual({
       stuckCount: 0,
       consecutiveFailureCount: 0,
+      blockedStreak: 0,
+      blockedKey: null,
     });
   });
 });
@@ -718,7 +736,7 @@ describe('per-node stuck accounting under expansive depth', () => {
 
   it('keeps the lineage-wide count when no node is named, as a default run does', () => {
     expect(convergence.deriveLoopCounters(liveRows, { loopType: 'review' }))
-      .toEqual({ stuckCount: 2, consecutiveFailureCount: 0 });
+      .toEqual({ stuckCount: 2, consecutiveFailureCount: 0, blockedStreak: 0, blockedKey: null });
   });
 
   it('counts only the named node\'s own passes', () => {
@@ -830,5 +848,163 @@ describe('per-node stuck accounting for expansive research', () => {
       config: { stuckThreshold: 3 }, registry, stateLogRows: rows,
     }, null);
     expect(input.stuckCount).toBe(3);
+  });
+});
+
+// A run blocked again and again by the same blockers, with nothing new found,
+// ends instead of retrying them to the cap. The streak is the run's, never a
+// node's: the blockers are run-level gates and graph checks.
+describe('blocked-stop streak', () => {
+  const convergence = requireCjs('../../scripts/convergence.cjs') as {
+    buildStopDecision: (input: StopDecisionInput) => StopDecision & { blockedBy: string[] };
+    buildStopDecisionInput: (
+      args: Record<string, unknown>,
+      loopType: LoopType,
+      files: Record<string, unknown>,
+      graph: Record<string, unknown> | null,
+    ) => StopDecisionInput & { stuckCount: number; blockedStreak: number };
+  };
+  const BLOCKERS = ['hotspotSaturationGate'];
+
+  function pass(iteration: number, ratio = 0.5, options: { newP2?: number; nodeId?: string } = {}) {
+    return {
+      type: 'iteration',
+      iteration,
+      run: iteration,
+      status: 'complete',
+      ...(options.nodeId ? { frontierNodeId: options.nodeId, focus: `Frontier node ${options.nodeId}: correctness` } : {}),
+      dimensions: ['correctness'],
+      newFindingsRatio: ratio,
+      findingsNew: { P0: 0, P1: 0, P2: options.newP2 ?? 0 },
+    };
+  }
+
+  function blockedRow(run: number, blockedBy = BLOCKERS) {
+    return { type: 'event', event: 'blocked_stop', run, blockedBy };
+  }
+
+  // Every dimension is clean, so a stop candidate forms from the second pass on,
+  // and with no graph trace the hotspot saturation gate fails it every time.
+  function decide(
+    rows: Array<Record<string, unknown>>,
+    iteration: number,
+    options: { config?: Record<string, unknown>; registry?: Record<string, unknown> } = {},
+  ) {
+    const input = convergence.buildStopDecisionInput({ iteration }, 'review', {
+      config: {
+        maxIterations: 10,
+        convergenceThreshold: 0.1,
+        stuckThreshold: 2,
+        reviewDimensions: ['correctness'],
+        crossReference: { core: [] },
+        ...options.config,
+      },
+      registry: {
+        dimensionCoverage: { correctness: true },
+        findingsBySeverity: { P0: 0, P1: 0, P2: 0 },
+        openFindings: [],
+        ...options.registry,
+      },
+      stateLogRows: rows,
+    }, { decision: 'STOP_ALLOWED', blockers: [], trace: [] });
+    return { input, decision: convergence.buildStopDecision(input) };
+  }
+
+  it('stops with blockedStop once the same blockers block the stuck threshold of passes in a row', () => {
+    expect(decide([pass(1), pass(2)], 2).decision).toMatchObject({
+      decision: 'BLOCKED',
+      stopReason: 'blockedStop',
+      blockedBy: BLOCKERS,
+    });
+
+    const { decision } = decide([pass(1), pass(2), blockedRow(2), pass(3)], 3);
+    expect(decision).toMatchObject({
+      decision: 'STOP',
+      stopReason: 'blockedStop',
+      reasonDetail: 'blockedStreakReached',
+      blockedBy: BLOCKERS,
+    });
+
+    // The cap still runs first.
+    expect(decide([pass(1), pass(2), blockedRow(2), pass(3)], 3, { config: { maxIterations: 3 } })
+      .decision.stopReason).toBe('maxIterationsReached');
+  });
+
+  it('restarts the streak on a different blocker set or a new finding, and counts a run once', () => {
+    expect(decide([pass(1), pass(2), blockedRow(2, ['dimensionCoverageGate']), pass(3)], 3)
+      .decision.decision).toBe('BLOCKED');
+    expect(decide([pass(1), pass(2), blockedRow(2), pass(3, 0.5, { newP2: 1 })], 3)
+      .decision.decision).toBe('BLOCKED');
+
+    // A decision computed again for a run that already recorded its block reads
+    // the same streak as the first computation did.
+    const again = decide([pass(1), pass(2), blockedRow(2)], 2);
+    expect(again.input.blockedStreak).toBe(0);
+    expect(again.decision.decision).toBe('BLOCKED');
+  });
+
+  // Passes that find nothing also count toward stuck recovery, which runs before
+  // the gates, so at the same threshold the recovery comes first and the blocked
+  // exit lands on the pass after it. The recovery is no new finding, so it leaves
+  // the streak standing.
+  it('ends a stalled run one pass after stuck recovery when both count the same passes', () => {
+    const stalled = [pass(1), pass(2, 0), blockedRow(2), pass(3, 0)];
+    expect(decide(stalled, 3).decision.decision).toBe('STUCK_RECOVERY');
+
+    const recovered = [...stalled, { type: 'event', event: 'stuckRecovery' }, pass(4, 0)];
+    expect(decide(recovered, 4).decision).toMatchObject({ decision: 'STOP', stopReason: 'blockedStop' });
+  });
+
+  // Under expansive depth the stuck count follows the active node, while the
+  // blocked streak follows the run: blocks recorded while different nodes were
+  // worked still end it, and a new finding on a node other than the active one
+  // still resets it, though that node's pass never moves the active node's count.
+  it('keeps the streak per run while the stuck count stays per node under expansive depth', () => {
+    const expansive = {
+      config: { antiConvergence: { depthMode: 'expansive' } },
+      registry: {
+        frontier: {
+          activeNodeId: 'N-2',
+          nodes: [{ id: 'N-1', status: 'answered' }, { id: 'N-2', status: 'answered' }],
+        },
+      },
+    };
+    const acrossNodes = [
+      pass(1, 0.5, { nodeId: 'N-1' }),
+      pass(2, 0.5, { nodeId: 'N-1' }),
+      blockedRow(2),
+      pass(3, 0.5, { nodeId: 'N-2' }),
+    ];
+    expect(decide(acrossNodes, 3, expansive).decision).toMatchObject({ decision: 'STOP', stopReason: 'blockedStop' });
+
+    const siblingFound = [
+      pass(1, 0.5, { nodeId: 'N-1' }),
+      pass(2, 0, { nodeId: 'N-2' }),
+      blockedRow(2),
+      pass(3, 0.5, { nodeId: 'N-1', newP2: 1 }),
+    ];
+    const reset = decide(siblingFound, 3, expansive);
+    expect(reset.input.stuckCount).toBe(1);
+    expect(reset.input.blockedStreak).toBe(0);
+    expect(reset.decision.decision).toBe('BLOCKED');
+  });
+});
+
+describe('research blocked-stop streak and progress', () => {
+  function researchPass(iteration: number, newInfoRatio: number) {
+    return { type: 'iteration', iteration, run: iteration, status: 'complete', newInfoRatio };
+  }
+  function guardBlock(run: number) {
+    return { type: 'event', event: 'blocked_stop', run, blockedBy: ['sourceDiversity'] };
+  }
+
+  it('restarts the streak when a research pass between two blocks still adds new information', () => {
+    const rows = [researchPass(1, 0.4), guardBlock(1), researchPass(2, 0.4), guardBlock(2)];
+    expect(deriveLoopCounters(rows, { loopType: 'research' })).toMatchObject({ blockedStreak: 1 });
+  });
+
+  it('keeps counting when the research pass between two blocks adds nothing new', () => {
+    const rows = [researchPass(1, 0.4), guardBlock(1), researchPass(2, 0.01), guardBlock(2)];
+    expect(deriveLoopCounters(rows, { loopType: 'research' })).toMatchObject({ blockedStreak: 2 });
   });
 });

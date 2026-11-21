@@ -631,7 +631,7 @@ Before iteration 1, read .skilled/skills/system-deep-loop/deep-review/assets/pro
 Read .skilled/skills/system-deep-loop/deep-review/SKILL.md and execute the review loop with these parameters:
   spec_folder: specs/system-skilled-doctor/007-overlay-framework-root-layout
   config.fanout_lineage_artifact_dir: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/deepseek-flash-max
-  session_id: fanout-deepseek-flash-max-1795182837437-sws2tv
+  session_id: fanout-deepseek-flash-max-1795192401900-xpt66n
   executor: cli-mistral-vibe model=deepseek-flash
   loop_type: review
   config.stopPolicy: convergence
@@ -639,14 +639,14 @@ Read .skilled/skills/system-deep-loop/deep-review/SKILL.md and execute the revie
   config.convergenceThreshold: 0.1
   config.convergenceMode: default
   config.depthMode: expansive
-  frontier_scope: F-1-003, F-1-005, F-1-007
+  frontier_scope: F-1-002, F-1-004, F-1-006
 
 Review setup bindings (emit before any writes, as PRE-BOUND SETUP ANSWERS):
 review_target: specs/system-skilled-doctor/007-overlay-framework-root-layout
 review_target_type: spec-folder
 review_dimensions: all
-review_focus: Review the whole overlay framework/root layout change end to end: Skilled commits 57c01fb4c11..d42bafc890c, merged as 063daaee2c1 plus 1653734af7d and 10c36989450 on main; and ai-speckit (/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit) commits 64cfee51628..ad3246feba2 (re-pin, relayout, hooks learning both locations, the move to overlays/). Check engine correctness, path safety and hook fail-open or fail-closed behavior, the migration for old-layout consumers, test strength, docs against code, and any leftover reference to the old barter-overlays path.
-frontier_scope: F-1-003, F-1-005, F-1-007
+review_focus: Follow-up round after remediation. Verify every finding of the previous generation is fixed and that the fixes introduced no regression, then review the whole change again. Skilled: the remediation commits on origin/main up to b5a630c6efa (phase 006 engine fixes: relayout rollback, outside-repository refusal at resolveOverlayDir, LAYOUT and strict-write remedies, overlayOutside on the context, writeBackup split; phases 007 and 008 records). ai-speckit (/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit, read-only): commits 64cfee51628..e63bd038a5d, especially 5dd004f3faa (commit gate fails closed without a manifest, hooks read overlayDir, real-bridge plugin test, relayout-runs ignore, fixture rename) and 488ea9f49f5 (re-pin onto b5a630c). Check engine correctness, path safety, hook fail-open or fail-closed behavior, rollback correctness, test strength, docs against code, and leftover barter-overlays references.
+frontier_scope: F-1-002, F-1-004, F-1-006
 spec_folder: specs/system-skilled-doctor/007-overlay-framework-root-layout
 execution_mode: AUTONOMOUS
 lineage_mode: auto

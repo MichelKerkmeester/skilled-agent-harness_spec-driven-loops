@@ -1,0 +1,14 @@
+Added the requested `confidenceFloored` field to [advisor-recommend.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts). The acceptance command printed `1` and exited 0. `git diff --check` also exited 0.
+
+```ts
+    // Hook briefs re-derive ambiguity from the public list, so a skill the typed
+    // command already ranked below its seed has to say so here.
+    ...(heldBelow ? { heldBelow } : {}),
+    // A hook holds back a floored route against the session's earlier one, so
+    // the floor has to survive into the public list.
+    ...(recommendation.confidenceFloored === true ? { confidenceFloored: true as const } : {}),
+```
+
+The old text matched exactly once. Nothing in the requested text failed to match the file. I changed only the requested handler. Tests, typecheck and build were not run here, as directed for this code leaf; the conductor runs them.
+
+Final status also showed changes in two test files and four spec files. I left them untouched. The branch is `worktrees/474-advisor-pasted-context-and-crash-fallback`; no commit was made. The conductor’s remaining action is to run the tests.

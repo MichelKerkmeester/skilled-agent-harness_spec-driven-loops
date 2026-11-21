@@ -1,20 +1,22 @@
-# Iteration 5 - F-1-005 security: reducer, gateway-facing state, upsert and dispatch trust boundaries
+# Review Iteration 005
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-005, dimension security. Node scope: `reduce-state.cjs` (review and research), `upsert.cjs`, `convergence.cjs`, `verify-iteration.cjs`, `dispatch-iteration.cjs` and the five `runtime/lib` ledger, projection and reducer folders.
-- Operator review focus covered in this iteration: overengineering (the two reducers' path/state helpers compared), operator UX (reducer warnings and refusal text for corrupt state), cross-CLI/OS parity (POSIX-only path classification in the new source-quality classifier, and the temp-dir fallback in dispatch).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 5 of 24
+- Focus: **Frontier node F-1-004: security**
+- Dimension: security
+- Frontier node: F-1-004 (depth 1 of 3), scope `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts`, `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs`, `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts`
+- Convergence before dispatch: `CONTINUE` / `noStopCandidate`, stuck 0, consecutive failures 0.
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, the three node files, `runtime/feature-catalog/script-entry-points/append-mode-event-script.md`.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` -- state/delta readers, source-quality classifier, finding-id folding, orphan-edge skip, namespace writes.
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` -- delta loader, frontier store reader, registry/dashboard/strategy writers, lineage and extension state.
-- `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` -- question merge, frontier store reader, path handling.
-- `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` -- stop facts read from the registry, graph and state rows.
-- `.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` -- route-proof sources and delta fallback.
-- `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs` -- prompt-file reads, temp-dir creation, flag validation and env pass-through.
-- Traceability sources: `007-source-diversity-quality-class` REQ-001..REQ-005, `001-completed-run-extension` REQ-002, `006-state-log-leaf-fields` REQ-001..REQ-004.
+- `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:240-330,429-495,532-540` (authority admission, ledger construction, cutover binding, canonical-envelope passthrough, review meta)
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts:540-610,640-700` (pre-append checks, authorization request, epoch source, projection refresh)
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts:370-440` (`findIdempotentReplay`, `eventContentDigest`)
+- `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:280-310` (projection row construction)
 
 ## Findings - New
 
@@ -28,52 +30,53 @@ None.
 
 ### P2 Findings
 
-1. **Source-quality classification assumes POSIX separators, so Windows-separated paths lose their spec and test classes** -- .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:330 -- `classifySourceLocation` strips a leading `./` and splits the path on `/` only, then tests `segments[0] === 'specs'` and `segments.some(segment => TEST_DIR_NAMES.has(segment))`. A path written with backslashes, as a Windows leaf would cite it (`specs\\foo\\spec.md` or `src\\tests\\fixture.ts`), becomes a single segment; `specs\\...` then falls through to `SKILL_DOC` because of `.md`, and a test-directory file falls through to `REPO_CODE`. The graph's source-diversity signal then reads a different class set for the same repository on Windows than on macOS or Linux, and the REQ-002 class table is only pinned for POSIX paths.
-Finding class: class-of-bug
-Scope proof: the only separator handling in the function is `split('/')` (`:330`); `path.extname` still finds the extension because it accepts both separators, so the function returns a class rather than failing, and no test in the REQ-002 case uses a backslash path.
-Affected surface hints: ["upsert.cjs classifySourceLocation", "coverage-graph-signals sourceDiversity", "007 REQ-002 class table", "Windows leaf citation form"]
-Case: a research leaf on Windows cites `specs\\system-deep-loop\\...\\spec.md` and `src\\tests\\fixture.ts`; the upsert stores `skill-doc` and `repo-code` where a macOS run of the same files stores `repo-spec` and `repo-test`, so a question that cites both a spec and a test can score 2.0 on one host and 1.0 on another.
+None. This pass produced no new finding.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | `007` REQ-001..REQ-005, `001` REQ-002 and `006` REQ-001..REQ-004 match the code on POSIX paths and on the extension ledger shape. The iteration 3 REQ-007 admission gap remains the only partial; this iteration adds the Windows path-shape gap above as an advisory. |
-| `checklist_evidence` | partial | `007` REQ-002's class table is met for the POSIX fixtures it names; AC-008 remains the outstanding partial. |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | pass | `.skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/append-mode-event-script.md:29-33` | The catalog's identity and timing description matches the CLI's behavior for both the model-row and canonical-envelope paths, including the documented caller-identity exception for a canonical envelope. |
+| `checklist_evidence` | notApplicable | - | No spec checklist for a commit-range target. |
+| `skill_agent` | notApplicable | - | No agent definition in the range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in the range. |
 
 ## Integration Evidence
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs:383-410` reads the state log and delta only when the review pipeline passes `--state-log`/`--delta-dir`, and rejects those flags for research; the namespace it writes is `{ specFolder, loopType, sessionId }`.
-- `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2840-2860` loads every delta file under the packet's `deltas/` directory and hands the flattened rows to one registry build; a malformed delta can only affect derived output inside the packet.
-- `.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:552-570` prefers the projected route proof and falls back to the delta only when the state row fails it, with the fallback named on stderr.
-- `.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:273-300` reads the prompt file the workflow staged and never interpolates argv values into a shell; the executor command is built from an argv array.
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts:607` builds the authorization request with `authorityEpoch: admission.epoch`, the epoch the gateway admitted, not the caller's `identity.authorityEpoch`. A forged epoch in a canonical envelope is therefore recorded as data and never used to authorize the append.
+- `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts:669-672` resolves the projection contract from `options.runDirectory`, so the projection writes inside the run the caller named rather than a path derived from the event payload.
+- `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:270-290` constructs the ledger and authorization gateway with `rootDirectory: runDirectory`, so every ledger, audit and fence file lands under the run directory the CLI was given.
 
 ## Edge Cases
 
-- `dispatch-iteration.cjs:835` creates its review baseline directory under `process.env.TMPDIR || '/tmp'` rather than `os.tmpdir()`; the line predates this range, and on a host without `/tmp` it would fail rather than escape the packet, so it is recorded as a portability observation, not a finding.
-- The reducer writes registry, dashboard and strategy through `fs.writeFileSync` without an lstat symlink guard; a leaf-writable lineage directory could hold a symlink at one of those names. The write helpers predate the range, and the orchestrator's containment snapshot covers outside-lineage effects, so this is recorded as a residual hardening item rather than a range finding.
-- A corrupt lineage state log aborts the whole merge rather than degrading that lineage; the merge's own per-lineage reconstruction path documents why that is undesirable, but the throwing readers predate the range.
+- **`--run-directory` is caller-controlled.** The gateway does not sandbox the caller; it orders and authorizes writes inside the directory the caller names. The agent invoking it already holds filesystem write authority, so the gateway is not the containment boundary — the fan-out write-containment guard is. Recorded as a boundary, not a finding.
+- **Cutover binding falls back to `process.cwd()`.** When the run directory cannot resolve a binding, the CLI retries from the working directory rather than fabricating an identity. The fallback is deliberate and fails closed if both attempts fail; it does not let an append proceed unauthorized.
+- **Canonical envelopes keep caller identity.** The catalog documents this, and the authorization path ignores the caller's epoch, so the exception is provenance-only.
+- **`eventContentDigest` transforms both sides identically.** A caller cannot make two different payloads compare equal by injecting a head value, because the same nulling applies to the existing and incoming payloads.
 
 ## Confirmed-Clean Surfaces
 
-- The upsert never trusts a leaf-supplied `quality_class` for research SOURCE nodes; the derived class overwrites it, and the closed vocabulary is imported from the graph query module.
-- Finding evidence is derived only from a `file:line` ref, and an edge whose endpoint neither the batch nor the stored graph declares is skipped with a stderr notice instead of failing the batch.
-- The review and research reducers read all state under the packet's own artifact directory; no flag can redirect the registry or dashboard path.
-- `convergence.cjs` reads stop facts from the registry and state rows only; no new external input reaches the stop decision.
-- No range-introduced script in this node invokes a shell or a GNU-only tool; the new code uses Node `fs`/`path` and JSON parsing.
+- **Authorization epoch is server-side.** The admission epoch, not the envelope's, authorizes the append.
+- **Projection path is run-scoped.** The contract is resolved from the run directory, and the projection writes the state log there.
+- **Idempotency conflict is refused before append.** The conflict return precedes the authorize/append loop.
+- **Ledger, audit and fence files share one root.** All three are constructed from `runDirectory`, so a run cannot scatter its ledger across directories.
 
 ## Ruled Out
 
-- A symlink-following write through the reducer outputs as a range finding: the writers predate the range and the effect stays inside or is caught by containment.
-- A corrupt-lineage merge abort as a range finding: the readers predate the range and fail closed.
-- The `/tmp` fallback as a range finding: the line predates the range; recorded as a portability observation.
-- Treating leaf-authored finding paths as an injection boundary: they are already rendered as untrusted prose in every review artifact, and no new evaluator consumes them.
+- **A privilege escalation through a forged `identity.authorityEpoch`.** Ruled out: the authorization request uses `admission.epoch`, and the caller's value is never read for authorization.
+- **A path-traversal write through the projection.** Ruled out: the projection contract and the state-log path are both resolved from the run directory, and no event field contributes a path segment.
+- **A cross-run append through `--run-directory`.** Ruled out as a gateway finding: the caller already holds filesystem write authority, so naming another directory is not an escalation the gateway can prevent; containment is the fan-out guard's job.
+- **A digest-collision replay bypass.** Ruled out: the digest is computed over the payload with the same head-nulling on both sides, and a different payload produces a different digest.
 
 ## Next Focus
 
-- Dimension: security on F-1-007 (pivot and coverage-graph trust boundaries).
-- Reason: F-1-005 security is clear apart from the Windows advisory; F-1-007 is the last node without security coverage and its pivot state, paths and graph signals are the remaining untrusted-input surface.
-- Required evidence: `divergent-pivot.ts` persisted-config parsing and path containment, `divergent-pivot.cjs` argv parsing, `frontier-admit.cjs graph` output and `coverage-graph` metadata filtering.
-- Rotation status: correctness covered on all nodes; security covered on F-1-003 and F-1-005.
+- Dimension: security
+- Frontier node: F-1-006 (active, correctness covered; the reducer's breadth-first rule selects the shallowest node with the fewest visits)
+- Focus area: docs and contracts as a security surface: whether any shipped help, reference or playbook tells an operator a confinement control exists when it does not, or omits one that does, beyond the pi line already reported as R4-P2-001.
+- Reason: F-1-004 security is clean; the docs node has had only a correctness pass and carries the operator-facing security claims.
+- Rotation status: F-1-004 correctness and security covered; F-1-006 security next.
+- Blocked/productive carry-forward: productive (the epoch-source check is the decisive evidence); no blocked approaches.
+- Required evidence: the sandbox and containment paragraphs in both presentations, `loop-protocol.md` §Executor Resolution, and the manual-testing playbooks.
+- Recovery note: none.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

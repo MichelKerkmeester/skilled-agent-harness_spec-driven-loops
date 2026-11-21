@@ -1,65 +1,81 @@
-# Iteration 003 - Frontier node F-1-006: correctness
+# Iteration 003 - Frontier node F-1-005: correctness
 
 ## Dispatcher
-- Lineage opus-medium, iteration 3 (2 prior iteration records). steer.md absent. Node F-1-006 marked active; dimension correctness.
-- Review focus addressed: the Barter side of the change in the nested repo barter/ai-speckit, commits 64cfee51628..ad3246feba2: re-pin (c8cd005b173), relayout onto framework/ and root/ (51e218edf2e), hooks learning the beside-tree location (a954fc956ce), the move to overlays/ (2a8f454c8d1), and leftover references to the old barter-overlays path.
+
+- Lineage: opus-medium, session fanout-opus-medium-1795192401900-xpt66n
+- Node: F-1-005 (Barter hygiene, read-only nested repo), dimension correctness
+- Review focus addressed: verified the ai-speckit fix commit 5dd004f3faa (commit gate fails closed without a manifest, hooks read overlayDir, relayout-runs ignore, fixture rename) and swept both repositories for leftover barter-overlays references outside spec history and changelogs.
+- Sources: steer.md absent; strategy; frontier block F-1-005; `git log 64cfee51628..e63bd038a5d` in barter/ai-speckit.
 
 ## Files Reviewed
-- barter/ai-speckit/skilled/.skilled-overlays.json:1 (`{"overlayDir": "../overlays"}`)
-- barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:52-82,143-162
-- barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:10-47
-- barter/ai-speckit/skilled/.opencode/scripts/git-hooks/pre-commit:83-112
-- barter/ai-speckit/skilled/.claude/hooks/barter-git-write-gate.mjs:182-183
-- barter/ai-speckit/.gitignore:65-72
-- barter/ai-speckit/init-repository.sh, sync-skilled-specs.mjs, tests/init-repository.test.sh, tests/node-version-policy.test.sh (diff of 2a8f454c8d1)
-- barter/ai-speckit/overlays/tests/compiled-routing-byte-parity.test.cjs:60-80
-- rg "barter-overlays" across barter/ai-speckit (non-spec, non-index hits)
 
-## Findings - New
+- `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:83-170` (overlay lookup, no-manifest refusal, engine status and pre-commit calls); deployed copy `barter/ai-speckit/skilled/.opencode/scripts/git-hooks/pre-commit` is byte-identical (diff exit 0)
+- `barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:53-100` (overlaysRootFor, matchLayout, findBarterOverlays)
+- `barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:177-200` (overlaysRootFor, aiSpeckitRoot)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:72-73` and resolveOverlayDir (engine setting reader)
+- `barter/ai-speckit/.gitignore:68-69`, `barter/ai-speckit/overlays/README.md:8, 44-48, 234, 458-459`, `barter/ai-speckit/overlays/framework/repo-rules/barter-overlay-first.md:44-63`
+- `barter/ai-speckit/overlays/tests/compiled-routing-byte-parity.test.cjs` (fixture diff in 5dd004f3faa)
+- `git grep barter-overlays` in both repositories, excluding specs/ and changelogs
+
+## Findings by Severity
 
 ### P0 Findings
+
 None.
 
 ### P1 Findings
+
 None.
 
 ### P2 Findings
-1. **.gitignore ignores overlays/repin-runs/ but not overlays/relayout-runs/** -- barter/ai-speckit/.gitignore:68 -- The documented migration step after a re-pin is `apply --relayout`, and the engine writes its backup to `<overlay folder>/relayout-runs/<stamp>/` (Skilled overlay-engine.cjs:6370). With the overlay folder now at ai-speckit/overlays, that backup lands in the ai-speckit worktree as untracked files beside the sources, and nothing ignores it, while the parallel repin-runs/ backup is ignored. The gap predates the move (the old rule covered only skilled/barter-overlays/repin-runs/) but the change makes relayout the standard upgrade step.
-   Finding class: repository hygiene
-   Scope proof: .gitignore:65-72 lists only /overlays/repin-runs/ and the two framework build-output globs; no tracked or ignored relayout-runs path exists (git ls-files overlays shows none).
-   Affected surface hints: barter/ai-speckit/.gitignore
-   Case: an operator runs `/doctor:overlay apply --relayout` after the next re-pin and `git add -A`, which commits the backup copies under overlays/relayout-runs/<stamp>/.
-2. **A test fixture still names the overlay folder barter-overlays** -- barter/ai-speckit/overlays/tests/compiled-routing-byte-parity.test.cjs:64 -- The workspace fixture builds `path.join(root, 'barter-overlays')`. The check under test takes the folder as an argument, so the test still passes, but this is the one live, non-spec, non-index reference to the old folder name left in the repository after 2a8f454c8d1, which says every script and test moved to overlays/.
-   Finding class: leftover reference
-   Scope proof: rg "barter-overlays" outside specs/ and .index/ returns this line plus the spec-track name `specs/skilled-barter-overlays/`, which is a different identifier (the agent's spec track).
-   Affected surface hints: overlays/tests/compiled-routing-byte-parity.test.cjs
-   Case: a later grep-based audit for the old folder name flags this fixture, or a maintainer copies the fixture shape into a test that does depend on the folder name.
+
+1. **A Skilled engine test still names its overlay folder barter-overlays** -- .skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:79 -- The setting test builds its custom overlay folder as `barter-overlays` and asserts on it at `.skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:91, 96, 99`. It is the last live reference to the retired Barter folder name in the framework repository outside spec history, and the vendored copy carries it into ai-speckit at `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:79`. The test only needs a non-default name, so the name is a leftover, not a requirement.
+   - Finding class: naming-leftover
+   - Scope proof: `git grep barter-overlays` outside specs/, barter/ and changelogs returns only these four lines.
+   - Affected surface hints: overlay-engine-fixes.test.cjs setting test; the vendored copy updates on the next re-pin.
+   - Case: an operator greps for barter-overlays to confirm the rename landed and still finds a hit in the engine tests of both repositories.
+
+2. **overlays/README.md does not document that the commit hook now refuses a vendored commit when no manifest is found** -- barter/ai-speckit/overlays/README.md:47 -- The README's commit-hook paragraph says only that the hook runs status and then pre-commit, and the overlay-first rule (`barter/ai-speckit/overlays/framework/repo-rules/barter-overlay-first.md:63`) describes only the engine's pre-commit check. Since 5dd004f3faa the hook also blocks with exit 1 when vendored paths are staged and the manifest the setting names is missing, and prints a visible skip line when none are (`barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:120-146`). Neither page names that refusal, the overlayDir lookup it depends on, or its bypass.
+   - Finding class: doc-gap
+   - Scope proof: grep of README.md for "manifest was found" or "skipped" in the hook paragraph returns nothing; lines 44-48 are the whole paragraph.
+   - Affected surface hints: overlays/README.md commit hook paragraph; barter-overlay-first.md commit gate paragraph.
+   - Case: overlayDir in skilled/.skilled-overlays.json is mistyped; the commit is refused with "no overlay manifest was found" and the README gives the operator no account of that refusal.
+
+## Prior-Finding Verification
+
+- R2-P1-001 (commit gate silently skips every check when the folder is not found): FIXED. `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:120-146` blocks when a vendored path is staged and prints a skip line otherwise; names are read NUL-separated (`barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:124, 132`), and the engine calls exit 1 on any non-zero engine exit (`barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:156-168`).
+- R14-P2-001 (hooks hard-code the overlays folder): FIXED. The guard core (`barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:60`), the git-write gate (`barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:177`) and the commit hook (`barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:93-107`) read overlayDir from .skilled-overlays.json.
+- R3-P2-001 (relayout-runs not ignored): FIXED at `barter/ai-speckit/.gitignore:69`, documented at `barter/ai-speckit/overlays/README.md:459`.
+- R3-P2-002 (barter-overlays fixture): FIXED in compiled-routing-byte-parity.test.cjs (now `overlays`).
 
 ## Traceability Checks
-- spec_code (pass): the move commit's stated changes (setting file ../overlays, init-repository.sh OVERLAYS_DIR, sync-skilled-specs.mjs MANIFEST, both shell tests, hooks recognising only the beside-tree folder) are each present in the diff.
-- checklist_evidence (notApplicable this iteration; the ai-speckit close-out record is reviewed under F-1-008).
+
+- spec_code: pass for the ai-speckit commit message claims against the code (fail closed, overlayDir read, ignore, rename).
 
 ## Integration Evidence
-- Barter edit guard core (barter-overlay-guard-core.cjs:69-82) resolves both the applied copy (skilled/.skilled/hooks/...) and the source copy (overlays/framework/hooks/...) four levels up to the right anchor, and refuses to locate a layout unless the tree holds the engine and the overlays folder holds the manifest.
-- OpenCode adapter (barter-overlay-guard.js:38-45) catches every core throw and allows the edit with a stderr line: fail-open, as its header says.
-- Barter pre-commit (pre-commit:83-91) re-anchors TREE_ROOT to skilled/ when the hook resolved to the repo root, and skips the overlay checks when no beside-tree manifest exists.
-- barter-git-write-gate.mjs:182-183 accepts only the beside-tree manifest.
+
+- Hook lookup and engine reader: the hooks fall back to `../overlays` (`barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:53`) when the setting is absent or unparsable, while the engine falls back to `skilled-overlays` (`overlay-engine.cjs:73`) when absent and errors when unparsable. For the commit gate the mismatch still fails closed, because the engine call that follows exits non-zero and the hook blocks. Recorded as an edge case, not a finding, because Barter always ships the setting.
 
 ## Edge Cases
-- Pre-commit skips the overlay checks silently when overlays/overlay-manifest.json is absent (pre-commit:88-95). That is the same fail-open shape as before the move; recorded, not raised.
-- Tracked symlinks under overlays/framework/skills/sk-code/*/references/workflow-*.md dangle inside the overlay folder (they target ../../shared/references/...), and resolve only once applied into the tree. They dangled the same way at the old in-tree place (rename R100 in 51e218edf2e and 2a8f454c8d1), so the move did not break them.
+
+- Guard core source copy (`barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:90`) assumes the tree sits beside the overlay folder as `skilled/`; a non-sibling overlayDir only works through the applied copy. The comment documents this.
+- git-write gate returns `path.dirname(tree)` as the ai-speckit root regardless of where overlayDir points, which is still the repository root for any legal setting.
 
 ## Confirmed-Clean Surfaces
-- init-repository.sh, sync-skilled-specs.mjs and both shell tests point at overlays/.
-- Guard locate logic covers both realpaths of the core.
+
+- No-manifest refusal, NUL-separated staged-name loop, engine exit handling, deployed hook parity, .gitignore entries.
 
 ## Ruled Out
-- `specs/skilled-barter-overlays/` hits: a spec track name, not the folder.
-- .index/*.json hits: generated retrieval index content from spec paths.
+
+- Changelog and spec hits for barter-overlays (`overlays/framework/changelog/skilled-coder/v4.1.0.0.md`, `specs/skilled-barter-overlays/`): history, out of scope by the node question.
+- `skilled-barter-overlays` spec-track name in sk-git ROUTER.md and SKILL.md: a track name, not the folder.
 
 ## Next Focus
+
 - Dimension: correctness
-- Focus area: F-1-008 packet traceability
-- Reason: frontier rotation
+- Focus area: frontier node F-1-007 (remediation records traceable to code and test runs)
+- Reason: last unvisited frontier node
+- Rotation status: F-1-001, F-1-003, F-1-005 correctness done
+- Required evidence: phases 006-008 spec, tasks, acceptance criteria, implementation summaries; prior R4-P2-001 and R6-P2-001
 
 Review verdict: PASS

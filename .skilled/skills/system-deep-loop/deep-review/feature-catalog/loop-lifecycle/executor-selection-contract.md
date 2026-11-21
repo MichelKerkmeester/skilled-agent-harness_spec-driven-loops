@@ -7,7 +7,7 @@ trigger_phrases:
   - "select review executor"
   - "per-kind flag compatibility"
   - "native cli-opencode dispatch"
-version: 1.11.7.0
+version: 1.11.12.0
 ---
 
 # Executor Selection Contract
@@ -29,9 +29,9 @@ Before each dispatch, the workflow resolves the executor via `parseExecutorConfi
 | Kind | Dispatch |
 |---|---|
 | `native` | `@deep-review` agent with model Opus |
-| `cli-opencode` | the rendered prompt is passed as the `opencode run` message argument with stdin closed, using `run --standalone -m <model>#<effort> --format json`. `--auto` (auto-approve permissions) is added only for a `danger-full-access` sandbox. The executor exposes no sandbox flag, and `finalizeLineageCommand` refuses any other sandbox before dispatch, so a read-only request is refused rather than run unconfined. For a full-access lane, the only containment is the prompt-level "ALLOWED WRITE PATHS"/"BANNED OPERATIONS" contract (model-obeyed, not OS-enforced) plus post-dispatch validation. Review targets must be treated as potentially adversarial content. |
-| `cli-claude-code` | `claude -p` with a permission mode resolved from `--sandbox-mode`, as on research: `acceptEdits` when it is unset or `workspace-write`, `plan` when it is `read-only`, and `bypassPermissions` when it is `danger-full-access`. The default cannot run Bash in `-p` mode, so a run that must record state through the append gateway needs `--sandbox-mode=danger-full-access`. |
-| `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` | the kind's own CLI, started by `dispatch-iteration.cjs` with the rendered prompt. The requested `--sandbox-mode` is mapped to the kind's own read-only or write surface: unset resolves to `workspace-write`, and a requested `read-only` is never widened, so an iteration that must write fails at the artifact gate instead of gaining write access. The deepseek harness narrows `danger-full-access` to `workspace-write` |
+| `cli-opencode` | the rendered prompt is passed as the `opencode run` message argument with stdin closed, using `run --standalone -m <model>#<effort> --format json`. `--auto` (auto-approve permissions) is always passed. The executor exposes no sandbox flag. An unset or `workspace-write` sandbox adds an inline `OPENCODE_CONFIG_CONTENT` that denies `external_directory`, which stops OpenCode's file tools at the working directory but does not confine Bash, so Bash can still write anywhere. `danger-full-access` adds no deny, and `finalizeLineageCommand` refuses `read-only` before dispatch rather than run it unconfined. Beyond that file-tool deny, the only containment is the prompt-level "ALLOWED WRITE PATHS"/"BANNED OPERATIONS" contract (model-obeyed, not OS-enforced) plus post-dispatch validation. Review targets must be treated as potentially adversarial content. |
+| `cli-claude-code` | `claude -p` with a permission mode resolved from `--sandbox-mode`, as on research: `acceptEdits` when it is unset or `workspace-write`, `plan` when it is `read-only`, and `bypassPermissions` when it is `danger-full-access`. The default cannot run Bash in `-p` mode, so a run that must record state through the append gateway needs `--sandbox-mode=danger-full-access`. It is built by the shared fan-out builder, logs `--output-format stream-json --verbose` and writes its session cost to `iterations/iteration-NNN.cost.json`. The stream lands in `iterations/iteration-NNN.out`, masked like a fan-out lineage log; an unset model resolves to `CLAUDE_DEFAULT_MODEL`. |
+| `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness` | the kind's own CLI, started by `dispatch-iteration.cjs` with the rendered prompt. The requested `--sandbox-mode` is mapped to the kind's own read-only or write surface: unset resolves to `workspace-write`, and a requested `read-only` is never widened, so an iteration that must write fails at the artifact gate instead of gaining write access. The deepseek harness narrows `danger-full-access` to `workspace-write`, and a fan-out `--preview` reports it in `effective_config` as `sandboxMode` `workspace-write`, `sandboxNarrowedFrom` `danger-full-access` and `sandboxEnforcement` `preventive`. Devin and pi run `workspace-write` with the unconfined full-access command, so it is reported as `sandboxMode` `danger-full-access`, `sandboxWidenedFrom` `workspace-write` and `sandboxEnforcement` `none`. The iteration's receipt and state rows record the same fields in their `executor` record. An unset codex model resolves to the builder's `CODEX_DEFAULT_MODEL`, and a missing binary throws an `INPUT_VALIDATION` error before any receipt is written |
 | `cli-mistral-vibe` | none in a single-executor run, which refuses it. It runs only as a fan-out lineage |
 
 ### Core Behavior
@@ -40,7 +40,7 @@ All branches share three steps: pre-dispatch prompt rendering (`renderPromptPack
 
 ### Configuration
 
-Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_FLAG_SUPPORT`. Setting a flag the chosen kind does not support throws `ExecutorConfigError` before any dispatch. Cross-CLI delegation (a running executor invoking other CLIs through its shell) is documented design intent, runtime recursion detection is out of scope.
+Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_FLAG_SUPPORT`. Setting a flag the chosen kind does not support throws `ExecutorConfigError` before any dispatch. Cross-CLI delegation (a running executor invoking other CLIs through its shell) is documented design intent. Before spawn, every CLI dispatch through `dispatch-iteration.cjs` passes the five-layer recursion guard in `executor-audit.ts` (lineage, stack, ancestry, env, lockfile), which refuses with exit 3 and a `recursion-guard-<layer>` reason. `SPECKIT_ALLOW_HOST_SESSION_EXECUTOR=1` lets an operator dispatch from their own CLI session by skipping only the ancestry and env checks; the other three layers still refuse. A CLI an executor starts straight from its own shell, outside the dispatch runner, passes no guard.
 
 ---
 
@@ -51,6 +51,7 @@ Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_F
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Runtime | `parseExecutorConfig`, `EXECUTOR_KIND_FLAG_SUPPORT`, `ExecutorConfigError`. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Runtime | `validateExecutorDispatchAllowed`, the five-layer recursion guard and the host-session switch. |
 | `references/protocol/loop-protocol.md` | Protocol | Executor Resolution section: per-kind dispatch branches and shared steps. |
 | `SKILL.md` | Skill contract | Executor Selection Contract and Cross-CLI Delegation subsections. |
 

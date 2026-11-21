@@ -1,0 +1,6 @@
+smoke EXIT=0
+l1 EXIT=0
+l2 EXIT=0
+l3 EXIT=0
+l4 EXIT=0
+l5 EXIT=0

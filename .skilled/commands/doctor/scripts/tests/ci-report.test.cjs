@@ -142,6 +142,7 @@ test('an unknown argument exits 2 with the usage line', (t) => {
   const result = run(['--bogus']);
   assert.equal(result.code, 2);
   assert.match(result.err, /ERROR: unknown argument: --bogus/);
+  assert.match(result.err, /^Next: node \S*ci-report\.cjs --json$/m);
   assert.match(result.err, /Usage:/);
 });
 

@@ -22,7 +22,7 @@ import type {
 } from './legacy-projection-types.js';
 
 // ───────────────────────────────────────────────────────────────────
-// 1. PREMISE CHECK — only the findings registry is ledger-foldable
+// 1. PREMISE CHECK
 // ───────────────────────────────────────────────────────────────────
 
 // The review-projections census surface is mixed:
@@ -51,6 +51,7 @@ import type {
 // the negative-control run to prove the findings assertion can go red.
 const EMIT_FINDINGS = true;
 
+/** The records the deep-review findings registry is built from. */
 export interface DeepReviewProjectionsProjectionState extends LegacyProjectionJsonObject {
   readonly findings: readonly LegacyProjectionJsonObject[];
   readonly evidence: readonly JsonObject[];
@@ -58,6 +59,7 @@ export interface DeepReviewProjectionsProjectionState extends LegacyProjectionJs
   readonly lineage: readonly JsonObject[];
 }
 
+/** Overrides for the deep-review findings registry projection; omitted fields use the review ledger. */
 export interface CreateDeepReviewProjectionsProjectionContractOptions {
   readonly ledgerId?: string;
   readonly streamIds?: readonly string[];

@@ -1,0 +1,2 @@
+fixture EXIT=0
+test EXIT=0

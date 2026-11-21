@@ -26,6 +26,7 @@ Fail-closed write substrate for `system-deep-loop` runtime domains. A transition
 | `deterministic-reducer.ts` | `TypedReducerRegistry`, the exact event-type and reducer-version registry used to rebuild disposable projections |
 | `immutable-frame-store.ts` | `ImmutableFrameStore`, the exclusive owner-only filesystem store for immutable single-frame files |
 | `index.ts` | Public API surface |
+| `prepared-authorization-matcher.ts` | `matchesPreparedAuthorizationDecision`, true only when an allow decision is bound to the prepared request, the current authority state and both decision digests |
 | `transition-authorization-gateway.ts` | `TransitionAuthorizationGateway`, the default-deny boundary between validated envelope bytes and a domain append |
 | `transition-policy-registry.ts` | `TransitionPolicyRegistry`, the immutable exact-version registry for deterministic transition policies |
 
@@ -33,15 +34,15 @@ Fail-closed write substrate for `system-deep-loop` runtime domains. A transition
 
 ## 3. CONSUMERS
 
-Every ledger-backed `runtime/lib/` domain imports this module to append and replay its own events, including `blinded-adjudication`, `claim-continuity`, `contradiction-supersession`, `cycle-detection`, `dispatch-receipts`, `deep-loop/continuity-identity` and `locks-and-fencing/protected-resource-registry.ts`.
+Every ledger-backed runtime library domain imports this module to append and replay its own events, including `../blinded-adjudication/`, `../claim-continuity/`, `../contradiction-supersession/`, `../cycle-detection/`, `../dispatch-receipts/`, `../deep-loop/continuity-identity/` and `../locks-and-fencing/` (through `fenced-ledger-writer.ts` and `lock-lifecycle-evidence.ts`).
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts`
-- `.skilled/skills/system-deep-loop/runtime/tests/fixtures/authorized-ledger-fixtures.ts`
-- `.skilled/skills/system-deep-loop/runtime/tests/fixtures/authorized-ledger-worker.ts`
+- `../../tests/unit/authorized-ledger.vitest.ts`
+- `../../tests/fixtures/authorized-ledger-fixtures.ts`
+- `../../tests/fixtures/authorized-ledger-worker.ts`
 
 ---
 

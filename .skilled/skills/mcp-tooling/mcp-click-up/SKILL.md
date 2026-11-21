@@ -133,7 +133,8 @@ cupt done <task_id> --note "done"  # Mark complete with note
 ### Official ClickUp MCP (Secondary Path)
 
 This is ClickUp's official hosted MCP server at `https://mcp.clickup.com/mcp`.
-The registered `clickup_official` manual reaches it over stdio through `npx -y mcp-remote`. It authenticates with OAuth, so the first launch needs one approval in the browser. The manual reads no API key.
+The `clickup_official` entry in `.utcp_config.json` reaches it over stdio through `npx -y mcp-remote`. It authenticates with OAuth, so the first launch needs one approval in the browser. The manual reads no API key.
+The entry carries `"disabled": true`, so Code Mode does not register it at startup and no ClickUp sign-in tab opens on its own. Register it only when the task needs ClickUp's MCP tools. When `list_tools()` shows no `clickup_official.` tools, ask: "ClickUp needs a one-time approval. When you pick Ready, a ClickUp sign-in tab opens in your browser. Approve it within about a minute." Offer **Ready** and **Skip ClickUp MCP for now**. On Ready, call Code Mode's `register_manual` with the `clickup_official` entry from `.utcp_config.json`. The call waits for the approval and succeeds once it lists tools. On skip, say the ClickUp MCP step was skipped and that the cupt CLI path still works.
 The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The older API-key route no longer works.
 
 **When to prefer MCP:**
@@ -172,7 +173,7 @@ The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 20
 
 Reference: `references/mcp-tools.md` and `mcp-servers/clickup-mcp/README.md`
 
-**Invocation via Code Mode.** Call `mcp__code_mode__call_tool_chain` with one `code` string, not an array of `{tool, input}` records.
+**Invocation via Code Mode.** Register the manual first, as the registration step above describes: `call_tool_chain` finds no `clickup_official` tools until that step runs. Call `mcp__code_mode__call_tool_chain` with one `code` string, not an array of `{tool, input}` records.
 Every server tool name already starts with `clickup_`. Its callable name repeats that prefix: `clickup_official.clickup_official_clickup_<tool>`.
 Top-level `await` is rejected, and a returned value comes back as `{}`. Wrap calls in an async function and print with `console.log`:
 ```typescript
@@ -217,7 +218,8 @@ The document tool takes no content. Add text with `clickup_create_document_page`
 - cupt is not installed and `scripts/install.sh` fails → report Python version and pip issues
 - `cupt status` shows auth failure → direct to `cupt auth` or `cupt config --api-token`
 - `cupt list --team X` is extremely slow (>30s) → team filter is client-side on large workspaces; suggest combining with `--tag` to reduce result set
-- MCP connection fails → verify the `clickup_official` manual in `.utcp_config.json` launches `npx -y mcp-remote https://mcp.clickup.com/mcp` over stdio, and that the OAuth approval is still valid. A `not_found_or_authorized` error on every call means the approval has lapsed, so approve again. The same error on one page means that page is missing or restricted
+- `list_tools()` shows no `clickup_official.` tools → the manual is disabled at startup; run the registration step above
+- MCP connection fails after registration → verify the `clickup_official` manual in `.utcp_config.json` launches `npx -y mcp-remote https://mcp.clickup.com/mcp` over stdio, and that the OAuth approval is still valid. A `not_found_or_authorized` error on every call means the approval has lapsed, so approve again. The same error on one page means that page is missing or restricted
 - Task status after `cupt done` is unexpected → run `cupt statuses <id>` and report available statuses
 
 ---
@@ -237,7 +239,7 @@ The document tool takes no content. Add text with `clickup_create_document_page`
 
 **Gate 2 (Skill Routing):** This skill activates at ≥0.8 confidence for ClickUp task management requests. The skill advisor matches on: `clickup`, `cupt`, `task management`, `work queue`, `time tracking`, `mark done`.
 
-**Code Mode MCP:** Official ClickUp MCP tools are invoked via `mcp__code_mode__call_tool_chain`. Tool naming convention: `clickup_official.clickup_official_clickup_{tool}`, because every server tool name already starts with `clickup_`. See references/mcp-tools.md for the full tool catalog.
+**Code Mode MCP:** Register the `clickup_official` manual first, as the Official ClickUp MCP section describes; it is disabled at startup. Official ClickUp MCP tools are invoked via `mcp__code_mode__call_tool_chain`. Tool naming convention: `clickup_official.clickup_official_clickup_{tool}`, because every server tool name already starts with `clickup_`. See references/mcp-tools.md for the full tool catalog.
 
 **Memory:** Save ClickUp workflow context (current list, active tags, workspace ID) using `/speckit:save` when switching sessions.
 

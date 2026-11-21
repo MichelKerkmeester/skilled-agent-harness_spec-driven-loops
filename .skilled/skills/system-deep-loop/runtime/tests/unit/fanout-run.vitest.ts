@@ -1323,9 +1323,8 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     const cases = [
       { kind: 'cli-codex', label: 'codex', model: 'gpt-6-sol', sandbox: 'workspace-write' },
       { kind: 'cli-claude-code', label: 'claude', model: 'claude-fable-5', sandbox: 'workspace-write' },
-      // cli-opencode has no OS-level sandbox flag, so only danger-full-access (which
-      // makes no confinement claim) is a sandbox mode it can honor; workspace-write and
-      // read-only now fail closed instead of being silently downgraded.
+      // cli-opencode has no OS-level sandbox; this case pins the plain --auto mode, and
+      // read-only fails closed because its Bash tool can write anywhere.
       { kind: 'cli-opencode', label: 'opencode', model: 'opencode-go/glm-5.1', sandbox: 'danger-full-access' },
       { kind: 'cli-cursor', label: 'cursor', model: 'composer-2.5', sandbox: 'workspace-write' },
     ];
@@ -1438,7 +1437,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     const otherKind = buildLineageCommand(
       { kind: 'cli-opencode', model: 'gpt-6-sol', reasoningEffort: 'xhigh', liveTools: { webSearch: 'live' } },
       'secret raw prompt',
-      // cli-opencode can only enforce danger-full-access; read-only/workspace-write fail closed.
+      // cli-opencode refuses read-only, so the comparison uses a mode it accepts.
       'danger-full-access',
       'plan',
       { env: { ...process.env, PATH: pathValue }, executableVersion: 'codex 1.2.3' },
@@ -1674,7 +1673,8 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
       executable: 'devin',
       model: 'glm-5-2',
       reasoningEffort: null,
-      sandboxMode: 'workspace-write',
+      sandboxMode: 'danger-full-access',
+      sandboxWidenedFrom: 'workspace-write',
       webSearch: 'inherit',
     });
     expect(command.invocationFingerprint).toMatch(/^inv:[a-f0-9]{64}$/);
@@ -2864,7 +2864,7 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     );
   });
 
-  it('rejects an unapproved single-lineage research or review run before side effects', async () => {
+  it('refuses a one-lineage research or review matrix before side effects', async () => {
     for (const loopType of ['research', 'review'] as const) {
       const binDir = makeTempDir(`fanout-run-single-lineage-refused-${loopType}-bin-`);
       const hermetic = useHermeticEnv(`single-lineage-refused-${loopType}`);
@@ -2877,7 +2877,7 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
         concurrency: 1,
       });
 
-      // rawSpawnCjs skips the shared helper, which would add the opt-in.
+      // rawSpawnCjs skips the shared helper, which would add --only-lineage.
       const result = await rawSpawnCjs(fanoutRunScript, [
         '--spec-folder',
         specFolder,
@@ -2933,9 +2933,9 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     }
   });
 
-  it('runs a two-lineage research or review matrix without the single-lineage opt-in', async () => {
-    // Every other launch in this file opts in through the shared helper, so this case
-    // proves the default posture still accepts a real fan-out.
+  it('runs a two-lineage research or review matrix without --only-lineage', async () => {
+    // Every other launch in this file names its lineage through the shared helper, so this
+    // case proves a real fan-out still runs without --only-lineage.
     for (const loopType of ['research', 'review'] as const) {
       const binDir = makeTempDir(`fanout-run-two-lineage-default-${loopType}-bin-`);
       const hermetic = useHermeticEnv(`two-lineage-default-${loopType}`);
@@ -3824,15 +3824,22 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     expect((summary as { succeeded?: number }).succeeded).toBe(2);
   });
 
-  it('dispatches a cli-opencode lineage with no explicit sandboxMode without throwing, and records danger-full-access as effective', async () => {
+  it('resolves an unset cli-opencode sandboxMode to workspace-write and hands the child an external_directory deny', async () => {
     const binDir = makeTempDir('fanout-run-opencode-default-sandbox-bin-');
-    writeStubBinary(binDir, 'opencode');
+    // The stub records the argv and the inline OpenCode config it actually received, so the
+    // test proves the deny survives the dispatch env filter rather than only the builder.
+    writeFileSync(
+      join(binDir, 'opencode'),
+      '#!/bin/sh\n' + OPENCODE_VERSION_PROBE
+        + '\nprintf \'%s\' "$OPENCODE_CONFIG_CONTENT" > "$SPECKIT_OPENCODE_STATE_DIR/config-content"'
+        + '\nfor arg in "$@"; do printf \'%s\\n\' "$arg"; done > "$SPECKIT_OPENCODE_STATE_DIR/argv"\n'
+        + writeFanoutArtifactsShell() + '\nexit 0\n',
+      { mode: 0o755 },
+    );
 
     const baseDir = makeTempDir('fanout-run-opencode-default-sandbox-base-');
 
-    // No sandboxMode set at all: this is the ordinary caller shape for a cli-opencode
-    // lineage. It must dispatch successfully rather than tripping the unenforceable-
-    // sandbox rejection that only fires on an EXPLICIT read-only/workspace-write ask.
+    // No sandboxMode set at all: this is the ordinary caller shape for a cli-opencode lineage.
     const fanoutConfig = JSON.stringify({
       executors: [{ label: 'default-sandbox', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
@@ -3853,7 +3860,8 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
       ],
       {
         cwd: hermetic.tmpDir,
-        env: envWithBin(hermetic, binDir),
+        // An inline config inherited from the shell running the suite would be merged in.
+        env: envWithBin(hermetic, binDir, { OPENCODE_CONFIG_CONTENT: '' }),
         timeoutMs: 15_000,
       },
     );
@@ -3861,10 +3869,63 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     expect(result.exitCode).toBe(0);
     const invocationMetadata = JSON.parse(
       readFileSync(join(baseDir, 'lineages', 'default-sandbox', 'invocation-metadata.json'), 'utf8'),
-    ) as { effectiveConfig?: { sandboxMode?: string } };
-    // Effective sandbox must be the mode the executor can actually honor, not the
-    // generic workspace-write default it can never enforce.
-    expect(invocationMetadata.effectiveConfig?.sandboxMode).toBe('danger-full-access');
+    ) as { effectiveConfig?: { sandboxMode?: string; sandboxEnforcement?: string } };
+    // The injected deny is a compensating control, never an OS boundary: Bash stays unconfined.
+    expect(invocationMetadata.effectiveConfig).toMatchObject({
+      sandboxMode: 'workspace-write',
+      sandboxEnforcement: 'compensating',
+    });
+    const stateDir = join(baseDir, 'lineages', 'default-sandbox', '.executor-state');
+    expect(readFileSync(join(stateDir, 'argv'), 'utf8').split('\n')).toContain('--auto');
+    expect(JSON.parse(readFileSync(join(stateDir, 'config-content'), 'utf8'))).toEqual({
+      permission: { external_directory: 'deny' },
+    });
+  });
+
+  it('merges the cli-opencode workspace-write deny into an inherited OPENCODE_CONFIG_CONTENT and refuses one it cannot parse', () => {
+    const { buildLineageCommand } = requireCjs(fanoutRunScript) as {
+      buildLineageCommand: (...args: unknown[]) => {
+        args: string[];
+        env?: Record<string, string>;
+        effectiveConfig: Record<string, unknown>;
+      };
+    };
+    const binDir = makeTempDir('fanout-run-opencode-config-merge-');
+    writeStubBinary(binDir, 'opencode');
+    const build = (sandbox: string, extraEnv: NodeJS.ProcessEnv = {}) => buildLineageCommand(
+      { kind: 'cli-opencode', label: 'merge', model: 'opencode-go/glm-5.1' },
+      'merge prompt',
+      sandbox,
+      'acceptEdits',
+      {
+        env: { ...process.env, OPENCODE_CONFIG_CONTENT: undefined, ...extraEnv, PATH: `${binDir}:${process.env.PATH ?? ''}` },
+        executableVersion: 'opencode 2.3.2',
+      } as never,
+    );
+
+    const merged = build('workspace-write', {
+      OPENCODE_CONFIG_CONTENT: JSON.stringify({
+        model: 'kept/model',
+        permission: { bash: 'allow', external_directory: 'allow' },
+      }),
+    });
+    expect(merged.args).toContain('--auto');
+    expect(JSON.parse(merged.env.OPENCODE_CONFIG_CONTENT)).toEqual({
+      model: 'kept/model',
+      permission: { bash: 'allow', external_directory: 'deny' },
+    });
+
+    expect(() => build('workspace-write', { OPENCODE_CONFIG_CONTENT: '{not json' }))
+      .toThrow(/OPENCODE_CONFIG_CONTENT/);
+    expect(() => build('workspace-write', { OPENCODE_CONFIG_CONTENT: '{"permission":"allow"}' }))
+      .toThrow(/OPENCODE_CONFIG_CONTENT/);
+
+    const unconfined = build('danger-full-access');
+    expect(unconfined.args).toContain('--auto');
+    expect(unconfined.env).toBeUndefined();
+    expect(unconfined.effectiveConfig).toMatchObject({ sandboxMode: 'danger-full-access', sandboxEnforcement: 'none' });
+
+    expect(() => build('read-only')).toThrow(/cannot enforce sandbox mode 'read-only'/);
   });
 
   it('sets distinct SPECKIT_OPENCODE_STATE_DIR for each same-kind replica to prevent lockfile collisions', async () => {
@@ -5289,7 +5350,7 @@ describe('fanout-run.cjs — graceful self-stop', () => {
     expect(summary.stopped).toBe(true);
     expect(summary.stopped_signal).toBe('SIGTERM');
     expect(summary.status).toBe('partial');
-    expect(summary.results).toEqual([expect.objectContaining({ label: 'slow', status: 'running' })]);
+    expect(summary.results).toEqual([expect.objectContaining({ label: 'slow', status: 'stopped' })]);
     expect(summary.gauges).toMatchObject({ failed: 0 });
   });
 });
@@ -7262,6 +7323,63 @@ describe('fanout-run.cjs — per-lineage expansive budget', () => {
     expect(output).not.toContain('seed share');
     expect(existsSync(join(baseDir, 'lineages'))).toBe(false);
   });
+
+  // The root config's maxIterations is the largest lineage cap, so the root status,
+  // the synthesis and a later restart read the same budget table the lineages run.
+  // Nine open seeds over two lineages deal shares of five and four: 14 and 12.
+  function expansiveRootRun(testId: string) {
+    const binDir = makeTempDir(`fanout-run-${testId}-bin-`);
+    writeStubBinary(binDir, 'opencode');
+    const hermetic = useHermeticEnv(testId);
+    const specFolder = `specs/test-fanout-run-${testId}`;
+    const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+    writeFileSync(join(baseDir, 'frontier-nodes.jsonl'), Array.from({ length: 9 }, (_, index) => `${JSON.stringify({
+      nodeId: `F-1-00${index + 1}`, parentId: 'root', depth: 1, status: 'open', question: `Question ${index + 1}?`, scope: 'lib', reason: null, iteration: 0,
+    })}\n`).join(''), 'utf8');
+    const rootConfigPath = join(baseDir, 'deep-research-config.json');
+    writeFileSync(rootConfigPath, `${JSON.stringify({ topic: 'Topic', maxIterations: 10 }, null, 2)}\n`, 'utf8');
+    const run = (...extra: string[]) => spawnCjs(fanoutRunScript, [
+      '--spec-folder', specFolder,
+      '--loop-type', 'research',
+      '--fanout-config-json', JSON.stringify({
+        executors: [
+          { label: 'a', kind: 'cli-opencode', model: 'llmgateway/deepseek-v4.1-flash-1017' },
+          { label: 'b', kind: 'cli-opencode', model: 'llmgateway/deepseek-v4.1-flash-1017' },
+        ],
+        concurrency: 2,
+        maxRetries: 0,
+      }),
+      '--base-artifact-dir', baseDir,
+      '--research-topic', 'Topic',
+      '--depth-mode', 'expansive',
+      ...extra,
+    ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 60_000 });
+    return { run, rootConfigPath };
+  }
+
+  it('writes the largest lineage cap into the root config before any lineage spawns', async () => {
+    const { run, rootConfigPath } = expansiveRootRun('expansive-root-budget');
+    const result = await run();
+
+    const rootConfig = JSON.parse(readFileSync(rootConfigPath, 'utf8')) as Record<string, unknown>;
+    expect(rootConfig.maxIterations, result.stderr).toBe(14);
+    expect(rootConfig.topic).toBe('Topic');
+    expect(result.stderr).toContain('[fanout-run] budget table: a 14, b 12 iterations; root maxIterations 14, the largest lineage cap');
+  });
+
+  it('leaves the root config untouched under --preview and under an explicit --max-iterations', async () => {
+    const preview = expansiveRootRun('expansive-root-budget-preview');
+    const before = readFileSync(preview.rootConfigPath, 'utf8');
+    const previewResult = await preview.run('--preview');
+    expect(previewResult.exitCode, previewResult.stderr).toBe(0);
+    expect(readFileSync(preview.rootConfigPath, 'utf8')).toBe(before);
+
+    const flagged = expansiveRootRun('expansive-root-budget-flag');
+    const flaggedResult = await flagged.run('--max-iterations', '5');
+    const rootConfig = JSON.parse(readFileSync(flagged.rootConfigPath, 'utf8')) as Record<string, unknown>;
+    expect(rootConfig.maxIterations, flaggedResult.stderr).toBe(10);
+    expect(flaggedResult.stderr).not.toContain('budget table');
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -7361,6 +7479,23 @@ describe('fanout-run.cjs — a fatal provider refusal is announced and redacted'
     expect(existsSync(join(logsDir, 'fanout-lineage.1.err'))).toBe(false);
   });
 
+  // The stdout cap stops the lineage with the same signal a timeout sends, so the failure
+  // must name the cap, or the operator raises a timeout that was never the cause.
+  it('fails a lineage whose stdout passed the cap with that reason, not as a timeout', async () => {
+    const binDir = makeTempDir('fanout-run-overflow-bin-');
+    const baseDir = makeTempDir('fanout-run-overflow-base-');
+    writeFileSync(
+      join(binDir, 'opencode'),
+      ['#!/bin/sh', OPENCODE_VERSION_PROBE, 'yes aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa | head -c 22000000', 'sleep 30', 'exit 0', ''].join('\n'),
+      { mode: 0o755 },
+    );
+    const hermetic = useHermeticEnv('stdout-overflow');
+    const result = await runRefusal(hermetic, binDir, baseDir);
+
+    expect(result.stderr).toMatch(/lineage quota stdout passed the 20971520-byte cap/);
+    expect(result.stderr).not.toMatch(/lineage quota timed out/);
+  });
+
   // The artifact directory is staged for commit, so a failed attempt's kept log and the
   // log of a lineage that failed for good carry the same masking as the ledger rows.
   it('masks the account in the rotated log and in a terminally failed lineage log', async () => {
@@ -7395,19 +7530,25 @@ describe('fanout-run.cjs — a fatal provider refusal is announced and redacted'
     expect(readFileSync(join(logsDir, 'fanout-lineage.out'), 'utf8')).toContain('attempt-two');
   });
 
-  it('leaves the log of a lineage that succeeds byte for byte', async () => {
+  // A succeeded lineage's log is committed beside a failed one's, so it is masked the same way.
+  it('masks the account and the author email in the log of a lineage that succeeds', async () => {
     const binDir = makeTempDir('fanout-run-success-log-bin-');
     const baseDir = makeTempDir('fanout-run-success-log-base-');
+    const authorLine = 'Author: Jane Doe <jane.doe@example.com>';
     writeFileSync(
       join(binDir, 'opencode'),
-      `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\necho ${shellQuote(refusalBody)}\n${writeFanoutArtifactsShell()}\nexit 0\n`,
+      `#!/bin/sh\n${OPENCODE_VERSION_PROBE}\necho ${shellQuote(refusalBody)}\necho ${shellQuote(authorLine)}\n${writeFanoutArtifactsShell()}\nexit 0\n`,
       { mode: 0o755 },
     );
     const hermetic = useHermeticEnv('success-log');
     const result = await runRefusal(hermetic, binDir, baseDir);
     expect(result.stdout).toContain('"status":"fulfilled"');
-    expect(readFileSync(join(baseDir, 'lineages', 'quota', 'logs', 'fanout-lineage.out'), 'utf8'))
-      .toContain(refusalBody);
+    const log = readFileSync(join(baseDir, 'lineages', 'quota', 'logs', 'fanout-lineage.out'), 'utf8');
+    expect(log).not.toContain(workspaceId);
+    expect(log).not.toContain('ses_e0aeFAKESESSION');
+    expect(log).not.toContain('jane.doe@example.com');
+    expect(log).toContain('provider.go-limit');
+    expect(log).toContain('Author: Jane Doe <<email>>');
   });
 });
 

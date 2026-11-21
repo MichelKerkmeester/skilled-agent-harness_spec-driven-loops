@@ -120,7 +120,7 @@ workflow:
       - "A no answered a question: render the cancelled result naming what was declined, state Changed: none and end with STATUS=CANCELLED ACTION=cancelled."
       - "A dry run: render the dry-run result with the plan, the digest and the dry-run line, and end with STATUS=OK."
       - "NOTHING TO DO: render the unchanged result with the engine's notes and STATUS=OK."
-      - "A refusal, a missing asset, a dropped line or a digest mismatch stopped the run: render the failure result naming the phase and the engine's code, with STATUS=FAIL."
+      - "A refusal, a missing asset, a dropped line or a digest mismatch stopped the run: render the failure result, with the script's Next: line as printed when it has one, naming the phase and the engine's code, with STATUS=FAIL."
       - "End by saying the operator commits the written files themselves; this route stages and commits nothing."
 
 # ─────────────────────────────────────────────────────────────────

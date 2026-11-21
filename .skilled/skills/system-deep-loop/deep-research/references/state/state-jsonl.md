@@ -10,7 +10,7 @@ trigger_phrases:
   - "research event records"
 importance_tier: normal
 contextType: implementation
-version: 1.14.3.0
+version: 1.14.6.0
 ---
 
 # Deep Research JSONL State Reference
@@ -235,8 +235,7 @@ Blocked stop event, as `convergence.cjs` sends it to the append gateway:
   "gateResults": {
     "convergence": { "pass": false, "score": 0.42 },
     "keyQuestionCoverage": { "pass": true, "answered": 4, "total": 4 },
-    "evidenceDensity": { "pass": false, "sources": 1.00 },
-    "hotspotSaturation": { "pass": true }
+    "evidenceDensity": { "pass": false, "sources": 1.00 }
   },
   "recoveryStrategy": "Source diversity (1.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions.",
   "timestamp": "2026-05-24T00:00:00Z",
@@ -260,7 +259,9 @@ The gateway keeps the blocker ids and the recovery strategy, so the row the stat
 }
 ```
 
-`convergence.cjs` writes this row itself. The workflow's convergence step passes `--record-blocked-stop` with `--stop-decision`, and on a `BLOCKED` decision the script appends the row through the append gateway. It writes once per run and blocker set: a recomputed decision for a run whose state log already holds a row with the same `run` and `blockedBy` writes nothing, and a changed blocker set writes a new row. `recoveryStrategy` is the first blocker's description, or "Collect deeper graph evidence before stopping." when that blocker has none. When iterations recorded findings but left no FINDING node in the graph, it also names them, which points at a graph upsert that did not run for them. `generation` is omitted when the config lineage has none. The flag needs loop type `research`, `--stop-decision` and a positive `--iteration`, and it is refused with `--read-only`.
+`convergence.cjs` writes this row itself. The workflow's convergence step passes `--record-blocked-stop` with `--stop-decision` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event), and on a `BLOCKED` decision the script appends the row through the append gateway. It writes once per run and blocker set: a recomputed decision for a run whose state log already holds a row with the same `run` and `blockedBy` writes nothing, and a changed blocker set writes a new row. A failed quality guard writes this row too, with the failed guards in `blockedBy`. `recoveryStrategy` is the first blocker's description, or "Collect deeper graph evidence before stopping." when that blocker has none; for a failed guard it is `Clear the failed quality guards before stopping: <guard> (<violations>).` When iterations recorded findings but left no FINDING node in the graph, it also names them, which points at a graph upsert that did not run for them. `generation` is omitted when the config lineage has none. The flag needs loop type `research`, `--stop-decision` and a positive `--iteration`, and it is refused with `--read-only`.
+
+The loop counters rebuild a blocked streak from these rows. A run's last row stands for that run, a row whose sorted `blockedBy` set matches the one before it adds one, a different set restarts at one, and an evidence-bearing iteration with status `insight` or a `newInfoRatio` at or above the convergence threshold resets it. Once the streak, the current pass included, reaches `stuckThreshold` (3 by default), the decision is STOP with `stopReason` `blockedStop` and `reasonDetail` `blockedStreakReached` instead of another BLOCKED. That stopping pass writes no `blocked_stop` row; the synthesis takes `blockedStop` as its stop reason. The iteration cap is checked first.
 
 Pause event:
 

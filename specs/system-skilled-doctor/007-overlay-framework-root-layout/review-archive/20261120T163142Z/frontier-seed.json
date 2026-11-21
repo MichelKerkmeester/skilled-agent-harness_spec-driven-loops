@@ -1,0 +1,43 @@
+[
+  {
+    "question": "Is the sibling overlay folder support correct and path-safe: resolveOverlayDir accepting only a direct ../<name> sibling, refusing an overlay folder outside the git repository, and every engine path (apply, status, adopt, repin, sync, strict writes) that once assumed the overlay folder sits inside the vendored tree; do the new tests actually fail without the change?",
+    "scope": [".skilled/commands/doctor/scripts/overlay-engine.cjs", ".skilled/commands/doctor/scripts/tests", ".skilled/hooks/overlay-guard"],
+    "evidence": "git show d2d2e839456"
+  },
+  {
+    "question": "Is the framework/ and root/ source layout correct as the default for every consumer: adoptSource naming, refusal of a root/skilled/ source, the capped LAYOUT notice for old-layout trees, and the one-shot apply --relayout migration (idempotence, partial failure, relayout-runs records, collisions with README.md, checks/, tests/ bookkeeping); are the tests strong enough?",
+    "scope": [".skilled/commands/doctor/scripts/overlay-engine.cjs", ".skilled/commands/doctor/scripts/tests"],
+    "evidence": "git show 5913aebc267"
+  },
+  {
+    "question": "Do the doctor overlay docs, workflow YAML assets, presentation text, system-skilled-doctor references, manual testing playbook scenarios and the v1.2.0.0 release note match what the engine code actually does, including the stated single migration step (apply --relayout after the re-pin)?",
+    "scope": [".skilled/commands/doctor", ".skilled/skills/system-skilled-doctor"],
+    "evidence": "git show d42bafc890c"
+  },
+  {
+    "question": "Do the Barter hooks (barter-overlay-guard-core.cjs, barter-git-write-gate.mjs, the OpenCode plugins and the pre-commit git hook) learn both overlay locations correctly, and do they fail open or fail closed in the right cases when the overlay folder is missing, moved or ambiguous? Check every vendored and overlay copy agrees. The repo is nested: read it with git -C barter/ai-speckit show a954fc956ce.",
+    "scope": ["barter/ai-speckit/overlays", "barter/ai-speckit/skilled/.opencode", "barter/ai-speckit/skilled/.skilled/skills/sk-git"],
+    "evidence": "git -C barter/ai-speckit show a954fc956ce"
+  },
+  {
+    "question": "Are the Barter relayout onto framework/ and root/ and the move to overlays/ complete: init-repository.sh, .gitignore, README.md, CONTRIBUTING.md, overlays/README.md, overlays/checks, overlays/sync-state.json, tests/*.sh? Is any reference to the old barter-overlays path or dot-dropped layout left in either repo? Nested repo: git -C barter/ai-speckit show 51e218edf2e 2a8f454c8d1; rg barter-overlays across both repos.",
+    "scope": ["barter/ai-speckit/overlays", "barter/ai-speckit/init-repository.sh", "barter/ai-speckit/tests", "barter/ai-speckit/README.md", "barter/ai-speckit/CONTRIBUTING.md", "barter/ai-speckit/.gitignore"],
+    "evidence": "git -C barter/ai-speckit show 51e218edf2e 2a8f454c8d1"
+  },
+  {
+    "question": "Does the Barter re-pin to Skilled 063daae vendor the overlay engine, overlay-guard hook and doctor docs byte-identical to Skilled at 063daaee2c1 (a parity check of the engine-relevant files, not a line-by-line review of all vendored files), and is the pin recorded consistently in the pin record, sync-state and the v4.1.0.0 changelog?",
+    "scope": ["barter/ai-speckit/skilled/.skilled/commands/doctor", "barter/ai-speckit/overlays/sync-state.json", "barter/ai-speckit/overlays/framework/changelog"],
+    "evidence": "git -C barter/ai-speckit show c8cd005b173 fd6dd18b66d"
+  },
+  {
+    "question": "Are the packet's claims traceable: do the five child phase specs, tasks, acceptance criteria, implementation summaries and scratch evidence in Skilled (1653734af7d, 10c36989450) and the ai-speckit close-out record (ad3246feba2) match the code and the test runs they cite, with no completion claim the evidence does not back?",
+    "scope": ["specs/system-skilled-doctor/007-overlay-framework-root-layout"],
+    "evidence": "git show 1653734af7d 10c36989450"
+  },
+  {
+    "question": "Merge commit bringing the engine branch into main; its diff against its first parent is the union of the reviewed commits.",
+    "scope": [".skilled/commands/doctor"],
+    "evidence": "git show 063daaee2c1",
+    "pruneReason": "merge-no-own-diff"
+  }
+]

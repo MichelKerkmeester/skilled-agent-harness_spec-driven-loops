@@ -1,0 +1,12 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts)
+Make exactly two edits in this file and change nothing else. Splice the block file with a short Python script that reads it; do not retype it.
+
+Edit 1. Old line (exact, about line 19):
+import { DIRECTIVE_LIFECYCLE_DEDUP_ENV, InMemoryDirectiveLifecycleStore } from '../../../hooks/lib/directive-lifecycle.js';
+New lines:
+import { DIRECTIVE_LIFECYCLE_DEDUP_ENV, InMemoryDirectiveLifecycleStore } from '../../../hooks/lib/directive-lifecycle.js';
+import { InMemoryRouteReceiptStore, type RouteReceiptStore } from '../../../hooks/lib/route-receipt.js';
+
+Edit 2. The file ends with the closing lines of the last test, then a line holding only `});` that closes the top-level describe block 'Claude UserPromptSubmit advisor hook'. Insert the exact contents of tmp/p011-briefs/replay-tests.ts.txt (it starts with a blank line) directly before that final `});` line, so the new nested describe 'route receipts' sits inside the top-level describe.
+The new tests pass routeReceiptStore to handleClaudeUserPromptSubmit, a dependency the handler does not read yet; that is intended.
+ACCEPT: `grep -c "describe('route receipts'" .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` prints 1, `grep -c "InMemoryRouteReceiptStore" .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` prints 2 and `tail -1 .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` prints `});`.

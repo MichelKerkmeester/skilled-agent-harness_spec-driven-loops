@@ -1,48 +1,74 @@
-# Iteration 007 - Frontier node F-1-006: security
+# Iteration 007 - Frontier node F-1-005: security
 
 ## Dispatcher
-- Lineage opus-medium, iteration 7 (6 prior iteration records). steer.md absent. Node F-1-006, dimension security.
-- Review focus addressed: hook fail-open versus fail-closed behavior after the Barter move to overlays/: the edit guard core and its OpenCode adapter, the pre-commit gate, and the git-write gate's ai-speckit detection in every runtime copy.
-- Orientation note: iteration 6's graph upsert exited 3 because the lineage helper passed no canonical DIMENSION/FILE nodes for an iteration with no findings. The helper now seeds them, and iterations 1-6 were re-upserted (all exit 0).
+
+- Lineage: opus-medium, session fanout-opus-medium-1795192401900-xpt66n
+- Node: F-1-005 (Barter hooks and hygiene, read-only nested repo), dimension security
+- Review focus addressed: hook fail-open or fail-closed behavior. Traced what each Barter hook does when its overlay lookup or its core fails, and verified prior R12-P2-001 (plugin tests stub the upstream bridge).
+- Sources: steer.md absent; strategy; registry frontier (F-1-005 next dimension security).
 
 ## Files Reviewed
-- barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:176-189 (aiSpeckitRoot), :191-215 (sessionInside)
-- barter/ai-speckit runtime copies of the git-write gate: .claude, .codex, .cursor, .devin (links to the .skilled copy), .vibe (adapter importing the .skilled core by relative URL)
-- barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:55-82,143-162
-- barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:10-47
-- barter/ai-speckit/skilled/.opencode/scripts/git-hooks/pre-commit:83-112
 
-## Findings - New
+- `barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:9-50` (OpenCode edit guard plugin, warnCoreFailure)
+- `barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:177-200` (overlaysRootFor, aiSpeckitRoot), `barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:225-230` (sessionInside), `barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:1731-1739` (outsideRefusal), `barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:2153-2173, 2290-2306` (evaluateCommand and hook entry)
+- `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:120-170` (commit hook)
+- `barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs:148-168` (real-bridge case), `barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-git-write-gate.test.cjs:59-180` (stub bridge at :84-87, :131-133, :175-177)
+- Test run: `node --test barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs` -> 3 of 3 pass, exit 0
+
+## Findings by Severity
 
 ### P0 Findings
+
 None.
 
 ### P1 Findings
-None.
+
+None new. R5-P1-001 (engine commit check allows under a hook-exported GIT_DIR) stays active; this iteration found no Barter hook step that would catch it, because the commit hook passes its environment straight to the engine (`barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:156-164`).
 
 ### P2 Findings
+
 None.
 
+## Posture Map
+
+| Hook | On lookup or core failure | Evidence | Verdict |
+|------|---------------------------|----------|---------|
+| OpenCode edit guard plugin | Fails open: prints "guard failed, allowing the edit" to stderr and lets the write through | `barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:19-22, 39-43` | By design and documented in the plugin comment (`barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:12-14`); the commit gate is the backstop |
+| git-write gate | aiSpeckitRoot returns null when the manifest the setting names is missing (`barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:195-197`); sessionInside is then false (`barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:226`) and every git write gets outsideRefusal (`barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:1567, 1744`) | `barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:1731-1733` | Fails closed |
+| Commit hook, no manifest | Exit 1 when a vendored path is staged | `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:134-143` | Fails closed |
+| Commit hook, engine error | Exit 1 on any non-zero status or pre-commit exit | `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:156-168` | Fails closed |
+| Commit hook, linked worktree | Engine pre-commit prints allow (R5-P1-001) | iteration 5 probe | Fails open |
+
+## Prior-Finding Verification
+
+- R12-P2-001 (plugin tests stub the upstream bridge): FIXED for the class it named. `barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs:157-168` imports the applied guard plugin beside the real vendored v2-bridge.js. The git-write gate plugin tests still use a stub bridge (`barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-git-write-gate.test.cjs:84-87`), but both plugins import only the same definePlugin export, so a rename of that export now fails the guard plugin's real-bridge case. Not raised again.
+
 ## Traceability Checks
-- spec_code (pass): 005 REQ-005 (git-write gate answers as before the move) holds by construction: every runtime copy resolves to the .skilled core through a link or an import, and the core walks five levels from its realpath to skilled/, then finds overlays/overlay-manifest.json beside it.
+
+- spec_code: pass. 007's decision "Keep the setting-reading rule in each of the three hooks ... each keeps its fail-open or fail-closed posture" matches the map above.
 
 ## Integration Evidence
-- Edit guard: throws when it cannot locate the layout (core :82); the OpenCode adapter catches and allows with a stderr line (:41-43). Fail-open.
-- Commit gate: blocks when the engine is missing or status/pre-commit fail (pre-commit:96-112), skips the overlay checks when no beside-tree manifest exists (:88-95). Fail-open only on a missing manifest.
-- Git-write gate: on a missing beside-tree manifest aiSpeckitRoot returns null, so the session is treated as a project repository, where git writes are refused. Fail-closed for writes, which is the safe side.
+
+- OpenCode plugin -> `../../.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs` (`barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:7`); git-write gate plugin -> `../skills/sk-git/scripts/hooks/barter-git-write-gate.mjs`.
 
 ## Edge Cases
-- The git-write gate identifies ai-speckit by a generic `overlays/overlay-manifest.json` beside the tree instead of the former Barter-specific folder name. The gate ships only inside Barter's applied tree and anchors on its own realpath, so another consumer adopting the generic sibling layout does not run it. Recorded only.
+
+- The guard's fail-open warning goes to stderr only; an agent runtime that hides plugin stderr shows no sign the guard is off. Recorded as an edge case: the plugin comment makes this an explicit trade-off.
 
 ## Confirmed-Clean Surfaces
-- Guard core accepts a layout only when the tree holds the engine and the overlays folder holds the manifest (matchLayout :58-63), so a stray manifest elsewhere never steers it.
+
+- git-write gate null-root path, commit hook no-manifest and engine-error paths.
 
 ## Ruled Out
-- Runtime copies of the git-write gate computing the wrong root from their own path: the four runtime hook copies are links, and the .vibe copy is an adapter that imports the .skilled core.
+
+- git-write gate failing open when the overlay folder moves: it refuses every write instead.
 
 ## Next Focus
-- Dimension: security
-- Focus area: F-1-008 packet evidence (no secrets or machine-private data in scratch evidence)
-- Reason: frontier rotation
 
-Review verdict: PASS
+- Dimension: correctness
+- Focus area: frontier node F-1-007 (records), the registry's next node and dimension
+- Reason: registry frontier rotation
+- Rotation status: F-1-005 correctness and security done
+- Required evidence: 006, 007, 008 spec and tasks correctness of stated behavior and counts
+
+Review verdict: CONDITIONAL

@@ -85,13 +85,19 @@ rm "$T/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh"
 printf 'base\n' > "$T/f.txt"; git -C "$T" add f.txt
 git -C "$T" commit -qm base 2>"$T/err.txt"
 chk "$(grep -c 'guard library is missing.*(post-commit)' "$T/err.txt")" "1" "post-commit warns when the guard library is missing"
+chk "$(grep -cF "Next: from $(cd "$T" && pwd -P): bash .opencode/scripts/install-git-hooks.sh" "$T/err.txt")" "1" \
+  "post-commit names the installer under the fixture's source root, from the repository root"
 git -C "$T" commit -q --amend -m amended 2>"$T/err.txt"
 chk "$(grep -c 'guard library is missing.*(post-rewrite)' "$T/err.txt")" "1" "post-rewrite warns when the guard library is missing"
+chk "$(grep -A1 'guard library is missing.*(post-rewrite)' "$T/err.txt" | grep -cF "Next: from $(cd "$T" && pwd -P): bash .opencode/scripts/install-git-hooks.sh")" "1" \
+  "post-rewrite names the installer under the fixture's source root, from the repository root"
 git -C "$T" checkout -q -b side
 printf 'side\n' > "$T/s.txt"; git -C "$T" add s.txt; git -C "$T" commit -qm side 2>/dev/null
 git -C "$T" checkout -q -
 git -C "$T" merge -q side 2>"$T/err.txt"
 chk "$(grep -c 'guard library is missing.*(post-merge)' "$T/err.txt")" "1" "post-merge warns when the guard library is missing"
+chk "$(grep -A1 'guard library is missing.*(post-merge)' "$T/err.txt" | grep -cF "Next: from $(cd "$T" && pwd -P): bash .opencode/scripts/install-git-hooks.sh")" "1" \
+  "post-merge names the installer under the fixture's source root, from the repository root"
 
 # ── 4. an autosync commit warns about a missing kill switch and a missing publisher ──
 setup_repo
@@ -104,6 +110,16 @@ printf 'next\n' > "$LINKED/next.txt"; git -C "$LINKED" add next.txt
 SPECKIT_AUTOSYNC=1 SPECKIT_LIVE_BRANCH=live git -C "$LINKED" commit -qm next 2>"$T/err.txt"
 chk "$(grep -c 'hook-flags.sh is missing' "$T/err.txt")" "1" "an autosync commit warns about a missing kill switch"
 chk "$(grep -c 'git-sync.sh is missing' "$T/err.txt")" "1" "an autosync commit warns about a missing publisher"
+chk "$(grep -cF "Next: from $(cd "$LINKED" && pwd -P): git restore --source=HEAD --staged --worktree -- .opencode/hooks/shared/hook-flags.sh" "$T/err.txt")" "1" \
+  "the missing kill switch restore runs from the worktree root"
+# A kill switch that exists but cannot be read gets a chmod, never a restore.
+mkdir -p "$LINKED/.opencode/hooks/shared"
+printf ':\n' > "$LINKED/.opencode/hooks/shared/hook-flags.sh"; chmod 000 "$LINKED/.opencode/hooks/shared/hook-flags.sh"
+printf 'again\n' > "$LINKED/again.txt"; git -C "$LINKED" add again.txt
+SPECKIT_AUTOSYNC=1 SPECKIT_LIVE_BRANCH=live git -C "$LINKED" commit -qm again 2>"$T/err.txt"
+chk "$(grep -cF "Next: from $(cd "$LINKED" && pwd -P): chmod +r .opencode/hooks/shared/hook-flags.sh" "$T/err.txt")" "1" \
+  "the unreadable kill switch chmod runs from the worktree root"
+chmod 644 "$LINKED/.opencode/hooks/shared/hook-flags.sh"
 git -C "$T" worktree remove --force "$LINKED" 2>/dev/null; rm -rf "$LINKED"
 
 # ── 5. under a linked source root the guard still anchors, and logs under .skilled ──

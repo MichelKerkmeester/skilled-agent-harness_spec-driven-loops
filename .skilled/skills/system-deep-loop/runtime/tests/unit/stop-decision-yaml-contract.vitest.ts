@@ -80,6 +80,25 @@ describe.each(FILES)('%s', (file) => {
     expect(lines.length).toBe(1);
   });
 
+  // The convergence step runs on a dry run as a preview, and --record-blocked-stop
+  // makes the script append a real row on a BLOCKED decision, so the flag is bound
+  // per run, and a dry run passes --read-only instead so the call writes nothing.
+  it('keeps the convergence call read-only on a dry run', () => {
+    const invocation = text
+      .split('\n')
+      .find((line) => line.includes('runtime/scripts/convergence.cjs')) ?? '';
+    expect(invocation).not.toContain('--record-blocked-stop');
+    expect(invocation).not.toContain('--read-only');
+    expect(invocation).toContain('{convergence_write_arg}');
+
+    // The workflow shape is checked key by key below, so the parsed tree stays loosely typed.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const binding = (parseYaml(text) as any)?.workflow?.step_bind_convergence_write_arg;
+    expect(binding?.branch_on).toBe('dry_run == true');
+    expect(binding?.if_dry_run?.bind?.convergence_write_arg).toBe('--read-only');
+    expect(binding?.if_live_run?.bind?.convergence_write_arg).toBe('--record-blocked-stop');
+  });
+
   if (file.startsWith('deep-review')) {
     it('holds no hardcoded 0.05 threshold', () => {
       expect(text).not.toMatch(/0\.05\b/);
@@ -513,6 +532,7 @@ describe.each(FILES)('%s sizes a defaulted expansive budget after the seed', (fi
   // The fan-out parent seeds at the top level and a single-executor run seeds in
   // phase_init; both copies run the same command, so their outputs agree.
   it('runs one seed command in both seed steps', () => {
+    // The workflow shape is checked key by key below, so the parsed tree stays loosely typed.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const wf = (parseYaml(text) as any).workflow;
     expect(wf.step_frontier_seed.command).toBe(wf.phase_init.steps.step_frontier_seed.command);
@@ -579,5 +599,41 @@ describe.each([
     expect(block).toContain('frontier_max_nodes: ""');
     expect(commandDoc).toContain('| `--frontier-max-depth` |');
     expect(commandDoc).toContain('| `--frontier-max-nodes` |');
+  });
+});
+
+// A review that ends on a repeated blocked stop must name that reason on its
+// terminal gate row, or the run and its report record it as converged.
+describe('deep-review terminal stop reason', () => {
+  const text = readFileSync(resolve(ASSETS, 'deep-review.yaml'), 'utf8');
+
+  it('passes a blockedStop stop through to the terminal gate row', () => {
+    const rule = text.split('\n').find((line) => line.includes('terminal_stop_reason = reason when')) ?? '';
+    expect(rule).toContain('blockedStop when decision is STOP and reason is blockedStop');
+  });
+});
+
+// Before closeout no research state row carries maxIterationsReached, converged,
+// blockedStop, maxDurationReached or manualStop, and a resumed run's log still
+// holds the earlier session's pause and recovery rows. The synthesis reason must
+// keep the stop this session bound, or the report names a stale or default reason.
+describe('deep-research synthesis stop reason', () => {
+  const text = readFileSync(resolve(ASSETS, 'deep-research.yaml'), 'utf8');
+  // The workflow shape is checked key by key below, so the parsed tree stays loosely typed.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const hydrate = (parseYaml(text) as any).workflow.phase_synthesis.steps.step_hydrate_summary_metrics;
+  const rule: string = hydrate.extract.find((entry: Record<string, string>) => 'reason' in entry).reason;
+  const sessionClause = rule.slice(0, rule.indexOf(String.raw`{state_paths.state_log}`));
+
+  it('keeps the stop reason this session bound, maxIterationsReached and blockedStop included', () => {
+    expect(sessionClause).toContain('left phase_loop for synthesis');
+    expect(sessionClause).toContain('maxIterationsReached');
+    expect(sessionClause).toContain('blockedStop');
+    expect(sessionClause).not.toContain('reason blockedStop, use blockedStop');
+  });
+
+  it('reads stop rows only after the latest resumed or run_extended row', () => {
+    const rowClause = rule.slice(sessionClause.length, rule.indexOf('On a fan-out root'));
+    expect(rowClause).toContain("after the latest 'resumed' or 'run_extended' row");
   });
 });

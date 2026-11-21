@@ -344,7 +344,10 @@ function looksCompactNarrativeViolation(value: string): boolean {
     return true;
   }
 
-  const sentenceTerminators = value.match(/[.!?]/g) ?? [];
+  // A terminator ends a sentence only before a capitalised next word or the end of the
+  // value; a dot inside a version, filename or abbreviation ("v2.1.3.0", "run.cjs", "e.g.")
+  // is not one, so a single line carrying such tokens still reads as compact.
+  const sentenceTerminators = value.match(/[.!?](?=\s+\p{Lu}|\s*$)/gu) ?? [];
   if (sentenceTerminators.length > 1) {
     return true;
   }

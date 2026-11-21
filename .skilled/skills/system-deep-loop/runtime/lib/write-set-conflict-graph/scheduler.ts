@@ -137,6 +137,10 @@ function fallbackSchedule(
 // 3. EXPORTS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Orders nodes into lanes from the conflict edges, falling back to one node per lane when any validation issue
+ * exists.
+ */
 export function createDeterministicSchedule(
   nodes: readonly GraphNode[],
   edges: readonly ConflictEdge[],

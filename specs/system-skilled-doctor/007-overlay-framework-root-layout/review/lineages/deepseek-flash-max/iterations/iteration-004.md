@@ -2,27 +2,27 @@
 
 ## Dispatcher
 
-- Mode: review, single iteration, LEAF executor (no nested dispatch)
-- Run: `fanout-deepseek-flash-max-1795182837437-sws2tv`, generation 1, lineageMode `new`
-- Frontier node: `F-1-003` at depth 1 of 3
-- Dimension: security
-- Operator review focus: the whole overlay framework/root layout change end to end. This iteration addressed the focus through its path-safety clause: whether an `overlayDir` can steer the engine outside the tree or the repository, whether a manifest path can escape the overlay folder, and whether the stage folder and the write guards fail closed.
+- Mode: review (fan-out lineage `deepseek-flash-max`, cli-mistral-vibe, model `deepseek-flash`)
+- Session: `fanout-deepseek-flash-max-1795192401900-xpt66n`, generation 1, lineageMode `new`
+- Iteration: 4 of 24
+- Dimension: correctness
+- Frontier node: F-1-006 (depth 1 of 3), scope `barter/ai-speckit/skilled/.skilled/commands/doctor`, `barter/ai-speckit/overlays/sync-state.json`, `barter/ai-speckit/overlays/overlay-manifest.json`
+- Review target: `specs/system-skilled-doctor/007-overlay-framework-root-layout` (spec-folder)
+- Operator review focus: this iteration addressed the focus's "re-pin onto b5a630c" and "leftover barter-overlays references" clauses by diffing the vendored engine-relevant files against the pin and by sweeping both repositories for the old folder name.
 
 ## Files Reviewed
 
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:426-470` (`resolveOverlayDir`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:675-681` (`sourceRelative`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:6082-6091` (`containedOverlayPath`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5136-5151` (`stageFolderProblem`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5528-5570` (`strictWriteRefusal`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:4128-4160` (`commandGuard` ownership loop)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:165-235` (`isWithin`, destination and removal guards)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:4054` (destination escape refusal)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5790-5820` (`stagedUnownedChanges` repository boundary)
-- `.skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs:105-205` (sibling accept/refuse matrix and link cases)
-- `.skilled/skills/system-skilled-doctor/references/overlays.md:51,96,259`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/spec.md:132,202,226`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/001-engine-out-of-tree-overlay-folder/acceptance-criteria.md:67`
+- `barter/ai-speckit/overlays/overlay-manifest.json` (pin block, 134 entries)
+- `barter/ai-speckit/overlays/sync-state.json` (pin, record keys)
+- `barter/ai-speckit/skilled/.skilled-overlays.json`
+- `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs` (byte-diffed against `b5a630c6efa`)
+- `barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor/references/overlays.md` (byte-diffed)
+- `barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor/SKILL.md` (byte-diffed, version line)
+- `barter/ai-speckit/skilled/.skilled/commands/doctor/assets/doctor-overlay-presentation.txt` (byte-diffed)
+- `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs` (byte-diffed)
+- `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs` (byte-diffed)
+- `barter/ai-speckit/.gitignore:68-69`, `barter/ai-speckit/overlays/README.md:152,458-459`
+- `git -C barter/ai-speckit show 488ea9f49f5` (the re-pin commit)
 
 ## Findings - New
 
@@ -36,53 +36,61 @@ None.
 
 ### P2 Findings
 
-None.
+1. **The committed overlay manifest pins an absolute local checkout path** -- `barter/ai-speckit/overlays/overlay-manifest.json:7` -- `pin.checkout` is committed as `/Users/michelkerkmeester/MEGA/Development/Skilled`, one developer's working copy. The engine documents a relative form and reads it from the tree root (`references/overlays.md:128`), so a relative value would serve every clone. On any other clone the absolute path does not exist, so `status --audit` prints `no upstream checkout at the pin, so ... skipped` (`references/overlays.md:119`) and a `json-entry` drop with no readable pinned copy is refused (`references/overlays.md:62`). The manifest is a shared file, so the value travels to every developer.
+   Finding class: portability
+   Scope proof: the file is tracked (`git show HEAD:overlays/overlay-manifest.json` carries the absolute path), and the engine reads `pin.checkout` for the audit and for the pinned-copy restore, so the value is load-bearing rather than documentation.
+   Affected surface hints: `barter/ai-speckit/overlays/overlay-manifest.json`, `barter/ai-speckit/overlays/README.md`, `.skilled/skills/system-skilled-doctor/references/overlays.md`
+   Case: a second developer clones `ai-speckit` to `/home/dev/ai-speckit`. `node skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs status --audit` reports the audit skipped, and dropping a `json-entry` `set` is refused because no pinned copy can be read.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|----------|--------|----------|---------|
-| `spec_code` | pass | `001-engine-out-of-tree-overlay-folder/spec.md:132`; `overlay-engine.cjs:5790-5820`; `overlays.md:51` | REQ-008 scopes the same-repository refusal to pre-commit, the code enforces it in `stagedUnownedChanges`, and the reference documents it at that scope. The three agree. |
-| `checklist_evidence` | pass | `001-engine-out-of-tree-overlay-folder/acceptance-criteria.md:67`; `scratch/evidence/after-engine-suite.txt:154-155` | AC-008 cites the two pre-commit cases by file and line, and the recorded suite output shows both passing. |
+- `spec_code` -- pass. D4 holds exactly: `barter/ai-speckit/skilled/.skilled-overlays.json` prints `{ "overlayDir": "../overlays" }` and sits inside the vendored copy. The pin is recorded in the two live places that carry it and they agree: `overlays/overlay-manifest.json:6` and `overlays/sync-state.json:3` both name `b5a630c6efaf30d36bb18e2bae875b03ab8f4600`.
+- `checklist_evidence` -- pass for the Barter-side criteria. Four of the packet's six completion criteria were executed read-only in this iteration and all four pass:
+  - `cat .skilled-overlays.json` prints `{ "overlayDir": "../overlays" }`.
+  - `ls -d barter-overlays` fails with `No such file or directory`.
+  - `status --json` reports `"result": "PASSED"` with `"offLayout": []` and 488 in-sync records.
+  - `--guard .skilled/skills/sk-git/sk-git-skilled/SKILL.md` exits 1 and names `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`.
+  The two Skilled-side criteria are scheduled for the maintainability iteration.
 
 ## Integration Evidence
 
-- `resolveOverlayDir` (`overlay-engine.cjs:426-470`) is the only reader of the `overlayDir` key, and `overlay-engine-fixes.test.cjs:193-205` pins that by scanning the engine for the key and asserting every hit falls inside the function body.
-- `stageFolderProblem` (`:5139-5150`) refuses a stage folder inside the tree and inside the overlay folder, testing both the lexical path and the canonical path, so a symlink into either is caught.
-- `commandGuard` (`:4128-4160`) refuses an owned destination, a removal-scheduled destination, and a strict-writes violation before printing `allow`, and returns `EXIT_CONFLICT` on each.
-- `references/overlays.md:51` documents the sibling rule, the refusal messages and the pre-commit repository scope; `:96` documents the relayout refusal for a `root/skilled` destination; `:259` documents the stage-folder refusal.
+- `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs` is byte-identical to `.skilled/commands/doctor/scripts/overlay-engine.cjs` at `b5a630c6efa`, and the engine did not change between `b5a630c6efa` and `HEAD` (`git diff --stat` over the engine, its tests and the doctor skill is empty).
+- `barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor/references/overlays.md`, `.../SKILL.md`, `.../assets/doctor-overlay-presentation.txt`, `.../tests/overlay-engine-follow-up.test.cjs` and `.../tests/overlay-engine-strict-writes.test.cjs` are each byte-identical to their `b5a630c6efa` versions.
+- `barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor/SKILL.md:5` prints `version: 1.2.0.0`, matching the packet's release criterion.
+- `barter/ai-speckit/.gitignore:69` carries `/overlays/relayout-runs/` beside `/overlays/repin-runs/`, and `overlays/README.md:459` lists `relayout-runs/` as a local backup folder that is not committed.
 
 ## Edge Cases
 
-- **`containedOverlayPath` (`:6082-6091`) is lexical only**, while `resolveOverlayDir` resolves links. A symlink inside the overlay folder therefore passes the containment test. Recorded, not raised: `git log -S "function containedOverlayPath"` shows it came from `3d39e6a488b`, which `git merge-base --is-ancestor` places before the reviewed range `57c01fb4c11..d42bafc890c`, and its only use is `fs.renameSync` in relayout, which moves the link rather than its target.
-- **`strictWriteRefusal` resolves `inputPath` against `process.cwd()`** (`:5531`), so a guard invoked from outside the tree resolves the path outside the tree and returns null. Recorded, not raised: the ownership loop above it (`:4131-4133`) uses the same base, so the whole guard shares one cwd contract, and that contract predates this change.
-- **The repository-boundary refusal is conditional on a staged vendored path.** `stagedUnownedChanges` returns at `:5806` when no staged path is vendored, before the boundary check at `:5810-5818`. Recorded, not raised: with nothing vendored staged there is nothing for the gate to judge, and `references/overlays.md:51` places the refusal at the commit check rather than at resolution.
-- **Tests were not re-run** for the containment reason recorded in iteration 1. The security judgement rests on the guard source and on the test source that pins it.
+- **Prior-generation findings re-verified, all fixed.**
+  - `R3-P2-001` (`relayout-runs` not ignored): fixed at `.gitignore:69` and documented at `overlays/README.md:459`.
+  - `R3-P2-002` (leftover `barter-overlays` fixture name): fixed. A sweep of both repositories for `barter-overlays` outside `specs/` and `z_archive/` returns only the spec track name `skilled-barter-overlays`, which is a directory name rather than a path to the old overlay folder.
+- **The re-pin commit is large by nature.** `488ea9f49f5` touches 112 files and 78k lines because it re-vendors the whole tree onto `b5a630c`. The engine-relevant subset was diffed file by file rather than judged by the commit size.
+- **`overlays/repin-runs/` exists in the working tree.** It is gitignored at `.gitignore:68`, so it is local state rather than a committed artifact.
+- **The guard's refusal is the new remove-list remedy.** `--guard` on `sk-git-skilled/SKILL.md` prints the branch added at `overlay-engine.cjs:5603-5615`, naming the remove list and the `../overlays/framework/...` copy path. This is the same branch iteration 1 verified as fixed, exercised here against the real Barter manifest.
 
 ## Confirmed-Clean Surfaces
 
-- The sibling gate (`:441-468`) accepts only `../<name>` with no further separator, refuses the tree's own basename, and then compares canonical paths both ways, so a link back into the tree, a case variant on a case-insensitive disk, a dangling link and a self-loop all fall through to the refusal at `:469`.
-- The refusal matrix is pinned: five accepted spellings and eight refused ones (`overlay-engine-fixes.test.cjs:107-127`), plus dedicated cases for the tree's own name, a link back to the tree, a dangling link, a self-loop and a case variant (`:130-190`).
-- `sourceRelative` (`:675-681`) throws when the resolved path is outside the overlay folder or is the folder itself, so every caller that reaches it fails closed rather than returning a relative path that climbs out.
-- Destination traversal is refused at `:174` (`destination escapes the sync root`) and again at `:4054` per entry, and removal paths are checked both lexically and through their canonical parent at `:199` and `:229`, so a symlinked parent cannot carry a removal outside the tree.
-- `strictWriteRefusal` (`:5528-5570`) returns a refusal for a new file inside an owned folder, an upstream file an entry keeps, a vendored file no overlay owns, and a new file in the vendored tree; it returns null only for a path outside the tree, a directory, a generated path, a git-ignored path, or a managed path that already exists.
-- `stageFolderProblem` refuses a stage folder inside the tree or inside the overlay folder by both spellings, and refuses a non-empty or non-folder stage target.
+- The pin is consistent across the two files that carry it, and `sync-state.json` carries the full record set (`files`, `links`, `items`, `sets`, `keys`) rather than a bare hash map.
+- The vendored engine, its two remediation test suites, the doctor skill, its overlay reference and the presentation text all match the pin byte for byte, so the re-pin did not silently drop the remediation.
+- `status --json` reports 488 in-sync records with no `overlay-edited`, `live-edited`, `both-changed`, `upstream-moved` or `cannot-apply` record, so the overlays apply cleanly on the new pin.
+- The old `barter-overlays` folder is gone from the tree and no live file names it as a path.
 
 ## Ruled Out
 
-- **A sibling `overlayDir` can point the engine at a folder outside the git repository.** Checked and ruled out as documented behavior: `references/overlays.md:51` scopes the same-repository rule to the commit check, `001-engine-out-of-tree-overlay-folder/spec.md:132` states it as REQ-008 for pre-commit, and `spec.md:226` records the operator resolution in those words. The engine refuses it at `:5810-5818` with the documented line.
-- **A manifest `source`, `fragment` or `base` can escape the overlay folder.** Checked and ruled out: `containedOverlayPath` routes every one through `sourceRelative`, which throws on an escape, and `planRelayout` turns the throw into a `refuse:` problem before any write.
-- **A symlinked parent can carry a removal outside the tree.** Checked and ruled out: `:229` compares the canonical parent, not just the lexical path.
-- **`repin --stage` can be aimed inside the tree or inside the overlay folder.** Checked and ruled out: `stageFolderProblem` tests both spellings of both boundaries.
-- **The `overlayDir` key is read anywhere but the setting reader.** Checked and ruled out: the engine-wide scan in `overlay-engine-fixes.test.cjs:193-205` asserts every occurrence sits inside `resolveOverlayDir`.
+- **The re-pin dropped the engine remediation.** Ruled out: the vendored engine is byte-identical to `b5a630c6efa`, which carries `3aab896957e`.
+- **The pin is recorded inconsistently.** Ruled out: `overlay-manifest.json:6` and `sync-state.json:3` name the same commit.
+- **A live `barter-overlays` path reference survives.** Ruled out: every remaining hit is the spec track name `skilled-barter-overlays`.
+- **The overlays no longer apply on the new pin.** Ruled out: `status --json` reports PASSED with an empty `offLayout`.
+- **The release version did not reach the vendored copy.** Ruled out: `SKILL.md:5` prints `version: 1.2.0.0`.
 
 ## Next Focus
 
-- Dimension: security
-- Focus area: frontier node `F-1-005` -- the three Barter hooks as a bypass surface: whether the guard core, the OpenCode plugin and the git-write gate can each be made to allow a write they should refuse
-- Reason: the operator focus names hook fail-open or fail-closed behavior explicitly, and iteration 2 judged those hooks for correctness rather than for bypass
-- Rotation status: second pass on F-1-005; F-1-003 keeps traceability and maintainability open, F-1-007 keeps security, traceability and maintainability open
-- Blocked/productive carry-forward: productive -- reading the guard source directly found the silent skip in iteration 2, and the same three files carry the bypass question
-- Required evidence: `barter-overlay-guard-core.cjs` `guard` and `matchLayout`, `barter-overlay-guard.js` `warnCoreFailure`, `barter-git-write-gate.mjs` `aiSpeckitRoot`, and the tests that pin each fail-open decision
+- Dimension: traceability
+- Frontier node: F-1-006 (re-pin parity)
+- Focus area: the packet's phase 004 and 005 records against the re-pin evidence, and the two Skilled-side completion criteria
+- Reason: correctness is covered for this node; the remaining question is whether the packet's own records describe the re-pin and the move accurately.
+- Rotation status: correctness complete for F-1-006; traceability next on the same node.
+- Blocked/productive carry-forward: the absolute `pin.checkout` finding is productive for the traceability pass because the packet's phase 005 record should say whether the checkout is meant to be committed.
+- Required evidence: phase 004 and 005 `spec.md`, `implementation-summary.md` and `acceptance-criteria.md`, plus the Skilled-side release criteria.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

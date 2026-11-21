@@ -15,18 +15,19 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: 21c4b325b5a..de32abbb74d -- .skilled/skills/system-deep-loop .skilled/commands/deep .skilled/agents .claude/agents .codex/agents .pi/agents .dsh/agents .vibe/agents (the expansive-depth program: runtime code and tests, command YAML and presentation, agents and their runtime mirrors, skill docs, playbooks and catalogs; specs/ evidence and spec-packet artifacts excluded) (files)
-- Started: 2026-11-19T18:41:16.000Z
+- Review Target: 17a9ddbcb68..555487146e2 -- .skilled/skills/system-deep-loop .skilled/commands/deep (files)
+- Started: 2026-11-20T19:06:54.621Z
 - Status: COMPLETE
-- Iteration: 12 of 24
-- Provisional Verdict: CONDITIONAL
+- Iteration: 16 of 24
+- Provisional Verdict: PASS
 - hasSearchDebt: false
-- hasAdvisories: false
-- Session ID: fanout-deepseek-1795113418367-pvzn7z
+- hasAdvisories: true
+- Session ID: fanout-deepseek-1795201537192-sq1ivw
 - Parent Session: none
 - Lifecycle Mode: new
 - Generation: 1
 - continuedFromRun: none
+- stopReason: converged
 
 <!-- /ANCHOR:status -->
 <!-- ANCHOR:dimension-expansion -->
@@ -45,8 +46,8 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 2 |
-| P2 (Suggestions) | 6 |
+| P1 (Required) | 0 |
+| P2 (Suggestions) | 9 |
 | Resolved | 0 |
 
 <!-- /ANCHOR:findings-summary -->
@@ -55,18 +56,22 @@ Reducer-generated observability surface for the active review packet.
 
 | # | Focus | Dimensions | Ratio | P0/P1/P2 | Status |
 |---|-------|------------|-------|----------|--------|
-| 1 | F-1-003 correctness: fan-out frontier partition, lineage prompt and merged coverage | correctness | 1.00 | 0/0/4 | complete |
-| 2 | F-1-005 correctness: reducers, convergence, verification and the ledger/projection layer | correctness | 0.58 | 0/1/1 | complete |
-| 3 | F-1-007 correctness: divergent pivot, continuity thread and coverage-graph signals | correctness | 0.36 | 0/1/0 | complete |
-| 4 | F-1-003 security: fan-out runner command construction, env and merge trust boundaries | security | 0.00 | 0/0/0 | complete |
-| 5 | F-1-005 security: reducer, gateway-facing state, upsert and dispatch trust boundaries | security | 0.07 | 0/0/1 | complete |
-| 6 | F-1-007 security: pivot persisted input, council paths and frontier graph projection | security | 0.00 | 0/0/0 | complete |
-| 7 | F-1-003 traceability: fan-out runner and merge against the review packet | traceability | 0.00 | 0/0/0 | complete |
-| 8 | F-1-005 traceability: extension, state-log fields and evidence edges against the packet | traceability | 0.00 | 0/0/0 | complete |
-| 9 | F-1-007 traceability: pivot retry, continuity and quality class against the packet | traceability | 0.00 | 0/0/0 | complete |
-| 10 | F-1-003 maintainability: fan-out runner and merge change cost | maintainability | 0.00 | 0/0/0 | complete |
-| 11 | F-1-005 maintainability: reducer and upsert change cost | maintainability | 0.00 | 0/0/0 | complete |
-| 12 | F-1-007 maintainability: pivot and coverage-graph change cost | maintainability | 0.05 | 0/0/1 | complete |
+| 1 | Frontier node F-1-002: correctness | correctness | 1.00 | 0/0/2 | complete |
+| 2 | Frontier node F-1-004: correctness | correctness | 1.00 | 0/0/1 | complete |
+| 3 | Frontier node F-1-006: correctness | correctness | 0.38 | 0/0/2 | complete |
+| 4 | Frontier node F-1-002: security | security | 0.20 | 0/0/1 | complete |
+| 5 | Frontier node F-1-004: security | security | 0.00 | 0/0/0 | complete |
+| 6 | Frontier node F-1-006: security | security | 0.00 | 0/0/0 | complete |
+| 7 | Frontier node F-1-002: traceability | traceability | 0.00 | 0/0/0 | complete |
+| 8 | Frontier node F-1-004: traceability | traceability | 0.17 | 0/0/1 | complete |
+| 9 | Frontier node F-1-006: traceability | traceability | 0.00 | 0/0/0 | complete |
+| 10 | Frontier node F-1-002: maintainability | maintainability | 0.00 | 0/0/0 | complete |
+| 11 | Frontier node F-1-004: maintainability | maintainability | 0.14 | 0/0/1 | complete |
+| 12 | Frontier node F-1-006: maintainability | maintainability | 0.13 | 0/0/1 | complete |
+| 13 | Frontier node F-2-007: correctness | correctness | 0.11 | 0/0/1 | complete |
+| 14 | Frontier node F-2-007: security | security | 0.00 | 0/0/0 | complete |
+| 15 | Frontier node F-2-007: traceability | traceability | 0.06 | 0/0/1 | complete |
+| 16 | Frontier node F-2-007: maintainability | maintainability | 0.00 | 0/0/0 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -74,10 +79,10 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 6 |
+| correctness | covered | 5 |
 | security | covered | 1 |
-| traceability | covered | 0 |
-| maintainability | covered | 1 |
+| traceability | covered | 1 |
+| maintainability | covered | 2 |
 
 <!-- /ANCHOR:dimension-coverage -->
 <!-- ANCHOR:blocked-stops -->
@@ -94,12 +99,12 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.00 -> 0.00 -> 0.05
-- convergenceScore: 0.95
-- openFindings: 8
-- persistentSameSeverity: 1
+- Last 3 ratios: 0.00 -> 0.06 -> 0.00
+- convergenceScore: 1.00
+- openFindings: 9
+- persistentSameSeverity: 2
 - severityChanged: 0
-- repeatedFindings (deprecated combined bucket): 1
+- repeatedFindings (deprecated combined bucket): 2
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:corruption-warnings -->
@@ -115,22 +120,22 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:frontier -->
 ## 10B. FRONTIER
-- Frontier size: 3 nodes (0 open, 0 active, 3 answered, 0 exhausted, 0 blocked, 0 abstained)
+- Frontier size: 4 nodes (0 open, 0 active, 4 answered, 0 exhausted, 0 blocked, 0 abstained)
 - Pruned nodes: 0
 - Revisits: 0
 - Budget depth1: 12 of 12 iterations spent
-- Budget depth2: 0 of 8.4 iterations spent
-- Budget depth3: 0 of 12 iterations spent
+- Budget depth2: 4 of 8.4 iterations spent
+- Budget depth3: 0 of 8 iterations spent
 - Active node: none
 
 <!-- /ANCHOR:frontier -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none remaining. All three dealt nodes cover correctness, security, traceability and maintainability; the frontier is answered and the run proceeds to synthesis with stop reason `converged` / reasonDetail `frontier_drained`. - Reason: the dealt frontier holds no open or active node and at least one answered node, which is the legal `frontier_drained` candidate once the stop gates pass. - Required evidence: the findings registry, the merged state log and the iteration files this synthesis reads. - Rotation status: complete. Review verdict: CONDITIONAL
+- Dimension: none remaining on this node; the frontier is drained (all four nodes answered) - Frontier node: none (F-2-007 is the last open node and this pass completes its fourth dimension) - Focus area: synthesis readiness — the next convergence check should form a `frontier_drained` candidate, and the legal-stop gates decide it. - Reason: every node has all four canonical dimensions covered; no open or active node remains. - Rotation status: all dimensions covered on all four nodes. - Blocked/productive carry-forward: productive (test-coverage tracing closed the maintainability question); no blocked approaches. - Required evidence: the convergence decision after this iteration. - Recovery note: none. Review verdict: PASS
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 2 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
+- 9 active P2 finding(s) — advisory only; release is not blocked by P2 alone, but the debt is tracked here so it does not disappear.
 
 <!-- /ANCHOR:active-risks -->

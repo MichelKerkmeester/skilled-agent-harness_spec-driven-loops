@@ -1,0 +1,6 @@
+TASK (1 new file: .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts)
+Create this file as a byte-for-byte copy of the prepared file by running exactly:
+cp tmp/p011-briefs/route-receipt.ts .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts
+It imports promptPolicyTokens from runtime/lib/prompt-policy.ts, which already exports it. Do not edit any other file.
+Then read the module next to its test file .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts and report in HANDBACK, for each test you expect to fail against this module, the test name and the line in the module that makes it fail. Report "none" if you expect none.
+ACCEPT: `cmp tmp/p011-briefs/route-receipt.ts .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts` exits 0.

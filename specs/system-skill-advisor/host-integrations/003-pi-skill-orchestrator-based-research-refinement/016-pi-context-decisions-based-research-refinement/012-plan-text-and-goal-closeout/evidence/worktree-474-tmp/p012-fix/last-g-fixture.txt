@@ -1,0 +1,17 @@
+The target now matches the prepared file: `cmp` exited 0, and JSON parsing exited 0.
+
+- **Changed file:** `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json`
+- **Final changed block:**
+
+```json
+    {
+      "id": "newline-marker",
+      "input": "Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git\nNow: Refactor the session store module to remove duplicated locking code",
+      "expected": "Refactor the session store module to remove duplicated locking code"
+    }
+```
+
+- **Diff note:** The task says the prepared file “drops the period before the line-start marker.” The final input has `sk-git\nNow:` with no period, as requested. The `git diff` against `HEAD` also shows the whole newline-marker row as added. That row was already present in the working tree before the copy, with the period, so it was pre-existing.
+- **Tests:** Not run; the leaf instructions say the conductor runs them. The scoped file remains modified on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+
+**HANDBACK:** Nothing is pending from you; the conductor owns the test, typecheck and build gates.

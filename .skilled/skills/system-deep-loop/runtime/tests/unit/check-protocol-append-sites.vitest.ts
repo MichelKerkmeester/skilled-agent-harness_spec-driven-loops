@@ -1,9 +1,9 @@
-// ┌──────────────────────────────────────────────────────────────────────────┐
-// │ MODULE: check-protocol-append-sites conformance                          │
-// │ Each case writes a real fixture YAML file and asserts the real process    │
-// │ exit code of the checker script, so a pass is a statement about the      │
-// │ checker itself rather than about a mock of it.                            │
-// └──────────────────────────────────────────────────────────────────────────┘
+// ───────────────────────────────────────────────────────────────────
+// MODULE: check-protocol-append-sites conformance
+// ───────────────────────────────────────────────────────────────────
+// Each case writes a real fixture YAML file and asserts the real process
+// exit code of the checker script, so a pass is a statement about the
+// checker itself rather than about a mock of it.
 
 import { afterEach, describe, expect, it } from 'vitest';
 import { mkdtempSync, readdirSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
@@ -24,6 +24,7 @@ afterEach(() => {
   dirs.length = 0;
 });
 
+// The checker's stdout JSON is read key by key in the assertions, so the parsed payload stays loosely typed.
 function runWithFixture(files: Record<string, string>): {
   status: number | null;
   stdout: string;
@@ -351,6 +352,7 @@ describe('retired append-site exemptions', () => {
     return readdirSync(ASSETS_DIR).filter((name) => name.endsWith('.yaml')).sort();
   }
 
+  // The checker's stdout JSON is read key by key in the assertions, so the parsed payload stays loosely typed.
   function runChecker(dir: string): { status: number | null; stderr: string; payload: any } {
     const result = spawnSync(process.execPath, [CLI_PATH, '--dir', dir], { encoding: 'utf8' });
     let payload: any = null;

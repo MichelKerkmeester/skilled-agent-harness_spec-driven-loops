@@ -36,7 +36,7 @@ Callers should use the exported API in `index.ts`. Filesystem, ledger and workfl
 | Public API | `index.ts` |
 | Primary implementation | `deep-research-reducer.ts` |
 
-The barrel re-exports the lane's supported types, constants, parsers and runtime helpers. Deterministic event folding and legacy projection logic. Direct imports from implementation files bypass the lane contract and should remain limited to internal composition and focused tests.
+The barrel re-exports the lane's supported types, constants, parsers and runtime helpers. `foldDeepResearchEvents` folds an ordered event list into projection state or reports that a rebuild is required, and `reduceDeepResearchVerifiedEvent` reduces one verified ledger event against the mode-contract state. `projectDeepResearchLegacyView` derives the legacy view from a projection state, and the `assertDeepResearch*` guards from `deep-research-projection-schema.ts` check projection and legacy-view shapes. Direct imports from implementation files bypass the lane contract and should remain limited to internal composition and focused tests.
 
 ---
 

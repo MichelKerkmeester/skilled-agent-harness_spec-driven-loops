@@ -52,7 +52,8 @@ const MODES = Object.freeze([
 // The measured producer surface for both deep modes: the two workflows, the
 // workflow step programs they call, the append gateway, the synthesis
 // close-out, both reducers, the verifier, the run-now sentinel, the
-// dispatch-iteration script, and the fan-out runner. A
+// dispatch-iteration script, the fan-out runner, and the convergence script,
+// which records a blocked review stop. A
 // file renamed out of this list fails as a missing surface rather than
 // passing unexamined.
 const PRODUCER_SURFACE = Object.freeze([
@@ -66,6 +67,7 @@ const PRODUCER_SURFACE = Object.freeze([
   '.skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs',
   '.skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs',
   '.skilled/skills/system-deep-loop/runtime/scripts/workflow-steps.cjs',
+  '.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs',
   '.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs',
 ]);
 
@@ -106,6 +108,7 @@ function fail(error) {
   process.exit(1);
 }
 
+/** Parses `--repo-root` and `--help`; an unknown flag is recorded in `error` rather than thrown. */
 function parseArgs(argv) {
   const out = { repoRoot: null };
   for (let index = 0; index < argv.length; index += 1) {
@@ -205,6 +208,7 @@ function parseCensus(text, declaration) {
   return entries;
 }
 
+/** Scans the producer files for emitted and interpolated ledger stems, and records each producer file that cannot be read instead of failing. */
 function scanEmitters(repoRoot) {
   const emitters = [];
   const interpolated = [];
@@ -376,6 +380,7 @@ function evaluateMode(spec, repoRoot, emitters, missingFiles, interpolated = [])
   };
 }
 
+/** Prints one JSON report of registered, spoken and reserved stems and returns 0 when no violation is found, 2 on violations and 1 on a bad flag or repo root. */
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   if (args.help) {

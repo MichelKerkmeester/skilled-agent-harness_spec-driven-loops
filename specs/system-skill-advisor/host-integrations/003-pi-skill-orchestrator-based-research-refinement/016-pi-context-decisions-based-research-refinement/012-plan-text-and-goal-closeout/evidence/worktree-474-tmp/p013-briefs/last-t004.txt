@@ -1,0 +1,15 @@
+Updated [vitest.config.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-attach-4/probes/vitest.config.ts:1) with the requested three-line header.
+
+```
+// ───────────────────────────────────────────────────────────────
+// MODULE: Scorer probe Vitest config
+// ───────────────────────────────────────────────────────────────
+```
+
+Both acceptance checks passed: line 2 prints the requested module comment, and line 4 starts with `import base from`. The scoped quality gate returned `NO_BLOCKER_FOUND` (exit 0), and strict spec validation returned `RESULT: PASSED` (exit 0). I did not run the archived probe.
+
+No requested text mismatched the file. The working tree also has three modified files outside this task’s scope; I left them untouched. One was already modified at the start. The change is uncommitted on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+
+SKILL ROUTING: User specified `sk-code`. COMMAND: `[/doctor:setup] → declined`. REPO RULES loaded: `blast-radius.md`, `evidence-and-proof.md`, `communication.md`, `communication-handoff.md`.
+
+Nothing is blocked on you.

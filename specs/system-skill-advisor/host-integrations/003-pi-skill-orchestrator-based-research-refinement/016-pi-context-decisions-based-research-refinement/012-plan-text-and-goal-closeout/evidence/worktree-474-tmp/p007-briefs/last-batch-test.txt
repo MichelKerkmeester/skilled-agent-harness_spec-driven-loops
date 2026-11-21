@@ -1,0 +1,45 @@
+I added the requested block to [test_skill_advisor.py](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2579).
+
+The acceptance checks returned `1`, `1`, and `1 0 0`. `py_compile` exited 0. The temporary bytecode cache was removed. I did not run the full Python test harness.
+
+**Inserted block:**
+
+```python
+
+    # Batch mode trims each prompt before scoring. It must trim JavaScript's
+    # whitespace set, or a control character the native scorer keeps would
+    # expose a pasted reply that the native scorer leaves in place.
+    for label, lead in (("U+001C", "\x1c"), ("U+0085", "\x85")):
+        name = f"STRIP-BATCH: analyze_batch keeps a {label}-led pasted reply as native does"
+        raw = lead + probe["input"]
+        try:
+            batch = advisor.analyze_batch(
+                prompts=[raw],
+                confidence_threshold=0.8,
+                uncertainty_threshold=0.35,
+                confidence_only=False,
+                show_rejections=False,
+            )
+            single = advisor.analyze_prompt(
+                prompt=raw,
+                confidence_threshold=0.8,
+                uncertainty_threshold=0.35,
+                confidence_only=False,
+                show_rejections=False,
+            )
+        except Exception as exc:
+            fail_test(name, str(exc))
+            continue
+        batch_top = [r["skill"] for r in batch[0]["recommendations"]][:1] if batch else []
+        single_top = [r["skill"] for r in single][:1]
+        if batch and batch[0]["prompt"] == raw and batch_top == single_top:
+            ok(name, f"top={batch_top}")
+        else:
+            fail_test(name, f"batch={batch_top} single={single_top}")
+```
+
+The anchor matched verbatim; nothing in the task failed to match the file. The target file and five other files were already modified before my edit, and I left those existing changes untouched. My work is uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+
+SKILL ROUTING: `sk-code` → `sk-code-skilled` / Python. REPO RULES loaded: `prevent-overengineering.md`, `evidence-and-proof.md`, `communication.md`, `communication-handoff.md`.
+
+No operator action remains for this leaf. Any broader suite remains with the conductor.

@@ -49,11 +49,16 @@ export interface NodeSignal {
 
 export type TimeDecayNow = string | number | Date;
 
+/** Optional decay half-life in days (0 disables decay) and the reference time used to age graph items. */
 export interface SignalRankingOptions {
   decayDays?: number;
   now?: TimeDecayNow;
 }
 
+/**
+ * Convergence ratios computed for a research graph: question coverage, claim verification, contradiction density,
+ * source diversity and evidence depth.
+ */
 export interface ResearchConvergenceSignals {
   questionCoverage: number;
   claimVerificationRate: number;
@@ -62,6 +67,10 @@ export interface ResearchConvergenceSignals {
   evidenceDepth: number;
 }
 
+/**
+ * Convergence ratios computed for a review graph: dimension coverage, finding stability, P0 resolution, evidence
+ * density and hotspot saturation.
+ */
 export interface ReviewConvergenceSignals {
   dimensionCoverage: number;
   findingStability: number;
@@ -70,6 +79,10 @@ export interface ReviewConvergenceSignals {
   hotspotSaturation: number;
 }
 
+/**
+ * Convergence ratios computed for a context graph: slice and reuse-catalog coverage, agreement rate, relevance floor
+ * and dependency completeness.
+ */
 export interface ContextConvergenceSignals {
   sliceCoverage: number;
   reuseCatalogCoverage: number;
@@ -78,6 +91,7 @@ export interface ContextConvergenceSignals {
   dependencyCompleteness: number;
 }
 
+/** Observation count for one finding-like node and whether it falls under the minimum-observation threshold. */
 export interface FindingObservationSignal {
   id: string;
   kind: string;
@@ -86,6 +100,10 @@ export interface FindingObservationSignal {
   subThreshold: boolean;
 }
 
+/**
+ * Per-finding observation counts sorted by count, the threshold applied and the leading finding, or null when there are
+ * none.
+ */
 export interface ObservationThresholdSignals {
   minObservations: number;
   leadingFinding: FindingObservationSignal | null;
@@ -97,6 +115,7 @@ export type ConvergenceSignals =
   | ReviewConvergenceSignals
   | ContextConvergenceSignals;
 
+/** Convergence and per-node signals for one iteration, with the node and edge counts they were computed over. */
 export interface SignalSnapshot {
   iteration: number;
   signals: ConvergenceSignals;
@@ -246,6 +265,10 @@ function parseTimeInputMs(value: TimeDecayNow): number | null {
   return parseTimestampMs(value);
 }
 
+/**
+ * Coerce a decay half-life in days to 0 (decay off) or a truncated value of at least the minimum, throwing TypeError
+ * for non-finite input and RangeError otherwise.
+ */
 export function normalizeTimeDecayDays(value: unknown = DEFAULT_TIME_DECAY_DAYS): number {
   const parsed = Number(value);
   if (!Number.isFinite(parsed)) {
@@ -267,6 +290,10 @@ function normalizeSignalRankingOptions(options: SignalRankingOptions = {}): Requ
   };
 }
 
+/**
+ * Weight an item as 0.5 raised to its age over the half-life, returning 1 when decay is off or either timestamp does
+ * not parse.
+ */
 export function timeDecayWeight(
   createdAt: string | null | undefined,
   decayDays: number,
@@ -343,6 +370,7 @@ function buildAnsweringFindingsByQuestion(edges: ReadonlyArray<ResearchSignalEdg
   for (const edge of edges) {
     if (edge.relation !== 'ANSWERS') continue;
     if (!answeringFindings.has(edge.targetId)) answeringFindings.set(edge.targetId, []);
+    // The key was set to an empty list on the line above when absent.
     answeringFindings.get(edge.targetId)!.push(edge.sourceId);
   }
 
@@ -355,12 +383,17 @@ function buildCitedSourcesByFinding(edges: ReadonlyArray<ResearchSignalEdgeLike>
   for (const edge of edges) {
     if (edge.relation !== 'CITES') continue;
     if (!citedSources.has(edge.sourceId)) citedSources.set(edge.sourceId, []);
+    // The key was set to an empty list on the line above when absent.
     citedSources.get(edge.sourceId)!.push(edge.targetId);
   }
 
   return citedSources;
 }
 
+/**
+ * Coerce a minimum-observation threshold to an integer clamped to the allowed range, falling back to the default for
+ * non-finite input.
+ */
 export function normalizeMinObservations(value: unknown = DEFAULT_MIN_OBSERVATIONS): number {
   const parsed = Number(value);
   if (!Number.isFinite(parsed)) return DEFAULT_MIN_OBSERVATIONS;
@@ -392,6 +425,10 @@ function buildConfirmCountsByFinding(edges: ReadonlyArray<ResearchSignalEdgeLike
   return counts;
 }
 
+/**
+ * Count observations per finding-like node as the larger of its metadata count (default 1) and its CONFIRMS edges, flag
+ * those under the threshold and sort by count, then id.
+ */
 export function computeFindingObservationSignalsFromData(
   nodes: ReadonlyArray<FindingObservationNodeLike>,
   edges: ReadonlyArray<ResearchSignalEdgeLike>,
@@ -437,6 +474,7 @@ function computeDepths(nodes: CoverageNode[], edges: CoverageEdge[]): Map<string
 
   for (const edge of edges) {
     if (!adjacency.has(edge.sourceId)) adjacency.set(edge.sourceId, []);
+    // The key was set to an empty list on the line above when absent.
     adjacency.get(edge.sourceId)!.push(edge.targetId);
     inDegree.set(edge.targetId, (inDegree.get(edge.targetId) ?? 0) + 1);
     if (!inDegree.has(edge.sourceId)) inDegree.set(edge.sourceId, 0);

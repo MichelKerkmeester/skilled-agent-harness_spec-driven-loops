@@ -1,0 +1,28 @@
+The requested edits are applied, and the ACCEPT command printed `1` twice and exited 0. The full code gate remains blocked: `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` §4 requires, “Before any completion claim, re-run the four live sk-code drift guards on a system-code change through the single entry point.” That run exited 1 because alignment-drift reported 11 errors in other files. The other three guards passed. I did not change those files, and there is no baseline run to establish whether the errors predate this edit.
+
+**Files changed**
+
+- [subprocess.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:46)
+
+  ```ts
+  // True when a hub held back its command because the prompt names no single mode.
+  readonly needsMode?: boolean;
+  // True when the confidence sits on the task-intent floor rather than the
+  // recommendation's own evidence.
+  readonly confidenceFloored?: true;
+  ```
+
+- [skill-advisor-cli-fallback.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:387)
+
+  ```ts
+  // A hub that held back its command for want of a mode keeps that signal, so
+  // the head can say why no command came with it.
+  ...(value.needsMode === true ? { needsMode: true } : {}),
+  // A floored route is held back against the session's earlier route, so the
+  // floor has to survive the trip from the CLI.
+  ...(value.confidenceFloored === true ? { confidenceFloored: true as const } : {}),
+  ```
+
+Both supplied old blocks matched exactly once. No mismatches. `git diff --check` exited 0, and the scoped diff contains only these insertions. Tests, typecheck and build were not run, as assigned to the conductor.
+
+The conductor’s next step is to disposition the alignment-drift errors and run the package checks. Intent was implementation. Skill routing followed the user-directed `sk-code` route to `sk-code-skilled`. Repository rules loaded: prevent-overengineering, blast-radius, evidence-and-proof, communication and communication-handoff.

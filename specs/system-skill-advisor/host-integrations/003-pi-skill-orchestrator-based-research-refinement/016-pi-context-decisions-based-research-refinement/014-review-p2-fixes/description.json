@@ -6,7 +6,7 @@
     "phase",
     "review-p2-fixes"
   ],
-  "lastUpdated": "2026-11-19T12:54:46.368Z",
+  "lastUpdated": "2026-11-19T13:40:19.220Z",
   "specId": "014",
   "folderSlug": "review-p2-fixes",
   "parentChain": [
@@ -15,13 +15,14 @@
     "003-pi-skill-orchestrator-based-research-refinement",
     "016-pi-context-decisions-based-research-refinement"
   ],
-  "memorySequence": 6,
+  "memorySequence": 7,
   "memoryNameHistory": [
     "19-11-26_06-30__planned-phase-014-for-the-nine-p2-findings-of-the.md",
     "19-11-26_06-43__phase-014-planned-and-its-goal-written-the-parent.md",
     "19-11-26_09-54__the-implementation-summary-is-drafted-rows-from.md",
     "19-11-26_10-31__built-phase-014-in-worktree-475-eight-review-p2.md",
     "19-11-26_10-36__the-last-criterion-holds-for-all-three-folders-i.md",
-    "19-11-26_13-54__manual-context-save.md"
+    "19-11-26_13-54__manual-context-save.md",
+    "19-11-26_14-40__the-fresh-opus-high-effort-is-running-read-only.md"
   ]
 }

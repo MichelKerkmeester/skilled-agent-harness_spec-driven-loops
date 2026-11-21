@@ -1,78 +1,22 @@
 {
-  "sessionId": "fanout-deepseek-1795113418367-pvzn7z",
+  "sessionId": "fanout-deepseek-1795201537192-sq1ivw",
   "parentSessionId": null,
   "generation": 1,
   "lineageMode": "new",
   "continuedFromRun": null,
-  "terminalStop": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 16,
+    "timestamp": "2026-11-20T19:29:43.384Z"
+  },
   "status": "COMPLETE",
   "openFindings": [
     {
-      "findingId": "R2-P1-001",
-      "severity": "P1",
-      "title": "A thought iteration covers a frontier dimension and spends node depth",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
-      "line": 1971,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R3-P1-001",
-      "severity": "P1",
-      "title": "REQ-007 and AC-008 promise pivot-candidate admission the pivot branch never performs",
-      "file": ".skilled/commands/deep/assets/deep-review.yaml",
-      "line": 1429,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
       "findingId": "R1-P2-001",
       "severity": "P2",
-      "title": "Detached lineage contract names a FRONTIER block the CLI prompt never renders",
+      "title": "dsh danger-full-access is narrowed to workspace-write while provenance records the requested mode and none enforcement",
       "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      "line": 1791,
+      "line": 3605,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -100,45 +44,9 @@
     {
       "findingId": "R1-P2-002",
       "severity": "P2",
-      "title": "Frontier steering and projection order by locale collation while the merge orders by code unit",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      "line": 357,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 2,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        },
-        {
-          "iteration": 2,
-          "from": "P2",
-          "to": "P2",
-          "reason": "Refinement of an earlier finding"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R1-P2-003",
-      "severity": "P2",
-      "title": "A single lineage that omits graphCoverageMode erases the mode the others agree on",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
-      "line": 1003,
+      "title": "The auto-approve-flag sandbox surface now describes a flag that is no longer mode-discriminating",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      "line": 165,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -164,11 +72,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "R1-P2-004",
+      "findingId": "R11-P2-001",
       "severity": "P2",
-      "title": "The merge re-implements the reducer's traceability summary arithmetic",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
-      "line": 982,
+      "title": "The identity strip is a denylist that misses four fields buildPreparedInput reads from the same metadata",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+      "line": 108,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -176,29 +84,29 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
+      "dimension": "maintainability",
+      "firstSeen": 11,
+      "lastSeen": 11,
       "status": "active",
       "transitions": [
         {
-          "iteration": 1,
+          "iteration": 11,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "correctness"
+        "maintainability"
       ],
       "mergedFindingIds": []
     },
     {
       "findingId": "R12-P2-001",
       "severity": "P2",
-      "title": "The attempt-1 to attempt-2 config transition writes the config twice and the second write bypasses the conflict check",
-      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
-      "line": 1296,
+      "title": "The executor help text is hand-maintained in four files and the only test that reads them checks a single rejected flag",
+      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "line": 142,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -224,11 +132,113 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "R5-P2-001",
+      "findingId": "R13-P2-001",
       "severity": "P2",
-      "title": "Source-quality classification assumes POSIX separators, so Windows-separated paths lose their spec and test classes",
-      "file": ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
-      "line": 330,
+      "title": "R13-P2-001 refined: the catalog's definition makes none correct for devin workspace-write, so the fix is the record's comment or the builder's flag, not the label",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 3337,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 13,
+      "lastSeen": 15,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 13,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 15,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The feature catalog repeats the identity claim the projection contradicts",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+      "line": 483,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The executor catalog claims the conformance test fails on any builder drift, but its permission-mode assertion cannot see a same-mode collapse",
+      "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/executor/executor-config.md",
+      "line": 29,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Both presentations and both compiled contracts still say cli-pi has no sandbox flag while the config now accepts sandboxMode for it",
+      "file": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "line": 226,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -237,12 +247,12 @@
       "contentHash": null,
       "refines": null,
       "dimension": "security",
-      "firstSeen": 5,
-      "lastSeen": 5,
+      "firstSeen": 4,
+      "lastSeen": 4,
       "status": "active",
       "transitions": [
         {
-          "iteration": 5,
+          "iteration": 4,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
@@ -252,18 +262,52 @@
         "security"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "The state-format reference omits frontierNodeId from the iteration record's optional fields, though the stop decision reads it first",
+      "file": ".skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
   "blockedStopHistory": [],
-  "terminalGates": null,
+  "terminalGates": {
+    "run": 17,
+    "stopReason": "converged",
+    "failedRequiredGateIds": []
+  },
   "persistentSameSeverity": [
     {
-      "findingId": "R1-P2-002",
+      "findingId": "R13-P2-001",
       "severity": "P2",
-      "title": "Frontier steering and projection order by locale collation while the merge orders by code unit",
+      "title": "R13-P2-001 refined: the catalog's definition makes none correct for devin workspace-write, so the fix is the record's comment or the builder's flag, not the label",
       "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      "line": 357,
+      "line": 3337,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -272,18 +316,54 @@
       "contentHash": null,
       "refines": null,
       "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 2,
+      "firstSeen": 13,
+      "lastSeen": 15,
       "status": "active",
       "transitions": [
         {
-          "iteration": 1,
+          "iteration": 13,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
         },
         {
+          "iteration": 15,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The feature catalog repeats the identity claim the projection contradicts",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+      "line": 483,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
           "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
           "from": "P2",
           "to": "P2",
           "reason": "Refinement of an earlier finding"
@@ -298,11 +378,11 @@
   "severityChanged": [],
   "repeatedFindings": [
     {
-      "findingId": "R1-P2-002",
+      "findingId": "R13-P2-001",
       "severity": "P2",
-      "title": "Frontier steering and projection order by locale collation while the merge orders by code unit",
+      "title": "R13-P2-001 refined: the catalog's definition makes none correct for devin workspace-write, so the fix is the record's comment or the builder's flag, not the label",
       "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      "line": 357,
+      "line": 3337,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -311,18 +391,54 @@
       "contentHash": null,
       "refines": null,
       "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 2,
+      "firstSeen": 13,
+      "lastSeen": 15,
       "status": "active",
       "transitions": [
         {
-          "iteration": 1,
+          "iteration": 13,
           "from": null,
           "to": "P2",
           "reason": "Initial discovery (delta)"
         },
         {
+          "iteration": 15,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The feature catalog repeats the identity claim the projection contradicts",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+      "line": 483,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
           "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
           "from": "P2",
           "to": "P2",
           "reason": "Refinement of an earlier finding"
@@ -342,51 +458,61 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 2,
-    "P2": 6
+    "P1": 0,
+    "P2": 9
   },
-  "openFindingsCount": 8,
+  "openFindingsCount": 9,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0.95,
+  "convergenceScore": 1,
   "graphConvergenceScore": 0,
   "graphDecision": null,
   "graphBlockers": [],
   "graphSignals": {},
   "candidateCoverage": {
     "covered": [
-      "frontier:F-1-003",
-      "frontier:F-1-005",
-      "frontier:F-1-007"
+      "frontier:F-1-002",
+      "frontier:F-1-004",
+      "frontier:F-1-006",
+      "frontier:F-2-007"
     ],
     "ruledOut": [],
     "deferred": [],
     "blocked": [],
     "byBugClass": {
-      "frontier:F-1-003": {
+      "frontier:F-1-002": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          0
+          10
         ]
       },
-      "frontier:F-1-005": {
+      "frontier:F-1-004": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          0
+          11
         ]
       },
-      "frontier:F-1-007": {
+      "frontier:F-1-006": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          0
+          12
+        ]
+      },
+      "frontier:F-2-007": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          16
         ]
       }
     }
@@ -405,19 +531,14 @@
   "frontier": {
     "nodes": [
       {
-        "nodeId": "F-1-003",
+        "nodeId": "F-1-002",
         "parentId": "root",
         "depth": 1,
-        "scope": [
-          ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-          ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
-          ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
-          ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts"
-        ],
-        "question": "Do the fan-out runner and merge handle expansive depth the same way for every executor kind: the round-robin frontier partition, per-lineage derived budgets, lineage prompts carrying focus and frontier scope, lineage command builders and the review coverage merge?",
+        "scope": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "question": "Cross-CLI adapter contract and sandbox: is the adapter capability record true for every kind, does a requested sandbox mode reach codex, pi, dsh and harness argv, and is the opencode workspace-write default with compensating enforcement sound?",
         "status": "answered",
         "reason": null,
-        "iteration": 0,
+        "iteration": 10,
         "coveredDimensions": [
           "correctness",
           "security",
@@ -428,26 +549,14 @@
         "visits": 4
       },
       {
-        "nodeId": "F-1-005",
+        "nodeId": "F-1-004",
         "parentId": "root",
         "depth": 1,
-        "scope": [
-          ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
-          ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
-          ".skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs",
-          ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
-          ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
-          ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs",
-          ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema",
-          ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema",
-          ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections",
-          ".skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers",
-          ".skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers"
-        ],
-        "question": "Are the state reducers, upsert, convergence and iteration verification changes correct and free of duplicated logic: node status derivation, dimension coverage, extension bookkeeping, frontier_drained stops and the ledger schema and projection changes?",
+        "scope": ".skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+        "question": "Gateway identity: does the append gateway mint event id, idempotency key, producer and epoch for model-written review and research rows, and refuse a reused key with different content instead of replaying the old receipt?",
         "status": "answered",
         "reason": null,
-        "iteration": 0,
+        "iteration": 11,
         "coveredDimensions": [
           "correctness",
           "security",
@@ -458,21 +567,32 @@
         "visits": 4
       },
       {
-        "nodeId": "F-1-007",
+        "nodeId": "F-1-006",
         "parentId": "root",
         "depth": 1,
-        "scope": [
-          ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
-          ".skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts",
-          ".skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts",
-          ".skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs",
-          ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
-          ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph"
-        ],
-        "question": "Are the divergent pivot, continuity thread and coverage-graph query and signal changes correct and restrained: pivot hygiene, seat scope, quorum retry and the graph signals the stop gates read?",
+        "scope": ".skilled/commands/deep .skilled/skills/system-deep-loop/deep-review/references .skilled/skills/system-deep-loop/deep-research/references .skilled/skills/system-deep-loop/runtime/feature-catalog",
+        "question": "Docs and contracts: do the command docs, compiled contracts, references, feature catalogs and playbooks describe what the round 5 and 6 code now does?",
         "status": "answered",
         "reason": null,
-        "iteration": 0,
+        "iteration": 12,
+        "coveredDimensions": [
+          "correctness",
+          "security",
+          "traceability",
+          "maintainability"
+        ],
+        "nextDimension": null,
+        "visits": 4
+      },
+      {
+        "nodeId": "F-2-007",
+        "parentId": "F-1-002",
+        "depth": 2,
+        "scope": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts .skilled/skills/system-deep-loop/runtime/tests/unit/executor-adapter-capabilities.vitest.ts",
+        "question": "Sandbox enforcement label matrix: does sandboxEnforcementFor report preventive, compensating or none correctly for every executor kind across all three sandbox modes, including the kinds whose builder emits a different mode than the one requested?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 16,
         "coveredDimensions": [
           "correctness",
           "security",
@@ -484,10 +604,10 @@
       }
     ],
     "stats": {
-      "total": 3,
+      "total": 4,
       "open": 0,
       "active": 0,
-      "answered": 3,
+      "answered": 4,
       "blocked": 0,
       "exhausted": 0,
       "abstained": 0,
@@ -500,10 +620,10 @@
       },
       "depth2": {
         "allotted": 8.4,
-        "spent": 0
+        "spent": 4
       },
       "depth3": {
-        "allotted": 12,
+        "allotted": 8,
         "spent": 0
       }
     },
@@ -512,91 +632,73 @@
   },
   "traceability": {
     "summary": {
-      "required": 6,
-      "executed": 6,
+      "required": 3,
+      "executed": 3,
       "pass": 3,
-      "partial": 3,
+      "partial": 0,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 0,
-      "gatingFailures": 2
+      "notApplicable": 3,
+      "gatingFailures": 0
     },
     "results": [
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1296-1309",
-          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/spec.md:116"
+          ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:486-506"
         ],
         "gateClass": "hard",
         "protocolId": "spec_code",
-        "status": "partial",
-        "summary": "012 REQ-007 attempt identity matches; the double write is outside the REQ text. REQ-007 admission remains the only partial."
+        "status": "pass",
+        "summary": "the preventive record is pinned by an exact-map assertion and a per-kind boolean check"
       },
       {
-        "applicable": true,
-        "evidence": [
-          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/012-pivot-hygiene/tasks.md:48",
-          "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md:63"
-        ],
+        "applicable": false,
+        "evidence": [],
         "gateClass": "hard",
         "protocolId": "checklist_evidence",
-        "status": "partial",
-        "summary": "012 checklist rows match; AC-008 remains outstanding."
+        "status": "notApplicable",
+        "summary": "commit-range target, no spec checklist"
       },
       {
-        "applicable": true,
-        "evidence": [
-          ".skilled/agents/deep-review.md",
-          ".skilled/skills/system-deep-loop/deep-review/SKILL.md"
-        ],
-        "gateClass": "soft",
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "overlay",
         "protocolId": "skill_agent",
-        "status": "pass",
-        "summary": "Skill and agent definition carry the same depth-mode and frontier contract."
+        "status": "notApplicable",
+        "summary": "no agent definition in the range"
       },
       {
-        "applicable": true,
-        "evidence": [
-          ".claude/agents/deep-review.md",
-          ".codex/agents/deep-review.toml",
-          ".pi/agents/deep-review.md",
-          ".dsh/agents/deep-review.patch.yml",
-          ".vibe/agents/deep-review.toml"
-        ],
-        "gateClass": "soft",
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "overlay",
         "protocolId": "agent_cross_runtime",
-        "status": "pass",
-        "summary": "All mirrors carry the new frontier contract; differences are runtime frontmatter and path convention."
+        "status": "notApplicable",
+        "summary": "no runtime mirror in the range"
       },
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:44",
-          ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md:22",
-          ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md:28"
+          ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:193,197"
         ],
-        "gateClass": "soft",
+        "gateClass": "overlay",
         "protocolId": "feature_catalog_code",
-        "status": "partial",
-        "summary": "Pivot and retry claims match the code and confirm R3-P1-001 is stale packet text; the produced-evidence sentence remains the R2-P1-001 doc side."
+        "status": "pass",
+        "summary": "vocabulary and per-kind paragraphs match the code"
       },
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/coverage-graph/source-quality-class-derivation.md:30-65",
-          ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/divergent-council-quorum-retry.md"
+          ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:990",
+          ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:888"
         ],
-        "gateClass": "soft",
+        "gateClass": "overlay",
         "protocolId": "playbook_capability",
         "status": "pass",
-        "summary": "DLR-061 and DLR-062 name the classifier order, signal cases and retry scenario that match the code."
+        "summary": "both changed playbooks are indexed and their scenario files exist"
       }
     ],
-    "unfinishedCoreProtocols": [
-      "spec_code",
-      "checklist_evidence"
-    ]
+    "unfinishedCoreProtocols": []
   },
   "divergence": {
     "started": [],

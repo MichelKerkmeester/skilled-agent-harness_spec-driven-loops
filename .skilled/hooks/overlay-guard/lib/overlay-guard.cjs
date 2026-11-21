@@ -41,6 +41,8 @@ const DEFAULT_OVERLAY_FOLDER = 'skilled-overlays';
 const ENGINE_TIMEOUT_MS = 3_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 const EXIT_OWNED = 1;
+// A note stays one line, so its remedy rides on the same line instead of its own.
+const UNGUARDED = ' -- ownership is unknown, so the write goes through unguarded. ';
 // Embedded runtimes such as Bun report the host binary as process.execPath,
 // and that binary cannot run the engine.
 const NODE_BINARY = /^node(\.exe)?$/i.test(path.basename(process.execPath)) ? process.execPath : 'node';
@@ -52,6 +54,18 @@ const NODE_BINARY = /^node(\.exe)?$/i.test(path.basename(process.execPath)) ? pr
 function uniquePaths(paths) {
   const list = Array.isArray(paths) ? paths : [paths];
   return [...new Set(list.filter((item) => typeof item === 'string' && item.trim()))];
+}
+
+// The engine path is relative to the tree root, and the operator may stand anywhere,
+// so the remedy names the directory to run it from.
+function statusRemedy(treeRoot = DEFAULT_TREE_ROOT) {
+  return `Next: from ${shellWord(treeRoot)}: node ${ENGINE_RELATIVE.split(path.sep).join('/')} status`;
+}
+
+// A word a printed command carries as pasted: single-quoted unless nothing in it is special.
+function shellWord(text) {
+  const value = String(text);
+  return /^[A-Za-z0-9_@%+=:,./-]+$/.test(value) ? value : `'${value.replace(/'/g, "'\\''")}'`;
 }
 
 function oneLine(text) {
@@ -118,7 +132,7 @@ function evaluateWrite(request = {}) {
   try {
     if (!hasManifest(treeRoot, enginePath)) return allow;
   } catch (error) {
-    return { ...allow, notes: ['overlay-guard: could not judge the write, allowing it: ' + oneLine(error.message)] };
+    return { ...allow, notes: ['overlay-guard: could not judge the write, allowing it: ' + oneLine(error.message) + UNGUARDED + statusRemedy(treeRoot)] };
   }
 
   const refusals = [];
@@ -131,7 +145,7 @@ function evaluateWrite(request = {}) {
   }
   if (refusals.length > 0) return { decision: 'deny', reason: refusals.join('\n'), notes: [] };
   if (unjudged.length > 0) {
-    return { ...allow, notes: ['overlay-guard: could not judge ' + unjudged.join('; ') + ', allowing'] };
+    return { ...allow, notes: ['overlay-guard: could not judge ' + unjudged.join('; ') + ', allowing' + UNGUARDED + statusRemedy(treeRoot)] };
   }
   return allow;
 }
@@ -166,4 +180,5 @@ module.exports = {
   evaluateWrite,
   fileFieldPath,
   pathsFromPatch,
+  statusRemedy,
 };

@@ -201,10 +201,9 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
               continue;
             }
 
-            // cli-opencode exposes no OS-level sandbox flag: only danger-full-access
-            // (which makes no confinement claim) is honest to construct. read-only and
-            // workspace-write must fail closed rather than silently dispatch unconfined.
-            if (kind === 'cli-opencode' && sandbox !== 'danger-full-access') {
+            // cli-opencode's Bash tool can write anywhere, so no read-only boundary exists
+            // and read-only must fail closed rather than silently dispatch with write access.
+            if (kind === 'cli-opencode' && sandbox === 'read-only') {
               expect(() => buildLineageCommand(
                 lineage,
                 MATRIX_PROMPT,
@@ -251,7 +250,7 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
               console.log(`[combo-matrix] skipped live credentialed dispatch kind=${kind} model=${modelLabel} sandbox=${sandbox} reason=construction coverage only; credentials are intentionally not used`);
             }
 
-            if (model === MODELS_BY_KIND[kind][0] && sandbox === SANDBOX_MODES[0] && !(kind === 'cli-opencode' && sandbox !== 'danger-full-access')) {
+            if (model === MODELS_BY_KIND[kind][0] && sandbox === SANDBOX_MODES[0]) {
               expect(command.command).toBe(COMMAND_BY_KIND[kind]);
               expect(command.args).toEqual(expectedRepresentativeArgs(kind, model, sandbox));
             }
@@ -264,10 +263,10 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
         0,
       );
       expect(constructedCombinations + rejectedCombinations).toBe(expectedCombinationCount);
-      // Every cli-opencode model is rejected for both unenforceable sandbox modes, and a
-      // native lineage is rejected for every sandbox mode.
+      // Every cli-opencode model is rejected for read-only, and a native lineage is
+      // rejected for every sandbox mode.
       expect(rejectedCombinations).toBe(
-        MODELS_BY_KIND['cli-opencode'].length * 2 + MODELS_BY_KIND.native.length * SANDBOX_MODES.length,
+        MODELS_BY_KIND['cli-opencode'].length + MODELS_BY_KIND.native.length * SANDBOX_MODES.length,
       );
       expect(new Set(exercisedKinds)).toEqual(new Set(EXECUTOR_KINDS));
       expect([...exercisedModelsByKind['cli-cursor'] ?? []].sort()).toEqual([...CURSOR_SUPPORTED_MODELS].sort());

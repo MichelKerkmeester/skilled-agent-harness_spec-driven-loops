@@ -1,0 +1,20 @@
+**Changed:** [fusion.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts)
+
+```ts
+import { stripLeadingPastedReply } from '../prompt-policy.js';
+```
+
+```ts
+export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
+  // A reply pasted ahead of the task names skills the task never asked for, so it is scored without it.
+  const prompt = stripLeadingPastedReply(rawPrompt);
+  const projection = projectionWithUsableSkillIds(
+```
+
+The requested `rg` check passed with exit 0 and printed two matches, at lines 52 and 1277. Both edit anchors matched the file.
+
+**Workspace mismatch:** `ACCEPT: exactly one file changed` does not hold for the whole worktree. Before this edit, `git status --short` already showed ` M .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` and seven other modified paths. Those remain untouched; this edit adds only `fusion.ts`.
+
+The change is uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`. Typecheck, tests, build and the quality gate were not run here; the task assigns those checks to the conductor. The repo’s verification rule still blocks a completion claim until they pass. The conductor’s remaining action is to run them.
+
+Skill routing: user specified `sk-code`; the code artifact route selected the SKILLED TypeScript implementation surface.

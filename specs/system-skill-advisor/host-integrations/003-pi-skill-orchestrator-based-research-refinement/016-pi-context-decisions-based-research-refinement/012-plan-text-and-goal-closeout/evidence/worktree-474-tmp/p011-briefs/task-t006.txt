@@ -1,0 +1,8 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts)
+Make exactly one insertion and change nothing else. Splice the block with a short Python script that reads the block file; do not retype it.
+The file ends with:
+    expect(rendered?.split('\n')[0]).toContain('use system-deep-loop (needs a mode)');
+  });
+});
+Insert the exact contents of tmp/p011-briefs/envelope-case.ts.txt (it starts with a blank line) between the `  });` that closes the test 'keeps a hub that needs a mode from the CLI row' and the final `});` that closes the describe block.
+ACCEPT: `grep -c "keeps the confidence-floor flag from the CLI row" .skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts` prints 1 and `tail -1 .skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts` prints `});`.

@@ -65,6 +65,16 @@ EXCLUDED_DIRS = {
 }
 
 
+SPEC_RECORD_DIRS = (
+    "evidence",
+    "scratch",
+    "z_archive",
+    "research_archive",
+    "review_archive",
+    "review-archive",
+)
+
+
 def is_unscanned_record_path(path: str) -> bool:
     """Whether `path` sits under a spec-record or shaped-fixture directory.
 
@@ -72,10 +82,13 @@ def is_unscanned_record_path(path: str) -> bool:
     prove a result, and rewriting them to house style would change what was
     recorded. A `scratch` folder holds a packet's throwaway working
     files, so those files are not shipped source. A `z_archive` folder holds
-    retired packets, so its files are not shipped source. A directory named
+    retired packets, so its files are not shipped source. A deep-loop run
+    archive (`research_archive`, `review_archive` or `review-archive`) holds the
+    scripts a finished research or review run wrote for itself, kept as the run
+    record rather than as shipped source. A directory named
     `fixture` or ending in `-fixture` holds deliberately shaped input for
     experiments. Only directory names count, never the file name. Outside
-    `specs/`, `evidence`, `scratch` and `z_archive` are shipped source that
+    `specs/`, these folder names are shipped source that
     still gets scanned.
     """
     parts = [part.lower() for part in path.replace("\\", "/").split("/") if part]
@@ -84,7 +97,7 @@ def is_unscanned_record_path(path: str) -> bool:
         return True
     if "specs" in dirs:
         after_specs = dirs[dirs.index("specs") + 1:]
-        if any(name in after_specs for name in ("evidence", "scratch", "z_archive")):
+        if any(name in after_specs for name in SPEC_RECORD_DIRS):
             return True
     return False
 

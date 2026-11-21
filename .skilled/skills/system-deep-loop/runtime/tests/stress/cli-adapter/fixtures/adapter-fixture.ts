@@ -179,7 +179,7 @@ export async function runAdapterFanout(
     || fixture.kind === 'cli-deepseek-harness') {
     executor.reasoningEffort = 'high';
   }
-  if (fixture.kind !== 'cli-pi' && options.sandboxMode) {
+  if (options.sandboxMode) {
     executor.sandboxMode = options.sandboxMode;
   }
 

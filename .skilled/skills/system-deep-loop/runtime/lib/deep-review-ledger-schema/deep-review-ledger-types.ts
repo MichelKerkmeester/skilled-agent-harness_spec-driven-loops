@@ -27,49 +27,63 @@ export type Fingerprint = string;
 export type Version = string;
 export type Uint32 = number;
 
+/**
+ * Replay fingerprint version, final digest and per-input digests stamped on every Deep Review payload so the event can
+ * be replay-checked.
+ */
 export interface DeepReviewReplayMetadata extends JsonObject {
   readonly fingerprint_version: ReplayFingerprintDescriptor['fingerprint_version'];
   readonly final_digest: ReplayFingerprintDescriptor['final_digest'];
   readonly replay_input_digests: Record<string, string>;
 }
 
+/** Run and session identity every Deep Review event carries; the narrower scopes extend it. */
 export interface DeepReviewBaseScope extends JsonObject {
   readonly runId: ReviewRunId;
   readonly sessionId: SessionId;
 }
 
+/** Scope for run lifecycle events, adding the session generation to the run scope. */
 export interface DeepReviewGenerationScope extends DeepReviewBaseScope {
   readonly generation: Uint32;
 }
 
+/** Scope for iteration-level events, adding the iteration id to the generation scope. */
 export interface DeepReviewIterationScope extends DeepReviewGenerationScope {
   readonly iterationId: IterationId;
 }
 
+/** Scope for dimension pass events, adding the review dimension id to the iteration scope. */
 export interface DeepReviewDimensionScope extends DeepReviewIterationScope {
   readonly dimensionId: DimensionId;
 }
 
+/** Scope for finding-candidate events, adding the candidate id to the dimension scope. */
 export interface DeepReviewCandidateScope extends DeepReviewDimensionScope {
   readonly candidateId: CandidateId;
 }
 
+/** Scope for finding lineage and state events, adding the finding id to the dimension scope. */
 export interface DeepReviewFindingScope extends DeepReviewDimensionScope {
   readonly findingId: FindingId;
 }
 
+/** Scope for claim adjudication events, linking a candidate to the finding it was adjudicated into. */
 export interface DeepReviewAdjudicationScope extends DeepReviewCandidateScope {
   readonly findingId: FindingId;
 }
 
+/** Scope for evidence events, adding the evidence id to the candidate scope. */
 export interface DeepReviewEvidenceScope extends DeepReviewCandidateScope {
   readonly evidenceId: EvidenceId;
 }
 
+/** Scope for protocol plan events, adding the protocol id to the run scope. */
 export interface DeepReviewProtocolScope extends DeepReviewBaseScope {
   readonly protocolId: ProtocolId;
 }
 
+/** Scope for report events, adding the report revision id to the run scope. */
 export interface DeepReviewReportScope extends DeepReviewBaseScope {
   readonly reportRevisionId: ReportRevisionId;
 }
@@ -90,6 +104,7 @@ export type DeepReviewScope =
 // 2. PAYLOAD VALUE OBJECTS
 // ───────────────────────────────────────────────────────────────────
 
+/** One review target resolved into scope, with its type, artifact reference and source and content digests. */
 export interface TargetReference extends JsonObject {
   readonly targetId: string;
   readonly targetType: 'artifact' | 'directory' | 'file' | 'repository' | 'symbol';
@@ -98,6 +113,10 @@ export interface TargetReference extends JsonObject {
   readonly contentDigest: Digest;
 }
 
+/**
+ * Where a piece of evidence sits: scheme, artifact reference, locator digest, selector and an optional line range and
+ * revision.
+ */
 export interface EvidenceLocator extends JsonObject {
   readonly scheme: 'artifact' | 'file' | 'other';
   readonly artifactRef: string;
@@ -108,6 +127,10 @@ export interface EvidenceLocator extends JsonObject {
   readonly revision: string | null;
 }
 
+/**
+ * The digests and versions that make up a finding's semantic fingerprint, used to track the same finding across edits
+ * and renames.
+ */
 export interface SemanticFingerprintParts extends JsonObject {
   readonly algorithmVersion: Version;
   readonly semanticAnchorDigest: Digest;
@@ -117,11 +140,13 @@ export interface SemanticFingerprintParts extends JsonObject {
   readonly baselineState: 'absent' | 'present' | 'unknown';
 }
 
+/** First and last event ids bounding the ledger span a synthesis or continuity save covers. */
 export interface SourceEventRange extends JsonObject {
   readonly firstEventId: string;
   readonly lastEventId: string;
 }
 
+/** Raw candidate and adjudicated counts for a dimension pass, with the P0, P1 and P2 split. */
 export interface FindingCounts extends JsonObject {
   readonly candidates: Uint32;
   readonly adjudicated: Uint32;
@@ -130,6 +155,7 @@ export interface FindingCounts extends JsonObject {
   readonly p2: Uint32;
 }
 
+/** Totals of dimensions, iterations, candidates, findings and evidence recorded when a run completes. */
 export interface RunCompletionCounts extends JsonObject {
   readonly dimensions: Uint32;
   readonly iterations: Uint32;
@@ -138,6 +164,10 @@ export interface RunCompletionCounts extends JsonObject {
   readonly evidence: Uint32;
 }
 
+/**
+ * Novelty, coverage, finding stability, evidence density and hotspot saturation ratios, with a digest of the
+ * observation.
+ */
 export interface ConvergenceSignals extends JsonObject {
   readonly noveltyRatio: number;
   readonly coverageRatio: number;
@@ -147,6 +177,7 @@ export interface ConvergenceSignals extends JsonObject {
   readonly observationDigest: Digest;
 }
 
+/** One terminal gate outcome: pass, fail or unknown, with a reason code and an evidence digest. */
 export interface GateResult extends JsonObject {
   readonly gateId: string;
   readonly status: 'fail' | 'pass' | 'unknown';
@@ -154,6 +185,7 @@ export interface GateResult extends JsonObject {
   readonly evidenceDigest: Digest;
 }
 
+/** The section ids a committed review report contains, with a digest over the manifest. */
 export interface ReportSectionManifest extends JsonObject {
   readonly sectionIds: string[];
   readonly manifestDigest: Digest;
@@ -174,6 +206,10 @@ export type RunInitializedData = JsonObject & {
   readonly topic?: string;
 };
 
+/**
+ * Payload for `deep_review.run_resumed`, tying the resumed session to the prior ledger tail, its compatibility decision
+ * and recovery receipt.
+ */
 export interface RunResumedData extends JsonObject {
   readonly priorTailDigest: Digest;
   readonly sourceSessionId: SessionId;
@@ -183,6 +219,9 @@ export interface RunResumedData extends JsonObject {
   readonly recoveryReceiptRef: string;
 }
 
+/**
+ * Payload for `deep_review.run_restarted`, naming the archived lineage, the prior ledger tail and the restart reason.
+ */
 export interface RunRestartedData extends JsonObject {
   readonly priorTailDigest: Digest;
   readonly archivedLineageId: string;
@@ -197,6 +236,7 @@ export interface RunRestartedData extends JsonObject {
 // old and new ceilings, so a projection can tell a raised limit from the one the
 // run started with. Run identity travels in the scope, so the payload carries
 // the budget alone.
+/** Iteration and duration limits before and after a run extension, with the minutes elapsed when it was granted. */
 export interface RunExtensionBudget extends JsonObject {
   readonly addedIterations: Uint32;
   readonly priorMaxIterations: Uint32;
@@ -206,12 +246,17 @@ export interface RunExtensionBudget extends JsonObject {
   readonly elapsedMinutesAtExtension: Uint32;
 }
 
+/** Payload for `deep_review.run_extended`, recording the extension budget granted to a continued run. */
 export interface RunExtendedData extends JsonObject {
   readonly priorTailDigest: Digest;
   readonly continuedFromRun: Uint32;
   readonly extension: RunExtensionBudget;
 }
 
+/**
+ * Payload for `deep_review.scope_resolved`: the selected targets and their set digest, the scope class and any
+ * high-risk targets left out.
+ */
 export interface ScopeResolvedData extends JsonObject {
   readonly targetSetDigest: Digest;
   readonly scopeClass: 'bounded' | 'repository' | 'targeted';
@@ -221,6 +266,10 @@ export interface ScopeResolvedData extends JsonObject {
   readonly scopeEvidenceRefs: string[];
 }
 
+/**
+ * Payload for `deep_review.dimension_ordered`, recording the dimension order, its risk rationale and the ordering
+ * policy version.
+ */
 export interface DimensionOrderedData extends JsonObject {
   readonly orderedDimensionIds: string[];
   readonly riskRationale: string;
@@ -228,6 +277,10 @@ export interface DimensionOrderedData extends JsonObject {
   readonly orderingPolicyVersion: Version;
 }
 
+/**
+ * Payload for `deep_review.protocol_plan_recorded`: core and overlay protocols, applicability, gate class and the
+ * planned evidence sources.
+ */
 export interface ProtocolPlanRecordedData extends JsonObject {
   readonly coreProtocolIds: string[];
   readonly overlayProtocolIds: string[];
@@ -238,6 +291,10 @@ export interface ProtocolPlanRecordedData extends JsonObject {
   readonly protocolPlanDigest: Digest;
 }
 
+/**
+ * Payload for `deep_review.dimension_pass_started`, recording the pass number, targets, files reviewed and the next
+ * focus.
+ */
 export interface DimensionPassStartedData extends JsonObject {
   readonly passNumber: Uint32;
   readonly targetRefs: string[];
@@ -247,6 +304,10 @@ export interface DimensionPassStartedData extends JsonObject {
   readonly nextFocusRef: string;
 }
 
+/**
+ * Payload for `deep_review.dimension_pass_completed`, adding the pass outcome and raw finding counts to the started
+ * record.
+ */
 export interface DimensionPassCompletedData extends JsonObject {
   readonly passNumber: Uint32;
   readonly targetRefs: string[];
@@ -257,6 +318,10 @@ export interface DimensionPassCompletedData extends JsonObject {
   readonly nextFocusRef: string;
 }
 
+/**
+ * Payload for `deep_review.finding_candidate_emitted`: targets, evidence, the claim text digest and the raw scoring
+ * inputs of an unadjudicated finding.
+ */
 export interface FindingCandidateEmittedData extends JsonObject {
   readonly targetRefs: string[];
   readonly evidenceRefs: string[];
@@ -275,6 +340,10 @@ export interface FindingCandidateEmittedData extends JsonObject {
   readonly sourcePassEventId: string;
 }
 
+/**
+ * Payload for `deep_review.evidence_observed`: the evidence locator, observation kind, result and content digests and
+ * the tool and analyzer fingerprints.
+ */
 export interface EvidenceObservedData extends JsonObject {
   readonly locator: EvidenceLocator;
   readonly observationKind: 'analyzer-output' | 'inspection' | 'runtime-witness' | 'test-result';
@@ -290,6 +359,10 @@ export interface EvidenceObservedData extends JsonObject {
   readonly supersedesEvidenceEventId: null;
 }
 
+/**
+ * Payload for `deep_review.evidence_reconciled`, carrying the same evidence fields as an observation once it has been
+ * reconciled.
+ */
 export interface EvidenceReconciledData extends JsonObject {
   readonly locator: EvidenceLocator;
   readonly observationKind: 'analyzer-output' | 'inspection' | 'runtime-witness' | 'test-result';
@@ -307,6 +380,10 @@ export interface EvidenceReconciledData extends JsonObject {
   readonly evidenceSetDigest: Digest;
 }
 
+/**
+ * Payload for `deep_review.claim_adjudication_recorded`: the final severity, the evidence and counterevidence sought
+ * and any downgrade trigger.
+ */
 export interface ClaimAdjudicationRecordedData extends JsonObject {
   readonly claimDigest: Digest;
   readonly evidenceRefs: string[];
@@ -322,6 +399,7 @@ export interface ClaimAdjudicationRecordedData extends JsonObject {
   readonly predecessorAdjudicationEventId: string | null;
 }
 
+/** Payload for `deep_review.finding_lineage_recorded`, relating a finding's prior and current semantic fingerprints. */
 export interface FindingLineageRecordedData extends JsonObject {
   readonly priorFingerprint: SemanticFingerprintParts;
   readonly currentFingerprint: SemanticFingerprintParts;
@@ -338,6 +416,10 @@ export interface FindingLineageRecordedData extends JsonObject {
   readonly predecessorEventRef: string;
 }
 
+/**
+ * Payload for `deep_review.finding_state_changed`, recording a finding's state and severity before and after the
+ * change.
+ */
 export interface FindingStateChangedData extends JsonObject {
   readonly priorFingerprint: SemanticFingerprintParts;
   readonly currentFingerprint: SemanticFingerprintParts;
@@ -352,6 +434,10 @@ export interface FindingStateChangedData extends JsonObject {
   readonly predecessorEventRef: string;
 }
 
+/**
+ * Payload for `deep_review.review_depth_recorded`, recording which required bug classes were covered, ruled out,
+ * deferred or blocked.
+ */
 export interface ReviewDepthRecordedData extends JsonObject {
   readonly reviewDepthSchemaVersion: Version;
   readonly applicability: 'applicable' | 'conditional' | 'not-applicable';
@@ -366,6 +452,10 @@ export interface ReviewDepthRecordedData extends JsonObject {
   readonly semanticSearchStatus: 'available' | 'degraded' | 'unavailable';
 }
 
+/**
+ * Payload for `deep_review.convergence_evaluated`: raw and weighted signals, coverage digests, finding stability and
+ * the P0/P1 resolution state.
+ */
 export interface ConvergenceEvaluatedData extends JsonObject {
   readonly rawSignals: ConvergenceSignals;
   readonly weightedSignals: ConvergenceSignals;
@@ -404,12 +494,16 @@ export type BlockedStopRecordedData = JsonObject & {
 };
 
 export type TerminalGatesRecordedData = JsonObject & {
-  readonly stopReason: 'converged' | 'maxIterationsReached' | 'maxDurationReached' | 'manualStop' | 'error';
+  readonly stopReason: 'converged' | 'maxIterationsReached' | 'maxDurationReached' | 'manualStop' | 'error' | 'blockedStop';
   readonly gateResults: GateResult[];
   readonly failedRequiredGateIds: string[];
   readonly appendPosition: Uint32;
 };
 
+/**
+ * Payload for `deep_review.pause_recorded`, recording the normalized stop reason, the sentinel cause and the iteration
+ * paused from.
+ */
 export interface PauseRecordedData extends JsonObject {
   readonly normalizedStopReason: string;
   readonly sentinelCause: string;
@@ -421,6 +515,10 @@ export interface PauseRecordedData extends JsonObject {
   readonly priorTailDigest: Digest;
 }
 
+/**
+ * Payload for `deep_review.recovery_started`, recording the recovery cause and strategy and the pause event it resumes
+ * from.
+ */
 export interface RecoveryStartedData extends JsonObject {
   readonly normalizedStopReason: string;
   readonly recoveryCause: string;
@@ -433,6 +531,10 @@ export interface RecoveryStartedData extends JsonObject {
   readonly originatingPauseEventId: string;
 }
 
+/**
+ * Payload for `deep_review.synthesis_started`, pinning the finalized event range, finding registry input and
+ * deduplication policy the report uses.
+ */
 export interface SynthesisStartedData extends JsonObject {
   readonly finalizedEventRange: SourceEventRange;
   readonly findingRegistryInputDigest: Digest;
@@ -442,12 +544,20 @@ export interface SynthesisStartedData extends JsonObject {
   readonly deferredFindingIds: string[];
 }
 
+/**
+ * Payload for `deep_review.review_report_committed`, adding the report digest, section manifest and report receipt to
+ * the started record.
+ */
 export interface ReviewReportCommittedData extends SynthesisStartedData {
   readonly reportDigest: Digest;
   readonly sectionManifest: ReportSectionManifest;
   readonly reportReceiptRef: string;
 }
 
+/**
+ * Payload for `deep_review.continuity_save_requested`: target packet, continuity payload digest, the event range saved,
+ * route and merge mode.
+ */
 export interface ContinuitySaveRequestedData extends JsonObject {
   readonly targetPacket: string;
   readonly continuityPayloadDigest: Digest;
@@ -456,16 +566,25 @@ export interface ContinuitySaveRequestedData extends JsonObject {
   readonly mergeMode: string;
 }
 
+/**
+ * Payload for `deep_review.continuity_save_completed`, adding the persistence receipts and continuity fingerprint to
+ * the request.
+ */
 export interface ContinuitySaveCompletedData extends ContinuitySaveRequestedData {
   readonly persistenceReceiptRefs: string[];
   readonly continuityFingerprint: Fingerprint;
 }
 
+/** Payload for `deep_review.continuity_save_failed`, adding the failure reason code and whether a retry may succeed. */
 export interface ContinuitySaveFailedData extends ContinuitySaveRequestedData {
   readonly retryable: boolean;
   readonly failureReasonCode: string;
 }
 
+/**
+ * Payload for `deep_review.run_completed`: terminal status, verdict, the convergence, synthesis, report and continuity
+ * event ids and the final tail hash.
+ */
 export interface RunCompletedData extends JsonObject {
   readonly terminalStatus: 'blocked' | 'completed' | 'incomplete';
   readonly convergenceEventId: string;
@@ -487,12 +606,17 @@ export interface RunCompletedData extends JsonObject {
 // synthesis reconciliation and the claim-adjudication gate all describe the run
 // itself rather than one dimension pass, so they carry run-level counts and the
 // artifact identities a reader has to re-check after a projection refresh.
+/** Payload for `deep_review.migration`, listing the legacy artifacts and the canonical artifacts they moved to. */
 export interface MigrationRecordedData extends JsonObject {
   readonly mode: string;
   readonly legacyArtifacts: string[];
   readonly canonicalArtifacts: string[];
 }
 
+/**
+ * Payload for `deep_review.recovery_baseline`, recording the commit and worktree a recovery starts from at an
+ * iteration.
+ */
 export interface RecoveryBaselineRecordedData extends JsonObject {
   readonly mode: string;
   readonly iteration: Uint32;
@@ -500,6 +624,10 @@ export interface RecoveryBaselineRecordedData extends JsonObject {
   readonly worktree: string;
 }
 
+/**
+ * Payload for `deep_review.synthesis_incomplete`: active P0/P1/P2 counts, verdict, stop reason, invariant failures and
+ * missing artifacts.
+ */
 export interface SynthesisIncompleteData extends JsonObject {
   readonly mode: string;
   readonly severity: string;
@@ -521,6 +649,10 @@ export interface SynthesisIncompleteData extends JsonObject {
   readonly stateParseFailureCount: Uint32;
 }
 
+/**
+ * Payload for `deep_review.synthesis_complete`, with active P0/P1/P2 counts, dimension coverage, verdict and
+ * release-readiness state.
+ */
 export interface SynthesisCompleteData extends JsonObject {
   readonly mode: string;
   readonly totalIterations: Uint32;
@@ -560,6 +692,10 @@ export type ClaimAdjudicationData = JsonObject & {
 // A review lane that produced no iteration file still owes the reducer an
 // iteration row, so this payload carries `type` explicitly: the projected row
 // has to stay `type: "iteration"` or the iteration vanishes from every count.
+/**
+ * Payload for `deep_review.iteration_error`, carrying the legacy iteration record fields for an iteration that ended in
+ * error.
+ */
 export interface IterationErrorRecordedData extends JsonObject {
   readonly type: 'iteration';
   readonly iteration: Uint32;
@@ -584,6 +720,7 @@ export interface IterationErrorRecordedData extends JsonObject {
 // A review iteration record reaches the gateway whole. Its optional fields vary with the review
 // depth and the executor, so it travels under one key and the state projection unwraps it into
 // the same `type: "iteration"` row the reducer counts.
+/** Payload for `deep_review.iteration_recorded`, wrapping a legacy iteration record as an opaque JSON object. */
 export interface IterationRecordedData extends JsonObject {
   readonly record: JsonObject;
 }
@@ -656,7 +793,7 @@ export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
   'deep_review.review_depth_recorded': { status: 'reserved', reason: 'No writer emits it today: depth accounting is derived from the report. A depth step would speak it once coverage and ruled-out classes are appended as proof.' },
   'deep_review.convergence_evaluated': { status: 'reserved', reason: 'No writer emits it today: convergence is recomputed by the reducer from flat rows. A convergence step would speak it once the decision is appended rather than inferred.' },
   'deep_review.graph_convergence_evaluated': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
-  'deep_review.blocked_stop_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
+  'deep_review.blocked_stop_recorded': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs'] },
   'deep_review.terminal_gates_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.pause_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
   'deep_review.recovery_started': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review.yaml'] },
@@ -716,6 +853,7 @@ export const DeepReviewWireEventTypes = Object.freeze({
 export type DeepReviewWireEventType =
   typeof DeepReviewWireEventTypes[DeepReviewEventStem];
 
+/** Maps each Deep Review event stem to the data shape its payload carries. */
 export interface DeepReviewPayloadMap {
   readonly 'deep_review.run_initialized': RunInitializedData;
   readonly 'deep_review.run_resumed': RunResumedData;
@@ -754,6 +892,7 @@ export interface DeepReviewPayloadMap {
   readonly 'deep_review.iteration_recorded': IterationRecordedData;
 }
 
+/** Maps each Deep Review event stem to the scope shape it must carry. */
 export interface DeepReviewScopeMap {
   readonly 'deep_review.run_initialized': DeepReviewGenerationScope;
   readonly 'deep_review.run_resumed': DeepReviewGenerationScope;
@@ -792,6 +931,10 @@ export interface DeepReviewScopeMap {
   readonly 'deep_review.iteration_recorded': DeepReviewBaseScope;
 }
 
+/**
+ * The version-1 payload stored for a Deep Review event: stem, scope and data typed by stem, the prior event hash, the
+ * payload digest and replay metadata.
+ */
 export interface DeepReviewLedgerPayload<
   TStem extends DeepReviewEventStem,
 > extends JsonObject {
@@ -827,6 +970,10 @@ export type DeepReviewCompatibilityStatus =
   | 'migrate'
   | 'pin-old-runtime';
 
+/**
+ * Result of classifying a stored record: its status and reason code, the target stem when one applies and the source
+ * version when readable.
+ */
 export interface DeepReviewCompatibilityDecision {
   readonly status: DeepReviewCompatibilityStatus;
   readonly reasonCode: string;
@@ -835,6 +982,10 @@ export interface DeepReviewCompatibilityDecision {
   readonly targetVersion: 1;
 }
 
+/**
+ * Scope, prior event hash and replay metadata a legacy record is upcast into, since the legacy record does not carry
+ * them.
+ */
 export interface LegacyUpcastContext {
   readonly scope:
     | DeepReviewBaseScope
@@ -844,6 +995,10 @@ export interface LegacyUpcastContext {
   readonly replay: DeepReviewReplayMetadata;
 }
 
+/**
+ * A legacy record upcast to a current-version event, with the original record digest, upcaster fingerprint and any
+ * warnings.
+ */
 export interface LegacyUpcastCandidate {
   readonly status: 'migrated';
   readonly targetStem: DeepReviewEventStem;

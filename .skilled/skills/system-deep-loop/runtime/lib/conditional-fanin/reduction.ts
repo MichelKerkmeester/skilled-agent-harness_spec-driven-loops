@@ -11,12 +11,17 @@ import type {
   FrozenReducerInput,
 } from './types.js';
 
+/** Reducer input bound to a finalized decision, so a reduction can prove which results it used. */
 export interface DecisionBoundReductionInput {
   readonly decisionId: string;
   readonly reducerInputDigest: string;
   readonly orderedEnvelopes: readonly LeafResultPayload[];
 }
 
+/**
+ * Check that the ordered envelopes are exactly the reducer inputs the decision froze and bind them for
+ * reduction; throws on a count or envelope mismatch.
+ */
 export function bindReductionToDecision(
   decision: FinalizedFanInDecision,
   orderedEnvelopes: readonly LeafResultPayload[],

@@ -3,7 +3,7 @@
     "command": "/deep:research",
     "ownerMode": "research",
     "description": "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.",
-    "argumentHint": "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run]",
+    "argumentHint": "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--depth-mode=default|expansive] [--frontier-max-depth=N] [--frontier-max-nodes=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]",
     "mutating": "mutates",
     "gate3_location": "research artifacts under the resolved spec folder, written by the workflow YAML",
     "ask_first": [
@@ -51,7 +51,7 @@
     "command": "/deep:review",
     "ownerMode": "review",
     "description": "Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm.",
-    "argumentHint": "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--restart]",
+    "argumentHint": "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--depth-mode=default|expansive] [--frontier-max-depth=N] [--frontier-max-nodes=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart] [--extend=N]",
     "mutating": "mutates",
     "gate3_location": "a review packet under the resolved spec folder's review/ directory",
     "ask_first": [

@@ -345,7 +345,7 @@ function parseMember(input: unknown, position: number): DeepReviewArtifactSetMem
       { position },
     );
   }
-  let binding;
+  let binding: ReturnType<typeof parseDeepReviewSealedArtifactBinding>;
   try {
     binding = parseDeepReviewSealedArtifactBinding(input.binding);
   } catch {
@@ -420,7 +420,7 @@ export function bindDeepReviewArtifactSet(
         { position },
       );
     }
-    let binding;
+    let binding: ReturnType<typeof parseDeepReviewSealedArtifactBinding>;
     try {
       binding = parseDeepReviewSealedArtifactBinding(candidate.binding);
     } catch {

@@ -1,7 +1,7 @@
 ---
 title: "DR-021 -- Quality Guard — Focus Alignment"
 description: "Verify that convergence STOP is blocked when an iteration answers a question its key question list does not hold."
-version: 1.14.3.0
+version: 1.14.4.0
 ---
 
 # DR-021 -- Quality Guard — Focus Alignment
@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate focus-alignment guards override STOP when answered questions drift from the iteration's key question list.`
 - Expected execution process: Inspect the Quality Gate row in §4 LEGAL STOP GATES of the convergence reference first, then the convergence.cjs focus alignment evaluation, then the loop protocol Step 2c, then the deep-research.yaml line that logs a failed guard.
 - Desired user-visible outcome: The user gets an accurate explanation of how the loop detects and blocks convergence on answers outside the iteration's key question list.
-- Expected signals: the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `focusAlignment` in blockedBy, and no event is written, misaligned question flagged in violation detail.
+- Expected signals: the STOP candidate becomes a blocked decision with reasonDetail `qualityGuardFailed` and `focusAlignment` in blockedBy, the `blocked_stop` row is written and the loop continues, misaligned question flagged in violation detail.
 - Pass/fail posture: PASS if the focus_alignment guard rule (every answered question matches an entry in the same record's key question list, with a leading question-id prefix ignored), its STOP override and its workflow log line are consistent across convergence.md, loop-protocol.md and deep-research.yaml; FAIL if any of those elements drift or contradict.
 
 ---
@@ -51,9 +51,9 @@ Validate focus-alignment guards override STOP when answered questions drift from
 4. `bash: rg -n -A 10 '^#### Step 2c: Quality Guard Check' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
 5. `bash: rg -n 'qualityGuardFailed|Quality guard failed' .skilled/commands/deep/assets/deep-research.yaml`
 ### Expected
-the STOP candidate becomes `CONTINUE` with reasonDetail `qualityGuardFailed` and `focusAlignment` in blockedBy, and no event is written, misaligned question flagged in violation detail.
+the STOP candidate becomes a blocked decision with reasonDetail `qualityGuardFailed` and `focusAlignment` in blockedBy, the `blocked_stop` row is written and the loop continues, misaligned question flagged in violation detail.
 ### Evidence
-Capture the Quality Gate row, the latest-record comparison and question-id normalization in convergence.cjs evaluateResearchQualityGuards, the Step 2c rule, and the workflow log line. A failed guard writes no event.
+Capture the Quality Gate row, the latest-record comparison and question-id normalization in convergence.cjs evaluateResearchQualityGuards, the Step 2c rule, and the workflow log line. A failed guard writes the same `blocked_stop` row a graph block writes.
 ### Pass/Fail
 PASS if the focus_alignment guard rule (every answered question matches an entry in the same record's key question list, with a leading question-id prefix ignored), its STOP override and its workflow log line are consistent across convergence.md, loop-protocol.md and deep-research.yaml; FAIL if any of those elements drift or contradict.
 ### Failure Triage

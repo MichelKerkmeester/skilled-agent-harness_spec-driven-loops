@@ -1,0 +1,17 @@
+{"event":"started","label":"deepseek-pi","index":0,"attempt":1,"at":"2026-10-19T19:32:21.661Z","gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:33:23.116Z","duration_ms":60001,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:34:23.118Z","duration_ms":120003,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:35:23.120Z","duration_ms":180005,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:36:23.123Z","duration_ms":240008,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:37:23.125Z","duration_ms":300010,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:38:23.128Z","duration_ms":360013,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:39:23.130Z","duration_ms":420015,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:40:23.132Z","duration_ms":480017,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:41:23.134Z","duration_ms":540019,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:42:23.137Z","duration_ms":600022,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek-pi","at":"2026-10-19T19:43:23.138Z","duration_ms":660023,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"type":"event","event":"containment_violation","severity":"error","timestamp":"2026-10-19T19:43:57.769Z","iteration":1,"label":"deepseek-pi","violations":[{"path":"specs/hooks/023-session-relaunch-loop/goal.md","kind":"modified","status":" M"},{"path":"specs/hooks/023-session-relaunch-loop/spec.md","kind":"modified","status":" M"}],"reverted":[{"path":"specs/hooks/023-session-relaunch-loop/goal.md","action":"preserved_in_head","ok":true},{"path":"specs/hooks/023-session-relaunch-loop/spec.md","action":"preserved_in_head","ok":true}],"revertedPatchPath":"specs/hooks/023-session-relaunch-loop/010-post-fix-research/research/lineages/deepseek-pi/containment/quarantine/1/containment-out-of-scope/1-2026-10-19T19-43-57.544Z.patch","at":"2026-10-19T19:43:57.769Z","run_id":"1792438341659-eqnw2v","loop_type":"research","spec_folder":"specs/hooks/023-session-relaunch-loop/010-post-fix-research","gauges":{"lag":1,"pending":0,"failed":0}}
+{"type":"event","event":"lineage_registry_empty","severity":"warning","at":"2026-10-19T19:43:57.771Z","label":"deepseek-pi","run_id":"1792438341659-eqnw2v","loop_type":"research","spec_folder":"specs/hooks/023-session-relaunch-loop/010-post-fix-research","gauges":{"lag":1,"pending":0,"failed":0},"delta_finding_count":20}
+{"event":"completed","label":"deepseek-pi","index":0,"attempt":1,"at":"2026-10-19T19:43:57.771Z","duration_ms":696109,"terminal":true,"containment_advisory":true,"gauges":{"lag":0,"pending":0,"failed":0},"skippedCount":10,"slotDurationMs":696103.630292}
+{"event":"metadata_refresh_ok","status":"ok","spec_folder":"specs/hooks/023-session-relaunch-loop/010-post-fix-research","at":"2026-10-19T19:43:57.772Z","generator":"generate-description.js"}
+{"event":"metadata_refresh_ok","status":"ok","spec_folder":"specs/hooks/023-session-relaunch-loop/010-post-fix-research","at":"2026-10-19T19:43:57.872Z","generator":"backfill-graph-metadata.js"}

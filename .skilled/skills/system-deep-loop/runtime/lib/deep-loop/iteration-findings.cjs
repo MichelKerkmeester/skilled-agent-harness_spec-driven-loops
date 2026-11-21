@@ -1,9 +1,15 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Iteration Findings
+// ───────────────────────────────────────────────────────────────────
+
 'use strict';
 
-// Keep Markdown finding extraction shared so iteration verification and registry
-// reconstruction count the same entries. A section is read in one shape only, the
-// first one present of numbered subheadings, numbered lines and F### bullets, so a
-// finding restated in a second shape is not counted twice.
+/**
+ * Keep Markdown finding extraction shared so iteration verification and registry
+ * reconstruction count the same entries. A section is read in one shape only, the
+ * first one present of numbered subheadings, numbered lines and F### bullets, so a
+ * finding restated in a second shape is not counted twice.
+ */
 function parseIterationMarkdownFindings(content, run, sourcePath) {
   const lines = content.split(/\r?\n/);
   const headingIndex = lines.findIndex((line) => /^##\s+Findings\s*$/i.test(line.trim()));
@@ -39,8 +45,10 @@ function parseIterationMarkdownFindings(content, run, sourcePath) {
   }));
 }
 
-// Append-only logs can contain corrected attempts. Keep the last record for each
-// numeric iteration so the gate, the merge and the closeout share one state view.
+/**
+ * Append-only logs can contain corrected attempts. Keep the last record for each
+ * numeric iteration so the gate, the merge and the closeout share one state view.
+ */
 function latestIterationRecords(records) {
   const lastIndexByIteration = new Map();
   records.forEach((record, index) => {
@@ -55,19 +63,24 @@ function latestIterationRecords(records) {
   });
 }
 
-// A delta row is filed under its own iteration, and under the delta file's number
-// only when it names none.
+/**
+ * A delta row is filed under its own iteration, and under the delta file's number
+ * only when it names none.
+ */
 function deltaRowIteration(row, fileRun) {
   const iterationNumber = Number(row?.iteration);
   return Number.isFinite(iterationNumber) ? Math.floor(iterationNumber) : fileRun;
 }
 
+/** Lower-case and collapse whitespace so findings that differ only in case or spacing share one key. */
 function normalizeFindingKey(value) {
   return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
 }
 
-// Every identity a finding can be matched by. The closeout and the merge must agree
-// on what makes a state finding present in a registry, so both read these keys.
+/**
+ * Every identity a finding can be matched by. The closeout and the merge must agree
+ * on what makes a state finding present in a registry, so both read these keys.
+ */
 function findingKeys(candidate) {
   if (typeof candidate === 'string') {
     const key = normalizeFindingKey(candidate);

@@ -30,7 +30,7 @@ The suite protects the budget authority boundary used by durable runtime executi
 
 | Surface | Entry |
 |---|---|
-| Test command | `hierarchical-budgets.vitest.ts` |
+| Test file | `hierarchical-budgets.vitest.ts` |
 | Covered boundary | Hierarchical budget authority and settlement evidence |
 
 The file is executable verification, not a production import surface.
@@ -48,6 +48,8 @@ The suite verifies budget evidence between runtime admission and durable settlem
 ```bash
 .skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/hierarchical-budgets
 ```
+
+Expected result: Vitest prints `Test Files  1 passed (1)` and exits 0.
 
 ---
 

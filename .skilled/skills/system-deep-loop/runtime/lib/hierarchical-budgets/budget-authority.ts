@@ -118,12 +118,17 @@ export interface BudgetDecision extends JsonObject {
   readonly authority: 'shadow';
 }
 
+/**
+ * Outcome of a budget mutation: the decision, the ledger append receipt when one was written, and whether it
+ * replayed an earlier request.
+ */
 export interface BudgetMutationResult {
   readonly decision: BudgetDecision;
   readonly receipt: DurableAppendReceipt | null;
   readonly isIdempotent: boolean;
 }
 
+/** Request, actor, authority and evidence fields that every budget mutation carries into its ledger event. */
 export interface BudgetEvidenceInput {
   readonly requestId: string;
   readonly operationId?: string;
@@ -137,6 +142,10 @@ export interface BudgetEvidenceInput {
   readonly causationId: string | null;
 }
 
+/**
+ * Ledger, gateway, registry and policy the authority writes through, plus optional producer, stream id and
+ * injectable clocks.
+ */
 export interface BudgetAuthorityOptions {
   readonly ledger: AppendOnlyLedger;
   readonly gateway: TransitionAuthorizationGateway;
@@ -148,10 +157,12 @@ export interface BudgetAuthorityOptions {
   readonly monotonicNow?: () => number;
 }
 
+/** Request to open a budget scope from an envelope of limits. */
 export interface AllocateBudgetInput extends BudgetEvidenceInput {
   readonly envelope: BudgetEnvelopeInput;
 }
 
+/** Request to hold an estimated budget vector against a scope for one dispatch, for a bounded lease. */
 export interface ReserveBudgetInput extends BudgetEvidenceInput {
   readonly scopeId: string;
   readonly reservationId: string;
@@ -160,15 +171,18 @@ export interface ReserveBudgetInput extends BudgetEvidenceInput {
   readonly leaseDurationMs: number;
 }
 
+/** Request that targets an existing reservation by id. */
 export interface ReservationOperationInput extends BudgetEvidenceInput {
   readonly reservationId: string;
 }
 
+/** Request to return an unused part of a reservation, with evidence that it went unused. */
 export interface ReleaseBudgetInput extends ReservationOperationInput {
   readonly release: BudgetVector;
   readonly unusedEvidenceDigest: string;
 }
 
+/** Request to cancel a reservation, with evidence that no dispatch happened when that is known. */
 export interface CancelBudgetInput extends ReservationOperationInput {
   readonly noDispatchEvidenceDigest: string | null;
 }
@@ -183,10 +197,15 @@ export interface NormalizedBudgetReceipt {
   readonly usage: BudgetVector;
 }
 
+/** Request to settle a reservation against the dispatch's normalized usage receipt, or null when no receipt exists. */
 export interface SettleBudgetInput extends ReservationOperationInput {
   readonly receipt: NormalizedBudgetReceipt | null;
 }
 
+/**
+ * Read view of one scope: its projection, remaining budget, reservation counts and the age of its oldest open
+ * reservation.
+ */
 export interface BudgetScopeReadModel {
   readonly scope: Readonly<BudgetScopeProjection>;
   readonly remaining: BudgetVector;

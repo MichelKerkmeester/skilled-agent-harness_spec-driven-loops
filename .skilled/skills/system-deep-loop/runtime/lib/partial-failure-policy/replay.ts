@@ -31,6 +31,10 @@ import type {
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * State rebuilt by replaying partial-failure events: markers, evaluations, late results, shadow comparisons,
+ * failures and integrity reason codes.
+ */
 export interface PartialFailureReplayProjection {
   readonly abortMarker: AbortMarker | null;
   readonly degradedMarker: DegradedResultMarker | null;

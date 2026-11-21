@@ -1647,6 +1647,7 @@ function main(argv, hooks = {}) {
     }
     if (error instanceof PreconditionError || error instanceof UsageError) {
       output.warn(`${TAG} ERROR: ${error.message}`);
+      if (error instanceof UsageError) output.warn(`${TAG} Next: node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan`);
       if (error instanceof UsageError) output.warn(USAGE);
       return 2;
     }
@@ -1659,6 +1660,7 @@ if (require.main === module) {
     process.exitCode = main(process.argv.slice(2));
   } catch (error) {
     console.error(`${TAG} ERROR: ${error.message}`);
+    console.error(`${TAG} Next: fix the cause named above, then run node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan`);
     process.exitCode = 2;
   }
 }

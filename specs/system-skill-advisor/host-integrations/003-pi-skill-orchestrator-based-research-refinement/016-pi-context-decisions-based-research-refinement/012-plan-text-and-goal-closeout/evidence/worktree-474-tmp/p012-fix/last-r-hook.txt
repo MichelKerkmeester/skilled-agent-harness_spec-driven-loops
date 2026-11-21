@@ -1,0 +1,154 @@
+Applied the prepared file exactly. The specified `cp` command exited 0, and the requested `cmp` exited 0. Vitest, typecheck and build were not run because the run context assigns them to the conductor. Spec documentation was skipped to honor the one-file scope.
+
+**File changed by me:** [claude-user-prompt-submit-hook.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts)
+
+**Final text of changed blocks**
+
+```ts
+import * as userPromptSubmitHook from '../../../hooks/claude/user-prompt-submit.js';
+```
+
+```ts
+const ORIGINAL_DIRECTIVE_LIFECYCLE_DISABLED = process.env.SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED;
+```
+
+```ts
+if (ORIGINAL_DIRECTIVE_LIFECYCLE_DISABLED === undefined) delete process.env.SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED;
+else process.env.SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED = ORIGINAL_DIRECTIVE_LIFECYCLE_DISABLED;
+```
+
+```ts
+it('delivers a weak follow-up on the topic a floored turn moved the session to', async () => {
+  const stores = freshStores();
+  await receiptTurn(README_TASK, docsRoute(), stores);
+  expect(await receiptTurn(REFACTOR_TASK, flooredCodeRoute(), stores)).toContain('use sk-code');
+  // The floored topic change was shown, so the earlier route no longer holds.
+  expect(stores.receipts.read('receipt-session')).toBeNull();
+  expect(await receiptTurn('add tests for it as well', flooredCodeRoute(), stores)).toContain('use sk-code');
+});
+
+it('keeps the receipt when a floored turn routes to the same skill', async () => {
+  const stores = freshStores();
+  await receiptTurn(README_TASK, docsRoute(), stores);
+  await receiptTurn('Document the corpus layout change in the changelog', routedResult('sk-doc', 0.82, true), stores);
+  expect(stores.receipts.read('receipt-session')?.skill).toBe('sk-doc');
+});
+
+it('neither writes nor reads a receipt while the directive lifecycle is switched off', async () => {
+  process.env.HOOK_FLAGS_CONFIG = '/dev/null';
+  const stores = freshStores();
+  await receiptTurn(README_TASK, docsRoute(), stores);
+  expect(stores.receipts.read('receipt-session')?.skill).toBe('sk-doc');
+  // With the lifecycle off its clock never moves, so a held receipt would outlive a compaction.
+  process.env.SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED = '1';
+  expect(await receiptTurn('fix that too', flooredCodeRoute(), stores)).toContain('use sk-code');
+  const off = freshStores();
+  await receiptTurn(README_TASK, docsRoute(), off);
+  expect(off.receipts.read('receipt-session')).toBeNull();
+});
+
+it('writes no receipt from a degraded turn', async () => {
+  const stores = freshStores();
+  const degraded = docsRoute();
+  await receiptTurn(README_TASK, { ...degraded, metrics: { ...degraded.metrics, degraded: true } }, stores);
+  expect(stores.receipts.read('receipt-session')).toBeNull();
+});
+```
+
+```ts
+remove: () => {
+  throw new Error('remove failed');
+},
+```
+
+```ts
+describe('crash path and output handoff', () => {
+  it('records the policy observation with the session when the brief build throws', async () => {
+    clearPolicyObservationSink();
+    await handleClaudeUserPromptSubmit({
+      session_id: 'crash-policy-session',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+      lifecycle_event: 'startup',
+    }, {
+      buildBrief: vi.fn(async () => {
+        throw new Error('brief build failed');
+      }),
+      renderBrief: renderAdvisorBrief,
+      writeDiagnostic: () => {},
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+    });
+
+    expect(getPolicyObservationRecords().length).toBeGreaterThan(0);
+  });
+
+  it('stays silent for an invalid payload when the working directory is gone', async () => {
+    const cwd = vi.spyOn(process, 'cwd').mockImplementation(() => {
+      throw new Error('cwd');
+    });
+    try {
+      const dependencies = {
+        buildCliBrief: vi.fn(async () => fixture('livePassingSkill.json')),
+        renderBrief: renderAdvisorBrief,
+        writeDiagnostic: () => {},
+        directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+      };
+      expect(await handleClaudeUserPromptSubmit(null, dependencies)).toEqual({});
+      expect(await handleClaudeUserPromptSubmit({ hook_event_name: 'UserPromptSubmit' }, dependencies)).toEqual({});
+      expect(dependencies.buildCliBrief).not.toHaveBeenCalled();
+    } finally {
+      cwd.mockRestore();
+    }
+  });
+
+  it('commits the deferred receipt only when the output write succeeds', async () => {
+    const writeHookOutput = (userPromptSubmitHook as Record<string, unknown>).writeHookOutput as
+      | ((output: unknown, stream: { write: (chunk: string, callback: (error?: Error | null) => void) => boolean }) => Promise<void>)
+      | undefined;
+    expect(typeof writeHookOutput).toBe('function');
+    if (!writeHookOutput) return;
+    const input = {
+      session_id: 'handoff-session',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    };
+    const failingStream = {
+      write: (_chunk: string, callback: (error?: Error | null) => void) => {
+        callback(new Error('EPIPE'));
+        return false;
+      },
+    };
+    const written: string[] = [];
+    const workingStream = {
+      write: (chunk: string, callback: (error?: Error | null) => void) => {
+        written.push(chunk);
+        callback(null);
+        return true;
+      },
+    };
+
+    const failedStore = new InMemoryDirectiveLifecycleStore();
+    const failed = await runHookWithStore(input, fixture('livePassingSkill.json'), failedStore, true);
+    await writeHookOutput(failed.output, failingStream);
+    const afterFailure = await runHookWithStore({ ...input, prompt: 'repeat after a failed write' }, fixture('livePassingSkill.json'), failedStore, true);
+    expect(afterFailure.output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_ADVISOR_CONTEXT },
+    });
+
+    const workingStore = new InMemoryDirectiveLifecycleStore();
+    const delivered = await runHookWithStore(input, fixture('livePassingSkill.json'), workingStore, true);
+    await writeHookOutput(delivered.output, workingStream);
+    expect(written).toEqual([`${JSON.stringify(delivered.output)}\n`]);
+    const afterDelivery = await runHookWithStore({ ...input, prompt: 'repeat after a delivered write' }, fixture('livePassingSkill.json'), workingStore, true);
+    expect(afterDelivery.output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: 'Advisor: live; use sk-code 0.91/0.23 pass.' },
+    });
+  });
+});
+```
+
+**Mismatch:** None observed in the resulting diff. The standalone test that shows a floored topic change’s own recommendation was already present in the target and is unchanged.
+
+The worktree is dirty on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`. Status also shows seven modified paths outside this task’s scope; I did not write them, and their pre-copy status was not captured. The conductor’s test and build verification remains pending.

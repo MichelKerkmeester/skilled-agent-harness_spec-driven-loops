@@ -1,6 +1,6 @@
 ---
 title: "per-mode-authority-flip: Mode Authority Records and Route Selection"
-description: "Durable mode-keyed authority records with a lock-guarded compare-and-swap store, plus a pure selector that resolves one canonical writer route per mode."
+description: "A reader of durable mode-keyed authority records with a root-wide transaction lock and prepared-transition markers, plus a pure selector that resolves one canonical writer route per mode."
 trigger_phrases:
   - "per-mode authority flip"
   - "authority registry"
@@ -14,15 +14,25 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`per-mode-authority-flip/` owns one durable authority record per canonical mode and the route decision a mode adapter would consult at its persistence boundary. A record binds a mode to an authority state, an epoch, a selected writer, a policy version, a candidate digest and a record digest.
+`per-mode-authority-flip/` owns one durable authority record per canonical mode and the route decision its callers consult at their persistence boundary. A record binds a mode to an authority state, an epoch, a selected writer, a policy version, a candidate digest and a record digest.
 
-Every helper here is pure or file-scoped, and no mode adapter is wired to the folder. A mode the registry has never written reads back as the default of `legacy_authoritative` at epoch 1 with selected writer `legacy`.
+Every helper here is pure or file-scoped. These modules consume the folder:
+
+- [`../deep-research-authority/composition.ts`](../deep-research-authority/composition.ts) reads a record with `AuthorityRegistry.read` and passes it to `selectAuthorityRoute`.
+- [`../deep-loop/fanout-effect-dispatch.ts`](../deep-loop/fanout-effect-dispatch.ts) reads records with `AuthorityRegistry.read`.
+- [`../mode-append-gateway/append-mode-event.ts`](../mode-append-gateway/append-mode-event.ts) checks the requested mode against `AUTHORITY_FLIP_MODE_ORDER`.
+- [`../../scripts/check-direct-append.cjs`](../../scripts/check-direct-append.cjs) reads a record with `AuthorityRegistry.read`.
+- [`../../scripts/append-mode-event.cjs`](../../scripts/append-mode-event.cjs) loads `AUTHORITY_FLIP_MODE_ORDER`.
+- [`../../scripts/verify-authority.cjs`](../../scripts/verify-authority.cjs) loads `AUTHORITY_FLIP_MODE_ORDER` and reads `authority-<mode>.json` from disk itself.
+
+A mode the registry has never written reads back as the default of `legacy_authoritative` at epoch 1 with selected writer `legacy`.
 
 Current state:
 
-- Route selection is a pure function over an already-read record, so its contract holds while adapter wiring stays open.
+- Route selection is a pure function over an already-read record, so it never touches the filesystem.
 - Transitions are serialized across one registry root by a single lock file, and a lock left by a dead process or aged past the stale TTL is reclaimed rather than blocking later transactions.
-- The exact compare-and-swap input is written to disk before any ledger append, so a crash between the append and the publish can be completed or aborted from disk alone.
+- `preparePendingTransition` writes the exact compare-and-swap input to `authority-flip-prepare-<mode>.json`, so a transition interrupted after that point leaves its input on disk.
+- The registry has no method that writes `authority-<mode>.json`, and no runtime code outside the tests calls the prepared-transition methods.
 - A malformed record, an unknown mode, a wrong-mode binding, a policy drift or a stale record digest denies rather than silently picking a writer.
 
 ---
@@ -34,7 +44,7 @@ The folder is flat, so every direct file is listed here.
 | File | Responsibility |
 |---|---|
 | `types.ts` | Mode union, route union, denial reason codes, `AuthorityFlipError`, record and selector interfaces, the authority state set and the frozen mode order |
-| `authority-registry.ts` | `AuthorityRegistry`, the file-scoped, lock-guarded, mode-keyed store over `authority-<mode>.json` and its prepared-transition markers |
+| `authority-registry.ts` | `AuthorityRegistry`, the file-scoped, mode-keyed reader of `authority-<mode>.json` that provides a root-wide transaction lock and owns the prepared-transition markers |
 | `authority-selector.ts` | `selectAuthorityRoute` and `isValidAuthorityRecord`, the pure integrity check and route resolution |
 | `index.ts` | Public re-exports for the folder |
 
@@ -72,7 +82,7 @@ caller holds an already-read authority record
 └──────────────────────────────────────────┘
 ```
 
-Record a transition:
+Stage a transition with the registry methods:
 
 ```text
 read(mode)                 returns the durable record or the default
@@ -84,7 +94,7 @@ withTransactionLock        serializes the attempt across the root
 preparePendingTransition   writes the exact input to
        │                   authority-flip-prepare-<mode>.json
        ▼
-caller appends the ledger event, then publishes the record
+caller appends the ledger event (the registry exposes no record write)
        │
        ▼
 clearPendingTransition     removes the prepared marker

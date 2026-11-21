@@ -1,0 +1,123 @@
+diff --git a/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts b/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts
+index 34491a39817..96cb1dd522c 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts
+@@ -16,6 +16,7 @@ import { describe, expect, it } from 'vitest';
+ 
+ import { isSpeckitMetricsEnabled, speckitMetrics } from '../lib/metrics.js';
+ import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
++import { shouldFireAdvisor, stripLeadingPastedReply } from '../lib/prompt-policy.js';
+ import { loadAdvisorProjection } from '../lib/scorer/projection.js';
+ import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
+ 
+@@ -83,6 +84,24 @@ const SPECKIT_BENCH_CORPUS_PATH = '.skilled/skills/system-skill-advisor/runtime/
+ const BASELINE_FILENAME = 'scorer-calibration-baseline.json';
+ const BUCKET_COUNT = 10;
+ const BENCH_TIMEOUT_MS = process.env.CI ? 300_000 : 180_000;
++// The policy reason a prompt with task intent and enough content words gets.
++const WORK_INTENT_REASON = 'work_intent_with_meaningful_tokens';
++
++// A session task, then a short follow-up that names no skill. The task's own
++// top-1 is the reference, so no gold label is needed. Negative controls carry
++// no task verb in the follow-up; the last pair repeats the first follow-up
++// behind a pasted reply that names skills.
++const FOLLOW_UP_PAIRS: readonly { readonly task: string; readonly followUp: string; readonly negativeControl: boolean }[] = [
++  { task: 'Update the advisor README to document the new corpus file layout', followUp: 'fix that too', negativeControl: false },
++  { task: 'Commit the staged changes and open a pull request on github', followUp: 'do the same for the other branch', negativeControl: true },
++  { task: 'Create a spec folder for the new routing benchmark work', followUp: 'add one more task there', negativeControl: false },
++  { task: 'Design a pricing card component with a dark theme', followUp: 'make it a bit tighter', negativeControl: true },
++  { task: 'Search Notion for the onboarding checklist page', followUp: 'update it again with the new name', negativeControl: false },
++  { task: 'Run a deep review of the advisor hook changes', followUp: 'now fix the remaining ones', negativeControl: false },
++  { task: 'Write a changelog entry for the last release', followUp: 'apply that change to the second file as well', negativeControl: false },
++  { task: 'Refactor the session store module to remove duplicated locking code', followUp: 'add tests for it as well', negativeControl: false },
++  { task: 'Update the advisor README to document the new corpus file layout', followUp: 'Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: fix that too', negativeControl: false },
++];
+ 
+ // ───────────────────────────────────────────────────────────────
+ // 4. HELPERS
+@@ -192,12 +211,57 @@ function createBaseline(args: {
+ // 5. CORE LOGIC
+ // ───────────────────────────────────────────────────────────────
+ 
++// Logs whether a floored follow-up on work-intent text routes away from its own
++// session task. A measurement only: the rule that reads it lives outside the bench.
++function logFollowUpRouting(root: string, projection: ReturnType<typeof loadAdvisorProjection>): void {
++  const scoreTop = (prompt: string) => {
++    const result = scoreAdvisorPrompt(prompt, { workspaceRoot: root, projection, includeAllCandidates: true });
++    const top = result.topSkill === null
++      ? null
++      : result.recommendations.find((recommendation) => recommendation.skill === result.topSkill) ?? null;
++    return { result, top };
++  };
++  let harm = 0;
++  let harmSame = 0;
++  const pairs = FOLLOW_UP_PAIRS.map((pair, index) => {
++    const taskTop = scoreTop(pair.task).top?.skill ?? null;
++    const { result, top } = scoreTop(pair.followUp);
++    const followUpTop = top?.skill ?? null;
++    const floored = top?.confidenceFloored === true;
++    const policyReason = shouldFireAdvisor(stripLeadingPastedReply(pair.followUp)).reason;
++    const guarded = floored && policyReason === WORK_INTENT_REASON;
++    if (guarded && followUpTop !== taskTop) harm += 1;
++    if (guarded && followUpTop === taskTop) harmSame += 1;
++    return {
++      pair: index + 1,
++      negativeControl: pair.negativeControl,
++      taskTop,
++      followUpTop,
++      floored,
++      policyReason,
++      flooredSet: result.recommendations
++        .filter((recommendation) => recommendation.confidenceFloored === true)
++        .map((recommendation) => ({
++          skill: recommendation.skill,
++          confidence: recommendation.confidence,
++          passes: recommendation.passes_threshold,
++        })),
++    };
++  });
++  console.log(`advisor-follow-up-routing ${JSON.stringify({ N: FOLLOW_UP_PAIRS.length, H: harm, Hsame: harmSame, pairs })}`);
++}
++
+ export function runScorerCalibrationBench(root = workspaceRoot()): CalibrationReport {
+   const corpusPath = resolve(root, SPECKIT_BENCH_CORPUS_PATH);
+   const rows = readCorpus(corpusPath);
+   const projection = loadAdvisorProjection(root);
+   speckitMetrics.reset();
+ 
++  // A floored top-1 passes on the task-intent floor rather than its own evidence.
++  // Floored passes on work-intent rows that are also correct are the routes a
++  // guard on floored follow-ups would hide.
++  const floored = { correct: 0, wrong: 0, workIntent: 0, workIntentCorrect: 0 };
++  const collateralIds: string[] = [];
+   const predictions = rows.map((row) => {
+     const result = scoreAdvisorPrompt(row.prompt, { workspaceRoot: root, projection, includeAllCandidates: true });
+     const top = result.topSkill === null
+@@ -206,6 +270,17 @@ export function runScorerCalibrationBench(root = workspaceRoot()): CalibrationRe
+     const predictedSkill = top?.skill ?? null;
+     const confidence = top?.confidence ?? 0;
+     const correct: 0 | 1 = predictedSkill === goldSkill(row) ? 1 : 0;
++    if (top?.confidenceFloored === true) {
++      if (correct === 1) floored.correct += 1;
++      else floored.wrong += 1;
++      if (shouldFireAdvisor(stripLeadingPastedReply(row.prompt)).reason === WORK_INTENT_REASON) {
++        floored.workIntent += 1;
++        if (correct === 1) {
++          floored.workIntentCorrect += 1;
++          collateralIds.push(row.id);
++        }
++      }
++    }
+     const brierObservation = (confidence - correct) ** 2;
+     speckitMetrics.recordBrierScore(brierObservation);
+     return {
+@@ -252,7 +327,9 @@ export function runScorerCalibrationBench(root = workspaceRoot()): CalibrationRe
+     eceDeltaPct,
+     reliability,
+     metricBrierMean: brierMean === undefined ? null : roundMetric(brierMean),
++    floored: { ...floored, collateral: collateralIds.length, collateralIds },
+   })}`);
++  logFollowUpRouting(root, projection);
+ 
+   expect(isSpeckitMetricsEnabled()).toBe(true);
+   expect(roundMetric(brierMean ?? -1)).toBe(brierScore);

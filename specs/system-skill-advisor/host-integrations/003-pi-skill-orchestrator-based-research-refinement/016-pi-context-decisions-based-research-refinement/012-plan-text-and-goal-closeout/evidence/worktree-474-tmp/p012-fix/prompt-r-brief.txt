@@ -1,0 +1,17 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/brief-producer.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts
+The prepared file adds two tests: the brief producer routes the task behind a pasted reply whose marker starts a new line, and behind a pasted reply longer than the advisor limit. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/brief-producer.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts` exits 0.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

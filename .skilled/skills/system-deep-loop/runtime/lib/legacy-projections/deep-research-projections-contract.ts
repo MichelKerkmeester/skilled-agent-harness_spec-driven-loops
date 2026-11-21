@@ -22,7 +22,7 @@ import type {
 } from './legacy-projection-types.js';
 
 // ───────────────────────────────────────────────────────────────────
-// 1. PREMISE CHECK — only the findings registry is ledger-foldable
+// 1. PREMISE CHECK
 // ───────────────────────────────────────────────────────────────────
 
 // The research-projections census surface is mixed:
@@ -52,6 +52,7 @@ import type {
 // red.
 const EMIT_CLAIMS = true;
 
+/** The source, evidence, claim and supersession records the findings registry is built from. */
 export interface DeepResearchProjectionsProjectionState extends LegacyProjectionJsonObject {
   readonly sources: readonly JsonObject[];
   readonly evidence: readonly LegacyProjectionJsonObject[];
@@ -59,6 +60,7 @@ export interface DeepResearchProjectionsProjectionState extends LegacyProjection
   readonly supersessions: readonly LegacyProjectionJsonObject[];
 }
 
+/** Overrides for the deep-research findings registry projection; omitted fields use the research ledger. */
 export interface CreateDeepResearchProjectionsProjectionContractOptions {
   readonly ledgerId?: string;
   readonly streamIds?: readonly string[];

@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Compiled-Route Guard
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 // Catches the one compiled-routing failure that actually recurs: a hub's routing
@@ -12,12 +15,12 @@
 //
 // Three divergences are reported, because they fail differently:
 //
-//   stale manifest  — the runtime manifest no longer matches what the hub's current
+//   Stale manifest  — the runtime manifest no longer matches what the hub's current
 //                     inputs compile to. That hub is serving legacy right now.
-//   authored drift  — the promoted runtime manifest and its authored counterpart
+//   Authored drift  — the promoted runtime manifest and its authored counterpart
 //                     disagree. Serving is fine; reproducing it from source is not,
 //                     because a rebuild would reinstate the authored copy.
-//   authored missing - the authored counterpart is gone, so the runtime cannot be
+//   Authored missing — the authored counterpart is gone, so the runtime cannot be
 //                      rebuilt from source; the guard names the file to restore.
 //
 // Usage:
@@ -30,11 +33,19 @@
 // an excused hub is still not serving compiled routing — the exemption records that
 // the team accepted that, not that the problem stopped existing.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 
 const layout = require('./lib/compiled-route-layout.cjs');
 const { checkCanonicalManifestFreshness } = require('./lib/compiled-route-manifest.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const RUNTIME_ROOT = path.join(REPO_ROOT, '.skilled', 'bin', 'lib', 'compiled-routing');
@@ -50,6 +61,10 @@ const HUBS = [
   'sk-doc',
   'system-deep-loop',
 ];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function manifestPathIn(root, hubId) {
   try {
@@ -77,6 +92,13 @@ function manifestPair(hubId, runtimeRoot, authoredRoot) {
 // Byte comparison is deliberate: these are generated artifacts that are supposed to
 // be copies of each other, so any difference at all means a rebuild would change
 // what is being served.
+/**
+ * Compare a hub's runtime activation manifest with its authored copy.
+ * @param {string} hubId - The hub to check.
+ * @param {string} [runtimeRoot=RUNTIME_ROOT] - Root of the promoted runtime tree.
+ * @param {string} [authoredRoot=AUTHORED_ROOT] - Root of the authored program tree.
+ * @returns {{reason: string, fix: string}|null} The divergence and its fix, or null when the copies match or the runtime manifest is absent.
+ */
 function authoredDrift(hubId, runtimeRoot = RUNTIME_ROOT, authoredRoot = AUTHORED_ROOT) {
   const pair = manifestPair(hubId, runtimeRoot, authoredRoot);
   // A missing runtime manifest is already reported by the freshness check above.
@@ -96,6 +118,13 @@ function authoredDrift(hubId, runtimeRoot = RUNTIME_ROOT, authoredRoot = AUTHORE
 // Stale is the one failure a command clears: re-mint the hub, then copy the result
 // back to the authored tree. The line names both writes with both paths, because
 // doing only the first leaves the runtime un-rebuildable.
+/**
+ * Build the fix line for a stale activation manifest.
+ * @param {string} hubId - The stale hub.
+ * @param {string} [runtimeRoot=RUNTIME_ROOT] - Root of the promoted runtime tree.
+ * @param {string} [authoredRoot=AUTHORED_ROOT] - Root of the authored program tree.
+ * @returns {string|null} The re-mint and copy-back instruction, or null when no manifest path resolves.
+ */
 function staleFix(hubId, runtimeRoot = RUNTIME_ROOT, authoredRoot = AUTHORED_ROOT) {
   const pair = manifestPair(hubId, runtimeRoot, authoredRoot);
   if (!pair) return null;
@@ -127,6 +156,15 @@ function loadExemptions() {
     && Date.parse(entry.expires) > now);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Inspect one hub: manifest validity, freshness against its inputs, then authored drift.
+ * @param {string} hubId - The hub to inspect.
+ * @returns {{hubId: string, ok: boolean, reason: string, fix?: string|null, detail?: string}} The hub's verdict.
+ */
 function inspect(hubId) {
   const skillRoot = path.join(SKILLS_ROOT, hubId);
   let freshness;
@@ -215,5 +253,9 @@ function main() {
 }
 
 if (require.main === module) main();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { authoredDrift, inspect, staleFix, HUBS };

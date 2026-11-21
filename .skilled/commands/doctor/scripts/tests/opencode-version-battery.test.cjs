@@ -45,9 +45,9 @@ const { parseOpencodeVersion } = require(path.resolve(
 ));
 
 // Fixture paths stand in for an installed binary and a plugin folder; the legs
-// judge records, so these paths never need to exist. V1_BIN stands in for a
-// retired OpenCode 1 install the battery must name and never check.
-const V1_BIN = '/fixture/bin/opencode';
+// judge records, so these paths never need to exist. OTHER_BIN stands in for an
+// install that reports a major other than 2, which the battery never checks.
+const OTHER_BIN = '/fixture/bin/opencode';
 const V2_BIN = '/fixture/v2/bin/opencode';
 const FIXTURE_ROOT = '/fixture/root';
 const OTHER_ROOT = '/fixture/other';
@@ -55,26 +55,26 @@ const OTHER_ROOT = '/fixture/other';
 // The battery's parser keeps its own copy of the version rule; one shared list
 // pins it to the deep-loop resolver.
 const VERSION_SAMPLES = [
-  '1.19.3',
-  '1.19.3\r\n',
-  '1.19.3\n',
-  'v1.19.3',
-  '1.19.3 2.0.32',
-  '1.19.3\n2.0.32',
+  '3.0.0',
+  '3.0.0\r\n',
+  '3.0.0\n',
+  'v3.0.0',
+  '3.0.0 2.0.32',
+  '3.0.0\n2.0.32',
   '2.0.32',
   'opencode 2.0.32',
   'opencode v2.0.32\nWARN: x',
-  'OpenCode v1.19.3',
+  'OpenCode v3.0.0',
   '',
   '   ',
   'not a version',
-  '1.19',
+  '2.3',
   '3.1.4',
   'opencode2',
   'opencode',
-  '/opt/tools/1.19.3/opencode',
+  '/opt/tools/3.0.0/opencode',
   '2.0.32-rc.1',
-  'opencode v2.0.32\n1.19.3',
+  'opencode v2.0.32\n3.0.0',
 ];
 
 // The shared corpus is written from the reference parser, so this copy is pinned to the
@@ -347,11 +347,11 @@ test('R9: v2 a server that never started degrades plugin-active, skill-visible a
   assert.ok(degraded.some((result) => result.leg === 'command-listed'));
 });
 
-test('R10: only an OpenCode 1 candidate skips v2, names the binary as unsupported and exits 3', async (t) => {
+test('R10: only a candidate on another major skips v2 and exits 3', async (t) => {
   const root = pluginRoot(t, ['alpha.js']);
   const { calls, deps } = makeDeps({
-    env: { OPENCODE_BIN: V1_BIN },
-    probeVersion: () => ({ output: '1.19.3', error: null }),
+    env: { OPENCODE_BIN: OTHER_BIN },
+    probeVersion: () => ({ output: '3.0.0', error: null }),
   });
   const code = await main(['--root=' + root, '--json'], deps);
   assert.equal(code, 3);
@@ -364,12 +364,11 @@ test('R10: only an OpenCode 1 candidate skips v2, names the binary as unsupporte
   assert.equal(present.family, 'v2');
   assert.equal(present.status, 'SKIP');
   assert.match(present.reason, /no v2 binary installed/);
-  assert.deepEqual(present.details, [`${V1_BIN}: reports OpenCode 1, which is unsupported`]);
+  assert.deepEqual(present.details, []);
   assert.equal(calls.readV2.length, 0);
-  assert.deepEqual(legFamilyPresent('v2', null).details, []);
-  const beside = legFamilyPresent('v2', { path: V2_BIN, family: 'v2' }, [V1_BIN]);
-  assert.equal(beside.status, 'PASS');
-  assert.deepEqual(beside.details, [V2_BIN, `${V1_BIN}: reports OpenCode 1, which is unsupported`]);
+  const found = legFamilyPresent('v2', { path: V2_BIN, family: 'v2' });
+  assert.equal(found.status, 'PASS');
+  assert.deepEqual(found.details, [V2_BIN]);
 });
 
 test('R12: zero plugin files under the root fails plugin-active', () => {
@@ -390,10 +389,10 @@ test('R13: --out to an unwritable path exits 2', async (t) => {
   assert.equal(code, 2);
 });
 
-test('R14: an unknown argument or a retired family exits 2 with usage on stderr', async () => {
+test('R14: an unknown argument or family exits 2 with usage on stderr', async () => {
   assert.throws(() => parseArgs(['--nonsense']), (error) => error.code === 'USAGE');
   assert.throws(() => parseArgs(['--family=v3']), (error) => error.code === 'USAGE');
-  assert.throws(() => parseArgs(['--family=v1']), (error) => error.code === 'USAGE');
+  assert.throws(() => parseArgs(['--family=v0']), (error) => error.code === 'USAGE');
   assert.throws(() => parseArgs(['--family=both']), (error) => error.code === 'USAGE');
   assert.equal(parseArgs([]).family, 'v2');
   const { calls, deps } = makeDeps();
@@ -586,8 +585,8 @@ test('C9: mcpServerNames reads both config shapes and refuses a non-array', () =
     { type: 'directory', path: '/fixture/.opencode' },
   ];
   assert.deepEqual(mcpServerNames(v2), ['code_mode', 'zebra']);
-  const v1 = [{ info: { mcp: { code_mode: {}, servers: null } } }];
-  assert.deepEqual(mcpServerNames(v1), ['code_mode']);
+  const flat = [{ info: { mcp: { code_mode: {}, servers: null } } }];
+  assert.deepEqual(mcpServerNames(flat), ['code_mode']);
   assert.deepEqual(mcpServerNames(null), []);
   assert.deepEqual(mcpServerNames({ info: { mcp: { servers: { code_mode: {} } } } }), []);
 });
@@ -799,19 +798,19 @@ test('adversarial: path-qualified, prerelease and joined output answer the pinne
     ['', 'unknown'],
     ['opencode2', 'unknown'],
     ['opencode', 'unknown'],
-    ['/opt/tools/1.19.3/opencode', 'unknown'],
+    ['/opt/tools/3.0.0/opencode', 'unknown'],
     ['2.0.32-rc.1', 'v2'],
-    ['1.19.3 2.0.32', 'unsupported'],
-    ['opencode v2.0.32\n1.19.3', 'v2'],
+    ['3.0.0 2.0.32', 'unknown'],
+    ['opencode v2.0.32\n3.0.0', 'v2'],
   ];
   for (const [sample, family] of pinned) {
     assert.equal(parseVersion(sample), family, JSON.stringify(sample));
   }
 });
 
-test('adversarial: CRLF and joined major-1 output read as unsupported, empty and garbage as unknown', () => {
-  assert.equal(parseVersion('1.19.3\r\n'), 'unsupported');
-  assert.equal(parseVersion('1.19.3 2.0.32'), 'unsupported');
+test('adversarial: CRLF and joined output on another major, empty and garbage read as unknown', () => {
+  assert.equal(parseVersion('3.0.0\r\n'), 'unknown');
+  assert.equal(parseVersion('3.0.0 2.0.32'), 'unknown');
   assert.equal(parseVersion('opencode v2.0.32\nWARN: x'), 'v2');
   assert.equal(parseVersion(''), 'unknown');
   assert.equal(parseVersion('   '), 'unknown');
@@ -837,13 +836,13 @@ test('adversarial: empty version output is skipped and the family reports SKIP',
   assert.ok(summary.results.every((result) => result.status !== 'FAIL'));
 });
 
-test('adversarial: a probe error or a major-1 binary is skipped instead of assumed', () => {
+test('adversarial: a probe error or a binary on another major is skipped instead of assumed', () => {
   const errored = { path: V2_BIN, output: '2.0.32', error: 'spawn ENOENT' };
-  const retired = { path: V1_BIN, output: '1.19.3', error: null };
+  const other = { path: OTHER_BIN, output: '3.0.0', error: null };
   const healthy = { path: '/fixture/other/bin/opencode', output: '2.0.32', error: null };
   assert.equal(selectBinary([errored], 'v2'), null);
-  assert.equal(selectBinary([retired], 'v2'), null);
-  const selected = selectBinary([errored, retired, healthy], 'v2');
+  assert.equal(selectBinary([other], 'v2'), null);
+  const selected = selectBinary([errored, other, healthy], 'v2');
   assert.ok(selected);
   assert.equal(selected.path, healthy.path);
   assert.equal(selected.family, 'v2');
@@ -891,18 +890,18 @@ test('adversarial: a root with spaces and $(id) reaches the collectors as one st
 test('probe count: candidates sharing one path probe each distinct path once', async (t) => {
   const root = pluginRoot(t, ['alpha.js']);
   const probes = {
-    [V1_BIN]: { output: '1.19.3', error: null },
+    [OTHER_BIN]: { output: '3.0.0', error: null },
     [V2_BIN]: { output: '2.0.32', error: null },
   };
   const { calls, deps } = makeDeps({
-    env: { OPENCODE_BIN: V1_BIN },
-    which: (name) => (name === 'opencode' ? V1_BIN : V2_BIN),
+    env: { OPENCODE_BIN: OTHER_BIN },
+    which: (name) => (name === 'opencode' ? OTHER_BIN : V2_BIN),
     probeVersion: (candidate) => probes[candidate] || { output: '', error: 'unexpected probe' },
   });
   const code = await main(['--root=' + root, '--json'], deps);
   assert.equal(code, 3);
   assert.deepEqual(calls.which, ['opencode']);
-  assert.deepEqual(calls.probeVersion, [V1_BIN]);
+  assert.deepEqual(calls.probeVersion, [OTHER_BIN]);
 });
 
 test('a broken symlink in the plugin folder fails plugin-active naming it', (t) => {

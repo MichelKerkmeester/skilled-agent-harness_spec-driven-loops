@@ -1,0 +1,7 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md)
+On line 57 only, replace this exact sentence:
+It also returns `{}` when input is invalid or an exception escapes.
+with these exact sentences:
+It also returns `{}` when input is invalid. When its own code throws, it returns the outage fallback, or the skipped fallback for a skipped prompt, and returns `{}` only if that fallback cannot be rendered.
+Change nothing else in the file.
+ACCEPT: `grep -c 'exception escapes' .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md` prints 0, `grep -n 'outage fallback' .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md | cut -d: -f1` prints only 57, and `git diff --numstat -- .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md` prints `1	1`.

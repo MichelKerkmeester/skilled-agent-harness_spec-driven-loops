@@ -1,0 +1,23 @@
+Copied the prepared file to [route-receipt.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts). The `cp` command exited 0. The required `cmp` and the final file-existence check both passed.
+
+The changed block is:
+
+```ts
+  it('leaves one valid receipt when two writers share a session', () => {
+    const base = tempBase();
+    const first = new FileRouteReceiptStore(base);
+    const second = new FileRouteReceiptStore(base);
+    for (let round = 0; round < 20; round += 1) {
+      first.write(receipt({ skill: 'sk-doc' }));
+      second.write(receipt({ skill: 'system-spec-kit' }));
+    }
+    expect(['sk-doc', 'system-spec-kit']).toContain(first.read('session-1')?.skill);
+    const names = readdirSync(join(base, 'route-receipts'));
+    expect(names.filter((name) => name.endsWith('.json'))).toHaveLength(1);
+    expect(names.filter((name) => name.endsWith('.tmp'))).toEqual([]);
+  });
+```
+
+The pre-copy diff matched the task description. No unexpected mismatch was found. I changed only the requested file. It remains untracked, and the final worktree status shows other dirty paths outside this task. I did not run TSX, Vitest, typecheck or build, as directed. The conductor still needs to run those checks.
+
+SKILL ROUTING: `sk-code` → `sk-code-skilled` surface. REPO RULES loaded: blast-radius, evidence-and-proof, scope-discipline, prevent-overengineering, communication and communication-handoff.

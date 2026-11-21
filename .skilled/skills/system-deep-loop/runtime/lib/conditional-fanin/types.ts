@@ -38,12 +38,14 @@ export type FanInClassification =
   | 'incomplete-budget-constrained'
   | 'sufficient';
 
+/** Whether a value-of-computation signal may rank outstanding branches, and which signal version. */
 export interface ValueOfComputationPolicy {
   readonly kind: 'none' | 'rank-only';
   readonly version: number;
   readonly signalDigest: string | null;
 }
 
+/** Thresholds a fan-in must meet before it may stop waiting: accepted count, support and provenance diversity. */
 export interface ConditionalFanInPolicy {
   readonly policyVersion: typeof CONDITIONAL_FANIN_POLICY_VERSION;
   readonly minimumAcceptedCount: number;
@@ -53,6 +55,7 @@ export interface ConditionalFanInPolicy {
   readonly valueOfComputation: ValueOfComputationPolicy;
 }
 
+/** The ledger position a fan-in decision is taken at; nothing after it may count. */
 export interface FanInEventCut {
   readonly ledgerId: string;
   readonly sequence: number;
@@ -60,6 +63,7 @@ export interface FanInEventCut {
   readonly registryDigest: string;
 }
 
+/** An accepted leaf result at the cut, with the agreement key and provenance group sufficiency groups it by. */
 export interface AcceptedResultAtCut {
   readonly envelope: LeafResultPayload;
   readonly ledgerSequence: number;
@@ -97,6 +101,7 @@ export interface ProjectedLease extends JsonObject {
   readonly status: 'active' | 'released';
 }
 
+/** A branch still running or queued at the cut, with the lease and reservation a disposition acts on. */
 export interface OutstandingBranchAtCut {
   readonly branch: ProjectedBranch;
   readonly lease: ProjectedLease | null;
@@ -109,6 +114,7 @@ export interface OutstandingBranchAtCut {
   readonly usefulnessRank?: number;
 }
 
+/** Budget balances for one scope pinned to a ledger head, so the evidence names exactly what was read. */
 export interface FanInBudgetSnapshot {
   readonly projectionDigest: string;
   readonly reducerVersion: string;
@@ -126,6 +132,7 @@ export type ContinuationBudgetOutcome =
   | 'not-applicable'
   | 'reserved';
 
+/** The outcome of trying to reserve budget for one more result, with snapshots before and after. */
 export interface ContinuationBudgetEvidence {
   readonly outcome: ContinuationBudgetOutcome;
   readonly reasonCode: string;
@@ -138,6 +145,7 @@ export interface ContinuationBudgetEvidence {
   readonly after: FanInBudgetSnapshot;
 }
 
+/** Everything a fan-in decision reads at one cut: policy, accepted results, outstanding branches and budget. */
 export interface FanInDecisionView {
   readonly runId: string;
   readonly waveId: string;
@@ -152,12 +160,14 @@ export interface FanInDecisionView {
   readonly anomalyCodes: readonly string[];
 }
 
+/** The accepted results of one provenance group, and the agreement key they share when they agree. */
 export interface ProvenanceGroupEvidence {
   readonly provenanceGroupId: string;
   readonly coherentAgreementKey: string | null;
   readonly acceptedEnvelopeIds: readonly string[];
 }
 
+/** How the accepted results measure against each policy threshold, and whether all are met. */
 export interface SufficiencyEvidence {
   readonly acceptedEligibleCount: number;
   readonly distinctProvenanceGroups: number;
@@ -171,6 +181,7 @@ export interface SufficiencyEvidence {
   readonly groups: readonly ProvenanceGroupEvidence[];
 }
 
+/** Whether the fan-in should keep waiting, which conditions triggered, and the one that classifies the decision. */
 export interface AwaitPredicateResult {
   readonly shouldAwait: boolean;
   readonly triggered: readonly FanInPrimaryTrigger[];
@@ -186,6 +197,7 @@ export type OutstandingDispositionKind =
   | 'retain-terminal'
   | 'withdraw';
 
+/** What to do with one outstanding branch once the fan-in decides, and which lease and spend survive it. */
 export interface OutstandingDisposition {
   readonly logicalBranchId: string;
   readonly kind: OutstandingDispositionKind;
@@ -199,11 +211,13 @@ export interface OutstandingDisposition {
   readonly settleActualSpend: boolean;
 }
 
+/** One result a decision froze for reduction, pinned by its digest. */
 export interface FrozenReducerInput {
   readonly resultEnvelopeId: string;
   readonly resultDigest: string;
 }
 
+/** A frozen fan-in decision: its cut, classification, included and excluded results and the reducer inputs it binds. */
 export interface FinalizedFanInDecision {
   readonly decisionVersion: typeof CONDITIONAL_FANIN_DECISION_VERSION;
   readonly decisionId: string;
@@ -228,6 +242,7 @@ export interface FinalizedFanInDecision {
   readonly decisionDigest: string;
 }
 
+/** A result kept after its decision was frozen; it never changes that decision. */
 export interface LateResultSalvageRecord {
   readonly decisionId: string;
   readonly resultEnvelopeId: string;

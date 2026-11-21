@@ -1,0 +1,11 @@
+Changed only [ENV-REFERENCE.md:382](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:382).
+
+```text
+| `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` | `0.8` | number (0..1) | Override the confidence threshold used by the 5-lane fusion scorer. Below this value, a recommendation is filtered out unless `confidenceOnly` mode is active. Parsed as a float. Values outside [0,1] fall back to the default. The value is read once when the daemon starts, so a later change has no effect until a restart; the per-request `confidenceThreshold` option of `advisor_recommend` is the supported override, and hook briefs always send `confidenceThreshold` 0.8, so the variable never reaches them. | `runtime/lib/compat/contract.ts` |
+```
+
+Both acceptance searches exited 0 and printed that same row on line 382. Line 383 is unchanged. No requested text failed to match the file.
+
+Skill routing: the task specified `sk-code`, and the Markdown artifact trigger routed through `sk-doc`; both compiled routers returned `defer`. I proceeded using the task’s exact file, replacement and acceptance checks. No runtime tests were run. Workspace status shows other modified paths outside this task; I did not edit them.
+
+Nothing is needed from you.

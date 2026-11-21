@@ -434,7 +434,8 @@ test('repin --stage refuses a lock naming a live pid on this host and stages not
 
   assert.equal(staged.code, 2, staged.output);
   assert.ok(staged.output.includes(REFUSAL), staged.output);
-  assert.ok(staged.output.includes('  remove ' + fixture.lockPath + ' by hand once that run has ended'), staged.output);
+  assert.ok(staged.output.includes(`  Next: check that pid ${process.pid} has ended (ps -p ${process.pid}), then rm ` +
+    fixture.lockPath), staged.output);
   assert.deepEqual(stageNotes(staged.output), [], staged.output);
   assert.equal(fs.existsSync(stageDir), false);
   assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), held);
@@ -1273,12 +1274,12 @@ test('relayout whose rollback also fails names the backup it keeps', (t) => {
 test('relayout whose rollback also fails says which copies the backup lacks', (t) => {
   const fixture = createRelayoutFixture(t);
   writeFile(fixture.overlayDir, 'custom/bundle/assets/api-token.js', 'SECRET-BYTES-123\n');
-  writeFile(fixture.overlayDir, 'custom/.env.sample', 'KEY=value\n');
+  writeFile(fixture.overlayDir, 'custom/.env.local', 'KEY=value\n');
   fixture.manifest.overlays.push({
     id: 'hub-env',
     scope: 'file',
-    source: 'custom/.env.sample',
-    destination: '.skilled/skills/hub/.env.sample',
+    source: 'custom/.env.local',
+    destination: '.skilled/skills/hub/.env.local',
   });
   writeManifest(fixture);
 
@@ -1286,10 +1287,10 @@ test('relayout whose rollback also fails says which copies the backup lacks', (t
 
   assert.equal(code, 2, lines.join('\n'));
   assert.ok(lines.includes('skipped custom/bundle/assets/api-token.js'), lines.join('\n'));
-  assert.ok(lines.includes('skipped custom/.env.sample'), lines.join('\n'));
+  assert.ok(lines.includes('skipped custom/.env.local'), lines.join('\n'));
   const errors = lines.filter((line) => line.startsWith('error: '));
   assert.equal(errors.length, 1, lines.join('\n'));
-  assert.equal(errors[0].includes('.env.sample'), false, errors[0]);
+  assert.equal(errors[0].includes('.env.local'), false, errors[0]);
   const backupLabel = lines.find((line) => line.startsWith('backup ')).slice('backup '.length);
   assert.ok(errors[0].endsWith(`the backup at ${backupLabel} holds the manifest as it was and every moved copy ` +
     'except these files it skipped: custom/bundle/assets/api-token.js'), errors[0]);
@@ -1713,8 +1714,11 @@ test('relayout refuses a copy two entries would move to different paths', (t) =>
   const relayout = run(['apply', '--relayout']);
 
   assert.equal(relayout.code, 2, relayout.output);
-  assert.equal(relayout.output.trim(), `refuse: custom/place.md is claimed by ${PLACE_LAYOUT} and ` +
+  const claimLines = relayout.output.trim().split('\n');
+  assert.equal(claimLines[0], `refuse: custom/place.md is claimed by ${PLACE_LAYOUT} and ` +
     'root/claude/skills/hub/place.md; one copy cannot move to both');
+  assert.equal(claimLines[claimLines.length - 1], `  Next: give each of those entries in ${manifestPath} its own source, ` +
+    `then from ${fixture.tree}: ${ENGINE_COMMAND} apply --relayout`, relayout.output);
   assert.deepEqual(movedLines(relayout.output), [], relayout.output);
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/place.md'), 'utf8'), OVERLAY_PLACE);
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, PLACE_LAYOUT)), false);
@@ -1751,7 +1755,10 @@ test('relayout refuses two copies whose destinations land on one layout path', (
   const relayout = run(['apply', '--relayout']);
 
   assert.equal(relayout.code, 2, relayout.output);
-  assert.equal(relayout.output.trim(), 'refuse: custom/a.md and custom/b.md both belong at framework/skills/hub/a.md');
+  const pathLines = relayout.output.trim().split('\n');
+  assert.equal(pathLines[0], 'refuse: custom/a.md and custom/b.md both belong at framework/skills/hub/a.md');
+  assert.equal(pathLines[pathLines.length - 1], `  Next: keep one entry for that destination in ${manifestPath}, then from ` +
+    `${fixture.tree}: ${ENGINE_COMMAND} apply --relayout`, relayout.output);
   assert.deepEqual(movedLines(relayout.output), [], relayout.output);
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/a.md'), 'utf8'), first);
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/b.md'), 'utf8'), second);
@@ -1929,6 +1936,43 @@ test('layout cap: the overflow line sends hidden moves all under root/skilled to
   assert.equal(lines.length, LAYOUT_CAP_SHOWN + 1, status.output);
   assert.equal(lines[LAYOUT_CAP_SHOWN],
     'LAYOUT   … 4 more under root/skilled; change the destination or remove the entry', status.output);
+});
+
+// Relayout refuses every move while one entry sits under root/skilled, so a
+// Next line that names the relayout has to name that fix first.
+test('layout cap: with any move under root/skilled, the Next line puts its fix before the relayout', (t) => {
+  const fixture = createOldLayoutSkillsFixture(t, LAYOUT_CAP_SHOWN + 2);
+  addRootSkilledEntries(fixture, 3);
+  const manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+
+  const status = fixture.run(['status']);
+
+  const lines = status.output.split('\n');
+  const overflow = lines.findIndex((line) => line.startsWith('LAYOUT   … '));
+  assert.equal(lines[overflow + 1], `  Next: change the destination of each entry under root/skilled in ${manifestPath}, ` +
+    `or remove the entry, then from ${fixture.tree}: ${ENGINE_COMMAND} apply --relayout`, status.output);
+  const relayout = fixture.run(['apply', '--relayout']);
+  assert.equal(relayout.code, 2, relayout.output);
+  assert.match(relayout.output, /under root\/skilled, which holds no copy/);
+});
+
+test('layout cap: a shown move under root/skilled keeps the relayout out of the Next line for the hidden ones', (t) => {
+  const fixture = createOldLayoutSkillsFixture(t, LAYOUT_CAP_SHOWN + 2);
+  writeFile(fixture.overlayDir, 'custom/stray.md', 'stray notes\n');
+  writeFile(fixture.tree, 'skilled/stray.md', 'stray notes\n');
+  fixture.manifest.overlays.unshift({ id: 'stray', scope: 'file', source: 'custom/stray.md', destination: 'skilled/stray.md' });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+
+  const status = fixture.run(['status']);
+
+  const lines = status.output.split('\n');
+  assert.ok(lines.some((line) => line.startsWith('LAYOUT   stray: ')), status.output);
+  const overflow = lines.findIndex((line) => line.startsWith('LAYOUT   … '));
+  assert.equal(lines[overflow], `LAYOUT   … 3 more; run ${ENGINE_COMMAND} apply --relayout`, status.output);
+  assert.equal(lines[overflow + 1], `  Next: change the destination of each entry under root/skilled in ${manifestPath}, ` +
+    `or remove the entry, then from ${fixture.tree}: ${ENGINE_COMMAND} apply --relayout`, status.output);
 });
 
 test('old layout: a tree with dot-dropped sources passes status and relayout moves it onto framework and root', (t) => {

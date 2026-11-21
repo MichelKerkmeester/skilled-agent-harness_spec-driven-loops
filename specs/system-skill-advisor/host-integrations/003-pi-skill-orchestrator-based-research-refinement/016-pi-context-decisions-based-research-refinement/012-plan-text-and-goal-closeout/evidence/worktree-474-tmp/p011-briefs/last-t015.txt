@@ -1,0 +1,99 @@
+The requested file matches the prepared file: `cmp tmp/p011-briefs/bench.v1.ts .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts` exited 0.
+
+**Changed file:** [scorer-calibration.bench.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts)
+
+**Final text of the changed blocks:**
+
+```ts
+import { decideRouteReceiptGuard, ROUTE_RECEIPT_VERSION, type RouteReceipt } from '../../hooks/lib/route-receipt.js';
+```
+
+```ts
+// A complete task on a new topic that is floored on work intent: the shape a
+// stored route must not carry the session's earlier route into.
+const FALSE_CARRY_PAIR = {
+  task: 'Update the advisor README to document the new corpus file layout',
+  followUp: 'Refactor the session store module to remove duplicated locking code',
+} as const;
+```
+
+```ts
+// Runs each follow-up pair through the receipt guard the hook ships. A task
+// leaves a receipt only when its own top route is unfloored, as in the hook,
+// and the clock is fixed so only the prompt and the routes decide. A
+// measurement only, like the line above it.
+function logFollowUpReceipts(root: string, projection: ReturnType<typeof loadAdvisorProjection>): void {
+  const clock = { storeGeneration: 'bench', lifecycleEpoch: 'bench' };
+  const scoreTop = (prompt: string) => {
+    const result = scoreAdvisorPrompt(prompt, { workspaceRoot: root, projection, includeAllCandidates: true });
+    return result.topSkill === null
+      ? null
+      : result.recommendations.find((recommendation) => recommendation.skill === result.topSkill) ?? null;
+  };
+  const receiptFor = (task: string) => {
+    const top = scoreTop(task);
+    const taskFloored = top?.confidenceFloored === true;
+    const receipt: RouteReceipt | null = top && !taskFloored
+      ? { version: ROUTE_RECEIPT_VERSION, sessionId: 'bench', skill: top.skill, ...clock, transcriptBytes: null }
+      : null;
+    return { taskTop: top?.skill ?? null, taskFloored, receipt };
+  };
+  const guardFollowUp = (receipt: RouteReceipt | null, followUp: string) => {
+    const top = scoreTop(followUp);
+    const strippedPrompt = stripLeadingPastedReply(followUp);
+    const policyReason = shouldFireAdvisor(strippedPrompt).reason;
+    const guard = decideRouteReceiptGuard({
+      receipt,
+      clock: () => clock,
+      transcriptBytes: null,
+      strippedPrompt,
+      policyReason,
+      topSkill: top?.skill ?? null,
+      topFloored: top?.confidenceFloored === true,
+    });
+    return { followUpTop: top?.skill ?? null, floored: top?.confidenceFloored === true, policyReason, guard };
+  };
+  let harm = 0;
+  let harmAfter = 0;
+  const pairs = FOLLOW_UP_PAIRS.map((pair, index) => {
+    const { taskTop, taskFloored, receipt } = receiptFor(pair.task);
+    const { followUpTop, floored, policyReason, guard } = guardFollowUp(receipt, pair.followUp);
+    const harmful = floored && policyReason === WORK_INTENT_REASON && followUpTop !== taskTop;
+    if (harmful) harm += 1;
+    if (harmful && guard === 'deliver') harmAfter += 1;
+    return {
+      pair: index + 1,
+      negativeControl: pair.negativeControl,
+      taskTop,
+      taskFloored,
+      receiptWritten: receipt !== null,
+      followUpTop,
+      guard,
+    };
+  });
+  const falseCarryTask = receiptFor(FALSE_CARRY_PAIR.task);
+  const falseCarry = guardFollowUp(falseCarryTask.receipt, FALSE_CARRY_PAIR.followUp);
+  console.log(`advisor-follow-up-receipts ${JSON.stringify({
+    N: FOLLOW_UP_PAIRS.length,
+    H: harm,
+    H_after: harmAfter,
+    pairs,
+    falseCarry: {
+      taskTop: falseCarryTask.taskTop,
+      receiptWritten: falseCarryTask.receipt !== null,
+      followUpTop: falseCarry.followUpTop,
+      guard: falseCarry.guard,
+    },
+  })}`);
+}
+```
+
+```ts
+  logFollowUpReceipts(root, projection);
+```
+
+The diff is additive. No existing output line, assertion or calibration number changed. The new `advisor-follow-up-receipts` log line is additive. Nothing in the task differed from the resulting file.
+
+The required package tests, typecheck and build were not run, as assigned to the conductor. The sk-code drift gate ran but exited 1, reporting 11 errors and 46 warnings in other files, with no finding on the changed bench file. At final status the worktree is dirty on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`; unrelated edits remain untouched, and additional test-file edits appeared after my initial status check.
+
+The conductor owns the remaining package checks and disposition of the workspace-wide drift findings.

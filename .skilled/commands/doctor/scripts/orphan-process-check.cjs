@@ -596,6 +596,7 @@ if (require.main === module) {
     },
     (error) => {
       process.stderr.write(`orphan-process-check: ${errorReason(error)}\n`);
+      process.stderr.write('Next: fix the cause named above, then rerun node .skilled/commands/doctor/scripts/orphan-process-check.cjs\n');
       process.exitCode = 1;
     },
   );

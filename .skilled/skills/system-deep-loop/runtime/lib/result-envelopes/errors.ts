@@ -13,6 +13,7 @@ export const ResultEnvelopeErrorCodes = Object.freeze({
 export type ResultEnvelopeErrorCode =
   typeof ResultEnvelopeErrorCodes[keyof typeof ResultEnvelopeErrorCodes];
 
+/** Error thrown by result-envelope recording, carrying a typed code and scalar-only details. */
 export class ResultEnvelopeError extends Error {
   public readonly code: ResultEnvelopeErrorCode;
   public readonly details: Readonly<Record<string, string | number | boolean | null>>;

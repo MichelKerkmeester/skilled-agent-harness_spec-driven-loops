@@ -1,0 +1,75 @@
+The prepared file is in place. `cmp` and `node --check` both exited 0. The bound packet’s strict validator returned `RESULT: FAILED`, so I can confirm the scoped file checks, but not packet completion.
+
+**File changed:** [prompt-advisor.mjs](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:21)
+
+**Final text of changed blocks:**
+
+```js
+const LIFECYCLE_MODULE_URL = new URL(
+  '../../runtime/dist/hooks/lib/directive-lifecycle.js',
+  import.meta.url,
+).href;
+```
+
+```js
+// A clock rotation is advisory: when it fails, a stored route still expires on
+// its own transcript check, so the failure is logged and never reaches the host.
+async function rotateSessionClock(ctx, core, sessionId) {
+  try {
+    await core.advanceBoundary?.(sessionId);
+  } catch (error) {
+    logFailure(ctx, error);
+  }
+}
+```
+
+```js
+/**
+ * Rotate the shared lifecycle clock for one session at a DSH boundary, so advisor
+ * state stamped with that clock expires with the context it described.
+ *
+ * Without a session id nothing rotates, because the shared call would then
+ * advance the store generation and reset every session.
+ *
+ * @param {string|undefined} sessionId - The DSH session id.
+ * @param {Function} [load] - Loads the lifecycle module, injectable for tests.
+ * @returns {Promise<boolean>} Whether a session clock was rotated.
+ */
+export async function advanceBoundary(sessionId, load = () => import(LIFECYCLE_MODULE_URL)) {
+  if (typeof sessionId !== 'string' || !sessionId.trim()) return false;
+  const lifecycle = await load();
+  return lifecycle.advanceDirectiveLifecycleBoundary(lifecycle.defaultDirectiveLifecycleStore(), sessionId);
+}
+```
+
+```js
+core = { runAdvisor, advanceBoundary },
+```
+
+```js
+ctx.on('agent/created', async ({ agent }) => {
+  forgetReceipt(agent?.session?.id);
+  await rotateSessionClock(ctx, core, agent?.session?.id);
+  return undefined;
+});
+```
+
+```js
+ctx.on('session/event', (session, event) => {
+  if (event?.type === 'compaction/end' && !event.data?.error) {
+    forgetReceipt(session?.id);
+    // This handler is synchronous, so the rotation runs detached.
+    void rotateSessionClock(ctx, core, session?.id);
+  }
+});
+```
+
+**Session ID handback:** The exported `advanceBoundary` returns before loading or calling the lifecycle function for non-string values and strings that are empty after trimming. With its default `core`, no input reaches `advanceDirectiveLifecycleBoundary` without a non-empty ID. However, `registerPromptAdvisor` accepts an injected `core`, and `rotateSessionClock` passes its ID through without validating it. A created event with a missing `agent`, `session` or `id`, or a clean compaction event with a missing `session` or `id`, passes `undefined`. An injected `core.advanceBoundary` that calls the lifecycle function without its own guard could therefore call it with no ID.
+
+**Verification:** The requested `cp`, `cmp` and `node --check` exited 0. The strict packet validator exited 2 and reported `RESULT: FAILED` for a graph metadata source fingerprint mismatch and a stale `description` field. I left those files untouched because this task authorizes edits only to the `.mjs` file. No Vitest, typecheck or build was run.
+
+No mismatch found between TASK’s description of the prepared file and the resulting diff. Git reports other modified and untracked files outside this task’s scope. My write command targeted only the requested file; I did not capture an initial full-worktree status, so I can’t confirm when those other changes appeared. No commit or push was made.
+
+Routing: Implementation; trigger lookup had no matches. I followed your explicit `sk-code` direction. Its compiled router returned `defer`; the task’s explicit code-skill direction resolved the route. Loaded the applicable `sk-code` resources and repository blast-radius, evidence, scope and communication rules.
+
+To close the bound packet, its generated metadata needs repair and strict validation must pass. That work is outside this task’s authorized file scope.

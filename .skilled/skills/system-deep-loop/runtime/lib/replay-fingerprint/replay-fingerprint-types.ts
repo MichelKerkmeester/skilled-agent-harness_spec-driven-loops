@@ -283,6 +283,7 @@ export interface VerifiedReplayFingerprint<TState extends JsonObject> {
   readonly projection: RebuiltProjection<TState>;
 }
 
+/** Verification result with exit code 0, carrying the verified fingerprint and rebuilt projection for the consumer. */
 export interface ReplayFingerprintVerificationSuccess<TState extends JsonObject> {
   readonly ok: true;
   readonly exitCode: 0;
@@ -290,6 +291,7 @@ export interface ReplayFingerprintVerificationSuccess<TState extends JsonObject>
   readonly verified: VerifiedReplayFingerprint<TState>;
 }
 
+/** Verification result with exit code 1, carrying the failure and no projection evidence. */
 export interface ReplayFingerprintVerificationFailure {
   readonly ok: false;
   readonly exitCode: 1;

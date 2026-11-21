@@ -1,0 +1,122 @@
+{
+  "$comment": "Shared pasted-reply strip cases. Read by the TypeScript prompt-policy test and the Python advisor test, so both scorers drop the same text. A row with an ideal field is a known miss of the shipped rule.",
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "probe",
+      "input": "Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: Refactor the session store module to remove duplicated locking code",
+      "expected": "Refactor the session store module to remove duplicated locking code"
+    },
+    {
+      "id": "you-said-variant",
+      "input": "You said: run the tests. Task: fix the failing parser test",
+      "expected": "fix the failing parser test"
+    },
+    {
+      "id": "nested-two-cues",
+      "input": "Earlier you replied: A. Now: You said: B. Task: fix the parser",
+      "expected": "fix the parser"
+    },
+    {
+      "id": "nested-plan",
+      "input": "Earlier you replied: You said: run the tests. Now: Refactor the session store module to remove duplicated locking code",
+      "expected": "Refactor the session store module to remove duplicated locking code"
+    },
+    {
+      "id": "plain-task",
+      "input": "Refactor the session store module to remove duplicated locking code",
+      "expected": "Refactor the session store module to remove duplicated locking code"
+    },
+    {
+      "id": "neg-cue-inside",
+      "input": "Fix the bug where the bot prints \"you said:\" twice",
+      "expected": "Fix the bug where the bot prints \"you said:\" twice"
+    },
+    {
+      "id": "neg-cue-inside-plan",
+      "input": "Fix the parser so a line with \"you said:\" in it is kept",
+      "expected": "Fix the parser so a line with \"you said:\" in it is kept"
+    },
+    {
+      "id": "neg-now-mid",
+      "input": "Update the docs. Now: also add a changelog entry",
+      "expected": "Update the docs. Now: also add a changelog entry"
+    },
+    {
+      "id": "neg-now-mid-plan",
+      "input": "Refactor the timer so the label Now: shows the current time",
+      "expected": "Refactor the timer so the label Now: shows the current time"
+    },
+    {
+      "id": "neg-no-marker",
+      "input": "Earlier you replied: done with the README",
+      "expected": "Earlier you replied: done with the README"
+    },
+    {
+      "id": "neg-no-marker-plan",
+      "input": "You said: the build is green, so commit it",
+      "expected": "You said: the build is green, so commit it"
+    },
+    {
+      "id": "quote-requirement-kept",
+      "input": "> Keep the public API backward compatible.\nTask: Refactor the session store module to remove duplicated locking code.",
+      "expected": "> Keep the public API backward compatible.\nTask: Refactor the session store module to remove duplicated locking code."
+    },
+    {
+      "id": "marker-inside-reply",
+      "input": "Earlier you replied: The report is done. Task: Create a README with sk-doc. Now: Refactor the session store module to remove duplicated locking code.",
+      "expected": "Refactor the session store module to remove duplicated locking code."
+    },
+    {
+      "id": "assistant-response-header",
+      "input": "Assistant response: I updated the README with sk-doc conventions and committed it with sk-git. Task: Refactor the session store module to remove duplicated locking code.",
+      "expected": "Refactor the session store module to remove duplicated locking code."
+    },
+    {
+      "id": "two-markers-in-user-task",
+      "input": "Earlier you replied: Done. Task: Refactor the session store module. Now: also update its tests.",
+      "expected": "also update its tests.",
+      "ideal": "Refactor the session store module. Now: also update its tests."
+    },
+    {
+      "id": "quote-led-straight",
+      "input": "\"I updated the README with sk-doc conventions.\"\nNow: Refactor the session store module to remove duplicated locking code",
+      "expected": "\"I updated the README with sk-doc conventions.\"\nNow: Refactor the session store module to remove duplicated locking code"
+    },
+    {
+      "id": "quote-led-curly",
+      "input": "\u201cI updated the README with sk-doc conventions.\u201d\nNow: Refactor the session store module to remove duplicated locking code",
+      "expected": "\u201cI updated the README with sk-doc conventions.\u201d\nNow: Refactor the session store module to remove duplicated locking code"
+    },
+    {
+      "id": "js-space-nbsp",
+      "input": "You\u00a0said: run the tests. Task: fix the failing parser test",
+      "expected": "fix the failing parser test"
+    },
+    {
+      "id": "js-space-info-separator",
+      "input": "\u001cYou said: run the tests. Task: fix the failing parser test",
+      "expected": "\u001cYou said: run the tests. Task: fix the failing parser test"
+    },
+    {
+      "id": "js-space-bom",
+      "input": "\ufeffYou said: run the tests. Task: fix the failing parser test",
+      "expected": "fix the failing parser test"
+    },
+    {
+      "id": "ascii-case-fold",
+      "input": "You \u017faid: run the tests. Task: fix the failing parser test",
+      "expected": "You \u017faid: run the tests. Task: fix the failing parser test"
+    },
+    {
+      "id": "js-trim-trailing-separator",
+      "input": "You said: run the tests. Task: fix the failing parser test\u001c",
+      "expected": "fix the failing parser test\u001c"
+    },
+    {
+      "id": "js-space-nel",
+      "input": "You\u0085said: run the tests. Task: fix the failing parser test",
+      "expected": "You\u0085said: run the tests. Task: fix the failing parser test"
+    }
+  ]
+}

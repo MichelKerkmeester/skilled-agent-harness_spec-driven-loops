@@ -1,0 +1,5 @@
+{"event":"started","label":"deepseek","index":0,"attempt":1,"at":"2026-11-07T17:37:57.591Z","gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek","at":"2026-11-07T17:40:48.814Z","duration_ms":60001,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek","at":"2026-11-07T17:41:48.814Z","duration_ms":120001,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"progress","label":"deepseek","at":"2026-11-07T17:42:48.815Z","duration_ms":180002,"gauges":{"lag":1,"pending":0,"failed":0}}
+{"event":"stopped","signal":"SIGTERM","at":"2026-11-07T17:43:22.154Z","gauges":{"lag":1,"pending":0,"failed":0}}

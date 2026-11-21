@@ -1,0 +1,11 @@
+Changed [skill-advisor-hook.md](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:57).
+
+Final text of the changed block:
+
+> `decideDirectiveLifecycleDelivery` reduces repeated context for a known session. It keeps the brief head and drops the repeated `Directives:` block. The handler returns `hookSpecificOutput.additionalContext`. It returns `{}` when its switch is off. It also returns `{}` when input is invalid. When its own code throws, it returns the outage fallback, or the skipped fallback for a skipped prompt, and returns `{}` only if that fallback cannot be rendered.
+
+The original sentence matched exactly; nothing in the task was unmatched.
+
+Verification: the acceptance checks printed `0`, `57` and `1  1`; the first `grep -c` exited 1 because it found no matches. `git diff --check` passed, and the Level 1 spec validator reported `RESULT: PASSED`. Tests were not run, per the task instructions.
+
+`git status` also lists modified files [claude-user-prompt-submit-hook.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts) and [ENV-REFERENCE.md](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md). I did not edit them; their prior state is unknown. The conductor can run its runtime checks next.

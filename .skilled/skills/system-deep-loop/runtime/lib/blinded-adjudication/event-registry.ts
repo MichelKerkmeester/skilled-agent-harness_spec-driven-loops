@@ -84,6 +84,9 @@ export const CAPABILITY_BY_ADJUDICATION_EVENT: Readonly<Record<AdjudicationEvent
     [AdjudicationEventTypes.SHADOW_COMPARED]: AdjudicationCapabilities.SHADOW_RECORD,
   });
 
+/**
+ * Versions of the presentation, judge, counterfactual and reducer policies an adjudication event was produced under.
+ */
 export interface AdjudicationPolicyVersions extends JsonObject {
   readonly presentation: string;
   readonly judge: string;
@@ -91,6 +94,7 @@ export interface AdjudicationPolicyVersions extends JsonObject {
   readonly reducer: string;
 }
 
+/** Common payload for every adjudication event; it marks dark execution and leaves the legacy path canonical. */
 export interface AdjudicationEventPayload extends JsonObject {
   readonly adjudication_id: string;
   readonly candidate_digests: string[];

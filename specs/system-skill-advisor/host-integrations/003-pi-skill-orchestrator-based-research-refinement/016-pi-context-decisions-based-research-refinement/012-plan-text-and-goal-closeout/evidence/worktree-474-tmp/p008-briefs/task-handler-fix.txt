@@ -1,0 +1,34 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts)
+Make exactly two literal replacements in this file and change nothing else. `scoredPrompt` is already defined earlier in the same function (`const scoredPrompt = stripLeadingPastedReply(input.prompt);`); do not touch that line.
+
+Replacement 1, the cache-hit return. Old block (exact, 4 and 6 spaces):
+    return attachTypedCommand(
+      input.options?.includeCompiledRoute === false
+        ? parsedCachedOutput
+        : enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
+      input.prompt,
+    );
+New block:
+    return attachTypedCommand(
+      input.options?.includeCompiledRoute === false
+        ? parsedCachedOutput
+        : enrichCompiledRoutes(parsedCachedOutput, scoredPrompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
+      scoredPrompt,
+    );
+
+Replacement 2, the cache-miss return. Old block (exact, 2 and 4 spaces):
+  return attachTypedCommand(
+    input.options?.includeCompiledRoute === false
+      ? parsed
+      : enrichCompiledRoutes(parsed, input.prompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
+    input.prompt,
+  );
+New block:
+  return attachTypedCommand(
+    input.options?.includeCompiledRoute === false
+      ? parsed
+      : enrichCompiledRoutes(parsed, scoredPrompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
+    scoredPrompt,
+  );
+
+ACCEPT: `grep -c 'input\.prompt' .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` prints 1, and `git diff --numstat -- .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` prints `4	4`.

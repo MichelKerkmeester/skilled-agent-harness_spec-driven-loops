@@ -177,6 +177,34 @@ describe('readLineageCommits and readLineagePassSummary', () => {
     expect(readLineagePassSummary(lineageDir)).toEqual({ iterations: 2, lastCommitAt: at(45), flaggedPasses: null });
   });
 
+  it('judges a retried lineage when the failed attempt ran no tool call before it died', () => {
+    const { lineageDir, framesDir } = lineageWithLedger('deep-research-ledger');
+    writeFrame(framesDir, 1, { occurred_at: at(0), payload: { stem: 'deep_research.run_initialized', scope: {}, data: {} } }, at(0));
+    writeFrame(framesDir, 2, {
+      occurred_at: at(39),
+      payload: { stem: 'deep_research.iteration_completed', scope: { iteration: 1 }, data: { findingsCount: 2 } },
+    }, at(40));
+    mkdirSync(join(lineageDir, 'logs'));
+    // A claude attempt that stopped on a quota error prints untimed init and result events only.
+    const diedAtInit = [
+      JSON.stringify({ type: 'system', subtype: 'init', session_id: 'session-dead', tools: ['Read'] }),
+      JSON.stringify({ type: 'result', subtype: 'error_during_execution', is_error: true, session_id: 'session-dead' }),
+    ].join('\n');
+    writeFileSync(join(lineageDir, 'logs', 'fanout-lineage.1.out'), diedAtInit);
+    writeFileSync(join(lineageDir, 'logs', 'fanout-lineage.out'), claudeTool('Read', { file_path: 'a.ts' }, 10));
+
+    expect(readLineagePassSummary(lineageDir)).toEqual({ iterations: 1, lastCommitAt: at(40), flaggedPasses: 0 });
+
+    // An untimed claude log that does hold a tool call could hide a pass's reads, so it stays unknown.
+    const untimedCall = JSON.stringify({
+      type: 'assistant',
+      session_id: 'session-dead',
+      message: { role: 'assistant', content: [{ type: 'tool_use', id: 'toolu_1', name: 'Read', input: { file_path: 'b.ts' } }] },
+    });
+    writeFileSync(join(lineageDir, 'logs', 'fanout-lineage.1.out'), `${diedAtInit}\n${untimedCall}`);
+    expect(readLineagePassSummary(lineageDir).flaggedPasses).toBeNull();
+  });
+
   it('reads research commits and summarizes the lineage from its logs on disk', () => {
     const { lineageDir, framesDir } = lineageWithLedger('deep-research-ledger');
     writeFrame(framesDir, 1, { occurred_at: at(0), payload: { stem: 'deep_research.run_initialized', scope: {}, data: {} } }, at(0));

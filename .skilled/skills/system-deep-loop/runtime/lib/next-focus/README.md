@@ -29,10 +29,19 @@ Runtime primitives that decide where a `system-deep-loop` research or review mod
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/cycle-detection/`
+- [`../cycle-detection/`](../cycle-detection/)
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts`
+- [`../../tests/unit/next-focus.vitest.ts`](../../tests/unit/next-focus.vitest.ts)
+
+Run from the repository root:
+
+```bash
+cd .skilled/skills/system-deep-loop/runtime
+npx vitest run tests/unit/next-focus.vitest.ts
+```
+
+Expected: vitest reports `Test Files  1 passed (1)` and no failed tests.

@@ -1,0 +1,18 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts)
+Make exactly one edit in AdvisorRecommendationSchema and change nothing else.
+Old lines (exact, about line 329-332):
+  // Set only when a hub held back its command because the prompt names no
+  // single mode, so the head can say so.
+  needsMode: z.literal(true).optional(),
+}).strict();
+New lines:
+  // Set only when a hub held back its command because the prompt names no
+  // single mode, so the head can say so.
+  needsMode: z.literal(true).optional(),
+  // Set only when the confidence was raised to the task-intent floor rather
+  // than earned by the recommendation's own evidence, so a hook can tell a
+  // floored route from a confident one.
+  confidenceFloored: z.literal(true).optional(),
+}).strict();
+The old text must match exactly once in the file; if it matches zero or two times, change nothing and report it.
+ACCEPT: `grep -c "confidenceFloored: z.literal(true).optional()" .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` prints 1.

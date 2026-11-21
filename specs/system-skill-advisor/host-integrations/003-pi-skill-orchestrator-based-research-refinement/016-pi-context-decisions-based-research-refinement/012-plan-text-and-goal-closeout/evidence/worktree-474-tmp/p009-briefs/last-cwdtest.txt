@@ -1,0 +1,36 @@
+The target now matches the prepared file exactly: the requested `cmp` exited 0. `git diff --check` also exited 0. Tests were not run, as instructed; the conductor’s test run remains outstanding.
+
+Changed file: [claude-user-prompt-submit-hook.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts)
+
+Added block:
+
+```ts
+  it('returns the outage fallback when the clock and the working directory both throw', async () => {
+    const cwd = vi.spyOn(process, 'cwd').mockImplementation(() => {
+      throw new Error('cwd');
+    });
+    try {
+      const output = await handleClaudeUserPromptSubmit({
+        hook_event_name: 'UserPromptSubmit',
+        prompt: 'implement a TypeScript hook',
+        cwd: '/workspace/project',
+      }, {
+        buildCliBrief: vi.fn(async () => fixture('livePassingSkill.json')),
+        renderBrief: renderAdvisorBrief,
+        writeDiagnostic: diagnosticsSink().writeDiagnostic,
+        directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+        now: throwingClock,
+      });
+
+      expect(output).toEqual({
+        hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedOutageContext('fail_open') },
+      });
+    } finally {
+      cwd.mockRestore();
+    }
+  });
+```
+
+No task mismatch: the pre-copy diff showed only this test added. Final working-tree status also lists three modified paths outside this task; I did not write to them: `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`, `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md` and `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`.
+
+Routing: `sk-code`; artifact resolved to `sk-code-skilled`; `/doctor:helper` declined. Repository rules loaded: `prevent-overengineering.md`, `blast-radius.md`, `evidence-and-proof.md`, `communication.md` and `communication-handoff.md`.

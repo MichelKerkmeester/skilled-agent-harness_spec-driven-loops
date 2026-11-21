@@ -17,6 +17,7 @@ Convergence-detection primitives for research, review, and context coverage grap
 
 | File | Purpose |
 |------|---------|
+| `better-sqlite3.d.ts` | Ambient `better-sqlite3` module declaration that types only the constructor and statement surface the coverage-graph files call |
 | `coverage-graph-db.ts` | SQLite schema, node-kind allow-list, and connection lifecycle |
 | `coverage-graph-query.ts` | Query builders for coverage gaps, unverified claims, contradictions, and hotspots |
 | `coverage-graph-signals.ts` | Convergence signal extraction and decision scoring |
@@ -33,5 +34,5 @@ Convergence-detection primitives for research, review, and context coverage grap
 
 ## 4. RELATED RESOURCES
 
-- `lib/deep-loop/` - shared state primitives used alongside coverage-graph
-- `database/deep-loop-graph.sqlite` - persistence layer
+- `../deep-loop/` - shared state primitives used alongside coverage-graph
+- `../../database/` - persistence layer. `coverage-graph-db.ts` opens deep-loop-graph.sqlite in this directory by default, and the `DEEP_LOOP_COVERAGE_DB_DIR` environment variable points it at another directory.

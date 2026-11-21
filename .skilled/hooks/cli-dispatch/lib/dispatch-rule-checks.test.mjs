@@ -246,7 +246,6 @@ test('rules without appliesTo apply to every version', () => {
     evaluate('opencode run "task"', [legacyRule], { version, checks }).map((v) => v.id);
 
   assert.deepEqual(ids('v2'), ['legacy-rule']);
-  assert.deepEqual(ids('unsupported'), ['legacy-rule']);
 });
 
 test('a rule without appliesTo stays blocking when the version is unknown', () => {
@@ -261,27 +260,25 @@ test('a rule without appliesTo stays blocking when the version is unknown', () =
   ]);
 });
 
-// An unsupported binary is held to every rule, the same as one whose version is unknown, so
-// an old install cannot skip the checks that block for the supported family.
-for (const version of ['unknown', 'unsupported']) {
-  test(`${version} evaluation preserves shared severity and warns family-specific rules`, () => {
-    const rules = [
-      { id: 'shared-error', check: 'always-fail', message: 'shared', severity: 'error', appliesTo: ['v2'] },
-      { id: 'shared-warn', check: 'always-fail', message: 'shared advisory', severity: 'warn', appliesTo: ['v2'] },
-      { id: 'other-family', check: 'always-fail', message: 'other', severity: 'error', appliesTo: ['v3'] },
-    ];
-    const violations = evaluate('opencode run "task"', rules, {
-      version,
-      checks: { 'always-fail': () => false },
-    });
-
-    assert.deepEqual(violations.map(({ id, severity }) => ({ id, severity })), [
-      { id: 'shared-error', severity: 'block' },
-      { id: 'shared-warn', severity: 'warn' },
-      { id: 'other-family', severity: 'warn' },
-    ]);
+// A binary whose version is unknown is held to every rule, so it cannot skip the checks that
+// block for the supported family.
+test('unknown evaluation preserves shared severity and warns family-specific rules', () => {
+  const rules = [
+    { id: 'shared-error', check: 'always-fail', message: 'shared', severity: 'error', appliesTo: ['v2'] },
+    { id: 'shared-warn', check: 'always-fail', message: 'shared advisory', severity: 'warn', appliesTo: ['v2'] },
+    { id: 'other-family', check: 'always-fail', message: 'other', severity: 'error', appliesTo: ['v3'] },
+  ];
+  const violations = evaluate('opencode run "task"', rules, {
+    version: 'unknown',
+    checks: { 'always-fail': () => false },
   });
-}
+
+  assert.deepEqual(violations.map(({ id, severity }) => ({ id, severity })), [
+    { id: 'shared-error', severity: 'block' },
+    { id: 'shared-warn', severity: 'warn' },
+    { id: 'other-family', severity: 'warn' },
+  ]);
+});
 
 test('v2 slash-command fixture warns with session.command and never blocks', () => {
   const fixture = 'opencode run --model p/m --agent build "/memory:search q" </dev/null';
@@ -302,7 +299,7 @@ test('evaluate resolves quoted, wrapped, and path-qualified OpenCode executors',
 
   try {
     writeExecutable(directory, 'opencode', ["printf '%s\\n' 'opencode v2.0.32'"]);
-    writeExecutable(directory, 'opencode1', ["printf '%s\\n' '1.19.3'"]);
+    writeExecutable(directory, 'opencode3', ["printf '%s\\n' '3.0.0'"]);
     process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
     delete process.env.OPENCODE_BIN;
     clearOpencodeVersionCache();
@@ -311,7 +308,7 @@ test('evaluate resolves quoted, wrapped, and path-qualified OpenCode executors',
     // so each stub's family is cached through the async resolver's probe seam, keyed on the
     // same file identity the synchronous resolver inside evaluate reads.
     assert.equal(await resolveOpencodeVersion('opencode', { probe: () => 'opencode v2.0.32' }), 'v2');
-    assert.equal(await resolveOpencodeVersion('opencode1', { probe: () => '1.19.3' }), 'unsupported');
+    assert.equal(await resolveOpencodeVersion('opencode3', { probe: () => '3.0.0' }), 'unknown');
 
     const v2Commands = [
       'opencode run -m p/m "/memory:search q" </dev/null',
@@ -327,9 +324,9 @@ test('evaluate resolves quoted, wrapped, and path-qualified OpenCode executors',
 
     // A numbered launcher is never probed, so with no resolved version it meets every rule at
     // its declared severity.
-    const unsupportedCommand = 'opencode1 run -m p/m "/memory:search q"';
+    const numberedCommand = 'opencode3 run -m p/m "/memory:search q"';
     assert.deepEqual(
-      evaluate(unsupportedCommand, rules).map(({ id, severity }) => ({ id, severity })),
+      evaluate(numberedCommand, rules).map(({ id, severity }) => ({ id, severity })),
       [
         { id: 'stdin-redirect-required', severity: 'block' },
         { id: 'v2-slash-prompt-route', severity: 'warn' },
@@ -613,9 +610,8 @@ test('SUPPORTED_FAMILIES is the frozen list of supported families', () => {
   assert.ok(Object.isFrozen(SUPPORTED_FAMILIES));
 });
 
-// A retired install often survives under a numbered launcher name, so that shape is still a
-// dispatch the engine holds to the blocking rules.
-test('a numbered launcher run on an unsupported binary is evaluated by the hard-rule engine', () => {
+// A numbered launcher name is still a dispatch the engine holds to the blocking rules.
+test('a numbered launcher run on an unknown version is evaluated by the hard-rule engine', () => {
   const rules = [{
     id: 'stdin-redirect-required',
     check: 'stdin-redirect-required',
@@ -625,7 +621,7 @@ test('a numbered launcher run on an unsupported binary is evaluated by the hard-
   }];
 
   assert.deepEqual(
-    evaluate('opencode1 run -m p/m "task"', rules, { version: 'unsupported' })
+    evaluate('opencode3 run -m p/m "task"', rules, { version: 'unknown' })
       .map(({ id, severity }) => ({ id, severity })),
     [{ id: 'stdin-redirect-required', severity: 'block' }],
   );

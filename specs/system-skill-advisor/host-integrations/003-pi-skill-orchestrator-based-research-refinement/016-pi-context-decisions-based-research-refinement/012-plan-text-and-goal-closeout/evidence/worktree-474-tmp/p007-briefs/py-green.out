@@ -1,0 +1,132 @@
+Skill graph: loaded from SQLite
+WARNING: 1 SKILL.md file(s) could not be parsed and were dropped: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp1wrarlzy/invalid-skill/SKILL.md
+Skill graph: loaded from SQLite
+Skill graph: loaded from SQLite
+============================================================
+  SKILL ADVISOR AUTOMATED TEST SUITE (T243/T246)
+============================================================
+
+--- skill_advisor.py ---
+  PASS: T243-SA-LOAD: skill_advisor.py loads
+  PASS: T243-SA-001: analyze_prompt returns list (len=1)
+  PASS: T243-SA-002: analyze_prompt confidence_only mode works (len=1)
+  PASS: T243-SA-003: analyze_prompt handles empty prompt (len=0)
+  PASS: T243-SA-004: analyze_batch returns list (len=2)
+  PASS: T243-SA-004b: analyze_batch returns one result per prompt
+  PASS: T243-SA-005: health_check returns expected keys (keys=['status', 'skills_found', 'command_bridges_found', 'skill_names', 'command_bridge_names'])
+  PASS: T243-SA-005b: corrupt source metadata degrades health
+  PASS: T243-SA-005c: cache parse drops degrade health
+  PASS: T243-SA-006: get_skills returns populated dict (count=69)
+  PASS: T243-SA-007: parse_frontmatter captures Keywords HTML comments (existing-term, alpha, beta phrase)
+  PASS: T243-SA-008: cached skill records include Keywords HTML comment variants
+  PASS: T243-SA-009: Result item has 'skill' field (skill=sk-code)
+  PASS: T243-SA-010: graph signals and trigger phrases boost routing (Matched: !latent signal phrase(signal), !uncommon routing(signal), routing)
+  PASS: T243-SA-011: deep-research disambiguation enforces >= 0.10 margin
+  PASS: T243-SA-012: deep-review disambiguation enforces >= 0.10 margin
+  PASS: T243-SA-012b: code-authoring prompt that names deep review follows the native rank
+  PASS: T243-SA-013: inventory parity check detects graph-only skill
+  PASS: T243-SA-013c: runtime compare_inventories flags symmetric mismatches
+  PASS: T243-SA-013b: inventory parity check detects discovery-only skill
+  PASS: T243-SA-014: health_check exposes topology_warnings
+  PASS: T243-SA-015: conflict penalty only applies on mutual declaration
+  PASS: T243-SA-016: /deep:research routes to deep-research (not its command bridge)
+  PASS: T243-SA-017: command bridge winners normalize to owning skills
+  PASS: T243-SA-018: command bridge normalization guard preserves implementation refs
+  PASS: T243-SA-019: stdin-preferred skips tty reads before argv fallback
+  PASS: T243-SA-020: native bridge preserves legacy parity fields
+  PASS: T243-SA-021: native-unavailable stdin fallback warns and stays JSON
+  PASS: native bridge receives at most the advisor prompt limit
+  PASS: native wrapper keeps a skill above a doctor bridge unless the doctor command is typed
+  PASS: native wrapper puts a doctor bridge first on its lead phrase
+  PASS: T243-SA-027: native doctor ordering follows typed commands
+  PASS: T243-SA-028: local doctor intent requires a typed invocation
+  PASS: typed doctor sibling target beats its bare default marker
+  PASS: tagged release request anchors sk-git
+  PASS: T243-SA-022: idle-daemon generation stays usable for the one-shot native bridge (recommendations=10)
+  PASS: T243-SA-023: path-only skill name adds no explicit reason
+  PASS: T243-SA-024: doc-file edit target suppresses explicit and keyword reasons
+  PASS: T243-SA-025: plain skill name keeps the explicit reason
+  PASS: T243-SA-026: doc-file and path plainness forms match the native rules
+  PASS: T243-SA-029: command mode suffixes are not content tokens (plain-prompt auto matches=['cli-orca', 'command-speckit-ai-council'])
+
+--- skill_advisor_bench.py ---
+  PASS: T246-BN-LOAD: skill_advisor_bench.py loads
+  PASS: T246-BN-001: load_prompts_from_dataset parses valid JSONL (count=2)
+  PASS: T246-BN-002: load_prompts_from_dataset rejects malformed (raised expected exception)
+  PASS: T246-BN-003: load_prompts_from_dataset rejects empty prompt (raised expected exception)
+  PASS: T246-BN-004: load_advisor_module returns usable module (has analyze_prompt)
+  PASS: T246-BN-005: in-process benchmark uses comparable semantic-disabled runtime
+
+--- skill_advisor_regression.py ---
+  PASS: T246-RG-LOAD: skill_advisor_regression.py loads
+  PASS: T246-RG-001: compute_metrics produces correct counts (total=2, passed=1)
+  PASS: T246-RG-001b: compute_metrics includes pass_rate and top1_accuracy
+  PASS: T246-RG-002: compute_metrics handles empty list (total_cases=0)
+  PASS: T246-RG-003: load_jsonl parses valid JSONL (count=2)
+  PASS: T246-RG-004: load_jsonl rejects missing prompt (raised expected exception)
+  PASS: T246-RG-005: regression load_advisor_module returns usable module (has analyze_prompt)
+  PASS: T246-RG-006: regression harness exercises subprocess bridge (top=sk-git)
+
+--- skill_graph_compiler.py ---
+  PASS: T246-GC-LOAD: skill_graph_compiler.py loads
+  PASS: T246-GC-001: orphan topology violation exits non-zero (exit=2)
+  PASS: T246-GC-002: symmetry topology violation exits non-zero (exit=2)
+  PASS: T246-GC-003: weight-band warnings stay advisory (exit=0)
+  PASS: T246-GC-004: dependency cycles still exit non-zero (exit=2)
+  PASS: T246-GC-005: conflict symmetry topology violation exits non-zero (exit=2)
+  PASS: T246-GC-006: three-node dependency cycles exit non-zero with path (exit=2)
+  PASS: T246-GC-007: acyclic dependency graph passes validation (exit=0)
+  PASS: T246-GC-008: compile_graph serializes topology_warnings durably
+  PASS: T246-GC-009: compile_graph emits conflicts only on mutual declaration
+  PASS: T246-GC-010: invalid edge containers do not crash graph validators
+  PASS: T246-GC-011: affordances compile as derived signals and existing edges
+  PASS: T246-GC-012: affordance validation preserves entity-kind allowlist
+  PASS: R-007-8: affordance `conflicts_with` is rejected with explicit reserved-field error
+  PASS: R-007-P2-8: every shared injection phrase is dropped (PY)
+  PASS: R-007-P2-8: every shared benign phrase survives (PY)
+  PASS: R-007-P2-8: every shared privacy substring is stripped (PY)
+  PASS: T246-GC-013: graph discovery skips a private skill (local-private absent)
+  PASS: T246-GC-014: graph discovery never follows a private link (local-linked absent)
+  PASS: T246-GC-015: graph discovery never follows a non-private link (plain-linked absent)
+  PASS: T246-CONFLICT-001: a local-* conflict declaration is read
+  PASS: T246-TRUST-001: conflict reader skips an untrusted local-* link (local-evil absent)
+  PASS: T246-TRUST-002: conflict reader follows a trusted in-root local-* link (local-beta present)
+  PASS: T246-TRUST-003: signal map follows only the trusted local-* link (local-beta only)
+  PASS: T246-TRUST-004: a link into a declared external root is followed (local-evil present)
+  PASS: T246-DISCOVER-001: discovery skips an untrusted local-* link (local-evil absent)
+  PASS: T246-DISCOVER-002: discovery follows a trusted in-root local-* link (local-beta present)
+  PASS: T246-DISCOVER-003: discovery never follows a non-local link (plain-evil and linked-gamma absent)
+  PASS: T246-DISCOVER-004: a real skill folder is still discovered (alpha present)
+  PASS: T246-DISCOVER-007: a hidden top-level folder is not a skill (hidden-skill absent)
+  PASS: T246-DISCOVER-005: a link into a declared root is followed, a non-local one still is not (local-evil only)
+  PASS: T246-DISCOVER-006: a scan resolves its trusted roots once (1 resolution for 2 local-* links)
+  PASS: T243-SA-030a: an exact declared phrase outranks a bare word declared twice (browser agent)
+  PASS: T243-SA-030b: an exact declared phrase outranks a bare word declared twice (css extraction)
+  PASS: STRIP-probe
+  PASS: STRIP-you-said-variant
+  PASS: STRIP-nested-two-cues
+  PASS: STRIP-nested-plan
+  PASS: STRIP-plain-task
+  PASS: STRIP-neg-cue-inside
+  PASS: STRIP-neg-cue-inside-plan
+  PASS: STRIP-neg-now-mid
+  PASS: STRIP-neg-now-mid-plan
+  PASS: STRIP-neg-no-marker
+  PASS: STRIP-neg-no-marker-plan
+  PASS: STRIP-quote-requirement-kept
+  PASS: STRIP-marker-inside-reply
+  PASS: STRIP-assistant-response-header
+  PASS: STRIP-two-markers-in-user-task
+  PASS: STRIP-quote-led-straight
+  PASS: STRIP-quote-led-curly
+  PASS: STRIP-js-space-nbsp
+  PASS: STRIP-js-space-info-separator
+  PASS: STRIP-js-space-bom
+  PASS: STRIP-ascii-case-fold
+  PASS: STRIP-js-trim-trailing-separator
+  PASS: STRIP-js-space-nel
+  PASS: STRIP-ENTRY: analyze_request scores the probe as its bare task (top=['sk-code'])
+  PASS: STRIP-BATCH: analyze_batch keeps a U+001C-led pasted reply as native does (top=['sk-doc'])
+  PASS: STRIP-BATCH: analyze_batch keeps a U+0085-led pasted reply as native does (top=['sk-doc'])
+
+Summary: pass=115, fail=0

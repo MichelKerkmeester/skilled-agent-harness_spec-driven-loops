@@ -1,0 +1,80 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges
+(Spec folder: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/006-strip-rule-boundary-edges (pre-approved, skip Gate 3). Write no spec docs; edit only the file in TASK.)
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command in ACCEPT has been run.
+
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts)
+Two edits in this one file. The fixture it reads, runtime/tests/fixtures/pasted-reply-strip-cases.json, is written by another leaf at the same time; do not create or edit it. Its shape is { "$comment": string, "schema_version": 1, "cases": [ { "id": string, "input": string, "expected": string, "ideal"?: string } ] }.
+
+EDIT 1. Replace exactly the import block at lines 5-9:
+import { describe, expect, it } from 'vitest';
+import {
+  extractMetalinguisticSkillMentions,
+  shouldFireAdvisor,
+} from '../../lib/prompt-policy.js';
+with:
+import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  extractMetalinguisticSkillMentions,
+  shouldFireAdvisor,
+  stripLeadingPastedReply,
+} from '../../lib/prompt-policy.js';
+
+interface PastedReplyStripCase {
+  readonly id: string;
+  readonly input: string;
+  readonly expected: string;
+  readonly ideal?: string;
+}
+
+// The Python advisor test reads the same file, so both scorers drop the same text.
+const PASTED_REPLY_STRIP_CASES: readonly PastedReplyStripCase[] = (JSON.parse(
+  readFileSync(
+    resolve(dirname(fileURLToPath(import.meta.url)), '../fixtures/pasted-reply-strip-cases.json'),
+    'utf8',
+  ),
+) as { cases: PastedReplyStripCase[] }).cases;
+
+EDIT 2. Append this block at the very end of the file, after the final `});` of the existing describe:
+
+describe('pasted reply stripping', () => {
+  it.each(PASTED_REPLY_STRIP_CASES.map((row) => [row.id, row] as const))('%s', (_id, row) => {
+    const stripped = stripLeadingPastedReply(row.input);
+    expect(stripped).toBe(row.expected);
+    // The handler and the scorer both strip, so a second pass must return the same text.
+    expect(stripLeadingPastedReply(stripped)).toBe(stripped);
+  });
+});
+
+ACCEPT: `rg -n 'stripLeadingPastedReply|pasted-reply-strip-cases' .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts` prints 4 lines.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

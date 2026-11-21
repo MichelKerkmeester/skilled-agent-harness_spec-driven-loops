@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/route-receipt.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts
+The prepared file adds two tests: each receipt store removes only the named session's receipt, and removing a missing receipt counts as removed. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/route-receipt.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts` exits 0.

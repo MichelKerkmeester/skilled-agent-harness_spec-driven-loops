@@ -46,6 +46,7 @@ interface LockRecord extends JsonObject {
   readonly acquired_at: string;
 }
 
+/** One frame file read from disk, with its raw bytes and whether it ends in a newline terminator. */
 export interface StoredFrameFile {
   readonly sequence: number;
   readonly fileName: string;
@@ -54,6 +55,7 @@ export interface StoredFrameFile {
   readonly isTerminated: boolean;
 }
 
+/** A torn-tail recovery record paired with the path where the damaged frame was quarantined. */
 export interface StoredRecoveryEvidence {
   readonly record: TornTailRecoveryRecord;
   readonly quarantinedPath: string;

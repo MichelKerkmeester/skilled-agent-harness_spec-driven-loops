@@ -1,0 +1,23 @@
+Replaced [route-receipt.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts) with the prepared file using the exact `cp` command. The final `cmp` exited 0.
+
+The changed block is:
+
+```ts
+// Words that point back at the earlier turn instead of naming new work.
+// Additive words such as "also", "too" and "as well" are left out: they put
+// new work beside the earlier turn rather than point back at it.
+const BACK_REFERENCE_WORDS = new Set([
+  'that', 'it', 'this', 'there', 'them', 'those', 'these',
+  'same', 'again', 'remaining', 'ones',
+]);
+```
+
+No mismatch found. The task says the file “removes the additive words also, too and well from `BACK_REFERENCE_WORDS` and says why in the comment above it.” The before/after diff shows those three entries removed and the quoted comment added; it contains no other changes.
+
+The `sk-code` quality gate returned `NO_BLOCKER_FOUND` (exit 0). Tests, typecheck, and build were not run here; the conductor owns those checks. The target was untracked before the copy and remains untracked. Final workspace status also lists other modified hook, runtime, test, and packet files; my only write was the requested copy. The original target contents are retained in session memory for rollback.
+
+`SKILL ROUTING: User directed → sk-code`  
+`ARTIFACT: sk-code → sk-code-skilled, SKILLED TypeScript resources`  
+`REPO RULES: blast-radius.md, evidence-and-proof.md, communication.md, communication-handoff.md`
+
+Next: the conductor runs the remaining checks.

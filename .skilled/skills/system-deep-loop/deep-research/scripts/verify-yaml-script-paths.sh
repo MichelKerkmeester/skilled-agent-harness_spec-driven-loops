@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Verify YAML Script Paths
+# ───────────────────────────────────────────────────────────────
 # Verify that Node .cjs script paths referenced by deep-loop workflow YAMLs exist.
+#
+# Exit Codes:
+#   0 - Every referenced script exists
+#   1 - A workflow YAML or a referenced script is missing
 
 set -euo pipefail
 

@@ -1,0 +1,66 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement
+(pre-approved, skip Gate 3). This is a READ-ONLY review: write no file anywhere, run no build,
+test, install, commit or daemon command. Reading files and read-only git commands (git show,
+git diff, git log) are allowed.
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+Code standards: load sk-code and let it pick the surface for these files (TypeScript, Python,
+shell). Use its code-review mode for findings-first output.
+
+`A` below is `.skilled/skills/system-skill-advisor/`. `P` is the spec folder above. The branch
+under review starts at merge base `538d2f789ecfdc2ce162396cd96c7a4c2edeffe4` (main).
+
+LANE 5: THE REVIEW-FIX DIFF ONLY
+Review only the uncommitted code and test changes in the working tree, which fix findings
+from an earlier review of this branch. See them with:
+  git diff -- .skilled
+The intended behavior of each change:
+1. `A/hooks/lib/skill-advisor-cli-fallback.ts` and `A/runtime/lib/skill-advisor-brief.ts` strip a
+   leading pasted reply before cutting the prompt to the 10,000-character advisor limit; the brief
+   also strips before it folds the prompt to one line, so a task marker that starts a line is seen.
+   `A/runtime/scripts/skill_advisor.py` strips at the entry of `recommend_with_native_advisor`.
+2. `A/hooks/lib/route-receipt.ts` adds `remove(sessionId)` to the receipt store.
+3. `A/hooks/claude/user-prompt-submit.ts`: receipts are neither read nor written while the
+   `directive-lifecycle` hook flag is off; a delivered floored or degraded route writes no receipt
+   but removes a held receipt for a different skill; the delivery state is set right after the
+   input is validated, so a crash in the brief build is observed against the session; the crash
+   path returns `{}` for a payload with no prompt string; `writeHookOutput` is exported with an
+   optional stream and commits the deferred receipt only when the write reports no error.
+4. `A/hooks/dsh/prompt-advisor.mjs` logs a clock rotation that returned false for a named session.
+5. New tests in `A/runtime/tests/...` and `A/hooks/tests/dsh-prompt-advisor.test.mjs`, one new
+   fixture row in `A/runtime/tests/fixtures/pasted-reply-strip-cases.json`.
+Check that each change does what it says, breaks no caller or contract (find every caller and
+implementor), and that each new test would fail if its change were reverted. Report defects in
+the fix itself, not in code the diff does not touch.
+
+WHAT COUNTS AS A FINDING
+A defect you can show from the code: wrong output, a crash, a contract the code breaks, a
+regression against main, a race or a security hole, or a test that would stay green while the
+behavior it names is broken. Style, naming and "could be cleaner" are not findings.
+Each phase's `implementation-summary.md` has a Known Limitations section. Do not report an item
+already recorded there unless you can show its recorded verdict is wrong; then say so.
+
+HANDBACK FORMAT
+Start with one line: `FINDINGS: <n>`. Then, most severe first, one block per finding:
+  [P0|P1|P2] <one-sentence defect>
+  Where: <file:line> (and any second location)
+  Scenario: <concrete input or state> -> <wrong result>
+  Evidence: <what you read that shows it; quote the line>
+  Confidence: confirmed (you traced it end to end) or plausible (say what would confirm it)
+P0 = wrong behavior on a normal path or data loss. P1 = wrong behavior on a reachable edge.
+P2 = a test or doc gap that hides a real failure.
+If you find nothing, write `FINDINGS: 0` and list the paths you checked.
+End with `FILES READ:` and the list.

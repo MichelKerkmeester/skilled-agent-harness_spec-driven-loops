@@ -14,7 +14,7 @@
     "close",
     "rules"
   ],
-  "lastUpdated": "2026-11-17T18:12:37.749Z",
+  "lastUpdated": "2026-11-21T11:09:41.254Z",
   "specId": "010",
   "folderSlug": "research-frontier-mode",
   "parentChain": [
@@ -23,8 +23,9 @@
     "002-graph-engineering",
     "007-expansive-depth-mode"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "17-11-26_19-12__applied-the-fable-5-2-plan-review-across-all.md"
+    "17-11-26_19-12__applied-the-fable-5-2-plan-review-across-all.md",
+    "21-11-26_12-09__rechecked-the-phase-at-the-integration-tip-t030.md"
   ]
 }

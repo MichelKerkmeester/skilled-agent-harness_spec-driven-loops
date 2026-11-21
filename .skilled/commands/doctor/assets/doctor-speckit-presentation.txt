@@ -81,7 +81,8 @@ DOCTOR TARGET FAILED
 Target: speckit-retrieval
 Step: [setup|workflow phase]
 Error: [message]
-Next: [recommended command or manual action]
+Why: [the reason the script printed under the error, else what the failed step protects]
+Next: [the script's own Next: line when it printed one, else the command from the matching Troubleshooting row, or the accepted invocation]
 STATUS=FAIL ERROR="[message]"
 ```
 

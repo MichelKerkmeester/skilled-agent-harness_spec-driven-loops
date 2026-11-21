@@ -1,0 +1,97 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity
+(Spec folder: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/007-python-scorer-strip-parity (pre-approved, skip Gate 3). Write no spec docs; edit only the file in TASK.)
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command in ACCEPT has been run.
+
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py)
+Two edits in this one file.
+
+EDIT 1. Insert this block immediately before the line `def analyze_request(prompt: str) -> List[Dict[str, Any]]:` (currently line 4787), followed by two blank lines before that def. Copy it exactly, including every \u escape as written (they are Python string escapes, not raw characters):
+
+# JavaScript's \s and String.prototype.trim() set. Python's own \s also matches
+# U+001C to U+001F and U+0085 and misses U+FEFF, so the set is spelled out here
+# to keep this strip equal to the native scorer's for every input.
+_JS_SPACE_CHARS = (
+    "\t\n\v\f\r          "
+    "        　﻿"
+)
+_JS_SPACE = "[" + _JS_SPACE_CHARS + "]"
+# re.ASCII keeps case folding to ASCII letters, as a JavaScript /i regex without
+# the u flag does. Unicode folding would read "ſ" as "s".
+_STRIP_FLAGS = re.IGNORECASE | re.ASCII
+_PASTED_REPLY_CUE = re.compile(
+    rf"^{_JS_SPACE}*(?:(?:earlier|previously|above),?{_JS_SPACE}+)?"
+    rf"(?:(?:you|the assistant|claude){_JS_SPACE}+(?:replied|said|wrote|answered|responded)"
+    rf"|(?:the{_JS_SPACE}+)?(?:assistant|claude){_JS_SPACE}+(?:response|reply|answer)){_JS_SPACE}*:",
+    _STRIP_FLAGS,
+)
+_TASK_MARKER = re.compile(rf"(?:^|[.!?\n]{_JS_SPACE}*)(?:now|task){_JS_SPACE}*:{_JS_SPACE}*", _STRIP_FLAGS)
+
+
+def _strip_pasted_reply_once(prompt: str) -> str:
+    if not _PASTED_REPLY_CUE.search(prompt):
+        return prompt
+    markers = list(_TASK_MARKER.finditer(prompt))
+    if not markers:
+        return prompt
+    # The last marker wins: a pasted reply can hold its own "Task:" line.
+    marker = markers[-1]
+    task = prompt[marker.end():].strip(_JS_SPACE_CHARS)
+    return task if task else prompt
+
+
+def strip_leading_pasted_reply(prompt: str) -> str:
+    """Drop an earlier reply pasted ahead of the task, as the native scorer does.
+
+    The skill names in a pasted reply would otherwise steer routing away from the
+    task. Repeats until nothing changes, so a second call returns the same text.
+    """
+    current = prompt
+    while True:
+        stripped = _strip_pasted_reply_once(current)
+        if stripped == current:
+            return current
+        current = stripped
+
+EDIT 2. Inside analyze_request, replace exactly:
+    if not prompt:
+        return []
+
+    prompt_lower = prompt.lower()
+with:
+    if not prompt:
+        return []
+
+    prompt = strip_leading_pasted_reply(prompt)
+    prompt_lower = prompt.lower()
+
+Note: inside the rf-strings, `{_JS_SPACE}` is an f-string substitution and must stay single-braced.
+ACCEPT: `rg -n 'def strip_leading_pasted_reply|prompt = strip_leading_pasted_reply\(prompt\)' .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` prints 2 lines, and `python3 -c "import ast,sys; ast.parse(open(sys.argv[1]).read())" .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` exits 0.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

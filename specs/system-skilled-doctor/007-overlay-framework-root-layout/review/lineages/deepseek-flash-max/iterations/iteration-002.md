@@ -2,24 +2,27 @@
 
 ## Dispatcher
 
-- Mode: review, single iteration, LEAF executor (no nested dispatch)
-- Run: `fanout-deepseek-flash-max-1795182837437-sws2tv`, generation 1, lineageMode `new`
-- Frontier node: `F-1-005` at depth 1 of 3
-- Dimension: correctness
-- Operator review focus: the whole overlay framework/root layout change end to end. This iteration addressed the focus through its hook clause: whether the Barter hooks learn both overlay locations correctly and fail open or fail closed in the right cases when the overlay folder is missing, moved or ambiguous.
+- Mode: review (fan-out lineage `deepseek-flash-max`, cli-mistral-vibe, model `deepseek-flash`)
+- Session: `fanout-deepseek-flash-max-1795192401900-xpt66n`, generation 1, lineageMode `new`
+- Iteration: 2 of 24
+- Dimension: security
+- Frontier node: F-1-002 (depth 1 of 3), scope `.skilled/commands/doctor/scripts/overlay-engine.cjs`, `.skilled/commands/doctor/scripts/tests`
+- Review target: `specs/system-skilled-doctor/007-overlay-framework-root-layout` (spec-folder)
+- Operator review focus: this iteration addressed the focus's "path safety" and "hook fail-open or fail-closed behavior" clauses by auditing the engine's containment helpers and its two trust boundaries (`guard`, `pre-commit`) against the manifest as an input.
 
 ## Files Reviewed
 
-- `barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs:1-169`
-- `barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js:1-50`
-- `barter/ai-speckit/overlays/root/opencode/plugins/tests/barter-overlay-guard.test.cjs:1-155`
-- `barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/tests/barter-overlay-guard-core.test.cjs:147-220`
-- `barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs:160-215`
-- `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:1-120`
-- `barter/ai-speckit/overlays/README.md:40,47,234`
-- `barter/ai-speckit/overlays/framework/scripts/git-hooks/README.md:24,113`
-- `barter/ai-speckit/overlays/overlay-manifest.json:716-720`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:53,54,64,67,108-115`
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:165-215` (`isWithin`, `relativeKey`, `resolveRemoveRootPath`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:426-505` (`resolveOverlayDir`, `gitTopLevelOrNull`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:2461-2500` (`replacedLinkState`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:2510-2580` (`planLayoutLinks`, `applyLayoutLink`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:2685-2790` (`isEnvName`, `isTokenName`, `exactManifestPaths`, `isProtectedReadPath`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:2818-2890` (`assertSafeToPlan`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:4177-4212` (`commandGuard`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5586-5630` (`strictWriteRefusal`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:6121-6140` (`commandPreCommit`)
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:6293-6310` (`relayoutLinkTargets`), `:6420-6443` (`rollbackRelayout`)
+- `.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs:398` (the only `layoutLinks` fixture)
 
 ## Findings - New
 
@@ -29,81 +32,58 @@ None.
 
 ### P1 Findings
 
-1. **The commit gate silently skips every overlay check when the overlay folder is not found** -- `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:85-92` -- `HAS_OVERLAYS` is set to 1 only when `$TREE_ROOT/../overlays/overlay-manifest.json` exists (`:89-92`). When it does not, the whole overlay block at `:95-116` is skipped and the hook falls through to `exit 0` at `:118` with no message on stdout or stderr. The phase 005 spec names this exact behavior as the defect the phase exists to fix: "The edit guard then fails open, the commit gate skips its overlay checks without a word, and the git-write gate fails closed" (`005-barter-move-overlays-out-of-tree/spec.md:64`). The phase taught the hook the new path but left the silent skip, so a consumer that renames or moves its overlay folder again loses the commit gate with no signal, and a staged vendored edit that no overlay owns reaches the commit. `overlays/README.md:47` documents the hook as running `status` then `pre-commit` and never mentions the skip.
-   Finding class: `fail-open-without-signal`
-   Scope proof: the finding is inside the declared review target's Barter overlay tree and names the exact branch that suppresses the gate.
-   Affected surface hints: `pre-commit` overlay block; `overlays/README.md:47`; `overlay-manifest.json:716-720` (`barter-pre-commit` entry); the `SPECKIT_SKIP_OVERLAY_SYNC` bypass at `:95`.
-   Case: an operator renames `ai-speckit/overlays` to `ai-speckit/overlay-sources`. Every later commit passes the hook with no output, and a staged edit to `.skilled/skills/sk-git/sk-git-skilled/SKILL.md` commits even though no overlay owns it.
-
-```json
-{
-  "type": "claim",
-  "claim": "The pre-commit hook treats a missing overlay folder as a reason to skip its overlay checks silently rather than to report the missing folder",
-  "evidenceRefs": [
-    "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:85-92",
-    "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:95-116",
-    "barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:118",
-    "specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:64"
-  ],
-  "counterevidenceSought": "Searched the hook for an else branch, a warning, or a nonzero exit on the missing-folder path: there is none. Searched overlays/README.md and framework/scripts/git-hooks/README.md for a documented skip: neither mentions it. Checked whether the spec accepts the skip: spec.md:64 lists it as the measured defect, and spec.md:32's handoff criterion says only that the hooks behave as before.",
-  "alternativeExplanation": "The skip may be deliberate so a repository that vendors Skilled without overlays still commits. That is a real case, but it is distinguishable from a moved folder: the hook can test for the setting file at the tree root, which only an overlay consumer has, and report the missing folder only when the setting names one.",
-  "finalSeverity": "P1",
-  "confidence": "medium",
-  "downgradeTrigger": "Downgrade to P2 if the maintainers document the silent skip as the intended behavior for a tree with no overlay setting, and add a diagnostic for the case where the setting file exists but the folder it names does not."
-}
-```
+None.
 
 ### P2 Findings
 
-1. **No test covers the pre-commit git hook's overlay lookup or its skip branch** -- `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit:85-116` -- the phase modified this hook's overlay path resolution (`005-barter-move-overlays-out-of-tree/spec.md:109`), yet `rg -l "HAS_OVERLAYS"` over `barter/ai-speckit` outside `specs/` and `repin-runs/` returns only the hook itself, and `find barter/ai-speckit/overlays -name "*pre-commit*"` returns only the hook. The spec's own hook-test row (`:111`) lists four test files, none of which exercises the hook. The other two hooks are covered: the guard core has `guard throws when no overlays folder holds a manifest` (`barter-overlay-guard-core.test.cjs:160`) and the plugin has `allows the edit when the overlay guard throws` (`barter-overlay-guard.test.cjs:121`).
-   Finding class: `test-gap`
-   Scope proof: the finding is inside the declared review target's Barter overlay tree and names the untested statements and the search that proves no test exists.
-   Affected surface hints: `pre-commit` overlay block; `005-barter-move-overlays-out-of-tree/spec.md:111`; the `barter-pre-commit` manifest entry at `overlay-manifest.json:716-720`.
-   Case: a later edit changes the `$TREE_ROOT/../overlays` probe to `$TREE_ROOT/overlays`. Nothing fails, and the commit gate stops running for every commit in the repository.
+1. **`layoutLinks` paths escape the tree root unvalidated, and the relayout rollback now writes through them** -- `.skilled/commands/doctor/scripts/overlay-engine.cjs:2514` -- `assertSafeToPlan` (`:2818-2890`) refuses a manifest whose `source`, `base`, `fragment`, `destination` or `remove-root` paths escape their roots, and its JSDoc states that invariant. `manifest.layoutLinks[].path` and `layoutLinks[].replaces.path` are never checked: `planLayoutLinks` joins them straight onto the root (`:2514`), `applyLayoutLink` calls `ensureSymlink` on that join (`:2577`), and `replacedLinkState` joins `replaced.path` the same way (`:2472`). The remediation added a second writer on the same unvalidated value: `rollbackRelayout` (`:6431`) calls `ensureSymlink(path.join(ctx.root, change.path), change.from)` for every retargeted link, and `ensureSymlink` (`:290-298`) unlinks whatever stands at that path before creating the link. A manifest naming `"path": "../../outside"` therefore makes `apply` and a failed `apply --relayout` create and delete links outside the tree.
+   Finding class: path-safety hardening
+   Scope proof: the value reaches the filesystem through two call sites in the reviewed file (`:2577`, `:6431`), and `assertSafeToPlan`'s field list at `:2836` omits `layoutLinks` entirely, so no earlier refusal covers it.
+   Affected surface hints: `.skilled/commands/doctor/scripts/overlay-engine.cjs`, `.skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs`, `.skilled/skills/system-skilled-doctor/references/overlays.md`
+   Case: an overlay manifest with `"layoutLinks": [{"path": "../../outside/link", "target": "../overlays/framework/x"}]`. `apply` creates `<tree>/../../outside/link`; a relayout that fails after retargeting it re-creates the same path during rollback.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|----------|--------|----------|---------|
-| `spec_code` | pass | `005-barter-move-overlays-out-of-tree/spec.md:108-111`; `barter-overlay-guard-core.cjs:60-84`; `barter-git-write-gate.mjs:178-187`; `pre-commit:85-92` | All three hooks resolve the folder at the path the spec's file table names, and the two `aiSpeckitRoot`/`findBarterOverlays` resolvers agree on both the applied and the overlay-source copy. |
-| `checklist_evidence` | partial | `005-barter-move-overlays-out-of-tree/tasks.md`; `005-barter-move-overlays-out-of-tree/spec.md:111` | The checked tasks carry observed results for the guard and the git-write gate, but the spec's hook-test row names no pre-commit test and none exists, so the commit gate's migration has no recorded evidence. |
+- `spec_code` -- pass. D2's refusal is enforced at the single setting reader (`:452-477`) and inherited by every command through `createContext` (`:519`). The `layoutLinks` gap above is a pre-existing manifest-validation hole, not a D2 violation: D2 constrains `overlayDir`, and `overlayDir` is checked.
+- `checklist_evidence` -- partial. Still read-only in this iteration; the live criteria are scheduled for the traceability iteration.
 
 ## Integration Evidence
 
-- `barter/ai-speckit/overlays/framework/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs` and `barter/ai-speckit/skilled/.skilled/hooks/barter-overlay-guard/lib/barter-overlay-guard-core.cjs` are byte-identical (`diff` empty).
-- `barter/ai-speckit/overlays/root/opencode/plugins/barter-overlay-guard.js` and `barter/ai-speckit/skilled/.opencode/plugins/barter-overlay-guard.js` are byte-identical.
-- `barter/ai-speckit/overlays/framework/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs` and `barter/ai-speckit/skilled/.skilled/skills/sk-git/scripts/hooks/barter-git-write-gate.mjs` are byte-identical.
-- `barter/ai-speckit/overlays/root/opencode/scripts/git-hooks/pre-commit` and `barter/ai-speckit/skilled/.opencode/scripts/git-hooks/pre-commit` are byte-identical.
-- `barter/ai-speckit/overlays/overlay-manifest.json:716-720` installs the pre-commit copy as the `barter-pre-commit` file entry, so the overlay source is the live hook's source.
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:4177-4212` (`commandGuard`) is the surface the `overlay-guard` hook calls. It canonicalizes both the candidate and each destination before comparing (`:4181-4199`), so a symlink inside the tree that points at a vendored path is still refused.
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:6121-6140` (`commandPreCommit`) is the surface the `pre-commit` hook calls. It fails open only when `strictWrites` is off, and it says so on stdout (`:6124`), so the skip is visible rather than silent.
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5586-5630` (`strictWriteRefusal`) canonicalizes the root and the input path before comparing (`:5589-5590`), so a symlinked input cannot be used to reach a vendored path it does not lexically name.
 
 ## Edge Cases
 
-- **The guard core hardcodes the folder names `overlays` and `skilled`** (`barter-overlay-guard-core.cjs:47-48,60-84`) while the engine accepts any `../<name>` (decision D2). A consumer naming its folder differently gets a core that throws, which the plugin turns into a warning and an allowed edit. Recorded, not raised: the function is named `findBarterOverlays` and the file is Barter's own overlay, so the hardcoded names are Barter's contract, not the engine's.
-- **The OpenCode plugin's relative import `../../.skilled/hooks/...` resolves only at the applied location**, not at the overlay source copy. Recorded, not raised: the plugin is a source that is applied into the tree, and its test copies it into a fixture tree before loading it (`barter-overlay-guard.test.cjs:44-58`).
-- **Tests were not re-run** for the same containment reason recorded in iteration 1. Hook behavior is judged from the hook source and from the test source that covers it.
+- **`isWithin` is lexical.** `:165-168` compares `path.relative` output, so a symlinked parent is not resolved. Every caller that guards a write canonicalizes first (`:4181`, `:5589-5590`, `:186-210`), so the lexical helper is only used where both sides are already canonical or where the value is a manifest-relative path. Recorded as a pre-existing property, not raised.
+- **`resolveOverlayDir` accepts a sibling when git cannot run.** `gitTopLevelOrNull` (`:497-505`) returns null on a non-zero exit, a spawn error or empty output, and the caller then keeps the folder (`:474`). A tree in no repository is the documented case; a broken git install is indistinguishable from it. Recorded, not raised: the fallback is the documented behaviour and refusing on an unreadable git would break every consumer without git.
+- **`gitTopLevelOrNull` spawns git with no timeout.** `:501` passes no `timeout`, so a hung git blocks every command that builds a context for a sibling folder. Recorded as an edge case; the same pattern is used by `runGit` (`:4222`) throughout the engine, so it is a house style rather than a regression.
+- **`remove` on a `directory` entry is honoured by `folderEntryHolding` but not by `planDirectoryOverlay`.** Carried forward from iteration 1; still a latent inconsistency outside the documented contract.
 
 ## Confirmed-Clean Surfaces
 
-- `findBarterOverlays` (`barter-overlay-guard-core.cjs:60-84`) resolves both the applied copy and the overlay source copy: candidate 1 matches the applied copy at `<tree>/.skilled/hooks/...`, candidate 2 matches the overlay source copy at `<overlays>/framework/hooks/...`, and each candidate's `matchLayout` rejects the other's anchor because the engine or the manifest is missing there.
-- `matchLayout` (`:52-58`) requires the folder to be named `overlays`, the tree to hold the engine, and the folder to hold the manifest, so a stray folder with a manifest elsewhere cannot steer the guard.
-- `guard` (`:139-158`) skips a path outside the tree, refuses on a `refuse:` line, and throws on any other non-zero engine exit, so an engine error is never read as an allow.
-- The plugin's `warnCoreFailure` (`barter-overlay-guard.js:19-23`) fails open by design and is covered by `allows the edit when the overlay guard throws` (`barter-overlay-guard.test.cjs:121-155`), which asserts exactly one stderr line and no throw.
-- `aiSpeckitRoot` (`barter-git-write-gate.mjs:178-187`) walks five levels from the script's realpath, which lands on `<tree>` for the applied copy and on `<overlays>` for the overlay source copy; both then probe `<parent>/overlays/overlay-manifest.json` and return `<parent>`, so the two copies agree.
-- The pre-commit hook's `$?` checks at `:101` and `:109` read the exit status of the command substitution, which bash preserves, so a failing engine is caught rather than ignored.
+- `resolveRemoveRootPath` (`:185-215`) refuses a null byte, an absolute path, a backslash, a `..` segment, a path equal to the root, and a symlinked parent that resolves outside the tree, and it resolves each parent with `realpathSync.native` rather than trusting the lexical form.
+- `isProtectedReadPath` (`:2755-2758`) refuses every `.env*` basename and every `*token*` basename unless the manifest names that exact absolute path, and `exactManifestPaths` (`:2704-2720`) builds that allow-list from entry fields only.
+- `commandGuard`'s removal branch (`:4183-4193`) matches both lexically and canonically, so a removal path cannot be dodged by spelling it through a link.
+- `strictWriteRefusal` returns null for a path outside the root (`:5590`), so it never refuses a write it does not own, and it skips generated and git-ignored paths before any ownership test.
+- `resolveOverlayDir` refuses a null byte, a backslash, an absolute POSIX path, an absolute Windows path, `.`, `..`, any `../` deeper than one segment, a sibling carrying the tree's own name, a dangling link, and a target outside the git top level or inside `.git`.
 
 ## Ruled Out
 
-- **The guard's fail-open on a missing overlay folder is a defect.** Checked and ruled out: `barter-overlay-guard.js:19-23` documents the choice, `barter-overlay-guard.test.cjs:121-155` pins it, and `005-barter-move-overlays-out-of-tree/spec.md:64` records it as the pre-existing behavior the phase preserves.
-- **The vendored and overlay copies of the four hook files disagree.** Checked and ruled out: all four `diff` runs are empty.
-- **The pre-commit hook's repo-root branch mis-resolves the tree.** Checked and ruled out: at `ai-speckit/.opencode/scripts/git-hooks` the probe at `:85` finds `ai-speckit/overlays/overlay-manifest.json` and rewrites `TREE_ROOT` to `ai-speckit/skilled`, after which `:89` finds the manifest beside it.
+- **The outside-repository refusal can be bypassed with a case variant or a link.** Ruled out: the sibling name is compared against `path.basename(path.resolve(root))` and the resolved target is compared with `canonicalPath`, so both spellings land on the same refusal.
+- **A `GIT_DIR` exported by a hook defeats the repository check.** Ruled out: `gitTopLevelOrNull` deletes `GIT_DIR`, `GIT_WORK_TREE`, `GIT_INDEX_FILE` and `GIT_PREFIX` from the child environment (`:499-500`), and `overlay-engine-strict-writes.test.cjs:866-870` covers it.
+- **`pre-commit` fails open silently.** Ruled out: the only fail-open branch prints `allow: strictWrites is off in the overlay manifest, so nothing was checked` (`:6124`).
+- **A manifest can make the engine read a credential file through `protectedPaths`.** Ruled out: `protectedPathsFor` (`:2730-2748`) refuses a `.env` value and a value outside the entry, and `isProtectedReadPath` still refuses every token-named path the entry does not name exactly.
+- **`overlayDir` can name the repository's own `.git`.** Ruled out: `:472` refuses a target whose first segment under the top level is `.git`, and `overlay-engine-strict-writes.test.cjs:820-830` covers it.
 
 ## Next Focus
 
-- Dimension: correctness
-- Focus area: frontier node `F-1-007` -- the Barter re-pin parity against Skilled `063daaee2c1` and the consistency of the pin record, `sync-state.json` and the `v4.1.0.0` changelog
-- Reason: the last seeded depth-1 node, and the operator focus names the re-pin and the pin record explicitly
-- Rotation status: first pass on F-1-007; F-1-005 correctness is complete but the node stays open for its remaining dimensions
-- Blocked/productive carry-forward: productive -- byte-comparing the overlay source against the vendored copy found no drift and is the same technique the parity check needs
-- Required evidence: `overlay-manifest.json` `pin`, `sync-state.json` `pin`, `overlays/framework/changelog/skilled-coder/v4.1.0.0.md`, and a byte comparison of the engine-relevant files against Skilled at `063daaee2c1`
+- Dimension: traceability
+- Frontier node: F-1-002 (engine path safety and remedies)
+- Focus area: the packet's phase 001, 002 and 006 documents against the engine lines they cite, plus the live completion criteria
+- Reason: correctness and security are covered for this node; the remaining question is whether the packet's claims and evidence pointers still describe the code after the remediation.
+- Rotation status: correctness and security complete for F-1-002; traceability next on the same node.
+- Blocked/productive carry-forward: the `layoutLinks` finding is productive for the traceability pass because the packet's path-safety claims should be checked against it.
+- Required evidence: phase 001 `spec.md` path-safety requirements, phase 002 `spec.md` evidence pointers, phase 006 `implementation-summary.md`, and the live criteria in the packet goal.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

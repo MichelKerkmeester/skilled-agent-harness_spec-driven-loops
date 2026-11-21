@@ -107,9 +107,7 @@ jobs:
       # Some of the trigger paths are unit tests, and a trigger path no step runs
       # starts the workflow without checking the change that started it. They read
       # fixtures, the repository's own config and the skill's documentation, never
-      # an installed binary, so they run before OpenCode is installed. The setup
-      # helper test runs `remove-v1` end to end against a temporary HOME with a fake
-      # npm first on PATH, so it installs and removes nothing on the runner.
+      # an installed binary, so they run before OpenCode is installed.
       - name: Run the config-shape, battery, setup-helper and cli-opencode doc unit tests
         run: |
           set -euo pipefail

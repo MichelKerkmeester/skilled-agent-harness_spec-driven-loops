@@ -239,6 +239,7 @@ function computeTerminalGates(files = {}) {
 // 5. CLI ENTRY
 // ─────────────────────────────────────────────────────────────────────────────
 
+/** Parses `--flag value` pairs into a camelCase object, where a flag with no value becomes `true`; a positional argument throws an input error. */
 function parseArgs(argv) {
   const args = {};
   for (let index = 0; index < argv.length; index += 1) {
@@ -279,6 +280,7 @@ function readTerminalGateFiles(args) {
   };
 }
 
+/** Prints the terminal gate results and failed required gate ids as one JSON object and returns 0, or prints a JSON error and returns `EXIT_ERROR`. */
 function main(argv = process.argv.slice(2)) {
   try {
     const args = parseArgs(argv);

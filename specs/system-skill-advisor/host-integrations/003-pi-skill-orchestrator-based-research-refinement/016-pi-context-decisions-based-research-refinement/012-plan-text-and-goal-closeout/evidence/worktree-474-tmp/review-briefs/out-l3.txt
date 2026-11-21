@@ -1,0 +1,58 @@
+FINDINGS: 2
+
+[P1] A weak follow-up on the session's current task is suppressed when that task was started by a floored prompt. The receipt still holds the older confident route, so the guard withholds the route for the work the user is actually doing.
+Where: `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:390` (and `hooks/lib/route-receipt.ts:161-183`)
+Scenario: three turns in one session.
+1. "Update the advisor README to document the new corpus file layout" routes to `sk-doc` unfloored. A brief is delivered and the receipt is set to `sk-doc`.
+2. "Refactor the session store module to remove duplicated locking code" routes to `sk-code` floored at 0.82. It is not a weak follow-up, so the guard delivers it (this is the bench's false-carry case). Because the top route is floored, the receipt is not updated and stays `sk-doc`.
+3. "add tests for it as well" also routes to `sk-code` floored (the 003 bench records the same `sk-code` top for this follow-up after the refactor task).
+
+Result on turn 3: every guard check holds. The prompt reads as work intent, the top route is floored, `sk-code` differs from the receipt's `sk-doc`, and the prompt reads as a weak follow-up. The clock has not moved. So the hook prints "Advisor: prompt skipped." The guard is supposed to keep the model on the session's task, but here it hides the route for the task the model was given one turn earlier.
+Evidence:
+- `recordRouteReceipt` returns early on floored routes, so a delivered floored brief never moves the receipt: `if (!sessionId || !brief || !top || top.confidenceFloored === true) return;`
+- `decideRouteReceiptGuard` compares only against the stored skill: `|| input.topSkill === receipt.skill`.
+- `route-receipt.vitest.ts:92` asserts `['add tests for it as well', true]`, so this prompt counts as weak.
+- 003 `implementation-summary.md`: the refactor task routes `sk-code` at 0.82 with the flag set, and "Guarded but same top-1: pairs 7 and 8".
+- Test gap: the bench's `FALSE_CARRY_PAIR` and the hook-replay tests stop after the floored topic change. No test replays the follow-up after it, so H_after = 0 cannot show this.
+- No item in 011's Known Limitations covers it. Limitation 7 is about which prompt shapes read as weak, not about the receipt going stale.
+
+Confidence: plausible. Each step is traced in the code, and the routes come from the recorded bench numbers. A three-turn hook replay with these exact prompts, run with in-memory stores and the live scorer, would confirm it.
+
+[P1] When directive lifecycle handling is turned off (`SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED=1`), Claude, Codex and Cursor never rotate the lifecycle clock, but the receipt guard still runs. A receipt then lasts past compaction, after the brief it describes has left the model's context.
+Where: `.skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts:69` and `.skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts:36` (the guard itself is at `hooks/claude/user-prompt-submit.ts:352-376`)
+Scenario: with the flag set, a Claude session gets a confident `sk-doc` brief, then compacts. Then a weak floored follow-up routes to `sk-code`.
+- `notifyDirectiveLifecycleBoundary` returns before it spawns anything, so the clock does not move.
+- The guard reads the same `storeGeneration` and `lifecycleEpoch` it stored.
+- Claude's transcript is appended to on compaction, not truncated, so the shrink check does not catch it either.
+
+Result: the turn is suppressed against a route that is no longer in context. The spec promises that "a missing, stale or unreadable receipt leaves the turn as before".
+Evidence:
+- Both boundary entries bail out early: `if (directiveLifecycleEnabled() === false) return false;`.
+- `guardWeakFollowUp` checks no lifecycle flag. It only checks for a session id, a top route and the floored flag before reading the store.
+- `.skilled/hooks/directive-lifecycle/README.md:96` says this flag "Disables boundary updates through the shared boundary bridge". So the configuration is documented and reachable, and nothing ties the receipt guard to it.
+
+Confidence: plausible. The code path is confirmed. That Claude's transcript does not shrink on compaction is inferred. A compaction under the flag, followed by a byte check on the transcript, would confirm it.
+
+Checked with no finding:
+- **Cross-session isolation:** the receipt is keyed by session id and `parseReceipt` checks the session id. A session identity that is not confirmed neither reads nor writes a receipt.
+- **Store safety:** the folder owner and mode checks, symlink refusal, the 4 KiB size cap, atomic `wx` write plus rename, and eviction.
+- **DSH boundary:** `advanceBoundary` rotates only with a non-empty session id. The compaction rotation runs detached but finishes inside a blocking spawn before the next turn.
+- **The `confidenceFloored` field:** it is optional, accepts only `true`, is set only from the scorer's own flag, and no second strict schema mirrors it.
+- **Bench labels:** H, Hsame, H_after and collateral each count what their comment says.
+- **Known Limitations:** verdicts 1 to 7 of 011 stand as recorded.
+
+I applied the review rules myself. I did not load the sk-code `SKILL.md` or its review mode files, and I did not run the report checker scripts.
+
+FILES READ:
+- `.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts`
+- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` (diff, and lines 480-640)
+- `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` (diff)
+- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts`, `runtime/lib/skill-advisor-brief.ts`, `runtime/schemas/advisor-tool-schemas.ts`, `runtime/handlers/advisor-recommend.ts`, `runtime/lib/subprocess.ts`, `hooks/lib/skill-advisor-cli-fallback.ts` (diffs)
+- `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`, `hooks/lib/directive-lifecycle-file-store.ts`
+- `.skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`
+- `.skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts`
+- `.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts` (diffs from both commits)
+- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts` and `claude-user-prompt-submit-hook.vitest.ts` (case lists only)
+- `.skilled/hooks/shared/hook-flags.cjs` (grep), `.skilled/hooks/directive-lifecycle/README.md` (grep)
+- `P/011-*/implementation-summary.md`, `P/003-*/implementation-summary.md` (lines 60-115)
+- `P/011-*/spec.md` and `P/010-*/research/research.md` (targeted greps)

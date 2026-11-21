@@ -1,3 +1,4 @@
+# SUPERSEDED 2026-11-20 by 005-v1-reference-purge ADR-001: the operator chose to purge every OpenCode 1 reference, so no survivor below is kept. The list is the record of what phase 003 allowed; the replacement checks still print 0 because no file outside it names OpenCode 1.
 .opencode/plugins/tests/plugin-inventory.json	Event inventory whose observations are dated to OpenCode 1.19.3, kept with their version tags.
 .skilled/bin/skilled-loop	Refusal code: the wrapper refuses an OpenCode 1 binary with a removal hint and never launches it (intended survivor).
 .skilled/commands/doctor/scripts/README.markdown	Dated observation: the 65,536-byte stdout cap was measured on OpenCode 1.19.3 (line 206). The 2.3.2 pass result is recorded beside it.

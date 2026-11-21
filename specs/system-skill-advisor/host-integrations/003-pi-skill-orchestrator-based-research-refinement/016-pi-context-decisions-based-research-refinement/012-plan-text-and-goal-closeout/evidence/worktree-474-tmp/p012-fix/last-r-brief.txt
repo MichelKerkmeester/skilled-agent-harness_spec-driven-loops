@@ -1,0 +1,28 @@
+**HANDBACK**
+
+Changed [advisor-brief-producer.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts).
+
+The diff contains exactly these two added blocks:
+
+```ts
+  it('routes the task behind a pasted reply whose marker starts a new line', async () => {
+    const prompt = 'Earlier you replied: I updated the README and committed the change.\nNow: implement feature X';
+    const result = await buildSkillAdvisorBrief(prompt, options);
+
+    expect(result.status).toBe('ok');
+    expect(vi.mocked(runAdvisorSubprocess).mock.calls[0]?.[0]).toBe('implement feature X');
+  });
+
+  it('routes the task behind a pasted reply longer than advisor_recommend accepts', async () => {
+    const prompt = `Earlier you replied: ${'I updated the README and committed the change. '.repeat(300)}Now: implement feature X`;
+    expect(prompt.length).toBeGreaterThan(10_000);
+    const result = await buildSkillAdvisorBrief(prompt, options);
+
+    expect(result.status).toBe('ok');
+    expect(vi.mocked(runAdvisorSubprocess).mock.calls[0]?.[0]).toBe('implement feature X');
+  });
+```
+
+`cmp tmp/p012-fix/brief-producer.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts` exited 0. **Mismatch with the task description: none.** Tests, typecheck, and build were not run; they remain with the conductor.
+
+The file is modified and uncommitted. No commit or push was made. The Gate 3 prompt returned no selection; I treated your one-file-only scope as Skip. Skill routing used `sk-code`’s TypeScript route. Nothing else is needed from you unless you want to review the diff before the conductor’s checks.

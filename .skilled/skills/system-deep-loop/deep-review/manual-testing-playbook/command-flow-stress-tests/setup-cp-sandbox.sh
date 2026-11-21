@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Deep Review Command Sandbox Setup
+# ───────────────────────────────────────────────────────────────
+# Build a disposable sandbox under /tmp holding the speckit commands, the
+# deep-review, spec-kit and sk-code skills, the deep-review agents and a
+# small review target with its test.
+#
+# Exit Codes:
+#   0 - Sandbox created, or help printed
+#   1 - A required source path is missing
+#   2 - Invalid argument or sandbox directory
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

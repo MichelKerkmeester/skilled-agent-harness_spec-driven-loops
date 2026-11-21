@@ -35,6 +35,7 @@ export type BoundaryAction =
   | 'resume';
 export type BoundaryKind = `${BoundaryScope}-${BoundaryAction}`;
 
+/** A boundary kind and scope, the result event type it certifies, and the state transition it allows. */
 export interface BoundaryDefinition {
   readonly boundaryKind: BoundaryKind;
   readonly scope: BoundaryScope;
@@ -45,6 +46,7 @@ export interface BoundaryDefinition {
   readonly resultCode: string;
 }
 
+/** Ledger head as ledger id, sequence and record hash, as recorded inside receipt payloads. */
 export interface LedgerHeadFacts extends JsonObject {
   readonly ledger_id: string;
   readonly sequence: number;
@@ -55,6 +57,7 @@ export type CertificationTrustScope =
   | 'durable-cross-resume'
   | 'process-local-advisory';
 
+/** Scheme, provider, key, verifier version and trust scope a receipt is certified under. */
 export interface CertificationProfile extends JsonObject {
   readonly scheme: string;
   readonly provider_id: string;
@@ -63,6 +66,7 @@ export interface CertificationProfile extends JsonObject {
   readonly trust_scope: CertificationTrustScope;
 }
 
+/** A certification profile with the signed digest and base64 signature. */
 export interface CertificationEnvelope extends JsonObject {
   readonly scheme: string;
   readonly provider_id: string;
@@ -73,6 +77,10 @@ export interface CertificationEnvelope extends JsonObject {
   readonly signature_base64: string;
 }
 
+/**
+ * Certified receipt for a boundary transition, binding the from and result heads, the result event digest and the
+ * evidence digests.
+ */
 export interface BoundaryReceiptPayload extends JsonObject {
   readonly receipt_id: string;
   readonly boundary_id: string;
@@ -99,12 +107,14 @@ export interface BoundaryReceiptPayload extends JsonObject {
   readonly certification: CertificationEnvelope;
 }
 
+/** Signs and verifies canonical receipt bytes under one certification profile. */
 export interface ReceiptCertificationProvider {
   readonly profile: CertificationProfile;
   sign(canonicalBytes: Uint8Array): Promise<Uint8Array>;
   verify(canonicalBytes: Uint8Array, signature: Uint8Array): Promise<boolean>;
 }
 
+/** Request to issue a receipt for one boundary result event under a certification profile. */
 export interface BoundaryReceiptIssueInput {
   readonly boundaryId: string;
   readonly boundaryKind: BoundaryKind;
@@ -115,6 +125,7 @@ export interface BoundaryReceiptIssueInput {
   readonly issuedAt?: string;
 }
 
+/** Outcome of issuing a boundary receipt, appended or idempotent, with the payload, durable receipt and event. */
 export interface BoundaryReceiptIssueResult {
   readonly status: 'appended' | 'idempotent';
   readonly payload: BoundaryReceiptPayload;
@@ -126,6 +137,7 @@ export interface BoundaryReceiptIssueResult {
 // 2. AUTHORIZED WRITER
 // ───────────────────────────────────────────────────────────────────
 
+/** Mode, prior state, actor, capability, epoch, policy and evidence digest an evidence append is authorized against. */
 export interface EvidenceAuthorizationContext {
   readonly mode: string;
   readonly priorStateVersion: string;
@@ -138,6 +150,10 @@ export interface EvidenceAuthorizationContext {
   readonly evidenceDigest: string;
 }
 
+/**
+ * Ledger, fence, gateway, policies and registry an authorized evidence writer uses, plus how many head races it
+ * retries.
+ */
 export interface AuthorizedEvidenceWriterOptions {
   readonly ledger: AppendOnlyLedger;
   readonly ledgerFence: {
@@ -153,6 +169,7 @@ export interface AuthorizedEvidenceWriterOptions {
   readonly maxHeadRetries?: number;
 }
 
+/** Outcome of an authorized evidence append, appended or idempotent, with the receipt and the verified event. */
 export interface AuthorizedEvidenceAppendResult {
   readonly status: 'appended' | 'idempotent';
   readonly receipt: DurableAppendReceipt;
@@ -171,6 +188,10 @@ export type EffectRetryDecision =
   | 'reject'
   | 'synthesize_confirmation';
 
+/**
+ * Adapter identity and the guarantees it declares: replay safety, idempotency mode and whether reconciliation is
+ * conclusive.
+ */
 export interface EffectAdapterDescriptor extends JsonObject {
   readonly adapter_id: string;
   readonly adapter_version: string;
@@ -180,6 +201,10 @@ export interface EffectAdapterDescriptor extends JsonObject {
   readonly reconciliation: 'conclusive' | 'none';
 }
 
+/**
+ * Intent recorded before an external effect runs: target, input digest, idempotency key, recovery policy and expected
+ * postcondition.
+ */
 export interface EffectIntentPayload extends JsonObject {
   readonly effect_id: string;
   readonly run_id: string;
@@ -198,6 +223,7 @@ export interface EffectIntentPayload extends JsonObject {
   readonly requested_at: string;
 }
 
+/** Digests of what an executed effect produced, with result metadata that is safe to record. */
 export interface EffectObservation extends JsonObject {
   readonly external_receipt_digest: string;
   readonly postcondition_digest: string;
@@ -206,6 +232,7 @@ export interface EffectObservation extends JsonObject {
   readonly safe_result_metadata: JsonObject;
 }
 
+/** Reconciliation verdict for an effect of unknown outcome; the observation is null when nothing applied was found. */
 export interface EffectReconciliationObservation extends JsonObject {
   readonly verdict: RecoveryVerdict;
   readonly reason_code: string;
@@ -214,6 +241,7 @@ export interface EffectReconciliationObservation extends JsonObject {
   readonly observation: EffectObservation | null;
 }
 
+/** Executes one external effect type and reconciles its outcome when a prior attempt ended without confirmation. */
 export interface EffectAdapter<TRequest = unknown> {
   readonly descriptor: EffectAdapterDescriptor;
   /**
@@ -231,6 +259,7 @@ export interface EffectAdapter<TRequest = unknown> {
   ): Promise<EffectReconciliationObservation>;
 }
 
+/** A request to run one logical effect, with its canonical input, metadata, secret references and correlation ids. */
 export interface EffectExecutionInput<TRequest = unknown> {
   readonly runId: string;
   readonly logicalEffectId: string;
@@ -249,6 +278,7 @@ export interface EffectExecutionInput<TRequest = unknown> {
   readonly causationId: string | null;
 }
 
+/** Confirmation that an intent took effect, by execution or by reconciliation, with its output digests. */
 export interface EffectConfirmationPayload extends JsonObject {
   readonly confirmation_id: string;
   readonly effect_id: string;
@@ -264,6 +294,7 @@ export interface EffectConfirmationPayload extends JsonObject {
   readonly safe_result_metadata: JsonObject;
 }
 
+/** The claimant and fence token that own one recovery attempt. */
 export interface EffectRecoveryClaim extends JsonObject {
   readonly claim_id: string;
   readonly claimant_id: string;
@@ -271,6 +302,7 @@ export interface EffectRecoveryClaim extends JsonObject {
   readonly acquired_at: string;
 }
 
+/** Event payload that opens a recovery attempt for an intent, with the attempt number and its claim. */
 export interface EffectRecoveryStartedPayload extends JsonObject {
   readonly recovery_id: string;
   readonly intent_event_id: string;
@@ -282,6 +314,7 @@ export interface EffectRecoveryStartedPayload extends JsonObject {
   readonly started_at: string;
 }
 
+/** Event payload that closes a recovery attempt with its verdict, retry decision and terminal status. */
 export interface EffectReconciledPayload extends JsonObject {
   readonly recovery_id: string;
   readonly intent_event_id: string;
@@ -295,6 +328,10 @@ export interface EffectReconciledPayload extends JsonObject {
   readonly observed_at: string;
 }
 
+/**
+ * Event payload for a logical effect presented again with an intent that does not match the recorded one; keys are
+ * stored only as digests.
+ */
 export interface EffectConflictPayload extends JsonObject {
   readonly conflict_id: string;
   readonly existing_intent_event_id: string;
@@ -306,6 +343,7 @@ export interface EffectConflictPayload extends JsonObject {
   readonly detected_at: string;
 }
 
+/** Event payload recording an operator ruling on a recovery that needed one. */
 export interface OperatorResolutionPayload extends JsonObject {
   readonly resolution_id: string;
   readonly intent_event_id: string;
@@ -316,6 +354,7 @@ export interface OperatorResolutionPayload extends JsonObject {
   readonly resolved_at: string;
 }
 
+/** Test hooks that run at each crash point between intent, effect, confirmation and response. */
 export interface EffectGatewayFaultInjection {
   readonly beforeIntent?: () => void;
   readonly afterIntent?: () => void;
@@ -323,6 +362,10 @@ export interface EffectGatewayFaultInjection {
   readonly afterConfirmationBeforeResponse?: () => void;
 }
 
+/**
+ * Evidence writer, registry, producer, recovery and race-wait limits, claim validator and fault hooks for the effect
+ * gateway.
+ */
 export interface EffectRecoveryGatewayOptions {
   readonly writer: {
     append(event: EventWritePreflight): Promise<AuthorizedEvidenceAppendResult>;
@@ -342,6 +385,7 @@ export interface EffectRecoveryGatewayOptions {
   readonly faultInjection?: EffectGatewayFaultInjection;
 }
 
+/** Outcome of executing an effect, confirmed now or idempotent, with the intent and confirmation. */
 export interface EffectExecutionResult {
   readonly status: 'confirmed' | 'idempotent';
   readonly idempotencyKey: string;
@@ -349,6 +393,7 @@ export interface EffectExecutionResult {
   readonly confirmation: EffectConfirmationPayload;
 }
 
+/** Outcome of a recovery attempt; the confirmation is null when the attempt ends in conflict or needs an operator. */
 export interface EffectRecoveryResult {
   readonly status: 'confirmed' | 'conflict' | 'operator_required';
   readonly verdict: RecoveryVerdict;
@@ -357,6 +402,7 @@ export interface EffectRecoveryResult {
   readonly recovery: EffectReconciledPayload;
 }
 
+/** The original execution input plus the claim, reason code and start time for a recovery attempt. */
 export interface EffectRecoveryInput<TRequest = unknown> {
   readonly execution: EffectExecutionInput<TRequest>;
   readonly claim: EffectRecoveryClaim;

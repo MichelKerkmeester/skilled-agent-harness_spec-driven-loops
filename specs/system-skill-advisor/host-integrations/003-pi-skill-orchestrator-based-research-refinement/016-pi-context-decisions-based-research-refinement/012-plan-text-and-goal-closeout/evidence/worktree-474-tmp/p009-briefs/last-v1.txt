@@ -1,0 +1,107 @@
+The prepared file was copied exactly and all three `ACCEPT` checks passed. I can’t mark the change fully verified because the SKILLED drift guard failed on findings outside the target file.
+
+Changed file: [user-prompt-submit.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:307)
+
+The final added blocks are:
+
+```ts
+// Directive-lifecycle dedup delivers the full brief on the first message
+// and after lifecycle boundaries or transcript shrink. On proven repeats,
+// it keeps the head and drops the constant directive block. A headed
+// fallback reduces like a brief; unknown sessions and the kill switch get
+// the full text. A fault inside dedup keeps the full text, and a crash
+// elsewhere in the hook dedups its fallback like any headed fallback.
+function applyDirectiveLifecycle(
+  emitted: string,
+  input: ClaudeUserPromptSubmitInput,
+  dependencies: UserPromptSubmitDependencies,
+): { effectiveEmitted: string; commitFullReceipt?: (() => boolean) | undefined } {
+  try {
+    const sessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0
+      ? input.session_id
+      : undefined;
+    const sessionConfirmed = input.session_identity_confirmed
+      ?? (Boolean(sessionId) && input.session_identity_ambiguous !== true);
+    const transcriptPath = typeof input.transcript_path === 'string' && input.transcript_path.length > 0
+      ? input.transcript_path
+      : null;
+    let transcriptBytes: number | null = null;
+    if (transcriptPath) {
+      try {
+        transcriptBytes = statSync(transcriptPath).size;
+      } catch {
+        transcriptBytes = null;
+      }
+    }
+    const decision = decideDirectiveLifecycleDelivery(emitted, {
+      state: dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore(),
+      sessionId,
+      sessionConfirmed,
+      lifecycleEvent: lifecycleEventFor(input),
+      transcriptPath,
+      transcriptBytes,
+      enabled: isDirectiveLifecycleDedupEnabled(),
+      deferFullReceipt: dependencies.deferDirectiveReceipt === true,
+    });
+    return {
+      effectiveEmitted: decision.suppressed && decision.reducedContext ? decision.reducedContext : emitted,
+      commitFullReceipt: decision.commitFullReceipt,
+    };
+  } catch {
+    // Directive dedup is advisory; on any failure keep the full brief.
+    return { effectiveEmitted: emitted };
+  }
+}
+
+// Builds the hook output, attaches the deferred receipt when there is one and
+// records the emitted policy once, so a normal turn and a crash deliver alike.
+function finishAdvisorDelivery(
+  additionalContext: string,
+  commitFullReceipt: (() => boolean) | undefined,
+  deliveryState: ShadowDeliveryRenderOptions,
+  runtime: AdvisorRuntime,
+): ClaudeUserPromptSubmitOutput {
+  const output: ClaudeUserPromptSubmitOutput = {
+    hookSpecificOutput: {
+      hookEventName: 'UserPromptSubmit',
+      additionalContext,
+    },
+  };
+  if (commitFullReceipt) {
+    Object.defineProperty(output, DIRECTIVE_RECEIPT_COMMIT, {
+      configurable: true,
+      enumerable: false,
+      value: commitFullReceipt,
+    });
+  }
+  observeEmittedAdvisorPolicy(additionalContext, {
+    ...deliveryState,
+    // Claude keeps its display label and every other caller is recorded under
+    // the runtime it named, so no other runtime's delivery is counted as Claude's.
+    runtime: runtime === 'claude' ? 'Claude Code' : runtime,
+    candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
+  });
+  return output;
+}
+```
+
+The normal path now calls the helpers with:
+
+```ts
+const { effectiveEmitted, commitFullReceipt } = applyDirectiveLifecycle(emitted, input, dependencies);
+return finishAdvisorDelivery(effectiveEmitted, commitFullReceipt, deliveryState, runtime);
+```
+
+I found no runtime behavior change in the removed and added logic. The new comment says “a crash elsewhere in the hook dedups its fallback like any headed fallback,” but the outer catch still returns `renderAdvisorTimeoutFallback()` directly without calling either helper. That crash behavior is unchanged, but the comment is inaccurate.
+
+Observed checks:
+
+- `cp ...` exited 0. `cmp ...` exited 0. Both `grep -c` commands printed `1`.
+- `git diff --check` exited 0.
+- The focused quality gate reported `NO_BLOCKER_FOUND`, with zero findings. Strict spec validation printed `RESULT: PASSED`.
+- The drift guard exited 1. Its alignment leg reported 57 findings, including 11 errors and 46 warnings, in other repository paths. The other three guard legs passed. I did not capture a pre-edit baseline, so I can’t say whether those findings predated this change.
+- Tests, typecheck and build were not run, as the task says the conductor runs them.
+
+I changed only the requested hook file. Current status also shows three other modified files that I did not touch: `hooks/skill-advisor-hook.md`, `runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` and `system-spec-kit/runtime/ENV-REFERENCE.md`. The working tree is dirty on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`. No commit or push was made.
+
+The conductor should run the pending TypeScript tests, typecheck and build, then assess the unrelated drift-guard errors before final completion.

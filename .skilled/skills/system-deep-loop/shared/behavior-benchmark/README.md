@@ -15,6 +15,15 @@ Shared behavior-benchmark contract consumed by every deep-loop mode (`deep-resea
 
 ## 2. CONTENTS
 
+```text
+behavior-benchmark/
++-- behavior-bench-run.cjs   # Reference runner and CLI
++-- framework.md             # Normative scenario contract and rubric
++-- tests/                   # Hermetic runner tests
+|   `-- fixtures/            # Fake executor leg and synthetic scenario
+`-- README.md
+```
+
 | File | Purpose |
 |------|---------|
 | `behavior-bench-run.cjs` | Reference runner. Spawns an executor leg for one scenario, watches the live process against a no-progress watchdog, extracts checkpoints and delegation evidence from the transcript and scores the run against the five-dimension rubric. |
@@ -25,7 +34,7 @@ Shared behavior-benchmark contract consumed by every deep-loop mode (`deep-resea
 
 ## 3. CONSUMERS
 
-Each `deep-*` mode's `behavior-benchmark/behavior-benchmark.md` links `framework.md` and invokes `behavior-bench-run.cjs` with the stable CLI contract:
+Each mode's scenario package, [`../../deep-research/behavior-benchmark/behavior-benchmark.md`](../../deep-research/behavior-benchmark/behavior-benchmark.md) and [`../../deep-review/behavior-benchmark/behavior-benchmark.md`](../../deep-review/behavior-benchmark/behavior-benchmark.md), links `framework.md` and invokes `behavior-bench-run.cjs` with the stable CLI contract:
 
 ```text
 node behavior-bench-run.cjs --scenario <file> --leg <name> --out-dir <dir>
@@ -33,12 +42,15 @@ node behavior-bench-run.cjs --scenario <file> --leg <name> --out-dir <dir>
   [--timeout-ms <ms>] [--watchdog-ms <ms>]
 ```
 
+Exit codes: `0` when a result JSON is written, even for a failed or killed run. `2` for bad flags, an unparseable scenario or an unknown leg. `3` when the runner itself fails. `75` when the provider rejects the run on quota or rate limit, so the cell never ran and can be retried after the reset.
+
 ---
 
 ## 4. TESTS
 
 ```bash
 node .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs
+node .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run-git-timeout.test.cjs
 ```
 
-Runs hermetically against a fake executor leg. No live model session required. Expected: `behavior-bench-run.test.cjs: all assertions passed`. See `tests/README.md`.
+Both run hermetically. No live model session is required. Expected: the first prints `behavior-bench-run.test.cjs: all assertions passed`, and the second reports `pass 4` and `fail 0`. See [`tests/README.md`](tests/README.md).

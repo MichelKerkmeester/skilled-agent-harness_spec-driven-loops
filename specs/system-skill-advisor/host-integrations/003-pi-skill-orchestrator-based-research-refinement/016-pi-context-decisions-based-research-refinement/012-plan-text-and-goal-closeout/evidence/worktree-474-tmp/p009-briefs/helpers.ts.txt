@@ -1,0 +1,8 @@
+
+const throwingRender: typeof renderAdvisorBrief = () => {
+  throw new Error('render failed');
+};
+
+const throwingClock = (): number => {
+  throw new Error('clock');
+};

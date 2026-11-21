@@ -1,0 +1,19 @@
+
+WHAT COUNTS AS A FINDING
+A defect you can show from the code: wrong output, a crash, a contract the code breaks, a
+regression against main, a race or a security hole, or a test that would stay green while the
+behavior it names is broken. Style, naming and "could be cleaner" are not findings.
+Each phase's `implementation-summary.md` has a Known Limitations section. Do not report an item
+already recorded there unless you can show its recorded verdict is wrong; then say so.
+
+HANDBACK FORMAT
+Start with one line: `FINDINGS: <n>`. Then, most severe first, one block per finding:
+  [P0|P1|P2] <one-sentence defect>
+  Where: <file:line> (and any second location)
+  Scenario: <concrete input or state> -> <wrong result>
+  Evidence: <what you read that shows it; quote the line>
+  Confidence: confirmed (you traced it end to end) or plausible (say what would confirm it)
+P0 = wrong behavior on a normal path or data loss. P1 = wrong behavior on a reachable edge.
+P2 = a test or doc gap that hides a real failure.
+If you find nothing, write `FINDINGS: 0` and list the paths you checked.
+End with `FILES READ:` and the list.

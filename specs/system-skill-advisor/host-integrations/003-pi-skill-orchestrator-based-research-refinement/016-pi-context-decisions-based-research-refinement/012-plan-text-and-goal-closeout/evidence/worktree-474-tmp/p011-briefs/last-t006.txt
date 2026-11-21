@@ -1,0 +1,29 @@
+Changed [skill-advisor-cli-fallback-envelope.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts).
+
+Inserted block:
+
+```ts
+
+  it('keeps the confidence-floor flag from the CLI row', () => {
+    const result = resultFromCliData({
+      data: {
+        freshness: 'live',
+        recommendations: [
+          { skillId: 'sk-code', confidence: 0.82, uncertainty: 0.2, confidenceFloored: true },
+          { skillId: 'sk-doc', confidence: 0.9, uncertainty: 0.1 },
+        ],
+      },
+      options: { maxTokens: 80 } as never,
+      startedAt: 0,
+      now: () => 1,
+    });
+
+    const bySkill = new Map(result.recommendations.map((recommendation) => [recommendation.skill, recommendation]));
+    expect(bySkill.get('sk-code')).toHaveProperty('confidenceFloored', true);
+    expect(bySkill.get('sk-doc')).not.toHaveProperty('confidenceFloored');
+  });
+```
+
+The acceptance checks passed: `grep -c` printed `1` and `tail -1` printed `});`, both with exit 0. The inserted block matches the source block exactly. The scoped diff shows only this insertion in the requested file.
+
+Nothing in the task failed to match the file. The expected ending anchor and source block were present. Vitest was not run, as directed. The conductor should run it.

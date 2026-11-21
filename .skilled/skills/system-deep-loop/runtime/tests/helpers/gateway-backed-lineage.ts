@@ -8,12 +8,37 @@
 // in for a lineage has to record its rows the same way rather than write the
 // state log itself. These snippets run the real gateway from inside a stub.
 
-import { resolve } from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 
-import { runtimeRoot } from './spawn-cjs';
+import { runtimeRoot, strippedProcessEnv } from './spawn-cjs';
+
+/**
+ * The checkout that encloses `start`. A vendored install nests the framework
+ * below the project (`<project>/skilled/.skilled/...`), so a fixed climb lands
+ * short of the git toplevel. Ask git first, with the inherited git plumbing
+ * removed so a hook-exported GIT_DIR cannot answer for another repository,
+ * then fall back to the nearest folder that holds `.skilled`.
+ */
+export function resolveRepositoryRoot(start: string): string {
+  const probe = spawnSync('git', ['rev-parse', '--show-toplevel'], {
+    cwd: start,
+    env: strippedProcessEnv(),
+    encoding: 'utf8',
+  });
+  const toplevel = probe.status === 0 ? probe.stdout.trim() : '';
+  if (toplevel) return toplevel;
+
+  for (let dir = resolve(start); ; dir = dirname(dir)) {
+    if (existsSync(join(dir, '.skilled'))) return dir;
+    if (dirname(dir) === dir) break;
+  }
+  return resolve(start, '..', '..', '..', '..');
+}
 
 /** The checkout root: the gateway binds each append to its git identity. */
-export const REPOSITORY_ROOT = resolve(runtimeRoot, '..', '..', '..', '..');
+export const REPOSITORY_ROOT = resolveRepositoryRoot(runtimeRoot);
 export const APPEND_GATEWAY = resolve(runtimeRoot, 'scripts', 'append-mode-event.cjs');
 
 function shellQuote(value: string): string {

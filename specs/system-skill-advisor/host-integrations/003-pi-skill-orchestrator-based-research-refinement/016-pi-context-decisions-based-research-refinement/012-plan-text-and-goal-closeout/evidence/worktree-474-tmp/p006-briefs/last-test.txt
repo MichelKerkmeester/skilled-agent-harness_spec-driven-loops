@@ -1,0 +1,57 @@
+**Both requested edits are in** [advisor-prompt-policy.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts). The `ACCEPT` command printed the expected four lines and exited 0.
+
+### Changed blocks
+
+**Imports and fixture loading**
+
+```ts
+import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  extractMetalinguisticSkillMentions,
+  shouldFireAdvisor,
+  stripLeadingPastedReply,
+} from '../../lib/prompt-policy.js';
+
+interface PastedReplyStripCase {
+  readonly id: string;
+  readonly input: string;
+  readonly expected: string;
+  readonly ideal?: string;
+}
+
+// The Python advisor test reads the same file, so both scorers drop the same text.
+const PASTED_REPLY_STRIP_CASES: readonly PastedReplyStripCase[] = (JSON.parse(
+  readFileSync(
+    resolve(dirname(fileURLToPath(import.meta.url)), '../fixtures/pasted-reply-strip-cases.json'),
+    'utf8',
+  ),
+) as { cases: PastedReplyStripCase[] }).cases;
+```
+
+**Appended test block**
+
+```ts
+describe('pasted reply stripping', () => {
+  it.each(PASTED_REPLY_STRIP_CASES.map((row) => [row.id, row] as const))('%s', (_id, row) => {
+    const stripped = stripLeadingPastedReply(row.input);
+    expect(stripped).toBe(row.expected);
+    // The handler and the scorer both strip, so a second pass must return the same text.
+    expect(stripLeadingPastedReply(stripped)).toBe(stripped);
+  });
+});
+```
+
+### Verification and handoff
+
+- The scoped quality gate reported `NO_BLOCKER_FOUND` and exited 0. The scoped alignment check passed with zero findings.
+- The full drift guard exited 1 with 57 findings, including 11 errors in other repository paths. Its other three guards passed. I left those out-of-scope findings unchanged.
+- Vitest, typecheck and build were not run, as directed. The shared fixture exists and is untracked. I did not edit it.
+- The requested import block and insertion point matched the file. **No task mismatch.**
+- The change is uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+
+**The conductor’s remaining action:** run the Vitest, typecheck and build checks.
+
+SKILL ROUTING: User specified “Follow the coding standards in `.skilled/skills/sk-code/`.” The router selected `sk-code-skilled` and `sk-code-quality`. REPO RULES loaded: `prevent-overengineering.md`, `evidence-and-proof.md`, `communication.md`, `communication-handoff.md`, `root-cause-and-debugging.md` and `scope-discipline.md`.

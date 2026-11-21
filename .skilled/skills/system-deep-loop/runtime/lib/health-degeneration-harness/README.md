@@ -27,11 +27,20 @@ Runtime primitives consumed by `system-deep-loop` workflow modes to detect degen
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/mode-contract-types.ts` and `substrate-ports.ts` require `HealthObservationProjector` as a required substrate port
-- `.skilled/skills/system-deep-loop/runtime/lib/hierarchical-budgets/` feeds budget-lifecycle inputs into the adapters
+- `../mode-contracts/substrate-ports.ts` requires `HealthObservationProjector` as a required substrate port
+- `../mode-contracts/mode-contract-types.ts` imports the `HealthSignal` and `HealthAggregate` types
+
+It depends on `hierarchical-budgets` for budget-lifecycle inputs, `cycle-detection` for cycle health payloads, `transactional-projections` for projection watermarks and `event-envelope` for canonical JSON and hashing.
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/health-degeneration-harness.vitest.ts`
+- `../../tests/unit/health-degeneration-harness.vitest.ts`
+
+---
+
+## 5. RELATED
+
+- [`../README.md`](../README.md)
+- [`../../../SKILL.md`](../../../SKILL.md)

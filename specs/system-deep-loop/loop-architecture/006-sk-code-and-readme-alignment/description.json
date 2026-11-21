@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment",
+  "description": "Align system-deep-loop code with sk-code and its code-folder READMEs with the sk-doc create-readme standard",
+  "keywords": [
+    "align",
+    "system-deep-loop",
+    "code",
+    "sk-code",
+    "code-folder",
+    "readmes",
+    "sk-doc",
+    "create-readme",
+    "standard"
+  ],
+  "lastUpdated": "2026-11-21T18:32:25.593Z",
+  "specId": "006",
+  "folderSlug": "sk-code-and-readme-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

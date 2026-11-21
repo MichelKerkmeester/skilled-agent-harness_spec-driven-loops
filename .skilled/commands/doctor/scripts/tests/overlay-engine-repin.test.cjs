@@ -348,6 +348,172 @@ test('a failure after the backup names the run, and --rollback restores the tree
   assert.match(status.output, /RESULT: PASSED/);
 });
 
+test('--rollback restores the Python cache in a folder a directory overlay stopped shipping', (t) => {
+  const fixture = createRepinFixture(t);
+  const { tree, overlayDir } = fixture;
+  writeFile(overlayDir, 'vendor/keep/a.py', 'a\n');
+  writeFile(overlayDir, 'vendor/sub/b.py', 'b\n');
+  fixture.manifest.overlays.push({ id: 'vendor', scope: 'directory', source: 'vendor', destination: '.skilled/vendor' });
+  fixture.manifest.regenerate.push({
+    id: 'fails-after-copy',
+    argv: ['node', '-e', "process.exit(require('fs').existsSync('.skilled/skills/hub/added.md') ? 3 : 0)"],
+  });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cacheBytes = Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0xff, 0x63]);
+  const cachePath = path.join(tree, '.skilled/vendor/sub/__pycache__/b.cpython-39.pyc');
+  fs.mkdirSync(path.dirname(cachePath), { recursive: true });
+  fs.writeFileSync(cachePath, cacheBytes);
+  fs.rmSync(path.join(overlayDir, 'vendor/sub'), { recursive: true });
+
+  const failed = fixture.repin();
+  assert.equal(failed.code, 1, failed.output);
+  const match = failed.output.match(ROLLBACK_LINE);
+  assert.ok(match, failed.output);
+  assert.equal(fs.existsSync(path.join(tree, '.skilled/vendor/sub')), false);
+
+  const rolledBack = fixture.run(['repin', '--rollback', match[1]]);
+  assert.equal(rolledBack.code, 0, rolledBack.output);
+  assert.equal(fs.readFileSync(path.join(tree, '.skilled/vendor/sub/b.py'), 'utf8'), 'b\n');
+  assert.deepEqual(fs.readFileSync(cachePath), cacheBytes);
+});
+
+test('the backup takes only the Python caches apply could remove, not every cache below a folder entry', (t) => {
+  const fixture = createRepinFixture(t);
+  const { tree, overlayDir } = fixture;
+  writeFile(overlayDir, 'vendor/keep/a.py', 'a\n');
+  fixture.manifest.overlays.push({
+    id: 'vendor', scope: 'skill-root', source: 'vendor', destination: '.skilled/vendor',
+    replace: ['keep'], remove: ['gone'], retained: [],
+  });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cacheBytes = Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0x01]);
+  const kept = [
+    '.skilled/vendor/__pycache__/top.cpython-39.pyc',
+    '.skilled/vendor/keep/__pycache__/a.cpython-39.pyc',
+    '.skilled/vendor/upstream/__pycache__/u.cpython-39.pyc',
+    '.skilled/vendor/upstream/deep/stray.pyc',
+  ];
+  const removable = '.skilled/vendor/gone/__pycache__/g.cpython-39.pyc';
+  for (const relativePath of [...kept, removable]) writeFile(tree, relativePath, cacheBytes);
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  const runDir = path.join(fixture.runsDir, fs.readdirSync(fixture.runsDir)[0]);
+  const backedUp = readJson(path.join(runDir, 'backup.json')).entries.map((entry) => entry.path);
+  assert.deepEqual(backedUp.filter((relativePath) => /__pycache__|\.py[co]$/.test(relativePath)), [removable]);
+});
+
+test('the backup takes the Python cache under a folder a directory entry now ships as a file', (t) => {
+  const fixture = createRepinFixture(t);
+  const { tree, overlayDir } = fixture;
+  writeFile(overlayDir, 'vendor/keep/a.py', 'a\n');
+  writeFile(overlayDir, 'vendor/sub/b.py', 'b\n');
+  fixture.manifest.overlays.push({ id: 'vendor', scope: 'directory', source: 'vendor', destination: '.skilled/vendor' });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cache = '.skilled/vendor/sub/__pycache__/b.cpython-39.pyc';
+  writeFile(tree, cache, Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0x02]));
+  fs.rmSync(path.join(overlayDir, 'vendor/sub'), { recursive: true });
+  writeFile(overlayDir, 'vendor/sub', 'now a file\n');
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  assert.equal(fs.readFileSync(path.join(tree, '.skilled/vendor/sub'), 'utf8'), 'now a file\n');
+  const runDir = path.join(fixture.runsDir, fs.readdirSync(fixture.runsDir)[0]);
+  const backedUp = readJson(path.join(runDir, 'backup.json')).entries.map((entry) => entry.path);
+  assert.ok(backedUp.includes(cache), backedUp.join('\n'));
+});
+
+test('the backup takes the Python cache under an owned folder a file entry now replaces', (t) => {
+  const fixture = createRepinFixture(t);
+  const { tree, overlayDir } = fixture;
+  writeFile(overlayDir, 'vendor/sub/a.py', 'a\n');
+  fixture.manifest.overlays.push({ id: 'vendor', scope: 'directory', source: 'vendor/sub', destination: '.skilled/vendor-sub' });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cache = '.skilled/vendor-sub/__pycache__/a.cpython-39.pyc';
+  writeFile(tree, cache, Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0x03]));
+  writeFile(overlayDir, 'vendor/sub-file.md', 'file now\n');
+  fixture.manifest.overlays = fixture.manifest.overlays.filter((entry) => entry.id !== 'vendor');
+  fixture.manifest.overlays.push({ id: 'vendor', scope: 'file', source: 'vendor/sub-file.md', destination: '.skilled/vendor-sub' });
+  writeManifest(fixture);
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  assert.equal(fs.readFileSync(path.join(tree, '.skilled/vendor-sub'), 'utf8'), 'file now\n');
+  const runDir = path.join(fixture.runsDir, fs.readdirSync(fixture.runsDir)[0]);
+  const backedUp = readJson(path.join(runDir, 'backup.json')).entries.map((entry) => entry.path);
+  assert.ok(backedUp.includes(cache), backedUp.join('\n'));
+});
+
+for (const [direction, before, after, cache] of [
+  ['folder becomes a file', { 'vendor/keep/sub/x.md': 'sub x\n' }, { 'vendor/keep/sub': 'now a file\n' },
+    '.skilled/vendor/keep/sub/__pycache__/x.cpython-39.pyc'],
+  ['file becomes a folder', { 'vendor/keep/sub': 'a file\n' }, { 'vendor/keep/sub/x.md': 'sub x\n' }, null],
+]) {
+  test(`a re-pin replaces a skill-root subfolder whose ${direction}, and the rollback puts the old shape back`, (t) => {
+    const fixture = createRepinFixture(t);
+    const { tree, overlayDir } = fixture;
+    for (const [relativePath, value] of Object.entries(before)) writeFile(overlayDir, relativePath, value);
+    fixture.manifest.overlays.push({
+      id: 'vendor', scope: 'skill-root', source: 'vendor', destination: '.skilled/vendor',
+      replace: ['keep'], remove: [], retained: [],
+    });
+    writeManifest(fixture);
+    assert.equal(fixture.run(['apply']).code, 0);
+    const cacheBytes = Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0x04]);
+    if (cache) writeFile(tree, cache, cacheBytes);
+    fs.rmSync(path.join(overlayDir, 'vendor/keep/sub'), { recursive: true });
+    for (const [relativePath, value] of Object.entries(after)) writeFile(overlayDir, relativePath, value);
+
+    const result = fixture.repin();
+    assert.equal(result.code, 0, result.output);
+    for (const [relativePath, value] of Object.entries(after)) {
+      assert.equal(fs.readFileSync(path.join(tree, '.skilled', relativePath), 'utf8'), value);
+    }
+    const runId = fs.readdirSync(fixture.runsDir)[0];
+    if (cache) {
+      const backedUp = readJson(path.join(fixture.runsDir, runId, 'backup.json')).entries.map((entry) => entry.path);
+      assert.ok(backedUp.includes(cache), backedUp.join('\n'));
+    }
+    const rolledBack = fixture.run(['repin', '--rollback', runId]);
+    assert.equal(rolledBack.code, 0, rolledBack.output);
+    for (const [relativePath, value] of Object.entries(before)) {
+      assert.equal(fs.readFileSync(path.join(tree, '.skilled', relativePath), 'utf8'), value);
+    }
+    if (cache) assert.deepEqual(fs.readFileSync(path.join(tree, cache)), cacheBytes);
+  });
+}
+
+test('the backup takes the Python cache under a skill-root replace folder the source now ships as a file', (t) => {
+  const fixture = createRepinFixture(t);
+  const { tree, overlayDir } = fixture;
+  writeFile(overlayDir, 'vendor/keep/sub/x.md', 'sub x\n');
+  fixture.manifest.overlays.push({
+    id: 'vendor', scope: 'skill-root', source: 'vendor', destination: '.skilled/vendor',
+    replace: ['keep/sub'], remove: [], retained: [],
+  });
+  writeManifest(fixture);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const cache = '.skilled/vendor/keep/sub/__pycache__/x.cpython-39.pyc';
+  const cacheBytes = Buffer.from([0x55, 0x0d, 0x0d, 0x0a, 0x00, 0x05]);
+  writeFile(tree, cache, cacheBytes);
+  fs.rmSync(path.join(overlayDir, 'vendor/keep/sub'), { recursive: true });
+  writeFile(overlayDir, 'vendor/keep/sub', 'now a file\n');
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  assert.equal(fs.readFileSync(path.join(tree, '.skilled/vendor/keep/sub'), 'utf8'), 'now a file\n');
+  const runId = fs.readdirSync(fixture.runsDir)[0];
+  const backedUp = readJson(path.join(fixture.runsDir, runId, 'backup.json')).entries.map((entry) => entry.path);
+  assert.ok(backedUp.includes(cache), backedUp.join('\n'));
+  const rolledBack = fixture.run(['repin', '--rollback', runId]);
+  assert.equal(rolledBack.code, 0, rolledBack.output);
+  assert.deepEqual(fs.readFileSync(path.join(tree, cache)), cacheBytes);
+});
+
 test('--rollback refuses a backed-up file whose bytes no longer match the recorded hash', (t) => {
   const fixture = createRepinFixture(t);
   const result = fixture.repin();
@@ -407,6 +573,46 @@ test('a .env path upstream ships refuses the repin before any read or write', (t
   assert.match(result.output, /\.claude\/\.env is a \.env path, which is never read/);
   assert.equal(treeDigest(fixture.tree), before);
   assert.equal(fs.existsSync(fixture.runsDir), false);
+});
+
+test('a secret-free .env template upstream changes is refreshed like any vendored file', (t) => {
+  const templates = ['.claude/.env.example'];
+  const oldEntries = Object.fromEntries(templates.map((rel) => [rel, 'KEY=old\n']));
+  const newEntries = Object.fromEntries(templates.map((rel) => [rel, 'KEY=\nOTHER=\n']));
+  const fixture = createRepinFixture(t, { oldEntries, newEntries });
+
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  for (const rel of templates) assert.equal(read(fixture.tree, rel), 'KEY=\nOTHER=\n', rel);
+  assert.doesNotMatch(result.output, /\.env\.example is a \.env path/);
+});
+
+// Only the one template name the secret guard allows is read; the others are
+// refused like any .env file, so the two guards agree.
+for (const name of ['sample', 'template'].map((suffix) => '.env.' + suffix)) {
+  test(`a ${name} upstream changes refuses the repin, as the secret guard refuses it`, (t) => {
+    const fixture = createRepinFixture(t, {
+      oldEntries: { ['.claude/' + name]: 'KEY=old\n' },
+      newEntries: { ['.claude/' + name]: 'KEY=new\n' },
+    });
+    const result = fixture.repin();
+    assert.equal(result.code, 2, result.output);
+    assert.ok(result.output.includes('.claude/' + name + ' is a .env path, which is never read'), result.output);
+  });
+}
+
+
+test('a .env.local upstream changes still refuses the repin', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: { '.claude/.env.local': 'SECRET=old\n' },
+    newEntries: { '.claude/.env.local': 'SECRET=new\n' },
+  });
+  const before = treeDigest(fixture.tree);
+
+  const result = fixture.repin();
+  assert.equal(result.code, 2, result.output);
+  assert.match(result.output, /\.claude\/\.env\.local is a \.env path, which is never read/);
+  assert.equal(treeDigest(fixture.tree), before);
 });
 
 test('a repin to the commit already pinned reports nothing to copy and writes nothing', (t) => {

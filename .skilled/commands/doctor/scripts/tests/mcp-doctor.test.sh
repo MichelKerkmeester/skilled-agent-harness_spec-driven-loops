@@ -22,6 +22,13 @@ set -euo pipefail
 
 TEST_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPT="$TEST_DIR/../mcp-doctor.sh"
+# The tree that ships the doctor, which every remedy line runs from
+TREE_ROOT="$(cd "$TEST_DIR/../../../../.." && pwd)"
+# check() reads the two remedy lines below inside its eval'd conditions.
+# shellcheck disable=SC2034
+NEXT_HELP="$(printf 'Next: from %q: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --help' "$TREE_ROOT")"
+# shellcheck disable=SC2034
+NEXT_ROOT="$(printf 'Next: from %q: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --root %q' "$TREE_ROOT" "$TREE_ROOT")"
 WORK="$(mktemp -d "${TMPDIR:-/tmp}/mcp-doctor-test.XXXXXX")"
 trap 'rm -rf "$WORK"' EXIT
 
@@ -187,12 +194,15 @@ check "--fix is rejected as an unknown option with exit 3" '[[ "$RC" -eq 3 && "$
 
 run_doctor -- --bogus
 check "an unknown option exits 3, not the warnings code" '[[ "$RC" -eq 3 ]]'
+check "an unknown option names --help from the doctor's own tree" '[[ "$ERR" == *"$NEXT_HELP"* ]]'
 
 run_doctor -- --root
 check "--root without a value exits 3" '[[ "$RC" -eq 3 ]]'
+check "--root without a value names a runnable root, not a placeholder" '[[ "$ERR" == *"$NEXT_ROOT"* && "$ERR" != *"<repository root>"* ]]'
 
 run_doctor -- --root "$WORK/does-not-exist" --json
 check "--root at a missing directory exits 3" '[[ "$RC" -eq 3 && "$ERR" == *"does-not-exist"* ]]'
+check "--root at a missing directory names a runnable root, not a placeholder" '[[ "$ERR" == *"$NEXT_ROOT"* && "$ERR" != *"<repository root>"* ]]'
 check "--root at a missing directory never diagnoses another tree" '[[ "$OUT" != *"Project root"* && "$OUT" != *"checks"* ]]'
 
 run_doctor -- --help

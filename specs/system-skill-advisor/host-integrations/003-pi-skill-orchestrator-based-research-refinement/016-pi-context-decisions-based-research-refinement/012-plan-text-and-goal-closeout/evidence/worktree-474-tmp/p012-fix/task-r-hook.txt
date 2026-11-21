@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/ups-hook.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+The prepared file adds tests only: a floored topic change expires the earlier route receipt, the receipt is kept for a same-skill floored turn, no receipt is read or written while the directive lifecycle flag is off, a degraded turn writes no receipt, the throwing receipt store also throws on remove, a crash in the brief build records a policy observation, an invalid payload with a removed working directory stays silent, and the deferred receipt is committed only when the output write succeeds. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/ups-hook.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` exits 0.

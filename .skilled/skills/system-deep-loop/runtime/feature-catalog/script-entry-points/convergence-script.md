@@ -7,7 +7,7 @@ trigger_phrases:
   - "check convergence decision"
   - "stop allowed stop blocked"
   - "graph-aware loop convergence"
-version: 1.4.6.0
+version: 1.4.8.0
 ---
 
 # convergence.cjs
@@ -42,7 +42,7 @@ An expansive review forms the hard stop candidate `frontier_drained` when its fr
 
 ### Research frontier_drained Candidate
 
-An expansive research fan-out lineage (`fanoutLineage`) forms the same hard candidate `frontier_drained` when its frontier share holds at least one node, none is open or active, and at least one is answered. It comes after `all_questions_answered` and `composite_converged`. A single-executor expansive run and a default run never form it. The `minIterations` floor still applies, a failed quality guard still turns it into CONTINUE, and the graph decision still settles it.
+An expansive research fan-out lineage (`fanoutLineage`) forms the same hard candidate `frontier_drained` when its frontier share holds at least one node, none is open or active, and at least one is answered. It comes after `all_questions_answered` and `composite_converged`. A single-executor expansive run and a default run never form it. The `minIterations` floor still applies, a failed quality guard still turns it into BLOCKED, and the graph decision still settles it.
 
 ### Minimum Iterations Floor
 
@@ -56,9 +56,17 @@ Under `depthMode: 'expansive'`, a stop candidate becomes CONTINUE with `reasonDe
 
 The research quality guard `sourceDiversity` reports `insufficient` with `passed: false` when the graph reads cleanly but holds no answered QUESTION node. `notEvaluated` is kept for a graph read that failed. Only a guard whose status is `failed` blocks a stop, so `insufficient` changes no stop decision; the guard just no longer reads as a pass on evidence it never saw.
 
+### Blocked-Stop Streak
+
+A BLOCKED decision, from a failed review gate, a failed research quality guard (`reasonDetail` `qualityGuardFailed`) or a graph `STOP_BLOCKED`, becomes STOP with `stopReason` `blockedStop` and `reasonDetail` `blockedStreakReached` once the same sorted blocker set, this pass included, has blocked `stuckThreshold` runs in a row (review 2, research 3). `deriveLoopCounters` builds the streak from the `blocked_stop` rows, one per run, ignoring rows at or after `--iteration`. A different set restarts it at 1. A review pass that records a new finding resets it, and so does a research pass with status `insight` or a `newInfoRatio` at or above the convergence threshold. The cap and stuck recovery are checked first, and the stopping pass records no row.
+
+### Flag Spellings
+
+Flags are read as `--kebab-case`, which the parser turns into camelCase. A few settings also accept a snake_case flag: `--depth_mode`, `--convergence_mode`, `--sliding_window_size` and `--min_observations`. The observation guard turns on with `--observation-threshold-guard` or `--min-observations-guard`, and the improvement-effect trace with `--improvement-effect`, `--improvement-effect-trace` or `--trace-improvement-effect`. Every accepted spelling is listed in `CONVERGENCE_FLAGS`; any other flag, and any positional argument, is an input error.
+
 ### Recording a Blocked Stop
 
-`--record-blocked-stop` makes the command record a blocked research stop itself, so a leaf that reads a BLOCKED decision and skips the recording step still leaves a state row. It needs `--stop-decision`, loop type `research` and `--iteration` as a positive integer, and it is refused with `--read-only`; each refusal is an input error. When the decision is BLOCKED, the command builds the `blocked_stop` event row the research workflow sends and appends it through `append-mode-event.cjs`. The row's `recoveryStrategy` names, when it applies, the iterations that recorded findings but left no FINDING node in the graph, the usual sign of a graph upsert that never ran. The payload gains `blocked_stop_record` with `status` `recorded` (plus `eventId` when the gateway returns a receipt), `already_recorded` when the state log already holds a row for this run with the same blocker set, or `failed` with the gateway's `exitCode` and `reason`. A changed blocker set is a new attempt and gets its own row. A failed record exits with the gateway's code, after the decision is printed.
+`--record-blocked-stop` makes the command record a blocked research or review stop itself, so a leaf that reads a BLOCKED decision and skips the recording step still leaves a state row. It needs `--stop-decision` and `--iteration` as a positive integer, and it is refused with `--read-only`; each refusal is an input error. When the decision is BLOCKED, the command appends the record through `append-mode-event.cjs`, whether the graph has nodes, is empty or cannot be read. For research it builds the `blocked_stop` event row the research workflow sends, and the row's `recoveryStrategy` names, when it applies, the iterations that recorded findings but left no FINDING node in the graph, the usual sign of a graph upsert that never ran. For review it builds the `deep_review.blocked_stop_recorded` event: scope from the config `sessionId` and `generation`, one gate row per legal-stop gate plus one fail row per graph blocker, finding counts from the registry, `recoveryStrategy` as the first blocked gate in kebab form, and `targetDimensionId` as the dimension the next iteration is steered to, or `all-dimensions-covered` when none is left. The payload gains `blocked_stop_record` with `status` `recorded` (plus `eventId` when the gateway returns a receipt), `already_recorded` when the state log already holds a row for this run with the same blocker set, or `failed` with the gateway's `exitCode` and `reason`; a review record also carries `recoveryHint` and `gateResults`. A changed blocker set is a new attempt and gets its own row. A failed record exits with the gateway's code, after the decision is printed.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
@@ -79,6 +87,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 | `tests/integration/convergence-script.vitest.ts` | Automated test | Primary regression coverage for convergence.cjs. |
 | `tests/integration/review-depth-convergence.vitest.ts` | Integration | Review convergence fixture coverage. |
 | `tests/integration/convergence-blocked-stop.vitest.ts` | Integration | `--record-blocked-stop`: one row per run and blocker set, a new row for a changed blocker set, a failed command when the gateway refuses, nothing without the flag, the `--read-only` refusal, and the iterations named for a missing graph upsert. |
+| `tests/integration/convergence-review-blocked-stop.vitest.ts` | Integration | `--record-blocked-stop` for review: one `deep_review.blocked_stop_recorded` event the gateway accepts, no second event for the same run, a block only the graph raises with a fail row for its blocker, a block on an unreadable graph, nothing without the flag, and the target dimension order. |
 | `tests/unit/stop-decision.vitest.ts` | Automated test | Source diversity reported as `insufficient` on a graph with no answered question, without blocking the stop. |
 
 ---

@@ -1,0 +1,7 @@
+fixture EXIT=0
+pytest EXIT=0
+pin-py EXIT=0
+pin-corpus EXIT=0
+refute EXIT=0
+batch-test EXIT=0
+batch-fix EXIT=0

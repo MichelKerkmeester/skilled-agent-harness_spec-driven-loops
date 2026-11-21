@@ -18,6 +18,7 @@ import type {
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/** A policy held by the registry: its version and digest identity plus the evaluator the gateway calls. */
 export interface RegisteredTransitionPolicy {
   readonly policyId: string;
   readonly policyVersion: number;
@@ -31,6 +32,7 @@ export interface RegisteredTransitionPolicy {
   ) => PolicyEvaluationResult | Promise<PolicyEvaluationResult>;
 }
 
+/** Read-only view of a registered policy returned by `inspect()`, with the evaluator function left out. */
 export interface TransitionPolicyInspectionEntry {
   readonly policyId: string;
   readonly policyVersion: number;

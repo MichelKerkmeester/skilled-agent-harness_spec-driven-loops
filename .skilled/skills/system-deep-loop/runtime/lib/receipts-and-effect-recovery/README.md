@@ -1,5 +1,5 @@
 ---
-title: "receipts and effect recovery"
+title: "Receipts and Effect Recovery"
 description: "Receipt-backed effect intent, confirmation, reconciliation and recovery contracts."
 trigger_phrases:
   - "receipts and effect recovery"

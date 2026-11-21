@@ -1,0 +1,28 @@
+The exact copy is in place and the required `cmp` passed. Strict spec validation failed, so the repository completion gate remains open.
+
+**Changed file:** [.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts)
+
+**Final changed block:**
+
+```ts
+// A receipt is keyed by session id, so only an identity the host has confirmed
+// may hold or read one; otherwise a session reusing a provisional id could have
+// its follow-up held back against another session's route. Absent flags count
+// as confirmed, the same rule the directive lifecycle applies.
+function receiptSessionId(input: ClaudeUserPromptSubmitInput): string | null {
+  const sessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0
+    ? input.session_id.trim()
+    : null;
+  const confirmed = input.session_identity_confirmed
+    ?? (sessionId !== null && input.session_identity_ambiguous !== true);
+  return sessionId !== null && confirmed === true ? sessionId : null;
+}
+```
+
+The task says: “return null unless the session identity is confirmed, using the same confirmed-or-not-ambiguous rule as `applyDirectiveLifecycle`.” The new `confirmed` check and return condition match that description.
+
+The final diff against `HEAD` also shows route-receipt plumbing such as `guardWeakFollowUp`, `recordRouteReceipt` and `routeReceiptStore`. That code was already in the working tree before the copy. The pre-copy comparison showed only the identity guard and its comment differed from the prepared file.
+
+**Verification:** `cmp tmp/p011-briefs/ups.v2.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` exited 0. Strict spec validation exited 2 with `RESULT: FAILED`, reporting a graph metadata source fingerprint mismatch and a drifted description. No spec documents were changed. The TypeScript, Vitest, typecheck and build checks were not run, as the task assigns those to the conductor. The working tree remains dirty, with other modified and untracked files untouched by me.
+
+**Next action:** The conductor or operator must resolve the packet metadata drift and rerun strict validation, then run the code checks.

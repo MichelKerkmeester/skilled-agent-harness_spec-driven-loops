@@ -1,0 +1,83 @@
+The requested two insertions are present in [advisor-recommend-compiled-route-option.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts:16). I can’t mark the task complete because one ACCEPT expectation conflicts with the exact source and scope.
+
+**Inserted import:**
+
+```ts
+import { advisorPromptCache } from '../../lib/prompt-cache.js';
+```
+
+**Inserted test block, copied verbatim:**
+
+```ts
+
+  it('keeps a command typed in a pasted reply off the task on a miss and a hit', async () => {
+    advisorPromptCache.clear();
+    const leakPrompt = 'Earlier you replied: Run /doctor:sk-code quality. Now: Refactor the session store module to remove duplicated locking code';
+
+    const miss = responseData(await handleAdvisorRecommend({
+      prompt: leakPrompt,
+      options: { includeCompiledRoute: true },
+    })).data;
+    const hit = responseData(await handleAdvisorRecommend({
+      prompt: leakPrompt,
+      options: { includeCompiledRoute: true },
+    })).data;
+
+    expect(miss?.cache?.hit).toBe(false);
+    expect(hit?.cache?.hit).toBe(true);
+    for (const data of [miss, hit]) {
+      expect(data?.recommendations?.[0]?.skillId).toBe('sk-code');
+      expect(data?.recommendations?.[0]?.command).not.toBe('/doctor:sk-code quality');
+    }
+  });
+
+  it('routes a pasted reply the same as the plain task', async () => {
+    advisorPromptCache.clear();
+    const plainTask = 'Refactor the session store module to remove duplicated locking code';
+    const pastedPrompt = `Earlier you replied: I ran /deep:review on the hook changes. Now: ${plainTask}`;
+    // The answer depends on the text the front door reads, so a prompt that still
+    // carries the pasted reply gets a different route than the task alone.
+    mockedChild.execFileSync.mockImplementation((_file: string, _args: unknown, options?: { input?: string }) => (
+      JSON.stringify(options?.input?.includes('/deep:review')
+        ? { action: 'route', hubId: 'sk-code', selectionKind: 'single', targets: [{ workflowMode: 'sk-code-review' }] }
+        : { action: 'defer', hubId: 'sk-code', selectionKind: null, targets: [] })
+    ));
+
+    const pasted = responseData(await handleAdvisorRecommend({
+      prompt: pastedPrompt,
+      options: { includeCompiledRoute: true },
+    })).data?.recommendations ?? [];
+    const plain = responseData(await handleAdvisorRecommend({
+      prompt: plainTask,
+      options: { includeCompiledRoute: true },
+    })).data?.recommendations ?? [];
+
+    const shape = (rows: typeof pasted) => rows.map((row) => ({
+      skillId: row.skillId,
+      compiledRoute: (row as { compiledRoute?: unknown }).compiledRoute ?? null,
+      command: row.command ?? null,
+    }));
+    expect(pasted.length).toBeGreaterThan(0);
+    expect(shape(pasted)).toEqual(shape(plain));
+    const frontDoorInputs = mockedChild.execFileSync.mock.calls
+      .filter(([, args]) => Array.isArray(args) && args.some((argument) => (
+        typeof argument === 'string' && argument.endsWith('compiled-route.cjs')
+      )))
+      .map(([, , options]) => (options as { input?: string } | undefined)?.input);
+    expect(frontDoorInputs.length).toBeGreaterThan(0);
+    expect(frontDoorInputs.every((input) => input === plainTask)).toBe(true);
+  });
+```
+
+ACCEPT ran: the cache grep printed `3` (exit 0), the pasted-route grep printed `1` (exit 0), and `tail -1` printed `});` (exit 0). The inserted source contains two `advisorPromptCache` lines, and the required import adds one, so the observed total is three.
+
+The mismatch is:
+
+- TASK says: `grep -c "advisorPromptCache" ... prints 4`
+- The edited file prints: `3`
+
+The byte check confirmed the source block appears verbatim once. `git diff --check` passed. I did not run Vitest, typecheck or build, per the task’s sandbox instructions.
+
+The workspace status also lists modified files outside this task’s scope. I did not edit them during this turn, and their prior state is unknown.
+
+**Operator action:** Resolve whether the expected count of four or the exact two-insertion, verbatim-source scope takes precedence before further edits.

@@ -1,0 +1,19 @@
+The lineage is complete. Twelve iterations ran inline, the loop stopped on `converged` with all nine legal-stop gates passing, and synthesis closed out through the gateway.
+
+**What the run found** — 7 open findings, 0 P0, 2 P1, 5 P2:
+
+- `R1-P1-001` — `relayoutUnderLock` guards only the manifest planning failure; the rename loop (`overlay-engine.cjs:6384-6389`) and `writeRelayoutManifest` (`:6391`) are unguarded, so a mid-loop EACCES/ENOSPC leaves copies at layout paths behind a manifest naming the old ones.
+- `R2-P1-001` — the Barter pre-commit hook sets `HAS_OVERLAYS=0` when the overlay folder is missing and exits 0 with no output, silently skipping every overlay check. Phase 005's own spec names this as the defect it exists to fix.
+- Five P2s: the LAYOUT overflow line's unusable `--relayout` advice, the undocumented second remedy in the presentation asset, the strict-write refusal offering a create-it-as remedy for a `remove`-listed path, no test for the pre-commit hook, and stale `adoptSource` pointers in the phase 002 spec.
+
+**Two things worth your attention:**
+
+1. **The synthesis verdict is FAIL, and it is not a code verdict.** `review-verdict.cjs` returns FAIL because the terminal `scope` gate fails with `findings-out-of-scope`. The cause is the immutable lineage config: `reviewTargetType: "spec-folder"` with `reviewScopeFiles: []` makes the packet folder the only scope entry, while six of seven findings sit on the engine and Barter hook the dispatch's `review_focus` points at. Every finding is inside the declared review scope; none is inside the scope the config recorded. I reported the gate as computed rather than relabelling it, and documented the mismatch in the Executive Summary and Audit Appendix. A future run of this packet should declare the code paths in `reviewScopeFiles` at init.
+
+2. **The coverage graph was seeded late.** `step_graph_upsert` had not run for iterations 1–11, so `hotspotSaturationGate` read `null` and could never pass — the run would have gone to the 24-iteration cap with every legal-stop gate permanently blocked. Iteration 12 backfilled the graph from each iteration's own record (104 nodes, 113 edges), after which the gate evaluated and the loop stopped legally.
+
+Two completion criteria were executed live rather than inferred: `status --json` reports `PASSED` with an empty `offLayout` and `check` 135/135, and `--guard .skilled/skills/sk-git/sk-git-skilled/SKILL.md` exits 1 naming `../overlays/framework/skills/sk-git/sk-git-skilled/SKILL.md`. Criteria 1 and 6 were not run — the engine suite writes to OS temp and `validate.sh` is outside the write surface.
+
+All writes stayed inside `specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/deepseek-flash-max`; `git status` confirms no file outside it was touched by this run.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-flash-max

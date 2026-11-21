@@ -34,6 +34,23 @@ function seed(fixture) {
   return result;
 }
 
+// Whether the filesystem holding a folder ignores case, read from the disk the
+// way the engine reads it: a case-flipped spelling of the folder's real path
+// opens the same folder.
+function ignoresCase(dir) {
+  const real = fs.realpathSync.native(dir);
+  const name = path.basename(real);
+  const flipped = [...name].map((ch) => (ch === ch.toLowerCase() ? ch.toUpperCase() : ch.toLowerCase())).join('');
+  if (flipped === name) return false;
+  try {
+    const original = fs.statSync(real);
+    const other = fs.statSync(path.join(path.dirname(real), flipped));
+    return other.dev === original.dev && other.ino === original.ino;
+  } catch {
+    return false;
+  }
+}
+
 function treeDigest(root) {
   const rows = [];
   const walk = (dir) => {
@@ -816,6 +833,204 @@ test('a layout link below a link the same run writes out of the tree is refused 
     assert.ok(result.output.includes('layout link path escapes the tree root: ext/planted'), command + ': ' + result.output);
   }
   assert.equal(fs.readFileSync(path.join(outside, 'planted'), 'utf8'), 'not the engine\'s file\n');
+  assert.equal(treeDigest(fixture.tree), before);
+});
+
+// The plan judges a nested path by the last copy of a path listed twice, while
+// the run writes every copy in order, so an earlier copy pointing out of the tree
+// would stand before the writer refused the nested entry. The manifest is
+// refused instead, on every command that plans the links, before any write.
+test('a layout link path listed twice is refused before any write, even when only an earlier copy points out', (t) => {
+  const fixture = createSyncFixture(t);
+  const outside = path.resolve(fixture.tree, '../outside');
+  fs.mkdirSync(outside);
+  fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
+  fixture.manifest.layoutLinks = [
+    { path: 'ext', target: '../outside' },
+    { path: 'ext/planted', target: 'anything' },
+    { path: 'ext', target: 'real-dir' },
+  ];
+  writeManifest(fixture);
+  // A new file with its overlay copy in place, so adopt would otherwise write the entry.
+  writeFile(fixture.overlayDir, 'framework/skills/new/SKILL.md', 'new skill\n');
+  const manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+  const manifestBefore = fs.readFileSync(manifestPath);
+  const before = treeDigest(fixture.tree);
+
+  const adopt = ['apply', '--adopt', path.join(fixture.tree, '.skilled', 'skills', 'new', 'SKILL.md')];
+  for (const command of [['status'], ['apply'], ['apply', '--relayout'], adopt]) {
+    const result = fixture.run(command);
+    assert.equal(result.code, 2, command.join(' ') + ': ' + result.output);
+    assert.ok(result.output.includes('layout link path is listed twice: ext'), command.join(' ') + ': ' + result.output);
+    assert.equal(treeDigest(fixture.tree), before, command.join(' '));
+    assert.deepEqual(fs.readFileSync(manifestPath), manifestBefore, command.join(' '));
+  }
+  assert.throws(() => fs.lstatSync(path.join(fixture.tree, 'ext')), { code: 'ENOENT' });
+  assert.deepEqual(fs.readdirSync(outside), []);
+});
+
+test('layout link paths are compared as the plan resolves them, and distinct paths still apply', async (t) => {
+  const cases = [
+    { links: [{ path: './a', target: 'real-dir' }, { path: 'a/', target: 'real-dir' }], duplicated: 'a' },
+    { links: [{ path: 'a', target: 'real-dir' }, { path: './a//', target: 'real-dir' }], duplicated: 'a' },
+    { links: [{ path: 'deep/a', target: '../real-dir' }, { path: './deep/a/', target: '../real-dir' }], duplicated: 'deep/a' },
+    { links: [{ path: 'ext', target: '../outside' }, { path: 'ext/.', target: 'real-dir' }], duplicated: 'ext' },
+    { links: [{ path: 'ext', target: '../outside' }, { path: 'x/../ext', target: 'real-dir' }], duplicated: 'ext' },
+    { links: [{ path: 'a/b', target: '../real-dir' }, { path: 'a//b', target: '../real-dir' }], duplicated: 'a/b' },
+    { links: [{ path: 'a', target: 'real-dir' }, { path: 'ab', target: 'real-dir' }, { path: 'a/b', target: '../guarded.txt' }] },
+    {
+      links: [{ path: 'EXT', target: '../outside' }, { path: 'ext/planted', target: 'anything' }, { path: 'ext', target: 'real-dir' }],
+      duplicated: 'ext',
+      needsCaseInsensitive: true,
+    },
+    { links: [{ path: 'ext', target: 'real-dir' }, { path: 'Ext', target: 'real-dir' }], duplicated: 'Ext', needsCaseInsensitive: true },
+  ];
+  for (const { links, duplicated, needsCaseInsensitive } of cases) {
+    const label = links.map((link) => link.path).join(', ');
+    await t.test(label, (st) => {
+      const fixture = createSyncFixture(st);
+      if (needsCaseInsensitive && !ignoresCase(fixture.tree)) {
+        st.skip('the tree sits on a case-sensitive filesystem, where these spellings name two paths');
+        return;
+      }
+      fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
+      fs.mkdirSync(path.resolve(fixture.tree, '../outside'));
+      fixture.manifest.layoutLinks = links;
+      writeManifest(fixture);
+      const before = treeDigest(fixture.tree);
+      const applied = fixture.run(['apply']);
+      if (duplicated) {
+        assert.equal(applied.code, 2, label + ': ' + applied.output);
+        assert.ok(applied.output.includes('layout link path is listed twice: ' + duplicated), label + ': ' + applied.output);
+        assert.equal(treeDigest(fixture.tree), before, label);
+        assert.deepEqual(fs.readdirSync(path.resolve(fixture.tree, '../outside')), [], label);
+      } else {
+        assert.equal(applied.code, 0, label + ': ' + applied.output);
+        assert.equal(fs.readlinkSync(path.join(fixture.tree, 'ab')), 'real-dir');
+        assert.equal(fs.readlinkSync(path.join(fixture.tree, 'real-dir', 'b')), '../guarded.txt');
+      }
+    });
+  }
+});
+
+// Where the tree ignores case, `EXT` and `ext` are one entry, so a nested path
+// spelled in the other case is judged by the link the run writes there. The plan
+// refuses it in either entry order, before any write.
+test('a layout link below a link spelled in another case that points out is refused in either entry order', (t) => {
+  const outer = { path: 'EXT', target: '../outside' };
+  const inner = { path: 'ext/planted', target: 'anything' };
+  for (const links of [[outer, inner], [inner, outer]]) {
+    const label = links.map((link) => link.path).join(', ');
+    const fixture = createSyncFixture(t);
+    if (!ignoresCase(fixture.tree)) {
+      t.skip('the tree sits on a case-sensitive filesystem, where these spellings name two paths');
+      return;
+    }
+    const outside = path.resolve(fixture.tree, '../outside');
+    fs.mkdirSync(outside);
+    fixture.manifest.layoutLinks = links;
+    writeManifest(fixture);
+    const before = treeDigest(fixture.tree);
+
+    for (const command of ['status', 'apply']) {
+      const result = fixture.run([command]);
+      assert.equal(result.code, 2, label + ' ' + command + ': ' + result.output);
+      assert.ok(result.output.includes('layout link path escapes the tree root: ext/planted'), label + ' ' + command + ': ' + result.output);
+    }
+    assert.deepEqual(fs.readdirSync(outside), [], label);
+    assert.equal(treeDigest(fixture.tree), before, label);
+  }
+});
+
+// Whether a folder's filesystem treats `STRASSE` and `straße` as one name, which a
+// case-insensitive volume such as APFS does through full case folding.
+function foldsSharpS(dir, upper = 'STRASSE') {
+  const scratch = fs.mkdtempSync(path.join(path.dirname(dir), 'fold-'));
+  try {
+    fs.writeFileSync(path.join(scratch, upper), '');
+    try {
+      fs.lstatSync(path.join(scratch, 'stra\u00dfe'));
+      return true;
+    } catch {
+      return false;
+    }
+  } finally {
+    fs.rmSync(scratch, { recursive: true, force: true });
+  }
+}
+
+// toLowerCase leaves `straße` apart from `strasse`, so a key built with it let a
+// link nested under the other spelling half-apply. Full case folding refuses it,
+// and the capital sharp s, which lower-cases to `ß`, folds the same way.
+test('a layout link spelled with a sharp s below its upper-case spelling is refused in either order', (t) => {
+  for (const upper of ['STRASSE', 'STRA\u1e9eE']) {
+    const outer = { path: upper, target: '../outside' };
+    const inner = { path: 'stra\u00dfe/planted', target: 'anything' };
+    const twice = [{ path: upper, target: 'real-dir' }, { path: 'stra\u00dfe', target: 'real-dir' }];
+    for (const links of [[outer, inner], [inner, outer], twice]) {
+      const label = links.map((link) => link.path).join(', ');
+      const fixture = createSyncFixture(t);
+      if (!foldsSharpS(fixture.tree, upper)) {
+        t.skip('this filesystem keeps ' + upper + ' and stra\u00dfe apart');
+        return;
+      }
+      const outside = path.resolve(fixture.tree, '../outside');
+      fs.mkdirSync(outside);
+      fixture.manifest.layoutLinks = links;
+      writeManifest(fixture);
+      const before = treeDigest(fixture.tree);
+      for (const command of ['status', 'apply']) {
+        const result = fixture.run([command]);
+        assert.equal(result.code, 2, label + ' ' + command + ': ' + result.output);
+      }
+      assert.deepEqual(fs.readdirSync(outside), [], label);
+      assert.equal(treeDigest(fixture.tree), before, label);
+    }
+  }
+});
+
+// Whether a folder's filesystem treats the composed and decomposed forms of one
+// name as one entry, read from the disk in a scratch folder beside it.
+function foldsUnicodeForms(dir) {
+  const scratch = fs.mkdtempSync(path.join(dir, 'forms-'));
+  try {
+    fs.writeFileSync(path.join(scratch, 'café'), '');
+    const composed = fs.lstatSync(path.join(scratch, 'café'));
+    let decomposed = null;
+    try {
+      decomposed = fs.lstatSync(path.join(scratch, 'café'));
+    } catch {
+      decomposed = null;
+    }
+    return decomposed !== null && decomposed.dev === composed.dev && decomposed.ino === composed.ino;
+  } finally {
+    fs.rmSync(scratch, { recursive: true, force: true });
+  }
+}
+
+test('the composed and decomposed forms of one layout link path are refused as one path listed twice', (t) => {
+  const fixture = createSyncFixture(t);
+  if (!foldsUnicodeForms(path.dirname(fixture.tree))) {
+    t.skip('the tree sits on a filesystem that stores the two forms as two names');
+    return;
+  }
+  const outside = path.resolve(fixture.tree, '../outside');
+  fs.mkdirSync(outside);
+  fs.mkdirSync(path.join(fixture.tree, 'real-dir'));
+  fixture.manifest.layoutLinks = [
+    { path: 'café', target: '../outside' },
+    { path: 'café/planted', target: 'anything' },
+    { path: 'café', target: 'real-dir' },
+  ];
+  writeManifest(fixture);
+  const before = treeDigest(fixture.tree);
+
+  for (const command of ['status', 'apply']) {
+    const result = fixture.run([command]);
+    assert.equal(result.code, 2, command + ': ' + result.output);
+    assert.ok(result.output.includes('layout link path is listed twice: café'), command + ': ' + result.output);
+  }
+  assert.deepEqual(fs.readdirSync(outside), []);
   assert.equal(treeDigest(fixture.tree), before);
 });
 

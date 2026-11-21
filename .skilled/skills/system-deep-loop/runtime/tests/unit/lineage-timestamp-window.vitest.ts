@@ -209,6 +209,23 @@ describe('checkLineageTimestampWindow', () => {
     ]);
   });
 
+  it('judges the gateway time when a row carries no string claim, as the completion check does', () => {
+    const rows = [
+      { type: 'iteration', iteration: 1, timestamp: '2026-07-02T12:01:00Z', claimedTimestamp: null },
+      { type: 'event', event: 'synthesis_complete', timestamp: '2026-07-02T13:40:00Z' },
+    ];
+    const window = { windowStart: '2026-07-02T13:15:00Z', windowEnd: '2026-07-02T13:49:00Z', toleranceMs: 0 };
+
+    const result = checkLineageTimestampWindow(rows, window);
+    expect(result).toMatchObject({ anomalous: 1, untimestamped: 0, unparseable: 0, total: 2 });
+    expect(result.sample[0]).toEqual(expect.objectContaining({ index: 0, reason: 'before_window', timestamp: '2026-07-02T12:01:00Z' }));
+
+    const lateRows = [{ ...rows[0], timestamp: '2026-07-02T14:30:00Z' }, rows[1]];
+    expect(checkLineageCompletion(lateRows, { ...window, terminalEvents: ['synthesis_complete'] }))
+      .toMatchObject({ complete: false, failure: 'stamped_after_completion' });
+    expect(checkLineageTimestampWindow(lateRows, window).sample[0]).toEqual(expect.objectContaining({ index: 0, reason: 'after_window' }));
+  });
+
   it('classifies unparseable timestamps as anomalous and missing timestamps as untimestamped', () => {
     const result = checkLineageTimestampWindow([
       { type: 'iteration', timestamp: 'not-a-date' },
@@ -324,6 +341,8 @@ describe('checkLineageCompletion', () => {
     const verdict = checkLineageCompletion(lateRows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW });
     expect(verdict).toMatchObject({ complete: false, failure: 'stamped_after_completion' });
     expect(verdict.complete === false && verdict.detail).toContain('iteration 12');
+    expect(verdict.complete === false && verdict.detail).toContain('2026-11-19T19:28:00.000Z');
+    expect(verdict.complete === false && verdict.detail).not.toContain('claim');
   });
 
   it('fails on a claimed stamp beyond the process end even when the gateway timed the row inside it', () => {
@@ -333,6 +352,9 @@ describe('checkLineageCompletion', () => {
     rows.splice(rows.length - 1, 0, { type: 'event', event: 'terminal_gates', timestamp: '2026-11-19T19:25:10.000Z' });
     const verdict = checkLineageCompletion(rows, { terminalEvents: REVIEW_TERMINAL_EVENTS, ...RESUMED_ATTEMPT_WINDOW });
     expect(verdict).toMatchObject({ complete: false, failure: 'stamped_after_completion' });
+    // The message names the claim that was judged, with the gateway time beside it.
+    expect(verdict.complete === false && verdict.detail)
+      .toContain('claims 2026-11-19T19:28:00.000Z, committed 2026-11-19T19:25:00.000Z');
   });
 
   it('passes a resumed lineage whose earlier attempt left rows before the window', () => {

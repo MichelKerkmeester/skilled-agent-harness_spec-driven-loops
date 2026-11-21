@@ -1,0 +1,36 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases
+(Spec folder: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/009-crash-fallback-edge-cases (pre-approved, skip Gate 3). Write no spec docs; edit only the file in TASK.)
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command in ACCEPT has been run.
+
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts)
+Replace this file's whole content with the prepared file tmp/p009-briefs/ups.v1.ts by running exactly: cp tmp/p009-briefs/ups.v1.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+The prepared file moves the directive-lifecycle dedup block into a module-local function applyDirectiveLifecycle and the output build, receipt and policy record into a module-local function finishAdvisorDelivery, both placed above handleClaudeUserPromptSubmit, and makes the normal path call them. Read the resulting diff and report in HANDBACK any behavior change you see between the removed and the added code (there should be none). Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p009-briefs/ups.v1.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` exits 0, `grep -c 'function applyDirectiveLifecycle' .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` prints 1 and `grep -c 'function finishAdvisorDelivery' .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` prints 1.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

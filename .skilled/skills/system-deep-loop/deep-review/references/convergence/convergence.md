@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.25.0
+version: 1.11.30.0
 ---
 
 # Deep Review Convergence
@@ -102,7 +102,7 @@ The shared convergence runtime accepts four values. Review legality, security ga
 
 #### Expansive Depth Mode
 
-`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a review root up to 8 depth-1 children because the seed asks for 3 to 8 sub-targets, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. Two flags set the caps when the config is created: `--frontier-max-depth=N` writes `maxDepth` and `--frontier-max-nodes=N` writes `maxFrontierNodes`; both take a positive integer, need `--depth-mode=expansive` on a single-executor run, and are refused on a fan-out config. Once a band's spend reaches its `budgetSplit` share of `maxIterations`, the reducer closes every open or active node in that band as `exhausted` with reason `budget`, and an unspent share rolls down to the next band only after its own band holds no open node. The run cap never prunes a depth-1 seed, which only the root-children cap bounds, but every seed that is not pruned, answered ones included, counts toward the live total that later admissions are checked against. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions less traceability when the config's `reviewDimensions` list leaves it out, plus each custom name it adds, each counted once, and the seed step prints the derived budget. Since D is never below three, the ceiling of 24 binds from the second seed at three and from the first at four or more, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default instead: 12 iterations for a native lineage and 7 for a CLI one or a single run. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. Iteration time varies by executor and model: a measured fan-out run took 0.5 to 5 minutes an iteration and committed reviews 1.5 to 3.7 minutes, so a 24-iteration review on the slowest of those can reach `maxDurationMinutes` (120) before its iteration cap. A fan-out parent seeds before any config exists, so its cap falls back to 10. The mode is locked against the optimizer; the `expansiveDepth` block is in neither its tunable nor its locked list. An absent flag means `default`, which runs exactly as before.
+`--depth-mode=expansive` grows a depth-capped frontier of sub-target nodes beside the review target. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a review root up to 8 depth-1 children because the seed asks for 3 to 8 sub-targets, a `budgetSplit` of 0.5/0.35/0.15 across the depth bands and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. Two flags set the caps when the config is created: `--frontier-max-depth=N` writes `maxDepth` and `--frontier-max-nodes=N` writes `maxFrontierNodes`; both take a positive integer, need `--depth-mode=expansive` on a single-executor run, and are refused on a fan-out config. Once a band's spend reaches its `budgetSplit` share of `maxIterations`, the reducer closes every open or active node in that band as `exhausted` with reason `budget`, and an unspent share rolls down to the next band only after its own band holds no open node. The run cap never prunes a depth-1 seed, which only the root-children cap bounds, but every seed that is not pruned, answered ones included, counts toward the live total that later admissions are checked against. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(7, 2 × D × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes and D the four canonical dimensions less traceability when the config's `reviewDimensions` list leaves it out, plus each custom name it adds, each counted once, and on a single-executor run the seed step prints the derived budget. Since D is never below three, the ceiling of 24 binds from the second seed at three and from the first at four or more, so one run cannot fund every node at every depth of a wide review; split a wide review with fan-out, where each lineage with no matrix `iterations` value sizes its own budget from its share of the seed, with D fixed at the canonical four because a lineage reviews only those. A lineage dealt no seed node, or a run whose seeds were all pruned, runs at its loop default of 7 instead. A fan-out parent seeds before its root config exists, so its seed step prints no whole-seed budget: the runner writes the largest lineage cap into the root config's `maxIterations` and prints the run's budget table as one `[fanout-run] budget table:` line on stderr. The node cap stays half the budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. Iteration time varies by executor and model: a measured fan-out run took 0.5 to 5 minutes an iteration and committed reviews 1.5 to 3.7 minutes, so a 24-iteration review on the slowest of those can reach `maxDurationMinutes` (120) before its iteration cap. A fan-out parent seeds before any config exists, so its node cap falls back to 10, which the depth-1 seed does not answer to. The mode is locked against the optimizer; the `expansiveDepth` block is in neither its tunable nor its locked list. An absent flag means `default`, which runs exactly as before.
 
 After the review floor, an expansive run that still holds an open or active node turns a stop candidate into `CONTINUE` with reasonDetail `frontierOpen`, whichever candidate it was, `all_dimensions_clean` or a composite convergence vote. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, pause, the max-duration stop, `--convergence-mode=off`, `--stop-policy=max-iterations` or the `minIterations` floor. Under stuck recovery the handler closes the active node as `exhausted` with reason `stuck`, so a node the run cannot fund stops holding the veto open.
 
@@ -129,7 +129,7 @@ Every pivot dispatches three seats, or six when its first attempt misses quorum,
 | `converged` | All convergence signals met and legal-stop gates passed. |
 | `maxIterationsReached` | Iteration limit hit before convergence. |
 | `userPaused` | User requested pause via sentinel. |
-| `blockedStop` | Convergence math voted stop but legal-stop gates failed. |
+| `blockedStop` | A stop candidate failed the legal-stop gates or the graph decision (decision BLOCKED, the loop continues), or the same failed set has now blocked `stuckThreshold` runs in a row with no new finding (decision STOP, reasonDetail `blockedStreakReached`). |
 | `stuckRecovery` | Stuck detection triggered recovery. |
 | `error` | Unrecoverable error during iteration or reducer flow. |
 | `manualStop` | Operator explicitly halted outside the pause sentinel path. |
@@ -137,21 +137,24 @@ Every pivot dispatches three seats, or six when its first attempt misses quorum,
 
 #### blocked_stop Event (canonical, persisted)
 
-`step_emit_blocked_stop` in `deep-review.yaml` appends the following record to `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. The gate names and their shapes are load-bearing, the reducer reads them verbatim:
+`convergence.cjs` records the following row in `deep-review-state.jsonl` whenever the legal-stop decision tree vetoes STOP. `step_graph_convergence` in `deep-review.yaml` runs it with `--record-blocked-stop` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event), and on a BLOCKED decision it appends a `deep_review.blocked_stop_recorded` event through the append gateway, which projects to this row. The workflow never writes it by hand. The gate names and their shapes are load-bearing, the reducer reads them verbatim:
 
 ```json
 {
   "type": "event",
   "event": "blocked_stop",
-  "mode": "review",
+  "iteration": "iteration-5",
   "run": 5,
   "blockedBy": ["dimensionCoverageGate", "p0ResolutionGate"],
+  "stopReason": "dimension-coverage-gate",
   "gateResults": {
     "convergenceGate": { "pass": true, "score": 0.72 },
     "dimensionCoverageGate": {
       "pass": false,
       "covered": ["correctness", "security", "traceability"],
-      "missing": ["maintainability"]
+      "missing": ["maintainability"],
+      "traceabilityCovered": true,
+      "coverageAge": 2
     },
     "p0ResolutionGate": { "pass": false, "activeP0": 1 },
     "evidenceDensityGate": { "pass": true, "avgEvidencePerFinding": 1.6 },
@@ -162,15 +165,15 @@ Every pivot dispatches three seats, or six when its first attempt misses quorum,
     "graphlessFallbackGate": { "pass": true, "mode": "graph_available", "missing": [], "unavailabilityReason": "" }
   },
   "graphBlockerDetail": [],
-  "recoveryStrategy": "Dispatch the next iteration at the maintainability dimension and re-check after resolving the remaining P0.",
-  "timestamp": "2026-03-24T15:02:00Z",
-  "sessionId": "rvw-2026-03-24T10-00-00Z",
-  "generation": 1
+  "recoveryStrategy": "Clear the failed legal-stop gates before stopping: dimensionCoverageGate, p0ResolutionGate.",
+  "timestamp": "2026-03-24T15:02:00Z"
 }
 ```
 
+The projected row carries no `mode`, `sessionId` or `generation`: the event's scope holds them. Its `stopReason` is the first failed gate as a kebab-case code, not a lifecycle stop reason, and its `recoveryStrategy` is the event's recovery hint.
+
 - `blockedBy`: array of gate names that failed (string[], never structured objects). Empty when STOP is legal, in which case no `blocked_stop` event is emitted.
-- `gateResults`: named sub-records keyed by `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. This is the full 9-gate set emitted by `step_emit_blocked_stop` in `deep-review.yaml`. Each sub-record has a `pass` boolean plus gate-specific fields (score, covered/missing, activeP0, avgEvidencePerFinding, activeP0P1, securitySensitive, requiredRows, passingRows, searchDebt, mode, unavailabilityReason). The reducer reads these verbatim and does not coerce shapes. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates, they pass trivially when the review-depth-v2 search path is inactive (no search debt, graph available).
+- `gateResults`: named sub-records keyed by `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. This is the full 9-gate set `convergence.cjs` records. Each sub-record has a `pass` boolean plus gate-specific fields (score, covered/missing, plus `traceabilityCovered` and `coverageAge` (a number or null) on `dimensionCoverageGate` so a block with nothing missing still names its cause, activeP0, avgEvidencePerFinding, activeP0P1, securitySensitive, requiredRows, passingRows, searchDebt, mode, unavailabilityReason). The reducer reads these verbatim and does not coerce shapes. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates, they pass trivially when the review-depth-v2 search path is inactive (no search debt, graph available).
 - `graphBlockerDetail`: array of structured graph blockers copied from the latest graph convergence decision. Empty when graph convergence did not veto STOP.
 - `recoveryStrategy`: human-readable one-liner describing what the next iteration should do before another stop attempt.
 - When the graph convergence verdict is `STOP_BLOCKED`, fold the graph blocker gate name into `blockedBy` and preserve the structured blocker objects under `graphBlockerDetail`.
@@ -189,6 +192,7 @@ Checks are evaluated in this order (first match wins), as `buildStopDecision` in
 8. **Frontier veto** -- under `--depth-mode=expansive`, an open or active frontier node turns the candidate into `CONTINUE` (`frontierOpen`).
 9. **Legal-stop gate bundle** -- review-specific stop gates. If the candidate fails any gate, persist `stopReason=blockedStop` and continue.
 10. **Graph decision** -- the candidate is combined with the graph convergence verdict: `STOP_ALLOWED` stops, `STOP_BLOCKED` blocks the stop and `CONTINUE` continues the run.
+11. **Blocked streak** -- a block from step 9 or 10 becomes `STOP` with `stopReason` `blockedStop` and `reasonDetail` `blockedStreakReached` once the same sorted blocker set, this pass included, has blocked `stuckThreshold` (2) runs in a row. A different set starts a new streak and a pass that records a new finding resets it. The stopping pass writes no `blocked_stop` row, and the terminal row records `blockedStop`.
 
 ---
 
@@ -453,7 +457,7 @@ A new critical finding always signals significant remaining work. The 0.50 floor
 
 ## 6. LEGAL-STOP GATE BUNDLE
 
-> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `step_emit_blocked_stop` in `deep-review.yaml`, which emits **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §1 event shape mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) has been reconciled.
+> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `convergence.cjs`, which the `step_graph_convergence` step in `deep-review.yaml` runs with `--record-blocked-stop` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event) and which records **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §1 event shape mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) has been reconciled.
 
 Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 9 gates and persist a blocked-stop event when any gate fails.
 

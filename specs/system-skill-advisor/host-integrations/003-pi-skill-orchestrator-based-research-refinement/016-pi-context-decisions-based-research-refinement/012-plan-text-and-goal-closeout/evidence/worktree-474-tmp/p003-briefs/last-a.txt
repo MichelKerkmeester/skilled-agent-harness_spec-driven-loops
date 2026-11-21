@@ -1,0 +1,61 @@
+**The four requested edits are in** [scorer-calibration.bench.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts). The acceptance `rg` command passed and printed three lines. Full verification remains with the conductor.
+
+**Final changed blocks:**
+
+1. Import:
+```ts
+import { shouldFireAdvisor, stripLeadingPastedReply } from '../lib/prompt-policy.js';
+```
+
+2. Policy reason:
+```ts
+// The policy reason a prompt with task intent and enough content words gets.
+const WORK_INTENT_REASON = 'work_intent_with_meaningful_tokens';
+```
+
+3. Floored counters and classification:
+```ts
+// A floored top-1 passes on the task-intent floor rather than its own evidence.
+// Floored passes on work-intent rows that are also correct are the routes a
+// guard on floored follow-ups would hide.
+const floored = { correct: 0, wrong: 0, workIntent: 0, workIntentCorrect: 0 };
+const collateralIds: string[] = [];
+const predictions = rows.map((row) => {
+```
+
+```ts
+const correct: 0 | 1 = predictedSkill === goldSkill(row) ? 1 : 0;
+if (top?.confidenceFloored === true) {
+  if (correct === 1) floored.correct += 1;
+  else floored.wrong += 1;
+  if (shouldFireAdvisor(stripLeadingPastedReply(row.prompt)).reason === WORK_INTENT_REASON) {
+    floored.workIntent += 1;
+    if (correct === 1) {
+      floored.workIntentCorrect += 1;
+      collateralIds.push(row.id);
+    }
+  }
+}
+```
+
+4. Log field:
+```ts
+metricBrierMean: brierMean === undefined ? null : roundMetric(brierMean),
+floored: { ...floored, collateral: collateralIds.length, collateralIds },
+})}`);
+```
+
+All four source anchors matched. The baseline check did not produce an empty diff:
+
+- Task condition: `git diff --stat -- .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration-baseline.json shows no new change from you.`
+- Observed output: `1 file changed, 12 insertions(+), 12 deletions(-)`
+
+My only write targeted the benchmark file. The baseline is modified in the shared worktree, and I did not edit it. I did not capture its initial status, so I cannot establish when its current diff appeared.
+
+`git diff --check` passed. The required SKILLED drift guard failed with exit 1: alignment-drift reported 11 errors, while the other three guards passed. I left those out-of-scope files untouched. Tests, typecheck, and build were not run, as directed for this sandbox.
+
+SKILL ROUTING: compiled route selected `sk-code-skilled` for TypeScript implementation.  
+ARTIFACT: `sk-code` → `sk-code-skilled` TypeScript resources.  
+REPO RULES: no write-time trigger matched. Reply rules loaded.
+
+The target file is modified and uncommitted on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`. **Conductor next:** run the assigned tests, typecheck, and build, and assess the drift-guard failure.

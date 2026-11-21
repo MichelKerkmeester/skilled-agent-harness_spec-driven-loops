@@ -1,7 +1,7 @@
 ---
 title: "DLR-025 -- Fan-out CLI lineage driver spawn and isolation"
 description: "Validate fanout-run.cjs creates per-lineage dirs with isolated .executor-state paths, saves stdout to logs/, writes orchestration summary and ledger, returns early for native-only configs, and that its --status table and --stop control behave as documented."
-version: 1.4.4.0
+version: 1.4.8.0
 ---
 
 # DLR-025 -- Fan-out CLI lineage driver spawn and isolation
@@ -32,7 +32,7 @@ group, that lineage keeps spending after the operator ended the run.
 - Objective: Confirm `fanout-run.cjs` creates distinct per-lineage dirs and state dirs, writes orchestration artifacts, and returns early for native-only configs.
 - Layer partition: CLI lineage dispatch.
 - Real user request: `Validate the fan-out CLI lineage driver and confirm the selected lineage-isolation and orchestration cases pass, verifying lineage isolation and orchestration artifact creation.`
-- Expected signals: `lineages/lineage-a/` and `lineages/lineage-b/` dirs created; `.executor-state/` paths distinct for same-kind replicas; `orchestration-summary.json` present with `total_cli_lineages=2`; `orchestration-status.log` has JSONL events; native-only config returns `{status:"ok", results:[]}`; `--status` prints a header naming, in order, `lineage`, `status`, `iterations`, `last commit`, `nodes answered/open/total`, `flagged passes` and `updated` (columns padded to the widest cell), one row per lineage, exits 0 and leaves the ledger byte-identical; `--status` on a directory with no ledger exits 3; `--stop` prints `{status, stopped, survivors}`, writes a `stopped` row with a `rerun_command` per stopped lineage, and exits 0 when no lineage survives.
+- Expected signals: `lineages/lineage-a/` and `lineages/lineage-b/` dirs created; `.executor-state/` paths distinct for same-kind replicas; `orchestration-summary.json` present with `total_cli_lineages=2`; `orchestration-status.log` has JSONL events; native-only config returns `{status:"ok", results:[]}`; `--status` prints a header naming, in order, `lineage`, `status`, `iterations`, `last commit`, `nodes answered/open/total`, `flagged passes` and `updated` (columns padded to the widest cell), one row per lineage, exits 0 and leaves the ledger byte-identical; `--status` on a directory with no ledger exits 3; `--stop` prints `{status, stopped, survivors, refused, spared}`, writes a `stopped` row with a `rerun_command` per stopped lineage, and exits 0 with `status: "ok"` only when no lineage survives and none is refused.
 - Pass/fail: PASS only if every selected case passes with EXIT 0 and source inspection confirms `SPECKIT_STATE_ENV_BY_KIND` usage; FAIL otherwise.
 
 ---
@@ -55,8 +55,8 @@ group, that lineage keeps spending after the operator ended the run.
 3. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-run.vitest.ts -t "creates two isolated lineage dirs|for each same-kind replica|emits ok JSON for native fanout"`
 4. Confirm every selected case passes. The filter selects three cases: `creates two isolated lineage dirs and writes orchestration summary for 2 cli-opencode lineages`, `sets distinct SPECKIT_OPENCODE_STATE_DIR for each same-kind replica to prevent lockfile collisions` and `exits 0 and emits ok JSON for native fanout through opencode command dispatch`. The first verifies dirs, ledger and summary; the second verifies `.executor-state` paths are distinct for same-kind replicas; the third verifies the early return.
 5. Run the runner on a one-lineage research matrix with a throwaway `--spec-folder` and `--base-artifact-dir` and no `--only-lineage`. Confirm exit 3, a message that names the single-executor `/deep:research` workflow, and no lineage directory, ledger or summary under the base directory. Rerun with `--only-lineage <label>`, naming the matrix entry's label, and confirm the lineage starts.
-6. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-status.vitest.ts tests/unit/fanout-stop.vitest.ts`. Confirm every case passes, among them `prints one row per lineage from the ledger and writes nothing`, `refuses a directory with no fan-out ledger and creates nothing there`, `stops its lineages and exits 129 when the bootstrap gets SIGHUP` and `--stop ends a live run from a second process and records a rerun for each stopped lineage`.
-7. While the step 5 lineage runs, run `node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --status --base-artifact-dir <base>` from a second shell and confirm the table header and one row for that lineage. Then rerun the step 5 command with `--stop` added, and confirm it prints `{status, stopped, survivors}` with the lineage under `stopped`, exits 0, and that `orchestration-status.log` gains a `stopped` row whose `rerun_command` ends `--only-lineage <label>`.
+6. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-status.vitest.ts tests/unit/fanout-stop.vitest.ts tests/unit/fanout-stop-identity.vitest.ts`. Confirm every case passes, among them `prints one row per lineage from the ledger and writes nothing`, `refuses a directory with no fan-out ledger and creates nothing there`, `stops its lineages and exits 129 when the bootstrap gets SIGHUP`, `--stop ends a live run from a second process and records a rerun for each stopped lineage`, `a runner stopped by a signal spares the members --stop would spare, and still stops the others` and `a runner stopped by a signal leaves a lineage that outlives the signal open, and names it a survivor`.
+7. While the step 5 lineage runs, run `node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --status --base-artifact-dir <base>` from a second shell and confirm the table header and one row for that lineage. Then rerun the step 5 command with `--stop` added, and confirm it prints `{status, stopped, survivors, refused, spared}` with the lineage under `stopped` and `refused` and `spared` empty, exits 0, and that `orchestration-status.log` gains a `stopped` row whose `rerun_command` ends `--only-lineage <label>`.
 
 ### Expected Outcome
 
@@ -74,9 +74,10 @@ Every selected case passes. Lineage dirs created, `.executor-state` dirs distinc
 - Missing `SPECKIT_<KIND>_STATE_DIR` in env: same-kind replicas use the same state dir and may trip the loop-lock.
 - stdout not saved to `logs/fanout-lineage.out`: salvage sweep has no data to recover from.
 - Pool worker throws instead of settling: pool fails entirely rather than reporting per-item status.
-- Step 5 starts a lineage without the opt-in: the one-lineage guard no longer runs before setup, so a chat session can again run every iteration in one process.
+- Step 5 starts a lineage without `--only-lineage`: the one-lineage guard no longer runs before setup, so a chat session can again run every iteration in one process.
 - `--status` changes the ledger or creates a file: the status branch no longer returns before the run's setup.
-- `--stop` exits 2 with the lineage under `survivors`: the lineage's process group did not end within the 10-second confirm window, or its `spawned` row names a stale pid.
+- `--stop` exits 2: read `status` before anything else, because exit 2 has two causes. `status: "partial"` means a lineage is under `survivors` or `refused`. A survivor's process group did not end within the 10-second confirm window, or its `spawned` row names a stale pid. A lineage under `refused` was not signalled, because its pid's start time no longer matches the `process_start` its `spawned` row recorded, none was recorded, or its start time could not be read and no member of its group was left to signal. `status: "error"` means the stop itself threw a permission, path or database error (`EACCES`, `EPERM`, `ENOTDIR` or a SQLite error), and nothing in the output says what was stopped.
+- A runner stopped by a signal writes `run_stopped` with a non-empty `survivors` list: those lineages still answered 2.5 seconds after the runner signalled them, so they have no `stopped` row and stay live for a later `--stop`. A `stopped` row for a lineage whose process still runs means the runner no longer waits before it records one.
 - `--stop` exits 3 with a validation error: it was run without the run's own arguments, which it needs to validate the run and build each rerun command.
 
 ---

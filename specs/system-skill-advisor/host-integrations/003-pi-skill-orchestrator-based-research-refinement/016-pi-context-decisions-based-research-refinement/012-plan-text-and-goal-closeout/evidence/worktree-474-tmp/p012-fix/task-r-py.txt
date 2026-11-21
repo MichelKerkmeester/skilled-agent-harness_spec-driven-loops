@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/test_skill_advisor.v2.py .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py
+The prepared file adds one check inside test_pasted_reply_strip_parity: recommend_with_native_advisor sends the bridge the task behind a long pasted reply. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/test_skill_advisor.v2.py .skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` exits 0.

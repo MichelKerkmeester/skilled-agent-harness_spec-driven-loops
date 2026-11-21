@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Dependency Seams — Self-Containment Guard
+// ───────────────────────────────────────────────────────────────────
 //
 // Guards that the runtime resolves its external dependencies (zod,
 // better-sqlite3, tsx) from this skill's OWN node_modules rather than reaching

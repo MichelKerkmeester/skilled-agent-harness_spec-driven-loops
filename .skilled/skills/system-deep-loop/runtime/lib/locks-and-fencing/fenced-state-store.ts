@@ -42,6 +42,7 @@ interface StoredFencedState<TState extends JsonObject> extends StoredFencedState
   readonly stateDigest: string;
 }
 
+/** A compare-and-replace of fenced state: the lease, the version expected on disk and the next state. */
 export interface FencedStateReplaceRequest<TState extends JsonObject> {
   readonly lease: FencedLease;
   readonly expectedVersion: number;
@@ -50,6 +51,7 @@ export interface FencedStateReplaceRequest<TState extends JsonObject> {
   readonly nextState: Readonly<TState>;
 }
 
+/** Receipt for a fenced state replace, with the fence token used, prior and new versions and the new state digest. */
 export interface FencedStateReceipt {
   readonly resourceDigest: string;
   readonly fenceToken: number;
@@ -59,6 +61,7 @@ export interface FencedStateReceipt {
   readonly replayFingerprint: string | null;
 }
 
+/** Fenced state read back after its digest was checked, with its version, fence token and continuity identity. */
 export interface VerifiedFencedState<TState extends JsonObject> {
   readonly stateVersion: number;
   readonly continuityIdentity: string;

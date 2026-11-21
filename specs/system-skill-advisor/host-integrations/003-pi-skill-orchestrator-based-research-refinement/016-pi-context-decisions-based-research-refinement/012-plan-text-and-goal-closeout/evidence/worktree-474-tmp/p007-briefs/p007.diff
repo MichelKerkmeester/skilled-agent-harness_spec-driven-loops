@@ -1,0 +1,237 @@
+diff --git a/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py b/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
+index c278fcc0986..d4df01b06a0 100755
+--- a/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
++++ b/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py
+@@ -4784,6 +4784,52 @@ def _apply_iteration_loop_tiebreaker(
+ # 4. ANALYSIS
+ # ───────────────────────────────────────────────────────────────
+ 
++# JavaScript's \s and String.prototype.trim() set. Python's own \s also matches
++# U+001C to U+001F and U+0085 and misses U+FEFF, so the set is spelled out here
++# to keep this strip equal to the native scorer's for every input.
++_JS_SPACE_CHARS = (
++    "\t\n\v\f\r \u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006"
++    "\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff"
++)
++_JS_SPACE = "[" + _JS_SPACE_CHARS + "]"
++# re.ASCII keeps case folding to ASCII letters, as a JavaScript /i regex without
++# the u flag does. Unicode folding would read "\u017f" as "s".
++_STRIP_FLAGS = re.IGNORECASE | re.ASCII
++_PASTED_REPLY_CUE = re.compile(
++    rf"^{_JS_SPACE}*(?:(?:earlier|previously|above),?{_JS_SPACE}+)?"
++    rf"(?:(?:you|the assistant|claude){_JS_SPACE}+(?:replied|said|wrote|answered|responded)"
++    rf"|(?:the{_JS_SPACE}+)?(?:assistant|claude){_JS_SPACE}+(?:response|reply|answer)){_JS_SPACE}*:",
++    _STRIP_FLAGS,
++)
++_TASK_MARKER = re.compile(rf"(?:^|[.!?\n]{_JS_SPACE}*)(?:now|task){_JS_SPACE}*:{_JS_SPACE}*", _STRIP_FLAGS)
++
++
++def _strip_pasted_reply_once(prompt: str) -> str:
++    if not _PASTED_REPLY_CUE.search(prompt):
++        return prompt
++    markers = list(_TASK_MARKER.finditer(prompt))
++    if not markers:
++        return prompt
++    # The last marker wins: a pasted reply can hold its own "Task:" line.
++    marker = markers[-1]
++    task = prompt[marker.end():].strip(_JS_SPACE_CHARS)
++    return task if task else prompt
++
++
++def strip_leading_pasted_reply(prompt: str) -> str:
++    """Drop an earlier reply pasted ahead of the task, as the native scorer does.
++
++    The skill names in a pasted reply would otherwise steer routing away from the
++    task. Repeats until nothing changes, so a second call returns the same text.
++    """
++    current = prompt
++    while True:
++        stripped = _strip_pasted_reply_once(current)
++        if stripped == current:
++            return current
++        current = stripped
++
++
+ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
+     """Analyze user request and return ranked skill recommendations.
+ 
+@@ -4793,6 +4839,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
+     if not prompt:
+         return []
+ 
++    prompt = strip_leading_pasted_reply(prompt)
+     prompt_lower = prompt.lower()
+     all_tokens = re.findall(r'\b\w+\b', _strip_command_mode_suffixes(prompt_lower))
+     skills = get_skills()
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json b/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json
+index 597dd335956..6604134f283 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json
+@@ -87,6 +87,36 @@
+       "id": "quote-led-curly",
+       "input": "\u201cI updated the README with sk-doc conventions.\u201d\nNow: Refactor the session store module to remove duplicated locking code",
+       "expected": "\u201cI updated the README with sk-doc conventions.\u201d\nNow: Refactor the session store module to remove duplicated locking code"
++    },
++    {
++      "id": "js-space-nbsp",
++      "input": "You\u00a0said: run the tests. Task: fix the failing parser test",
++      "expected": "fix the failing parser test"
++    },
++    {
++      "id": "js-space-info-separator",
++      "input": "\u001cYou said: run the tests. Task: fix the failing parser test",
++      "expected": "\u001cYou said: run the tests. Task: fix the failing parser test"
++    },
++    {
++      "id": "js-space-bom",
++      "input": "\ufeffYou said: run the tests. Task: fix the failing parser test",
++      "expected": "fix the failing parser test"
++    },
++    {
++      "id": "ascii-case-fold",
++      "input": "You \u017faid: run the tests. Task: fix the failing parser test",
++      "expected": "You \u017faid: run the tests. Task: fix the failing parser test"
++    },
++    {
++      "id": "js-trim-trailing-separator",
++      "input": "You said: run the tests. Task: fix the failing parser test\u001c",
++      "expected": "fix the failing parser test\u001c"
++    },
++    {
++      "id": "js-space-nel",
++      "input": "You\u0085said: run the tests. Task: fix the failing parser test",
++      "expected": "You\u0085said: run the tests. Task: fix the failing parser test"
+     }
+   ]
+ }
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts b/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts
+index b18ab3a5df1..ef0787e9d84 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts
+@@ -175,8 +175,11 @@ describe('advisor 196-prompt corpus regression-protection parity', () => {
+       // reference follows them, so it answers two more prompts correctly and the
+       // native scorer keeps one of them; rr-iter3-105 is the row it loses.
+       // The Python fallback now also answers rr-iter3-076 correctly.
+-      expect(pythonCorrect).toBe(117);
+-      expect(hookPreservedPythonCorrect).toBe(112);
++      // 117 -> 118 and 112 -> 113: the Python reference now drops a pasted
++      // earlier reply before scoring, as the native scorer does, so the
++      // pasted-reply row reaches its gold on both.
++      expect(pythonCorrect).toBe(118);
++      expect(hookPreservedPythonCorrect).toBe(113);
+       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
+       expect(
+         regressions.map((regression) => regression.id),
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json b/.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json
+index eb84f8899d5..b0df6e88356 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json
+@@ -751,17 +751,6 @@
+       "nativeTop": "system-spec-kit",
+       "reason": "reviewed 2026-11-05: local returns the gold command-speckit-save on a typed /memory:save at a dead-level 0.95 against system-spec-kit and breaks that tie toward the command, while native breaks the same tie toward the umbrella skill; why native resolves this prompt to the owner is not traced",
+       "approvedAt": "2026-11-05"
+-    },
+-    {
+-      "id": "rr-paste-208",
+-      "corpus": "labeled",
+-      "prompt": "Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: Refactor the session store module to remove duplicated locking code",
+-      "gold": "sk-code",
+-      "promptHash": "sha256:9370508d23654061d7d5238590fdcb36386c2f9614a4bbed0ee690329a3530df",
+-      "localTop": "sk-doc",
+-      "nativeTop": "sk-code",
+-      "reason": "native strips the earlier reply pasted ahead of the task marker and scores only the task, reaching the gold sk-code; the Python local scorer is left unchanged by design and still routes on the pasted reply's sk-doc and sk-git names",
+-      "approvedAt": "2026-11-18"
+     }
+   ]
+ }
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts b/.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts
+index 8ee2d7c8c53..e83b42c655a 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts
+@@ -266,12 +266,15 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () =>
+     // reference follows them, so it answers three more prompts correctly; the
+     // native scorer keeps two of the three. rr-iter3-105 is the one it loses.
+     // 112 -> 113: the Python fallback now also answers rr-iter3-076 correctly.
+-    expect(pythonCorrect).toBe(113);
++    // 113 -> 114 and 108 -> 109: the Python reference now drops a pasted earlier
++    // reply before scoring, as the native scorer does, so the pasted-reply row
++    // reaches its gold on both.
++    expect(pythonCorrect).toBe(114);
+     // 103 -> 104: a negated write verb no longer awards the sk-doc write-surface
+     // boost, so rr-iter3-146 reaches its sk-code gold.
+     // 104 -> 105: the hyphenated deep-review and deep-research workflow names are
+     // system-deep-loop lexical hints, so rr-iter3-166 returns to its deep-loop gold.
+-    expect(tsAlsoCorrect).toBe(108);
++    expect(tsAlsoCorrect).toBe(109);
+     expect(regressions).toBe(ACCEPTED_PARITY_REGRESSION_IDS.length);
+     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
+     expect(tsAbstainsOnPythonCorrect).toBe(0);
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py b/.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py
+index efaf9bea5c8..92f488b0338 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py
+@@ -2527,6 +2527,56 @@ def test_declared_phrase_specificity():
+ # 6. MAIN
+ # ───────────────────────────────────────────────────────────────
+ 
++def test_pasted_reply_strip_parity():
++    """The local scorer drops a pasted earlier reply exactly as the native scorer does."""
++    try:
++        advisor = load_module("skill_advisor", "skill_advisor.py")
++        fixture_path = os.path.realpath(os.path.join(
++            os.path.dirname(os.path.realpath(__file__)),
++            "..",
++            "fixtures",
++            "pasted-reply-strip-cases.json",
++        ))
++        with open(fixture_path, "r", encoding="utf-8") as fh:
++            cases = json.load(fh)["cases"]
++    except Exception as exc:
++        fail_test("STRIP: load scorer and shared fixture", str(exc))
++        return
++
++    # The TypeScript prompt-policy test reads the same rows, so both scorers
++    # drop the same text before scoring.
++    for case in cases:
++        name = f"STRIP-{case['id']}"
++        try:
++            stripped = advisor.strip_leading_pasted_reply(case["input"])
++            again = advisor.strip_leading_pasted_reply(stripped)
++        except Exception as exc:
++            fail_test(name, str(exc))
++            continue
++        if stripped == case["expected"] and again == stripped:
++            ok(name)
++        else:
++            fail_test(name, f"got={stripped!r} expected={case['expected']!r}")
++
++    # The strip runs at the entry of analyze_request, so a pasted reply and the
++    # bare task score the same.
++    probe = next((case for case in cases if case["id"] == "probe"), None)
++    name = "STRIP-ENTRY: analyze_request scores the probe as its bare task"
++    if probe is None:
++        fail_test(name, "probe row missing")
++        return
++    try:
++        pasted = [r["skill"] for r in advisor.analyze_request(probe["input"])]
++        bare = [r["skill"] for r in advisor.analyze_request(probe["expected"])]
++    except Exception as exc:
++        fail_test(name, str(exc))
++        return
++    if pasted == bare:
++        ok(name, f"top={pasted[:1]}")
++    else:
++        fail_test(name, f"pasted={pasted[:3]} bare={bare[:3]}")
++
++
+ def main():
+     print("=" * 60)
+     print("  SKILL ADVISOR AUTOMATED TEST SUITE (T243/T246)")
+@@ -2540,6 +2590,7 @@ def main():
+     test_private_skill_link_trust()
+     test_private_skill_discovery_trust()
+     test_declared_phrase_specificity()
++    test_pasted_reply_strip_parity()
+ 
+     print(f"\nSummary: pass={passed}, fail={failed}")
+     return 0 if failed == 0 else 1

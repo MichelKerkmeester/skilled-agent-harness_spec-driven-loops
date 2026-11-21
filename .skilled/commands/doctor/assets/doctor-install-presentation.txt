@@ -58,6 +58,8 @@ Where should Skilled go? Answer any or all in one reply, for example "/Users/me/
 2) Runtimes: claude, opencode, codex, cursor, devin, pi, vibe, dsh, or "the ones already there"
 3) Link shape: auto / whole / merge   (auto unless a real folder already sits where a link would go)
 4) Instruction file: embed / link   (embed keeps the repo's own AGENTS.md; link points AGENTS.md, CLAUDE.md and REPO RULES.md at the checkout's copies)
+
+These answers only fill in the printed commands. After your reply the guide reads the target repo and prints the steps in order. Nothing is written: each step that writes shows its own plan and asks its own yes when you run it.
 ```
 
 The example carries all four answers so the shape of a full reply is visible. Never print a question the flags already answered.
@@ -181,9 +183,12 @@ DOCTOR TARGET FAILED
 Target: guide
 Step: [the step that failed]
 Error: [message]
-Next: [the accepted invocation, or the command to rerun]
+Why: [the reason line the engine printed under the error, else what the failed step reads]
+Next: [the engine's own Next: line when it printed one, else the accepted invocation or the command to rerun]
 STATUS=FAIL ERROR="[message]"
 ```
+
+This guide only reads, so a failure has changed nothing. When the symlink engine prints a `Next:` line, show it as printed rather than a paraphrase.
 
 ## 9. Troubleshooting Display
 

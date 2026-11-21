@@ -1864,7 +1864,7 @@ step_check_executor_unavailable:
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show --stat e4c1a24b2d7 | head -40; echo ===; git -c core.fsmonitor=false show e4c1a24b2d7 -- .skilled/skills/system-deep-loop/feature-catalog/feature-catalog.md | head -80
 commit e4c1a24b2d7bbfc23d1bcc2a9cebdcc4f8a78675
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 00:48:57 2026 +0100
 
     docs(system-deep-loop): catalog and index the expansive-depth features
@@ -1905,7 +1905,7 @@ Date:   Wed Nov 18 00:48:57 2026 +0100
  .../014-docs-playbooks-alignment/spec.md           |  2 +-
 ===
 commit e4c1a24b2d7bbfc23d1bcc2a9cebdcc4f8a78675
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 00:48:57 2026 +0100
 
     docs(system-deep-loop): catalog and index the expansive-depth features

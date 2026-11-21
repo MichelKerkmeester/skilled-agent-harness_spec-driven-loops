@@ -405,6 +405,7 @@ export function openReadOnlyDb(dbDir: string = COVERAGE_GRAPH_DATABASE_DIR): { p
     if (!existsSync(`${path}-wal`) && !existsSync(`${path}-shm`)) {
       // A path open of a WAL-mode file recreates its -wal and -shm side files on the first
       // query; the patched copy opens from memory in rollback mode without touching disk.
+      // Header bytes 18 and 19 are the file-format write and read versions, where 1 is rollback and 2 is WAL.
       const buffer = readFileSync(path);
       buffer[18] = 1;
       buffer[19] = 1;
@@ -451,6 +452,7 @@ export function isReadOnlyDbPresent(): boolean {
  */
 export function getDb(): Database.Database {
   if (!db) initDb(COVERAGE_GRAPH_DATABASE_DIR);
+  // initDb either assigns db or rethrows, so db is set here.
   return db!;
 }
 
@@ -994,6 +996,7 @@ export function getStats(specFolder: string, loopType: LoopType): {
 
   let dbFileSize: number | null = null;
   if (dbPath) {
+    // The size is informational, so a file that cannot be stat'ed reports null.
     try { dbFileSize = statSync(dbPath).size; } catch { }
   }
 

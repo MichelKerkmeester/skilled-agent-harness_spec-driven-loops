@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.20.0
+version: 1.4.31.0
 ---
 
 # Fan-out CLI lineage driver
@@ -39,7 +39,9 @@ the post-subprocess salvage step.
 
 Fully shipped. Supports every CLI executor kind (`EXECUTOR_KINDS` in `lib/deep-loop/executor-config.ts`): `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-deepseek-harness` (experimental).
 Per-lineage subprocess timeout = `min(iterations *
-timeoutSeconds * 2, 4h)`. TSX bootstrap (mirrors `convergence.cjs` pattern) ensures
+timeoutSeconds * 2, 4h)`. A lineage's stdout is capped at 20 MB: past it the process
+group is stopped and the lineage fails with `stdout passed the <n>-byte cap`, even when
+the child exits 0, and it is not reported as a timeout. TSX bootstrap (mirrors `convergence.cjs` pattern) ensures
 TypeScript imports (`parseFanoutConfig`, `expandLineages`) resolve in the CJS context. Exit
 codes: 0=all ok, 2=some failed, 3=all failed or refused before start. A research or review
 matrix that expands to one lineage is refused with exit 3 before any lineage directory or
@@ -54,11 +56,14 @@ and cap checks the post-attempt check applies to that row; only a lineage with n
 skipped on its config and artifacts alone. The post-attempt check stays strict. A finished lineage
 is skipped only for the run it finished under: when its recorded `topic` (research) or `reviewTarget`
 (review), or the executor fields in its `invocation-metadata.json` (kind, model, effort, tier,
-sandbox, permission and web search, not the executable path or version), differ from this run's,
-the whole run is refused with exit 3 and reason `finished_lineage_mismatch`, before any spawn,
+requested sandbox, permission and web search, not the executable path or version), differ from
+this run's, the whole run is refused with exit 3 and reason `finished_lineage_mismatch`, before any spawn,
 ledger mark or summary write, with a message naming each mismatched lineage and `--restart`. One
 mismatch refuses every lineage, because the merge reads every lineage folder and a partial refusal
-would mix old results with new ones. A side that recorded no value is not judged on it. A matrix that holds a `native`
+would mix old results with new ones. The sandbox is matched on the requested mode
+(`sandboxWidenedFrom`, else `sandboxNarrowedFrom`, else `sandboxMode`), so a lineage recorded
+before its builder began reporting a widened or narrowed mode resumes, while a changed request is
+still refused. A side that recorded no value is not judged on it. A matrix that holds a `native`
 lineage is refused with exit 3 before any lineage directory or process exists, naming the
 offending labels: `native fan-out lineages are not supported`. `native` stays the single,
 in-session executor, so the default `native` executor with `--count` greater than 1 is
@@ -83,10 +88,12 @@ gauge is on unless a caller sets it to 0.
 Each `progress` row also carries the lineage's own progress, read by
 `readLineageProgressFields`: `iterations` (distinct iterations the gateway committed),
 `lastCommitAt`, `nodes: {answered, open, total}` from the lineage's `frontier-nodes.jsonl`
-(`open` counts `open` and `active` nodes) and `flaggedPasses`, the passes `passEvidence` in
+(`open` counts `open` and `active` nodes; for a review lineage the answered count comes from the
+reduced registry frontier) and `flaggedPasses`, the passes `passEvidence` in
 `fanout-salvage.cjs` marks `unexamined`, or null while any pass cannot be judged. An attempt's
 stdout reaches its log file only when it exits, so the row judges the running attempt from the
-stdout the runner has received so far. A beat whose fields cannot be read still writes its row
+stdout the runner has kept so far. That copy stops at the 20 MB cap the saved log stops at, so a
+child that outlives the stop cannot grow it. A beat whose fields cannot be read still writes its row
 without them.
 
 That default is load-bearing rather than cosmetic. The heartbeat appends to the
@@ -135,20 +142,48 @@ and nothing is created there.
 `--stop` ends a live run from a second process. Pass it with the run's own arguments, because it
 is handled after the run's inputs are validated and each lineage's rerun command is built from
 them; `--stop` takes no value. It reads the ledger's live lineages, the ones a rerun would refuse
-on, and signals nothing else. It sends SIGTERM to the runner that spawned them first, found
-through the kernel's parent link and only when that parent is running `fanout-run.cjs`, then to
-each live lineage's process group. It waits up to 10 seconds for them to stop. Each lineage that
-no longer answers gets a `stopped` ledger row with its `pid` and a `rerun_command`, the run's
-arguments without `--stop` plus `--only-lineage LABEL`. The command prints
-`{status, stopped, survivors}`, each entry `{label, pid}`, and exits 0 with `status: ok`, or 2
-with `status: partial` when a lineage still answers. The pool reads a `stopped` row as a closed
+on, and signals nothing else. A live pid is signalled only while the kernel's start time for it
+still matches the `process_start` its `spawned` row recorded, because a reused pid can belong to
+an unrelated process group. A lineage whose row records no start time, whose start time cannot be
+read, or whose start time differs is not signalled and is listed under `refused` with
+`{label, pid, reason}`, the reason `no_recorded_identity`, `identity_unreadable` or
+`identity_mismatch`. When the start time cannot be read because the recorded leader has exited
+while its process group still answers, each member of that group started at or after the recorded
+`process_start` is signalled on its own, and a member started earlier, which cannot be the
+lineage's, is left alone and listed under `spared` as `{label, pid, process_start}`. With no
+such member the lineage stays refused as `identity_unreadable`. It sends SIGTERM to the runner
+that spawned the lineages it kept first, found through the kernel's parent link and only when
+that parent is running `fanout-run.cjs`, then to each live lineage's process group, or to the
+members it chose. An exited leader leaves no parent link, so for those members the runner is the
+`runner_pid` the `spawned` row recorded, signalled only while its start time still matches the
+row's `runner_start`; that runner closes the lineage itself, so it is not closed twice. It waits
+up to 10 seconds for them to stop, judging a lineage stopped member by member by those members
+alone. Each lineage that no longer answers and is still open in the ledger gets a `stopped`
+ledger row with its `pid` and a `rerun_command`, the run's arguments without `--stop` plus
+`--only-lineage LABEL`. The command
+prints `{status, stopped, survivors, refused, spared}`, each `stopped` and `survivors` entry
+`{label, pid}`, and exits 0 with `status: ok`, or 2 with `status: partial` when a lineage still
+answers or was refused. The pool reads a `stopped` row as a closed
 lineage, so its rerun is not requeued as an orphan or charged a retry.
 
 The bootstrap forwards SIGHUP beside SIGINT and SIGTERM, the signal a closed terminal or a
 dropped SSH session sends. The runner stops its lineages and exits 129 on SIGHUP, 130 on SIGINT
 and 143 on SIGTERM. The TSX child also polls its parent pid every second: when the bootstrap dies,
 even by SIGKILL, which is never forwarded, the child stops its lineages as it would on a
-hangup.
+hangup. On each of these stops the runner signals its lineages through the same identity check
+`--stop` uses, reading each start time from the lineage's latest `spawned` row: a leader that
+still answers gets its group signalled, an exited leader's members started since the recorded
+spawn are signalled one by one, and a member `--stop` would list under `spared` is left alone.
+It then waits up to 2.5 seconds, well inside the 10-second window of a `--stop` that signalled
+it, for each lineage to stop answering, judged as `--stop` judges it. It does not escalate to
+SIGKILL, as `--stop` does not. The runner writes one `stopped` row per lineage that stopped,
+with its `pid`, the `signal` and a `rerun_command`, and its own closing row is `run_stopped`, so
+the `results` list in `orchestration-summary.json` and `--status` show those lineages as `stopped`.
+A lineage still answering after the wait gets no row, so a later `--stop` or rerun still sees it
+live. It is listed as `{label, pid}` under `survivors` on `run_stopped` and in the summary, and
+its result stays `running`. The signal handlers stay installed until the runner exits, and the
+bootstrap forwards each repeat of a signal until its child closes, so a second signal during the
+wait does not cut the stop short of its rows.
 
 ### Expansive Depth
 
@@ -177,28 +212,45 @@ setup bindings. A leaf-contract line tells a research or review lineage to work 
 `buildNativeCommandInput` adds `--depth-mode=expansive`, `depth_mode: expansive` and the same
 `frontier_scope` line.
 
+`--max-iterations <N>` takes a positive integer, and any other value is an input error. It binds
+every lineage the matrix gives no `iterations` value, in either depth mode, before any seed-share
+sizing, and prints one stderr line per lineage it binds. The workflow's spawn step passes it only
+when the budget's source is not `default`, because the root config cannot tell an explicit count
+from the workflow default.
+
 For an expansive research or review run, `expansiveLineageBudgets` sets each lineage's
 iteration count. A matrix `iterations` value is explicit and always kept. A lineage with no
-matrix value is sized from its own seed share by `expansiveBudget` in `frontier-admit.cjs`.
-The floor is the loop default that lineage would otherwise run: 12 for a native lineage, and
-`LOOP_DEFAULT_MAX_ITERATIONS` for a CLI lineage, 7 for review and 10 for research. A lineage
-dealt no seed node runs at that floor. A lineage with a share runs
+matrix value and no `--max-iterations` is sized from its own seed share by `expansiveBudget` in `frontier-admit.cjs`.
+The floor is the loop default that lineage would otherwise run, `LOOP_DEFAULT_MAX_ITERATIONS`:
+7 for review and 10 for research. Every sized lineage is a CLI lineage, because the runner refuses
+a native lineage before sizing. A lineage dealt no seed node runs at that floor. A lineage with a share runs
 `min(24, max(floor, 2 × perNode × (share + 2)))` iterations, where `perNode` is 4 for review
 (the canonical four dimensions) and 1 for research, and `share + 2` comes from the default
 `maxDepth` of 3. `expansiveLineageBudgetNotes` writes one stderr line per derived budget and a
 warning when there are more lineages than open seed nodes.
 
+The same caps make the run's one budget table. With no `--max-iterations`, an expansive research
+or review run rewrites the root config's `maxIterations` (`deep-research-config.json` or
+`deep-review-config.json` under `--base-artifact-dir`) to the largest lineage cap, computed from
+the full matrix, so an `--only-lineage` rerun writes the same value. `writeRootConfigBudget` runs
+after every refusal and before the orphan mark and any spawn. It writes nothing under `--preview`
+or with an explicit `--max-iterations`, leaves a missing or unreadable root config alone (the
+runner never creates one) and keeps every other field. It then prints one stderr line after the
+per-lineage notes, such as
+`[fanout-run] budget table: a 14, b 12 iterations; root maxIterations 14, the largest lineage cap`.
+The seed step prints no whole-seed budget for such a run, so this line is the run's budget.
+
 ### Completion, Preview and Diagnostics
 
-`--preview` builds every lineage command without writing: it prints the redacted argv (each prompt replaced by its digest), cwd, session id, iterations, frontier scope, the Claude config dir when set and the model, reasoning effort and sandbox mode, then exits before any directory, ledger or store exists. In `effective_config`, `permissionMode` is the value the command passes after `--permission-mode`, or null for a kind that passes none (cli-codex, cli-cursor, cli-opencode, cli-pi), `sandboxEnforcement` is `preventive` when the executor's own confinement is on, `compensating` when the builder emits a non-OS restriction and otherwise `none`, and `effortApplied` is `flag`, `baked` (dsh, whose route patch sets the effort) or `none`. The preview JSON also carries `dry_run_halt`, the `child-spawn` halt event for `step_fanout_spawn` that the workflow prints when a dry run halts there, and `topic_digest`, the SHA-256 of the collapsed research topic, null for review. A `cli-mistral-vibe` lineage prints no command, and a matrix the real run would refuse prints that refusal.
+`--preview` builds every lineage command without writing: it prints the redacted argv (each prompt replaced by its digest), cwd, session id, iterations, frontier scope, the Claude config dir when set and the model, reasoning effort and sandbox mode, then exits before any directory, ledger or store exists. In `effective_config`, `sandboxMode` is the mode the command runs. When that differs from the requested mode, the requested one is kept as `sandboxNarrowedFrom` (dsh runs a `danger-full-access` request as `workspace-write`) or `sandboxWidenedFrom` (cli-devin and cli-pi run a `workspace-write` request with their full-access command, so it reads `danger-full-access`). `permissionMode` is the value the command passes after `--permission-mode`, or null for a kind that passes none (cli-codex, cli-cursor, cli-opencode, cli-pi), `sandboxEnforcement` is `preventive` when the executor's own confinement is on, `compensating` when the builder emits a non-OS restriction and otherwise `none`, and `effortApplied` is `flag`, `baked` (dsh, whose route patch sets the effort) or `none`. The preview JSON also carries `dry_run_halt`, the `child-spawn` halt event for `step_fanout_spawn` that the workflow prints when a dry run halts there, and `topic_digest`, the SHA-256 of the collapsed research topic, null for review. A `cli-mistral-vibe` lineage prints no command, and a matrix the real run would refuse prints that refusal.
 
 The preview's `aggregate_budget` carries a `units` legend for its cost numbers. `upper_bound.estimated_cost_units` is the sum of every lineage's `base_cost_units`, one attempt each, and it is the spend the aggregate cap gates on. A lineage's `base_cost_units` is its iterations times the cost units per iteration for one attempt, and its own `estimated_cost_units` is `base_cost_units x (retries + 1)`, the worst case if every retry runs, which is reported and never gated.
 
-A lineage counts as fulfilled only when its state log holds at least one iteration, a terminal stop row from this attempt (`terminal_gates` for review, a closeout synthesis row for research, where `synthesis_incomplete` does not count), every iteration row before that terminal row in the file, and no row whose stamp carries an explicit zone stamped more than two minutes after the lineage process ended; iteration stamps are written by the model, so they are never compared with the terminal row's stamp. A research lineage writes no stop-check row, so its closeout row must also carry a `stopReason` from the frozen lifecycle enum, and a `maxIterationsReached` stop must have recorded as many distinct iterations as the `maxIterations` cap in the lineage's own config; the failures are `missing_stop_reason`, `unknown_stop_reason` and `max_iterations_unproven`, which an unreadable cap also yields. Review keeps its gate-row check, and the lenient pre-spawn skip check is unchanged. Otherwise it fails even at exit 0. The executor-group `--sandbox-mode` maps to `sandboxMode`. A `cli-claude-code` lineage keeps `workspace-write`, which runs `acceptEdits` and cannot run Bash in `-p` mode, so the runner warns at launch, and if that lineage records nothing its failure names `--sandbox-mode=danger-full-access`; `cli-opencode` accepts only `danger-full-access` explicitly.
+A lineage counts as fulfilled only when its state log holds at least one iteration, a terminal stop row from this attempt (`terminal_gates` for review, a closeout synthesis row for research, where `synthesis_incomplete` does not count), every iteration row before that terminal row in the file, and no row whose stamp carries an explicit zone stamped more than two minutes after the lineage process ended; iteration stamps are written by the model, so they are never compared with the terminal row's stamp. A `stamped_after_completion` failure names the stamp it judged, as `claims X, committed Y` when the model's claimed time differs from the gateway's commit time. A research lineage writes no stop-check row, so its closeout row must also carry a `stopReason` from the frozen lifecycle enum, and a `maxIterationsReached` stop must have recorded as many distinct iterations as the `maxIterations` cap in the lineage's own config; the failures are `missing_stop_reason`, `unknown_stop_reason` and `max_iterations_unproven`, which an unreadable cap also yields. Review keeps its gate-row check, and the lenient pre-spawn skip check is unchanged. Otherwise it fails even at exit 0. The executor-group `--sandbox-mode` maps to `sandboxMode`. A `cli-claude-code` lineage keeps `workspace-write`, which runs `acceptEdits` and cannot run Bash in `-p` mode, so the runner warns at launch, and if that lineage records nothing its failure names `--sandbox-mode=danger-full-access`. Claude's `--permission-mode` is an approval gate, not an OS confinement, so the preview records `sandboxEnforcement` `compensating` for `acceptEdits` and `plan` and `none` for `bypassPermissions`. A `cli-opencode` lineage takes the same `workspace-write` default: it runs `--auto` with an inline `OPENCODE_CONFIG_CONTENT` that denies `external_directory`, merged into any inherited value (one that is unparseable or not a JSON object fails the build). That stops OpenCode's file tools at the working directory but not Bash, which can still write anywhere, so the preview records `sandboxEnforcement` `compensating`, never `preventive`. `danger-full-access` is plain `--auto` with no deny, and an explicit `read-only` is refused.
 
-A fatally failed lineage prints one stderr line at once with its label and failure class. Provider ids, URLs and emails are masked in the ledger, stderr, a rotated log and a fatally failed lineage's raw log. A rerun rotates the previous raw log to `logs/fanout-lineage.N.out` instead of overwriting it. The runner has no settle-time metadata refresh, so a research or review fan-out never rewrites the packet's `description.json` or `graph-metadata.json`, and `--no-metadata-refresh` is refused as an unknown option.
+A fatally failed lineage prints one stderr line at once with its label and failure class. Provider ids, URLs and emails are masked in the ledger, stderr, a rotated log and every kept lineage log, which is masked once its lineage settles as succeeded, failed or stopped. A rerun rotates the previous raw log to `logs/fanout-lineage.N.out` instead of overwriting it. The runner has no settle-time metadata refresh, so a research or review fan-out never rewrites the packet's `description.json` or `graph-metadata.json`, and `--no-metadata-refresh` is refused as an unknown option.
 
-The stdout summary and `orchestration-summary.json` carry `lineages`, one `{label, status, failure_class, exit_code, rerun_command}` row per lineage. `status` is `succeeded`, `skipped_complete` or `failed`. A failed lineage's `failure_class` is its class, or `exit` when the failure names none, and its `rerun_command` is the run's own argv, with any earlier `--only-lineage` pair dropped, plus `--only-lineage LABEL`, so the lineage keeps its share of the matrix. The runner path in it is absolute and the other arguments stay as given, so run it from the original working directory. A succeeded or `skipped_complete` lineage has a null `failure_class` and no rerun command, because a rerun would skip it as finished. A failed lineage whose config is `complete` cannot be rerun in place either, so its `rerun_command` is null and a `rerun_note` says to archive its `lineages/<label>/` folder first and names the command to run after.
+The stdout summary and `orchestration-summary.json` carry `lineages`, one `{label, status, failure_class, exit_code, rerun_command}` row per lineage. `status` is `succeeded`, `skipped_complete` or `failed`. A failed lineage's `failure_class` is its class, or `exit` when the failure names none, and its `rerun_command` is the run's own argv, with any earlier `--only-lineage` pair dropped, plus `--only-lineage LABEL`, so the lineage keeps its share of the matrix. The runner path in it is absolute, and so are the values of `--base-artifact-dir` and the `*-file` flags (`--research-topic-file`, `--review-focus-file`, `--review-target-file`, `--fanout-config-json-file`); the other arguments stay as given, so run it from the original working directory. A succeeded or `skipped_complete` lineage has a null `failure_class` and no rerun command, because a rerun would skip it as finished. A failed lineage whose config is `complete` cannot be rerun in place either, so its `rerun_command` is null and a `rerun_note` says to archive its `lineages/<label>/` folder first and names the command to run after.
 
 `orchestration-summary.json` carries `provider_cost_usd: {total, by_lineage}`, each CLI lineage's provider cost in USD over its live and rotated logs: the sum of an opencode log's `step_finish` costs, or, for a cli-claude-code stream-json log, the last `result` event's `total_cost_usd`, which is already the attempt's whole spend. A log with no cost record, such as a cli-cursor lineage's text log, makes that lineage's cost null (unknown), and the total stays null while any lineage is unknown.
 
@@ -210,7 +262,7 @@ The stdout summary and `orchestration-summary.json` carry `lineages`, one `{labe
 
 | File | Role |
 |---|---|
-| `scripts/fanout-run.cjs` | Main entry: CLI arg parsing, per-kind command construction, pool orchestration, stdout capture and salvage call, plus the per-lineage progress heartbeat via `startLineageProgressHeartbeat`; expansive depth via `normalizeDepthMode`, `partitionFrontierNodes`, `writeLineageFrontierStore`, `expansiveLineageBudgets` and `expansiveLineageBudgetNotes`; per-lineage `DEEP_LOOP_COVERAGE_DB_DIR`; progress-row fields via `readLineageProgressFields`; `--status` via `formatFanoutStatusTable`; `--stop` via `stopLiveFanoutRun`; signal forwarding and `watchBootstrapParent`; the lineage block via `readRootLineageValues` and `writeLineageValues` |
+| `scripts/fanout-run.cjs` | Main entry: CLI arg parsing, per-kind command construction, pool orchestration, stdout capture and salvage call, plus the per-lineage progress heartbeat via `startLineageProgressHeartbeat`; expansive depth via `normalizeDepthMode`, `partitionFrontierNodes`, `writeLineageFrontierStore`, `expansiveLineageBudgets`, `expansiveLineageBudgetNotes` and `writeRootConfigBudget`; per-lineage `DEEP_LOOP_COVERAGE_DB_DIR`; progress-row fields via `readLineageProgressFields`; `--status` via `formatFanoutStatusTable`; `--stop` via `stopLiveFanoutRun`; signal forwarding and `watchBootstrapParent`; the lineage block via `readRootLineageValues` and `writeLineageValues` |
 | `scripts/frontier-admit.cjs` | `readNodeStore`, `expansiveBudget` and `LOOP_DEFAULT_MAX_ITERATIONS` used for the frontier partition and lineage budgets, and the node counts on each progress row |
 | `scripts/fanout-salvage.cjs` | Called post-subprocess for write-failure recovery; `readLineagePassSummary` for the progress-row iterations, last commit and flagged passes; the provider cost readers |
 | `scripts/lib/cli-guards.cjs` | `readClaudeStreamFinalText`, which the pending-question and quota checks read a claude stream-json log through |
@@ -225,8 +277,9 @@ The stdout summary and `orchestration-summary.json` carry `lineages`, one `{labe
 |---|---|
 | `tests/unit/fanout-run.vitest.ts` | Native lineage refusal (exit 3, names the lineage, spawns nothing), bad JSON config exits 3, missing required args exits 3, 2-lineage pool creates distinct dirs + ledger + summary, same-kind replica state dirs are distinct |
 | `tests/unit/fanout-run.vitest.ts` | Expansive depth groups: `expansive depth frontier` (the round-robin deal, the reuse of the budget step's partition, the per-lineage node store, the `frontier_scope` binding, the recorded partition and `depthMode` propagation) and `per-lineage expansive budget` (the seed-share budget, the loop-default floor for a lineage dealt no seed node, and the refusal of an expansive matrix that holds a native lineage) |
-| `tests/unit/fanout-status.vitest.ts` | Progress-row fields, the heartbeat that still beats when they cannot be read, live stdout handed to the output callback, and `--status` printing one row per lineage without writing or refusing a directory with no ledger |
+| `tests/unit/fanout-status.vitest.ts` | Progress-row fields, the heartbeat that still beats when they cannot be read, live stdout handed to the output callback with the kept stdout that stops at the cap, and `--status` printing one row per lineage without writing or refusing a directory with no ledger |
 | `tests/unit/fanout-stop.vitest.ts` | SIGHUP stops the lineages and exits 129, a SIGKILL of the bootstrap stops them, `--stop` ends a live run from a second process with a rerun per stopped lineage, and leaves a process alone when its lineage is not live in the ledger |
+| `tests/unit/fanout-stop-identity.vitest.ts` | `--stop` signals only a pid whose start time matches its `spawned` row, signals an exited leader's newer members and spares an older one, and a runner stopped by a signal spares the same member and leaves a lineage that ignores SIGTERM open under `survivors` |
 | `tests/unit/fanout-lineage-config.vitest.ts` | The lineage block written from the root config for research and review, after a non-zero exit too, and left alone without a root config |
 | `tests/unit/fanout-claude-stream-json.vitest.ts` | The claude stream-json argv, its last-result cost, and the pending-question and quota checks reading the final answer |
 | `tests/unit/fanout-pool.vitest.ts` | A `stopped` row closes a lineage rather than leaving it to be requeued as an orphan |

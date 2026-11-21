@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/brief.v2.ts .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts
+The prepared file routes the prompt with a leading pasted reply stripped before it is canonicalized and cut to the advisor limit. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/brief.v2.ts .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts` exits 0.

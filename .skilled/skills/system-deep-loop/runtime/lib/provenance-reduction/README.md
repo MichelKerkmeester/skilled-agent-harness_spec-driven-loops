@@ -27,4 +27,11 @@ Runtime primitives that merge multiple fan-out candidate results in `system-deep
 
 ## 3. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts`
+- `../../tests/unit/provenance-reduction.vitest.ts`
+
+---
+
+## 4. RELATED
+
+- [`../README.md`](../README.md)
+- [`../../../SKILL.md`](../../../SKILL.md)

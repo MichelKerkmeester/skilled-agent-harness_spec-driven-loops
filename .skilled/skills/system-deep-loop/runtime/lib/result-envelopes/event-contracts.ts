@@ -192,6 +192,7 @@ function referenceSortKey(reference: DigestReference): string {
   return `${reference.kind}\u0000${reference.reference}\u0000${reference.digest}\u0000${reference.required}`;
 }
 
+/** Returns copies of the references sorted by their canonical sort key, leaving the input untouched. */
 export function canonicalizeReferences(
   references: readonly DigestReference[],
 ): DigestReference[] {
@@ -221,6 +222,7 @@ function isReferenceList(value: JsonValue | undefined): value is DigestReference
   if (!Array.isArray(value) || !value.every(isReference)) return false;
   const keys = value.map(referenceSortKey);
   return new Set(keys).size === keys.length
+    // index > 0 on this branch, so index - 1 is inside keys.
     && keys.every((key, index) => index === 0 || keys[index - 1]! < key);
 }
 
@@ -265,6 +267,7 @@ function resultDigestInput(payload: Readonly<JsonObject>): JsonObject {
   return facts;
 }
 
+/** Hashes a result payload's canonical bytes with its own `result_digest` field left out. */
 export function calculateResultDigest(payload: Readonly<JsonObject>): string {
   return sha256Bytes(canonicalBytes(resultDigestInput(payload)));
 }
@@ -275,6 +278,7 @@ function salvageDigestInput(payload: Readonly<JsonObject>): JsonObject {
   return facts;
 }
 
+/** Hashes a salvage payload's canonical bytes with its own `salvage_digest` field left out. */
 export function calculateSalvageDigest(payload: Readonly<JsonObject>): string {
   return sha256Bytes(canonicalBytes(salvageDigestInput(payload)));
 }
@@ -285,6 +289,7 @@ function recoveryDigestInput(payload: Readonly<JsonObject>): JsonObject {
   return facts;
 }
 
+/** Hashes a recovery payload's canonical bytes with its own `recovery_digest` field left out. */
 export function calculateRecoveryDigest(payload: Readonly<JsonObject>): string {
   return sha256Bytes(canonicalBytes(recoveryDigestInput(payload)));
 }
@@ -292,6 +297,10 @@ export function calculateRecoveryDigest(payload: Readonly<JsonObject>): string {
 // ───────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
+/**
+ * Checks that a payload has exactly the leaf-result fields, valid values and an id derived from its dispatch
+ * receipt.
+ */
 export function isLeafResultPayload(payload: Readonly<JsonObject>): payload is LeafResultPayload {
   const value = payload as Record<string, JsonValue>;
   if (!exactFields(value, RESULT_FIELD_SET)) return false;
@@ -346,11 +355,13 @@ export function isLeafResultPayload(payload: Readonly<JsonObject>): payload is L
   return value.result_digest === calculateResultDigest(value);
 }
 
+/** Narrows a payload to a leaf result, throwing a TypeError when it does not validate. */
 export function asLeafResultPayload(payload: Readonly<JsonObject>): LeafResultPayload {
   if (!isLeafResultPayload(payload)) throw new TypeError('Invalid leaf result payload');
   return payload;
 }
 
+/** Checks that a payload has exactly the salvage-fragment fields with valid values. */
 export function isSalvageFragmentPayload(
   payload: Readonly<JsonObject>,
 ): payload is SalvageFragmentPayload {
@@ -404,11 +415,13 @@ export function isSalvageFragmentPayload(
   return value.salvage_digest === calculateSalvageDigest(value);
 }
 
+/** Narrows a payload to a salvage fragment, throwing a TypeError when it does not validate. */
 export function asSalvageFragmentPayload(payload: Readonly<JsonObject>): SalvageFragmentPayload {
   if (!isSalvageFragmentPayload(payload)) throw new TypeError('Invalid salvage fragment payload');
   return payload;
 }
 
+/** Checks that a payload has exactly the leaf-recovery fields with valid ids and digests. */
 export function isLeafRecoveryPayload(payload: Readonly<JsonObject>): payload is LeafRecoveryPayload {
   const value = payload as Record<string, JsonValue>;
   if (!exactFields(value, RECOVERY_FIELD_SET)) return false;
@@ -436,6 +449,7 @@ export function isLeafRecoveryPayload(payload: Readonly<JsonObject>): payload is
   return value.recovery_digest === calculateRecoveryDigest(value);
 }
 
+/** Narrows a payload to a leaf recovery, throwing a TypeError when it does not validate. */
 export function asLeafRecoveryPayload(payload: Readonly<JsonObject>): LeafRecoveryPayload {
   if (!isLeafRecoveryPayload(payload)) throw new TypeError('Invalid leaf recovery payload');
   return payload;
@@ -457,6 +471,7 @@ function definition(
 // ───────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ───────────────────────────────────────────────────────────────────
+/** Returns the frozen event-type definitions for the result, salvage and recovery events. */
 export function resultEnvelopeEventDefinitions(): readonly EventTypeDefinition[] {
   return Object.freeze([
     definition(LEAF_RESULT_RECORDED_EVENT_TYPE, LEAF_RESULT_FIELDS, isLeafResultPayload),
@@ -465,6 +480,10 @@ export function resultEnvelopeEventDefinitions(): readonly EventTypeDefinition[]
   ]);
 }
 
+/**
+ * Builds the evidence-control registry extended with lineage dispatch resolution, the result-envelope events and
+ * any extra definitions.
+ */
 export function createResultEnvelopeEventRegistry(
   additionalDefinitions: readonly EventTypeDefinition[] = [],
 ): EventTypeRegistry {
@@ -475,6 +494,7 @@ export function createResultEnvelopeEventRegistry(
   ]);
 }
 
+/** Builds the leaf-result payload for a dispatch receipt, deriving its envelope id and result digest. */
 export function buildLeafResultPayload(
   receipt: DispatchReceiptPayload,
   facts: LeafResultFacts,
@@ -515,6 +535,7 @@ export function buildLeafResultPayload(
   return asLeafResultPayload(payload);
 }
 
+/** Builds the leaf-result payload and prepares its ledger write under the given context and correlation id. */
 export function prepareLeafResultEvent(
   receipt: DispatchReceiptPayload,
   facts: LeafResultFacts,
@@ -541,6 +562,7 @@ export function prepareLeafResultEvent(
   }, registry);
 }
 
+/** Builds a salvage payload with an event id derived from the receipt, parser and recovered scope. */
 export function buildSalvagePayload(
   dispatchReceiptId: string,
   facts: SalvageFragmentFacts,
@@ -583,6 +605,7 @@ export function buildSalvagePayload(
   return asSalvageFragmentPayload(payload);
 }
 
+/** Builds the salvage payload and prepares its ledger write under the given context and correlation id. */
 export function prepareSalvageEvent(
   dispatchReceiptId: string,
   facts: SalvageFragmentFacts,
@@ -609,6 +632,7 @@ export function prepareSalvageEvent(
   }, registry);
 }
 
+/** Builds a recovery payload that links a dispatch receipt to the source effect event it recovers from. */
 export function buildRecoveryPayload(
   dispatchReceiptId: string,
   source: Readonly<{
@@ -643,6 +667,7 @@ export function buildRecoveryPayload(
   return asLeafRecoveryPayload(payload);
 }
 
+/** Builds the recovery payload and prepares its ledger write under the given context and correlation id. */
 export function prepareRecoveryEvent(
   dispatchReceiptId: string,
   source: Parameters<typeof buildRecoveryPayload>[1] & { observedAt: string },

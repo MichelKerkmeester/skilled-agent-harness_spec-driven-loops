@@ -1,7 +1,7 @@
 ---
 title: "Command-Flow Stress Tests: deep-research CP-04x/05x scenarios"
 description: "Sandboxed scenarios validating the /deep:research command-level entrypoint separately from the leaf iteration body."
-version: 1.15.1.0
+version: 1.15.2.0
 ---
 
 # Command-Flow Stress Tests
@@ -53,4 +53,4 @@ Run each scenario's exact command sequence, which sits under TEST EXECUTION in i
 ### See Also
 
 - Root playbook index: [`../manual-testing-playbook.md`](../manual-testing-playbook.md)
-- Command router: `.skilled/commands/deep/research.md`
+- Command router: [`../../../../../commands/deep/research.md`](../../../../../commands/deep/research.md)

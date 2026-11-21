@@ -157,6 +157,7 @@ function report(options, verdict, lines) {
 function main(argv) {
   const options = parseArgs(argv);
   if (options === null) {
+    process.stderr.write('Next: node .skilled/commands/doctor/scripts/codex-hook-approval-check.cjs\n');
     process.stderr.write(USAGE);
     return 2;
   }

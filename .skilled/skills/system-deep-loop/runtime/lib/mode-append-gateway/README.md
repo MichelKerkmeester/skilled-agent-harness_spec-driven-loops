@@ -15,11 +15,11 @@ trigger_phrases:
 
 `mode-append-gateway/` owns the code-level write path for deep-loop mode state. A caller hands it a mode, a run directory, a prepared event preflight and the policy, ledger and authorization pieces, and receives either a durable append receipt or a typed refusal naming the stage that refused.
 
-The folder composes existing substrate instead of reimplementing it. Authority admission, transition authorization, fenced append and legacy projection each live in their own domain under `runtime/lib/`, and this folder wires them into one ordered pipeline. The one stage it owns outright is cutover binding, which resolves the acting identity, capability and commit from the local machine, because the gateway is its only production caller. Mode state therefore reaches a ledger file through the gateway rather than through a direct append.
+The folder composes existing substrate instead of reimplementing it. Authority admission, transition authorization, fenced append and legacy projection each live in their own sibling domain under `../`, and this folder wires them into one ordered pipeline. The one stage it owns outright is cutover binding, which resolves the acting identity, capability and commit from the local machine, because the gateway is its only production caller. Mode state therefore reaches a ledger file through the gateway rather than through a direct append.
 
 Current state:
 
-- One exported function, `appendModeEvent`, runs the whole pipeline.
+- `appendModeEvent` runs the whole pipeline.
 - `resolveCutoverBinding` derives the binding the first stage needs, so no human retypes a commit SHA or capability id at an approval stop.
 - Composite domains (research and review) resolve their legacy projection surface and default contract from the mode name.
 - The gateway fails closed on a projection refresh that ran and did not succeed, and returns the durable receipt alongside the failure.
@@ -33,7 +33,7 @@ Flat folder, so the inventory is the full file list.
 | File | Responsibility |
 |---|---|
 | `append-mode-event.ts` | `appendModeEvent()`, the six-stage pipeline, the mode-to-surface and legacy-path helpers, the default research and review projection contracts and the `ModeAppendGatewayErrorCodes` vocabulary |
-| `resolve-cutover-binding.ts` | `resolveCutoverBinding()`, `createDefaultEnvironment()`, `CutoverBindingError` and the `CutoverBindingErrorCodes` vocabulary (`IDENTITY_UNRESOLVED`, `COMMIT_UNRESOLVED`, `COMMIT_UNKNOWN`). It derives identity and commit from the environment and never asserts one it could not establish; the authorization stage still checks the result against the request's own claim |
+| `resolve-cutover-binding.ts` | `resolveCutoverBinding()`, `createDefaultEnvironment()`, `CutoverBindingError` and the `CutoverBindingErrorCodes` vocabulary (`IDENTITY_UNRESOLVED`, `COMMIT_UNRESOLVED`, `COMMIT_UNKNOWN`). It derives identity and commit from the environment and never asserts one it could not establish. The authorization stage still checks the result against the request's own claim |
 | `index.ts` | Public API barrel, re-exporting the gateway and cutover-binding functions, constants and types |
 
 ---
@@ -49,8 +49,9 @@ options: mode, runDirectory, eventRecord, policy, ledger, ...
   3 envelope       registered policy digest resolved from the registry
   3b provenance    state log opens with a config row, ledger holds    -> STATE_LOG_UNATTRIBUTED
                    no run-open event (checked before any append)
-  3c idempotency   ledger already holds this idempotency key          -> original receipt, no new
-                   (same event kind), or holds it for another kind       append; IDEMPOTENCY_CONFLICT
+  3c idempotency   ledger holds this key, same kind and same content   -> original receipt, no new
+                                                                          append
+                   ledger holds this key, other kind or other content  -> IDEMPOTENCY_CONFLICT
   4 authorization  TransitionAuthorizationGateway.authorize           -> AUTHORIZATION_DENIED
   5 append         appendAuthorizedThroughFence                       -> APPEND_FAILED
   6 projection     LegacyProjectionEngine refresh at the boundary     -> PROJECTION_FAILED
@@ -65,12 +66,12 @@ options: mode, runDirectory, eventRecord, policy, ledger, ...
 | `STATE_LOG_UNATTRIBUTED` | Phase `provenance`: the research or review state log opens with a config row while the ledger holds no `run_initialized` event, so the row was written outside the gateway. Nothing is appended |
 | `AUTHORIZATION_DENIED` | The transition gateway declined the request |
 | `APPEND_FAILED` | Fenced append raised a head conflict, fence error or storage error, or the retry budget ran out |
-| `IDEMPOTENCY_CONFLICT` | Phase `append`: the event's idempotency key already names a ledger event of a different kind. Nothing is appended |
+| `IDEMPOTENCY_CONFLICT` | Phase `append`: the event's idempotency key already names a ledger event of a different kind, or a same-kind event with other content. Nothing is appended, and the reason names the key |
 | `PROJECTION_FAILED` | The projection refresh ran and did not succeed after the append was durable |
 
 The provenance check runs before authorization because the projection builds the opening config row from the run-open event alone. A config row with no such event can never be rebuilt, and the projection's attribution guard would refuse only after the append, leaving one more ledger copy of the event on every retry.
 
-An event whose idempotency key the ledger already holds is the same event again, most often a retry after a projection failure. The gateway skips stages 4 and 5, reuses the original receipt, reruns the projection and reports `idempotentReplay: true`. The append CLI derives the key from the event exactly as the caller handed it over (`<mode>:input:<sha256>`), unless the caller names one, because the event id, timestamps and chain position it mints change on every call.
+An event whose idempotency key the ledger already holds with the same kind and the same content is the same event again, most often a retry after a projection failure. Content is the payload without the minted or stamped envelope fields, `prevEventHash` and `payloadDigest`, with any value equal to either event's head set aside. The same key with a different kind or other content is a caller reusing a key, and it is refused rather than answered with the old receipt. The gateway skips stages 4 and 5, reuses the original receipt, reruns the projection and reports `idempotentReplay: true`. The append CLI derives the key from the event exactly as the caller handed it over (`<mode>:input:<sha256>`), unless the caller names one, because the event id, timestamps and chain position it mints change on every call. A legacy research row and a legacy review row (`type` of `iteration`, `iteration_start` or `event`), the shapes a model writes, cannot name one: the CLI drops the row's event id, idempotency key, producer and authority epoch and mints all four (`event-<uuid>`, the derived key, producer `deep-loop-cli`, the admission epoch), so an identical re-append still derives the same key and is stored once. A row with a `stem` or an `event_type`, and a canonical envelope, still keep the identity the caller names.
 
 Stages 4 and 5 share one bounded retry budget of ten attempts. A `STALE_HEAD` denial or a `HEAD_CONFLICT` error re-reads the verified head and tries again.
 
@@ -95,7 +96,7 @@ Supporting helpers in the same module:
 | `ModeAppendGatewayErrorCodes` | Frozen constant | The error code vocabulary a caller switches on |
 | `resolveCutoverBinding(options)` | Function | Resolves actor, capability and commit for a flip, throwing `CutoverBindingError` when one cannot be established |
 | `index.ts` | Module | The only public import path for the folder |
-| `scripts/append-mode-event.cjs` | CLI | Command-line caller of the gateway, outside this folder |
+| `../../scripts/append-mode-event.cjs` | CLI | Command-line caller of the gateway, outside this folder |
 
 ---
 
@@ -103,7 +104,7 @@ Supporting helpers in the same module:
 
 | Boundary | Rule |
 |---|---|
-| Imports | Sibling domains under `runtime/lib/` only, such as `authorized-ledger`, `locks-and-fencing`, `authority-root`, `per-mode-authority-flip`, `legacy-projections`, `replay-fingerprint` and the two ledger schemas |
+| Imports | Sibling domains under `../` only, such as `authorized-ledger`, `locks-and-fencing`, `authority-root`, `per-mode-authority-flip`, `legacy-projections`, `replay-fingerprint` and the two ledger schemas |
 | Exports | Everything a caller needs crosses `index.ts`, no consumer reaches into `append-mode-event.ts` or `resolve-cutover-binding.ts` directly |
 | Ownership | Pipeline wiring, mode-to-surface mapping and the default contracts belong here. Validation, authorization, fencing and projection logic stay in the domains that own them |
 | Authority root | `options.authorityRoot` is deliberately not derived from `runDirectory`, because that is a per-run path and deriving the root from it would give every run its own authority record |
@@ -128,9 +129,9 @@ Expected result: all four unit suites pass, including the legacy projection and 
 
 ## 7. RELATED
 
-- [`runtime/lib/`](../README.md)
+- [`../README.md`](../README.md)
 - [`authorized-ledger/`](../authorized-ledger/README.md)
 - [`locks-and-fencing/`](../locks-and-fencing/README.md)
 - [`legacy-projections/`](../legacy-projections/README.md)
 - [`authority-root/`](../authority-root/README.md)
-- Parent skill: `.skilled/skills/system-deep-loop/SKILL.md`
+- Parent skill: [`../../../SKILL.md`](../../../SKILL.md)

@@ -27,20 +27,21 @@ Additive-dark service for `system-deep-loop` modes that need a counterfactual ve
 | `reducer.ts` | `reduceAdjudication`, deriving a fail-closed verdict while retaining every component evidence identity |
 | `replay.ts` | `createAdjudicationReducerRegistry`, exact-version reducers for every registered adjudication event |
 | `service.ts` | `BlindedAdjudicationService`, additive-dark orchestration over the shared envelope, gateway, ledger and replay contracts |
-| `validation.ts` | Input guards such as `isPlainRecord` shared by the service and reducer |
+| `validation.ts` | Input guards such as `isPlainRecord` shared by the service, judging, blinding, event registry, replay and mode-adapter modules |
 
 ---
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/provenance-reduction/reducer.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
+- `../provenance-reduction/reducer.ts`
+- `../provenance-reduction/types.ts`
+- `../mode-contracts/substrate-ports.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts`
+- `../../tests/unit/blinded-adjudication.vitest.ts`
 
 ---
 

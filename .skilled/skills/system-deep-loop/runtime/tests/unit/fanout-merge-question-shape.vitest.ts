@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Fanout Merge Question Shape Tests
+// ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
 import * as fs from 'node:fs';

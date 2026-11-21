@@ -16,6 +16,7 @@
       "deep-research reducer test next focus",
       "reducer test focus contract plan",
       "reducer test focus contract tasks",
+      "reducer test focus contract goal",
       "reducer test focus contract implementation summary"
     ],
     "key_topics": [
@@ -28,9 +29,9 @@
       "next",
       "plan",
       "tasks",
+      "goal",
       "implementation",
-      "summary",
-      "research"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -38,6 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts"
     ],
@@ -58,6 +60,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -163,42 +171,43 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Decisions Frozen",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "Test Files",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built The Spec",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 004 made the research reducer read the leaf's `## Recommended Next Focus` and return it ahead of the carried-forward thread when it is open and unresolved",
     "created_at": "2026-11-20T14:48:13Z",
-    "last_save_at": "2026-11-20T14:59:25.961Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-21T18:35:35.476Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2aede5faea79e75c98424b4b423410b04f542b652a49bf64e6a96d5b1fbb9e10",
+    "source_fingerprint": "sha256:1876c894ab7958471e6f3d63dcf7d02f7b4709f3e499e15b1941dc57d23d8570",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b9341746c4f4c4420379ea4fd2723174a8c21a9fd7bfdcb1a03be04758c13672",
       "plan.md": "11f4c8fce49d484a7b9fcb38942cdde3460d1a6bd57c10f98b009c1ca0a6036e",
       "tasks.md": "7c53849b722880479c3df2d6e25bd36ea12221a8748a6f1b0a59bca1ff55fec3",
-      "implementation-summary.md": "daed74005a6935f110c6144c2825c5cf0f032065ec473c059398879bec7c9038"
+      "implementation-summary.md": "a9ba56bcf3454ea5a0d3559a27b98f4b7057e179d9b6ed5d00eb986061c9580d"
     },
     "last_active_at": null
   }

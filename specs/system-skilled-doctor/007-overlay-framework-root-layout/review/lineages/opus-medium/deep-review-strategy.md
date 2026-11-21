@@ -1,6 +1,11 @@
-# Deep Review Strategy - opus-medium lineage
+---
+title: Deep Review Strategy - 007-overlay-framework-root-layout (lineage opus-medium)
+description: Session tracking for the follow-up deep review of the overlay framework-root layout change and its remediation.
+importance_tier: normal
+contextType: planning
+---
 
-Runtime template copied into the resolved `{artifact_dir}/` during initialization. Tracks review progress across iterations.
+# Deep Review Strategy - 007-overlay-framework-root-layout (fan-out lineage opus-medium)
 
 ## 1. OVERVIEW
 
@@ -19,7 +24,7 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
 ---
 
 ## 2. TOPIC
-Review: specs/system-skilled-doctor/007-overlay-framework-root-layout (spec-folder). Focus: the overlay framework/root layout change end to end, Skilled 57c01fb4c11..d42bafc890c (merged 063daaee2c1, plus 1653734af7d, 10c36989450) and ai-speckit 64cfee51628..ad3246feba2. Frontier nodes owned: F-1-002 (engine sibling overlay folder + path safety), F-1-004 (docs vs code), F-1-006 (Barter relayout/move to overlays/), F-1-008 (packet traceability).
+Follow-up review (generation 2 of the root fan-out) of `specs/system-skilled-doctor/007-overlay-framework-root-layout` after remediation. Verify that the 16 findings of the previous generation (2 P1, 14 P2) are fixed without regression, then re-review the whole change: the overlay engine (`.skilled/commands/doctor/scripts/overlay-engine.cjs`), doctor docs, and the read-only nested Barter repository `barter/ai-speckit` (commits 64cfee51628..e63bd038a5d). Frontier scope for this lineage: F-1-001, F-1-003, F-1-005, F-1-007.
 
 ---
 
@@ -29,14 +34,15 @@ Review: specs/system-skilled-doctor/007-overlay-framework-root-layout (spec-fold
 
 <!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
-- Fixing anything (read-only review).
-- Unrelated Skilled subsystems outside the overlay engine, doctor overlay docs, overlay-guard hook, Barter overlay layout and this packet.
+- Not implementing fixes; review only.
+- Not reviewing unrelated Skilled subsystems beyond the doctor overlay engine, its docs, and the Barter overlay surfaces.
+- Not re-running repo tooling that writes outside the lineage (validate.sh, generate-context.js, git writes).
 
 ---
 
 ## 5. STOP CONDITIONS
-- Legal convergence, or 24 iterations.
-- Every owned frontier node reviewed across the four dimensions.
+- All four frontier nodes reviewed across their applicable dimensions and the prior-generation findings each adjudicated fixed or still open.
+- Legal convergence per the workflow convergence check, or maxIterations=24.
 
 ---
 
@@ -51,138 +57,132 @@ Review: specs/system-skilled-doctor/007-overlay-framework-root-layout (spec-fold
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 0
-- P2 (Suggestions): 9
+- P1 (Required): 1
+- P2 (Suggestions): 10
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
-- Comparing how Skilled's guard and Barter's hooks locate the folder (iteration 14)
-- Grepping for the one predicate the phase-001 bug class depends on (iteration 13)
-- Following a regression the close-out record names back to the test that should have caught it (iteration 12)
-- Resolving each runtime copy of a hook to its realpath before judging root detection (iteration 7)
-- Reading the workflow YAML as the agent would execute it (iteration 6)
-- Tracing every overlay-folder write back to resolveOverlayDir (iteration 5)
-- Checking each AC status cell against its own Then clause and the legend (iteration 4)
-- rg for the old folder name, filtering spec-track and index hits (iteration 3)
-- Mapping each release-note bullet to its engine line (iteration 2)
-[First iteration -- populated after iteration 1 completes]
-- [Approach]: [Why it worked] (iteration N)
+- Snapshot-equality reading of the relayout failure tests plus a targeted test rerun confirmed R1-P1-001 fixed (iteration 1)
+- Comparing every printed engine line with the doc that names it found the next-step row contradiction (iteration 2)
+- git grep across both repositories with history paths excluded isolated the one live barter-overlays leftover (iteration 3)
+- Rerunning the cited test suites and checking git ancestry turned record claims into evidence (iteration 4)
+- A temp git repository with an env-printing hook, then the strict-writes fixture run with and without GIT_DIR, reproduced R5-P1-001 end to end (iterations 5-6)
+- A posture map per hook (fail open vs fail closed) separated design choices from defects (iteration 7)
+- Running the new rollback tests against the engine before 3aab896957e proved they guard the fix: 3 of 3 fail (iteration 16)
+- Function-level reading of the code outside relayoutUnderLock's try block found R14-P2-001 during stuck recovery (iteration 14)
 
 ---
 
 ## 9. WHAT FAILED
-[First iteration -- populated after iteration 1 completes]
-- [Approach]: [Why it failed] (iteration N)
+- Hook vs engine fallback mismatch looked like a fail-open but the engine call fails closed behind it (iteration 3)
+- A refines row whose severity differs from its target rewrites the target's severity: R9-P2-001 lowered R5-P1-001 to P2 (iteration 9, repaired at 16)
+- A claim packet merged into a delta row with a `type` key overwrote the row's `type:"finding"`, and the reducer skipped it (iteration 15, repaired at 16)
+- Recording core protocols as fail for doc-to-code drift blocked the stop on a gate that measures spec-to-code alignment (iteration 15, re-adjudicated at 17)
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### .index/*.json hits: generated retrieval index content from spec paths. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: .index/*.json hits: generated retrieval index content from spec paths.
+### `skilled-barter-overlays` spec-track name in sk-git ROUTER.md and SKILL.md: a track name, not the folder. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: `skilled-barter-overlays` spec-track name in sk-git ROUTER.md and SKILL.md: a track name, not the folder.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: .index/*.json hits: generated retrieval index content from spec paths.
+- Do NOT retry: `skilled-barter-overlays` spec-track name in sk-git ROUTER.md and SKILL.md: a track name, not the folder.
 
-### `specs/skilled-barter-overlays/` hits: a spec track name, not the folder. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: `specs/skilled-barter-overlays/` hits: a spec track name, not the folder.
+### A 039 claim with no evidence behind it: none found. -- BLOCKED (iteration 11, 1 attempts)
+- What was tried: A 039 claim with no evidence behind it: none found.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `specs/skilled-barter-overlays/` hits: a spec track name, not the folder.
+- Do NOT retry: A 039 claim with no evidence behind it: none found.
 
-### A second, divergent definition of the layout rule in the docs: every doc restates the adoptSource rule. -- BLOCKED (iteration 14, 1 attempts)
-- What was tried: A second, divergent definition of the layout rule in the docs: every doc restates the adoptSource rule.
+### A real change in R5-P1-001's evidence between iterations 5 and 9: none; the drop was a recording artifact. -- BLOCKED (iteration 15, 1 attempts)
+- What was tried: A real change in R5-P1-001's evidence between iterations 5 and 9: none; the drop was a recording artifact.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A second, divergent definition of the layout rule in the docs: every doc restates the adoptSource rule.
+- Do NOT retry: A real change in R5-P1-001's evidence between iterations 5 and 9: none; the drop was a recording artifact.
 
-### Close-out commit list mismatch with git history. -- BLOCKED (iteration 12, 1 attempts)
-- What was tried: Close-out commit list mismatch with git history.
+### A record count that the live tree no longer reproduces: all four reruns match. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: A record count that the live tree no longer reproduces: all four reruns match.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Close-out commit list mismatch with git history.
+- Do NOT retry: A record count that the live tree no longer reproduces: all four reruns match.
 
-### Duplicate layout rules: layoutMoves, adopt and relayout all call adoptSource, so the framework/root rule has one definition. -- BLOCKED (iteration 13, 1 attempts)
-- What was tried: Duplicate layout rules: layoutMoves, adopt and relayout all call adoptSource, so the framework/root rule has one definition.
+### A secret pasted into a record: none found. -- BLOCKED (iteration 12, 1 attempts)
+- What was tried: A secret pasted into a record: none found.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Duplicate layout rules: layoutMoves, adopt and relayout all call adoptSource, so the framework/root rule has one definition.
+- Do NOT retry: A secret pasted into a record: none found.
 
-### Engine paths still keyed tree-relative against the overlay folder: grep for relativeKey/relative(root, overlayRoot|manifestPath|statePath|lockPath) finds only :503 (display), :4588 (in-tree branch only), :5813 (guarded by the sibling branch) and :6382 (in-tree branch only). -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Engine paths still keyed tree-relative against the overlay folder: grep for relativeKey/relative(root, overlayRoot|manifestPath|statePath|lockPath) finds only :503 (display), :4588 (in-tree branch only), :5813 (guarded by the sibling branch) and :6382 (in-tree branch only).
+### A spec REQ the code misses: none. -- BLOCKED (iteration 17, 1 attempts)
+- What was tried: A spec REQ the code misses: none.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Engine paths still keyed tree-relative against the overlay folder: grep for relativeKey/relative(root, overlayRoot|manifestPath|statePath|lockPath) finds only :503 (display), :4588 (in-tree branch only), :5813 (guarded by the sibling branch) and :6382 (in-tree branch only).
+- Do NOT retry: A spec REQ the code misses: none.
 
-### Fixture leakage between parallel sibling runs. -- BLOCKED (iteration 17, 1 attempts)
-- What was tried: Fixture leakage between parallel sibling runs.
+### Blocked merge left unrecorded: T002 names it and its resolution. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Blocked merge left unrecorded: T002 names it and its resolution.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Fixture leakage between parallel sibling runs.
+- Do NOT retry: Blocked merge left unrecorded: T002 names it and its resolution.
 
-### Guard bypass by writing through the sibling folder into the tree: candidates are canonicalized before the containment test (:4131, :5531). -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Guard bypass by writing through the sibling folder into the tree: candidates are canonicalized before the containment test (:4131, :5531).
+### Changelog and spec hits for barter-overlays (`overlays/framework/changelog/skilled-coder/v4.1.0.0.md`, `specs/skilled-barter-overlays/`): history, out of scope by the node question. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Changelog and spec hits for barter-overlays (`overlays/framework/changelog/skilled-coder/v4.1.0.0.md`, `specs/skilled-barter-overlays/`): history, out of scope by the node question.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Guard bypass by writing through the sibling folder into the tree: candidates are canonicalized before the containment test (:4131, :5531).
+- Do NOT retry: Changelog and spec hits for barter-overlays (`overlays/framework/changelog/skilled-coder/v4.1.0.0.md`, `specs/skilled-barter-overlays/`): history, out of scope by the node question.
 
-### Missing createdDirs for the overlay area in rollback: ruled out as above. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Missing createdDirs for the overlay area in rollback: ruled out as above.
+### Docs claiming relayout applies by itself: the workflow runs apply as a second call (`.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:105`), and the engine prints "run ... apply" (`.skilled/commands/doctor/scripts/overlay-engine.cjs:6557`). -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Docs claiming relayout applies by itself: the workflow runs apply as a second call (`.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:105`), and the engine prints "run ... apply" (`.skilled/commands/doctor/scripts/overlay-engine.cjs:6557`).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Missing createdDirs for the overlay area in rollback: ruled out as above.
+- Do NOT retry: Docs claiming relayout applies by itself: the workflow runs apply as a second call (`.skilled/commands/doctor/assets/doctor-overlay-apply.yaml:105`), and the engine prints "run ... apply" (`.skilled/commands/doctor/scripts/overlay-engine.cjs:6557`).
 
-### Old folder path in Barter docs. -- BLOCKED (iteration 11, 1 attempts)
-- What was tried: Old folder path in Barter docs.
+### Docs recommending an unsafe bypass: bypasses are printed only beside the refusal and name the variable exactly. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: Docs recommending an unsafe bypass: bypasses are printed only beside the refusal and name the variable exactly.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Old folder path in Barter docs.
+- Do NOT retry: Docs recommending an unsafe bypass: bypasses are printed only beside the refusal and name the variable exactly.
 
-### Phase 002 negative control overstated: the summary's 245/238/7 numbers match the capture. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: Phase 002 negative control overstated: the summary's 245/238/7 numbers match the capture.
+### Double-counted created folders across moves: missingRelayoutParents runs per move after earlier mkdirs (`:6517`). -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: Double-counted created folders across moves: missingRelayoutParents runs per move after earlier mkdirs (`:6517`).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Phase 002 negative control overstated: the summary's 245/238/7 numbers match the capture.
+- Do NOT retry: Double-counted created folders across moves: missingRelayoutParents runs per move after earlier mkdirs (`:6517`).
 
-### Pin mismatch between the packet and the Barter manifest: ruled out by rev-parse. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Pin mismatch between the packet and the Barter manifest: ruled out by rev-parse.
+### Ephemeral ids in the remediation's code comments: none found. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: Ephemeral ids in the remediation's code comments: none found.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Pin mismatch between the packet and the Barter manifest: ruled out by rev-parse.
+- Do NOT retry: Ephemeral ids in the remediation's code comments: none found.
 
-### Playbook scenario registered in the index but missing from the leaf manifests: both manifests list it. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: Playbook scenario registered in the index but missing from the leaf manifests: both manifests list it.
+### git-write gate failing open when the overlay folder moves: it refuses every write instead. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: git-write gate failing open when the overlay folder moves: it refuses every write instead.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Playbook scenario registered in the index but missing from the leaf manifests: both manifests list it.
+- Do NOT retry: git-write gate failing open when the overlay folder moves: it refuses every write instead.
 
-### Raising any P2 to P1: no finding names an in-contract input or a real caller that fails today. -- BLOCKED (iteration 15, 1 attempts)
-- What was tried: Raising any P2 to P1: no finding names an in-contract input or a real caller that fails today.
+### Half-moved folder on manifest-plan refusal: refusal happens before the first rename (`:6482-6488`). -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: Half-moved folder on manifest-plan refusal: refusal happens before the first rename (`:6482-6488`).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Raising any P2 to P1: no finding names an in-contract input or a real caller that fails today.
+- Do NOT retry: Half-moved folder on manifest-plan refusal: refusal happens before the first rename (`:6482-6488`).
 
-### Relayout overwriting when two off-layout sources map to the same layout path: refused by the claimed map (:6158-6161). -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Relayout overwriting when two off-layout sources map to the same layout path: refused by the claimed map (:6158-6161).
+### Main-checkout commit gate bypass: git exports no GIT_DIR there (probe a), and the engine refuses (probe b, plain run). -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: Main-checkout commit gate bypass: git exports no GIT_DIR there (probe a), and the engine refuses (probe b, plain run).
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Relayout overwriting when two off-layout sources map to the same layout path: refused by the claimed map (:6158-6161).
+- Do NOT retry: Main-checkout commit gate bypass: git exports no GIT_DIR there (probe a), and the engine refuses (probe b, plain run).
 
-### Run-id traversal reaching a write: the engine refuses before any read or write (:5340). -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Run-id traversal reaching a write: the engine refuses before any read or write (:5340).
+### P2-to-P1 escalation for any active P2: no case reaches a broken tree or a bypassed gate. -- BLOCKED (iteration 14, 1 attempts)
+- What was tried: P2-to-P1 escalation for any active P2: no case reaches a broken tree or a bypassed gate.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Run-id traversal reaching a write: the engine refuses before any read or write (:5340).
+- Do NOT retry: P2-to-P1 escalation for any active P2: no case reaches a broken tree or a bypassed gate.
 
-### Runtime copies of the git-write gate computing the wrong root from their own path: the four runtime hook copies are links, and the .vibe copy is an adapter that imports the .skilled core. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: Runtime copies of the git-write gate computing the wrong root from their own path: the four runtime hook copies are links, and the .vibe copy is an adapter that imports the .skilled core.
+### Push claimed without evidence: origin/main contains b5a630c6efa. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Push claimed without evidence: origin/main contains b5a630c6efa.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Runtime copies of the git-write gate computing the wrong root from their own path: the four runtime hook copies are links, and the .vibe copy is an adapter that imports the .skilled core.
+- Do NOT retry: Push claimed without evidence: origin/main contains b5a630c6efa.
 
-### Secret leakage through the scratch run captures. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: Secret leakage through the scratch run captures.
+### R5-P1-001 as unreachable in practice: worktrees are a documented ai-speckit workspace. -- BLOCKED (iteration 13, 1 attempts)
+- What was tried: R5-P1-001 as unreachable in practice: worktrees are a documented ai-speckit workspace.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Secret leakage through the scratch run captures.
+- Do NOT retry: R5-P1-001 as unreachable in practice: worktrees are a documented ai-speckit workspace.
 
-### SKD-013 grep miscount: ruled out, JSON output is indented. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: SKD-013 grep miscount: ruled out, JSON output is indented.
+### Rollback tests that would pass without the fix. -- BLOCKED (iteration 16, 1 attempts)
+- What was tried: Rollback tests that would pass without the fix.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: SKD-013 grep miscount: ruled out, JSON output is indented.
+- Do NOT retry: Rollback tests that would pass without the fix.
 
-### Sources left on the old layout: ruled out, zero sources outside framework/ and root/. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Sources left on the old layout: ruled out, zero sources outside framework/ and root/.
+### Stale engine line pointers in doctor docs: there are none. -- BLOCKED (iteration 10, 1 attempts)
+- What was tried: Stale engine line pointers in doctor docs: there are none.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Sources left on the old layout: ruled out, zero sources outside framework/ and root/.
-
-### Status or capture printing a tree-relative path for a sibling source. -- BLOCKED (iteration 16, 1 attempts)
-- What was tried: Status or capture printing a tree-relative path for a sibling source.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Status or capture printing a tree-relative path for a sibling source.
+- Do NOT retry: Stale engine line pointers in doctor docs: there are none.
 
 <!-- /ANCHOR:exhausted-approaches -->
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
@@ -194,30 +194,37 @@ Review: specs/system-skilled-doctor/007-overlay-framework-root-layout (spec-fold
 - Remaining frontier: none recorded
 
 ## 11. RULED OUT DIRECTIONS
-- Close-out commit list mismatch (iteration 12)
-- Phase 002 negative control overstated: numbers match (iteration 9)
-- Secret leakage in packet evidence (iteration 8)
-- Vibe gate copy wrong root depth: it imports the core (iteration 7)
-- Rollback run-id traversal reaching a write (iteration 6)
-- Guard bypass through the sibling folder: canonical match (iteration 5)
-- Barter pin mismatch: equal to 063daaee2c1 (iteration 4)
-- specs/skilled-barter-overlays hits are a track name (iteration 3)
-- Barter guard blocking every edit: adapter is fail-open (iteration 3)
-- SKD-013 grep miscount: status --json is indented (iteration 2)
-- Relayout overwrite on shared target: claimed map refuses it (iteration 2)
 [Review angles that were investigated and definitively eliminated -- consolidated from iteration dead-end data]
-- [Approach]: [Why ruled out] (iteration N, evidence: [source])
+- Half-move on manifest-plan refusal: refusal precedes the first rename (iteration 1, overlay-engine.cjs:6482)
+- Relayout-applies-itself doc claim: workflow runs apply second (iteration 2, doctor-overlay-apply.yaml:105)
+- barter-overlays in changelogs/specs: history, out of scope (iteration 3)
+- Push claimed without evidence: b5a630c6efa is on origin/main (iteration 4)
+- Git-write gate failing open on lookup failure: it refuses every write (iteration 7, barter-git-write-gate.mjs:226)
+- Secrets in the records: credential pattern scan clean (iteration 12)
+- R5-P1-001 unreachable: worktrees are a documented ai-speckit workspace and core.hooksPath is shared (iteration 13)
+- Escalating any P2 to P1: none reaches a broken tree or a bypassed gate (iteration 14)
+- Rollback tests insensitive to the fix: 3 of 3 fail on the pre-fix engine (iteration 16)
 
 ---
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: maintainability - Focus area: none outstanding - Reason: recovery pass found no new issue; synthesis when convergence allows Review verdict: PASS
+- Dimension: none - Focus area: synthesis if the stop decision allows it - Reason: core protocols adjudicated - Rotation status: complete - Required evidence: stop decision Review verdict: CONDITIONAL
 
 <!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
-- Target pointers: .skilled/commands/doctor/scripts/overlay-engine.cjs, .skilled/commands/doctor/scripts/tests, .skilled/hooks/overlay-guard, .skilled/commands/doctor docs, .skilled/skills/system-skilled-doctor, barter/ai-speckit (nested repo), packet 007 child phases 001-005.
-- resource-map.md not present; skipping coverage gate.
+Prior generation (archived at `review-archive/20261120T163142Z`) left 16 open findings: R1-P1-001 (relayout half-move), R2-P1-001 (commit gate skips when overlay folder absent), and P2s R3-P2-001, R3-P2-002, R12-P2-001, R14-P2-001, R2-P2-001 (x2), R8-P2-001, R1-P2-001 (x2), R13-P2-001, R13-P2-002, R6-P2-001, R11-P2-001, R4-P2-001. Remediation landed in phases 006 (engine), 007 (Barter fixes), 008 (push and re-pin). resource-map.md not present; skipping coverage gate.
+
+### Bounded Context Snapshot
+
+Populate during initialization before the first review dimension runs. Keep this pointer-based and scoped to the declared review target:
+
+- Target pointers: files, specs, symbols, or resource-map entries under review.
+- Behavior claims: acceptance criteria, public contracts, or docs to verify.
+- Reuse and conventions: existing patterns that define expected implementation shape.
+- Review risks and gaps: stale graph or memory caveats, missing files, and out-of-scope areas.
+
+Do not inline full source bodies. Do not dispatch the retired standalone context loop. Use this snapshot only to seed review dimensions and final traceability.
 
 ---
 
@@ -239,8 +246,11 @@ Review: specs/system-skilled-doctor/007-overlay-framework-root-layout (spec-fold
 
 ## 15. FILES UNDER REVIEW
 <!-- MACHINE-OWNED: START -->
+[Per-file coverage state table -- populated during initialization from scope discovery]
+
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
+| [path/to/file] | [D1, D3] | [N] | [0 P0, 1 P1, 2 P2] | [partial/complete] |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -252,13 +262,14 @@ Review: specs/system-skilled-doctor/007-overlay-framework-root-layout (spec-fold
 - Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-opus-medium-1795182837437-sws2tv, parentSessionId=null, generation=1, lineageMode=new
+- Session lineage: sessionId=fanout-opus-medium-1795192401900-xpt66n, parentSessionId=2026-11-20T16:33:02.758Z, generation=1, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: spec-folder
 - Cross-reference checks: core=spec_code,checklist_evidence; overlay=skill_agent,agent_cross_runtime,feature_catalog_code,playbook_capability
-- Started: 2026-11-20T13:55:22.121Z
+- Started: 2026-11-20T16:35:46Z
 <!-- MACHINE-OWNED: END -->
 
+---

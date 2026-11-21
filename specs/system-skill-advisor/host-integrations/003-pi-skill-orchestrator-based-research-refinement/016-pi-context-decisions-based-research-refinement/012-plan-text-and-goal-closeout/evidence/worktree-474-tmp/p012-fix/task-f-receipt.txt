@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/route-receipt.v2.ts .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts
+The prepared file adds remove(sessionId) to RouteReceiptStore and implements it in both stores; the file store treats a missing file or folder as removed. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/route-receipt.v2.ts .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts` exits 0.

@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: fan-out lineage runner — child PWD alignment
+// ───────────────────────────────────────────────────────────────────
 //
 // spawn() moves the child's working directory but the inherited PWD still names
 // the parent's. Executors that read PWD to tell the model where it is then point

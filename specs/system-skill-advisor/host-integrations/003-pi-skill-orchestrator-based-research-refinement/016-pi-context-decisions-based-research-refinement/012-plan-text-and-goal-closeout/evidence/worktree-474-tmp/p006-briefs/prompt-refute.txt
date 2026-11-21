@@ -1,0 +1,12 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read and command uses this root. You are a read-only, non-interactive reviewer. Gate 3 is pre-resolved: write nothing, ask nothing.
+
+TASK. Refute the diff in tmp/p006-briefs/p006.diff. It changes the pasted-reply strip rule in .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:
+1. A cue now needs an attribution header ("You said:", "Earlier you replied:", "Assistant response:", "Claude reply:"). Quote marks and `>` alone are no longer cues.
+2. The cut is at the LAST "Now:" or "Task:" marker, not the first.
+The rule is called by runtime/handlers/advisor-recommend.ts (around :536), at the entry of scoreAdvisorPrompt (runtime/lib/scorer/fusion.ts around :1277) and by runtime/bench/scorer-calibration.bench.ts (around :231 and :276).
+Known and accepted miss: a user's own task with two markers ("... Task: X. Now: also Y") keeps only "also Y"; the fixture row two-markers-in-user-task records it with an `ideal` field.
+
+For each finding give: the exact input string, what the rule returns now, what it should return, and file:line. A finding without a concrete input is not a finding. Look especially for: inputs where the last-marker cut drops the user's real task; regex catastrophic backtracking; inputs where repeated stripping does not reach a fixed point; a cue that matches ordinary user prose; a caller that relied on the old quote cue. "Looks good" counts as a failed review.
+
+End with a verdict line: REFUTED (with findings) or NOT REFUTED.

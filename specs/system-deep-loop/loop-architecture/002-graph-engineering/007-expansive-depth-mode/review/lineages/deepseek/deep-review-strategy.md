@@ -1,40 +1,29 @@
 ---
-title: "Deep Review Strategy: expansive-depth program, fan-out lineage deepseek"
-description: "Session tracking for the detached deep-review lineage that reviews the expansive-depth program's runtime, command YAML, agents and mirrors."
-trigger_phrases:
-  - "deep review strategy template"
-  - "review dimension tracking"
-  - "exhausted review approaches"
-  - "review session tracking"
+title: Deep Review Strategy - Session Tracking
+description: Runtime strategy for the deepseek fan-out lineage of the expansive-depth review over the deep-loop runtime and command surface.
 importance_tier: normal
 contextType: planning
-version: 1.11.1.0
 ---
 
-# Deep Review Strategy - Session Tracking Template
-
-Runtime template copied into the resolved `{artifact_dir}/` during initialization. Tracks review progress across iterations.
+# Deep Review Strategy - Session Tracking
 
 ## 1. OVERVIEW
 
 ### Purpose
 
-Serves as the "persistent brain" for a deep review session. Records which dimensions remain, what was found (P0/P1/P2), what review approaches worked or failed, and where to focus next. Read by the orchestrator and agents at every iteration.
+Persistent brain for this review lineage. Records which dimensions remain, what was found (P0/P1/P2), what review approaches worked or failed, and where to focus next.
 
 ### Usage
 
-- **Init:** Orchestrator copies this template to `{artifact_dir}/deep-review-strategy.md` and populates Topic, Review Dimensions, Known Context, and Review Boundaries from config and memory context.
-- **Per iteration:** Agent reads Next Focus, reviews the assigned dimension/files, updates findings, marks dimensions complete, and sets new Next Focus.
+- **Init:** Populated from config and the bounded context snapshot.
+- **Per iteration:** Agent reads Next Focus, reviews the assigned frontier node and dimension, updates findings, marks dimensions complete, and sets new Next Focus.
 - **Mutability:** Mutable, updated by both orchestrator and agents throughout the session.
-- **Protection:** None (shared mutable state). Orchestrator validates consistency on resume.
-- **Ownership:** Machine-managed metrics and coverage blocks are wrapped in explicit ownership markers. Human commentary and operator overrides live outside those markers.
 
 ---
 
 ## 2. TOPIC
-Range 21c4b325b5a..de32abbb74d -- the expansive-depth program across `.skilled/skills/system-deep-loop`, `.skilled/commands/deep`, `.skilled/agents` and the `.claude`, `.codex`, `.pi`, `.dsh` and `.vibe` agent mirrors. Runtime code and tests, command YAML and presentation, skill docs, playbooks and catalogs are in scope; specs/ evidence and spec-packet artifacts are excluded.
 
-This is the detached fan-out lineage `deepseek`. The same range is reviewed in parallel by an `opus` lineage; the cross-lineage merge is the authoritative rollup.
+Review: `17a9ddbcb68..555487146e2 -- .skilled/skills/system-deep-loop .skilled/commands/deep` (88 changed files, commit-range target, review target type `files`).
 
 ---
 
@@ -43,19 +32,21 @@ This is the detached fan-out lineage `deepseek`. The same range is reviewed in p
 [All dimensions complete]
 
 <!-- /ANCHOR:review-dimensions -->
-
 ## 4. NON-GOALS
-- Spec-packet artifacts under `specs/`: excluded from the target, used only as traceability evidence when a code finding needs the governing contract.
-- Generated artifacts the range rebuilt (compiled routing, skill graph, graph metadata, compiled command contracts): pruned as generated artifacts, not reviewable work.
-- Fixes: this loop reports findings only. Implementation is a separate follow-up.
+
+- No fixes, no source edits, no refactors: this loop is observation-only.
+- No review of files outside the commit range `17a9ddbcb68..555487146e2` under the two pathspecs.
+- No web research and no external resource fetching.
+- No review of the `review/` packet artifacts themselves except as traceability evidence.
 
 ---
 
 ## 5. STOP CONDITIONS
-- Legal convergence at `convergenceThreshold` 0.1, or `maxIterations` 24, whichever comes first.
-- `maxDurationMinutes` 120 from `createdAt`.
-- Frontier veto: while a dealt node stays open or active the loop continues with reason `frontierOpen`; the three dealt nodes (F-1-003, F-1-005, F-1-007) each owe one pass per canonical dimension before they close.
-- Dimension order: correctness, security, traceability, maintainability, rotating across the three frontier nodes; the operator review focus (overengineering, operator UX, cross-CLI parity) is covered inside every iteration.
+
+- Legal convergence per `convergence.cjs` (composite weighted vote under `convergenceThreshold: 0.1`, all dimensions clean, frontier drained).
+- `maxIterations: 24` reached.
+- Stuck recovery (`stuckThreshold: 2`) or three consecutive failed iterations.
+- Wall-clock budget `maxDurationMinutes: 120` from `createdAt`.
 
 ---
 
@@ -70,248 +61,292 @@ This is the detached fan-out lineage `deepseek`. The same range is reviewed in p
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 2
-- P2 (Suggestions): 6
+- P1 (Required): 0
+- P2 (Suggestions): 9
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
-
----
-
 ## 8. WHAT WORKED
-- Iteration 1: reading the fan-out partition and merge paths together exposed the prompt and coverage mismatches quickly; the plan section 3 merge rules mapped one-to-one to the code.
-- Iteration 2: governing the reducer against the review doctrine caught the `thought`-visit gap in the new frontier projection; reading the extension step beside its ledger schema confirmed the count-plus-N arithmetic is intentional (AC-004), not an off-by-one.
-- Iteration 3: reading the pivot acceptance criterion beside the YAML branch exposed the admission promise the branch does not keep; the attempt-scoped ids and paths held up under a resume and crash-window read.
-- Iteration 4: following the focus from argv to the setup binding showed the control-strip and length bound close the injection path; walking env assembly from the allowlist to the overlay confirmed per-kind credential filtering.
-- Iteration 5: tracing path shapes through the new source-quality classifier found the POSIX-only split; the rest of the reducer and upsert path handled every state input without a shell or an out-of-packet write.
-- Iteration 6: reading the pivot config parser beside its writer confirmed the persistence contract is strict; the graph query path's allowlist and parameter binding closed the metadata and SQL surfaces.
-- Iteration 7: checking the feature catalog and playbooks against the fan-out code showed the catalog agrees with the implemented pivot handoff, which narrows the iteration 3 finding's fix to the packet text.
-- Iteration 8: matching each acceptance row to a named test showed the extension and evidence-edge requirements are pinned end to end; no requirement rests on prose alone.
-- Iteration 9: the catalog's pivot sentence gave the cleanest evidence on the one open contradiction: the shipped docs agree with the code, so the acceptance row is the stale surface.
-- Iteration 10: the adapter map and per-rule merge helpers held; the only duplicated rule stayed R1-P2-004.
-- Iteration 11: the shared stop/reducer predicate and anchored strategy writers held; the two-reducer frontier helpers remain a two-instance case.
-- Iteration 12: the attempt transition's two-step write is the one maintainability cost worth recording; the retry split and per-loop vocabularies stayed ruled out.
+- Builder-to-record comparison: reading each `build*LineageCommand` beside its `EXECUTOR_ADAPTER_CAPABILITIES` row found both P2s without running the suite (iteration 1).
+- Tracing the built command's `env` through `extraEnv` into `runLineageProcess` proved the opencode deny reaches the child in both dispatch paths (iteration 1).
+- Following a stripped field from the CLI metadata into the projection (`withoutGatewayIdentity` then `data.record` then `{...record}`) found the one place the "dropped, not kept" claim does not hold (iteration 2).
 
 ---
 
 ## 9. WHAT FAILED
-- Iteration 2: the first read of the extension step looked like `maxIterations += N` was missing a duration-symmetry rule; the AC-004 checkpoint showed the count-plus-N rule is deliberate, so the direction was dropped rather than reported.
-- Iteration 2: treating the duplicated frontier visit/marker code across the two reducers as an overengineering finding failed the two-instance test in `prevent-overengineering.md` section 4; recorded as a ruled-out direction instead.
-- Iteration 3: the first read of the review pivot treated the YAML's "pivot adds no frontier node" clause as the settled design; the acceptance criterion says the opposite, so the mismatch became the finding rather than a pass.
-- Iteration 4: reading the merge's throwing readers as a security issue failed the range test (they predate the range) and the fail-closed rationale; recorded as context instead.
-- Iteration 12: the closeout's `structured_state_findings_partially_reflected_in_registry` warning is a pre-existing false positive on the documented `refines` path; it is recorded, not treated as a range finding, and the report/registry still complete.
+- Reading the conformance test as proof of the sandbox contract: its `permission-mode` assertion compares only `read-only` with `danger-full-access`, so it cannot see the dsh `workspace-write` collapse (iteration 1).
+- Reading the gateway comment as proof of the projection: the comment describes the envelope, and the projected row is a separate spread that keeps the model's identity fields (iteration 2).
 
 ---
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-### `maxIterations` extension lowering the ceiling after an early convergence: AC-004 defines the count-plus-N rule, and the schema check enforces the same identity; not a defect. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `maxIterations` extension lowering the ceiling after an early convergence: AC-004 defines the count-plus-N rule, and the schema check enforces the same identity; not a defect.
+### **`--auto` on opencode as a privilege regression.** Ruled out: `read-only` is refused before spawn, and `workspace-write` pairs `--auto` with an `external_directory` deny that is covered by `dispatch-iteration.vitest.ts:504-528` and `fanout-run.vitest.ts:3826-3914`. The residual Bash write path is documented in the builder warning and in `loop-protocol.md:294`. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **`--auto` on opencode as a privilege regression.** Ruled out: `read-only` is refused before spawn, and `workspace-write` pairs `--auto` with an `external_directory` deny that is covered by `dispatch-iteration.vitest.ts:504-528` and `fanout-run.vitest.ts:3826-3914`. The residual Bash write path is documented in the builder warning and in `loop-protocol.md:294`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `maxIterations` extension lowering the ceiling after an early convergence: AC-004 defines the count-plus-N rule, and the schema check enforces the same identity; not a defect.
+- Do NOT retry: **`--auto` on opencode as a privilege regression.** Ruled out: `read-only` is refused before spawn, and `workspace-write` pairs `--auto` with an `external_directory` deny that is covered by `dispatch-iteration.vitest.ts:504-528` and `fanout-run.vitest.ts:3826-3914`. The residual Bash write path is documented in the builder warning and in `loop-protocol.md:294`.
 
-### `thought` records in the global `buildDimensionCoverage`: the missing status filter predates the range; only the new frontier `answered` projection is reported. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `thought` records in the global `buildDimensionCoverage`: the missing status filter predates the range; only the new frontier `answered` projection is reported.
+### **`DISPATCH_ENV_KEYS` blocking the fan-out merge.** Ruled out: `assertDispatchEnvAllowed` runs only in `runAuditedExecutorCommand`, and the fan-out path assembles `extraEnv` itself. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **`DISPATCH_ENV_KEYS` blocking the fan-out merge.** Ruled out: `assertDispatchEnvAllowed` runs only in `runAuditedExecutorCommand`, and the fan-out path assembles `extraEnv` itself.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `thought` records in the global `buildDimensionCoverage`: the missing status filter predates the range; only the new frontier `answered` projection is reported.
+- Do NOT retry: **`DISPATCH_ENV_KEYS` blocking the fan-out merge.** Ruled out: `assertDispatchEnvAllowed` runs only in `runAuditedExecutorCommand`, and the fan-out path assembles `extraEnv` itself.
 
-### A corrupt-lineage merge abort as a range finding: the readers predate the range and fail closed. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: A corrupt-lineage merge abort as a range finding: the readers predate the range and fail closed.
+### **`emittedPermissionMode` misreporting another kind's flag.** Ruled out: it reads the argv it was given and each builder emits its own vocabulary; no cross-kind value is reused. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **`emittedPermissionMode` misreporting another kind's flag.** Ruled out: it reads the argv it was given and each builder emits its own vocabulary; no cross-kind value is reused.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A corrupt-lineage merge abort as a range finding: the readers predate the range and fail closed.
+- Do NOT retry: **`emittedPermissionMode` misreporting another kind's flag.** Ruled out: it reads the argv it was given and each builder emits its own vocabulary; no cross-kind value is reused.
 
-### A duplication finding for the two mode-specific pivot builders: the shared transaction lives in the library; the builders carry genuinely different seats and triggers. -- BLOCKED (iteration 12, 1 attempts)
-- What was tried: A duplication finding for the two mode-specific pivot builders: the shared transaction lives in the library; the builders carry genuinely different seats and triggers.
+### **A `run`-versus-`iteration` contradiction.** Ruled out: the reference describes both and the readers accept both. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: **A `run`-versus-`iteration` contradiction.** Ruled out: the reference describes both and the readers accept both.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A duplication finding for the two mode-specific pivot builders: the shared transaction lives in the library; the builders carry genuinely different seats and triggers.
+- Do NOT retry: **A `run`-versus-`iteration` contradiction.** Ruled out: the reference describes both and the readers accept both.
 
-### A lint-style duplication finding for the two YAML retry blocks: the workflows are separate contracts and the contract-drift check is the existing guard. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: A lint-style duplication finding for the two YAML retry blocks: the workflows are separate contracts and the contract-drift check is the existing guard.
+### **A commit message overstating its diff.** Ruled out: each of the three messages names a behavior the diff implements, and none claims a broader guarantee. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **A commit message overstating its diff.** Ruled out: each of the three messages names a behavior the diff implements, and none claims a broader guarantee.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A lint-style duplication finding for the two YAML retry blocks: the workflows are separate contracts and the contract-drift check is the existing guard.
+- Do NOT retry: **A commit message overstating its diff.** Ruled out: each of the three messages names a behavior the diff implements, and none claims a broader guarantee.
 
-### A new catalog finding for the pivot sentence: it matches the code and is the evidence that R3-P1-001 is stale packet text. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: A new catalog finding for the pivot sentence: it matches the code and is the evidence that R3-P1-001 is stale packet text.
+### **A cost double-count across rotated claude logs.** Ruled out: rotation is per attempt, and each attempt's log carries its own cumulative total, so summing attempts is correct. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **A cost double-count across rotated claude logs.** Ruled out: rotation is per attempt, and each attempt's log carries its own cumulative total, so summing attempts is correct.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A new catalog finding for the pivot sentence: it matches the code and is the evidence that R3-P1-001 is stale packet text.
+- Do NOT retry: **A cost double-count across rotated claude logs.** Ruled out: rotation is per attempt, and each attempt's log carries its own cumulative total, so summing attempts is correct.
 
-### A new finding for the catalog's "produced evidence" sentence: the same rule is already R2-P1-001, and splitting it would double-count one defect across code and docs. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: A new finding for the catalog's "produced evidence" sentence: the same rule is already R2-P1-001, and splitting it would double-count one defect across code and docs.
+### **A cross-run append through `--run-directory`.** Ruled out as a gateway finding: the caller already holds filesystem write authority, so naming another directory is not an escalation the gateway can prevent; containment is the fan-out guard's job. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **A cross-run append through `--run-directory`.** Ruled out as a gateway finding: the caller already holds filesystem write authority, so naming another directory is not an escalation the gateway can prevent; containment is the fan-out guard's job.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A new finding for the catalog's "produced evidence" sentence: the same rule is already R2-P1-001, and splitting it would double-count one defect across code and docs.
+- Do NOT retry: **A cross-run append through `--run-directory`.** Ruled out as a gateway finding: the caller already holds filesystem write authority, so naming another directory is not an escalation the gateway can prevent; containment is the fan-out guard's job.
 
-### A playbook/code mismatch: the DRV-081 and DRV-083 commands and named cases exist as written. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: A playbook/code mismatch: the DRV-081 and DRV-083 commands and named cases exist as written.
+### **A cross-stream write through `streamId`.** Ruled out: the ledger file is selected by the ledger's own id, not the event's `streamId`. -- BLOCKED (iteration 11, 1 attempts)
+- What was tried: **A cross-stream write through `streamId`.** Ruled out: the ledger file is selected by the ledger's own id, not the event's `streamId`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A playbook/code mismatch: the DRV-081 and DRV-083 commands and named cases exist as written.
+- Do NOT retry: **A cross-stream write through `streamId`.** Ruled out: the ledger file is selected by the ledger's own id, not the event's `streamId`.
 
-### A projection-parity finding between research and review: both project `extended` rows with lineage mode, `continuedFromRun` and the budget, and the review row carries the leaf fields this lineage's state log shows. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: A projection-parity finding between research and review: both project `extended` rows with lineage mode, `continuedFromRun` and the budget, and the review row carries the leaf fields this lineage's state log shows.
+### **A destructive default.** Ruled out: `preserve` is the default and `restore` is opt-in. -- BLOCKED (iteration 14, 1 attempts)
+- What was tried: **A destructive default.** Ruled out: `preserve` is the default and `restore` is opt-in.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A projection-parity finding between research and review: both project `extended` rows with lineage mode, `continuedFromRun` and the budget, and the review row carries the leaf fields this lineage's state log shows.
+- Do NOT retry: **A destructive default.** Ruled out: `preserve` is the default and `restore` is opt-in.
 
-### A research frontier revisit source: missing by design; the sixth source is a deep-review-only sentence. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: A research frontier revisit source: missing by design; the sixth source is a deep-review-only sentence.
+### **A digest collision risk from `withoutHeads`.** Ruled out: it only nulls a value equal to one of the two event heads, which a review record's content cannot plausibly contain, and both sides are transformed identically. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **A digest collision risk from `withoutHeads`.** Ruled out: it only nulls a value equal to one of the two event heads, which a review record's content cannot plausibly contain, and both sides are transformed identically.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A research frontier revisit source: missing by design; the sixth source is a deep-review-only sentence.
+- Do NOT retry: **A digest collision risk from `withoutHeads`.** Ruled out: it only nulls a value equal to one of the two event heads, which a review record's content cannot plausibly contain, and both sides are transformed identically.
 
-### A retry-parity finding between the two loops: both YAMLs and both scripts carry the same one-time rule. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: A retry-parity finding between the two loops: both YAMLs and both scripts carry the same one-time rule.
+### **A digest-collision replay bypass.** Ruled out: the digest is computed over the payload with the same head-nulling on both sides, and a different payload produces a different digest. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **A digest-collision replay bypass.** Ruled out: the digest is computed over the payload with the same head-nulling on both sides, and a different payload produces a different digest.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A retry-parity finding between the two loops: both YAMLs and both scripts carry the same one-time rule.
+- Do NOT retry: **A digest-collision replay bypass.** Ruled out: the digest is computed over the payload with the same head-nulling on both sides, and a different payload produces a different digest.
 
-### A review-run `DERIVED_FROM` write: the research frontier graph step is the only caller, and the review relation vocabulary excludes it. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: A review-run `DERIVED_FROM` write: the research frontier graph step is the only caller, and the review relation vocabulary excludes it.
+### **A doc claiming an OS sandbox where only a permission rule exists.** Ruled out: every opencode and pi statement names the control as a permission rule or tool allowlist and names Bash as unconfined. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: **A doc claiming an OS sandbox where only a permission rule exists.** Ruled out: every opencode and pi statement names the control as a permission rule or tool allowlist and names Bash as unconfined.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A review-run `DERIVED_FROM` write: the research frontier graph step is the only caller, and the review relation vocabulary excludes it.
+- Do NOT retry: **A doc claiming an OS sandbox where only a permission rule exists.** Ruled out: every opencode and pi statement names the control as a permission rule or tool allowlist and names Bash as unconfined.
 
-### A stale-mirror finding: all six agent surfaces carry the new contract, so the differences are runtime packaging only. -- BLOCKED (iteration 7, 1 attempts)
-- What was tried: A stale-mirror finding: all six agent surfaces carry the new contract, so the differences are runtime packaging only.
+### **A doc omitting the opencode read-only refusal.** Ruled out: `review.md`, both presentations, both compiled contracts and `loop-protocol.md:286` all state it. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: **A doc omitting the opencode read-only refusal.** Ruled out: `review.md`, both presentations, both compiled contracts and `loop-protocol.md:286` all state it.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A stale-mirror finding: all six agent surfaces carry the new contract, so the differences are runtime packaging only.
+- Do NOT retry: **A doc omitting the opencode read-only refusal.** Ruled out: `review.md`, both presentations, both compiled contracts and `loop-protocol.md:286` all state it.
 
-### A symlink-following write through the reducer outputs as a range finding: the writers predate the range and the effect stays inside or is caught by containment. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: A symlink-following write through the reducer outputs as a range finding: the writers predate the range and the effect stays inside or is caught by containment.
+### **A duplicate of R1-P2-001.** Ruled out: that finding is the dsh command being confined while the label says `none`; this one is a runner-level guard the label cannot see. -- BLOCKED (iteration 13, 1 attempts)
+- What was tried: **A duplicate of R1-P2-001.** Ruled out: that finding is the dsh command being confined while the label says `none`; this one is a runner-level guard the label cannot see.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A symlink-following write through the reducer outputs as a range finding: the writers predate the range and the effect stays inside or is caught by containment.
+- Do NOT retry: **A duplicate of R1-P2-001.** Ruled out: that finding is the dsh command being confined while the label says `none`; this one is a runner-level guard the label cannot see.
 
-### A vocabulary finding for `DERIVED_FROM`: it is research-only and the review graph never emits it. -- BLOCKED (iteration 12, 1 attempts)
-- What was tried: A vocabulary finding for `DERIVED_FROM`: it is research-only and the review graph never emits it.
+### **A duplicate of R2-P2-001.** Ruled out: R2-P2-001 is about the projected row keeping stripped fields; this finding is about four fields that are never stripped at all. -- BLOCKED (iteration 11, 1 attempts)
+- What was tried: **A duplicate of R2-P2-001.** Ruled out: R2-P2-001 is about the projected row keeping stripped fields; this finding is about four fields that are never stripped at all.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A vocabulary finding for `DERIVED_FROM`: it is research-only and the review graph never emits it.
+- Do NOT retry: **A duplicate of R2-P2-001.** Ruled out: R2-P2-001 is about the projected row keeping stripped fields; this finding is about four fields that are never stripped at all.
 
-### A Windows path finding for the playbook: the code advisory R5-P2-001 already carries it; the playbook omission is its doc side. -- BLOCKED (iteration 9, 1 attempts)
-- What was tried: A Windows path finding for the playbook: the code advisory R5-P2-001 already carries it; the playbook omission is its doc side.
+### **A duplicate of R3-P2-001.** Ruled out: that finding is the weak `permission-mode` assertion; this pass found no additional gap worth a separate finding. -- BLOCKED (iteration 16, 1 attempts)
+- What was tried: **A duplicate of R3-P2-001.** Ruled out: that finding is the weak `permission-mode` assertion; this pass found no additional gap worth a separate finding.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: A Windows path finding for the playbook: the code advisory R5-P2-001 already carries it; the playbook omission is its doc side.
+- Do NOT retry: **A duplicate of R3-P2-001.** Ruled out: that finding is the weak `permission-mode` assertion; this pass found no additional gap worth a separate finding.
 
-### Abstracting the two reducers' frontier visit, marker and ranking blocks: exactly two instances with contract-driven divergence, and `prevent-overengineering.md` section 4 says two is a coincidence, so extracting them now would buy a wrong abstraction. Named what would change the judgment: a third frontier consumer. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Abstracting the two reducers' frontier visit, marker and ranking blocks: exactly two instances with contract-driven divergence, and `prevent-overengineering.md` section 4 says two is a coincidence, so extracting them now would buy a wrong abstraction. Named what would change the judgment: a third frontier consumer.
+### **A duplicate of R4-P2-001.** Ruled out: R4-P2-001 is the pi content drift; this finding is the structural duplication that let it happen, in a different file set. -- BLOCKED (iteration 12, 1 attempts)
+- What was tried: **A duplicate of R4-P2-001.** Ruled out: R4-P2-001 is the pi content drift; this finding is the structural duplication that let it happen, in a different file set.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Abstracting the two reducers' frontier visit, marker and ranking blocks: exactly two instances with contract-driven divergence, and `prevent-overengineering.md` section 4 says two is a coincidence, so extracting them now would buy a wrong abstraction. Named what would change the judgment: a third frontier consumer.
+- Do NOT retry: **A duplicate of R4-P2-001.** Ruled out: R4-P2-001 is the pi content drift; this finding is the structural duplication that let it happen, in a different file set.
 
-### Collapsing the library retry loop and the YAML retry step: different owners and different dispatch models. -- BLOCKED (iteration 12, 1 attempts)
-- What was tried: Collapsing the library retry loop and the YAML retry step: different owners and different dispatch models.
+### **A finding for the `--pure` guard being too narrow on its own.** Ruled out as the same finding: the narrow guard is the evidence, not a separate defect. -- BLOCKED (iteration 12, 1 attempts)
+- What was tried: **A finding for the `--pure` guard being too narrow on its own.** Ruled out as the same finding: the narrow guard is the evidence, not a separate defect.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Collapsing the library retry loop and the YAML retry step: different owners and different dispatch models.
+- Do NOT retry: **A finding for the `--pure` guard being too narrow on its own.** Ruled out as the same finding: the narrow guard is the evidence, not a separate defect.
 
-### Duplicate `node -e` extend scripts across the two YAML assets: the duplication predates the range and the copies track real config-shape differences (research nests lineage fields and has an inbox), so it is not a range-introduced overengineering finding. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Duplicate `node -e` extend scripts across the two YAML assets: the duplication predates the range and the copies track real config-shape differences (research nests lineage fields and has an inbox), so it is not a range-introduced overengineering finding.
+### **A finding for the catalog's per-kind paragraphs.** Ruled out: every claim checked matches the builders. -- BLOCKED (iteration 15, 1 attempts)
+- What was tried: **A finding for the catalog's per-kind paragraphs.** Ruled out: every claim checked matches the builders.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Duplicate `node -e` extend scripts across the two YAML assets: the duplication predates the range and the copies track real config-shape differences (research nests lineage fields and has an inbox), so it is not a range-introduced overengineering finding.
+- Do NOT retry: **A finding for the catalog's per-kind paragraphs.** Ruled out: every claim checked matches the builders.
 
-### Extracting the duplicated PRE-BOUND block from `buildNativeCommandInput` and `buildLoopPrompt`: two instances with different delivery surfaces, and `prevent-overengineering.md` section 4 keeps them separate until a third caller appears. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Extracting the duplicated PRE-BOUND block from `buildNativeCommandInput` and `buildLoopPrompt`: two instances with different delivery surfaces, and `prevent-overengineering.md` section 4 keeps them separate until a third caller appears.
+### **A finding for the claude `--output-format` difference between dispatch paths.** Ruled out: the reference names the `dispatch-iteration.cjs` branch, and that branch still emits text. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **A finding for the claude `--output-format` difference between dispatch paths.** Ruled out: the reference names the `dispatch-iteration.cjs` branch, and that branch still emits text.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Extracting the duplicated PRE-BOUND block from `buildNativeCommandInput` and `buildLoopPrompt`: two instances with different delivery surfaces, and `prevent-overengineering.md` section 4 keeps them separate until a third caller appears.
+- Do NOT retry: **A finding for the claude `--output-format` difference between dispatch paths.** Ruled out: the reference names the `dispatch-iteration.cjs` branch, and that branch still emits text.
 
-### Extracting the PRE-BOUND block into a shared builder: two delivery paths, two lists, no third caller. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: Extracting the PRE-BOUND block into a shared builder: two delivery paths, two lists, no third caller.
+### **A finding for the compiled contracts.** Ruled out: they are generated and their digests match. -- BLOCKED (iteration 12, 1 attempts)
+- What was tried: **A finding for the compiled contracts.** Ruled out: they are generated and their digests match.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Extracting the PRE-BOUND block into a shared builder: two delivery paths, two lists, no third caller.
+- Do NOT retry: **A finding for the compiled contracts.** Ruled out: they are generated and their digests match.
 
-### Extracting the two reducers' marker/visit helpers at two instances: no third consumer, and the attribution rules differ by contract. -- BLOCKED (iteration 11, 1 attempts)
-- What was tried: Extracting the two reducers' marker/visit helpers at two instances: no third consumer, and the attribution rules differ by contract.
+### **A finding for the conformance test not asserting the label.** Ruled out as a duplicate of R3-P2-001's test-gap class. -- BLOCKED (iteration 15, 1 attempts)
+- What was tried: **A finding for the conformance test not asserting the label.** Ruled out as a duplicate of R3-P2-001's test-gap class.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Extracting the two reducers' marker/visit helpers at two instances: no third consumer, and the attribution rules differ by contract.
+- Do NOT retry: **A finding for the conformance test not asserting the label.** Ruled out as a duplicate of R3-P2-001's test-gap class.
 
-### Flat partition-guard set collision: a missing depth-1 node cannot be masked by another lineage's node because depth-1 ids are minted once by the shared seed; only child ids repeat per lineage, and those are qualified before the set is built. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Flat partition-guard set collision: a missing depth-1 node cannot be masked by another lineage's node because depth-1 ids are minted once by the shared seed; only child ids repeat per lineage, and those are qualified before the set is built.
+### **A finding for the containment guard itself.** Ruled out: it runs for every kind and reports out-of-scope writes; the gap is the label, not the guard. -- BLOCKED (iteration 13, 1 attempts)
+- What was tried: **A finding for the containment guard itself.** Ruled out: it runs for every kind and reports out-of-scope writes; the gap is the label, not the guard.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Flat partition-guard set collision: a missing depth-1 node cannot be masked by another lineage's node because depth-1 ids are minted once by the shared seed; only child ids repeat per lineage, and those are qualified before the set is built.
+- Do NOT retry: **A finding for the containment guard itself.** Ruled out: it runs for every kind and reports out-of-scope writes; the gap is the label, not the guard.
 
-### Locale-dependent ordering of merged lists: the merge sorts with code-unit `compareText` everywhere, so only the partition assignment (finding 2) is exposed. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Locale-dependent ordering of merged lists: the merge sorts with code-unit `compareText` everywhere, so only the partition assignment (finding 2) is exposed.
+### **A finding for the lazy `require` inside `sandboxEnforcementFor`.** Ruled out: it is the documented way a CJS script loads the TypeScript record, and Node caches the module. -- BLOCKED (iteration 10, 1 attempts)
+- What was tried: **A finding for the lazy `require` inside `sandboxEnforcementFor`.** Ruled out: it is the documented way a CJS script loads the TypeScript record, and Node caches the module.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Locale-dependent ordering of merged lists: the merge sorts with code-unit `compareText` everywhere, so only the partition assignment (finding 2) is exposed.
+- Do NOT retry: **A finding for the lazy `require` inside `sandboxEnforcementFor`.** Ruled out: it is the documented way a CJS script loads the TypeScript record, and Node caches the module.
 
-### Moving the two convergence predicates into a new module: it relocates a two-caller helper without shrinking the surface. -- BLOCKED (iteration 11, 1 attempts)
-- What was tried: Moving the two convergence predicates into a new module: it relocates a two-caller helper without shrinking the surface.
+### **A finding for the single-member `ExecutorResumeMode` union.** Ruled out: it documents the contract that no builder resumes a provider session, and the conformance test asserts it for every kind. -- BLOCKED (iteration 10, 1 attempts)
+- What was tried: **A finding for the single-member `ExecutorResumeMode` union.** Ruled out: it documents the contract that no builder resumes a provider session, and the conformance test asserts it for every kind.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Moving the two convergence predicates into a new module: it relocates a two-caller helper without shrinking the surface.
+- Do NOT retry: **A finding for the single-member `ExecutorResumeMode` union.** Ruled out: it documents the contract that no builder resumes a provider session, and the conformance test asserts it for every kind.
 
-### Overwriting the pivot config twice when attempt 2 opens: the first write replays the attempt-1 record and the second adopts attempt 2; a crash between them is recoverable and leaves no contradictory state. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Overwriting the pivot config twice when attempt 2 opens: the first write replays the attempt-1 record and the second adopts attempt 2; a crash between them is recoverable and leaves no contradictory state.
+### **A flag-support entry the builder ignores.** Ruled out: the dsh `reasoningEffort` entry is documented as baked into the route patch, which the builder states at `fanout-run.cjs:3619-3620`. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **A flag-support entry the builder ignores.** Ruled out: the dsh `reasoningEffort` entry is documented as baked into the route patch, which the builder states at `fanout-run.cjs:3619-3620`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Overwriting the pivot config twice when attempt 2 opens: the first write replays the attempt-1 record and the second adopts attempt 2; a crash between them is recoverable and leaves no contradictory state.
+- Do NOT retry: **A flag-support entry the builder ignores.** Ruled out: the dsh `reasoningEffort` entry is documented as baked into the route patch, which the builder states at `fanout-run.cjs:3619-3620`.
 
-### Prompt injection from an admitted frontier node into a sibling lineage: post-spawn admissions stay in the lineage's own store and prompt; the shared seed questions come from the orchestrator. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Prompt injection from an admitted frontier node into a sibling lineage: post-spawn admissions stay in the lineage's own store and prompt; the shared seed questions come from the orchestrator.
+### **A maintainability finding for the mirrored allowlists.** Ruled out: the fail-closed direction is tested through the builder, and the fail-open direction is unreachable because the config gates first. -- BLOCKED (iteration 10, 1 attempts)
+- What was tried: **A maintainability finding for the mirrored allowlists.** Ruled out: the fail-closed direction is tested through the builder, and the fail-open direction is unreachable because the config gates first.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Prompt injection from an admitted frontier node into a sibling lineage: post-spawn admissions stay in the lineage's own store and prompt; the shared seed questions come from the orchestrator.
+- Do NOT retry: **A maintainability finding for the mirrored allowlists.** Ruled out: the fail-closed direction is tested through the builder, and the fail-open direction is unreachable because the config gates first.
 
-### Re-reporting the evidence-edge code as untested: six integration cases cover the stated shapes. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: Re-reporting the evidence-edge code as untested: six integration cases cover the stated shapes.
+### **A new finding for the vocabulary.** Ruled out: the catalog and the code agree; the inconsistency is inside the record, already reported. -- BLOCKED (iteration 15, 1 attempts)
+- What was tried: **A new finding for the vocabulary.** Ruled out: the catalog and the code agree; the inconsistency is inside the record, already reported.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Re-reporting the evidence-edge code as untested: six integration cases cover the stated shapes.
+- Do NOT retry: **A new finding for the vocabulary.** Ruled out: the catalog and the code agree; the inconsistency is inside the record, already reported.
 
-### Re-reporting the extension arithmetic as a defect: the catalog, tests and code agree on count-plus-N. -- BLOCKED (iteration 8, 1 attempts)
-- What was tried: Re-reporting the extension arithmetic as a defect: the catalog, tests and code agree on count-plus-N.
+### **A non-exhaustive surface switch.** Ruled out: the `default` throws. -- BLOCKED (iteration 16, 1 attempts)
+- What was tried: **A non-exhaustive surface switch.** Ruled out: the `default` throws.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Re-reporting the extension arithmetic as a defect: the catalog, tests and code agree on count-plus-N.
+- Do NOT retry: **A non-exhaustive surface switch.** Ruled out: the `default` throws.
 
-### Recording six seat outputs for an attempt-1 quorum miss that returned only two: REQ-002 explicitly defines the recorded total as `3 * attempt`. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Recording six seat outputs for an attempt-1 quorum miss that returned only two: REQ-002 explicitly defines the recorded total as `3 * attempt`.
+### **A P1 for claude's `preventive` label under `acceptEdits`.** Ruled out: the capability record is the stated authority and justifies the entry as the CLI's tool gate running before a write/exec, and print mode cannot run Bash. Recorded as a judgment call rather than a finding. -- BLOCKED (iteration 13, 1 attempts)
+- What was tried: **A P1 for claude's `preventive` label under `acceptEdits`.** Ruled out: the capability record is the stated authority and justifies the entry as the CLI's tool gate running before a write/exec, and print mode cannot run Bash. Recorded as a judgment call rather than a finding.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Recording six seat outputs for an attempt-1 quorum miss that returned only two: REQ-002 explicitly defines the recorded total as `3 * attempt`.
+- Do NOT retry: **A P1 for claude's `preventive` label under `acceptEdits`.** Ruled out: the capability record is the stated authority and justifies the entry as the CLI's tool gate running before a write/exec, and print mode cannot run Bash. Recorded as a judgment call rather than a finding.
 
-### Reporting file size or file count as a maintainability defect: no concrete change in this range paid a cost for it. -- BLOCKED (iteration 10, 1 attempts)
-- What was tried: Reporting file size or file count as a maintainability defect: no concrete change in this range paid a cost for it.
+### **A P1 for the forced `streamSequence`.** Ruled out: the ledger's head fence refuses the append, so the failure is a refused iteration rather than a corrupted chain. -- BLOCKED (iteration 11, 1 attempts)
+- What was tried: **A P1 for the forced `streamSequence`.** Ruled out: the ledger's head fence refuses the append, so the failure is a refused iteration rather than a corrupted chain.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Reporting file size or file count as a maintainability defect: no concrete change in this range paid a cost for it.
+- Do NOT retry: **A P1 for the forced `streamSequence`.** Ruled out: the ledger's head fence refuses the append, so the failure is a refused iteration rather than a corrupted chain.
 
-### Reporting the plain writers as a maintainability defect: the asymmetry predates the range and is a hardening note. -- BLOCKED (iteration 11, 1 attempts)
-- What was tried: Reporting the plain writers as a maintainability defect: the asymmetry predates the range and is a hardening note.
+### **A P1 for the pi help drift.** Ruled out: the sentence is defensible as "no OS sandbox flag", the config field is accepted, and the capability record states the real surface. Kept at P2 with that reasoning recorded. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **A P1 for the pi help drift.** Ruled out: the sentence is defensible as "no OS sandbox flag", the config field is accepted, and the capability record states the real surface. Kept at P2 with that reasoning recorded.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Reporting the plain writers as a maintainability defect: the asymmetry predates the range and is a hardening note.
+- Do NOT retry: **A P1 for the pi help drift.** Ruled out: the sentence is defensible as "no OS sandbox flag", the config field is accepted, and the capability record states the real surface. Kept at P2 with that reasoning recorded.
 
-### Research `all_questions_answered` after an exhausted node: REQ-005 deliberately marks the terminal node's question resolved so it leaves the open set; the code matches. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Research `all_questions_answered` after an exhausted node: REQ-005 deliberately marks the terminal node's question resolved so it leaves the open set; the code matches.
+### **A P1 for the projected identity fields.** Ruled out after searching for a consumer: neither the reducer nor the verifier reads `eventId` from a state-log row, so nothing mis-correlates today. Kept at P2 as a contract/comment mismatch with latent confusion. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **A P1 for the projected identity fields.** Ruled out after searching for a consumer: neither the reducer nor the verifier reads `eventId` from a state-log row, so nothing mis-correlates today. Kept at P2 as a contract/comment mismatch with latent confusion.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Research `all_questions_answered` after an exhausted node: REQ-005 deliberately marks the terminal node's question resolved so it leaves the open set; the code matches.
+- Do NOT retry: **A P1 for the projected identity fields.** Ruled out after searching for a consumer: neither the reducer nor the verifier reads `eventId` from a state-log row, so nothing mis-correlates today. Kept at P2 as a contract/comment mismatch with latent confusion.
 
-### Retrying the library `runDivergentPivot` loop and the YAML step in two places: the library is the packaged transaction API and the YAML must orchestrate native seat dispatch across steps, so neither can own the other's retry; two instances do not justify a shared abstraction. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: Retrying the library `runDivergentPivot` loop and the YAML step in two places: the library is the packaged transaction API and the YAML must orchestrate native seat dispatch across steps, so neither can own the other's retry; two instances do not justify a shared abstraction.
+### **A path-traversal write through the projection.** Ruled out: the projection contract and the state-log path are both resolved from the run directory, and no event field contributes a path segment. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **A path-traversal write through the projection.** Ruled out: the projection contract and the state-log path are both resolved from the run directory, and no event field contributes a path segment.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Retrying the library `runDivergentPivot` loop and the YAML step in two places: the library is the packaged transaction API and the YAML must orchestrate native seat dispatch across steps, so neither can own the other's retry; two instances do not justify a shared abstraction.
+- Do NOT retry: **A path-traversal write through the projection.** Ruled out: the projection contract and the state-log path are both resolved from the run directory, and no event field contributes a path segment.
 
-### Shell injection through model, focus, target or node text: no adapter shells out, and the two static `/bin/sh -c command -v` probes carry no input. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Shell injection through model, focus, target or node text: no adapter shells out, and the two static `/bin/sh -c command -v` probes carry no input.
+### **A playbook claiming confinement.** Ruled out: the word is used only for fixture directories and the SKIP criterion. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: **A playbook claiming confinement.** Ruled out: the word is used only for fixture directories and the SKIP criterion.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Shell injection through model, focus, target or node text: no adapter shells out, and the two static `/bin/sh -c command -v` probes carry no input.
+- Do NOT retry: **A playbook claiming confinement.** Ruled out: the word is used only for fixture directories and the SKIP criterion.
 
-### SQL injection through node names, metadata or namespace values: every value is bound, and the only interpolated SQL fragments are fixed column/table names. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: SQL injection through node names, metadata or namespace values: every value is bound, and the only interpolated SQL fragments are fixed column/table names.
+### **A privilege escalation through a forged `identity.authorityEpoch`.** Ruled out: the authorization request uses `admission.epoch`, and the caller's value is never read for authorization. -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **A privilege escalation through a forged `identity.authorityEpoch`.** Ruled out: the authorization request uses `admission.epoch`, and the caller's value is never read for authorization.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: SQL injection through node names, metadata or namespace values: every value is bound, and the only interpolated SQL fragments are fixed column/table names.
+- Do NOT retry: **A privilege escalation through a forged `identity.authorityEpoch`.** Ruled out: the authorization request uses `admission.epoch`, and the caller's value is never read for authorization.
 
-### The `/tmp` fallback as a range finding: the line predates the range; recorded as a portability observation. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: The `/tmp` fallback as a range finding: the line predates the range; recorded as a portability observation.
+### **A projection field drop.** Ruled out: the projection spreads the record and overrides only the timestamp. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: **A projection field drop.** Ruled out: the projection spreads the record and overrides only the timestamp.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The `/tmp` fallback as a range finding: the line predates the range; recorded as a portability observation.
+- Do NOT retry: **A projection field drop.** Ruled out: the projection spreads the record and overrides only the timestamp.
 
-### Treating leaf-authored finding paths as an injection boundary: they are already rendered as untrusted prose in every review artifact, and no new evaluator consumes them. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Treating leaf-authored finding paths as an injection boundary: they are already rendered as untrusted prose in every review artifact, and no new evaluator consumes them.
+### **A schema failure for `frontierNodeId`.** Ruled out: the field is optional and the fallback chain is documented in code; the gap is in the reference, not the runtime. -- BLOCKED (iteration 8, 1 attempts)
+- What was tried: **A schema failure for `frontierNodeId`.** Ruled out: the field is optional and the fallback chain is documented in code; the gap is in the reference, not the runtime.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Treating leaf-authored finding paths as an injection boundary: they are already rendered as untrusted prose in every review artifact, and no new evaluator consumes them.
+- Do NOT retry: **A schema failure for `frontierNodeId`.** Ruled out: the field is optional and the fallback chain is documented in code; the gap is in the reference, not the runtime.
 
-### Treating the caller-provided `--paths-json` as a boundary bypass: only the orchestrator calls `finalize`, and it passes its own prepare output. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Treating the caller-provided `--paths-json` as a boundary bypass: only the orchestrator calls `finalize`, and it passes its own prepare output.
+### **A secret-leak finding from the per-kind env prefixes.** Ruled out: each prefix is the kind's own credential namespace, and the deny table removes the state-home names a prefix would otherwise carry. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **A secret-leak finding from the per-kind env prefixes.** Ruled out: each prefix is the kind's own credential namespace, and the deny table removes the state-home names a prefix would otherwise carry.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Treating the caller-provided `--paths-json` as a boundary bypass: only the orchestrator calls `finalize`, and it passes its own prepare output.
+- Do NOT retry: **A secret-leak finding from the per-kind env prefixes.** Ruled out: each prefix is the kind's own credential namespace, and the deny table removes the state-home names a prefix would otherwise carry.
 
-### Treating the reused persisted pivot limits as a range security defect: the reuse is a documented deviation that keeps a resumed prepare from conflicting with its own recorded state, and the leaf already owns its lineage writes. -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: Treating the reused persisted pivot limits as a range security defect: the reuse is a documented deviation that keeps a resumed prepare from conflicting with its own recorded state, and the leaf already owns its lineage writes.
+### **A security finding from the pi help line.** Already recorded as R4-P2-001 in the F-1-002 security pass; re-reporting it here would double-count the same sentence. -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: **A security finding from the pi help line.** Already recorded as R4-P2-001 in the F-1-002 security pass; re-reporting it here would double-count the same sentence.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Treating the reused persisted pivot limits as a range security defect: the reuse is a documented deviation that keeps a resumed prepare from conflicting with its own recorded state, and the leaf already owns its lineage writes.
+- Do NOT retry: **A security finding from the pi help line.** Already recorded as R4-P2-001 in the F-1-002 security pass; re-reporting it here would double-count the same sentence.
 
-### Treating the whole-merge abort on one corrupt lineage log as a security finding: the throwing readers predate the range and the behavior is fail-closed rather than silently merging a corrupt registry. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: Treating the whole-merge abort on one corrupt lineage log as a security finding: the throwing readers predate the range and the behavior is fail-closed rather than silently merging a corrupt registry.
+### **A security finding in the guard's path construction.** Ruled out of scope: `write-containment.ts` is not in the commit range. -- BLOCKED (iteration 14, 1 attempts)
+- What was tried: **A security finding in the guard's path construction.** Ruled out of scope: `write-containment.ts` is not in the commit range.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Treating the whole-merge abort on one corrupt lineage log as a security finding: the throwing readers predate the range and the behavior is fail-closed rather than silently merging a corrupt registry.
+- Do NOT retry: **A security finding in the guard's path construction.** Ruled out of scope: `write-containment.ts` is not in the commit range.
+
+### **A separate finding for the conformance test's weak `permission-mode` assertion.** Ruled out as a duplicate: it is the reason P2-1 escaped, and it is recorded in that finding's scope proof rather than counted twice. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **A separate finding for the conformance test's weak `permission-mode` assertion.** Ruled out as a duplicate: it is the reason P2-1 escaped, and it is recorded in that finding's scope proof rather than counted twice.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **A separate finding for the conformance test's weak `permission-mode` assertion.** Ruled out as a duplicate: it is the reason P2-1 escaped, and it is recorded in that finding's scope proof rather than counted twice.
+
+### **A separate finding for the dsh narrowing being undocumented.** Ruled out after reading `loop-protocol.md:288`, which documents it; the surviving issue is the provenance mismatch already recorded as R1-P2-001. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **A separate finding for the dsh narrowing being undocumented.** Ruled out after reading `loop-protocol.md:288`, which documents it; the surviving issue is the provenance mismatch already recorded as R1-P2-001.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **A separate finding for the dsh narrowing being undocumented.** Ruled out after reading `loop-protocol.md:288`, which documents it; the surviving issue is the provenance mismatch already recorded as R1-P2-001.
+
+### **A stale compiled contract.** Ruled out by digest comparison against the current file bytes. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: **A stale compiled contract.** Ruled out by digest comparison against the current file bytes.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **A stale compiled contract.** Ruled out by digest comparison against the current file bytes.
+
+### **A swallowed violation.** Ruled out: every category the guard returns reaches the ledger or the lineage output. -- BLOCKED (iteration 14, 1 attempts)
+- What was tried: **A swallowed violation.** Ruled out: every category the guard returns reaches the ledger or the lineage output.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **A swallowed violation.** Ruled out: every category the guard returns reaches the ledger or the lineage output.
+
+### **A timestamp regression for the stamp-window check.** Ruled out: `lineage-timestamp-window.ts` prefers `claimedTimestamp`, so the model's claim is still the value judged. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **A timestamp regression for the stamp-window check.** Ruled out: `lineage-timestamp-window.ts` prefers `claimedTimestamp`, so the model's claim is still the value judged.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **A timestamp regression for the stamp-window check.** Ruled out: `lineage-timestamp-window.ts` prefers `claimedTimestamp`, so the model's claim is still the value judged.
+
+### **A traceability finding from the dsh narrowing.** Ruled out as a duplicate of R1-P2-001 and its iteration-3 refinement. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **A traceability finding from the dsh narrowing.** Ruled out as a duplicate of R1-P2-001 and its iteration-3 refinement.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **A traceability finding from the dsh narrowing.** Ruled out as a duplicate of R1-P2-001 and its iteration-3 refinement.
+
+### **An inherited `OPENCODE_CONFIG_CONTENT` bypassing the deny.** Ruled out: the deny is applied last and an unparseable inherited value is refused. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **An inherited `OPENCODE_CONFIG_CONTENT` bypassing the deny.** Ruled out: the deny is applied last and an unparseable inherited value is refused.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **An inherited `OPENCODE_CONFIG_CONTENT` bypassing the deny.** Ruled out: the deny is applied last and an unparseable inherited value is refused.
+
+### **An orphaned catalog file.** Ruled out: every changed catalog file is linked from the index. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: **An orphaned catalog file.** Ruled out: every changed catalog file is linked from the index.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **An orphaned catalog file.** Ruled out: every changed catalog file is linked from the index.
+
+### **An unindexed playbook.** Ruled out: DLR-025 and DRV-018 both resolve. -- BLOCKED (iteration 9, 1 attempts)
+- What was tried: **An unindexed playbook.** Ruled out: DLR-025 and DRV-018 both resolve.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **An unindexed playbook.** Ruled out: DLR-025 and DRV-018 both resolve.
+
+### **An untested preventive record.** Ruled out: `executor-config.vitest.ts:486-506` pins it. -- BLOCKED (iteration 16, 1 attempts)
+- What was tried: **An untested preventive record.** Ruled out: `executor-config.vitest.ts:486-506` pins it.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **An untested preventive record.** Ruled out: `executor-config.vitest.ts:486-506` pins it.
+
+### **Compiled-contract drift.** Ruled out: the body text of both compiled contracts matches the edited `review.md`/`research.md` and presentation assets, and the digest headers were regenerated in the same commit. -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **Compiled-contract drift.** Ruled out: the body text of both compiled contracts matches the edited `review.md`/`research.md` and presentation assets, and the digest headers were regenerated in the same commit.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **Compiled-contract drift.** Ruled out: the body text of both compiled contracts matches the edited `review.md`/`research.md` and presentation assets, and the digest headers were regenerated in the same commit.
+
+### **dsh persona path traversal.** Ruled out by the name grammar, which admits no path separator or dot. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: **dsh persona path traversal.** Ruled out by the name grammar, which admits no path separator or dot.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **dsh persona path traversal.** Ruled out by the name grammar, which admits no path separator or dot.
 
 <!-- /ANCHOR:exhausted-approaches -->
-
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
 - Completed pivots: 0
 - Failed pivots: 0
@@ -320,61 +355,67 @@ This is the detached fan-out lineage `deepseek`. The same range is reviewed in p
 - Pivot lineage: none yet
 - Remaining frontier: none recorded
 
+## 11. RULED OUT DIRECTIONS
+- opencode `--auto` as a privilege regression: ruled out; `read-only` is refused before spawn and `workspace-write` pairs `--auto` with a tested `external_directory` deny (iteration 1, evidence: `fanout-run.cjs:2832-2839`, `dispatch-iteration.vitest.ts:504-528`).
+- A separate finding for the conformance test's weak `permission-mode` assertion: folded into P2-1's scope proof rather than counted twice (iteration 1).
+
+---
+
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-- Dimension: none remaining. All three dealt nodes cover correctness, security, traceability and maintainability; the frontier is answered and the run proceeds to synthesis with stop reason `converged` / reasonDetail `frontier_drained`. - Reason: the dealt frontier holds no open or active node and at least one answered node, which is the legal `frontier_drained` candidate once the stop gates pass. - Required evidence: the findings registry, the merged state log and the iteration files this synthesis reads. - Rotation status: complete. Review verdict: CONDITIONAL
+- Dimension: none remaining on this node; the frontier is drained (all four nodes answered) - Frontier node: none (F-2-007 is the last open node and this pass completes its fourth dimension) - Focus area: synthesis readiness — the next convergence check should form a `frontier_drained` candidate, and the legal-stop gates decide it. - Reason: every node has all four canonical dimensions covered; no open or active node remains. - Rotation status: all dimensions covered on all four nodes. - Blocked/productive carry-forward: productive (test-coverage tracing closed the maintainability question); no blocked approaches. - Required evidence: the convergence decision after this iteration. - Recovery note: none. Review verdict: PASS
 
 <!-- /ANCHOR:next-focus -->
-## 12. KNOWN CONTEXT
+## 13. KNOWN CONTEXT
 
 ### Bounded Context Snapshot
 
-- Target pointers: `21c4b325b5a..de32abbb74d` over `.skilled/skills/system-deep-loop`, `.skilled/commands/deep`, `.skilled/agents` and the `.claude`, `.codex`, `.pi`, `.dsh`, `.vibe` agent mirrors. The range adds ~25k lines across 232 files; the frontier nodes partition the reviewable work.
-- Behavior claims: `SKILL.md` §Expansive Depth Mode, `references/protocol/loop-protocol.md` §Expansive Depth Frontier, `references/convergence/convergence.md` §Expansive Depth Mode, and the `deep-review.yaml`/`deep-research.yaml` steps that implement them.
-- Reuse and conventions: `append-mode-event.cjs` is the only state-log writer; `reduce-state.cjs` owns registry/dashboard/strategy; `sk-git`, `sk-code` and `sk-doc` conventions apply to their surfaces.
-- Review risks and gaps: the range is larger than any single iteration can read; each iteration records what it could not read rather than treating absence as a pass.
+- Target pointers: the commit range `17a9ddbcb68..555487146e2` under `.skilled/skills/system-deep-loop` and `.skilled/commands/deep`. 88 files: runtime scripts (`append-mode-event.cjs`, `convergence.cjs`, `fanout-run.cjs`, `dispatch-iteration.cjs`, `synthesis-closeout.cjs`, `upsert.cjs`), runtime libs (`executor-config.ts`, `executor-audit.ts`, ledger schemas, legacy projections), command assets (`deep-review.yaml`, `deep-research.yaml`, compiled contracts, presentations), skill references and feature catalogs, manual-testing playbooks, and vitest suites.
+- Behavior claims to verify: the range's three commits claim (a) a dry-run convergence call stays read-only, (b) a review row mints identity and refuses a reused key with different content, (c) the blocked-stop record is withheld from a dry run. The expansive-depth frontier, fan-out lineage contract, and executor adapter capability record are the surrounding contracts those fixes touch.
+- Reuse and conventions: the append gateway is the single state-log writer; the reducer owns registry/dashboard/strategy projections; `frontier-admit.cjs` owns the node store; the YAML workflow is the stop-decision consumer and computes no arithmetic of its own.
+- Review risks and gaps: the range is a commit range, so `reviewScopeFiles` is the git diff list, not a glob expansion. Files deleted by the range have nothing to review. The compiled contract markdown is generated from the YAML, so drift between them is a traceability finding, not a code finding.
 
 ---
 
-## 13. CROSS-REFERENCE STATUS
+## 14. CROSS-REFERENCE STATUS
+<!-- MACHINE-OWNED: START -->
+[Alignment checks completed across core and overlay protocols]
 
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | partial | 3 | 001/010/012 requirements match; 011 REQ-007's pivot-candidate admission clause does not (accepted direction becomes focus text only). |
-| `checklist_evidence` | core | partial | 3 | AC-004/AC-018/AC-019 match; AC-008's admission evidence claim is not met by the cited branch. |
-| `skill_agent` | overlay | pass | 7 | Deep-review SKILL.md and the agent definition carry the same depth-mode, veto and frontier-row contract. |
-| `agent_cross_runtime` | overlay | pass | 7 | Canonical and five mirrors carry the new frontier contract; differences are runtime frontmatter only. |
-| `feature_catalog_code` | overlay | partial | 7 | Expansive-depth catalog matches the code except the "produced evidence" sentence, which undercounts the statuses R2-P1-001 names. |
-| `playbook_capability` | overlay | pass | 7 | DRV-081 and DRV-083 commands, case names and expectations match the code. |
+| `spec_code` | core | partial | 1 | `loop-protocol.md:294` matches the opencode builder; the dsh sandbox paragraph was not located, so partial. |
+| `checklist_evidence` | core | notApplicable | 1 | Commit-range implementation target, no spec checklist. |
+| `skill_agent` | overlay | notApplicable | 1 | No agent definition in the range. |
+| `agent_cross_runtime` | overlay | notApplicable | 1 | No runtime mirror in the range. |
+| `feature_catalog_code` | overlay | pending | - | In scope, owned by node F-1-006. |
+| `playbook_capability` | overlay | pending | - | In scope, owned by node F-1-006. |
+<!-- MACHINE-OWNED: END -->
 
 ---
 
-## 14. FILES UNDER REVIEW
+## 15. FILES UNDER REVIEW
+<!-- MACHINE-OWNED: START -->
+[Per-file coverage state table -- populated during initialization from scope discovery; 88 files in scope, see `deep-review-config.json` `reviewScopeFiles`]
 
 | File | Dimensions Reviewed | Last Iteration | Findings | Status |
 |------|-------------------|----------------|----------|--------|
-| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`, `fanout-merge.cjs` | correctness, security, traceability, maintainability | 10 | 4 P2 | complete |
-| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | correctness, security, traceability, maintainability | 11 | 1 P1, 5 P2 | complete |
-| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | correctness, security, maintainability | 11 | - | complete |
-| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | correctness, security, maintainability | 11 | - | complete |
-| `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs` | correctness, security, traceability | 8 | 1 P2 | complete |
-| `.skilled/skills/system-deep-loop/runtime/scripts/{verify,dispatch}-iteration.cjs` | correctness, security | 5 | - | complete |
-| `runtime/lib/deep-review-ledger-schema`, `deep-review-reducers`, `legacy-projections` | correctness, traceability | 8 | - | complete |
-| `runtime/lib/deep-loop/divergent-pivot.ts`, `deep-review/scripts/divergent-review-pivot.ts` | correctness, security, traceability, maintainability | 12 | 1 P1, 1 P2 | complete |
-| `runtime/lib/deep-loop/continuity-thread.cjs`, `runtime/lib/coverage-graph` | correctness, security, traceability | 9 | - | complete |
+<!-- MACHINE-OWNED: END -->
 
 ---
 
-## 15. REVIEW BOUNDARIES
+## 16. REVIEW BOUNDARIES
+<!-- MACHINE-OWNED: START -->
 - Max iterations: 24
 - Convergence threshold: 0.1
+- Rolling STOP threshold: 0.08
 - No-progress threshold: 0.05
 - Coverage stabilization passes required: 1
-- Session lineage: sessionId=fanout-deepseek-1795113418367-pvzn7z, parentSessionId=(none), generation=1, lineageMode=new
+- Session lineage: sessionId=fanout-deepseek-1795201537192-sq1ivw, parentSessionId=null, generation=1, lineageMode=new
 - Findings registry: `deep-review-findings-registry.json`
 - Release-readiness states: in-progress | converged | release-blocking
 - Per-iteration budget: 24 tool calls, 10 minutes
 - Severity threshold: P2
 - Review target type: files
 - Cross-reference checks: core=[spec_code, checklist_evidence], overlay=[skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability]
-- Started: 2026-11-19T18:41:16.000Z
+- Started: 2026-11-20T19:07:02.024Z
+<!-- MACHINE-OWNED: END -->

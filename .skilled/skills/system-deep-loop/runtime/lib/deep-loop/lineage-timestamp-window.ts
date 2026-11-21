@@ -64,6 +64,13 @@ function hasZoneDesignator(value: unknown): boolean {
   return typeof value === 'string' && /(?:Z|[+-]\d{2}:\d{2})$/i.test(value.trim());
 }
 
+// The gateway times iteration rows itself and keeps the model's stamp beside the row as
+// claimedTimestamp, always a string. That claim is what every stamp check judges; a row
+// with no string claim is judged on its own timestamp.
+function judgedStampField(record: Record<string, unknown>): 'claimedTimestamp' | 'timestamp' {
+  return typeof record.claimedTimestamp === 'string' ? 'claimedTimestamp' : 'timestamp';
+}
+
 function addSample(
   sample: TimestampOffenderSample[],
   limit: number,
@@ -96,12 +103,12 @@ export function checkLineageTimestampWindow(
   let unparseable = 0;
 
   records.forEach((record, index) => {
-    // The gateway times iteration rows itself and keeps the model's stamp as
-    // claimedTimestamp; that claim is what this check exists to judge.
-    const stampField = isRecord(record) && Object.prototype.hasOwnProperty.call(record, 'claimedTimestamp')
-      ? 'claimedTimestamp'
-      : 'timestamp';
-    if (!isRecord(record) || !Object.prototype.hasOwnProperty.call(record, stampField)) {
+    if (!isRecord(record)) {
+      untimestamped += 1;
+      return;
+    }
+    const stampField = judgedStampField(record);
+    if (!Object.prototype.hasOwnProperty.call(record, stampField)) {
       untimestamped += 1;
       return;
     }
@@ -261,9 +268,13 @@ export function checkLineageStopEvidence(
   return stopReasonFailure(rows[terminalIndex], iterations, policy) ?? { complete: true };
 }
 
-function describeRecord(record: Record<string, unknown>, index: number): string {
+function describeRecord(
+  record: Record<string, unknown>,
+  index: number,
+  stampText: string = String(record.timestamp),
+): string {
   const name = record.type === 'iteration' ? `iteration ${String(record.iteration)}` : `${String(record.event ?? record.type)} row`;
-  return `${name} (line ${index + 1}, ${String(record.timestamp)})`;
+  return `${name} (line ${index + 1}, ${stampText})`;
 }
 
 /**
@@ -310,13 +321,17 @@ export function checkLineageCompletion(
   const latestAllowedMs = windowEnd.ms + DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS;
   for (let index = 0; index < rows.length; index += 1) {
     const record = rows[index];
-    const stamp = typeof record.claimedTimestamp === 'string' ? record.claimedTimestamp : record.timestamp;
+    const stamp = record[judgedStampField(record)];
     const timestampMs = hasZoneDesignator(stamp) ? parseRecordTimestamp(stamp) : null;
     if (timestampMs !== null && timestampMs > latestAllowedMs) {
+      // Name the stamp that was judged; a claim the gateway moved also shows the commit time.
+      const judged = stamp !== record.timestamp
+        ? `claims ${String(stamp)}, committed ${String(record.timestamp)}`
+        : String(stamp);
       return {
         complete: false,
         failure: 'stamped_after_completion',
-        detail: `${describeRecord(record, index)} is stamped after the lineage process ended at ${windowEnd.iso}`,
+        detail: `${describeRecord(record, index, judged)} is stamped after the lineage process ended at ${windowEnd.iso}`,
       };
     }
     if (record.type !== 'iteration') continue;

@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/cli-fallback.v2.ts .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
+The prepared file strips a leading pasted reply before cutting the prompt to the advisor limit. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/cli-fallback.v2.ts .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` exits 0.

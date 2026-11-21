@@ -1,0 +1,998 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Overlay Engine Strict Writes Tests
+// ───────────────────────────────────────────────────────────────────
+'use strict';
+
+// With "strictWrites": true in the manifest, a write under a vendored root has
+// to go through an overlay. Each fixture builds a throwaway upstream repository
+// with two commits, extracts the first as the vendored tree, and commits that
+// tree to a repository of its own, so the guard, adopt and the commit check all
+// run against real git state.
+
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const test = require('node:test');
+const { spawnSync } = require('node:child_process');
+
+const {
+  createWorkspace,
+  readJson,
+  runEngine,
+  sha256,
+  writeFile,
+  writeManifest,
+} = require('/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. FIXTURE
+// ─────────────────────────────────────────────────────────────────────────────
+
+const GIT_CONFIG = [
+  '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
+  '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null', '-c', 'init.defaultBranch=main',
+  '-c', 'core.excludesFile=/dev/null',
+];
+const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
+const FIX_UPSTREAM = 'fix v1\n';
+
+const OLD_ENTRIES = {
+  '.skilled/skills/hub/SKILL.md': 'skill v1\n',
+  '.skilled/skills/hub/fix.md': FIX_UPSTREAM,
+  '.skilled/skills/hub/stable.md': 'stable\n',
+  '.claude/agents/a.md': 'agent v1\n',
+  'AGENTS.md': 'upstream agents\n',
+  'REPO RULES.md': 'upstream rules\n',
+  'README.md': 'upstream readme\n',
+};
+
+const NEW_CHANGES = {
+  '.skilled/skills/hub/SKILL.md': 'skill v2\n',
+  'AGENTS.md': 'upstream agents v2\n',
+  'REPO RULES.md': 'upstream rules v2\n',
+  'README.md': 'upstream readme v2\n',
+};
+
+function git(cwd, args) {
+  const result = spawnSync('git', [...GIT_CONFIG, '-C', cwd, ...args], { encoding: 'utf8' });
+  if (result.status !== 0) throw new Error('git ' + args.join(' ') + ': ' + result.stderr);
+  return result.stdout.trim();
+}
+
+function commitAll(cwd, message) {
+  git(cwd, ['add', '-A']);
+  git(cwd, ['commit', '-q', '-m', message]);
+  return git(cwd, ['rev-parse', 'HEAD']);
+}
+
+/**
+ * Build a vendored tree that is its own git repository, with one owned folder,
+ * one owned root file and a manifest that turns the write checks on.
+ * @param {object} t The node:test context.
+ * @param {{isStrict?: boolean, siblingOverlayFolder?: string, isGitAtWorkspace?: boolean}} [options]
+ *   `isStrict: false` leaves the setting out. `siblingOverlayFolder` keeps the
+ *   overlay folder beside the tree. `isGitAtWorkspace` makes the workspace, not
+ *   the tree, the git repository, so a sibling overlay folder is inside it.
+ * @returns {object} Fixture paths, commits, manifest and a `run` helper.
+ */
+function createStrictFixture(t, options = {}) {
+  const fixture = createWorkspace(t, 'overlay-engine-strict-',
+    options.siblingOverlayFolder ? { siblingOverlayFolder: options.siblingOverlayFolder } : {});
+  const { workspace, tree, overlayDir } = fixture;
+  const upstream = path.join(workspace, 'upstream');
+  fs.mkdirSync(upstream);
+  git(upstream, ['init', '-q']);
+  for (const [relativePath, value] of Object.entries(OLD_ENTRIES)) writeFile(upstream, relativePath, value);
+  const oldCommit = commitAll(upstream, 'old');
+  for (const [relativePath, value] of Object.entries(NEW_CHANGES)) writeFile(upstream, relativePath, value);
+  const newCommit = commitAll(upstream, 'new');
+
+  for (const [relativePath, value] of Object.entries(OLD_ENTRIES)) writeFile(tree, relativePath, value);
+  // Left out of the tree's first commit, so a test can stage upstream's own bytes.
+  fs.rmSync(path.join(tree, '.skilled/skills/hub/stable.md'));
+  writeFile(tree, '.gitignore', '.skilled/skills/.state/\nskilled-overlays/sync-state.json\nskilled-overlays/.build-lock\n');
+  writeFile(overlayDir, 'skills/own/SKILL.md', 'project skill\n');
+  writeFile(overlayDir, 'files/AGENTS.md', 'project agents\n');
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', checkout: upstream, commit: oldCommit },
+    ...(options.isStrict === false ? {} : { strictWrites: true }),
+    generated: ['.claude/agents/**', '.skilled/**/graph-metadata.json'],
+    repin: { runtimeFolders: ['.claude'], rootFiles: ['AGENTS.md', 'REPO RULES.md'] },
+    layoutLinks: [],
+    overlays: [
+      { id: 'own-skill', scope: 'directory', source: 'skills/own', destination: '.skilled/skills/own' },
+      {
+        id: 'agents-file',
+        scope: 'file',
+        source: 'files/AGENTS.md',
+        destination: 'AGENTS.md',
+        pinnedSha256: sha256(Buffer.from(OLD_ENTRIES['AGENTS.md'])),
+      },
+    ],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.upstream = upstream;
+  fixture.oldCommit = oldCommit;
+  fixture.newCommit = newCommit;
+  fixture.manifestPath = path.join(overlayDir, 'overlay-manifest.json');
+  fixture.run = (args, cwd = tree) => runEngine([...args, '--root', tree], cwd);
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  if (options.isGitAtWorkspace) {
+    const sibling = options.siblingOverlayFolder;
+    writeFile(workspace, '.gitignore', `upstream/\n${sibling}/sync-state.json\n${sibling}/.build-lock\n`);
+    git(workspace, ['init', '-q']);
+    commitAll(workspace, 'vendored tree beside its overlay folder');
+    fixture.gitRoot = workspace;
+  } else {
+    git(tree, ['init', '-q']);
+    commitAll(tree, 'vendored tree');
+    fixture.gitRoot = tree;
+  }
+  return fixture;
+}
+
+function entryFor(fixture, destination) {
+  return readJson(fixture.manifestPath).overlays.find((entry) => entry.destination === destination);
+}
+
+/**
+ * Build a repository whose vendored tree is the subfolder `vendor/skilled`, so
+ * the commit check has to read the top level's paths through that prefix.
+ * @param {object} t The node:test context.
+ * @returns {object} Fixture paths, its manifest and a `run` helper.
+ */
+function createNestedFixture(t) {
+  const { workspace } = createWorkspace(t, 'overlay-engine-nested-');
+  const tree = path.join(workspace, 'vendor', 'skilled');
+  const overlayDir = path.join(tree, 'skilled-overlays');
+  const manifestPath = path.join(overlayDir, 'overlay-manifest.json');
+  writeFile(tree, '.skilled/skills/hub/stable.md', 'stable\n');
+  writeFile(overlayDir, 'overlay-manifest.json', JSON.stringify({
+    schemaVersion: 1,
+    // No checkout that exists, so every unowned staged change is reported.
+    pin: { upstream: 'fixture', checkout: path.join(workspace, 'no-checkout'), commit: 'pin-one' },
+    strictWrites: true,
+    generated: [],
+    layoutLinks: [],
+    overlays: [],
+    regenerate: [],
+    verifyGenerated: [],
+  }, null, 2) + '\n');
+  git(workspace, ['init', '-q']);
+  commitAll(workspace, 'vendored tree in a subfolder');
+  return {
+    workspace,
+    tree,
+    overlayDir,
+    manifestPath,
+    run: (args, cwd = tree) => runEngine([...args, '--root', tree], cwd),
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. GUARD
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('the guard refuses a new file under a vendored root and names where to create it', (t) => {
+  const fixture = createStrictFixture(t);
+
+  const elsewhere = fixture.run(['--guard', '.skilled/skills/brand/docs/new.md']);
+  assert.equal(elsewhere.code, 1, elsewhere.output);
+  assert.match(elsewhere.stdout, /^refuse: \.skilled\/skills\/brand\/docs\/new\.md is a new file in the vendored tree/);
+  assert.ok(elsewhere.stdout.includes('create it as skilled-overlays/framework/skills/brand/docs/new.md'), elsewhere.stdout);
+  // The whole missing folder is one unit, so a new skill becomes one entry.
+  assert.ok(elsewhere.stdout.includes(ENGINE_COMMAND + ' apply --adopt .skilled/skills/brand\n'), elsewhere.stdout);
+
+  const inOwnedFolder = fixture.run(['--guard', '.skilled/skills/own/extra.md']);
+  assert.equal(inOwnedFolder.code, 1, inOwnedFolder.output);
+  assert.ok(inOwnedFolder.stdout.includes('is a new file inside overlay own-skill; create it as ' +
+    'skilled-overlays/skills/own/extra.md, then run ' + ENGINE_COMMAND + ' apply'), inOwnedFolder.stdout);
+});
+
+// Apply deletes a path a skill-root entry removes, so a new file there has to
+// move onto the replace list before the overlay can carry it.
+test('the guard sends a new file under a skill-root removed path to the replace list', (t) => {
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.overlayDir, 'hub-root/SKILL.md', 'project skill\n');
+  writeFile(fixture.overlayDir, 'hub-root/docs/a.md', 'project a\n');
+  fixture.manifest.overlays.push({
+    id: 'hub-root',
+    scope: 'skill-root',
+    source: 'hub-root',
+    destination: '.skilled/skills/hub',
+    replace: ['SKILL.md', 'docs'],
+    remove: ['old'],
+    retained: [],
+  });
+  writeManifest(fixture);
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+
+  const removed = fixture.run(['--guard', '.skilled/skills/hub/old/new.md']);
+  assert.equal(removed.code, 1, removed.output);
+  assert.equal(removed.stdout.trim(), 'refuse: .skilled/skills/hub/old/new.md is under old, which overlay hub-root ' +
+    'removes on every apply; take old off that entry\'s remove list, add old/new.md to its replace list, keep its ' +
+    'copy at skilled-overlays/hub-root/old/new.md, then run ' + ENGINE_COMMAND + ' apply', removed.stdout);
+
+  const replaced = fixture.run(['--guard', '.skilled/skills/hub/docs/extra.md']);
+  assert.equal(replaced.code, 1, replaced.output);
+  assert.equal(replaced.stdout.trim(), 'refuse: .skilled/skills/hub/docs/extra.md is a new file inside overlay ' +
+    'hub-root; create it as skilled-overlays/hub-root/docs/extra.md, then run ' + ENGINE_COMMAND + ' apply',
+  replaced.stdout);
+});
+
+test('the guard refuses an edit to a vendored file no overlay owns, and leaves the rest of the tree alone', (t) => {
+  const fixture = createStrictFixture(t);
+
+  const upstreamFile = fixture.run(['--guard', '.skilled/skills/hub/fix.md']);
+  assert.equal(upstreamFile.code, 1, upstreamFile.output);
+  assert.ok(upstreamFile.stdout.includes('is a vendored file no overlay owns, so a re-pin would overwrite this edit; ' +
+    'run ' + ENGINE_COMMAND + ' apply --adopt .skilled/skills/hub/fix.md, then edit skilled-overlays/framework/skills/hub/fix.md'),
+  upstreamFile.stdout);
+
+  const rootFile = fixture.run(['--guard', 'REPO RULES.md']);
+  assert.equal(rootFile.code, 1, rootFile.output);
+  assert.ok(rootFile.stdout.includes(ENGINE_COMMAND + ' apply --adopt "REPO RULES.md", then edit skilled-overlays/root/REPO RULES.md'),
+    rootFile.stdout);
+
+  // An owned path keeps the message it had before the setting existed.
+  const owned = fixture.run(['--guard', '.skilled/skills/own/SKILL.md']);
+  assert.equal(owned.code, 1, owned.output);
+  assert.match(owned.stdout, /is owned by skilled-overlays\/skills\/own\/SKILL\.md; edit the overlay/);
+
+  // A root file the manifest does not name, and the overlay folder, are the project's own.
+  for (const projectPath of ['README.md', 'docs/new.md', 'skilled-overlays/skills/own/new.md']) {
+    const result = fixture.run(['--guard', projectPath]);
+    assert.equal(result.code, 0, projectPath + ': ' + result.output);
+    assert.equal(result.stdout, 'allow\n');
+  }
+});
+
+test('the guard allows a generated path and a path git ignores', (t) => {
+  const fixture = createStrictFixture(t);
+  const allowed = [
+    '.claude/agents/a.md',
+    '.claude/agents/nested/new.md',
+    '.skilled/skills/hub/graph-metadata.json',
+    '.skilled/skills/.state/run.json',
+  ];
+  for (const relativePath of allowed) {
+    const result = fixture.run(['--guard', relativePath]);
+    assert.equal(result.code, 0, relativePath + ': ' + result.output);
+    assert.equal(result.stdout, 'allow\n');
+  }
+  // The same runtime folder outside the generated globs is still checked.
+  assert.equal(fixture.run(['--guard', '.claude/settings.json']).code, 1);
+});
+
+test('a generated glob with ** matches whole folders, not a longer name beside them', (t) => {
+  const fixture = createStrictFixture(t);
+  const manifest = readJson(fixture.manifestPath);
+  manifest.generated = ['.skilled/skills/**/leaf-manifest.json', '.skilled/cache/**'];
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const allowed = [
+    '.skilled/skills/leaf-manifest.json',
+    '.skilled/skills/hub/deep/leaf-manifest.json',
+    '.skilled/cache/a/b.json',
+  ];
+  for (const relativePath of allowed) {
+    const result = fixture.run(['--guard', relativePath]);
+    assert.equal(result.code, 0, relativePath + ': ' + result.output);
+    assert.equal(result.stdout, 'allow\n');
+  }
+
+  // The glob names leaf-manifest.json in any folder, not every name ending that way.
+  const sibling = fixture.run(['--guard', '.skilled/skills/hub/my-leaf-manifest.json']);
+  assert.equal(sibling.code, 1, sibling.output);
+  assert.match(sibling.stdout, /^refuse:/);
+});
+
+test('with the setting off the guard allows every path no overlay owns, and the commit check checks nothing', (t) => {
+  const fixture = createStrictFixture(t, { isStrict: false });
+  for (const relativePath of ['.skilled/skills/brand/new.md', '.skilled/skills/hub/fix.md', 'REPO RULES.md',
+    '.skilled/skills/own/extra.md']) {
+    const result = fixture.run(['--guard', relativePath]);
+    assert.equal(result.code, 0, relativePath + ': ' + result.output);
+    assert.equal(result.stdout, 'allow\n');
+  }
+  assert.equal(fixture.run(['--guard', '.skilled/skills/own/SKILL.md']).code, 1);
+
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', 'edited in place\n');
+  git(fixture.tree, ['add', '-A']);
+  const commitCheck = fixture.run(['pre-commit']);
+  assert.equal(commitCheck.code, 0, commitCheck.output);
+  assert.match(commitCheck.stdout, /^allow: strictWrites is off/);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. ADOPT
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('adopt turns a new folder into a directory entry, lists its token-named source file and applies', (t) => {
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.tree, '.skilled/skills/brand/SKILL.md', 'brand skill\n');
+  writeFile(fixture.tree, '.skilled/skills/brand/design-tokens.md', 'tokens doc\n');
+  const before = fs.readFileSync(fixture.manifestPath, 'utf8');
+
+  const adopted = fixture.run(['apply', '--adopt', '.skilled/skills/brand']);
+  assert.equal(adopted.code, 0, adopted.output);
+  assert.ok(adopted.stdout.includes('adopted .skilled/skills/brand as skilled-overlays/framework/skills/brand ' +
+    '(directory entry adopted-skilled-skills-brand)'), adopted.stdout);
+
+  const entry = entryFor(fixture, '.skilled/skills/brand');
+  assert.deepEqual(
+    { id: entry.id, scope: entry.scope, source: entry.source, protectedPaths: entry.protectedPaths },
+    { id: 'adopted-skilled-skills-brand', scope: 'directory', source: 'framework/skills/brand', protectedPaths: ['design-tokens.md'] },
+  );
+  assert.equal(entry.pinnedSha256, undefined);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'framework/skills/brand/SKILL.md'), 'utf8'), 'brand skill\n');
+  // The entry is appended; every byte the manifest held before is still there.
+  const after = fs.readFileSync(fixture.manifestPath, 'utf8');
+  const insertedAt = before.lastIndexOf('}', before.indexOf('"regenerate"')) + 1;
+  assert.equal(after.slice(0, insertedAt), before.slice(0, insertedAt));
+  assert.ok(after.endsWith(before.slice(insertedAt)));
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  const guard = fixture.run(['--guard', '.skilled/skills/brand/SKILL.md']);
+  assert.match(guard.stdout, /is owned by skilled-overlays\/framework\/skills\/brand\/SKILL\.md/);
+});
+
+test('adopt pins an upstream file to the upstream bytes, not to the edited live copy', (t) => {
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', 'fix edited in place\n');
+
+  const adopted = fixture.run(['apply', '--adopt', '.skilled/skills/hub/fix.md']);
+  assert.equal(adopted.code, 0, adopted.output);
+  const entry = entryFor(fixture, '.skilled/skills/hub/fix.md');
+  assert.equal(entry.scope, 'file');
+  assert.equal(entry.pinnedSha256, sha256(Buffer.from(FIX_UPSTREAM)));
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'framework/skills/hub/fix.md'), 'utf8'), 'fix edited in place\n');
+  assert.equal(fixture.run(['status']).code, 0);
+
+  // A named root file is adopted the same way.
+  const rootFile = fixture.run(['apply', '--adopt', 'REPO RULES.md']);
+  assert.equal(rootFile.code, 0, rootFile.output);
+  assert.equal(entryFor(fixture, 'REPO RULES.md').pinnedSha256, sha256(Buffer.from(OLD_ENTRIES['REPO RULES.md'])));
+});
+
+test('adopt refuses what it cannot own and writes nothing', (t) => {
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.tree, '.skilled/skills/secrets/api-token.json', '{"value": "x"}\n');
+  const before = fs.readFileSync(fixture.manifestPath, 'utf8');
+  const refusals = [
+    ['.claude/agents/a.md', /is on the manifest's generated list/],
+    ['.skilled/skills/own/SKILL.md', /overlaps overlay own-skill/],
+    ['.skilled/skills/hub', /upstream ships 2 file\(s\) under \.skilled\/skills\/hub, such as \.skilled\/skills\/hub\/SKILL\.md/],
+    ['.skilled/skills/secrets', /api-token\.json is a protected path and cannot be an overlay/],
+    ['.skilled/skills/absent.md', /nothing to adopt; create skilled-overlays\/framework\/skills\/absent\.md first/],
+    ['README.md', /is not under a vendored root \(\.skilled, \.claude\) and is not a file named in repin\.rootFiles/],
+  ];
+  for (const [target, pattern] of refusals) {
+    const result = fixture.run(['apply', '--adopt', target]);
+    assert.equal(result.code, 2, target + ': ' + result.output);
+    assert.match(result.stdout, pattern, target);
+  }
+  assert.equal(fs.readFileSync(fixture.manifestPath, 'utf8'), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'framework')), false);
+
+  // A link inside the overlay folder must not carry the copy out of it.
+  const outside = path.join(fixture.workspace, 'outside');
+  fs.mkdirSync(outside);
+  fs.symlinkSync(outside, path.join(fixture.overlayDir, 'framework'));
+  const linked = fixture.run(['apply', '--adopt', '.skilled/skills/hub/fix.md']);
+  assert.equal(linked.code, 2, linked.output);
+  assert.match(linked.stdout, /resolves outside the overlay folder through a link/);
+  assert.deepEqual(fs.readdirSync(outside), []);
+  assert.equal(fs.readFileSync(fixture.manifestPath, 'utf8'), before);
+});
+
+test('the flow the guard names for a new file adopts it from the overlay folder and applies it', (t) => {
+  const fixture = createStrictFixture(t);
+  const key = '.skilled/skills/brand/docs/new.md';
+
+  const refused = fixture.run(['--guard', key]);
+  assert.equal(refused.code, 1, refused.output);
+  assert.ok(refused.stdout.includes('create it as skilled-overlays/framework/skills/brand/docs/new.md'),
+    refused.stdout);
+  // Follow the command the refusal names rather than one written here, so this
+  // test fails once the message stops naming a command that works.
+  const named = /apply --adopt (\S+)/.exec(refused.stdout);
+  assert.ok(named, refused.stdout);
+
+  const contents = 'brand doc\n';
+  writeFile(fixture.overlayDir, 'framework/skills/brand/docs/new.md', contents);
+  const before = readJson(fixture.manifestPath).overlays.length;
+
+  const adopted = fixture.run(['apply', '--adopt', named[1]]);
+  assert.equal(adopted.code, 0, adopted.output);
+  assert.equal(readJson(fixture.manifestPath).overlays.length, before + 1);
+  const entry = entryFor(fixture, '.skilled/skills/brand');
+  assert.deepEqual({ scope: entry.scope, source: entry.source },
+    { scope: 'directory', source: 'framework/skills/brand' });
+  assert.equal(entry.pinnedSha256, undefined);
+  assert.deepEqual(fs.readFileSync(path.join(fixture.tree, key)), Buffer.from(contents));
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+});
+
+test('adopt refuses a taken source, a source clash, a non-file and a missing checkout, and writes nothing', (t) => {
+  const fixture = createStrictFixture(t);
+  const manifestBytes = () => fs.readFileSync(fixture.manifestPath, 'utf8');
+  const expectRefusal = (target, pattern) => {
+    const before = manifestBytes();
+    const result = fixture.run(['apply', '--adopt', target]);
+    assert.equal(result.code, 2, target + ': ' + result.output);
+    assert.match(result.stdout, pattern, target);
+    assert.equal(manifestBytes(), before, target);
+  };
+
+  // A copy in both places leaves the run no way to tell which one to keep.
+  writeFile(fixture.overlayDir, 'framework/skills/hub/fix.md', 'fix copy\n');
+  expectRefusal('.skilled/skills/hub/fix.md',
+    /both \.skilled\/skills\/hub\/fix\.md and skilled-overlays\/framework\/skills\/hub\/fix\.md exist; keep one, then adopt again/);
+  fs.rmSync(path.join(fixture.overlayDir, 'framework/skills/hub/fix.md'));
+
+  // An entry that already keeps its copy where this file's copy would go.
+  const manifest = readJson(fixture.manifestPath);
+  manifest.overlays.push({ id: 'hub-parts', scope: 'directory', source: 'framework/skills/hub/parts',
+    destination: 'vendored-parts' });
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+  expectRefusal('.skilled/skills/hub/parts/notes.md',
+    /skilled-overlays\/framework\/skills\/hub\/parts\/notes\.md overlaps the source of overlay hub-parts/);
+
+  // A copy holding a link would put something in the tree the walk cannot own.
+  writeFile(fixture.overlayDir, 'framework/skills/linked/SKILL.md', 'linked skill\n');
+  fs.symlinkSync(fixture.workspace, path.join(fixture.overlayDir, 'framework/skills/linked/notes-link'));
+  expectRefusal('.skilled/skills/linked',
+    /notes-link is not a regular file; adopt takes files and folders only/);
+
+  // Without the checkout the pin names, adopt cannot tell upstream's own file
+  // from a project edit, so it does not guess.
+  const pinned = readJson(fixture.manifestPath);
+  pinned.pin.checkout = path.join(fixture.workspace, 'upstream-that-moved-away');
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(pinned, null, 2) + '\n');
+  expectRefusal('.skilled/skills/hub/fix.md',
+    /cannot read pin\.commit in the upstream checkout pin\.checkout names, to tell whether \.skilled\/skills\/hub\/fix\.md is upstream's; adopt it where that checkout exists/);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'framework/skills/hub/fix.md')), false);
+});
+
+test('a manifest write that fails at the rename keeps the old manifest and leaves no temporary file', (t) => {
+  const engine = require('../overlay-engine.cjs');
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.tree, '.skilled/skills/brand/SKILL.md', 'brand skill\n');
+  const before = fs.readFileSync(fixture.manifestPath, 'utf8');
+  const rename = fs.renameSync;
+  t.mock.method(fs, 'renameSync', (from, to) => {
+    if (path.resolve(String(to)) === path.resolve(fixture.manifestPath)) {
+      throw new Error('simulated crash before the rename');
+    }
+    return rename(from, to);
+  });
+  t.mock.method(console, 'log', () => {});
+
+  assert.throws(() => engine.commandAdopt(engine.createContext(fixture.tree),
+    path.join(fixture.tree, '.skilled/skills/brand')), /simulated crash/);
+
+  assert.equal(fs.readFileSync(fixture.manifestPath, 'utf8'), before);
+  assert.deepEqual(fs.readdirSync(path.dirname(fixture.manifestPath)).filter((name) => name.includes('.tmp')), []);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. COMMIT CHECK
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('pre-commit refuses a staged vendored change no overlay owns, and passes owned, generated and upstream-equal ones', (t) => {
+  const fixture = createStrictFixture(t);
+  assert.equal(fixture.run(['pre-commit']).stdout, 'allow\n');
+
+  writeFile(fixture.overlayDir, 'skills/own/SKILL.md', 'project skill two\n');
+  assert.equal(fixture.run(['apply']).code, 0);
+  writeFile(fixture.tree, '.claude/agents/a.md', 'regenerated\n');
+  writeFile(fixture.tree, '.skilled/skills/hub/stable.md', OLD_ENTRIES['.skilled/skills/hub/stable.md']);
+  writeFile(fixture.tree, 'README.md', 'project readme\n');
+  git(fixture.tree, ['add', '-A']);
+  const clean = fixture.run(['pre-commit']);
+  assert.equal(clean.code, 0, clean.output);
+  assert.equal(clean.stdout, 'allow\n');
+
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', 'edited in place\n');
+  writeFile(fixture.tree, '.skilled/skills/brand/new.md', 'new\n');
+  fs.rmSync(path.join(fixture.tree, '.skilled/skills/hub/SKILL.md'));
+  writeFile(fixture.tree, 'REPO RULES.md', 'project rules\n');
+  git(fixture.tree, ['add', '-A']);
+  const refused = fixture.run(['pre-commit']);
+  assert.equal(refused.code, 1, refused.output);
+  const lines = refused.stdout.split('\n').filter((line) => line.startsWith('refuse: ')).sort();
+  assert.deepEqual(lines, [
+    'refuse: staged change to .skilled/skills/brand/new.md is under a vendored root and no overlay owns it',
+    'refuse: staged change to .skilled/skills/hub/fix.md is under a vendored root and no overlay owns it',
+    'refuse: staged change to REPO RULES.md is under a vendored root and no overlay owns it',
+    'refuse: staged deletion of .skilled/skills/hub/SKILL.md is under a vendored root and no overlay owns it',
+  ]);
+
+  // A commit that moves the pin is a re-pin, which ran its own drift scan.
+  const manifest = readJson(fixture.manifestPath);
+  manifest.pin.commit = fixture.newCommit;
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+  git(fixture.tree, ['add', '-A']);
+  const repinCommit = fixture.run(['pre-commit']);
+  assert.equal(repinCommit.code, 0, repinCommit.output);
+});
+
+test('pre-commit treats a staged file as upstream\'s own when only its line endings differ', (t) => {
+  const fixture = createStrictFixture(t);
+  const vendoredPath = '.skilled/skills/hub/crlf.md';
+
+  // Upstream stores the CRLF bytes exactly as written, so its blob differs from
+  // a project copy whose lines end in LF under a `* text=auto` checkout.
+  git(fixture.upstream, ['config', 'core.autocrlf', 'false']);
+  writeFile(fixture.upstream, vendoredPath, 'one\r\ntwo\r\n');
+  const crlfCommit = commitAll(fixture.upstream, 'crlf');
+
+  writeFile(fixture.tree, '.gitattributes', '* text=auto\n');
+  const manifest = readJson(fixture.manifestPath);
+  manifest.pin.commit = crlfCommit;
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+  // Committed, so the pin move is not the staged change the check is judging.
+  commitAll(fixture.tree, 'vendor the crlf commit');
+
+  writeFile(fixture.tree, vendoredPath, 'one\ntwo\n');
+  git(fixture.tree, ['add', '--', vendoredPath]);
+  assert.notEqual(git(fixture.tree, ['rev-parse', ':' + vendoredPath]),
+    git(fixture.upstream, ['rev-parse', crlfCommit + ':' + vendoredPath]));
+  const sameText = fixture.run(['pre-commit']);
+  assert.equal(sameText.code, 0, sameText.output);
+  assert.equal(sameText.stdout, 'allow\n');
+
+  writeFile(fixture.tree, vendoredPath, 'one\nthree\n');
+  git(fixture.tree, ['add', '--', vendoredPath]);
+  const changed = fixture.run(['pre-commit']);
+  assert.equal(changed.code, 1, changed.output);
+  assert.ok(changed.stdout.includes(vendoredPath), changed.stdout);
+});
+
+test('a path under repin.exclude needs no overlay, so the guard and the commit check leave it alone', (t) => {
+  const fixture = createStrictFixture(t);
+  const manifest = readJson(fixture.manifestPath);
+  // A leading ./ and a trailing slash are both normalised away before matching.
+  manifest.repin.exclude = ['./.skilled/local/'];
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const excluded = fixture.run(['--guard', '.skilled/local/new-thing.sh']);
+  assert.equal(excluded.code, 0, excluded.output);
+  assert.equal(excluded.stdout, 'allow\n');
+
+  // The rest of the vendored tree is still checked.
+  const kept = fixture.run(['--guard', '.skilled/skills/new-thing.md']);
+  assert.equal(kept.code, 1, kept.output);
+  assert.match(kept.stdout, /^refuse:/);
+
+  writeFile(fixture.tree, '.skilled/local/new-thing.sh', 'echo hi\n');
+  git(fixture.tree, ['add', '-A']);
+  const commitCheck = fixture.run(['pre-commit']);
+  assert.equal(commitCheck.code, 0, commitCheck.output);
+  assert.equal(commitCheck.stdout, 'allow\n');
+});
+
+// A project may still want an overlay entry for a path under repin.exclude, so
+// its own copy in the overlay folder is carried and checked like any other.
+function excludeLocalFolder(fixture) {
+  const manifest = readJson(fixture.manifestPath);
+  manifest.repin.exclude = ['.skilled/local'];
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+}
+
+test('adopt takes a path under repin.exclude when the overlay folder holds its copy', (t) => {
+  const fixture = createStrictFixture(t);
+  excludeLocalFolder(fixture);
+  writeFile(fixture.overlayDir, 'skilled/local/hook.sh', '#!/bin/sh\nexit 0\n');
+
+  const adopted = fixture.run(['apply', '--adopt', '.skilled/local/hook.sh']);
+  assert.equal(adopted.code, 0, adopted.output);
+  assert.ok(adopted.stdout.includes('adopted .skilled/local/hook.sh as skilled-overlays/skilled/local/hook.sh ' +
+    '(file entry adopted-skilled-local-hook-sh)'), adopted.stdout);
+  const entry = entryFor(fixture, '.skilled/local/hook.sh');
+  assert.deepEqual({ scope: entry.scope, source: entry.source }, { scope: 'file', source: 'skilled/local/hook.sh' });
+  assert.equal(entry.pinnedSha256, undefined);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, '.skilled/local/hook.sh'), 'utf8'), '#!/bin/sh\nexit 0\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+});
+
+test('adopt still refuses a path under repin.exclude with no copy in the overlay folder', (t) => {
+  const fixture = createStrictFixture(t);
+  excludeLocalFolder(fixture);
+  writeFile(fixture.tree, '.skilled/local/hook.sh', '#!/bin/sh\nexit 0\n');
+  const before = fs.readFileSync(fixture.manifestPath, 'utf8');
+
+  const refused = fixture.run(['apply', '--adopt', '.skilled/local/hook.sh']);
+  assert.equal(refused.code, 2, refused.output);
+  assert.match(refused.stdout, /^refuse: \.skilled\/local\/hook\.sh is under repin\.exclude/);
+  assert.ok(refused.stdout.includes('skilled-overlays/framework/local/hook.sh'), refused.stdout);
+  assert.equal(fs.readFileSync(fixture.manifestPath, 'utf8'), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'framework/local')), false);
+});
+
+test('the commit check reports a staged change under a vendored tree that sits below the git top level', (t) => {
+  const fixture = createNestedFixture(t);
+  writeFile(fixture.tree, '.skilled/skills/hub/stable.md', 'edited in place\n');
+  writeFile(fixture.workspace, 'vendor/other/notes.md', 'other\n');
+  writeFile(fixture.workspace, 'top-note.md', 'project note\n');
+  git(fixture.workspace, ['add', '-A']);
+
+  const refused = fixture.run(['pre-commit']);
+
+  assert.equal(refused.code, 1, refused.output);
+  // The path is the tree's own key, not the top level's path to the same file.
+  assert.deepEqual(refused.stdout.split('\n').filter((line) => line.startsWith('refuse: ')),
+    ['refuse: staged change to .skilled/skills/hub/stable.md is under a vendored root and no overlay owns it']);
+  assert.equal(refused.stdout.includes('vendor/other/notes.md'), false, refused.stdout);
+  assert.equal(refused.stdout.includes('top-note.md'), false, refused.stdout);
+});
+
+test('the commit check names an unowned vendored change when the checkout its pin names is gone', (t) => {
+  const fixture = createStrictFixture(t);
+  const manifest = readJson(fixture.manifestPath);
+  manifest.pin.checkout = path.join(fixture.workspace, 'upstream-that-moved-away');
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', 'edited with no checkout\n');
+  git(fixture.tree, ['add', '-A']);
+  const refused = fixture.run(['pre-commit']);
+  assert.equal(refused.code, 1, refused.output);
+  assert.deepEqual(refused.stdout.split('\n').filter((line) => line.startsWith('refuse: ')),
+    ['refuse: staged change to .skilled/skills/hub/fix.md is under a vendored root and no overlay owns it']);
+
+  // An owned path is the overlay's own, so it needs nothing to compare with.
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', FIX_UPSTREAM);
+  writeFile(fixture.tree, '.skilled/skills/own/SKILL.md', 'owned edit\n');
+  writeFile(fixture.overlayDir, 'skills/own/SKILL.md', 'owned edit\n');
+  git(fixture.tree, ['add', '-A']);
+  const allowed = fixture.run(['pre-commit']);
+  assert.equal(allowed.code, 0, allowed.output);
+  assert.equal(allowed.stdout, 'allow\n');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ROOT FILES
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('a staged re-pin names each listed root file upstream changed, owned or not', (t) => {
+  const fixture = createStrictFixture(t);
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.run(['repin', '--upstream', fixture.upstream, '--to', fixture.newCommit,
+    '--stage', stageDir, '--json']);
+  const report = JSON.parse(staged.stdout);
+  assert.equal(report.result, 'STAGED', staged.output);
+  assert.deepEqual(report.rootFiles, [
+    { path: 'AGENTS.md', owned: true },
+    { path: 'REPO RULES.md', owned: false },
+  ]);
+  assert.ok(report.lines.includes('root-file AGENTS.md changed upstream; rebase the overlay that owns it'),
+    report.lines.join('\n'));
+  assert.ok(report.lines.some((line) => line.startsWith('root-file REPO RULES.md changed upstream and no overlay owns it; ' +
+    'carry the change over by hand')), report.lines.join('\n'));
+  // The path holds a space, so the command the line names quotes it.
+  assert.ok(report.lines.some((line) => line.includes(ENGINE_COMMAND + ' apply --adopt "REPO RULES.md" ')), report.lines.join('\n'));
+  // README.md changed upstream too, but the manifest does not name it as a root file.
+  assert.equal(report.lines.some((line) => line.startsWith('root-file README.md')), false);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'REPO RULES.md'), 'utf8'), OLD_ENTRIES['REPO RULES.md']);
+});
+
+test('--adopt and pre-commit reject a misused command line', (t) => {
+  const fixture = createStrictFixture(t);
+  for (const args of [['apply', '--adopt'], ['apply', '--adopt', 'a.md', '--capture', 'b.md'],
+    ['status', '--adopt', 'a.md'], ['pre-commit', '--json'], ['pre-commit', 'extra'], ['pre-commit', '--adopt', 'a.md']]) {
+    const result = fixture.run(args);
+    assert.equal(result.code, 2, args.join(' ') + ': ' + result.output);
+    assert.match(result.stdout, /^usage: /);
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. AN OVERLAY FOLDER BESIDE THE TREE
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The setting file may name a folder next to the tree as `../<name>`, so the
+// project's overlays live outside the framework root. Every message names that
+// folder the way the setting does, relative to the tree root.
+const SIBLING_FOLDER = 'overlays';
+const SIBLING_LABEL = '../' + SIBLING_FOLDER;
+
+test('the guard names a sibling overlay folder for an owned path and allows a path inside that folder', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+
+  const owned = fixture.run(['--guard', '.skilled/skills/own/SKILL.md']);
+  assert.equal(owned.code, 1, owned.output);
+  assert.ok(owned.stdout.includes(`is owned by ${SIBLING_LABEL}/skills/own/SKILL.md; edit the overlay`), owned.stdout);
+
+  const created = fixture.run(['--guard', '.skilled/skills/brand/docs/new.md']);
+  assert.equal(created.code, 1, created.output);
+  assert.ok(created.stdout.includes(`create it as ${SIBLING_LABEL}/framework/skills/brand/docs/new.md`), created.stdout);
+
+  for (const overlayPath of [SIBLING_LABEL + '/skills/own/new.md', path.join(fixture.overlayDir, 'skills/own/SKILL.md')]) {
+    const result = fixture.run(['--guard', overlayPath]);
+    assert.equal(result.code, 0, overlayPath + ': ' + result.output);
+    assert.equal(result.stdout, 'allow\n');
+  }
+});
+
+test('the guard run from the workspace resolves paths there with a sibling overlay folder', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+
+  const owned = fixture.run(['--guard', 'tree/.skilled/skills/own/SKILL.md'], fixture.workspace);
+  assert.equal(owned.code, 1, owned.output);
+  assert.ok(owned.stdout.includes(`is owned by ${SIBLING_LABEL}/skills/own/SKILL.md; edit the overlay`), owned.stdout);
+
+  const overlayPath = SIBLING_FOLDER + '/skills/own/SKILL.md';
+  const allowed = fixture.run(['--guard', overlayPath], fixture.workspace);
+  assert.equal(allowed.code, 0, overlayPath + ': ' + allowed.output);
+  assert.equal(allowed.stdout, 'allow\n');
+});
+
+test('adopt writes the copy and its entry into a sibling overlay folder and names it', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  writeFile(fixture.tree, '.skilled/skills/brand/SKILL.md', 'brand skill\n');
+
+  const adopted = fixture.run(['apply', '--adopt', '.skilled/skills/brand']);
+
+  assert.equal(adopted.code, 0, adopted.output);
+  assert.ok(adopted.stdout.includes(`adopted .skilled/skills/brand as ${SIBLING_LABEL}/framework/skills/brand ` +
+    '(directory entry adopted-skilled-skills-brand)'), adopted.stdout);
+  assert.equal(fixture.manifestPath, path.join(fixture.workspace, SIBLING_FOLDER, 'overlay-manifest.json'));
+  const entry = entryFor(fixture, '.skilled/skills/brand');
+  assert.deepEqual({ scope: entry.scope, source: entry.source }, { scope: 'directory', source: 'framework/skills/brand' });
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'framework/skills/brand/SKILL.md'), 'utf8'), 'brand skill\n');
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'skilled-overlays')), false);
+  assert.equal(fs.existsSync(path.join(fixture.tree, SIBLING_FOLDER)), false);
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+  const guard = fixture.run(['--guard', '.skilled/skills/brand/SKILL.md']);
+  assert.ok(guard.stdout.includes(`is owned by ${SIBLING_LABEL}/framework/skills/brand/SKILL.md`), guard.stdout);
+});
+
+test('pre-commit checks a tree whose sibling overlay folder sits in the same git repository', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  assert.equal(fixture.gitRoot, fixture.workspace);
+  assert.equal(fs.existsSync(path.join(fixture.tree, '.git')), false);
+  assert.equal(fixture.run(['pre-commit']).stdout, 'allow\n');
+
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', 'edited in place\n');
+  git(fixture.gitRoot, ['add', '-A']);
+  const refused = fixture.run(['pre-commit']);
+  assert.equal(refused.code, 1, refused.output);
+  assert.deepEqual(refused.stdout.split('\n').filter((line) => line.startsWith('refuse: ')),
+    ['refuse: staged change to .skilled/skills/hub/fix.md is under a vendored root and no overlay owns it']);
+
+  // The manifest is read from the index through its path in the repository, so
+  // a pin moved in the sibling folder still marks the commit as a re-pin.
+  const manifest = readJson(fixture.manifestPath);
+  manifest.pin.commit = fixture.newCommit;
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+  git(fixture.gitRoot, ['add', '-A']);
+  const repinCommit = fixture.run(['pre-commit']);
+  assert.equal(repinCommit.code, 0, repinCommit.output);
+});
+
+test('pre-commit refuses to judge a tree whose sibling overlay folder is outside its git repository', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER });
+  assert.equal(fixture.gitRoot, fixture.tree);
+
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', 'edited in place\n');
+  git(fixture.tree, ['add', '-A']);
+  const result = fixture.run(['pre-commit']);
+
+  assert.equal(result.code, 2, result.output);
+  assert.ok(result.output.split('\n').some((line) => /outside the git repository/.test(line)), result.output);
+});
+
+// A sibling overlay folder has to sit in the tree's own git repository, so every
+// command refuses one outside it before reading anything else.
+const OUTSIDE_REPOSITORY = 'outside the git repository at';
+
+function writeSetting(fixture, overlayDir) {
+  writeFile(fixture.tree, '.skilled-overlays.json', JSON.stringify({ overlayDir }) + '\n');
+}
+
+test('status refuses a sibling overlay folder outside the tree\'s git repository', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER });
+  assert.equal(fixture.gitRoot, fixture.tree);
+
+  const status = fixture.run(['status']);
+
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes(OUTSIDE_REPOSITORY), status.output);
+  assert.ok(status.output.includes(SIBLING_LABEL), status.output);
+});
+
+test('status refuses the repository\'s own .git folder named as a sibling overlay folder', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  assert.ok(fs.statSync(path.join(fixture.workspace, '.git')).isDirectory());
+  writeSetting(fixture, '../.git');
+
+  const status = fixture.run(['status']);
+
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes(OUTSIDE_REPOSITORY), status.output);
+});
+
+test('status refuses a sibling link inside the repository that points outside it', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  const outside = fs.mkdtempSync(path.join(os.tmpdir(), 'overlay-engine-outside-'));
+  t.after(() => fs.rmSync(outside, { recursive: true, force: true }));
+  fs.cpSync(fixture.overlayDir, outside, { recursive: true });
+  fs.symlinkSync(outside, path.join(fixture.workspace, 'linked'), 'dir');
+  writeSetting(fixture, '../linked');
+
+  const status = fixture.run(['status']);
+
+  assert.equal(status.code, 2, status.output);
+  assert.ok(status.output.includes(OUTSIDE_REPOSITORY), status.output);
+});
+
+test('a tree in no git repository keeps its sibling overlay folder', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-no-repository-', { siblingOverlayFolder: SIBLING_FOLDER });
+  const probe = spawnSync('git', ['-C', fixture.tree, 'rev-parse', '--show-toplevel'], { encoding: 'utf8' });
+  if (probe.status === 0) {
+    t.skip('the temporary folder sits inside a git repository at ' + probe.stdout.trim());
+    return;
+  }
+  const engine = require('../overlay-engine.cjs');
+  assert.equal(engine.resolveOverlayDir(fixture.tree), SIBLING_LABEL);
+
+  const status = runEngine(['status', '--root', fixture.tree], fixture.tree);
+  assert.ok(!status.output.includes(OUTSIDE_REPOSITORY), status.output);
+});
+
+// A git hook exports GIT_DIR without GIT_WORK_TREE, and git then reports the
+// working folder as the top level, so the repository check must not trust it.
+test('a sibling overlay folder inside the repository is kept when GIT_DIR comes from a hook', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  const env = { ...process.env, GIT_DIR: path.join(fixture.workspace, '.git') };
+  for (const name of ['GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_PREFIX']) delete env[name];
+
+  const probe = spawnSync('git', ['-C', fixture.tree, 'rev-parse', '--show-toplevel'], { env, encoding: 'utf8' });
+  assert.equal(probe.status, 0, probe.stderr);
+  assert.equal(fs.realpathSync(probe.stdout.trim()), fs.realpathSync(fixture.tree));
+
+  const engineFile = path.resolve(__dirname, '..', 'overlay-engine.cjs');
+  const status = spawnSync(process.execPath, [engineFile, 'status', '--root', fixture.tree],
+    { cwd: fixture.tree, env, encoding: 'utf8' });
+  const output = (status.stdout || '') + (status.stderr || '');
+  assert.ok(!output.includes(OUTSIDE_REPOSITORY), output);
+});
+
+test('pre-commit refuses a sibling overlay folder the repository boundary moved away from', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  const engine = require('../overlay-engine.cjs');
+  const ctx = engine.createContext(fixture.tree);
+  assert.equal(ctx.overlayOutside, true);
+
+  // A repository opened at the tree after the context was built leaves the
+  // sibling folder outside it, which only the commit check can still see.
+  git(fixture.tree, ['init', '-q']);
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', 'edited in place\n');
+  git(fixture.tree, ['add', '-A']);
+
+  assert.throws(() => engine.commandPreCommit(ctx), /the overlay folder must sit inside the same git repository as the tree/);
+});
+
+test('a manifest source under root/skilled is a blocked overlay for its entry', (t) => {
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.overlayDir, 'root/skilled/notes.md', 'notes\n');
+  const manifest = readJson(fixture.manifestPath);
+  // root/skilled is where a framework destination keeps its copy, so this entry
+  // would give one destination a second source the layout has no room for.
+  manifest.overlays.push({ id: 'under-root-skilled', scope: 'file', source: 'root/skilled/notes.md', destination: 'notes.md' });
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const status = fixture.run(['status']);
+
+  assert.notEqual(status.code, 0, status.output);
+  assert.ok(status.output.includes('under-root-skilled'), status.output);
+  assert.ok(status.output.includes('root/skilled'), status.output);
+  // A refused entry is reported by id together with the path it was refused for.
+  // The off-layout hint is what a copy the engine still reads and applies gets.
+  const refusedLine = status.stdout.split('\n').find((line) =>
+    line.includes('under-root-skilled') && line.includes('root/skilled') && !line.startsWith('LAYOUT'));
+  assert.ok(refusedLine, status.output);
+});
+
+test('a manifest fragment under root/skilled is a blocked overlay for its entry', (t) => {
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.overlayDir, 'root/skilled/notes.md', 'notes\n');
+  writeFile(fixture.overlayDir, 'custom/notes.base.md', 'base\n');
+  const manifest = readJson(fixture.manifestPath);
+  manifest.overlays.push({
+    id: 'fragment-under-root-skilled',
+    scope: 'marked-section',
+    source: 'custom/marked-source.md',
+    fragment: 'root/skilled/notes.md',
+    base: 'custom/notes.base.md',
+    destination: 'notes.md',
+    beginMarker: '<!-- BEGIN BLOCK -->',
+    endMarker: '<!-- END BLOCK -->',
+  });
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const status = fixture.run(['status']);
+
+  assert.notEqual(status.code, 0, status.output);
+  const refusedLine = status.stdout.split('\n').find((line) =>
+    line.includes('fragment-under-root-skilled') && line.includes('root/skilled') && !line.startsWith('LAYOUT'));
+  assert.ok(refusedLine, status.output);
+});
+
+test('a manifest base under root/skilled is a blocked overlay for its entry', (t) => {
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.overlayDir, 'custom/notes.md', 'notes\n');
+  writeFile(fixture.overlayDir, 'root/skilled/notes.base.md', 'base\n');
+  const manifest = readJson(fixture.manifestPath);
+  manifest.overlays.push({
+    id: 'base-under-root-skilled',
+    scope: 'marked-section',
+    source: 'custom/marked-source.md',
+    fragment: 'custom/notes.md',
+    base: 'root/skilled/notes.base.md',
+    destination: 'notes.md',
+    beginMarker: '<!-- BEGIN BLOCK -->',
+    endMarker: '<!-- END BLOCK -->',
+  });
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const status = fixture.run(['status']);
+
+  assert.notEqual(status.code, 0, status.output);
+  const refusedLine = status.stdout.split('\n').find((line) =>
+    line.includes('base-under-root-skilled') && line.includes('root/skilled') && !line.startsWith('LAYOUT'));
+  assert.ok(refusedLine, status.output);
+});
+
+test('adopt refuses a destination under skilled/ because its source would sit under root/skilled', (t) => {
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.tree, 'skilled/notes.md', 'project notes\n');
+  const before = fs.readFileSync(fixture.manifestPath, 'utf8');
+
+  const refused = fixture.run(['apply', '--adopt', 'skilled/notes.md']);
+
+  assert.equal(refused.code, 2, refused.output);
+  assert.ok(refused.stdout.includes('root/skilled'), refused.stdout);
+  // A refusal writes nothing: the manifest keeps its bytes and no copy appears.
+  assert.equal(fs.readFileSync(fixture.manifestPath, 'utf8'), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'root/skilled')), false);
+});
+
+test('adopt of an excluded path prefers the framework copy when an excluded copy sits at both paths', (t) => {
+  const fixture = createStrictFixture(t);
+  excludeLocalFolder(fixture);
+  // One destination takes one source, so a copy at both the framework layout and
+  // the older one has to resolve to the framework path alone.
+  writeFile(fixture.overlayDir, 'framework/local/hook.sh', '#!/bin/sh\nexit 0\n');
+  writeFile(fixture.overlayDir, 'skilled/local/hook.sh', '#!/bin/sh\nexit 0\n');
+
+  const adopted = fixture.run(['apply', '--adopt', '.skilled/local/hook.sh']);
+
+  assert.equal(adopted.code, 0, adopted.output);
+  assert.equal(entryFor(fixture, '.skilled/local/hook.sh').source, 'framework/local/hook.sh');
+});
+test('PROBE hook GIT_DIR status then pre-commit', (t) => {
+  const fixture = createStrictFixture(t, { siblingOverlayFolder: SIBLING_FOLDER, isGitAtWorkspace: true });
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', 'edited in place\n');
+  git(fixture.gitRoot, ['add', '-A']);
+  const engineJs = '/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs';
+  for (const [label, env] of [['PLAIN', process.env], ['HOOKED', { ...process.env, GIT_DIR: path.join(fixture.gitRoot, '.git') }]]) {
+    const st = spawnSync('node', [engineJs, 'status', '--root', fixture.tree], { cwd: fixture.tree, encoding: 'utf8', env });
+    const pc = spawnSync('node', [engineJs, 'pre-commit', '--root', fixture.tree], { cwd: fixture.tree, encoding: 'utf8', env });
+    console.log(label, 'status', st.status, JSON.stringify((st.stdout + st.stderr).split('\n').filter((l) => /RESULT|live|unowned|refuse/i.test(l)).join(' | ')));
+    console.log(label, 'pre-commit', pc.status, JSON.stringify((pc.stdout + pc.stderr).slice(0, 120)));
+  }
+});

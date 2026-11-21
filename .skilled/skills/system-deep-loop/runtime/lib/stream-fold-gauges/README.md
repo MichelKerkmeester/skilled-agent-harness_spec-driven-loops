@@ -29,20 +29,20 @@ Turns a stream of ledger events into a deterministic, replay-verifiable metric. 
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/transactional-projections/` (bundle registry and engine)
-- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/`
+- `../transactional-projections/` (bundle registry and engine)
+- `../mode-contracts/`
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts`
+- `../../tests/unit/stream-fold-gauges.vitest.ts`
 - Also exercised by `transactional-projections.vitest.ts`.
 
 ---
 
 ## 5. RELATED
 
-- [`runtime/lib/replay-fingerprint/README.md`](../replay-fingerprint/README.md)
-- [`runtime/lib/transactional-projections/README.md`](../transactional-projections/README.md)
-- [`system-deep-loop/SKILL.md`](../../../SKILL.md)
+- [`../replay-fingerprint/README.md`](../replay-fingerprint/README.md)
+- [`../transactional-projections/README.md`](../transactional-projections/README.md)
+- [`../../../SKILL.md`](../../../SKILL.md)

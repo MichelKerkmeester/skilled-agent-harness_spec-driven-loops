@@ -10,6 +10,7 @@ const nodeRequire = createRequire(import.meta.url);
 const { buildTrendFlatlineAdvisories, formatTrendAdvisoryEvent } = nodeRequire(
   '../../../deep-research/scripts/reduce-state.cjs',
 ) as {
+  // reduce-state.cjs is untyped CommonJS and the tests read advisory fields by name.
   buildTrendFlatlineAdvisories: (config: unknown, histories: unknown, latest: unknown) => any[];
   formatTrendAdvisoryEvent: (event: unknown) => string;
 };

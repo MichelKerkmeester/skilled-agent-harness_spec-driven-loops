@@ -1,0 +1,52 @@
+FINDINGS: 4
+
+I found no P0 or P1 in this lane. On the normal crash paths, a throw now yields the timeout or skipped fallback as valid JSON. That covers a throw in the renderer, the producer or the clock, and a throw inside dedup. The fallback goes through the same directive dedup and deferred receipt as a normal turn. A throw inside the fallback path itself ends in `{}` (`user-prompt-submit.ts:630-632`), so the handler never rejects.
+
+Pi, DSH and Vibe each read only `hookSpecificOutput.additionalContext`, so the crash output reaches them in the same shape as a normal turn.
+
+[P2] A crash before line 580 runs with an empty delivery state, so the crash fallback's policy observation carries no session. The REQ-005 test cannot see this because it only crashes after line 580.
+  Where: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:504, :580, :622, :629; runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts ("records the crash fallback policy once under the runtime")
+  Scenario: a known session whose clock (`dependencies.now`) throws at :534, or a throw from `workspaceRootFor` or `skippedAdvisorResultFor`, or a rejection from `buildCliBrief` -> the catch passes `deliveryState = {}` to `renderAdvisorFallbackDirective` and to `finishAdvisorDelivery`. The record therefore has no `sessionId` or lifecycle event. Per the phase 009 spec's own Reach note (`policy-plan.ts:840-843`), a record with no session is dropped, so the crash leaves 0 records where the timeout path leaves more than 0. That breaks REQ-005 and SC-001 ("For any one input, the crash path and the timeout path return the same additionalContext") for the telemetry half. The model-visible text is unaffected, because dedup reads `input` directly.
+  Evidence: `let deliveryState: ShadowDeliveryRenderOptions = {};` (:504) is assigned only at `deliveryState = deliveryStateOptionsFor(input);` (:580), after the await at :558-570. `deliveryStateOptionsFor` is pure and could run right after the `!input` return. The test throws from `renderBrief` (:581), which runs after :580.
+  Confidence: confirmed for the empty state. That the record is dropped is taken from the spec's citation of `policy-plan.ts:840-843`, which I did not read.
+
+[P2] With the working directory removed, a null or promptless payload gets the outage fallback, although the hook doc says invalid input returns `{}`. The recorded limitation names only the disabled-hook case, so it understates the scope.
+  Where: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:523 and :536 (via `workspaceRootFor` -> `process.cwd()` at :210), :626-629; hooks/skill-advisor-hook.md:57; P/009-crash-fallback-edge-cases/implementation-summary.md:109
+  Scenario: in-process callers (Pi, DSH, Vibe) whose process cwd was deleted, with `input === null`. The diagnostic argument `workspaceRoot: process.cwd()` at :523 is evaluated outside `emitDiagnostic`'s own try and throws. The catch then renders `renderAdvisorTimeoutFallback` and returns an outage envelope instead of `{}`. The same happens for a payload with no `prompt` and no `cwd`, where `workspaceRootFor` calls `process.cwd()` at :210. The model is told the advisor is down on a turn that had no prompt to route.
+  Evidence: doc line 57: "It also returns `{}` when input is invalid." Limitation 1 says only: "A disabled hook in a removed working directory shows the outage fallback … Both conditions together are needed". The `!input` branch at :520-532 reaches the same catch, and that branch is not disabled-only.
+  Confidence: confirmed by trace. Main rejected here rather than returning `{}`, so this is a changed result, not a new silence.
+
+[P2] The deferred directive receipt is committed in the stdout write callback whether or not the write failed. It is also committed before the shim accepts the output, so a crash fallback the model never received can still mark its `Directives:` block as delivered.
+  Where: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:660-667, :695-698; .skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:155-171
+  Scenario: the child writes its envelope and the receipt commits. `flushPendingDiagnostics` (up to 100 ms) then delays exit past the shim's `spawnSync` timeout of 2500 ms (`CHILD_TIMEOUT_MS`), because the CLI budget is already `CHILD_TIMEOUT_MS - 300`. The shim then sees `ETIMEDOUT`, emits `{}`, and the model gets nothing. The receipt says the full block was delivered, so the next turn is reduced to the head and the hygiene directive is lost. An EPIPE write error commits the receipt the same way, because the callback ignores its `err` argument.
+  Evidence: `process.stdout.write(\`${JSON.stringify(output)}\n\`, () => { commitClaudeDirectiveDeliveryReceipt(output); resolvePromise(); });`. The shim: `if (result.error) { … 'CHILD_TIMEOUT' … return '{}'; }`.
+  Confidence: plausible. This is pre-existing on main (`writeHookOutput` is byte-identical at the merge base). Since 009 the crash fallback carries a receipt as well. A child run under the shim with a throwing renderer and a CLI that takes about 2.2 s would confirm it.
+
+[P2] The ENV-REFERENCE row says a later change to `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` "has no effect until a restart". That holds only for the warm daemon: any fresh process re-reads the variable.
+  Where: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:382; runtime/lib/scorer/fusion.ts:73; runtime/lib/render.ts:533; runtime/lib/subprocess.ts:128
+  Scenario: with no daemon running, or with `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL`, a direct `advisor_recommend` call that sends no `confidenceThreshold` loads `fusion.ts` fresh. It reads `DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold()` (:73) at that process start, so the changed value applies on the next call with no restart. `render.ts:533` and `subprocess.ts:128` re-read the variable on every call. The row's hook clause is accurate: hooks send 0.8, and fusion returns only passing candidates unless `includeAllCandidates` is set, so the render-time fallback cannot widen a hook brief.
+  Evidence: `const DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();` (fusion.ts:73); `recommendation.confidence >= (thresholdConfig?.confidenceThreshold ?? resolvedConfidenceThreshold())` (render.ts:533). The row: "The value is read once when the daemon starts, so a later change has no effect until a restart".
+  Confidence: plausible. A direct CLI call with the daemon stopped, before and after changing the variable, would confirm it.
+
+Paths I checked with nothing to report: the outer and nested try/catch structure (:507-633), the hoisted turn state, the guarded `elapsed`, the skipped-versus-outage choice and the setup wording in the catch (:622-625), `applyDirectiveLifecycle` with deferred and immediate receipts against `directive-lifecycle.ts:107-176`, the `finishAdvisorDelivery` receipt attach, and the guarded `observeEmittedAdvisorPolicy` (render.ts:469-501). I also checked the CLI `main` catch, the dedup that the Pi, DSH and Vibe adapters each apply to what the handler returns, and the `confidenceOnly` clause (render.ts:535 matches "skips only the uncertainty check").
+
+Not checked: I did not run the report checker scripts. This handback follows the dispatcher's FINDINGS format, which has no `Review status:` line for them to check. I ran no tests, and none of the four findings were confirmed by running code. I did not read `policy-plan.ts` or the `skill-advisor.cjs` local-scorer routing. Confidence: MEDIUM.
+
+FILES READ:
+- .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts (HEAD, and the diff against 538d2f789ec)
+- .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md (diff of 98a58b6245b)
+- .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md (diffs of cfad65c7c72 and 98a58b6245b)
+- .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts (diff of 98a58b6245b)
+- .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts (:40-200)
+- .skilled/skills/system-skill-advisor/runtime/lib/render.ts (:469-560, :651-674)
+- .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs (:80-110, :125-222)
+- .skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs (:150-250)
+- .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts (:255-360)
+- .skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts (:17-32, :140-204)
+- .skilled/skills/system-skill-advisor/runtime/lib/compat/contract.ts
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts (:73, :1475-1540, :1610-1660)
+- .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts (:120-140)
+- .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts (:235-260, :330-375)
+- .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts (:585-600)
+- P/004-crash-path-fallback/implementation-summary.md (Known Limitations)
+- P/009-crash-fallback-edge-cases/spec.md (requirements and Reach) and implementation-summary.md

@@ -33,7 +33,7 @@ deep-loop/
 |---|---|
 | `artifact-root.cjs` | Resolves the canonical artifact topology root. |
 | `atomic-state.ts` | Writes state atomically across the runtime state boundary. |
-| `bayesian-scorer.ts` | Computes convergence scores from runtime signals. |
+| `bayesian-scorer.ts` | Computes a Laplace-smoothed success score and checks it against the demotion threshold. |
 | `continuity-thread.cjs` | Reads and writes continuity-thread compatibility data. |
 | `divergent-pivot.ts` | Coordinates divergent-pivot transaction and quorum behavior. |
 | `evidence-contract.ts` | Validates dispatch-boundary evidence metadata. |
@@ -41,6 +41,7 @@ deep-loop/
 | `executor-config.ts` | Parses executor configuration, kinds and sandbox mappings. |
 | `fallback-router.ts` | Routes execution to the configured fallback executor. |
 | `fanout-effect-dispatch.ts` | Routes each fan-out executor spawn through the effect gateway, recording an intent before the subprocess runs and a confirmation after. A resumed lineage gets a fresh `:redispatch-<n>` effect id, so it never collides with the first dispatch. |
+| `iteration-findings.cjs` | Extracts Markdown findings from iteration files so iteration verification and registry rebuild count the same entries. |
 | `jsonl-repair.ts` | Repairs recoverable trailing corruption in state logs. |
 | `lifecycle-taxonomy.cjs` | Defines terminal lifecycle and session outcome values. |
 | `lineage-timestamp-window.ts` | Checks timestamp windows for lineage records. |
@@ -52,8 +53,8 @@ deep-loop/
 | `prompt-pack.ts` | Renders prompts and checks required variables. |
 | `receipt-crypto.ts` | Derives, signs and verifies receipt keys and signatures. |
 | `runtime-capabilities.cjs` | Resolves the parameterized runtime capability matrix. |
-| `sleep.ts` | Provides the synchronous sleep primitive used by runtime coordination. |
-| `write-containment.ts` | Detects runtime writes outside the allowed boundary and reports them. Preserve is the default remedy, so the working tree is left as the lane left it; restoring is opt-in and targets the pre-dispatch baseline, never HEAD. A path already dirty at the baseline that changes again is reported as contested, and appended to the caller's state log as a `containment_contested` event, with no quarantine copy or revert, because the tree cannot say who wrote it. |
+| `sleep.ts` | Provides `abortableSleep`, an async sleep that waits in 200 ms chunks and rejects with the abort reason once a signal fires, plus `composeAbortSignals`. |
+| `write-containment.ts` | Detects runtime writes outside the allowed boundary and reports them. Preserve is the default remedy, so the working tree is left as the lane left it. Restoring is opt-in and targets the pre-dispatch baseline, never HEAD. A path already dirty at the baseline that changes again is reported as contested, and appended to the caller's state log as a `containment_contested` event, with no quarantine copy or revert, because the tree cannot say who wrote it. An artifact dir outside the git worktree is refused by the pre-dispatch snapshot, before any lane is spawned. With no worktree at all both checks are a no-op. |
 
 ---
 

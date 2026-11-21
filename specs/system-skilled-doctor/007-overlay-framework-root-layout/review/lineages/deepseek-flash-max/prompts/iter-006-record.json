@@ -1,0 +1,243 @@
+{
+  "type": "iteration",
+  "iteration": 6,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "status": "complete",
+  "focus": "Frontier node F-1-006: security",
+  "frontierNodeId": "F-1-006",
+  "dimensions": [
+    "security"
+  ],
+  "filesReviewed": [
+    "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs",
+    "barter/ai-speckit/overlays/overlay-manifest.json",
+    "barter/ai-speckit/overlays/sync-state.json",
+    "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+    "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+    "barter/ai-speckit/skilled/.skilled-overlays.json"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingsNew": [
+    "R6-P2-001"
+  ],
+  "findingDetails": [
+    {
+      "id": "R6-P2-001",
+      "severity": "P2",
+      "title": "The pinned-blob reader passes a manifest value to git without --end-of-options",
+      "file": "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4241",
+      "dimension": "security",
+      "findingClass": "security-hardening",
+      "scopeProof": "read overlay-engine.cjs:4227-4300 in full; grep -n end-of-options returns exactly one hit, at :4281, and commitBytesReader at :4239-4244 has none",
+      "affectedSurfaceHints": [
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs"
+      ],
+      "case": "a manifest records pin.commit as a string that starts with a dash, or an overlay entry names a source whose first path segment starts with a dash; git cat-file blob reads the token as an option and the bytes the audit compares are not the bytes at the pin",
+      "type": "security",
+      "claim": "commitBytesReader passes a manifest-supplied revision and path to git cat-file without --end-of-options, while resolveCommit guards the same input class.",
+      "evidenceRefs": [
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4241",
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4281",
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4267"
+      ],
+      "counterevidenceSought": "checked whether pin.commit is validated as a hex id before it reaches the reader: :4267 only tests typeof string, and :2931 lowercases it for comparison without validating the shape; checked whether runGit uses a shell: it calls spawnSync('git', ['-C', upstream, ...args]) at :4228, so the exposure is git option parsing rather than shell injection",
+      "alternativeExplanation": "the manifest is committed repository content, so the value is trusted in practice and the gap only matters if a manifest is ever authored by someone other than the tree's owner; that reading does not explain why resolveCommit already carries the flag",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "drop to informational if a maintainer records that the manifest is trusted input and no consumer ever accepts one from elsewhere"
+    }
+  ],
+  "traceabilityChecks": {
+    "results": [
+      {
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/skilled/.skilled-overlays.json"
+        ],
+        "notes": "completion criterion 3 re-executed read-only: the setting prints ../overlays and barter-overlays is absent"
+      },
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs"
+        ],
+        "notes": "the vendored engine is byte-identical to the pin, so the security fixes the packet records are the ones the consumer runs"
+      },
+      {
+        "protocolId": "integration_naming",
+        "status": "pass",
+        "applicable": true,
+        "evidenceRefs": [
+          "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4269",
+          "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4924"
+        ],
+        "notes": "the reader is named by path and by its two call families, the manifest pin and the repin job readers"
+      }
+    ]
+  },
+  "newFindingsRatio": 0.143,
+  "noveltyJustification": "one new P2 (weight 1) against six carried P2 findings (weight 6) gives a weighted new share of 0.143; the finding is in the pinned-blob reader, which no earlier iteration opened because the earlier engine passes stayed on the write and relayout paths",
+  "sessionId": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-20T16:43:00.243Z",
+  "durationMs": 74000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "security review of the vendored engine's handling of manifest-supplied revisions",
+    "evidenceRefs": [
+      "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4241"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs",
+      "barter/ai-speckit/overlays/overlay-manifest.json",
+      "barter/ai-speckit/overlays/sync-state.json"
+    ],
+    "selectionReason": "frontier node F-1-006 names the vendored doctor folder and the two overlay state files, which are the three inputs the engine trusts",
+    "discoveryMethods": [
+      "direct_read",
+      "exact_search"
+    ],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "partial",
+    "evidenceRefs": [
+      "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4241"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "argument_injection",
+      "shell_injection",
+      "secret_leak",
+      "supply_chain_drift"
+    ],
+    "covered": [
+      "argument_injection"
+    ],
+    "ruledOut": [
+      "shell_injection",
+      "secret_leak",
+      "supply_chain_drift"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-017",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs"
+      ],
+      "bugClass": "argument_injection",
+      "hypothesis": "a manifest value reaches git as an option rather than a revision",
+      "searchActions": [
+        {
+          "method": "exact_search",
+          "queryOrPath": "grep -n end-of-options overlay-engine.cjs",
+          "result": "one hit, at :4281 in resolveCommit; commitBytesReader at :4241 has none",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4281"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "overlay-engine.cjs:4265-4270",
+          "result": "pinnedUpstreamBytes type-checks pin.commit as a string and nothing more",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4267"
+          ]
+        }
+      ],
+      "disposition": "confirmed",
+      "rationale": "the sibling reader already carries the flag, so the omission is an inconsistency rather than a deliberate choice",
+      "ruledOutReason": null
+    },
+    {
+      "id": "SL-018",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs"
+      ],
+      "bugClass": "shell_injection",
+      "hypothesis": "a manifest value is interpolated into a shell command",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "overlay-engine.cjs:4227-4229",
+          "result": "runGit calls spawnSync('git', ['-C', upstream, ...args]) with an argv array",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4228"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "every git argument is an argv element, so no manifest value reaches a shell",
+      "ruledOutReason": "verified by direct read of the invocation helper"
+    },
+    {
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/overlays/sync-state.json"
+      ],
+      "bugClass": "secret_leak",
+      "hypothesis": "the committed state file carries a local absolute path",
+      "searchActions": [
+        {
+          "method": "exact_search",
+          "queryOrPath": "grep -c /Users/ overlays/sync-state.json",
+          "result": "0",
+          "evidenceRefs": [
+            "barter/ai-speckit/overlays/sync-state.json"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the file holds relative paths and SHA-256 digests only",
+      "ruledOutReason": "verified by exact search"
+    },
+    {
+      "id": "SL-020",
+      "dimension": "security",
+      "targetRefs": [
+        "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests"
+      ],
+      "bugClass": "supply_chain_drift",
+      "hypothesis": "the vendored copy ships the engine without the suites that prove it",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "ls skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs",
+          "result": "all six suites present",
+          "evidenceRefs": [
+            "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "a consumer can run the same assertions the pin carries",
+      "ruledOutReason": "verified by listing the tests folder"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+## HANDBACK
+
+**Changed:** [pasted-reply-strip-cases.json](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json)
+
+**Added block:**
+
+```json
+    {
+      "id": "newline-marker",
+      "input": "Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git.\nNow: Refactor the session store module to remove duplicated locking code",
+      "expected": "Refactor the session store module to remove duplicated locking code"
+    }
+```
+
+**Mismatch:** None. The input has `Now:` starting on a new line, matching the description.
+
+`cmp` exited 0 and the JSON parse succeeded. Project tests were not run here; the run context assigns them to the conductor. The fixture is uncommitted on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+
+Git status also shows six other modified paths outside this task. I did not touch them, and their earlier state is unknown. The conductor should run the project checks.

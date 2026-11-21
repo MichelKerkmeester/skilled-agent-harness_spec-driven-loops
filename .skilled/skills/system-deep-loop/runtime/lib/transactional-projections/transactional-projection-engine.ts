@@ -76,6 +76,10 @@ type OpenGeneration = Pick<ProjectionGeneration,
   | 'gauges'
   | 'receipts'>;
 
+/**
+ * Store, bundle and gauge registries and the pinned bundle the engine projects, plus how many published
+ * generations to keep.
+ */
 export interface TransactionalProjectionEngineOptions {
   readonly store: TransactionalProjectionStore;
   readonly bundleRegistry: ProjectionBundleRegistry;
@@ -246,6 +250,7 @@ function assertClosedPrefix(
   }
   let priorHash = GENESIS_RECORD_HASH;
   for (let index = 0; index < events.length; index += 1) {
+    // The loop bound keeps index inside events.
     const event = events[index]!;
     verifiedFrame(event, ledgerId, registryDigest);
     if (event.frame.sequence !== index + 1 || event.frame.prev_record_hash !== priorHash) {
@@ -375,6 +380,7 @@ function emptyGeneration(
       };
       continue;
     }
+    // dependencyOrder holds only view and gauge ids, so a unit that is not a view has a gauge binding.
     const binding = bundle.gaugeBindings.get(unitId)!;
     const contract = gaugeRegistry.resolve(binding.gaugeId, binding.gaugeVersion);
     const accumulator = cloneJson(gaugeRegistry.initialAccumulator(binding.gaugeId, binding.gaugeVersion));
@@ -445,6 +451,8 @@ function prepareEvent(
   for (const unitId of bundle.dependencyOrder) {
     const view = bundle.views.get(unitId);
     if (view) {
+      // prior starts as an empty generation, which materializes every unit, or one #validateGeneration accepted,
+      // which requires every view, and each prepareEvent result carries every unit forward.
       const previous = asRecord<ProjectionViewMaterialization>(views, unitId)!;
       const contract = view.acceptedEvents.find(
         (entry) => entry.eventType === event.event.effective.envelope.event_type,
@@ -503,7 +511,10 @@ function prepareEvent(
       fault?.afterViewPrepared?.(unitId);
       continue;
     }
+    // dependencyOrder holds only view and gauge ids, so a unit that is not a view has a gauge binding.
     const binding = bundle.gaugeBindings.get(unitId)!;
+    // prior starts as an empty generation, which materializes every unit, or one #validateGeneration accepted,
+    // which requires every gauge, and each prepareEvent result carries every unit forward.
     const previous = asRecord<ProjectionGaugeMaterialization>(gauges, unitId)!;
     try {
       const accumulator = cloneJson(gaugeRegistry.reduce(
@@ -769,6 +780,8 @@ export class TransactionalProjectionEngine {
       generation = prepareEvent(
         generation,
         event,
+        // A non-empty rebuild checked replayIdentity above, and a genesis rebuild has no events, so this loop
+        // never runs with it null.
         input.replayIdentity!,
         this.#bundle,
         this.#gauges,
@@ -963,6 +976,7 @@ export class TransactionalProjectionEngine {
           || !sameReplayIdentity(verifiedReplayIdentity, generation.replayProvenance)
           || !sameReplayIdentity(verifiedReplayIdentity, read.replayIdentity))
       ) return { mode: 'rebuild', reasonCode: 'REPLAY_PROVENANCE_MISMATCH' };
+      // The length check on the left of && guarantees a first event.
       if (verifiedEvents.length > 0 && verifiedEvents[0]!.frame.ledger_id !== generation.ledgerId) {
         return { mode: 'rebuild', reasonCode: 'LEDGER_ID_MISMATCH' };
       }
@@ -1051,7 +1065,11 @@ export class TransactionalProjectionEngine {
         ) this.#invalidGeneration(generation, 'Gauge materialization does not match the frozen registry contract');
       }
     };
+    // A missing view arrives as undefined, which validateMember rejects as malformed; the assertion only
+    // satisfies its parameter type.
     for (const id of this.#bundle.views.keys()) validateMember(generation.views[id]!, id, 'view');
+    // A missing gauge arrives as undefined, which validateMember rejects as malformed; the assertion only
+    // satisfies its parameter type.
     for (const id of this.#bundle.gaugeBindings.keys()) validateMember(generation.gauges[id]!, id, 'gauge');
     const receiptKeys = Object.keys(generation.receipts).sort((left, right) => Number(left) - Number(right));
     if (receiptKeys.length !== generation.watermark.sequence) {

@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/cli-fallback.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts
+The prepared file adds one test: the CLI fallback sends the task behind a pasted reply longer than the 10,000-character advisor limit. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/cli-fallback.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts` exits 0.

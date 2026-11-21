@@ -19,6 +19,7 @@ import type {
   CutoverCertificateMode,
 } from '../per-mode-authority-flip/index.js';
 
+/** Where deep-research authority records live, and the clock used to stamp them. */
 export interface DeepResearchAuthorityOptions {
   /**
    * Durable, mode-global authority-record root. This is a single fact across all runs — it must NOT

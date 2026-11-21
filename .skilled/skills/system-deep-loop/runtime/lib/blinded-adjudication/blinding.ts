@@ -71,6 +71,10 @@ interface CounterfactualCueInput {
   readonly token: string;
 }
 
+/**
+ * Evidence of what one judge assignment was shown: opaque labels, presentation order, content digests and any
+ * counterfactual variant.
+ */
 export interface BlindedPresentationEvidence extends JsonObject {
   readonly adjudication_id: string;
   readonly assignment_id: string;
@@ -85,6 +89,7 @@ export interface BlindedPresentationEvidence extends JsonObject {
   readonly counterfactual_token_digest: string | null;
 }
 
+/** Producer, provider and author identity behind one candidate digest, as returned by deblinding. */
 export interface DeblindedIdentity {
   readonly candidateDigest: string;
   readonly producerId: string;

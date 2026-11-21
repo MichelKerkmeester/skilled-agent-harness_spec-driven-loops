@@ -143,6 +143,7 @@ const ADVISOR_DUMP_TIMEOUT_MS = 15000;
 const GLOBAL_MAP_OWNER = 'system-deep-loop';
 
 const DEFAULT_TARGET = '.skilled/skills/system-deep-loop';
+const RERUN = 'node .skilled/commands/doctor/scripts/parent-skill-check.cjs';
 
 // Shared contract libraries and the leaf-manifest generator live once in the
 // repository under sk-doc. They are resolved from the checker root so a hub
@@ -2467,12 +2468,14 @@ function createContext(target) {
 function targetError(target) {
   if (!fs.existsSync(target) || !fs.statSync(target).isDirectory()) {
     console.error(`${red('ERROR')}: parent skill directory not found: ${target}`);
+    console.error(`Next: ${RERUN} <path to a parent skill directory>`);
     return EXIT_CHECKER_ERROR;
   }
   try {
     fs.readdirSync(target);
   } catch (e) {
     console.error(`${red('ERROR')}: parent skill directory is not readable: ${target} (${e.code || e.message})`);
+    console.error(`Next: make ${target} readable, then run ${RERUN} ${target}`);
     return EXIT_CHECKER_ERROR;
   }
   return null;
@@ -2489,6 +2492,7 @@ function main() {
     : (argv.length > 1 ? argv[1] : null);
   if (optionToken) {
     console.error(`parent-skill-check.cjs: unknown option: ${optionToken}`);
+    console.error(`Next: ${RERUN} [<skill-dir>]`);
     console.error('usage: parent-skill-check.cjs [<skill-dir>]');
     return EXIT_CHECKER_ERROR;
   }
@@ -2562,6 +2566,7 @@ function run() {
   } catch (e) {
     const reason = e && e.message ? e.message.split('\n')[0] : String(e);
     console.error(`${red('FAIL')}: parent-skill-check could not finish: ${reason}`);
+    console.error(`Next: fix the cause named above, then rerun ${RERUN} with the same hub path`);
     return EXIT_CHECKER_ERROR;
   }
 }

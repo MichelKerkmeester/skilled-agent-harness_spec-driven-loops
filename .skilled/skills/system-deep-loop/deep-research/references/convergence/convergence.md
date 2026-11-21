@@ -9,7 +9,7 @@ trigger_phrases:
   - "research convergence decision order"
 importance_tier: important
 contextType: implementation
-version: 1.14.15.0
+version: 1.14.17.0
 ---
 
 # Convergence Detection Reference
@@ -65,7 +65,7 @@ The shared convergence runtime accepts four values. The workflow keeps hard term
 
 #### Expansive Depth Mode
 
-`--depth-mode=expansive` grows a frontier of follow-up questions beside the questions seeded at init. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, `budgetSplit` 0.5/0.35/0.15 for depths 1, 2 and 3, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. Two flags set the caps when the config is created: `--frontier-max-depth=N` writes `maxDepth` and `--frontier-max-nodes=N` writes `maxFrontierNodes`; both take a positive integer, need `--depth-mode=expansive` on a single-executor run, and are refused on a fan-out config. The run cap never prunes a depth-1 seed, which only the root-children cap bounds, but every seed that is not pruned, answered ones included, counts toward the live total that later admissions are checked against. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(10, 2 × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes, 16 at the full six seeds, and the seed step prints the derived budget. A fan-out lineage with no matrix `iterations` value is sized the same way from its own round-robin share of the seed, with a floor of 12 for a native lineage and 10 for a CLI one, and a lineage dealt no seed node runs at that floor. The node cap stays half that budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. A fan-out parent seeds before any config exists, so its cap falls back to 10. An absent flag means `default`, which keeps the default behavior; `research-depth-mode-golden.vitest` proves it after stripping the expansive-only persona paragraph from the CLI lineage prompt, the one byte change.
+`--depth-mode=expansive` grows a frontier of follow-up questions beside the questions seeded at init. The value lands in `antiConvergence.depthMode`, and the caps live in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, `budgetSplit` 0.5/0.35/0.15 for depths 1, 2 and 3, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. Two flags set the caps when the config is created: `--frontier-max-depth=N` writes `maxDepth` and `--frontier-max-nodes=N` writes `maxFrontierNodes`; both take a positive integer, need `--depth-mode=expansive` on a single-executor run, and are refused on a fan-out config. The run cap never prunes a depth-1 seed, which only the root-children cap bounds, but every seed that is not pruned, answered ones included, counts toward the live total that later admissions are checked against. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(10, 2 × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes, 16 at the full six seeds, and on a single-executor run the seed step prints the derived budget. A fan-out parent seeds before its root config exists, so its seed step prints no whole-seed budget. Each fan-out lineage with no matrix `iterations` value is sized the same way from its own round-robin share of the seed, with the loop default of 10 as its floor, and a lineage dealt no seed node runs at that floor. The runner then writes the largest lineage cap into the root config's `maxIterations` and prints the run's budget table as one `[fanout-run] budget table:` line on stderr. The node cap stays half that budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. A fan-out parent seeds before any config exists, so its node cap falls back to 10, which the depth-1 seed does not answer to. An absent flag means `default`, which keeps the default behavior; `research-depth-mode-golden.vitest` proves it after stripping the expansive-only persona paragraph from the CLI lineage prompt, the one byte change.
 
 After the `minIterations` floor, an expansive run with open or active frontier nodes turns a soft stop candidate into CONTINUE with reasonDetail `frontierOpen`. The veto never creates a stop of its own and never outranks the iteration cap, consecutive failures, stuck recovery, pause, the max-duration stop, `--convergence-mode=off` or `--stop-policy=max-iterations`. Under `--convergence-mode=divergent` the pivot becomes eligible only once no frontier node is open or active.
 
@@ -95,7 +95,7 @@ Every pivot dispatches three seats, or six when its first attempt misses quorum,
 |-------|-----------------|
 | `converged` | Legal-stop gates passed and the loop may exit normally |
 | `maxIterationsReached` | The loop hit the configured iteration cap |
-| `blockedStop` | A STOP candidate was blocked by legal-stop or graph gates |
+| `blockedStop` | A STOP candidate was blocked by a failed quality guard or a graph gate (decision BLOCKED, the loop continues), or the same blocker set has now blocked `stuckThreshold` runs in a row (decision STOP, reasonDetail `blockedStreakReached`) |
 | `manualStop` | The operator asked the run to stop |
 | `error` | The loop hit an unrecoverable workflow or state error |
 | `stuckRecovery` | Stuck detection triggered or failed recovery |
@@ -130,9 +130,10 @@ Legacy labels are normalized before persistence:
 5. If all key questions have evidence-backed answers, nominate STOP. Otherwise compute composite convergence signals and nominate STOP when the weighted stop score > 0.60. Failing both, an expansive fan-out lineage whose frontier share holds at least one answered node and none open or active nominates the hard candidate `frontier_drained`; a single-executor or default run never forms it. With no candidate, CONTINUE.
 6. If iteration count < minIterations, CONTINUE with minIterationsNotReached.
 7. If depthMode is expansive and a frontier node is open or active, CONTINUE with frontierOpen.
-8. Evaluate the quality guards for every STOP candidate except hard max-iteration stop. A failed guard returns CONTINUE with qualityGuardFailed and emits no blocked_stop event.
+8. Evaluate the quality guards for every STOP candidate except hard max-iteration stop. A failed guard returns BLOCKED with blockedStop and qualityGuardFailed, records the blocked_stop row and continues with a recovery focus that names the failed guards.
 9. Block every non-terminal STOP until a graph decision exists. A graph STOP_BLOCKED emits blockedStop and continues with recovery focus.
-10. If the guards pass and the graph allows the stop, pivot for an eligible divergent reason or STOP normally.
+10. A block from step 8 or 9 becomes STOP with blockedStop and blockedStreakReached once the same sorted blocker set, this pass included, has blocked stuckThreshold runs in a row (3 by default). A different set starts a new streak, and a pass with status insight or a newInfoRatio at or above the threshold resets it. Steps 1 and 3 run first, so the cap still wins and, on a pass where the stuck count also reaches the threshold, stuck recovery runs and the streak exit waits for a later pass. The stopping pass writes no blocked_stop row.
+11. If the guards pass and the graph allows the stop, pivot for an eligible divergent reason or STOP normally.
 ```
 
 ### Composite Signal Weights
@@ -155,7 +156,7 @@ Every non-terminal STOP candidate must pass the gate bundle before the workflow 
 |------|------|---------|
 | Convergence Gate | Low novelty holds for the required consecutive evidence iterations | Emit `blocked_stop`, continue |
 | Coverage Gate | Every key question has an evidence-backed answer | Emit `blocked_stop`, continue |
-| Quality Gate | Source diversity and focus alignment pass, while the reserved single-weak-source entry reports `notEvaluated` and never blocks a stop | `CONTINUE` with `qualityGuardFailed`, no `blocked_stop` event |
+| Quality Gate | Source diversity and focus alignment pass, while the reserved single-weak-source entry reports `notEvaluated` and never blocks a stop | `BLOCKED` with `qualityGuardFailed`, emit `blocked_stop`, continue |
 | Graph Gate | A graph decision exists and graph coverage has no STOP blockers | Emit `graph_convergence`/`blocked_stop`, continue |
 
 The reducer surfaces legal-stop evidence through the findings registry and dashboard. The JSONL event shapes live in `../state/state-jsonl.md`.

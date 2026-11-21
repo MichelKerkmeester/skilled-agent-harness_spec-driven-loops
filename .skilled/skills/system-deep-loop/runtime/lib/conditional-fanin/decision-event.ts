@@ -59,6 +59,7 @@ const REQUIRED_FIELDS = Object.freeze([
 // 3. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/** Payload of the finalized-decision event, with the digests that let a replay re-verify the decision. */
 export interface FanInDecisionFinalizedPayload extends JsonObject {
   readonly event_name: typeof FANIN_DECISION_FINALIZED_EVENT_NAME;
   readonly decision_version: 1;
@@ -86,6 +87,10 @@ function isObject(value: unknown): value is JsonObject {
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Type guard for the finalized-decision event payload: the exact field set, the expected event name
+ * and version, and typed fields.
+ */
 export function validateFanInDecisionFinalizedPayload(
   payload: Readonly<JsonObject>,
 ): payload is FanInDecisionFinalizedPayload {
@@ -120,6 +125,7 @@ export function validateFanInDecisionFinalizedPayload(
     && payload.decision.cut.recordHash === payload.event_cut_record_hash;
 }
 
+/** Registers the finalized-decision event at its current version with its payload validator and no upcasters. */
 export function fanInDecisionEventDefinition(): EventTypeDefinition {
   return {
     eventType: FANIN_DECISION_FINALIZED_EVENT_TYPE,
@@ -136,6 +142,7 @@ export function fanInDecisionEventDefinition(): EventTypeDefinition {
   };
 }
 
+/** Event type registry holding the given definitions plus the finalized-decision event. */
 export function createConditionalFanInEventRegistry(
   additionalDefinitions: readonly EventTypeDefinition[] = [],
 ): EventTypeRegistry {
@@ -145,6 +152,10 @@ export function createConditionalFanInEventRegistry(
   ]);
 }
 
+/**
+ * Project a finalized decision into its frozen event payload; throws a TypeError when the payload
+ * fails the event schema.
+ */
 export function fanInDecisionPayload(
   decision: FinalizedFanInDecision,
 ): FanInDecisionFinalizedPayload {
@@ -172,6 +183,7 @@ export function fanInDecisionPayload(
 // 6. EVENT PREPARATION
 // ───────────────────────────────────────────────────────────────────
 
+/** Envelope facts for writing a finalized decision as an event. */
 export interface PrepareFanInDecisionEventInput {
   readonly decision: FinalizedFanInDecision;
   readonly streamId: string;
@@ -185,6 +197,7 @@ export interface PrepareFanInDecisionEventInput {
   readonly registry: EventTypeRegistry;
 }
 
+/** Build the write preflight for a finalized-decision event, using the decision id as the event id. */
 export function prepareFanInDecisionEvent(
   input: PrepareFanInDecisionEventInput,
 ): EventWritePreflight {
@@ -210,6 +223,7 @@ export function prepareFanInDecisionEvent(
 // 7. EVENT COMMIT
 // ───────────────────────────────────────────────────────────────────
 
+/** Envelope facts plus the ledger, gateway and actor needed to authorize and append the decision event. */
 export interface CommitFanInDecisionInput extends PrepareFanInDecisionEventInput {
   readonly ledger: AppendOnlyLedger;
   readonly gateway: TransitionAuthorizationGateway;
@@ -219,6 +233,11 @@ export interface CommitFanInDecisionInput extends PrepareFanInDecisionEventInput
   readonly capabilityId: string;
 }
 
+/**
+ * Authorize the finalized-decision event through the transition gateway and append it through the
+ * fence; throws when the ledger or registry differ from the decision cut, the cut is stale, or
+ * authorization is denied.
+ */
 export async function commitFanInDecision(
   input: CommitFanInDecisionInput,
 ): Promise<DurableAppendReceipt> {

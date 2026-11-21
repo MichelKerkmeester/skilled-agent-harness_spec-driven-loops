@@ -524,6 +524,10 @@ function currentStem(value: unknown): DeepResearchEventStem | null {
 // 3. PUBLIC COMPATIBILITY HOOKS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Classify a stored record as exact, compatible, migrate, pin-old-runtime or blocked against the current ledger, with
+ * the reason code and target stem.
+ */
 export function decideDeepResearchCompatibility(
   input: unknown,
 ): DeepResearchCompatibilityDecision {
@@ -561,6 +565,10 @@ export function decideDeepResearchCompatibility(
   return decision('migrate', 'registered-pure-upcaster', targetStem, version);
 }
 
+/**
+ * Upcast a legacy record to its current ledger event when the compatibility decision is migrate, and return a refused
+ * result carrying the decision otherwise.
+ */
 export function upcastLegacyDeepResearchRecord(
   input: unknown,
   context: LegacyUpcastContext,

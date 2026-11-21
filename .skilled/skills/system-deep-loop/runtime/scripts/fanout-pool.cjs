@@ -57,6 +57,7 @@ function labelFor(item, index) {
   return `item-${index}`;
 }
 
+/** Returns the pool's lag, pending and failed gauges clamped at zero, plus the oldest pending lag when it is known. */
 function buildPoolGauges({ total, settled, pending, failed, oldestPendingLagMs }) {
   const gauges = {
     lag: Math.max(0, total - settled),
@@ -232,6 +233,7 @@ function createWavePlannerInterface() {
   });
 }
 
+/** Reads the status ledger's JSON object rows, returning an empty list when the ledger is missing or unreadable and skipping malformed rows. */
 function readLedgerRecords(ledgerPath) {
   if (!ledgerPath || !fs.existsSync(ledgerPath)) {
     return [];
@@ -262,6 +264,7 @@ function readLedgerRecords(ledgerPath) {
   return records;
 }
 
+/** Counts the attempts each lineage label has already spent, from its `retry_scheduled` and `orphan_requeued` ledger rows. */
 function readRetryCountsFromLedger(ledgerPath) {
   const counts = {};
   for (const record of readLedgerRecords(ledgerPath)) {
@@ -383,6 +386,7 @@ function detectLiveLineages(records, options = {}) {
   return live;
 }
 
+/** Lists the lineages that started but never reached a terminal event and whose spawned process is no longer alive. */
 function detectOrphanedLineages(records, options = {}) {
   const isAlive = typeof options.isAlive === 'function' ? options.isAlive : isLineageAlive;
   const { open, spawnedPids } = collectOpenLineages(records);
@@ -401,6 +405,7 @@ function detectOrphanedLineages(records, options = {}) {
   return orphans;
 }
 
+/** Appends an `orphan_requeued` ledger row for each orphaned lineage and returns the orphans it marked. */
 function markOrphanedLineages(ledgerPath, options = {}) {
   const orphans = detectOrphanedLineages(readLedgerRecords(ledgerPath), { isAlive: options.isAlive });
   if (!orphans.length) {

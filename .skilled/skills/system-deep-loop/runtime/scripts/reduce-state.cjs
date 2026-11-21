@@ -580,6 +580,7 @@ function buildTerminalStopState(records) {
   };
 }
 
+/** Derives the dashboard status: COMPLETE after a terminal stop, PAUSED or RECOVERING when the latest lifecycle signal is a pause or stuck recovery, otherwise the config status upper-cased. */
 function deriveDashboardStatus(config, records, terminalStop) {
   if (terminalStop) {
     return 'COMPLETE';
@@ -1341,6 +1342,7 @@ function computeGraphConvergenceScore(signals) {
   return sum / numericSignals.length;
 }
 
+/** Summarizes the latest `graph_convergence` event as its blended score, decision, blockers and raw signals, or a zero score when no such event exists. */
 function buildGraphConvergenceRollup(records) {
   const latest = records
     .filter((record) => record?.type === 'event' && record?.event === 'graph_convergence')
@@ -2314,6 +2316,7 @@ function buildExhaustedApproaches(iterationFiles) {
     .join('\n\n');
 }
 
+/** Replaces a machine-owned strategy section, matched by anchor id and then by heading; when neither exists it appends the section under `createMissing`, and otherwise throws a MISSING_ANCHOR error. */
 function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
   const pattern = new RegExp(`<!-- ANCHOR:${anchorId} -->[\\s\\S]*?<!-- \\/ANCHOR:${anchorId} -->`, 'm');
   const replacement = [
@@ -2360,6 +2363,7 @@ function headingCore(heading) {
   return escapeRegExp(heading.replace(/^\d+[A-Za-z]?\.\s+/, ''));
 }
 
+/** Replaces a strategy section by heading, or inserts it before another heading; when that heading is absent it appends under `createMissing` and otherwise throws. */
 function upsertHeadingSectionBefore(content, heading, body, beforeHeading, options = {}) {
   const numberedPrefix = '(?:\\d+[A-Za-z]?\\.\\s+)?';
   const sectionPattern = new RegExp(`(?:^|\\n)##\\s+${numberedPrefix}${headingCore(heading)}\\s*\\n[\\s\\S]*?(?=\\n##\\s|$)`, 'i');
@@ -2529,6 +2533,17 @@ function renderFrontierSection(frontier) {
   const budgetEntries = Object.entries(
     frontier.budget && typeof frontier.budget === 'object' ? frontier.budget : {},
   );
+  // An exhausted or blocked node leaves no debt once it covered every dimension,
+  // and the verdict never names it, so the synthesis lists it as review work the
+  // run left unfinished.
+  const followUp = nodes
+    .filter((node) => node && (node.status === 'exhausted' || node.status === 'blocked'))
+    .map((node) => {
+      const scope = Array.isArray(node.scope) ? node.scope.join(', ') : (node.scope || 'unscoped');
+      const reason = node.reason ? ` (${node.reason})` : '';
+      const dimension = node.nextDimension ? `next dimension ${node.nextDimension}` : 'every dimension reviewed';
+      return `- Follow-up: ${node.nodeId} ${node.status}${reason}, scope ${scope}, ${dimension}: ${node.question}`;
+    });
   return [
     '<!-- ANCHOR:frontier -->',
     '## 10B. FRONTIER',
@@ -2541,6 +2556,7 @@ function renderFrontierSection(frontier) {
     ...(frontier.activeNodeId
       ? [`- Active node: ${frontier.activeNodeId} (${frontier.activeNextDimension})`]
       : ['- Active node: none']),
+    ...(followUp.length ? followUp : ['- Follow-up review work: none']),
     '',
     '<!-- /ANCHOR:frontier -->',
   ];

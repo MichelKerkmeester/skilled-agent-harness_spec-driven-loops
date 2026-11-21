@@ -604,7 +604,7 @@ function printText(result) {
 function main() {
   const parsed = parseArgs(process.argv.slice(2));
   if (parsed.error) {
-    process.stderr.write(`doctor-helper-match.cjs: ${parsed.error}\n${USAGE}\n`);
+    process.stderr.write(`doctor-helper-match.cjs: ${parsed.error}\nNext: node .skilled/commands/doctor/scripts/doctor-helper-match.cjs -- <problem text>\n${USAGE}\n`);
     return 2;
   }
   const options = parsed.options;
@@ -614,6 +614,9 @@ function main() {
     loaded = loadEntries(options.root);
   } catch (error) {
     process.stderr.write(`doctor-helper-match.cjs: ${error.message}\n`);
+    process.stderr.write(error.code === 'YAML_MISSING'
+      ? 'Next: node .skilled/commands/doctor/scripts/doctor-helper-match.cjs --root=<repository root> -- <problem text>\n'
+      : 'Next: fix the routes file named above, then rerun this doctor-helper-match.cjs command\n');
     if (error.code === 'YAML_MISSING') process.stderr.write(`${USAGE}\n`);
     return 2;
   }

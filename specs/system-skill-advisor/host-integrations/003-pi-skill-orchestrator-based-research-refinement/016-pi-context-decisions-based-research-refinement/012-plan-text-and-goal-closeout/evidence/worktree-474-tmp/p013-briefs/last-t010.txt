@@ -1,0 +1,15 @@
+Inserted the requested line in [top-only-head.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/top-only-head.sh).
+
+Changed block:
+
+```bash
+# compiledRouteTopOnly, the option every hook and the OpenCode plugin send.
+set -uo pipefail
+cd /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research || exit 2
+```
+
+`sed -n '4p'` printed `set -uo pipefail` (exit 0), and `bash -n` exited 0. The quoted context matched; nothing in TASK failed to match. I did not execute the probe or run the drift guard or test battery.
+
+The final worktree status lists other modified files outside this task; I did not edit them, and their baseline is unknown. This change is uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`.
+
+SKILL ROUTING: User directed → sk-code; shell standards loaded. REPO RULES: loaded `evidence-and-proof.md`, `communication.md`, and `communication-handoff.md`. The conductor runs the remaining checks.

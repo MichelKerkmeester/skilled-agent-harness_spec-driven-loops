@@ -15,7 +15,8 @@
       "phase 11 push and repin open items",
       "push and repin open items plan",
       "push and repin open items tasks",
-      "push and repin open items goal"
+      "push and repin open items goal",
+      "push and repin open items implementation summary"
     ],
     "key_topics": [
       "push",
@@ -26,18 +27,20 @@
       "plan",
       "tasks",
       "goal",
+      "implementation",
+      "summary",
       "exist",
-      "only",
-      "local",
-      "skilled"
+      "only"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md",
+      ".codex/hooks.json"
     ],
     "entities": [
       {
@@ -62,6 +65,18 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
@@ -171,37 +186,27 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 009's fixes exist only on local Skilled main, and Barter's `base.json` still records an older commit because `record-base` could not resolve the pin",
     "created_at": "2026-11-20T16:45:57Z",
-    "last_save_at": "2026-11-20T20:13:45.287Z",
+    "last_save_at": "2026-11-21T07:44:36.716Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e173af894094a00735fdb87f891ea7b133caa5b4ee58e63d66e80a2080849c71",
+    "source_fingerprint": "sha256:4099811b808035497752c73c4511fbdb5b61ccf4b68751ef537aaeee5f8f5d9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6761a01348a42b35be0c5693a8adafcadc79f5f37720e4c254ad54a940ebda9a",
-      "plan.md": "d4ea82c2b98a35ca22266116e6122ebb4dac0a864f379c0bf0a61f029f3d5370",
-      "tasks.md": "99c8cca483f19ae90e0e885e87d585e73b6cbb8e19f2b1c6d81063be38b08d8a"
+      "spec.md": "f56972844a9959dafdbbd5f013546077b5e220d6af9fb51c43c31cdd2ce1e605",
+      "plan.md": "dcf1e369e26df61e99f101f68ca7b180371ed7a8c6c67fb3108454d6413a1e49",
+      "tasks.md": "b83b55748f9916a4869df2c33eeb49622ec6d6bba7ad287e84c22fdc03a86936",
+      "implementation-summary.md": "f79b40bc1abc19fb4295906135dfccbdb60c8b9cf9fc76983daa7f26f5b15d07"
     },
     "last_active_at": null
   }

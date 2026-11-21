@@ -306,7 +306,7 @@ function main(argv) {
   try {
     options = parseArgs(argv);
   } catch (error) {
-    process.stderr.write(`ERROR: ${error.message}\n${USAGE}\n`);
+    process.stderr.write(`ERROR: ${error.message}\nNext: node .skilled/commands/doctor/scripts/ci-report.cjs\n${USAGE}\n`);
     return 2;
   }
   let loadedProfile;
@@ -314,11 +314,12 @@ function main(argv) {
     loadedProfile = loadProfile({ cliPath: options.profile, root: REPO_ROOT });
   } catch (error) {
     if (!(error instanceof ProfileError)) throw error;
-    process.stderr.write(`ERROR: ${error.message}\n`);
+    process.stderr.write(`ERROR: ${error.message}\nNext: make that change, then rerun this ci-toggle.cjs command\n`);
     return 3;
   }
   if (loadedProfile.errors.length > 0) {
     for (const fault of loadedProfile.errors) process.stderr.write(`ERROR: CI profile ${loadedProfile.display}: ${fault.message}\n`);
+    process.stderr.write(`${loadedProfile.errors.length > 1 ? '  ' : ''}Next: fix ${loadedProfile.display}, then rerun this ci-toggle.cjs command\n`);
     return 3;
   }
   const parsed = report.parseWorkflows();
@@ -326,6 +327,7 @@ function main(argv) {
   // hide a protected job the change would skip.
   if (parsed.errors.length > 0) {
     for (const failure of parsed.errors) process.stderr.write(`ERROR: ${failure.file}: ${failure.message}\n`);
+    process.stderr.write(`${parsed.errors.length > 1 ? '  ' : ''}Next: fix the YAML in .github/workflows, then rerun this ci-toggle.cjs command\n`);
     return 3;
   }
   const plan = buildPlan(options, loadedProfile, parsed);

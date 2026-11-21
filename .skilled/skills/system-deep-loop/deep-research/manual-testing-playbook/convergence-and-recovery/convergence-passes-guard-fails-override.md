@@ -1,10 +1,10 @@
 ---
-title: "DR-023 -- Composite Convergence Passes but Guard Fails → CONTINUE"
-description: "Verify the full override path: composite score >0.60 → STOP → guards check → guard fails → override to CONTINUE."
-version: 1.14.3.0
+title: "DR-023 -- Composite Convergence Passes but Guard Fails → Blocked Stop"
+description: "Verify the full block path: composite score >0.60 → STOP → guards check → guard fails → blocked decision with its blocked_stop row → loop continues."
+version: 1.14.4.0
 ---
 
-# DR-023 -- Composite Convergence Passes but Guard Fails → CONTINUE
+# DR-023 -- Composite Convergence Passes but Guard Fails → Blocked Stop
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `DR-023`.
 
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the full convergence-to-guard override path for `DR-023`. The objective is to verify that when composite convergence scores above 0.60 and votes STOP, the quality guards are still evaluated, and if any guard fails, the STOP is overridden to CONTINUE.
+This scenario validates the full convergence-to-guard override path for `DR-023`. The objective is to verify that when composite convergence scores above 0.60 and votes STOP, the quality guards are still evaluated, and if any guard fails, the STOP is blocked, the blocked_stop row is written and the loop continues.
 
 ### WHY THIS MATTERS
 
@@ -24,13 +24,13 @@ This is the integration test for the entire quality guard system. Composite conv
 
 Operators should run this as a real orchestrator-led check rather than a synthetic command-matrix exercise. The scenario is only complete when the operator can explain the behavior back to a user in plain language.
 
-- Objective: Verify the full override path: composite score >0.60 triggers STOP, quality guards check fires, guard fails, decision overridden to CONTINUE.
+- Objective: Verify the full block path: composite score >0.60 triggers STOP, quality guards check fires, guard fails, decision is blocked, the blocked_stop row is written and the loop continues.
 - Real user request: Can the loop stop even though the math says it should, if the quality checks fail?
 - Prompt: `Validate convergence STOP is overridden when quality guards fail, then the loop resumes.`
-- Expected execution process: Inspect the Decision Order list in convergence.md first, then the convergence.cjs guard evaluation and the step_check_convergence binding of its stop decision (rule 6 of the script order), then loop-protocol.md Step 2c for the orchestrator-level flow, then the deep-research.yaml line that logs the failed guard, which proves the override happened.
+- Expected execution process: Inspect the Decision Order list in convergence.md first, then the convergence.cjs guard evaluation and the step_check_convergence binding of its stop decision (rule 6 of the script order), then loop-protocol.md Step 2c for the orchestrator-level flow, then the deep-research.yaml lines that block the candidate and log the failed guard.
 - Desired user-visible outcome: The user gets a clear explanation that convergence math alone does not stop the loop — quality guards have veto power.
-- Expected signals: a weighted stop score above 0.60 nominates STOP, the failed guard turns it into `CONTINUE` with reasonDetail `qualityGuardFailed` and the failed guards in blockedBy, the workflow logs `Quality guard failed: <guards>. Continuing.` and writes no event, and the loop resumes.
-- Pass/fail posture: PASS if the full override path (composite STOP → guard check → guard fail → override to CONTINUE) is documented consistently across convergence.md Decision Order step 8, convergence.cjs evaluateResearchQualityGuards and loop-protocol.md Step 2c; FAIL if any part of the chain is missing or contradicts the others.
+- Expected signals: a weighted stop score above 0.60 nominates STOP, the failed guard turns it into a blocked decision with stopReason `blockedStop`, reasonDetail `qualityGuardFailed` and the failed guards in blockedBy, the script records the `blocked_stop` row, the workflow logs `Quality guard failed: <guards>. Continuing.` and `step_emit_blocked_stop` continues the loop, and once the same blocker set has blocked `stuckThreshold` runs in a row the decision is STOP with reasonDetail `blockedStreakReached`.
+- Pass/fail posture: PASS if the full block path (composite STOP → guard check → guard fail → blocked decision with its blocked_stop row → loop continues) is documented consistently across convergence.md Decision Order step 8, convergence.cjs evaluateResearchQualityGuards and loop-protocol.md Step 2c; FAIL if any part of the chain is missing or contradicts the others.
 
 ---
 
@@ -55,19 +55,19 @@ Validate convergence STOP is overridden when quality guards fail, then the loop 
 
 ### Expected
 
-a weighted stop score above 0.60 nominates STOP, the failed guard turns it into `CONTINUE` with reasonDetail `qualityGuardFailed` and the failed guards in blockedBy, the workflow logs `Quality guard failed: <guards>. Continuing.` and writes no event, and the loop resumes.
+a weighted stop score above 0.60 nominates STOP, the failed guard turns it into a blocked decision with stopReason `blockedStop`, reasonDetail `qualityGuardFailed` and the failed guards in blockedBy, the script records the `blocked_stop` row, the workflow logs `Quality guard failed: <guards>. Continuing.` and `step_emit_blocked_stop` continues the loop, and once the same blocker set has blocked `stuckThreshold` runs in a row the decision is STOP with reasonDetail `blockedStreakReached`.
 
 ### Evidence
 
-Capture the Decision Order list showing step 8, the Quality Gate row, the evaluateResearchQualityGuards guard evaluation and its return, the loop_protocol Step 2c flow, and the qualityGuardFailed log line.
+Capture the Decision Order list showing steps 8 and 10, the Quality Gate row, the evaluateResearchQualityGuards guard evaluation and its return, the loop_protocol Step 2c flow, and the qualityGuardFailed rule and log lines.
 
 ### Pass/Fail
 
-PASS if the full override path (composite STOP → guard check → guard fail → override to CONTINUE) is documented consistently across convergence.md Decision Order step 8, convergence.cjs evaluateResearchQualityGuards and loop-protocol.md Step 2c; FAIL if any part of the chain is missing or contradicts the others.
+PASS if the full block path (composite STOP → guard check → guard fail → blocked decision with its blocked_stop row → loop continues) is documented consistently across convergence.md Decision Order step 8, convergence.cjs evaluateResearchQualityGuards and loop-protocol.md Step 2c; FAIL if any part of the chain is missing or contradicts the others.
 
 ### Failure Triage
 
-Trace the path from convergence.md Decision Order (canonical order) through convergence.cjs evaluateResearchQualityGuards and the deep-research.yaml stop_decision binding to loop-protocol.md (orchestrator instructions). Discrepancies in the override direction or guard evaluation order are critical failures.
+Trace the path from convergence.md Decision Order (canonical order) through convergence.cjs evaluateResearchQualityGuards and the deep-research.yaml stop_decision binding to loop-protocol.md (orchestrator instructions). A failed guard that still yields CONTINUE with no blocked_stop row, or a different guard evaluation order, is a critical failure.
 
 ---
 
@@ -85,8 +85,8 @@ Trace the path from convergence.md Decision Order (canonical order) through conv
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Canonical convergence math and quality gate definitions; use Decision Order (step 8) and §4 LEGAL STOP GATES (Quality Gate row) |
-| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check for the override flow |
-| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | JSONL record schema; a failed guard writes no event, so the override shows in the stop decision |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check for the block flow |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | JSONL record schema; a failed guard writes the same `blocked_stop` row a graph block writes |
 | `.skilled/commands/deep/assets/deep-research.yaml` | Workflow algorithm; inspect `step_check_convergence` step 6 for the quality-guard rule and its `stop_decision` binding |
 
 ---

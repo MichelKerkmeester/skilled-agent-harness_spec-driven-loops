@@ -19,9 +19,9 @@ This command is always interactive and has no `:auto` mode. With no target, `set
 ```text
 What do you want to check?
 
-1) setup
-2) quality
-X) Cancel
+1) setup     (read-only: runs the sk-code battery and names the repair for each failing leg)
+2) quality   (shows the quality config the gate reads, then asks before it creates one)
+X) Cancel    (nothing changes)
 ```
 
 Accepted answers:
@@ -154,9 +154,12 @@ DOCTOR TARGET FAILED
 Target: [setup|quality]
 Step: [leg or phase]
 Error: [message]
-Next: [recommended command or manual action]
+Why: [the reason the script printed under the error, else what the failed leg or phase checks]
+Next: [the script's own Next: line when it printed one, else the command from the matching Troubleshooting row, or the accepted invocation]
 STATUS=ERROR ERROR="[message]"
 ```
+
+When `sk-code-setup-check.cjs` or `sk-code-quality-config.cjs` prints a `Next:` line, show it as printed. A failure before the quality write has written nothing.
 
 ## 6. Troubleshooting Display
 

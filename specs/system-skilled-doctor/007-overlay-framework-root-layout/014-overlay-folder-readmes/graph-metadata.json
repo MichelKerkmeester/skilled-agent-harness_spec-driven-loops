@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes",
+  "spec_folder": "system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes",
+  "parent_id": "system-skilled-doctor/007-overlay-framework-root-layout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "overlay folder readmes",
+      "phase 14 overlay folder readmes",
+      "status audit docs leg",
+      "documentation only readme overlay",
+      "layout link listed twice",
+      "overlay folder readmes plan",
+      "overlay folder readmes tasks",
+      "overlay folder readmes acceptance criteria",
+      "overlay folder readmes goal",
+      "overlay folder readmes implementation summary"
+    ],
+    "key_topics": [
+      "overlay",
+      "folder",
+      "readmes",
+      "phase",
+      "status",
+      "audit",
+      "docs",
+      "leg",
+      "documentation",
+      "only",
+      "readme",
+      "layout"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-readmes.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+      ".skilled/commands/doctor/overlay.md",
+      "scratch/overlay-readme-contract.md",
+      ".skilled/skills/sk-doc/scripts/validate_document.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-readmes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-readmes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-fixes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-fixtures.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-fixtures.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "overlay.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/overlay.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-readme-contract.md",
+        "kind": "doc",
+        "path": "scratch/overlay-readme-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An overlay folder holds mirrored content beside the project's own bookkeeping, and the operator wants a `README.md` in every folder of it",
+    "created_at": "2026-11-20T22:06:33Z",
+    "last_save_at": "2026-11-21T00:22:48.007Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6345598d45f767018620d6fc9e74a6f5092b2893151dc213d1aa9e0d0f2a2b19",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "848016bf0c70c75c1ecb4941414c9d3c5127a2006683c2e231815c4d9403ae2f",
+      "plan.md": "bcaf21cd3aa97403a8dc1ba861ce9782029920b30d7fbae3b634423ca9e3fa08",
+      "tasks.md": "95e40d640f758797079b8e598ebe04006e8ac0d1abb455824790a395d82aa7b2",
+      "implementation-summary.md": "308f2fa59d2040eaa9370879d1970e66a47d3f44c4874768d4a2406f5d3c37da"
+    },
+    "last_active_at": null
+  }
+}

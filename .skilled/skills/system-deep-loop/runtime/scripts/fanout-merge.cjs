@@ -26,7 +26,12 @@ const {
   findingKeys,
 } = require('../lib/deep-loop/iteration-findings.cjs');
 const { assertKnownFlags } = require('./lib/cli-guards.cjs');
-const { readLineageProviderCostUsd, summarizeProviderCost } = require('./fanout-salvage.cjs');
+const {
+  readLineageProviderCostUsd,
+  summarizeProviderCost,
+  passEvidence,
+  readLineageCommits,
+} = require('./fanout-salvage.cjs');
 const { NODE_STATUSES } = require('./frontier-admit.cjs');
 const { compareCodeUnit: compareText, summarizeTraceabilityResults } = require('./reduce-state.cjs');
 const {
@@ -393,7 +398,7 @@ function titleOverlap(aTokens, bTokens) {
 // "retry") while genuinely-distinct titles share no content token at all.
 const TITLE_DISTINCT_OVERLAP_THRESHOLD = 0.15;
 
-// Title-aware near-dup match (deep-review P2-15 fix): two findings are near-duplicates
+// Title-aware near-dup match: two findings are near-duplicates
 // only if their body-content key matches AND their titles are not substantively divergent.
 // This closes the title blind spot — genuinely-distinct findings that share an identical
 // body but carry different distinguishing titles no longer collapse — without breaking the
@@ -526,7 +531,7 @@ function getFindingBucket(index, id, finding, enableNearDuplicateDedup) {
     return exactBucket;
   }
 
-  // Title-aware bucketing (deep-review P2-15 fix): a content key can host MORE than one
+  // Title-aware bucketing: a content key can host MORE than one
   // bucket when several genuinely-distinct findings share an identical body but carry
   // divergent titles. byContent maps a content key to the LIST of buckets seen for it; a
   // same-body finding joins the bucket whose records its title actually matches, and
@@ -777,6 +782,7 @@ function shouldMergeFrontier(lineageData, frontierPartition) {
   return Object.values(frontierPartition).some((ids) => Array.isArray(ids) && ids.length > 0);
 }
 
+/** Merges every lineage's frontier nodes under lineage-qualified ids with per-status counts, and when a partition is given reports any assigned node no lineage returned. */
 function mergeResearchFrontier(lineageData, frontierPartition) {
   const nodes = [];
   for (const { label, registry } of [...lineageData].sort((left, right) => compareText(left.label, right.label))) {
@@ -815,8 +821,11 @@ function mergeResearchRegistries(lineageData, options = {}) {
   const mergeOptions = resolveMergeOptions(options);
   const findingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
   const schemaWarnings = [];
+  // lineage -> finding id -> untrust reason (null when trusted)
+  const untrustByLineage = new Map();
 
-  for (const { label, registry: rawRegistry } of lineageData) {
+  for (const lineage of lineageData) {
+    const { label, registry: rawRegistry } = lineage;
     const { registry, warnings } = normalizeRegistrySchema(rawRegistry, {
       canonicalKey: 'keyFindings',
       aliases: { findings: 'keyFindings' },
@@ -830,6 +839,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
     for (const finding of registry.keyFindings) {
       const id = finding.id || finding.title;
       if (!id) continue;
+      recordUntrustReason(untrustByLineage, label, id, findingUntrustReason(lineage, finding.addedAtIteration));
       if (mergeOptions.enableNearDuplicateDedup) {
         addResearchFinding(getFindingBucket(findingById, id, finding, true).records, finding, label, mergeOptions);
       } else {
@@ -842,12 +852,19 @@ function mergeResearchRegistries(lineageData, options = {}) {
   const mergedFindings = mergeOptions.enableNearDuplicateDedup
     ? flattenFindingBucketIndex(findingById, 'id', ['id', 'title'])
     : flattenFindingBuckets(findingById, 'id', ['id', 'title']);
+  labelUntrustedFindings(mergedFindings, lineageData, untrustByLineage, 'id');
+  const untrustedLineages = listUntrustedLineages(lineageData);
   const openQuestionsById = new Map();
   const resolvedQuestionsById = new Map();
   const ruledOutById = new Map();
+  const unvouchedAnswersById = new Map();
 
-  for (const { label, registry } of lineageData) {
+  for (const lineage of lineageData) {
+    const { label, registry } = lineage;
     if (!registry) continue;
+    // An answered question is a coverage claim, so only a lineage that vouches for coverage
+    // may make it. An untrusted lineage's answer leaves the question open.
+    const vouches = lineageVouchesForCoverage(lineage);
     for (const q of (Array.isArray(registry.openQuestions) ? registry.openQuestions : [])) {
       const id = q.id || q.question || q.text;
       if (!id) continue;
@@ -863,9 +880,10 @@ function mergeResearchRegistries(lineageData, options = {}) {
     for (const q of (Array.isArray(registry.resolvedQuestions) ? registry.resolvedQuestions : [])) {
       const id = q.id || q.question || q.text;
       if (!id) continue;
-      if (!resolvedQuestionsById.has(id)) resolvedQuestionsById.set(id, { ...q, _lineages: [label] });
+      const target = vouches ? resolvedQuestionsById : unvouchedAnswersById;
+      if (!target.has(id)) target.set(id, { ...q, _lineages: [label] });
       else {
-        const existing = resolvedQuestionsById.get(id);
+        const existing = target.get(id);
         addLineage(existing, label);
       }
     }
@@ -874,6 +892,11 @@ function mergeResearchRegistries(lineageData, options = {}) {
       if (!id) continue;
       if (!ruledOutById.has(id)) ruledOutById.set(id, { ...d, _lineages: [label] });
     }
+  }
+  for (const [id, answer] of unvouchedAnswersById) {
+    if (resolvedQuestionsById.has(id)) continue;
+    if (!openQuestionsById.has(id)) openQuestionsById.set(id, { ...answer, resolved: false });
+    else for (const label of answer._lineages) addLineage(openQuestionsById.get(id), label);
   }
 
   const totalIters = lineageData.reduce((sum, { registry }) => {
@@ -911,6 +934,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
       convergenceScore: Math.round(avgConvergence * 1000) / 1000,
       coverageBySources: {},
     },
+    ...(untrustedLineages.length > 0 ? { untrustedLineages } : {}),
     ...(schemaWarnings.length > 0 ? { schema_mismatch: schemaWarnings } : {}),
     ...(hasFrontier ? { frontier: mergeResearchFrontier(lineageData, options.frontierPartition) } : {}),
   };
@@ -1042,13 +1066,110 @@ function mergeRuledOutCandidates(lineages) {
   return [...byKey.values()].sort((a, b) => compareText(a.lineage, b.lineage) || compareText(a.id, b.id));
 }
 
+const LINEAGE_LOG_PATTERN = /^fanout-lineage(\.\d+)?\.out$/;
+
+/**
+ * Read what the runner decided about a lineage and which of its passes its own log flags.
+ *
+ * The runner's verdict comes from the orchestration summary; a lineage with no entry there
+ * (a hand-built tree, a merge with no runner) is not a rejection. Pass flags use the same
+ * log collection and untimed-log guard as the progress row, and only a pass flagged
+ * `unexamined: true` counts: a pass that cannot be judged is unknown, not fabricated.
+ *
+ * @returns {{runnerStatus:string, failureClass:string|null, unexaminedPasses:Object<number,string[]>}}
+ */
+function readLineageTrust(orchestrationSummary, label, lineageDir) {
+  const outcomes = Array.isArray(orchestrationSummary?.lineages) ? orchestrationSummary.lineages : [];
+  const outcome = outcomes.find((entry) => entry && entry.label === label);
+  const logs = [];
+  try {
+    const logsDir = path.join(lineageDir, 'logs');
+    for (const name of fs.readdirSync(logsDir).filter((entry) => LINEAGE_LOG_PATTERN.test(entry)).sort()) {
+      logs.push(fs.readFileSync(path.join(logsDir, name), 'utf8'));
+    }
+  } catch {
+    // No log on disk leaves only the gateway commits to judge, which still catch a future stamp.
+  }
+  const commits = readLineageCommits(lineageDir);
+  // An untimed attempt would read as zero calls inside a joined log and flag honest passes.
+  const untimed = logs.some((text) => text.trim() !== ''
+    && passEvidence(text, commits).every((pass) => pass.toolCalls === null));
+  const unexaminedPasses = {};
+  for (const pass of passEvidence(untimed ? '' : logs.join('\n'), commits)) {
+    if (pass.unexamined === true) unexaminedPasses[pass.iteration] = pass.reasons;
+  }
+  return {
+    runnerStatus: outcome && typeof outcome.status === 'string' ? outcome.status : 'succeeded',
+    failureClass: outcome && typeof outcome.failure_class === 'string' ? outcome.failure_class : null,
+    unexaminedPasses,
+  };
+}
+
+function lineageUnexaminedIterations(lineage) {
+  return Object.keys(lineage?.trust?.unexaminedPasses || {}).map(Number).sort((a, b) => a - b);
+}
+
+// A lineage vouches for coverage only when the runner accepted it and no pass of it is flagged.
+// Coverage is recorded per lineage, not per pass, so one flagged pass withholds all of it.
+function lineageVouchesForCoverage(lineage) {
+  return lineage?.trust?.runnerStatus !== 'failed' && lineageUnexaminedIterations(lineage).length === 0;
+}
+
+// Why one lineage's report of a finding is untrusted, or null when it is trusted. The
+// iteration is the pass that first reported the finding, which each loop names differently.
+function findingUntrustReason(lineage, iteration) {
+  const trust = lineage?.trust;
+  if (!trust) return null;
+  if (trust.runnerStatus === 'failed') return `runner_failed:${trust.failureClass ?? 'unknown'}`;
+  const reasons = trust.unexaminedPasses?.[iteration];
+  return reasons ? `unexamined_pass:${iteration}:${reasons.join(',')}` : null;
+}
+
+function recordUntrustReason(untrustByLineage, label, id, reason) {
+  if (!untrustByLineage.has(label)) untrustByLineage.set(label, new Map());
+  untrustByLineage.get(label).set(id, reason);
+}
+
+// A merged finding is untrusted only when every lineage that reported it is: one accepted
+// lineage on an unflagged pass is enough to vouch for it. Untrusted findings stay in the
+// list and in every count. The reasons are read back after the merge because dedup keeps
+// one source's fields and would carry or drop a label by chance.
+function labelUntrustedFindings(mergedFindings, lineageData, untrustByLineage, idKey) {
+  const lineageByLabel = new Map(lineageData.map((lineage) => [lineage.label, lineage]));
+  for (const record of mergedFindings) {
+    const id = record._conflictOf || record[idKey] || record.title;
+    const reasons = (record._lineages || []).map((label) => {
+      const perId = untrustByLineage.get(label);
+      const reason = perId && perId.has(id)
+        ? perId.get(id)
+        : findingUntrustReason(lineageByLabel.get(label), undefined);
+      return { lineage: label, reason };
+    });
+    if (reasons.length > 0 && reasons.every((entry) => entry.reason !== null)) {
+      record._untrusted = reasons.sort((a, b) => compareText(a.lineage, b.lineage));
+    }
+  }
+}
+
+function listUntrustedLineages(lineageData) {
+  return lineagesByLabel(lineageData)
+    .filter((lineage) => !lineageVouchesForCoverage(lineage))
+    .map((lineage) => ({
+      lineage: lineage.label,
+      runnerStatus: lineage.trust.runnerStatus,
+      failureClass: lineage.trust.failureClass,
+      unexaminedPasses: lineageUnexaminedIterations(lineage),
+    }));
+}
+
 function mergeReviewCoverageSurfaces(lineageData) {
   const lineages = lineagesByLabel(lineageData);
+  const vouching = lineages.filter(lineageVouchesForCoverage);
   return {
-    dimensionCoverage: mergeDimensionCoverage(lineages),
+    dimensionCoverage: mergeDimensionCoverage(vouching),
     traceability: mergeTraceability(lineages),
-    searchCoverage: mergeSearchCoverage(lineages),
-    candidateCoverage: mergeCandidateCoverage(lineages),
+    searchCoverage: mergeSearchCoverage(vouching),
+    candidateCoverage: mergeCandidateCoverage(vouching),
     divergenceByLineage: mergeDivergenceByLineage(lineages),
     ruledOutCandidates: mergeRuledOutCandidates(lineages),
   };
@@ -1067,8 +1188,12 @@ function mergeReviewRegistries(lineageData, options = {}) {
   // A finding still active in at least one lineage must not also surface as resolved —
   // some other lineage having closed it doesn't mean the finding is closed overall.
   const activeFindingIds = new Set();
+  // lineage -> finding id -> untrust reason (null when trusted), read back after the merge
+  // because dedup keeps one source's fields and would carry or drop a label by chance.
+  const untrustByLineage = new Map();
 
-  for (const { label, registry: rawRegistry } of lineageData) {
+  for (const lineage of lineageData) {
+    const { label, registry: rawRegistry } = lineage;
     const { registry, warnings } = normalizeRegistrySchema(rawRegistry, {
       canonicalKey: 'openFindings',
       aliases: { findings: 'openFindings' },
@@ -1088,6 +1213,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
       const id = finding.findingId || finding.title;
       if (!id) continue;
       activeFindingIds.add(id);
+      recordUntrustReason(untrustByLineage, label, id, findingUntrustReason(lineage, finding.firstSeen));
       if (mergeOptions.enableNearDuplicateDedup) {
         addReviewFinding(getFindingBucket(findingById, id, finding, true).records, finding, label, mergeOptions);
       } else {
@@ -1126,6 +1252,9 @@ function mergeReviewRegistries(lineageData, options = {}) {
   const mergedFindings = mergeOptions.enableNearDuplicateDedup
     ? flattenFindingBucketIndex(findingById, 'findingId', ['findingId', 'title'])
     : flattenFindingBuckets(findingById, 'findingId', ['findingId', 'title']);
+  // Untrusted findings keep their severity, so a rejected lineage's P1 still moves the verdict.
+  labelUntrustedFindings(mergedFindings, lineageData, untrustByLineage, 'findingId');
+  const untrustedLineages = listUntrustedLineages(lineageData);
   const activeP0 = mergedFindings.filter((f) => f.severity === 'P0' && (f.disposition ?? f.status) === 'active').length;
   const activeP1 = mergedFindings.filter((f) => f.severity === 'P1' && (f.disposition ?? f.status) === 'active').length;
   const activeP2 = mergedFindings.filter((f) => f.severity === 'P2' && (f.disposition ?? f.status) === 'active').length;
@@ -1190,6 +1319,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
     activeP2,
     searchDebt: mergedSearchDebt,
     ...mergeReviewCoverageSurfaces(lineageData),
+    ...(untrustedLineages.length > 0 ? { untrustedLineages } : {}),
     ...(schemaWarnings.length > 0 ? { schema_mismatch: schemaWarnings } : {}),
     ...(hasFrontier ? { frontier: mergeResearchFrontier(lineageData, options.frontierPartition) } : {}),
   };
@@ -1702,6 +1832,7 @@ async function main() {
       model: effectiveConfig.model ?? executorRecord?.model ?? summaryEntry.model ?? 'unknown',
       reasoningEffort: effectiveConfig.reasoningEffort ?? executorRecord?.reasoningEffort ?? summaryEntry.reasoningEffort ?? null,
       providerCostUsd: readLineageProviderCostUsd(lineageDir),
+      trust: readLineageTrust(orchestrationSummary, label, lineageDir),
     };
   });
 
@@ -1788,16 +1919,17 @@ async function main() {
     attribution_path: attributionPath,
     ...(reconstructionWarnings.length > 0 ? { reconstruction_warnings: reconstructionWarnings } : {}),
     ...(loopType === 'review'
-      ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, active_p2: mergedRegistry.activeP2, search_debt: mergedRegistry.searchDebt.length, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds, ...(mergedRegistry.frontier?.partitionGuard ? { frontier_partition_guard: mergedRegistry.frontier.partitionGuard } : {}) }
+      ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1, active_p2: mergedRegistry.activeP2, search_debt: mergedRegistry.searchDebt.length, failed_required_gate_ids: mergedRegistry.failedRequiredGateIds, ...(mergedRegistry.untrustedLineages ? { untrusted_lineages: mergedRegistry.untrustedLineages } : {}), ...(mergedRegistry.frontier?.partitionGuard ? { frontier_partition_guard: mergedRegistry.frontier.partitionGuard } : {}) }
       : {
         key_findings: mergedRegistry.keyFindings?.length ?? 0,
+        ...(mergedRegistry.untrustedLineages ? { untrusted_lineages: mergedRegistry.untrustedLineages } : {}),
         ...(mergedRegistry.frontier?.partitionGuard ? { frontier_partition_guard: mergedRegistry.frontier.partitionGuard } : {}),
       }),
   });
 }
 
 // Exports for unit testing
-module.exports = { mergeResearchRegistries, mergeResearchFrontier, mergeReviewRegistries, buildAttributionMd, reconstructReviewRegistryFromState, reconstructResearchRegistryFromState, normalizeRegistrySchema };
+module.exports = { mergeResearchRegistries, mergeResearchFrontier, mergeReviewRegistries, buildAttributionMd, reconstructReviewRegistryFromState, reconstructResearchRegistryFromState, normalizeRegistrySchema, readLineageTrust };
 
 if (require.main === module) {
   main().catch((err) => {

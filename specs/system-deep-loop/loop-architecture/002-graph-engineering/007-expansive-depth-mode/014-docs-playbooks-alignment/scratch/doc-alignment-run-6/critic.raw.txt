@@ -4910,7 +4910,7 @@ worktrees/455-expansive-depth-integration
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show 9149443d42c -- .skilled/commands/deep/review.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/depth-mode-flag.md | head -160
 commit 9149443d42cf041c122e60db59433c56abaec0e7
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 10:05:34 2026 +0100
 
     docs(system-deep-loop): document the loop default for an empty seed share
@@ -5061,7 +5061,7 @@ index a97f69bfc81..15ef52a45db 100644
 > build · deepseek-v4.1-flash
 [0m$ [0mgit -c core.fsmonitor=false show 4ebd925a8f8 -- .skilled/commands/deep/research.md .skilled/commands/deep/review.md .skilled/skills/system-deep-loop/deep-research/feature-catalog/convergence/expansive-depth-mode.md .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md .skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/expansive-depth-mode.md .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md README.md | head -220
 commit 4ebd925a8f886e15785a3bd36421927723fa568f
-Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Author: Michel Kerkmeester <redacted>
 Date:   Wed Nov 18 09:39:19 2026 +0100
 
     docs(system-deep-loop): settle the second alignment round's doc findings

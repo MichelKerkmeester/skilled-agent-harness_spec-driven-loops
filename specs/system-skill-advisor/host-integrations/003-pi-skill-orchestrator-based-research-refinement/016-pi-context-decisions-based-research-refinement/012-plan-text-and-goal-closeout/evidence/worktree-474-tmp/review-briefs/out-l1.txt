@@ -1,0 +1,44 @@
+FINDINGS: 3
+
+[P1] On the hook path (the normal Claude Code route), a pasted reply whose task marker sits on its own line is not stripped. The reason is that the hook collapses every newline to a space before the strip runs.
+Where: `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:476` and `runtime/lib/prompt-policy.ts:92`, with the marker regex at `runtime/lib/prompt-policy.ts:246`
+Scenario: `"You said:\n- updated the README with sk-doc\n- committed with sk-git\nNow: refactor the session store locking"` -> the MCP or CLI call on the raw text strips it to `refactor the session store locking`. The hook sends `"You said: - updated the README with sk-doc - committed with sk-git Now: refactor the session store locking"`, which comes back unchanged. The task is then routed on the reply's skill names (sk-doc, sk-git). A reply that ends in a bullet, a code fence, a heading or anything else without `.`, `!` or `?` before `Now:` or `Task:` misses this way. Python strips the same canonical text and misses the same way.
+Evidence: `const routedPrompt = policy.canonicalPrompt.slice(0, ADVISOR_PROMPT_MAX_CHARS);` is what `runAdvisorSubprocess(routedPrompt, …)` receives (line 536), and the cache key uses it too. `normalizePrompt` returns `canonicalFold(prompt).replace(/\s+/g, ' ').trim()`. `TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/gi` needs a `\n` or sentence punctuation before the marker. I copied the cue regex, the marker regex and `stripPastedReplyOnce` verbatim into a `node -e` script and ran it. The raw form printed the task. The collapsed form printed the whole prompt unchanged. None of the Known Limitations in phases 002, 006, 007 or 008 records the newline collapse.
+Confidence: confirmed by tracing it end to end (`buildSkillAdvisorBrief` → canonicalPrompt → subprocess → `stripLeadingPastedReply`), plus the regex reproduction.
+
+[P1] A pasted reply longer than 10,000 characters is cut to its first 10,000 characters before any strip runs. The user's task, which sits at the end, is dropped, and the route comes from the reply alone. The Python native and local paths also disagree on this input.
+Where: `runtime/lib/skill-advisor-brief.ts:476` (`.slice(0, ADVISOR_PROMPT_MAX_CHARS)`) and `runtime/scripts/skill_advisor.py:1015` (`"prompt": _advisor_prompt_head(prompt)`), against `runtime/scripts/skill_advisor.py:4842` (the local fallback strips the full prompt)
+Scenario: `"Earlier you replied: <~12k chars naming sk-doc/sk-git>. Now: refactor the parser"`. The hook and the Python native call send only the head, which holds no trailing marker, so nothing is stripped and the result routes to sk-doc. Removing the paste routes the bare task to sk-code. When the daemon is down, Python's `analyze_request` gets the full prompt, strips it and routes sk-code. So the same prompt routes differently with and without the daemon, which is the divergence phase 007 set out to remove. If the reply itself holds a `Task:` line inside the head, the strip cuts there and scores reply text as the task.
+Evidence: skill-advisor-brief.ts:474-475 has the comment "a longer one is routed on its head", followed by the slice. `_advisor_prompt_head` returns `prompt[:index]` once the count goes past `ADVISOR_PROMPT_MAX_CHARS = 10_000`. The strip runs only inside the handler or scorer, after that cut. The truncation predates this branch (main has the same line 461), but the strip added here never runs on the full text. No Known Limitation records it.
+Confidence: confirmed by reading the code path. I did not run a probe with more than 10k characters.
+
+[P2] Every strip test feeds raw text straight to `stripLeadingPastedReply` or `strip_leading_pasted_reply`, so the hook-path miss in finding 1 stays green. Both suites can also agree on a fixture row whose guarantee does not hold on the hook path.
+Where: `runtime/tests/fixtures/pasted-reply-strip-cases.json` (every row), `runtime/tests/legacy/advisor-prompt-policy.vitest.ts:92`, `runtime/tests/python/test_skill_advisor.py:2551`
+Scenario: no row has a newline-only marker on a reply line without punctuation, and no test passes `shouldFireAdvisor(x).canonicalPrompt` through the strip. Phase 007's parity guards rely on the `ascii-case-fold` row (`You ſaid:` kept) and the `js-space-info-separator` row (`\u001c`-led kept). Both inputs change before the strip on the hook path: NFKC in `canonicalFold` turns U+017F into `s`, and `canonicalFold` may also remove the separator if `HIDDEN_CHAR_PATTERN` matches it. So the TS and Python strips "agree" on text the hook never sends.
+Evidence: the fixture rows `quote-requirement-kept` and `quote-led-*` contain `\n` but always after punctuation or as a kept negative. `normalizePrompt` = `canonicalFold(...).replace(/\s+/g,' ')`, and `canonicalFold` starts with `.normalize('NFKC')`.
+Confidence: confirmed that the gap exists. The NFKC effect on `ſ` is standard Unicode behavior. I did not read `HIDDEN_CHAR_PATTERN`, so whether `\u001c` is removed is plausible: reading that constant would confirm it.
+
+Checked with no finding:
+- The TS and Python regexes match: the whitespace set, ASCII case folding, anchoring with no multiline flag, the last marker winning, the trim set, and the strip repeating until stable.
+- Commit 008 passes the stripped prompt to `enrichCompiledRoutes` and `attachTypedCommand` on both the cache-hit and cache-miss returns, and to `degradedRecommendations`.
+- `scoreAdvisorPrompt` strips again at its entry, and a second strip leaves the text unchanged.
+- Batch mode reads one prompt per line, so a multi-line paste cannot reach it.
+
+Not checked: I did not run the report-checker scripts, because this handback uses the dispatcher's format. I did not read `advisor-recommend-compiled-route-option.vitest.ts` line by line, `HIDDEN_CHAR_PATTERN`, or the phase spec.md files beyond the Known Limitations sections. Plan mode was active, so I wrote no plan file, because the dispatch says "write no file anywhere".
+
+FILES READ:
+- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts` (lines 85-100, 140-150, 225-272)
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` (1265-1290)
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` (520-650)
+- `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` (commit 008 diff)
+- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts` (455-560)
+- `.skilled/skills/system-skill-advisor/runtime/lib/shared/unicode-normalization.ts` (74-86)
+- `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` (grep at line 283)
+- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (850-870, 4784-4860, 5280-5345, 5470-5600)
+- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json`
+- `.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts` and `runtime/tests/python/test_skill_advisor.py` (commit 007 diffs)
+- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts` (95-110)
+- The stats and diffs of commits `6c4af5fb5eb`, `2bc4de2fd66`, `4de695d3095` and `b8c862443b3`
+- The Known Limitations in the `implementation-summary.md` of `P/002`, `P/006`, `P/007` and `P/008`
+
+Review status: REQUESTED_CHANGES

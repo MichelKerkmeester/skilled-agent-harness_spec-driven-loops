@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/brief-producer.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts
+The prepared file adds two tests: the brief producer routes the task behind a pasted reply whose marker starts a new line, and behind a pasted reply longer than the advisor limit. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/brief-producer.v2.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts` exits 0.

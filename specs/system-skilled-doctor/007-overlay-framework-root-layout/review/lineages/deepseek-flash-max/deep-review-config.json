@@ -1,9 +1,9 @@
 {
-  "topic": "Review: specs/system-skilled-doctor/007-overlay-framework-root-layout",
-  "sessionId": "fanout-deepseek-flash-max-1795182837437-sws2tv",
-  "parentSessionId": null,
+  "topic": "Review: specs/system-skilled-doctor/007-overlay-framework-root-layout (fan-out lineage deepseek-flash-max)",
+  "sessionId": "fanout-deepseek-flash-max-1795192401900-xpt66n",
+  "parentSessionId": "2026-11-20T16:33:02.758Z",
   "lineageMode": "new",
-  "generation": 1,
+  "generation": 2,
   "continuedFromRun": null,
   "migrationWindowEndsAt": "",
   "maxIterations": 24,
@@ -12,8 +12,7 @@
     "minIterations": 2,
     "convergenceMode": "default",
     "depthMode": "expansive",
-    "stopPolicy": "fail-closed",
-    "divergent": {}
+    "stopPolicy": "convergence"
   },
   "expansiveDepth": {
     "maxDepth": 3,
@@ -31,13 +30,13 @@
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
   "specFolder": "specs/system-skilled-doctor/007-overlay-framework-root-layout",
-  "createdAt": "2026-11-20T13:55:21.745Z",
-  "status": "complete",
+  "createdAt": "2026-11-20T16:34:32.390Z",
+  "status": "initialized",
   "releaseReadinessState": "in-progress",
   "executionMode": "auto",
   "executor": {
-    "kind": "native",
-    "model": null,
+    "kind": "cli-mistral-vibe",
+    "model": "deepseek-flash",
     "reasoningEffort": null,
     "serviceTier": null,
     "sandboxMode": null,
@@ -52,7 +51,7 @@
     "traceability",
     "maintainability"
   ],
-  "reviewFocus": "Review the whole overlay framework/root layout change end to end: Skilled commits 57c01fb4c11..d42bafc890c, merged as 063daaee2c1 plus 1653734af7d and 10c36989450 on main; and ai-speckit (/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit) commits 64cfee51628..ad3246feba2 (re-pin, relayout, hooks learning both locations, the move to overlays/). Check engine correctness, path safety and hook fail-open or fail-closed behavior, the migration for old-layout consumers, test strength, docs against code, and any leftover reference to the old barter-overlays path.",
+  "reviewFocus": "Follow-up round after remediation. Verify every finding of the previous generation is fixed and that the fixes introduced no regression, then review the whole change again. Skilled: the remediation commits on origin/main up to b5a630c6efa (phase 006 engine fixes: relayout rollback, outside-repository refusal at resolveOverlayDir, LAYOUT and strict-write remedies, overlayOutside on the context, writeBackup split; phases 007 and 008 records). ai-speckit (/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit, read-only): commits 64cfee51628..e63bd038a5d, especially 5dd004f3faa (commit gate fails closed without a manifest, hooks read overlayDir, real-bridge plugin test, relayout-runs ignore, fixture rename) and 488ea9f49f5 (re-pin onto b5a630c). Check engine correctness, path safety, hook fail-open or fail-closed behavior, rollback correctness, test strength, docs against code, and leftover barter-overlays references.",
   "severityThreshold": "P2",
   "crossReference": {
     "core": [
@@ -100,32 +99,16 @@
       "convergenceScore"
     ]
   },
-  "_optimizerManaged": {
-    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
-    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
-    "tunableFields": [
-      "convergenceThreshold",
-      "stuckThreshold",
-      "maxIterations"
-    ],
-    "lockedFields": [
-      "lineageMode",
-      "reducer",
-      "fileProtection",
-      "sessionId",
-      "mode",
-      "reviewDimensions",
-      "antiConvergence.convergenceMode",
-      "antiConvergence.depthMode",
-      "antiConvergence.stopPolicy"
-    ],
-    "promotionMode": "advisory-only"
-  },
-  "stopPolicy": "convergence",
   "resource_map_present": false,
-  "reviewScopeFiles": [],
+  "reviewScopeFiles": [
+    ".skilled/commands/doctor",
+    ".skilled/skills/system-skilled-doctor",
+    "barter/ai-speckit"
+  ],
+  "stopPolicy": "convergence",
   "resource_map": {
     "emit": true
   },
-  "fanout_lineage_artifact_dir": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/deepseek-flash-max"
+  "fanout_lineage_artifact_dir": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/deepseek-flash-max",
+  "fanout_lineage_label": "deepseek-flash-max"
 }

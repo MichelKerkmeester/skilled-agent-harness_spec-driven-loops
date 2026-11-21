@@ -51,6 +51,10 @@ export interface CanonicalProtectedResource extends ProtectedResourceIdentity {
 // 2. LEASE TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * A lease request for one resource, with its TTL, optional acquire timeout and an optional fence token restored from
+ * durable evidence.
+ */
 export interface AcquireLeaseRequest {
   readonly resource: ProtectedResourceIdentity;
   readonly ownerId: string;
@@ -74,10 +78,15 @@ export interface FencedLease {
 
 export type LeaseAcquisition = 'acquired' | 'takeover';
 
+/** A granted lease together with how it was acquired. */
 export interface LeaseGrant extends FencedLease {
   readonly acquisition: LeaseAcquisition;
 }
 
+/**
+ * Coordinator state for one resource: last fence token, generation, active lease, journal head and whether the lease
+ * expired.
+ */
 export interface FencingCoordinatorSnapshot {
   readonly resource: CanonicalProtectedResource;
   readonly lastFenceToken: number;
@@ -87,6 +96,7 @@ export interface FencingCoordinatorSnapshot {
   readonly isExpired: boolean;
 }
 
+/** The resources and fence tokens a fenced mutation runs under, passed to the mutation callback. */
 export interface FencedMutationContext {
   readonly resources: readonly CanonicalProtectedResource[];
   readonly fenceTokens: readonly number[];
@@ -107,10 +117,14 @@ export type FencedMutationPreparation<TResult> = (
   context: FencedMutationContext,
 ) => FencedCommit<TResult> | Promise<FencedCommit<TResult>>;
 
+/** Test hook that runs after the journal is fsynced and before the state commit. */
 export interface CoordinatorFaultInjection {
   readonly afterJournalFsyncBeforeStateCommit?: () => void;
 }
 
+/**
+ * Storage root plus optional clock, id source, sleep, retry and timeout settings, telemetry capacity and fault hooks.
+ */
 export interface FencedLeaseCoordinatorOptions {
   readonly rootDirectory: string;
   readonly now?: () => Date;
@@ -154,6 +168,7 @@ export interface LockLifecycleDecision {
   readonly observedAt: string;
 }
 
+/** The ledger sequence range and final digest a fenced state was derived from, so it can be checked against replay. */
 export interface ReplayIdentity {
   readonly fingerprintVersion: number;
   readonly ledgerId: string;

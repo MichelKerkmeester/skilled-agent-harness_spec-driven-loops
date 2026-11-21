@@ -47,12 +47,8 @@ const { readLineageProviderCostUsd } = requireCjs(join(scriptsDir, 'fanout-salva
   readLineageProviderCostUsd: (lineageDir: string) => number | null;
 };
 const DISPATCH_SCRIPT = join(scriptsDir, 'dispatch-iteration.cjs');
-const { buildClaudeInvocation } = requireCjs(DISPATCH_SCRIPT) as {
-  buildClaudeInvocation: (
-    context: Record<string, unknown>,
-    configDir: string,
-    promptBody: string,
-  ) => { args: string[] };
+const { buildClaudeDispatch } = requireCjs(DISPATCH_SCRIPT) as {
+  buildClaudeDispatch: (context: Record<string, unknown>) => { args: string[] };
 };
 
 const PROMPT = 'capability-probe prompt\nsecond line';
@@ -350,15 +346,35 @@ describe('executor adapter capability record', () => {
 describe('executor adapter capability record — single-iteration dispatcher', () => {
   it('builds the claude iteration with the record\'s prompt channel and permission surface', () => {
     const record = EXECUTOR_ADAPTER_CAPABILITIES['cli-claude-code'];
-    const invocationFor = (sandboxMode: string) => buildClaudeInvocation(
-      { loopType: 'research', model: 'claude-opus-4-8', reasoningEffort: null, serviceTier: null, sandboxMode, timeoutSeconds: 60 },
-      '',
-      PROMPT,
-    ).args;
-    expect(record.promptChannel).toBe('argv');
-    expect(invocationFor('read-only')).toContain(PROMPT);
-    const mode = (args: string[]) => args[args.indexOf('--permission-mode') + 1];
-    expect(mode(invocationFor('read-only'))).not.toBe(mode(invocationFor('danger-full-access')));
+    const repoRoot = stubRepo();
+    mkdirSync(join(repoRoot, '.skilled', 'agents'), { recursive: true });
+    writeFileSync(join(repoRoot, '.skilled', 'agents', 'deep-research.md'), 'persona\n', 'utf8');
+    const promptFile = join(repoRoot, 'prompt.md');
+    writeFileSync(promptFile, PROMPT, 'utf8');
+    const savedPath = process.env.PATH;
+    process.env.PATH = stubEnv().PATH;
+    try {
+      const invocationFor = (sandboxMode: string) => buildClaudeDispatch({
+        executorKind: 'cli-claude-code',
+        loopType: 'research',
+        agent: 'deep-research',
+        repoRoot,
+        promptFile,
+        artifactDir: repoRoot,
+        claudeConfigDir: '',
+        model: 'claude-opus-4-8',
+        reasoningEffort: null,
+        serviceTier: null,
+        sandboxMode,
+        timeoutSeconds: 60,
+      }).args;
+      expect(record.promptChannel).toBe('argv');
+      expect(invocationFor('read-only').some((arg) => arg.endsWith(PROMPT))).toBe(true);
+      const mode = (args: string[]) => args[args.indexOf('--permission-mode') + 1];
+      expect(mode(invocationFor('read-only'))).not.toBe(mode(invocationFor('danger-full-access')));
+    } finally {
+      process.env.PATH = savedPath;
+    }
   });
 
   describe.skipIf(detectFromAncestry('cli-codex'))('cli-codex', () => {

@@ -127,6 +127,7 @@ function appendTextWithFsync(path: string, content: string): void {
   try {
     fsyncPath(dirname(path));
   } catch {
+    // Best-effort directory fsync: the file change has already landed, and some platforms refuse it.
   }
 }
 
@@ -252,6 +253,7 @@ function releaseAppendLock(targetPath: string, token: AppendLockOwnerToken): voi
     try {
       fsyncPath(dirname(lockPath));
     } catch {
+      // Best-effort directory fsync: the file change has already landed, and some platforms refuse it.
     }
     return;
   }
@@ -263,6 +265,7 @@ function releaseAppendLock(targetPath: string, token: AppendLockOwnerToken): voi
     try {
       fsyncPath(dirname(lockPath));
     } catch {
+      // Best-effort directory fsync: the file change has already landed, and some platforms refuse it.
     }
     return;
   }
@@ -309,6 +312,7 @@ function readLastDiffFingerprint(path: string, diffField: string | undefined): s
       return parsed[diffField];
     }
   } catch {
+    // A last line that does not parse cannot carry the fingerprint, so the row is appended.
   }
 
   return null;
@@ -642,6 +646,7 @@ export function writeTextAtomic(path: string, content: string): void {
     try {
       fsyncPath(dirname(path));
     } catch {
+      // Best-effort directory fsync: the file change has already landed, and some platforms refuse it.
     }
   } catch (error: unknown) {
     if (existsSync(tempPath)) {

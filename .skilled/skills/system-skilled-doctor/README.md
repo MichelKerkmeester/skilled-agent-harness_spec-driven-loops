@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.10.0
+version: 1.0.12.0
 ---
 
 # system-skilled-doctor
@@ -47,7 +47,7 @@ Each command below has its own router and workflow. The table says what each one
 | `/doctor:helper` | Reads the problem in plain words and ranks up to three doctor commands that fit, with the reason and a command ready to run |
 | `/doctor:speckit` | Checks that the trigger index is fresh and that its lookup and the ripgrep recipes return results. A stale index is reported with its regeneration command |
 | `/doctor:mcp` | Installs or debugs Code Mode with its UTCP configuration and runtime registration. Every repair asks for approval first |
-| `/doctor:overlay` | Checks a vendored copy's overlays and puts them back, with a re-pin that moves the copy to a newer upstream commit. `status --audit` adds each vendored path that drifted with no overlay owning it |
+| `/doctor:overlay` | Checks a vendored copy's overlays and puts them back, with a re-pin that moves the copy to a newer upstream commit. `status --audit` adds each vendored path that drifted with no overlay owning it, then one advisory `DOCS` line per overlay-folder README that is missing or fails sk-doc's validator. `apply --relayout` moves overlay copies onto their layout paths |
 
 ---
 
@@ -107,7 +107,9 @@ Every command that changes a project shows its plan first and waits for your yes
 
 ### A Vendored Copy's Overlays
 
-A project that copies Skilled replaces the whole copy when it moves to a new upstream release. Its own changes survive only when each one also lives in an overlay folder that the engine applies back onto the copy. `/doctor:overlay status` prints one line per destination that is out of sync, with the fix. The `both-changed` and `upstream-moved` states need a person to decide. `apply` writes nothing while either one is present. The [overlay reference](./references/overlays.md) has the states and the re-pin steps.
+A project that copies Skilled replaces the whole copy when it moves to a new upstream release. Its own changes survive only when each one also lives in an overlay folder that the engine applies back onto the copy. `/doctor:overlay status` prints one line per destination that is out of sync, with the fix. `apply` writes nothing while any destination is `live-edited`, `both-changed`, `upstream-moved` or `cannot-apply`. A `live-edited` one needs `/doctor:overlay apply --capture <path>`, and the other three need a person to decide.
+
+Each overlay copy has a layout path in the overlay folder. A copy of a `.skilled/` path sits under `framework/`, and a copy of any other path under `root/`, so `.claude/settings.json` sits at `root/claude/settings.json`. The overlay folder can sit inside the tree or beside it as `../<name>`, which the tree's `.skilled-overlays.json` names. A folder beside the tree must still sit in the tree's git repository, or every command exits 2. After a re-pin onto this layout, `status` prints a `LAYOUT` line for each copy still at its older path. The lines never fail the run. Run `/doctor:overlay apply --relayout` once to move the copies. The [overlay reference](./references/overlays.md) has the states, the layout and the re-pin steps.
 
 ---
 
@@ -139,7 +141,9 @@ A doctor command about one skill's own checks stays with that skill.
 |---|---|---|
 | `status` stops and names the default manifest path | The tree has no overlay folder and no `.skilled-overlays.json` setting | Add `.skilled-overlays.json` naming a folder that holds `overlay-manifest.json`. Without that setting, create `skilled-overlays/` with its own `overlay-manifest.json` |
 | `apply` writes nothing and reports `both-changed` or `upstream-moved` | The overlay and the live copy hold edits the engine cannot reconcile | Read both copies, decide, update the overlay, then run `status` again |
-| A run refuses and prints an overlay lock owner line | The run cannot confirm the lock's owner has ended | Wait for the owner to finish or remove the lock by hand once you know its run has ended |
+| A run refuses and prints an overlay lock owner line | The run cannot confirm the lock's owner has ended | Run the `Next:` line it prints: check with `ps -p <pid>` that the owner has ended, then remove the lock file it names |
+| `status` prints `LAYOUT` lines after a re-pin | Overlay copies still sit at their older paths, off the `framework/` and `root/` layout | Run `/doctor:overlay apply --relayout` once. The lines never fail `status`, so this can wait |
+| `apply` reports a path that `does not match what apply last wrote there`, `is a link that leads outside the tree` or `is a link that does not resolve` | An unowned file, folder or link stands where an overlay now writes another shape, or a link on the path leads outside the tree or loops | Run the `Next:` line it prints, which moves the path aside to `<path>.keep` and applies again |
 
 ---
 
@@ -152,7 +156,7 @@ Run the checks below from the repository root. The manual playbook covers what a
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skilled-doctor/README.md --type readme` prints `✅ VALID` and `Total issues: 0` |
 | Doctor command contracts | `node --test .skilled/commands/doctor/scripts/tests/*.test.cjs` reports `fail 0` in its summary |
 | Advisor command bridges | `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"changed": []` |
-| Operator scenarios | [The manual playbook](./manual-testing-playbook/manual-testing-playbook.md) holds 12 scenarios, `SKD-001` to `SKD-012` |
+| Operator scenarios | [The manual playbook](./manual-testing-playbook/manual-testing-playbook.md) holds 13 scenarios, `SKD-001` to `SKD-013` |
 
 ---
 
@@ -163,10 +167,12 @@ Run the checks below from the repository root. The manual playbook covers what a
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, rules and the boundary with other skills |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: the intent map and the resource map |
 | [`references/overlays.md`](./references/overlays.md) | The overlay sync states, what the engine refuses and the re-pin steps |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The 12 operator scenarios and where each verdict is recorded |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The 13 operator scenarios and where each verdict is recorded |
 | [`INSTALL-SKILLED.md`](../../../INSTALL-SKILLED.md) | The step-by-step guide to linking Skilled into a project or copying it in with overlays |
 | [`.skilled/commands/doctor/`](../../commands/doctor/) | The command routers and the workflows they load |
 
 <!-- readme-check
 allow-ref .skilled-overlays.json | written in a project that vendors Skilled, not in this repository
+allow-ref framework/ | the layout folder inside a vendoring project's overlay folder, not in this repository
+allow-ref root/claude/settings.json | an example layout path inside a vendoring project's overlay folder
 -->

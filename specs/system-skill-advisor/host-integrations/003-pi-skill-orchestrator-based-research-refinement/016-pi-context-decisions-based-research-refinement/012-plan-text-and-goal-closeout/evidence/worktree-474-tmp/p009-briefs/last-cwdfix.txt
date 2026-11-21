@@ -1,0 +1,29 @@
+The requested replacement is in place at [user-prompt-submit.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts). `cmp tmp/p009-briefs/ups.v4.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` exited 0, and `git diff --check` exited 0.
+
+The changed block is:
+
+```ts
+    // process.cwd() throws when the working directory was removed, and a lost
+    // diagnostic must not cost the model its fallback.
+    try {
+      emitDiagnostic({
+        runtime,
+        workspaceRoot: workspaceRoot ?? process.cwd(),
+        status: 'fail_open',
+        freshness: 'unavailable',
+        durationMs: elapsed(),
+        cacheHit: false,
+        errorCode: 'UNKNOWN',
+        errorDetails: 'Unhandled UserPromptSubmit hook exception',
+      }, writeDiagnostic);
+    } catch {
+      // Diagnostics are best effort; the fallback below still runs.
+    }
+```
+
+Nothing executable remains in the outer catch outside its nested `try`/`catch` blocks. The fallback work is also guarded, and its catch returns `{}`. The task matched the prepared file; no mismatch to report.
+
+Only the named target was written. The final worktree status lists three other modified files, which this task did not touch. Tests, typecheck and build were not run; the task assigns those to the conductor.
+
+SKILL ROUTING: User specified `sk-code`; resolved SKILLED implementation, hooks and TypeScript guidance.  
+REPO RULES: `blast-radius.md`, `evidence-and-proof.md`, `communication.md` and `communication-handoff.md`.

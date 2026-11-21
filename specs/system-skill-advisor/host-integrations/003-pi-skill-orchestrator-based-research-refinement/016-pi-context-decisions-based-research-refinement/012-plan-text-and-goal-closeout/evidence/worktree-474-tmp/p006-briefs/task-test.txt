@@ -1,0 +1,48 @@
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts)
+Two edits in this one file. The fixture it reads, runtime/tests/fixtures/pasted-reply-strip-cases.json, is written by another leaf at the same time; do not create or edit it. Its shape is { "$comment": string, "schema_version": 1, "cases": [ { "id": string, "input": string, "expected": string, "ideal"?: string } ] }.
+
+EDIT 1. Replace exactly the import block at lines 5-9:
+import { describe, expect, it } from 'vitest';
+import {
+  extractMetalinguisticSkillMentions,
+  shouldFireAdvisor,
+} from '../../lib/prompt-policy.js';
+with:
+import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  extractMetalinguisticSkillMentions,
+  shouldFireAdvisor,
+  stripLeadingPastedReply,
+} from '../../lib/prompt-policy.js';
+
+interface PastedReplyStripCase {
+  readonly id: string;
+  readonly input: string;
+  readonly expected: string;
+  readonly ideal?: string;
+}
+
+// The Python advisor test reads the same file, so both scorers drop the same text.
+const PASTED_REPLY_STRIP_CASES: readonly PastedReplyStripCase[] = (JSON.parse(
+  readFileSync(
+    resolve(dirname(fileURLToPath(import.meta.url)), '../fixtures/pasted-reply-strip-cases.json'),
+    'utf8',
+  ),
+) as { cases: PastedReplyStripCase[] }).cases;
+
+EDIT 2. Append this block at the very end of the file, after the final `});` of the existing describe:
+
+describe('pasted reply stripping', () => {
+  it.each(PASTED_REPLY_STRIP_CASES.map((row) => [row.id, row] as const))('%s', (_id, row) => {
+    const stripped = stripLeadingPastedReply(row.input);
+    expect(stripped).toBe(row.expected);
+    // The handler and the scorer both strip, so a second pass must return the same text.
+    expect(stripLeadingPastedReply(stripped)).toBe(stripped);
+  });
+});
+
+ACCEPT: `rg -n 'stripLeadingPastedReply|pasted-reply-strip-cases' .skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts` prints 4 lines.

@@ -35,6 +35,10 @@ import type {
 // 1. PUBLIC INPUTS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Everything `prepareDeepReviewEvent` needs to build one envelope: the payload parts plus stream position, timestamps,
+ * producer, authority epoch and idempotency key.
+ */
 export interface DeepReviewEventInput<TStem extends DeepReviewEventStem> {
   readonly stem: TStem;
   readonly scope: DeepReviewScopeMap[TStem];
@@ -356,7 +360,7 @@ const DATA_FIELD_RULES = Object.freeze({
     recoveryHint: optionalFieldRule('prose'),
   },
   'deep_review.terminal_gates_recorded': {
-    stopReason: enumRule('converged', 'maxIterationsReached', 'maxDurationReached', 'manualStop', 'error'),
+    stopReason: enumRule('converged', 'maxIterationsReached', 'maxDurationReached', 'manualStop', 'error', 'blockedStop'),
     gateResults: 'gate-results',
     failedRequiredGateIds: 'identifier-array',
     appendPosition: 'uint32',
@@ -1068,10 +1072,18 @@ function eventDefinition(stem: DeepReviewEventStem): EventTypeDefinition {
   };
 }
 
+/**
+ * Build a fresh event-type registry with one version-1 definition per Deep Review stem, each validating its payload
+ * fields.
+ */
 export function createDeepReviewEventRegistry(): EventTypeRegistry {
   return new EventTypeRegistry(DeepReviewEventStems.map(eventDefinition));
 }
 
+/**
+ * Assemble the frozen version-1 payload for a stem, with a payloadDigest computed over stem, scope, prior event hash,
+ * replay metadata and data.
+ */
 export function createDeepReviewLedgerPayload<TStem extends DeepReviewEventStem>(
   stem: TStem,
   scope: DeepReviewScopeMap[TStem],
@@ -1103,6 +1115,10 @@ export function createDeepReviewLedgerPayload<TStem extends DeepReviewEventStem>
   }) as DeepReviewLedgerPayload<TStem>;
 }
 
+/**
+ * Wrap the input in a current-version envelope carrying its wire event type, then run the shared write preflight
+ * against the given registry.
+ */
 export function prepareDeepReviewEvent<TStem extends DeepReviewEventStem>(
   input: DeepReviewEventInput<TStem>,
   registry: EventTypeRegistry,
@@ -1133,10 +1149,15 @@ export function prepareDeepReviewEvent<TStem extends DeepReviewEventStem>(
   return prepareEventWrite(envelope, registry);
 }
 
+/** Return the frozen event-type definitions, one per Deep Review stem, without building a registry. */
 export function deepReviewEventDefinitions(): readonly EventTypeDefinition[] {
   return Object.freeze(DeepReviewEventStems.map(eventDefinition));
 }
 
+/**
+ * Recompute a payload's digest from its stem, scope, prior event hash, replay metadata and data, so a stored
+ * payloadDigest can be checked.
+ */
 export function deepReviewPayloadDigest<TStem extends DeepReviewEventStem>(
   payload: Readonly<{
     stem: TStem;
@@ -1156,6 +1177,7 @@ export function deepReviewPayloadDigest<TStem extends DeepReviewEventStem>(
   );
 }
 
+/** Narrow a JSON value to a Deep Review event stem, rejecting non-strings and unlisted strings. */
 export function isDeepReviewEventStem(value: JsonValue): value is DeepReviewEventStem {
   return typeof value === 'string'
     && (DeepReviewEventStems as readonly string[]).includes(value);

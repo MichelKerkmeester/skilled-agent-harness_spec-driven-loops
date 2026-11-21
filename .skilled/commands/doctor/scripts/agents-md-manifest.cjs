@@ -510,6 +510,7 @@ function main(argv, hooks = {}) {
 
   if (!fs.existsSync(options.manifest)) {
     console.error(`${TAG} ERROR: the manifest is missing at ${options.manifest}`);
+    console.error(`${TAG} Next: node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check --manifest <path to the manifest>`);
     return 2;
   }
   let manifest;
@@ -517,6 +518,7 @@ function main(argv, hooks = {}) {
     manifest = JSON.parse(fs.readFileSync(options.manifest, 'utf8'));
   } catch (error) {
     console.error(`${TAG} ERROR: ${options.manifest} is not valid JSON: ${error.message}`);
+    console.error(`${TAG} Next: fix the JSON in ${options.manifest}, then run node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check`);
     return 2;
   }
 
@@ -526,6 +528,7 @@ function main(argv, hooks = {}) {
     const source = sourceStatus({ root: options.root, manifest, readOrigin: hooks.readOrigin || null });
     if (!source.isSource) {
       console.error(`${TAG} ERROR: refusing --write: ${source.reason}`);
+      console.error(`${TAG} Next: node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check`);
       return 2;
     }
   }
@@ -566,7 +569,7 @@ function main(argv, hooks = {}) {
   if (derivedDiffs.length > 0) {
     console.error(`${TAG} FAIL: the manifest's derived key does not match ${manifest.root_file}`);
     for (const line of derivedDiffs) console.error(`${TAG}   ${line}`);
-    console.error(`${TAG} Run: node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --write`);
+    console.error(`${TAG}   Next: node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --write`);
   }
   if (limitDiffs.length > 0) {
     console.error(`${TAG} FAIL: the authored budget and pins disagree with ${CANARY_RELATIVE}`);
@@ -586,6 +589,9 @@ if (require.main === module) {
     process.exitCode = main(process.argv.slice(2));
   } catch (error) {
     console.error(`${TAG} ERROR: ${error.message}`);
+    console.error(error instanceof UsageError
+      ? `${TAG} Next: node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check`
+      : `${TAG} Next: fix the cause named above, then run node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check`);
     if (error instanceof UsageError) console.error(USAGE);
     process.exitCode = 2;
   }

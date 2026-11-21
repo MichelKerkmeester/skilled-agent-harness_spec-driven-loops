@@ -53,6 +53,7 @@ export interface BudgetLifecyclePayload extends JsonObject {
   readonly outcome: JsonObject;
 }
 
+/** Envelope fields and payload needed to build one budget lifecycle event for the ledger. */
 export interface BudgetLifecycleEventInput {
   readonly eventType: BudgetEventType;
   readonly streamId: string;

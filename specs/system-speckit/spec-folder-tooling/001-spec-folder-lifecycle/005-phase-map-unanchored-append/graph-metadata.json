@@ -40,7 +40,8 @@
       "tasks.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh",
+      "templates/packet-types/phase-parent.spec.md.tmpl"
     ],
     "entities": [
       {
@@ -77,6 +78,12 @@
         "name": "test-phase-system.sh",
         "kind": "script",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh",
+        "source": "derived"
+      },
+      {
+        "name": "phase-parent.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/phase-parent.spec.md.tmpl",
         "source": "derived"
       },
       {
@@ -180,18 +187,12 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`create.sh --phase --parent` looked for the existing map only by its `phase-map` anchor comment",
     "created_at": "2026-11-20T15:51:38Z",
-    "last_save_at": "2026-11-20T15:55:10.576Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-20T16:26:23.163Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e35b77895ea3064f852b2634446f7a14618dfe170922e6e86200138f83d0705",
+    "source_fingerprint": "sha256:8b2eb4715ed285dbfac0b7ee467a29efb91c296138d040b79b5d767ea8e39f64",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4010cf65fbd9d624f3328093e22a411ed78891744f3988b073f7f39d3ab4a98",
       "plan.md": "ad3787db4b5092c149f37c6185b1d620a499b81875ea1d19161edccb98039463",
       "tasks.md": "5178a30eb77fd9dbff6068c603542e77a213a63ffc57f0152380055853262fa0",
-      "implementation-summary.md": "4290fc0b4845db741cc384129d080fd0ee532b319d9499d67fec34ca263171a1"
+      "implementation-summary.md": "c59122e723945db8632b04b407ce84d30e835481f42c3f280cafe8d02a54dd16"
     },
     "last_active_at": null
   }

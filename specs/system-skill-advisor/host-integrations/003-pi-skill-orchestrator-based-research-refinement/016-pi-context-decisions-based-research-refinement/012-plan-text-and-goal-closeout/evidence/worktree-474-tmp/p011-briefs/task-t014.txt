@@ -1,0 +1,4 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs)
+Make exactly one change: append the exact contents of tmp/p011-briefs/dsh-tests.mjs.txt (it starts with a blank line) to the end of the file. Use a short Python script or `cat >>`; do not retype it. Change nothing else.
+The new tests call advanceBoundary on the adapter, which does not exist yet; the test for it imports the module inside the test on purpose, so the other tests still load.
+ACCEPT: `grep -c "^test('route receipts:" .skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs` prints 4.

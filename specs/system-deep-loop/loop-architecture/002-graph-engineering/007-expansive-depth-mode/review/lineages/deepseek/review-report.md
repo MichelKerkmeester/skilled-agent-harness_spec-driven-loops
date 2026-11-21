@@ -1,81 +1,178 @@
-# Deep Review Report - expansive-depth program (fan-out lineage deepseek)
+# Deep Review Report — deepseek lineage
+
+- **Target**: `17a9ddbcb68..555487146e2 -- .skilled/skills/system-deep-loop .skilled/commands/deep` (commit range, 88 files)
+- **Session**: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- **Loop**: 16 iterations, stop reason `all_dimensions_clean`, frontier drained (4 of 4 nodes answered)
+- **Depth mode**: expansive (4 frontier nodes: F-1-002, F-1-004, F-1-006, F-2-007)
 
 ## 1. Executive Summary
 
-**Verdict: CONDITIONAL** (active P0 = 0, active P1 = 2, active P2 = 6; `hasAdvisories = true`).
-
-The detached `deepseek` lineage reviewed range `21c4b325b5a..de32abbb74d` over `.skilled/skills/system-deep-loop`, `.skilled/commands/deep`, `.skilled/agents` and the `.claude`, `.codex`, `.pi`, `.dsh` and `.vibe` agent mirrors. It completed 12 iterations across the three dealt frontier nodes (`F-1-003`, `F-1-005`, `F-1-007`) and all four configured dimensions. Scope: runtime code and tests, command YAML and presentation, skill docs, feature catalogs and playbooks; `specs/` evidence was used for traceability only.
+- **Overall verdict: PASS**
+- **hasAdvisories: true** — nine active P2 findings, no P0 and no P1.
+- **P0/P1/P2 counts: 0 / 0 / 9.** These are the counts the verdict used, read from `deep-review-findings-registry.json` after the terminal-gate pass.
+- **Self-check outcomes**: no P0 or P1 was raised, so the adversarial self-check had no finding to confirm, downgrade or call a false positive. The terminal gates recorded `evidence`, `scope` and `coverage` all `pass` with no failed required gate.
+- **Review scope summary**: the three commits in the range (`47ba2a08a85` withhold the blocked-stop record from a dry run, `8170db46079` mint review row identity and refuse a reused key, `5554871462e` keep the dry-run convergence call read-only) plus the surrounding executor-adapter, gateway, fan-out and documentation surfaces they touch. All 88 changed files were in scope; the review concentrated on the executor adapter contract, the append gateway, the fan-out containment call site, and the command/reference/feature-catalog docs.
+- **Operator review focus**: none supplied (`reviewFocus` is null).
 
 ## 2. Planning Trigger
 
-CONDITIONAL routes to `/speckit:plan`. Two P1 findings need a decision before release:
+`/speckit:plan` is **not required** for a PASS verdict. The findings are advisory; a follow-up plan is optional and, if taken, should fold the five doc/contract corrections into one documentation pass rather than nine separate changes.
 
-- the frontier `answered` projection counts `thought`/`stuck` records as dimension evidence (R2-P1-001);
-- the packet's REQ-007/AC-008 promise pivot-candidate admission the workflow does not perform (R3-P1-001), where the shipped catalog and the workflow agree on the implemented behavior.
+```json
+{
+  "triggered": false,
+  "verdict": "PASS",
+  "hasAdvisories": true,
+  "activeFindings": [
+    {"id": "R1-P2-001", "severity": "P2", "title": "dsh danger-full-access is narrowed to workspace-write while provenance records the requested mode and none enforcement", "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3605"},
+    {"id": "R1-P2-002", "severity": "P2", "title": "The auto-approve-flag sandbox surface describes a flag that is no longer mode-discriminating", "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:165-170"},
+    {"id": "R2-P2-001", "severity": "P2", "title": "The gateway strips a model row's identity fields from the envelope but the projected state-log row still carries them", "file": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:483-489"},
+    {"id": "R3-P2-001", "severity": "P2", "title": "The executor catalog claims the conformance test fails on any builder drift, but its permission-mode assertion cannot see a same-mode collapse", "file": ".skilled/skills/system-deep-loop/runtime/feature-catalog/executor/executor-config.md:29"},
+    {"id": "R4-P2-001", "severity": "P2", "title": "Both presentations and both compiled contracts still say cli-pi has no sandbox flag while the config now accepts sandboxMode for it", "file": ".skilled/commands/deep/assets/deep-review-presentation.txt:226"},
+    {"id": "R8-P2-001", "severity": "P2", "title": "The state-format reference omits frontierNodeId from the iteration record's optional fields, though the stop decision reads it first", "file": ".skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md:101"},
+    {"id": "R11-P2-001", "severity": "P2", "title": "The identity strip is a denylist that misses four fields buildPreparedInput reads from the same metadata", "file": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:108-115"},
+    {"id": "R12-P2-001", "severity": "P2", "title": "The executor help text is hand-maintained in four files and the only test that reads them checks a single rejected flag", "file": ".skilled/commands/deep/assets/deep-review-presentation.txt:142"},
+    {"id": "R13-P2-001", "severity": "P2", "title": "sandboxEnforcementFor cannot see the fan-out containment guard, so a devin workspace-write lineage records none although the capability record names that guard as its compensating control", "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3337"}
+  ],
+  "remediationWorkstreams": [
+    {"id": "WS-1", "title": "Align sandbox provenance with the emitted command", "findings": ["R1-P2-001", "R13-P2-001"], "findingClasses": ["class-of-bug"]},
+    {"id": "WS-2", "title": "Complete the gateway identity strip and its projection", "findings": ["R2-P2-001", "R11-P2-001"], "findingClasses": ["class-of-bug", "instance-only"]},
+    {"id": "WS-3", "title": "Correct the executor contract docs and their drift guards", "findings": ["R1-P2-002", "R3-P2-001", "R4-P2-001", "R12-P2-001"], "findingClasses": ["cross-consumer", "matrix/evidence", "instance-only"]},
+    {"id": "WS-4", "title": "Complete the iteration record schema reference", "findings": ["R8-P2-001"], "findingClasses": ["instance-only"]}
+  ],
+  "specSeed": [
+    "Sandbox provenance: define whether sandboxEnforcement describes the command or the run, then make the dsh and devin entries agree with that definition.",
+    "Gateway identity: state the complete set of envelope fields a model row may not set, and whether the projected row keeps them.",
+    "Executor help: name one source for the per-kind sandbox text and the parity assertion that keeps the four copies aligned."
+  ],
+  "planSeed": [
+    "Add a per-kind, per-mode sandboxEnforcement matrix test to executor-adapter-capabilities.vitest.ts.",
+    "Extend GATEWAY_IDENTITY_FIELDS to streamId, streamSequence, correlationId and causationId, or document why they stay.",
+    "Add a normalized parity assertion for the four hand-maintained executor help copies.",
+    "Add frontierNodeId to the state-jsonl optional-field list.",
+    "Correct the pi line in both presentations and regenerate both compiled contracts."
+  ],
+  "findingClasses": ["class-of-bug", "cross-consumer", "matrix/evidence", "instance-only"],
+  "affectedSurfacesSeed": [
+    "dsh command builder",
+    "devin command builder",
+    "sandboxEnforcementFor",
+    "append-mode-event CLI",
+    "deep-review-state-contract projection",
+    "executor adapter conformance test",
+    "deep-review-presentation.txt",
+    "deep-research-presentation.txt",
+    "state-jsonl.md"
+  ],
+  "fixCompletenessRequired": false
+}
+```
 
 ## 3. Active Finding Registry
 
-| ID | Severity | Dimension | Title | Evidence |
-|----|----------|-----------|-------|----------|
-| R2-P1-001 | P1 | correctness | A `thought` iteration covers a frontier dimension and spends node depth | `runtime/scripts/reduce-state.cjs:1971-1984`, `frontier-admit.cjs:90`, `deep-review/references/convergence/convergence.md:238` |
-| R3-P1-001 | P1 | traceability | REQ-007 and AC-008 promise pivot-candidate admission the pivot branch never performs | `deep-review.yaml:1429`, `:1541-1547`; `011-review-frontier-mode/spec.md:147`, `acceptance-criteria.md:63`, `plan.md:67/71` |
-| R1-P2-001 | P2 | correctness | Detached lineage contract names a FRONTIER block the CLI prompt never renders | `runtime/scripts/fanout-run.cjs:1791`, `deep-review/assets/prompt-pack-iteration.md.tmpl:28` |
-| R1-P2-002 | P2 | correctness | Frontier steering and projection order by locale collation while the merge orders by code unit | `runtime/scripts/reduce-state.cjs:1924`, `:2016`; `deep-research/scripts/reduce-state.cjs:2447`, `:2512`; `fanout-merge.cjs:928` |
-| R1-P2-003 | P2 | correctness | A single lineage that omits `graphCoverageMode` erases the mode the others agree on | `runtime/scripts/fanout-merge.cjs:1003` |
-| R1-P2-004 | P2 | correctness | The merge re-implements the reducer's traceability summary arithmetic | `runtime/scripts/fanout-merge.cjs:982`, `reduce-state.cjs:1652-1665` |
-| R5-P2-001 | P2 | security | Source-quality classification assumes POSIX separators, so Windows-separated paths lose their spec and test classes | `runtime/scripts/upsert.cjs:330` |
-| R12-P2-001 | P2 | maintainability | The attempt-1 to attempt-2 config transition writes the config twice and the second write bypasses the conflict check | `runtime/lib/deep-loop/divergent-pivot.ts:1296-1309` |
+| ID | Severity | Dimension | Title | File | Disposition |
+|----|----------|-----------|-------|------|-------------|
+| R1-P2-001 | P2 | correctness | dsh `danger-full-access` narrowed to `workspace-write` while provenance records the requested mode and `none` enforcement | `fanout-run.cjs:3605`, `:2821-2824` | active |
+| R1-P2-002 | P2 | correctness | `auto-approve-flag` surface describes a flag that is no longer mode-discriminating | `executor-config.ts:165-170`, `:246-252` | active |
+| R2-P2-001 | P2 | correctness | Gateway strips identity fields from the envelope but the projected row keeps them | `append-mode-event.cjs:483-489`, `deep-review-state-contract.ts:291-296` | active |
+| R3-P2-001 | P2 | correctness | Catalog claims the conformance test catches any builder drift; its `permission-mode` assertion cannot see a same-mode collapse | `executor-config.md:29`, `executor-adapter-capabilities.vitest.ts:308-312` | active |
+| R4-P2-001 | P2 | security | Both presentations and both compiled contracts say `cli-pi` has no sandbox flag while the config accepts `sandboxMode` | `deep-review-presentation.txt:226`, `deep-research-presentation.txt:199` | active |
+| R8-P2-001 | P2 | traceability | State-format reference omits `frontierNodeId` from the optional fields | `state-jsonl.md:101`, `convergence.cjs:1415` | active |
+| R11-P2-001 | P2 | maintainability | Identity strip is a denylist missing `streamId`, `streamSequence`, `correlationId`, `causationId` | `append-mode-event.cjs:108-115`, `:334-343` | active |
+| R12-P2-001 | P2 | maintainability | Executor help text is hand-maintained in four files; the only test reading them checks one rejected flag | `deep-review-presentation.txt:142`, `executor-branch-contract.vitest.ts:145-149` | active |
+| R13-P2-001 | P2 | correctness | `sandboxEnforcementFor` cannot see the fan-out containment guard, so devin `workspace-write` records `none` | `fanout-run.cjs:3337`, `executor-config.ts:303` | active (refined by R15-P2-001) |
 
-R2-P2-001 (locale ordering on the reducer/steering surface) was merged into R1-P2-002 as a refinement.
+Each row's full evidence, scope proof and affected-surface hints are in its iteration file and in the delta `finding` rows.
 
 ## 4. Remediation Workstreams
 
-1. **Frontier evidence integrity** (R2-P1-001): filter `thought`/`stuck` out of the frontier visit and dimension-coverage path, matching the review doctrine and the research reducer's question-coverage rule.
-2. **Packet truth** (R3-P1-001): amend REQ-007, AC-008 and plan lines 67/71 to "the accepted direction becomes `next_dimension` and writes no frontier node", or implement the admission the AC describes. The catalog and code agree on the former.
-3. **Fan-out prompt and ordering** (R1-P2-001, R1-P2-002): render the FRONTIER block in the detached CLI prompt, or remove the contract reference to it; replace `localeCompare` node ordering with the code-unit comparator the merge uses.
-4. **Merge coverage edges** (R1-P2-003): record a mode disagreement explicitly instead of collapsing it to `null`; collapse R1-P2-004 into the reducer's `buildTraceabilityRollup` when the shared helper is next touched.
-5. **Cross-OS and bookkeeping hardening** (R5-P2-001, R12-P2-001): classify paths on both separators; make the attempt transition one guarded write helper.
+**P0**: none.
+
+**P1**: none.
+
+**P2 advisories, ordered by blast radius:**
+
+1. **WS-1 — Sandbox provenance (R1-P2-001, R13-P2-001).** Decide what `sandboxEnforcement` describes. If it describes the command, correct the devin record comment; if it describes the run, set `compensatingControl` for devin `workspace-write` and make the dsh builder report the mode it actually emits. Add a per-kind, per-mode label matrix test.
+2. **WS-2 — Gateway identity (R2-P2-001, R11-P2-001).** Either strip the four missing fields and the projected row's copy, or document that the projection keeps them. The catalog sentence and the code comment must say the same thing as the code.
+3. **WS-3 — Executor docs and drift guards (R1-P2-002, R3-P2-001, R4-P2-001, R12-P2-001).** Correct the pi line in both presentations, regenerate both compiled contracts, fix the `auto-approve-flag` doc, strengthen the `permission-mode` assertion to compare all three modes, and add a normalized parity assertion across the four hand-maintained help copies.
+4. **WS-4 — Record schema (R8-P2-001).** Add `frontierNodeId` to the optional-field list and say it is the first-choice node attribution field.
 
 ## 5. Spec Seed
 
-- Frontier visit evidence must exclude every status the doctrine calls evidence-free (`thought`, `stuck`), not only `error`/`timeout`.
-- The pivot handoff is `restoredFocus` → `next_dimension`, with no frontier node; REQ-007/AC-008 should say so unless admission is chosen.
-- `--depth-mode` fan-out prompts must carry the node identity and dimension the leaf contract references.
+- The executor adapter contract should state, once, whether `sandboxEnforcement` is a property of the command or of the run, because the dsh and devin findings are both consequences of that ambiguity.
+- The gateway contract should enumerate every envelope field a model-written row may not set, not only the four it currently strips.
+- The command help should name one source of truth for per-kind sandbox text and the test that keeps the copies aligned.
 
 ## 6. Plan Seed
 
-- One code change for R2-P1-001 with a reducer case for a `thought` record and a `stuck` record.
-- One packet-text change for R3-P1-001 (or a feature worth its own phase if admission is chosen).
-- One prompt change for R1-P2-001 plus a golden prompt test; one comparator change for R1-P2-002.
-- Two P2 code changes for R5-P2-001 and R12-P2-001; R1-P2-003/R1-P2-004 as a single merge-hardening change.
+- Add `sandboxEnforcement` assertions to `executor-adapter-capabilities.vitest.ts` for every kind and all three modes.
+- Extend or justify `GATEWAY_IDENTITY_FIELDS`.
+- Add a normalized parity assertion for `review.md`, `research.md` and both presentations.
+- Add `frontierNodeId` to `state-jsonl.md`.
+- Fix the pi line and regenerate the compiled contracts.
 
 ## 7. Traceability Status
 
-| Protocol | Status | Notes |
-|----------|--------|-------|
-| `spec_code` | partial | 001, 006, 007, 010, 012 match; 011 REQ-007/AC-008 admission claim does not. |
-| `checklist_evidence` | partial | AC-004, AC-005, AC-010, AC-011, AC-018, AC-019 match; AC-008 does not. |
-| `skill_agent` | pass | Skill and agent definition share the depth-mode, veto and frontier-row contract. |
-| `agent_cross_runtime` | pass | Canonical agent and five mirrors carry the new frontier contract. |
-| `feature_catalog_code` | partial | Catalogs match except the expansive-depth "produced evidence" sentence (R2-P1-001 doc side). |
-| `playbook_capability` | pass | DRV-081, DRV-083, DLR-061 and DLR-062 name existing commands and cases. |
+**Core protocols**
 
-## 8. Resource Map Coverage Gate
+| Protocol | Status | Evidence | Drift |
+|----------|--------|----------|-------|
+| `spec_code` | pass | commit messages vs diffs; `fanout-run.cjs:4162-4170`; `append-mode-event.cjs:429-495`; `convergence.cjs` `--read-only` refusal | none found |
+| `checklist_evidence` | notApplicable | - | commit-range target, no spec checklist |
 
-Omitted: no `resource-map.md` exists in the packet, so the gate does not apply.
+**Overlay protocols**
 
-## 9. Deferred Items
+| Protocol | Status | Evidence | Drift |
+|----------|--------|----------|-------|
+| `feature_catalog_code` | partial | `executor-config.md:29`, `append-mode-event-script.md:29`, `fanout-run.md:193,197` | two catalog claims overstate what the code guarantees (R3-P2-001, R2-P2-001) |
+| `playbook_capability` | pass | `manual-testing-playbook.md:14,47,104`; `review-quality-guards-block-premature-stop.md` | none |
+| `skill_agent` | notApplicable | - | no agent definition in the range |
+| `agent_cross_runtime` | notApplicable | - | no runtime mirror in the range |
 
-- P2 advisories: R1-P2-001..004, R5-P2-001, R12-P2-001.
-- The command presentation's `--depth-mode` flag row is a contract-length paragraph that restates the reference; that operator-UX cost belongs to the command-presentation node outside this lineage's partition.
-- Residual hardening (pre-existing, not range findings): the reducer's plain file writers lack a symlink guard; a corrupt lineage state log aborts the whole merge; `dispatch-iteration.cjs:835` falls back to `/tmp` instead of `os.tmpdir()`.
+**AC_COVERAGE**: exempt — the review target is a commit range, not a spec folder.
+
+**Resource Map Coverage Gate**: `resource-map.md` is not present in the spec folder, so the gate is skipped. The lineage emitted its own `resource-map.md` from the converged deltas.
+
+## 8. Deferred Items
+
+- **`write-containment.ts` internals.** The guard's path construction is outside the commit range, so its quarantine path was not reviewed. A future review of that file should check the quarantine copy's own write path.
+- **The canonical-envelope identity path.** A caller that hands a full envelope keeps its identity by design; the review confirmed the authorization epoch is still server-side, so the exception is provenance-only. No action.
+- **Claude's `preventive` label under `acceptEdits`.** Judged consistent with the capability record's stated definition; revisit only if the record's definition changes.
+
+## Dimension Expansion Map
+
+- **Completed pivots**: 0
+- **Failed pivots**: 0
+- **Audited overrides**: 0
+- **Swept**: none
+- **Pivot lineage**: none
+- **Frontier**: 4 nodes, all `answered` — F-1-002 (adapter contract and sandbox), F-1-004 (gateway identity), F-1-006 (docs and contracts), F-2-007 (sandbox enforcement label matrix, admitted from F-1-002 during iteration 1).
+- **Remaining frontier**: none.
+
+## 9. Search Ledger
+
+- **searchCoverage**: not emitted as a v2 record; this lineage ran the legacy unversioned record shape, which the rollout still accepts. The reducer's `searchDebt` is empty at stop (`search_debt: 0`), because every frontier node is answered.
+- **candidateCoverage**: the v2 candidate-coverage gate passes trivially when the review-depth-v2 search path is inactive, which it is here.
+- **ruledOutCandidates**: the per-iteration `ruled_out` rows are in `deltas/iter-NNN.jsonl`; the reducer consolidated them into the strategy's exhausted-approaches section.
+- **cleanSearchProof**: the terminal gates recorded `evidence`, `scope` and `coverage` all `pass` with digests `063c8560…`, `a40a6326…` and `f81df440…`.
 
 ## 10. Audit Appendix
 
-- **Run:** session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineage mode `new`, artifact directory `review/lineages/deepseek`.
-- **Iterations:** 12, each recorded through the append gateway with route proof and an append-only delta. Frontier nodes: F-1-003, F-1-005, F-1-007; each answered on all four dimensions.
-- **Stop:** `converged` with reasonDetail `frontier_drained`; no open or active frontier node, three answered, stop gates and graph decision still apply.
-- **Replay:** the registry was rebuilt from the state log and deltas on every reduce; convergence score 0.95, search debt 0, corruption 0.
-- **Coverage:** all four configured dimensions (correctness, security, traceability, maintainability) across three nodes = 12 node visits; ledger revisions 3-13.
-- **Residual risk:** the two P1s are not release blockers for the review loop's utility but block a PASS; the P1 traceability item can be closed by packet amendment if the operator confirms the shipped no-node behavior.
-- **Synthesis closeout warning:** `synthesis-closeout.cjs` staged `synthesis_incomplete` (severity `warning`) with `structured_state_findings_partially_reflected_in_registry`, because iteration 2 recorded the refinement R2-P2-001 and the reducer merged it into R1-P2-002 while the closeout counts iteration finding ids against registry findings. Both the closeout count and the `refines` mechanism predate this range, so this is a pre-existing false positive rather than a range finding; the report and registry are complete and the warning is recorded as-is.
+- **Convergence summary**: 16 iterations, stop reason `all_dimensions_clean`, stuck count 1, consecutive failures 0, weighted stop score computed by `convergence.cjs` with no failed legal-stop gate.
+- **Coverage summary**: correctness, security, traceability and maintainability each covered on all four frontier nodes; dimension coverage 4 of 4.
+- **Ruled-out claims**: 26 `ruled_out` rows across the 16 deltas, consolidated by the reducer.
+- **Sources reviewed**: the 88 files in `reviewScopeFiles`, with the deepest reads in `executor-config.ts`, `executor-audit.ts`, `fanout-run.cjs`, `append-mode-event.ts`, `append-mode-event.cjs`, `deep-review-state-contract.ts`, `convergence.cjs`, both command docs, both presentations, both compiled contracts, the feature catalogs, the playbooks and the conformance tests.
+
+### Core Protocols
+
+- `spec_code`: pass — each commit message names a behavior its diff implements.
+- `checklist_evidence`: notApplicable — no spec checklist for a commit-range target.
+
+### Overlay Protocols
+
+- `feature_catalog_code`: partial — two catalog claims overstate the code (R3-P2-001, R2-P2-001).
+- `playbook_capability`: pass — no playbook asserts a confinement property the runtime lacks.
+- `skill_agent`: notApplicable.
+- `agent_cross_runtime`: notApplicable.
+
+Review verdict: PASS

@@ -1,0 +1,13 @@
+The requested one-line change is in place and passes its acceptance checks in [make-shell-start-variant.sh](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/probes/make-shell-start-variant.sh:5).
+
+```bash
+# over the stored arms can be read. Usage: make-shell-start-variant.sh <out.mjs>
+set -uo pipefail
+RAD=/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy
+```
+
+`sed -n '5p'` printed `set -uo pipefail` and exited 0. `bash -n` exited 0. Strict spec validation also reported `RESULT: PASSED`. I did not run the archived probe.
+
+The quoted header line matched the file exactly; no mismatches. Global Git status shows six other probe files modified. I did not edit them.
+
+The `/doctor:sk-code setup` run produced no captured output or exit status within the 30-second wait, so its result is unknown. I did not start a duplicate run because its setup workflow specifies a single run.

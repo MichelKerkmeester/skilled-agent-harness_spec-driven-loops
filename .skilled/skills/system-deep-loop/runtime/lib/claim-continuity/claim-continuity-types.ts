@@ -213,6 +213,10 @@ export interface ClaimContinuityWriteContext {
   readonly policy: PolicyReference;
 }
 
+/**
+ * An observation to match against existing claims, with its aliases, fingerprint, semantic candidates and the match
+ * policy.
+ */
 export interface RecordClaimMatchInput {
   readonly observationId: string;
   readonly namespace: string;
@@ -224,6 +228,7 @@ export interface RecordClaimMatchInput {
   readonly context: ClaimContinuityWriteContext;
 }
 
+/** Request to mint a claim identity from a recorded match; the identity kind defaults to `claim`. */
 export interface MintClaimInput {
   readonly matchRecordId: string;
   readonly identityMint: Omit<MintIdentityInput, 'kind'> & {
@@ -233,6 +238,7 @@ export interface MintClaimInput {
   readonly context: ClaimContinuityWriteContext;
 }
 
+/** An observation, with its raw text and source event, to attach to an existing claim through a recorded match. */
 export interface AttachClaimObservationInput {
   readonly claimRef: ContinuityIdentityRef;
   readonly matchRecordId: string;
@@ -245,6 +251,7 @@ export interface AttachClaimObservationInput {
   readonly context: ClaimContinuityWriteContext;
 }
 
+/** Evidence to attach to a claim, with its stance, independence key and duplicate flag. */
 export interface AttachClaimEvidenceInput {
   readonly claimRef: ContinuityIdentityRef;
   readonly evidenceRef: string;
@@ -256,6 +263,7 @@ export interface AttachClaimEvidenceInput {
   readonly context: ClaimContinuityWriteContext;
 }
 
+/** A lifecycle transition to record for a claim, with a reference to its rationale. */
 export interface RecordClaimLifecycleInput {
   readonly claimRef: ContinuityIdentityRef;
   readonly transition: ClaimLifecycleTransition;
@@ -263,6 +271,7 @@ export interface RecordClaimLifecycleInput {
   readonly context: ClaimContinuityWriteContext;
 }
 
+/** An adjudication outcome to record for a claim, with the evidence it rests on. */
 export interface RecordClaimAdjudicationInput {
   readonly claimRef: ContinuityIdentityRef;
   readonly outcome: ClaimAdjudicationOutcome;
@@ -271,6 +280,7 @@ export interface RecordClaimAdjudicationInput {
   readonly context: ClaimContinuityWriteContext;
 }
 
+/** A correction that targets one earlier claim event by id. */
 export interface RecordClaimCorrectionInput {
   readonly claimRef: ContinuityIdentityRef;
   readonly targetEventId: string;
@@ -278,12 +288,14 @@ export interface RecordClaimCorrectionInput {
   readonly context: ClaimContinuityWriteContext;
 }
 
+/** Outcome of a claim write; the receipt is null when an identical prior write made it idempotent. */
 export interface ClaimContinuityWriteResult<TValue> {
   readonly status: 'appended' | 'idempotent';
   readonly value: TValue;
   readonly receipt: DurableAppendReceipt | null;
 }
 
+/** Minted claim reference with separate append-or-idempotent status for the identity event and the claim event. */
 export interface MintClaimResult extends JsonObject {
   readonly claim_ref: ContinuityIdentityRef;
   readonly identity_status: 'appended' | 'idempotent';
@@ -294,12 +306,14 @@ export interface MintClaimResult extends JsonObject {
 // 3. RESUME FRONTIER
 // ───────────────────────────────────────────────────────────────────
 
+/** Ledger position a claim frontier was taken at, as ledger id, sequence and record hash. */
 export interface ClaimContinuityLedgerCursor extends JsonObject {
   readonly ledger_id: string;
   readonly sequence: number;
   readonly record_hash: string;
 }
 
+/** Replay fingerprint inputs and digests that tie a claim frontier to one ledger sequence range. */
 export interface ClaimContinuityReplayReference extends JsonObject {
   readonly fingerprint_version: number;
   readonly run_id: string;
@@ -325,6 +339,7 @@ export interface ClaimContinuityFrontier extends JsonObject {
   readonly frontier_digest: string;
 }
 
+/** Claim state rebuilt from a persisted frontier, together with the identity frontier it depends on. */
 export interface RestoredClaimContinuityFrontier {
   readonly identityFrontier: ContinuityIdentityFrontier;
   readonly frontier: ClaimContinuityFrontier;
@@ -335,12 +350,17 @@ export interface RestoredClaimContinuityFrontier {
 // 4. SHADOW COMPARISON
 // ───────────────────────────────────────────────────────────────────
 
+/** The legacy finding fields that shadow mode compares against the claim projection. */
 export interface LegacyClaimFindingSnapshot extends JsonObject {
   readonly legacy_key: string;
   readonly lifecycle: string;
   readonly epistemic_status: string;
 }
 
+/**
+ * Shadow-mode comparison result: legacy stays the authority, and the fields where the claim projection diverges are
+ * listed.
+ */
 export interface ClaimShadowComparison extends JsonObject {
   readonly authority: 'legacy';
   readonly legacy_key_digest: string;

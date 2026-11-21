@@ -77,6 +77,11 @@ function getLatestByRun(items) {
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Collect open questions carried forward from iteration markdown and records, skipping machine-
+ * tracked, resolved and non-question entries, de-duplicated and ordered by the iteration that raised
+ * them.
+ */
 function buildCarriedForwardOpenQuestions({
   iterationFiles = [],
   iterationRecords = [],
@@ -137,6 +142,10 @@ function buildCarriedForwardOpenQuestions({
   );
 }
 
+/**
+ * Render carried-forward questions as a Markdown list naming the iteration each came from, or `[None
+ * yet]` when there are none.
+ */
 function formatCarriedForwardOpenQuestions(questions) {
   if (!Array.isArray(questions) || questions.length === 0) {
     return '[None yet]';
@@ -147,6 +156,11 @@ function formatCarriedForwardOpenQuestions(questions) {
     .join('\n');
 }
 
+/**
+ * Pick the next focus: the terminal sentinel when no machine question is open, else the leaf's
+ * unanswered recommendation, the newest carried-forward question, a follow-up on the latest finding,
+ * or the first machine question.
+ */
 function deriveNextFocusFromContinuity({
   iterationFiles = [],
   iterationRecords = [],

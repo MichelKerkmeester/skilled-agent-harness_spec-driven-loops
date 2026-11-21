@@ -62,6 +62,10 @@ function asciiCaseFold(value: string): string {
   return value.replace(/[A-Z]/g, (character) => character.toLowerCase());
 }
 
+/**
+ * Normalizes a `namespace:path` identity for path comparison, or returns undefined when the namespace is not a
+ * path kind.
+ */
 export function normalizeComparablePath(identity: string): string | undefined {
   const trimmed = identity.trim().replaceAll('\\', '/');
   const separator = trimmed.indexOf(':');
@@ -88,6 +92,7 @@ interface AliasIndex {
   readonly ambiguous: ReadonlySet<string>;
 }
 
+/** A resource resolved to its canonical form, with the validation issues found on the way. */
 export interface CanonicalizationResult {
   readonly resource: CanonicalResource;
   readonly issues: readonly GraphValidationIssue[];
@@ -97,6 +102,7 @@ export interface CanonicalizationResult {
 // 5. HELPERS
 // ───────────────────────────────────────────────────────────────────
 
+/** Normalizes a resource identity, lowercasing its namespace and NFC-normalizing the path part for path kinds. */
 export function normalizeResourceIdentity(identity: string): string {
   const trimmed = identity.trim().replaceAll('\\', '/');
   const separator = trimmed.indexOf(':');
@@ -117,6 +123,10 @@ function resourceLookupKey(identity: string): string {
   return normalizeComparablePath(identity) ?? normalizeResourceIdentity(identity);
 }
 
+/**
+ * Merges the default and supplied alias groups into a lookup that resolves unique aliases and records ambiguous
+ * ones.
+ */
 export function buildAliasIndex(aliasGroups: readonly AliasGroup[]): AliasIndex {
   const candidates = new Map<string, Set<string>>();
   for (const group of [...DEFAULT_ALIAS_GROUPS, ...aliasGroups]) {
@@ -162,6 +172,10 @@ function unknownCanonicalId(nodeId: string, identity: string): string {
 // 6. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Resolves one declared resource to its canonical identity through the alias index, collecting validation issues
+ * for the given node.
+ */
 export function canonicalizeResource(
   input: ResourceInput,
   expectedAccess: ResourceAccess | undefined,

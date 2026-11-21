@@ -2,22 +2,24 @@
 
 ## Dispatcher
 
-- Mode: review, single iteration, LEAF executor (no nested dispatch)
-- Run: `fanout-deepseek-flash-max-1795182837437-sws2tv`, generation 1, lineageMode `new`
-- Frontier node: `F-1-003` at depth 1 of 3
-- Dimension: traceability
-- Operator review focus: the whole overlay framework/root layout change end to end. This iteration addressed the focus through its docs-against-code clause at the requirement level: whether the phase 002 requirement rows and their cited engine lines still describe the engine that shipped.
+- Target spec folder: `specs/system-skilled-doctor/007-overlay-framework-root-layout`
+- Review packet root: `specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/deepseek-flash-max`
+- Frontier node: `F-1-006` at depth 1 of 3
+- Dimension: security
+- Focus: Frontier node F-1-006: security
+- Executor: cli-mistral-vibe model=deepseek-flash (inline, no nested dispatch)
+- Operator review focus: follow-up round after remediation. This iteration asks the security half of the re-pin question: does the vendored copy carry the remediated engine faithfully, and does the engine treat the manifest as untrusted input when it reads the pinned checkout.
 
 ## Files Reviewed
 
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/spec.md:63,66,89,109,112,142-147,153,154`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/plan.md:32,43,62,72`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/implementation-summary.md:16,64,72`
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:2778-2785` (`isUnderRootSkilled`, `rootSkilledProblem`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:3406-3420` (`layoutMoves`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5484-5496` (`adoptSource`, `legacyAdoptSource`)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5558,5562,5639,5651,5654,5660,5667` (the `adoptSource` call sites)
-- `.skilled/commands/doctor/scripts/overlay-engine.cjs:5465-5470,5544-5546` (what the spec's pointers name today)
+| File | Lines | Why |
+|------|-------|-----|
+| `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs` | 4227-4300 | `runGit`, `commitBytesReader`, `pinnedUpstreamBytes`, `resolveCommit` |
+| `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs` | 4900-5140 | The repin job readers that call `commitBytesReader` |
+| `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs` | 540-600, 2920-2990 | `pin.checkout` resolution and pin comparison |
+| `barter/ai-speckit/overlays/overlay-manifest.json` | 1-20 | `pin`, `strictWrites`, `repin.runtimeFolders` |
+| `barter/ai-speckit/overlays/sync-state.json` | whole | Whether the state file carries machine-specific data |
+| `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/` | listing | Whether the engine suites ship with the vendored copy |
 
 ## Findings - New
 
@@ -31,54 +33,74 @@ None.
 
 ### P2 Findings
 
-1. **The phase 002 spec's `adoptSource` evidence pointers no longer resolve, and its caller count is stale** -- `specs/system-skilled-doctor/007-overlay-framework-root-layout/002-engine-framework-root-source-layout/spec.md:109` -- REQ-002's whole claim is that every `adoptSource` caller follows the new rule, and its verification method is to grep the call sites at named lines. Those lines are wrong today. `spec.md:63` and `:109` place `adoptSource` at `overlay-engine.cjs:5399-5401`; it is at `:5484-5488`. `spec.md:109` places `layoutMoves` at `:3371` with the `.base` name at `:3381-3384`; `layoutMoves` is at `:3406` and its `adoptSource` call is at `:3415`. `spec.md:109` places the two strict-write hints at `:5465` and `:5469`; those lines now hold `isVendoredKey`, and the hints are at `:5558` and `:5562`. `spec.md:89` and `:112` place `hasOverlayCopy` at `:5544` and the `repin.exclude` refusal at `:5556`; `:5544` now sits inside `strictWriteRefusal`, and the excluded-path fallback is at `:5639-5667`. `plan.md:43` and `:62` repeat the same six numbers. The count is stale too: `spec.md:109` and `implementation-summary.md:64` say six callers, while `rg -n 'adoptSource\('` returns eight call sites (`:3415`, `:5558`, `:5562`, `:5639`, `:5651`, `:5654`, `:5660`, `:5667`), the extra three being the `root/skilled` refusal that REQ-003 requires.
-   Finding class: `stale-evidence-pointer`
-   Scope proof: inside the declared review target's phase 002 packet; names the exact spec and plan lines and the exact engine lines each should point at.
-   Affected surface hints: `002-engine-framework-root-source-layout/spec.md:63,89,109,112`; `002-engine-framework-root-source-layout/plan.md:43,62`; `002-engine-framework-root-source-layout/implementation-summary.md:64`; `overlay-engine.cjs:5484-5488`.
-   Case: a reviewer verifying REQ-002 runs `rg -n 'adoptSource\(' .skilled/commands/doctor/scripts/overlay-engine.cjs` and gets the definition at `:5484` plus eight callers, none at the six lines the spec names. Following `spec.md:109` to `:5465` lands on `isVendoredKey`, so the requirement cannot be checked as written and the reviewer has to rediscover the call sites.
+1. **The pinned-blob reader passes a manifest value to git without `--end-of-options`** -- `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4241` -- `commitBytesReader` builds `git cat-file blob <commit>:<key>` from `pin.commit` and an overlay entry path. Its sibling `resolveCommit:4281` guards the same class of input with `--end-of-options`, and that is the only occurrence of the flag in the file. `pinnedUpstreamBytes:4267` type-checks `pin.commit` as a string and nothing more, so a value beginning with `-` reaches git as an option rather than a revision.
+   Finding class: security-hardening
+   Scope proof: read `overlay-engine.cjs:4227-4300` in full; `grep -n end-of-options` returns exactly one hit, at `:4281`, and `commitBytesReader` at `:4239-4244` has none.
+   Affected surface hints: `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs`, `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs`
+   Case: a manifest records `pin.commit` as a string that starts with `-`, or an overlay entry names a source whose first path segment starts with `-`. `git cat-file blob` then reads the token as an option, and the bytes the audit compares are not the bytes at the pin, so `status --audit` can report a drift or an in-sync verdict that the pinned commit does not support.
+
+   ```json
+   {
+     "type": "claim",
+     "claim": "commitBytesReader passes a manifest-supplied revision and path to git cat-file without --end-of-options, while resolveCommit guards the same input class.",
+     "evidenceRefs": [
+       "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4241",
+       "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4281",
+       "barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4267"
+     ],
+     "counterevidenceSought": "checked whether pin.commit is validated as a hex id before it reaches the reader: :4267 only tests typeof string, and :2931 lowercases it for comparison without validating the shape. Checked whether runGit uses a shell: it calls spawnSync('git', ['-C', upstream, ...args]) at :4228, so the exposure is git option parsing rather than shell injection.",
+     "alternativeExplanation": "the manifest is committed repository content, so the value is trusted in practice and the gap only matters if a manifest is ever authored by someone other than the tree's owner. That reading does not explain why resolveCommit already carries the flag.",
+     "finalSeverity": "P2",
+     "confidence": "high",
+     "downgradeTrigger": "drop to informational if a maintainer records that the manifest is trusted input and no consumer ever accepts one from elsewhere"
+   }
+   ```
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|----------|--------|----------|---------|
-| `spec_code` | partial | `002-engine-framework-root-source-layout/spec.md:142-147,153`; `overlay-engine.cjs:2778-2785,3406-3420,5484-5488` | Every requirement's substance holds in the code, but REQ-002's evidence pointers do not resolve, so one row cannot be verified as written. |
-| `checklist_evidence` | partial | `002-engine-framework-root-source-layout/plan.md:43`; `002-engine-framework-root-source-layout/implementation-summary.md:64` | The plan's verification checkbox and the summary's caller count both state six callers at six lines; the engine has eight call sites at different lines. |
+| Check | Protocol | Result | Evidence |
+|-------|----------|--------|----------|
+| `checklist_evidence` | core | pass | Completion criterion 3 re-executed read-only: `cat .skilled-overlays.json` prints `{ "overlayDir": "../overlays" }` and `ls -d barter-overlays` fails |
+| `spec_code` | core | pass | The vendored engine is byte-identical to the pin, so the security fixes the packet records are the ones the consumer runs |
+| `integration_naming` | core | pass | The reader is named by path and by its two call families: `pinnedUpstreamBytes:4269` for the manifest pin, and the repin job readers at `:4924`, `:4925`, `:5048`, `:5096`, `:5135` |
 
 ## Integration Evidence
 
-- `adoptSource` (`overlay-engine.cjs:5484-5488`) implements REQ-001 exactly: `.skilled` maps to `framework`, `.skilled/X` to `framework/X`, and any other `X` to `root/` plus `X` with its leading dots dropped.
-- `isUnderRootSkilled` (`:2778-2782`) matches `root/skilled` and `root/skilled/` only, and `rootSkilledProblem` (`:2783-2785`) supplies the REQ-003 remedy text.
-- `layoutMoves` (`:3406-3420`) is the single place the relayout plan derives a target from a destination, and it calls `adoptSource(entry.destination)` at `:3415`, so the relayout and the adopt rule cannot diverge.
-- `legacyAdoptSource` (`:5492-5494`) is the old dot-dropped rule, used only by the excluded-path fallback at `:5639`, which is what REQ-007 requires.
+- `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4228` invokes git as `spawnSync('git', ['-C', upstream, ...args])`, so no manifest value reaches a shell.
+- `barter/ai-speckit/skilled/.skilled/commands/doctor/scripts/overlay-engine.cjs:4269` is the only producer of the manifest-pin reader, and it gates on `isDirectory(pin.checkout)` before constructing it.
+- `barter/ai-speckit/overlays/overlay-manifest.json:9` sets `strictWrites: true`, so the engine's `allow:` branch for a manifest without strict writes is not reachable in this consumer.
 
 ## Edge Cases
 
-- **The drift is a pointer problem, not a behaviour problem.** Every requirement's substance holds; only the line references and the caller count are stale. Recorded so the finding is not read as a claim that the rule is wrong.
-- **The stale numbers were accurate when phase 002 was written.** The engine grew by roughly 85 lines above `adoptSource` before the reviewed range closed, so the pointers drifted rather than being wrong on arrival. Recorded because it changes the fix: re-derive the pointers, do not re-plan the phase.
-- **Phase 001's spec was not swept for the same drift.** Recorded as a follow-up rather than a finding: this iteration verified phase 002's pointers because REQ-002 is the one requirement whose verification method is the pointers themselves.
-- **Tests were not re-run** for the containment reason recorded in iteration 1. The traceability judgement rests on the spec text and on direct greps of the engine.
+- **`pin.checkout` is an absolute local path.** `overlay-manifest.json:7` names `/Users/michelkerkmeester/MEGA/Development/Skilled`. The security reading adds nothing to the portability finding already raised as `R4-P2-001`: the engine only reads from that folder through `git -C`, and `pinnedUpstreamBytes:4267-4268` returns null when the folder is absent, so a clone without the checkout degrades to a skipped audit rather than a wrong verdict.
+- **The vendored copy ships the engine suites.** All six `overlay-engine-*.test.cjs` files are present under `skilled/.skilled/commands/doctor/scripts/tests/`, so a consumer can run the same assertions the pin carries. This is recorded as a clean surface rather than a finding because the suites cannot be executed inside this lineage's write surface.
+- **`sync-state.json` carries no machine-specific data.** `grep -c "/Users/"` returns 0; the file holds relative paths and SHA-256 digests only.
 
 ## Confirmed-Clean Surfaces
 
-- REQ-001's three-branch rule is implemented in one function with no manifest field able to override it, which is what "for every tree" requires.
-- REQ-003's `root/skilled` refusal is implemented in three places that agree: `isUnderRootSkilled` for the manifest check, the adopt refusal at `:5651-5660`, and the relayout refusal in `planRelayout`.
-- REQ-007's excluded-path fallback is implemented as a two-candidate lookup (`:5639`) that prefers the new-rule path, which is the order the requirement states.
-- `implementation-summary.md:72` names the modified file and the six behaviours it gained, and each of those behaviours is present in the engine.
+- `overlay-engine.cjs:4281` uses `--end-of-options` before the revision, so `resolveCommit` cannot be steered by a leading dash.
+- `overlay-engine.cjs:4228` passes every git argument as an argv element, so no manifest value is shell-interpolated.
+- `overlay-engine.cjs:4267-4268` returns null rather than throwing when the checkout is absent or the pin fields are not strings, so a missing checkout degrades the audit instead of failing the run.
+- `overlay-engine.cjs:555-556` resolves a relative `pin.checkout` against the tree root, which is the form the docs recommend and the form `R4-P2-001` asks the manifest to adopt.
+- `overlay-manifest.json:9` sets `strictWrites: true`, which is what makes the engine's `allow:` branch unreachable for this consumer.
+- `sync-state.json` records only relative paths and content digests, so committing it leaks no local layout.
 
 ## Ruled Out
 
-- **REQ-001's rule is not what the code does.** Checked and ruled out: `adoptSource` at `:5484-5488` matches the requirement branch for branch.
-- **The relayout derives its targets from a different rule than adopt.** Checked and ruled out: `layoutMoves` calls the same `adoptSource` at `:3415`.
-- **The `root/skilled` refusal is missing from one of the three paths.** Checked and ruled out: the manifest check, the adopt refusal and the relayout refusal all route through `isUnderRootSkilled`.
-- **The stale pointers mean the phase was never implemented.** Checked and ruled out: every cited behaviour exists, at a different line.
+- **The vendored engine diverges from the pin in a security-relevant way.** Ruled out in iteration 4 by byte diff against `b5a630c6efa`; re-confirmed here by reading the same reader functions in the vendored copy.
+- **A manifest can make the engine read a credential file.** Ruled out in iteration 2: `protectedPathsFor` refuses a dotenv value and a value outside the entry.
+- **The strict-writes `allow:` branch is reachable here.** Ruled out: `overlay-manifest.json:9` sets `strictWrites: true`.
+- **`sync-state.json` leaks an absolute path.** Ruled out by exact search: zero `/Users/` hits.
+- **The vendored copy omits the engine tests.** Ruled out by listing the tests folder: all six `overlay-engine-*.test.cjs` files are present.
 
 ## Next Focus
 
 - Dimension: traceability
-- Focus area: frontier node `F-1-007` -- whether the Barter re-pin's own records trace to the Skilled commit they claim, including the `v4.1.0.0` changelog's claims against the vendored tree
-- Reason: F-1-003 traceability is complete; F-1-007 is the node whose question is itself a traceability question, so the pass is cheap and the evidence is already partly gathered
-- Rotation status: second pass on F-1-007; F-1-003 keeps maintainability open, F-1-005 keeps traceability and maintainability open
-- Blocked/productive carry-forward: productive -- the parity comparison from iteration 3 already establishes the byte-level facts this pass needs to trace
-- Required evidence: `overlays/framework/changelog/skilled-coder/v4.1.0.0.md` claims, `overlays/overlay-manifest.json` `pin`, `overlays/sync-state.json`, and the phase 004 and 005 spec requirement rows
+- Focus area: run-level pass over the packet docs and the six phase goals against the shipped behaviour, including the two Skilled-side completion criteria no iteration has executed
+- Reason: security is now covered on all three frontier nodes and traceability is the only canonical dimension with no iteration behind it
+- Rotation status: F-1-006 security complete; F-1-002 and F-1-004 carry two P2 each into synthesis
+- Blocked/productive carry-forward: productive -- the reader audit found one hardening asymmetry that the earlier engine passes did not reach
+- Required evidence: `changelog/v1.2.0.0.md` naming `/doctor:overlay apply --relayout`; each phase goal's acceptance criteria against the tree; the packet's own checklist rows
+- Recovery note: `node --test` on the engine suites still cannot run inside this lineage because the suites write fixtures outside the write surface; record that limit rather than claiming a pass
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

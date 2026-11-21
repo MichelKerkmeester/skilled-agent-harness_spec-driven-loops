@@ -32,10 +32,12 @@ import type {
 // prove the fan-out assertion can go red.
 const PARTITION_BY_ITERATION = true;
 
+/** The delta rows folded so far for one iteration file. */
 export interface DeepResearchDeltasProjectionState extends LegacyProjectionJsonObject {
   readonly rows: readonly JsonObject[];
 }
 
+/** Overrides for the deep-research per-iteration delta projections; omitted fields use the research ledger. */
 export interface CreateDeepResearchDeltasProjectionContractOptions {
   readonly ledgerId?: string;
   readonly streamIds?: readonly string[];

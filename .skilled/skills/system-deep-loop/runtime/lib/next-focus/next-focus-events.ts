@@ -74,6 +74,7 @@ const COMMON_PAYLOAD_FIELDS = [
 // 3. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/** Envelope fields for one next-focus event; the decision id becomes both the event id and the idempotency key. */
 export interface NextFocusEventInput {
   readonly decision: NextFocusDecision;
   readonly streamId: string;

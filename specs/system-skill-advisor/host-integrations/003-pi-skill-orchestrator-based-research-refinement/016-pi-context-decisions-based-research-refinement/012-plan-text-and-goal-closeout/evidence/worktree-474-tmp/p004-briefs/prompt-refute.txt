@@ -1,0 +1,99 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read and command uses this root. Ignore any other "Workspace root folder" your environment names.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION. You are a non-interactive, READ-ONLY dispatched worker (AI_SESSION_CHILD=1). Write nothing. Do not stop to confirm anything.
+
+TOOL MAPPING: use your shell, read-only: cat or sed -n to read, rg to search, find or ls to list, wc for counts. Run no other command.
+
+TASK: REFUTE this change. Claim: when the Claude UserPromptSubmit hook's own code throws, the model now gets the same outage line and directives a timeout gives, the hook still never throws or blocks, and the doc sentence about SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD is true.
+For EACH finding give the exact input or call path, what happens now, what should happen, and file:line. Consider: whether the fallback text differs from the timeout path's text; whether the catch can now emit output when it should stay silent (for example disabled advisor, invalid stdin, a prompt that should be skipped, or directive-lifecycle dedup that should suppress directives); whether other runtimes that reuse this handler (Pi, DSH, Vibe, Codex, OpenCode adapters) now get double output or a changed contract; whether renderAdvisorTimeoutFallback has side effects (policy observation) that are wrong in a crash; whether the test proves the claim or passes for another reason; and whether each clause of the doc sentence is true in code (where the threshold env var is read, whether hooks always send 0.8).
+"Looks good" is a failed review. If after real effort you find nothing, say which attack you tried and why it failed.
+End your report with a line "FILES READ: <list>".
+
+DIFF:
+diff --git a/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts b/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+index fba543821a7..fdb0adef550 100644
+--- a/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
++++ b/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+@@ -32,6 +32,7 @@ import {
+ import {
+   renderAdvisorBrief,
+   renderAdvisorFallbackDirective,
++  renderAdvisorTimeoutFallback,
+   observeEmittedAdvisorPolicy,
+ } from '../../runtime/lib/render.js';
+ import type { ShadowDeliveryRenderOptions } from '../../runtime/lib/render.js';
+@@ -476,7 +477,18 @@ export async function handleClaudeUserPromptSubmit(
+       errorCode: 'UNKNOWN',
+       errorDetails: 'Unhandled UserPromptSubmit hook exception',
+     }, writeDiagnostic);
+-    return {};
++    // A crash still shows the model the outage line and directives, as a timeout does.
++    // If rendering that line throws as well, there is nothing safe left to show.
++    try {
++      return {
++        hookSpecificOutput: {
++          hookEventName: 'UserPromptSubmit',
++          additionalContext: renderAdvisorTimeoutFallback(),
++        },
++      };
++    } catch {
++      return {};
++    }
+   }
+ }
+ 
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts b/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+index 2c115cfdf07..20b937caa57 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+@@ -478,6 +478,36 @@ describe('Claude UserPromptSubmit advisor hook', () => {
+     expect(diagnostic.errorDetails).toBe('timed out after 1000ms see logs');
+   });
+ 
++  it('emits the outage fallback when the hook itself throws while rendering', async () => {
++    const diagnostics = diagnosticsSink();
++    const buildCliBrief = vi.fn(async () => fixture('livePassingSkill.json'));
++    const renderBrief = vi.fn(() => {
++      throw new Error('render failed');
++    });
++    const output = await handleClaudeUserPromptSubmit({
++      session_id: 's1',
++      hook_event_name: 'UserPromptSubmit',
++      prompt: 'implement a TypeScript hook',
++      cwd: '/workspace/project',
++    }, {
++      buildCliBrief,
++      renderBrief,
++      writeDiagnostic: diagnostics.writeDiagnostic,
++      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
++    });
++
++    expect(renderBrief).toHaveBeenCalledOnce();
++    expect(output).toEqual({
++      hookSpecificOutput: {
++        hookEventName: 'UserPromptSubmit',
++        additionalContext: expectedOutageContext('fail_open'),
++      },
++    });
++    const diagnostic = parseDiagnostic(diagnostics.records.at(-1) ?? '{}');
++    expect(diagnostic.status).toBe('fail_open');
++    expect(diagnostic.errorCode).toBe('UNKNOWN');
++  });
++
+   it('emits full fallback context when Python is unavailable', async () => {
+     const result = fixture('failOpenTimeout.json');
+     result.diagnostics = { errorCode: 'PYTHON_MISSING' };
+diff --git a/.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md b/.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+index 6908071499f..26cd9856a9c 100644
+--- a/.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
++++ b/.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+@@ -379,7 +379,7 @@ Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer a
+ 
+ | Variable | Default | Type | Description | Source |
+ |----------|---------|------|-------------|--------|
+-| `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` | `0.8` | number (0..1) | Override the confidence threshold used by the 5-lane fusion scorer. Below this value, a recommendation is filtered out unless `confidenceOnly` mode is active. Parsed as a float. Values outside [0,1] fall back to the default. | `runtime/lib/compat/contract.ts` |
++| `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` | `0.8` | number (0..1) | Override the confidence threshold used by the 5-lane fusion scorer. Below this value, a recommendation is filtered out unless `confidenceOnly` mode is active. Parsed as a float. Values outside [0,1] fall back to the default. The value is read once when the daemon starts, so a later change has no effect until a restart; the per-request `confidenceThreshold` option of `advisor_recommend` is the supported override, and hook briefs always send `confidenceThreshold` 0.8, so the variable never reaches them. | `runtime/lib/compat/contract.ts` |
+ | `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` | `0.35` | number (0..1) | Override the uncertainty ceiling used by the 5-lane fusion scorer. Above this value, a recommendation is filtered out. Parsed as a float. Values outside [0,1] fall back to the default. | `runtime/lib/compat/contract.ts` |
+ | `SPECKIT_ADVISOR_CALIBRATION_OVERRIDE_JSON` | (none) | JSON string | Partial override for routing calibration bonuses. Accepts a JSON object with optional keys `memorySaveBonus`, `createAgentBonus`, `testingPlaybookBonus` (all number). Merged with SCORING_CALIBRATION defaults. Parse failures log a warning and fall back. | `runtime/lib/scorer/scoring-constants.ts` |
+ | `SPECKIT_ADVISOR_PROMPT_POLICY_PATH` | (bundled default) | string | Override path to the JSON file containing prompt-policy linguistic sets (EXACT_SKIP_COMMANDS, CASUAL_ACKNOWLEDGEMENTS, WORK_INTENT_VERBS, STOP_WORDS, GOVERNANCE_MARKERS) and fire-threshold constants. When unset, the bundled `data/prompt-policy.default.json` is used. | `runtime/lib/prompt-policy.ts` |

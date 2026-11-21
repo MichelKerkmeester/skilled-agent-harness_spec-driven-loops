@@ -1,22 +1,30 @@
-# Iteration 3 - F-1-007 correctness: divergent pivot, continuity thread and coverage-graph signals
+# Review Iteration 003
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-007, dimension correctness. Node scope: `divergent-pivot.ts`, `divergent-review-pivot.ts`, `divergent-research-pivot.ts`, `divergent-pivot.cjs`, `continuity-thread.cjs` and `runtime/lib/coverage-graph`.
-- Operator review focus covered in this iteration: overengineering (two retry control paths and the double config write judged against the current requirement), operator UX (pivot failure reasons, the terminal-frontier gate text, and the accepted-direction handoff), cross-CLI/OS parity (pivot paths remain repo-relative and the retry step exists in both YAMLs).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 3 of 24
+- Focus: **Frontier node F-1-006: correctness**
+- Dimension: correctness
+- Frontier node: F-1-006 (depth 1 of 3), scope `.skilled/commands/deep`, `.skilled/skills/system-deep-loop/deep-review/references`, `.skilled/skills/system-deep-loop/deep-research/references`, `.skilled/skills/system-deep-loop/runtime/feature-catalog`
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, the command docs and compiled contracts, `deep-review/references/convergence/convergence.md`, `deep-review/references/protocol/loop-protocol.md`, `deep-review/references/protocol/loop-state-and-gates.md`, `deep-review/references/state/state-jsonl.md`, `runtime/feature-catalog/executor/executor-config.md`, `runtime/feature-catalog/fanout/fanout-run.md`, `runtime/feature-catalog/script-entry-points/append-mode-event-script.md`, `runtime/feature-catalog/script-entry-points/convergence-script.md`.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` -- attempt identity, preflight, seat-cap per attempt, council paths, pending/finalize, retry loop, lifecycle events.
-- `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` -- read-only guard, path-shaped scope stripping, frontier-unanswered seeds, open-frontier gate, identity and seat-usage scoping.
-- `.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts` -- identity derivation, attempt-aware seat usage.
-- `.skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs` -- prepare/record-seat/finalize surface and retry documentation.
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs` -- carried-forward question filter, leaf-focus step, next-focus precedence.
-- `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts` -- `SOURCE_QUALITY_CLASS` vocabulary.
-- `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts` -- unclassified sources no longer raise diversity.
-- `.skilled/commands/deep/assets/deep-review.yaml:1422-1547` and `.skilled/commands/deep/assets/deep-research.yaml:1316-1400` -- divergent branch eligibility, retry re-entry and result application.
-- Traceability sources: `011-review-frontier-mode` REQ-007, AC-008 and plan lines 67/71; `012-pivot-hygiene` REQ-002/REQ-005/REQ-007/REQ-008; `010-research-frontier-mode` REQ-005/REQ-008.
+- `.skilled/commands/deep/review.md:108-112` and `.skilled/commands/deep/research.md:115-119` (`--executor` sandbox paragraph)
+- `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown:284-290,363-370`
+- `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown:279-285,342-349`
+- `.skilled/commands/deep/assets/deep-review-presentation.txt:142,222`
+- `.skilled/commands/deep/assets/deep-research-presentation.txt:131,195`
+- `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md:137-180,453-458`
+- `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:284-289`
+- `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md:113-160`
+- `.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md:97-101`
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/executor/executor-config.md:26-48`
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:110,197,203,216,231`
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/append-mode-event-script.md:29-53`
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/convergence-script.md:61,81`
 
 ## Findings - New
 
@@ -26,79 +34,70 @@ None.
 
 ### P1 Findings
 
-1. **REQ-007 and AC-008 promise pivot-candidate admission the pivot branch never performs** -- .skilled/commands/deep/assets/deep-review.yaml:1429 -- `011` REQ-007 requires that an accepted pivot candidate be "routed through admission" (`011-review-frontier-mode/spec.md:147`), AC-008 repeats it and records the evidence as "the YAML frontier_gate routes an accepted candidate through step_frontier_admit" (`011-review-frontier-mode/acceptance-criteria.md:63`), and the plan says the pivot "hands an accepted candidate to admission" and "may run and propose more nodes through admission" (`plan.md:67`, `:71`). The implemented branch says the opposite: "with the frontier terminal the leaf gets no FRONTIER block, so the pivot adds no frontier node" (`deep-review.yaml:1429`), and its completed path only sets `next_dimension: "{pivot_result.restoredFocus}"` and re-reduces (`:1541-1547`). `step_frontier_admit` reads `frontier_proposal` rows from the iteration delta (`:2051`); the pivot result writes no such row, so no accepted candidate ever reaches the node store.
-Finding class: class-of-bug
-Scope proof: `rg -n "frontier-admit|admit" .skilled/commands/deep/assets/deep-review.yaml` lists the seed, the budget step, the STUCK close, the activation close and `step_frontier_admit`; none sits in the `if_completed` pivot branch at `:1504-1547`. `rg -n "frontier_proposal" .skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` prints nothing, so the pivot emits no proposal row for its selected candidate.
-Affected surface hints: ["deep-review.yaml divergent pivot frontier_gate", "deep-review.yaml step_apply_divergent_pivot_result", "step_frontier_admit", "divergent-review-pivot.ts accepted candidate", "011 AC-008 evidence"]
-Case: a review run closes all frontier nodes, the frontier_drained stop makes the pivot eligible, the Council accepts a read-only direction for a subsystem the frontier closed as exhausted, and the direction becomes only focus text; the frontier store stays terminal, `registry.frontier` gains no node for it, and the next stop can form `frontier_drained` again without the accepted direction ever becoming tracked frontier depth.
-
-Claim adjudication:
-```json
-{
-  "type": "spec-contradiction",
-  "claim": "The pivot branch adopts an accepted direction as next_dimension and never routes it through frontier admission, contrary to REQ-007 and AC-008.",
-  "evidenceRefs": [
-    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/spec.md:147",
-    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/acceptance-criteria.md:63",
-    "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode/plan.md:67",
-    ".skilled/commands/deep/assets/deep-review.yaml:1429",
-    ".skilled/commands/deep/assets/deep-review.yaml:1541",
-    ".skilled/commands/deep/assets/deep-review.yaml:2051"
-  ],
-  "counterevidenceSought": "Searched the whole review YAML for an admission call in the pivot branch and found only the post-dispatch step that reads iteration deltas; checked the review pivot script for a frontier_proposal writer (none); considered whether 'admission' could mean the pivot's own candidate dedupe, but AC-008 names step_frontier_admit explicitly.",
-  "alternativeExplanation": "The YAML clause reads as a deliberate later decision that a pivot direction should be focus text rather than frontier depth, because a new frontier node would reopen the veto the pivot just passed; if that is the ruling, REQ-007, AC-008 and the plan are the stale surfaces.",
-  "finalSeverity": "P1",
-  "confidence": "high",
-  "downgradeTrigger": "Downgrade to P2 if 'admission' in REQ-007 is ruled to mean the pivot candidate dedupe rather than step_frontier_admit, or if a later step writes the selected candidate as a frontier proposal."
-}
-```
+None.
 
 ### P2 Findings
 
-None.
+1. **The executor catalog claims the conformance test fails on any builder drift, but its `permission-mode` assertion cannot see a same-mode collapse** -- `.skilled/skills/system-deep-loop/runtime/feature-catalog/executor/executor-config.md:29` -- The catalog states that "a builder that drifts from its record fails the test". For the `permission-mode` surface the test asserts only that `read-only` differs from `danger-full-access` (`executor-adapter-capabilities.vitest.ts:308-312`), so a builder that emits the same permission mode for `workspace-write` and `danger-full-access` passes. That is exactly the dsh collapse reported as R1-P2-001, and the catalog's stated safety net does not catch it. The claim is actionable in one place: the assertion should compare all three modes pairwise for a `permission-mode` surface.
+   - Finding class: matrix/evidence
+   - Scope proof: `rg -n "permission-mode" .skilled/skills/system-deep-loop/runtime/tests/unit/executor-adapter-capabilities.vitest.ts` returns the single assertion pair at 308-312; no other test asserts the dsh permission mode for `workspace-write` against `danger-full-access`. The catalog sentence is the only place that claims drift detection for the record as a whole.
+   - Affected surface hints: ["executor adapter conformance test", "runtime/feature-catalog/executor/executor-config.md", "dsh command builder"]
+   - Case: a maintainer changes the dsh builder so `workspace-write` and `danger-full-access` both emit `--permission-mode workspace-write` (the current state). The conformance suite stays green, and the catalog still tells the reader that drift cannot survive the suite.
+
+## Findings - Refined
+
+1. **R2-P2-001 refined: the feature catalog repeats the identity claim the projection contradicts** -- `.skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/append-mode-event-script.md:29` -- The catalog says the gateway "drops the row's `eventId`, `idempotencyKey`, `producer` and `authorityEpoch`" and that "None of the four is kept as a claim". The drop applies to the envelope metadata only; the review record travels whole as `data.record` and the projection spreads it, so a model-written `eventId` or `idempotencyKey` survives in the projected row. This is the same root cause as R2-P2-001, now stated as a documented guarantee rather than only a code comment, so the fix must correct the catalog sentence as well as the projection or the strip.
+   - Finding class: instance-only
+   - Scope proof: the catalog sentence and the code comment (`append-mode-event.cjs:104-107`) make the same claim; both are contradicted by the single projection spread at `deep-review-state-contract.ts:291-296`. No third statement of the claim was found.
+   - Affected surface hints: ["append-mode-event CLI", "runtime/feature-catalog/script-entry-points/append-mode-event-script.md", "deep-review-state-contract projection"]
+   - Case: an operator reads the catalog to learn what the state log can contain, concludes a model cannot put an `eventId` into a row, and writes a correlation check that trusts the state-log field.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | `012` REQ-002/REQ-005/REQ-007/REQ-008 and `010` REQ-005/REQ-008 match the code (attempt-scoped ids and paths, per-attempt seat cap checked only on open, 3 or 6 recorded outputs, legacy config load, scoped usage). `011` REQ-007's admission clause does not: the pivot completed path adopts focus text only (`deep-review.yaml:1541-1547`). |
-| `checklist_evidence` | partial | AC-008's gating and seed halves are met (`divergent-review-pivot.ts:311-330`, `:398-410`); its admission evidence claim is not met by the branch it cites. |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | pass | `.skilled/commands/deep/review.md:111`, `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md:140`, `.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md:97` | The three commits' doc claims match the code: the opencode sandbox paragraph matches the builder, the blocked-stop record is attributed to `convergence.cjs` with `--read-only` on a dry run, and the iteration row time is described as gateway-set with `claimedTimestamp`. |
+| `checklist_evidence` | notApplicable | - | No spec checklist for a commit-range target. |
+| `skill_agent` | notApplicable | - | No agent definition in the range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in the range. |
+| `feature_catalog_code` | partial | `.skilled/skills/system-deep-loop/runtime/feature-catalog/executor/executor-config.md:29`, `.skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/append-mode-event-script.md:29` | Two catalog claims overstate what the code guarantees: the drift-detection sentence (P2-1) and the identity-drop sentence (refinement of R2-P2-001). The rest of the catalog checked (fanout-run, convergence-script, executor-config capability record) matches the builders. |
+| `playbook_capability` | notApplicable | - | The manual-testing playbooks describe operator scenarios, not a capability this node's code claims; no playbook claim was found to contradict the range. Recorded `notApplicable` rather than `pass` because no playbook was exercised. |
 
 ## Integration Evidence
 
-- `.skilled/commands/deep/assets/deep-review.yaml:1422-1496` runs prepare, one seat at a time, record-seat, finalize and the one-time retry through the real CLI subcommands; `step_retry_divergent_pivot_once` re-enters prepare once and stops when `pivot_attempt == 2`.
-- `.skilled/commands/deep/assets/deep-research.yaml:1316-1400` carries the same retry wiring for the research pivot, so the retry is not review-only.
-- `.skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs:1-25` documents the prepare-only mode ownership and the retry contract the YAML implements.
-- `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:679-690` consumes the `SOURCE_QUALITY_CLASS` vocabulary exported from `coverage-graph-query.ts:138-150`, and `upsert.cjs:236-300` derives the class before the signal reads it.
+- `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:288` already states that "the deepseek harness narrows `danger-full-access` to `workspace-write`, and pi builds the same command for both write modes". That corrects the iteration-1 edge-case note that the narrowing was undocumented: the behavior is documented, and R1-P2-001 stands only on the provenance mismatch (`sandboxMode` and `sandboxEnforcement` in `effectiveConfig`), not on the narrowing being hidden.
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:110,197,203` matches the fan-out builders: claude `--output-format stream-json --verbose`, opencode `sandboxEnforcement` `compensating` under `workspace-write`, and `danger-full-access` as plain `--auto` with no deny.
+- `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md:140,456` and `loop-state-and-gates.md:113,157` both attribute the blocked-stop record to `convergence.cjs` and name `--read-only` for the dry run, matching the YAML's `step_bind_convergence_write_arg`.
 
 ## Edge Cases
 
-- Attempt 2 lives under `council/attempt-2/` while `config.json`, `state.jsonl` and `report.md` stay shared (`divergent-pivot.ts:844-861`); a resumed attempt 2 therefore reads the shared config, and the config rewrite compares against the attempt-1 record before overwriting. A crash between the two writes leaves attempt 1 persisted with the attempt-failed event durable, which re-enters the same branch on the next prepare.
-- `maxCouncilSeatOutputs` is now per council attempt, so a pivot may record 6 seat returns while the field reads 3 (`divergent-pivot.ts:292`, `:1589`); REQ-002 and REQ-005 require exactly that, so the count is not a lifetime cap.
-- `minRemainingIterations` is still parsed, persisted and accepted but no longer refuses a pivot (`divergent-pivot.ts:749-760`; test at `divergent-pivot.vitest.ts:574-584`); REQ-004 retires the guard deliberately.
-- The research pivot does not seed frontier revisits because the sixth source is specified only in the deep-review convergence reference; the research convergence reference does not carry it.
+- **Compiled contracts are generated.** `deep-review.contract.markdown` and `deep-research.contract.markdown` carry `sourceDigests` for `review.md`, the presentation asset and the YAML. Their body text matches the edited sources, so no hand-edit drift was found; a digest mismatch would be a generation failure, not a review finding.
+- **Two claude log formats are both correct.** `loop-protocol.md:287` describes `--output-format text` for the `dispatch-iteration.cjs` branch, which still emits text (`dispatch-iteration.cjs:375-376`), while the fan-out builder emits `stream-json` (`fanout-run.cjs:2923-2925`). The doc names the branch it describes, so this is not drift.
+- **`playbook_capability` marked `notApplicable`.** The playbooks in scope are operator procedures; none asserts a capability the range changed. Marking it `pass` would claim a check that was not run.
+- **Ratio denominator correction.** Iterations 1 and 2 reported `newFindingsRatio` on an iteration-local denominator (1.0 each). The contract compares new against accumulated findings, so this iteration uses the accumulated denominator and later iterations follow it. The earlier values overstate novelty, which delays a stop rather than forcing one; the correction is recorded here rather than rewritten, because the ledger is append-only.
 
 ## Confirmed-Clean Surfaces
 
-- Attempt identity is complete: seat events, deliberation, seat paths and config `attempt`/`invariants.rounds` are attempt-scoped, attempt-1 ids and paths stay unchanged, and `buildPivotCouncilPaths` rejects any attempt other than 1 or 2.
-- The seat cap is evaluated only when an attempt opens (`durableSeatEvents.size === 0`), so resuming an attempt that already holds two seat returns is not refused.
-- A second quorum miss and an agreement failure both fail closed without a third attempt; `pivot_attempt_failed` is written only for a first-attempt quorum miss.
-- The review pivot refuses an open or active frontier before preparing, seeds only `exhausted` or `blocked` nodes, and strips path-shaped scope entries before the read-only mutation scan.
-- `buildCarriedForwardOpenQuestions` drops resolved and non-question-shaped items only when they are not registry questions, and `deriveNextFocusFromContinuity` places the leaf recommendation ahead of the carried-forward step but behind the terminal sentinel, as REQ-001/REQ-002/REQ-005 require.
-- `computeResearchSourceDiversityFromData` no longer counts `unclassified` as a distinct source kind, and the class vocabulary is derived at the upsert choke point rather than trusted from a leaf.
+- **Opencode sandbox docs.** `review.md:111`, `research.md:118`, both presentations, both compiled contracts and `loop-protocol.md:286` all describe the same behavior: `--auto` always, `workspace-write` denies `external_directory` to file tools but not Bash, `danger-full-access` adds no deny, `read-only` is refused.
+- **Blocked-stop attribution.** The convergence reference and the state-and-gates reference both name `convergence.cjs` as the producer and `--read-only` as the dry-run argument, matching the YAML binding.
+- **Iteration row time.** `state-jsonl.md:97` and `append-mode-event-script.md:33` both describe the gateway clock plus `claimedTimestamp`, matching `deep-review-state-contract.ts:291-296`.
+- **Executor capability catalog.** `executor-config.md:29` correctly describes the record's fields and the cost reader's opencode/claude-only cost, which matches `EXECUTOR_ADAPTER_CAPABILITIES` and `fanout-salvage.cjs`.
 
 ## Ruled Out
 
-- Retrying the library `runDivergentPivot` loop and the YAML step in two places: the library is the packaged transaction API and the YAML must orchestrate native seat dispatch across steps, so neither can own the other's retry; two instances do not justify a shared abstraction.
-- Recording six seat outputs for an attempt-1 quorum miss that returned only two: REQ-002 explicitly defines the recorded total as `3 * attempt`.
-- Overwriting the pivot config twice when attempt 2 opens: the first write replays the attempt-1 record and the second adopts attempt 2; a crash between them is recoverable and leaves no contradictory state.
-- A research frontier revisit source: missing by design; the sixth source is a deep-review-only sentence.
+- **Compiled-contract drift.** Ruled out: the body text of both compiled contracts matches the edited `review.md`/`research.md` and presentation assets, and the digest headers were regenerated in the same commit.
+- **A separate finding for the dsh narrowing being undocumented.** Ruled out after reading `loop-protocol.md:288`, which documents it; the surviving issue is the provenance mismatch already recorded as R1-P2-001.
+- **A finding for the claude `--output-format` difference between dispatch paths.** Ruled out: the reference names the `dispatch-iteration.cjs` branch, and that branch still emits text.
 
 ## Next Focus
 
-- Dimension: security on F-1-003 (fan-out runner and merge trust boundaries).
-- Reason: all three dealt nodes now have correctness covered; security is the next uncovered dimension on the first node and the fan-out path handles executor commands, env allowlists and cross-lineage input.
-- Required evidence: `fanout-run.cjs` command construction and env pass-through, `fanout-merge.cjs` input validation, and the executor guard helpers they call.
-- Rotation status: F-1-003, F-1-005 and F-1-007 each have correctness covered; security is uncovered on all three.
+- Dimension: security
+- Frontier node: F-1-002 (active, correctness covered; the reducer's breadth-first rule now returns to the shallowest node with the fewest visits)
+- Focus area: the trust boundary between the parent environment and the child for the three node files: `buildExecutorDispatchEnv`'s per-kind allowlist, the dsh persona patch path resolution under `.dsh/agents`, and whether an inherited `OPENCODE_CONFIG_CONTENT` can re-enable a denied path.
+- Reason: all three depth-1 nodes now have one correctness visit and no P0/P1; the next pass should rotate to security on the node with the highest-blast surface.
+- Rotation status: correctness covered on F-1-002, F-1-004 and F-1-006; security next.
+- Blocked/productive carry-forward: productive (doc-to-code comparison found one overstated guarantee and one refinement); no blocked approaches.
+- Required evidence: `executor-audit.ts` env allowlist and `buildExecutorDispatchEnv`, `fanout-run.cjs` dsh patch path construction, and the opencode inline-config merge.
+- Recovery note: none.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

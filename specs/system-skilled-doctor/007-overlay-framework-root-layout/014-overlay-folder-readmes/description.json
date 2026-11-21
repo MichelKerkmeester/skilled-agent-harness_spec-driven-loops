@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-skilled-doctor/007-overlay-framework-root-layout/014-overlay-folder-readmes",
+  "description": "Phase 14: overlay-folder-readmes",
+  "keywords": [
+    "phase",
+    "overlay-folder-readmes"
+  ],
+  "lastUpdated": "2026-11-21T00:22:48.007Z",
+  "specId": "014",
+  "folderSlug": "overlay-folder-readmes",
+  "parentChain": [
+    "system-skilled-doctor",
+    "007-overlay-framework-root-layout"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "20-11-26_23-26__scaffolded-and-planned-the-phase-on-the-worktree.md",
+    "21-11-26_01-21__closed-phase-14-the-engine-gives-every-overlay.md",
+    "21-11-26_01-22__closed-phase-14-after-five-review-rounds-the.md"
+  ]
+}

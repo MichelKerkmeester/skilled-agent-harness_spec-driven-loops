@@ -2,23 +2,25 @@
 
 ## Dispatcher
 
-- Mode: review, single iteration, LEAF executor (no nested dispatch)
-- Run: `fanout-deepseek-flash-max-1795182837437-sws2tv`, generation 1, lineageMode `new`
-- Frontier node: `F-1-007` at depth 1 of 3
+- Target spec folder: `specs/system-skilled-doctor/007-overlay-framework-root-layout`
+- Review packet root: `specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/deepseek-flash-max`
+- Frontier node: `F-1-002` at depth 1 of 3
 - Dimension: traceability
-- Operator review focus: the whole overlay framework/root layout change end to end. This iteration addressed the focus through its leftover-reference clause: whether any old `barter-overlays` path survives outside the areas the packet exempts, and whether the Barter re-pin's own records still trace to the commit and the release they claim.
+- Focus: Frontier node F-1-002: traceability
+- Executor: cli-mistral-vibe model=deepseek-flash (inline, no nested dispatch)
+- Operator review focus: follow-up round after remediation. This iteration asks whether the remedies the remediation added are traceable from the packet's own checklist to the tree, and whether the docs still describe the code that ships.
 
 ## Files Reviewed
 
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/005-barter-move-overlays-out-of-tree/spec.md:133-146`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/spec.md:163-180`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/tasks.md:34,47,48,50,64,66,68,72,73,75,111`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/goal.md:90`
-- `specs/system-skilled-doctor/007-overlay-framework-root-layout/004-barter-repin-and-relayout/implementation-summary.md:8,17,19,108,109,118,126`
-- `barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md:1-60,310`
-- `barter/ai-speckit/overlays/sync-state.json` (`files` map, scanned for `barter-overlays` values)
-- `.skilled/changelog/skilled/v4.1.0.0.md` (existence, as the release the changelog claims)
-- `barter/ai-speckit/**` (old-path grep, REQ-008)
+| File | Lines | Why |
+|------|-------|-----|
+| `specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md` | 59-73 | The seven completion criteria, re-run read-only |
+| `.skilled/commands/doctor/scripts/overlay-engine.cjs` | 87-95, 3686-3712 | `LAYOUT_SHOWN`, the two per-line remedies and the three overflow forms |
+| `.skilled/commands/doctor/scripts/overlay-engine.cjs` | 5881-5891, 6661-6670 | The `pre-commit` outside-repository throw and the exit-code mapping |
+| `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt` | 17-34, 87-96, 118, 276-293, 560 | The documented LAYOUT forms and the setting refusal table |
+| `.skilled/skills/system-skilled-doctor/references/overlays.md` | 51, 169-198, 261-280 | The setting rules, the strict-write refusal and the relayout section |
+| `.skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md` | 1-57 | The release note against the shipped behaviour |
+| `.skilled/skills/system-skilled-doctor/SKILL.md` | 5 | The version line |
 
 ## Findings - New
 
@@ -32,56 +34,76 @@ None.
 
 ### P2 Findings
 
-None.
+1. **A checked completion criterion does not reproduce** -- `specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62` -- The first criterion's third clause requires `rg -n -e 'source[L]ayout' -e 'framework-root' -e 'opt[-]in' .skilled/commands/doctor .skilled/skills/system-skilled-doctor -g '!**/scripts/**' -g '!**/changelog/v1.1*'` to print nothing, and the criterion is marked `[x]`. Re-running it read-only prints `.skilled/commands/doctor/assets/doctor-env.yaml:48`, which contains `opt-in` in the phrase `or the description says set 1, set true or opt-in`. The hit is unrelated to the layout rule, so the criterion's intent still holds, but the command as written does not pass and the tick cannot be reproduced.
+   Finding class: traceability
+   Scope proof: ran the criterion's own command verbatim from the repository root; the single hit is in a file the criterion's two globs do not exclude.
+   Affected surface hints: `specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md`, `.skilled/commands/doctor/assets/doctor-env.yaml`
+   Case: an evaluator or a later reviewer re-runs the criterion to confirm the phase is done, sees one hit where the criterion promises none, and cannot tell whether the layout rule regressed or the pattern is too broad.
+
+   ```json
+   {
+     "type": "claim",
+     "claim": "The first completion criterion of phase 003 is marked done but its third command prints a hit.",
+     "evidenceRefs": [
+       "specs/system-skilled-doctor/007-overlay-framework-root-layout/003-engine-docs-and-release/goal.md:62",
+       ".skilled/commands/doctor/assets/doctor-env.yaml:48"
+     ],
+     "counterevidenceSought": "ran the other two clauses of the same criterion and both hold: 'inside the tree' appears only on the line that also names ../<name> at doctor-overlay-presentation.txt:560, and the leading-dot search prints nothing. Ran the second criterion and it prints exactly one heading at overlays.md:261.",
+     "alternativeExplanation": "the pattern was written before doctor-env.yaml gained the word opt-in, so the criterion was true when it was ticked and drifted afterwards. That is still a traceability defect, because a ticked criterion is read as reproducible.",
+     "finalSeverity": "P2",
+     "confidence": "high",
+     "downgradeTrigger": "drop if the criterion is amended to exclude assets/ or to anchor the phrase to the layout rule, which makes the tick reproducible again"
+   }
+   ```
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence | Summary |
-|----------|--------|----------|---------|
-| `spec_code` | pass | `005-barter-move-overlays-out-of-tree/spec.md:145`; old-path grep over `barter/ai-speckit`; `overlays/overlay-manifest.json` `pin`; `overlays/sync-state.json` `pin` | REQ-008's old-path claim holds exactly, and the pin records agree with the changelog. |
-| `checklist_evidence` | pass | `004-barter-repin-and-relayout/tasks.md:64,72,73,75`; `implementation-summary.md:108,109,118,126` | Every re-pin task line carries an observed result with a commit id or run id, and the one blocked task is recorded in five places rather than dropped. |
-| `skill_agent` | pass | `barter/ai-speckit/skilled/.skilled/skills/system-skilled-doctor/SKILL.md`; iteration 3 parity comparison | The vendored doctor skill file is byte-identical to Skilled at the pin, so the skill surface the packet ships traces to the commit it claims. |
+| Check | Protocol | Result | Evidence |
+|-------|----------|--------|----------|
+| `checklist_evidence` | core | partial | Six of the seven phase-003 criteria re-ran clean; the first criterion's third clause prints one hit, recorded as finding 1 |
+| `spec_code` | core | pass | Every documented LAYOUT form matches the code: `doctor-overlay-presentation.txt:118` names the three overflow forms and `overlay-engine.cjs:3702-3708` emits exactly those three |
+| `decision_alignment` | core | pass | D1 holds: the changelog and the presentation doc restate the `framework/` + `root/` rule with no opt-in field, and `overlays.md:51` states the sibling rule D2 froze |
+| `integration_naming` | core | pass | The docs name the exact command at each remedy: `/doctor:overlay apply --relayout` in `changelog/v1.2.0.0.md:16` and `:57`, and `node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout` in `doctor-overlay-presentation.txt:118` |
 
 ## Integration Evidence
 
-- REQ-008 of phase 005 (`spec.md:145`) claims that outside spec history, changelogs and `.index/`, `barter-overlays` not preceded by `-` appears only in track-name false positives and one temp-folder fixture name. `grep -rnP "(?<!-)barter-overlays"` over `barter/ai-speckit` excluding `specs/`, `.index/`, `node_modules/`, `dist/`, `repin-runs/`, `.git/` and changelogs returns **zero** lines, so the claim holds with room to spare.
-- Every `barter-overlays` hit that does exist is `skilled-barter-overlays`, the spec track name, which is the false positive REQ-008 names.
-- `overlays/sync-state.json` holds no value containing `barter-overlays`, so the state record carries no stale link target from the pre-move layout.
-- `barter/ai-speckit/overlays/framework/changelog/skilled-coder/v4.1.0.0.md:310` says the last re-pin moved the tree to Skilled `063daae` and printed `RESULT: PASSED`; the manifest and sync-state pins both name `063daaee2c19a7a8c9a0fb67f84903894bc08043`.
-- The changelog's "It runs on Skilled v4.1.0.0" traces: `.skilled/changelog/skilled/v4.1.0.0.md` exists, so the release the notes claim is the release the pin carries.
-- `004-barter-repin-and-relayout/tasks.md:64` records the live re-pin with run id `20261120T125226Z-a599ac` and the pin commit; `:72` records commit `c8cd005b173`; `:73` records commit `fd6dd18b66d`; `:75` records the post-relayout `apply 0 changed` and `offLayout=0 in-sync=487`.
+- `.skilled/skills/system-skilled-doctor/SKILL.md:5` prints `version: 1.2.0.0`, and `.skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:16` and `:57` both name `/doctor:overlay apply --relayout`. This closes completion criterion 2 of the packet.
+- `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:118` documents the three overflow forms, and `.skilled/commands/doctor/scripts/overlay-engine.cjs:3702-3708` branches into exactly those three, so the doc and the code agree line for line.
+- `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:87-88` documents the two per-line remedies, and `.skilled/commands/doctor/scripts/overlay-engine.cjs:3693-3696` selects between them on `isUnderRootSkilled(move.to)`.
+- `.skilled/skills/system-skilled-doctor/references/overlays.md:51` says `pre-commit` exits 2 with the outside-repository message; `overlay-engine.cjs:5887` throws that message and `:6665` returns `EXIT_ERROR`, which `:91` defines as 2. The doc and the code agree.
+- `.skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:51` says a relayout keeps its backup in `<overlay folder>/relayout-runs/<stamp>/`; `overlay-engine.cjs:6491` builds that path from `ctx.overlayRoot` and `RELAYOUT_RUNS_FOLDER`.
 
 ## Edge Cases
 
-- **Phase 004's REQ-001 verification command names `./barter-overlays/overlay-manifest.json`** (`spec.md:163`), a path that no longer exists after phase 005. Recorded, not raised: REQ-011 (`:178`) explicitly exempts `specs/` from the old-path rule, so the packet has decided that specs may name old paths, and the command was correct when phase 004 ran.
-- **`tasks.md:111` is an unchecked box** reading "All tasks marked `[x]` (T014 is `[B]`)". Recorded, not raised: the parenthetical states the exception, and the blocked task is recorded in `goal.md:90`, `implementation-summary.md:17,19,118,126` and `tasks.md:68` with the operator as the next safe action. An honest open item is not a traceability defect.
-- **`tasks.md:75` records the sync-state diff as naming `../../barter-overlays/framework/...`**, while the links now resolve through `../../../overlays/framework/...`. Recorded, not raised: the observation was accurate when phase 004 ran, and phase 005 retargeted the links afterwards.
-- **The three remaining overlay protocols were not exercised.** `agent_cross_runtime`, `feature_catalog_code` and `playbook_capability` have no surface in this node's scope, which is a vendored tree and two state records. Recorded so the coverage claim is not read as broader than it is.
-- **Tests were not re-run** for the containment reason recorded in iteration 1.
+- **The failing clause is a pattern-drift, not a rule regression.** The `opt-in` hit sits in `doctor-env.yaml`, an asset about documenting environment variables, and has nothing to do with the layout rule. The finding is scoped to the criterion's reproducibility, not to the rule it was written to protect.
+- **`validate.sh --recursive --strict` remains unrun.** The packet's sixth completion criterion cannot be executed inside this lineage's write surface. It is recorded as unverified rather than passed, and the synthesis carries that limit forward.
+- **The engine suites remain unrun.** `node --test .skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` writes fixtures outside the lineage, so the first completion criterion is read rather than executed. Every assertion cited in this run was read from the suite source.
 
 ## Confirmed-Clean Surfaces
 
-- The old-path rule is satisfied with zero exceptions rather than with the two the requirement allows, which is the strongest form the claim can take.
-- The pin is recorded in three independent places that agree: the manifest `pin.commit`, the sync-state `pin`, and the changelog's short id.
-- The changelog's release claim traces to a real Skilled changelog entry at the same version.
-- Every re-pin task line that claims a result names the artifact that proves it: a run id, a commit id, or a printed count.
-- The one blocked task is escalated rather than silently closed, and the phase's own completion box is left unchecked to say so.
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:91` defines `EXIT_ERROR = 2`, so the docs' claim that `pre-commit` exits 2 on an outside-repository folder is accurate.
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:3693-3696` and `:3702-3708` match `doctor-overlay-presentation.txt:87-88` and `:118` form for form, including the mixed overflow line that names both remedies with their counts.
+- `.skilled/commands/doctor/scripts/overlay-engine.cjs:88` sets `LAYOUT_SHOWN = 20`, matching the "at most 20" the changelog and the presentation doc both state.
+- `.skilled/skills/system-skilled-doctor/references/overlays.md:261` carries exactly one `### Moving an existing tree onto the new layout` heading, and the section names `apply --relayout`, `offLayout` and `--adopt`.
+- `.skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md:3` names `framework/` and `root/`, and `:16` names `/doctor:overlay apply --relayout`, which is what phase 003's fifth criterion asks for.
+- `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt:560` states the outside-repository refusal with the same exit code and message the engine throws.
 
 ## Ruled Out
 
-- **An old `barter-overlays` path survives in a doc, test or script.** Checked and ruled out: the REQ-008 grep returns zero lines outside the exempt areas.
-- **`sync-state.json` still records a pre-move link target.** Checked and ruled out: no value in the `files` map contains `barter-overlays`.
-- **The changelog claims a Skilled release the pin does not carry.** Checked and ruled out: `.skilled/changelog/skilled/v4.1.0.0.md` exists and the pin is the commit the changelog names.
-- **The phase closed over an unrecorded blocker.** Checked and ruled out: T014 is recorded in five places with the operator named as the next safe action.
-- **The re-pin's task lines claim results without naming the artifact.** Checked and ruled out: each names a run id, a commit id, or a printed count.
+- **The docs claim an exit code the engine does not use.** Considered that `overlays.md:51` says `pre-commit` exits 2 while the engine throws. Ruled out: `:6665` returns `EXIT_ERROR`, defined as 2 at `:91`.
+- **The LAYOUT overflow line advises relayout for a blocked move.** Ruled out: `:3700-3707` partitions the hidden moves into `blocked` and `movable` and names each remedy for its own count.
+- **The changelog overstates the relayout backup location.** Ruled out: `:6491` builds the path from the overlay root, which is what the changelog says.
+- **The version bump did not reach the skill file.** Ruled out: `SKILL.md:5` prints `version: 1.2.0.0`.
+- **The relayout section is missing from the reference doc.** Ruled out: the heading is present once at `overlays.md:261` and the section names all three required terms.
 
 ## Next Focus
 
 - Dimension: maintainability
-- Focus area: frontier node `F-1-003` -- whether the engine's own documentation matches the code it ships: `changelog/v1.2.0.0.md`, `references/overlays.md` and `assets/doctor-overlay-presentation.txt`
-- Reason: `convergence.cjs` still reports `dimensionCoverageGate` failing with `maintainability` missing, so the run cannot stop until it is covered
-- Rotation status: fourth pass on F-1-003; F-1-005 keeps traceability and maintainability open, F-1-007 keeps maintainability open
-- Blocked/productive carry-forward: productive -- reading the reference beside the code settled the repository-boundary question in iteration 4, and the same comparison answers the docs question
-- Required evidence: `.skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md`, `references/overlays.md`, `assets/doctor-overlay-presentation.txt`, and the engine lines each describes
+- Focus area: run-level pass over `overlay-engine.cjs` for duplication and naming drift, and over the packet docs for stale pointers
+- Reason: maintainability is the last canonical dimension with no iteration behind it, and the reducer still lists it as remaining
+- Rotation status: F-1-002 traceability complete; all three frontier nodes now carry at least two dimensions
+- Blocked/productive carry-forward: productive -- re-running the packet's own criteria found one that no longer reproduces
+- Required evidence: the engine's largest functions read for duplication; the six phase goals' cross-references to each other; the prior maintainability findings (`:3398`, `:4582`, `:4603`) re-checked
+- Recovery note: the two Skilled-side criteria that need execution stay unrun; the synthesis must carry that limit rather than claim a pass
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

@@ -1,0 +1,8 @@
+{"iteration":12,"node":"F-1-007","dimension":"security","dimensionsOverride":["security","maintainability"],"scope":["specs/system-skilled-doctor/007-overlay-framework-root-layout"],"priorWeighted":17,
+"filesReviewed":["specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/goal.md:87","specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md:113","specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/tasks.md:47"],
+"findings":[],
+"traceability":[{"protocolId":"checklist_evidence","status":"pass","gateClass":"hard","applicable":true,"evidence":["specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/tasks.md:47"],"summary":"T005 bar met; b5a630c6efa on origin/main"}],
+"novelty":"No new findings; credential scan clean; push bypass disclosed in the record.",
+"ledger":[{"bugClass":"secret_exposure","targetRefs":["specs/system-skilled-doctor/007-overlay-framework-root-layout"],"hypothesis":"a record carries a credential","result":"credential scan clean","evidenceRefs":["specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/goal.md:87"],"disposition":"ruled_out"},
+{"bugClass":"hidden_bypass","targetRefs":["specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md"],"hypothesis":"the push bypassed a control without saying so","result":"bypass disclosed in limitations and goal","evidenceRefs":["specs/system-skilled-doctor/007-overlay-framework-root-layout/008-push-and-repin/implementation-summary.md:113"],"disposition":"ruled_out"}],
+"ruledOut":[{"direction":"secret in records","reason":"pattern scan found none"}]}

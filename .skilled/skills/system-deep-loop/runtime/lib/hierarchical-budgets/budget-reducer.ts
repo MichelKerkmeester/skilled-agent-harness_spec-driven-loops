@@ -54,6 +54,7 @@ export interface BudgetDimensionBalance extends JsonObject {
   deadlineMonotonicMs: number | null;
 }
 
+/** Per-dimension balances for tokens, cost, iterations and wall time. */
 export interface BudgetBalanceVector extends JsonObject {
   tokens: BudgetDimensionBalance;
   cost: BudgetDimensionBalance;
@@ -61,6 +62,7 @@ export interface BudgetBalanceVector extends JsonObject {
   wallTime: BudgetDimensionBalance;
 }
 
+/** Projected state of one scope: its envelope, child scopes, balances and the reason it is blocked, if any. */
 export interface BudgetScopeProjection extends JsonObject {
   envelope: JsonObject;
   childScopeIds: string[];
@@ -76,6 +78,10 @@ export type BudgetReservationStatus =
   | 'expired'
   | 'unreconciled';
 
+/**
+ * Projected state of one reservation: its scope path, estimated, committed and released amounts, status and
+ * lease timing.
+ */
 export interface BudgetReservationProjection extends JsonObject {
   reservationId: string;
   dispatchId: string;
@@ -99,6 +105,7 @@ export interface BudgetProjection extends JsonObject {
   anomalies: JsonValue[];
 }
 
+/** Fields used to materialize a budget lifecycle payload for one operation on one scope. */
 export interface BudgetPayloadMaterializationInput {
   readonly operationId: string;
   readonly requestId: string;
@@ -110,6 +117,7 @@ export interface BudgetPayloadMaterializationInput {
   readonly outcome: JsonObject;
 }
 
+/** A lifecycle payload paired with the projection state that results from applying it. */
 export interface MaterializedBudgetTransition {
   readonly payload: BudgetLifecyclePayload;
   readonly nextState: Readonly<BudgetProjection>;

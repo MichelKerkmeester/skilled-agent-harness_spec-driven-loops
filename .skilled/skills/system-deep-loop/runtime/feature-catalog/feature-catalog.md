@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.16.0
+version: 1.4.20.0
 ---
 
 # runtime/: Feature Catalog
@@ -665,7 +665,7 @@ Authorizes a mode event against the mode's durable authority record, appends it 
 
 #### How It Works
 
-The sanctioned way every canonical record reaches a mode's state log; it authorizes against the authority record, appends to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file. A research or review iteration row is timed by the gateway clock, and a stamp the model wrote is kept beside it as `claimedTimestamp`.
+The sanctioned way every canonical record reaches a mode's state log; it authorizes against the authority record, appends to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file. A research or review iteration row is timed by the gateway clock, and a stamp the model wrote is kept beside it as `claimedTimestamp`. A legacy research row and a legacy review row (`type` of `iteration`, `iteration_start` or `event`), the shapes a model writes, get a gateway-minted event id, idempotency key, producer and epoch, so an identical re-append is still stored once; a row with a `stem` or an `event_type`, and a canonical envelope, keep the identity the caller names. The same key with other content is refused as `IDEMPOTENCY_CONFLICT`, and the CLI writes the reason to stderr.
 
 #### Source Files
 
@@ -677,11 +677,11 @@ See [`script-entry-points/append-mode-event-script.md`](../feature-catalog/scrip
 
 #### Description
 
-Owns the expansive frontier node store: seeds depth-1 nodes, admits or prunes leaf proposals through six ordered checks, closes nodes, renders the frontier prompt block and projects the store to graph events.
+Owns the expansive frontier node store: seeds depth-1 nodes, admits or prunes leaf proposals through seven ordered checks, closes nodes, renders the frontier prompt block and projects the store to graph events.
 
 #### How It Works
 
-The CLI commands are `seed`, `admit`, `close`, `graph`, `block` and `budget`, and `--target research|review` picks the loop. The store `frontier-nodes.jsonl` is append-only, and the last row per `nodeId` wins. Admission runs relevance, dedupe, depth, fan-out, the run-wide node cap, budget and cycle in that order, and the first failure is the prune reason: `fanout` for a parent's children cap, `node-cap` for the run-wide cap. The seed pass is exempt from the run-wide node cap. For a defaulted budget, `seedBudget` derives the run's budget from the seed through `expansiveBudget`, and the `budget` command writes it into the config. `buildFrontierGraphEvents` re-kinds exhausted, blocked and abstained nodes to a closed CLAIM and writes no pruned node.
+The CLI commands are `seed`, `admit`, `close`, `graph`, `block`, `budget` and `scope`, and `--target research|review` picks the loop. The store `frontier-nodes.jsonl` is append-only, and the last row per `nodeId` wins. Admission runs relevance, dedupe, depth, fan-out, the run-wide node cap, budget and cycle in that order, and the first failure is the prune reason: `fanout` for a parent's children cap, `node-cap` for the run-wide cap. The seed pass is exempt from the run-wide node cap. For a defaulted budget, `seedBudget` derives the run's budget from the seed through `expansiveBudget`, and the `budget` command writes it into the config. `buildFrontierGraphEvents` re-kinds exhausted, blocked and abstained nodes to a closed CLAIM and writes no pruned node.
 
 #### Source Files
 
@@ -771,7 +771,8 @@ open depth-1 frontier nodes round-robin in node-id order by UTF-16 code unit, `w
 the share of each lineage dealt a node that has no store yet, the prompt binds `depthMode` and `frontier_scope`, and the split is
 recorded as `frontier_partition` in `orchestration-summary.json`. `expansiveLineageBudgets`
 sizes a lineage with no matrix `iterations` from its seed share, and a lineage dealt no seed
-node runs at its loop default: 12 native, 7 CLI review, 10 CLI research.
+node runs at its loop default: 10 for research, 7 for review. A native lineage is refused before
+any lineage is sized.
 
 Each progress row carries the lineage's committed iterations, `lastCommitAt`, frontier `nodes`
 and `flaggedPasses`, and `--status` prints them per lineage without writing. `--stop` ends a live

@@ -470,6 +470,64 @@ test('a backtracking contract pattern cannot hang the validator', () => {
   assert.equal(run.status, 1, run.stderr);
 });
 
+test('an unreadable rules file names a check command that runs from any directory', () => {
+  const dir = tempRepo(false);
+  fs.mkdirSync(path.join(dir, '.sk-git'));
+  fs.writeFileSync(
+    path.join(dir, '.sk-git', TEMPLATE_FILES.commit),
+    '## Enforced rules\n\n```json\n{ not json\n```\n',
+  );
+  const message = path.join(dir, 'message.txt');
+  fs.writeFileSync(message, 'feat(a): add a thing\n');
+  const cli = fs.realpathSync(path.resolve(HERE, '../validate-message.mjs'));
+  const run = spawnSync(process.execPath, [cli, '--repo', dir, '--commit', message], {
+    cwd: dir,
+    encoding: 'utf8',
+  });
+  assert.equal(run.status, 2, run.stderr);
+  assert.ok(run.stderr.includes(`  Next: node ${cli} --check-template `), run.stderr);
+});
+
+/** The words a shell would pass for a pasted Next line, read by eval of `set --` in `cwd`. */
+function pastedWords(nextLine, cwd) {
+  const command = nextLine.replace(/^\s*Next: /, '');
+  const out = execFileSync('bash', ['-c', 'eval "set -- $1" && printf "%s\\0" "$@"', '_', command], { cwd, encoding: 'utf8' });
+  return out.split('\0').slice(0, -1);
+}
+
+test('the unreadable-rules Next line runs as pasted when the rules path holds a space and $(', () => {
+  const base = fs.mkdtempSync(path.join(os.tmpdir(), 'message-contract-odd-'));
+  tempDirs.push(base);
+  const dir = path.join(base, 'odd $(touch MARKER) repo');
+  fs.mkdirSync(path.join(dir, '.sk-git'), { recursive: true });
+  execFileSync('git', ['-C', dir, 'init', '-q'], { stdio: 'ignore' });
+  const rules = path.join(dir, '.sk-git', TEMPLATE_FILES.commit);
+  fs.writeFileSync(rules, '## Enforced rules\n\n```json\n{ not json\n```\n');
+  const message = path.join(dir, 'message.txt');
+  fs.writeFileSync(message, 'feat(a): add a thing\n');
+  const cli = path.resolve(HERE, '../validate-message.mjs');
+  const run = spawnSync(process.execPath, [cli, '--repo', dir, '--commit', message], { cwd: base, encoding: 'utf8' });
+  assert.equal(run.status, 2, run.stderr);
+  const next = run.stderr.split('\n').find((l) => l.includes('Next: node '));
+  assert.ok(next, run.stderr);
+  const words = pastedWords(next, base);
+  assert.equal(fs.existsSync(path.join(base, 'MARKER')), false, `pasting ran a substitution: ${next}`);
+  assert.ok(words.includes(fs.realpathSync(rules)) || words.includes(rules), `${next} -> ${JSON.stringify(words)}`);
+});
+
+test('the gate refusal for unreadable rules names a check command that runs as pasted', async () => {
+  const { unreadableRulesReason } = await import('../hooks/git-message-gate.mjs');
+  const base = fs.mkdtempSync(path.join(os.tmpdir(), 'message-contract-gate-odd-'));
+  tempDirs.push(base);
+  const file = path.join(base, "it's $(touch MARKER)", TEMPLATE_FILES.commit);
+  const reason = unreadableRulesReason({ message: 'bad json', file });
+  const next = reason.split('\n').find((l) => l.includes('Next: node '));
+  assert.ok(next, reason);
+  const words = pastedWords(next, base);
+  assert.equal(fs.existsSync(path.join(base, 'MARKER')), false, `pasting ran a substitution: ${next}`);
+  assert.ok(words.includes(file), `${next} -> ${JSON.stringify(words)}`);
+});
+
 test('the stamper drops exactly the attribution keys the commit template forbids', () => {
   const hook = fs.readFileSync(path.resolve(HERE, '../../../../scripts/git-hooks/prepare-commit-msg'), 'utf8');
   const line = hook.split('\n').find((l) => l.startsWith('FORBIDDEN_KEY_RE='));

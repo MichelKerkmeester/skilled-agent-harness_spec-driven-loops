@@ -2,6 +2,10 @@
 // MODULE: Append Mode Event CLI Tests
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
@@ -13,6 +17,10 @@ import { fileURLToPath } from 'node:url';
 import { AppendOnlyLedger } from '../../lib/authorized-ledger/index.js';
 import { createDeepResearchEventRegistry } from '../../lib/deep-research-ledger-schema/index.js';
 import { AUTHORITY_FLIP_MODE_ORDER } from '../../lib/per-mode-authority-flip/index.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 const here = dirname(fileURLToPath(import.meta.url));
 const CLI_PATH = resolve(here, '..', '..', 'scripts', 'append-mode-event.cjs');
@@ -118,11 +126,15 @@ afterEach(() => {
       try {
         rmSync(dir, { recursive: true, force: true });
       } catch {
-        // Ignore cleanup failures
+        // A leaked temp directory is cleanup noise, not a test result.
       }
     }
   }
 });
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TESTS
+// ───────────────────────────────────────────────────────────────────
 
 describe('append-mode-event CLI subprocess execution', () => {
   it('appends a plain JSON event record to deep-research ledger and exits 0', async () => {

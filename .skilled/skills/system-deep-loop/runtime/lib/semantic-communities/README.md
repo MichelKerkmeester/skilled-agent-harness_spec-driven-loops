@@ -28,20 +28,29 @@ Clusters claims that mean the same thing, even when their wording differs, into 
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/path-coverage-termination/` (types and universe)
-- `.skilled/skills/system-deep-loop/runtime/lib/stopping-clocks/` (novelty_decay clock type)
+- [`../path-coverage-termination/`](../path-coverage-termination/) (types and universe)
+- [`../stopping-clocks/`](../stopping-clocks/) (novelty_decay clock type)
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts`
+- [`../../tests/unit/semantic-communities.vitest.ts`](../../tests/unit/semantic-communities.vitest.ts)
 - Also exercised by `path-coverage-termination.vitest.ts` and `stopping-clocks.vitest.ts`.
+
+Run from the repository root:
+
+```bash
+cd .skilled/skills/system-deep-loop/runtime
+npx vitest run tests/unit/semantic-communities.vitest.ts
+```
+
+Expected: vitest reports `Test Files  1 passed (1)` and no failed tests.
 
 ---
 
 ## 5. RELATED
 
-- [`runtime/lib/coverage-graph/README.md`](../coverage-graph/README.md)
-- [`runtime/lib/README.md`](../README.md)
-- [`system-deep-loop/SKILL.md`](../../../SKILL.md)
+- [`../coverage-graph/README.md`](../coverage-graph/README.md)
+- [`../README.md`](../README.md)
+- [`../../../SKILL.md`](../../../SKILL.md)

@@ -1,7 +1,7 @@
 ---
 title: "Progress: shared progress-record type and pair validator"
 description: "Shared additive progress_record JSONL event type, completion reducer allowlist and started/completed pair validator for the research and review reducers."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Progress
@@ -25,10 +25,12 @@ Shared `progress_record` type, completion reducer allowlist and started/complete
 
 ## 3. CONSUMERS
 
-- `deep-research/scripts/reduce-state.cjs`
-- `runtime/scripts/reduce-state.cjs`
-- `runtime/scripts/compile-command-contracts.cjs`
-- `runtime/lib/write-set-conflict-graph/shipped-census.ts`
+Two reducers import `progress-record.cjs`:
+
+- [`../../deep-research/scripts/reduce-state.cjs`](../../deep-research/scripts/reduce-state.cjs)
+- [`../../runtime/scripts/reduce-state.cjs`](../../runtime/scripts/reduce-state.cjs)
+
+[`../../runtime/scripts/compile-command-contracts.cjs`](../../runtime/scripts/compile-command-contracts.cjs) does not import it. It names `progress-record.cjs` as the writer path in the compiled command contracts.
 
 ---
 

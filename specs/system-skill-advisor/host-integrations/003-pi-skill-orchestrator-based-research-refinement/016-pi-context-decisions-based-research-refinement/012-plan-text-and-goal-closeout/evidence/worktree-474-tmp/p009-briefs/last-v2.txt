@@ -1,0 +1,156 @@
+Applied the exact copy to [user-prompt-submit.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts). The copy command exited 0, and the required `cmp` exited 0. Strict packet validation also printed `RESULT: PASSED` at Level 1. I did not run tests, as directed.
+
+**Code review:** The new initializers are safe, and `elapsed()` catches clock errors. The start-time read is now inside the `try`. For enabled prompts, duration measurement starts after the hook-enabled and invalid-payload checks. Disabled and null-input paths now report duration 0, although `elapsed()` still reads the clock once before returning 0.
+
+No newly added initializer can throw outside the `try`. Existing pre-try reads of `dependencies.runtime` and `dependencies.writeDiagnostic` remain outside it; a throwing accessor could still escape. The catch also evaluates `workspaceRootFor(input)` before `emitDiagnostic()` can apply its internal guard, leaving a potential escape path if root resolution throws.
+
+The TASK’s stated changes match the prepared file. There is a separate mismatch with the packet goal: goal D1 says “the crash fallback runs directive dedup and renders with the turn’s options,” while this file’s catch returns `renderAdvisorTimeoutFallback()` without calling `applyDirectiveLifecycle` or `finishAdvisorDelivery`. Goal D2 says “The catch reads only hoisted values and the guarded elapsed,” while the catch still recomputes `workspaceRootFor(input)`. I left the file exactly as requested.
+
+**Final text of the changed block:**
+
+```typescript
+export async function handleClaudeUserPromptSubmit(
+  input: ClaudeUserPromptSubmitInput | null,
+  dependencies: UserPromptSubmitDependencies = {},
+): Promise<ClaudeUserPromptSubmitOutput> {
+  const environmentRuntime = process.env.SPECKIT_RUNTIME;
+  const runtime = dependencies.runtime
+    ?? (isAdvisorRuntime(environmentRuntime) ? environmentRuntime : 'claude');
+  let startedAt: number | null = null;
+  const elapsed = (): number => {
+    try {
+      const now = dependencies.now?.() ?? performance.now();
+      return startedAt === null ? 0 : Number((now - startedAt).toFixed(3));
+    } catch {
+      return 0;
+    }
+  };
+  let prompt: string | null = null;
+  let workspaceRoot: string | undefined;
+  let skippedResult: AdvisorHookResult | null = null;
+  let deliveryState: ShadowDeliveryRenderOptions = {};
+  const writeDiagnostic = dependencies.writeDiagnostic;
+
+  try {
+    if (!skillAdvisorHookEnabled() || process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1') {
+      emitDiagnostic({
+        runtime,
+        workspaceRoot: process.cwd(),
+        status: 'skipped',
+        freshness: 'unavailable',
+        durationMs: elapsed(),
+        cacheHit: false,
+      }, writeDiagnostic);
+      return {};
+    }
+
+    if (!input) {
+      emitDiagnostic({
+        runtime,
+        workspaceRoot: process.cwd(),
+        status: 'fail_open',
+        freshness: 'unavailable',
+        durationMs: elapsed(),
+        cacheHit: false,
+        errorCode: 'PARSE_FAIL',
+        errorDetails: 'Invalid UserPromptSubmit JSON payload',
+      }, writeDiagnostic);
+      return {};
+    }
+
+    startedAt = dependencies.now?.() ?? performance.now();
+    prompt = normalizePrompt(input.prompt);
+    workspaceRoot = workspaceRootFor(input);
+    if (prompt === null) {
+      emitDiagnostic({
+        runtime,
+        workspaceRoot,
+        status: 'fail_open',
+        freshness: 'unavailable',
+        durationMs: elapsed(),
+        cacheHit: false,
+        errorCode: 'PARSE_FAIL',
+        errorDetails: 'Missing UserPromptSubmit prompt string',
+      }, writeDiagnostic);
+      return {};
+    }
+
+    const renderBrief = dependencies.renderBrief ?? renderAdvisorBrief;
+    // The CLI owns the warm-daemon probe and local-scorer fallback.
+    // The prompt-policy gate skips prompts that need no advisor before the
+    // CLI call; injected full producers stay ungated for producer-level tests.
+    const injectedBrief = dependencies.buildBrief;
+    const buildCliBrief = dependencies.buildCliBrief ?? buildSkillAdvisorBriefFromCli;
+    skippedResult = injectedBrief ? null : skippedAdvisorResultFor(prompt);
+    let result = injectedBrief
+      ? await injectedBrief(prompt, {
+        runtime,
+        workspaceRoot,
+        subprocessTimeoutMs: claudeHookTimeoutMs(),
+      })
+      : skippedResult ?? await buildCliBrief(prompt, {
+        runtime,
+        workspaceRoot,
+        timeoutMs: claudeHookTimeoutMs(),
+      }, {
+        now: dependencies.now,
+      });
+
+    result = {
+      ...result,
+      metrics: {
+        ...result.metrics,
+        durationMs: elapsed(),
+      },
+    };
+    deliveryState = deliveryStateOptionsFor(input);
+    const brief = renderBrief(result, { deliveryState });
+    const renderOptions = { deliveryState, setupWording: !brief && SETUP_WORDING.test(prompt) };
+    const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions, result);
+    const { effectiveEmitted, commitFullReceipt } = applyDirectiveLifecycle(emitted, input, dependencies);
+    emitDiagnostic({
+      runtime,
+      workspaceRoot,
+      status: result.status,
+      freshness: result.freshness,
+      durationMs: result.metrics.durationMs,
+      cacheHit: result.metrics.cacheHit,
+      errorCode: result.diagnostics?.errorCode,
+      errorDetails: result.diagnostics?.errorMessage ?? result.diagnostics?.policyReason ?? result.diagnostics?.staleReason,
+      skillLabel: skillLabelFor(result),
+      degraded: result.metrics.degraded === true,
+      emittedBytes: Buffer.byteLength(effectiveEmitted, 'utf8'),
+      directivesSuppressed: effectiveEmitted !== emitted,
+    }, writeDiagnostic);
+
+    return finishAdvisorDelivery(effectiveEmitted, commitFullReceipt, deliveryState, runtime);
+  } catch {
+    emitDiagnostic({
+      runtime,
+      workspaceRoot: input ? workspaceRootFor(input) : process.cwd(),
+      status: 'fail_open',
+      freshness: 'unavailable',
+      durationMs: elapsed(),
+      cacheHit: false,
+      errorCode: 'UNKNOWN',
+      errorDetails: 'Unhandled UserPromptSubmit hook exception',
+    }, writeDiagnostic);
+    // A crash still shows the model the outage line and directives, as a timeout does.
+    // If rendering that line throws as well, there is nothing safe left to show.
+    try {
+      return {
+        hookSpecificOutput: {
+          hookEventName: 'UserPromptSubmit',
+          additionalContext: renderAdvisorTimeoutFallback(),
+        },
+      };
+    } catch {
+      return {};
+    }
+  }
+}
+```
+
+The target was already modified before the copy. Current status also lists `skill-advisor-hook.md`, `claude-user-prompt-submit-hook.vitest.ts` and `ENV-REFERENCE.md` as modified; my only write was the requested target file. The working tree remains dirty on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`. Skill routing used the user-specified `sk-code`, resolving to `sk-code-skilled`; the applicable repo rules were loaded.
+
+The conductor’s tests and remaining packet checks are the next action.

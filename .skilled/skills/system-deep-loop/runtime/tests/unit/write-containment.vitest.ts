@@ -119,7 +119,7 @@ afterEach(() => {
     try {
       rmSync(root, { recursive: true, force: true });
     } catch {
-      // best-effort cleanup
+      // A leaked temp directory is cleanup noise, not a test result.
     }
   }
 });
@@ -135,14 +135,16 @@ describe('write-containment — snapshotOutOfScopeDirtyPaths', () => {
     expect(dirtySorted(dirty)).toEqual(['new-outside.txt', 'tracked-outside.txt']);
   });
 
-  it('fails open (returns []) when the artifact dir is outside the git worktree', () => {
+  // The post-dispatch check rejects this case, so the snapshot must too: a caller
+  // that got [] here would spawn a lane and only then find containment unenforceable.
+  it('throws when the artifact dir is outside the git worktree', () => {
     const { root } = baselineRepo();
     const externalArtifact = mkdtempSync(join(tmpdir(), 'external-artifact-'));
     tempRoots.push(externalArtifact);
     writeFileSync(join(root, 'tracked-outside.txt'), 'CHANGED\n');
 
-    const dirty = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir: externalArtifact });
-    expect(dirty).toEqual([]);
+    expect(() => snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir: externalArtifact }))
+      .toThrow(`artifact scope ${externalArtifact} is outside the git worktree — containment cannot be enforced`);
   });
 
   it('fails open (returns []) when repoRoot is not a git worktree', () => {

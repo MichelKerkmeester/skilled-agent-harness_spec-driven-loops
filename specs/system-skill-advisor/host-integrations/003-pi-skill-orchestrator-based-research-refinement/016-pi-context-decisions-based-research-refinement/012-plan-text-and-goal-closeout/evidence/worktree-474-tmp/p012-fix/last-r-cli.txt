@@ -1,0 +1,33 @@
+Replaced [skill-advisor-cli-fallback-no-match.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts) using the exact `cp` command. The required `cmp` exited 0.
+
+The diff adds only this test, which matches the task description. **No mismatch found.**
+
+```ts
+  it('sends the task behind a pasted reply longer than the advisor prompt limit', async () => {
+    let child: ReturnType<typeof mockCliChild> | undefined;
+    mockedChild.spawn.mockImplementation(() => {
+      child = mockCliChild(JSON.stringify({ data: { freshness: 'live', recommendations: [] } }));
+      return child;
+    });
+    const task = 'Refactor the session store module to remove duplicated locking code';
+    const prompt = `Earlier you replied: ${'I updated the README with sk-doc conventions. '.repeat(300)}Now: ${task}`;
+    expect(prompt.length).toBeGreaterThan(10_000);
+
+    try {
+      await buildSkillAdvisorBriefFromCli(
+        prompt,
+        { workspaceRoot: process.cwd(), runtime: 'pi', timeoutMs: 1_000 },
+        { env: {}, now: () => 1 },
+      );
+
+      expect(child).toBeDefined();
+      if (!child) return;
+      const payload = JSON.parse(child.stdin.written) as { prompt?: string };
+      expect(payload.prompt).toBe(task);
+    } finally {
+      mockedChild.spawn.mockReset();
+    }
+  });
+```
+
+**HANDBACK:** Skill routing followed your direction to use `sk-code`; the TypeScript route was loaded. Vitest, typecheck and build were not run, per the run context. The worktree is dirty on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`. Other files were already modified at baseline. Final status also shows `runtime/tests/python/test_skill_advisor.py` modified, though it was absent from baseline; its cause is unknown, and I left it untouched. Nothing was committed or pushed. Please review that separate modification.

@@ -1,0 +1,7 @@
+TASK (1 file: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md)
+On line 382 only, replace this exact sentence:
+Below this value, a recommendation is filtered out unless `confidenceOnly` mode is active.
+with this exact sentence:
+Below this value, a recommendation is filtered out, and `confidenceOnly` mode skips only the uncertainty check.
+Every other word on the line stays, including the sentence about when the daemon starts. Change nothing else in the file.
+ACCEPT: `grep -c 'unless `confidenceOnly`' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints 0, `grep -n 'skips only the uncertainty check' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md | cut -d: -f1` prints 382, `grep -n 'daemon starts' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md | cut -d: -f1` prints 382, and `git diff --numstat -- .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` prints `1	1`.

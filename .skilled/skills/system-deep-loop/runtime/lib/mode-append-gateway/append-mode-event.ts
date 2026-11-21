@@ -79,6 +79,10 @@ import type {
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Inputs to `appendModeEvent`: the mode, run directory, prepared event record, policy and the registry, gateway and
+ * ledger to append through, plus test seams.
+ */
 export interface AppendModeEventOptions {
   /** Mode whose ledger receives the event (e.g., 'deep-research', 'deep-review'). */
   readonly mode: string;
@@ -120,6 +124,7 @@ export interface AppendModeEventOptions {
   readonly now?: () => Date;
 }
 
+/** Durable append receipt extended with the ledger, event and stream identity of the committed event. */
 export interface ModeAppendReceipt extends DurableAppendReceipt {
   readonly ledgerId: string;
   readonly eventId: string;
@@ -130,6 +135,9 @@ export interface ModeAppendReceipt extends DurableAppendReceipt {
   readonly committedAt: string;
 }
 
+/**
+ * Successful append: the receipt and whether the legacy projection refresh ran, with its error message when it failed.
+ */
 export interface AppendModeEventResult {
   readonly ok: true;
   readonly receipt: ModeAppendReceipt;
@@ -142,6 +150,7 @@ export interface AppendModeEventResult {
   readonly idempotentReplay?: true;
 }
 
+/** Refused or failed append, naming the pipeline phase that stopped it with a reason and error code. */
 export interface AppendModeEventError {
   readonly ok: false;
   /**
@@ -182,7 +191,7 @@ export const ModeAppendGatewayErrorCodes = Object.freeze({
   AUTHORIZATION_DENIED: 'AUTHORIZATION_DENIED',
   /** Fenced append failed (head conflict, fence error, or storage error). */
   APPEND_FAILED: 'APPEND_FAILED',
-  /** The idempotency key is already bound to an event of a different type. */
+  /** The idempotency key is already bound to a different event: another type or other content. */
   IDEMPOTENCY_CONFLICT: 'IDEMPOTENCY_CONFLICT',
   /** Projection refresh failed after the append was durable. */
   PROJECTION_FAILED: 'PROJECTION_FAILED',
@@ -370,9 +379,10 @@ type IdempotencyLookup =
  * and, for upcast rows, data that can depend on the moved head, so neither the
  * event id nor the payload digest identifies it. The idempotency key does: the
  * caller supplies it, or the append CLI derives it from the event exactly as
- * the caller handed it over. The same key with the same event kind is the same
- * event, so the original receipt stands in for a second copy. The same key
- * with a different kind is a caller reusing a key, refused before any append.
+ * the caller handed it over. The same key with the same event kind and the
+ * same content is the same event, so the original receipt stands in for a
+ * second copy. The same key on a different kind or different content is a
+ * caller reusing a key, refused before any append rather than dropped.
  */
 function findIdempotentReplay(
   event: EventWritePreflight,
@@ -393,7 +403,47 @@ function findIdempotentReplay(
         + `${existing.frame.sequence}; refusing to bind it to a ${incomingKind} event.`,
     };
   }
+  const heads = new Set([payloadHead(existing.event.effective.envelope), payloadHead(event.envelope)]);
+  if (eventContentDigest(existing.event.effective.envelope, heads) !== eventContentDigest(event.envelope, heads)) {
+    return {
+      kind: 'conflict',
+      reason: `Idempotency key ${key} already names a ${existingKind} event with other content at ledger `
+        + `sequence ${existing.frame.sequence}; refusing to bind it to a second, different event.`,
+    };
+  }
   return { kind: 'replay', receipt: durableReceipt(existing.frame) };
+}
+
+function payloadHead(envelope: { readonly payload?: unknown }): unknown {
+  const payload = envelope.payload as Record<string, unknown> | undefined;
+  return payload !== null && typeof payload === 'object' ? payload.prevEventHash : undefined;
+}
+
+/**
+ * Digest the part of an event a retry hands over again. The envelope is left
+ * out: its id, sequence, times, correlation, producer and epoch are minted or
+ * stamped per call. So is the head the payload was built on, with its payload
+ * digest. An upcast row can copy that head into its data as a tail digest, and
+ * the genesis head is all zeros like an unset replay digest, so a value equal
+ * to either event's head is set aside wherever it sits, in both events alike.
+ */
+function eventContentDigest(envelope: { readonly payload?: unknown }, heads: ReadonlySet<unknown>): string {
+  const payload = envelope.payload;
+  if (payload === null || typeof payload !== 'object' || Array.isArray(payload)) {
+    return sha256Bytes(canonicalBytes(payload ?? null));
+  }
+  const content: Record<string, unknown> = { ...payload };
+  delete content.prevEventHash;
+  delete content.payloadDigest;
+  const withoutHeads = (value: unknown): unknown => {
+    if (typeof value === 'string' && heads.has(value)) return null;
+    if (Array.isArray(value)) return value.map(withoutHeads);
+    if (value !== null && typeof value === 'object') {
+      return Object.fromEntries(Object.entries(value).map(([field, inner]) => [field, withoutHeads(inner)]));
+    }
+    return value;
+  };
+  return sha256Bytes(canonicalBytes(withoutHeads(content)));
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -430,7 +480,7 @@ export async function appendModeEvent(
       now,
       environment: options.bindingEnvironment,
     });
-  } catch (error) {
+  } catch (error: unknown) {
     return {
       ok: false,
       phase: 'binding',
@@ -457,7 +507,7 @@ export async function appendModeEvent(
       authorityRoot,
       now,
     });
-  } catch (error) {
+  } catch (error: unknown) {
     return {
       ok: false,
       phase: 'authority',
@@ -588,7 +638,7 @@ export async function appendModeEvent(
         authResult.proof,
       );
       break;
-    } catch (error) {
+    } catch (error: unknown) {
       const isHeadConflict = error instanceof LocksAndFencingError
         && error.code === LocksAndFencingErrorCodes.HEAD_CONFLICT;
       if (isHeadConflict && attempt < maxRetries - 1) {
@@ -722,7 +772,7 @@ export async function appendModeEvent(
       projectionRefreshed = false;
       projectionError = `Surface ${surfaceId} has no declared refresh boundary`;
     }
-  } catch (error) {
+  } catch (error: unknown) {
     projectionRefreshed = false;
     projectionError = error instanceof Error ? error.message : String(error);
   }

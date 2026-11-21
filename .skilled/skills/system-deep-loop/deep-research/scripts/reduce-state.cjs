@@ -1,6 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep Research State Reducer                                              ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Research State Reducer
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 
@@ -1041,6 +1041,14 @@ function formatLogRegionPath(value) {
   return typeof value === 'string' && value ? value : '-';
 }
 
+/**
+ * Emit one event per metric whose most recent window renders a flat sparkline.
+ *
+ * @param {Object} config - Research config; sets the flatline window.
+ * @param {Object<string, Array>} histories - Per-metric value histories.
+ * @param {Object|null} latestRecord - Latest iteration record, for the run number and timestamp.
+ * @returns {Object[]} `trend_flatline` advisories, or `novelty_signal_inert` warnings for a newInfoRatio held at 0.9 or above.
+ */
 function buildTrendFlatlineAdvisories(config, histories, latestRecord) {
   const window = resolveTrendFlatlineWindow(config);
   return Object.entries(histories)
@@ -1084,6 +1092,10 @@ function buildTrendFlatlineAdvisories(config, histories, latestRecord) {
     });
 }
 
+/**
+ * @param {Object} event - A trend advisory event.
+ * @returns {string} One markdown list line; missing fields render as `unknown` or `N/A`.
+ */
 function formatTrendAdvisoryEvent(event) {
   const metric = typeof event?.metric === 'string' && event.metric ? event.metric : 'unknown';
   const run = isFiniteNumber(event?.run) ? event.run : 'unknown';
@@ -1811,6 +1823,14 @@ function appendDeltaSourceProvenance(resourceMap, deltaSources) {
   ].join('\n');
 }
 
+/**
+ * Render the research resource map from fan-out delta files and, unless
+ * `options.write` is false, write it beside the research config.
+ *
+ * @param {string} specFolder - Spec folder holding the research artifacts.
+ * @param {{write?: boolean, requireExistingState?: boolean}} [options] - Write and strict-state switches.
+ * @returns {Object} Paths, the rendered map or null, and why the map was skipped when it was.
+ */
 function emitFanoutResourceMap(specFolder, options = {}) {
   const write = options.write !== false;
   const resolvedSpecFolder = path.resolve(specFolder);
@@ -1892,6 +1912,14 @@ function createRecoveryRefusedError(stateLogPath, reason, details = {}) {
   return error;
 }
 
+/**
+ * Read and parse the state log. With `requireExistingState`, a missing, empty or
+ * corrupt log throws a `STATE_RECOVERY_REFUSED` error instead of being reduced.
+ *
+ * @param {string} stateLogPath - Path to the JSONL state log.
+ * @param {boolean} requireExistingState - Whether the log must already hold valid state.
+ * @returns {Object} The detailed JSONL parse, including corruption warnings.
+ */
 function readStateLogForReduction(stateLogPath, requireExistingState) {
   if (requireExistingState && !fs.existsSync(stateLogPath)) {
     throw createRecoveryRefusedError(stateLogPath, 'missing state log');
@@ -2097,6 +2125,13 @@ function distinctIterationRecords(records) {
   return unnumbered.concat(numbered);
 }
 
+/**
+ * Take the first named score field from graph convergence signals, falling back to
+ * the mean of every numeric signal.
+ *
+ * @param {Object} signals - Graph convergence signals.
+ * @returns {number} The score, or 0 for a non-object or one with no numeric signal.
+ */
 function computeGraphConvergenceScore(signals) {
   if (!signals || typeof signals !== 'object' || Array.isArray(signals)) {
     return 0;
@@ -2122,6 +2157,10 @@ function computeGraphConvergenceScore(signals) {
   return sum / numericSignals.length;
 }
 
+/**
+ * @param {Object[]} eventRecords - State-log event records.
+ * @returns {{graphConvergenceScore: number, graphDecision: string|null, graphBlockers: Array}} Rollup of the latest `graph_convergence` event.
+ */
 function buildGraphConvergenceRollup(eventRecords) {
   const latestGraphConvergence = eventRecords.filter((record) => record.event === 'graph_convergence').at(-1);
   const signals = latestGraphConvergence?.signals && typeof latestGraphConvergence.signals === 'object'
@@ -2260,6 +2299,14 @@ function buildPivotState(eventRecords) {
   };
 }
 
+/**
+ * Resolve session lineage from the latest resumed, restarted or extended event,
+ * falling back field by field to `config.lineage`.
+ *
+ * @param {Object} config - Research config.
+ * @param {Object[]} eventRecords - State-log event records.
+ * @returns {Object} Session, parent, lineage mode (default `new`), generation (default 1) and the run continued from.
+ */
 function buildLineageState(config, eventRecords) {
   const configLineage = config.lineage && typeof config.lineage === 'object'
     ? config.lineage
@@ -2304,6 +2351,10 @@ function buildLineageState(config, eventRecords) {
   };
 }
 
+/**
+ * @param {Object[]} records - All state-log records in order.
+ * @returns {Object|null} The latest `synthesis_complete` stop details, or null when none exists or a later iteration or lifecycle event superseded it.
+ */
 function buildTerminalStopState(records) {
   const eventRecords = records.filter((record) => record?.type === 'event');
   const latestSynthesisComplete = eventRecords.filter((record) => record.event === 'synthesis_complete').at(-1);
@@ -2339,6 +2390,16 @@ function buildTerminalStopState(records) {
   };
 }
 
+/**
+ * Derive the dashboard status: COMPLETE after a terminal stop, STUCK_RECOVERY after
+ * a recovery event or a stuck iteration, otherwise the config status upper-cased.
+ *
+ * @param {Object} config - Research config.
+ * @param {Object[]} iterationRecords - Iteration records.
+ * @param {Object[]} eventRecords - Event records.
+ * @param {Object|null} terminalStop - Terminal stop state.
+ * @returns {string} The status label; a config status of `running` becomes ITERATING.
+ */
 function deriveDashboardStatus(config, iterationRecords, eventRecords, terminalStop) {
   if (terminalStop) {
     return 'COMPLETE';
@@ -2444,6 +2505,11 @@ function getTimestampValue(timestamp) {
 // reduce rebuilds the same node list every time it reads the same file. A row that
 // does not parse is skipped but reported into warnings: when it was a node's only
 // row, the node leaves the frontier, and the warning is the one trace of it.
+/**
+ * @param {string} storePath - Path to the frontier node JSONL store.
+ * @param {string[]} [warnings] - Receives one warning per unparseable row.
+ * @returns {Object[]} The latest row per node, sorted by node id.
+ */
 function readFrontierNodeStore(storePath, warnings = []) {
   const byId = readNodeStore(storePath, { warnings });
   return [...byId.values()].sort((left, right) => compareCodeUnit(left.nodeId, right.nodeId));
@@ -2453,6 +2519,12 @@ function readFrontierNodeStore(storePath, warnings = []) {
 // the registry. The status is derived here, and a writing reduce then records
 // that answer in the store. The active node is the one the next focus picks, so
 // the stuck branch closes the node the stalled passes worked on.
+/**
+ * @param {Object} frontierInput - Frontier nodes, plus an optional budget and warnings.
+ * @param {Object[]} keyedQuestions - Registry questions, matched to nodes by inbox id.
+ * @param {Object[]} [iterationRecords] - Iteration records, used to pick the active node.
+ * @returns {Object} Nodes with derived status, per-status counts, the active node id or null, and any budget and warnings.
+ */
 function buildFrontierProjection(frontierInput, keyedQuestions, iterationRecords = []) {
   const resolvedByNode = new Map();
   for (const question of keyedQuestions) {
@@ -2523,6 +2595,11 @@ function frontierNodeVisitRecords(nodeId, iterationRecords) {
     .filter((record) => typeof record?.focus === 'string' && marker.test(record.focus));
 }
 
+/**
+ * @param {string} nodeId - Frontier node id.
+ * @param {Object[]} iterationRecords - Iteration records.
+ * @returns {number} Evidence-bearing iterations whose focus names the node.
+ */
 function frontierNodeVisits(nodeId, iterationRecords) {
   return frontierNodeVisitRecords(nodeId, iterationRecords).length;
 }
@@ -2541,6 +2618,11 @@ function chooseFrontierNode(nodes, iterationRecords) {
   return ranked[0].node;
 }
 
+/**
+ * @param {Object} frontier - Frontier projection.
+ * @param {Object[]} iterationRecords - Iteration records.
+ * @returns {string} The next focus line for the chosen open node, or an empty string when no node is open.
+ */
 function pickFrontierFocus(frontier, iterationRecords) {
   const chosen = chooseFrontierNode(frontier?.nodes, iterationRecords);
   if (!chosen) return '';
@@ -2553,6 +2635,14 @@ function pickFrontierFocus(frontier, iterationRecords) {
 // share. An open node whose question an iteration already answered is marked
 // answered first: the budget closes only work still outstanding, and an answered
 // node never holds its band open against the roll-down.
+/**
+ * @param {Object[]} nodes - Frontier nodes.
+ * @param {Object[]} iterationRecords - Iteration records, counted as visits per node.
+ * @param {number} maxIterations - Iteration cap the depth bands share.
+ * @param {Object} budgetSplit - Share of the cap per depth band.
+ * @param {Set<string>} [answeredNodeIds] - Open nodes to mark answered before the budget applies.
+ * @returns {{nodes: Object[], budget: Object}} Nodes after the band budget closes any over-spent band, and the allotted and spent count per band.
+ */
 function applyFrontierBudget(nodes, iterationRecords, maxIterations, budgetSplit, answeredNodeIds = new Set()) {
   const visits = nodes.map((node) => {
     const records = frontierNodeVisitRecords(node.nodeId, iterationRecords);

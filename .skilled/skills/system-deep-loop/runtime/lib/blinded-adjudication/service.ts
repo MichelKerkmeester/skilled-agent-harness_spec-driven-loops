@@ -87,6 +87,7 @@ import type { DeblindedIdentity } from './blinding.js';
 // 1. SERVICE TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/** What a deblinding authorizer is asked to approve: the actor claim, its purpose and the exact candidate digests. */
 export interface DeblindingAuthorizationRequest {
   readonly adjudicationId: string;
   readonly actorClaim: string;
@@ -94,12 +95,14 @@ export interface DeblindingAuthorizationRequest {
   readonly candidateDigests: readonly string[];
 }
 
+/** An authorizer approval, naming the authenticated principal, the capability used and the authentication method. */
 export interface AuthenticatedDeblindingAuthorization {
   readonly principalId: string;
   readonly capabilityId: string;
   readonly authenticationMethod: string;
 }
 
+/** Storage root, ledger ids, authority provider and deblinding authorizer the adjudication service runs with. */
 export interface BlindedAdjudicationServiceOptions {
   readonly rootDirectory: string;
   readonly ledgerId?: string;

@@ -1,0 +1,18 @@
+
+TASK (2 files: .skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json and .skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md)
+
+EDIT 1. In pasted-reply-strip-cases.json, replace exactly (lines 77-78):
+      "input": "Earlier you replied: Done. Task: Refactor the session store module. Now: also update its tests.",
+      "expected": "Refactor the session store module. Now: also update its tests."
+with:
+      "input": "Earlier you replied: Done. Task: Refactor the session store module. Now: also update its tests.",
+      "expected": "also update its tests.",
+      "ideal": "Refactor the session store module. Now: also update its tests."
+Change nothing else in that file.
+
+EDIT 2. In README.md, right after the table row that starts with
+| `affordance-injection-fixtures.json` |
+insert this new row on its own line:
+| `pasted-reply-strip-cases.json` | Pasted-reply inputs and the text the strip rule must leave for scoring. Read by `legacy/advisor-prompt-policy.vitest.ts`. A row with an `ideal` field is a known miss of the shipped rule. |
+
+ACCEPT: `node -e 'const c=require("./.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json").cases;console.log(c.length,c.filter(x=>x.ideal).map(x=>x.id))'` prints `17 [ 'two-markers-in-user-task' ]`, and `rg -c 'pasted-reply-strip-cases' .skilled/skills/system-skill-advisor/runtime/tests/fixtures/README.md` prints 2.

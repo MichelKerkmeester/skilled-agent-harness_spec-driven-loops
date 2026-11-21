@@ -353,6 +353,10 @@ export function createNormalizedHealthInputs(
 // 3. COMMITTED PROJECTION ADAPTER
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * One gauge reading with the version, reducer and configuration digests and output hash that identify how it was
+ * produced.
+ */
 export interface ProjectionGaugeRead {
   readonly gaugeId: string;
   readonly gaugeVersion: string;

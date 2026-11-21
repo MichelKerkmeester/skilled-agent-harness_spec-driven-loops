@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/ups.v2.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+The prepared file reads any hook-flag concern through one resolver; skips route receipts entirely while the directive-lifecycle flag is off; on a floored or degraded delivered route writes no receipt but removes a held receipt for a different skill; sets the delivery state right after the input is validated; returns {} from the crash path when the payload has no prompt string; and exports writeHookOutput with an optional stream, committing the deferred receipt only when the write callback reports no error. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/ups.v2.ts .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` exits 0.

@@ -1,0 +1,30 @@
+## HANDBACK
+
+Changed [prompt-advisor.mjs](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:89) with the exact requested `cp` command.
+
+Final changed block:
+
+```js
+// A clock rotation is advisory: when it fails, a stored route still expires on
+// its own transcript check, so the failure is logged and never reaches the host.
+// A session with no id has no clock to move, so only a named session whose clock
+// did not move counts as a failure.
+async function rotateSessionClock(ctx, core, sessionId) {
+  try {
+    const advanced = await core.advanceBoundary?.(sessionId);
+    if (advanced === false && typeof sessionId === 'string' && sessionId.trim()) {
+      logFailure(ctx, new Error('session clock did not advance'));
+    }
+  } catch (error) {
+    logFailure(ctx, error);
+  }
+}
+```
+
+No mismatch found: the diff logs when rotation returns `false` for a nonempty session ID. `cmp tmp/p012-fix/dsh.v2.mjs .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` exited 0. Tests, typecheck, and build were not run; the run context assigns them to the conductor.
+
+The file is modified and uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`. Current worktree status lists other modified paths; I left them untouched.
+
+SKILL ROUTING: User specified `sk-code`; its compiled route deferred with no targets. I loaded the SKILLED JavaScript and HOOKS guidance. REPO RULES: `blast-radius.md`, `evidence-and-proof.md`.
+
+Conductor’s next step is to run the planned checks.

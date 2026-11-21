@@ -1,0 +1,155 @@
+diff --git a/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts b/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
+index 475fe713f7c..86c4785ab9d 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
+@@ -13,7 +13,7 @@ import { resolve } from 'node:path';
+ import { disabledRecommendOutput, emptyOutput, requestWorkspaceRoot } from '../lib/advisor-disabled.js';
+ import { TRACKED_COMMANDS, attachCommand, commandRowFor, routeNeedsMode, typedCommandForTop } from '../lib/command-attach.js';
+ import { advisorPromptCache } from '../lib/prompt-cache.js';
+-import { extractMetalinguisticSkillMentions } from '../lib/prompt-policy.js';
++import { extractMetalinguisticSkillMentions, stripLeadingPastedReply } from '../lib/prompt-policy.js';
+ import {
+   resolveAdvisorThresholdConfig,
+ } from '../lib/skill-advisor-brief.js';
+@@ -532,8 +532,10 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
+   }
+   const sourceSignature = cacheSourceSignature(status);
+   advisorPromptCache.invalidateSourceSignatureChange(sourceSignature);
++  // Stripped once here so the embedding, the cache key and the scorer all see the same text.
++  const scoredPrompt = stripLeadingPastedReply(input.prompt);
+   const key = advisorPromptCache.makeKey({
+-    canonicalPrompt: input.prompt.trim(),
++    canonicalPrompt: scoredPrompt.trim(),
+     sourceSignature,
+     workspaceRoot,
+     runtime: 'mcp',
+@@ -566,12 +568,15 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
+   }
+ 
+   const topK = input.options?.topK ?? 3;
+-  const result = await withSemanticShadowPromptEmbedding(input.prompt, () => scoreAdvisorPrompt(input.prompt, {
+-    workspaceRoot,
+-    confidenceThreshold: input.options?.confidenceThreshold,
+-    uncertaintyThreshold: input.options?.uncertaintyThreshold,
+-    runtimeLaneHealth: runtimeLaneHealthForStatus(status),
+-  }));
++  const result = await withSemanticShadowPromptEmbedding(
++    scoredPrompt,
++    () => scoreAdvisorPrompt(scoredPrompt, {
++      workspaceRoot,
++      confidenceThreshold: input.options?.confidenceThreshold,
++      uncertaintyThreshold: input.options?.uncertaintyThreshold,
++      runtimeLaneHealth: runtimeLaneHealthForStatus(status),
++    }),
++  );
+   // The lane records its health while the scored call runs, so the reason is
+   // read right after that call settles to describe this call's own fallback.
+   const semanticLaneOffReason = getSemanticShadowRuntimeHealth().disabledReason;
+@@ -579,7 +584,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
+     .map((recommendation) => publicRecommendation(
+       recommendation,
+       Boolean(input.options?.includeAttribution),
+-      input.prompt,
++      scoredPrompt,
+     ))
+     .filter((recommendation): recommendation is NonNullable<typeof recommendation> => Boolean(recommendation))
+     .slice(0, topK);
+diff --git a/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts b/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
+index a821f338c63..f236982e1c8 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts
+@@ -221,3 +221,29 @@ export function shouldFireAdvisor(prompt: string): AdvisorPromptPolicyResult {
+     metalinguisticMentions,
+   };
+ }
++
++const PASTED_REPLY_CUE = /^\s*(?:(?:earlier|previously|above),?\s+)?(?:(?:you|the assistant|claude)\s+(?:replied|said|wrote|answered|responded)\s*:|["“>])/i;
++const TASK_MARKER = /(?:^|[.!?\n]\s*)(?:now|task)\s*:\s*/i;
++
++function stripPastedReplyOnce(prompt: string): string {
++  if (!PASTED_REPLY_CUE.test(prompt)) return prompt;
++  const marker = TASK_MARKER.exec(prompt);
++  if (!marker) return prompt;
++  const task = prompt.slice(marker.index + marker[0].length).trim();
++  return task.length > 0 ? task : prompt;
++}
++
++/**
++ * Drop an earlier reply pasted ahead of the task, keeping the text after its task marker.
++ * The skill names in a pasted reply would otherwise steer routing away from the task.
++ * Repeats until nothing changes, so a second call returns the same text; the handler and
++ * the scorer both call it, and the semantic lane matches its embedding by exact text.
++ */
++export function stripLeadingPastedReply(prompt: string): string {
++  let current = prompt;
++  for (;;) {
++    const next = stripPastedReplyOnce(current);
++    if (next === current) return current;
++    current = next;
++  }
++}
+diff --git a/.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts b/.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts
+index 2f94aa4cb2a..f513647fd96 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts
+@@ -49,6 +49,7 @@ import {
+ } from './weights-config.js';
+ import { isLiveScorerLane } from './lane-registry.js';
+ import { isRouteExcludedSkillId } from '../route-exclusions.js';
++import { stripLeadingPastedReply } from '../prompt-policy.js';
+ import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from '../compat/contract.js';
+ import type {
+   AdvisorProjection,
+@@ -1271,7 +1272,9 @@ export function rankTypedCommandOwnerFirst(
+   ];
+ }
+ 
+-export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
++export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
++  // A reply pasted ahead of the task names skills the task never asked for, so it is scored without it.
++  const prompt = stripLeadingPastedReply(rawPrompt);
+   const projection = projectionWithUsableSkillIds(
+     options.projection ?? loadAdvisorProjection(options.workspaceRoot),
+   );
+diff --git a/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl b/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl
+index 45b6d0d15b1..7d7be03c154 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl
++++ b/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl
+@@ -193,3 +193,4 @@
+ {"id": "rr-hub6-205", "bucket": "skill_routing_prompts", "source_type": "synthetic-realistic", "prompt": "Search Refero for real app checkout screens and pull style references for the redesign.", "gate3_triggers": "no", "gate3_reason_category": "skill_routing_only", "skill_top_1": "mcp-tooling", "skill_correct": "yes", "notes": "refero design-reference search (hub mode mcp-refero)"}
+ {"id": "rr-hub6-206", "bucket": "skill_routing_prompts", "source_type": "synthetic-realistic", "prompt": "Research onboarding flow patterns from real iOS apps on Mobbin for our signup rework.", "gate3_triggers": "no", "gate3_reason_category": "skill_routing_only", "skill_top_1": "mcp-tooling", "skill_correct": "yes", "notes": "mobbin app-pattern research (hub mode mcp-mobbin)"}
+ {"id": "rr-hub6-207", "bucket": "skill_routing_prompts", "source_type": "synthetic-realistic", "prompt": "Use the Mobbin MCP through code mode to collect screen examples of paywall designs.", "gate3_triggers": "no", "gate3_reason_category": "skill_routing_only", "skill_top_1": "mcp-tooling", "skill_correct": "yes", "notes": "mobbin mcp explicit phrasing"}
++{"id": "rr-paste-208", "bucket": "true_write", "source_type": "synthetic-realistic", "prompt": "Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: Refactor the session store module to remove duplicated locking code", "gate3_triggers": "yes", "gate3_reason_category": "file_write", "skill_top_1": "sk-code", "skill_correct": "yes", "notes": "pasted earlier reply ahead of a code task must not steer routing"}
+diff --git a/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts b/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts
+index 87a951a12f0..b18ab3a5df1 100644
+--- a/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts
++++ b/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts
+@@ -98,7 +98,7 @@ function goldSkill(row: CorpusRow): string | null {
+   return row.skill_top_1 === 'none' ? null : row.skill_top_1;
+ }
+ 
+-describe('advisor 195-prompt corpus regression-protection parity', () => {
++describe('advisor 196-prompt corpus regression-protection parity', () => {
+   it('preserves Python-correct top-1 decisions while allowing native improvements', async () => {
+     const previousSemantic = process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC;
+     process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
+@@ -110,8 +110,8 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
+     try {
+       const rows = loadCorpus();
+       // The current labeled corpus retains the seven hub-routing rows added
+-      // for the mcp-tooling hub projection, so the authoritative size is 195.
+-      expect(rows).toHaveLength(195);
++      // for the mcp-tooling hub projection, so the authoritative size is 196.
++      expect(rows).toHaveLength(196);
+       const pythonTopSkills = directPythonTopSkills(rows);
+       expect(pythonTopSkills).toHaveLength(rows.length);
+ 
+@@ -147,7 +147,7 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
+         }
+       }
+ 
+-      // On the current 195-row corpus the Python reference scorer (built-in
++      // On the current 196-row corpus the Python reference scorer (built-in
+       // semantic disabled for determinism) makes 117 gold-correct top-1 calls;
+       // the native/hook scorer preserves 112 of them (re-baselined 2026-09-07
+       // after the deep-loop and design consolidations moved both numbers up). The remaining

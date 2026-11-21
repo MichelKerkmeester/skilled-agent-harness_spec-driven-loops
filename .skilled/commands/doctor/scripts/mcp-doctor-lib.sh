@@ -171,6 +171,11 @@ resolve_project_root() {
     # An explicit root that is missing must never fall back to another tree.
     if [[ ! -d "$hint" ]]; then
       printf 'Error: --root is not a directory: %s\n' "$hint" >&2
+      # The command is relative to the tree that ships this library, so the line
+      # names that tree as both the folder to run from and the root to check.
+      local tree
+      tree="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
+      printf 'Next: from %q: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --root %q\n' "$tree" "$tree" >&2
       return 1
     fi
     cd "$hint" && pwd

@@ -1,79 +1,55 @@
-# Iteration 003 - Frontier node F-1-006: correctness
+# Iteration 003 - Frontier node F-1-005: correctness
 
 ## Dispatcher
-
-- Lineage: opus (fan-out), iteration 3 of 24, dimension correctness, frontier node F-1-006 (depth 1 of 3)
-- Stop check before dispatch: CONTINUE (noStopCandidate)
-- Sources read: config, registry, strategy; steer.md absent
-
-## Dimension
-
-Correctness of the skill docs, references, playbooks, feature catalogs and the deep-review and deep-research agent definitions with their runtime mirrors: do they state what the code does?
+- Lineage: opus (fan-out), session fanout-opus-1795201537192-sq1ivw, generation 1
+- Frontier node: F-1-005 (depth 1), dimension correctness
+- Sources read before work: lineage steer.md (absent), frontier block for F-1-005, convergence decision for iteration 2 (CONTINUE)
 
 ## Files Reviewed
-
-- `git diff --stat 21c4b325b5a..de32abbb74d` over the node scope (126 files)
-- `.skilled/agents/deep-review.md:167-195` and `.skilled/agents/deep-research.md` diff (canonical agents)
-- `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, `.pi/agents/deep-review.md`, `.dsh/agents/deep-review.patch.yml`, `.vibe/agents/deep-review.toml` and their deep-research counterparts (sentence-presence parity)
-- `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md:300-309`
-- `.skilled/skills/system-deep-loop/deep-review/changelog/v1.13.0.0.md:115-145`
-- `.skilled/skills/system-deep-loop/deep-review/README.md:45,168`
-- `.skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/frontier-admit-script.md:16-60`
-- Code context: `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1507-1510`, `reduce-state.cjs:1224-1237`
+- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:57-80, 869-875, 994-1000, 1862-2200 (range diff), 2199-2221, 2361, 2440-2452
+- .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:49, 216-230
+- .skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:777, 866, 975-981, isGateResults
+- .skilled/commands/deep/assets/deep-review.yaml:96-105, 1149-1165, 1282-1288
+- .skilled/commands/deep/assets/deep-research.yaml:278-288, 1100-1101, 1179-1187
 
 ## Findings by Severity
 
 ### P0 Findings
-
 None.
 
 ### P1 Findings
-
 None.
 
 ### P2 Findings
-
-1. **The review state-format reference and the current changelog say a frontier node always needs all four canonical dimensions, but the code drops traceability when the configured list leaves it out** -- .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md:305 -- The reference says "The universe always holds the four canonical dimensions, then each configured custom name, so a node in a run configured with a subset still needs all four." `v1.13.0.0.md:122`, the changelog of the version the skill now declares (`deep-review/SKILL.md:5`), says the same. The code removes traceability from the universe whenever `reviewDimensions` is an array without it (`convergence.cjs:1507-1510`, used at `reduce-state.cjs:1225`), so a node in a `correctness,performance` run is answered on four dimensions without traceability. This is the same drift as the presentation lines raised in iteration 2, in two more files the alignment commits did not reach.
-   - Finding class: cross-consumer
-   - Scope proof: `grep -rn "always holds the four\|needs all four"` over `.skilled/skills/system-deep-loop` and `.skilled/commands/deep` returns exactly these two lines.
-   - Affected surface hints: deep-review/references/state/state-format.md Frontier Node Store; deep-review/changelog/v1.13.0.0.md expansive-depth bullets.
-   - Case: an operator configures `--dimensions correctness,performance --depth-mode=expansive`, reads the reference, and expects each node to need a traceability pass that the reducer never schedules.
+1. **The blocked-stop event reports every active finding as adjudicated, including when the claim-adjudication gate is the blocker** -- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:2031 -- `buildReviewBlockedStopEvent` sets `activeFindingCounts.adjudicated` to `p0 + p1 + p2`, the same value as `candidates`, whatever the gates say. When `blockedGateIds` holds `claimAdjudicationGate`, the same ledger event therefore states that every candidate is adjudicated and that the stop is blocked because some are not. It also counts P2 findings, which need no adjudication. The schema accepts this because it checks only the field set (deep-review-ledger-schema.ts:777), so a reader of the ledger gets a self-contradicting count.
+   Finding class: instance-only
+   Scope proof: buildReviewBlockedStopEvent is the only producer of deep_review.blocked_stop_recorded from the script (convergence.cjs:2023-2045)
+   Affected surface hints: convergence.cjs buildReviewBlockedStopEvent activeFindingCounts; deep-review-ledger-schema.ts finding-counts rule
+   Case: one active P1 with no claim-adjudication packet blocks the stop on claimAdjudicationGate, and the recorded event says candidates 1, adjudicated 1.
 
 ## Traceability Checks
-
-- `agent_cross_runtime` (overlay): pass. Each new sentence in the canonical deep-review agent (custom dimension binding, frontier proposals block, configured custom dimension tag, Custom review dimension row) appears exactly once in all five mirrors, and the frontier_proposal contract appears three times in every deep-research mirror including the single-line `.vibe` TOML (`grep -o` count 3).
-- `feature_catalog_code` (overlay): pass for `frontier-admit-script.md:16-60` against `frontier-admit.cjs:656-714,884-910,1190-1253`: commands, flags, six checks and their order, close guards and exit code 2 match.
+- Workflow binding matches the script: both YAMLs bind `--read-only` on a dry run and `--record-blocked-stop` on a live run (deep-review.yaml:96-105, deep-research.yaml:278-288), and the script refuses the two together (convergence.cjs:2205).
 
 ## Integration Evidence
-
-- Mirrors checked by name: `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, `.pi/agents/deep-review.md`, `.dsh/agents/deep-review.patch.yml`, `.vibe/agents/deep-review.toml` (header says generated by `sync-agents-vibe.cjs` from the canonical file).
+- `--read-only` suppresses snapshot persistence (convergence.cjs:2361), so the research workflow's unconditional `--persist-snapshot` (deep-research.yaml:1100) is inert on a dry run. It also suppresses the observability append on both graph paths (:2278, :2438). The graph-failure path records only when `--record-blocked-stop` was passed (:2446), so a dry run writes nothing there either.
+- The review projection maps `deep_review.blocked_stop_recorded` to a `blocked_stop` row with `run = num(scope.iterationId)` and `blockedBy = blockedGateIds` (deep-review-state-contract.ts:216-224). Those are exactly the fields `recordBlockedStop`'s repeat check reads, so a recomputed decision with the same blockers records nothing again.
+- Skipped gates (`candidateCoverageGate`, `graphlessFallbackGate` when v1) are reported as `status:'unknown'`, `reasonCode:'gate-skipped'` (convergence.cjs blocked-stop gate rows), and the ledger accepts `unknown` (isGateResults).
 
 ## Edge Cases
-
-- `git diff --stat` reports 2 changed lines for each `.vibe` TOML against 9 to 12 for other mirrors. The `.vibe` file stores the whole prompt in one `instructions` string, so one line holds every change; occurrence counts confirm parity.
-- Changelogs are historical, but `v1.13.0.0` is the version the skill currently declares, so its statement is the operator-facing description of current behavior.
+- On a dry run that computes BLOCKED, `step_emit_blocked_stop` still logs "Blocked STOP recorded" (deep-review.yaml:1286, deep-research.yaml:1183) although `--read-only` recorded nothing. The log text overstates the result, but the step writes nothing, so this is not raised.
+- A gate that both passed and is `skipped:true` reports `unknown` rather than `pass`, which is the intended meaning.
 
 ## Confirmed-Clean Surfaces
-
-- `README.md:168`: with D=4, S=1 and maxDepth 3 the formula gives 24, so the ceiling binds from the first seed as stated.
-- Agent mirrors carry the same frontier proposal contract and custom-dimension wording on every runtime.
+- Ledger stem semantic check requires at least one `fail` row and a non-zero appendPosition (deep-review-ledger-schema.ts:975-980). A graph-only block passes every gate, so the script adds a failing row per graph blocker. That makes it valid.
 
 ## Ruled Out
-
-- Mirror drift in the `.vibe` TOML: the two-line diff is the single-string storage format, not missing content.
-
-## Operator Focus Coverage
-
-- Overengineering: the same universe rule is restated in review.md, the presentation, the YAML, state-format.md, convergence.md, README and the changelog; the drift found in iterations 2 and 3 is the cost of that restatement. Carried to this node's maintainability visit.
-- Operator UX: the stale reference misleads an operator sizing a run (finding 1).
-- Cross-CLI parity: agent mirrors verified equal across claude, codex, pi, dsh and vibe (opencode, devin and cursor read `.skilled/agents` directly per the path convention).
+- A dry run persisting the research snapshot through `--persist-snapshot`: overridden by readOnly at convergence.cjs:2361.
 
 ## Next Focus
-
-- Dimension: security
-- Focus area: next node per registry rotation (F-2-007 correctness, then security on F-1-002)
-- Reason: registry.frontier active node
-- Rotation status: all three depth-1 nodes have correctness covered
+- Dimension: security, next uncovered dimension per reducer
+- Focus area: reducer-picked node (F-2-006 correctness or F-1-001 security)
+- Reason: frontier round-robin
+- Rotation status: all three seed nodes have correctness
 - Required evidence: file:line
 
 Review verdict: PASS

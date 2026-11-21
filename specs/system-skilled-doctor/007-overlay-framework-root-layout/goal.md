@@ -60,17 +60,20 @@ Frozen choices. Changing one is an amendment.
 ## 2. BINDING
 <!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->
 
-**Read the child goal before working a phase.** Each is authoritative for its
-phase and binds as if written here.
+**Read the child goal before working a phase.** It binds as if written here.
 
 | Phase | Goal document |
 |-------|---------------|
-| 001-engine-out-of-tree-overlay-folder | `001-engine-out-of-tree-overlay-folder/goal.md` |
-| 002-engine-framework-root-source-layout | `002-engine-framework-root-source-layout/goal.md` |
-| 003-engine-docs-and-release | `003-engine-docs-and-release/goal.md` |
-| 004-barter-repin-and-relayout | `004-barter-repin-and-relayout/goal.md` |
-| 005-barter-move-overlays-out-of-tree | `005-barter-move-overlays-out-of-tree/goal.md` |
-| 006-review-remediation | `006-review-remediation/goal.md` |
+| 001-engine-out-of-tree-overlay-folder | its `goal.md` |
+| 002-engine-framework-root-source-layout | its `goal.md` |
+| 003-engine-docs-and-release | its `goal.md` |
+| 004-barter-repin-and-relayout | its `goal.md` |
+| 005-barter-move-overlays-out-of-tree | its `goal.md` |
+| 006-review-remediation | its `goal.md` |
+| 014-overlay-folder-readmes | its `goal.md` |
+| 015-alignment-command-overlay-targets | its `goal.md` |
+| 016-upstream-code-alignment | its `goal.md` |
+| 017-overlay-alignment-follow-ups | its `goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.

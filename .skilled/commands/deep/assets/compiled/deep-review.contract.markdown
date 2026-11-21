@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "f294cd132901b610bed73a1d4face3af7351e1579a7f300866ac36329be53c3c",
+      "sha256": "6bbed8b897c103f52568967358cab76727c3d7da79535ef6c8c3bea608337cc2",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "ebbe814e1f8dc9340d8585868b1e4f2b9cf9735177d8424e91c9dddf94f016ea",
+      "sha256": "310003fe7e67415fd7668d4f123911b5e73d005095cae9cbac204789ace51e4a",
       "section": "full"
     },
     {
@@ -22,17 +22,17 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review.yaml",
-      "sha256": "6666a7e44d9b9a36e2c96ebd9e5302aac5dcd12c1f37885c09af523f73ec11f7",
+      "sha256": "04d932bb99b3eddc85feb216ae173e4251d4bd8c2f9bda7f0d2b67498f25e6e0",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "791b5c265eea8b00e9a1fd2a0a2636df2dea48f07ef02f87bba4e88071278f05",
+      "sha256": "126e883c24e67a3ca1c4ebc19028544e70783eeb42b89339de3ba652273c2260",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "5f310e5e1fe6e483a5bd0407f1e0a1631074407a4449cfb249d47f7065d2c489",
+      "sha256": "407c06fef47142ed0d6674a9494f17f6ad290e9b1b7b2f6eaa830c4cb732a394",
       "section": "full"
     },
     {
@@ -42,12 +42,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "dfcb223c4f04911ea7d9d46cf314c98c8787feb9e4bc41989941d64b961b8249",
+      "sha256": "5aeb769408f0f81b9cde0e5ac927ef296e87acbf5487fa94f6de3bc484d20079",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "d838d6fea024ad68940e4e83bfe1c456cb3e074cd31f441905a013b1e7df1ee4",
+      "sha256": "90b6b87a6703b2dff6f586cde94e7c5690cf59951a107ef6f147d866764112b1",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "cce24cf3e1536e5b4cf71cc62b897423c0ebad2bda2a691749827e1626e1e996",
+      "sha256": "4623c33a30c4fd8b89888e615f18c7aae680a3925d4bbf07ba8894de7727a508",
       "section": "full"
     },
     {
@@ -77,11 +77,11 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
-      "sha256": "8bb0a8d7cd4c37218ea9ad246eb9675e59fba897d13df8230ea2c4383a4faa9e",
+      "sha256": "1b22e0533cac584cde76b2c1d0d304cf256913be2bf930f675fec1a6de7cb5bb",
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "03fa107803e109884442858fa531c8137f4df1e9050a6d0eb228b9f631ed9882"
+  "compiledBodyDigest": "cf91435284642b3f974b61ed99ccd2e0f2d8784ad8c4f6ec2533bd90f44e56ef"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -217,7 +217,7 @@ Rules:
 | `extend_minutes` | N | flag `--extend-minutes=M` (positive integer), valid only with `--extend` | the prior `maxDurationMinutes` | N |
 | `frontier_max_depth` | N | flag `--frontier-max-depth=N` or marker `frontier_max_depth` (positive integer), valid only with `--depth-mode=expansive` on a single-executor run; written to `expansiveDepth.maxDepth` | `3` | N |
 | `frontier_max_nodes` | N | flag `--frontier-max-nodes=N` or marker `frontier_max_nodes` (positive integer), valid only with `--depth-mode=expansive` on a single-executor run; written to `expansiveDepth.maxFrontierNodes` | `null`, half the iteration budget | N |
-| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the four canonical dimensions less traceability when the configured `reviewDimensions` list leaves it out, plus each custom name, each counted once, and kept at `7` when S is 0. That is the single-executor budget: a fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at four, 24 once it is dealt a node and its loop default of 12 native or 7 CLI when it is dealt none; any other source is kept as given | `7` | N |
+| `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default; the setup-only binding `max_iterations_source` names which (`flag`, `marker`, `setup`, `matrix` or `default`) and is never written to the config. Under `--depth-mode=expansive` a `default` budget is resized after the seed step to `min(24, max(7, 2·c·(S + maxDepth − 1)))`, with S the depth-1 nodes the seed admitted and c the four canonical dimensions less traceability when the configured `reviewDimensions` list leaves it out, plus each custom name, each counted once, and kept at `7` when S is 0. That is the single-executor budget: a fan-out lineage with no matrix `iterations` value is sized from its own seed share with c fixed at four, 24 once it is dealt a node and its loop default of 7 when it is dealt none, but only when the source is `default`: any other source is kept as given, and in a fan-out it reaches the runner as `--max-iterations`, which binds every lineage the matrix gives no `iterations` value in either depth mode | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
 | `convergence_mode` | Y | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default | `default` | N |
 | `depth_mode` | Y | flag `--depth-mode=default|expansive`, marker `depth_mode`, or default `default` | `default` | N |
@@ -284,7 +284,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness` | `cli-mistral-vibe`. Every kind runs in `:auto` and `:confirm`, `cli-deepseek-harness` as a single lineage or a fan-out and `cli-mistral-vibe` only as a fan-out lineage. `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
-   |-- --sandbox-mode=<mode> -> config.executor.sandboxMode (`read-only` / `workspace-write` / `danger-full-access`; default `workspace-write`; cli-opencode accepts only `danger-full-access` as an explicit value)
+   |-- --sandbox-mode=<mode> -> config.executor.sandboxMode (`read-only` / `workspace-write` / `danger-full-access`; default `workspace-write`; cli-opencode also defaults to `workspace-write`, which denies its file tools outside the working directory but not Bash; `read-only` is refused)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
    |-- --service-tier=<tier> -> config.executor.serviceTier (`priority` | `standard` | `fast`)
    |-- --executor-timeout=<seconds> -> config.executor.timeoutSeconds (positive integer, default `900`)
@@ -363,14 +363,14 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-review agent with Opus.
-     B) cli-opencode — `opencode run --standalone -m X[#Y] --format json [--auto] "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is added only under `danger-full-access`, the one explicit sandbox mode cli-opencode accepts. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
-      C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`. The default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
+     B) cli-opencode — `opencode run --standalone -m X[#Y] --format json --auto "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is always passed; under `workspace-write` (the default) an inline `OPENCODE_CONFIG_CONTENT` denies `external_directory` to the file tools, Bash is not confined, and `read-only` is refused. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
+      C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`. The default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier. It logs `--output-format stream-json --verbose`, and a single-executor iteration writes its session cost to `iterations/iteration-NNN.cost.json`.
      D) cli-codex — requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
-     G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
+     G) cli-pi — requires `pi`, run as `pi -p --offline --model SELECTOR` (`provider/model`). Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`. Pi has no OS sandbox: `--sandbox-mode=read-only` narrows its tools to `read,grep,find,ls` and passes `--no-extensions --no-skills --no-prompt-templates` (a compensating control), and the other modes pass no restriction.
      H) cli-deepseek-harness (experimental, explicit choice only) — a single lineage such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash` runs in `:auto` through the shared fan-out command builder, and a fan-out shape such as `--count=2` also works. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
-     D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
+     B-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 
    Reply format examples:
    - `"skill:deep-research, B, all, A, A"`

@@ -1,9 +1,9 @@
-// ┌──────────────────────────────────────────────────────────────────────────┐
-// │ MODULE: check-ledger-stem-producers conformance                          │
-// │ Each case writes a real fixture tree (both ledger schemas plus the        │
-// │ producer surface) and asserts the real process exit code of the checker,  │
-// │ so a pass is a statement about the census and the emitters, not a mock.   │
-// └──────────────────────────────────────────────────────────────────────────┘
+// ───────────────────────────────────────────────────────────────────
+// MODULE: check-ledger-stem-producers conformance
+// ───────────────────────────────────────────────────────────────────
+// Each case writes a real fixture tree (both ledger schemas plus the
+// producer surface) and asserts the real process exit code of the checker,
+// so a pass is a statement about the census and the emitters, not a mock.
 
 import { afterEach, describe, expect, it } from 'vitest';
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
@@ -38,6 +38,7 @@ const PRODUCER_SURFACE = [
   join(RUNTIME_REL, 'scripts', 'run-now-sentinel.cjs'),
   join(RUNTIME_REL, 'scripts', 'dispatch-iteration.cjs'),
   join(RUNTIME_REL, 'scripts', 'workflow-steps.cjs'),
+  join(RUNTIME_REL, 'scripts', 'convergence.cjs'),
   join('.skilled', 'skills', 'system-deep-loop', 'deep-research', 'scripts', 'reduce-state.cjs'),
 ];
 
@@ -109,6 +110,7 @@ function writeFixture(options: FixtureOptions = {}): string {
   return root;
 }
 
+// The checker's stdout JSON is read key by key in the assertions, so the parsed payload stays loosely typed.
 function runChecker(repoRoot?: string): {
   status: number | null;
   stdout: string;

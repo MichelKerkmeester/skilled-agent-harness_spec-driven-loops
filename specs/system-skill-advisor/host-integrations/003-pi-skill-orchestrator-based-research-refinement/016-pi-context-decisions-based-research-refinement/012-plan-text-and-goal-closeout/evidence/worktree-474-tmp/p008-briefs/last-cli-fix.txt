@@ -1,0 +1,27 @@
+Applied the three requested edits in [skill-advisor-cli.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:24). All anchors matched. The file did not already import `prompt-policy.js`.
+
+Changed blocks:
+
+```ts
+import { commandRowFor } from './lib/command-attach.js';
+import { stripLeadingPastedReply } from './lib/prompt-policy.js';
+```
+
+```ts
+  const offeredSkills = new Set<string>();
+  const recommendations: Array<Record<string, unknown>> = [];
+  // A command named only in a pasted earlier reply is not one the user typed.
+  const task = stripLeadingPastedReply(prompt);
+```
+
+```ts
+    if (row && task.includes(row.command.split(' ')[0])) {
+```
+
+The three ACCEPT commands exited 0 and printed `2`, `1` and `4 1` for the requested numstat. `git diff --check` also exited 0.
+
+The `sk-code` drift guard exited 1: alignment-drift reported 11 errors and 46 warnings across 20,768 files, with errors in out-of-scope review fixtures. Stack-folders, router-sync and doc-claims passed. The edited file was not among the reported errors. Typecheck, build and Vitest were not run, as the task directs the conductor to run them.
+
+The workspace is dirty on branch `worktrees/474-advisor-pasted-context-and-crash-fallback`. This task changed only the named file; six other modified files appear in `git status` and were left untouched. No commit or push was made.
+
+Mismatch with TASK: none. Next, the conductor should run the package checks and account for the repository-wide drift failure.

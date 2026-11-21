@@ -1,0 +1,71 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback
+(Spec folder: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/004-crash-path-fallback (pre-approved, skip Gate 3). Write no spec docs; edit only the file in TASK.)
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command in ACCEPT has been run.
+
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts)
+Add one new test. Insert it right after the closing `  });` of the test named
+'AS6 emits the outage fallback for producer timeout/fail-open without a block decision'
+(currently line 479, the line after `    expect(diagnostic.errorDetails).toBe('timed out after 1000ms see logs');`),
+and before the blank line that precedes `  it('emits full fallback context when Python is unavailable', async () => {`.
+Keep one blank line between tests. Add no imports: every name used is already imported or defined in the file.
+
+NEW TEXT (paste exactly, preceded by one blank line):
+  it('emits the outage fallback when the hook itself throws while rendering', async () => {
+    const diagnostics = diagnosticsSink();
+    const buildCliBrief = vi.fn(async () => fixture('livePassingSkill.json'));
+    const renderBrief = vi.fn(() => {
+      throw new Error('render failed');
+    });
+    const output = await handleClaudeUserPromptSubmit({
+      session_id: 's1',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, {
+      buildCliBrief,
+      renderBrief,
+      writeDiagnostic: diagnostics.writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+    });
+
+    expect(renderBrief).toHaveBeenCalledOnce();
+    expect(output).toEqual({
+      hookSpecificOutput: {
+        hookEventName: 'UserPromptSubmit',
+        additionalContext: expectedOutageContext('fail_open'),
+      },
+    });
+    const diagnostic = parseDiagnostic(diagnostics.records.at(-1) ?? '{}');
+    expect(diagnostic.status).toBe('fail_open');
+    expect(diagnostic.errorCode).toBe('UNKNOWN');
+  });
+
+ACCEPT: exactly this file changed by you; `rg -n 'emits the outage fallback when the hook itself throws' .skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` prints one line.
+
+RUN CONTEXT
+You are a code leaf. Repository root: the current directory. Work only on the file(s) named in TASK.
+Follow the coding standards in .skilled/skills/sk-code/. Comments keep the durable why and never name spec paths, phase numbers or finding ids.
+You cannot run tsx, vitest, the typecheck or the build in this sandbox. The conductor runs them.
+
+DON'T
+Do not edit any file not named in TASK. Do not commit, push, branch or stash.
+Do not reformat or "improve" code outside the change. Do not add tests, options, files or logging that TASK does not ask for.
+
+HANDBACK
+Reply with: the files you changed, the final text of each changed block, and anything in TASK that did not match the file (quote both).

@@ -82,5 +82,9 @@ jobs:
       - name: Refuse a stale compiled command contract before the full suite
         run: node .opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs
 
+      # The context-loading recipe suites spawn rg, which the runner image does not ship.
+      - name: Install ripgrep
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ripgrep
+
       - name: Run the deep-loop runtime suites
         run: npm --prefix .opencode/skills/system-deep-loop/runtime test

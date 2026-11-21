@@ -29,7 +29,7 @@ Decides when a loop is actually done. Five independent clocks, each from its own
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/`
+- `../mode-contracts/`
 
 It depends on `cycle-detection`, `hierarchical-budgets`, `path-coverage-termination` and `semantic-communities` for the individual clock inputs.
 
@@ -37,11 +37,11 @@ It depends on `cycle-detection`, `hierarchical-budgets`, `path-coverage-terminat
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/stopping-clocks.vitest.ts`
+- `../../tests/unit/stopping-clocks.vitest.ts`
 
 ---
 
 ## 5. RELATED
 
-- [`runtime/lib/semantic-communities/README.md`](../semantic-communities/README.md)
-- [`system-deep-loop/SKILL.md`](../../../SKILL.md)
+- [`../semantic-communities/README.md`](../semantic-communities/README.md)
+- [`../../../SKILL.md`](../../../SKILL.md)

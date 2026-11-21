@@ -1,0 +1,119 @@
+The exact copy was applied to [.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts). The `cp` command and acceptance `cmp` both exited 0.
+
+**Changed blocks**
+
+Resolver and receipt flag:
+
+```ts
+function hookConcernEnabled(concern: string): boolean {
+  try {
+    const resolverPath = hookFlagsResolverPath();
+    if (resolverPath === null) return true;
+    const { isHookEnabled } = requireFromAdvisor(resolverPath) as {
+      isHookEnabled?: (concern: string) => boolean;
+    };
+    return typeof isHookEnabled !== 'function' || isHookEnabled(concern) !== false;
+  } catch {
+    return true;
+  }
+}
+
+function skillAdvisorHookEnabled(): boolean {
+  return hookConcernEnabled('skill-advisor');
+}
+
+// A route receipt expires on the directive-lifecycle clock, and the lifecycle
+// hooks stop moving that clock while their switch is off. A receipt kept then
+// would outlive a compaction, so receipts are neither read nor written.
+function routeReceiptsEnabled(): boolean {
+  return hookConcernEnabled('directive-lifecycle');
+}
+```
+
+Weak follow-up guard:
+
+```ts
+if (!sessionId || !top || top.confidenceFloored !== true || !routeReceiptsEnabled()) return result;
+```
+
+Receipt recording:
+
+```ts
+function recordRouteReceipt(
+  result: AdvisorHookResult,
+  brief: string | null,
+  input: ClaudeUserPromptSubmitInput,
+  dependencies: UserPromptSubmitDependencies,
+): void {
+  try {
+    const sessionId = receiptSessionId(input);
+    const top = topPassingRecommendation(result);
+    if (!sessionId || !brief || !top || !routeReceiptsEnabled()) return;
+    const store = dependencies.routeReceiptStore ?? defaultRouteReceiptStore();
+    // Only a route the model was shown on the advisor's own evidence is worth
+    // holding to: not one lifted onto the confidence floor, and not one the
+    // local scorer gave while the advisor was down. Showing either still moves
+    // the session off an earlier route that differs, so that route expires.
+    if (top.confidenceFloored === true || result.metrics.degraded === true) {
+      const held = store.read(sessionId);
+      if (held && held.skill !== top.skill) store.remove(sessionId);
+      return;
+    }
+    const clock = (dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore()).clock(sessionId);
+    if (!clock) return;
+    store.write({
+      version: ROUTE_RECEIPT_VERSION,
+      sessionId,
+      skill: top.skill,
+      storeGeneration: clock.storeGeneration,
+      lifecycleEpoch: clock.lifecycleEpoch,
+      transcriptBytes: transcriptBytesFor(input),
+    });
+  } catch {
+    // A lost receipt only means the next follow-up is routed on its own evidence.
+  }
+}
+```
+
+Delivery state and crash guard:
+
+```ts
+// Set before the brief build, so a crash below records its fallback against
+// this session instead of an anonymous one.
+deliveryState = deliveryStateOptionsFor(input);
+```
+
+```ts
+// A payload with no prompt string is silent on the normal path, so a crash
+// while rejecting it must not turn it into an outage line.
+if (!input || typeof input.prompt !== 'string') return {};
+```
+
+Output writer:
+
+```ts
+export interface HookOutputStream {
+  write(chunk: string, callback: (error?: Error | null) => void): boolean;
+}
+
+/**
+ * Write the hook output and commit its deferred receipt once the write lands.
+ * A failed write leaves the receipt uncommitted, so the next turn delivers the
+ * full brief again instead of a head the model never saw the rest of.
+ */
+export function writeHookOutput(
+  output: ClaudeUserPromptSubmitOutput,
+  stream: HookOutputStream = process.stdout,
+): Promise<void> {
+  return new Promise<void>((resolvePromise) => {
+    stream.write(`${JSON.stringify(output)}\n`, (error) => {
+      if (!error) commitClaudeDirectiveDeliveryReceipt(output);
+      resolvePromise();
+    });
+  });
+}
+```
+
+**Mismatch report:** None found in the reviewed diff, so there are no task/file quote pairs to report.
+
+No tests, typecheck, or build were run here, per the run context. The conductor owns those checks. The target is modified and uncommitted on `worktrees/474-advisor-pasted-context-and-crash-fallback`. Final `git status --short` also lists modified test and spec files outside scope; I did not touch them.

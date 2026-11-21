@@ -1,0 +1,6 @@
+TASK (1 new file: .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts)
+Create this file as a byte-for-byte copy of the prepared file by running exactly:
+cp tmp/p011-briefs/route-receipt.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts
+It imports hooks/lib/route-receipt.js, a module that does not exist yet; that is intended. Do not create that module and do not edit any other file.
+Then read the new test file and report in HANDBACK any test whose expectation contradicts its own name.
+ACCEPT: `cmp tmp/p011-briefs/route-receipt.vitest.ts .skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts` exits 0.

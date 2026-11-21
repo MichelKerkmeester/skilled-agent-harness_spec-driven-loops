@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p011-briefs/bench.v1.ts .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts
+The prepared file adds one import, a FALSE_CARRY_PAIR constant, a logFollowUpReceipts function after logFollowUpRouting, and one call to it beside the logFollowUpRouting call. Read the resulting diff and report in HANDBACK any change that alters an existing output line, an assertion or the calibration numbers (there should be none). Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p011-briefs/bench.v1.ts .skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts` exits 0.

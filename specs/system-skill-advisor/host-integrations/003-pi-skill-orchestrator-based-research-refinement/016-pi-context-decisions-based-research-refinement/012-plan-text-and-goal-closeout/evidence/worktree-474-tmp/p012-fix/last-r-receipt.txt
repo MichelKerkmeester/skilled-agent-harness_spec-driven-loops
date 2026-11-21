@@ -1,0 +1,34 @@
+## HANDBACK
+
+**Changed:** [route-receipt.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts)
+
+**Final added blocks:**
+
+```ts
+  it('removes only the named session receipt', () => {
+    const store = new InMemoryRouteReceiptStore();
+    store.write(receipt());
+    store.write(receipt({ sessionId: 'session-2' }));
+    expect(store.remove('session-1')).toBe(true);
+    expect(store.read('session-1')).toBeNull();
+    expect(store.read('session-2')?.skill).toBe(receipt().skill);
+    expect(store.remove('session-1')).toBe(true);
+  });
+```
+
+```ts
+  it('removes a receipt so it reads as none, and a missing one counts as removed', () => {
+    const store = new FileRouteReceiptStore(tempBase());
+    store.write(receipt());
+    store.write(receipt({ sessionId: 'session-2' }));
+    expect(store.remove('session-1')).toBe(true);
+    expect(store.read('session-1')).toBeNull();
+    expect(store.read('session-2')?.sessionId).toBe('session-2');
+    expect(store.remove('session-1')).toBe(true);
+    expect(new FileRouteReceiptStore(tempBase()).remove('session-1')).toBe(true);
+  });
+```
+
+**Mismatch:** None. The diff contains only these two test additions. The requested `cmp` exited 0. Vitest, typecheck and build were not run here; the run context assigns them to the conductor.
+
+The worktree also shows six other modified paths. I did not write to them, and I did not capture a full status baseline before the copy, so I can’t confirm whether those changes predate this run. `AI_SESSION_CHILD=1` pre-resolved the spec-folder gate; no response to the earlier folder prompt is needed.

@@ -152,6 +152,10 @@ function exactNodeSetProblems(values: readonly string[]): {
   };
 }
 
+/**
+ * Throws unless the workstream list matches the frozen manifest node set exactly, with no duplicates, gaps or
+ * extras.
+ */
 export function validateManifestNodeSet(workstreams: readonly string[]): void {
   const problems = exactNodeSetProblems(workstreams);
   if (problems.duplicates.length + problems.missing.length + problems.extra.length > 0) {
@@ -202,6 +206,10 @@ function allResources(declaration: ModeResourceDeclaration): readonly ResourceIn
   return [...declaration.readSet, ...declaration.writeSet, ...declaration.sharedState];
 }
 
+/**
+ * Returns the sorted, de-duplicated source paths the graph depends on: contract sources, extra paths and every
+ * declaration's refs.
+ */
 export function collectRequiredSourcePaths(
   declarations: readonly ModeResourceDeclaration[],
   additionalPaths: readonly string[] = [],
@@ -758,6 +766,7 @@ function deduplicateIssues(issues: readonly GraphValidationIssue[]): readonly Gr
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/** Validates the manifest and declarations, then derives the conflict graph, its source evidence and its schedule. */
 export function deriveWriteSetConflictGraph(input: GraphBuildInput): WriteSetConflictGraph {
   validateManifestNodeSet(input.manifestWorkstreams);
   validateDeclarations(input.declarations);
@@ -823,6 +832,7 @@ function graphPayload(graph: WriteSetConflictGraph): Omit<WriteSetConflictGraph,
   return payload;
 }
 
+/** Decides whether a stored graph may be reused, listing every reason it is stale or no longer fail-closed. */
 export function validateGraphForReuse(
   graph: WriteSetConflictGraph,
   input: GraphReuseInput,

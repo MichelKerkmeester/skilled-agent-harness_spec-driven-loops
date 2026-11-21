@@ -1,75 +1,49 @@
-# Iteration 014 - Blocked-stop recovery: graphless fallback evidence (correctness)
+# Iteration 014 - Frontier node F-1-003: maintainability
 
 ## Dispatcher
-
-- Lineage: opus (fan-out), iteration 14 of 24
-- Stop check before dispatch: the frontier is closed with two answered nodes, so `frontier_drained` formed; `convergence.cjs` returned BLOCKED with `blockedBy: ["graphlessFallbackGate"]`. Every other legal-stop gate passed (convergence, dimension coverage, P0 resolution, evidence density, hotspot saturation, claim adjudication, fix-completeness replay, candidate coverage).
-- Workflow action taken: `deep_review.blocked_stop_recorded` appended through the gateway (ledger sequence 20), recovery strategy "add cited fallback ledger rows". No frontier node is open, so this record carries no `frontierNodeId`.
-- Sources read: config, registry, strategy; steer.md absent
-
-## Dimension
-
-Correctness, applied to the blocking gate: why this lineage's graphless-fallback ledger rows did not count, and fresh cited rows for the two required bug classes (`state_transition`, `contract_drift`).
+- Lineage: opus (fan-out), session fanout-opus-1795201537192-sq1ivw, generation 1
+- Frontier node: F-1-003 (depth 1), dimension maintainability
+- Sources read before work: lineage steer.md (absent), frontier block for F-1-003 maintainability, convergence decision for iteration 13 (CONTINUE)
 
 ## Files Reviewed
-
-- `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:960-1000` (gate evaluation), `:1568-1590` (`reviewFallbackCoveredBugClasses`)
-- `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl:134,142` (ledger contract and compact example)
-- `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-graphless-fallback.md:26`
-- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:893-900` (state transition re-verification)
-- `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:464` (contract drift re-verification)
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:603-645 (formatFanoutStatusTable, statusForLedgerEvent), 1040-1047, 4416-4423
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:328-343
 
 ## Findings by Severity
 
 ### P0 Findings
-
 None.
 
 ### P1 Findings
-
 None.
 
 ### P2 Findings
-
-1. **The graphless fallback gate counts a ledger row only when the row itself carries `evidenceRefs` and one of five method names, but the prompt pack contract and its example put `evidenceRefs` only inside `searchActions` and name `exact_search`** -- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1581 -- `reviewFallbackCoveredBugClasses` skips a row with no row-level `evidenceRefs` (`:1581`) and accepts only `direct_read`, `exact_grep`, `semantic_search`, `producer_consumer_trace` and `negative_test_inspection` (`:1569-1575`). The leaf's contract lists the row's required fields without a row-level `evidenceRefs` (`prompt-pack-iteration.md.tmpl:134`), and the compact example a leaf copies has none and names `exact_search` among the discovery methods (`:142`). A leaf that follows the pack exactly produces rows the gate ignores, so a `graphless_fallback` run is BLOCKED at every stop candidate until the cap. This lineage followed the pack for thirteen iterations and its `frontier_drained` stop was blocked for exactly this reason. Both sides predate the range (the base already had `exact_grep` and the row-level check), so this is pre-existing, but expansive depth now routes its only drained stop through this gate.
-   - Finding class: cross-consumer
-   - Scope proof: one producer contract (the prompt pack, mirrored in state-format's example) and one consumer (`reviewFallbackCoveredBugClasses`); the graphless-fallback playbook (`stop-gate-graphless-fallback.md:26`) names the gate's method list, not the pack's.
-   - Affected surface hints: prompt-pack-iteration.md.tmpl ledger bullet and example; state-format v2 example; convergence.cjs fallback derivation (read action-level evidence and accept `exact_search`, or require row-level evidence in the pack).
-   - Case: any review whose leaves record `graphCoverageMode: graphless_fallback` with ledger rows shaped like the pack's example.
+1. **One ledger event name, `stopped`, carries two shapes, and only the label tells them apart** -- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4418 -- `--stop` writes `{event:'stopped', status:'stopped', label, pid, rerun_command}` per lineage (fanout-run.cjs:1043-1047). The runner's own signal path writes a run-level `{event:'stopped', signal, gauges}` with no label (:4417-4422). Every reader has to know that the label decides which one it holds. `collectOpenLineages` (fanout-pool.cjs:328-331) and `formatFanoutStatusTable` (fanout-run.cjs:610-611) both drop label-less rows. That makes a signal stop invisible to them, which is the mechanism behind OPUS-F003-P1-001. It also shows on `--status`: after a SIGHUP or parent-death stop, every lineage keeps its last label-bearing status, normally `running` from its last progress row, so the read-only view reports a stopped run as running. A distinct run-level event name, or the signal path also writing one labelled row per active lineage, would remove the ambiguity.
+   Finding class: cross-consumer
+   Scope proof: grep for 'stopped' in fanout-run.cjs and fanout-pool.cjs returns the two producers (:1044, :4418) and the two consumers (fanout-pool.cjs:342, fanout-run.cjs:635)
+   Affected surface hints: fanout-run.cjs writeStoppedSummary row; fanout-run.cjs formatFanoutStatusTable; fanout-pool.cjs collectOpenLineages
+   Case: a run is ended by SIGHUP, and `fanout-run.cjs --status` then prints both lineages as running with their last progress counts.
 
 ## Traceability Checks
-
-No protocol run this iteration (gate-recovery pass).
+- None run this iteration.
 
 ## Integration Evidence
-
-- Gate inputs observed before this iteration: `requiredBugClasses` `["state_transition","contract_drift"]` (from the latest record's `searchCoverage`), `fallbackCoveredBugClasses` `[]`, `graphCoverageMode` `graphless_fallback`.
+- `statusForLedgerEvent` maps `event:'stopped'` to `stopped` (fanout-run.cjs:635). The table never reaches it for the run-level row, because the row is dropped first for having no label (:610).
 
 ## Edge Cases
-
-- Recording change in this lineage from this iteration on: every ledger row carries a row-level `evidenceRefs` (the union of its actions' refs) and uses `direct_read` or `exact_grep` for cited fallback evidence. Earlier records are not rewritten.
-- Fresh cited rows in this record: `state_transition` re-verified by direct read of the close guards (`frontier-admit.cjs:895-900`): a pruned node cannot be closed live and a settled node cannot move, ruled out as a defect; `contract_drift` re-verified by exact grep of the un-narrowed universe phrasing (`loop-protocol.md:464`), linked to this iteration's finding as the drift class it belongs to.
+- `stopLiveFanoutRun` and `writeStoppedSummary` stop processes the same way, SIGTERM to each group, but through two different paths (`signalIfPresent(-pid)` and `terminateLineageProcess(child)`). Both are short, so this duplication is not raised.
 
 ## Confirmed-Clean Surfaces
-
-- The other eight legal-stop gates pass on this lineage's state, including claim adjudication for both active P1 findings.
+- `FORWARDED_SIGNALS` and `signalExitCode` are the single source for the forwarded set and exit codes, shared by the bootstrap and the child (fanout-run.cjs:71, 476-480).
 
 ## Ruled Out
-
-- A state-transition defect in `closeNode`: guards verified again by direct read.
-
-## Operator Focus Coverage
-
-- Overengineering: two vocabularies for one ledger (`exact_search` in the pack, `exact_grep` in the gate) is the kind of restated contract the focus asks to collapse; one exported method list read by both the pack renderer and the gate removes the class.
-- Operator UX: the blocked-stop hint names "cited fallback ledger rows" but not that the row needs its own `evidenceRefs`, so an operator or leaf reading the hint repeats the same shape.
-- Cross-CLI parity: every executor renders the same pack and hits the same gate.
+- Duplicate kill helpers as a finding: short and behaviorally equal.
 
 ## Next Focus
+- Dimension: maintainability
+- Focus area: F-1-005 maintainability
+- Reason: frontier round-robin
+- Rotation status: F-1-003 complete on all four dimensions
+- Required evidence: file:line
 
-- Dimension: correctness
-- Focus area: stop check; synthesis when the gate passes
-- Reason: blocked-stop recovery evidence recorded
-- Rotation status: frontier closed; all dimensions covered
-- Required evidence: convergence.cjs gate output
-
-Review verdict: CONDITIONAL
+Review verdict: PASS

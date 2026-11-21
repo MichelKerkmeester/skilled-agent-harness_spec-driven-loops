@@ -1,19 +1,25 @@
-# Iteration 6 - F-1-007 security: pivot persisted input, council paths and frontier graph projection
+# Review Iteration 006
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-007, dimension security. Node scope: `divergent-pivot.ts` and its mode scripts and CLI, `continuity-thread.cjs` and `runtime/lib/coverage-graph`.
-- Operator review focus covered in this iteration: overengineering (attempt-scoped ids vs a parallel path builder), operator UX (failure reasons and the terminal-frontier refusal), cross-CLI/OS parity (path containment uses `realpath`, and council artifact names stay portable).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 6 of 24
+- Focus: **Frontier node F-1-006: security**
+- Dimension: security
+- Frontier node: F-1-006 (depth 1 of 3), scope `.skilled/commands/deep`, `.skilled/skills/system-deep-loop/deep-review/references`, `.skilled/skills/system-deep-loop/deep-research/references`, `.skilled/skills/system-deep-loop/runtime/feature-catalog`
+- Convergence before dispatch: `CONTINUE` / `noStopCandidate`, stuck 0, consecutive failures 0.
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, the command docs, both presentations, `loop-protocol.md`, `fanout-run.md`, the prompt-pack template, and the manual-testing playbooks.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` -- persisted config parsing, council path construction, artifact root and ai-council guards, event store, seat report parsing.
-- `.skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs` -- argv parsing for prepare/record-seat/finalize.
-- `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` -- candidate seeds and the read-only boundary scan.
-- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs` -- `buildFrontierGraphEvents` node/edge shape and metadata.
-- `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts`, `coverage-graph-query.ts` -- relation vocabulary, metadata sanitization and parameterized queries.
-- Traceability sources: `010-research-frontier-mode` REQ-005/REQ-008, `012-pivot-hygiene` REQ-001..REQ-009.
+- `.skilled/commands/deep/review.md:111`, `.skilled/commands/deep/research.md:118` (opencode sandbox paragraph)
+- `.skilled/commands/deep/assets/deep-review-presentation.txt:142,222,226`, `.skilled/commands/deep/assets/deep-research-presentation.txt:131,195,199`
+- `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:284-289`
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:110,197`
+- `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl:102-109`
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:14,47,104`
+- `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/resource-map-coverage-gate.md:11-72`
 
 ## Findings - New
 
@@ -27,51 +33,54 @@ None.
 
 ### P2 Findings
 
-None.
+None. This pass produced no new finding.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | `012` REQ-001..REQ-009 match the pivot code; `010` REQ-005/REQ-008 match the frontier graph projection. The iteration 3 REQ-007 admission gap remains the only outstanding partial. |
-| `checklist_evidence` | partial | `012` AC rows for retry, agreement failure and seat scope match; AC-008 remains outstanding. |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | pass | `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:286-288`, `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:197` | Every confinement claim found names the control it relies on and its limit: the opencode deny is called compensating, never preventive; Bash is named as unconfined; read-only is named as refused for opencode and as a tool allowlist for pi. |
+| `checklist_evidence` | notApplicable | - | No spec checklist for a commit-range target. |
+| `skill_agent` | notApplicable | - | No agent definition in the range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in the range. |
+| `playbook_capability` | pass | `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:14,47,104` | The playbooks use "sandbox" only for the fixture directory and the SKIP criterion; none claims a confinement property the runtime does not have. |
+| `feature_catalog_code` | pass | `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:197` | The fan-out catalog's containment paragraph matches the builder and the preview's `sandboxEnforcement` value. |
 
 ## Integration Evidence
 
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:839-842` rejects an artifact root that canonicalizes inside an ai-council tree, and `:844-861` builds every council path under the pivot root.
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1201-1211` parses a persisted pivot config through a strict field-by-field validator before any seat or event write.
-- `.skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs:35-70` parses each subcommand's argv into a typed call and never interpolates a value into a shell.
-- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:995-1042` emits `DERIVED_FROM` edges, which `coverage-graph-db.ts:226` admits for the research loop the research frontier step runs under.
-- `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:123-142` allowlists metadata keys and `:250-270` sanitizes every value to a scalar, so leaf metadata cannot reach the graph as a nested payload.
+- `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl:102-109` states the write contract as a prompt-level rule with an explicit "BANNED OPERATIONS" list and a scope-violation protocol, and `loop-protocol.md:286` names that contract as one of the three real containment layers rather than an OS sandbox. The two statements agree.
+- `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:197` describes the opencode default as "`--auto` with an inline `OPENCODE_CONFIG_CONTENT` that denies `external_directory`" and says the preview records `compensating`, never `preventive`, which matches `fanout-run.cjs:3034` and `sandboxEnforcementFor`.
+- `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:288` names the dsh narrowing and the pi same-command behavior, so the two kinds whose sandbox mode does not map one-to-one are documented where an operator would look.
 
 ## Edge Cases
 
-- `finalize` accepts the caller's `--paths-json` and writes through it rather than re-deriving the council paths; the workflow binds that JSON from its own `prepare` result, so a leaf cannot reach it, but the CLI itself would honor a hand-written path set.
-- A resumed attempt reuses the persisted `usageAtStart` and `limits`, so a tampered pivot config could raise its own caps; the leaf already holds write access to its lineage, and the coverage of that write is containment, so this is recorded as a trust-model note rather than a finding.
-- `buildFrontierGraphEvents` writes the node question into the graph `name`; admission bounds the stored text, and the graph read path sanitizes only metadata, so a long question stays a long display name rather than an executable payload.
-- PRAGMA and schema-migration statements are fixed strings; every row value in the new path is bound as a parameter, including namespace fields.
+- **`read-only` is not one behavior across kinds.** It is a pass-through flag on codex and cursor, a permission mode on claude and dsh, a tool allowlist on pi, and a refusal on opencode. The docs state each case in the kind's own bullet, and the general sentence at `loop-protocol.md:288` is qualified by the opencode bullet above it. No contradiction found.
+- **The prompt-level write contract is not a sandbox.** It is documented as instruction-following plus post-dispatch validation, and the review's own containment guard is the enforcement layer. Treating the prompt text as a security boundary would be the error; the docs do not make that claim.
+- **Playbook "sandbox" means a fixture directory.** The word appears only in that sense and in the SKIP criterion, so it cannot be read as a confinement claim.
 
 ## Confirmed-Clean Surfaces
 
-- The pivot config parser rejects an unknown attempt, a rounds value that disagrees with the attempt, a missing limit and a non-integer usage before any write.
-- The artifact-root guard resolves the prospective real path and refuses an ai-council tree, so a symlinked or nested artifact root cannot redirect council artifacts into a reserved directory.
-- Seat outputs are parsed as JSON objects with an exact seat id and candidate ids; a partial or malformed report is rejected rather than coerced.
-- The read-only boundary scan inspects title and focus after path-shaped scope entries are removed, so a path name cannot smuggle a mutation verb.
-- Coverage-graph reads expose only allowlisted scalar metadata, and all relation and node-kind values are validated against per-loop vocabularies before storage.
-- The research frontier's `DERIVED_FROM` edge is in the research relation vocabulary and is never emitted for a review run.
+- **Opencode containment description.** Command docs, both presentations, both compiled contracts and the protocol reference all describe the same three layers and the same Bash limitation.
+- **`sandboxEnforcement` vocabulary.** The catalog uses `compensating` and `preventive` with the same meaning the code assigns, and never calls a compensating control preventive.
+- **Playbooks.** No playbook asserts a confinement property; the SKIP criterion is about unavailable dependencies, not about sandboxing.
+- **Prompt pack.** The write contract is stated as a rule with a violation protocol, not as an enforced boundary.
 
 ## Ruled Out
 
-- A review-run `DERIVED_FROM` write: the research frontier graph step is the only caller, and the review relation vocabulary excludes it.
-- SQL injection through node names, metadata or namespace values: every value is bound, and the only interpolated SQL fragments are fixed column/table names.
-- Treating the caller-provided `--paths-json` as a boundary bypass: only the orchestrator calls `finalize`, and it passes its own prepare output.
-- Treating the reused persisted pivot limits as a range security defect: the reuse is a documented deviation that keeps a resumed prepare from conflicting with its own recorded state, and the leaf already owns its lineage writes.
+- **A doc claiming an OS sandbox where only a permission rule exists.** Ruled out: every opencode and pi statement names the control as a permission rule or tool allowlist and names Bash as unconfined.
+- **A doc omitting the opencode read-only refusal.** Ruled out: `review.md`, both presentations, both compiled contracts and `loop-protocol.md:286` all state it.
+- **A playbook claiming confinement.** Ruled out: the word is used only for fixture directories and the SKIP criterion.
+- **A security finding from the pi help line.** Already recorded as R4-P2-001 in the F-1-002 security pass; re-reporting it here would double-count the same sentence.
 
 ## Next Focus
 
-- Dimension: traceability on F-1-003 (fan-out runner and merge against the review packet requirements).
-- Reason: security is covered on all three nodes; traceability is the next dimension in the rotation and the fan-out merge carries the cross-lineage evidence the final report cites.
-- Required evidence: `011` REQ-008 and `009` REQ-001..REQ-006 against `fanout-run.cjs`/`fanout-merge.cjs`, plus the merged report's provenance fields.
-- Rotation status: correctness and security covered on all nodes; traceability uncovered on all three.
+- Dimension: correctness
+- Frontier node: F-2-007 (open, zero visits; the admitted child of F-1-002)
+- Focus area: the sandbox enforcement label matrix across every executor kind and all three sandbox modes — whether `sandboxEnforcementFor` reports `preventive`, `compensating` or `none` correctly for each kind, including the kinds whose builder emits a different mode than the one requested.
+- Reason: F-1-006 security is clean; the frontier's only unvisited node is the admitted child, and its question is the one R1-P2-001 opened.
+- Rotation status: F-1-006 correctness and security covered; F-2-007 correctness next.
+- Blocked/productive carry-forward: productive (claim-by-claim comparison found no overstatement); no blocked approaches.
+- Required evidence: `sandboxEnforcementFor` and every builder's `confines`/`compensatingControl` argument, plus the conformance test's per-surface assertions.
+- Recovery note: none.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

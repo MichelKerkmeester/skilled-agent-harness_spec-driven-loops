@@ -14,7 +14,7 @@ trigger_phrases:
 
 The runtime is the shared execution surface for research and review modes. It provides durable event and state handling, graph-backed convergence, executor dispatch, recovery boundaries and the CLI entry points that consume those capabilities.
 
-The public runtime surface is split between typed or CommonJS modules under `lib/` and thin CLI adapters under `scripts/`. Tests under `tests/` exercise the same contracts without changing runtime behavior.
+The public runtime surface is split between typed or CommonJS modules under `lib/` and the CLI scripts under `scripts/`, some of which carry their own domain logic. Tests under `tests/` exercise the same contracts without changing runtime behavior.
 
 ---
 

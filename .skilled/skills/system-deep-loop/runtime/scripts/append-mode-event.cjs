@@ -52,9 +52,20 @@ if (require.main === module && !isTsxLoaded) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. MAIN IMPLEMENTATION (under tsx)
+// 2. MAIN IMPLEMENTATION
 // ─────────────────────────────────────────────────────────────────────────────
 
+// This half runs only inside the tsx child process.
+
+/**
+ * Parse `--flag value` pairs into a camelCase-keyed object.
+ *
+ * A flag with no value after it is recorded as `true`.
+ *
+ * @param {string[]} [argv=process.argv.slice(2)] - Command-line tokens to parse
+ * @returns {Object<string, string|boolean>} Parsed flags keyed by camelCase name
+ * @throws {Error} On a positional token, or on an unknown flag with code INPUT_VALIDATION
+ */
 function parseArgs(argv = process.argv.slice(2)) {
   const knownFlags = ['mode', 'runDirectory', 'runDir', 'specFolder', 'eventJson', 'eventJsonPath', 'policyId'];
   const args = {};
@@ -89,8 +100,13 @@ function requireString(args, ...keys) {
   throw new Error(`${keys[0]} is required`);
 }
 
-// Key order carries no meaning in an event the caller hands over, so the
-// digest sorts keys before hashing.
+/**
+ * Key order carries no meaning in an event the caller hands over, so the
+ * digest sorts keys before hashing.
+ *
+ * @param {*} value - JSON-serializable value
+ * @returns {string} JSON text with object keys sorted at every depth
+ */
 function stableJson(value) {
   if (Array.isArray(value)) return `[${value.map(stableJson).join(',')}]`;
   if (value !== null && typeof value === 'object') {
@@ -101,10 +117,41 @@ function stableJson(value) {
   return JSON.stringify(value);
 }
 
+// A model-written row's own identity fields are dropped, not kept: neither
+// mode's schema has a claim field for them, and a row that named an earlier
+// row's key or id would read as its retry or collide with it, while one that
+// named a stream position or recording time would label the event with a place
+// and a clock the ledger never gave it. The builder's defaults then mint every
+// one, and the key is derived from the row as handed over, so a retried row is
+// still stored once.
+const GATEWAY_IDENTITY_FIELDS = Object.freeze([
+  'eventId', 'event_id', 'idempotencyKey', 'idempotency_key', 'producer', 'authorityEpoch', 'authority_epoch',
+  'streamId', 'stream_id', 'streamSequence', 'stream_sequence', 'correlationId', 'correlation_id',
+  'causationId', 'causation_id', 'recordedAt', 'recorded_at',
+]);
+
+// A stem or event_type row is addressed by the workflow or the reducer, which
+// name its event id and idempotency key on purpose so that a re-emitted row is
+// recognized as the same event. Those two stay; the rest is still minted.
+const CALLER_KEYED_FIELDS = Object.freeze(['eventId', 'event_id', 'idempotencyKey', 'idempotency_key']);
+
+function withoutGatewayIdentity(row, kept = []) {
+  return Object.fromEntries(
+    Object.entries(row).filter(([key]) => !GATEWAY_IDENTITY_FIELDS.includes(key) || kept.includes(key)),
+  );
+}
+
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
 
+/**
+ * Map a mode alias to its canonical deep-loop mode name.
+ *
+ * @param {*} mode - Mode name as given, such as `research` or `deep-review`
+ * @returns {string} `deep-research` or `deep-review` for a known alias, the trimmed input
+ *   otherwise, or an empty string for a missing or non-string mode
+ */
 function normalizeMode(mode) {
   if (!mode || typeof mode !== 'string') return '';
   const trimmed = mode.trim();
@@ -113,6 +160,14 @@ function normalizeMode(mode) {
   return trimmed;
 }
 
+/**
+ * Load the ledger-schema adapter for a mode.
+ *
+ * @param {string} mode - Mode name or alias
+ * @returns {Promise<{normalizedMode: string, createRegistry: Function, prepareEvent: Function,
+ *   isEventStem: Function}>} The mode's registry factory, event preparer and stem check
+ * @throws {Error} When the mode is neither deep-research nor deep-review
+ */
 async function resolveModeAdapter(mode) {
   const normalized = normalizeMode(mode);
   switch (normalized) {
@@ -139,6 +194,16 @@ async function resolveModeAdapter(mode) {
   }
 }
 
+/**
+ * Append one event to a mode's authorized ledger through the mode append gateway.
+ *
+ * Reads the flags from argv, writes one JSON result line to stdout and exits the
+ * process: 0 on success, 1 on an unreadable event file, 2 on an authority, binding or append
+ * refusal. A thrown error rejects instead, and the caller exits 3 for an unknown flag
+ * (INPUT_VALIDATION) and 1 for any other.
+ *
+ * @returns {Promise<void>} Rejects on a thrown error; otherwise the process exits before it settles
+ */
 async function main() {
   const fs = require('node:fs');
   const path = require('node:path');
@@ -355,26 +420,27 @@ async function main() {
       data: rawEvent.data || {},
       prevEventHash: rawEvent.prevEventHash || rawEvent.prev_event_hash || currentHead.recordHash,
       replay: rawEvent.replay || defaultReplay,
-    }, rawEvent);
+    }, withoutGatewayIdentity(rawEvent, CALLER_KEYED_FIELDS));
     eventRecord = adapter.prepareEvent(preparedInput, registry);
   } else if (rawEvent && typeof rawEvent === 'object' && (rawEvent.event_type || rawEvent.eventType)) {
+    const meta = withoutGatewayIdentity(rawEvent, CALLER_KEYED_FIELDS);
     const envelope = {
-      envelope_version: rawEvent.envelope_version ?? rawEvent.envelopeVersion ?? 1,
-      event_id: rawEvent.event_id || rawEvent.eventId || `event-${crypto.randomUUID()}`,
-      event_type: rawEvent.event_type || rawEvent.eventType,
-      event_version: rawEvent.event_version ?? rawEvent.eventVersion ?? 1,
-      stream_id: rawEvent.stream_id || rawEvent.streamId || ledgerId,
-      stream_sequence: rawEvent.stream_sequence ?? rawEvent.streamSequence ?? (currentHead.sequence + 1),
-      occurred_at: rawEvent.occurred_at || rawEvent.occurredAt || nowIso,
-      recorded_at: rawEvent.recorded_at || rawEvent.recordedAt || nowIso,
-      producer: rawEvent.producer || { name: 'deep-loop-cli', version: '1.0.0' },
-      authority_epoch: rawEvent.authority_epoch ?? rawEvent.authorityEpoch ?? authority.epoch,
-      correlation_id: rawEvent.correlation_id || rawEvent.correlationId || crypto.randomUUID(),
-      causation_id: rawEvent.causation_id !== undefined
-        ? rawEvent.causation_id
-        : (rawEvent.causationId !== undefined ? rawEvent.causationId : null),
-      idempotency_key: rawEvent.idempotency_key || rawEvent.idempotencyKey || defaultIdempotencyKey,
-      payload: rawEvent.payload || {},
+      envelope_version: meta.envelope_version ?? meta.envelopeVersion ?? 1,
+      event_id: meta.event_id || meta.eventId || `event-${crypto.randomUUID()}`,
+      event_type: meta.event_type || meta.eventType,
+      event_version: meta.event_version ?? meta.eventVersion ?? 1,
+      stream_id: meta.stream_id || meta.streamId || ledgerId,
+      stream_sequence: meta.stream_sequence ?? meta.streamSequence ?? (currentHead.sequence + 1),
+      occurred_at: meta.occurred_at || meta.occurredAt || nowIso,
+      recorded_at: meta.recorded_at || meta.recordedAt || nowIso,
+      producer: meta.producer || { name: 'deep-loop-cli', version: '1.0.0' },
+      authority_epoch: meta.authority_epoch ?? meta.authorityEpoch ?? authority.epoch,
+      correlation_id: meta.correlation_id || meta.correlationId || crypto.randomUUID(),
+      causation_id: meta.causation_id !== undefined
+        ? meta.causation_id
+        : (meta.causationId !== undefined ? meta.causationId : null),
+      idempotency_key: meta.idempotency_key || meta.idempotencyKey || defaultIdempotencyKey,
+      payload: meta.payload || {},
     };
     eventRecord = prepareEventWrite(envelope, registry);
   } else if (
@@ -414,14 +480,15 @@ async function main() {
         `Legacy deep-research record refused: ${upcast.decision.reasonCode}`,
       );
     }
+    const rowMeta = withoutGatewayIdentity(rawEvent);
     // A row the projection writes back with its own timestamp hands that time
     // over as the event's occurrence time, so the row keeps it. A completed
     // iteration is written by the model, so only the gateway clock times it:
     // any time field on the row is ignored, and the upcaster keeps its stamp
     // as a claim in the event data.
-    let legacyMeta = upcast.occurredAt ? { occurredAt: upcast.occurredAt, ...rawEvent } : rawEvent;
+    let legacyMeta = upcast.occurredAt ? { occurredAt: upcast.occurredAt, ...rowMeta } : rowMeta;
     if (upcast.targetStem === 'deep_research.iteration_completed') {
-      legacyMeta = { ...rawEvent, occurredAt: nowIso, recordedAt: nowIso };
+      legacyMeta = { ...rowMeta, occurredAt: nowIso, recordedAt: nowIso };
     }
     const preparedInput = buildPreparedInput({
       stem: upcast.targetStem,
@@ -458,10 +525,12 @@ async function main() {
       : 'run-cli';
     // The model writes the iteration record, so only the gateway clock times it:
     // a time field on the record never sets the event time, and the projection
-    // keeps the record's own stamp as a claim.
+    // keeps the record's own stamp as a claim. The record still travels whole in
+    // the event data, so the projection writes back the row as it was handed over.
+    const rowMeta = withoutGatewayIdentity(rawEvent);
     const reviewMeta = rawEvent.type === 'iteration'
-      ? { ...rawEvent, occurredAt: nowIso, recordedAt: nowIso }
-      : rawEvent;
+      ? { ...rowMeta, occurredAt: nowIso, recordedAt: nowIso }
+      : rowMeta;
     const preparedInput = buildPreparedInput({
       stem: 'deep_review.iteration_recorded',
       scope: { runId: sessionId, sessionId },
@@ -514,6 +583,12 @@ async function main() {
     }
   }
 
+  // A reused key refuses the row, and that refusal must reach whoever reads the
+  // command's error stream, not only a caller that parses the JSON line.
+  if (outcome && outcome.ok === false && outcome.code === 'IDEMPOTENCY_CONFLICT') {
+    process.stderr.write(`${outcome.reason}\n`);
+  }
+
   // Surface a lossy legacy migration instead of letting it pass silently. Only
   // the legacy upcast path sets legacyWarnings, so canonical/stem/event_type
   // outputs stay byte-identical to before.
@@ -536,6 +611,10 @@ if (require.main === module && isTsxLoaded) {
     process.exit(error && error.code === 'INPUT_VALIDATION' ? 3 : 1);
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   stableJson,

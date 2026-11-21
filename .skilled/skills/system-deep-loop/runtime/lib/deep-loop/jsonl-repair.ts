@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop JSONL Repair
+// ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -203,8 +205,9 @@ function writeRawContentAtomic(path: string, content: string): void {
     try {
       fsyncPath(dirname(path));
     } catch {
+      // Best-effort directory fsync: the file change has already landed, and some platforms refuse it.
     }
-  } catch (err) {
+  } catch (err: unknown) {
     rmSync(tempPath, { force: true });
     throw err;
   }

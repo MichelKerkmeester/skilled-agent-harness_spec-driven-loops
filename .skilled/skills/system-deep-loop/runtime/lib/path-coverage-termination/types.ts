@@ -43,12 +43,14 @@ export type TerminationDecision =
   | 'CONTINUE'
   | 'INCOMPLETE_LIMIT';
 
+/** A required coverage dimension, declared by the profile or taken from semantic communities. */
 export interface CoverageDimensionDefinition {
   readonly dimensionId: string;
   readonly source: 'declared' | 'semantic-community';
   readonly required: true;
 }
 
+/** A mandatory major region over a set of dimensions, with its weight and required evidence classes. */
 export interface MajorRegionDefinition {
   readonly regionId: string;
   readonly dimensionIds: readonly string[];
@@ -58,18 +60,24 @@ export interface MajorRegionDefinition {
   readonly requiredEvidenceClasses: readonly string[];
 }
 
+/** Rule that builds major regions as cartesian products of the listed dimensions. */
 export interface MajorRegionRule {
   readonly ruleId: string;
   readonly kind: 'cartesian-products';
   readonly regions: readonly MajorRegionDefinition[];
 }
 
+/** Versioned contradiction policy, which always blocks on unresolved critical contradictions. */
 export interface ContradictionPolicy {
   readonly policyId: string;
   readonly policyVersion: string;
   readonly blockUnresolvedCritical: true;
 }
 
+/**
+ * A mode's coverage profile: its dimensions, region rule, mandatory evidence, contradiction policy and closeable
+ * path states.
+ */
 export interface ModeCoverageProfile {
   readonly mode: PathCoverageMode;
   readonly profileVersion: string;
@@ -80,11 +88,13 @@ export interface ModeCoverageProfile {
   readonly closeableStatuses: readonly CloseablePathState[];
 }
 
+/** Spec folder and session that a coverage universe is scoped to. */
 export interface CoverageNamespace {
   readonly specFolder: string;
   readonly sessionId: string;
 }
 
+/** One mandatory path through a region, given by its dimension coordinates, weight and required evidence. */
 export interface CoveragePath {
   readonly pathId: string;
   readonly regionId: string;
@@ -96,6 +106,7 @@ export interface CoveragePath {
   readonly semanticCommunityId: string | null;
 }
 
+/** Versioned set of paths a run must cover, linked to the universe it replaces and the ones it invalidates. */
 export interface CoverageUniverse {
   readonly schemaVersion: typeof COVERAGE_UNIVERSE_SCHEMA_VERSION;
   readonly universeId: string;
@@ -121,6 +132,7 @@ export interface CoverageUniverse {
   readonly ambiguousMajorCommunityIds: readonly string[];
 }
 
+/** Profile, dimension values and semantic and relationship projections to compile a run's coverage universe from. */
 export interface CompileCoverageUniverseInput {
   readonly namespace: CoverageNamespace;
   readonly runId: string;
@@ -134,6 +146,7 @@ export interface CompileCoverageUniverseInput {
   readonly replayFingerprint: string | ReplayFingerprintDescriptor;
 }
 
+/** Ledger position and record hash of the event a coverage fact came from. */
 export interface LedgerEventOrigin {
   readonly ledgerId: string;
   readonly sequence: number;
@@ -146,6 +159,7 @@ interface EvidenceLocatorBase {
   readonly digest: string;
 }
 
+/** Evidence that points at a ledger event by ledger, sequence and event id. */
 export interface LedgerEventEvidenceLocator extends EvidenceLocatorBase {
   readonly kind: 'ledger-event';
   readonly ledgerId: string;
@@ -153,6 +167,7 @@ export interface LedgerEventEvidenceLocator extends EvidenceLocatorBase {
   readonly eventId: string;
 }
 
+/** Evidence that points at a row in a coverage, semantic-community or claim-relationship projection. */
 export interface ProjectionRowEvidenceLocator extends EvidenceLocatorBase {
   readonly kind: 'projection-row';
   readonly projectionKind: 'coverage-graph' | 'semantic-community' | 'claim-relationship';
@@ -162,6 +177,7 @@ export interface ProjectionRowEvidenceLocator extends EvidenceLocatorBase {
 
 export type EvidenceLocator = LedgerEventEvidenceLocator | ProjectionRowEvidenceLocator;
 
+/** An authorized reason to exclude a path, pinned to the policy and the authorization that allowed it. */
 export interface AuthorizedExclusion {
   readonly reasonCode: string;
   readonly policyId: string;
@@ -174,26 +190,31 @@ interface PathCoverageEventBase {
   readonly origin: LedgerEventOrigin;
 }
 
+/** Event that activates a path for coverage. */
 export interface PathActivatedEvent extends PathCoverageEventBase {
   readonly kind: 'path-activated';
 }
 
+/** Event that marks a path addressed, with the evidence for it. */
 export interface PathAddressedEvent extends PathCoverageEventBase {
   readonly kind: 'path-addressed';
   readonly evidence: readonly EvidenceLocator[];
 }
 
+/** Event that blocks a path on a named blocker. */
 export interface PathBlockedEvent extends PathCoverageEventBase {
   readonly kind: 'path-blocked';
   readonly blockerId: string;
 }
 
+/** Event that excludes a path under an authorized exclusion, with the evidence for it. */
 export interface PathExcludedEvent extends PathCoverageEventBase {
   readonly kind: 'path-excluded';
   readonly exclusion: AuthorizedExclusion;
   readonly evidence: readonly EvidenceLocator[];
 }
 
+/** Event recording novel evidence for a semantic concept, optionally within a community. */
 export interface SemanticNoveltyObservedEvent {
   readonly kind: 'semantic-novelty-observed';
   readonly communityId: string | null;
@@ -209,6 +230,7 @@ export type PathCoverageEvent =
   | PathExcludedEvent
   | SemanticNoveltyObservedEvent;
 
+/** One state change of a path, with the ledger event and reason that caused it. */
 export interface PathTransitionRecord {
   readonly eventId: string;
   readonly ledgerSequence: number;
@@ -217,6 +239,7 @@ export interface PathTransitionRecord {
   readonly reason: string;
 }
 
+/** A path's current state, evidence, blockers, any exclusion and its full transition history. */
 export interface PathCoverageRecord {
   readonly pathId: string;
   readonly state: PathState;
@@ -226,6 +249,7 @@ export interface PathCoverageRecord {
   readonly transitions: readonly PathTransitionRecord[];
 }
 
+/** Novel evidence recorded for a semantic community and concept at one ledger event. */
 export interface SemanticEvidenceGrowthRecord {
   readonly communityId: string;
   readonly concept: SemanticConceptNovelty;
@@ -234,6 +258,10 @@ export interface SemanticEvidenceGrowthRecord {
   readonly ledgerSequence: number;
 }
 
+/**
+ * Coverage state of every path in a universe, with semantic growth, late major regions and staleness, as of a
+ * ledger sequence.
+ */
 export interface PathCoverageProjection {
   readonly projectionVersion: typeof PATH_COVERAGE_PROJECTION_VERSION;
   readonly universeId: string;
@@ -246,6 +274,7 @@ export interface PathCoverageProjection {
   readonly projectionHash: string;
 }
 
+/** Something that blocks stopping (STOP) or only warns about it (WARN), with the reason. */
 export interface StopBlocker {
   readonly blockerId: string;
   readonly severity: 'STOP' | 'WARN';
@@ -262,11 +291,13 @@ export type LimitStatus =
     readonly limitId: string;
   };
 
+/** A run limit that has fired, by kind and id. */
 export interface TriggeredLimit {
   readonly kind: LimitKind;
   readonly limitId: string;
 }
 
+/** Whether the semantic and relationship projections are fresh, with the versions and ledger sequence checked. */
 export interface ProjectionFreshness {
   readonly fresh: boolean;
   readonly communityProjectionVersion: string;
@@ -275,6 +306,10 @@ export interface ProjectionFreshness {
   readonly ledgerSequence: number;
 }
 
+/**
+ * Universe, projection, authorization audit, freshness, blockers and limit status the termination decision is
+ * made from.
+ */
 export interface EvaluatePathCoverageInput {
   readonly universe: CoverageUniverse;
   readonly activeUniverseId: string;
@@ -286,6 +321,7 @@ export interface EvaluatePathCoverageInput {
   readonly limit: LimitStatus;
 }
 
+/** A path as recorded in a coverage certificate, with its state and evidence. */
 export interface CertificatePathRecord {
   readonly pathId: string;
   readonly regionId: string;
@@ -299,6 +335,7 @@ export interface CertificatePathRecord {
   readonly exclusion: AuthorizedExclusion | null;
 }
 
+/** Hashed certificate of a termination decision and the coverage it was based on. */
 export interface CoverageCertificate {
   readonly schemaVersion: typeof PATH_COVERAGE_SCHEMA_VERSION;
   readonly certificateHash: string;
@@ -333,6 +370,7 @@ export interface CoverageCertificate {
   readonly triggeredLimit: TriggeredLimit | null;
 }
 
+/** One uncovered path, ranked for follow-up, with its state, weight, blockers and required evidence. */
 export interface UncoveredPathReport {
   readonly rank: number;
   readonly pathId: string;
@@ -345,6 +383,7 @@ export interface UncoveredPathReport {
   readonly missingEvidenceClasses: readonly string[];
 }
 
+/** Coverage summary given whenever stopping is not allowed: region counts, weighted and unweighted coverage. */
 export interface PartialCoverageReport {
   readonly decision: Exclude<TerminationDecision, 'STOP_ALLOWED'>;
   readonly certificateHash: string;
@@ -369,6 +408,7 @@ export interface PartialCoverageReport {
   readonly authorizedExclusions: readonly AuthorizedExclusion[];
 }
 
+/** Termination decision with its reason, certificate and a partial coverage report when stopping is not allowed. */
 export interface PathCoverageEvaluation {
   readonly decision: TerminationDecision;
   readonly reason: string;
@@ -376,6 +416,7 @@ export interface PathCoverageEvaluation {
   readonly partialCoverage: PartialCoverageReport | null;
 }
 
+/** The legacy convergence output fields the path-coverage shadow is laid beside. */
 export interface LegacyConvergenceBridge {
   readonly status: unknown;
   readonly data: unknown;
@@ -390,6 +431,10 @@ export interface LegacyConvergenceBridge {
   readonly [key: string]: unknown;
 }
 
+/**
+ * Shadow result in which legacy convergence stays authoritative and the path-coverage decision rides along in
+ * the bridge.
+ */
 export interface PathCoverageShadowEvaluation {
   readonly authority: 'legacy-convergence';
   readonly authoritativeDecision: string;

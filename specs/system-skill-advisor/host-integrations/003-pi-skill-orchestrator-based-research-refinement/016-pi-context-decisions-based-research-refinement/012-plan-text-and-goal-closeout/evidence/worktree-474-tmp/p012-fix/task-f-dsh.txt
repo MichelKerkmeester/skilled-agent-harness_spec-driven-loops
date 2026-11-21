@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/dsh.v2.mjs .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs
+The prepared file logs a clock rotation that returned false for a named session. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/dsh.v2.mjs .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` exits 0.

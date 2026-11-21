@@ -1,18 +1,23 @@
-# Iteration 8 - F-1-005 traceability: extension, state-log fields and evidence edges against the packet
+# Review Iteration 008
 
 ## Dispatcher
 
-- Mode: review, detached fan-out lineage `deepseek` (session `fanout-deepseek-1795113418367-pvzn7z`, generation 1, lineageMode new).
-- Frontier node: F-1-005, dimension traceability. Node scope: the two reducers, `upsert.cjs`, `convergence.cjs`, `verify-iteration.cjs`, `dispatch-iteration.cjs` and the five `runtime/lib` folders, with packet docs and catalogs as evidence.
-- Operator review focus covered in this iteration: overengineering (the extension and evidence rules restated across schema, catalog and playbook), operator UX (the `--extend` catalog wording and the warning text), cross-CLI/OS parity (the projection's leaf fields on both loops).
+- Mode: review (deep-review LEAF, inline executor for this detached lineage)
+- Session: `fanout-deepseek-1795201537192-sq1ivw`, generation 1, lineageMode `new`
+- Iteration: 8 of 24
+- Focus: **Frontier node F-1-004: traceability**
+- Dimension: traceability
+- Frontier node: F-1-004 (depth 1 of 3), scope `.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts`, `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs`, `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts`
+- Convergence before dispatch: `CONTINUE` / `noStopCandidate`, stuck 1, consecutive failures 0.
+- Sources read this iteration: `steer.md` (absent), `deep-review-config.json`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `frontier-nodes.jsonl`, `deep-review/references/state/state-jsonl.md`, `convergence.cjs` node attribution, `frontier-admit.cjs` block text, the three node files.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs`, `reduce-state.cjs`, `verify-iteration.cjs`, `dispatch-iteration.cjs` -- the requirement surfaces for this node.
-- `.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema`, `deep-review-reducers`, `legacy-projections` -- extension and leaf-field projections.
-- `.skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md` and the deep-research twin -- the shipped-behavior claims for `--extend`.
-- `.skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts` and `tests/unit/workflow-restart-lifecycle.vitest.ts` -- the cases the acceptance rows name.
-- Traceability sources: `001-completed-run-extension` REQ-002/REQ-004 and AC-004/AC-005, `006-state-log-leaf-fields` REQ-001..REQ-004, `011-review-frontier-mode` REQ-018 and AC-019.
+- `.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md:80-105,195-230` (required fields, row time, legacy field, optional fields, blocked-stop event)
+- `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1400-1425` (`iterationBoundToNode`, the attribution order)
+- `.skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs:1043-1045` (the block's instruction to write `frontierNodeId`)
+- `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:280-310` (projection row)
+- `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:429-495` (record hand-over)
 
 ## Findings - New
 
@@ -26,47 +31,56 @@ None.
 
 ### P2 Findings
 
-None.
+1. **The state-format reference omits `frontierNodeId` from the iteration record's optional fields, though the stop decision reads it first** -- `.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md:101` -- `convergence.cjs:1415` resolves which frontier node an iteration reviewed by reading `record.frontierNodeId` first, falling back to a focus marker and then to the store's active row. The prompt block instructs every expansive-depth leaf to write the field (`frontier-admit.cjs:1045`), but the schema reference's optional-field list does not name it. A leaf that follows the schema reference instead of the block omits the field and relies on the focus-string fallback, which breaks if the focus is reworded.
+   - Finding class: instance-only
+   - Scope proof: `rg -n "frontierNodeId" .skilled/skills/system-deep-loop/runtime` returns the read at `convergence.cjs:1415`, the block instruction at `frontier-admit.cjs:1045` and the graph projection at `:1087`; `state-jsonl.md` is the only schema statement and its optional list is the only place the field could be named. The fallback chain is real, so the omission degrades attribution rather than breaking it.
+   - Affected surface hints: ["state-jsonl.md optional fields", "convergence.cjs iterationBoundToNode", "frontier-admit.cjs block text"]
+   - Case: a leaf reads `state-jsonl.md` to build its iteration record, writes `focus` as "correctness pass on the adapter" instead of the exact "Frontier node F-1-002: correctness" marker, and omits `frontierNodeId`. The reducer then attributes the iteration to the store's active row, which may have moved, so the node's coverage and the per-node stuck count both drift.
 
 ## Traceability Checks
 
-| Protocol | Status | Evidence |
-|----------|--------|----------|
-| `spec_code` | partial | `001` REQ-002/REQ-004 match `deep-review.yaml:528-611`, the ledger schema and the projection; `006` REQ-001..REQ-004 match the gateway projection and `verify-iteration.cjs:497-570`; `011` REQ-018/AC-019 match `upsert.cjs:236-300` and the six integration cases. The iteration 3 REQ-007 admission claim remains the only partial. |
-| `checklist_evidence` | partial | AC-004/AC-005 are pinned by `workflow-restart-lifecycle.vitest.ts:812` and `:1057`; AC-019 by `upsert-script.vitest.ts:377-642`; AC-008 remains outstanding. |
-| `feature_catalog_code` | partial | The completed-run-extension pages say the ceiling is `continuedFromRun + N` and the duration is the later of prior budget and elapsed time, which matches the code and AC-004/AC-005. The expansive-depth page's produced-evidence sentence remains the earlier R2-P1-001 doc side. |
+| Protocol | Status | Evidence | Summary |
+|----------|--------|----------|---------|
+| `spec_code` | partial | `.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md:101`, `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1415` | The state-format reference's required and optional field lists match the projection except for `frontierNodeId`, which the stop decision reads and the schema omits. |
+| `checklist_evidence` | notApplicable | - | No spec checklist for a commit-range target. |
+| `skill_agent` | notApplicable | - | No agent definition in the range. |
+| `agent_cross_runtime` | notApplicable | - | No runtime mirror in the range. |
+| `feature_catalog_code` | pending | - | Owned by F-1-006; not re-run here. |
 
 ## Integration Evidence
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts:812` and `:1057` assert the count-plus-N ceiling and the elapsed-time duration rule for research and review.
-- `.skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts:377-642` covers the evidence edge, the delta-sourced ref, the id fold, the reused id, the ref without a line and the trailing column.
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts:455-461` asserts the review graph step passes `--state-log`, `--delta-dir` and `--iteration`.
-- `.skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/completed-run-extension.md:17-37` matches the code's `continuedFromRun + addedIterations` schema check and the `extended` projection.
+- `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:291-296` spreads the record and overrides only `timestamp`, so every field a leaf writes, `frontierNodeId` included, reaches the state log unchanged.
+- `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:483-489` hands the record over whole as `data.record`, so the projection is the only place a field could be dropped and it drops none.
+- `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:1410-1420` documents the attribution order in a comment that matches the code: own field, then focus marker, then the store's active row.
 
 ## Edge Cases
 
-- The AC-019 row cites a commit and a full-suite count rather than a local run; I verified the cases exist by name and read the code they exercise, but I did not execute the suite in this detached lineage (the workflow forbids writing the graph DB outside the lineage).
-- The extension catalog says the flag "adds N iterations" and later defines the ceiling as count-plus-N; both statements are true for the flag's meaning, so the shorter phrasing is not a contradiction.
-- The `feature_catalog_code` result stays partial because the earlier catalog sentence is still in the shipped page; a per-iteration pass cannot clear it.
+- **`frontierNodeId` is not required for a non-expansive run.** A default-depth review writes no frontier node, so the field is absent by design. The omission from the optional list is only a gap for expansive runs, which is why it is P2 rather than a schema failure.
+- **The focus fallback still works today.** Every iteration in this lineage writes both the exact marker and the field, so the drift is latent. The finding names the leaf behavior that would expose it, not a current misattribution.
+- **`run` is written beside `iteration`.** The reference calls `run` legacy and says new records write `iteration`; this lineage writes both, and readers accept either. No contradiction with the reference.
 
 ## Confirmed-Clean Surfaces
 
-- Every extension requirement has a named test that exists and asserts the same arithmetic the code performs.
-- Every evidence-edge requirement has an integration case, including the reused-id and no-line cases.
-- The review and research catalogs agree on the extension semantics and the projection fields.
-- The YAML contract case proves the graph step passes the three new flags the upsert requires.
+- **Required-field list.** Every field the reference marks required is present in the projection's rows, and the projection adds only `claimedTimestamp`.
+- **Row-time rule.** The reference's description of the gateway clock and `claimedTimestamp` matches `deep-review-state-contract.ts:291-296`.
+- **Blocked-stop event shape.** The reference's `gateResults` list matches the nine gate names `convergence.cjs` records.
+- **Legacy `run` handling.** The reference's statement that readers accept `run` and the fan-out stop-policy validator does not matches `convergence.cjs`'s `getIterationRun` usage.
 
 ## Ruled Out
 
-- Re-reporting the extension arithmetic as a defect: the catalog, tests and code agree on count-plus-N.
-- Re-reporting the evidence-edge code as untested: six integration cases cover the stated shapes.
-- A projection-parity finding between research and review: both project `extended` rows with lineage mode, `continuedFromRun` and the budget, and the review row carries the leaf fields this lineage's state log shows.
+- **A schema failure for `frontierNodeId`.** Ruled out: the field is optional and the fallback chain is documented in code; the gap is in the reference, not the runtime.
+- **A projection field drop.** Ruled out: the projection spreads the record and overrides only the timestamp.
+- **A `run`-versus-`iteration` contradiction.** Ruled out: the reference describes both and the readers accept both.
 
 ## Next Focus
 
-- Dimension: traceability on F-1-007 (pivot and continuity against the packet).
-- Reason: F-1-005 is traceable; F-1-007 is the last node without traceability, and its requirements carry the retry and quality-class rules the catalogs cite.
-- Required evidence: `012` REQ-001..REQ-009, `010` REQ-005/REQ-008 and `007` REQ-001..REQ-007 against the pivot, continuity and graph code and their catalog/playbook pages.
-- Rotation status: correctness and security covered on all nodes; traceability covered on F-1-003 and F-1-005.
+- Dimension: traceability
+- Frontier node: F-1-006 (active; the reducer's breadth-first rule selects the shallowest node with the fewest visits)
+- Focus area: the docs node's cross-references: whether the compiled contract digests resolve to the files they name, whether the feature-catalog index lists every catalog file the range touched, and whether the playbook index names the scenarios that exist.
+- Reason: F-1-004 traceability produced one P2 schema gap; the docs node's own cross-reference integrity is the next traceability surface.
+- Rotation status: F-1-004 correctness, security and traceability covered; F-1-006 traceability next.
+- Blocked/productive carry-forward: productive (field-list-to-reader comparison found the omission); no blocked approaches.
+- Required evidence: compiled contract digest headers, `runtime/feature-catalog/feature-catalog.md`, and the playbook index.
+- Recovery note: stuck count is 1; if this pass records no progress the next convergence check may enter stuck recovery and close the active node as exhausted. That is a legal path, not a failure.
 
-Review verdict: CONDITIONAL
+Review verdict: PASS

@@ -12,6 +12,7 @@ import type { FencedLease, FencedMutationContext } from './locks-and-fencing-typ
 
 export type FencedShadowStatus = 'dark-recorded' | 'dark-failed';
 
+/** One shadow-mode fencing observation: status, resource digest, fence token, correlation id and any error code. */
 export interface FencedShadowTelemetry {
   readonly status: FencedShadowStatus;
   readonly resourceDigest: string;
@@ -21,6 +22,7 @@ export interface FencedShadowTelemetry {
   readonly observedAt: string;
 }
 
+/** Optional clock and telemetry ring-buffer capacity for the fenced shadow adapter. */
 export interface FencedShadowAdapterOptions {
   readonly now?: () => Date;
   readonly telemetryCapacity?: number;

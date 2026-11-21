@@ -1,25 +1,25 @@
 {
-  "run_id": "1795182837437-sws2tv",
+  "run_id": "1795194924491-4iz5h5",
   "loop_type": "review",
   "spec_folder": "specs/system-skilled-doctor/007-overlay-framework-root-layout",
-  "base_artifact_dir": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review",
-  "total_cli_lineages": 2,
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review",
+  "total_cli_lineages": 1,
   "frontier_partition": {
     "opus-medium": [
-      "F-1-002",
-      "F-1-004",
-      "F-1-006",
-      "F-1-008"
-    ],
-    "deepseek-flash-max": [
+      "F-1-001",
       "F-1-003",
       "F-1-005",
       "F-1-007"
+    ],
+    "deepseek-flash-max": [
+      "F-1-002",
+      "F-1-004",
+      "F-1-006"
     ]
   },
   "orphaned_lineages": [],
-  "total": 2,
-  "succeeded": 2,
+  "total": 1,
+  "succeeded": 1,
   "failed": 0,
   "all_failed": false,
   "completed_with_containment_advisory": 0,
@@ -40,13 +40,6 @@
   },
   "lineages": [
     {
-      "label": "opus-medium",
-      "status": "succeeded",
-      "failure_class": null,
-      "exit_code": 0,
-      "rerun_command": null
-    },
-    {
       "label": "deepseek-flash-max",
       "status": "succeeded",
       "failure_class": null,
@@ -54,10 +47,58 @@
       "rerun_command": null
     }
   ],
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek-flash-max",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-doctor/007-overlay-framework-root-layout/review/lineages/deepseek-flash-max/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-11-20T17:15:24.498Z",
+        "end_at_iso": "2026-11-20T17:23:36.762Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 10,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 14
+      },
+      "sample": [
+        {
+          "index": 0,
+          "reason": "before_window",
+          "timestamp": "2026-11-20T16:34:40.208Z",
+          "deltaMs": 2324290
+        },
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-11-20T16:36:06.671Z",
+          "deltaMs": 2237827
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-11-20T16:37:14.528Z",
+          "deltaMs": 2169970
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-11-20T16:38:48.449Z",
+          "deltaMs": 2076049
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-11-20T16:40:04.438Z",
+          "deltaMs": 2000060
+        }
+      ]
+    }
+  ],
   "provider_cost_usd": {
     "total": null,
     "by_lineage": {
-      "opus-medium": null,
       "deepseek-flash-max": null
     }
   }

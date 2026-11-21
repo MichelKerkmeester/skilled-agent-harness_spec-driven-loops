@@ -286,23 +286,38 @@ export const EXECUTOR_ADAPTER_CAPABILITIES = Object.freeze({
  * present in `EXECUTOR_KIND_FLAG_SUPPORT` above only means the field is
  * accepted; it does NOT mean the kind can actually confine the process. A
  * `false` entry here does not mean the kind is unconfined in practice --
- * fanout-run.cjs applies its own compensating control per kind (a fail-loud
- * reject for cli-opencode, --permission-mode plus the fan-out's post-hoc
- * write-containment guard for cli-devin, a restricted tool allowlist for
- * cli-pi) -- it means none of those controls is an OS-level boundary the way
- * `--sandbox` is for codex and cursor. Callers must not infer preventive OS
- * confinement from `sandboxMode` alone on a `false` entry.
+ * fanout-run.cjs applies its own control per kind (Claude Code's
+ * --permission-mode approval gate, an external_directory deny for cli-opencode's
+ * file tools under workspace-write and a fail-loud reject of read-only, the `auto`
+ * permission mode for a read-only cli-devin, a restricted tool allowlist for
+ * cli-pi, and the fan-out's post-hoc write-containment guard, which reports an
+ * out-of-scope write rather than preventing it) -- it means none of those controls
+ * is an OS-level boundary the way `--sandbox` is for codex and cursor. Callers must
+ * not infer preventive OS confinement from `sandboxMode` alone on a `false` entry.
  */
 export const EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY: Record<ExecutorKind, boolean> = {
-  native: false, // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind
-  'cli-codex': true, // --sandbox is forwarded straight to codex's own OS-level confinement
-  'cli-claude-code': true, // --permission-mode is enforced by Claude Code's own tool gate before a write/exec runs
-  'cli-opencode': false, // no confinement flag exists; the builder fails loud for anything but danger-full-access
-  'cli-cursor': true, // --sandbox enabled/disabled is a real OS confinement flag, independent of the approval mode
-  'cli-devin': false, // --sandbox is deliberately never passed (conflicts with non-interactive auto-approval); confinement is the fan-out's post-hoc write-containment guard, not an OS boundary
-  'cli-pi': false, // read-only is a tool-allowlist restriction only, not an OS boundary
-  'cli-deepseek-harness': true, // Workspace-write blocks home writes; OS temp remains writable.
-  'cli-mistral-vibe': false, // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind; the roster row decides what the model may reach
+  // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind
+  native: false,
+  // --sandbox is forwarded straight to codex's own OS-level confinement
+  'cli-codex': true,
+  // --permission-mode is an approval mode: Claude Code's tool gate decides which calls run,
+  // and no OS boundary confines the process once a call is approved
+  'cli-claude-code': false,
+  // No confinement flag exists; workspace-write denies external_directory to the file tools only
+  // (Bash can still write outside the working directory), and read-only is refused
+  'cli-opencode': false,
+  // --sandbox enabled/disabled is a real OS confinement flag, independent of the approval mode
+  'cli-cursor': true,
+  // --sandbox is deliberately never passed (conflicts with non-interactive auto-approval);
+  // confinement is the fan-out's post-hoc write-containment guard, not an OS boundary
+  'cli-devin': false,
+  // Read-only is a tool-allowlist restriction only, not an OS boundary
+  'cli-pi': false,
+  // Workspace-write blocks home writes; OS temp remains writable.
+  'cli-deepseek-harness': true,
+  // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind; the roster row decides
+  // what the model may reach
+  'cli-mistral-vibe': false,
 };
 
 /** Proven web-search policies for every shipped executor kind. */
@@ -419,12 +434,14 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
 /** Keep explicit route selection available, with only the verified Gateway route as default. */
 export const DSH_SUPPORTED_MODELS = [
   'deepseek-v4.1-flash-1017',
-  'deepseek-v4.1-flash', // OpenCode Go is configured, not verified, and remains explicit-only.
+  // OpenCode Go is configured, not verified, and remains explicit-only.
+  'deepseek-v4.1-flash',
 ] as const;
 export type DshSupportedModel = typeof DSH_SUPPORTED_MODELS[number];
 
 export const DSH_DEFAULT_MODEL: DshSupportedModel = 'deepseek-v4.1-flash-1017';
 
+/** True when `model` is in the DeepSeek harness model allowlist. */
 export function isDshModelAllowed(model: string): model is DshSupportedModel {
   return (DSH_SUPPORTED_MODELS as readonly string[]).includes(model);
 }
@@ -933,6 +950,7 @@ export function assertExecutorMcpServerCapability(
     throw new ExecutorConfigError({
       issues: [{
         path: [...path, 'liveTools', 'mcpServers'],
+        // unmountable is non-empty only when a roster exists, so roster is defined here.
         message: `liveTools.mcpServers for '${config.kind}' may name only ${roster!.join(', ')}; got ${unmountable.join(', ')}`,
       }],
     });
@@ -948,6 +966,13 @@ export function assertExecutorMcpServerCapability(
   }
 }
 
+/**
+ * Reject a lineage whose web-search policy its executor kind cannot honor.
+ *
+ * @param config - Validated executor configuration.
+ * @param path - Error path prefix for nested fan-out entries.
+ * @throws {@link ExecutorConfigError} If the policy is unsupported for the kind.
+ */
 export function assertExecutorWebSearchCapability(
   config: ExecutorConfig,
   path: PropertyKey[] = [],

@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Progress Record Test
+// ───────────────────────────────────────────────────────────────────
 // Tests for the progress_record type and reducer allowlist safety rule.
 //
 // (a) A reducer fed ONLY progress lines returns null/zero for completion math.

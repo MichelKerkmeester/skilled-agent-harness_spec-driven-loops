@@ -61,6 +61,7 @@ export const HealthResponseActions = {
 export type HealthResponseAction =
   typeof HealthResponseActions[keyof typeof HealthResponseActions];
 
+/** Versioned thresholds and window sizes that decide when health observations raise signals. */
 export interface HealthPolicy extends JsonObject {
   readonly schemaVersion: 1;
   readonly policyVersion: string;
@@ -105,6 +106,7 @@ export type HealthInputField =
 
 export type HealthInputAvailability = 'required' | 'optional' | 'unavailable';
 
+/** Digests that pin the projection bundle, reducer, configuration and event registry an adapter reads from. */
 export interface HealthProjectionBinding extends JsonObject {
   readonly bundleId: string;
   readonly bundleVersion: string;
@@ -114,6 +116,10 @@ export interface HealthProjectionBinding extends JsonObject {
   readonly eventRegistryDigest: string;
 }
 
+/**
+ * A mode's declaration of which health inputs it can supply and the source versions and reducer digests behind
+ * each.
+ */
 export interface ModeHealthAdapterDefinition {
   readonly modeId: string;
   readonly adapterId: string;
@@ -126,6 +132,7 @@ export interface ModeHealthAdapterDefinition {
   >;
 }
 
+/** An adapter definition accepted by the registry, stamped with its adapter digest. */
 export interface RegisteredModeHealthAdapter extends ModeHealthAdapterDefinition {
   readonly fields: Readonly<Record<HealthInputField, HealthInputAvailability>>;
   readonly sourceVersions: Readonly<Partial<Record<HealthInputField, readonly string[]>>>;
@@ -135,6 +142,7 @@ export interface RegisteredModeHealthAdapter extends ModeHealthAdapterDefinition
   readonly adapterDigest: string;
 }
 
+/** Position in the ledger, by sequence and record and event hashes, that an observation was taken at. */
 export interface HealthLedgerCursor extends JsonObject {
   readonly ledgerId: string;
   readonly sequence: number;
@@ -142,6 +150,7 @@ export interface HealthLedgerCursor extends JsonObject {
   readonly eventHash: string;
 }
 
+/** Source, version, reducer digest and watermark that a health observation field was derived from. */
 export interface HealthSourceProvenance extends JsonObject {
   readonly sourceId: string;
   readonly sourceVersion: string;
@@ -150,6 +159,7 @@ export interface HealthSourceProvenance extends JsonObject {
   readonly watermarkRecordHash: string;
 }
 
+/** Identity of the semantic community or fingerprint work is concentrating on, with optional text similarity. */
 export interface SemanticConcentrationObservation extends JsonObject {
   readonly identityKind: 'semantic_community' | 'canonical_fingerprint';
   readonly identity: string;
@@ -157,6 +167,10 @@ export interface SemanticConcentrationObservation extends JsonObject {
   readonly provenance: HealthSourceProvenance;
 }
 
+/**
+ * Novelty, independent-evidence and coverage yields in basis points, with claim progress and qualifying evidence
+ * ids.
+ */
 export interface ProgressHealthObservation extends JsonObject {
   readonly noveltyYieldBps: number;
   readonly independentEvidenceYieldBps: number;
@@ -168,6 +182,7 @@ export interface ProgressHealthObservation extends JsonObject {
 
 export type FrontierStatus = 'eligible' | 'exhausted' | 'empty' | 'unknown';
 
+/** Frontier status and eligible work count at the observation boundary. */
 export interface FrontierHealthObservation extends JsonObject {
   readonly status: FrontierStatus;
   readonly eligibleWorkCount: number | null;
@@ -175,6 +190,10 @@ export interface FrontierHealthObservation extends JsonObject {
   readonly provenance: HealthSourceProvenance;
 }
 
+/**
+ * Quality score and confidence bounds against a baseline, with the evaluator, rubric, verifier and calibration
+ * digests behind them.
+ */
 export interface QualityHealthObservation extends JsonObject {
   readonly normalizedScoreBps: number;
   readonly lowerConfidenceBoundBps: number;
@@ -201,6 +220,10 @@ export type BudgetPressureKind =
 
 export type BudgetPressureDimension = 'tokens' | 'cost' | 'iterations' | 'wall-time';
 
+/**
+ * Budget pressure taken from a budget event: its kind, dimension, decision, evidence yield and whether the
+ * budget is exhausted.
+ */
 export interface BudgetPressureHealthObservation extends JsonObject {
   readonly sourceEventType: BudgetEventType;
   readonly pressureKind: BudgetPressureKind;
@@ -212,6 +235,7 @@ export interface BudgetPressureHealthObservation extends JsonObject {
   readonly provenance: HealthSourceProvenance;
 }
 
+/** The health inputs at one boundary, each null when the mode cannot supply it. */
 export interface NormalizedHealthInputs extends JsonObject {
   readonly semanticConcentration: SemanticConcentrationObservation | null;
   readonly progress: ProgressHealthObservation | null;
@@ -221,6 +245,10 @@ export interface NormalizedHealthInputs extends JsonObject {
   readonly cycleEvent: CycleHealthEventPayload | null;
 }
 
+/**
+ * Everything the projector needs at one completed attempt: run and region scope, ledger cursor, watermark,
+ * sources and the adapter id.
+ */
 export interface HealthBoundaryInput {
   readonly runId: string;
   readonly modeId: string;
@@ -242,12 +270,14 @@ export interface HealthBoundaryInput {
 // 3. OBSERVATION, SIGNAL, AND RESPONSE CONTRACTS
 // ───────────────────────────────────────────────────────────────────
 
+/** One validation problem, naming the code, the field and a message. */
 export interface HealthValidationIssue extends JsonObject {
   readonly code: string;
   readonly field: string;
   readonly message: string;
 }
 
+/** Hashed, versioned record of the normalized health inputs at one boundary. */
 export interface HealthObservation extends JsonObject {
   readonly schemaVersion: 1;
   readonly projectorVersion: string;
@@ -275,6 +305,7 @@ export interface HealthObservation extends JsonObject {
   readonly validationIssues: HealthValidationIssue[];
 }
 
+/** Run, mode, lineage and optional region that a health signal applies to. */
 export interface HealthSignalScope extends JsonObject {
   readonly runId: string;
   readonly modeId: string;
@@ -282,6 +313,10 @@ export interface HealthSignalScope extends JsonObject {
   readonly regionId: string | null;
 }
 
+/**
+ * A health signal raised from one observation, with its kind, severity, scope and the ledger position it was
+ * raised at.
+ */
 export interface HealthSignal extends JsonObject {
   readonly schemaVersion: 1;
   readonly signalId: string;
@@ -306,6 +341,10 @@ export interface HealthSignal extends JsonObject {
   readonly decisionTrace: JsonObject[];
 }
 
+/**
+ * Aggregate health state and severity after one observation, with the active signal ids and policy it was judged
+ * under.
+ */
 export interface HealthAggregate extends JsonObject {
   readonly schemaVersion: 1;
   readonly aggregateId: string;
@@ -317,6 +356,7 @@ export interface HealthAggregate extends JsonObject {
   readonly policyDigest: string;
 }
 
+/** Scope a response request targets, including the frontier or candidate it names, if any. */
 export interface HealthRequestedScope extends JsonObject {
   readonly runId: string;
   readonly modeId: string;
@@ -326,6 +366,10 @@ export interface HealthRequestedScope extends JsonObject {
   readonly candidateRef: string | null;
 }
 
+/**
+ * A request-only health response that stays pending until the gateway decides; it carries no decision or receipt
+ * of its own.
+ */
 export interface HealthResponseRequest extends JsonObject {
   readonly schemaVersion: 1;
   readonly requestId: string;
@@ -353,6 +397,7 @@ export interface HealthResponseRequest extends JsonObject {
 // 4. PROJECTION AND EXECUTION CONTRACTS
 // ───────────────────────────────────────────────────────────────────
 
+/** What was emitted for one boundary and input digest, kept so a repeated boundary replays the same result. */
 export interface HealthDeduplicationRecord extends JsonObject {
   readonly boundaryId: string;
   readonly inputDigest: string;
@@ -363,6 +408,10 @@ export interface HealthDeduplicationRecord extends JsonObject {
   readonly aggregate: HealthAggregate;
 }
 
+/**
+ * Full projector state: observations, signals, requests, active signals, deduplication records and the last
+ * ledger cursor.
+ */
 export interface HealthProjectionState extends JsonObject {
   readonly schemaVersion: 1;
   readonly projectorVersion: string;
@@ -378,6 +427,7 @@ export interface HealthProjectionState extends JsonObject {
   readonly projectionHash: string;
 }
 
+/** Result of projecting one boundary, marked applied or idempotent, with the updated state. */
 export interface HealthProjectionResult {
   readonly status: 'applied' | 'idempotent';
   readonly observation: HealthObservation;
@@ -387,6 +437,7 @@ export interface HealthProjectionResult {
   readonly state: HealthProjectionState;
 }
 
+/** Pairs the unchanged legacy result with the health result computed beside it in shadow. */
 export interface HealthShadowResult<TLegacy> {
   readonly legacyResult: TLegacy;
   readonly healthResult: HealthProjectionResult;
@@ -406,6 +457,7 @@ export const HealthHarnessErrorCodes = {
 export type HealthHarnessErrorCode =
   typeof HealthHarnessErrorCodes[keyof typeof HealthHarnessErrorCodes];
 
+/** Error thrown by the health harness, carrying a typed code and structured details for the caller. */
 export class HealthHarnessError extends Error {
   public readonly code: HealthHarnessErrorCode;
   public readonly details: Readonly<Record<string, unknown>>;

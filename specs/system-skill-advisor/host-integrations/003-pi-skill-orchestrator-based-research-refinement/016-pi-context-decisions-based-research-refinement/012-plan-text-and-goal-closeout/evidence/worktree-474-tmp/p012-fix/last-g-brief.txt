@@ -1,0 +1,34 @@
+The requested `cp` ran successfully, and `cmp` exited 0. The file now matches the prepared source.
+
+**Changed file:** [advisor-brief-producer.vitest.ts](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts:136)
+
+**Final text of the intended changed block:**
+
+```ts
+  it('routes the task behind a pasted reply whose marker starts a new line', async () => {
+    // No end punctuation before the marker: once the prompt is folded to one line, only
+    // the newline told the strip rule where the task starts.
+    const prompt = 'Earlier you replied: I updated the README and committed the change\nNow: implement feature X';
+    const result = await buildSkillAdvisorBrief(prompt, options);
+
+    expect(result.status).toBe('ok');
+    expect(vi.mocked(runAdvisorSubprocess).mock.calls[0]?.[0]).toBe('implement feature X');
+  });
+```
+
+The prepared-versus-pre-copy comparison contained only that comment and input change. The git diff against `HEAD` also shows this additional test block, which does not match the task description:
+
+```ts
+  it('routes the task behind a pasted reply longer than advisor_recommend accepts', async () => {
+    const prompt = `Earlier you replied: ${'I updated the README and committed the change. '.repeat(300)}Now: implement feature X`;
+    expect(prompt.length).toBeGreaterThan(10_000);
+    const result = await buildSkillAdvisorBrief(prompt, options);
+
+    expect(result.status).toBe('ok');
+    expect(vi.mocked(runAdvisorSubprocess).mock.calls[0]?.[0]).toBe('implement feature X');
+  });
+```
+
+That block was already in the target before the copy; the target was marked modified beforehand. So it appears in the resulting diff against `HEAD`, but was not introduced by this replacement.
+
+The Vitest, typecheck and build were not run here, per the run context. The conductor’s assigned verification remains.

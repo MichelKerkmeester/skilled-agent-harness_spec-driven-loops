@@ -1,0 +1,70 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback
+Every read and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+The spec folder is:
+  specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement
+(pre-approved, skip Gate 3). This is a READ-ONLY review: write no file anywhere, run no build,
+test, install, commit or daemon command. Reading files and read-only git commands (git show,
+git diff, git log) are allowed.
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+Code standards: load sk-code and let it pick the surface for these files (TypeScript, Python,
+shell). Use its code-review mode for findings-first output.
+
+`A` below is `.skilled/skills/system-skill-advisor/`. `P` is the spec folder above. The branch
+under review starts at merge base `538d2f789ecfdc2ce162396cd96c7a4c2edeffe4` (main).
+
+TASK: review lane 3, follow-up routing bench and route receipts (phases 003, 010, 011).
+What it should do: the calibration bench measures floored top-1 passes and nine follow-up
+pairs (003). Route receipts (011, designed in 010) remember the skill the advisor last
+delivered confidently in a session; a later weak follow-up whose top route sits on the
+confidence floor and points at another skill is shown "Advisor: prompt skipped." instead.
+A missing, stale or unreadable receipt must leave the turn exactly as before.
+Commits: `git show 663f6af140b c27addb7117`.
+Read the code at HEAD:
+  A/hooks/lib/route-receipt.ts
+  A/hooks/claude/user-prompt-submit.ts (guardWeakFollowUp, recordRouteReceipt,
+    receiptSessionId and where they are called)
+  A/hooks/dsh/prompt-advisor.mjs (advanceBoundary and its callers)
+  A/runtime/lib/prompt-policy.ts (promptPolicyTokens), A/runtime/lib/skill-advisor-brief.ts
+  A/runtime/schemas/advisor-tool-schemas.ts, A/runtime/handlers/advisor-recommend.ts,
+    A/runtime/lib/subprocess.ts, A/hooks/lib/skill-advisor-cli-fallback.ts (confidenceFloored)
+  A/hooks/lib/directive-lifecycle.ts and directive-lifecycle-file-store.ts (the clock)
+  A/runtime/bench/scorer-calibration.bench.ts
+  A/runtime/tests/hooks/route-receipt.vitest.ts, the route-receipt block of
+    claude-user-prompt-submit-hook.vitest.ts, A/hooks/tests/dsh-prompt-advisor.test.mjs
+For intent, read P/003-*/spec.md, P/010-*/research/research.md (sections 3 to 8),
+P/011-*/spec.md and both implementation-summary.md files. A read-only refutation pass already
+ran on 011; its five findings and verdicts are in P/011-*/implementation-summary.md. Do not
+repeat them unless a verdict is wrong.
+Look hardest at: a suppression of a prompt that names new work, a receipt that outlives the
+context it describes, a receipt shared across sessions, a bench number that does not measure
+what its label says, and the confidenceFloored flag changing a public contract.
+
+WHAT COUNTS AS A FINDING
+A defect you can show from the code: wrong output, a crash, a contract the code breaks, a
+regression against main, a race or a security hole, or a test that would stay green while the
+behavior it names is broken. Style, naming and "could be cleaner" are not findings.
+Each phase's `implementation-summary.md` has a Known Limitations section. Do not report an item
+already recorded there unless you can show its recorded verdict is wrong; then say so.
+
+HANDBACK FORMAT
+Start with one line: `FINDINGS: <n>`. Then, most severe first, one block per finding:
+  [P0|P1|P2] <one-sentence defect>
+  Where: <file:line> (and any second location)
+  Scenario: <concrete input or state> -> <wrong result>
+  Evidence: <what you read that shows it; quote the line>
+  Confidence: confirmed (you traced it end to end) or plausible (say what would confirm it)
+P0 = wrong behavior on a normal path or data loss. P1 = wrong behavior on a reachable edge.
+P2 = a test or doc gap that hides a real failure.
+If you find nothing, write `FINDINGS: 0` and list the paths you checked.
+End with `FILES READ:` and the list.

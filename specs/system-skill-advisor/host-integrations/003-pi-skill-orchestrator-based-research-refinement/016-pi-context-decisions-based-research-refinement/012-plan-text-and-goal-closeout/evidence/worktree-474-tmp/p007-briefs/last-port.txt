@@ -1,0 +1,67 @@
+Updated [skill_advisor.py](/Users/michelkerkmeester/worktrees/public/474-advisor-pasted-context-and-crash-fallback/.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py) to strip a pasted reply before `analyze_request` scores the prompt.
+
+**Inserted block**  
+It is followed by two blank lines before the existing `def analyze_request`:
+
+```python
+# JavaScript's \s and String.prototype.trim() set. Python's own \s also matches
+# U+001C to U+001F and U+0085 and misses U+FEFF, so the set is spelled out here
+# to keep this strip equal to the native scorer's for every input.
+_JS_SPACE_CHARS = (
+    "\t\n\v\f\r          "
+    "        　﻿"
+)
+_JS_SPACE = "[" + _JS_SPACE_CHARS + "]"
+# re.ASCII keeps case folding to ASCII letters, as a JavaScript /i regex without
+# the u flag does. Unicode folding would read "ſ" as "s".
+_STRIP_FLAGS = re.IGNORECASE | re.ASCII
+_PASTED_REPLY_CUE = re.compile(
+    rf"^{_JS_SPACE}*(?:(?:earlier|previously|above),?{_JS_SPACE}+)?"
+    rf"(?:(?:you|the assistant|claude){_JS_SPACE}+(?:replied|said|wrote|answered|responded)"
+    rf"|(?:the{_JS_SPACE}+)?(?:assistant|claude){_JS_SPACE}+(?:response|reply|answer)){_JS_SPACE}*:",
+    _STRIP_FLAGS,
+)
+_TASK_MARKER = re.compile(rf"(?:^|[.!?\n]{_JS_SPACE}*)(?:now|task){_JS_SPACE}*:{_JS_SPACE}*", _STRIP_FLAGS)
+
+
+def _strip_pasted_reply_once(prompt: str) -> str:
+    if not _PASTED_REPLY_CUE.search(prompt):
+        return prompt
+    markers = list(_TASK_MARKER.finditer(prompt))
+    if not markers:
+        return prompt
+    # The last marker wins: a pasted reply can hold its own "Task:" line.
+    marker = markers[-1]
+    task = prompt[marker.end():].strip(_JS_SPACE_CHARS)
+    return task if task else prompt
+
+
+def strip_leading_pasted_reply(prompt: str) -> str:
+    """Drop an earlier reply pasted ahead of the task, as the native scorer does.
+
+    The skill names in a pasted reply would otherwise steer routing away from the
+    task. Repeats until nothing changes, so a second call returns the same text.
+    """
+    current = prompt
+    while True:
+        stripped = _strip_pasted_reply_once(current)
+        if stripped == current:
+            return current
+        current = stripped
+```
+
+**Changed block in `analyze_request`:**
+
+```python
+    if not prompt:
+        return []
+
+    prompt = strip_leading_pasted_reply(prompt)
+    prompt_lower = prompt.lower()
+```
+
+**Verification:** the requested `rg` command returned exactly two lines (4819 and 4842). The AST parse exited 0. `validate.sh --strict` printed `RESULT: PASSED` and exited 0. `git diff --check` exited 0. I did not run tests, as directed for the conductor to run them.
+
+The task’s insertion anchor and replacement snippet matched the file; no task-to-file mismatch. The phase spec describes additional fixture, test, ledger and parity-pin work, while this dispatched task limits edits to one file. I changed only that file. The fixture and Python test were already modified before this work and remain untouched.
+
+Skill routing selected `sk-code` and the compiled route selected `sk-code-skilled`. The working tree is dirty on `worktrees/474-advisor-pasted-context-and-crash-fallback`; nothing was committed or pushed. The conductor’s next step is to run the phase tests and handle the remaining packet work.

@@ -78,7 +78,7 @@ Skilled does not have to live inside each project. You can bring it into a proje
 
 A copy needs the overlay system. An update replaces the whole copy, so a change made straight in it would be lost. Instead, each of your changes lives in an overlay folder next to the copy, and the overlay engine applies it back after every update. The [overlay guard](#overlay-guard) keeps edits out of files an overlay owns.
 
-Three commands run the overlays. `/doctor:overlay status` shows every overlay that is out of sync and how to fix it. `/doctor:overlay apply` puts the overlays back after showing what will change. `/doctor:overlay repin` moves the copy to a newer Skilled commit, with a backup it can roll back. The [overlay guide](.skilled/skills/system-skilled-doctor/references/overlays.md) explains each state.
+Three commands run the overlays. `/doctor:overlay status` shows every overlay that is out of sync and how to fix it. `/doctor:overlay apply` puts the overlays back after showing what will change. `/doctor:overlay repin` moves the copy to a newer Skilled commit, with a backup it can roll back. After a re-pin, run `/doctor:overlay apply --relayout` once if `status` prints `LAYOUT` lines, which moves older overlay copies onto their layout path in the overlay folder. `/doctor:overlay status --audit` also lists vendored files that drifted with no overlay owning them and overlay folders that lack a README. The [overlay guide](.skilled/skills/system-skilled-doctor/references/overlays.md) explains each state.
 
 The [system-skilled-doctor](#11--doctor-commands) skill runs all of this. Say "add Skilled to my project repo", or run `/doctor:install` for the ordered steps. Each step shows a plan before it writes and prints how to undo it.
 
@@ -635,7 +635,7 @@ Skilled runs in eight AI runtimes, so you can work from the subscriptions you al
 
 The eight runtimes share one source tree. Skills, agents, commands and hooks live there once, and a generator writes each runtime's copy. `/doctor:runtime-mirrors` checks that every copy still matches. Each runtime's README says which files are generated and which are authored there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [Cursor](.cursor/README.md), [Devin](.devin/README.md), [OpenCode](.opencode/README.md), [Pi](.pi/README.md) and [DeepSeek Harness](.dsh/README.md). Mistral Vibe keeps the same notes in its [sync notes](.vibe/SYNC.md).
 
-A few runtimes need one step of their own. Codex runs a repository hook only after you approve that entry, so open `/hooks` after an update and approve each entry it lists. Mistral Vibe loads its hooks only in a trusted checkout. DSH loads plugins only from the patches a run names, and a guards patch loads the guard bundle. OpenCode loads its plugins on OpenCode 2, the only supported version; if an OpenCode 1 install is still on the machine, `bash .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh remove-v1` removes the package under `~/.local` and the `opencode1` launcher, and leaves its data files in place.
+A few runtimes need one step of their own. Codex runs a repository hook only after you approve that entry, so open `/hooks` after an update and approve each entry it lists. Mistral Vibe loads its hooks only in a trusted checkout. DSH loads plugins only from the patches a run names, and a guards patch loads the guard bundle. OpenCode loads its plugins on OpenCode 2, the only supported version.
 
 Each runtime also has a bridge in the CLI orchestration hub, which [CLI Orchestration](#cli-orchestration) describes. Six bridges refuse to dispatch the runtime they run in. The Pi and DeepSeek Harness bridges may call their own runtime, but neither dispatches from inside a fan-out lineage or a dispatch that already uses it. That bound keeps delegation from looping. The DeepSeek Harness and Mistral Vibe bridges are experimental.
 
@@ -742,7 +742,7 @@ Yes. Spec folders, the gates, the agents and the skills all work without `/speck
 
 ### How can I keep Skilled current after a new release?
 
-Run `/doctor:update check` to see what a release changes, then `/doctor:update apply` to bring it in after your yes. It can roll the update back. A project that commits a copy of Skilled moves it with `/doctor:overlay repin` instead, which puts your overlays back on the new copy. Afterwards, `/doctor:runtime-mirrors` checks that every runtime folder still matches the shared source, and `/doctor:setup` runs the full health check.
+Run `/doctor:update check` to see what a release changes, then `/doctor:update apply` to bring it in after your yes. It can roll the update back. A project that commits a copy of Skilled moves it with `/doctor:overlay repin` instead, which puts your overlays back on the new copy. When `status` then prints `LAYOUT` lines, run `/doctor:overlay apply --relayout` once. Afterwards, `/doctor:runtime-mirrors` checks that every runtime folder still matches the shared source, and `/doctor:setup` runs the full health check.
 
 ### Why is the skill advisor not an MCP server?
 

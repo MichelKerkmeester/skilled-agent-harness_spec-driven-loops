@@ -39,7 +39,8 @@ DOCTOR TARGET FAILED
 Target: runtime-mirrors
 Step: [checker]
 Error: [message]
-Next: [recommended command or manual action]
+Why: [the reason the checker printed under the error, else what that checker compares]
+Next: [the checker's own Next: line when it printed one, else the command from the matching Troubleshooting row, or the accepted invocation]
 STATUS=ERROR ERROR="[message]"
 ```
 

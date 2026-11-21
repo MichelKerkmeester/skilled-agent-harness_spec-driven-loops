@@ -13,7 +13,8 @@
 // writer is fanout-run.cjs, which writes the starting store of each lineage it
 // deals a node to before the lineage spawns. The admission checks run in one fixed order so the workflow steps
 // have a single deterministic implementation rather than prose the orchestrating
-// model executes: relevance, dedupe, depth, fan-out, monotone budget, acyclicity.
+// model executes: relevance, dedupe, depth, fan-out, node cap, monotone budget,
+// acyclicity.
 // The first failing check prunes the proposal with that check's name as the
 // reason.
 //
@@ -493,14 +494,15 @@ function reviewDimensionCount(config) {
  * @param {string} options.artifactDir - The run's artifact directory.
  * @param {'research'|'review'} [options.target='research'] - The loop being sized.
  * @param {string} [options.maxIterationsSource='default'] - Where maxIterations came from; only 'default' is derived.
+ * @param {number} [options.maxIterations] - The bound budget, which wins over the config's; a fan-out seed runs before its root config exists.
  * @returns {{derivedMaxIterations: number, growthSlots: number, warning?: string}} The budget, the node slots left past depth 1, and a warning when none are left.
  */
-function seedBudget({ artifactDir, target = 'research', maxIterationsSource = 'default' }) {
+function seedBudget({ artifactDir, target = 'research', maxIterationsSource = 'default', maxIterations }) {
   const mode = assertTarget(target);
   const config = readTargetConfig(artifactDir, mode);
   const source = isPlainObject(config) ? config : {};
   const expansive = isPlainObject(source.expansiveDepth) ? source.expansiveDepth : {};
-  const configured = capValue(Number(source.maxIterations), LOOP_DEFAULT_MAX_ITERATIONS[mode]);
+  const configured = capValue(maxIterations, capValue(Number(source.maxIterations), LOOP_DEFAULT_MAX_ITERATIONS[mode]));
   const seeded = [...readNodeStore(path.join(artifactDir, NODE_STORE_FILE)).values()]
     .filter((node) => node.depth === 1 && node.status !== 'pruned').length;
   const derivedMaxIterations = maxIterationsSource === 'default'
@@ -890,9 +892,10 @@ function admitProposals({ artifactDir, iteration, proposals, knownTexts = [], ta
  * @param {string[]} [options.knownTexts=[]] - Question texts the run already holds.
  * @param {'research'|'review'} [options.target='research'] - The loop being seeded.
  * @param {string} [options.maxIterationsSource='default'] - Where maxIterations came from.
- * @returns {Object} The admitted and pruned nodes plus the seedBudget fields, or skipped 'already-seeded'.
+ * @param {number} [options.maxIterations] - The bound budget, passed through to seedBudget.
+ * @returns {Object} The admitted and pruned nodes plus the seedBudget fields (none for a defaulted seed with no config yet), or skipped 'already-seeded'.
  */
-function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], target = 'research', maxIterationsSource = 'default' }) {
+function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], target = 'research', maxIterationsSource = 'default', maxIterations }) {
   // Every seeded node sits at depth 1 against the run's synthetic root: the seed
   // sees only the topic, so it cannot justify a deeper placement on its own.
   // A run is seeded once. A re-run of the seed step (a restart that kept the
@@ -939,10 +942,14 @@ function seedNodes({ artifactDir, iteration = 0, candidates, knownTexts = [], ta
 
   const result = admitProposals({ artifactDir, iteration, proposals, knownTexts, target: mode, seeding: true });
 
+  // A defaulted seed with no config yet is a fan-out parent's: fanout-run sizes each
+  // lineage from its own share, so a budget sized from the whole seed names a cap no
+  // lineage runs, and the runner reports the budget table instead.
+  const fanoutParent = maxIterationsSource === 'default' && readTargetConfig(artifactDir, mode) === null;
   return {
     admitted: result.admitted,
     pruned: [...pruned, ...result.pruned],
-    ...seedBudget({ artifactDir, target: mode, maxIterationsSource }),
+    ...(fanoutParent ? {} : seedBudget({ artifactDir, target: mode, maxIterationsSource, maxIterations })),
   };
 }
 
@@ -1143,6 +1150,7 @@ function writeFrontierGraph({ artifactDir, output }) {
 const VALUE_FLAGS = new Set([
   'artifact-dir',
   'max-iterations-source',
+  'max-iterations',
   'iteration',
   'input',
   'known-texts',
@@ -1189,6 +1197,15 @@ function parseArgs(argv) {
 function requireFlag(args, key, flag) {
   if (typeof args[key] !== 'string' || args[key] === '') throw new Error(`--${flag} is required`);
   return args[key];
+}
+
+function parseMaxIterationsArg(value) {
+  if (value === undefined) return undefined;
+  const parsed = Number(value);
+  if (!Number.isInteger(parsed) || parsed <= 0) {
+    throw new Error('--max-iterations must be a positive integer');
+  }
+  return parsed;
 }
 
 function parseIterationArg(value) {
@@ -1314,6 +1331,7 @@ function runCli(argv) {
       knownTexts,
       target,
       maxIterationsSource: args.maxIterationsSource === undefined ? 'default' : args.maxIterationsSource,
+      maxIterations: parseMaxIterationsArg(args.maxIterations),
     });
     if (result.derivedMaxIterations !== undefined) {
       process.stderr.write(`[frontier-admit] budget after seed ${result.derivedMaxIterations} iterations, ${result.growthSlots} growth slots${result.warning ? `; warning: ${result.warning}` : ''}\n`);

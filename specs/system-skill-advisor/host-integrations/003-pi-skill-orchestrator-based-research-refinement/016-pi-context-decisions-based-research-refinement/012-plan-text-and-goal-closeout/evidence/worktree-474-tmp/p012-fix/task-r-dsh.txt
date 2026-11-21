@@ -1,0 +1,5 @@
+TASK (1 file: .skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs)
+Replace this file's whole content with the prepared file by running exactly:
+cp tmp/p012-fix/dsh-tests.v2.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs
+The prepared file adds two tests: a named session whose clock did not move is logged, and a session with no id logs nothing. Read the resulting diff and report in HANDBACK anything in it that does not match that description. Do not edit the file in any other way.
+ACCEPT: `cmp tmp/p012-fix/dsh-tests.v2.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs` exits 0.
