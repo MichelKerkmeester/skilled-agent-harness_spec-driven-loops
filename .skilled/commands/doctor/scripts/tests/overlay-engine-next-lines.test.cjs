@@ -8,7 +8,6 @@
 // and the folder to run the engine from, and works from any working folder.
 
 const assert = require('node:assert/strict');
-const { execFileSync, spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
@@ -54,34 +53,8 @@ test('an unowned folder in the way names a quoted absolute mv and the folder to 
   const result = fixture.run(['apply']);
   assert.notEqual(result.code, 0, result.output);
   const moved = path.join(fixture.tree, 'my tool');
-  const expected = `  Next: mv -n ${quoted(moved)} ${quoted(moved + '.keep')}, then from ${quoted(fixture.tree)}: ${ENGINE} apply`;
+  const expected = `  Next: mv ${quoted(moved)} ${quoted(moved + '.keep')}, then from ${quoted(fixture.tree)}: ${ENGINE} apply`;
   assert.ok(result.output.split('\n').includes(expected), result.output);
-});
-
-// A name already set aside is never the one the line moves to, and the move
-// itself never replaces what stands at its destination, so pasting the line
-// twice keeps every copy.
-test('a keep-aside line skips a name already taken and running it twice overwrites nothing', (t) => {
-  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'my tool' }]);
-  writeFile(fixture.tree, 'my tool/project.md', 'project file\n');
-  writeFile(fixture.tree, 'my tool.keep', 'set aside before\n');
-  const result = fixture.run(['apply']);
-  assert.equal(result.code, 1, result.output);
-  const moved = path.join(fixture.tree, 'my tool');
-  const move = `mv -n ${quoted(moved)} ${quoted(moved + '.keep.1')}`;
-  assert.ok(result.output.split('\n').includes(`  Next: ${move}, then from ${quoted(fixture.tree)}: ${ENGINE} apply`), result.output);
-  execFileSync('/bin/sh', ['-c', move]);
-  assert.equal(fs.readFileSync(path.join(fixture.tree, 'my tool.keep'), 'utf8'), 'set aside before\n');
-  assert.equal(fs.readFileSync(path.join(fixture.tree, 'my tool.keep.1', 'project.md'), 'utf8'), 'project file\n');
-  writeFile(fixture.tree, 'my tool/project.md', 'a second project file\n');
-  spawnSync('/bin/sh', ['-c', move]);
-  assert.equal(fs.readFileSync(path.join(fixture.tree, 'my tool.keep'), 'utf8'), 'set aside before\n');
-  assert.equal(fs.readFileSync(path.join(fixture.tree, 'my tool.keep.1', 'project.md'), 'utf8'), 'project file\n');
-  // A second run moves the new folder into the set-aside one or leaves it, and
-  // either way replaces nothing.
-  const second = [path.join(fixture.tree, 'my tool', 'project.md'), path.join(fixture.tree, 'my tool.keep.1', 'my tool', 'project.md')]
-    .filter((filePath) => fs.existsSync(filePath));
-  assert.deepEqual(second.map((filePath) => fs.readFileSync(filePath, 'utf8')), ['a second project file\n']);
 });
 
 test('a folder where a layout link belongs keeps its first line and names a quoted absolute mv', (t) => {
@@ -94,7 +67,7 @@ test('a folder where a layout link belongs keeps its first line and names a quot
   assert.ok(first >= 0, result.output);
   assert.ok(lines[first].endsWith('my link exists but is not the link to target'), result.output);
   const moved = path.join(fixture.tree, 'my link');
-  const expected = `  Next: mv -n ${quoted(moved)} ${quoted(moved + '.keep')}, then from ${quoted(fixture.tree)}: ${ENGINE} apply`;
+  const expected = `  Next: mv ${quoted(moved)} ${quoted(moved + '.keep')}, then from ${quoted(fixture.tree)}: ${ENGINE} apply`;
   assert.ok(lines.includes(expected), result.output);
 });
 
@@ -111,7 +84,7 @@ test('a folder that replaced an engine-made link before its retarget keeps its f
   const lines = error.message.split('\n');
   assert.equal(lines[0], 'my link is no longer the link this engine made; refusing to replace it');
   const moved = path.join(fixture.tree, 'my link');
-  const expected = `  Next: mv -n ${quoted(moved)} ${quoted(moved + '.keep')}, then from ${quoted(fixture.tree)}: ${ENGINE} apply`;
+  const expected = `  Next: mv ${quoted(moved)} ${quoted(moved + '.keep')}, then from ${quoted(fixture.tree)}: ${ENGINE} apply`;
   assert.ok(lines.includes(expected), error.message);
   assert.equal(fs.readFileSync(path.join(moved, 'project.md'), 'utf8'), 'project file\n');
 });
@@ -125,7 +98,7 @@ test('a re-pin path below a linked folder keeps its first line and names a quote
   const parts = lines[0].split('\n');
   assert.equal(parts[0], 'refuse: my hub/new.md sits below my hub, which the tree holds as a link');
   const moved = path.join(fixture.tree, 'my hub');
-  assert.equal(parts[2], `  Next: mv -n ${quoted(moved)} ${quoted(moved + '.keep')}, then rerun the re-pin`);
+  assert.equal(parts[2], `  Next: mv ${quoted(moved)} ${quoted(moved + '.keep')}, then rerun the re-pin`);
   assert.equal(parts[3], '  or, to keep it where it is: add "my hub/new.md" to repin.exclude in overlay-manifest.json, then rerun the re-pin');
 });
 

@@ -2175,29 +2175,9 @@ function unownedShapeProblem(entry, key, kind, wanted, root) {
 // The remedy for an unowned shape in the way: move it aside by its absolute path,
 // so the line works from any folder, then rerun apply from the tree root.
 function keepAsideRemedy(root, key) {
-  return `Next: ${keepAsideMove(path.join(root, key))}, then ` +
+  const filePath = path.join(root, key);
+  return `Next: mv ${shellPath(filePath)} ${shellPath(filePath + '.keep')}, then ` +
     nextEngine(root, 'apply').slice('Next: '.length);
-}
-
-// The move that sets a path aside, to the first of `<path>.keep`,
-// `<path>.keep.1`, ... that nothing holds when the line is printed, a link that
-// does not resolve included. `mv -n` never replaces what stands at the
-// destination, so a line run twice, or after the name was taken, cannot
-// overwrite a copy set aside before.
-function keepAsideMove(filePath) {
-  let aside = filePath + '.keep';
-  for (let suffix = 1; isTaken(aside); suffix += 1) aside = `${filePath}.keep.${suffix}`;
-  return `mv -n ${shellPath(filePath)} ${shellPath(aside)}`;
-}
-
-function isTaken(filePath) {
-  try {
-    fs.lstatSync(filePath);
-    return true;
-  } catch (error) {
-    if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) return false;
-    throw error;
-  }
 }
 
 /**
@@ -3301,28 +3281,12 @@ function linksAboveOverlays(manifest, root, layoutRecords) {
   const destinations = (manifest.overlays || [])
     .filter((entry) => typeof entry.destination === 'string')
     .map((entry) => fold(path.posix.normalize(entry.destination).replace(/\/+$/, '')));
-  const keyOf = (record) => fold(path.posix.normalize(record.link.path).replace(/\/+$/, ''));
-  const candidates = layoutRecords.filter((record) => !record.isRetarget && !record.replacesOwned &&
-    replacedLinkState(root, record.link).state === 'none' && !pathExists(path.join(root, record.link.path)));
-  const chosen = new Set(candidates.filter((record) => {
-    const key = keyOf(record);
+  return layoutRecords.filter((record) => {
+    if (record.isRetarget || record.replacesOwned || replacedLinkState(root, record.link).state !== 'none') return false;
+    if (pathExists(path.join(root, record.link.path))) return false;
+    const key = fold(path.posix.normalize(record.link.path).replace(/\/+$/, ''));
     return destinations.some((destination) => destination === key || destination.startsWith(key + '/'));
-  }));
-  // A chosen link whose target is another link the tree lacks writes through
-  // that link too, so it is made first with them.
-  for (let isGrowing = true; isGrowing;) {
-    isGrowing = false;
-    const targets = [...chosen].map((record) => fold(toPosix(path.relative(path.resolve(root),
-      path.resolve(path.dirname(path.resolve(root, record.link.path)), record.link.target)))));
-    for (const record of candidates) {
-      if (chosen.has(record)) continue;
-      const key = keyOf(record);
-      if (!targets.some((target) => target === key || target.startsWith(key + '/'))) continue;
-      chosen.add(record);
-      isGrowing = true;
-    }
-  }
-  return candidates.filter((record) => chosen.has(record));
+  });
 }
 
 // A layout link the tree lacks outright, inside a folder an entry writes, where
@@ -3365,10 +3329,7 @@ function refuseLinksInsideOverlayWrites(ctx, layout, plans) {
 // written, the way apply makes it, unless another manifest link sits on its
 // way: that link, once made, decides where the folder lands, so the target is
 // left to apply, as is a folder that cannot be resolved at all, such as one
-// behind a looping link the layout replaces. A target at or under another
-// manifest link apply has not made yet is read through that link's own target,
-// since apply makes it first. The fault comes back with the path it was found
-// at, named from the tree root, so the remedy points at the folder to make.
+// behind a looping link the layout replaces.
 function layoutTargetFault(root, manifest, link) {
   const folder = path.dirname(path.resolve(root, link.path));
   if (!fs.existsSync(folder)) {
@@ -3383,58 +3344,18 @@ function layoutTargetFault(root, manifest, link) {
   } catch {
     return null;
   }
-  const through = throughUnmadeLayoutLinks(root, manifest, path.resolve(realFolder, link.target));
-  const at = through.shown || path.resolve(path.dirname(path.resolve(root, link.path)), link.target);
+  const targetPath = path.resolve(realFolder, link.target);
   let stats;
   try {
-    stats = fs.statSync(through.real);
+    stats = fs.statSync(targetPath);
   } catch {
     try {
-      return { kind: fs.lstatSync(through.real).isSymbolicLink() ? 'dangling' : 'missing', at };
+      return fs.lstatSync(targetPath).isSymbolicLink() ? 'dangling' : 'missing';
     } catch {
-      return { kind: 'missing', at };
+      return 'missing';
     }
   }
-  return stats.isDirectory() ? null : { kind: 'file', at };
-}
-
-// Follow a target path through each manifest link on it that does not yet
-// stand at its own target, the way the path reads once apply has made it. The
-// match is read from the tree root as the operating system names it, with case
-// folded where its filesystem ignores case; `shown` names the same place from
-// the tree root as given, or is null when no such link is on the path. A chain
-// is followed at most once per manifest link, so links that point at each
-// other cannot spin.
-function throughUnmadeLayoutLinks(root, manifest, targetPath) {
-  const result = { real: targetPath, shown: null };
-  let realRoot;
-  try {
-    realRoot = canonicalPath(root);
-  } catch {
-    return result;
-  }
-  const fold = pathFold(root);
-  const links = (manifest.layoutLinks || []).filter((other) => other &&
-    typeof other.path === 'string' && typeof other.target === 'string');
-  for (let hops = 0; hops < links.length && isWithin(realRoot, result.real); hops += 1) {
-    const parts = path.relative(realRoot, result.real).split(path.sep).filter(Boolean);
-    const key = fold(parts.join(path.sep));
-    const other = links.find((candidate) => {
-      const otherKey = fold(path.normalize(candidate.path));
-      if (key !== otherKey && !key.startsWith(otherKey + path.sep)) return false;
-      try {
-        return fs.readlinkSync(path.join(root, candidate.path)) !== candidate.target;
-      } catch {
-        return true;
-      }
-    });
-    if (!other) break;
-    const rest = parts.slice(fold(path.normalize(other.path)).split(path.sep).length);
-    const linkFolder = path.dirname(path.normalize(other.path));
-    result.real = path.resolve(realRoot, linkFolder, other.target, ...rest);
-    result.shown = path.resolve(path.resolve(root), linkFolder, other.target, ...rest);
-  }
-  return result;
+  return stats.isDirectory() ? null : 'file';
 }
 
 // A layout link with entries at or below it that apply cannot write through as
@@ -3477,12 +3398,12 @@ function refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans) {
     const isStanding = !record && current === link.target;
     if ((!record && !isStanding) || (record && record.replacesOwned)) continue;
     const writersUnder = entriesUnder(link, true);
-    const found = writersUnder.length > 0 ? layoutTargetFault(root, manifest, link) : null;
-    if (found) {
-      const { kind: fault, at: targetPath } = found;
+    const fault = writersUnder.length > 0 ? layoutTargetFault(root, manifest, link) : null;
+    if (fault) {
+      const targetPath = path.resolve(path.dirname(path.resolve(linkPath)), link.target);
       const makeFolder = fault === 'missing'
         ? `mkdir -p ${shellPath(targetPath)}`
-        : `${keepAsideMove(targetPath)} and mkdir -p ${shellPath(targetPath)}`;
+        : `mv ${shellPath(targetPath)} ${shellPath(targetPath + '.keep')} and mkdir -p ${shellPath(targetPath)}`;
       const linkedTo = { missing: 'a folder that does not exist', dangling: 'a link that does not resolve', file: 'a file' }[fault];
       layout.problems.push(withRemedy(
         `${link.path} links to ${link.target}, which ${fault === 'file' ? 'is a file' : 'does not exist'}, and ${named(writersUnder)} under it`,
@@ -6085,7 +6006,7 @@ function treeShapeProblems(root, touched) {
     if (blockedBy) {
       lines.push(`refuse: ${relativePath} sits below ${blockedBy}` +
         '\n  the copy writes this path into a folder, and that path is not one' +
-        `\n  Next: ${keepAsideMove(path.join(root, blockedAt))}, then rerun the re-pin` +
+        `\n  Next: mv ${shellPath(path.join(root, blockedAt))} ${shellPath(path.join(root, blockedAt) + '.keep')}, then rerun the re-pin` +
         `\n  or, to keep it where it is: add "${relativePath}" to repin.exclude in ${MANIFEST_FILE}, then rerun the re-pin`);
     } else if (isDirectory(path.join(root, relativePath))) {
       lines.push(`refuse: ${relativePath} is a folder in the tree where upstream ships a file; list it in repin.exclude to keep it`);
