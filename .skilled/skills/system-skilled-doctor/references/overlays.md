@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.35.0
+version: 1.0.36.0
 ---
 
 # Vendored Skilled Overlays
@@ -55,6 +55,7 @@ The value is a path relative to the tree root, written with forward slashes. It 
 | `overlay-manifest.json` | The pinned upstream commit and one entry per overlay |
 | `sync-state.json` | Schema version 2: the hashes it last applied to each destination, the layout link targets it made, the array items it added, the values its `set` and `insertObjectKeys` operations wrote and the keys its `setKeyOnItem` operations wrote |
 | `.build-lock` | Present only while one of the engine's writing runs holds it: an `apply`, a capture, an adopt, a relayout, a live re-pin or a rollback |
+| `repin-runs/`, `relayout-runs/` | The backups a re-pin and a relayout write before their first change |
 | Everything else | The overlay sources the manifest entries name |
 
 The setting lives outside `.skilled` because a re-copy overwrites that folder, and outside the manifest because the manifest sits inside the folder the setting finds. It stays at the tree root when the folder sits beside the tree, so the tree always names its own overlays.
@@ -73,18 +74,20 @@ With `F` as a folder's path relative to the overlay folder, `F/README.md` or `F/
 2. `F` is the `source` folder of a `directory` entry, or sits under it. Everything inside a whole-folder entry ships, except a Python bytecode cache.
 3. `F` is the `source` folder of a `skill-root` entry, or sits under it, and the README's path relative to that source is listed in the entry's `replace`, or sits under a folder `replace` lists. A skill-root entry ships only what `replace` names.
 
+A README whose path the skill-root entry's `retained` list names, on a path inside a folder its `replace` list names, is documentation only, because `apply` keeps the vendor's live bytes there. A retained path that `replace` names directly still ships.
+
 Every other README is documentation only. These rules apply to both names alike.
 
 A new README inside a directory entry ships. Adding one to a folder inside a `directory` entry, or inside a folder a `skill-root` entry's `replace` lists, changes the vendored tree on the next `apply`. It is overlay content like any other file in that folder.
 
-A Python bytecode cache is never overlay content. The folder readers skip a `__pycache__` folder and any `*.pyc` or `*.pyo` file on both sides of a `directory` or `skill-root` entry, so `apply` never ships one from the overlay folder, and status, capture and adopt pass over it. A cache a script wrote in the live tree is never deleted while its folder still ships. A folder the entry stops shipping goes with its cache. Once `apply` has deleted the folder's files, it removes the folder whole if nothing but caches is left in it. For a `directory` entry that is a folder the source no longer has. For a `skill-root` entry it is a folder at or under a `remove` path, or under a `replace` folder whose source lacks it. The rule goes by name, not by what git ignores, because an overlay folder can sit outside any repository.
+A Python bytecode cache is never overlay content. Only a folder named `__pycache__`, or a file ending in `.pyc` or `.pyo`, counts as one. A folder whose name ends in `.pyc` is ordinary content. The folder readers skip a `__pycache__` folder and any `*.pyc` or `*.pyo` file on both sides of a `directory` or `skill-root` entry, so `apply` never ships one from the overlay folder, and status, capture and adopt pass over it. A cache a script wrote in the live tree is never deleted while its folder still ships. A folder the entry stops shipping goes with its cache. Once `apply` has deleted the folder's files, it removes the folder whole if nothing but caches is left in it. For a `directory` entry that is a folder the source no longer has. For a `skill-root` entry it is a folder at or under a `remove` path, or under a `replace` folder whose source lacks it. The rule goes by name, not by what git ignores, because an overlay folder can sit outside any repository. When `apply` cannot remove such a cache folder, for example because a file in it is read-only, it leaves the folder, prints a `NOTE` line naming it with an indented `Next: chmod -R u+w <folder> && rm -r <folder>` line, and still succeeds, because only caches were left. A re-pin backs up a cache only when its apply could remove it, so the backup never grows with caches that stay.
 
 The engine never applies, adopts, captures, stages or flags a documentation-only README:
 
 - `apply` never writes it to the tree.
 - `apply --adopt` never takes it over as a source. An adopt that would place a source onto an existing documentation-only README, or would turn one into content by making its folder a `directory` entry, refuses and writes nothing.
 - `apply --capture` never writes into it.
-- `repin --stage` never puts it into the staged tree.
+- `repin --stage` never puts it into the stage folder.
 - No status line, `--json` field, audit finding, `pre-commit` refusal, guard refusal, `LAYOUT` line or relayout move names it as drift, extra, stray, unowned or off-layout. It shows up only in the README check `status --audit` runs, described under [README Checks](#readme-checks).
 
 All of this holds the same way for an overlay folder inside the tree, the default `skilled-overlays/`.
@@ -157,13 +160,15 @@ A relative `pin.checkout` is read from the root of the tree the engine runs on, 
 
 ## 4. WHAT THE ENGINE REFUSES
 
+Most refusals the engine, the doctor scripts and the git hooks print end with a `Next:` line naming the exact command to run, and the folder to run it from. The write guard's refusals name their command inline instead.
+
 ### A Held Lock
 
 `apply`, a capture, an adopt, a relayout, a live re-pin and a rollback each take `<overlayDir>/.build-lock` and remove it when they finish, also on failure. The owner line records the process id and the host that wrote it, as `pid=<n> host=<name>`. A lock whose owner has ended on this host is leftover state, so the next run takes it over and prints one note naming whose lock it was. A `repin --stage` does not take it: it reads a dead owner's line, prints `note: the overlay lock belongs to a run that has ended:`, and leaves the lock for the next writing run. A line with a process id and no `host=` token came from an engine that only ever ran on the machine it was installed in, so that id is probed here too. The takeover runs behind `<overlayDir>/.build-lock.takeover`, and only one run at a time can create that file. A marker older than a minute is what a run killed mid-takeover leaves behind, so the next run clears it instead of waiting for it to go. Neither leftover is deleted by its shared path. The lock and the marker are each renamed aside first and deleted only when the renamed file is the one that was judged stale, and a file another run wrote in the meantime is put back, unless another file already stands at the path, in which case the set-aside file is dropped. A marker put back this way can outlive its run, and a takeover then refuses for up to a minute and says to run it again. A run killed in that instant can leave a `.claim` file beside the lock, which is safe to delete. A lock with a live owner, a lock another host wrote, or a lock with no process id in its line still refuses, and that refusal prints the owner line and the lock file path. Remove such a file by hand once you know its run has ended.
 
 ### Secret Files
 
-The engine never reads a `.env` file, even one a manifest entry names. A file whose name contains `token` is read only when the manifest names its exact path:
+The engine never reads a `.env` file, even one a manifest entry names. The templates `.env.example`, `.env.sample` and `.env.template` are the exception. They hold no secret by convention, so the engine reads, copies, re-pins and reports them like any vendored file. Only those exact names are exempt, so a file such as `.env.local` stays protected. A file whose name contains `token` is read only when the manifest names its exact path:
 
 - A `file` or `marked-section` entry names its destination exactly.
 - A `directory` or `skill-root` entry walks a folder, so it lists each token-named file it may read in `protectedPaths`, by its path relative to the entry. Any other token-named file the walk meets is refused.
@@ -182,9 +187,20 @@ A `protectedPaths` value that points outside the entry, an absolute path, an emp
 
 A refused file blocks only the entry it belongs to. `status` still reports every other overlay, then prints a `MISS` line for the blocked entry that names the file and the fix, such as `add "assets/tokens.css" to this entry's protectedPaths`, and exits 1. `apply` writes nothing while any entry is blocked, and `repin` refuses before its backup.
 
+### Another Shape in the Way
+
+An entry can change what it writes at a destination between a file, a folder and a layout link. `apply` first removes its own earlier output there, meaning files whose bytes match what it last wrote or a layout link it made, then writes the new shape in the same run. A file, folder or link it did not write is unowned, so `apply` refuses it, writes nothing and exits 1:
+
+```text
+BLOCKED  t: thing is a folder that does not match what apply last wrote there, where overlay t writes a file; apply removes only its own output, so it stays
+  Next: mv thing thing.keep && node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+Move the unowned copy aside as the `Next:` line says, then compare it with the overlay before you delete it.
+
 ### An Edit to an Owned File
 
-The `overlay-guard` hook refuses an agent's edit to a file an overlay owns, before it is written, and names the overlay file to edit instead. It asks the engine for each path, so it follows the same manifest. It is one runtime-neutral core with an adapter per runtime, for Claude, Codex, Cursor, Devin, Pi, DSH and OpenCode, and the OpenCode adapter sits at `.skilled/hooks/overlay-guard/opencode/overlay-guard.js`. In a repository with no overlay folder it allows every edit at once. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off.
+The `overlay-guard` hook refuses an agent's edit to a file an overlay owns, before it is written, and names the overlay file to edit instead. It asks the engine for each path, so it follows the same manifest. It is one runtime-neutral core with an adapter per runtime, for Claude, Codex, Cursor, Devin, Pi, DSH, OpenCode and Vibe, and the OpenCode adapter sits at `.skilled/hooks/overlay-guard/opencode/overlay-guard.js`. In a repository with no overlay folder it allows every edit at once. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off.
 
 ### A Write No Overlay Owns
 
@@ -243,7 +259,7 @@ A generated path, a path an overlay owns, a path under a `repin.exclude` folder 
 - A folder named `__pycache__`, the bytecode cache Python writes beside a script it runs.
 - A folder reached through a symbolic link. The walk never follows a link.
 
-Every walked folder needs a `README.md` or a `README.markdown`, and only a regular file counts, so a README that is a link counts as missing. A folder the walk cannot read is skipped and not counted. Every README there, under either name and shipping or documentation only, goes through sk-doc's own validator, and a folder with both names has both checked. The engine runs `python3 <tree>/.skilled/skills/sk-doc/scripts/validate_document.py <README> --json` once per README, with `JEV_FEATURE_CITE_DRIFT=0` set, and lets the validator detect the document type. A README with any `blocking_errors` is invalid, and so is one the validator answers without a `blocking_errors` list, for example with an `error` key or output that is not JSON. The lines print after the `AUDIT` lines and before `checked=`:
+Every walked folder needs a `README.md` or a `README.markdown`, and only a regular file counts, so a README that is a link counts as missing. A folder the walk cannot read is skipped and not counted. Every README there, under either name and shipping or documentation only, goes through sk-doc's own validator, and a folder with both names has both checked. The engine runs `python3 <tree>/.skilled/skills/sk-doc/scripts/validate_document.py <README> --json` once per README, with `JEV_FEATURE_CITE_DRIFT=0` and `PYTHONDONTWRITEBYTECODE=1` set, and lets the validator detect the document type. A README with any `blocking_errors` is invalid, and so is one the validator answers without a `blocking_errors` list, for example with an `error` key or output that is not JSON. A validator still running after 30 seconds is killed and reported as invalid with `the validator did not finish in 30s`, and `OVERLAY_DOCS_VALIDATOR_TIMEOUT_MS` changes that limit. A validator that cannot start is reported with `the validator could not run: <error>`. The lines print after the `AUDIT` lines and before `checked=`:
 
 ```text
 DOCS     missing-readme <overlay label>/<F>
@@ -323,13 +339,14 @@ The layout path puts each copy under `framework/` when its destination sits unde
 
 ## 6. ADOPTING THE ENGINE WITH EXISTING OVERLAYS
 
-A project that already keeps its own overlay folder and replay script moves onto the engine without moving a file. The engine reads the same manifest shape and the same `sync-state.json` shape, `{ "schemaVersion": 1, "pin", "files" }`, so the folder stays where it is. The first `apply` rewrites the state as schema version 2.
+A project that already keeps its own overlay folder and replay script moves onto the engine without moving a file first. The engine reads the same manifest shape and the same `sync-state.json` shape, `{ "schemaVersion": 1, "pin", "files" }`, so the folder stays where it is. The first `apply` rewrites the state as schema version 2.
 
 1. **Name the folder.** Add `.skilled-overlays.json` at the root of the vendored copy with `{ "overlayDir": "<folder>" }`. Without it the engine looks in `skilled-overlays/`, and `status` stops with an error that says so.
 2. **Run `/doctor:overlay status`.** Each entry that walks a token-named file prints a `MISS` line naming the file. Add each one to that entry's `protectedPaths`, by its path relative to the entry.
 3. **Add the `repin` block** from §5 when the copy keeps a real folder where upstream ships a link, or when it vendors a different set of runtime folders.
-4. **Check the generated surfaces.** The manifest's `regenerate` and `verifyGenerated` steps run after every apply, including the one a re-pin makes. Each command runs at the tree root, so review the list rather than copying one from a folder you do not trust. A verify step only fails when its command can fail: `skill-graph-freshness.cjs` reports and exits 0 unless it gets `--strict`.
-5. **Run `status` again** until it prints `RESULT: PASSED`, then use `apply` and `repin` as usual.
+4. **Check the generated surfaces.** The manifest's `regenerate` and `verifyGenerated` steps run after an `apply` that wrote something, after one that follows a failed regeneration and after every apply a re-pin makes. An `apply` that prints `0 changed` with nothing pending runs neither. Each command runs at the tree root, so review the list rather than copying one from a folder you do not trust. A verify step only fails when its command can fail: `skill-graph-freshness.cjs` reports and exits 0 unless it gets `--strict`.
+5. **Expect `LAYOUT` lines.** Each copy that sits off its `framework/` or `root/` path prints one, as [Off-Layout and Stale Sources](#off-layout-and-stale-sources) describes. They never fail `status`. Run `/doctor:overlay apply --relayout` once when you want the copies moved onto their layout paths.
+6. **Run `status` again** until it prints `RESULT: PASSED`, then use `apply` and `repin` as usual.
 
 A replay script the project keeps beside the engine can keep reading the same folder. It reads only the keys it knows, and the engine ignores keys it does not read, such as a fork's own certificates. A script must not write `sync-state.json`: one that writes it as version 1 drops the records of the items and values the `json-entry` overlays wrote, and those then stay in the live files after they leave an entry set. Retire the script once nothing depends on its extra keys or states.
 

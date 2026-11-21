@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor playbook"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # system-skilled-doctor Manual Testing Playbook
@@ -21,7 +21,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The walked tree holds 12 deterministic scenarios in 2 categories, covering advisor routing for Skilled integration requests, the behavior of the doctor commands this skill owns, the overlay engine on a tree with no overlays, the engine's per-entry protected-file refusal, the guard's strict write checks, adopting an unowned upstream file, the commit check, a stale lock takeover, the move of an off-layout source, the removal of an appended item the entry set drops, the audit of vendored drift no overlay owns and a root file upstream changed after the pin. The doctor contract tests remain authoritative for each command's full behavior. These scenarios check what an operator sees.
+The walked tree holds 13 deterministic scenarios in 2 categories, covering advisor routing for Skilled integration requests, the behavior of the doctor commands this skill owns, the overlay engine on a tree with no overlays, the engine's per-entry protected-file refusal, the guard's strict write checks, adopting an unowned upstream file, the commit check, a stale lock takeover, the move of an off-layout source, the removal of an appended item the entry set drops, the audit of vendored drift no overlay owns and its advisory README check, a root file upstream changed after the pin and the relayout of a sibling overlay folder's old-layout sources. The doctor contract tests remain authoritative for each command's full behavior. These scenarios check what an operator sees.
 
 ### Realistic Test Model
 
@@ -92,7 +92,7 @@ Record each verdict under the skill's `benchmark/reports/` directory with the tr
 | 1 | Routing | `SKD-001`, `SKD-002` | Confirm integration requests route here and the owned commands kept their behavior. |
 | 2 | Overlays | `SKD-003`, `SKD-004` | Confirm the overlay check names a missing manifest and writes nothing, and that a directory entry refuses an unprotected token-named file. |
 | 3 | Overlays | `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009` | Confirm the guard refuses an unowned write and allows a generated or excluded path, that adopt and the commit check close the gap, that a stale lock is taken over, and that an off-layout source moves. |
-| 4 | Overlays | `SKD-010`, `SKD-011`, `SKD-012`, `SKD-013` | Confirm the audit lists the drift no overlay owns and fails, that an owned root file upstream changed after the pin fails status, that a dropped appended item leaves the live file while a hand-edited one is refused, and that a sibling overlay folder's old-layout sources stop at 20 layout lines, list whole in `offLayout` and move in one run. |
+| 4 | Overlays | `SKD-010`, `SKD-011`, `SKD-012`, `SKD-013` | Confirm the audit lists the drift no overlay owns and fails while its README check stays advisory, that an owned root file upstream changed after the pin fails status, that a dropped appended item leaves the live file while a hand-edited one is refused, and that a sibling overlay folder's old-layout sources stop at 20 layout lines, list whole in `offLayout` and move in one run. |
 
 ---
 
@@ -176,7 +176,7 @@ Prompt: `move my overlay sources onto the layout folder`
 
 ### SKD-010 | Audit lists the vendored drift no overlay owns
 
-Verify plain `status` passes while `status --audit` prints one `AUDIT` line for an unowned vendored file whose bytes differ from upstream and one for a tracked file upstream never had, prints `audit=2` and fails.
+Verify plain `status` passes while `status --audit` prints one `AUDIT` line for an unowned vendored file whose bytes differ from upstream and one for a tracked file upstream never had, prints `audit=2` and fails. Verify the same audit lists each overlay folder that lacks a README on a `DOCS` line and counts them in `docs=`, and that the README check never changes the result or the exit.
 
 Prompt: `list the vendored files that drifted from upstream without an agent touching them`
 
