@@ -2442,13 +2442,17 @@ function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
   // write lands on it: a file the engine wrote goes first, as any owned shape
   // change does, and any other file stays and refuses the entry. A link in a
   // folder's place is never read through, and a destination already deleted as
-  // another shape has nothing under it to judge.
+  // another shape has nothing under it to judge. Where the volume folds case, a
+  // path walked or recorded in other case is this same entry.
+  const fold = pathFold(ctx.root);
+  const walked = new Set([...current.keys()].map(fold));
+  const recordedKeys = acceptedSha256 instanceof Map ? [...acceptedSha256.keys()] : Object.keys(acceptedSha256 || {});
   const unwalked = new Set();
   for (const rel of isDestinationReplaced ? [] : desired.keys()) {
     const parts = rel.split('/');
     for (let depth = 1; depth < parts.length; depth += 1) {
       const folderRel = parts.slice(0, depth).join('/');
-      if (current.has(folderRel) || unwalked.has(folderRel)) break;
+      if (walked.has(fold(folderRel)) || unwalked.has(fold(folderRel))) break;
       const folderPath = path.join(destinationDir, folderRel);
       let stats;
       try {
@@ -2459,13 +2463,18 @@ function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
       if (stats.isDirectory()) continue;
       if (!stats.isFile()) break;
       const folderKey = relativeKey(ctx.root, folderPath);
-      if (!hashMatches(fs.readFileSync(folderPath), acceptedHashFor(acceptedSha256, folderKey))) {
+      const recordedKey = recordedKeys.includes(folderKey) ? folderKey
+        : recordedKeys.find((candidate) => fold(candidate) === fold(folderKey));
+      if (!hashMatches(fs.readFileSync(folderPath), acceptedHashFor(acceptedSha256, recordedKey))) {
         problems.push(unownedShapeProblem(entry, folderKey, 'file', 'folder', ctx.root));
         return { writes: [], deletes: [], outputs: [] };
       }
-      unwalked.add(folderRel);
-      deletes.push(folderPath);
-      outputs.push({ filePath: folderPath, buffer: null, sourcePath: path.join(sourceDir, folderRel), replacedSubtree: true });
+      // The removal is checked against the recorded hash at the path it names,
+      // so it names the file as the state spells it.
+      const ownedPath = path.join(ctx.root, recordedKey);
+      unwalked.add(fold(folderRel));
+      deletes.push(ownedPath);
+      outputs.push({ filePath: ownedPath, buffer: null, sourcePath: path.join(sourceDir, folderRel), replacedSubtree: true });
       break;
     }
   }

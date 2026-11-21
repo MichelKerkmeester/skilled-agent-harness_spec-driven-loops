@@ -857,6 +857,49 @@ test('a file the engine wrote through a layout link becomes a folder of a direct
   assert.match(fixture.run(['status']).output, /^in-sync=3 overlay-edited=0 live-edited=0 /m);
 });
 
+// On a volume that ignores case, a file the engine wrote as Sub and a folder a
+// directory entry now ships as sub are one path, so the recorded file is the
+// engine's own and goes in the same apply, while a file someone else put there
+// stays.
+for (const [label, links, landing] of [
+  ['in a plain folder', [], 'up'],
+  ['through a standing layout link', [{ path: 'up', target: 'target' }], 'target'],
+]) {
+  const caseFixture = (t) => {
+    const fixture = createShapeFixture(t, [], links);
+    if (!isCaseInsensitive(fixture.workspace)) {
+      t.skip('the volume tells case apart, so Sub and sub are two paths');
+      return null;
+    }
+    applyOk(fixture);
+    fixture.setManifest([{ ...DIRECTORY_ENTRY, destination: 'up' }], links);
+    return fixture;
+  };
+
+  test(`a file the engine wrote under a name that differs only in case becomes the folder a directory entry now ships, ${label}`, (t) => {
+    const fixture = caseFixture(t);
+    if (!fixture) return;
+    writeFile(fixture.overlayDir, 'bundle/Sub', 'owned\n');
+    applyOk(fixture);
+    fs.rmSync(path.join(fixture.overlayDir, 'bundle', 'Sub'));
+    writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+    applyOk(fixture);
+    assert.equal(fs.readFileSync(path.join(fixture.tree, landing, 'sub', 'x'), 'utf8'), 'x\n');
+  });
+
+  test(`a file someone else put under a name that differs only in case from a folder a directory entry ships stays, ${label}`, (t) => {
+    const fixture = caseFixture(t);
+    if (!fixture) return;
+    writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+    writeFile(fixture.tree, `${landing}/Sub`, 'user work\n');
+    const apply = fixture.run(['apply']);
+    assert.equal(apply.code, 1, apply.output);
+    assert.match(apply.output, /^ {2}this apply wrote nothing: /m, apply.output);
+    assert.equal(fs.readFileSync(path.join(fixture.tree, landing, 'Sub'), 'utf8'), 'user work\n');
+    assert.equal(kindOf(path.join(fixture.tree, landing, 'a.md')), 'missing');
+  });
+}
+
 // Apply takes back a layout link it made before it prints a refusal, so a
 // keep-aside line names the path at the link's target, which is still there
 // once apply returns, and the line works as pasted.
