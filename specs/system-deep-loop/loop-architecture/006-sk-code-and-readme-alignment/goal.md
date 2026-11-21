@@ -44,7 +44,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Only behaviour-neutral fixes are built. A finding that changes runtime output, exports, CLI flags, exit codes or JSON shapes is listed for the operator and left as it is. |
+| D1 | A finding that changes runtime output, exports, CLI flags, exit codes or JSON shapes is built only with operator approval and a test that fails before its fix. Undecided findings get a proposed default and are not built. |
 | D2 | Command YAMLs under `.skilled/commands/deep/` are out of scope, because sk-code covers only CI workflow YAML. |
 | D3 | Inline-code paths in code-folder READMEs resolve from the README's own folder. |
 | D4 | Doc comments cover exported functions, classes and interfaces outside test folders. |

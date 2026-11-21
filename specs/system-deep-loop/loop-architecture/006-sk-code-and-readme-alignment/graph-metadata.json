@@ -47,8 +47,7 @@
       "implementation-summary.md",
       "runtime/tests/_support/README.md",
       ".skilled/skills/system-deep-loop/runtime/tests/_support/README.md",
-      "benchmark/reports/README.md",
-      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      "benchmark/reports/README.md"
     ],
     "entities": [
       {
@@ -91,12 +90,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "runtime/tests/_support/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate-playbook-package.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A developer opening a system-deep-loop code folder meets READMEs that miss files, name moved paths and fail the sk-doc code-folder validator, and exported TypeScript functions, classes and interfaces that carry no TSDoc although the sk-code TypeScript checklist requires it at P1",
     "created_at": "2026-11-21T18:32:25Z",
-    "last_save_at": "2026-11-21T19:30:32.200Z",
+    "last_save_at": "2026-11-21T21:48:38.538Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a59222fc0022ebcef561d55035e9bb56ef20b1d0e2895f412f258bb72210cb93",
+    "source_fingerprint": "sha256:ea7ed5716ad16a0cd72400a43c876659a764a50a446949e1177487abf8495daf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a581cd7cdd1183968b29db8f43771d7e4d6af328d00bb00fe54996b18597c015",
+      "spec.md": "169849799605d95aaa18f57a57c2ac520356babc23b985d707ff7dbc11389c56",
       "plan.md": "87fba6a7a94c1087e256c75ad875049fd2999b66713bc580d4e15afa39da1fd7",
-      "tasks.md": "dedf52327c4676eff36b3529a945357733a3cae017aaec7e3d940ea2c4e4ff70",
-      "implementation-summary.md": "bd208516af7c5ae43c6c0d5091e0d8793765eb34b5ff9cd2e53550e8c26c8fb4"
+      "tasks.md": "d6328cb86efa385e7b405e47ebfade00aac80a5ef943c380e4095ccd90df0b38",
+      "implementation-summary.md": "2dcaedbf03867ab7bfd4057b85e226397118fd6f9e668d4cc4fa94d0ce6294b8"
     },
     "last_active_at": null
   }

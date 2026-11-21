@@ -56,6 +56,7 @@ contextType: "general"
 - [x] T008 Run the full gate from the final state (`scratchpad/gate-dlh.log`). Verify: the log prints vitest 0 failed, three check exits of 0, `Tests  18 passed (18)` and `validate exit=0 passed=16 failed=0`.
 - [x] T009 Run the side checkers (typecheck, mirrors, documentation drift, frontmatter versions, trigger index). Verify: each exits 0.
 - [x] T010 Record the results and the operator decision list (`implementation-summary.md`). Verify: `rg -n 'class \(b\)' implementation-summary.md` prints at least one line.
+- [x] T011 Build the operator-approved behaviour fixes, each with a test that fails before the fix (`implementation-summary.md`). Verify: `scratchpad/gate-dlh2.log` prints `Tests  4029 passed | 11 skipped (4040)` and `check-contract-drift exit=0`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -114,7 +115,7 @@ contextType: "general"
 
 - [x] CHK-010 [P0] Code passes lint/format checks Evidence: quality-gate.cjs over 582 files prints NO_BLOCKER_FOUND, typecheck exit 0.
 - [x] CHK-011 [P0] No console errors or warnings Evidence: vitest 3967 passed, 0 failed.
-- [x] CHK-012 [P1] Error handling implemented N/A: comment-only pass. Error-handling gaps are listed as behaviour items in implementation-summary.md.
+- [x] CHK-012 [P1] Error handling implemented Evidence: the approved swallowed-error fixes in loop-lock, the append gateway, the rollout loader and the coverage graph each have a fail-first test.
 - [x] CHK-013 [P1] Code follows project patterns Evidence: each lane loaded the sk-code checklists before its first write.
 <!-- /ANCHOR:code-quality -->
 

@@ -63,9 +63,10 @@ gate NO_BLOCKER_FOUND, findings 0, files_checked 582
 - Fix every behaviour-neutral finding: doc comments, WHY comments on benign empty catches, non-null justifications, README inventories, paths and drifted claims
 - Create `runtime/tests/_support/README.md` through `/create:readme`
 - List every behaviour-changing or undecided finding for the operator
+- Build the behaviour-changing findings the operator approved, each with a test that fails before its fix, and propose a default for each undecided one
 
 ### Out of Scope
-- Behaviour changes (path guards, error logging, exit-code alignment, locale sorting) - only the operator can approve them
+- Undecided findings (exit-code alignment, test type-check coverage, validator rules) - proposed with a default, not built
 - Command YAMLs under `.skilled/commands/deep/` - sk-code covers only CI workflow YAML
 - `node_modules`, `dist` and test fixtures - generated or fixture code
 
@@ -90,7 +91,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | The full gate passes: vitest 0 failed with at least 3967 passed, ledger-stem, projection and drift checks exit 0, parity 18/18, validate 16/16. |
-| REQ-003 | The code diff changes comment lines only, so exports, CLI flags, exit codes and JSON shapes stay the same. |
+| REQ-003 | The comment pass changes comment lines only, so exports, CLI flags, exit codes and JSON shapes stay the same. |
+| REQ-005 | Each operator-approved behaviour fix is built with a test that fails before the fix, or rebutted with file:line evidence, and no committed digest changes. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
