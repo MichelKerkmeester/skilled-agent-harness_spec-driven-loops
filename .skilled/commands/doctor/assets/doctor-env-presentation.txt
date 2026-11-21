@@ -119,11 +119,12 @@ Never ask to persist a per-invocation switch. If a variable is both secret and p
 After the operator supplies a valid preference value, show only destinations eligible for that variable:
 
     Where should [VARIABLE_NAME] be saved?
-    1) .skilled/hooks/hook-flags.env — only when its documented reader consumes this switch
-    2) .claude/settings.local.json env block — Claude Code only
-    3) Print an export line for me to copy into my shell profile; do not write a profile
-    X) Cancel
-    Reply with 1, 2, 3, or X:
+    The place decides which programs read the value.
+    1) .skilled/hooks/hook-flags.env: read by the hook scripts that document this switch
+    2) .claude/settings.local.json env block: read by Claude Code only
+    3) Print an export line for me to copy into my shell profile. No profile is written
+    X) Cancel, nothing changes
+    Reply with 1, 2, 3 or X:
 
 Omit option 1 when the hook reader does not consume the selected variable. Never offer .env as a preference destination. If the operator selects an unavailable destination, explain why and ask again.
 
@@ -147,7 +148,7 @@ For the shell-profile choice, the exact line must be a safely quoted export line
 For a real file write, ask immediately before mutation:
 
     Write exactly the change shown above to [destination]?
-    Reply yes to write, or no/cancel to leave files unchanged:
+    Reply yes to write it, and the file is read back to confirm the value. Reply no or cancel to leave files unchanged:
 
 Only an unambiguous yes authorizes that one write. A no, cancel, ambiguous answer, or interrupted interaction returns STATUS=CANCELLED ACTION=cancelled and writes nothing for the pending change.
 
@@ -190,18 +191,22 @@ Never include a secret value, preference value, configuration contents, or unsan
 
 Unknown argument, duplicate selector, extra argument, or unknown flag:
 
+    Next: /doctor:env list
     STATUS=FAIL ERROR="invalid arguments; use list, one section, one variable, and optional --dry-run"
 
 No supported rows, malformed table row, conflicting duplicate metadata, or ambiguous reference parse:
 
+    Next: fix the malformed or conflicting table row in .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md, then run /doctor:env list
     STATUS=FAIL ERROR="could not safely parse the documented switch inventory"
 
 No matching selector:
 
+    Next: /doctor:env list, then pick a section or variable it shows
     STATUS=FAIL ERROR="no matching section or variable"
 
 Unreadable selected source or malformed selected destination file:
 
+    Next: make the file the preview named readable and valid, then rerun /doctor:env [selector]
     STATUS=FAIL ERROR="selected source could not be read safely; no write was made"
 
 Invalid value:
@@ -210,10 +215,12 @@ Invalid value:
 
 Unknown or ambiguous type after one clarification:
 
+    Next: fix that variable's type in .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md, then rerun /doctor:env [selector]
     STATUS=FAIL ERROR="the documented type is ambiguous; no write was made"
 
 Write or read-back verification failure:
 
+    Next: open [destination] to see what it now holds, then rerun /doctor:env [selector]
     STATUS=FAIL ERROR="write or read-back verification failed"
 
 Every error must be sanitized. Never include an environment value, a secret default, file contents, or a command's raw error output.

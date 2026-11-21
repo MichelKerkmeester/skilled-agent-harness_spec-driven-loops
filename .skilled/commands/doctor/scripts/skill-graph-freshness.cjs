@@ -319,6 +319,7 @@ function main(strict) {
 const argv = process.argv.slice(2);
 const unknown = argv.filter((arg) => arg !== '--strict');
 if (unknown.length) {
+  process.stderr.write('Next: node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs [--strict]\n');
   process.stderr.write('Usage: skill-graph-freshness.cjs [--strict]\n');
   process.exit(2);
 }

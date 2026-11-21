@@ -25,12 +25,12 @@ import {
 } from '../../lib/deep-loop/executor-audit.js';
 import type { ExecutorConfig } from '../../lib/deep-loop/executor-config.js';
 import { validateIterationOutputs } from '../../lib/deep-loop/post-dispatch-validate.js';
+import { REPOSITORY_ROOT } from '../helpers/gateway-backed-lineage.js';
 import { enforceWriteContainment, snapshotOutOfScopeDirtyPaths } from '../../lib/deep-loop/write-containment.js';
 
 type Mode = 'review' | 'research';
 
 const GATEWAY = fileURLToPath(new URL('../../scripts/append-mode-event.cjs', import.meta.url));
-const REPOSITORY_ROOT = fileURLToPath(new URL('../../../../../../', import.meta.url));
 const DIGEST = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
 
 const EXECUTOR: ExecutorConfig = {

@@ -92,7 +92,7 @@ workflow:
     activities:
       - "When the change was approved and read back, render the presentation contract's mutating result with the command, the verification and the undo command (STATUS=OK)."
       - "When the operator said no, render the cancelled result (STATUS=CANCELLED ACTION=cancelled)."
-      - "When gh failed or the read-back disagreed, render the failure result with gh's message and say the operator can set the variable under Settings, Secrets and variables, Actions (STATUS=FAIL)."
+      - "When gh failed or the read-back disagreed, render the failure result, with the script's Next: line as printed when it has one, with gh's message and say the operator can set the variable under Settings, Secrets and variables, Actions (STATUS=FAIL)."
 
 # ─────────────────────────────────────────────────────────────────
 # OUTPUT

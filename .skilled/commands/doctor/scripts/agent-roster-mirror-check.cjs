@@ -88,10 +88,15 @@ const SURFACE_WIDTH = 9;
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function fail(message) {
+// The Next line sits directly under the status line and before any usage text.
+function fail(message, next, usage) {
   console.error(`STATUS=ERROR agent-roster-mirror: ${message}`);
+  if (next) console.error(`Next: ${next}`);
+  if (usage) console.error(usage);
   process.exit(2);
 }
+
+const RERUN = 'node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs';
 
 function parseArgs(argv) {
   const opts = { root: DEFAULT_REPO };
@@ -101,10 +106,10 @@ function parseArgs(argv) {
     if (argv[i] === '--check') continue;
     if (argv[i] === '--root') {
       const next = argv[++i];
-      if (!next || next.startsWith('-')) fail(`--root needs a directory\n${USAGE}`);
+      if (!next || next.startsWith('-')) fail('--root needs a directory', `${RERUN} --root <repository root>`, USAGE);
       opts.root = path.resolve(next);
     } else {
-      fail(`unknown argument: ${argv[i]}\n${USAGE}`);
+      fail(`unknown argument: ${argv[i]}`, RERUN, USAGE);
     }
   }
   return opts;
@@ -194,7 +199,7 @@ function scanSurface(repo, surface, roster) {
 function main() {
   const { root } = parseArgs(process.argv.slice(2));
   const canonicalDir = path.join(root, CANONICAL_REL);
-  if (!fs.existsSync(canonicalDir)) fail(`canonical source dir not found: ${canonicalDir}`);
+  if (!fs.existsSync(canonicalDir)) fail(`canonical source dir not found: ${canonicalDir}`, `${RERUN} --root <repository root>`);
 
   const roster = canonicalRoster(canonicalDir);
   const problems = [];
@@ -248,5 +253,5 @@ function main() {
 try {
   main();
 } catch (err) {
-  fail(`checker crashed: ${err && err.message ? err.message : String(err)}`);
+  fail(`checker crashed: ${err && err.message ? err.message : String(err)}`, `fix the cause named above, then run ${RERUN}`);
 }

@@ -20,6 +20,8 @@ Which deep-loop history should be checked?
    2) review
    3) both research and review
    4) all
+
+The answer picks which iteration folders are read. The check samples each run's coverage graph and convergence read-only, shows them for your review and ends with a recommendation. It writes only its own state log.
 ```
 
 Accept `1-4` or the corresponding name; empty defaults to `all`.
@@ -59,7 +61,8 @@ DOCTOR TARGET FAILED
 Target: deep-loop
 Step: [setup|workflow phase]
 Error: [message]
-Next: [recommended command or manual action]
+Why: [the reason the script printed under the error, else what the failed step protects]
+Next: [the script's own Next: line when it printed one, else the command from the matching Troubleshooting row, or the accepted invocation]
 STATUS=FAIL ERROR="[message]"
 ```
 

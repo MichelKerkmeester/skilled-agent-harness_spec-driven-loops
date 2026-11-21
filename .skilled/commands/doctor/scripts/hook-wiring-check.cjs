@@ -33,6 +33,7 @@ const path = require('node:path');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+const SCRIPT_COMMAND = 'node .skilled/commands/doctor/scripts/hook-wiring-check.cjs';
 const USAGE = [
   'Usage: hook-wiring-check.cjs --root <dir> [--json]',
   '  --root  check the checkout under <dir>.',
@@ -96,8 +97,9 @@ const PI_REPAIR = 'repair: the Skilled checkout this project uses is likely out 
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function fail(message) {
-  process.stderr.write(`hook-wiring-check: ${message}\n`);
+// A usage refusal prints the message, the exact command to run next, then usage.
+function fail(message, next = `${SCRIPT_COMMAND} --root .`) {
+  process.stderr.write(`hook-wiring-check: ${message}\nNext: ${next}\n${USAGE}\n`);
   process.exit(2);
 }
 
@@ -109,16 +111,16 @@ function parseArgs(argv) {
       opts.json = true;
     } else if (arg === '--root') {
       const value = argv[i + 1];
-      if (!value || value.startsWith('-')) fail(`--root needs a directory\n${USAGE}`);
+      if (!value || value.startsWith('-')) fail('--root needs a directory');
       opts.root = path.resolve(value);
       i += 1;
     } else {
-      fail(`unknown argument: ${arg}\n${USAGE}`);
+      fail(`unknown argument: ${arg}`);
     }
   }
-  if (!opts.root) fail(`--root is required\n${USAGE}`);
+  if (!opts.root) fail('--root is required');
   if (!fs.existsSync(opts.root) || !fs.statSync(opts.root).isDirectory()) {
-    fail(`root not found: ${opts.root}`);
+    fail(`root not found: ${opts.root}`, `${SCRIPT_COMMAND} --root <checkout-directory>`);
   }
   return opts;
 }

@@ -24,6 +24,7 @@
 import fs from 'node:fs';
 import v8 from 'node:v8';
 import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
 import {
   ContractError,
@@ -221,10 +222,27 @@ function main() {
   throw new UsageError('nothing to validate: pass --commit, --rev-list, --pr-body, --branch, --explain or --check-template');
 }
 
+// The remedy runs from wherever the operator stands, so it names this file absolutely.
+const VALIDATOR = fileURLToPath(import.meta.url);
+
+/** A word a printed command can carry as pasted: single-quoted unless nothing in it is special. */
+const shellWord = (text) => (/^[A-Za-z0-9_@%+=:,./-]+$/.test(text) ? text : `'${text.replace(/'/g, "'\\''")}'`);
+
+/** Name the unreadable rules file and the exact command that checks the repair. */
+function contractRemedy(err) {
+  if (!err.file) return '  Next: git config --unset skgit.contractDir\n';
+  const base = err.file.split(/[\\/]/).pop();
+  const kind = Object.keys(TEMPLATE_FILES).find((k) => TEMPLATE_FILES[k] === base);
+  const lines = [`  Rules: ${err.file}`];
+  if (kind) lines.push(`  Next: node ${shellWord(VALIDATOR)} --check-template ${shellWord(err.file)} --kind ${kind}`);
+  return lines.join('\n') + '\n';
+}
+
 try {
   process.exitCode = main();
 } catch (err) {
   const label = err instanceof ContractError ? 'BLOCKED: the repository contract cannot be read' : err instanceof UsageError ? 'validate-message: usage error' : 'BLOCKED: the message validator failed';
   process.stderr.write(`${label}: ${err.message}\n`);
+  if (err instanceof ContractError) process.stderr.write(contractRemedy(err));
   process.exitCode = 2;
 }

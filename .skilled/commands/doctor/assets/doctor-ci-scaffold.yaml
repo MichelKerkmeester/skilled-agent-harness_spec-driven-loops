@@ -102,7 +102,7 @@ workflow:
     activities:
       - "When the file was created and read back, render the presentation contract's mutating result with the path, the first line, the report row and the undo step (STATUS=OK)."
       - "When the operator said no, or the run was a dry run, render the cancelled result (STATUS=CANCELLED ACTION=cancelled)."
-      - "When a refusal, a missing template or a failed read-back stopped the run, render the failure result naming the step (STATUS=FAIL)."
+      - "When a refusal, a missing template or a failed read-back stopped the run, render the failure result, with the script's Next: line as printed when it has one, naming the step (STATUS=FAIL)."
       - "End by saying the operator adds the printed README rows and commits the file themselves; this route stages and commits nothing."
 
 # ─────────────────────────────────────────────────────────────────

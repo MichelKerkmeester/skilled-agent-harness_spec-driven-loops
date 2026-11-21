@@ -431,6 +431,7 @@ function parsePrompt(argv) {
 function main(argv) {
   const prompt = parsePrompt(argv);
   if (prompt === null) {
+    process.stderr.write('Next: node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs --prompt=<text>\n');
     process.stderr.write(`${USAGE}\n`);
     return 2;
   }

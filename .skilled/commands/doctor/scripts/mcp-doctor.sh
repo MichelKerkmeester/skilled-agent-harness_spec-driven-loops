@@ -37,6 +37,12 @@ _log() { if [[ "$JSON_MODE" != true ]]; then "$@"; fi; }
 JSON_MODE=false
 ROOT_OVERRIDE=""
 
+# The tree that ships this doctor. Every remedy command is relative to it, so
+# each Next line names it as the folder to run from.
+tree_root() {
+  (cd "$SCRIPT_DIR/../../../.." && pwd)
+}
+
 show_help() {
   cat <<'HELP'
 MCP Doctor: Unified MCP Diagnostic Command (read-only)
@@ -73,10 +79,16 @@ while [[ $# -gt 0 ]]; do
     --help|-h)   show_help; exit 0 ;;
     --json)      JSON_MODE=true; shift ;;
     --root)
-      if [[ $# -lt 2 ]]; then echo "Error: --root requires a path" >&2; exit "$EXIT_USAGE"; fi
+      if [[ $# -lt 2 ]]; then
+        echo "Error: --root requires a path" >&2
+        printf 'Next: from %q: %s --root %q\n' "$(tree_root)" "bash .skilled/commands/doctor/scripts/mcp-doctor.sh" "$(tree_root)" >&2
+        exit "$EXIT_USAGE"
+      fi
       ROOT_OVERRIDE="$2"; shift 2 ;;
     *)
-      echo "Unknown option: $1" >&2; show_help >&2; exit "$EXIT_USAGE" ;;
+      echo "Unknown option: $1" >&2
+      printf 'Next: from %q: %s --help\n' "$(tree_root)" "bash .skilled/commands/doctor/scripts/mcp-doctor.sh" >&2
+      show_help >&2; exit "$EXIT_USAGE" ;;
   esac
 done
 

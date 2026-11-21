@@ -86,6 +86,28 @@ const READABLE_STATE_VERSIONS = new Set([1, STATE_SCHEMA_VERSION]);
 const STATUS_NAMES = ['in-sync', 'overlay-edited', 'live-edited', 'both-changed', 'upstream-moved', 'cannot-apply'];
 const BLOCKING_STATES = new Set(['live-edited', 'both-changed', 'upstream-moved', 'cannot-apply']);
 const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
+
+// A remedy line that runs the engine. ENGINE_COMMAND is relative to the tree
+// root, so the line names the folder to run it from.
+function nextEngine(root, subcommand) {
+  return `Next: from ${shellPath(root)}: ${ENGINE_COMMAND} ${subcommand}`;
+}
+
+// A message with its why line and its Next line, each indented under it, so the
+// first line any consumer matches on stays as it was.
+function withRemedy(message, why, next) {
+  return message + (why ? '\n  ' + why : '') + '\n  ' + next;
+}
+
+// What to do about a lock another run holds. The pid is only worth checking on
+// the host that wrote it, so a lock from another machine is named by its host.
+function lockRemedy(lockPath, ownerLine) {
+  const pid = /\bpid=(\d+)/.exec(ownerLine || '');
+  const host = /\bhost=(\S+)/.exec(ownerLine || '');
+  if (!pid) return `Next: once no overlay run is writing this tree, rm ${shellPath(lockPath)}`;
+  const where = host && host[1] !== os.hostname() ? ` on ${host[1]}` : '';
+  return `Next: check that pid ${pid[1]}${where} has ended (ps -p ${pid[1]}), then rm ${shellPath(lockPath)}`;
+}
 // The most LAYOUT lines status prints; status --json keeps every move.
 const LAYOUT_SHOWN = 20;
 const EXIT_OK = 0;
@@ -129,11 +151,74 @@ function toPosix(filePath) {
   return filePath.split(path.sep).join('/');
 }
 
+// Why an entry that edits a file in place cannot plan when a folder sits on its
+// destination: there are no live bytes to merge into, and writing would replace
+// whatever the folder holds.
+function folderInTheWay(entry, root) {
+  return withRemedy(`${entry.destination} is a folder, where overlay ${entry.id} edits a file, so there is nothing to merge into`,
+    'writing the file there would replace whatever the folder holds, so apply leaves it',
+    keepAsideRemedy(root, path.posix.normalize(entry.destination)));
+}
+
+// Whether a path, read through any link on it, is a folder.
+function leadsToFolder(filePath) {
+  try {
+    return fs.statSync(filePath).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+// The why and Next lines under an entry set that cannot apply, chosen by what
+// stopped it: a dropped value to put back, a live entry the overlay did not
+// write, or an operation that does not fit the live file.
+function jsonEntryRemedy(entry, ctx, message) {
+  const status = nextEngine(ctx.root, 'status').slice('Next: '.length);
+  if (/^(cannot restore the dropped|dropped .* was edited after it was applied)/.test(message)) {
+    return '\n  apply puts back only a value it can prove it wrote, so this one is left for you' +
+      `\n  Next: put ${shellPath(entry.destination)} back by hand as the line above says, then ${status}`;
+  }
+  if (/differs from the canonical copy/.test(message)) {
+    return '\n  the live file holds its own copy of that entry, and apply never overwrites an entry it did not write' +
+      `\n  Next: edit ${shellPath(path.join(ctx.overlayRoot, entry.source))} to match the live entry, or remove that ` +
+      `entry from ${shellPath(entry.destination)} by hand, then ${status}`;
+  }
+  const source = shellPath(path.join(ctx.overlayRoot, entry.source));
+  if (/^cannot (insert into|append to) the empty /.test(message)) {
+    return '\n  an insert lays its entries out like the ones already there, and an empty object or array holds none' +
+      `\n  Next: add one entry to ${shellPath(entry.destination)} by hand, or write the whole value with a set ` +
+      `operation in ${source}, then ${status}`;
+  }
+  if (/^anchor ".*" appears \d+ times/.test(message)) {
+    return '\n  an anchor has to name exactly one item, or the insert has no single place to go' +
+      `\n  Next: edit the match in ${source} so it names one item of ${entry.destination}, then ${status}`;
+  }
+  if (/^an item list without an identity key cannot hold objects/.test(message)) {
+    return '\n  without an identityKey the engine cannot tell one object item from another' +
+      `\n  Next: add an "identityKey" to that operation in ${source}, then ${status}`;
+  }
+  return "\n  each operation's path and anchor must be found in the live file" +
+    `\n  Next: edit ${shellPath(path.join(ctx.overlayRoot, entry.source))} so each operation fits ${entry.destination}, ` +
+    `then ${status}`;
+}
+
 function readBufferOrNull(filePath) {
   try {
     return fs.readFileSync(filePath);
   } catch (error) {
     if (error && error.code === 'ENOENT') return null;
+    throw error;
+  }
+}
+
+// A destination that is a folder where a file belongs, or sits below a file, has
+// no live bytes to compare: it reads as missing, and the plan decides whether
+// the shape in the way may be replaced.
+function readLiveOrNull(filePath) {
+  try {
+    return fs.readFileSync(filePath);
+  } catch (error) {
+    if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR' || error.code === 'EISDIR')) return null;
     throw error;
   }
 }
@@ -167,6 +252,13 @@ function isDirectory(filePath) {
 function isWithin(basePath, candidatePath) {
   const relative = path.relative(basePath, candidatePath);
   return relative === '' || (!path.isAbsolute(relative) && relative !== '..' && !relative.startsWith('..' + path.sep));
+}
+
+// How a path under the tree is compared with another, so two spellings the
+// tree's filesystem reads as one entry compare equal.
+function pathFold(root) {
+  const foldCase = isCaseInsensitiveDir(root);
+  return (value) => layoutPathKey(value, foldCase);
 }
 
 function relativeKey(root, filePath) {
@@ -328,20 +420,37 @@ function removePath(filePath) {
  * @param {((relative: string) => boolean)|null} [isUnshippedFolder] Says whether the
  *   entry no longer ships a folder, given its posix path relative to the top folder.
  * @param {string} [relative] Path of `dir` relative to the top folder; '' at the top.
+ * @param {{dir: string, code: string}[]} [blocked] Receives each folder of caches
+ *   the prune could not remove, with the error code that stopped it.
+ * @returns {boolean} True when a folder of caches at or below `dir` stayed.
  */
-function pruneEmptyDirs(dir, isUnshippedFolder = null, relative = '') {
-  if (!isDirectory(dir)) return;
+function pruneEmptyDirs(dir, isUnshippedFolder = null, relative = '', blocked = []) {
+  if (!isDirectory(dir)) return false;
+  let isBlocked = false;
   for (const dirent of fs.readdirSync(dir, { withFileTypes: true })) {
     if (!dirent.isDirectory()) continue;
-    pruneEmptyDirs(path.join(dir, dirent.name), isUnshippedFolder, relative ? relative + '/' + dirent.name : dirent.name);
+    const childRelative = relative ? relative + '/' + dirent.name : dirent.name;
+    if (pruneEmptyDirs(path.join(dir, dirent.name), isUnshippedFolder, childRelative, blocked)) isBlocked = true;
   }
+  // A folder below this one kept caches it could not lose, so this one is not
+  // empty, and removing it would only fail the same way and report it twice.
+  if (isBlocked) return true;
   // A cache folder's fate is its nearest ordinary folder's, since no source ships one.
-  if (relative && isUnshippedFolder && !relative.split('/').some(isPythonCacheName) &&
+  if (relative && isUnshippedFolder && !isPythonCachePath(relative, true) &&
       isUnshippedFolder(relative) && holdsOnlyPythonCaches(dir)) {
-    fs.rmSync(dir, { recursive: true, force: true });
-    return;
+    // The folder holds caches alone, so a failure here loses no overlay content:
+    // it is reported and the run goes on, unlike a failed delete of a shipped file.
+    try {
+      fs.rmSync(dir, { recursive: true, force: true });
+    } catch (error) {
+      if (!error || typeof error.code !== 'string') throw error;
+      blocked.push({ dir, code: error.code });
+      return true;
+    }
+    return false;
   }
   if (fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
+  return false;
 }
 
 /**
@@ -350,7 +459,7 @@ function pruneEmptyDirs(dir, isUnshippedFolder = null, relative = '') {
  * @returns {boolean} True for a folder with only caches in it, or with nothing.
  */
 function holdsOnlyPythonCaches(dir) {
-  return fs.readdirSync(dir, { withFileTypes: true }).every((dirent) => isPythonCacheName(dirent.name) ||
+  return fs.readdirSync(dir, { withFileTypes: true }).every((dirent) => isPythonCachePath(dirent.name, dirent.isDirectory()) ||
     (dirent.isDirectory() && holdsOnlyPythonCaches(path.join(dir, dirent.name))));
 }
 
@@ -369,10 +478,12 @@ function unshippedFolderTest(entry, overlayRoot) {
   const isSourceFolder = (relative) => isDirectory(path.join(sourceDir, relative));
   if (entry.scope === 'directory') return (relative) => !isSourceFolder(relative);
   const matchesPrefix = (prefixes, relative) => prefixes.some((prefix) => relative === prefix || relative.startsWith(`${prefix}/`));
-  const replacedSubtrees = entry.replace.filter((relative) => isSourceFolder(relative));
-  const isShipped = (relative) => entry.replace.some((prefix) => prefix.startsWith(`${relative}/`)) ||
+  const replacePaths = manifestFolderPaths(entry.replace);
+  const replacedSubtrees = replacePaths.filter((relative) => isSourceFolder(relative));
+  const isShipped = (relative) => replacePaths.some((prefix) => prefix.startsWith(`${relative}/`)) ||
     (matchesPrefix(replacedSubtrees, relative) && isSourceFolder(relative));
-  return (relative) => matchesPrefix([...entry.remove, ...replacedSubtrees], relative) && !isShipped(relative);
+  return (relative) => matchesPrefix([...manifestFolderPaths(entry.remove), ...replacedSubtrees], relative) &&
+    !isShipped(relative);
 }
 
 // Python writes a bytecode cache beside any script it runs, so one turns up in a
@@ -380,8 +491,13 @@ function unshippedFolderTest(entry, overlayRoot) {
 // both sides, so a cache is never shipped, deleted, captured, adopted or reported
 // as drift. The test is by name and not by what git ignores: an overlay folder can
 // sit in no repository, and what an entry ships must not move with an ignore file.
-function isPythonCacheName(name) {
-  return name === '__pycache__' || name.endsWith('.pyc') || name.endsWith('.pyo');
+// A path is a cache when a folder on it is named `__pycache__`, or when it is a
+// file ending in `.pyc` or `.pyo`; a folder with such an ending is ordinary content.
+function isPythonCachePath(relativePath, isFolder) {
+  const segments = relativePath.split('/');
+  const last = segments[segments.length - 1];
+  return segments.slice(0, -1).includes('__pycache__') || last === '__pycache__' ||
+    (!isFolder && (last.endsWith('.pyc') || last.endsWith('.pyo')));
 }
 
 /**
@@ -399,7 +515,7 @@ function walkTree(dir) {
     const rel = stack.pop();
     const abs = rel ? path.join(dir, rel) : dir;
     for (const dirent of fs.readdirSync(abs, { withFileTypes: true })) {
-      if (isPythonCacheName(dirent.name)) continue;
+      if (isPythonCachePath(dirent.name, dirent.isDirectory())) continue;
       const childRel = rel ? path.posix.join(rel, dirent.name) : dirent.name;
       const childAbs = path.join(dir, childRel);
       const stats = fs.lstatSync(childAbs);
@@ -433,7 +549,7 @@ function listTreePaths(directoryPath, { isCacheIncluded = false } = {}) {
   while (pending.length > 0) {
     const current = pending.pop();
     for (const item of fs.readdirSync(current, { withFileTypes: true })) {
-      if (!isCacheIncluded && isPythonCacheName(item.name)) continue;
+      if (!isCacheIncluded && isPythonCachePath(item.name, item.isDirectory())) continue;
       const absolute = path.join(current, item.name);
       const stats = fs.lstatSync(absolute);
       if (stats.isDirectory()) pending.push(absolute);
@@ -492,20 +608,24 @@ function describe(value) {
  */
 function resolveOverlayDir(root) {
   const settingPath = path.join(path.resolve(root), SETTING_FILE);
+  const fixSetting = (message) => withRemedy(message,
+    'every command reads this setting first, so none runs until it names one overlay folder',
+    `Next: set "overlayDir" in ${shellPath(settingPath)} to a folder such as "skilled-overlays" (in the tree) or ` +
+    `"../overlays" (beside it), then ` + nextEngine(path.resolve(root), 'status').slice('Next: '.length));
   const buffer = readBufferOrNull(settingPath);
   if (!buffer) return DEFAULT_OVERLAY_FOLDER;
   let parsed;
   try {
     parsed = JSON.parse(buffer.toString('utf8'));
   } catch (error) {
-    throw new Error(`${SETTING_FILE} is not valid JSON: ${error.message}`);
+    throw new Error(fixSetting(`${SETTING_FILE} is not valid JSON: ${error.message}`));
   }
   const value = parsed && typeof parsed === 'object' ? parsed.overlayDir : undefined;
   if (typeof value !== 'string' || value.trim() === '') {
-    throw new Error(`${SETTING_FILE} must name the overlay folder as a non-empty string`);
+    throw new Error(fixSetting(`${SETTING_FILE} must name the overlay folder as a non-empty string`));
   }
   if (value.includes('\0') || value.includes('\\') || path.isAbsolute(value) || path.win32.isAbsolute(value)) {
-    throw new Error(`${SETTING_FILE} must name a relative folder with forward slashes: ${value}`);
+    throw new Error(fixSetting(`${SETTING_FILE} must name a relative folder with forward slashes: ${value}`));
   }
   const normalized = path.posix.normalize(value).replace(/\/+$/, '');
   // A folder beside the tree is allowed so the overlays can live outside a framework checkout;
@@ -538,7 +658,7 @@ function resolveOverlayDir(root) {
         if (top !== null) {
           const relative = path.relative(top, target);
           if (!isWithin(top, target) || relative.split(path.sep)[0] === '.git') {
-            throw new Error(`${SETTING_FILE} names a folder outside the git repository at ${top}: ${value}`);
+            throw new Error(fixSetting(`${SETTING_FILE} names a folder outside the git repository at ${top}: ${value}`));
           }
         }
         return normalized;
@@ -546,13 +666,13 @@ function resolveOverlayDir(root) {
       // A sibling that lands on the tree, or on a folder around it, is not beside
       // the tree at all, so the refusal says where it really points.
       if (isWithin(treeRoot, target)) {
-        throw new Error(`${SETTING_FILE} names a sibling that resolves into the tree root: ${value}`);
+        throw new Error(fixSetting(`${SETTING_FILE} names a sibling that resolves into the tree root: ${value}`));
       }
-      throw new Error(`${SETTING_FILE} names a sibling that resolves to a folder holding the tree root: ${value}`);
+      throw new Error(fixSetting(`${SETTING_FILE} names a sibling that resolves to a folder holding the tree root: ${value}`));
     }
   }
   if (normalized === '.' || normalized === '' || normalized === '..' || normalized.startsWith('../')) {
-    throw new Error(`${SETTING_FILE} names a folder outside the tree root: ${value}`);
+    throw new Error(fixSetting(`${SETTING_FILE} names a folder outside the tree root: ${value}`));
   }
   // A folder inside the tree is still read through any link on its path, so it is
   // judged by where that path lands. A link whose target is missing, or that
@@ -654,10 +774,27 @@ function loadManifest(ctx) {
         `looks in ${DEFAULT_OVERLAY_FOLDER}/; if the overlays live elsewhere, add ` +
         `${SETTING_FILE} at the tree root naming that folder`);
     }
-    throw new Error('no overlay manifest at ' + where);
+    // A JSON caller reads the error text whole, so the remedy rides beside it
+    // and only the human output prints it.
+    throw Object.assign(new Error('no overlay manifest at ' + where), {
+      remedy: '  every overlay is one entry in this file, so no command can run without it\n' +
+        `  Next: create ${shellPath(ctx.manifestPath)} with an "overlays" array, then ` +
+        nextEngine(ctx.root, 'status').slice('Next: '.length),
+    });
   }
-  const manifest = JSON.parse(buffer.toString('utf8'));
-  if (!manifest || !Array.isArray(manifest.overlays)) throw new Error('overlay manifest has no overlays array');
+  let manifest;
+  try {
+    manifest = JSON.parse(buffer.toString('utf8'));
+  } catch (error) {
+    throw new Error(withRemedy(`${ctx.manifestPath} is not valid JSON: ${error.message}`,
+      'every command reads its overlays from this file first, so none can run until it parses',
+      `Next: fix the JSON in ${shellPath(ctx.manifestPath)}, then ` + nextEngine(ctx.root, 'status').slice('Next: '.length)));
+  }
+  if (!manifest || !Array.isArray(manifest.overlays)) {
+    throw new Error(withRemedy('overlay manifest has no overlays array',
+      'every overlay is one entry in that array, so the engine has nothing to read',
+      `Next: add an "overlays" array to ${shellPath(ctx.manifestPath)}, then ` + nextEngine(ctx.root, 'status').slice('Next: '.length)));
+  }
   // A relative checkout is written for the tree, not for whichever folder the
   // engine is run from, so one manifest works on every machine that keeps the
   // checkout at the same place beside the tree. The manifest file keeps its text.
@@ -696,46 +833,54 @@ function emptyState(pin) {
  *   version the file was written with, or null when there is no file.
  */
 function loadState(ctx, manifest) {
+  const stateRestore = `Next: restore the state file from git: git -C ${shellPath(ctx.root)} checkout -- ` +
+    shellPath(toPosix(path.relative(ctx.root, ctx.statePath)));
+  const stateShape = (detail) => withRemedy(`${STATE_FILE} has an unsupported shape`,
+    `${detail}, and every command reads the state file, so none runs until it can`, stateRestore);
   const buffer = readBufferOrNull(ctx.statePath);
   if (!buffer) return emptyState(manifest.pin.commit);
   let parsed;
   try {
     parsed = JSON.parse(buffer.toString('utf8'));
   } catch (error) {
-    throw new Error(STATE_FILE + ' is not valid JSON: ' + error.message +
-      '; restore it from version control, because every command reads it');
+    throw new Error(withRemedy(STATE_FILE + ' is not valid JSON: ' + error.message,
+      'every command reads the state file, so none runs until it parses',
+      stateRestore));
   }
   if (!parsed || !READABLE_STATE_VERSIONS.has(parsed.schemaVersion) || typeof parsed.pin !== 'string' ||
       !parsed.files || typeof parsed.files !== 'object' || Array.isArray(parsed.files)) {
-    throw new Error(STATE_FILE + ' has an unsupported shape');
+    const field = !parsed || typeof parsed !== 'object' ? null
+      : !READABLE_STATE_VERSIONS.has(parsed.schemaVersion) ? 'schemaVersion'
+        : typeof parsed.pin !== 'string' ? 'pin' : 'files';
+    throw new Error(stateShape(field === null ? 'it is not a JSON object' : `its ${field} field is not one this engine writes`));
   }
   // An older state file predates the link records, so a missing key means the
   // engine has no link it may retarget: every link on disk is someone else's.
   const links = parsed.links === undefined ? {} : parsed.links;
   if (!links || typeof links !== 'object' || Array.isArray(links) ||
       Object.values(links).some((target) => typeof target !== 'string')) {
-    throw new Error(STATE_FILE + ' has an unsupported shape');
+    throw new Error(stateShape('its links field is not a map of link targets'));
   }
   // A state file written before the added items were recorded says the engine
   // added nothing, so a missing key means no recorded item may ever be removed.
   const items = parsed.items === undefined ? {} : parsed.items;
   if (!items || typeof items !== 'object' || Array.isArray(items) ||
       Object.values(items).some((records) => !Array.isArray(records))) {
-    throw new Error(STATE_FILE + ' has an unsupported shape');
+    throw new Error(stateShape('its items field is not a map of record lists'));
   }
   // A state file written before a `set` was recorded says the engine wrote none,
   // so a missing key means no value may ever be returned to the pin's.
   const sets = parsed.sets === undefined ? {} : parsed.sets;
   if (!sets || typeof sets !== 'object' || Array.isArray(sets) ||
       Object.values(sets).some((records) => !Array.isArray(records))) {
-    throw new Error(STATE_FILE + ' has an unsupported shape');
+    throw new Error(stateShape('its sets field is not a map of record lists'));
   }
   // A state file written before `setKeyOnItem` keys were recorded says the
   // engine wrote none, so a missing key means no such key may be taken back.
   const keys = parsed.keys === undefined ? {} : parsed.keys;
   if (!keys || typeof keys !== 'object' || Array.isArray(keys) ||
       Object.values(keys).some((records) => !Array.isArray(records))) {
-    throw new Error(STATE_FILE + ' has an unsupported shape');
+    throw new Error(stateShape('its keys field is not a map of record lists'));
   }
   // A record without a usable path cannot be matched to any operation, so a
   // drop would pass it by in silence; the file is refused while one is there.
@@ -821,7 +966,10 @@ function writeStateIfChanged(ctx, state) {
 function sourceRelative(ctx, sourcePath) {
   const absolute = path.resolve(sourcePath);
   if (!isWithin(ctx.overlayRoot, absolute) || absolute === ctx.overlayRoot) {
-    throw new Error('overlay source escapes ' + ctx.overlayLabel + ': ' + sourcePath);
+    throw new Error(withRemedy('overlay source escapes ' + ctx.overlayLabel + ': ' + sourcePath,
+      'the engine reads overlay sources only from inside the overlay folder',
+      `Next: point that entry's source in ${shellPath(ctx.manifestPath)} at a path inside ${shellPath(ctx.overlayRoot)}, then ` +
+      nextEngine(ctx.root, 'status').slice('Next: '.length)));
   }
   return toPosix(path.relative(ctx.overlayRoot, absolute));
 }
@@ -1363,7 +1511,8 @@ function planOperation(operation, root, text, style, edits, options) {
     return 'changed';
   }
 
-  throw new Error(`unknown operation "${operation.op}"`);
+  throw new Error(`unknown operation "${operation.op}"\n  the operations are set, setKeyOnItem, insertItems, appendItems ` +
+    'and insertObjectKeys');
 }
 
 function applyEdits(text, edits) {
@@ -1978,6 +2127,212 @@ function acceptedHashFor(acceptedSha256, destination) {
 }
 
 /**
+ * Say what stands at a destination, judged without following a link, and
+ * whether the state records it as the engine's own output: a file whose bytes
+ * match its recorded hash, a folder whose every file does, or a link at the
+ * target the engine recorded when it made it.
+ * @param {string} filePath Absolute destination path.
+ * @param {string} key The destination relative to the tree root.
+ * @param {Record<string, string>|Map<string, string>} recordedFiles Hashes the engine last applied.
+ * @param {Record<string, string>} [recordedLinks] Links the engine made that no manifest entry names now.
+ * @returns {{kind: 'missing'|'file'|'folder'|'link', isOwned: boolean}}
+ */
+function destinationShape(filePath, key, recordedFiles, recordedLinks = {}) {
+  let stats;
+  try {
+    stats = fs.lstatSync(filePath);
+  } catch (error) {
+    if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) return { kind: 'missing', isOwned: false };
+    throw error;
+  }
+  if (stats.isSymbolicLink()) {
+    const recorded = recordedLinks[path.posix.normalize(key)];
+    return { kind: 'link', isOwned: typeof recorded === 'string' && recorded === fs.readlinkSync(filePath) };
+  }
+  if (stats.isDirectory()) {
+    const children = [...walkTree(filePath)];
+    const isOwned = children.length > 0 && children.every(([rel, item]) => item.kind === 'file' &&
+      hashMatches(item.buffer, acceptedHashFor(recordedFiles, path.posix.join(key, rel))));
+    return { kind: 'folder', isOwned };
+  }
+  return { kind: 'file', isOwned: hashMatches(fs.readFileSync(filePath), acceptedHashFor(recordedFiles, key)) };
+}
+
+/**
+ * The refusal for a shape in the way that the engine did not write.
+ * @param {object} entry Manifest overlay entry.
+ * @param {string} key The destination relative to the tree root.
+ * @param {string} kind What stands there now.
+ * @param {string} wanted What the entry writes there.
+ * @param {string} root Destination tree root, for the remedy's paths.
+ * @returns {string} The problem, with its remedy on an indented `Next:` line.
+ */
+function unownedShapeProblem(entry, key, kind, wanted, root) {
+  return `${key} is a ${kind} that does not match what apply last wrote there, where overlay ${entry.id} ` +
+    `writes a ${wanted}; apply removes only its own output, so it stays\n  ` + keepAsideRemedy(root, key);
+}
+
+// The remedy for an unowned shape in the way: move it aside by its absolute path,
+// so the line works from any folder, then rerun apply from the tree root.
+function keepAsideRemedy(root, key) {
+  const filePath = path.join(root, key);
+  return `Next: mv ${shellPath(filePath)} ${shellPath(filePath + '.keep')}, then ` +
+    nextEngine(root, 'apply').slice('Next: '.length);
+}
+
+/**
+ * Find a link on a path that leads outside the tree, or that resolves nowhere,
+ * so a write or delete on the path could land outside it. Each part of the path
+ * that exists is resolved, the leaf only when the write follows it; a dangling
+ * link is judged by where its target would be made. A link the engine made, one
+ * the manifest names or the state records at the target it has now, is the
+ * manifest's own layout: when that target is outside the tree it is followed and
+ * never refused, and when it is inside, the chain must still land inside, or the
+ * link someone else made further on is refused.
+ * @param {string} root Destination tree root.
+ * @param {string} filePath Absolute path inside the tree.
+ * @param {{followLeaf?: boolean, removed?: Set<string>, cache?: Map<string, object|null>,
+ *   engineLinks?: Record<string, string>}} [options]
+ *   `removed` holds paths the plan deletes first, so nothing below one is read
+ *   through it, `cache` keeps each part's answer for one plan, and `engineLinks`
+ *   maps each link the engine made, relative to the root, to its target.
+ * @returns {{key: string, landed: string|null}|null} The link, relative to the
+ *   root, and where it lands (null when it does not resolve), or null when every
+ *   part stays inside the tree.
+ */
+function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set(), cache = new Map(), engineLinks = {} } = {}) {
+  const absoluteRoot = path.resolve(root);
+  const realRoot = canonicalPath(absoluteRoot);
+  const parts = path.relative(absoluteRoot, path.resolve(filePath)).split(path.sep).filter(Boolean);
+  let current = absoluteRoot;
+  for (let index = 0; index < parts.length; index += 1) {
+    current = path.join(current, parts[index]);
+    if (removed.has(current)) return null;
+    if (index === parts.length - 1 && !followLeaf) return null;
+    if (cache.has(current)) {
+      const known = cache.get(current);
+      if (known) return known;
+      continue;
+    }
+    let stats;
+    try {
+      stats = fs.lstatSync(current);
+    } catch (error) {
+      if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) return null;
+      throw error;
+    }
+    let found = null;
+    const key = toPosix(path.relative(absoluteRoot, current));
+    const linkText = stats.isSymbolicLink() ? fs.readlinkSync(current) : null;
+    const engineMade = linkText !== null && engineLinkText(root, engineLinks, key) === linkText;
+    const declared = engineMade ? path.resolve(canonicalPath(path.dirname(current)), linkText) : null;
+    if (linkText !== null && !(engineMade && !isWithin(realRoot, declared) && !isWithin(absoluteRoot, declared))) {
+      let landed;
+      try {
+        landed = fs.realpathSync.native(current);
+      } catch (error) {
+        landed = error && error.code === 'ENOENT' ? danglingLinkLanding(current) : null;
+      }
+      if (landed === null || !isWithin(realRoot, landed)) {
+        found = (engineMade && laterLinkLeavingTree(root, absoluteRoot, realRoot, declared, parts.slice(index + 1),
+          { followLeaf, removed, engineLinks, key })) || { key, landed };
+      }
+    }
+    cache.set(current, found);
+    if (found) return found;
+    if (!stats.isSymbolicLink() && !stats.isDirectory()) return null;
+  }
+  return null;
+}
+
+// The target the engine made a link with at this path, matched the way the
+// volume matches names, so a link the manifest spells in another case is still
+// known as the engine's own.
+function engineLinkText(root, engineLinks, key) {
+  if (Object.prototype.hasOwnProperty.call(engineLinks, key)) return engineLinks[key];
+  const fold = pathFold(root);
+  const match = Object.keys(engineLinks).find((linkKey) => fold(linkKey) === fold(key));
+  return match === undefined ? undefined : engineLinks[match];
+}
+
+// The link someone else made that takes an engine-made link's chain outside the
+// tree, found by walking on from the engine-made link's own target, so the remedy
+// names that link rather than one the next apply would make again. The walk
+// leaves the engine-made link out of the exemptions, so a loop of them ends.
+function laterLinkLeavingTree(root, absoluteRoot, realRoot, declared, rest, { followLeaf, removed, engineLinks, key }) {
+  const inTree = isWithin(realRoot, declared) ? path.join(absoluteRoot, path.relative(realRoot, declared)) : declared;
+  if (!isWithin(absoluteRoot, inTree)) return null;
+  const otherLinks = { ...engineLinks };
+  delete otherLinks[key];
+  return linkLeavingTree(root, path.join(inTree, ...rest), { followLeaf, removed, engineLinks: otherLinks });
+}
+
+// Where a write through a dangling link would make its file: each link in the
+// chain is followed to the first path that is not a link, so a chain that leaves
+// the tree through a later hop is judged where it ends. Each target is read from
+// the folder its link really sits in, as the operating system reads it. A chain
+// that runs past the hop limit resolves nowhere.
+function danglingLinkLanding(linkPath) {
+  let at = linkPath;
+  for (let hops = 0; hops < 40; hops += 1) {
+    let next;
+    try {
+      next = path.resolve(canonicalPath(path.dirname(at)), fs.readlinkSync(at));
+    } catch {
+      return null;
+    }
+    let stats;
+    try {
+      stats = fs.lstatSync(next);
+    } catch (error) {
+      if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) return canonicalPath(next);
+      return null;
+    }
+    if (!stats.isSymbolicLink()) return canonicalPath(next);
+    at = next;
+  }
+  return null;
+}
+
+// The first link a plan's writes or deletes would go through to land outside
+// the tree. A file write follows its leaf; a link write and a delete replace
+// theirs unopened, and anything below a path the plan deletes is made fresh.
+function planLeavingTree(root, plan, engineLinks) {
+  const removed = new Set(plan.deletes.map((filePath) => path.resolve(filePath)));
+  const cache = new Map();
+  for (const write of plan.writes) {
+    const filePath = path.resolve(write.filePath);
+    const followLeaf = write.symlinkTarget === undefined && !removed.has(filePath);
+    const found = linkLeavingTree(root, filePath, { followLeaf, removed, cache, engineLinks });
+    if (found) return found;
+  }
+  for (const filePath of plan.deletes) {
+    const found = linkLeavingTree(root, filePath, { cache, engineLinks });
+    if (found) return found;
+  }
+  return null;
+}
+
+/**
+ * The refusal for a link the entry would write or delete through that leads
+ * outside the tree, or that resolves nowhere.
+ * @param {object} entry Manifest overlay entry.
+ * @param {{key: string, landed: string|null}} found The link and where it lands.
+ * @param {string} root Destination tree root, for the remedy's paths.
+ * @returns {string} The problem, with its why and remedy on indented lines.
+ */
+function linkLeavingTreeProblem(entry, found, root) {
+  if (found.landed === null) {
+    return withRemedy(`${found.key} is a link that does not resolve, where overlay ${entry.id} writes`,
+      'apply cannot tell where a write through it would land, so it writes nothing and the link stays',
+      keepAsideRemedy(root, found.key));
+  }
+  return withRemedy(`${found.key} is a link that leads outside the tree, to ${found.landed}, where overlay ${entry.id} writes`,
+    'apply writes only inside the tree, and a write through this link would land outside it, so the link stays',
+    keepAsideRemedy(root, found.key));
+}
+
+/**
  * Plan a whole-file overlay, guarded by its pin when it has one.
  * @param {object} entry Manifest overlay entry.
  * @param {object} ctx Engine context.
@@ -1985,7 +2340,7 @@ function acceptedHashFor(acceptedSha256, destination) {
  * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
  * @returns {{writes: object[], deletes: string[], outputs: object[]}}
  */
-function planFileOverlay(entry, ctx, problems, acceptedSha256) {
+function planFileOverlay(entry, ctx, problems, acceptedSha256, { recordedLinks } = {}) {
   const sourcePath = path.join(ctx.overlayRoot, entry.source);
   const destinationPath = path.join(ctx.root, entry.destination);
   const desired = readBufferOrNull(sourcePath);
@@ -1994,6 +2349,24 @@ function planFileOverlay(entry, ctx, problems, acceptedSha256) {
     return { writes: [], deletes: [], outputs: [] };
   }
   const output = { filePath: destinationPath, buffer: desired, mode: entry.mode, sourcePath };
+  // A folder, or a layout link the engine made, where the entry now writes a
+  // file is the earlier output of another shape: it goes before the write. Any
+  // other link keeps the path it always had.
+  const key = relativeKey(ctx.root, destinationPath);
+  const shape = destinationShape(destinationPath, key, acceptedSha256, recordedLinks);
+  if (shape.kind === 'folder' || (shape.kind === 'link' && shape.isOwned)) {
+    if (!shape.isOwned) {
+      problems.push(unownedShapeProblem(entry, key, shape.kind, 'file', ctx.root));
+      return { writes: [], deletes: [], outputs: [] };
+    }
+    return { writes: [output], deletes: [destinationPath], outputs: [output] };
+  }
+  // A link the engine did not make that leads to a folder holds no file bytes to
+  // compare, and a write through it would land inside that folder.
+  if (shape.kind === 'link' && leadsToFolder(destinationPath)) {
+    problems.push(folderInTheWay(entry, ctx.root));
+    return { writes: [], deletes: [], outputs: [] };
+  }
   const current = readBufferOrNull(destinationPath);
   if (!current) {
     if (entry.pinnedSha256 && acceptedHashFor(acceptedSha256, entry.destination) === undefined) {
@@ -2023,7 +2396,7 @@ function planFileOverlay(entry, ctx, problems, acceptedSha256) {
  * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
  * @returns {{writes: object[], deletes: string[], outputs: object[]}}
  */
-function planDirectoryOverlay(entry, ctx, problems) {
+function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLinks } = {}) {
   const sourceDir = path.join(ctx.overlayRoot, entry.source);
   const destinationDir = path.join(ctx.root, entry.destination);
   if (!isDirectory(sourceDir)) {
@@ -2031,16 +2404,42 @@ function planDirectoryOverlay(entry, ctx, problems) {
     return { writes: [], deletes: [] };
   }
   const desired = walkTree(sourceDir);
-  const current = walkTree(destinationDir);
   const writes = [];
   const deletes = [];
   const outputs = [];
+  // A file, or a layout link the engine made, where the entry now writes a
+  // folder is the earlier output of another shape: it goes before the writes,
+  // and the folder is never read through the old link. Any other link keeps
+  // the path it always had.
+  const key = relativeKey(ctx.root, destinationDir);
+  const shape = destinationShape(destinationDir, key, acceptedSha256, recordedLinks);
+  let current;
+  if (shape.kind === 'file' || (shape.kind === 'link' && shape.isOwned)) {
+    if (!shape.isOwned) {
+      problems.push(unownedShapeProblem(entry, key, shape.kind, 'folder', ctx.root));
+      return { writes: [], deletes: [], outputs: [] };
+    }
+    deletes.push(destinationDir);
+    current = new Map();
+  } else {
+    current = walkTree(destinationDir);
+  }
+  // A folder the source now ships as a file or a link was the entry's own: its
+  // files are this plan's deletes, so the write clears what they leave behind.
+  const isLiveFolder = (filePath) => {
+    try {
+      return fs.lstatSync(filePath).isDirectory();
+    } catch {
+      return false;
+    }
+  };
   for (const [rel, wanted] of desired) {
     const destinationPath = path.join(destinationDir, rel);
     const existing = current.get(rel);
+    const replacesFolder = current.size > 0 && isLiveFolder(destinationPath);
     if (wanted.kind === 'symlink') {
       if (!existing || existing.kind !== 'symlink' || existing.target !== wanted.target) {
-        writes.push({ filePath: destinationPath, symlinkTarget: wanted.target });
+        writes.push({ filePath: destinationPath, symlinkTarget: wanted.target, ...(replacesFolder ? { replacesFolder } : {}) });
       }
       continue;
     }
@@ -2049,6 +2448,7 @@ function planDirectoryOverlay(entry, ctx, problems) {
       buffer: wanted.buffer,
       mode: wanted.mode,
       sourcePath: path.join(sourceDir, rel),
+      ...(replacesFolder ? { replacesFolder } : {}),
     });
     if (!existing || existing.kind !== 'file' || Buffer.compare(existing.buffer, wanted.buffer) !== 0) {
       writes.push(outputs[outputs.length - 1]);
@@ -2123,6 +2523,10 @@ function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
   const base = readBufferOrNull(basePath);
   if (!fragment || !base) {
     problems.push(`canonical fragment or base copy is missing for ${entry.destination}`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
+  if (leadsToFolder(destinationPath)) {
+    problems.push(folderInTheWay(entry, ctx.root));
     return { writes: [], deletes: [], outputs: [] };
   }
   const current = readBufferOrNull(destinationPath);
@@ -2214,6 +2618,10 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
     problems.push(`entry set is missing: ${entry.source}`);
     return { writes: [], deletes: [], outputs: [] };
   }
+  if (leadsToFolder(destinationPath)) {
+    problems.push(folderInTheWay(entry, ctx.root));
+    return { writes: [], deletes: [], outputs: [] };
+  }
   const current = readBufferOrNull(destinationPath);
   if (!current) {
     problems.push(`upstream removed ${entry.destination}; rebase the overlay`);
@@ -2284,7 +2692,7 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
       },
     });
   } catch (error) {
-    problems.push(`cannot apply the entry set to ${entry.destination}: ${error.message}`);
+    problems.push(`cannot apply the entry set to ${entry.destination}: ${error.message}` + jsonEntryRemedy(entry, ctx, error.message));
     // The destination is still reported, with no desired bytes, so the conflict is
     // raised against the entry set that has to be reconciled instead of vanishing
     // into a hard error that names only the live file.
@@ -2309,10 +2717,15 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, 
  * @returns {Set<string>} Kept paths, relative to the skill root.
  */
 function keptRetainedPaths(entry, sourceDir) {
-  const replacedFolders = (entry.replace || []).filter((rel) => isDirectory(path.join(sourceDir, rel)));
+  // Read each path the way the docs leg reads it, so a trailing slash on a
+  // replace folder cannot hide a kept README from apply.
+  const replacedFolders = (entry.replace || []).filter((rel) => typeof rel === 'string')
+    .map(manifestFolderPath).filter((rel) => isDirectory(path.join(sourceDir, rel)));
   const kept = new Set();
   for (const item of entry.retained || []) {
-    if (replacedFolders.some((prefix) => item.path === prefix || item.path.startsWith(prefix + '/'))) kept.add(item.path);
+    if (!item || typeof item.path !== 'string') continue;
+    const keptPath = manifestFolderPath(item.path);
+    if (replacedFolders.some((prefix) => keptPath === prefix || keptPath.startsWith(prefix + '/'))) kept.add(keptPath);
   }
   return kept;
 }
@@ -2329,7 +2742,7 @@ function keptRetainedPaths(entry, sourceDir) {
  * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
  * @returns {{writes: object[], deletes: string[], outputs: object[]}}
  */
-function planSkillRootOverlay(entry, ctx, problems) {
+function planSkillRootOverlay(entry, ctx, problems, acceptedSha256, { recordedLinks } = {}) {
   const sourceDir = path.join(ctx.overlayRoot, entry.source);
   const destinationDir = path.join(ctx.root, entry.destination);
   if (!isDirectory(sourceDir)) {
@@ -2345,7 +2758,10 @@ function planSkillRootOverlay(entry, ctx, problems) {
     return { writes: [], deletes: [], outputs: [] };
   }
 
-  const replacedSubtrees = new Set(entry.replace.filter((rel) => isDirectory(path.join(sourceDir, rel))));
+  // A trailing slash names the same folder, so each replace path is compared in
+  // its normal form, the form the docs leg and the kept-path test read.
+  const replacedSubtrees = new Set(entry.replace.map(manifestFolderPath)
+    .filter((rel) => isDirectory(path.join(sourceDir, rel))));
   const snapshot = new Map();
   for (const item of retained) {
     const isUnderReplaced = [...replacedSubtrees].some((prefix) => item.path === prefix || item.path.startsWith(`${prefix}/`));
@@ -2368,6 +2784,26 @@ function planSkillRootOverlay(entry, ctx, problems) {
       return { writes: [], deletes: [], outputs: [] };
     }
   }
+  // A replace path whose source changed shape since the last apply: the old
+  // shape goes before the write only when the state records it as the engine's
+  // own output. A folder it wrote that is now a file joins the replaced
+  // subtrees, so its files are this plan's deletes and the write clears the
+  // folder they leave behind.
+  const shapeChanged = [];
+  for (const rel of entry.replace.map(manifestFolderPath)) {
+    const destinationPath = path.join(destinationDir, rel);
+    const key = relativeKey(ctx.root, destinationPath);
+    const shape = destinationShape(destinationPath, key, acceptedSha256, recordedLinks);
+    const wantsFolder = replacedSubtrees.has(rel);
+    const inTheWay = wantsFolder ? shape.kind === 'file' || (shape.kind === 'link' && shape.isOwned) : shape.kind === 'folder';
+    if (!inTheWay) continue;
+    if (!shape.isOwned) {
+      problems.push(unownedShapeProblem(entry, key, shape.kind, wantsFolder ? 'folder' : 'file', ctx.root));
+      return { writes: [], deletes: [], outputs: [] };
+    }
+    if (!wantsFolder) shapeChanged.push(rel);
+  }
+
   const outputs = [];
   const keptPaths = keptRetainedPaths(entry, sourceDir);
   for (const [rel, wanted] of desired) {
@@ -2388,25 +2824,36 @@ function planSkillRootOverlay(entry, ctx, problems) {
   }
 
   const current = walkTree(destinationDir);
-  const removedPrefixes = [...entry.remove, ...replacedSubtrees];
+  const removedPrefixes = [...manifestFolderPaths(entry.remove), ...replacedSubtrees, ...shapeChanged];
   const matchesPrefix = (prefixes, rel) => prefixes.some((prefix) => rel === prefix || rel.startsWith(`${prefix}/`));
   const isRemoved = (rel) => matchesPrefix(removedPrefixes, rel);
   // A replaced subtree is the overlay's to capture into; only a path the entry
   // removes without also replacing is a removal the overlay performs.
-  const isDeclaredRemoval = (rel) => matchesPrefix(entry.remove, rel) && !matchesPrefix(entry.replace, rel);
-  const isReplacedSubtree = (rel) => matchesPrefix([...replacedSubtrees], rel);
+  const isDeclaredRemoval = (rel) => matchesPrefix(manifestFolderPaths(entry.remove), rel) &&
+    !matchesPrefix(entry.replace.map(manifestFolderPath), rel);
+  const isReplacedSubtree = (rel) => matchesPrefix([...replacedSubtrees, ...shapeChanged], rel);
 
+  // A folder where the source now ships a file or a link was the entry's own:
+  // its files are this plan's deletes, so the write clears what they leave behind.
+  const isLiveFolder = (filePath) => {
+    try {
+      return fs.lstatSync(filePath).isDirectory();
+    } catch {
+      return false;
+    }
+  };
   for (const [rel, wanted] of desired) {
     const destinationPath = path.join(destinationDir, rel);
     const existing = current.get(rel);
+    const replacesFolder = isLiveFolder(destinationPath);
     if (wanted.kind === 'symlink') {
       if (!existing || existing.kind !== 'symlink' || existing.target !== wanted.target) {
-        writes.push({ filePath: destinationPath, symlinkTarget: wanted.target });
+        writes.push({ filePath: destinationPath, symlinkTarget: wanted.target, ...(replacesFolder ? { replacesFolder } : {}) });
       }
       continue;
     }
     if (!existing || existing.kind !== 'file' || Buffer.compare(existing.buffer, wanted.buffer) !== 0) {
-      writes.push({ filePath: destinationPath, buffer: wanted.buffer, mode: wanted.mode });
+      writes.push({ filePath: destinationPath, buffer: wanted.buffer, mode: wanted.mode, ...(replacesFolder ? { replacesFolder } : {}) });
     }
   }
 
@@ -2504,7 +2951,9 @@ const PLANNERS = {
  *   the sets it still names and `listedKeys` its `setKeyOnItem` keys, all for
  *   the state write. `warnings` are notes that never block the plan.
  */
-function planOverlay(entry, ctx, { acceptedSha256, recordedItems, recordedSets, recordedKeys, upstreamBytes } = {}) {
+function planOverlay(entry, ctx, {
+  acceptedSha256, recordedLinks, recordedItems, recordedSets, recordedKeys, upstreamBytes, engineLinks = {},
+} = {}) {
   const problems = [];
   const planner = PLANNERS[entry.scope];
   if (!planner) {
@@ -2513,7 +2962,17 @@ function planOverlay(entry, ctx, { acceptedSha256, recordedItems, recordedSets, 
       listedItems: [], listedSets: [], listedKeys: [], warnings: [],
     };
   }
-  const plan = planner(entry, ctx, problems, acceptedSha256, { recordedItems, recordedSets, recordedKeys, upstreamBytes });
+  const empty = { writes: [], deletes: [], outputs: [] };
+  const leavesBefore = typeof entry.destination === 'string' && entry.scope !== 'remove-root'
+    ? linkLeavingTree(ctx.root, path.join(ctx.root, entry.destination), { followLeaf: true, engineLinks }) : null;
+  if (leavesBefore) problems.push(linkLeavingTreeProblem(entry, leavesBefore, ctx.root));
+  let plan = leavesBefore ? empty
+    : planner(entry, ctx, problems, acceptedSha256, { recordedLinks, recordedItems, recordedSets, recordedKeys, upstreamBytes });
+  const leavesAfter = leavesBefore ? null : planLeavingTree(ctx.root, plan, engineLinks);
+  if (leavesAfter) {
+    problems.push(linkLeavingTreeProblem(entry, leavesAfter, ctx.root));
+    plan = empty;
+  }
   return {
     entry,
     problems,
@@ -2533,19 +2992,63 @@ function planOverlay(entry, ctx, { acceptedSha256, recordedItems, recordedSets, 
  * @param {string} root Destination tree root.
  * @param {string|null} [overlayRoot] The overlay folder. Without it, a folder the
  *   entry no longer ships keeps a Python cache left in it.
+ * @param {string[]} [notices] Receives a notice for each folder of Python caches
+ *   the prune could not remove.
  * @returns {number} Number of write and delete operations applied.
  */
-function applyOnePlan(plan, root, overlayRoot = null) {
+function applyOnePlan(plan, root, overlayRoot = null, notices = []) {
   for (const deletion of plan.deletes) removePath(deletion);
   for (const write of plan.writes) {
+    if (write.replacesFolder === true) clearReplacedFolder(write.filePath, root);
     if (write.symlinkTarget !== undefined) ensureSymlink(write.filePath, write.symlinkTarget);
     else writeFile(write.filePath, write.buffer, write.mode);
   }
   if (plan.deletes.length > 0 && plan.entry.destination) {
     const isUnshippedFolder = overlayRoot ? unshippedFolderTest(plan.entry, overlayRoot) : null;
-    pruneEmptyDirs(path.join(root, plan.entry.destination), isUnshippedFolder);
+    const blocked = [];
+    pruneEmptyDirs(path.join(root, plan.entry.destination), isUnshippedFolder, '', blocked);
+    for (const { dir, code } of blocked) notices.push(cacheFolderNotice(root, dir, code));
   }
   return plan.writes.length + plan.deletes.length;
+}
+
+/**
+ * Remove the folder a directory or skill-root overlay now ships as a file or a link. The
+ * plan's deletes have already taken every file the overlay put there, so only
+ * empty folders and Python caches remain; anything else means the folder holds
+ * work the plan never saw, and the write stops instead of removing it.
+ * @param {string} filePath Absolute path the write is about to fill.
+ * @param {string} root Destination tree root, for the tree-relative message.
+ */
+function clearReplacedFolder(filePath, root) {
+  let stats;
+  try {
+    stats = fs.lstatSync(filePath);
+  } catch (error) {
+    if (error && error.code === 'ENOENT') return;
+    throw error;
+  }
+  if (!stats.isDirectory()) return;
+  if (listTreePaths(filePath).length > 0) {
+    const folder = toPosix(path.relative(root, filePath));
+    throw new Error(`${folder} still holds files the overlay did not write, so apply did not replace the folder\n  ` +
+      nextEngine(root, 'status'));
+  }
+  fs.rmSync(filePath, { recursive: true, force: true });
+}
+
+/**
+ * The notice for a folder of Python caches the prune could not remove.
+ * @param {string} root Destination tree root.
+ * @param {string} dir Absolute path of the folder.
+ * @param {string} code Error code of the failed removal.
+ * @returns {string} The notice, with its remedy on an indented `Next:` line.
+ */
+function cacheFolderNotice(root, dir, code) {
+  const folder = toPosix(path.relative(root, dir));
+  return `could not remove the Python cache folder ${folder} (${code}): apply was only clearing ` +
+    'Python caches from a folder its overlay no longer ships, not overlay content, so the folder stays\n' +
+    `  Next: chmod -R u+w ${shellPath(dir)} && rm -r ${shellPath(dir)}`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2601,14 +3104,40 @@ function replacedLinkState(root, link) {
 
 /**
  * Say whether the state records this exact target as a link the engine made.
+ * The recorded path is matched the way the volume matches names, so a link the
+ * manifest now spells in another case is still the engine's own; the target is
+ * matched as written.
+ * @param {string} root Destination tree root.
  * @param {object} state Loaded applied-hash state.
  * @param {object} link Layout link entry from the manifest.
  * @param {string|null} current Target the path links to right now.
  * @returns {boolean} Whether the record matches what stands on disk.
  */
-function isRecordedLink(state, link, current) {
-  const recorded = state && state.links ? state.links[link.path] : undefined;
+function isRecordedLink(root, state, link, current) {
+  const recorded = engineLinkText(root, (state && state.links) || {}, link.path);
   return typeof recorded === 'string' && recorded === current;
+}
+
+/**
+ * Say whether the file or folder at a layout link's path is output an earlier
+ * apply wrote that no overlay writes now, so the link may replace it.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} root Destination tree root.
+ * @param {object} state Loaded applied-hash state.
+ * @param {object} link Layout link entry from the manifest.
+ * @param {string} linkPath Absolute link path.
+ * @returns {boolean} Whether the engine owns what stands there.
+ */
+function isOwnedShapeForLink(manifest, root, state, link, linkPath) {
+  const fold = pathFold(root);
+  const key = fold(relativeKey(root, linkPath));
+  const overlaps = (manifest.overlays || []).some((entry) => {
+    if (typeof entry.destination !== 'string') return false;
+    const destination = fold(path.posix.normalize(entry.destination).replace(/\/+$/, ''));
+    return destination === key || destination.startsWith(key + '/') || key.startsWith(destination + '/');
+  });
+  if (overlaps) return false;
+  return destinationShape(linkPath, key, (state && state.files) || {}).isOwned;
 }
 
 /**
@@ -2645,13 +3174,21 @@ function planLayoutLinks(manifest, root, state) {
     if (stats && stats.isSymbolicLink()) current = fs.readlinkSync(linkPath);
     if (!stats) {
       missing.push({ link, linkPath });
-    } else if (current !== null && current !== link.target && isRecordedLink(state, link, current)) {
+    } else if (current !== null && current !== link.target && isRecordedLink(root, state, link, current)) {
       // The manifest moved this entry's target after an earlier apply, and the
       // state records the link standing here as the engine's own: the link is
       // retargeted rather than reported as a stranger occupying the path.
       missing.push({ link, linkPath, isRetarget: true });
+    } else if (current === null && isOwnedShapeForLink(manifest, root, state, link, linkPath)) {
+      // A file or folder an earlier apply wrote, which no overlay writes now,
+      // is the engine's own earlier output: the link takes its place.
+      missing.push({ link, linkPath, replacesOwned: stats.isDirectory() ? 'folder' : 'file' });
     } else if (current !== link.target) {
-      problems.push(`${link.path} exists but is not the link to ${link.target}`);
+      const message = `${link.path} exists but is not the link to ${link.target}`;
+      problems.push(current === null
+        ? withRemedy(message, `the ${stats.isDirectory() ? 'folder' : 'file'} there does not match what apply last ` +
+          'wrote, so it stays', keepAsideRemedy(root, link.path))
+        : message);
     }
   }
   return { missing, problems };
@@ -2666,7 +3203,7 @@ function planLayoutLinks(manifest, root, state) {
  * @param {boolean} [isRetarget] Whether the state records the link standing at
  *   this path as the engine's own, which permits pointing it at a new target.
  */
-function applyLayoutLink(root, link, isRetarget) {
+function applyLayoutLink(root, link, isRetarget, replacesOwned = null) {
   // The plan judges the tree as it stood, so each write is judged again where
   // its parent resolves now: every unlink and link below acts through it. The
   // link path is judged after the replaced link is gone, since that link may be
@@ -2699,11 +3236,305 @@ function applyLayoutLink(root, link, isRetarget) {
       if (!error || error.code !== 'ENOENT') throw error;
     }
     if (stats && !stats.isSymbolicLink()) {
-      throw new Error(link.path + ' is no longer the link this engine made; refusing to replace it');
+      throw new Error(withRemedy(link.path + ' is no longer the link this engine made; refusing to replace it',
+        'a real file or folder stands there now, and replacing it would delete that work',
+        keepAsideRemedy(root, link.path)));
     }
     if (stats) fs.unlinkSync(linkPath);
   }
+  if (replacesOwned) {
+    // The plan found the engine's own file or folder here. Only that same shape
+    // is removed: a link standing here now was made by someone after planning.
+    const linkPath = path.join(root, link.path);
+    const stats = fs.lstatSync(linkPath);
+    if (stats.isSymbolicLink() || stats.isDirectory() !== (replacesOwned === 'folder')) {
+      throw new Error(link.path + ' changed since apply planned it, so apply did not replace it\n  ' +
+        nextEngine(root, 'status'));
+    }
+    removePath(linkPath);
+  }
+  // Only a link is ever replaced here: a real file or folder standing at the
+  // path now was not planned for, and unlinking it fails or deletes its work.
+  let standing = null;
+  try {
+    standing = fs.lstatSync(path.join(root, link.path));
+  } catch (error) {
+    if (!error || error.code !== 'ENOENT') throw error;
+  }
+  if (standing && !standing.isSymbolicLink()) {
+    throw new Error(withRemedy(`${link.path} is a ${standing.isDirectory() ? 'folder' : 'file'}, not the layout link ` +
+      `to ${link.target}; refusing to replace it`,
+    'a real file or folder stands there now, and replacing it would delete that work',
+    keepAsideRemedy(root, link.path)));
+  }
   ensureSymlink(path.join(root, link.path), link.target);
+}
+
+// A layout link the tree lacks outright, with an overlay destination at or
+// below it. Its entry's writes belong through the link, so the link is made
+// before they are planned again; made after them, it would find their folder in
+// its place. A link that replaces, retargets or takes the place of something is
+// left to its usual turn, after the writes. The link and the destinations are
+// compared the way the tree's filesystem matches names.
+function linksAboveOverlays(manifest, root, layoutRecords) {
+  const fold = pathFold(root);
+  const destinations = (manifest.overlays || [])
+    .filter((entry) => typeof entry.destination === 'string')
+    .map((entry) => fold(path.posix.normalize(entry.destination).replace(/\/+$/, '')));
+  return layoutRecords.filter((record) => {
+    if (record.isRetarget || record.replacesOwned || replacedLinkState(root, record.link).state !== 'none') return false;
+    if (pathExists(path.join(root, record.link.path))) return false;
+    const key = fold(path.posix.normalize(record.link.path).replace(/\/+$/, ''));
+    return destinations.some((destination) => destination === key || destination.startsWith(key + '/'));
+  });
+}
+
+// A layout link the tree lacks outright, inside a folder an entry writes, where
+// the entry writes files of its own at or below the link. Those writes would
+// make a real folder in the link's place, so the link is refused while it is
+// planned and nothing is written, rather than left to fail after the writes.
+function refuseLinksInsideOverlayWrites(ctx, layout, plans) {
+  const root = ctx.root;
+  const fold = pathFold(root);
+  const kept = [];
+  for (const record of layout.missing) {
+    const { link, linkPath, isRetarget, replacesOwned } = record;
+    const key = fold(path.posix.normalize(link.path).replace(/\/+$/, ''));
+    const owner = !isRetarget && !replacesOwned && replacedLinkState(root, link).state === 'none' &&
+      !pathExists(linkPath) && plans.find((plan) => {
+        if (typeof plan.entry.destination !== 'string') return false;
+        const destination = fold(path.posix.normalize(plan.entry.destination).replace(/\/+$/, ''));
+        if (!key.startsWith(destination + '/')) return false;
+        const absoluteLink = fold(path.resolve(linkPath));
+        return plan.writes.some((write) => isWithin(absoluteLink, fold(path.resolve(write.filePath))));
+      });
+    if (!owner) {
+      kept.push(record);
+      continue;
+    }
+    layout.problems.push(withRemedy(
+      `${link.path} is a layout link inside ${owner.entry.destination}, the folder overlay ${owner.entry.id} writes`,
+      `overlay ${owner.entry.id} writes files at that path, and they would stand where the link goes`,
+      `Next: move the layout link ${link.path} out of ${owner.entry.destination} in ${shellPath(ctx.manifestPath)}, ` +
+        'or drop those files from the overlay, then ' + nextEngine(root, 'apply').slice('Next: '.length)));
+  }
+  layout.missing = kept;
+  return layout;
+}
+
+// Why a layout link's target cannot take a write under it, read from the folder
+// the link sits in as the operating system reads it: 'missing' when nothing is
+// there, 'dangling' when a link there does not resolve, 'file' when it is not a
+// folder, or null when it is a folder. A folder not there yet is read as
+// written, the way apply makes it, unless another manifest link sits on its
+// way: that link, once made, decides where the folder lands, so the target is
+// left to apply, as is a folder that cannot be resolved at all, such as one
+// behind a looping link the layout replaces.
+function layoutTargetFault(root, manifest, link) {
+  const folder = path.dirname(path.resolve(root, link.path));
+  if (!fs.existsSync(folder)) {
+    const fold = pathFold(root);
+    const isLinkOnTheWay = (manifest.layoutLinks || []).some((other) => other !== link && other &&
+      typeof other.path === 'string' && isWithin(fold(path.resolve(root, other.path)), fold(folder)));
+    if (isLinkOnTheWay) return null;
+  }
+  let realFolder;
+  try {
+    realFolder = canonicalPath(folder);
+  } catch {
+    return null;
+  }
+  const targetPath = path.resolve(realFolder, link.target);
+  let stats;
+  try {
+    stats = fs.statSync(targetPath);
+  } catch {
+    try {
+      return fs.lstatSync(targetPath).isSymbolicLink() ? 'dangling' : 'missing';
+    } catch {
+      return 'missing';
+    }
+  }
+  return stats.isDirectory() ? null : 'file';
+}
+
+// A layout link with entries at or below it that apply cannot write through as
+// planned. One whose target does not exist, or is not a folder, gives a write
+// under it no folder to land in. One the manifest points somewhere new would
+// move only after the entries are written, so they would land in its old
+// target. Each is refused while it is planned, so status and apply print it
+// alike and nothing is written. An entry whose own path is the link writes
+// through it only when it writes a folder there; a whole file written there is
+// the link's target.
+function refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans) {
+  const root = ctx.root;
+  const fold = pathFold(root);
+  const manifestPath = shellPath(ctx.manifestPath);
+  const engineApply = nextEngine(root, 'apply').slice('Next: '.length);
+  const entriesUnder = (link, isFolderOnlyAtLink) => {
+    const key = fold(path.posix.normalize(link.path).replace(/\/+$/, ''));
+    return plans.map((plan) => plan.entry).filter((entry) => {
+      if (typeof entry.destination !== 'string') return false;
+      const destination = fold(path.posix.normalize(entry.destination).replace(/\/+$/, ''));
+      if (destination.startsWith(key + '/')) return true;
+      return destination === key && (!isFolderOnlyAtLink || entry.scope === 'directory' || entry.scope === 'skill-root');
+    });
+  };
+  // A moved link carries every entry under it, and every entry under another
+  // layout link whose target reads through it, followed from link to link,
+  // since those writes land in its old target too.
+  const absoluteRoot = path.resolve(root);
+  const keyOf = (link) => fold(path.posix.normalize(link.path).replace(/\/+$/, ''));
+  const targetKeyOf = (link) => fold(path.relative(absoluteRoot,
+    path.resolve(absoluteRoot, path.dirname(link.path), link.target)).split(path.sep).join('/'));
+  const entriesThroughMovedLink = (moved) => {
+    const links = (manifest.layoutLinks || []).filter((other) => other && typeof other.path === 'string' && typeof other.target === 'string');
+    const through = [moved];
+    const seen = new Set([moved]);
+    for (let index = 0; index < through.length; index += 1) {
+      const key = keyOf(through[index]);
+      for (const other of links) {
+        if (seen.has(other)) continue;
+        const targetKey = targetKeyOf(other);
+        if (targetKey !== key && !targetKey.startsWith(key + '/')) continue;
+        seen.add(other);
+        through.push(other);
+      }
+    }
+    const found = new Set();
+    for (const reading of through) for (const entry of entriesUnder(reading, false)) found.add(entry);
+    return plans.map((plan) => plan.entry).filter((entry) => found.has(entry));
+  };
+  const named = (entries) => (entries.length === 1
+    ? `overlay ${entries[0].id} writes`
+    : `overlays ${entries.map((entry) => entry.id).join(', ')} write`);
+  const pending = new Map(layout.missing.map((record) => [record.link, record]));
+  const refused = new Set();
+  for (const link of manifest.layoutLinks || []) {
+    if (!link || typeof link.path !== 'string' || typeof link.target !== 'string') continue;
+    const record = pending.get(link);
+    const linkPath = path.join(root, link.path);
+    let current = null;
+    try {
+      current = fs.readlinkSync(linkPath);
+    } catch {
+      current = null;
+    }
+    const isStanding = !record && current === link.target;
+    if ((!record && !isStanding) || (record && record.replacesOwned)) continue;
+    const writersUnder = entriesUnder(link, true);
+    const fault = writersUnder.length > 0 ? layoutTargetFault(root, manifest, link) : null;
+    if (fault) {
+      const targetPath = path.resolve(path.dirname(path.resolve(linkPath)), link.target);
+      const makeFolder = fault === 'missing'
+        ? `mkdir -p ${shellPath(targetPath)}`
+        : `mv ${shellPath(targetPath)} ${shellPath(targetPath + '.keep')} and mkdir -p ${shellPath(targetPath)}`;
+      const linkedTo = { missing: 'a folder that does not exist', dangling: 'a link that does not resolve', file: 'a file' }[fault];
+      layout.problems.push(withRemedy(
+        `${link.path} links to ${link.target}, which ${fault === 'file' ? 'is a file' : 'does not exist'}, and ${named(writersUnder)} under it`,
+        `a write under a link to ${linkedTo} has no folder to land in, so apply writes nothing`,
+        `Next: ${makeFolder}, or point the layout link ${link.path} in ${manifestPath} at a folder that exists, then ${engineApply}`));
+      refused.add(record);
+    }
+    const movedUnder = record && record.isRetarget ? entriesThroughMovedLink(link) : [];
+    if (movedUnder.length > 0) {
+      const ids = movedUnder.map((entry) => entry.id).join(', ');
+      const single = movedUnder.length === 1;
+      // A layout link inside the moved one is made only once the link has
+      // moved, so the apply that moves it alone reports the inner link and the
+      // apply after it makes that link.
+      const key = fold(path.posix.normalize(link.path).replace(/\/+$/, ''));
+      const inner = (manifest.layoutLinks || []).filter((other) => other !== link && other && typeof other.path === 'string' &&
+        fold(path.posix.normalize(other.path)).startsWith(key + '/')).map((other) => other.path);
+      const makesInner = inner.length === 0 ? ''
+        : `, which makes ${inner.join(', ')} if the first apply reports ${inner.length === 1 ? 'it' : 'them'}`;
+      layout.problems.push(withRemedy(
+        `${link.path} moves from ${current} to ${link.target}, and ${named(movedUnder)} under it`,
+        `apply writes the entries under a link before it moves the link, so they would land in ${current}, ` +
+          `not ${link.target}`,
+        `Next: take ${single ? 'overlay' : 'overlays'} ${ids} out of ${manifestPath}, run ${ENGINE_COMMAND} apply from ` +
+          `${shellPath(root)} to move the link alone, then put ${single ? 'the entry' : 'the entries'} back and run apply again${makesInner}`));
+      refused.add(record);
+    }
+  }
+  layout.missing = layout.missing.filter((record) => !refused.has(record));
+  return layout;
+}
+
+// The manifest's layout links planned against the tree and the overlay plans,
+// with every refusal that keeps a link from being made, so status and apply
+// judge the links one way.
+function planLayout(ctx, manifest, state, plans) {
+  const layout = refuseLinksInsideOverlayWrites(ctx, planLayoutLinks(manifest, ctx.root, state), plans);
+  return refuseLinksAboveOverlayWrites(ctx, manifest, layout, plans);
+}
+
+// Make the links above overlays, each with the folders it needs, and say how to
+// take every one back, so a run that stops before any overlay write leaves the
+// tree as it found it.
+function makeLinksFirst(root, records) {
+  const made = [];
+  const undo = () => {
+    for (const { linkPath, firstMadeFolder } of made.reverse()) {
+      fs.rmSync(linkPath, { force: true });
+      if (firstMadeFolder) fs.rmSync(firstMadeFolder, { recursive: true, force: true });
+    }
+  };
+  try {
+    for (const record of records) {
+      const linkPath = path.join(root, record.link.path);
+      let firstMadeFolder = null;
+      for (let folder = path.dirname(linkPath); isWithin(root, folder) && folder !== path.resolve(root); folder = path.dirname(folder)) {
+        if (pathExists(folder)) break;
+        firstMadeFolder = folder;
+      }
+      applyLayoutLink(root, record.link, record.isRetarget, record.replacesOwned);
+      made.push({ linkPath, firstMadeFolder });
+    }
+  } catch (error) {
+    undo();
+    throw error;
+  }
+  return undo;
+}
+
+// Status cannot make a missing layout link, so an entry under such a link is
+// judged where the link will send it: a write through a link that then leads
+// outside the tree is refused here as apply refuses it once the link stands,
+// rather than listed as work apply can do. Only that refusal is judged ahead; a
+// link whose own folder is not there yet is left to apply.
+function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
+  const root = ctx.root;
+  if (analysis.layout.problems.length > 0) return;
+  const pending = linksAboveOverlays(manifest, root, analysis.records.filter((record) => record.layout));
+  if (pending.length === 0) return;
+  const engineLinks = engineMadeLinks(manifest, state);
+  const fold = pathFold(root);
+  const absoluteRoot = path.resolve(root);
+  for (let index = 0; index < analysis.plans.length; index += 1) {
+    const plan = analysis.plans[index];
+    if (plan.problems.length > 0) continue;
+    let found = null;
+    for (const record of pending) {
+      const linkPath = path.resolve(root, record.link.path);
+      const landing = path.resolve(path.dirname(linkPath), record.link.target);
+      if (!isWithin(absoluteRoot, landing)) continue;
+      const writes = [
+        ...plan.writes.map((write) => ({ filePath: path.resolve(write.filePath), followLeaf: write.symlinkTarget === undefined })),
+        ...plan.deletes.map((filePath) => ({ filePath: path.resolve(filePath), followLeaf: false })),
+      ];
+      for (const { filePath, followLeaf } of writes) {
+        if (!isWithin(fold(linkPath), fold(filePath))) continue;
+        found = linkLeavingTree(root, path.join(landing, filePath.slice(linkPath.length)), { followLeaf, engineLinks });
+        if (found) break;
+      }
+      if (found) break;
+    }
+    if (!found) continue;
+    analysis.plans[index] = refusedPlan(plan.entry, linkLeavingTreeProblem(plan.entry, found, root));
+    analysis.blocked.push(analysis.plans[index]);
+    analysis.records = analysis.records.filter((record) => record.plan !== plan);
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2780,7 +3611,7 @@ function snapshotOutputs(manifest, root) {
 function regenerate(manifest, root, watched = []) {
   const before = snapshotOutputs(manifest, root);
   const digestOf = (key) => {
-    const buffer = readBufferOrNull(path.join(root, key));
+    const buffer = readLiveOrNull(path.join(root, key));
     return buffer ? sha256(buffer) : null;
   };
   let digests = new Map(watched.map((key) => [key, digestOf(key)]));
@@ -2816,8 +3647,18 @@ function regenerate(manifest, root, watched = []) {
 const EXACT_CAPTURE_SCOPES = new Set(['file', 'marked-section']);
 const NO_EXACT_PATHS = new Set();
 
+// This template name holds no secret by convention, so it is read, copied and
+// re-pinned like any vendored file. It is also the one name the env-secret guard
+// hook exempts. The engine is the stricter of the two: it folds case and refuses
+// any name that starts with `.env`, where the hook matches `.env` and `.env.<suffix>`
+// as spelled, so the engine refuses many names the hook allows. The one name it
+// reads that the hook refuses is this template spelled in another case, since
+// folding case exempts those spellings too.
+const ENV_TEMPLATE_NAMES = new Set(['.env.example']);
+
 function isEnvName(filePath) {
-  return path.basename(filePath).toLowerCase().startsWith('.env');
+  const name = path.basename(filePath).toLowerCase();
+  return name.startsWith('.env') && !ENV_TEMPLATE_NAMES.has(name);
 }
 
 function isTokenName(filePath) {
@@ -2859,17 +3700,20 @@ function exactManifestPaths(ctx, manifest) {
 function protectedPathsFor(entry) {
   if (entry.protectedPaths === undefined) return [];
   if (!(entry.scope === 'directory' || entry.scope === 'skill-root') || !Array.isArray(entry.protectedPaths)) {
-    throw new Error(entry.id + ': protectedPaths is a list, allowed only on a directory or skill-root entry');
+    throw new Error(entry.id + ': protectedPaths is a list, allowed only on a directory or skill-root entry' +
+      `\n  Next: move protectedPaths of entry ${entry.id} in ${MANIFEST_FILE} onto a directory or skill-root entry, or make it a list`);
   }
   return entry.protectedPaths.map((value) => {
     const normalized = typeof value === 'string' ? path.posix.normalize(value) : '';
     const isInside = normalized !== '' && normalized !== '.' && !path.isAbsolute(value) &&
       normalized !== '..' && !normalized.startsWith('../');
     if (!isInside) {
-      throw new Error(entry.id + ': protectedPaths value is not a path inside the entry: ' + String(value));
+      throw new Error(entry.id + ': protectedPaths value is not a path inside the entry: ' + String(value) +
+        `\n  Next: write it in ${MANIFEST_FILE} as a path relative to entry ${entry.id}, such as "config/token.txt"`);
     }
     if (isEnvName(normalized)) {
-      throw new Error(entry.id + ': protectedPaths value names a .env file, which is never read: ' + normalized);
+      throw new Error(entry.id + ': protectedPaths value names a .env file, which is never read: ' + normalized +
+        `\n  Next: remove it from protectedPaths of entry ${entry.id} in ${MANIFEST_FILE}; a .env file is refused without it`);
     }
     return normalized;
   });
@@ -3224,6 +4068,55 @@ function layoutLinkEscape(root, manifest) {
   return null;
 }
 
+// The why and Next lines under a layout link path that escapes the tree. When a
+// link on the folder's way leads out, as it stands or once the manifest's link
+// above it is made, that link is the one to move aside, and the link apply would
+// make is never named in its place. Any other escape is the manifest's to fix.
+function withLinkEscapeRemedy(ctx, manifest, message) {
+  const prefix = 'layout link path escapes the tree root: ';
+  if (!message.startsWith(prefix)) return message;
+  const root = ctx.root;
+  const absoluteRoot = path.resolve(root);
+  const linkPath = message.slice(prefix.length);
+  const absolute = path.resolve(root, linkPath);
+  const manifestNext = `Next: change the layout link ${linkPath} in ${shellPath(ctx.manifestPath)} to a path inside the tree, ` +
+    'then ' + nextEngine(root, 'status').slice('Next: '.length);
+  if (path.isAbsolute(linkPath) || !isWithin(absoluteRoot, absolute) || absolute === absoluteRoot) {
+    return withRemedy(message, 'a layout link is made only inside the tree', manifestNext);
+  }
+  const engineLinks = engineMadeLinks(manifest, {});
+  const fold = pathFold(root);
+  // The nearest manifest link above the path is followed to its target, the
+  // way the path resolves once apply makes that link.
+  const linkAboveLeavingTree = () => {
+    const above = (manifest.layoutLinks || [])
+      .filter((link) => link && typeof link.path === 'string' && typeof link.target === 'string')
+      .map((link) => ({ link, at: path.resolve(root, link.path) }))
+      .filter(({ at }) => at !== absolute && isWithin(fold(at), fold(absolute)))
+      .sort((left, right) => right.at.length - left.at.length)[0];
+    const landing = above ? path.resolve(path.dirname(above.at), above.link.target) : null;
+    if (landing === null || !isWithin(absoluteRoot, landing)) return null;
+    return linkLeavingTree(root, path.join(landing, absolute.slice(above.at.length)), { engineLinks });
+  };
+  // Naming the link is only advice, so a path it cannot read still gets the
+  // refusal, with the manifest as the place to fix it.
+  let found = null;
+  try {
+    found = linkLeavingTree(root, absolute, { engineLinks }) || linkAboveLeavingTree();
+  } catch {
+    found = null;
+  }
+  if (!found) {
+    return withRemedy(message, 'the folder it sits in leads outside the tree, so a link made there would land outside it',
+      manifestNext);
+  }
+  return withRemedy(message, found.landed === null
+    ? `the folder it sits in passes ${found.key}, a link that does not resolve, so apply cannot tell where a link made ` +
+      'there would land'
+    : `the folder it sits in leads outside the tree through ${found.key}, so a link made there would land outside it`,
+  keepAsideRemedy(root, found.key));
+}
+
 /**
  * Refuse a manifest whose paths escape their roots, and find every entry that
  * would read a secret. A path escape means the manifest itself is wrong, so it
@@ -3237,7 +4130,7 @@ function layoutLinkEscape(root, manifest) {
 function assertSafeToPlan(ctx, manifest) {
   const root = ctx.root;
   const linkEscape = layoutLinkEscape(root, manifest);
-  if (linkEscape) throw new Error(linkEscape);
+  if (linkEscape) throw new Error(withLinkEscapeRemedy(ctx, manifest, linkEscape));
   const exact = exactManifestPaths(ctx, manifest);
   const refused = new Map();
   for (const entry of manifest.overlays) {
@@ -3247,7 +4140,10 @@ function assertSafeToPlan(ctx, manifest) {
       const base = key === 'destination' ? root : ctx.overlayRoot;
       const absolute = path.resolve(base, entry[key]);
       if (!isWithin(base, absolute)) {
-        throw new Error(entry.id + ': path escapes its root: ' + entry[key]);
+        throw new Error(withRemedy(entry.id + ': path escapes its root: ' + entry[key],
+          'a source is read from the overlay folder and a destination written in the tree, never outside either',
+          `Next: change ${key} of entry ${entry.id} in ${shellPath(ctx.manifestPath)} to a path inside its root, then ` +
+          nextEngine(ctx.root, 'status').slice('Next: '.length)));
       }
       candidates.push(absolute);
     }
@@ -3390,16 +4286,46 @@ function classifyDestination({ output, plan, key, live, state, manifest, upstrea
   return 'both-changed';
 }
 
+/**
+ * The layout links the state records as the engine's own that the manifest no
+ * longer names. Only such a link may give way to a file or folder an overlay
+ * now writes at its path; one the manifest still names stays a link.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {object} state Loaded applied-hash state.
+ * @returns {Record<string, string>} Target by normalized link path.
+ */
+function unnamedRecordedLinks(manifest, state) {
+  const named = new Set((manifest.layoutLinks || []).map((link) => path.posix.normalize(link.path)));
+  const links = {};
+  for (const [linkPath, target] of Object.entries((state && state.links) || {})) {
+    const key = path.posix.normalize(linkPath);
+    if (!named.has(key)) links[key] = target;
+  }
+  return links;
+}
+
+// Every link the engine made, relative to the root, at the target it made it
+// with: the links the state records, and the layout links the manifest names.
+function engineMadeLinks(manifest, state) {
+  const links = {};
+  for (const [linkPath, target] of Object.entries((state && state.links) || {})) links[path.posix.normalize(linkPath)] = target;
+  for (const link of manifest.layoutLinks || []) {
+    if (link && typeof link.path === 'string' && typeof link.target === 'string') links[path.posix.normalize(link.path)] = link.target;
+  }
+  return links;
+}
+
 // A layout link the manifest names is part of the delivered tree, not of the pin,
 // so a tree that lost one cannot be repaired by copying anything: the report has
 // to carry it as outstanding work or the link stays missing silently.
 function layoutLinkRecords(layout, root) {
-  return layout.missing.map(({ link, linkPath, isRetarget }) => ({
+  return layout.missing.map(({ link, linkPath, isRetarget, replacesOwned }) => ({
     state: 'overlay-edited',
     key: relativeKey(root, linkPath),
     target: link.target,
     link,
     isRetarget: isRetarget === true,
+    replacesOwned: replacesOwned || null,
     layout: true,
   }));
 }
@@ -3417,10 +4343,14 @@ function layoutLinkRecords(layout, root) {
 function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manifest)) {
   const root = ctx.root;
   const { exact, refused } = assertSafeToPlan(ctx, manifest);
+  const recordedLinks = unnamedRecordedLinks(manifest, state);
+  const engineLinks = engineMadeLinks(manifest, state);
   const plans = manifest.overlays.map((entry) => (refused.has(entry.id)
     ? refusedPlan(entry, refused.get(entry.id))
     : planOverlay(entry, ctx, {
       acceptedSha256: state.files,
+      recordedLinks,
+      engineLinks,
       recordedItems: (state.items || {})[entry.destination] || [],
       recordedSets: (state.sets || {})[entry.destination] || [],
       recordedKeys: (state.keys || {})[entry.destination] || [],
@@ -3428,7 +4358,7 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
     })));
   const records = [];
   const blocked = [];
-  const seen = new Set();
+  const seen = new Map();
 
   for (let index = 0; index < plans.length; index += 1) {
     const plan = plans[index];
@@ -3450,15 +4380,19 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
     }
     for (const output of plan.outputs) {
       const key = relativeKey(root, output.filePath);
-      if (seen.has(key)) throw new Error('multiple overlays own the same destination: ' + key);
-      seen.add(key);
+      if (seen.has(key)) {
+        throw new Error('multiple overlays own the same destination: ' + key +
+          `\n  overlays ${seen.get(key)} and ${plan.entry.id} both write it, and the second would overwrite the first` +
+          `\n  Next: keep ${key} in one of those two entries in ${ctx.overlayLabel}/${MANIFEST_FILE}, then rerun`);
+      }
+      seen.set(key, plan.entry.id);
       let stateName = plan.entry.scope === 'remove-root'
         ? (pathExists(output.filePath) ? 'overlay-edited' : 'in-sync')
         : classifyDestination({
           output,
           plan,
           key,
-          live: readBufferOrNull(output.filePath),
+          live: readLiveOrNull(output.filePath),
           state,
           manifest,
           upstreamBytes,
@@ -3484,7 +4418,7 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
       });
     }
   }
-  const layout = planLayoutLinks(manifest, root, state);
+  const layout = planLayout(ctx, manifest, state, plans);
   for (const record of layoutLinkRecords(layout, root)) records.push(record);
   return { plans, records, blocked, layout };
 }
@@ -3493,7 +4427,10 @@ function fixFor(ctx, record) {
   if (record.state === 'overlay-edited') return ENGINE_COMMAND + ' apply';
   if (record.state === 'live-edited') return ENGINE_COMMAND + ' apply --capture ' + record.key;
   if (record.state === 'cannot-apply') {
-    const reasons = record.plan.problems.map((problem) => problem.replace(/^cannot apply the entry set to [^:]+: /, ''));
+    // The fix column is one line, so each reason keeps only its first line; the
+    // why and Next lines under a problem print with the BLOCKED line itself.
+    const reasons = record.plan.problems.map((problem) => problem.split('\n')[0]
+      .replace(/^cannot apply the entry set to [^:]+: /, ''));
     return reasons.join('; ') + '; change the entry set or the live file, then run ' + ENGINE_COMMAND + ' status';
   }
   return 'resolve ' + ctx.overlayLabel + '/' + record.source + ' and ' + record.key +
@@ -3643,7 +4580,7 @@ function acquireLock(ctx, owner) {
       isHeld: false,
       lockPath: ctx.lockPath,
       ownerLine: otherLine,
-      remedy: remedy === undefined ? 'remove ' + ctx.lockPath + ' by hand once that run has ended' : remedy,
+      remedy: remedy === undefined ? lockRemedy(ctx.lockPath, otherLine) : remedy,
     };
   }
 
@@ -3766,6 +4703,7 @@ function withLock(ctx, owner, run, options = {}) {
   const lock = acquireLock(ctx, owner);
   if (!lock.isHeld) {
     console.log('refuse: the overlay lock is held: ' + lock.ownerLine);
+    console.log('  one run writes the tree at a time, so this one stopped before writing anything');
     console.log('  ' + lock.remedy);
     return EXIT_ERROR;
   }
@@ -3796,7 +4734,7 @@ function runCheck(ctx, manifest, state, plans) {
   const root = ctx.root;
   const problems = [];
   let misses = 0;
-  const layout = planLayoutLinks(manifest, root, state);
+  const layout = planLayout(ctx, manifest, state, plans);
   const layoutCount = (manifest.layoutLinks || []).length > 0 ? 1 : 0;
   for (const problem of layout.problems) problems.push(`layout: ${problem}`);
   for (const { link } of layout.missing) problems.push(`layout: ${link.path} is missing (link to ${link.target})`);
@@ -4047,6 +4985,7 @@ function commandStatus(ctx, options = {}) {
   const manifest = loadManifest(ctx);
   const state = loadState(ctx, manifest);
   const analysis = analyze(ctx, manifest, state);
+  judgeWritesThroughPendingLinks(ctx, manifest, state, analysis);
   const check = runCheck(ctx, manifest, state, analysis.plans);
   const audit = options.isAudit ? auditVendoredTree(ctx, manifest) : null;
   // The docs leg stays out of isInSync below: it reports, it never fails the run.
@@ -4055,8 +4994,14 @@ function commandStatus(ctx, options = {}) {
   const stale = staleRootFiles(manifest);
   const offLayout = layoutMoves(manifest);
   const notes = statusNotes(ctx, manifest, state, analysis, { isAudit: Boolean(options.isAudit) });
+  // A failed regeneration leaves every destination in sync, so the pending flag
+  // is the only sign that apply still owes a rebuild. Apply reruns every step,
+  // so every step is named.
+  const regeneratePending = state.regeneratePending === true
+    ? (manifest.regenerate || []).map((step) => step.id)
+    : [];
   const isInSync = outOfSync.length === 0 && analysis.blocked.length === 0 && check.miss === 0 &&
-    stale.length === 0 && (audit === null || audit.findings.length === 0);
+    stale.length === 0 && regeneratePending.length === 0 && (audit === null || audit.findings.length === 0);
 
   if (options.isJson) {
     const report = {
@@ -4073,6 +5018,7 @@ function commandStatus(ctx, options = {}) {
         fix: fixFor(ctx, record),
       })),
       staleRootFiles: stale,
+      regeneratePending,
       offLayout,
       notes,
       check,
@@ -4092,6 +5038,11 @@ function commandStatus(ctx, options = {}) {
   for (const entry of stale) {
     console.log(`STALE    root-file ${entry.path}: upstream changed it since overlay ${entry.overlay} was pinned; ` +
       'rebase the overlay, then update its pinnedSha256');
+  }
+  if (regeneratePending.length > 0) {
+    console.log(`REGEN    pending: ${regeneratePending.join(', ')}`);
+    console.log('  an earlier apply did not finish its regeneration, so the next apply reruns these steps');
+    console.log('  ' + nextEngine(ctx.root, 'apply'));
   }
   // Relayout refuses a move into root/skilled, so each line, and the count of the
   // moves past the cap, names the fix the operator can make instead of a run
@@ -4113,6 +5064,17 @@ function commandStatus(ctx, options = {}) {
         : `; run ${ENGINE_COMMAND} apply --relayout for ${movable}, and change the destination or remove the ` +
           `entry for the ${blocked} under root/skilled`;
     console.log(`LAYOUT   … ${hidden.length} more${remedy}`);
+    // One remedy covers every hidden line. Relayout refuses every move while any
+    // move, shown or hidden, lands under root/skilled, so that fix comes first.
+    const isAnyBlocked = offLayout.some((move) => isUnderRootSkilled(move.to));
+    if (movable > 0 && isAnyBlocked) {
+      console.log(`  Next: change the destination of each entry under root/skilled in ${shellPath(ctx.manifestPath)}, ` +
+        'or remove the entry, then ' + nextEngine(ctx.root, 'apply --relayout').slice('Next: '.length));
+    } else if (movable > 0) {
+      console.log('  ' + nextEngine(ctx.root, 'apply --relayout'));
+    } else {
+      console.log('  Next: change the destination of each entry under root/skilled, or remove the entry');
+    }
   }
   for (const note of notes) console.log(`NOTE     ${note}`);
   if (audit) {
@@ -4188,21 +5150,36 @@ function stateAfterWrites(root, manifest, records, plans) {
   return { pin: manifest.pin.commit, files, links, ...listedRecords(plans) };
 }
 
-/**
- * Apply every overlay edit; the caller holds the lock.
- * @param {object} ctx Engine context.
- * @param {object} manifest Loaded overlay manifest.
- * @param {{isRegenerateForced?: boolean, outcome?: object,
- *   upstreamBytes?: ((key: string) => Buffer|null)|null}} [options] A re-pin
- *   regenerates even when no overlay wrote, because the copy changed the inputs;
- *   `outcome.changed` receives the count printed on the last line;
- *   `upstreamBytes` reads the pin this run compares against.
- * @returns {number} 0 when applied, 1 on conflict or a failed step.
- */
-function applyUnderLock(ctx, manifest, options = {}) {
-  const root = ctx.root;
-  const state = loadState(ctx, manifest);
-  const analysis = analyze(ctx, manifest, state, options.upstreamBytes);
+function isApplyBlocked(analysis) {
+  return analysis.records.some((record) => BLOCKING_STATES.has(record.state)) ||
+    analysis.blocked.length > 0 || analysis.layout.problems.length > 0;
+}
+
+// The close of an apply that a destination's own fix stops: the lines above
+// name each fix, and nothing was written. A stopped capture is rerun as the
+// capture it was, not as a plain apply.
+function printStoppedByDestination(ctx, captureKey = null) {
+  const rerun = captureKey === null ? 'apply' : 'apply --capture ' + shellPath(captureKey);
+  console.log('  this apply wrote nothing: a destination above stops it before any write');
+  console.log('  Next: run the fix on each line above, then ' + nextEngine(ctx.root, rerun).slice('Next: '.length));
+}
+
+// An apply that stops while it plans has written nothing, so the error it stops
+// on says so beneath its own reason, as every other refusal does.
+function stopsBeforeWriting(plan) {
+  try {
+    return plan();
+  } catch (error) {
+    if (error instanceof Error) {
+      error.remedy = (error.remedy ? error.remedy + '\n' : '') +
+        '  this apply wrote nothing: it stopped while planning, before any write';
+    }
+    throw error;
+  }
+}
+
+// Print why an apply cannot run, and say whether it stops before any write.
+function reportApplyBlocked(ctx, analysis) {
   const blockers = analysis.records.filter((record) => BLOCKING_STATES.has(record.state));
   const layoutProblems = analysis.layout.problems;
   if (blockers.length > 0 || analysis.blocked.length > 0 || layoutProblems.length > 0) {
@@ -4222,20 +5199,68 @@ function applyUnderLock(ctx, manifest, options = {}) {
     for (const problem of layoutProblems) console.log(`BLOCKED  layout: ${problem}`);
     if (analysis.blocked.length > 0 || layoutProblems.length > 0) {
       console.log(`blocked=${analysis.blocked.length + (layoutProblems.length > 0 ? 1 : 0)} changed=0`);
+      console.log('  this apply wrote nothing: a blocked overlay stops it before any write');
+      console.log('  ' + nextEngine(ctx.root, 'apply') + ', after fixing each BLOCKED line above');
+    } else {
+      printStoppedByDestination(ctx);
     }
-    return EXIT_CONFLICT;
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Apply every overlay edit; the caller holds the lock.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {{isRegenerateForced?: boolean, outcome?: object,
+ *   upstreamBytes?: ((key: string) => Buffer|null)|null}} [options] A re-pin
+ *   regenerates even when no overlay wrote, because the copy changed the inputs;
+ *   `outcome.changed` receives the count printed on the last line;
+ *   `upstreamBytes` reads the pin this run compares against.
+ * @returns {number} 0 when applied, 1 on conflict or a failed step.
+ */
+function applyUnderLock(ctx, manifest, options = {}) {
+  const root = ctx.root;
+  const state = stopsBeforeWriting(() => loadState(ctx, manifest));
+  let analysis = stopsBeforeWriting(() => analyze(ctx, manifest, state, options.upstreamBytes));
+
+  // The entries under a layout link the tree lacks were planned with no link
+  // there, so a first plan may block them only because the link is missing.
+  // They are planned again through the link once it is made, and judged there
+  // like any write through a link; when that plan blocks, the links are taken
+  // back before anything else is written, and its blocks are the ones reported.
+  const linkedFirst = analysis.layout.problems.length > 0 ? []
+    : linksAboveOverlays(manifest, root, analysis.records.filter((record) => record.layout));
+  if (linkedFirst.length === 0 && reportApplyBlocked(ctx, analysis)) return EXIT_CONFLICT;
+  if (linkedFirst.length > 0) {
+    const undoLinks = makeLinksFirst(root, linkedFirst);
+    try {
+      analysis = stopsBeforeWriting(() => analyze(ctx, manifest, state, options.upstreamBytes));
+    } catch (error) {
+      undoLinks();
+      throw error;
+    }
+    if (isApplyBlocked(analysis)) {
+      undoLinks();
+      reportApplyBlocked(ctx, analysis);
+      return EXIT_CONFLICT;
+    }
   }
 
   const changedRecords = analysis.records.filter((record) => record.state === 'overlay-edited' && !record.layout);
   const layoutRecords = analysis.records.filter((record) => record.layout);
   const plansToApply = new Set(changedRecords.map((record) => record.plan));
   let written = 0;
-  for (const plan of plansToApply) written += applyOnePlan(plan, root, ctx.overlayRoot);
+  const cacheNotices = [];
+  for (const record of linkedFirst) console.log('linked ' + record.key + ' -> ' + record.target);
+  for (const plan of plansToApply) written += applyOnePlan(plan, root, ctx.overlayRoot, cacheNotices);
+  for (const notice of cacheNotices) console.log(`NOTE     ${notice}`);
 
   // The links are restored before the regeneration steps run: a route resolving
   // skills through one of them reads nothing until the link exists.
   for (const record of layoutRecords) {
-    applyLayoutLink(root, record.link, record.isRetarget);
+    applyLayoutLink(root, record.link, record.isRetarget, record.replacesOwned);
     console.log('linked ' + record.key + ' -> ' + record.target);
   }
 
@@ -4261,6 +5286,8 @@ function applyUnderLock(ctx, manifest, options = {}) {
     }
     if (regeneration.failed.length > 0) {
       console.log('regeneration failed for ' + regeneration.failed.length + ' step(s); the tree is only partly rebuilt');
+      console.log('  the overlays were written and recorded, but each failed step left its generated files out of date');
+      console.log('  ' + nextEngine(ctx.root, 'apply') + ', after fixing each FAILED step above');
       return EXIT_CONFLICT;
     }
   }
@@ -4285,7 +5312,7 @@ function applyUnderLock(ctx, manifest, options = {}) {
   // are in sync, whatever the generators' own checks say next.
   const generatedProblems = isRegenerated ? verifyGenerated(manifest, root) : [];
   for (const problem of generatedProblems) console.log(`MISS     generated: ${problem}`);
-  const changed = changedRecords.length + layoutRecords.length;
+  const changed = changedRecords.length + layoutRecords.length + linkedFirst.length;
   if (options.outcome) options.outcome.changed = changed;
   console.log(changed + ' changed');
   return generatedProblems.length > 0 ? EXIT_CONFLICT : EXIT_OK;
@@ -4349,14 +5376,14 @@ function captureRecordForPath(ctx, manifest, candidate) {
     }
     if (entry.scope === 'directory') {
       const relative = directoryRelative(destinationPath, candidate);
-      if (relative === null || relative.split('/').some(isPythonCacheName)) continue;
+      if (relative === null || isPythonCachePath(relative, isDirectory(candidate))) continue;
       const sourcePath = path.resolve(ctx.overlayRoot, entry.source, relative);
       return { entry, key, destinationPath: candidate, sourcePath };
     }
     if (entry.scope === 'skill-root') {
       const relative = directoryRelative(destinationPath, candidate);
-      if (relative === null || relative.split('/').some(isPythonCacheName)) continue;
-      const isReplacement = (entry.replace || []).some((replacement) =>
+      if (relative === null || isPythonCachePath(relative, isDirectory(candidate))) continue;
+      const isReplacement = manifestFolderPaths(entry.replace).some((replacement) =>
         relative === replacement || relative.startsWith(replacement + '/'));
       const sourcePath = path.resolve(ctx.overlayRoot, entry.source, relative);
       const isKept = [...keptRetainedPaths(entry, path.resolve(ctx.overlayRoot, entry.source))].some((kept) =>
@@ -4364,7 +5391,7 @@ function captureRecordForPath(ctx, manifest, candidate) {
       if (isReplacement && !isKept) {
         return { entry, key, destinationPath: candidate, sourcePath };
       }
-      const isRemoved = (entry.remove || []).some((removed) =>
+      const isRemoved = manifestFolderPaths(entry.remove).some((removed) =>
         relative === removed || relative.startsWith(removed + '/'));
       if (isRemoved) {
         return { entry, key, destinationPath: candidate, removal: true, removalOwner: 'overlay ' + entry.id };
@@ -4393,6 +5420,23 @@ function extractMarkedSection(entry, live) {
   return Buffer.from(text.slice(begin, end), 'utf8');
 }
 
+// The capture refusal for a path no overlay writes. The Next line runs from the
+// tree root, so the adopt it names takes the path relative to that root. Adopt
+// refuses a path outside the tree or one an overlay owns, so neither is offered it.
+function printNotADestination(ctx, inputPath, isOwned) {
+  const inside = captureCandidates(ctx.root, inputPath).filter((candidate) => isWithin(ctx.root, candidate) &&
+    candidate !== ctx.root);
+  const target = inside.find((candidate) => pathExists(candidate)) || inside[0];
+  console.log('refuse: path is not an overlay destination: ' + inputPath);
+  console.log('  capture copies a live edit into the overlay that writes the path, and no overlay writes this one');
+  if (!target || isOwned) {
+    console.log('  Next: capture a path a status line names');
+    return;
+  }
+  console.log('  Next: capture a path a status line names, or bring this one under an overlay: ' +
+    nextEngine(ctx.root, 'apply --adopt ' + shellPath(toPosix(path.relative(ctx.root, target)))).slice('Next: '.length));
+}
+
 /**
  * Capture one live edit; the caller holds the lock.
  * @param {object} ctx Engine context.
@@ -4408,52 +5452,69 @@ function captureUnderLock(ctx, manifest, inputPath) {
     if (record) break;
   }
   if (!record) {
-    console.log('refuse: path is not an overlay destination: ' + inputPath);
+    printNotADestination(ctx, inputPath);
     return EXIT_ERROR;
   }
   if (record.removal) {
     console.log('refuse: ' + record.key + ' is scheduled for removal by ' + record.removalOwner + '; capture is not supported');
+    console.log('  apply deletes this path on every run, so a copy captured into the overlay would never be installed');
+    console.log('  Next: drop ' + record.key + ' from the removal ' + record.removalOwner + ' lists in ' +
+      shellPath(ctx.manifestPath) + ', then rerun the capture');
     return EXIT_ERROR;
   }
   if (isCaptureRestricted(ctx, record, inputPath)) {
     console.log('refuse: protected capture path: ' + record.key);
+    console.log('  a protected path may hold a credential, so capture never copies it into the overlay folder');
+    console.log('  Next: copy it into the overlay by hand only if it is safe to keep there, then ' + nextEngine(ctx.root, 'status').slice('Next: '.length));
     return EXIT_ERROR;
   }
   if (record.entry.scope === 'json-entry') {
     console.log('refuse: edit ' + ctx.overlayLabel + '/' + sourceRelative(ctx, record.sourcePath) + ' instead');
+    console.log('  apply builds this file from its entry set, so a copy of the live file has nowhere to go');
+    console.log('  Next: edit ' + shellPath(record.sourcePath) + ', then ' + nextEngine(ctx.root, 'apply').slice('Next: '.length));
     return EXIT_ERROR;
   }
   if (!['directory', 'skill-root'].includes(record.entry.scope) && !isFile(record.sourcePath)) {
     console.log(record.entry.id + ': canonical source is missing: ' + sourceRelative(ctx, record.sourcePath));
+    console.log('  capture updates an overlay copy that exists, and never creates one');
+    console.log('  Next: restore the overlay copy (git -C ' + shellPath(ctx.root) + ' checkout -- ' +
+      shellPath(toPosix(path.relative(ctx.root, record.sourcePath))) + ') or copy ' + record.key + ' to ' +
+      shellPath(record.sourcePath) + ', then ' + nextEngine(ctx.root, 'status').slice('Next: '.length));
     return EXIT_ERROR;
   }
   if (!isFile(record.destinationPath)) {
     console.log('refuse: live destination is not a regular file: ' + record.key);
+    console.log('  capture copies one live file over its overlay copy');
+    console.log('  Next: rerun the capture on one file, or once ' + record.key + ' is a regular file again');
     return EXIT_ERROR;
   }
   const livePath = canonicalPath(record.destinationPath);
   if (isCaptureRestricted(ctx, record, livePath)) {
     console.log('refuse: protected capture path: ' + record.key);
+    console.log('  the live file resolves to a protected path, which may hold a credential, so capture never copies it');
+    console.log('  Next: copy it into the overlay by hand only if it is safe to keep there, then ' + nextEngine(ctx.root, 'status').slice('Next: '.length));
     return EXIT_ERROR;
   }
   const state = loadState(ctx, manifest);
   const analysis = analyze(ctx, manifest, state);
   const classified = analysis.records.find((item) => item.key === record.key);
   if (!classified) {
-    console.log('refuse: path is not an overlay destination: ' + inputPath);
+    printNotADestination(ctx, inputPath, true);
     return EXIT_ERROR;
   }
   if (classified.state === 'in-sync') {
-    console.log('nothing to capture');
+    console.log(`nothing to capture: ${record.key} is in sync with ${ctx.overlayLabel}/${classified.source}`);
     return EXIT_OK;
   }
   if (classified.state !== 'live-edited') {
     printProblems(ctx, [classified]);
     // The same reason apply prints for this destination: a capture and an apply
-    // that both refuse it have to read the same way.
+    // that both refuse it read the same way, save the Next line, which reruns
+    // the capture.
     for (const problem of (classified.plan && classified.plan.problems) || []) {
       console.log(`BLOCKED  ${classified.plan.entry.id}: ${problem}`);
     }
+    printStoppedByDestination(ctx, record.key);
     return EXIT_CONFLICT;
   }
   const live = fs.readFileSync(record.destinationPath);
@@ -4512,7 +5573,11 @@ function destinationCandidates(ctx, manifest) {
       continue;
     }
     const destinationPath = path.resolve(root, entry.destination);
-    if (!isWithin(root, destinationPath)) throw new Error(entry.id + ': destination escapes the sync root');
+    if (!isWithin(root, destinationPath)) {
+      throw new Error(withRemedy(entry.id + ': destination escapes the sync root',
+        'an overlay writes only inside the tree',
+        `Next: change the destination of entry ${entry.id} in ${shellPath(ctx.manifestPath)} to a path inside the tree`));
+    }
     if (entry.scope === 'file' || entry.scope === 'json-entry') {
       records.push({ entry, destinationPath, sourcePath: path.resolve(ctx.overlayRoot, entry.source) });
       continue;
@@ -4562,7 +5627,7 @@ function destinationCandidates(ctx, manifest) {
           records.push({ entry, destinationPath: livePath, sourcePath: path.join(sourceDirectory, relative) });
         }
       }
-      for (const removed of entry.remove || []) {
+      for (const removed of manifestFolderPaths(entry.remove)) {
         const removedPath = path.join(destinationPath, removed);
         const livePaths = isDirectory(removedPath)
           ? listTreePaths(removedPath)
@@ -4602,6 +5667,9 @@ function commandGuard(ctx, inputPath) {
         ? relativeKey(root, lexicalCandidate)
         : relativeKey(canonicalPath(root), removalCandidate);
       console.log('refuse: ' + destination + ' is scheduled for removal by ' + record.removalOwner);
+      console.log('  apply deletes this path on every run, so an edit made here would be lost');
+      console.log('  Next: drop ' + destination + ' from the removal ' + record.removalOwner + ' lists in ' +
+        shellPath(ctx.manifestPath) + ', then ' + nextEngine(root, 'apply').slice('Next: '.length));
       return EXIT_CONFLICT;
     }
     if (!pathExists(record.destinationPath)) continue;
@@ -4610,6 +5678,11 @@ function commandGuard(ctx, inputPath) {
     const source = sourceRelative(ctx, record.sourcePath);
     console.log('refuse: ' + destination + ' is owned by ' + ctx.overlayLabel + '/' + source +
       '; edit the overlay, then run ' + ENGINE_COMMAND + ' apply');
+    console.log('  apply writes the overlay copy over this path, so it would overwrite an edit made here');
+    // The overlay copy is named by its absolute path: a relative one reads as a
+    // path inside the tree, which a folder beside the tree is not.
+    console.log('  Next: edit ' + shellPath(path.join(ctx.overlayRoot, source)) + ', then ' +
+      nextEngine(root, 'apply').slice('Next: '.length));
     return EXIT_CONFLICT;
   }
   const refusal = strictWriteRefusal(ctx, manifest, inputPath);
@@ -4756,7 +5829,10 @@ function repinSettings(manifest) {
   }
   const listOf = (key, fallback) => {
     const value = settings[key] === undefined ? fallback : settings[key];
-    if (!Array.isArray(value)) throw new Error(`repin.${key} must be a list of paths`);
+    if (!Array.isArray(value)) {
+      throw new Error(withRemedy(`repin.${key} must be a list of paths`, null,
+        `Next: set "repin": {"${key}": ["<path>"]} in ${MANIFEST_FILE}, each path relative to the tree, then rerun`));
+    }
     return value.map((item) => normalizedRelative(item, 'repin.' + key));
   };
   const runtimeFolders = listOf('runtimeFolders', DEFAULT_RUNTIME_FOLDERS);
@@ -4843,7 +5919,7 @@ function managedPathTest(ctx, manifest) {
     if (entry.scope === 'directory') {
       prefixes.push(destination);
     } else if (entry.scope === 'skill-root') {
-      for (const relativePath of [...(entry.replace || []), ...(entry.remove || [])]) {
+      for (const relativePath of [...manifestFolderPaths(entry.replace), ...manifestFolderPaths(entry.remove)]) {
         prefixes.push(path.posix.join(destination, relativePath));
       }
       // A retained file inside a replaced folder is the vendor's own, kept as found.
@@ -4908,7 +5984,10 @@ function unownedDrift(ctx, manifest, job, touched) {
     if (isUnderAny(relativePath, touched.delete)) continue;
     if (!pathExists(filePath)) continue;
     if (blobDifference(filePath, job.newBlobs.get(relativePath), format)) {
-      lines.push(`refuse: unowned ${relativePath} is not in the old pin, and the tree holds its own copy there`);
+      lines.push(`refuse: unowned ${relativePath} is not in the old pin, and the tree holds its own copy there` +
+        '\n  the re-pin copies upstream over this path, so the copy the tree holds would be lost' +
+        `\n  ${nextEngine(ctx.root, 'apply --adopt ' + shellPath(relativePath))}, or add it to repin.exclude in ` +
+        shellPath(ctx.manifestPath));
     }
   }
   return lines;
@@ -4927,11 +6006,14 @@ function treeShapeProblems(root, touched) {
   const lines = [];
   for (const relativePath of [...touched.copy, ...touched.delete]) {
     if (isEnvName(relativePath)) {
-      lines.push(`refuse: ${relativePath} is a .env path, which is never read; list it in repin.exclude`);
+      lines.push(`refuse: ${relativePath} is a .env path, which is never read; list it in repin.exclude` +
+        '\n  a .env file may hold a credential, so a re-pin never reads or copies one' +
+        `\n  Next: add "${relativePath}" to repin.exclude in ${MANIFEST_FILE}, then rerun the re-pin`);
       continue;
     }
     const parts = relativePath.split('/');
     let blockedBy = null;
+    let blockedAt = null;
     for (let depth = 1; depth < parts.length && !blockedBy; depth += 1) {
       const ancestor = parts.slice(0, depth).join('/');
       let stats;
@@ -4944,9 +6026,13 @@ function treeShapeProblems(root, touched) {
       if (stats.isDirectory()) continue;
       if (deletedFirst.has(ancestor)) break;
       blockedBy = `${ancestor}, which the tree holds as a ${stats.isSymbolicLink() ? 'link' : 'file'}`;
+      blockedAt = ancestor;
     }
     if (blockedBy) {
-      lines.push(`refuse: ${relativePath} sits below ${blockedBy}`);
+      lines.push(`refuse: ${relativePath} sits below ${blockedBy}` +
+        '\n  the copy writes this path into a folder, and that path is not one' +
+        `\n  Next: mv ${shellPath(path.join(root, blockedAt))} ${shellPath(path.join(root, blockedAt) + '.keep')}, then rerun the re-pin` +
+        `\n  or, to keep it where it is: add "${relativePath}" to repin.exclude in ${MANIFEST_FILE}, then rerun the re-pin`);
     } else if (isDirectory(path.join(root, relativePath))) {
       lines.push(`refuse: ${relativePath} is a folder in the tree where upstream ships a file; list it in repin.exclude to keep it`);
     }
@@ -4973,7 +6059,11 @@ function extractNewCommit(job, scratch, touched) {
     gitText(job.upstream, ['archive', '--format=tar', '-o', archive, job.newCommit, '--', ...presentRoots]);
     const result = spawnSync('tar', ['-xf', archive, '-C', target], { encoding: 'utf8' });
     if (result.error) throw result.error;
-    if (result.status !== 0) throw new Error('tar could not extract the archive: ' + (result.stderr || '').trim());
+    if (result.status !== 0) {
+      throw new Error(withRemedy('tar could not extract the archive: ' + (result.stderr || '').trim(),
+        'the re-pin reads the new commit from an archive of the upstream checkout',
+        `Next: check the upstream checkout (git -C ${shellPath(job.upstream)} status), then rerun the re-pin`));
+    }
     fs.rmSync(archive, { force: true });
   }
   const missing = touched.copy.filter((relativePath) => !pathExists(path.join(target, relativePath)));
@@ -5055,14 +6145,28 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
   for (const relativePath of enginePaths) {
     for (const leaf of backupLeaves(root, relativePath)) if (!groups.has(leaf)) groups.set(leaf, 'engine');
   }
-  // Apply removes a folder a folder entry stops shipping together with the caches
-  // left in it, and no record names a cache. Every cache below such an entry is
-  // backed up, not only those in folders the prune would take, so the backup
-  // cannot miss one if the prune's decision differs from a guess made here.
+  // Apply's prune takes a Python cache only together with a folder the entry no
+  // longer ships, and no record names a cache. So the caches under such a folder
+  // are backed up for a rollback to put back, by the same test the prune applies.
+  // That test also covers a folder a directory entry, or a skill-root entry below
+  // one of its replace paths, now ships as a file, which apply clears before the
+  // write. A folder a file entry replaces, or that a skill-root replace path itself
+  // now ships as a file, is its record key, so the engine paths above already take
+  // every cache below it.
+  // Any other cache stays where it is, and copying it would only grow the backup.
   for (const entry of manifest.overlays || []) {
     if ((entry.scope !== 'directory' && entry.scope !== 'skill-root') || typeof entry.destination !== 'string') continue;
-    for (const leaf of backupLeaves(root, path.posix.normalize(entry.destination))) {
-      if (leaf.split('/').some(isPythonCacheName) && !groups.has(leaf)) groups.set(leaf, 'engine');
+    const isUnshippedFolder = unshippedFolderTest(entry, ctx.overlayRoot);
+    const destination = path.posix.normalize(entry.destination);
+    for (const leaf of backupLeaves(root, destination)) {
+      if (groups.has(leaf) || !isPythonCachePath(leaf, false)) continue;
+      // The prune never takes a cache folder on its own, only an ordinary folder above it.
+      const parts = path.posix.relative(destination, leaf).split('/');
+      for (let depth = 1; depth < parts.length && parts[depth - 1] !== '__pycache__'; depth += 1) {
+        if (!isUnshippedFolder(parts.slice(0, depth).join('/'))) continue;
+        groups.set(leaf, 'engine');
+        break;
+      }
     }
   }
 
@@ -5091,7 +6195,8 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
       return false;
     }
     if (isEnvName(relativePath) || !stats.isFile()) {
-      throw new Error('refusing to back up ' + relativePath + (stats.isFile() ? ', a .env path' : ', which is not a file or a link'));
+      throw new Error('refusing to back up ' + relativePath + (stats.isFile() ? ', a .env path' : ', which is not a file or a link') +
+        `\n  Next: add "${relativePath}" to repin.exclude in ${MANIFEST_FILE}, then rerun the re-pin`);
     }
     const buffer = fs.readFileSync(filePath);
     writeFile(path.join(backupDir, relativePath), buffer, 0o600);
@@ -5149,6 +6254,16 @@ function copyUpstreamEntry(fromPath, toPath) {
   fs.chmodSync(toPath, stats.mode & 0o777);
 }
 
+// A node of the manifest read as text. Parsing and walking it name no file, so
+// a failure is prefixed with the manifest's path and given its why and Next.
+function manifestNodeAt(ctx, text, keys, why, next) {
+  try {
+    return nodeAtPath(parseJsonSource(text), keys);
+  } catch (error) {
+    throw new Error(withRemedy(`${shellPath(ctx.manifestPath)}: ${error.message}`, why, next));
+  }
+}
+
 /**
  * Point the manifest's pin at the new commit, changing only that value's text.
  * @param {object} ctx Engine context.
@@ -5156,8 +6271,13 @@ function copyUpstreamEntry(fromPath, toPath) {
  */
 function writePin(ctx, commit) {
   const text = fs.readFileSync(ctx.manifestPath, 'utf8');
-  const node = nodeAtPath(parseJsonSource(text), ['pin', 'commit']);
-  if (node.type !== 'string') throw new Error('the manifest pin.commit is not a string');
+  const node = manifestNodeAt(ctx, text, ['pin', 'commit'], 'the re-pin writes the new commit into pin.commit',
+    `Next: set "pin": {"commit": ${JSON.stringify(commit)}} in ${shellPath(ctx.manifestPath)}, then ` +
+    nextEngine(ctx.root, 'status').slice('Next: '.length));
+  if (node.type !== 'string') {
+    throw new Error(withRemedy('the manifest pin.commit is not a string', 'the re-pin writes the new commit into that value',
+      `Next: set "pin": {"commit": "<commit>"} as a string in ${shellPath(ctx.manifestPath)}, then rerun the re-pin`));
+  }
   writeFileAtomic(ctx.manifestPath, text.slice(0, node.start) + JSON.stringify(commit) + text.slice(node.end));
 }
 
@@ -5363,7 +6483,7 @@ function upstreamLosses(ctx, manifest, job, touched) {
       const sourceDir = path.join(ctx.overlayRoot, entry.source);
       if (!isDirectory(sourceDir)) continue;
       const carried = walkTree(sourceDir);
-      const isKept = (rel) => carried.has(rel) || rel.split('/').some(isPythonCacheName);
+      const isKept = (rel) => carried.has(rel) || isPythonCachePath(rel, false);
       for (const relativePath of removedUpstreamChanges(job, touched, destination, isKept)) {
         const how = job.oldBlobs.has(relativePath) ? 'changed' : 'added';
         losses.push({
@@ -5384,7 +6504,7 @@ function upstreamLosses(ctx, manifest, job, touched) {
       for (const folder of folders) {
         const carried = walkTree(path.join(sourceDir, folder));
         const isKept = (rel) => carried.has(rel) || retained.has(path.posix.join(folder, rel)) ||
-          rel.split('/').some(isPythonCacheName);
+          isPythonCachePath(rel, false);
         for (const relativePath of removedUpstreamChanges(job, touched, path.posix.join(destination, folder), isKept)) {
           const how = job.oldBlobs.has(relativePath) ? 'changed' : 'added';
           losses.push({
@@ -5522,17 +6642,24 @@ function repinUnderLock(ctx, job, report) {
   const blockers = analysis.records.filter((record) => BLOCKING_STATES.has(record.state));
   if (blockers.length > 0) {
     for (const record of blockers) console.log(problemLine(ctx, record));
-    return refuseRepin([`refuse: status shows ${blockers.length} live or conflicting destination(s); resolve them before a re-pin`]);
+    return refuseRepin([`refuse: status shows ${blockers.length} live or conflicting destination(s); resolve them before a re-pin`,
+      '  a re-pin copies upstream over these paths, so the edits they hold would be lost',
+      '  ' + nextEngine(ctx.root, 'status') + ', fix each line above, then rerun the re-pin']);
   }
   // A refused overlay would block the apply that follows the copy, after the copy
   // had already written, so it stops the run before the backup instead.
   if (analysis.blocked.length > 0) {
     const lines = analysis.blocked.flatMap((plan) => plan.problems.map((problem) => `blocked ${plan.entry.id}: refused ${problem}`));
     lines.push(`refuse: status shows ${analysis.blocked.length} refused overlay(s); fix them before a re-pin`);
+    lines.push('  the apply after the copy would stop on them, with the copy already written');
+    lines.push('  ' + nextEngine(ctx.root, 'status') + ', fix each blocked line above, then rerun the re-pin');
     return refuseRepin(lines);
   }
   if (isUnderAny(ctx.overlayLabel, job.settings.roots)) {
-    return refuseRepin([`refuse: the overlay folder ${ctx.overlayLabel} sits inside a folder the re-pin copies`]);
+    return refuseRepin([`refuse: the overlay folder ${ctx.overlayLabel} sits inside a folder the re-pin copies`,
+      '  the copy would overwrite the overlays it is meant to put back',
+      `  Next: move ${ctx.overlayLabel} outside ${job.settings.roots.join(', ')} and point the overlay settings at it, ` +
+      'then rerun the re-pin']);
   }
 
   job.oldBlobs = listBlobs(job.upstream, job.oldCommit, job.settings.roots);
@@ -5541,6 +6668,8 @@ function repinUnderLock(ctx, job, report) {
   const drift = unownedDrift(ctx, manifest, job, touched);
   if (drift.length > 0) {
     drift.push(`  move each edit into an overlay, list the path in repin.exclude, or restore it from ${job.oldPin}`);
+    drift.push(`  Next: bring each path above under an overlay (${nextEngine(ctx.root, 'apply --adopt <path>')
+      .slice('Next: '.length)}), or add it to repin.exclude in ${shellPath(ctx.manifestPath)}, then rerun the re-pin`);
     return refuseRepin(drift);
   }
   const shape = treeShapeProblems(ctx.root, touched);
@@ -5554,6 +6683,7 @@ function repinUnderLock(ctx, job, report) {
       !touched.copy.includes(entry.destination) && !touched.delete.includes(entry.destination))
     .map((entry) => planOverlay(entry, ctx, {
       acceptedSha256: state.files,
+      engineLinks: engineMadeLinks(manifest, state),
       recordedItems: (state.items || {})[entry.destination] || [],
       recordedSets: (state.sets || {})[entry.destination] || [],
       recordedKeys: (state.keys || {})[entry.destination] || [],
@@ -5584,6 +6714,7 @@ function repinUnderLock(ctx, job, report) {
     report.delete = touched.delete.length;
     let isClean = false;
     let failure = null;
+    let stage = 'backup';
     try {
       const backup = writeBackup(ctx, manifest, analysis, touched, runDir, {
         runId,
@@ -5593,10 +6724,15 @@ function repinUnderLock(ctx, job, report) {
       });
       console.log(`backup of ${backup.entries.filter((entry) => entry.existed).length} paths in ${ctx.overlayLabel}/${RUNS_FOLDER}/${runId}`);
       console.log(`copy ${touched.copy.length} paths, delete ${touched.delete.length} paths`);
+      stage = 'write';
       isClean = repinWrites(ctx, job, touched, newTree, report);
     } catch (error) {
       failure = error;
       console.log('error: ' + error.message);
+      console.log(stage === 'backup'
+        ? '  the re-pin failed in its backup step, before it wrote the tree'
+        : '  the re-pin failed in its write step, after the backup of every path it changes');
+      if (job.isStage) console.log('  Next: fix the error above, then rerun the re-pin into an empty stage folder');
     }
     if (!job.isStage && !isClean) console.log(rollbackCommand(ctx, runId));
     // A stage that printed a blocked line or a miss is not a rehearsal that
@@ -5617,6 +6753,8 @@ function repinUnderLock(ctx, job, report) {
  * Why a stage folder cannot be used, or null when it can.
  * @param {string} root Live tree root.
  * @param {string} stageDir Requested stage folder.
+ * @param {string|null} overlayRoot Overlay folder when it sits beside the tree,
+ *   or null when it sits inside the tree.
  * @returns {string|null}
  */
 function stageFolderProblem(root, stageDir, overlayRoot) {
@@ -5681,15 +6819,27 @@ function copyTreeForStage(source, destination, lockPath) {
  */
 function repinRun(liveCtx, options, report) {
   const upstream = path.resolve(options.upstream);
-  if (!isDirectory(upstream)) return refuseRepin(['refuse: the upstream is not a folder: ' + upstream]);
+  if (!isDirectory(upstream)) {
+    return refuseRepin(['refuse: the upstream is not a folder: ' + upstream,
+      '  the re-pin reads the new commit from a local git checkout of the upstream',
+      '  Next: pass --upstream the folder of that checkout, then rerun the re-pin']);
+  }
   const manifest = loadManifest(liveCtx);
   const oldPin = manifest.pin && typeof manifest.pin.commit === 'string' ? manifest.pin.commit : '';
-  if (!oldPin) return refuseRepin(['refuse: the overlay manifest has no pin.commit']);
+  if (!oldPin) {
+    return refuseRepin(['refuse: the overlay manifest has no pin.commit',
+      '  the re-pin compares the old pin with the new commit, so it needs the old one',
+      `  Next: set "pin": {"commit": "<commit the tree was copied from>"} in ${shellPath(liveCtx.manifestPath)}, then rerun the re-pin`]);
+  }
   const settings = repinSettings(manifest);
   const oldCommit = resolveCommit(upstream, oldPin);
-  if (!oldCommit) return refuseRepin([`refuse: the pinned ${oldPin} is not a commit in ${upstream}`]);
+  const fetchFirst = [
+    '  the re-pin compares the old pin with the new commit, so the upstream checkout must hold both',
+    `  Next: git -C ${shellPath(upstream)} fetch, then rerun the re-pin`,
+  ];
+  if (!oldCommit) return refuseRepin([`refuse: the pinned ${oldPin} is not a commit in ${upstream}`, ...fetchFirst]);
   const newCommit = resolveCommit(upstream, options.to);
-  if (!newCommit) return refuseRepin([`refuse: ${options.to} is not a commit in ${upstream}`]);
+  if (!newCommit) return refuseRepin([`refuse: ${options.to} is not a commit in ${upstream}`, ...fetchFirst]);
   report.from = oldCommit;
   report.to = newCommit;
   if (newCommit === oldCommit) {
@@ -5710,7 +6860,12 @@ function repinRun(liveCtx, options, report) {
     // name, so the staged setting file reaches the staged overlay folder.
     const overlayOutside = liveCtx.overlayOutside;
     const problem = stageFolderProblem(liveCtx.root, stageDir, overlayOutside ? liveCtx.overlayRoot : null);
-    if (problem) return refuseRepin([problem]);
+    if (problem) {
+      return refuseRepin([problem,
+        '  a stage is a full copy of the tree, written only into an empty folder outside the tree and the overlay folder',
+        '  ' + nextEngine(liveCtx.root, `repin --upstream ${shellPath(upstream)} --to ${shellPath(options.to)} ` +
+          '--stage <empty folder outside the tree>')]);
+    }
     // Reading the tree while another run writes it would stage a torn copy, so a
     // lock that may still have a live owner is refused here as every other mode
     // refuses it. A lock whose writer has ended on this host is only leftover
@@ -5720,7 +6875,9 @@ function repinRun(liveCtx, options, report) {
       const current = readBufferOrNull(liveCtx.lockPath);
       const owner = (current || Buffer.from('(empty lock file)')).toString('utf8').trim();
       if (!current || !isLockOwnerGone(owner)) {
-        return refuseRepin(['refuse: the overlay lock is held: ' + owner, '  remove ' + liveCtx.lockPath + ' by hand once that run has ended']);
+        return refuseRepin(['refuse: the overlay lock is held: ' + owner,
+          '  another run may still be writing the tree, so a stage copied now could be torn',
+          '  ' + lockRemedy(liveCtx.lockPath, owner)]);
       }
       console.log('note: the overlay lock belongs to a run that has ended: ' + owner);
     }
@@ -5779,7 +6936,12 @@ function rollbackUnderLock(ctx, runDir, backup) {
     }
     restored.push({ entry, relativePath, base, buffer });
   }
-  if (problems.length > 0) return refuseRepin(problems);
+  if (problems.length > 0) {
+    return refuseRepin([...problems,
+      '  the backup changed after the run wrote it, so restoring from it could put back the wrong bytes',
+      `  Next: compare each path above with ${shellPath(runDir)} and put it back by hand, then ` +
+      nextEngine(ctx.root, 'status').slice('Next: '.length)]);
+  }
 
   let removed = 0;
   const created = backup.entries.filter((entry) => !entry.existed)
@@ -5824,13 +6986,22 @@ function rollbackUnderLock(ctx, runDir, backup) {
 }
 
 function rollbackRun(ctx, runId) {
-  if (!RUN_ID_PATTERN.test(runId)) return refuseRepin(['refuse: not a run id: ' + runId]);
+  const listRuns = `  Next: ls ${shellPath(path.join(ctx.overlayRoot, RUNS_FOLDER))}, then rerun ` +
+    `${ENGINE_COMMAND} repin --rollback <run-id> from ${shellPath(ctx.root)}`;
+  if (!RUN_ID_PATTERN.test(runId)) {
+    return refuseRepin(['refuse: not a run id: ' + runId,
+      '  a run id is the name of a folder a re-pin wrote under ' + ctx.overlayLabel + '/' + RUNS_FOLDER, listRuns]);
+  }
   const runDir = path.join(ctx.overlayRoot, RUNS_FOLDER, runId);
   const buffer = readBufferOrNull(path.join(runDir, 'backup.json'));
-  if (!buffer) return refuseRepin([`refuse: no backup for run ${runId} in ${ctx.overlayLabel}/${RUNS_FOLDER}`]);
+  if (!buffer) {
+    return refuseRepin([`refuse: no backup for run ${runId} in ${ctx.overlayLabel}/${RUNS_FOLDER}`,
+      '  only a run that wrote the tree keeps a backup, and rollback restores from it', listRuns]);
+  }
   const backup = JSON.parse(buffer.toString('utf8'));
   if (backup.schemaVersion !== 1 || !Array.isArray(backup.entries)) {
-    return refuseRepin([`refuse: the backup for run ${runId} has an unsupported shape`]);
+    return refuseRepin([`refuse: the backup for run ${runId} has an unsupported shape`,
+      '  rollback reads backup.json only in the shape a re-pin writes it', listRuns]);
   }
   return withLock(ctx, 'overlay-engine repin rollback', () => rollbackUnderLock(ctx, runDir, backup));
 }
@@ -6103,8 +7274,11 @@ function adoptionId(manifest, key) {
  */
 function appendOverlayEntry(ctx, entry) {
   const text = fs.readFileSync(ctx.manifestPath, 'utf8');
-  const list = nodeAtPath(parseJsonSource(text), ['overlays']);
-  if (list.type !== 'array') throw new Error('the manifest overlays value is not a list');
+  const fixList = `Next: make "overlays" in ${shellPath(ctx.manifestPath)} a list of entries, then rerun the adopt`;
+  const list = manifestNodeAt(ctx, text, ['overlays'], 'adopt appends its entry to that list', fixList);
+  if (list.type !== 'array') {
+    throw new Error(withRemedy('the manifest overlays value is not a list', 'adopt appends its entry to that list', fixList));
+  }
   const last = list.items[list.items.length - 1];
   const indent = (last && indentBefore(text, last.start)) || '    ';
   const body = JSON.stringify(entry, null, 2).split('\n').join('\n' + indent);
@@ -6594,16 +7768,24 @@ function manifestFolderPath(value) {
   return path.posix.normalize(value).replace(/\/+$/, '');
 }
 
+// Each path of a replace or remove list in its normal form, so a trailing slash
+// names the same folder as the path written without one.
+function manifestFolderPaths(list) {
+  return (Array.isArray(list) ? list : []).filter((value) => typeof value === 'string').map(manifestFolderPath);
+}
+
 /**
  * Build the test for whether a README in the overlay folder ships. It ships
  * when an entry names it as a copy the engine reads, when it sits inside a
  * directory entry's folder, or when it sits on a path a skill-root entry's
- * replace list names; nothing else in the overlay folder is ever applied.
+ * replace list names, unless the entry's retained list keeps that path inside
+ * a replaced folder; nothing else in the overlay folder is ever applied.
  * @param {object} manifest Loaded overlay manifest.
  * @returns {(relativePath: string) => boolean} Takes a path relative to the overlay folder.
  */
 function readmeShipTest(manifest) {
   const exact = new Set();
+  const retainedKept = new Set();
   const folders = [];
   for (const entry of manifest.overlays || []) {
     // A marked-section entry reads its fragment and base as well as its source,
@@ -6615,17 +7797,31 @@ function readmeShipTest(manifest) {
     const source = manifestFolderPath(entry.source);
     if (entry.scope === 'directory') folders.push(source);
     if (entry.scope === 'skill-root') {
+      const replacedPaths = [];
       for (const replaced of entry.replace || []) {
-        if (typeof replaced === 'string') folders.push(path.posix.join(source, manifestFolderPath(replaced)));
+        if (typeof replaced !== 'string') continue;
+        replacedPaths.push(manifestFolderPath(replaced));
+        folders.push(path.posix.join(source, manifestFolderPath(replaced)));
+      }
+      // A retained path inside a replaced folder keeps the vendor's live bytes,
+      // so the overlay folder's file at that path is never applied. A retained
+      // path the entry replaces directly is still written from the source.
+      for (const item of entry.retained || []) {
+        if (!item || typeof item.path !== 'string') continue;
+        const kept = manifestFolderPath(item.path);
+        if (replacedPaths.some((prefix) => kept !== prefix && kept.startsWith(prefix + '/'))) {
+          retainedKept.add(path.posix.join(source, kept));
+        }
       }
     }
   }
-  return (relativePath) => exact.has(relativePath) || isUnderAny(relativePath, folders);
+  return (relativePath) => !retainedKept.has(relativePath) &&
+    (exact.has(relativePath) || isUnderAny(relativePath, folders));
 }
 
 /**
  * List every folder the docs leg reads, in sorted order. The engine's own run
- * folders, dot folders and node_modules hold no overlay content, and a link is
+ * folders, dot folders, node_modules and __pycache__ hold no overlay content, and a link is
  * never followed, so a loop or a link out of the folder cannot widen the walk.
  * @param {string} overlayRoot The overlay folder.
  * @returns {{relative: string, readmeNames: string[]}[]} `relative` is '' for the overlay folder
@@ -6796,6 +7992,7 @@ function commandPreCommit(ctx) {
   const manifest = loadManifest(ctx);
   if (!isStrictWrites(manifest)) {
     console.log('allow: strictWrites is off in the overlay manifest, so nothing was checked');
+    console.log(`  to refuse unowned vendored commits, set "strictWrites": true in ${ctx.overlayLabel}/${MANIFEST_FILE}`);
     return EXIT_OK;
   }
   const unowned = stagedUnownedChanges(ctx, manifest);
@@ -6803,11 +8000,21 @@ function commandPreCommit(ctx) {
     console.log('allow');
     return EXIT_OK;
   }
+  const gitRoot = shellPath(ctx.root);
   for (const change of unowned) {
-    console.log(`refuse: staged ${change.status === 'D' ? 'deletion of' : 'change to'} ${change.key} is under a vendored root and no overlay owns it`);
+    const isDeletion = change.status === 'D';
+    const key = shellPath(change.key);
+    console.log(`refuse: staged ${isDeletion ? 'deletion of' : 'change to'} ${change.key} is under a vendored root and no overlay owns it`);
+    if (isDeletion) {
+      console.log('  a re-pin copies the vendored file back, so the next re-pin would undo this deletion');
+      console.log(`  Next: put it back: git -C ${gitRoot} restore --staged --worktree -- ${key}`);
+    } else {
+      console.log('  a re-pin copies upstream over this path, so the next re-pin would overwrite this change');
+      console.log('  ' + nextEngine(ctx.root, `apply --adopt ${key}`));
+      console.log(`    or drop it: git -C ${gitRoot} restore --staged -- ${key}`);
+    }
   }
-  console.log(`  bring each path under an overlay with ${ENGINE_COMMAND} apply --adopt <path>, add a generator's output to ` +
-    'the manifest\'s generated list, or unstage it');
+  console.log('  A path a generator writes belongs on the overlay manifest\'s generated list instead.');
   return EXIT_CONFLICT;
 }
 
@@ -6868,10 +8075,15 @@ function planRelayout(ctx, manifest, groups) {
   const moves = [];
   const skipped = [];
   const claimed = new Map();
+  const manifestPath = shellPath(ctx.manifestPath);
+  const rerun = nextEngine(ctx.root, 'apply --relayout').slice('Next: '.length);
+  const sourcePath = (relative) => shellPath(path.join(ctx.overlayRoot, relative));
   for (const group of groups) {
     if (group.clashes) {
       const destinations = [group.to, ...group.clashes].join(' and ');
-      problems.push(`refuse: ${group.from} is claimed by ${destinations}; one copy cannot move to both`);
+      problems.push(withRemedy(`refuse: ${group.from} is claimed by ${destinations}; one copy cannot move to both`,
+        'the entries that share this copy map it to different layout paths',
+        `Next: give each of those entries in ${manifestPath} its own source, then ${rerun}`));
       continue;
     }
     const from = containedOverlayPath(ctx, group.from);
@@ -6882,24 +8094,32 @@ function planRelayout(ctx, manifest, groups) {
     }
     if (isUnderRootSkilled(group.to)) {
       const ids = [...new Set(group.records.map((record) => record.overlay))].join(', ');
-      problems.push(`refuse: ${ids}: ${group.from} belongs at ${group.to}, under root/skilled, which holds no copy; ` +
-        'change the destination or remove the entry');
+      problems.push(withRemedy(`refuse: ${ids}: ${group.from} belongs at ${group.to}, under root/skilled, which holds no copy; ` +
+        'change the destination or remove the entry', '',
+        `Next: change the destination of ${ids} in ${manifestPath}, or remove the entry, then ${rerun}`));
       continue;
     }
     // A README no entry reaches only documents the folder, so the refusal names
     // it as that rather than as a copy already in place.
     if (pathExists(to.absolute) && README_NAMES.includes(path.posix.basename(to.relative)) &&
       isFile(to.absolute) && !ships(to.relative)) {
-      problems.push(`refuse: a documentation-only README sits at ${ctx.overlayLabel}/${to.relative}: ` +
-        'merge it into the overlay copy or move it, then relayout');
+      problems.push(withRemedy(`refuse: a documentation-only README sits at ${ctx.overlayLabel}/${to.relative}: ` +
+        'merge it into the overlay copy or move it, then relayout', '',
+        `Next: merge ${shellPath(to.absolute)} into ${shellPath(from.absolute)} or move it out of the way, then ${rerun}`));
       continue;
     }
     if (pathExists(to.absolute)) {
-      problems.push(`refuse: ${to.relative} already exists in ${ctx.overlayLabel}`);
+      problems.push(withRemedy(`refuse: ${to.relative} already exists in ${ctx.overlayLabel}`,
+        'relayout never writes over a file that sits at a layout path',
+        `Next: move ${shellPath(to.absolute)} aside once you have compared it with ${shellPath(from.absolute)}, ` +
+        `then ${rerun}`));
       continue;
     }
     if (!pathExists(from.absolute)) {
-      problems.push(`refuse: ${from.relative} does not exist in ${ctx.overlayLabel}`);
+      problems.push(withRemedy(`refuse: ${from.relative} does not exist in ${ctx.overlayLabel}`,
+        'relayout moves a copy that is there, and the manifest names one that is not',
+        `Next: restore ${sourcePath(from.relative)}, or point the entry at the copy it keeps in ${manifestPath}, ` +
+        `then ${rerun}`));
       continue;
     }
     // Moving a folder carries the copies inside it, so a second move out of that
@@ -6912,7 +8132,9 @@ function planRelayout(ctx, manifest, groups) {
       continue;
     }
     if (claimed.has(to.relative)) {
-      problems.push(`refuse: ${claimed.get(to.relative)} and ${from.relative} both belong at ${to.relative}`);
+      problems.push(withRemedy(`refuse: ${claimed.get(to.relative)} and ${from.relative} both belong at ${to.relative}`,
+        'two entries write one destination, so their copies would share one layout path',
+        `Next: keep one entry for that destination in ${manifestPath}, then ${rerun}`));
       continue;
     }
     claimed.set(to.relative, from.relative);
@@ -7006,11 +8228,19 @@ function relayoutLinkTargets(ctx, moves, manifest) {
  */
 function planRelayoutManifest(ctx, fieldEdits, linkEdits) {
   const text = fs.readFileSync(ctx.manifestPath, 'utf8');
-  const document = parseJsonSource(text);
+  // The caller prints the why and Next under this refusal, so only the path is added.
+  const named = (read) => {
+    try {
+      return read();
+    } catch (error) {
+      throw new Error(`${shellPath(ctx.manifestPath)}: ${error.message}`);
+    }
+  };
+  const document = named(() => parseJsonSource(text));
   const edits = [];
   if (fieldEdits.length > 0) {
     const entries = new Map();
-    for (const node of nodeAtPath(document, ['overlays']).items) {
+    for (const node of named(() => nodeAtPath(document, ['overlays'])).items) {
       const id = node.type === 'object' ? findMember(node, 'id') : undefined;
       if (id && id.value.type === 'string') entries.set(id.value.value, node);
     }
@@ -7027,7 +8257,7 @@ function planRelayoutManifest(ctx, fieldEdits, linkEdits) {
   }
   if (linkEdits.length > 0) {
     const links = new Map();
-    for (const node of nodeAtPath(document, ['layoutLinks']).items) {
+    for (const node of named(() => nodeAtPath(document, ['layoutLinks'])).items) {
       const linkPath = node.type === 'object' ? findMember(node, 'path') : undefined;
       if (linkPath && linkPath.value.type === 'string') links.set(linkPath.value.value, node);
     }
@@ -7188,6 +8418,8 @@ function relayoutUnderLock(ctx, manifest) {
     manifestText = planRelayoutManifest(ctx, fieldEdits, linkEdits);
   } catch (error) {
     console.log('refuse: ' + error.message);
+    console.log('  the relayout stopped before its first rename, so nothing moved');
+    console.log('  ' + nextEngine(ctx.root, 'status') + ', fix the manifest it names, then rerun apply --relayout');
     return EXIT_ERROR;
   }
 
@@ -7395,7 +8627,7 @@ function main(argv) {
   } catch (error) {
     // A JSON caller parses stdout, so the error has to arrive there as JSON too.
     if (options.isJson) console.log(JSON.stringify({ result: 'ERROR', error: error.message }, null, 2));
-    else console.error('[overlay-engine] ' + error.message);
+    else console.error('[overlay-engine] ' + error.message + (error.remedy ? '\n' + error.remedy : ''));
     return EXIT_ERROR;
   }
 }
@@ -7431,6 +8663,7 @@ module.exports = {
   planLayoutLinks,
   planOverlay,
   regenerate,
+  treeShapeProblems,
   resolveOverlayDir,
   resolveRemoveRootPath,
   runCheck,

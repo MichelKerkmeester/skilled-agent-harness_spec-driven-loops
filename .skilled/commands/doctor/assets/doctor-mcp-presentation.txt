@@ -8,9 +8,9 @@ When `$ARGUMENTS` has no positional sub-action, ask:
 
 ```text
 What do you want to do with Code Mode?
-   1) Install or configure
-   2) Debug and repair
-   X) Cancel
+   1) Install or configure   (checks the build, .utcp_config.json and runtime wiring, then asks before each change)
+   2) Debug and repair       (runs the health check, and with --fix offers each repair one at a time)
+   X) Cancel                 (nothing changes)
 ```
 
 | Answer | Result |
@@ -22,7 +22,8 @@ What do you want to do with Code Mode?
 For an unknown sub-action, show:
 
 ```text
-Unknown sub-action '[sub_action]'. Valid: install, debug. Try `/doctor:mcp install` or `/doctor:mcp debug`.
+Unknown sub-action '[sub_action]'. Valid: install, debug.
+Next: /doctor:mcp install, or /doctor:mcp debug
 STATUS=FAIL ERROR="unknown_sub_action"
 ```
 
@@ -91,6 +92,8 @@ A) Install missing dependencies and build when needed
 B) Review each proposed change individually
 C) Show the report and stop
 D) Cancel
+
+A and B still ask before each install, build or config edit. C and D write nothing.
 ```
 
 Request explicit approval for each dependency install, build, `.utcp_config.json` edit, or runtime config edit. When no runtime is selected, plan changes for all seven supported project configs; `--runtime` narrows that plan. Preserve existing manuals and unrelated config entries. Never request, display, or write credential values. Ask for a credential variable name only; the operator manages its value in root `.env` outside the workflow.
@@ -133,6 +136,7 @@ Proposed repair: [description]
 Command or file change: [repair]
 
 Apply this repair? [Y/n]
+Y runs it and then reruns the health check. n skips it and moves to the next finding.
 ```
 
 Do not repair credentials during debug. Report expected key names with present or missing status only. For each approved repair, rerun the JSON health check and report what changed.
@@ -165,6 +169,21 @@ Unvalidated configs: [paths or none]
 Next steps: [next_steps]
 STATUS=[OK|CANCELLED|FAIL]
 ```
+
+## Failure
+
+```text
+DOCTOR TARGET FAILED
+Target: [install|debug]
+Step: [the phase that stopped the run]
+Error: [message]
+Why: [the reason the script printed under the error, else what the failed step checks]
+Changed: [the approved changes applied before the failure, or none]
+Next: [the script's own Next: line when it printed one, else the manual resolution from the troubleshooting table]
+STATUS=FAIL ERROR="[message]"
+```
+
+Use this when `mcp-doctor.sh` exits 3, its JSON cannot be parsed or an approved change fails. Show the script's stderr and its `Next:` line as printed.
 
 ## Examples
 

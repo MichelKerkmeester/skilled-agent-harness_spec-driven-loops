@@ -31,6 +31,17 @@ const ACTION_ORDER = {
   refuse: 5,
 };
 class UsageError extends Error {}
+
+const SCRIPT_COMMAND = 'node .skilled/commands/doctor/scripts/symlink-engine.cjs';
+
+// A refusal names the exact command to run next; main prints it on a Next: line.
+function withNext(error, next) {
+  return Object.assign(error, { next });
+}
+
+function shellWord(value) {
+  return /^[\w./-]+$/u.test(value) ? value : "'" + value.replace(/'/gu, "'\\''") + "'";
+}
 class PreconditionError extends Error {}
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -169,7 +180,8 @@ function parseArgs(argv) {
     throw new UsageError('--root is required for ' + options.command);
   }
   if (options.command === 'apply' && !options.planDigest) {
-    throw new UsageError('--plan-digest is required for apply');
+    throw withNext(new UsageError('--plan-digest is required for apply'),
+      SCRIPT_COMMAND + ' plan --root ' + shellWord(options.root));
   }
   if (options.command === 'unlink' && !options.run) {
     throw new UsageError('--run is required for unlink');
@@ -270,12 +282,14 @@ function resolveRoots(rootInput, sourceInput) {
   let source;
   try {
     if (!rootInput || !fs.statSync(rootInput).isDirectory()) {
-      throw new PreconditionError('root is missing or is not a directory: ' + rootInput);
+      throw withNext(new PreconditionError('root is missing or is not a directory: ' + rootInput),
+      SCRIPT_COMMAND + ' check --root <existing-directory>');
     }
     root = fs.realpathSync(rootInput);
   } catch (error) {
     if (error instanceof PreconditionError) throw error;
-    throw new PreconditionError('root is missing or is not a directory: ' + rootInput);
+    throw withNext(new PreconditionError('root is missing or is not a directory: ' + rootInput),
+      SCRIPT_COMMAND + ' check --root <existing-directory>');
   }
   try {
     if (!fs.statSync(sourceInput).isDirectory()) {
@@ -1833,11 +1847,8 @@ function main(argv) {
     if (wantsJson) {
       process.stdout.write(JSON.stringify({ error: error.message }) + '\n');
     }
-    if (error instanceof UsageError || error instanceof PreconditionError) {
-      process.stderr.write('ERROR: ' + error.message + '\n');
-      return 2;
-    }
-    process.stderr.write('ERROR: ' + error.message + '\n');
+    const next = error.next || (error instanceof UsageError ? SCRIPT_COMMAND + ' check --root .' : null);
+    process.stderr.write('ERROR: ' + error.message + '\n' + (next ? 'Next: ' + next + '\n' : ''));
     return 2;
   }
 }

@@ -359,11 +359,15 @@ async function main(argv) {
     const opts = parseArgs(argv);
     const mode = opts.positional[0];
     const modes = { status, init, set, disable, check };
-    if (!modes[mode]) throw new RefusedError('usage: git-standards.cjs status|init|set|disable|check ... (see the header)');
+    if (!modes[mode]) {
+      throw Object.assign(new RefusedError('usage: git-standards.cjs status|init|set|disable|check ... (see the header)'),
+        { next: 'node .skilled/commands/doctor/scripts/git-standards.cjs status' });
+    }
     return modes[mode](await context(opts), opts);
   } catch (err) {
     const message = err instanceof RefusedError ? err.message : `unexpected: ${err.message}`;
     process.stderr.write(`git-standards: ${message}\n`);
+    if (err.next) process.stderr.write(`Next: ${err.next}\n`);
     process.stdout.write(`STATUS=FAIL ERROR="${message.replace(/"/g, "'")}"\n`);
     return 2;
   }

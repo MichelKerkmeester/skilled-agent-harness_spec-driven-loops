@@ -26,6 +26,9 @@ TEST_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPTS_DIR="$(cd "$TEST_DIR/.." && pwd)"
 DOCTOR_DIR="$(cd "$SCRIPTS_DIR/.." && pwd)"
 REPO_DIR="$(cd "$DOCTOR_DIR/../../.." && pwd)"
+# check() reads this inside its eval'd condition.
+# shellcheck disable=SC2034
+NEXT_HELP="$(printf 'Next: from %q: bash .skilled/commands/doctor/scripts/route-validate.sh --help' "$REPO_DIR")"
 SCRIPT="$SCRIPTS_DIR/route-validate.sh"
 WORK="$(mktemp -d "${TMPDIR:-/tmp}/route-validate-test.XXXXXX")"
 trap 'rm -rf "$WORK"' EXIT
@@ -105,6 +108,7 @@ check "--help exits 0" '[[ "$RC" -eq 0 && "$OUT" == *"--self-test"* ]]'
 
 run_rv -- "$SCRIPT" --bogus
 check "an unknown argument exits 2" '[[ "$RC" -eq 2 && "$OUT" == *"--bogus"* ]]'
+check "an unknown argument names the next command and the folder to run it from" '[[ "$OUT" == *$'"'"'\n'"'"'"$NEXT_HELP"$'"'"'\n'"'"'* ]]'
 
 EMPTY_REPO="$(mktemp -d "$WORK/empty-repo.XXXXXX")"
 run_rv REPO_ROOT="$EMPTY_REPO" -- "$SCRIPT"

@@ -102,7 +102,7 @@ workflow:
       - "Render the presentation contract's restored result with the run directory, each path put back, each path removed, the re-read verdict and STATUS=OK."
       - "A no answered the question: render the cancelled result naming what was declined, state Changed: none and end with STATUS=CANCELLED ACTION=cancelled."
       - "A dry run: render the dry-run result with the plan and the dry-run line, and end with STATUS=OK."
-      - "A refusal or a failed restore stopped the run: render the failure result naming the phase and the engine's code, with STATUS=FAIL, and name the backup the engine kept."
+      - "A refusal or a failed restore stopped the run: render the failure result, with the script's Next: line as printed when it has one, naming the phase and the engine's code, with STATUS=FAIL, and name the backup the engine kept."
       - "End by saying the operator commits nothing: a restore returns the tree to a state it was already in, and the record stays where it is."
 
 # ─────────────────────────────────────────────────────────────────

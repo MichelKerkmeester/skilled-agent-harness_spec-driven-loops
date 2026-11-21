@@ -65,6 +65,11 @@ Current state:
 | `opencode-version-battery.test.cjs` | `opencode-version-battery.cjs`: the plugin, skill and command legs on v2, the MCP-prompt cases, the family skips, a binary on another major read as unknown, nested roots, the argument errors and the probe count |
 | `orphan-process-check.test.cjs` | `orphan-process-check.cjs`: elapsed-time and ps parsing, orphan classification, the `--json`, `--summary` and `--min-age-min` options, the exit codes for a scan that cannot run, and the guarded `--reap --yes` |
 | `test_audit_descriptions.py` | `audit_descriptions.py` |
+| `overlay-engine-*.test.cjs` | `overlay-engine.cjs`, one suite per area, named by its suffix: `sync`, `repin`, `strict-writes`, `shape-change`, `cache-skip`, `readmes`, `replay`, `fixes`, `follow-up` and `ux`, the last for the refusal wording |
+| `overlay-engine-fixtures.cjs` | The throwaway vendored trees, upstream checkouts and overlay folders the overlay suites build |
+| `doctor-overlay-contract.test.cjs` | Checks the `/doctor:overlay` router, workflows, presentation and route manifest against each other and the engine |
+| `symlink-engine.test.cjs` | `symlink-engine.cjs` against throwaway project roots |
+| `doctor-symlink-contract.test.cjs` | Checks the `/doctor:symlink` router, workflows and presentation against each other and the engine |
 
 The freshness panel suite lives at `.skilled/skills/system-skill-advisor/runtime/tests/doctor/skill-graph-freshness-panel.vitest.ts` because it runs on the advisor runtime's vitest.
 

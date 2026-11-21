@@ -233,7 +233,7 @@ function main(argv) {
   try {
     options = parseArgs(argv);
   } catch (error) {
-    process.stderr.write(`ERROR: ${error.message}\n${USAGE}\n`);
+    process.stderr.write(`ERROR: ${error.message}\nNext: node .skilled/commands/doctor/scripts/ci-scaffold.cjs\n${USAGE}\n`);
     return 2;
   }
   let loaded;
@@ -241,11 +241,12 @@ function main(argv) {
     loaded = loadProfile({ cliPath: options.profile, root: REPO_ROOT });
   } catch (error) {
     if (!(error instanceof ProfileError)) throw error;
-    process.stderr.write(`ERROR: ${error.message}\n`);
+    process.stderr.write(`ERROR: ${error.message}\nNext: make that change, then run node .skilled/commands/doctor/scripts/ci-scaffold.cjs\n`);
     return 3;
   }
   if (loaded.errors.length > 0) {
     for (const fault of loaded.errors) process.stderr.write(`ERROR: CI profile ${loaded.display}: ${fault.message}\n`);
+    process.stderr.write(`${loaded.errors.length > 1 ? '  ' : ''}Next: fix ${loaded.display}, then run node .skilled/commands/doctor/scripts/ci-scaffold.cjs\n`);
     return 3;
   }
   if (loaded.ignored) {
@@ -263,7 +264,7 @@ function main(argv) {
   try {
     values = slotValues(loaded.profile, options.group);
   } catch (error) {
-    process.stderr.write(`ERROR: ${error.message}\n`);
+    process.stderr.write(`ERROR: ${error.message}\nNext: node .skilled/commands/doctor/scripts/ci-scaffold.cjs --group=<one of the groups above>\n`);
     return 2;
   }
   const template = fs.readFileSync(path.join(ASSETS, options.job ? TEMPLATES.job : TEMPLATES.workflow), 'utf8');
@@ -271,7 +272,7 @@ function main(argv) {
     process.stdout.write(render(template, values));
   } catch (error) {
     if (!(error instanceof TemplateError)) throw error;
-    process.stderr.write(`ERROR: ${error.message}\n`);
+    process.stderr.write(`ERROR: ${error.message}\nNext: fix that marker in the CI template under .skilled/commands/doctor/assets, then run node .skilled/commands/doctor/scripts/ci-scaffold.cjs\n`);
     return 4;
   }
   return 0;

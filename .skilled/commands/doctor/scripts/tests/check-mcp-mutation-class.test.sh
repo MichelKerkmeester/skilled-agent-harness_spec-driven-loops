@@ -21,6 +21,9 @@ set -euo pipefail
 
 TEST_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GUARD="$TEST_DIR/../check-mcp-mutation-class.sh"
+# The tree that ships the guard, which every remedy line runs from
+TREE_ROOT="$(cd "$TEST_DIR/../../../../.." && pwd)"
+NEXT_FROM_TREE="$(printf 'Next: from %q: bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh %q' "$TREE_ROOT" "$TREE_ROOT")"
 WORK="$(mktemp -d "${TMPDIR:-/tmp}/mutclass-test.XXXXXX")"
 trap 'rm -rf "$WORK"' EXIT
 
@@ -245,12 +248,22 @@ ROOT="$(new_root)"
 rm "$(manifest_of "$ROOT")"
 run_guard "$ROOT"
 expect_rc "a missing manifest is a harness error" 2
+expect_out "a missing manifest names a rerun from the guard's own tree" "$NEXT_FROM_TREE"
+expect_no_out "a missing manifest leaves no root placeholder" "<repo-root"
 
 run_guard "$WORK/does-not-exist"
 expect_rc "a missing repo root is a harness error" 2
+expect_out "a missing repo root names a rerun from the guard's own tree" "$NEXT_FROM_TREE"
+expect_no_out "a missing repo root leaves no root placeholder" "<repo-root"
+
+run_guard "$WORK" "$WORK"
+expect_rc "a second repo root is a harness error" 2
+expect_out "a second repo root names a rerun from the guard's own tree" "$NEXT_FROM_TREE"
 
 run_guard --bogus
 expect_rc "an unknown option is a harness error" 2
+expect_out "an unknown option names a rerun from the guard's own tree" "$NEXT_FROM_TREE"
+expect_no_out "an unknown option leaves no root placeholder" "<repo-root"
 
 run_guard --help
 expect_rc "--help exits 0" 0

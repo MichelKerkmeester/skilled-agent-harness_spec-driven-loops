@@ -91,10 +91,13 @@ const LABEL_WIDTH = 34;
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function fail(message) {
+function fail(message, next) {
   console.error(`STATUS=ERROR command-catalog-mirror: ${message}`);
+  if (next) console.error(`Next: ${next}`);
   process.exit(2);
 }
+
+const RERUN = 'node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs';
 
 function parseArgs(argv) {
   const opts = { root: DEFAULT_REPO, strict: false };
@@ -105,9 +108,9 @@ function parseArgs(argv) {
     else if (argv[i] === '--check') continue;
     else if (argv[i] === '--root') {
       const next = argv[++i];
-      if (!next) fail('--root needs a directory');
+      if (!next) fail('--root needs a directory', `${RERUN} --root <repository root>`);
       opts.root = path.resolve(next);
-    } else fail(`unknown argument: ${argv[i]}`);
+    } else fail(`unknown argument: ${argv[i]}`, `${RERUN} [--strict] [--root <repository root>]`);
   }
   return opts;
 }
@@ -396,10 +399,10 @@ function checkMetadata(meta, commands, repo) {
 function main() {
   const opts = parseArgs(process.argv.slice(2));
   const commandsDir = path.join(opts.root, '.skilled/commands');
-  if (!fs.existsSync(commandsDir)) fail(`commands directory not found: ${commandsDir}`);
+  if (!fs.existsSync(commandsDir)) fail(`commands directory not found: ${commandsDir}`, `${RERUN} --root <repository root>`);
 
   const commands = readCommandTree(commandsDir);
-  if (commands.length === 0) fail(`no command files under ${commandsDir}`);
+  if (commands.length === 0) fail(`no command files under ${commandsDir}`, `${RERUN} --root <repository root>`);
   const namespaces = new Set(commands.map((c) => c.ns).filter(Boolean));
 
   const drift = [];
@@ -461,5 +464,5 @@ function main() {
 try {
   main();
 } catch (err) {
-  fail(`checker crashed: ${err && err.message ? err.message : String(err)}`);
+  fail(`checker crashed: ${err && err.message ? err.message : String(err)}`, `fix the cause named above, then run ${RERUN}`);
 }

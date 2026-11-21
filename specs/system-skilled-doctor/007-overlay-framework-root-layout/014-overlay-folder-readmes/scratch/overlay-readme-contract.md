@@ -21,6 +21,8 @@ The walk skips these folders and everything under them:
 
 Every other `README.md` is **documentation only**.
 
+**AMENDED: a retained README is documentation only.** A README whose path the skill-root entry's `retained` list names, on a path inside a folder its `replace` list names, is documentation only even though rule 3 matches it. `apply` keeps the vendor's live bytes on a retained path, so the overlay folder's copy never reaches the tree. A retained path that `replace` names directly, not through a folder, is still written from the overlay folder and ships. Paths in `replace` and `retained` compare after the same normalization, so a trailing slash changes nothing.
+
 **A new README inside a directory entry ships.** Adding a README to a folder inside a `directory` entry, or inside a `skill-root` `replace` folder, changes the vendored tree on the next `apply`. It is overlay content like any other file in that folder.
 
 ## 3. What the engine does with a documentation-only README

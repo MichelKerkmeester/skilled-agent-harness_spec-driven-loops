@@ -119,5 +119,5 @@ error_handling:
   script_not_found: "Stop and report .skilled/commands/doctor/scripts/mcp-doctor.sh is missing."
   node_not_found: "Report that Node.js 24 is required for Code Mode checks and repairs."
   json_parse_error: "Stop and report that the diagnostic JSON could not be parsed."
-  script_usage_error: "Exit code 3 means a bad argument or a --root that is not a directory; stop and report the script's stderr."
+  script_usage_error: "Exit code 3 means a bad argument or a --root that is not a directory. Stop and report the script's stderr, with its Next: line as printed when it has one, through the presentation's Failure template."
   repair_fails: "Record the command result and offer the documented manual resolution; do not retry without a new approval."

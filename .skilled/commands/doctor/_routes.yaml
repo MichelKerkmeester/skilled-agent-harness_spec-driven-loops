@@ -671,7 +671,7 @@ routes:
     gate3_location: "n/a (read-only diagnostic; the engine classifies every overlay destination in the vendored tree, runs the overlay manifest's read-only verify checks and writes nothing)"
     mcp_tools: []   # script-only; no MCP calls
     script_invocations:
-      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # exit 0 = in sync, 1 = something out of sync, 2 = a failed precondition; the workflow adds --root <dir>, --json and --audit only when the operator passed them, and --audit prints one AUDIT line per unowned path that differs from upstream at the pin, is missing from the tree or is tracked there and never upstream, then the audit count. A finding fails the status'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # exit 0 = in sync, 1 = something out of sync, 2 = a failed precondition; the workflow adds --root <dir>, --json and --audit only when the operator passed them, and --audit prints one AUDIT line per unowned path that differs from upstream at the pin, is missing from the tree or is tracked there and never upstream, then the audit count. A finding fails the status. It then prints the advisory DOCS lines for the READMEs in the overlay folder and docs=<n>, which never change RESULT or the exit'
     trigger_phrases:
       - "check my vendored skilled overlays"
       - "are my skilled overlays in sync"
