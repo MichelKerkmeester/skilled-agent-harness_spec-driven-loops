@@ -5015,14 +5015,19 @@ function runCheck(ctx, manifest, state, plans) {
  * plus the destination with its leading dots dropped; a marked-section base sits
  * beside its fragment with `.base` before the extension. A copy kept elsewhere
  * still applies, so this names where it belongs instead of refusing the run.
+ * A copy that is missing, or is not the kind its entry reads, cannot apply on
+ * the layout either: status names that problem on its own line, so it is left
+ * out here, and status and relayout both pass over it.
  * @param {object} manifest Loaded overlay manifest.
+ * @param {object} ctx Engine context, for the overlay folder each copy sits in.
  * @returns {{overlay: string, field: string, from: string, to: string}[]} One
- *   record per field off the layout, in manifest order.
+ *   record per field off the layout whose copy is there and of the kind its
+ *   entry reads, in manifest order.
  */
-function layoutMoves(manifest) {
+function layoutMoves(manifest, ctx) {
   const moves = [];
   const collect = (entry, field, current, layout) => {
-    if (typeof current === 'string' && current !== layout) {
+    if (typeof current === 'string' && current !== layout && layoutCopyReady(ctx, entry, field)) {
       moves.push({ overlay: entry.id, field, from: current, to: layout });
     }
   };
@@ -5045,6 +5050,21 @@ function layoutMoves(manifest) {
     }
   }
   return moves;
+}
+
+// Whether the copy one field of an entry names is there and of the kind the
+// planner reads it as: a folder, not followed through a link at its end, for
+// the source of a directory or skill-root entry, and a file, read through any
+// link, for every other field. Only the path is looked at, so a credential file
+// is never opened.
+function layoutCopyReady(ctx, entry, field) {
+  const copy = path.join(ctx.overlayRoot, entry[field]);
+  if (field === 'source' && (entry.scope === 'directory' || entry.scope === 'skill-root')) return isDirectory(copy);
+  try {
+    return fs.statSync(copy).isFile();
+  } catch {
+    return false;
+  }
 }
 
 function pathLabel(steps) {
@@ -5231,7 +5251,7 @@ function commandStatus(ctx, options = {}) {
   const docs = options.isAudit ? auditOverlayDocs(ctx, manifest) : null;
   const outOfSync = analysis.records.filter((record) => record.state !== 'in-sync');
   const stale = staleRootFiles(manifest);
-  const offLayout = layoutMoves(manifest);
+  const offLayout = layoutMoves(manifest, ctx);
   const notes = statusNotes(ctx, manifest, state, analysis, { isAudit: Boolean(options.isAudit) });
   // A failed regeneration leaves every destination in sync, so the pending flag
   // is the only sign that apply still owes a rebuild. Apply reruns every step,
@@ -8325,7 +8345,6 @@ function planRelayout(ctx, manifest, groups) {
   const claimed = new Map();
   const manifestPath = shellPath(ctx.manifestPath);
   const rerun = nextEngine(ctx.root, 'apply --relayout').slice('Next: '.length);
-  const sourcePath = (relative) => shellPath(path.join(ctx.overlayRoot, relative));
   for (const group of groups) {
     if (group.clashes) {
       const destinations = [group.to, ...group.clashes].join(' and ');
@@ -8360,13 +8379,6 @@ function planRelayout(ctx, manifest, groups) {
       problems.push(withRemedy(`refuse: ${to.relative} already exists in ${ctx.overlayLabel}`,
         'relayout never writes over a file that sits at a layout path',
         `Next: move ${shellPath(to.absolute)} aside once you have compared it with ${shellPath(from.absolute)}, ` +
-        `then ${rerun}`));
-      continue;
-    }
-    if (!pathExists(from.absolute)) {
-      problems.push(withRemedy(`refuse: ${from.relative} does not exist in ${ctx.overlayLabel}`,
-        'relayout moves a copy that is there, and the manifest names one that is not',
-        `Next: restore ${sourcePath(from.relative)}, or point the entry at the copy it keeps in ${manifestPath}, ` +
         `then ${rerun}`));
       continue;
     }
@@ -8635,7 +8647,7 @@ function relayoutUnderLock(ctx, manifest) {
     console.log('refuse: ' + linkEscape);
     return EXIT_ERROR;
   }
-  const groups = groupLayoutMoves(layoutMoves(manifest));
+  const groups = groupLayoutMoves(layoutMoves(manifest, ctx));
   if (groups.length === 0) {
     console.log('0 moved');
     return EXIT_OK;

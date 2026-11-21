@@ -1495,6 +1495,70 @@ test('relayout reports nothing to move on a tree already on the layout', (t) => 
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
 });
 
+// A copy that is missing, or is a folder where its entry reads a file or a file
+// where it reads a folder, cannot apply wherever it sits, so moving it onto the
+// layout fixes nothing: status names the copy's problem and no layout move, and
+// relayout leaves it where the manifest names it.
+const WRONG_KIND_SOURCES = [
+  { name: 'a folder where a file entry reads a file', scope: 'file', make: (dir) => writeFile(dir, 'custom/place/a.md', 'a\n') },
+  { name: 'missing', scope: 'file', make: () => {} },
+  { name: 'a file where a directory entry reads a folder', scope: 'directory', make: (dir) => writeFile(dir, 'custom/place', 'a\n') },
+];
+
+function createWrongKindSourceFixture(t, { scope, make }, extraOverlays = []) {
+  const fixture = createWorkspace(t, 'overlay-engine-relayout-wrong-kind-');
+  make(fixture.overlayDir);
+  writeFile(fixture.tree, 'up/tool.md', 'upstream tool\n');
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [],
+    overlays: [{ id: 'tool', scope, source: 'custom/place', destination: 'up/tool.md' }, ...extraOverlays],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  return fixture;
+}
+
+for (const source of WRONG_KIND_SOURCES) {
+  test(`a source that is ${source.name} gets no layout line, and relayout leaves it in place`, (t) => {
+    const fixture = createWrongKindSourceFixture(t, source);
+    // The snapshot holds the manifest too, so it also proves no field was rewritten.
+    const before = snapshotFolder(fixture.overlayDir);
+
+    const status = fixture.run(['status']);
+    const report = JSON.parse(fixture.run(['status', '--json']).stdout);
+    const relayout = fixture.run(['apply', '--relayout']);
+
+    assert.deepEqual(layoutLines(status.output), [], status.output);
+    assert.deepEqual(report.offLayout, []);
+    assert.equal(relayout.code, 0, relayout.output);
+    assert.equal(relayout.output.trim(), '0 moved');
+    assert.deepEqual(snapshotFolder(fixture.overlayDir), before);
+    assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'root/up/tool.md')), false);
+  });
+}
+
+test('relayout still moves a right-kind copy kept off the layout beside one of the wrong kind', (t) => {
+  const fixture = createWrongKindSourceFixture(t, WRONG_KIND_SOURCES[0],
+    [{ id: 'note', scope: 'file', source: 'custom/note.md', destination: 'up/note.md' }]);
+  writeFile(fixture.overlayDir, 'custom/note.md', 'overlay note\n');
+  writeFile(fixture.tree, 'up/note.md', 'upstream note\n');
+
+  const status = fixture.run(['status']);
+  const relayout = fixture.run(['apply', '--relayout']);
+
+  assert.deepEqual(layoutLines(status.output), [
+    `LAYOUT   note: source custom/note.md belongs at root/up/note.md; run ${ENGINE_COMMAND} apply --relayout`,
+  ], status.output);
+  assert.equal(relayout.code, 0, relayout.output);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'root/up/note.md'), 'utf8'), 'overlay note\n');
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'custom/place/a.md')), true);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'root/up/tool.md')), false);
+});
+
 // An overlay folder beside the tree is named `../<name>` by the setting file.
 // Its backup keeps each moved copy at its path inside that folder, since the
 // folder's label climbs out of the tree and cannot be a folder in the run.
