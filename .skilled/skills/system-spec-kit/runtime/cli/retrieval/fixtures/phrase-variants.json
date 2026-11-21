@@ -1,5 +1,5 @@
 {
-  "manifestHash": "86f5e81902645159ceedc19512c4e21a5b1b9aa1cd8c3ab2e483f7f5dbffb68b",
+  "manifestHash": "4f996cde2f3dfa7061d0a82d794e17d2bd69638f950d48847039c8ae2fba3565",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -105395,6 +105395,9 @@
     "runtime test project green": [
       "runtime test project green"
     ],
+    "runtime test setup file": [
+      "runtime test setup file"
+    ],
     "runtime test suites": [
       "runtime test suites"
     ],
@@ -119908,6 +119911,9 @@
     ],
     "skip dont break floor of three": [
       "skip dont break floor of three"
+    ],
+    "skip fsync test setup": [
+      "skip fsync test setup"
     ],
     "skip manual causal edge promotion shipped": [
       "skip-manual causal edge promotion shipped"
@@ -136156,6 +136162,9 @@
     ],
     "vitest setupfiles bypass": [
       "vitest setupFiles bypass"
+    ],
+    "vitest setupfiles skip fsync": [
+      "vitest setupFiles skip-fsync"
     ],
     "vitest stress config": [
       "vitest stress config"

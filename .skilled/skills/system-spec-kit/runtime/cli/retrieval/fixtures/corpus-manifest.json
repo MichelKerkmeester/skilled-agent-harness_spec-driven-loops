@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1e9a0fed083a8b958e93c4b68e5a642e835cfc592b014f5a611839b3a507eee8",
+  "corpusHash": "ffa9caf2bcf728c6a9880ce69a188bad7b26edfb1257218fbd1e70e209ec1831",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28974,
+  "includedPathCount": 28976,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8133,6 +8133,7 @@
     ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
     ".skilled/skills/system-deep-loop/runtime/scripts/lib/README.md",
     ".skilled/skills/system-deep-loop/runtime/tests/README.md",
+    ".skilled/skills/system-deep-loop/runtime/tests/_support/README.md",
     ".skilled/skills/system-deep-loop/runtime/tests/council/README.md",
     ".skilled/skills/system-deep-loop/runtime/tests/helpers/README.md",
     ".skilled/skills/system-deep-loop/runtime/tests/hierarchical-budgets/README.md",
@@ -19049,6 +19050,7 @@
     "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/spec.md",
     "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/tasks.md",
     "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/goal.md",
     "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/plan.md",
     "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/spec.md",
@@ -29006,7 +29008,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "86f5e81902645159ceedc19512c4e21a5b1b9aa1cd8c3ab2e483f7f5dbffb68b",
+  "manifestHash": "4f996cde2f3dfa7061d0a82d794e17d2bd69638f950d48847039c8ae2fba3565",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
