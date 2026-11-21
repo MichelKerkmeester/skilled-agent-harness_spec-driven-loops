@@ -1,7 +1,7 @@
 ---
 title: "Synthesis: shared resource-map render seam"
 description: "Re-export seam for the resource-map markdown renderer shared deep-loop research and review reducers consume."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Synthesis
@@ -18,18 +18,21 @@ Shared re-export seam for `emitResourceMap`, the workflow output renderer that r
 
 | File | Purpose |
 |------|---------|
-| `resource-map.cjs` | Re-exports `emitResourceMap` (and sibling exports) from `system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`. Carries no logic of its own. |
+| `resource-map.cjs` | Re-exports `emitResourceMap` (and sibling exports) from [`../../../system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`](../../../system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs). Carries no logic of its own. |
 
 ---
 
 ## 3. CONSUMERS
 
-- `deep-research/scripts/reduce-state.cjs`
-- `runtime/scripts/reduce-state.cjs`
-- `runtime/lib/write-set-conflict-graph/shipped-census.ts`
+Two reducers import `resource-map.cjs`:
+
+- [`../../deep-research/scripts/reduce-state.cjs`](../../deep-research/scripts/reduce-state.cjs)
+- [`../../runtime/scripts/reduce-state.cjs`](../../runtime/scripts/reduce-state.cjs)
+
+[`../../runtime/lib/write-set-conflict-graph/shipped-census.ts`](../../runtime/lib/write-set-conflict-graph/shipped-census.ts) does not import it. It names `resource-map.cjs` as a file in its shipped census data.
 
 ---
 
 ## 4. RELATED
 
-- [`system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`](../../../system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs) (single implementation)
+- [`../../../system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`](../../../system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs) (single implementation)

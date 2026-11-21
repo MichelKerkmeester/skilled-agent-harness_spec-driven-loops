@@ -1,7 +1,7 @@
 ---
 title: "Command-Flow Stress Tests: deep-review CP-05x scenarios"
 description: "Sandboxed scenarios validating the /deep:review command-level entrypoint, write boundary and leaf refusal behavior."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Command-Flow Stress Tests
@@ -53,4 +53,4 @@ Run each scenario's exact command sequence, which sits under TEST EXECUTION in i
 ### See Also
 
 - Root playbook index: [`../manual-testing-playbook.md`](../manual-testing-playbook.md)
-- Command router: `.skilled/commands/deep/review.md`
+- Command router: [`../../../../../commands/deep/review.md`](../../../../../commands/deep/review.md)
