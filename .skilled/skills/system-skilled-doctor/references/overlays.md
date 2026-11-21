@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.44.0
+version: 1.0.45.0
 ---
 
 # Vendored Skilled Overlays
@@ -224,7 +224,7 @@ BLOCKED  layout: up moves from target to target2, and overlay tool writes under 
 
 The general form is `<link> moves from <old> to <new>, and overlay <id> writes under it`. With more than one entry under the link it reads `overlays <a, b> write under it`, and the `Next:` line reads `take overlays <a, b> out of` and `put the entries back`. Follow the two steps. The first apply moves the link alone, and the second writes the entries through its new target. What an earlier apply wrote through the old target stays there.
 
-A layout link whose target does not exist, with an entry destination at or under it, is refused the same way, whether apply would make it, retarget it or finds it already standing:
+A layout link whose target does not exist, with an entry destination at or under it, is refused the same way, whether apply would make it or move it, or it already stands there:
 
 ```text
 BLOCKED  layout: up links to nothere, which does not exist, and overlay tool writes under it
@@ -234,7 +234,7 @@ BLOCKED  layout: up links to nothere, which does not exist, and overlay tool wri
 
 The general form is `<link> links to <target>, which does not exist, and overlay <id> writes under it`. The `mkdir -p` path is the target resolved from the link's own folder, so `a/up` linking to `nothere` names `/path/to/tree/a/nothere`. `status` judges a link in a folder apply has not made yet as if apply had made the folder, unless another layout link sits on the way to it, which leaves the judgment to `apply`. A link moved to a missing target prints both refusals, and `mkdir -p` clears only the first. The moved-link refusal then remains, so follow its two steps after it.
 
-Under every `BLOCKED` line, `apply` ends with `blocked=<n> changed=0`, `  this apply wrote nothing: a blocked overlay stops it before any write` and a `Next:` line that reruns apply after the fixes. An apply or a capture that only a destination's own fix stops ends instead with these lines:
+An apply stopped by a blocked overlay or a `BLOCKED  layout:` refusal ends with `blocked=<n> changed=0`, `  this apply wrote nothing: a blocked overlay stops it before any write` and a `Next:` line that reruns apply after the fixes. An apply or a capture that only a destination's own state stops, such as a `both-changed` line, prints no `blocked=` line and ends with these lines instead:
 
 ```text
   this apply wrote nothing: a destination above stops it before any write
