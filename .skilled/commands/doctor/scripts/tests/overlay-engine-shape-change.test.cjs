@@ -936,6 +936,8 @@ for (const [label, overlays, links, setUp] of [
       writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
       writeFile(fixture.tree, 'target/sub', 'user work\n');
     }],
+  ['a file entry with a folder in its place outside the tree', [{ ...FILE_ENTRY, destination: 'up/tool.md' }], [{ path: 'up', target: '../outside' }],
+    (fixture) => writeFile(fixture.workspace, 'outside/tool.md/user.md', 'user work\n')],
 ]) {
   test(`an apply that takes back the layout link it made names a keep-aside path that exists, for ${label}`, (t) => {
     const fixture = createShapeFixture(t, overlays, links);
