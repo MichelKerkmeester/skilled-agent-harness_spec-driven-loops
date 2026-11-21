@@ -1,5 +1,5 @@
 {
-  "manifestHash": "529eb46d308d5ff5de2ddbb41556ab21909276d8e88ebb34ddef3330d4db9b81",
+  "manifestHash": "fcb84c24039c826f05d0256888399262dae79ebeaa259138f1039102172e99e4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -92617,6 +92617,9 @@
     ],
     "push and repin open items goal": [
       "push and repin open items goal"
+    ],
+    "push and repin open items implementation summary": [
+      "push and repin open items implementation summary"
     ],
     "push and repin open items plan": [
       "push and repin open items plan"

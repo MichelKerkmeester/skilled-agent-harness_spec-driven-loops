@@ -1,5 +1,5 @@
 {
-  "corpusHash": "80b17e9efc307885e0438e5e32a160f9279059e2561dd82baaa8eb2ade44294e",
+  "corpusHash": "b83d6729feead2dd2210a5dd62b92d38d950e1cd79e747fb6bce2f60b99ed453",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28962,
+  "includedPathCount": 28963,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -20335,6 +20335,7 @@
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/010-barter-open-items/tasks.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/goal.md",
+    "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/implementation-summary.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/plan.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/spec.md",
     "specs/system-skilled-doctor/007-overlay-framework-root-layout/011-push-and-repin-open-items/tasks.md",
@@ -28994,7 +28995,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "529eb46d308d5ff5de2ddbb41556ab21909276d8e88ebb34ddef3330d4db9b81",
+  "manifestHash": "fcb84c24039c826f05d0256888399262dae79ebeaa259138f1039102172e99e4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
