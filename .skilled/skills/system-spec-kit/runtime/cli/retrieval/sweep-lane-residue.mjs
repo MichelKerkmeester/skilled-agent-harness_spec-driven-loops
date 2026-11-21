@@ -194,6 +194,8 @@ const ADVISOR_RUNTIME_SEGMENTS = Object.freeze(['.skilled', 'skills', 'system-sk
 const SPEC_KIT_SEGMENTS = Object.freeze(['.skilled', 'skills', 'system-spec-kit']);
 const MODEL_SERVER_SCRIPT_SEGMENTS = Object.freeze(['.skilled', 'bin', 'hf-model-server.cjs']);
 const MODEL_SERVER_SCRIPT_NAME = 'hf-model-server.cjs';
+/** Basenames the node binary goes by: `nodejs` is the Debian and Ubuntu package's name. */
+const NODE_BINARY_NAMES = new Set(['node', 'nodejs']);
 /** A word node would run as a script: it ends in one of node's script extensions. */
 const SCRIPT_EXTENSION = /\.(?:js|cjs|mjs|ts|mts|cts)$/;
 /** Node options after which node runs inline code, so no script word follows. */
@@ -231,6 +233,28 @@ const IPC_BRIDGE_MODULE = path.resolve(SCRIPT_DIR, '..', '..', '..', '..', '..',
 const ADVISOR_SERVICE_NAME = 'system-skill-advisor';
 const requireCjs = createRequire(import.meta.url);
 
+/** The four files tsc writes for one source module. */
+const TSC_OUTPUT_SUFFIXES = Object.freeze(['.js', '.js.map', '.d.ts', '.d.ts.map']);
+
+/**
+ * The compiled files of a shared module the lane removal deleted. `tsc --build`
+ * never deletes output whose source is gone, so these outlive every rebuild.
+ * Each carries its own `source`: while that file is still in the checkout the
+ * output is live and stays.
+ *
+ * @param {string[]} folder Segments of the module's folder under the shared package.
+ * @param {string} name Module name without extension.
+ * @returns {Array<Readonly<Record<string, any>>>} One entry per compiled file.
+ */
+function orphanedSharedOutput(folder, name) {
+  return TSC_OUTPUT_SUFFIXES.map((suffix) => Object.freeze({
+    base: 'specKit',
+    directory: false,
+    segments: Object.freeze(['shared', 'dist', ...folder, `${name}${suffix}`]),
+    source: Object.freeze(['shared', ...folder, `${name}.ts`]),
+  }));
+}
+
 /**
  * Compiled lane output the build leaves behind after its sources are gone.
  * `directory` marks the two whole folders apply may delete recursively.
@@ -240,6 +264,8 @@ const COMPILED_LANE_PATHS = Object.freeze([
   Object.freeze({ base: 'advisorRuntime', directory: false, segments: Object.freeze(['dist', 'runtime', 'lib', 'scorer', 'lanes', 'semantic-shadow.js.map']) }),
   Object.freeze({ base: 'advisorRuntime', directory: true, segments: Object.freeze(['dist', 'runtime', 'lib', 'embedders']) }),
   Object.freeze({ base: 'specKit', directory: true, segments: Object.freeze(['shared', 'dist', 'embeddings']) }),
+  ...orphanedSharedOutput([], 'chunking'),
+  ...orphanedSharedOutput(['utils'], 'retry'),
 ]);
 
 /** Build trees scanned by content, because a compiled file can outlive its source. */
@@ -306,7 +332,9 @@ export const SHARED_MODEL_ANSWERS = Object.freeze(['delete', 'keep']);
 
 /**
  * Dotenv keys only the lane read. Generic provider credentials such as an
- * OpenAI or Voyage API key are left out on purpose: other tools use them.
+ * OpenAI or Voyage API key are left out on purpose: other tools use them. The
+ * launcher's RSS watchdog and crash-loop keys are here because only the model
+ * server's supervisor read them, and it went with the lane.
  */
 export const LANE_ENV_KEYS = Object.freeze([
   'EMBEDDING_DIM',
@@ -318,11 +346,19 @@ export const LANE_ENV_KEYS = Object.freeze([
   'OPENAI_EMBEDDINGS_MODEL',
   'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',
   'SPECKIT_ADVISOR_EXACT_SEMANTIC_RERANK',
+  'SPECKIT_CONTEXT_SERVER_MAX_RSS_MB',
   'SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED',
   'SYSTEM_SKILL_ADVISOR_EMBED_REFRESH',
   'VOYAGE_EMBEDDINGS_MODEL',
 ]);
-export const LANE_ENV_KEY_PREFIXES = Object.freeze(['HF_EMBED_', 'HF_EMBEDDINGS_', 'SPECKIT_CASCADE_', 'SPECKIT_HF_']);
+export const LANE_ENV_KEY_PREFIXES = Object.freeze([
+  'HF_EMBED_',
+  'HF_EMBEDDINGS_',
+  'SPECKIT_CASCADE_',
+  'SPECKIT_HF_',
+  'SPECKIT_LAUNCHER_CRASH_LOOP_',
+  'SPECKIT_LAUNCHER_RSS_',
+]);
 
 const PROCESS_STOP_TIMEOUT_MS = 3000;
 const PROCESS_POLL_MS = 100;
@@ -875,6 +911,22 @@ export function findLaneSources(root) {
 }
 
 /**
+ * @param {{ advisorRuntime: string, specKit: string }} checkout Package roots.
+ * @param {Record<string, any>} lanePath A `COMPILED_LANE_PATHS` entry.
+ * @returns {boolean} Whether the entry names its own source and that source is
+ *   still in the checkout. A path that cannot be inspected counts as present,
+ *   so the output is kept.
+ */
+function hasOwnSource(checkout, lanePath) {
+  if (!lanePath.source) return false;
+  try {
+    return lstatOrNull(path.join(checkout[lanePath.base], ...lanePath.source)) !== null;
+  } catch {
+    return true;
+  }
+}
+
+/**
  * @param {string} root Checkout root.
  * @returns {{ advisorRuntime: string, root: string, specKit: string }} The two package roots under it.
  */
@@ -1065,6 +1117,7 @@ export function checkCompiledOutput(checkout) {
   const skipDirs = new Set();
 
   for (const lanePath of COMPILED_LANE_PATHS) {
+    if (hasOwnSource(checkout, lanePath)) continue;
     const absolute = path.join(checkout[lanePath.base], ...lanePath.segments);
     try {
       const stat = lstatOrNull(absolute);
@@ -1255,25 +1308,53 @@ export function listProcesses() {
 }
 
 /**
- * The supervisor started the server as `node <script>`, so the script is the
- * first argument after node's own leading options. ps joins the arguments with
- * spaces, so a script path that holds a space arrives as several words. The
- * words are joined only when the first one is an absolute path that is no file
- * on disk, because an installed CLI such as `/opt/homebrew/bin/eslint` has no
- * script extension but is a whole script of its own. The join runs up to the
- * server script's name, unless a word that is a script of its own comes first.
- * Inline code (`-e`, `-p`) names no script, and the value of an option in
- * `NODE_VALUE_OPTIONS` written as a separate word is never read as one. A
- * command line read any other way names no script.
+ * The words that make up the node binary at the start of a command line, as
+ * the index of the last one, or -1 when the line does not start with node. The
+ * supervisor spawned its own `process.execPath`, which ps prints in full, so
+ * the binary's basename is `node` or, on some Linux installs, `nodejs`. A
+ * binary path that holds a space arrives as several words; they are joined
+ * only when the first word is an absolute path that is no file on disk, and
+ * the shortest join whose basename is a node binary wins. A first word that is
+ * a file of its own, such as `/usr/bin/less`, is never joined to its argument.
+ *
+ * @param {RegExpMatchArray[]} words The command line's words with their offsets.
+ * @param {string} command Process command line.
+ * @returns {number} Index of the binary's last word, or -1.
+ */
+function nodeBinaryEnd(words, command) {
+  const first = words[0]?.[0] ?? '';
+  if (NODE_BINARY_NAMES.has(path.basename(first))) return 0;
+  if (!path.isAbsolute(first) || isFileOnDisk(first)) return -1;
+  for (let index = 1; index < words.length; index += 1) {
+    const joined = command.slice(words[0].index, words[index].index + words[index][0].length);
+    if (NODE_BINARY_NAMES.has(path.basename(joined))) return index;
+  }
+  return -1;
+}
+
+/**
+ * The supervisor started the server as `<node binary> <script>`, so the script
+ * is the first argument after node's own leading options. The binary is read
+ * by `nodeBinaryEnd`: a basename of `node` or `nodejs`, its path possibly
+ * holding a space. ps joins the arguments with spaces, so a script path that
+ * holds a space arrives as several words too. Those words are joined only when
+ * the first one is an absolute path that is no file on disk, because an
+ * installed CLI such as `/opt/homebrew/bin/eslint` has no script extension but
+ * is a whole script of its own. The join runs up to the server script's name,
+ * unless a word that is a script of its own comes first. Inline code (`-e`,
+ * `-p`) names no script, and the value of an option in `NODE_VALUE_OPTIONS`
+ * written as a separate word is never read as one. A command line read any
+ * other way names no script.
  *
  * @param {string} command Process command line.
  * @returns {string | null} The script node runs, or null when this is not node or no script can be read.
  */
 export function nodeScriptOf(command) {
   const words = [...command.matchAll(/\S+/g)];
-  if (path.basename(words[0]?.[0] ?? '') !== 'node') return null;
+  const binaryEnd = nodeBinaryEnd(words, command);
+  if (binaryEnd < 0) return null;
   let start = -1;
-  for (let index = 1; index < words.length; index += 1) {
+  for (let index = binaryEnd + 1; index < words.length; index += 1) {
     const word = words[index][0];
     if (NODE_EVAL_OPTIONS.has(word)) return null;
     if (NODE_VALUE_OPTIONS.has(word)) {
@@ -1955,11 +2036,19 @@ function keepForLaneSource(ctx, byId, actions) {
  * @returns {Promise<void>}
  */
 async function cleanOwnedLeftovers(ctx, byId, actions, { confirm, interactive, sharedModel }) {
-  // M1: the fixed compiled paths are deleted; any other compiled file that
-  // still names the lane needs a rebuild after its source is removed.
+  // M1: the fixed compiled paths are deleted, except one whose own source is
+  // still here and so is live output; any other compiled file that still
+  // names the lane needs a rebuild after its source is removed.
   const fixedCompiled = new Set();
+  const m1Paths = new Set(byId.get('M1').items.map((item) => item.path));
   for (const lanePath of COMPILED_LANE_PATHS) {
-    fixedCompiled.add(path.join(ctx[lanePath.base], ...lanePath.segments));
+    const absolute = path.join(ctx[lanePath.base], ...lanePath.segments);
+    fixedCompiled.add(absolute);
+    if (hasOwnSource(ctx, lanePath)) {
+      const source = path.join(ctx[lanePath.base], ...lanePath.source);
+      if (m1Paths.has(absolute)) actions.push({ action: 'kept', reason: `its source ${source} is still in this checkout`, target: absolute });
+      continue;
+    }
     deleteContained(ctx[lanePath.base], [...lanePath.segments], actions, { allowDirectory: lanePath.directory });
   }
   for (const item of byId.get('M1').items.filter((entry) => !fixedCompiled.has(entry.path))) {

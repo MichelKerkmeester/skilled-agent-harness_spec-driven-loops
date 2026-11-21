@@ -232,7 +232,6 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
     parser.add_argument("--out", type=Path, default=None)
-    parser.add_argument("--enable-semantic", action="store_true")
     parser.add_argument("--min-advisor-accuracy", type=float, default=None)
     parser.add_argument("--min-gate3-f1", type=float, default=None)
     parser.add_argument("--min-joint-tt", type=int, default=None)
@@ -252,7 +251,6 @@ def main() -> int:
         "advisor": advisor_metrics,
         "gate3": score_gate3(rows, gate3_predictions),
         "joint": score_joint(rows, gate3_predictions, advisor_predictions),
-        "semantic_enabled": bool(args.enable_semantic),
     }
     failures = threshold_failures(report, args)
     report["threshold_failures"] = failures

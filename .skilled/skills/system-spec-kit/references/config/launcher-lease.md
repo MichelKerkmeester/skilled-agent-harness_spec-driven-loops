@@ -8,7 +8,7 @@ trigger_phrases:
   - "lease env-var override"
 importance_tier: normal
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Launcher Lease
@@ -48,15 +48,14 @@ The PID file lives beside the launcher's database state, under `SYSTEM_SKILL_ADV
 <SYSTEM_SKILL_ADVISOR_DB_DIR>/.system-skill-advisor-launcher.json
 ```
 
-The active lease payload is intentionally small. `pid`, `startedAt`, and `ownerPid` are always present; `childPid` and `modelServerPid` are optional, written only when the launcher has spawned the corresponding child (a daemon child and a model-server process, respectively):
+The active lease payload is intentionally small. `pid`, `startedAt`, and `ownerPid` are always present; `childPid` is optional, written only when the launcher has spawned a daemon child:
 
 ```json
 {
   "pid": 12345,
   "startedAt": "2026-05-18T07:52:00.000Z",
   "ownerPid": 12345,
-  "childPid": 12346,
-  "modelServerPid": 12347
+  "childPid": 12346
 }
 ```
 

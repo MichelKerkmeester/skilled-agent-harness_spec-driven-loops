@@ -111,6 +111,7 @@ and findings belong here.
 | Deep review, 10 iterations | done, CONDITIONAL | review/review-report.md: P0 0, P1 0, P2 10, one deferred search item |
 | Phases 001 to 008 | Complete | Criteria 1 2 3 5 ticked: 8 phase commits in folder order; strict recursive validate PASSED; repo exit 0 at 47 of 47, planted fixture exit 1, fixture machine 1 then 0 after apply; branch -a --contains lists only this branch. Criterion 4 open: 46 findings fixed in 3e66f2e0303 and 22cfc3131f6; C-08 waits on the operator after merge; BAT-01 fails on main too, unchanged. |
 | Criterion 4 | Complete | alignment findings fixed in 3e66f2e0303 and 22cfc3131f6; C-08 (release bodies, operator after merge) and BAT-01 (latency test that fails on main under load) carry recorded dispositions in 008 implementation-summary |
+| Log reconciliation | done | the first 'Phases 001 to 008 Pending' row is superseded by the later Complete row; the phase 001 scaffold note is stale, its spec and implementation summary are filled |
 
 ### Deviations and findings
 

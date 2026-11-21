@@ -72,6 +72,7 @@ import {
   INDEX_OUTPUTS,
   isOwnedModelServer,
   loadAllowlist,
+  nodeScriptOf,
   resolveContainedTarget,
   runApply,
   runMachineChecks,
@@ -746,6 +747,26 @@ describe('machine mode', () => {
     expect(printed).not.toContain('UNRELATED_KEY');
   });
 
+  it('counts the model server supervisor\'s watchdog and crash-loop keys, and no other launcher key', async () => {
+    const fixture = makeMachineFixture();
+    writeFile(fixture.root, '.env', [
+      'SPECKIT_CONTEXT_SERVER_MAX_RSS_MB=512',
+      'SPECKIT_LAUNCHER_RSS_GRACE_MS=7000',
+      'SPECKIT_LAUNCHER_CRASH_LOOP_MAX_DEATHS=3',
+      'SPECKIT_LAUNCHER_UNRELATED=1',
+      '',
+    ].join('\n'));
+
+    const report = await runMachineChecks(fixture.options, fixture.env, NO_PROCESSES);
+
+    expect(report.exitCode).toBe(1);
+    expect(findingById(report, 'M7').items.map((item: Report) => item.key).sort()).toEqual([
+      'SPECKIT_CONTEXT_SERVER_MAX_RSS_MB',
+      'SPECKIT_LAUNCHER_CRASH_LOOP_MAX_DEATHS',
+      'SPECKIT_LAUNCHER_RSS_GRACE_MS',
+    ]);
+  });
+
   it('notes a dotenv file with a line the parser rejects, keeps the key it found and prints neither line', async () => {
     const fixture = makeMachineFixture();
     const envFile = writeFile(fixture.root, '.env', 'not-a-dotenv-line-must-not-print\nOLLAMA_BASE_URL=http://value-that-must-not-print.invalid\n');
@@ -900,8 +921,23 @@ describe('model server ownership and socket names', () => {
     ['node tool.mts /x/.skilled/bin/hf-model-server.cjs', false],
     ['node --env-file cfg.vars /x/.skilled/bin/hf-model-server.cjs', true],
     ['node --inspect-port 9230 /x/.skilled/bin/hf-model-server.cjs', true],
+    // The supervisor spawned its own binary path, which can hold a space or be named nodejs.
+    ['/Users/No Such User/.nvm/versions/node/v22/bin/node /x/.skilled/bin/hf-model-server.cjs', true],
+    ['/usr/bin/nodejs /x/.skilled/bin/hf-model-server.cjs', true],
+    ['nodejs --inspect /x/My Repo/.skilled/bin/hf-model-server.cjs', true],
+    // A first word that is a real file is a program of its own, never joined to its argument.
+    ['/bin/ls /tmp/node /x/.skilled/bin/hf-model-server.cjs', false],
   ])('reads the server script from the whole command line: %s', (command, expected) => {
     expect(runsModelServer(command)).toBe(expected);
+  });
+
+  it.each([
+    ['/Users/No Such User/.nvm/versions/node/v22/bin/node --inspect /x/My Repo/.skilled/bin/hf-model-server.cjs', '/x/My Repo/.skilled/bin/hf-model-server.cjs'],
+    ['/usr/bin/nodejs /srv/app.js', '/srv/app.js'],
+    ['/bin/ls /tmp/node /srv/app.js', null],
+    ['/Users/No Such User/bin/python /srv/app.js', null],
+  ])('reads the node binary before the script: %s', (command, expected) => {
+    expect(nodeScriptOf(command)).toBe(expected);
   });
 
   it('probes and deletes the socket file a custom server address names, beside the fixed names', async () => {
@@ -1229,6 +1265,56 @@ describe('apply mode', () => {
     const refused = actionsOf(report, 'refused');
     expect(refused).toEqual([expect.objectContaining({ target: path.join(fixture.dbDir, 'vectors', 'context-vectors__hf-local.sqlite') })]);
     expect(refused[0].reason).toContain('outside');
+  });
+});
+
+describe('compiled output of deleted shared modules', () => {
+  const SHARED = '.skilled/skills/system-spec-kit/shared';
+
+  /** The build left these behind; only the first names the lane. */
+  function plantOrphans(fixture: MachineFixture): { orphans: string[]; sibling: string } {
+    const orphans = [
+      writeFile(fixture.root, `${SHARED}/dist/chunking.js`, '// downstream embedders rely on this cap\nexport {};\n'),
+      writeFile(fixture.root, `${SHARED}/dist/chunking.d.ts`, 'export {};\n'),
+      writeFile(fixture.root, `${SHARED}/dist/utils/retry.js`, 'export {};\n'),
+    ];
+    const sibling = writeFile(fixture.root, `${SHARED}/dist/config.js`, 'export {};\n');
+    return { orphans, sibling };
+  }
+
+  it('lists the compiled files whose source is gone, apply deletes them, and the next check exits 0', async () => {
+    const fixture = makeMachineFixture();
+    const { orphans, sibling } = plantOrphans(fixture);
+
+    const before = await runMachineChecks(fixture.options, fixture.env, NO_PROCESSES);
+    expect(before.exitCode).toBe(1);
+    expect(findingById(before, 'M1').items.map((item: Report) => item.path).sort()).toEqual([...orphans].sort());
+
+    const report = await applyQuietly(fixture);
+
+    expect(actionsOf(report, 'deleted').map((action) => action.target).sort()).toEqual([...orphans].sort());
+    expect(actionsOf(report, 'reported')).toEqual([]);
+    for (const orphan of orphans) expect(fs.existsSync(orphan)).toBe(false);
+    expect(fs.existsSync(sibling)).toBe(true);
+    expect(report.exitCode).toBe(0);
+    const after = await runMachineChecks(fixture.options, fixture.env, NO_PROCESSES);
+    expect(after.exitCode).toBe(0);
+    expect(findingById(after, 'M1').status).toBe('absent');
+  });
+
+  it('keeps a compiled file while its own source is still in the checkout', async () => {
+    const fixture = makeMachineFixture();
+    const { orphans } = plantOrphans(fixture);
+    writeFile(fixture.root, `${SHARED}/chunking.ts`, 'export {};\n');
+    const [chunkingJs, chunkingDts, retryJs] = orphans;
+
+    const report = await applyQuietly(fixture);
+
+    expect(fs.existsSync(chunkingJs)).toBe(true);
+    expect(fs.existsSync(chunkingDts)).toBe(true);
+    expect(fs.existsSync(retryJs)).toBe(false);
+    expect(actionsOf(report, 'kept')).toEqual([expect.objectContaining({ target: chunkingJs })]);
+    expect(actionsOf(report, 'deleted').map((action) => action.target)).toEqual([retryJs]);
   });
 });
 

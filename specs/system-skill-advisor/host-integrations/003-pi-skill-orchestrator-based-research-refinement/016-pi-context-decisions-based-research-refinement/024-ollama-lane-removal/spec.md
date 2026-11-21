@@ -45,7 +45,7 @@ _memory:
 | **Parent Packet** | scaffold/024-ollama-lane-removal |
 | **Predecessor** | 023-ollama-deprecation-research |
 | **Successor** | None |
-| **Handoff Criteria** | The residue check runs gating in repo mode and machine mode and both exit 0, and its planted-term fixture exits 1 |
+| **Handoff Criteria** | The residue check exits 0 in repo mode, exits 1 on its planted-term fixture, and in machine mode exits 0 on a fixture home and checkout after apply (operator decisions Q007 and Q010) |
 <!-- /ANCHOR:metadata -->
 
 ---

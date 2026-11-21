@@ -60,7 +60,6 @@ test('repo mode passes on this checkout', () => {
 
   assert.equal(run.status, 0, `${run.stdout}${run.stderr}`);
   assert.match(run.stdout, /^live {8}: 0$/m);
-  assert.doesNotMatch(run.stdout, /allowlist rows that matched nothing/);
 });
 
 test('a lane term planted in a tracked file fails repo mode', async (t) => {

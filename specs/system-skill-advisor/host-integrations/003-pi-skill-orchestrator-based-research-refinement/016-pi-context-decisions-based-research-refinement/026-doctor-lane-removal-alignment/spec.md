@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-21 |
 | **Branch** | `worktrees/497-ollama-lane-removal` |
 | **Parent Spec** | ../spec.md |
@@ -90,7 +90,19 @@ The four NO_MATCH lines show the gap the routing REQ closes. The 1427 count is t
 - Add cleanup trigger phrases to the `/doctor:update` route in `_routes.yaml`, rebuild the advisor command bridges from it, and add helper-match test cases.
 - Ship doctor 1.3.0.0: the SKILL.md version, `changelog/v1.3.0.0.md`, the README `/doctor:update` row, and the setup playbook's six legs and 26 rows.
 
+### In Scope: second review round
+An independent review of the whole epic on 2026-11-21 returned CONDITIONAL with three P1 and eight P2 findings. This packet takes the fixes, on the operator's answer that 026 holds them.
+- The residue tool deletes the orphaned compiled `shared/dist` files whose sources the epic removed, finds a model server whose node binary path holds a space or is named `nodejs`, and lists the three launcher key families only the retired supervisor read.
+- The doctor gate test stops failing on an allowlist row that matched nothing, which the allowlist defines as no error.
+- The global v4.2.0.0 release note gives the cleanup per install type.
+- Dead references go: the lease field in `launcher-lease.md`, the rebuild helper's cache-clearing step and its catalog entry, and the routing-corpus flag that reported a removed lane as enabled.
+- system-spec-kit ships 2.14.0.0 with a changelog for what the epic removed and added.
+- The 024 records stop contradicting each other, and the operator's answer that the cleanup phrases replace 024 decision Q004 is recorded.
+- origin/main is merged into the branch, its conflicts are resolved in favour of the lane removal, and the gates pass on the merged tree.
+
 ### Out of Scope
+- Removing the `sharp` and `protobufjs` overrides from the two `package.json` files. They pin nothing that is installed, and changing them needs an install to prove the lockfiles stay in sync, which this run may not do.
+- Naming the removed setting keys in the advisor changelog. The residue gate forbids those names in tracked files.
 - Reverting the `system-skilled-doctor/changelog/v1.1.7.0.md` rewrite. That was 024's decision D3, and it stands.
 - Re-adding the retired server name to `orphan-process-check.cjs`. Detecting retired processes belongs to the residue tool's M4 check.
 - Allowlisting `_routes.yaml` for the residue gate. The new phrases avoid the gate's terms instead.
@@ -147,6 +159,15 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-010 | The `/doctor:update` row in the doctor README (line 42) names the post-upgrade cleanup |
 | REQ-011 | `doctor-helper-match.test.cjs` has one case per cleanup phrasing. Each case fails before the `_routes.yaml` edit and passes after it, and the full doctor suite exits 0 with the 1427 baseline passing plus the new cases |
 | REQ-012 | The 016 phase map lists this packet as row 26 beside rows 24 and 25, and `validate.sh --strict` prints `RESULT: PASSED` on 016 after the row is added |
+| REQ-013 | Apply deletes the compiled `shared/dist/chunking.*` and `shared/dist/utils/retry.*` files when their sources are gone, and leaves them when a source exists. On a fixture, machine mode exits 1, apply deletes them, and machine mode then exits 0 |
+| REQ-014 | `runsModelServer` returns true for a server whose node binary path holds a space and for a binary named `nodejs`, and every earlier test row still passes |
+| REQ-015 | M7 lists the launcher RSS, crash-loop and context-server RSS keys that only the retired supervisor read, and no key that HEAD still reads |
+| REQ-016 | `lane-residue-gate.test.cjs` asserts exit 0 and `live` 0 only, so an allowlist row that matched nothing does not fail the doctor suite |
+| REQ-017 | `.skilled/changelog/skilled/v4.2.0.0.md` gives the cleanup per install type, matching `INSTALL-SKILLED.md` |
+| REQ-018 | No tracked file outside `specs/` names `modelServerPid`, offers to clear the HuggingFace cache, or accepts `--enable-semantic` |
+| REQ-019 | system-spec-kit reads version 2.14.0.0 and has `changelog/v2.14.0.0.md`, and the entry passes the residue gate |
+| REQ-020 | 024's handoff criterion matches decisions Q007 and Q010, its goal log marks the stale rows superseded, and 026's decision record states that the cleanup phrases replace Q004 |
+| REQ-021 | origin/main is merged into `worktrees/497-ollama-lane-removal` with every conflict resolved in favour of the lane removal. On the merged tree repo mode exits 0 with `live` 0, and the residue, doctor, advisor and strict validation gates pass |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
