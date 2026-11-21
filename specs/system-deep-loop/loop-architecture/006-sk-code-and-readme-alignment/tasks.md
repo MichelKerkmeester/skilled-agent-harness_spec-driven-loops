@@ -57,6 +57,7 @@ contextType: "general"
 - [x] T009 Run the side checkers (typecheck, mirrors, documentation drift, frontmatter versions, trigger index). Verify: each exits 0.
 - [x] T010 Record the results and the operator decision list (`implementation-summary.md`). Verify: `rg -n 'class \(b\)' implementation-summary.md` prints at least one line.
 - [x] T011 Build the operator-approved behaviour fixes, each with a test that fails before the fix (`implementation-summary.md`). Verify: `scratchpad/gate-dlh2.log` prints `Tests  4029 passed | 11 skipped (4040)` and `check-contract-drift exit=0`.
+- [x] T012 Build the accepted defaults for the 48 undecided findings (`implementation-summary.md`). Verify: `scratchpad/gate-dlh3.log` prints `Tests  4039 passed | 11 skipped (4050)` and `check-contract-drift exit=0`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

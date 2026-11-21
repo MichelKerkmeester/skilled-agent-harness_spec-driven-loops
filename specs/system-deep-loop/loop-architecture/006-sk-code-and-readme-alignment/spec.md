@@ -69,6 +69,8 @@ gate NO_BLOCKER_FOUND, findings 0, files_checked 582
 - Undecided findings (exit-code alignment, test type-check coverage, validator rules) - proposed with a default, not built
 - Command YAMLs under `.skilled/commands/deep/` - sk-code covers only CI workflow YAML
 - `node_modules`, `dist` and test fixtures - generated or fixture code
+- Rollout manifest capture: add emitter wiring later to capture fallback/fix manifests and fallback hashes from the live command-injection path - deferred backlog moved from the rollout README
+- Rollout comparator: add the CI comparator later after capture data exists; do not stub fake capture or synthetic comparator logic - deferred backlog moved from the rollout README
 
 ### Files to Change
 

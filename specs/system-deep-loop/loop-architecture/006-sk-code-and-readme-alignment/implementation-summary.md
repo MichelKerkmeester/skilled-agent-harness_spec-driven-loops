@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-21T18:32:25Z"
     last_updated_by: "orchestrator"
     recent_action: "Landed the comment and README fixes in fourteen lane commits and ran the full gate"
-    next_safe_action: "Operator decides the 48 class (c) proposals group by group"
+    next_safe_action: "None; every finding is built, rebutted or accepted"
     blockers: []
     key_files: []
     session_dedup:
@@ -105,7 +105,7 @@ Each lane verified its own files with the sk-code quality gate, the runtime type
 
 | Check | Result |
 |-------|--------|
-| Runtime vitest | PASS: 3967 passed, 11 skipped, 0 failed (3978 tests) for the comment pass; 4029 passed, 11 skipped, 0 failed (4040 tests) after the behaviour fixes |
+| Runtime vitest | PASS: 3967 passed, 11 skipped, 0 failed (3978 tests) for the comment pass; 4029 passed, 11 skipped, 0 failed (4040 tests) after the behaviour fixes; 4039 passed, 11 skipped, 0 failed (4050 tests) after the accepted defaults |
 | Ledger-stem, projection, contract drift | PASS: exit 0 each, `[CONTRACT DRIFT] OK commands=2` |
 | Contract parity | PASS: `Tests  18 passed (18)` |
 | Expansive-depth packet validate | PASS: `validate exit=0 passed=16 failed=0` |
@@ -115,7 +115,7 @@ Each lane verified its own files with the sk-code quality gate, the runtime type
 | `check_readme_references.py`, 79 READMEs | PASS: `SUMMARY files=79 pass=79 fail=0` (baseline 64 of 78) |
 | `check_derived_readme_counts.py`, 79 READMEs | PASS: `SUMMARY files=79 pass=79 fail=0` |
 | `audit_readmes.py` default mode | PASS: 72 of 72 valid |
-| `audit_readmes.py --document-type code-folder` | 64 of 72 valid (baseline 21 of 71); the 8 left are decision items |
+| `audit_readmes.py --document-type code-folder` | 67 of 72 valid (baseline 21 of 71); the 5 left are skill and general READMEs, which validate in readme mode |
 | Mirrors, documentation drift, frontmatter versions, contract snapshot | PASS: exit 0 each |
 <!-- /ANCHOR:verification -->
 
@@ -126,9 +126,9 @@ Each lane verified its own files with the sk-code quality gate, the runtime type
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
 1. **Behaviour-changing findings, class (b), since built.** The results are in the behaviour fixes table below. Containment is still missing at the other caller-named write sites in `runtime/scripts` (`reduce-state.cjs`, `score-fanout-pairs.cjs`, `workflow-steps.cjs` and others), which stay in the class (c) proposals.
-2. **Undecided findings, class (c).** Exit codes differ across scripts (`cli-guards.cjs:142` maps input errors to 3, `dispatch-iteration.cjs:62` uses 64). There is an exported `any` in `legacy-projection-types.ts:97`. Tests and the pivot scripts are outside every tsconfig. Tests read inputs from spec-packet paths (`helpers/legacy-real-log.ts:22`). `authority-registry.ts:115` documents a `compareAndSwap` method that does not exist.
-3. **Eight READMEs stay invalid in code-folder mode.** The skill root, deep-research and deep-review READMEs are skill READMEs that the mode misreads. `runtime/database/README.md` omits a gitignored file. The benchmark READMEs need a tree or trip the packet-id rule on `100/100`. The two playbook inventories sit under a heading the validator does not accept.
-4. **Agent DQI bar.** Several short code-folder READMEs score 71 to 74 against the @markdown agent's bar of 75, above the workflow floor of 70. `coverage-graph/README.md` scores 69, up from 68. None was padded to reach the bar.
+2. **Undecided findings, class (c).** All 48 were built to their accepted defaults; see the table below.
+3. **Five READMEs stay invalid in code-folder mode.** The skill root, deep-research, deep-review and both benchmark READMEs are skill or general READMEs, which validate in readme mode, where they pass.
+4. **Agent DQI bar.** The @markdown agent now passes a code-folder README at 70 and keeps 75 for other markdown. `coverage-graph/README.md` now scores 72 with its new validation section, so every code-folder README clears 70.
 
 
 ### Behaviour fixes built after operator approval
@@ -167,62 +167,57 @@ The operator approved every class (b) item plus the two safety items `L1-C009` a
 | L6-C025 | rebutted | `deriveRejectedPatternIndex` (`reduce-state.cjs:414-416`) already prefixes the warning, so a second prefix would double it | - |
 | L6-C026 | built | Event upcast errors keep the upcaster error as cause | `cfe004b132e` |
 
-The 48 remaining class (c) items are proposed, not built, in four groups: exit codes and CLI contracts (6), code structure, typing and error handling (22), test config and type-check coverage (7), and docs and validator rules (13). Each has a recommended default and its blast radius in the session scratchpad file `dlh/c-proposals.md`.
+The 48 class (c) items were then proposed with a default each and the operator accepted all of them; the results follow.
 
-### Operator decision list
+### Undecided findings, built to the accepted defaults
 
-48 open items, all class (c) needing a decision. Paths are relative to `.skilled/skills/system-deep-loop/` unless they start with `.skilled/` or `.claude/`.
+The operator accepted the recommended default for all 48 class (c) items: 34 built, 14 accepted as conventions with no edit, 0 rebutted and 0 stopped.
 
-| ID | Location | Class | Proposal |
-|----|----------|-------|----------|
-| L1-C004 | `runtime/scripts/{convergence:19, divergent-pivot:23, fanout-merge:16, ` | c | Decide whether the module-prose comment under the divider counts as header. |
-| L1-C005 | `runtime/scripts/workflow-steps.cjs:84, :107, :198, :410, :434` | c | Pick one stderr prefix convention for CLI diagnostics. |
-| L1-C010 | `lib/cli-guards.cjs:142-157` | c | Exit codes are public surface. |
-| L1-C011 | `runtime/scripts/fanout-run.cjs (6,242` | c | Decide whether to split fanout-run.cjs (budget, Vibe, status table, watchdog) into lib modules or to record the SRP exception. |
-| L1-C012 | `Exports documented with // line comments rather than JSDoc, e.g. conve` | c | Decide whether a WHY line comment satisfies the rule, or whether these convert to /** */. |
-| L1-R008 | `runtime/database/README.md:16-21` | c | Either list observability-events.jsonl as a gitignored runtime file (class a, clears the checker), or have the rule skip gitignored files the way reso |
-| L2-C003 | `legacy-projections/legacy-projection-types.ts:97` | c | Decide the encoding: LegacyProjectionContract<TState> is invariant (reduce(state) takes and returns TState, line 62), so <unknown> or <LegacyProjectio |
-| L2-C004 | `legacy-projections/legacy-projection-surface-fold.ts:46,50` | c | Resolve together with C003; the same helper type removes all six. |
-| L2-C005 | `deep-loop/atomic-state.ts:129,254,265,311,644` | c | Decision: the repo convention is a best-effort swallow with a one-line WHY comment (executor-audit.ts:852, post-dispatch-validate.ts:1867, write-conta |
-| L2-C014 | `deep-loop/atomic-state.ts:81-92, jsonl-repair.ts:183-194, loop-lock.ts` | c | Decide whether to add a shared internal fs helper in deep-loop/ (new module = design decision; deep-loop is widely imported, keep it non-exported from |
-| L2-C015 | `deep-loop/write-containment.ts:57-72` | c | Decide whether a missing gateway module must be reported (log once) or is an accepted degraded mode; document the WHY either way. |
-| L2-C016 | `deep-loop/bayesian-scorer.ts:15,37` | c | Decide: wire it, keep it as a documented test-only primitive, or retire it (retiring is (b)). |
-| L2-C017 | `authority-root/resolve-authority-root.ts:64-67` | c | Decide whether the override is a trusted operator knob (document it) or must be validated (any check is (b)). |
-| L3-C010 | `103` | c | Decide whether exported constants and error-code maps need TSDoc. |
-| L3-C016 | `blinded-adjudication/service.ts:547` | c | Decide whether a malformed authorizer result should raise AdjudicationError (that fix would be b) or stay a silent denial with a WHY comment |
-| L3-C017 | `Fail-closed catch translations that drop the original error: dispatch-` | c | Decide a lane-wide policy: carry a bounded cause code in error details (as fenced-lease-coordinator.ts:651 and dispatch-barrier.ts:120 substrateCode d |
-| L3-C018 | `Duplicate local helpers: isRecord x8` | c | Decide whether to add one shared guard module under runtime/lib. |
-| L3-C019 | `Folder import cycle: authorized-ledger/append-only-ledger.ts:23,38` | c | Decide whether fence-capability belongs in a lower shared layer, or document the two-way edge in both READMEs. |
-| L4-C011 | `mode-append-gateway/append-mode-event.ts:465, 483, 528, 576, 656` | c | // Phase 1..5 step comments are function-local stage labels (the comment-hygiene checker passed them), but their numbering ("Phase 4 & 5: Authorize an |
-| L4-C014 | `per-mode-authority-flip/authority-registry.ts:115` | c | TSDoc names compareAndSwap, which does not exist on AuthorityRegistry (public members at 165, 256, 280, 300, 306, 322). |
-| L4-C015 | `deep-research-sealed-artifacts/deep-research-artifact-set.ts vs deep-r` | c | After research/review name normalisation, 332 of 345 unique lines are identical. |
-| L5-C008 | `Same rule repeated across domains: 4_096` | c | Decide whether to add a shared constants/compare helper (for example in event-envelope) and take on the new cross-domain import, or accept per-domain  |
-| L5-C011 | `provenance-reduction/reducer.ts:712-805` | c | The catch at :788 drops the error. |
-| L5-C012 | `result-envelopes/resume-reducer.ts:400` | c | The catch-all turns every exception, programmer errors included, into integrity: 'unreadable' / LEDGER_VERIFICATION_FAILED with no error detail. |
-| L5-C015 | `write-set-conflict-graph/graph.ts:432` | c | Decide whether to split these, or record them as reviewed. |
-| L6-C007 | `deep-research/scripts/reduce-state.cjs:3541` | c | Decide whether the research reducer keeps the flag as a compatibility no-op (then document it as one) or drops it, and dropping it would change exit 3 |
-| L6-C009 | `deep-research/scripts/divergent-research-pivot.ts, deep-review/scripts` | c | Choose a home: add a scripts tsconfig (it would need allowImportingTsExtensions) or extend the runtime include. |
-| L6-C010 | `deep-research/scripts/divergent-research-pivot.ts:66-186` | c | Move the shared helpers into runtime/lib/deep-loop/ (beside divergent-pivot.ts) and import them in both. |
-| L6-R012 | `shared/rollout/README.md:27-30` | c | Decide where the deferred-scope notes live (spec or backlog) before removing them from the README. |
-| L6-R019 | `deep-research/manual-testing-playbook/command-flow-stress-tests/README` | c | Either rename the heading to CONTENTS (doc-only) or teach the checker the playbook category template. |
-| L6-R021 | `deep-review/manual-testing-playbook/command-flow-stress-tests/README.m` | c | Same decision as L6-R019. |
-| L6-R023 | `README.md (skill root):27,31` | c | Audit skill READMEs with the skill-README document type, or exempt artifact-pattern paths. |
-| L6-R024 | `deep-research/README.md:31,62,137,241` | c | Same as L6-R023. |
-| L6-R025 | `deep-research/README.md:268,269` | c | Same decision as L6-R002 and L6-R023. |
-| L6-R026 | `deep-review/README.md:166,267` | c | Same as L6-R023. |
-| L6-R028 | `benchmark/README.md:34-36` | c | Confirm the regex. |
-| L7-C013 | `stress/cli-adapter/fanout.vitest.ts:918-923` | c | Decide: delete it, or gate it on an opt-in env flag like the codex probe. |
-| L7-C014 | `runtime/tsconfig.json:16-21` | c | Decide whether to add a tsconfig.tests.json (or a typecheck:tests script) over tests/. |
-| L7-C015 | `helpers/legacy-real-log.ts:22-26` | c | Decide: copy the captured logs into tests/fixtures/ (a fixture change, which another lane owns), or keep the real-log dependency on purpose and say so |
-| L7-C016 | `stress/cli-adapter/matrix-manifest.ts:63,73,75,94,131,139` | c | Rename to SHARED_SUITE_ADAPTER_SUBJECTS / CLI_ADAPTER_SHARED_SUITE_ROWS. |
-| L7-C017 | `council-graph-value-report.json (tests root, tracked)` | c | Decide whether to delete it (unit/legacy-projections.test.ts:139-141 confirms the council lane is retired) or document it as a frozen record. |
-| L7-C018 | `runtime/lib/mode-contracts/ (folder-level coverage)` | c | Decide whether a constants-only contract module needs a direct shape test, or whether coverage through its consumers is enough. |
-| L4-DOC | `per-mode-authority-flip/authority-registry.ts:115` | c | TSDoc names a compareAndSwap method that does not exist; correct it with the retire-or-restore decision |
-| L5-C014 | `runtime/lib (lane L5 long code lines)` | c | Thirteen code lines exceed 120 characters; wrap them only with a reformat decision |
-| L6-R027 | `README.md (skill root)` | c | Skill README misread by code-folder mode; leave or exempt skill READMEs from the mode |
-| L6-R029 | `benchmark/reports/README.md` | c | General README misread by code-folder mode |
-| L6-R028 | `benchmark/README.md:34-36` | c | Packet-id rule trips on 100/100, not on the D-labels; narrow the rule or reword the scores |
-| DQI | `.claude/agents/markdown.md (DQI bar)` | c | Set the @markdown DQI bar for code-folder READMEs to the workflow floor of 70, or skip has_blockquote and the word floor for code folders in extract_structure.py |
+**Exit codes and CLI contracts** (`23da225543d`)
+
+| Item | Result | What changed |
+|------|--------|--------------|
+| L1-C010 | built | Per-script exit codes documented in the script interface contract |
+| L1-C005 | built | Existing stderr prefixes frozen, new lines use `[script-name] message` |
+| L1-C011 | built | Size exception for the large orchestration scripts recorded in the scripts README |
+| L6-C007 | built | WHY comment on the `--create-missing-anchors` no-op |
+| L1-C004, L1-C012 | accepted | Prose under the header and WHY line comments satisfy the rules |
+
+**Structure, typing and errors** (`de972038aba`, `f7f084fc914`)
+
+| Item | Result | What changed |
+|------|--------|--------------|
+| L2-C003, L2-C004 | built | Method syntax removes the exported `any` in legacy projections |
+| L2-C014 | built | Internal durability module for atomic-state and jsonl repair; loop-lock keeps its copies because node loads it without tsx |
+| L6-C010 | built | Eight shared pivot helpers in one module; `priorCandidate` stays per mode |
+| L2-C015, L2-C017, L4-C011, L4-C014, L4-DOC | built | Comments and TSDoc match the code |
+| L2-C016, L4-C015 | built | Scorer and sealed-artifact docs record the test-only primitive and per-mode duplication |
+| L5-C011 | built | Provenance records the real fail-closed cause; no golden or pinned fingerprint covered these paths, so none was updated |
+| L5-C012 | built | Resume reducer turns only verification errors into unreadable and rethrows the rest |
+| L3-C016, L3-C017, L3-C019, L5-C015 | built | WHY comment, error-details policy, two-way dependency and long-function notes in the folder READMEs; the ten cause sites are left for when they are next touched |
+| L2-C005, L3-C010, L3-C018, L5-C008, L5-C014 | accepted | Conventions kept as they are |
+
+**Test config and type-check coverage** (`992ae998d16`)
+
+| Item | Result | What changed |
+|------|--------|--------------|
+| L7-C014, L6-C009 | built | `tsconfig.tests.json` and `typecheck:tests`, not in CI, baseline exit 2 with 212 errors in 54 files |
+| L7-C013 | built | Fan-out live probe runs only with `DEEP_LOOP_FANOUT_LIVE=1` |
+| L7-C016 | built | Matrix identifiers renamed |
+| L7-C015 | built | WHY comment on the real-log helper |
+| L7-C018 | built | Shape test for the frozen mode-contract sets |
+| L7-C017 | accepted | Council report kept as a frozen record |
+
+**Docs, validator rules and DQI** (`3fbc871e111`, `0c52017ed96`)
+
+| Item | Result | What changed |
+|------|--------|--------------|
+| L1-R008 | built | Database README lists the gitignored observability log |
+| L6-R012 | built | Rollout deferred scope moved to this packet's out-of-scope list |
+| L6-R019, L6-R021 | built | Playbook inventories renamed CONTENTS |
+| L6-R028 | built | Benchmark scores written as `100 of 100` |
+| DQI | built | The markdown agent passes code-folder READMEs at 70 and keeps 75 elsewhere, in all mirrors |
+| L6-R023 to L6-R027, L6-R029 | accepted | Skill and general READMEs validate in readme mode, where all 72 are valid |
 <!-- /ANCHOR:limitations -->
 
 ---

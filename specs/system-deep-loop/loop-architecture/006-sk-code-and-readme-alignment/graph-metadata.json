@@ -46,8 +46,7 @@
       "goal.md",
       "implementation-summary.md",
       "runtime/tests/_support/README.md",
-      ".skilled/skills/system-deep-loop/runtime/tests/_support/README.md",
-      "benchmark/reports/README.md"
+      ".skilled/skills/system-deep-loop/runtime/tests/_support/README.md"
     ],
     "entities": [
       {
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "A developer opening a system-deep-loop code folder meets READMEs that miss files, name moved paths and fail the sk-doc code-folder validator, and exported TypeScript functions, classes and interfaces that carry no TSDoc although the sk-code TypeScript checklist requires it at P1",
     "created_at": "2026-11-21T18:32:25Z",
-    "last_save_at": "2026-11-21T21:48:38.538Z",
+    "last_save_at": "2026-11-21T23:09:44.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea7ed5716ad16a0cd72400a43c876659a764a50a446949e1177487abf8495daf",
+    "source_fingerprint": "sha256:4e3c8fe5132042b96b8417dd2413f51cc2ae7c1a775e9aec6b0ccf929fff1d39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "169849799605d95aaa18f57a57c2ac520356babc23b985d707ff7dbc11389c56",
+      "spec.md": "ce71ca5e4d5b97560a19b98ab6c2bc5db3a9c15e4fb011d02e691ab0c53fba4a",
       "plan.md": "87fba6a7a94c1087e256c75ad875049fd2999b66713bc580d4e15afa39da1fd7",
-      "tasks.md": "d6328cb86efa385e7b405e47ebfade00aac80a5ef943c380e4095ccd90df0b38",
-      "implementation-summary.md": "2dcaedbf03867ab7bfd4057b85e226397118fd6f9e668d4cc4fa94d0ce6294b8"
+      "tasks.md": "84e9cb12b41d8327ebf3286cf68c9b1561844e24ed1bb752890b1d1db83319d8",
+      "implementation-summary.md": "a5bebe74d195032d1cb0a8f2afd07a315d0eaa6cd18be52cf343455448d977da"
     },
     "last_active_at": null
   }
