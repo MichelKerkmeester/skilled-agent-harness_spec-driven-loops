@@ -130,6 +130,7 @@ The FILES table lists every direct file in this folder. Test names are the publi
 | `fanout-stop.vitest.ts` | Checks the kill semantics of `fanout-run.cjs`. |
 | `frontier-admit-review.vitest.ts` | Executable checks for review frontier admission: target relevance, seeding, the review block and the dimension-scaled budget. |
 | `frontier-admit.vitest.ts` | Executable checks for the frontier node store: check order, prune reasons, seeding, close, graph projection and the seed budget. |
+| `fs-durability.vitest.ts` | Checks that fsyncPath flushes a file and a directory and throws on a missing path, and that makeTempPath builds distinct sibling temp paths. |
 | `graph-read-only.vitest.ts` | Checks the read-only mode of the graph scripts. |
 | `health-degeneration-harness.vitest.ts` | Executable checks for the health degeneration runtime contract. |
 | `hermetic-env.vitest.ts` | Checks the `createHermeticEnv` and `resolveRepositoryRoot` test helpers. |
@@ -149,6 +150,7 @@ The FILES table lists every direct file in this folder. Test names are the publi
 | `loop-lock-cli.vitest.ts` | Executable checks for the loop lock cli runtime contract. |
 | `loop-lock.vitest.ts` | Executable checks for the loop lock runtime contract. |
 | `mode-append-gateway.vitest.ts` | Checks the mode append gateway, its projection relative path and its idempotency key. |
+| `mode-contracts-shape.vitest.ts` | Pins the mode-contracts constant sets (capabilities, convergence hooks, substrate ports, required port list) and checks they are frozen. |
 | `next-focus.vitest.ts` | Executable checks for the next focus runtime contract. |
 | `observability-events.vitest.ts` | Executable checks for the observability events runtime contract. |
 | `opencode-dual-dispatch.vitest.ts` | Executable checks for the OpenCode dual dispatch runtime contract: version parsing and binary resolution precedence, cache invalidation, CJS/ESM parser parity and the per-version lineage argv builders, including the refusal to dispatch native v2. |
