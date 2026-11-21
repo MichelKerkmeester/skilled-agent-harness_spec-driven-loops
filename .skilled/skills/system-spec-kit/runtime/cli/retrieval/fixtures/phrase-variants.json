@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8d4a079a24bd2cc76fdb04d77bed2903b7ffa587486b89ff218d77b7e4d6b382",
+  "manifestHash": "86f5e81902645159ceedc19512c4e21a5b1b9aa1cd8c3ab2e483f7f5dbffb68b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11718,6 +11718,9 @@
     ],
     "align system deep loop": [
       "align system deep loop"
+    ],
+    "align system deep loop code with sk code": [
+      "align system deep loop code with sk code"
     ],
     "align system deep loop implementation summary": [
       "align system deep loop implementation summary"
@@ -110644,6 +110647,21 @@
     ],
     "sk code alignment tasks": [
       "sk-code alignment tasks"
+    ],
+    "sk code and readme alignment": [
+      "sk code and readme alignment"
+    ],
+    "sk code and readme alignment acceptance criteria": [
+      "sk code and readme alignment acceptance criteria"
+    ],
+    "sk code and readme alignment implementation summary": [
+      "sk code and readme alignment implementation summary"
+    ],
+    "sk code and readme alignment plan": [
+      "sk code and readme alignment plan"
+    ],
+    "sk code and readme alignment tasks": [
+      "sk code and readme alignment tasks"
     ],
     "sk code and sk doc alignment": [
       "sk code and sk doc alignment"

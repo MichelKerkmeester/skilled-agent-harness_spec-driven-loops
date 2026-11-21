@@ -1,5 +1,5 @@
 {
-  "corpusHash": "255f3113bd5d89c72c1db7d259747a9ded93f4036cc281468e67f0da8e4fe3ef",
+  "corpusHash": "1e9a0fed083a8b958e93c4b68e5a642e835cfc592b014f5a611839b3a507eee8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28969,
+  "includedPathCount": 28974,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19048,6 +19048,11 @@
     "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/plan.md",
     "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/spec.md",
     "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/tasks.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/plan.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/spec.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/tasks.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/acceptance-criteria.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/implementation-summary.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/plan.md",
@@ -29001,7 +29006,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8d4a079a24bd2cc76fdb04d77bed2903b7ffa587486b89ff218d77b7e4d6b382",
+  "manifestHash": "86f5e81902645159ceedc19512c4e21a5b1b9aa1cd8c3ab2e483f7f5dbffb68b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -37237,6 +37242,10 @@
     },
     {
       "path": "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/scratch",
       "reason": "excluded directory"
     },
     {
