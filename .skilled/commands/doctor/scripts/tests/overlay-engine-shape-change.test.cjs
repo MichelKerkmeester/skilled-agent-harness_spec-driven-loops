@@ -760,6 +760,47 @@ for (const [label, entry, problem] of [
   });
 }
 
+// An overlay path an entry reads as a file that is a folder has no bytes to
+// apply, so status and apply name it as the entry's problem, with the manifest
+// to fix, rather than stopping the run on the read.
+for (const [label, entry, folder, remedy] of [
+  ['the source of a file entry', { id: 'tool', scope: 'file', source: 'files/dir', destination: 'up/tool.md' },
+    'files/dir', 'point the source of overlay tool at a file in %M, or make it a directory entry'],
+  ['the entry set of a json entry', { id: 'tool', scope: 'json-entry', source: 'files/dir', destination: 'up/settings.json' },
+    'files/dir', 'point the source of overlay tool at a file in %M'],
+  ['the fragment of a marked section', { id: 'tool', scope: 'marked-section', fragment: 'files/dir', base: 'files/tool.md', destination: 'up/doc.md' },
+    'files/dir', 'point the fragment of overlay tool at a file in %M'],
+  ['the base of a marked section', { id: 'tool', scope: 'marked-section', fragment: 'files/tool.md', base: 'files/dir', destination: 'up/doc.md' },
+    'files/dir', 'point the base of overlay tool at a file in %M'],
+]) {
+  for (const [where, links] of [['in a plain tree', []], ['under a missing layout link that leads outside the tree', [{ path: 'up', target: '../outside' }]]]) {
+    test(`a folder where ${label} names a file is the entry's problem ${where}, not a stopped run`, (t) => {
+      const fixture = createShapeFixture(t, [entry], links);
+      writeFile(fixture.overlayDir, 'files/dir/a', 'a\n');
+      writeFile(fixture.tree, 'up/settings.json', '{}\n');
+      writeFile(fixture.tree, 'up/doc.md', 'doc\n');
+      if (links.length > 0) {
+        fs.rmSync(path.join(fixture.tree, 'up'), { recursive: true });
+        fs.mkdirSync(path.join(fixture.workspace, 'outside'));
+      }
+      const overlayLabel = path.relative(fixture.tree, fixture.overlayDir).split(path.sep).join('/');
+      const first = `${overlayLabel}/${folder} is a folder, where overlay tool reads a file`;
+      const next = '  Next: ' + remedy.replace('%M', path.join(fixture.overlayDir, 'overlay-manifest.json')) +
+        `, then from ${fixture.tree}: node .skilled/commands/doctor/scripts/overlay-engine.cjs status`;
+      const status = fixture.run(['status']);
+      assert.equal(status.code, 1, status.output);
+      assert.ok(status.output.split('\n').includes(`MISS     tool: ${first}`), status.output);
+      assert.ok(status.output.split('\n').includes(next), status.output);
+      assert.equal(status.output.includes('EISDIR'), false, status.output);
+      const apply = fixture.run(['apply']);
+      assert.equal(apply.code, 1, apply.output);
+      assert.ok(apply.output.split('\n').includes(`BLOCKED  tool: ${first}`), apply.output);
+      assert.match(apply.output, /^ {2}this apply wrote nothing: /m, apply.output);
+      assert.equal(kindOf(path.join(fixture.tree, 'up', 'tool.md')), 'missing');
+    });
+  }
+}
+
 // An entry set is parsed only once its destination is read, so one that does
 // not parse still waits on the link rather than naming a destination status
 // cannot read.

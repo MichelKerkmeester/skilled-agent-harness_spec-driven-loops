@@ -160,6 +160,17 @@ function folderInTheWay(entry, root) {
     keepAsideRemedy(root, path.posix.normalize(entry.destination)));
 }
 
+// Why an entry cannot plan when an overlay path it reads as a file is a folder:
+// there are no bytes to apply, and the fix is the manifest's, so the planner
+// names it rather than letting the read stop the run.
+function overlayFolderProblem(entry, ctx, field) {
+  const asDirectory = entry.scope === 'file' ? ', or make it a directory entry' : '';
+  return withRemedy(`${ctx.overlayLabel}/${entry[field]} is a folder, where overlay ${entry.id} reads a file`,
+    `apply reads the bytes of a ${entry.scope} entry from its ${field}, and a folder holds none, so the entry writes nothing`,
+    `Next: point the ${field} of overlay ${entry.id} at a file in ${shellPath(ctx.manifestPath)}${asDirectory}, then ` +
+      nextEngine(ctx.root, 'status').slice('Next: '.length));
+}
+
 // Whether a path, read through any link on it, is a folder.
 function leadsToFolder(filePath) {
   try {
@@ -2368,6 +2379,10 @@ function linkLeavingTreeProblem(entry, found, root) {
 function planFileOverlay(entry, ctx, problems, acceptedSha256, { recordedLinks } = {}) {
   const sourcePath = path.join(ctx.overlayRoot, entry.source);
   const destinationPath = path.join(ctx.root, entry.destination);
+  if (leadsToFolder(sourcePath)) {
+    problems.push(overlayFolderProblem(entry, ctx, 'source'));
+    return { writes: [], deletes: [], outputs: [] };
+  }
   const desired = readBufferOrNull(sourcePath);
   if (!desired) {
     problems.push(`canonical copy is missing: ${entry.source}`);
@@ -2593,6 +2608,13 @@ function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
   const fragmentPath = path.join(ctx.overlayRoot, entry.fragment);
   const basePath = path.join(ctx.overlayRoot, entry.base);
   const destinationPath = path.join(ctx.root, entry.destination);
+  const folderProblems = [['fragment', fragmentPath], ['base', basePath]]
+    .filter(([, filePath]) => leadsToFolder(filePath))
+    .map(([field]) => overlayFolderProblem(entry, ctx, field));
+  if (folderProblems.length > 0) {
+    problems.push(...folderProblems);
+    return { writes: [], deletes: [], outputs: [] };
+  }
   const fragment = readBufferOrNull(fragmentPath);
   const base = readBufferOrNull(basePath);
   if (!fragment || !base) {
@@ -2687,6 +2709,10 @@ function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
 function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, recordedSets, recordedKeys, upstreamBytes } = {}) {
   const specPath = path.join(ctx.overlayRoot, entry.source);
   const destinationPath = path.join(ctx.root, entry.destination);
+  if (leadsToFolder(specPath)) {
+    problems.push(overlayFolderProblem(entry, ctx, 'source'));
+    return { writes: [], deletes: [], outputs: [] };
+  }
   const specBuffer = readBufferOrNull(specPath);
   if (!specBuffer) {
     problems.push(`entry set is missing: ${entry.source}`);
@@ -5052,8 +5078,12 @@ function firstDifference(left, right, at = []) {
   return at;
 }
 
+// An entry set that is missing, does not parse, or is a folder reads as none:
+// its planner names that problem, so a note has nothing to add.
 function readEntrySet(ctx, entry) {
-  const buffer = readBufferOrNull(path.join(ctx.overlayRoot, entry.source));
+  const specPath = path.join(ctx.overlayRoot, entry.source);
+  if (leadsToFolder(specPath)) return null;
+  const buffer = readBufferOrNull(specPath);
   if (!buffer) return null;
   try {
     const spec = JSON.parse(buffer.toString('utf8'));
