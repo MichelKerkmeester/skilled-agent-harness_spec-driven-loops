@@ -9,6 +9,8 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { isAbsolute, join } from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
+import { EventEmitter } from 'node:events';
+import { createRequire } from 'node:module';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -143,4 +145,40 @@ describe('fanout-run.cjs — a signal stop closes its lineages in the ledger', (
       expect(statusLine.split(/\s{2,}/)[1]).toBe('stopped');
     }, 60_000);
   }
+});
+
+describe('fanout-run.cjs — the bootstrap forwards every signal until its child closes', () => {
+  const requireCjs = createRequire(import.meta.url);
+  const { forwardSignalsToChild } = requireCjs('../../scripts/fanout-run.cjs') as {
+    forwardSignalsToChild: (child: EventEmitter & { kill: (signal: string) => void }) => void;
+  };
+
+  function fakeChild() {
+    const killed: string[] = [];
+    const child = Object.assign(new EventEmitter(), { kill: (signal: string) => { killed.push(signal); } });
+    return { child, killed };
+  }
+
+  it('forwards a second SIGTERM, and leaves no handler once the child closes', () => {
+    const signals = ['SIGINT', 'SIGTERM', 'SIGHUP'] as const;
+    const baseline = signals.map((signal) => process.listenerCount(signal));
+    const { child, killed } = fakeChild();
+    forwardSignalsToChild(child);
+
+    process.emit('SIGTERM');
+    process.emit('SIGTERM');
+    expect(killed).toEqual(['SIGTERM', 'SIGTERM']);
+
+    child.emit('close', null, 'SIGTERM');
+    expect(signals.map((signal) => process.listenerCount(signal))).toEqual(baseline);
+  });
+
+  it('stops forwarding to a closed child', () => {
+    const { child, killed } = fakeChild();
+    forwardSignalsToChild(child);
+    child.emit('close', 0, null);
+
+    process.emit('SIGHUP');
+    expect(killed).toEqual([]);
+  });
 });

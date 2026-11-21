@@ -76,6 +76,25 @@ const FORWARDED_SIGNALS = ['SIGINT', 'SIGTERM', 'SIGHUP'];
 // seconds on imports, so a parent that dies during them is still noticed.
 const BOOTSTRAP_PARENT_PID = isTsxLoaded ? process.ppid : null;
 
+/**
+ * Forward every operator signal to the child until the child closes.
+ *
+ * The handlers stay installed for the child's whole life: a once handler would leave the
+ * second signal at its default and kill the bootstrap while the child is still stopping its
+ * lineages, so the run would end with the bootstrap's death in place of the child's exit code.
+ * They are removed on close so no handler outlives the child.
+ *
+ * @param {import('node:child_process').ChildProcess} child - The TSX child to signal.
+ * @returns {void}
+ */
+function forwardSignalsToChild(child) {
+  const handlers = FORWARDED_SIGNALS.map((signal) => [signal, () => child.kill(signal)]);
+  for (const [signal, handler] of handlers) process.on(signal, handler);
+  child.once('close', () => {
+    for (const [signal, handler] of handlers) process.off(signal, handler);
+  });
+}
+
 function runTsxBootstrap() {
   const child = spawn(
     process.execPath,
@@ -95,11 +114,7 @@ function runTsxBootstrap() {
   child.stdout?.pipe(process.stdout);
   child.stderr?.pipe(process.stderr);
 
-  for (const signal of FORWARDED_SIGNALS) {
-    process.once(signal, () => {
-      child.kill(signal);
-    });
-  }
+  forwardSignalsToChild(child);
 
   child.on('close', (status, signal) => {
     if (status !== null) {
@@ -6143,6 +6158,7 @@ if (require.main === module && isTsxLoaded) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
+  forwardSignalsToChild,
   expansiveLineageBudgets,
   flagLineageBudgets,
   redactProviderText,

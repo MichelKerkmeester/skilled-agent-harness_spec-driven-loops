@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.39.0
+version: 1.14.40.0
 ---
 
 # Loop Protocol Reference
@@ -312,7 +312,7 @@ All branches share:
 
 Per-kind flag-compatibility is enforced at config parse time by `EXECUTOR_KIND_FLAG_SUPPORT` in `executor-config.ts`. Setting a flag that the chosen kind does not support throws `ExecutorConfigError` before dispatch.
 
-Cross-CLI delegation (a running executor invoking other CLIs via its shell) is documented design intent. Runtime recursion detection is out of scope; see the SKILL.md Cross-CLI Delegation subsection.
+Cross-CLI delegation (a running executor invoking other CLIs via its shell) is documented design intent. Every CLI dispatch through `dispatch-iteration.cjs` first passes the recursion guard in `runtime/lib/deep-loop/executor-audit.ts`, which refuses before spawn with exit 3 and a `recursion-guard-<layer>` reason. It checks five layers in order: lineage, stack, ancestry, env and lockfile. An operator who dispatches from their own CLI session on purpose sets `SPECKIT_ALLOW_HOST_SESSION_EXECUTOR=1`. That skips only the ancestry and env checks, the two that detect the host session; the lineage, stack and lockfile layers still refuse, and a nested dispatch never inherits the switch. A CLI an executor starts straight from its own shell, outside the dispatch runner, passes no guard; the containment rules below govern it. The full layer contract is `runtime/feature-catalog/executor/executor-audit.md`.
 
 Two containment rules bind every CLI lineage (any `cli-*` executor kind):
 

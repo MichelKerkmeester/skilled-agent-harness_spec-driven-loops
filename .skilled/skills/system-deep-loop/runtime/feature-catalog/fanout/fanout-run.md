@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.30.0
+version: 1.4.31.0
 ---
 
 # Fan-out CLI lineage driver
@@ -181,8 +181,9 @@ with its `pid`, the `signal` and a `rerun_command`, and its own closing row is `
 the `results` list in `orchestration-summary.json` and `--status` show those lineages as `stopped`.
 A lineage still answering after the wait gets no row, so a later `--stop` or rerun still sees it
 live. It is listed as `{label, pid}` under `survivors` on `run_stopped` and in the summary, and
-its result stays `running`. The signal handlers stay installed until the runner exits, so a
-second signal during the wait does not cut the stop short of its rows.
+its result stays `running`. The signal handlers stay installed until the runner exits, and the
+bootstrap forwards each repeat of a signal until its child closes, so a second signal during the
+wait does not cut the stop short of its rows.
 
 ### Expansive Depth
 

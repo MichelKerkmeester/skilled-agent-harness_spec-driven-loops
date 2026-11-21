@@ -7,7 +7,7 @@ trigger_phrases:
   - "select review executor"
   - "per-kind flag compatibility"
   - "native cli-opencode dispatch"
-version: 1.11.11.0
+version: 1.11.12.0
 ---
 
 # Executor Selection Contract
@@ -40,7 +40,7 @@ All branches share three steps: pre-dispatch prompt rendering (`renderPromptPack
 
 ### Configuration
 
-Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_FLAG_SUPPORT`. Setting a flag the chosen kind does not support throws `ExecutorConfigError` before any dispatch. Cross-CLI delegation (a running executor invoking other CLIs through its shell) is documented design intent, runtime recursion detection is out of scope.
+Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_FLAG_SUPPORT`. Setting a flag the chosen kind does not support throws `ExecutorConfigError` before any dispatch. Cross-CLI delegation (a running executor invoking other CLIs through its shell) is documented design intent. Before spawn, every CLI dispatch through `dispatch-iteration.cjs` passes the five-layer recursion guard in `executor-audit.ts` (lineage, stack, ancestry, env, lockfile), which refuses with exit 3 and a `recursion-guard-<layer>` reason. `SPECKIT_ALLOW_HOST_SESSION_EXECUTOR=1` lets an operator dispatch from their own CLI session by skipping only the ancestry and env checks; the other three layers still refuse. A CLI an executor starts straight from its own shell, outside the dispatch runner, passes no guard.
 
 ---
 
@@ -51,6 +51,7 @@ Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_F
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Runtime | `parseExecutorConfig`, `EXECUTOR_KIND_FLAG_SUPPORT`, `ExecutorConfigError`. |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Runtime | `validateExecutorDispatchAllowed`, the five-layer recursion guard and the host-session switch. |
 | `references/protocol/loop-protocol.md` | Protocol | Executor Resolution section: per-kind dispatch branches and shared steps. |
 | `SKILL.md` | Skill contract | Executor Selection Contract and Cross-CLI Delegation subsections. |
 
