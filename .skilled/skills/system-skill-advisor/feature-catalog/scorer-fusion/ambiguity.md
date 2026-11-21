@@ -7,14 +7,14 @@ trigger_phrases:
   - "ambiguous brief"
   - "0.05 ambiguity window"
   - "dual-margin ambiguity"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Top-2 Ambiguity Window
 
 ## 1. OVERVIEW
 
-Avoid silently picking a single winner when two candidates are tied or near-tied. Expose the ambiguity to callers so routing decisions stay honest under the 5-lane fusion.
+Avoid silently picking a single winner when two candidates are tied or near-tied. Expose the ambiguity to callers so routing decisions stay honest under lane fusion.
 
 ---
 
@@ -57,6 +57,6 @@ If either gap is within margin, the response carries an ambiguity signal that th
 
 Related references:
 
-- [01-five-lane-fusion.md](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
+- [01-lane-fusion.md](../../feature-catalog/scorer-fusion/lane-fusion.md).
 - [04-attribution.md](./attribution.md).
 - [`cli-surface/advisor-recommend.md`](../../feature-catalog/cli-surface/advisor-recommend.md).

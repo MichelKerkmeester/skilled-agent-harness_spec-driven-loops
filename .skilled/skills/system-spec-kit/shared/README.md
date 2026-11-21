@@ -1,12 +1,11 @@
 ---
 title: "Shared Library Modules"
-description: "The TypeScript modules the spec-kit engine, the CLI package, the runtime hooks and the skill advisor import from one place: frontmatter and save-quality parsing, the Gate 3 classifier, the compaction merger and budget, path and workspace helpers, the RRF primitives and the advisor's embedding provider stack."
+description: "The TypeScript modules the spec-kit engine, the CLI package, the runtime hooks and the skill advisor import from one place: frontmatter and save-quality parsing, the Gate 3 classifier, the compaction merger and budget, path and workspace helpers and the RRF primitives."
 trigger_phrases:
   - "shared library modules"
   - "spec kit shared package"
   - "shared TypeScript modules"
-  - "embedding provider stack"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Shared Library Modules
@@ -142,7 +141,7 @@ shared/
 | `gate-3-classifier.ts` | Decides whether a prompt will write, for every runtime's prompt hook |
 | `compact-merger.ts`, `budget-allocator.ts` | Merge and budget the payload the PreCompact hooks carry |
 | `config.ts` | Resolves the telemetry store directory from the database-directory override, else `runtime/database/` under the skill root |
-| `algorithms/rrf-fusion.ts` | Rank fusion for the advisor's five-lane scorer |
+| `algorithms/rrf-fusion.ts` | Rank fusion for the advisor's lane fusion scorer |
 | `workspace/repo-root.mjs` | Repository root resolution for scripts that run before a build |
 | `review-research-paths.cjs` | The artifact-root contract the deep-loop runtime requires |
 
@@ -185,7 +184,7 @@ Every variable this package reads, one row per variable, with the files that rea
 
 Two spellings of the database-directory override are honoured because both appear in operator configs; `SPEC_KIT_DB_DIR` is checked first.
 
-### Where embeddings are stored
+### Where data is stored
 
 `shared/` owns no store. The skill advisor keeps its database beside its own server; `config.ts` resolves the telemetry directory under `runtime/database/`, where the engine writes `access-telemetry.json`.
 

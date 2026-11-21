@@ -1,6 +1,6 @@
 ---
 title: "Advisor Scorer: Lane Attribution and Confidence Calibration"
-description: "Reference for the skill advisor's 5-lane scoring system, lane attribution assembly, confidence thresholds and prompt-safety boundaries."
+description: "Reference for the skill advisor's lane fusion scoring system, lane attribution assembly, confidence thresholds and prompt-safety boundaries."
 trigger_phrases:
   - "advisor scorer lanes"
   - "lane attribution"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "prompt isolation safety"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.7.0
+version: 0.8.8.0
 ---
 
 # Advisor Scorer: Lane Attribution and Confidence Calibration
@@ -22,7 +22,7 @@ Open this when a recommendation scores unexpectedly, and when you need to see wh
 
 ### Purpose
 
-Explains the advisor's five-lane scorer, lane attribution, confidence calibration and prompt-safety boundaries.
+Explains the advisor's lane fusion scorer, lane attribution, confidence calibration and prompt-safety boundaries.
 
 ### When to Use
 
@@ -44,7 +44,7 @@ Recommendations must be explainable through lane attribution without echoing raw
 
 ## 2. LANE ATTRIBUTION MODEL
 
-Five lanes are registered for scoring. Their live weights are held in the registry. A zero weight disables a lane for scoring without removing it from the registry. Lane attribution derives shadow-only status from registry liveness (`isLiveScorerLane`): a lane is filtered from dominant-lane detection only when it is not live.
+Four lanes are registered for scoring. Their live weights are held in the registry. A zero weight disables a lane for scoring without removing it from the registry. Lane attribution derives shadow-only status from registry liveness (`isLiveScorerLane`): a lane is filtered from dominant-lane detection only when it is not live.
 
 | Lane | Live Weight | Shadow Weight | Source |
 |---|---|---|---|
@@ -52,9 +52,8 @@ Five lanes are registered for scoring. Their live weights are held in the regist
 | lexical | 0.28 | 0.25 | Token matching with synonym expansion |
 | graph_causal | 0.13 | 0.20 | Skill graph edge propagation |
 | derived_generated | 0.12 | 0.10 | Derived trigger metadata |
-| semantic_shadow | 0 | 0.05 | Embedding cosine similarity (registered live lane, disabled by default) |
 
-Lane weights live in `runtime/lib/scorer/lane-registry.ts:7-19`. The derived-dominant check fires when derived lane evidence exceeds combined explicit plus lexical evidence, triggering a confidence ceiling (`runtime/lib/scorer/attribution.ts:26-34`).
+Lane weights live in `runtime/lib/scorer/lane-registry.ts:8-18`. The derived-dominant check fires when derived lane evidence exceeds combined explicit plus lexical evidence, triggering a confidence ceiling (`runtime/lib/scorer/attribution.ts:26-34`).
 
 ### Shadow vs live weight mechanics
 
@@ -62,7 +61,6 @@ Shadow weights live alongside live weights as `DEFAULT_SHADOW_SCORER_LANE_WEIGHT
 
 - `SPECKIT_ADVISOR_SHADOW_MODE` is currently inert: it documents intended operator control, but the runtime has no reader for it and scoring does not branch on that variable.
 - Effective shadow-only status is derived per lane from registry liveness in fusion (`shadowOnly = !isLiveScorerLane(lane)`), not from any per-match flag.
-- When enabled, `semantic_shadow` remains live in the registry, and its raw match tag is overridden to `shadowOnly:false`. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable its live scoring.
 
 ---
 
@@ -74,17 +72,7 @@ Category hints route well-known phrases. The phrase `deep research` maps to the 
 
 ---
 
-## 4. SEMANTIC SHADOW LANE
-
-The semantic shadow lane computes cosine similarity between a prompt embedding and pre-computed skill and command embeddings when enabled. It remains live in the registry, but its default live weight is 0, so recommendation prompts are not embedded. The background index refresh still runs at any lane weight. `advisor_status` adds `semanticLaneHealth`, including `disabledReason: "lane_weight_zero"` and `laneEnabled: false`, only when you set `includeSemanticHealth` or `debug`. An opt-in `advisor_status --include-semantic-health true` also probes Ollama readiness. `advisor_recommend` adds no `semantic_lane_off` warning at weight 0. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable the lane. The lane scores only when all embeddable skill and command rows have current vectors. Coverage is checked before the prompt embed. Missing or stale coverage skips the embed, reports `incomplete_skill_vectors` and omits the lane from that call's live confidence total. If prompt embedding fails, or a dimension mismatch, an unavailable adapter or an absent database stops the lane first, the lane is marked degraded and omitted the same way. The exact rerank path applies the same coverage check. At weight 0 a stale index does not mark the lane degraded.
-
-When the lane is enabled, its raw matches carry `shadowOnly:false` because fusion derives the effective value from registry liveness (`isLiveScorerLane`), not the configured weight (`runtime/lib/scorer/lanes/semantic-shadow.ts`).
-
-Cosine similarity below 0.2 is treated as no signal (`runtime/lib/scorer/lanes/semantic-shadow.ts:27, 405`). When the lane is enabled and embeddings are unavailable under `VITEST=true`, it falls back to token-overlap scoring so tests stay deterministic (`runtime/lib/scorer/lanes/semantic-shadow.ts:325-338`).
-
----
-
-## 5. GRAPH CAUSAL LANE
+## 4. GRAPH CAUSAL LANE
 
 The graph causal lane propagates scores through the skill graph using typed edges. Edge multipliers: `enhances` 0.55, `siblings` 0.35, `depends_on` 0.35, `prerequisite_for` 0.30, `conflicts_with` -0.35 (`runtime/lib/scorer/lanes/graph-causal.ts:13-19`).
 
@@ -92,7 +80,7 @@ Traversal uses BFS with `maxDepth=2` and `maxBreadth=4`, decaying signal by `1/(
 
 ---
 
-## 6. EXPLICIT AUTHOR LANE
+## 5. EXPLICIT AUTHOR LANE
 
 The explicit author lane uses curated `TOKEN_BOOSTS` and `PHRASE_BOOSTS` mappings for high-confidence routing, plus pattern-based disambiguation rules. Token boosts map single tokens to skill scores (e.g., `git` to sk-git at 1.0, `readme` to sk-doc at 0.95) defined in `runtime/lib/scorer/lanes/explicit.ts:27-107`.
 
@@ -103,7 +91,7 @@ The explicit author lane uses curated `TOKEN_BOOSTS` and `PHRASE_BOOSTS` mapping
 
 ---
 
-## 7. DERIVED GENERATED LANE
+## 6. DERIVED GENERATED LANE
 
 The derived generated lane scores against `derivedTriggers` and `derivedKeywords` from skill metadata. Phrase-specificity scoring weights direct triggers at 0.7x and affordance-derived triggers at 0.45x (`runtime/lib/scorer/lanes/derived.ts:38-53`).
 
@@ -111,7 +99,7 @@ Age-policy haircut reduces derived scores based on projection age and skill life
 
 ---
 
-## 8. SCORE FUSION AND CONFIDENCE CALIBRATION
+## 7. SCORE FUSION AND CONFIDENCE CALIBRATION
 
 Fusion combines weighted lane contributions into a final score, then applies confidence assembly based on live normalization, direct evidence plus intent signals. Confidence uses `liveNormalized` (`score/liveTotal`) as the primary ramp with `baseConstant=0.52` plus `liveNormalizedRampCoefficient=0.43` (`runtime/lib/scorer/scoring-constants.ts:141-144`).
 
@@ -142,7 +130,7 @@ All 16 constants live in `runtime/lib/scorer/scoring-constants.ts:141-170` under
 
 ---
 
-## 9. UNCERTAINTY AND AMBIGUITY DETECTION
+## 8. UNCERTAINTY AND AMBIGUITY DETECTION
 
 Uncertainty is computed from evidence count and direct evidence. Uncertainty floors: no evidence 0.42, some evidence 0.30, medium evidence 0.22, high evidence 0.18 (`runtime/lib/scorer/scoring-constants.ts:160-165`).
 
@@ -150,7 +138,7 @@ Direct evidence discount of -0.06 applies when `directScore >= 0.75`. Low-confid
 
 ---
 
-## 10. PROMPT ISOLATION SAFETY
+## 9. PROMPT ISOLATION SAFETY
 
 Lane attribution is safety-critical. It must provide explainable routing without exposing raw prompt text in advisor metadata or outputs. Attribution reason strings use lane identifiers and evidence labels (e.g., `lexical=0.85 (token:git; hint:worktree)`) instead of quoting prompt text (`runtime/lib/scorer/attribution.ts:13-24`).
 

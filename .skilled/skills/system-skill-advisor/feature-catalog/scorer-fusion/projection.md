@@ -8,7 +8,7 @@ trigger_phrases:
   - "projection layer"
   - "workflowMode publication"
   - "routing registry drift guard"
-version: 0.8.0.12
+version: 0.8.1.0
 ---
 
 # Registry Projection Drift Guard and workflowMode Publication
@@ -64,6 +64,6 @@ Expose the scorer projection data the advisor needs, including the generated dee
 
 Related references:
 
-- [01-five-lane-fusion.md](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
+- [01-lane-fusion.md](../../feature-catalog/scorer-fusion/lane-fusion.md).
 - [04-attribution.md](./attribution.md).
 - [`cli-surface/advisor-validate.md`](../../feature-catalog/cli-surface/advisor-validate.md).

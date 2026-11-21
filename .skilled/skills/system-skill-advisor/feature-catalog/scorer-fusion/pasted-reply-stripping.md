@@ -6,7 +6,7 @@ trigger_phrases:
   - "pasted reply strip"
   - "pasted assistant response"
   - "task marker stripping"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Pasted Reply Stripping
@@ -49,5 +49,4 @@ When a prompt starts with a recognized attribution header and includes a `Task:`
 
 Related references:
 
-- [five-lane-fusion.md](./five-lane-fusion.md).
-- [command-meaning-matching.md](./command-meaning-matching.md).
+- [lane-fusion.md](./lane-fusion.md).

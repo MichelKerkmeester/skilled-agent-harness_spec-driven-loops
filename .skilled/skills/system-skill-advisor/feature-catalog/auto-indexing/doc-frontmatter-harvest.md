@@ -6,7 +6,7 @@ trigger_phrases:
   - "matchedDocs"
   - "skill_docs table"
   - "doc frontmatter routing"
-version: 0.8.0.1
+version: 0.8.1.0
 ---
 
 # Doc-Frontmatter Trigger Harvest
@@ -57,4 +57,4 @@ Related references:
 
 - [derived-extraction.md](../../feature-catalog/auto-indexing/derived-extraction.md).
 - [anti-stuffing.md](../../feature-catalog/auto-indexing/anti-stuffing.md).
-- [`scorer-fusion/five-lane-fusion.md`](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
+- [`scorer-fusion/lane-fusion.md`](../../feature-catalog/scorer-fusion/lane-fusion.md).

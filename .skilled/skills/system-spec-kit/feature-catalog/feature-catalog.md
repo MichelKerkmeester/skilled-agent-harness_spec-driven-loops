@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-15"
-version: 2.1.42.0
+version: 2.1.43.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -367,7 +367,7 @@ Dry-run-first operator runbook and scripts for stale MCP helper cleanup, tempora
 
 #### Current Reality
 
-The sweeper serves the skill-advisor and code-mode launchers, and its memory-daemon branches came out with the server. It also reaps a temp-path orphan class: a process reparented to pid 1, owned by the current user, not a zombie, older than `ORPHAN_TEMP_PROCESS_AGE_HOURS` (default 6), whose command line points into the user temp dir, `/tmp/claude-<uid>/` or `~/worktrees/*/.scratch-*`. The shape is re-checked right before each signal, and a TCP listener does not preserve such a process. The skill-advisor launcher is always preserved because it retires itself on its own idle timeout, and its advisor server and hf-model server survive while that launcher is their parent.
+The sweeper serves the skill-advisor and code-mode launchers, and its memory-daemon branches came out with the server. It also reaps a temp-path orphan class: a process reparented to pid 1, owned by the current user, not a zombie, older than `ORPHAN_TEMP_PROCESS_AGE_HOURS` (default 6), whose command line points into the user temp dir, `/tmp/claude-<uid>/` or `~/worktrees/*/.scratch-*`. The shape is re-checked right before each signal, and a TCP listener does not preserve such a process. The skill-advisor launcher is always preserved because it retires itself on its own idle timeout, and its advisor server survives while that launcher is its parent.
 
 #### Source Files
 

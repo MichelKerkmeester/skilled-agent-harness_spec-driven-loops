@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Five Lane Fusion Stress Test
+// MODULE: Lane Fusion Stress Test
 // ───────────────────────────────────────────────────────────────────
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtempSync, rmSync } from 'node:fs';
@@ -22,7 +22,7 @@ function skillProjection(input: {
     family: 'stress',
     category: 'stress',
     name: input.id,
-    description: `${input.id} five-lane stress projection`,
+    description: `${input.id} lane fusion stress projection`,
     keywords: input.keywords ?? [],
     domains: input.domains ?? ['stress', 'advisor'],
     intentSignals: input.intentSignals ?? [],
@@ -33,7 +33,7 @@ function skillProjection(input: {
   };
 }
 
-describe('sa-019 — Five-lane fusion', () => {
+describe('sa-019 — Lane fusion', () => {
   let tmpDir: string;
 
   beforeEach(() => {

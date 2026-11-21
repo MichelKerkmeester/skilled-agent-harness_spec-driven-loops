@@ -1,7 +1,7 @@
 ---
 title: "139 -- Session capturing pipeline quality"
 description: "This scenario validates Session capturing pipeline quality for `139`. It focuses on Canonical coverage sourced from M-007 session-capturing closure verification."
-version: 1.6.3.0
+version: 1.6.4.0
 id: tooling-and-scripts-session-capturing-pipeline-quality-coverage
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -97,7 +97,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
   (no output)
   ```
 - `cd .skilled/skills/system-spec-kit/scripts && npm run check` failed:
-  Recorded before the CLI nesting; the `@spec-kit/scripts` workspace and two of the listed test files no longer exist, the boundary script is repaired, and `npm run check` passes with the listed test imports governed by the allowlist. Two rows for `memory-pipeline-regressions.vitest.ts` were later removed from the capture below, because that test no longer imports `../../shared/embeddings` and the lines they cited are gone. The `17 violation(s)` count is the original recording.
+  Recorded before the CLI nesting; the `@spec-kit/scripts` workspace and two of the listed test files no longer exist, the boundary script is repaired, and `npm run check` passes with the listed test imports governed by the allowlist. Two rows for `memory-pipeline-regressions.vitest.ts` were later removed from the capture below, because that test no longer imports the shared embeddings package and the lines they cited are gone. The `17 violation(s)` count is the original recording.
 
   ```text
   > @spec-kit/scripts@1.7.2 check

@@ -1,7 +1,7 @@
 ---
 title: "433 -- CLI Hook Transport-Down Fail-Open"
 description: "Manual check that the skill-advisor prompt hook exits 0 and never blocks the prompt when the daemon socket is absent, with a status line or a brief in every case."
-version: 1.6.3.0
+version: 1.6.4.0
 id: ux-hooks-cli-hook-transport-down-fail-open
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -45,7 +45,6 @@ The optional `gtimeout` runner comes from GNU coreutils.
 SANDBOX=$(mktemp -d /tmp/cli-playbook.XXXXXX)
 export SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock"
 export SYSTEM_SKILL_ADVISOR_DB_DIR="$SANDBOX/db"
-export SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=0
 export SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=0.2
 GEN=.skilled/skills/.state/advisor/skill-graph-generation.json
 GEN_BEFORE=$(shasum "$GEN")
@@ -80,7 +79,7 @@ else
   }
   for i in $(seq 1 60); do [ "$i" -gt 25 ] && ! sandbox_advisor_running && break; sleep 1; done
   [ "$(shasum "$GEN")" = "$GEN_BEFORE" ] && echo "live generation file unchanged" || echo "live generation file CHANGED"
-  unset SPECKIT_IPC_SOCKET_DIR SYSTEM_SKILL_ADVISOR_DB_DIR SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN
+  unset SPECKIT_IPC_SOCKET_DIR SYSTEM_SKILL_ADVISOR_DB_DIR SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN
   if [ -z "$(lsof -t -p $$ 2>/dev/null)" ]; then
     echo "lsof cannot list open files here; sandbox kept at $SANDBOX"
   elif sandbox_advisor_running; then

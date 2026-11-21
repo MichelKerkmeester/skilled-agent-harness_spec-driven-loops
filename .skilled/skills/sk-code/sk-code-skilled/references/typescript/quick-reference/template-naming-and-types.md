@@ -8,7 +8,7 @@ trigger_phrases:
   - "typescript naming cheat sheet"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # TypeScript Quick Reference
@@ -158,8 +158,6 @@ export type { ModuleConfig, OperationOutcome };
 | Booleans          | `is`/`has`/`can`   | `isValid`, `hasItems`     |
 | Files             | `kebab-case`       | `memory-search.ts`        |
 | Private members   | `_prefix`          | `private _connection`     |
-
-**Legacy exception**: `IEmbeddingProvider` and `IVectorStore` keep `I` prefix. New interfaces omit it.
 
 ---
 

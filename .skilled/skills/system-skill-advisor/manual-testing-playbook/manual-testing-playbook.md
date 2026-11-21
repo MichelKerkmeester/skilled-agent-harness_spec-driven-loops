@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.15.0
+version: 0.8.16.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -274,7 +274,7 @@ This category validates scorer fusion scenarios `SC-001..SC-006`.
 
 | ID | Scenario | File |
 |---|---|---|
-| SC-001 | Five-Lane Analytical Fusion | [001-five-lane-fusion.md](scorer-fusion/five-lane-fusion.md) |
+| SC-001 | Analytical Lane Fusion | [001-lane-fusion.md](scorer-fusion/lane-fusion.md) |
 | SC-002 | Registry Projection Drift Guard and workflowMode Publication | [002-projection.md](scorer-fusion/projection.md) |
 | SC-003 | Top-2 Ambiguity Window | [003-ambiguity.md](scorer-fusion/ambiguity.md) |
 | SC-004 | Lane Contribution Attribution | [004-lane-attribution.md](scorer-fusion/lane-attribution.md) |

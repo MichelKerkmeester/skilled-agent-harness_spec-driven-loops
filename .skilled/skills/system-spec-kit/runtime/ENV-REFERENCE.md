@@ -5,7 +5,7 @@ description: Environment variables read by the surviving spec-kit engine (valida
 
 # SPECKIT Environment Variable Reference
 
-> Environment variables read by the spec-kit engine in this package, plus the shared embedding/IPC and skill-advisor variables that live outside it but are documented here because operators configure them alongside it.
+> Environment variables read by the spec-kit engine in this package, plus the shared IPC and skill-advisor variables that live outside it but are documented here because operators configure them alongside it.
 
 ---
 
@@ -15,9 +15,9 @@ All variables are optional. The engine runs with sensible defaults when none are
 
 `/doctor:env` reads this file at run time, then adds every setting in the root `.env.example` that this file does not document, with the default and description written on that line. It shows a switch's default and where it is set, by name only, and saves a preference only after you approve the exact line and destination. The root README's Environment Settings section says where to set a value locally.
 
-**What this package still is.** The memory engine was removed. The MCP transport (`context-server`), the memory tools and handlers, the memory database and its launcher, sqlite vector search, the in-package embedders, the evals and migrations, and the spec-memory CLI shim and plugin bridge are all gone. What remains is the spec-kit engine: the validation orchestrator, the graph and description metadata generators, the documentation level contracts, the continuity writer's imports, and the runtime hook adapters under `hooks/` for Claude, Codex, Cursor, Devin and Pi.
+**What this package still is.** The memory engine was removed. The MCP transport (`context-server`), the memory tools and handlers, the memory database and its launcher, sqlite vector search, the in-package embedding providers, the evals and migrations, and the spec-memory CLI shim and plugin bridge are all gone. What remains is the spec-kit engine: the validation orchestrator, the graph and description metadata generators, the documentation level contracts, the continuity writer's imports, and the runtime hook adapters under `hooks/` for Claude, Codex, Cursor, Devin and Pi.
 
-**What is documented elsewhere but kept here.** The skill advisor, the shared HF model server and its `hf-embed` socket, and the shared embeddings and IPC code under `.skilled/skills/system-spec-kit/shared` and `.skilled/bin` were not touched by the removal. Their variables keep rows below, and each row's Source column names the file that reads it so ownership is unambiguous. The DeepSeek Harness run surface is documented by name only for adjacent setup. Its runtime owns those settings.
+**What is documented elsewhere but kept here.** The skill advisor and the shared IPC code under `.skilled/skills/system-spec-kit/shared` and `.skilled/bin` were not touched by the removal. Their variables keep rows below, and each row's Source column names the file that reads it so ownership is unambiguous. The DeepSeek Harness run surface is documented by name only for adjacent setup. Its runtime owns those settings.
 
 **Flag convention:**
 
@@ -164,14 +164,9 @@ Directive-capsule lifecycle dedup has runtime-specific output cadence. Model-con
 
 **Ownership.** Every row here is either read by surviving package source or owned outside the
 package. *Read by this package:* `SPECKIT_SPECS_DIR`.
-*Owned by the HF model server and the skill advisor, for the advisor's own database:*
-`SPECKIT_DB_DIR`/`SPEC_KIT_DB_DIR`/`MEMORY_DB_PATH` point the skill-advisor launcher at the
-database it owns. `shared/config.ts` resolves the directory, and
-`shared/embeddings/factory.ts` and `shared/embeddings/profile.ts` read the same pair to keep the
-embedding layer pointed at it. The HF model server under `.skilled/bin` falls back to
-`runtime/database` as its own state directory only when the advisor has not pointed
-`MEMORY_DB_PATH` elsewhere. This package's own runtime code no longer has a live reader for any
-of the three. The skill-advisor launcher and the shared IPC bridge read
+*Read by the shared config module:* `SPECKIT_DB_DIR`/`SPEC_KIT_DB_DIR`, which `shared/config.ts`
+resolves. This package's own runtime code has no live reader for either. The skill-advisor
+launcher and the shared IPC bridge read
 `SPECKIT_IPC_SOCKET_DIR`, `SPECKIT_MAX_SECONDARY_CLIENTS`,
 `SPECKIT_LAUNCHER_BRIDGE_DISABLED`, `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`, the `SPECKIT_LEASE_PROBE_*`
 trio and `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS`. Those controls survived the memory decommission.
@@ -184,8 +179,7 @@ FTS auto-heal. Nothing reads them any more.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_DB_DIR` | (derived) | string | Directory override for the skill-advisor's own database, resolved by `getDbDir()`. `SPEC_KIT_DB_DIR` is checked first and wins. Either one is resolved against `process.cwd()` and must pass `validateResolvedPath()` or the call throws. Not read anywhere in this package's own `runtime/` code. | `shared/config.ts`, `shared/embeddings/profile.ts`, `shared/embeddings/factory.ts` |
-| `MEMORY_DB_PATH` | (unset) | string | Explicit file path whose parent directory becomes the skill-advisor's resolved database directory, but only when neither `SPEC_KIT_DB_DIR` nor `SPECKIT_DB_DIR` is set. The name predates the memory-engine removal: the retired spec-kit memory server was this directory's original owner, and the skill-advisor launcher is now the live caller that points it at its own database. The HF model server's `hf-local` provider reads the same variable to keep its spawn-authority lease beside that database, falling back to `runtime/database` when it is unset. | `shared/embeddings/factory.ts`, `shared/embeddings/factory.ts`, `shared/embeddings/providers/hf-local.ts` |
+| `SPECKIT_DB_DIR` | (derived) | string | Directory override resolved by `getDbDir()`. `SPEC_KIT_DB_DIR` is checked first and wins. Either one is resolved against `process.cwd()` and must pass `validateResolvedPath()` or the call throws. Nothing outside `shared/config.ts` calls `getDbDir()` since the shared embeddings package was removed, and this package's own `runtime/` code does not read it. | `shared/config.ts` |
 | `MEMORY_BASE_PATH` | `process.cwd()` | string | Workspace root assigned to the exported `DEFAULT_BASE_PATH` constant. Nothing in `runtime/` imports that constant outside of a same-package parity test, so this variable currently has no effect on running behavior. | `core/config.ts` |
 | `SPECKIT_SPECS_DIR` | (unset) | string | Fallback specs-root used when resolving a spec folder that is not directly under `process.cwd()`. `SPEC_KIT_SPECS_DIR` is checked first and wins. The candidate is `resolve(cwd, <override>, <specFolder>)` and is used only if it exists. Otherwise resolution falls through to the spec-document finder. | `api/graph-refresh.ts` |
 | `SPECKIT_LAUNCHER_BRIDGE_DISABLED` | `false` | boolean | Rollback flag for launcher bridge mode. Set `1` to force legacy strict-single-writer behavior, where a secondary launcher prints `LEASE_HELD_BY` and exits instead of attaching to the daemon IPC socket. | `.skilled/bin/lib/launcher-ipc-bridge.cjs`, `.skilled/bin/system-skill-advisor-launcher.cjs` |
@@ -194,7 +188,7 @@ FTS auto-heal. Nothing reads them any more.
 | `SPECKIT_LEASE_PROBE_RETRIES` | `1` | number | Consecutive deep liveness-probe retries before a sibling launcher reaps the lease owner and respawns. `0` restores single-probe behavior. Requiring N consecutive failures stops a busy-but-alive owner being false-reaped into a duplicate daemon. Any `alive` probe short-circuits to a bridge. | `.skilled/bin/lib/launcher-ipc-bridge.cjs` |
 | `SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS` | `1500` | number | Per-attempt timeout, clamped to the 6999 ms probe ceiling, for each lease retry probe after the first. Kept short so the default budget stays under the launcher grace window. | `.skilled/bin/lib/launcher-ipc-bridge.cjs` |
 | `SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS` | `250` | number | Backoff between consecutive lease liveness-probe attempts. | `.skilled/bin/lib/launcher-ipc-bridge.cjs` |
-| `SPECKIT_IPC_SOCKET_DIR` | model-server default | string | Overrides the daemon IPC socket directory, using `daemon-ipc.sock` as the socket file name. **Required on macOS** for production runtimes: a long default path exceeds the 104-char `sun_path` limit and `listen()` fails with `EINVAL`, so the runtime configs pin each service to a short `/tmp/<service>` directory. The hf-model-server demand path additionally fail-fasts with `ESUNPATHTOOLONG` past 104 bytes and refuses a symlinked or foreign-uid-owned socket directory (`ESOCKETDIRSYMLINK`/`ESOCKETDIRFOREIGN`/`ESOCKETSYMLINK`) before binding or reclaiming. | `.skilled/bin/lib/launcher-ipc-bridge.cjs`, `.skilled/bin/lib/model-server-supervision.cjs`, `shared/ipc/socket-server.ts` |
+| `SPECKIT_IPC_SOCKET_DIR` | (derived) | string | Overrides the daemon IPC socket directory, using `daemon-ipc.sock` as the socket file name. **Required on macOS** for production runtimes: a long default path exceeds the 104-char `sun_path` limit and `listen()` fails with `EINVAL`, so the runtime configs pin each service to a short `/tmp/<service>` directory. | `.skilled/bin/lib/launcher-ipc-bridge.cjs`, `shared/ipc/socket-server.ts` |
 | `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` | `off` | enum | Stop-hook fallback when no `CLAUDE_SESSION_PID` is available. `off` (default) keeps the historical no-op, `dry-run` logs candidate reaps without mutating, and `1`/`on`/`live` reaps. Delegates to the orphan sweeper, which reaps ownerless or reparented processes: stale MCP helpers, and a parentless, own-uid process that has run from the user temp dir, a Claude scratchpad or a worktree scratch folder for 6+ hours (`ORPHAN_TEMP_PROCESS_AGE_HOURS`). It never guesses a PPID, so it cannot kill a live session. | `.skilled/scripts/session-cleanup.sh`, `.skilled/scripts/orphan-mcp-sweeper.sh`, `.opencode/plugins/session-cleanup.js` |
 | `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` | `3000` | number | Owned by the skill-advisor hub for the OpenCode plugin bridge and advisor subprocesses. On timeout the bridge returns a prompt-safe degraded advisory brief instead of empty output. Set before launching OpenCode. | `.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts` |
 
@@ -290,75 +284,7 @@ Each `SPECKIT_SKIP_*` gate below can also stay off permanently: git config `spec
 
 ---
 
-## 6. EMBEDDING
-
-**This whole section is shared, not this package's.** Its readers are `.skilled/skills/system-spec-kit/shared/embeddings/**` and the launcher libraries under `.skilled/bin`, and the skill advisor is now the consumer that keeps them live. Nothing in `runtime/` reads any of it. In the Source column below, a `bin/...` path is relative to `.skilled/`, and a `shared/...` path is relative to `.skilled/skills/system-spec-kit/`.
-
-Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDDINGS_PROVIDER=auto`, the runtime probes this **local-first** sequence (ADR-014, 2026-05-19). (1) Ollama, local default `nomic-embed-text-v1.5` (768d). (2) hf-local, default `nomic-ai/nomic-embed-text-v1.5` (768d, same family as the Ollama default). (3) OpenAI, `OPENAI_API_KEY` set, `text-embedding-3-small` (1536d). (4) Voyage, `VOYAGE_API_KEY` set, `voyage-code-3` (1024d). Unlisted local overrides set through `OLLAMA_EMBEDDINGS_MODEL` or `HF_EMBEDDINGS_MODEL` are accepted at runtime and derive their dimension from the first embedding vector.
-
-For the simplest local-first new-user setup, install [Ollama](https://ollama.com) and `ollama pull nomic-embed-text:v1.5`, and the cascade auto-selects it with no API keys.
-
-**Ownership.** This section mirrors the markers in `.env.example`. The provider-selection rows
-(`EMBEDDINGS_PROVIDER`, `OLLAMA_EMBEDDINGS_MODEL`, `HF_EMBEDDINGS_MODEL`, `HF_EMBEDDINGS_DTYPE`,
-`HF_EMBEDDINGS_PREFIX_*`, `EMBEDDING_DIM`, `OPENAI_API_KEY`, `VOYAGE_API_KEY`), the circuit-breaker
-trio, every `HF_EMBED_SERVER_*` / `SPECKIT_HF_MODEL_SERVER_*` row, `SPECKIT_HF_READY_LATCH_TTL_MS`,
-`SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` and the cascade-probe rows are shared by the HF model
-server and the skill advisor. The source is in `shared/embeddings/**` and the launcher libraries,
-which the advisor also uses. The memory-only rows beside these controls included the
-`SPECKIT_RETRY_*` loop, the embedding-cache caps, the embed-client batch sizes and the live-model
-test switch. The memory engine that read those values has been removed.
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `HF_EMBED_SERVER_URL` | (unset → `/tmp/system-hf-embed/hf-embed.sock`) | string | Overrides the local HF model-server endpoint. Accepts a Unix socket path, `unix://<path>`, or `tcp://<host>:<port>`. Both launchers and the `hf-local` client resolve this first, then `SPECKIT_IPC_SOCKET_DIR`, then the short model-server default `/tmp/system-hf-embed`. That last fallback is owned by the model server rather than by any database directory, so the client reaches the same socket whether or not a database exists. It must stay equal to `DEFAULT_MODEL_SERVER_SOCKET_DIR` in `.skilled/bin/lib/model-server-supervision.cjs`. Leave unset so every client reaches the one resident server. | `bin/hf-model-server.cjs`, `shared/embeddings/providers/hf-local.ts` |
-| `HF_EMBED_SERVER_READY_TIMEOUT_MS` | `45000` | number | Initial readiness budget while the `hf-local` client waits for a reachable model server. Once `/api/health` reports `state: "loading"`, the client keeps retrying under `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` instead of failing at 45 s. | `shared/embeddings/providers/hf-local.ts` |
-| `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` | (unset → disabled) | number | RSS ceiling (MB) for the launcher-supervised model-server process tree. Unset disables the watchdog. | `bin/lib/model-server-supervision.cjs` |
-| `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT` | (unset → off) | string | Set `1` (with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB`) to recycle the model server via graceful self-exit on an RSS breach. | `bin/lib/model-server-supervision.cjs` |
-| `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` | `150000` | number | Maximum age, in milliseconds, for one model-server load attempt before launcher probes classify `loading` as wedged/dead. The `hf-local` client also uses this as its post-health `loading` retry cap, so first-embed downloads can outlive the 45 s initial readiness budget while still being bounded. Device fallback re-stamps the per-attempt marker. Missing or invalid loading markers remain backward-compatible and are treated as alive while loading. | `bin/lib/launcher-ipc-bridge.cjs`, `bin/hf-model-server.cjs`, `shared/embeddings/providers/hf-local.ts` |
-| `SPECKIT_HF_MODEL_SERVER_GIVEUP_COOLDOWN_MS` | `60000` | number | Cooldown written after launcher-supervised hf-model-server crash-loop give-up. During the cooldown, demand requests return `503` with `reason: "crash-loop-cooldown"` instead of spawning again. | `bin/lib/model-server-supervision.cjs` |
-| `SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN` | `10` | number | When `>0`, the launcher evicts an idle resident hf-model-server after this many minutes of no successful embed (gated on `lastSuccessfulEmbedAt`, fractional values allowed). Only `0` or a negative number keeps the server warm. Unset, blank or invalid values, including `Infinity` and values with a unit suffix such as `10min`, use the 10-minute default. Eviction remains fail-safe: it never reaps a server with in-flight inference or one that has never embedded, and lazy re-arm starts the server on the next embed demand. | `bin/lib/model-server-supervision.cjs` |
-| `SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP` | enabled (unset) | switch | Reap a live recorded hf-model-server whose parent is PID 1 and whose command matches the server before binding the demand socket. Set to `0` to disable orphan reaping when launchd or another init system owns a model server on the shared socket. | `bin/lib/model-server-supervision.cjs` |
-| `EMBEDDING_DIM` | _(derived)_ | number | Explicit embedding-dimension override. When unset or invalid, the dimension is derived from the active embedder profile (and, for unlisted local models, from the first embedding vector). | `shared/embeddings/profile.ts`, `shared/embeddings/factory.ts` |
-| `HF_EMBEDDINGS_PREFIX_QUERY` | _(registry)_ | string | Overrides the query prefix for the local HF embedder, for any model. Default derives from the model prefix registry (e.g. nomic uses `search_query:`). | `shared/embeddings/providers/hf-local.ts` |
-| `HF_EMBEDDINGS_PREFIX_DOC` | _(registry)_ | string | Overrides the document prefix for the local HF embedder, for any model. Default derives from the model prefix registry (e.g. nomic uses `search_document:`). | `shared/embeddings/providers/hf-local.ts` |
-| `SPECKIT_HF_READY_LATCH_TTL_MS` | `30000` (max `120000`) | number | How long a successful `waitForReady()` is trusted before the next embed re-probes `/api/health`. Within the TTL the client skips the readiness GET and POSTs directly. The latch is invalidated immediately on a mid-request reap (`ECONNRESET`/`EPIPE`). A stale latch costs at most one failed POST recovered by the bounded embed retry. | `shared/embeddings/providers/hf-local.ts` |
-| `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` | unset (off) | string (`"1"`) | Whether the skill-advisor launcher spawns the shared model server. Unset or any value other than `1` keeps the spawner off. Set `1` to enable it. A missing supervision library is fatal when the variable is explicitly set to `1`. | `.skilled/bin/system-skill-advisor-launcher.cjs` |
-
-### Local HF model server (single resident model)
-
-When the cascade selects `hf-local`, embeddings are served by a **launcher-supervised local HTTP model server** (`.skilled/bin/hf-model-server.cjs`) over a Unix socket at `<SPECKIT_IPC_SOCKET_DIR>/hf-embed.sock`, falling back to the model server's own short default `/tmp/system-hf-embed/hf-embed.sock` rather than to a database directory, with no in-process model load and no sidecar. The server itself, its socket and its supervision library survived the memory decommission untouched.
-
-The skill-advisor launcher leaves spawning off by default. Set `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1` to enable it.
-
-**Single-resident-model contract.** The server loads exactly **one** model (`HF_EMBEDDINGS_MODEL`, default `nomic-ai/nomic-embed-text-v1.5`). A request for any other model returns **HTTP 404** (`{error, model, loadedModel}`). The `hf-local` provider treats that as "model not loaded" and reports the requested model beside the server's loaded model. To run a different local HF model, change `HF_EMBEDDINGS_MODEL` for **all** consumers. Per-request model switching is unavailable.
-
-**First-embed download.** On a cold machine, the first hf-local embed downloads the model artifacts to `~/.cache/huggingface/hub`. Expect roughly hundreds of MB of cache growth (about 250-600 MB depending on dtype/artifacts) and a 15-120 s first request on a typical connection. The client keeps retrying while health reports `loading` until `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` (default 150 s).
-
-**Troubleshooting, model-server health states:**
-
-| State | Symptom | Operator action |
-|-------|---------|-----------------|
-| Not started | `hf-local` health probe connect-refused, no `hf-embed.sock` | Normal before first demand. If the skill-advisor launcher should spawn it, set `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1`, then check the launcher stderr for `demand listener` errors or a `spawn skipped` line. |
-| Loading | Health returns `503 loading`, first embed slow | Expected cold model load or first-embed download. Cache path: `~/.cache/huggingface/hub`. Size: roughly hundreds of MB. Expected wait: 15-120 s. The client retries past `HF_EMBED_SERVER_READY_TIMEOUT_MS` while this state is progressing and fails only at `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` (default 150 s). |
-| Crash-looped | Repeated `hf-model-server child exited … relaunching`, eventually `crash loop detected … daemon remains running` | Inspect the model-server stderr (bad `HF_EMBEDDINGS_DTYPE`/`HF_EMBEDDINGS_MODEL`, OOM). After give-up, the launcher re-arms a demand listener, then fix the cause and trigger a new embed. |
-| RSS recycle | `process tree RSS … exceeds …` then graceful self-exit | Only with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` + `_RSS_SELF_EXIT=1`. Raise the ceiling or disable if the model legitimately needs more RAM. |
-| Model mismatch | Embeds fail with `HF local model is not loaded: requested …; server loaded …` (404) | A consumer requested a model the resident server isn't running. Align `HF_EMBEDDINGS_MODEL` across services, or let the cascade fall back. |
-
-### RSS watchdog (shared supervisor)
-
-`getWatchdogConfig()` in `.skilled/bin/lib/model-server-supervision.cjs` resolves one watchdog from two name sets. `getModelServerWatchdogConfig()` overrides only the ceiling and self-exit names with the `SPECKIT_HF_MODEL_SERVER_*` pair documented above. The generic names below are what a caller that passes no overrides gets, and the timing trio is shared by both paths. The watchdog arms only when a finite positive ceiling **and** the matching self-exit variable set to exactly `1` are both present. A ceiling without the self-exit logs that breach self-exit stays disabled while descendant tracking continues for crash-loop reaping.
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` | (unset → disabled) | number | Generic RSS ceiling, in MB, for a supervised process tree. Parsed with `parseFloat`. Unset, blank or non-finite disables the watchdog. | `.skilled/bin/lib/model-server-supervision.cjs` |
-| `SPECKIT_LAUNCHER_RSS_SELF_EXIT` | (unset → off) | string (`"1"`) | Generic self-exit arm for the RSS watchdog, compared to exactly `1`. Pairs with the ceiling above the way `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT` pairs with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB`. | `.skilled/bin/lib/model-server-supervision.cjs` |
-| `SPECKIT_LAUNCHER_RSS_WATCHDOG_INTERVAL_MS` | (internal default) | number (positive int) | Poll interval while the watchdog is armed. Only applies when armed. Otherwise the descendant-snapshot interval is used. Invalid values fall back to the default. | `.skilled/bin/lib/model-server-supervision.cjs` |
-| `SPECKIT_LAUNCHER_RSS_CONSECUTIVE_BREACHES` | (internal default) | number (positive int) | How many consecutive ceiling breaches must be observed before the watchdog acts. Invalid values fall back to the default. | `.skilled/bin/lib/model-server-supervision.cjs` |
-| `SPECKIT_LAUNCHER_RSS_GRACE_MS` | (internal default) | number (positive int) | Grace period before a breached process is escalated. A value at or below the shutdown deadline is rejected with a warning naming the variable, and the default is used instead. | `.skilled/bin/lib/model-server-supervision.cjs` |
-
----
-
-## 7. SHARED RANKING ALGORITHMS
+## 6. SHARED RANKING ALGORITHMS
 
 Not this package's: `.skilled/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts` ships the RRF fusion primitives the skill advisor's fusion scorer imports. The memory pipeline that first called them is gone. The adaptive-fusion module that sat beside them went with it.
 
@@ -373,14 +299,14 @@ Not this package's: `.skilled/skills/system-spec-kit/shared/algorithms/rrf-fusio
 
 ## SKILL ADVISOR
 
-Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer and prompt-policy engine at runtime without code changes.
+Skill-advisor threshold and calibration overrides for tuning the lane fusion scorer and prompt-policy engine at runtime without code changes.
 
 **Owned by the skill advisor, not by this package.** Every `runtime/...` path in the Source column below is relative to `.skilled/skills/system-skill-advisor/`, never to the `system-spec-kit/runtime/` directory this document sits in. None of these variables is read by any file in this package.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` | `0.8` | number (0..1) | Override the confidence threshold used by the 5-lane fusion scorer. Below this value, a recommendation is filtered out, and `confidenceOnly` mode skips only the uncertainty check. Parsed as a float. Values outside [0,1] fall back to the default. The fusion scorer reads the value once when its module loads, so a warm daemon keeps the value it read when the daemon starts until a restart, while the brief renderer reads it on each call; the per-request `confidenceThreshold` option of `advisor_recommend` is the supported override, and hook briefs always send `confidenceThreshold` 0.8, so the variable never reaches them. | `runtime/lib/compat/contract.ts` |
-| `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` | `0.35` | number (0..1) | Override the uncertainty ceiling used by the 5-lane fusion scorer. Above this value, a recommendation is filtered out. Parsed as a float. Values outside [0,1] fall back to the default. | `runtime/lib/compat/contract.ts` |
+| `SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD` | `0.8` | number (0..1) | Override the confidence threshold used by the lane fusion scorer. Below this value, a recommendation is filtered out, and `confidenceOnly` mode skips only the uncertainty check. Parsed as a float. Values outside [0,1] fall back to the default. The fusion scorer reads the value once when its module loads, so a warm daemon keeps the value it read when the daemon starts until a restart, while the brief renderer reads it on each call; the per-request `confidenceThreshold` option of `advisor_recommend` is the supported override, and hook briefs always send `confidenceThreshold` 0.8, so the variable never reaches them. | `runtime/lib/compat/contract.ts` |
+| `SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD` | `0.35` | number (0..1) | Override the uncertainty ceiling used by the lane fusion scorer. Above this value, a recommendation is filtered out. Parsed as a float. Values outside [0,1] fall back to the default. | `runtime/lib/compat/contract.ts` |
 | `SPECKIT_ADVISOR_CALIBRATION_OVERRIDE_JSON` | (none) | JSON string | Partial override for routing calibration bonuses. Accepts a JSON object with optional keys `memorySaveBonus`, `createAgentBonus`, `testingPlaybookBonus` (all number). Merged with SCORING_CALIBRATION defaults. Parse failures log a warning and fall back. | `runtime/lib/scorer/scoring-constants.ts` |
 | `SPECKIT_ADVISOR_PROMPT_POLICY_PATH` | (bundled default) | string | Override path to the JSON file containing prompt-policy linguistic sets (EXACT_SKIP_COMMANDS, CASUAL_ACKNOWLEDGEMENTS, WORK_INTENT_VERBS, STOP_WORDS, GOVERNANCE_MARKERS) and fire-threshold constants. When unset, the bundled `data/prompt-policy.default.json` is used. | `runtime/lib/prompt-policy.ts` |
 | `SPECKIT_ADVISOR_PROMPT_POLICY_MIN_VISIBLE_CHARS` | `15` | number | Minimum visible character count for the short-casual-acknowledgement skip path in prompt-policy. | `runtime/lib/prompt-policy.ts` |
@@ -388,15 +314,12 @@ Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer a
 | `SPECKIT_ADVISOR_PROMPT_POLICY_LENGTH_AND_TOKEN_VISIBLE_CHARS` | `20` | number | The visible-character threshold for the length-and-token-threshold fire rule. | `runtime/lib/prompt-policy.ts` |
 | `SPECKIT_ADVISOR_PROMPT_POLICY_LENGTH_AND_TOKEN_MEANINGFUL_FLOOR` | `4` | number | The meaningful-token threshold for the length-and-token-threshold fire rule. | `runtime/lib/prompt-policy.ts` |
 | `SPECKIT_ADVISOR_PROMPT_POLICY_LONG_NON_CASUAL_CHARS` | `50` | number | The visible-character threshold for the long-non-casual-prompt fire rule. | `runtime/lib/prompt-policy.ts` |
-| `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` | `{"explicit_author":0.42,"lexical":0.28,"graph_causal":0.13,"derived_generated":0.12,"semantic_shadow":0}` | JSON string (partial merge) | Override live-lane weights for the 5-lane fusion scorer. JSON object with any subset of `explicit_author`, `lexical`, `graph_causal`, `derived_generated`, `semantic_shadow` (all numbers in `[0, 1]`). Missing keys retain defaults. Invalid JSON, non-object values, out-of-range numbers, and unknown lane ids fall back to defaults. The advisor launcher forwards the value to its daemon child. | `runtime/lib/scorer/lane-registry.ts`, `.skilled/bin/system-skill-advisor-launcher.cjs` |
-| `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` | `{"explicit_author":0.40,"lexical":0.25,"graph_causal":0.20,"derived_generated":0.10,"semantic_shadow":0.05}` | JSON string (partial merge) | Override shadow-mode lane weights for the 5-lane fusion scorer's `weightedScore` calculation in `advisor-recommend.ts`. Same shape, merge semantics, and validation rules as `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`. | `runtime/lib/scorer/lane-registry.ts` |
+| `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` | `{"explicit_author":0.42,"lexical":0.28,"graph_causal":0.13,"derived_generated":0.12}` | JSON string (partial merge) | Override live-lane weights for the lane fusion scorer. JSON object with any subset of `explicit_author`, `lexical`, `graph_causal`, `derived_generated` (all numbers in `[0, 1]`). Missing keys retain defaults. Invalid JSON, non-object values, out-of-range numbers, and unknown lane ids fall back to defaults. The advisor launcher forwards the value to its daemon child. | `runtime/lib/scorer/lane-registry.ts`, `.skilled/bin/system-skill-advisor-launcher.cjs` |
+| `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` | `{"explicit_author":0.40,"lexical":0.25,"graph_causal":0.20,"derived_generated":0.10}` | JSON string (partial merge) | Override shadow-mode lane weights for the lane fusion scorer's `weightedScore` calculation in `advisor-recommend.ts`. Same shape, merge semantics, and validation rules as `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`. | `runtime/lib/scorer/lane-registry.ts` |
 | `SPECKIT_ADVISOR_DOC_TRIGGERS` | unset (off). The advisor launcher supplies `true` as a repo default when the environment is silent | boolean (string `"true"`) | Opt-in doc-frontmatter trigger harvest: `skill_graph_scan` indexes reference/asset doc frontmatter into the `skill_docs` table, the watcher tracks harvestable docs, the derived lane scores doc phrases (top-3/skill, tier-weighted, 0.45 cap) and recommendations carry sanitized `matchedDocs` paths. Code default is off, so the daemon runs with the harvest ON only because the runtime configs supply `true`. Flag-off behavior is byte-identical to pre-feature. Must be present in the launcher's `CHILD_ENV_ALLOWLIST` to reach the daemon child (it is). Daemon adoption of a flip requires a fresh session after all advisor-attached sessions end. | `runtime/lib/skill-graph/doc-frontmatter.ts`, `.skilled/bin/system-skill-advisor-launcher.cjs` |
-| `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH` | unset (enabled) | set to `off` to disable | Enables the daemon's shared background refresh of skill and command vectors after startup and watcher reindexing. It uses a local coverage check first, then probes Ollama once if coverage is incomplete and refreshes regardless of semantic lane weight. Coverage requires at least one embeddable skill, so a command-only index can still reach the probe when command vectors are current. The launcher forwards the value to its daemon child. | `runtime/lib/skill-graph/skill-graph-db.ts`, `.skilled/bin/system-skill-advisor-launcher.cjs` |
-| `OLLAMA_BASE_URL` | `http://127.0.0.1:11434` | URL | Ollama server base URL used by the advisor's embedder and readiness probes. The launcher forwards the value to its daemon child. | `shared/embeddings/adapters/ollama.ts`, `.skilled/bin/system-skill-advisor-launcher.cjs` |
-| `OLLAMA_REQUEST_TIMEOUT_MS` | unset (adapter defaults) | positive integer (ms) | Optional shared request deadline for the advisor's Ollama requests. When unset or invalid, query and document requests use the adapter's split defaults. The launcher forwards the value to its daemon child. | `shared/embeddings/adapters/ollama.ts`, `.skilled/bin/system-skill-advisor-launcher.cjs` |
 | `SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST` | unset | string (colon-separated paths) | Extra allowed `workspaceRoot` prefixes beyond the repo root, `os.tmpdir()`, `/tmp` and a project whose `.skilled` links to this source tree. Each colon-separated entry is canonicalized and added to the bounding allowlist. | `runtime/schemas/advisor-tool-schemas.ts` |
 | `SPECKIT_PRIVATE_SKILL_ROOTS` | unset | string (path list) | Extra trusted roots, joined by the platform path delimiter (`:` on macOS and Linux), that a private `local-*` skill link may point into. Each entry must be an existing directory and is resolved to its real path. Without it the advisor indexes no private skill whose link points outside the skills root. | `runtime/lib/private-skill-target.cjs`, `runtime/scripts/skill_advisor_runtime.py`, `.skilled/bin/system-skill-advisor-launcher.cjs` |
-| `SPECKIT_ADVISOR_RRF_FUSION` | `false` | boolean (opt-in: `true`/`1`/`yes`/`on`/`enabled`) | Routes the 5-lane advisor scorer through Reciprocal Rank Fusion instead of the legacy weighted blend. Default OFF, so set an enabled value to opt in. | `runtime/lib/scorer/fusion.ts` |
+| `SPECKIT_ADVISOR_RRF_FUSION` | `false` | boolean (opt-in: `true`/`1`/`yes`/`on`/`enabled`) | Routes the lane fusion advisor scorer through Reciprocal Rank Fusion instead of the legacy weighted blend. Default OFF, so set an enabled value to opt in. | `runtime/lib/scorer/fusion.ts` |
 | `SPECKIT_METRICS_ENABLED` | unset (OFF) | boolean (`'true'`) | Enables advisor metrics emission. Default OFF, so the emit path runs only when set to `true`. | `runtime/lib/metrics.ts` |
 | `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED` | unset (OFF) | boolean (`1`/`true`) | Enables shadow-delta collection at the default path. Setting `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` alone also enables it. | `runtime/lib/shadow/shadow-sink.ts` |
 | `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` | unset | string (path, under workspace root) | Override path for the shadow-delta sink. Setting this enables shadow-delta collection on its own. | `runtime/lib/shadow/shadow-sink.ts` |
@@ -441,18 +364,6 @@ Warm-only and prompt-time flags accept `1`, `true`, `yes` or `on`. When any of t
 | `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` | unset (off) | boolean (`"1"`) | Dev override for the skill-advisor shim's dist-freshness guard (skips the exit-`69` stale check). Alias: `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE`. | `.skilled/bin/skill-advisor.cjs` |
 | `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED` | unset (untrusted) | boolean (`"1"`) | Send skill-advisor CLI calls as trusted (equivalent to `--trusted`), required for the mutation tools `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances`. Alias: `SPECKIT_SKILL_ADVISOR_CLI_TRUSTED`. | `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` |
 | `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT` | unset (fail-closed untrusted) | string (`"trusted"`) | **Daemon-side** trust default. The advisor daemon fails closed (untrusted) when a caller's transport `_meta` is absent. Setting `trusted` in the daemon's own environment restores default-trusted behavior for native MCP surfaces whose clients send no `_meta`. Set in the advisor launcher's repo defaults, and callers cannot forge it. | `.skilled/skills/system-skill-advisor/runtime/advisor-server.ts` |
-
----
-
-## EMBEDDER CASCADE PROBE
-
-Cascade-probe timing overrides for the embedder auto-selection cascade. Defaults are the empirically tuned values from the 015 cascade-reorder packet. Operators can tune timeout / lock-staleness / sleep without code changes via env vars (022/009).
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_CASCADE_PROBE_TIMEOUT_MS` | `2500` | number (ms) | Per-provider HTTP probe timeout for the auto-select cascade (Voyage, OpenAI, Ollama tags endpoint). Falls back to default when env unset / non-numeric / non-positive. | `shared/embeddings/auto-select.ts` |
-| `SPECKIT_CASCADE_LOCK_STALE_MS` | `30000` | number (ms) | Lock staleness threshold for the cross-process auto-select advisory lock. Locks older than this are reclaimed. Falls back to default when env unset / non-numeric / non-positive. | `shared/embeddings/auto-select.ts` |
-| `SPECKIT_CASCADE_SLEEP_MS` | `25` | number (ms) | Polling sleep interval while waiting for the auto-select lock to release. Falls back to default when env unset / non-numeric / non-positive. | `shared/embeddings/auto-select.ts` |
 
 ---
 
@@ -588,16 +499,6 @@ export SPECKIT_SPECS_DIR=/path/to/specs
 
 # Directory the telemetry store and the skill advisor's database resolve under
 export SPECKIT_DB_DIR=/path/to/db
-```
-
-### Bring up local HF embeddings
-
-```bash
-# The skill-advisor model-server spawner is off by default. Set this to 1 to enable it.
-# export SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1
-
-# Short socket directory; required on macOS to stay under the 104-char sun_path limit
-export SPECKIT_IPC_SOCKET_DIR=/tmp/system-hf-embed
 ```
 
 ### Diagnose a hook or resolver

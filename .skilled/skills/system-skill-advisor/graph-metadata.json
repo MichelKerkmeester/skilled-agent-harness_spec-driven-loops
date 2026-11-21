@@ -103,16 +103,12 @@
     "advisor lifecycle clock",
     "lifecycle clock",
     "confidence floor",
-    "vector coverage",
-    "semantic lane",
     "which lane contributed",
     "lane attribution",
     "advisor daemon",
     "watcher reindex",
     "narrow the watcher",
-    "command bridges",
-    "background vector refresh",
-    "vector refresh"
+    "command bridges"
   ],
   "derived": {
     "trigger_phrases": [

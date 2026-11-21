@@ -6,7 +6,7 @@ trigger_phrases:
   - "active corpus stats"
   - "idf debounced"
   - "lexical idf"
-version: 0.8.0.13
+version: 0.8.1.0
 ---
 
 # DF/IDF Corpus Stats (Active-Only)
@@ -50,5 +50,5 @@ Feed the lexical lane with corpus-aware statistics so common tokens are discount
 Related references:
 
 - [`lifecycle-routing/archive-handling.md`](../../feature-catalog/lifecycle-routing/archive-handling.md), archive exclusion.
-- [`scorer-fusion/five-lane-fusion.md`](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
+- [`scorer-fusion/lane-fusion.md`](../../feature-catalog/scorer-fusion/lane-fusion.md).
 - [01-derived-extraction.md](../../feature-catalog/auto-indexing/derived-extraction.md).

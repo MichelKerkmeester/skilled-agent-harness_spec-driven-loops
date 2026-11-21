@@ -7,7 +7,7 @@ trigger_phrases:
   - "single writer lease"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Daemon Lease Contract
@@ -135,7 +135,7 @@ This keeps "same SQLite file" and "same lease owner" aligned:
 - Two launchers in different workspaces pointing at the same shared DB directory contend on the same lease; the second launcher bridges to the live owner when the IPC socket is usable and otherwise falls back to `LEASE_HELD_BY:<pid>` or the guarded respawn path.
 - Two launchers in one workspace pointing at different DB directories use different lease files and can run independently because they write different databases.
 
-A launcher pointed at its own DB directory is isolated beyond the lease. Its state file and bootstrap lock sit in that directory, and so do its daemon's generation file and quarantine store. When no `HF_EMBED_SERVER_URL` is given, it also runs its own model server on `hf-embed.sock` in the database-scoped IPC socket directory, so its shutdown never signals the workspace model server. [`db-path-policy.md`](../config/db-path-policy.md) lists each file the override moves.
+A launcher pointed at its own DB directory is isolated beyond the lease. Its state file and bootstrap lock sit in that directory, and so do its daemon's generation file and quarantine store. [`db-path-policy.md`](../config/db-path-policy.md) lists each file the override moves.
 
 Recommended operator practice: keep strict single-writer mode enabled unless the intent is an isolated test run against separate DB directories.
 

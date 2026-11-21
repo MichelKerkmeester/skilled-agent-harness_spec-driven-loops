@@ -1,25 +1,25 @@
 ---
-title: "Five-Lane Analytical Fusion"
-description: "Analytical fusion of 5 lanes (explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0) that produces the live routing score."
+title: "Analytical Lane Fusion"
+description: "Analytical fusion of the scorer's lanes (explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12) that produces the live routing score."
 trigger_phrases:
-  - "five lane fusion"
+  - "lane fusion"
   - "lane weights canonical"
   - "fusion scorer"
   - "advisor analytical fusion"
-version: 0.8.4.0
+version: 0.8.5.0
 ---
 
-# Five-Lane Analytical Fusion
+# Analytical Lane Fusion
 
 ## 1. OVERVIEW
 
-Combine evidence from five registered lanes into a single routing score with documented weights. A zero-weight lane stays registered and does not score prompts.
+Combine evidence from four registered lanes into a single routing score with documented weights.
 
 ---
 
 ## 2. HOW IT WORKS
 
-`lib/scorer/fusion.ts` fuses five lanes using the canonical weights below. Each lane runs independently and writes `{ lane, rawScore, weight, weightedScore, shadowOnly }` metadata that the attribution path consumes.
+`lib/scorer/fusion.ts` fuses four lanes using the canonical weights below. Each lane runs independently and writes `{ lane, rawScore, weight, weightedScore, shadowOnly }` metadata that the attribution path consumes.
 
 | Lane | Weight | Source |
 | --- | --- | --- |
@@ -27,15 +27,12 @@ Combine evidence from five registered lanes into a single routing score with doc
 | `lexical` | 0.28 | Token overlap weighted by IDF from the active corpus. |
 | `graph_causal` | 0.13 | Graph-edge evidence projected through skill_nodes and skill_edges. |
 | `derived_generated` | 0.12 | Auto-extracted derived entries under trust-lane control. |
-| `semantic_shadow` | 0 | Semantic similarity evidence from the current lane registry, disabled at the default zero weight. |
-
-The lane remains registered as live, but its default weight of 0 disables prompt embedding. The background index refresh still runs at any lane weight. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'` to enable semantic scoring. At a non-zero weight, the lane scores only when every embeddable skill and command has a current vector. Coverage is checked before the prompt embed. Incomplete coverage skips the embed, reports `incomplete_skill_vectors` and removes the lane from the live confidence total for that call, as a failed prompt embed does. A dimension mismatch, an unavailable adapter or an absent database does the same. The exact rerank path applies the same coverage check. At weight 0 a stale index leaves the lane reported as switched off, not degraded. Optional semantic health in `advisor_status` separately probes Ollama readiness.
 
 Weight configuration is exposed via `advisor_status.laneWeights`.
 
 ### Reciprocal Rank Fusion
 
-The opt-in `SPECKIT_ADVISOR_RRF_FUSION` flag (default off) routes the same five lanes through Reciprocal Rank Fusion instead of the weighted blend, fusing each lane's ranked list with `ADVISOR_RRF_K = 8`. The conflict-rerank seam ships with the RRF core as its regression net: it repairs the one regression plain RRF introduces and corrects conflicting-recommendation cases. Phase 007 benchmarked the RRF spine and the seam on a 42-prompt set and verdicted GRADUATE the core paired with the seam, but the committed flag default stays off, so the weighted blend remains the live path until the flag is enabled.
+The opt-in `SPECKIT_ADVISOR_RRF_FUSION` flag (default off) routes the same four lanes through Reciprocal Rank Fusion instead of the weighted blend, fusing each lane's ranked list with `ADVISOR_RRF_K = 8`. The conflict-rerank seam ships with the RRF core as its regression net: it repairs the one regression plain RRF introduces and corrects conflicting-recommendation cases. Phase 007 benchmarked the RRF spine and the seam on a 42-prompt set and verdicted GRADUATE the core paired with the seam, but the committed flag default stays off, so the weighted blend remains the live path until the flag is enabled.
 
 ### Self-recommendation penalty
 
@@ -63,7 +60,7 @@ On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPen
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | fusion arithmetic and lane weights |
 | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | `laneWeights` exposure |
-| `Playbook scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md).` | Manual playbook | Source reference |
+| `Playbook scenario [SC-001](../../manual-testing-playbook/scorer-fusion/lane-fusion.md).` | Manual playbook | Source reference |
 
 ---
 
@@ -71,7 +68,7 @@ On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPen
 
 - Group: Scorer fusion
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `scorer-fusion/five-lane-fusion.md`
+- Feature file path: `scorer-fusion/lane-fusion.md`
 
 Related references:
 
