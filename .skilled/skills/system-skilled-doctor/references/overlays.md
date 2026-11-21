@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.41.0
+version: 1.0.42.0
 ---
 
 # Vendored Skilled Overlays
@@ -210,7 +210,29 @@ BLOCKED  u: other is a link that does not resolve, where overlay u writes
   Next: mv /path/to/tree/other /path/to/tree/other.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
-The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same lines with `MISS` in place of `BLOCKED`. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
+The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same lines with `MISS` in place of `BLOCKED`, except for a write through a layout link the tree does not have yet. `status` cannot make that link, so it prints only `MISS     layout: up is missing (link to target)`, and a link beyond it that leads outside the tree shows first in `apply`, after apply makes the link. That refusal names the link someone else made further along the chain, such as `target`, never the layout link apply makes again. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
+
+A layout link the tree lacks outright, with an entry destination at or under it, is made before the entry writes. Once the manifest's own links plan without a problem, `apply` makes each such link, plans every entry again through it and, when that plan passes, prints `linked up -> target` before the writes. When that second plan blocks, `apply` removes the links it made and any folders it made for them, prints that plan's `BLOCKED` lines and writes nothing. A link that retargets, replaces a pinned link or takes the place of the engine's own output keeps its turn after the writes.
+
+A missing layout link inside a folder an entry writes, where the entry writes files at or below the link, can never be made after those writes. `status` and `apply` refuse it while planning, and `apply` writes nothing and exits 1:
+
+```text
+BLOCKED  layout: tool/deep is a layout link inside tool, the folder overlay tool writes
+  overlay tool writes files at that path, and they would stand where the link goes
+  Next: move the layout link tool/deep out of tool in /path/to/tree/skilled-overlays/overlay-manifest.json, or drop those files from the overlay, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+The general form is `<path> is a layout link inside <destination>, the folder overlay <id> writes`, and `status` prints the same lines after `MISS     layout:` and exits 1. Move the link out of that folder in the manifest, or drop those files from the overlay.
+
+Planning refuses a file or folder already standing at a layout link path, with `<path> exists but is not the link to <target>`. When one appears there after planning, `apply` stops at that link with exit 2 rather than delete it, and prints:
+
+```text
+[overlay-engine] up is a folder, not the layout link to target; refusing to replace it
+  a real file or folder stands there now, and replacing it would delete that work
+  Next: mv /path/to/tree/up /path/to/tree/up.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+```
+
+A file reads `is a file` in place of `is a folder`.
 
 ### An Edit to an Owned File
 
