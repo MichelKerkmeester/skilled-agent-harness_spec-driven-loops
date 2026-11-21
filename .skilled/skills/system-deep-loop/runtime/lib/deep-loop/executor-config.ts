@@ -286,21 +286,23 @@ export const EXECUTOR_ADAPTER_CAPABILITIES = Object.freeze({
  * present in `EXECUTOR_KIND_FLAG_SUPPORT` above only means the field is
  * accepted; it does NOT mean the kind can actually confine the process. A
  * `false` entry here does not mean the kind is unconfined in practice --
- * fanout-run.cjs applies its own compensating control per kind (an
- * external_directory deny for cli-opencode's file tools under workspace-write and a
- * fail-loud reject of read-only, --permission-mode plus the fan-out's post-hoc
- * write-containment guard for cli-devin, a restricted tool allowlist for
- * cli-pi) -- it means none of those controls is an OS-level boundary the way
- * `--sandbox` is for codex and cursor. Callers must not infer preventive OS
- * confinement from `sandboxMode` alone on a `false` entry.
+ * fanout-run.cjs applies its own control per kind (Claude Code's
+ * --permission-mode approval gate, an external_directory deny for cli-opencode's
+ * file tools under workspace-write and a fail-loud reject of read-only, the `auto`
+ * permission mode for a read-only cli-devin, a restricted tool allowlist for
+ * cli-pi, and the fan-out's post-hoc write-containment guard, which reports an
+ * out-of-scope write rather than preventing it) -- it means none of those controls
+ * is an OS-level boundary the way `--sandbox` is for codex and cursor. Callers must
+ * not infer preventive OS confinement from `sandboxMode` alone on a `false` entry.
  */
 export const EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY: Record<ExecutorKind, boolean> = {
   // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind
   native: false,
   // --sandbox is forwarded straight to codex's own OS-level confinement
   'cli-codex': true,
-  // --permission-mode is enforced by Claude Code's own tool gate before a write/exec runs
-  'cli-claude-code': true,
+  // --permission-mode is an approval mode: Claude Code's tool gate decides which calls run,
+  // and no OS boundary confines the process once a call is approved
+  'cli-claude-code': false,
   // No confinement flag exists; workspace-write denies external_directory to the file tools only
   // (Bash can still write outside the working directory), and read-only is refused
   'cli-opencode': false,

@@ -487,7 +487,7 @@ describe('executor web-search policy', () => {
     expect(EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY).toEqual({
       native: false,
       'cli-codex': true,
-      'cli-claude-code': true,
+      'cli-claude-code': false,
       'cli-opencode': false,
       'cli-cursor': true,
       'cli-devin': false,
@@ -495,8 +495,9 @@ describe('executor web-search policy', () => {
       'cli-deepseek-harness': true,
       'cli-mistral-vibe': false,
     });
-    // Devin, Pi, and OpenCode have no preventive OS sandbox.
-    expect(['cli-devin', 'cli-pi', 'cli-opencode'].every(
+    // Claude Code's --permission-mode is an approval mode, the class the matrix excludes, so
+    // it sits with Devin, Pi, and OpenCode: none of them has a preventive OS sandbox.
+    expect(['cli-claude-code', 'cli-devin', 'cli-pi', 'cli-opencode'].every(
       (kind) => EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY[kind as keyof typeof EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY] === false,
     )).toBe(true);
     // Every kind that accepts sandboxMode as a supported field but has no preventive

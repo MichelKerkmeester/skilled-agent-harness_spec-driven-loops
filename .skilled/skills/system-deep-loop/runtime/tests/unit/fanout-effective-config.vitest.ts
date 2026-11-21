@@ -79,7 +79,7 @@ describe('fanout-run.cjs — effective_config reports what each command enforces
       ['codex unconfined', { kind: 'cli-codex' }, 'danger-full-access', 'bypassPermissions', opts,
         { permissionMode: null, sandboxEnforcement: 'none', effortApplied: 'flag' }],
       ['claude default', { kind: 'cli-claude-code' }, 'workspace-write', 'acceptEdits', opts,
-        { permissionMode: 'acceptEdits', sandboxEnforcement: 'preventive', effortApplied: 'none' }],
+        { permissionMode: 'acceptEdits', sandboxEnforcement: 'compensating', effortApplied: 'none' }],
       ['claude bypass with effort', { kind: 'cli-claude-code', reasoningEffort: 'medium' },
         'danger-full-access', 'bypassPermissions', opts,
         { permissionMode: 'bypassPermissions', sandboxEnforcement: 'none', effortApplied: 'flag' }],

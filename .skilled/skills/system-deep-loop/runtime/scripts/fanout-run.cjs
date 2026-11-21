@@ -3508,6 +3508,8 @@ function buildClaudeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
     serviceTier: null,
     resolvedSandbox,
     resolvedPermission,
+    // --permission-mode is an approval gate, not OS confinement; only bypass drops it.
+    compensatingControl: resolvedPermission !== 'bypassPermissions',
     webSearch: effectiveWebSearchPolicy(lineage),
   });
 }
