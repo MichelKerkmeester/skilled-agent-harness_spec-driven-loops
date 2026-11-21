@@ -248,6 +248,8 @@ while read -r _ local_sha remote_ref remote_sha; do
   # delete from. Fail-open if the guard lib did not load.
   if [[ "$is_new" -eq 0 && "$_MASS_DEL_MISSING" -eq 1 && "${SPECKIT_ALLOW_MASS_DELETION:-0}" != "1" ]]; then
     echo "BLOCKED [gate:mass-deletion]: guard library is missing: $_MASS_DEL_GUARD" >&2
+    echo "  Without it the push cannot be checked for mass deletions, so this checkout's install is broken." >&2
+    echo "  Next: git restore --source=HEAD --staged --worktree -- $_MASS_DEL_GUARD" >&2
     echo "Approve this push once, deliberately: SPECKIT_ALLOW_MASS_DELETION=1 git push ..." >&2
     REJECTED=1
     continue
@@ -288,6 +290,13 @@ while read -r _ local_sha remote_ref remote_sha; do
   if [[ ! "$local_sha" =~ ^0+$ ]]; then
     if [[ -n "$CONTRACT_GATE_BROKEN" ]]; then
       echo "BLOCKED [gate:message-contract]: this repository declares message rules, but $CONTRACT_GATE_BROKEN." >&2
+      if [[ "$CONTRACT_GATE_BROKEN" == "node is not installed" ]]; then
+        echo "  Install Node 20+, then push again." >&2
+        echo "  Next: git push" >&2
+      else
+        echo "  The validator and helpers sit beside the hook script; relink the hooks to a checkout that has them." >&2
+        echo "  Next: bash .skilled/scripts/install-git-hooks.sh" >&2
+      fi
       REJECTED=1
       continue
     fi
@@ -301,16 +310,21 @@ while read -r _ local_sha remote_ref remote_sha; do
         --exclude-ref "refs/remotes/$REMOTE_NAME/$branch_name" || _contract_rc=$?
       if [[ "$_contract_rc" -eq 1 ]]; then
         echo "BLOCKED [gate:message-contract]: commits pushed to '$branch_name' break the commit rules above." >&2
-        echo "   Reword them (git rebase -i, then reword) and push again." >&2
+        echo "   Reword each one the validator listed, then push again." >&2
+        echo "  Next: git rebase -i <the commit before the first one>   (mark each listed commit as reword)" >&2
         REJECTED=1
         continue
       elif [[ "$_contract_rc" -ne 0 ]]; then
         echo "BLOCKED [gate:message-contract]: the message validator could not check the commits pushed to '$branch_name' (exit $_contract_rc); its error is above." >&2
+        echo "  The push stays blocked until the validator can run. Rerun it alone to see the error:" >&2
+        echo "  Next: node $CONTRACT_VALIDATOR --repo $REPO_ROOT --rev-list \"$_range\"" >&2
         REJECTED=1
         continue
       fi
       if [[ "$is_new" -eq 1 ]] && ! node "$CONTRACT_VALIDATOR" --repo "$REPO_ROOT" --branch "$branch_name"; then
         echo "BLOCKED [gate:message-contract]: new branch '$branch_name' breaks the naming rules above." >&2
+        echo "  Rename it to a name those rules accept, then push that branch." >&2
+        echo "  Next: git branch -m <new-name>" >&2
         REJECTED=1
         continue
       fi
@@ -323,7 +337,8 @@ while read -r _ local_sha remote_ref remote_sha; do
   # stamper. git config --local skilled.commitId false exempts the repository.
   if [[ ! "$local_sha" =~ ^0+$ ]]; then
     if [[ "$COMMIT_ID_BROKEN" -eq 1 ]]; then
-      echo "BLOCKED [gate:commit-id]: the hook helpers are missing at $HOOK_DIR/lib; re-run: bash .skilled/scripts/install-git-hooks.sh" >&2
+      echo "BLOCKED [gate:commit-id]: the hook helpers are missing at $HOOK_DIR/lib, so Commit-Id trailers cannot be checked." >&2
+      echo "  Next: bash .skilled/scripts/install-git-hooks.sh" >&2
       REJECTED=1
       continue
     fi
@@ -337,6 +352,8 @@ while read -r _ local_sha remote_ref remote_sha; do
       if ! _id_log="$(git -C "$REPO_ROOT" log --no-merges \
            --format='%h%x09%(trailers:key=Commit-Id,valueonly,separator=%x2C)%x09%s' "${_id_range[@]}")"; then
         echo "BLOCKED [gate:commit-id]: the commits pushed to '$branch_name' could not be read; git's error is above." >&2
+        echo "  The push stays blocked until git can read them. Rerun the read alone to see the error:" >&2
+        echo "  Next: git log --oneline ${_id_range[*]}" >&2
         REJECTED=1
         continue
       fi
@@ -347,8 +364,8 @@ while read -r _ local_sha remote_ref remote_sha; do
           echo "BLOCKED [gate:commit-id]: commits pushed to '$branch_name' carry no Commit-Id trailer:"
           printf '%s\n' "$_id_missing" | head -n 5
           echo "   ($(printf '%s\n' "$_id_missing" | wc -l | tr -d ' ') in all)"
-          echo "   Stamp them by re-committing each, which runs the stamper:"
-          echo "     git rebase -x 'git commit --amend --no-edit' <the commit before the first one>"
+          echo "   Re-committing each one runs the stamper, which adds the trailer."
+          echo "  Next: git rebase -x 'git commit --amend --no-edit' <the commit before the first one>"
           echo "   To exempt this repository: git config --local skilled.commitId false"
         } >&2
         REJECTED=1
@@ -379,6 +396,8 @@ while read -r _ local_sha remote_ref remote_sha; do
         echo "Without it the remote allowlist cannot be read, so this push needs explicit approval:"
         echo "  SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...   (an update)"
         echo "  SPECKIT_ALLOW_REMOTE_PUSH=$branch_name git push ...   (creating the branch)"
+        echo "To repair the install instead, restore the script and push again:"
+        echo "  Next: git restore --source=HEAD --staged --worktree -- $NAMING"
         echo ""
       } >&2
       REJECTED=1
@@ -397,7 +416,7 @@ while read -r _ local_sha remote_ref remote_sha; do
       echo "BLOCKED [gate:remote-create]: '$branch_name' does not exist on origin, and creating it is not something a session may decide."
       echo "Branches stay local unless a person approves publishing them."
       echo "To approve permanently, add the branch to:"
-      echo "  .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt"
+      echo "  .skilled/skills/sk-git/scripts/remote-branch-allowlist.txt"
       echo "For a one-off, name the branch rather than using the blanket switch:"
       echo "  SPECKIT_ALLOW_REMOTE_PUSH=$branch_name git push ..."
       echo "A bare SPECKIT_ALLOW_REMOTE_PUSH=1 authorises updates, never creation."
@@ -428,7 +447,7 @@ while read -r _ local_sha remote_ref remote_sha; do
     echo "BLOCKED [gate:remote-permission]: push to '$branch_name' on origin needs explicit permission for this push."
     echo "This repo asks before every push to a branch outside the remote allowlist"
     echo "(built in: main, skilled/v*; extend via"
-    echo "  .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt)."
+    echo "  .skilled/skills/sk-git/scripts/remote-branch-allowlist.txt)."
     echo "If the operator has approved THIS push, retry with:"
     echo "  SPECKIT_ALLOW_REMOTE_PUSH=1 git push ..."
     echo ""
@@ -475,7 +494,7 @@ if [[ "${SPECKIT_SKIP_PREPUSH_SKILL_GATE:-0}" != "1" ]]; then
           echo "WARNING [gate:skill-root-metadata]: skill-root metadata is stale for skills being pushed."
           echo "Not blocking: CI enforces this on every push to main and skilled/v*."
         fi
-        echo "Fix with:  node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
+        echo "Next: node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
         echo ""
       } >&2
     fi
@@ -504,6 +523,8 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
   if [[ ! -f "$ROUTE_GUARD" ]] && _in_toolchain_repo; then
     echo "" >&2
     echo "BLOCKED [gate:compiled-routing]: route guard is missing: $ROUTE_GUARD" >&2
+    echo "  Without it the routing manifests cannot be checked, so this checkout's install is broken." >&2
+    echo "  Next: git restore --source=HEAD --staged --worktree -- $ROUTE_GUARD" >&2
     echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..." >&2
     exit 1
   fi
@@ -589,6 +610,8 @@ if [[ "${SPECKIT_SKIP_PREPUSH_TRACK_GATE:-0}" != "1" ]] && _in_toolchain_repo &&
   if [[ ! -f "$TRACK_SWEEP" ]]; then
     echo "" >&2
     echo "BLOCKED [gate:track-roots]: sweep is missing: $TRACK_SWEEP" >&2
+    echo "  Without it the track roots cannot be checked, so this checkout's install is broken." >&2
+    echo "  Next: git restore --source=HEAD --staged --worktree -- $TRACK_SWEEP" >&2
     echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 git push ..." >&2
     exit 1
   else

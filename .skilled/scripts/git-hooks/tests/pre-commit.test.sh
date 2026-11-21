@@ -395,12 +395,14 @@ setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
 check "a missing comment checker blocks" 1 "$RC" "checker is missing or not executable: "
+check "a missing comment checker names its restore command" 1 "$RC" "Next: git checkout -- .opencode/skills/sk-code/"
 
 # ── 25. a missing agent mirror checker blocks where the toolchain ships ──
 setup_gate_fixture toolchain
 stage_new ".opencode/agents/probe.md" "agent"
 run_hook; RC=$?
 check "a missing agent mirror checker blocks" 1 "$RC" "agent-mirror-sync]: checker is missing"
+check "a missing agent mirror checker names its restore command" 1 "$RC" "Next: git checkout -- .opencode/bin/check-agent-mirror-sync.cjs"
 check "a missing agent mirror checker names the chain's off switch" 1 "$RC" "SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit"
 
 # ── 26. a missing mirror parity script blocks where the toolchain ships ──
@@ -408,6 +410,7 @@ setup_gate_fixture toolchain
 stage_new "notes.md" "note"
 SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
 check "a missing mirror parity script blocks" 1 "$RC" "mirror-parity]: script is missing"
+check "a missing mirror parity script names its restore command" 1 "$RC" "Next: git checkout -- .opencode/skills/"
 
 # ── 27. a staged .skilled prompt surface reaches the card-sync guard ──
 setup_gate_fixture

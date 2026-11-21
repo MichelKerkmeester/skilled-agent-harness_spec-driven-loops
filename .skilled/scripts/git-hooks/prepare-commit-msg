@@ -96,6 +96,7 @@ fi
 HOOK_DIR="$(cd "$(dirname "$_trust_self")" && pwd -P)"
 if [[ ! -r "$HOOK_DIR/lib/commit-id-policy.sh" ]]; then
   printf 'prepare-commit-msg: helpers are missing at %s/lib; leaving the message unstamped.\n' "$HOOK_DIR" >&2
+  printf '  Next: bash .skilled/scripts/install-git-hooks.sh\n' >&2
   exit 0
 fi
 # shellcheck source=lib/commit-id-policy.sh
@@ -114,6 +115,8 @@ if [[ ! -f "$ALLOCATOR" ]]; then
   ALLOCATOR="$(cip_own_allocator "$HOOK_DIR")"
   if [[ ! -f "$ALLOCATOR" ]]; then
     printf 'prepare-commit-msg: allocator is missing: %s; leaving the message unstamped.\n' "$ALLOCATOR" >&2
+    printf '  The allocator sits beside the hook script; relink the hooks to a checkout that has it.\n' >&2
+    printf '  Next: bash .skilled/scripts/install-git-hooks.sh\n' >&2
     exit 0
   fi
 fi
@@ -297,6 +300,8 @@ if [[ -n "${SPECKIT_COMMIT_SPEC:-}" && "$HAS_SPEC" -eq 0 ]]; then
     REQUIRE_SPEC=1
   else
     printf 'prepare-commit-msg: SPECKIT_COMMIT_SPEC is not a packet path; Spec not stamped.\n' >&2
+    printf '  It must be one path of letters, digits, dots, dashes, underscores and slashes.\n' >&2
+    printf '  Next: export SPECKIT_COMMIT_SPEC=specs/<track>/<packet>\n' >&2
   fi
 fi
 
@@ -308,6 +313,8 @@ NEW_ID=""
 if (( REQUIRE_ID == 1 )); then
   if ! NEW_ID="$(bash "$ALLOCATOR" allocate 2>/dev/null)"; then
     printf 'prepare-commit-msg: allocator failed; leaving the message unstamped.\n' >&2
+    printf '  Its error was hidden; preview the next id without allocating one to see it:\n' >&2
+    printf '  Next: bash %s next\n' "$ALLOCATOR" >&2
     exit 0
   fi
 fi

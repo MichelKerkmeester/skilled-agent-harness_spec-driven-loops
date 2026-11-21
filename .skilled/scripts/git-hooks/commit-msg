@@ -28,6 +28,9 @@ set -euo pipefail
 MESSAGE_FILE="${1:-}"
 if [[ -z "$MESSAGE_FILE" || ! -f "$MESSAGE_FILE" ]]; then
   printf 'BLOCKED: commit-msg hook received no readable message file.\n' >&2
+  printf '  Git passes this hook the path of the message it is committing, and none was given or the file is gone,\n' >&2
+  printf '  so the message cannot be checked. That usually means the hook was run by hand.\n' >&2
+  printf '  Next: git commit\n' >&2
   exit 1
 fi
 
@@ -50,7 +53,8 @@ done
 HOOK_DIR="$(cd "$(dirname "$_self")" && pwd -P)"
 
 if [[ ! -f "$HOOK_DIR/lib/message-contract-gate.sh" ]]; then
-  printf 'BLOCKED: commit-msg helpers are missing at %s/lib; re-run: bash .opencode/scripts/install-git-hooks.sh\n' "$HOOK_DIR" >&2
+  printf 'BLOCKED: commit-msg helpers are missing at %s/lib, so the commit rules cannot be checked.\n' "$HOOK_DIR" >&2
+  printf '  Next: bash .skilled/scripts/install-git-hooks.sh\n' >&2
   exit 1
 fi
 # shellcheck source=lib/message-contract-gate.sh
@@ -61,7 +65,8 @@ VALIDATOR="$(mcg_validator_path "$HOOK_DIR" "$REPO_ROOT")"
 # history unnoticed. A real merge, the one commit git leaves MERGE_HEAD for, is
 # exempt as the stamper leaves it alone.
 if [[ ! -f "$HOOK_DIR/lib/commit-id-policy.sh" ]]; then
-  printf 'BLOCKED: commit-msg helpers are missing at %s/lib; re-run: bash .opencode/scripts/install-git-hooks.sh\n' "$HOOK_DIR" >&2
+  printf 'BLOCKED: commit-msg helpers are missing at %s/lib, so the Commit-Id trailer cannot be checked.\n' "$HOOK_DIR" >&2
+  printf '  Next: bash .skilled/scripts/install-git-hooks.sh\n' >&2
   exit 1
 fi
 # shellcheck source=lib/commit-id-policy.sh
@@ -70,8 +75,12 @@ if cip_repo_wants_ids "$REPO_ROOT" \
    && ! git rev-parse -q --verify MERGE_HEAD >/dev/null 2>&1 \
    && ! cip_message_has_id "$MESSAGE_FILE"; then
   printf 'BLOCKED: this repository requires a Commit-Id trailer, and the prepare-commit-msg hook did not stamp one.\n' >&2
-  printf 'Its message above says why. Commit again once that is fixed; never type the id by hand.\n' >&2
-  printf 'To exempt this repository: git config --local skilled.commitId false\n' >&2
+  printf '  A prepare-commit-msg line above names the cause; fix that first, and never type the id by hand.\n' >&2
+  printf '  If no such line appears, the stamper is switched off (SPECKIT_SKIP_PREPARE_COMMIT_MSG=1 or gate config) or not installed:\n' >&2
+  printf '  unset that switch, or reinstall with bash .skilled/scripts/install-git-hooks.sh\n' >&2
+  printf '  A malformed Commit-Id line already in the message also stops the stamper: delete it.\n' >&2
+  printf '  Next: git commit\n' >&2
+  printf '  To exempt this repository instead: git config --local skilled.commitId false\n' >&2
   exit 1
 fi
 
@@ -81,7 +90,13 @@ UNAVAILABLE="$(mcg_unavailable_reason "$VALIDATOR")"
 if [[ -n "$UNAVAILABLE" ]]; then
   if mcg_repo_declares_rules "$REPO_ROOT" commit-message-template.md; then
     printf 'BLOCKED: this repository declares commit rules, but %s.\n' "$UNAVAILABLE" >&2
-    printf 'Install Node 20+ or re-run: bash .opencode/scripts/install-git-hooks.sh\n' >&2
+    if ! command -v node >/dev/null 2>&1; then
+      printf '  Install Node 20+, then commit again.\n' >&2
+      printf '  Next: git commit\n' >&2
+    else
+      printf '  The validator sits beside the hook script; relink the hooks to a checkout that has it.\n' >&2
+      printf '  Next: bash .skilled/scripts/install-git-hooks.sh\n' >&2
+    fi
     exit 1
   fi
   exit 0
