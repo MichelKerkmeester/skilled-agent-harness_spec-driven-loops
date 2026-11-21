@@ -516,3 +516,109 @@ test('a dangling link whose target stays in the tree from its real folder is not
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'alias', 'tool'), 'utf8'), 'tool file\n');
   assert.equal(fs.existsSync(path.join(path.dirname(fixture.tree), 'x.md')), false);
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. LAYOUT LINKS MOVED OR MADE BEFORE THE ENTRIES UNDER THEM
+// ─────────────────────────────────────────────────────────────────────────────
+
+const UP_ENTRY = { ...DIRECTORY_ENTRY, destination: 'up/tool' };
+
+// A layout link the manifest points somewhere new is moved before the entries
+// under it write, so they land in the new target in one apply, and the copy an
+// earlier apply wrote in the old target is left there, no longer tracked.
+test('a layout link moved to a new target with an entry under it is moved first, and the entry writes there in one apply', (t) => {
+  const fixture = createShapeFixture(t, [UP_ENTRY], [{ path: 'up', target: 'target' }]);
+  writeFile(fixture.tree, 'target2/inside.md', 'second target\n');
+  applyOk(fixture);
+  fixture.setManifest([UP_ENTRY], [{ path: 'up', target: 'target2' }]);
+  writeFile(fixture.overlayDir, 'bundle/a.md', 'bundle a two\n');
+  const result = applyOk(fixture);
+  assert.match(result.output, /linked up -> target2/, result.output);
+  assert.match(result.output, /NOTE {5}up now links to target2, and what apply wrote through it before stays at target\/tool, no longer tracked/, result.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'up')), 'target2');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target2', 'tool', 'a.md'), 'utf8'), 'bundle a two\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target2', 'tool', 'deep', 'b.md'), 'utf8'), 'bundle b\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+  assert.equal(fixture.run(['status']).code, 0);
+  const again = applyOk(fixture);
+  assert.match(again.output, /^0 changed$/m, again.output);
+  assert.equal(again.output.includes('NOTE'), false, again.output);
+});
+
+test('a layout link moved to a new target that holds a project file where the entry writes is refused, and the old link stays', (t) => {
+  const fixture = createShapeFixture(t, [UP_ENTRY], [{ path: 'up', target: 'target' }]);
+  writeFile(fixture.tree, 'target2/tool', 'project file\n');
+  applyOk(fixture);
+  fixture.setManifest([UP_ENTRY], [{ path: 'up', target: 'target2' }]);
+  writeFile(fixture.overlayDir, 'bundle/a.md', 'bundle a two\n');
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 1, result.output);
+  assert.match(result.output, /up\/tool is a file that does not match what apply last wrote there/, result.output);
+  assert.match(result.output, /this apply wrote nothing/, result.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'up')), 'target');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target2', 'tool'), 'utf8'), 'project file\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+});
+
+// On a volume that ignores case, a layout link and a destination that differ
+// only in case name one path, so the link is still made before the writes.
+function isCaseInsensitive(folder) {
+  const probe = path.join(folder, 'Case-Probe');
+  fs.mkdirSync(probe);
+  try {
+    return fs.existsSync(path.join(folder, 'case-probe'));
+  } finally {
+    fs.rmdirSync(probe);
+  }
+}
+
+test('a layout link whose path differs from a destination only in case is made first on a volume that ignores case', (t) => {
+  const fixture = createShapeFixture(t, [UP_ENTRY], [{ path: 'Up', target: 'target' }]);
+  if (!isCaseInsensitive(fixture.workspace)) {
+    t.skip('the volume tells case apart, so Up and up are two paths');
+    return;
+  }
+  const result = applyOk(fixture);
+  assert.match(result.output, /linked Up -> target/, result.output);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'Up')), 'target');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool', 'a.md'), 'utf8'), 'bundle a\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+// Status reports a write through a missing layout link the way apply will once
+// it makes the link, so a target that leads outside the tree is never listed as
+// work apply can do.
+test('status refuses a write through a missing layout link whose target leads outside the tree, as apply does', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [UP_ENTRY], [{ path: 'up', target: 'target' }]);
+  fs.rmSync(path.join(fixture.tree, 'target'), { recursive: true });
+  fs.symlinkSync(outside, path.join(fixture.tree, 'target'));
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: target is a link that leads outside the tree, to .*, where overlay tool writes$/m, status.output);
+  assert.equal(status.output.includes('overlay-edited up/tool/a.md'), false, status.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+});
+
+// A missing layout link inside another one whose target leads outside the tree
+// is refused while the manifest is planned, before any link is made. The
+// refusal names the link that leads out, which is the one to move aside.
+test('a nested missing layout link whose folder leads outside the tree through the outer link is refused with the link that leads out', (t) => {
+  const outside = outsideFolder(t);
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'a/b/tool' }],
+    [{ path: 'a', target: 'target' }, { path: 'a/b', target: 'sub' }]);
+  fs.rmSync(path.join(fixture.tree, 'target'), { recursive: true });
+  fs.symlinkSync(outside, path.join(fixture.tree, 'target'));
+  const before = fs.readdirSync(outside).sort();
+  for (const command of ['status', 'apply']) {
+    const result = fixture.run([command]);
+    assert.equal(result.code, 2, command + ': ' + result.output);
+    assert.match(result.output, /^\[overlay-engine\] layout link path escapes the tree root: a\/b$/m, command + ': ' + result.output);
+    assert.match(result.output, /^ {2}the folder it sits in leads outside the tree through target, so a link made there would land outside it$/m,
+      command + ': ' + result.output);
+    assert.match(result.output, /^ {2}Next: mv .*\/target .*\/target\.keep, then from .*: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs apply$/m,
+      command + ': ' + result.output);
+  }
+  assert.equal(kindOf(path.join(fixture.tree, 'a')), 'missing');
+  assert.deepEqual(fs.readdirSync(outside).sort(), before);
+});

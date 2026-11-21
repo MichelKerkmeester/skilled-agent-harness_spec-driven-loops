@@ -254,6 +254,13 @@ function isWithin(basePath, candidatePath) {
   return relative === '' || (!path.isAbsolute(relative) && relative !== '..' && !relative.startsWith('..' + path.sep));
 }
 
+// How a path under the tree is compared with another, so two spellings the
+// tree's filesystem reads as one entry compare equal.
+function pathFold(root) {
+  const foldCase = isCaseInsensitiveDir(root);
+  return (value) => layoutPathKey(value, foldCase);
+}
+
 function relativeKey(root, filePath) {
   const absoluteRoot = path.resolve(root);
   const absoluteFile = path.resolve(filePath);
@@ -2217,7 +2224,7 @@ function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set
     let found = null;
     const key = toPosix(path.relative(absoluteRoot, current));
     const linkText = stats.isSymbolicLink() ? fs.readlinkSync(current) : null;
-    const engineMade = linkText !== null && engineLinks[key] === linkText;
+    const engineMade = linkText !== null && engineLinkText(root, engineLinks, key) === linkText;
     const declared = engineMade ? path.resolve(canonicalPath(path.dirname(current)), linkText) : null;
     if (linkText !== null && !(engineMade && !isWithin(realRoot, declared) && !isWithin(absoluteRoot, declared))) {
       let landed;
@@ -2236,6 +2243,16 @@ function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set
     if (!stats.isSymbolicLink() && !stats.isDirectory()) return null;
   }
   return null;
+}
+
+// The target the engine made a link with at this path, matched the way the
+// volume matches names, so a link the manifest spells in another case is still
+// known as the engine's own.
+function engineLinkText(root, engineLinks, key) {
+  if (Object.prototype.hasOwnProperty.call(engineLinks, key)) return engineLinks[key];
+  const fold = pathFold(root);
+  const match = Object.keys(engineLinks).find((linkKey) => fold(linkKey) === fold(key));
+  return match === undefined ? undefined : engineLinks[match];
 }
 
 // The link someone else made that takes an engine-made link's chain outside the
@@ -3108,10 +3125,11 @@ function isRecordedLink(state, link, current) {
  * @returns {boolean} Whether the engine owns what stands there.
  */
 function isOwnedShapeForLink(manifest, root, state, link, linkPath) {
-  const key = relativeKey(root, linkPath);
+  const fold = pathFold(root);
+  const key = fold(relativeKey(root, linkPath));
   const overlaps = (manifest.overlays || []).some((entry) => {
     if (typeof entry.destination !== 'string') return false;
-    const destination = path.posix.normalize(entry.destination).replace(/\/+$/, '');
+    const destination = fold(path.posix.normalize(entry.destination).replace(/\/+$/, ''));
     return destination === key || destination.startsWith(key + '/') || key.startsWith(destination + '/');
   });
   if (overlaps) return false;
@@ -3248,19 +3266,24 @@ function applyLayoutLink(root, link, isRetarget, replacesOwned = null) {
   ensureSymlink(path.join(root, link.path), link.target);
 }
 
-// A layout link the tree lacks outright, with an overlay destination at or
-// below it. Its entry's writes belong through the link, so the link is made
-// before they are planned again; made after them, it would find their folder in
-// its place. A link that replaces, retargets or takes the place of something is
-// left to its usual turn, after the writes.
+// A layout link the tree lacks outright, or one the engine made that the
+// manifest now points somewhere else, with an overlay destination at or below
+// it. Its entry's writes belong through the link as the manifest names it, so
+// the link is made or moved before they are planned again; made after them, it
+// would find their folder in its place, and moved after them, it would leave
+// their bytes in the old target and none in the new one. A link that replaces a
+// pinned link or takes the place of the engine's own output keeps its turn after
+// the writes: the engine's own output never sits under an entry destination, and
+// a pinned link removed first could not be put back.
 function linksAboveOverlays(manifest, root, layoutRecords) {
+  const fold = pathFold(root);
   const destinations = (manifest.overlays || [])
     .filter((entry) => typeof entry.destination === 'string')
-    .map((entry) => path.posix.normalize(entry.destination).replace(/\/+$/, ''));
+    .map((entry) => fold(path.posix.normalize(entry.destination).replace(/\/+$/, '')));
   return layoutRecords.filter((record) => {
-    if (record.isRetarget || record.replacesOwned || replacedLinkState(root, record.link).state !== 'none') return false;
-    if (pathExists(path.join(root, record.link.path))) return false;
-    const key = path.posix.normalize(record.link.path).replace(/\/+$/, '');
+    if (record.replacesOwned || replacedLinkState(root, record.link).state !== 'none') return false;
+    if (!record.isRetarget && pathExists(path.join(root, record.link.path))) return false;
+    const key = fold(path.posix.normalize(record.link.path).replace(/\/+$/, ''));
     return destinations.some((destination) => destination === key || destination.startsWith(key + '/'));
   });
 }
@@ -3271,17 +3294,18 @@ function linksAboveOverlays(manifest, root, layoutRecords) {
 // planned and nothing is written, rather than left to fail after the writes.
 function refuseLinksInsideOverlayWrites(ctx, layout, plans) {
   const root = ctx.root;
+  const fold = pathFold(root);
   const kept = [];
   for (const record of layout.missing) {
     const { link, linkPath, isRetarget, replacesOwned } = record;
-    const key = path.posix.normalize(link.path).replace(/\/+$/, '');
+    const key = fold(path.posix.normalize(link.path).replace(/\/+$/, ''));
     const owner = !isRetarget && !replacesOwned && replacedLinkState(root, link).state === 'none' &&
       !pathExists(linkPath) && plans.find((plan) => {
         if (typeof plan.entry.destination !== 'string') return false;
-        const destination = path.posix.normalize(plan.entry.destination).replace(/\/+$/, '');
+        const destination = fold(path.posix.normalize(plan.entry.destination).replace(/\/+$/, ''));
         if (!key.startsWith(destination + '/')) return false;
-        const absoluteLink = path.resolve(linkPath);
-        return plan.writes.some((write) => isWithin(absoluteLink, path.resolve(write.filePath)));
+        const absoluteLink = fold(path.resolve(linkPath));
+        return plan.writes.some((write) => isWithin(absoluteLink, fold(path.resolve(write.filePath))));
       });
     if (!owner) {
       kept.push(record);
@@ -3297,33 +3321,109 @@ function refuseLinksInsideOverlayWrites(ctx, layout, plans) {
   return layout;
 }
 
-// Make the links above overlays, each with the folders it needs, and say how to
-// take every one back, so a run that stops before any overlay write leaves the
-// tree as it found it.
+// Make or move the links above overlays, each with the folders it needs, and
+// say how to take every one back, so a run that stops before any overlay write
+// leaves the tree as it found it. A moved link is put back with the very text it
+// had.
 function makeLinksFirst(root, records) {
   const made = [];
+  const restore = (linkPath, previousTarget) => {
+    if (previousTarget !== null && !pathExists(linkPath)) fs.symlinkSync(previousTarget, linkPath);
+  };
   const undo = () => {
-    for (const { linkPath, firstMadeFolder } of made.reverse()) {
+    for (const { linkPath, firstMadeFolder, previousTarget } of made.reverse()) {
       fs.rmSync(linkPath, { force: true });
+      restore(linkPath, previousTarget);
       if (firstMadeFolder) fs.rmSync(firstMadeFolder, { recursive: true, force: true });
     }
   };
+  let pending = null;
   try {
     for (const record of records) {
       const linkPath = path.join(root, record.link.path);
+      const previousTarget = record.isRetarget ? fs.readlinkSync(linkPath) : null;
       let firstMadeFolder = null;
       for (let folder = path.dirname(linkPath); isWithin(root, folder) && folder !== path.resolve(root); folder = path.dirname(folder)) {
         if (pathExists(folder)) break;
         firstMadeFolder = folder;
       }
+      pending = { linkPath, previousTarget };
       applyLayoutLink(root, record.link, record.isRetarget, record.replacesOwned);
-      made.push({ linkPath, firstMadeFolder });
+      made.push({ linkPath, firstMadeFolder, previousTarget });
+      pending = null;
     }
   } catch (error) {
+    if (pending) restore(pending.linkPath, pending.previousTarget);
     undo();
     throw error;
   }
   return undo;
+}
+
+// Where a moved layout link used to send the entries under it. Their earlier
+// copies stay there, since that folder may be shared and apply never deletes a
+// file it cannot prove is its own; the state now tracks the new copies instead.
+function movedLinkNotes(manifest, root, movedLinks) {
+  const fold = pathFold(root);
+  const destinations = (manifest.overlays || [])
+    .filter((entry) => typeof entry.destination === 'string')
+    .map((entry) => path.posix.normalize(entry.destination).replace(/\/+$/, ''));
+  const notes = [];
+  for (const { record, previousTarget } of movedLinks) {
+    const key = path.posix.normalize(record.link.path).replace(/\/+$/, '');
+    const oldFolder = path.resolve(path.dirname(path.join(root, record.link.path)), previousTarget);
+    for (const destination of destinations) {
+      if (fold(destination) !== fold(key) && !fold(destination).startsWith(fold(key) + '/')) continue;
+      const oldPath = path.join(oldFolder, destination.slice(key.length));
+      if (!pathExists(oldPath)) continue;
+      const oldKey = isWithin(path.resolve(root), oldPath) ? toPosix(path.relative(path.resolve(root), oldPath)) : oldPath;
+      // A copy another entry still writes there is that entry's, not a leftover.
+      if (destinations.some((other) => fold(oldKey) === fold(other) || fold(oldKey).startsWith(fold(other) + '/'))) continue;
+      notes.push(`${record.link.path} now links to ${record.link.target}, and what apply wrote through it before stays at ` +
+        `${oldKey}, no longer tracked\n  Next: ${isDirectory(oldPath) ? 'rm -r' : 'rm'} ${shellPath(oldPath)}, once nothing ` +
+        'in the tree reads it');
+    }
+  }
+  return notes;
+}
+
+// Status cannot make a missing layout link or move one, so an entry under such
+// a link is judged where the link will send it: a write through a link that
+// then leads outside the tree is refused here as apply refuses it once the link
+// stands, rather than listed as work apply can do. Only that refusal is judged
+// ahead; a link whose own folder is not there yet is left to apply.
+function judgeWritesThroughPendingLinks(ctx, manifest, state, analysis) {
+  const root = ctx.root;
+  if (analysis.layout.problems.length > 0) return;
+  const pending = linksAboveOverlays(manifest, root, analysis.records.filter((record) => record.layout));
+  if (pending.length === 0) return;
+  const engineLinks = engineMadeLinks(manifest, state);
+  const fold = pathFold(root);
+  const absoluteRoot = path.resolve(root);
+  for (let index = 0; index < analysis.plans.length; index += 1) {
+    const plan = analysis.plans[index];
+    if (plan.problems.length > 0) continue;
+    let found = null;
+    for (const record of pending) {
+      const linkPath = path.resolve(root, record.link.path);
+      const landing = path.resolve(path.dirname(linkPath), record.link.target);
+      if (!isWithin(absoluteRoot, landing)) continue;
+      const writes = [
+        ...plan.writes.map((write) => ({ filePath: path.resolve(write.filePath), followLeaf: write.symlinkTarget === undefined })),
+        ...plan.deletes.map((filePath) => ({ filePath: path.resolve(filePath), followLeaf: false })),
+      ];
+      for (const { filePath, followLeaf } of writes) {
+        if (!isWithin(fold(linkPath), fold(filePath))) continue;
+        found = linkLeavingTree(root, path.join(landing, filePath.slice(linkPath.length)), { followLeaf, engineLinks });
+        if (found) break;
+      }
+      if (found) break;
+    }
+    if (!found) continue;
+    analysis.plans[index] = refusedPlan(plan.entry, linkLeavingTreeProblem(plan.entry, found, root));
+    analysis.blocked.push(analysis.plans[index]);
+    analysis.records = analysis.records.filter((record) => record.plan !== plan);
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -3857,6 +3957,55 @@ function layoutLinkEscape(root, manifest) {
   return null;
 }
 
+// The why and Next lines under a layout link path that escapes the tree. When a
+// link on the folder's way leads out, as it stands or once the manifest's link
+// above it is made, that link is the one to move aside, and the link apply would
+// make is never named in its place. Any other escape is the manifest's to fix.
+function withLinkEscapeRemedy(ctx, manifest, message) {
+  const prefix = 'layout link path escapes the tree root: ';
+  if (!message.startsWith(prefix)) return message;
+  const root = ctx.root;
+  const absoluteRoot = path.resolve(root);
+  const linkPath = message.slice(prefix.length);
+  const absolute = path.resolve(root, linkPath);
+  const manifestNext = `Next: change the layout link ${linkPath} in ${shellPath(ctx.manifestPath)} to a path inside the tree, ` +
+    'then ' + nextEngine(root, 'status').slice('Next: '.length);
+  if (path.isAbsolute(linkPath) || !isWithin(absoluteRoot, absolute) || absolute === absoluteRoot) {
+    return withRemedy(message, 'a layout link is made only inside the tree', manifestNext);
+  }
+  const engineLinks = engineMadeLinks(manifest, {});
+  const fold = pathFold(root);
+  // The nearest manifest link above the path is followed to its target, the
+  // way the path resolves once apply makes that link.
+  const linkAboveLeavingTree = () => {
+    const above = (manifest.layoutLinks || [])
+      .filter((link) => link && typeof link.path === 'string' && typeof link.target === 'string')
+      .map((link) => ({ link, at: path.resolve(root, link.path) }))
+      .filter(({ at }) => at !== absolute && isWithin(fold(at), fold(absolute)))
+      .sort((left, right) => right.at.length - left.at.length)[0];
+    const landing = above ? path.resolve(path.dirname(above.at), above.link.target) : null;
+    if (landing === null || !isWithin(absoluteRoot, landing)) return null;
+    return linkLeavingTree(root, path.join(landing, absolute.slice(above.at.length)), { engineLinks });
+  };
+  // Naming the link is only advice, so a path it cannot read still gets the
+  // refusal, with the manifest as the place to fix it.
+  let found = null;
+  try {
+    found = linkLeavingTree(root, absolute, { engineLinks }) || linkAboveLeavingTree();
+  } catch {
+    found = null;
+  }
+  if (!found) {
+    return withRemedy(message, 'the folder it sits in leads outside the tree, so a link made there would land outside it',
+      manifestNext);
+  }
+  return withRemedy(message, found.landed === null
+    ? `the folder it sits in passes ${found.key}, a link that does not resolve, so apply cannot tell where a link made ` +
+      'there would land'
+    : `the folder it sits in leads outside the tree through ${found.key}, so a link made there would land outside it`,
+  keepAsideRemedy(root, found.key));
+}
+
 /**
  * Refuse a manifest whose paths escape their roots, and find every entry that
  * would read a secret. A path escape means the manifest itself is wrong, so it
@@ -3870,7 +4019,7 @@ function layoutLinkEscape(root, manifest) {
 function assertSafeToPlan(ctx, manifest) {
   const root = ctx.root;
   const linkEscape = layoutLinkEscape(root, manifest);
-  if (linkEscape) throw new Error(linkEscape);
+  if (linkEscape) throw new Error(withLinkEscapeRemedy(ctx, manifest, linkEscape));
   const exact = exactManifestPaths(ctx, manifest);
   const refused = new Map();
   for (const entry of manifest.overlays) {
@@ -4725,6 +4874,7 @@ function commandStatus(ctx, options = {}) {
   const manifest = loadManifest(ctx);
   const state = loadState(ctx, manifest);
   const analysis = analyze(ctx, manifest, state);
+  judgeWritesThroughPendingLinks(ctx, manifest, state, analysis);
   const check = runCheck(ctx, manifest, state, analysis.plans);
   const audit = options.isAudit ? auditVendoredTree(ctx, manifest) : null;
   // The docs leg stays out of isInSync below: it reports, it never fails the run.
@@ -4947,6 +5097,8 @@ function applyUnderLock(ctx, manifest, options = {}) {
   const linkedFirst = analysis.layout.problems.length > 0 ? []
     : linksAboveOverlays(manifest, root, analysis.records.filter((record) => record.layout));
   if (linkedFirst.length === 0 && reportApplyBlocked(ctx, analysis)) return EXIT_CONFLICT;
+  const movedLinks = linkedFirst.filter((record) => record.isRetarget)
+    .map((record) => ({ record, previousTarget: fs.readlinkSync(path.join(root, record.link.path)) }));
   if (linkedFirst.length > 0) {
     const undoLinks = makeLinksFirst(root, linkedFirst);
     try {
@@ -4970,6 +5122,7 @@ function applyUnderLock(ctx, manifest, options = {}) {
   for (const record of linkedFirst) console.log('linked ' + record.key + ' -> ' + record.target);
   for (const plan of plansToApply) written += applyOnePlan(plan, root, ctx.overlayRoot, cacheNotices);
   for (const notice of cacheNotices) console.log(`NOTE     ${notice}`);
+  for (const note of movedLinkNotes(manifest, root, movedLinks)) console.log(`NOTE     ${note}`);
 
   // The links are restored before the regeneration steps run: a route resolving
   // skills through one of them reads nothing until the link exists.
