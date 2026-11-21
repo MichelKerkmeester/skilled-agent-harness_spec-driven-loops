@@ -10,15 +10,15 @@
   "defaultProjectTrust": "always",
   "treeFilterMode": "default",
   "enabledModels": [
-    "openai/gpt-6-luna",
-    "mistral/deepseek-v4-1-flash-1017",
     "llmgateway/deepseek-v4.1-flash-1017",
+    "mistral/deepseek-v4-1-flash-1017",
     "opencode-go/deepseek-v4.1-flash",
     "mistral/zai-glm-5-3-flash",
     "llmgateway/glm-5.3-flash",
     "opencode-go/glm-5.3-flash",
     "opencode-go/glm-5.3",
-    "opencode-go/hy4-flash-free"
+    "opencode-go/hy4-flash-free",
+    "openai/gpt-6-luna"
   ],
   "packages": [
     "extensions/pi-cache-optimizer",
