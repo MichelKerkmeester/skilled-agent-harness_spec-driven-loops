@@ -8,7 +8,7 @@ trigger_phrases:
   - "coverage_edges table"
 importance_tier: normal
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Deep Loop Runtime Coverage Graph Schema
@@ -182,6 +182,7 @@ Unique key: `(spec_folder, loop_type, session_id, iteration)`.
 ## 7. LIFECYCLE
 
 - `initDb(dbDir)` creates storage, opens SQLite, enables WAL, enables foreign keys, migrates old schema, executes schema SQL, and writes `schema_version`.
+- `initDb(dbDir)` throws when a connection is already open read-only or open on another directory; call `closeDb()` first.
 - `getDb()` lazily initializes with `COVERAGE_GRAPH_DATABASE_DIR`.
 - `closeDb()` closes and clears the singleton connection.
 - Scripts call `closeDb()` in `finally`.

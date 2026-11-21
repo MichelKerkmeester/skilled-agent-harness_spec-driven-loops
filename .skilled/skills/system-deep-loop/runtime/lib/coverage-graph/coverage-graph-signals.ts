@@ -918,17 +918,14 @@ export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
   let p0Resolved = 0;
 
   for (const finding of allP0) {
-    if (finding.metadata) {
-      try {
-        const meta = JSON.parse(finding.metadata);
-        if (meta.severity === 'P0') {
-          p0Count++;
-          const hasResolve = (d.prepare(
-            `SELECT COUNT(*) as c FROM coverage_edges e WHERE ${edgeNamespace.clause} AND e.target_id = ? AND e.relation = 'RESOLVES'`,
-          ).get(...edgeNamespace.params, finding.id) as { c: number }).c;
-          if (hasResolve > 0) p0Resolved++;
-        }
-      } catch { }
+    // Unparseable metadata carries no severity, so the finding is not a P0.
+    const meta = parseMetadataRecord(finding.metadata);
+    if (meta?.severity === 'P0') {
+      p0Count++;
+      const hasResolve = (d.prepare(
+        `SELECT COUNT(*) as c FROM coverage_edges e WHERE ${edgeNamespace.clause} AND e.target_id = ? AND e.relation = 'RESOLVES'`,
+      ).get(...edgeNamespace.params, finding.id) as { c: number }).c;
+      if (hasResolve > 0) p0Resolved++;
     }
   }
 

@@ -117,3 +117,29 @@ describe('coverage-graph-db seed metadata', () => {
     ]);
   });
 });
+
+describe('coverage-graph-db initDb reuse', () => {
+  it('returns the open handle when called again for the same directory, relative or absolute', () => {
+    const first = dbModule.getDb();
+    expect(dbModule.initDb(tempDir)).toBe(first);
+    expect(dbModule.initDb(path.relative(process.cwd(), tempDir))).toBe(first);
+  });
+
+  it('refuses to hand out a handle opened for a different directory', () => {
+    const otherDir = fs.mkdtempSync(path.join(os.tmpdir(), 'cg-db-other-'));
+    try {
+      expect(() => dbModule.initDb(otherDir)).toThrow(/different directory/);
+    } finally {
+      fs.rmSync(otherDir, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses to hand out a read-only handle for writing', () => {
+    dbModule.closeDb();
+    const absentDir = path.join(tempDir, 'absent');
+    dbModule.openReadOnlyDb(absentDir);
+
+    expect(() => dbModule.initDb(absentDir)).toThrow(/read-only/);
+    expect(fs.existsSync(absentDir)).toBe(false);
+  });
+});

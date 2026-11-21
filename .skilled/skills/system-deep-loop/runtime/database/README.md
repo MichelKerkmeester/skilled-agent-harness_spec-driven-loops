@@ -24,7 +24,7 @@ Persistence layer for deep-loop graph state. Research, review and context script
 
 ## 3. LIFECYCLE
 
-- Created on first script invocation if absent. `initDb` in [`coverage-graph-db.ts`](../lib/coverage-graph/coverage-graph-db.ts) creates the directory and file, applies schema migrations and enables WAL journaling and foreign keys
+- Created on first script invocation if absent. `initDb` in [`coverage-graph-db.ts`](../lib/coverage-graph/coverage-graph-db.ts) creates the directory and file, applies schema migrations and enables WAL journaling and foreign keys. It throws instead of reusing a connection that is open read-only or on another directory
 - Graph writer locks are implemented by `../scripts/lib/cli-guards.cjs` `acquireWriterLock` using `wx` lock-file acquisition, stale-lock reclamation and nonce ownership checks
 - Not tracked at `.sqlite-shm` or `.sqlite-wal` level because transient SQLite artifacts are ignored by git
 - `DEEP_LOOP_COVERAGE_DB_DIR` points the coverage graph at another directory, so tests and diagnostics can use a scratch database instead of this one

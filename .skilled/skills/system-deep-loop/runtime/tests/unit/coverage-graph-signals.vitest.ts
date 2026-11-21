@@ -494,4 +494,36 @@ describe('coverage-graph-signals', () => {
       signalsModule.computeContextSignalsFromData(nodes, []).reuseCatalogCoverage,
     ).toBeCloseTo(2 / 3, 5);
   });
+
+  describe('review P0 resolution', () => {
+    function seedP0Findings(): void {
+      dbModule.upsertNode({ ...reviewNs, id: 'p0-resolved', kind: 'FINDING', name: 'Resolved P0', metadata: { severity: 'P0' } });
+      dbModule.upsertNode({ ...reviewNs, id: 'p0-open', kind: 'FINDING', name: 'Open P0', metadata: { severity: 'P0' } });
+      dbModule.upsertNode({ ...reviewNs, id: 'p1-open', kind: 'FINDING', name: 'Open P1', metadata: { severity: 'P1' } });
+      dbModule.upsertNode({ ...reviewNs, id: 'fix-1', kind: 'EVIDENCE', name: 'Fix' });
+      dbModule.upsertEdge({ ...reviewNs, id: 'resolves-1', sourceId: 'fix-1', targetId: 'p0-resolved', relation: 'RESOLVES', weight: 1 });
+    }
+
+    it('counts only P0 findings and skips a finding whose metadata is not valid JSON', () => {
+      seedP0Findings();
+      dbModule.getDb().prepare(`
+        INSERT INTO coverage_nodes (spec_folder, loop_type, session_id, id, kind, name, metadata)
+        VALUES (?, ?, ?, 'garbled', 'FINDING', 'Garbled', '{not json')
+      `).run(reviewNs.specFolder, reviewNs.loopType, reviewNs.sessionId);
+
+      expect(signalsModule.computeReviewSignals(reviewNs).p0ResolutionRate).toBe(0.5);
+    });
+
+    it('surfaces a database error from the per-finding resolution query', () => {
+      seedP0Findings();
+      const db = dbModule.getDb();
+      const prepare = db.prepare.bind(db);
+      vi.spyOn(db, 'prepare').mockImplementation(((sql: string) => {
+        if (sql.includes("relation = 'RESOLVES'")) throw new Error('database disk image is malformed');
+        return prepare(sql);
+      }) as typeof db.prepare);
+
+      expect(() => signalsModule.computeReviewSignals(reviewNs)).toThrow('database disk image is malformed');
+    });
+  });
 });

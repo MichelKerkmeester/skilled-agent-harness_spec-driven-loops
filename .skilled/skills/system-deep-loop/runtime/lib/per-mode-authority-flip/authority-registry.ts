@@ -326,8 +326,9 @@ export class AuthorityRegistry {
   public clearPendingTransition(mode: CutoverCertificateMode): void {
     try {
       unlinkSync(this.#pendingTransitionPath(mode));
-    } catch {
-      // Already absent; nothing to clear.
+    } catch (error: unknown) {
+      // An absent marker is already cleared; any other failure leaves the marker in place.
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
     }
   }
 }

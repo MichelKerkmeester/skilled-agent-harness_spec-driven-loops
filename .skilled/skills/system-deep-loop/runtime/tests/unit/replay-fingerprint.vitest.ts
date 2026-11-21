@@ -1216,3 +1216,41 @@ describe('non-rebaselining verification', () => {
     expect(await harness.ledger.getVerifiedHead()).toEqual(beforeHead);
   });
 });
+
+describe('replay input binding failure', () => {
+  function componentsWithBinding(bind: () => TypedReducerRegistry<CountProjection>) {
+    const reducerRegistry = createComponentRegistry().resolve('fixture-reducer', '1', '1').reducerRegistry;
+    return new ReplayComponentRegistry<CountProjection>([{
+      reducerId: 'fixture-reducer',
+      reducerVersion: '1',
+      projectionSchemaVersion: '1',
+      requiredReplayInputKeys: ['initial_state', 'fixture_config'],
+      reducerRegistry,
+      replayInputSources: {
+        fixture_config: { kind: 'content-addressed', value: { scale: 1 } },
+      },
+      bindReplayInputs: bind,
+    }]);
+  }
+
+  it('derives when the reducer binds the resolved replay inputs', async () => {
+    const harness = await committedHarness();
+    const reducerRegistry = createComponentRegistry().resolve('fixture-reducer', '1', '1').reducerRegistry;
+    const derived = await derive(harness, { componentRegistry: componentsWithBinding(() => reducerRegistry) });
+    expect(derived.descriptor).toBeTruthy();
+  });
+
+  it('carries the binding error as the cause of the typed failure', async () => {
+    const harness = await committedHarness();
+    const bindingError = new Error('fixture_config.scale is not an integer');
+    const failure = await derive(harness, {
+      componentRegistry: componentsWithBinding(() => { throw bindingError; }),
+    }).catch((error: unknown) => error);
+
+    expect(failure).toMatchObject({
+      code: ReplayFingerprintErrorCodes.REPLAY_COMPONENT_UNREGISTERED,
+      stage: 'replay-input-binding',
+    });
+    expect((failure as Error).cause).toBe(bindingError);
+  });
+});
