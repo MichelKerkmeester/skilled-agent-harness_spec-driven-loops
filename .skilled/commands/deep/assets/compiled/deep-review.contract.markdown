@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "a406f5993e23a6000e61976da9725e2df48643a657c1335c6caa485b9de3b938",
+      "sha256": "27f1f8b839eedf8fb92eaf04d6087c9cd62ea20f8fa3034d28f75b293351785f",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "f51ef29cc427ff1b4dd9d3d165d1dd4c12dec0b44051610d8bfdcaadb8367202",
+      "sha256": "096f850f7806e3d8592d8d942d352dfcf5a95baa96f512245698a539446c6ef9",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "9887babf5cc60028ff8c0f8a36298be42b3e832b2e5206896730e1fc985cadec",
+      "sha256": "4623c33a30c4fd8b89888e615f18c7aae680a3925d4bbf07ba8894de7727a508",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "5f0926b34520c369bc1b744a7b6c84a5f02c5218feab0e312fa3900bbf4669df"
+  "compiledBodyDigest": "db9ee62f58a83399a58b05d9067a23633a8db1eb05da27936653367a0098f2e6"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -368,7 +368,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      D) cli-codex — requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
-     G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
+     G) cli-pi — requires `pi`, run as `pi -p --offline --model SELECTOR` (`provider/model`). Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`. Pi has no OS sandbox: `--sandbox-mode=read-only` narrows its tools to `read,grep,find,ls` and passes `--no-extensions --no-skills --no-prompt-templates` (a compensating control), and the other modes pass no restriction.
      H) cli-deepseek-harness (experimental, explicit choice only) — a single lineage such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash` runs in `:auto` through the shared fan-out command builder, and a fan-out shape such as `--count=2` also works. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
      D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 

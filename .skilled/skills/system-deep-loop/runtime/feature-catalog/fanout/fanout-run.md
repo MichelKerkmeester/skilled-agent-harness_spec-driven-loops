@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.24.0
+version: 1.4.25.0
 ---
 
 # Fan-out CLI lineage driver
@@ -204,13 +204,24 @@ from the workflow default.
 For an expansive research or review run, `expansiveLineageBudgets` sets each lineage's
 iteration count. A matrix `iterations` value is explicit and always kept. A lineage with no
 matrix value and no `--max-iterations` is sized from its own seed share by `expansiveBudget` in `frontier-admit.cjs`.
-The floor is the loop default that lineage would otherwise run: 12 for a native lineage, and
-`LOOP_DEFAULT_MAX_ITERATIONS` for a CLI lineage, 7 for review and 10 for research. A lineage
-dealt no seed node runs at that floor. A lineage with a share runs
+The floor is the loop default that lineage would otherwise run, `LOOP_DEFAULT_MAX_ITERATIONS`:
+7 for review and 10 for research. Every sized lineage is a CLI lineage, because the runner refuses
+a native lineage before sizing. A lineage dealt no seed node runs at that floor. A lineage with a share runs
 `min(24, max(floor, 2 × perNode × (share + 2)))` iterations, where `perNode` is 4 for review
 (the canonical four dimensions) and 1 for research, and `share + 2` comes from the default
 `maxDepth` of 3. `expansiveLineageBudgetNotes` writes one stderr line per derived budget and a
 warning when there are more lineages than open seed nodes.
+
+The same caps make the run's one budget table. With no `--max-iterations`, an expansive research
+or review run rewrites the root config's `maxIterations` (`deep-research-config.json` or
+`deep-review-config.json` under `--base-artifact-dir`) to the largest lineage cap, computed from
+the full matrix, so an `--only-lineage` rerun writes the same value. `writeRootConfigBudget` runs
+after every refusal and before the orphan mark and any spawn. It writes nothing under `--preview`
+or with an explicit `--max-iterations`, leaves a missing or unreadable root config alone (the
+runner never creates one) and keeps every other field. It then prints one stderr line after the
+per-lineage notes, such as
+`[fanout-run] budget table: a 14, b 12 iterations; root maxIterations 14, the largest lineage cap`.
+The seed step prints no whole-seed budget for such a run, so this line is the run's budget.
 
 ### Completion, Preview and Diagnostics
 
@@ -218,7 +229,7 @@ warning when there are more lineages than open seed nodes.
 
 The preview's `aggregate_budget` carries a `units` legend for its cost numbers. `upper_bound.estimated_cost_units` is the sum of every lineage's `base_cost_units`, one attempt each, and it is the spend the aggregate cap gates on. A lineage's `base_cost_units` is its iterations times the cost units per iteration for one attempt, and its own `estimated_cost_units` is `base_cost_units x (retries + 1)`, the worst case if every retry runs, which is reported and never gated.
 
-A lineage counts as fulfilled only when its state log holds at least one iteration, a terminal stop row from this attempt (`terminal_gates` for review, a closeout synthesis row for research, where `synthesis_incomplete` does not count), every iteration row before that terminal row in the file, and no row whose stamp carries an explicit zone stamped more than two minutes after the lineage process ended; iteration stamps are written by the model, so they are never compared with the terminal row's stamp. A `stamped_after_completion` failure names the stamp it judged, as `claims X, committed Y` when the model's claimed time differs from the gateway's commit time. A research lineage writes no stop-check row, so its closeout row must also carry a `stopReason` from the frozen lifecycle enum, and a `maxIterationsReached` stop must have recorded as many distinct iterations as the `maxIterations` cap in the lineage's own config; the failures are `missing_stop_reason`, `unknown_stop_reason` and `max_iterations_unproven`, which an unreadable cap also yields. Review keeps its gate-row check, and the lenient pre-spawn skip check is unchanged. Otherwise it fails even at exit 0. The executor-group `--sandbox-mode` maps to `sandboxMode`. A `cli-claude-code` lineage keeps `workspace-write`, which runs `acceptEdits` and cannot run Bash in `-p` mode, so the runner warns at launch, and if that lineage records nothing its failure names `--sandbox-mode=danger-full-access`. A `cli-opencode` lineage takes the same `workspace-write` default: it runs `--auto` with an inline `OPENCODE_CONFIG_CONTENT` that denies `external_directory`, merged into any inherited value (one that is unparseable or not a JSON object fails the build). That stops OpenCode's file tools at the working directory but not Bash, which can still write anywhere, so the preview records `sandboxEnforcement` `compensating`, never `preventive`. `danger-full-access` is plain `--auto` with no deny, and an explicit `read-only` is refused.
+A lineage counts as fulfilled only when its state log holds at least one iteration, a terminal stop row from this attempt (`terminal_gates` for review, a closeout synthesis row for research, where `synthesis_incomplete` does not count), every iteration row before that terminal row in the file, and no row whose stamp carries an explicit zone stamped more than two minutes after the lineage process ended; iteration stamps are written by the model, so they are never compared with the terminal row's stamp. A `stamped_after_completion` failure names the stamp it judged, as `claims X, committed Y` when the model's claimed time differs from the gateway's commit time. A research lineage writes no stop-check row, so its closeout row must also carry a `stopReason` from the frozen lifecycle enum, and a `maxIterationsReached` stop must have recorded as many distinct iterations as the `maxIterations` cap in the lineage's own config; the failures are `missing_stop_reason`, `unknown_stop_reason` and `max_iterations_unproven`, which an unreadable cap also yields. Review keeps its gate-row check, and the lenient pre-spawn skip check is unchanged. Otherwise it fails even at exit 0. The executor-group `--sandbox-mode` maps to `sandboxMode`. A `cli-claude-code` lineage keeps `workspace-write`, which runs `acceptEdits` and cannot run Bash in `-p` mode, so the runner warns at launch, and if that lineage records nothing its failure names `--sandbox-mode=danger-full-access`. Claude's `--permission-mode` is an approval gate, not an OS confinement, so the preview records `sandboxEnforcement` `compensating` for `acceptEdits` and `plan` and `none` for `bypassPermissions`. A `cli-opencode` lineage takes the same `workspace-write` default: it runs `--auto` with an inline `OPENCODE_CONFIG_CONTENT` that denies `external_directory`, merged into any inherited value (one that is unparseable or not a JSON object fails the build). That stops OpenCode's file tools at the working directory but not Bash, which can still write anywhere, so the preview records `sandboxEnforcement` `compensating`, never `preventive`. `danger-full-access` is plain `--auto` with no deny, and an explicit `read-only` is refused.
 
 A fatally failed lineage prints one stderr line at once with its label and failure class. Provider ids, URLs and emails are masked in the ledger, stderr, a rotated log and every kept lineage log, which is masked once its lineage settles as succeeded, failed or stopped. A rerun rotates the previous raw log to `logs/fanout-lineage.N.out` instead of overwriting it. The runner has no settle-time metadata refresh, so a research or review fan-out never rewrites the packet's `description.json` or `graph-metadata.json`, and `--no-metadata-refresh` is refused as an unknown option.
 
@@ -234,7 +245,7 @@ The stdout summary and `orchestration-summary.json` carry `lineages`, one `{labe
 
 | File | Role |
 |---|---|
-| `scripts/fanout-run.cjs` | Main entry: CLI arg parsing, per-kind command construction, pool orchestration, stdout capture and salvage call, plus the per-lineage progress heartbeat via `startLineageProgressHeartbeat`; expansive depth via `normalizeDepthMode`, `partitionFrontierNodes`, `writeLineageFrontierStore`, `expansiveLineageBudgets` and `expansiveLineageBudgetNotes`; per-lineage `DEEP_LOOP_COVERAGE_DB_DIR`; progress-row fields via `readLineageProgressFields`; `--status` via `formatFanoutStatusTable`; `--stop` via `stopLiveFanoutRun`; signal forwarding and `watchBootstrapParent`; the lineage block via `readRootLineageValues` and `writeLineageValues` |
+| `scripts/fanout-run.cjs` | Main entry: CLI arg parsing, per-kind command construction, pool orchestration, stdout capture and salvage call, plus the per-lineage progress heartbeat via `startLineageProgressHeartbeat`; expansive depth via `normalizeDepthMode`, `partitionFrontierNodes`, `writeLineageFrontierStore`, `expansiveLineageBudgets`, `expansiveLineageBudgetNotes` and `writeRootConfigBudget`; per-lineage `DEEP_LOOP_COVERAGE_DB_DIR`; progress-row fields via `readLineageProgressFields`; `--status` via `formatFanoutStatusTable`; `--stop` via `stopLiveFanoutRun`; signal forwarding and `watchBootstrapParent`; the lineage block via `readRootLineageValues` and `writeLineageValues` |
 | `scripts/frontier-admit.cjs` | `readNodeStore`, `expansiveBudget` and `LOOP_DEFAULT_MAX_ITERATIONS` used for the frontier partition and lineage budgets, and the node counts on each progress row |
 | `scripts/fanout-salvage.cjs` | Called post-subprocess for write-failure recovery; `readLineagePassSummary` for the progress-row iterations, last commit and flagged passes; the provider cost readers |
 | `scripts/lib/cli-guards.cjs` | `readClaudeStreamFinalText`, which the pending-question and quota checks read a claude stream-json log through |

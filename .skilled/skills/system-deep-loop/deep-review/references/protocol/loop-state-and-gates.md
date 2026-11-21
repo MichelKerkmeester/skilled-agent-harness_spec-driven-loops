@@ -8,7 +8,7 @@ trigger_phrases:
   - "review iteration status enum"
 importance_tier: normal
 contextType: implementation
-version: 1.11.6.0
+version: 1.11.7.0
 ---
 
 # Deep Review State Transitions and Quality Gates
@@ -158,9 +158,11 @@ function checkReviewQualityGates(state, config, coverage):
 The contract-level check above is illustrative; it is the review-specific 9-gate bundle that actually gates STOP. When that bundle fails, the workflow does not silently override STOP to CONTINUE -- `convergence.cjs`, run with `--record-blocked-stop` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event), persists a first-class `blocked_stop` event through the append gateway with the failing gate names and the full `gateResults` bundle:
 
 ```json
-{"type":"event","event":"blocked_stop","mode":"review","run":N,"blockedBy":["<gate-name>", "..."],"gateResults":{"...":"..."},"recoveryStrategy":"<reason>","timestamp":"<ISO-8601>","sessionId":"<session-id>","generation":N}
+{"type":"event","event":"blocked_stop","iteration":"iteration-N","run":N,"blockedBy":["<gate-name>", "..."],"stopReason":"<first-gate-kebab-code>","gateResults":{"...":"..."},"graphBlockerDetail":[],"recoveryStrategy":"<recovery hint>","timestamp":"<ISO-8601>"}
 ```
 
 Full event shape and the complete 9-gate `gateResults` schema: `references/state/state-jsonl.md` "Blocked-Stop Event" and `references/convergence/convergence.md` §6.
+
+A block does not repeat forever. When the same sorted `blockedBy` set has blocked `stuckThreshold` runs in a row (2 by default), this pass included, with no new finding recorded since, the decision becomes STOP with `stopReason` `blockedStop` and `reasonDetail` `blockedStreakReached`. A different blocker set starts a new streak. The iteration cap is checked first, and on a pass where the stuck count also reaches the threshold, stuck recovery runs instead. The stopping pass writes no `blocked_stop` row, and the terminal row records `stopReason: "blockedStop"`.
 
 ---

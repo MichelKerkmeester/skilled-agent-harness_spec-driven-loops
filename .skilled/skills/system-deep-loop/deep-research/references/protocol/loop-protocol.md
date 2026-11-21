@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.34.0
+version: 1.14.35.0
 ---
 
 # Loop Protocol Reference
@@ -128,6 +128,15 @@ The runtime supports four lineage modes. `completed-continue` is live through `-
 | `restart` | fresh | `prior + 1` | prior `research/` tree moved under `research_archive/{timestamp}/` | `restarted` (same field set plus `archivedPath`) | operator wants to clear the workspace and replay with a new angle |
 | `completed-continue` | same | same | none; the prior synthesis is copied to `research/synthesis-v{generation}-r{continuedFromRun}.md` | `extended` (see below) | a completed run needs N more iterations: pass `--extend=N` |
 
+#### Restart prior-lineage fallback
+
+Before the archive, `workflow-steps.cjs prior-lineage` reads the session id and generation of the packet about to be archived, and the new run opens at that generation plus 1 with the prior session as its `parentSessionId`. It reads both from the old root config. When that config is missing, as an older fan-out root never wrote one, it rebuilds them from what the packet still holds, in this order:
+
+1. The lineage configs under `lineages/*/`. Their one shared `parentSessionId` is the prior session and their highest `generation` is its generation. Parents that disagree name no session.
+2. The state log. Exactly one session id other than the packet folder name, a placeholder older runs wrote, is the prior session, at the highest generation its rows carry, else 1.
+
+Anything else reports no prior session and generation 0, so the restart opens generation 1 with no parent, and the `deep_research.run_restarted` row names the new session id as its lineage. An old config that exists but cannot be read halts the restart instead. A restart request never falls back to resume.
+
 #### Completed-run extension
 
 `--extend=N` (and optionally `--extend-minutes=M`) continues a run whose config has `status: "complete"`. Under the loop lock and before session classification, `step_extend_completed_run`:
@@ -220,16 +229,17 @@ This summary is prepended to the dispatch context (Step 3) to ensure the agent h
 
 #### Step 2c: Quality Guard Check
 
-When the convergence script forms a STOP candidate, it evaluates the quality guards itself (see convergence.md §3, Decision Order steps 8 and 9):
+When the convergence script forms a STOP candidate, it evaluates the quality guards itself (see convergence.md §3, Decision Order steps 8 to 10):
 1. The guards are `sourceDiversity`, `focusAlignment` and `singleWeakSource`
 2. If **all guards pass**: the graph decision settles the stop
-3. If **any guard fails**: the decision becomes CONTINUE with reasonDetail `qualityGuardFailed`, and `blockedBy` names the failed guards
+3. If **any guard fails**: the decision becomes BLOCKED with stopReason `blockedStop` and reasonDetail `qualityGuardFailed`, and `blockedBy` names the failed guards
    - The workflow logs `Quality guard failed: {blocked_by_csv}. Continuing.`
-   - No event is written: a failed guard records neither a `guard_violation` nor a `blocked_stop` event
-4. The loop continues until BOTH convergence AND quality guards pass simultaneously
+   - The script records the block as the same `blocked_stop` row a graph block writes (see below); no `guard_violation` event is written
+   - The row's `recoveryStrategy`, which the reducer turns into the next focus, names each failed guard and what it found: `Clear the failed quality guards before stopping: <guard> (<violations>).`
+4. The loop continues until BOTH convergence AND quality guards pass simultaneously, or until the same blocker set has blocked `stuckThreshold` runs in a row (3 by default): then the decision is STOP with stopReason `blockedStop` and reasonDetail `blockedStreakReached`. The streak counts this pass and the `blocked_stop` rows of the runs before it with the same sorted `blockedBy` set; a different set starts a new streak, and a pass that shows progress (status `insight`, or a `newInfoRatio` at or above the convergence threshold) resets it. The iteration cap is checked first, and on a pass where the stuck count also reaches the threshold, stuck recovery runs instead. The stopping pass itself writes no `blocked_stop` row
 5. Guard checks apply to every STOP candidate except the hard max-iteration stop - CONTINUE and STUCK_RECOVERY bypass this step
 
-If the legal-stop decision tree returns `blocked`, the `blocked_stop` JSONL event MUST be in the state log before the loop continues. `convergence.cjs` records it: the workflow runs it with `--record-blocked-stop` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event), and on a `BLOCKED` decision the script appends the row through the append gateway, once per run and blocker set, and reports it as `blocked_stop_record` with status `recorded`, `already_recorded` or `failed`. A `failed` record makes the script exit with the gateway's status after printing the decision, and the workflow treats that as a gateway refusal and halts rather than writing the row by hand. `step_emit_blocked_stop` logs the block and appends nothing, so the row is never written twice. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
+If the legal-stop decision tree returns `blocked`, from a failed quality guard or a graph `STOP_BLOCKED`, the `blocked_stop` JSONL event MUST be in the state log before the loop continues. `convergence.cjs` records it: the workflow runs it with `--record-blocked-stop` (live run only; a dry run passes `--read-only` instead, so it appends no blocked-stop row, persists no snapshot and writes no observability event), and on a `BLOCKED` decision the script appends the row through the append gateway, once per run and blocker set, and reports it as `blocked_stop_record` with status `recorded`, `already_recorded` or `failed`. A `failed` record makes the script exit with the gateway's status after printing the decision, and the workflow treats that as a gateway refusal and halts rather than writing the row by hand. `step_emit_blocked_stop` logs the block and appends nothing, so the row is never written twice. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
 
 #### Step 2d: Rejected Pattern Cache Check
 
@@ -407,7 +417,7 @@ Checkpoint commits provide rollback points: `git log -- research/` shows the las
 
 ### Expansive Depth Frontier (opt-in)
 
-Under `--depth-mode=expansive` the loop keeps a frontier of follow-up questions. When `research/inbox.jsonl` already holds frontier rows at strategy creation, `step_create_strategy` writes an empty Key Questions list and the reducer adds the frontier rows, so the frontier is the only question intake; a fan-out lineage dealt no seed share has no frontier rows and derives its key questions from the topic as a default run does. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 per depth, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. Two flags set the caps when the config is created: `--frontier-max-depth=N` writes `maxDepth` and `--frontier-max-nodes=N` writes `maxFrontierNodes`; both take a positive integer, need `--depth-mode=expansive` on a single-executor run, and are refused on a fan-out config. The depth-1 seed answers only to the root-children cap, but every seed that is not pruned counts toward the run cap. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(10, 2 × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes, 16 at the full six seeds, and the seed step prints the derived budget. A fan-out lineage with no matrix `iterations` value is sized the same way from its own round-robin share of the seed, with a floor of 12 for a native lineage and 10 for a CLI one, and a lineage dealt no seed node runs at that floor. The node cap stays half that budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. A run without the flag keeps the default path and its behavior. The one byte change is the expansive-only persona paragraph in the CLI lineage prompt, which the golden test strips before it compares.
+Under `--depth-mode=expansive` the loop keeps a frontier of follow-up questions. When `research/inbox.jsonl` already holds frontier rows at strategy creation, `step_create_strategy` writes an empty Key Questions list and the reducer adds the frontier rows, so the frontier is the only question intake; a fan-out lineage dealt no seed share has no frontier rows and derives its key questions from the topic as a default run does. The flag writes `antiConvergence.depthMode: "expansive"` and the caps in `expansiveDepth`: `maxDepth` 3, `maxChildrenPerNode` 6, a `budgetSplit` of 0.5/0.35/0.15 per depth, and `maxFrontierNodes`, which defaults to half of `maxIterations` unless the config sets a number. Two flags set the caps when the config is created: `--frontier-max-depth=N` writes `maxDepth` and `--frontier-max-nodes=N` writes `maxFrontierNodes`; both take a positive integer, need `--depth-mode=expansive` on a single-executor run, and are refused on a fan-out config. The depth-1 seed answers only to the root-children cap, but every seed that is not pruned counts toward the run cap. When `--max-iterations` is left at its default, the run sizes its budget from the seed: `min(24, max(10, 2 × (S + maxDepth − 1)))` iterations for S seeded depth-1 nodes, 16 at the full six seeds, and on a single-executor run the seed step prints the derived budget. A fan-out parent seeds before its root config exists, so its seed step prints no whole-seed budget. Each fan-out lineage with no matrix `iterations` value is sized the same way from its own round-robin share of the seed, with the loop default of 10 as its floor, and a lineage dealt no seed node runs at that floor. The runner then writes the largest lineage cap into the root config's `maxIterations` and prints the run's budget table as one `[fanout-run] budget table:` line on stderr. The node cap stays half that budget, which leaves room for at least two nodes past depth 1. An explicit `--max-iterations`, marker, setup answer or fan-out matrix `iterations` value always wins, even below the derived value, and the seed warns when it leaves no room past depth 1. A run without the flag keeps the default path and its behavior. The one byte change is the expansive-only persona paragraph in the CLI lineage prompt, which the golden test strips before it compares.
 
 `step_frontier_seed` decomposes the topic into 3 to 6 depth-1 nodes before iteration 1. On a plain run it sits in `phase_init` after `step_create_config`; on a fan-out run it runs before `step_fanout_spawn`. It calls `runtime/scripts/frontier-admit.cjs seed`.
 

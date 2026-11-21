@@ -7,7 +7,7 @@ trigger_phrases:
   - "merge fanout lineages"
   - "strongest-restriction review merge"
   - "cross-model finding attribution"
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # Fan-out cross-lineage merge
@@ -95,8 +95,12 @@ finding, or a required gate still failing, in ANY lineage surfaces to the final 
 
 Fully shipped. Dual-mode script: exports `mergeResearchRegistries`, `mergeResearchFrontier`,
 `mergeReviewRegistries`, `buildAttributionMd` for unit testing; `main()` executes when
-`require.main === module`. CLI: `--loop-type research|review --artifact-dir <path>`. Exit
-codes: 0=ok, 3=input validation error.
+`require.main === module`. CLI: `--loop-type research|review --artifact-dir <path>
+[--enable-near-duplicate-dedup [1|true|yes|on]]`. The dedup flag turns on the same near-duplicate
+collapse as `SPECKIT_FANOUT_NEAR_DUP_DEDUP` and wins over it when given; a bare flag is on, and
+any other value is off. Any other flag is refused. Exit codes: 0=ok, 3=input validation error
+(an unknown flag, a missing or invalid `--loop-type` or `--artifact-dir`, a linked lineage
+directory), 1=any other error.
 
 ---
 

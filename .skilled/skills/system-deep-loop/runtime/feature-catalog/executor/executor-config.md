@@ -7,7 +7,7 @@ trigger_phrases:
   - "configure executor"
   - "permission-mode normalization"
   - "deep-loop dispatch configuration"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Executor config
@@ -26,7 +26,7 @@ This feature belongs to the executor group and is catalogued as F001 in the `run
 
 Schema, parsing, defaults, supported flags, sandbox and permission-mode normalization.
 
-`EXECUTOR_ADAPTER_CAPABILITIES` sits beside `EXECUTOR_KIND_FLAG_SUPPORT` and records, for each executor kind, its binary, prompt channel (argv, stdin or a prompt file), log format, cost source, effort surface, sandbox surface and resume. Resume is artifact resume for every kind: no builder passes a model-session resume flag. A table-driven conformance test checks every record against the fan-out command builders, the single-iteration dispatcher and the provider-cost reader, so a builder that drifts from its record fails the test. The cost reader returns a cost only for opencode and claude; every other kind reads unknown, never zero.
+`EXECUTOR_ADAPTER_CAPABILITIES` sits beside `EXECUTOR_KIND_FLAG_SUPPORT` and records, for each executor kind, its binary, prompt channel (argv, stdin or a prompt file), log format, cost source, effort surface, sandbox surface and resume. Resume is artifact resume for every kind: no builder passes a model-session resume flag. A table-driven conformance test (`tests/unit/executor-adapter-capabilities.vitest.ts`) checks each CLI kind's record against its fan-out command builder (binary, prompt channel, log format, resume, effort and sandbox surface), every kind's cost source against the provider-cost reader, and the claude and codex records against the single-iteration dispatcher, so a builder that drifts from its record fails the test. The codex dispatcher case is skipped when the suite itself runs inside a codex session. The cost reader returns a cost only for opencode and claude; every other kind reads unknown, never zero.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
