@@ -5056,13 +5056,17 @@ function layoutMoves(manifest, ctx) {
 // planner reads it as: a folder, not followed through a link at its end, for
 // the source of a directory or skill-root entry, and a file, read through any
 // link, for every other field. Only the path is looked at, so a credential file
-// is never opened. A path that climbs out of the overlay folder counts as ready,
-// so relayout's own containment check refuses the run instead of a missing copy
-// out there slipping past it while the rest of the moves go ahead.
+// is never opened. The copy is judged at the path apply reads, the field joined
+// onto the overlay folder, so a spelling that resolves to a copy apply cannot
+// read gets no move. A path that resolves out of the overlay folder counts as
+// ready, so relayout's own containment check, which resolves the same way,
+// refuses the run instead of a missing copy out there slipping past it while
+// the rest of the moves go ahead.
 function layoutCopyReady(ctx, entry, field) {
-  const copy = path.resolve(ctx.overlayRoot, entry[field]);
-  if (!isWithin(ctx.overlayRoot, copy) || copy === ctx.overlayRoot) return true;
-  if (field === 'source' && (entry.scope === 'directory' || entry.scope === 'skill-root')) return isDirectory(copy);
+  if (!isWithin(ctx.overlayRoot, path.resolve(ctx.overlayRoot, entry[field]))) return true;
+  const copy = path.join(ctx.overlayRoot, entry[field]);
+  // A trailing slash would make lstat follow a link at the folder's end.
+  if (field === 'source' && (entry.scope === 'directory' || entry.scope === 'skill-root')) return isDirectory(path.resolve(copy));
   try {
     return fs.statSync(copy).isFile();
   } catch {
