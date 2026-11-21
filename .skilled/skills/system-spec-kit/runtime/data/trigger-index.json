@@ -1,5 +1,5 @@
 {
-  "manifestHash": "551412b72708ffd9a161929b58f12a2787160acb40f588f2f7be936c80d40fc0",
+  "manifestHash": "74974fbd03c65f8de6bf61298ab458a967150e57a8814d4a26de2b551f5628cc",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -89959,6 +89959,9 @@
     "jsonc comment policy": [
       1444
     ],
+    "jsonc comment stripping": [
+      3345
+    ],
     "jsonc file template": [
       1445
     ],
@@ -129052,9 +129055,6 @@
     ],
     "retry throughput env knob": [
       15880
-    ],
-    "retry utilities": [
-      3345
     ],
     "reunification with deep loop runtime": [
       2335

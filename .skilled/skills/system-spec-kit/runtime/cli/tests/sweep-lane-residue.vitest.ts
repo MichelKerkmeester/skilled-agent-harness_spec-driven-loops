@@ -466,6 +466,20 @@ describe('repo mode', () => {
     expect(byPath['docs/cleanup.md']).toBeUndefined();
   });
 
+  it('catches a doc that names the model server socket folder or one of its files', () => {
+    const root = makeRepo({
+      'docs/socket-folder.md': 'Remove /tmp/system-hf-embed by hand.\n',
+      'docs/socket-file.md': 'The server listens on HF-EMBED.sock.\n',
+    });
+
+    const run = runCli(['repo', '--root', root, '--allowlist', writeAllowlist([]), '--json']);
+
+    expect(run.status).toBe(1);
+    const byPath = Object.fromEntries(JSON.parse(run.stdout).live.map((entry: { matched: unknown; path: string }) => [entry.path, entry.matched]));
+    expect(byPath['docs/socket-folder.md']).toEqual({ identifier: ['hf-embed'] });
+    expect(byPath['docs/socket-file.md']).toEqual({ identifier: ['hf-embed'] });
+  });
+
   it('exits 0 once the file is deleted, both before and after the deletion is committed', () => {
     const root = makeRepo({ 'docs/notes.md': 'the embedder route\n', 'docs/clean.md': 'nothing here\n' });
     const allowlist = writeAllowlist([]);
@@ -933,6 +947,7 @@ describe('apply mode', () => {
     writeAdvisorDb(path.join(fixture.dbDir, 'skill-graph.sqlite'), { lane: true });
     writeFile(fixture.dbDir, 'skill-graph.sqlite-wal', '');
     writeFile(fixture.dbDir, 'skill-graph.sqlite-shm', '');
+    writeFile(fixture.dbDir, 'skill-graph.sqlite-journal', '');
     writeFile(fixture.dbDir, 'skill-graph.sqlite.pre-doctor-skill-advisor-rebuild.1.bak', 'copy');
     writeFile(fixture.dbDir, 'skill-graph.sqlite.2.corrupt', 'copy');
     writeFile(fixture.dbDir, 'vectors/context-vectors__hf-local.sqlite', 'shard');

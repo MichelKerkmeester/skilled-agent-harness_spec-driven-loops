@@ -1,6 +1,6 @@
 ---
 title: "Shared Tests: Coverage for the Shared Package"
-description: "The suites that cover the modules under shared/, from frontmatter parsing and the predicate grammar to the embedding provider stack."
+description: "The suites that cover the modules under shared/, from frontmatter parsing and the predicate grammar to the IPC socket server."
 trigger_phrases:
   - "shared tests"
   - "spec kit shared test suites"

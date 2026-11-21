@@ -8,23 +8,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating"
-    last_updated_at: "2026-11-21T07:50:22Z"
+    last_updated_at: "2026-11-21T10:43:20Z"
     last_updated_by: "generate-context"
-    recent_action: "Implemented and verified phase 008"
-    next_safe_action: "Run /local-doc-alignment and /local-skilled-alignment on the lane removal"
+    recent_action: "Fixed the verification alignment findings for the lane residue cleanup wiring and gating"
+    next_safe_action: "Run a real /doctor:update apply on the operator machine, then decide the merge"
     packet_purpose: "Purpose: Every update removes what the lane left on the machine it runs on, asks about the pulled shared model each time, and any lane term that comes back fails CI and the doctor tests."
     blockers: []
     key_files:
       - "008-cleanup-wiring-and-gating/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:21afa2aa3e6ffb1fe5855e1f11a614de70855d4e3eee97ddac56eaecba1453b2"
+      fingerprint: "sha256:dcccee7b8c45c03d79d5193281d781929cd85fc6bb8fa6b95857bbeb9a4a82ad"
       session_id: "scaffold-008-cleanup-wiring-and-gating"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
       workspace: "/Users/michelkerkmeester/worktrees/public/497-ollama-lane-removal"
-      savedAt: "2026-11-21T07:50:22Z"
+      savedAt: "2026-11-21T10:43:20Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -184,4 +184,25 @@ Two report-only alignment runs over the branch at `6820170d3b1`: the doc run (`l
 | Pre-commit comments | conductor | fixed | `.skilled/scripts/git-hooks/pre-commit` no longer says the doc-model reference validator moved to CI; the validator was deleted with the shared embeddings package. |
 | Parity test path | conductor | fixed | `package-root-parity.vitest.ts` builds its nested start folder as `shared/nested`, not the deleted package's path; 42 passed. |
 | S5, S6, S13 lanes | skilled | recorded | Lane C stalled on a shell loop and returned nothing, so READMEs, changelogs and env docs were covered by battery rows only in that run. |
+| A1 | verify | fixed | `hf-embed` joins `IDENTIFIER_TERMS` with a repo-mode test. Repo mode then found 3 live files: the `env-aliases.cjs` comment and the conversation playbook bullet were reworded, and `retrieval/README.md`, which documents the `--socket-dir` default, got the one new allowlist row (47 rows, 47 matched, live 0). |
+| A2 | verify | fixed | `DB_COMPANION_SUFFIXES` adds `-journal`, the suffix `removeOutdatedDatabase` in `skill-graph-db.ts` also deletes. With `skill-graph.sqlite-journal` planted, three apply tests failed before the fix and the file passes 92 of 92 after. |
+| A3 | verify | fixed | The `runMachineChecks` and `runApply` docblocks say a read-only open of a WAL database may leave `-wal` and `-shm` files, here and in linked worktrees. `checkDatabases` opens only backup copies immutable, so no behavior changed. |
+| A4 | verify | fixed | The `advisory` job name lists its three steps: test suites, index freshness and the AGENTS.md manifest. No file outside specs/ quoted the old name. |
+| B-01 | verify | fixed | The `shared/tests/README.md` description ends at the IPC socket server, which `socket-server.test.ts` covers; no suite there covers an embedding stack. |
+| B-02 | verify | fixed | The catalog entry and its root row are retitled `Graph Metadata v1 to v2 Additive Backfill`, a paragraph separates the database `SCHEMA_VERSION` discard, and the LC-004 row is a Reference to that discard scenario; only tests import `schema-migration.ts`. |
+| B-03 | verify | fixed | Six anchors re-derived from `scoring-constants.ts`: 184-186, 188-189, 190-192 (guard in `fusion.ts:426-437`), 200-206 and 207-210, and the constants sentence names both interfaces, their defaults and `ambiguity.ts:8-9`. |
+| C-01 | verify | fixed | Code files 5; the folder holds five `.ts` files. |
+| C-02 | verify | fixed | Code files 9; nine direct `.js`, `.mjs` and `.py` files remain, the set that counted 10 at the merge base. |
+| C-04 | verify | fixed | The description drops retry behavior and the `retry utilities` trigger phrase is now `jsonc comment stripping`; `utils/retry.ts` is gone. |
+| C-06 | verify | fixed | The installer's Voyage block is removed. No file outside specs/ reads `VOYAGE_API_KEY`; only an `INSTALL-GUIDE.md` example comment names it. `bash -n` exits 0. |
+| C-08 | verify | recorded | Operator item after merge: the bodies of the eight tagged release entries. |
+| D-02 | verify | recorded | Operator decision: the lane residue feature stays documented with no advisor routing vocabulary. |
+| D-03 | verify | recorded | Not reproduced. `advisor-freshness.vitest.ts` passes 12 of 12 on this tree and on the primary checkout, and the full advisor suite passes here (177 files, 2438 passed, 4 skipped), so it is no regression of this branch. |
+| PRB-01 | verify | recorded | Same operator decision as D-02. |
+| PRB-02 | verify | recorded | Same operator decision as D-02. |
+| PRB-03 | verify | recorded | Same operator decision as D-02. |
+| PRB-04 | verify | recorded | Same operator decision as D-02. |
+| PRB-05 | verify | recorded | Same operator decision as D-02. |
+| ENV-01 | verify | recorded | Known non-issue: the token was added and removed inside the range and is absent at HEAD. |
+| ENV-02 | verify | recorded | Known non-issue: same history as ENV-01. |
 <!-- /ANCHOR:alignment-pass -->

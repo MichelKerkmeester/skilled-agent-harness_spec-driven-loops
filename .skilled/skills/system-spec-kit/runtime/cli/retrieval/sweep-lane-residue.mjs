@@ -101,12 +101,15 @@ export const ABSENT = 'absent';
 export const NOT_CHECKED = 'not_checked';
 
 /**
- * Identifier vocabulary: names the lane's code and config carry. Each term is a
- * literal with no regular-expression metacharacter, so the joined alternation
- * reads the same to git's extended regex and to JavaScript.
+ * Identifier vocabulary: names the lane's code and config carry, and
+ * `hf-embed`, the stem of the model server's socket folder and of every file
+ * it writes there. Each term is a literal with no regular-expression
+ * metacharacter, so the joined alternation reads the same to git's extended
+ * regex and to JavaScript.
  */
 export const IDENTIFIER_TERMS = Object.freeze([
   'ollama',
+  'hf-embed',
   'semantic_shadow',
   'nomic-embed',
   'vec_768',
@@ -253,7 +256,7 @@ const LANE_SOURCE_PATHS = Object.freeze([
 ]);
 
 const DB_FILENAME = 'skill-graph.sqlite';
-const DB_COMPANION_SUFFIXES = Object.freeze(['', '-wal', '-shm']);
+const DB_COMPANION_SUFFIXES = Object.freeze(['', '-wal', '-shm', '-journal']);
 /** Backup copies the rebuild route keeps and the runtime's quarantined copies. */
 const DB_COPY_PATTERN = /^skill-graph\.sqlite(?:\..*)?\.(?:bak|corrupt(?:-wal|-shm)?)$/;
 const SHARD_DIR_NAME = 'vectors';
@@ -1578,8 +1581,10 @@ export function machineExitCode(findings) {
 }
 
 /**
- * Runs checks M1 to M8. Read-only: databases open read-only, dotenv files are
- * read through the value-free CLI, and nothing is written.
+ * Runs checks M1 to M8. Nothing is deleted or changed, and dotenv files are read
+ * through the value-free CLI. Databases open read-only, but a read-only open of
+ * a database in WAL mode may leave SQLite's -wal and -shm files beside it, here
+ * and in each linked worktree M8 reads; only backup copies open immutable.
  *
  * @param {Record<string, any>} [options] CLI options.
  * @param {Record<string, string | undefined>} [env] Environment.
@@ -1798,9 +1803,11 @@ async function deleteOllamaModel(host) {
 /**
  * Runs the machine checks, deletes the leftovers this checkout owns, asks
  * before touching the shared model, reports what only the user can remove,
- * then runs the checks again. Other worktrees are reported, never touched:
- * each may belong to a live session. In a checkout that still holds a lane
- * source nothing is deleted, stopped or asked.
+ * then runs the checks again. Other worktrees are reported and nothing in them
+ * is deleted, because each may belong to a live session; the checks' read-only
+ * opens may still leave SQLite's -wal and -shm files beside their databases.
+ * In a checkout that still holds a lane source nothing is deleted, stopped or
+ * asked.
  *
  * @param {Record<string, any>} [options] CLI options; `sharedModel` is this run's answer about the shared model.
  * @param {Record<string, string | undefined>} [env] Environment.
@@ -1883,8 +1890,8 @@ async function cleanOwnedLeftovers(ctx, byId, actions, { confirm, interactive, s
     actions.push({ action: 'reported', reason: 'rebuild the package once the lane source is gone', target: item.path });
   }
 
-  // M3: the database is derived state, so it is discarded with its WAL and
-  // shared-memory files and rebuilt by the next scan.
+  // M3: the database is derived state, so it is discarded with its WAL,
+  // shared-memory and rollback journal files and rebuilt by the next scan.
   for (const item of byId.get('M3').items) {
     const name = path.basename(item.path);
     if (item.kind === 'database') {

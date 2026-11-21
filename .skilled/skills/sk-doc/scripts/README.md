@@ -4,7 +4,7 @@ description: "Code-facing README for .skilled/skills/sk-doc/scripts."
 trigger_phrases:
   - "sk-doc scripts"
   - "code README"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # sk doc scripts
@@ -27,7 +27,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 10 |
+| Code files | 9 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 

@@ -12,7 +12,7 @@
 // the new name yet keep honoring existing operator configuration.
 //
 // Every legacy hook and daemon env var is bridged, including the daemon-family
-// vars (skill-advisor / code-index / code-graph / hf-embed / reranker) whose
+// vars (skill-advisor / code-index / code-graph / reranker) whose
 // identity was renamed alongside the daemons themselves. The bridge is a
 // prefix rewrite with no per-family rows, so a retired family needs no removal
 // here: its names simply stop having a read site.

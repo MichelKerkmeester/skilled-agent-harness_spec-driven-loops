@@ -14,6 +14,10 @@
       "reason": "The check's test. It plants lane terms in fixtures to prove the check fails."
     },
     {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      "reason": "The check's own doc. Line 99 names the --socket-dir default, /tmp/system-hf-embed, the folder apply deletes the model server's files from."
+    },
+    {
       "path": ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-task-completion/auto-note.md",
       "reason": "Line 19 names Ollama as a future ClickUp note provider. Not the advisor lane."
     },

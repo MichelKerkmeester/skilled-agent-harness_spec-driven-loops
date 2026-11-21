@@ -35,6 +35,11 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q001 | /speckit:plan runs in :auto mode for the removal. | Not stated. | None | 024 spec.md How the Run Executes |
+| Q002 | The operator-local doc-alignment topic advisor-vector-refresh is replaced by advisor-lane-removal. | Not stated. | None | operator-local topics.json; 008 implementation-summary.md alignment-pass |
+| Q003 | Do not keep the alignment executors on OpenCode Go; find a default that uses the active agent, CLI or provider. | Most repo users will not use OpenCode Go. | None | operator-local executors.json |
+| Q004 | The lane cleanup gets no advisor routing vocabulary; the docs say it is reached through /doctor:update apply. | Not stated. | None | .skilled/commands/doctor/update.md section 6; doctor-update-presentation.txt section 9 |
+| Q005 | Both alignment commands default to a native preset whose lanes and critic run as subagents of the conducting runtime on its own model. | Not stated. | None | operator-local executors.json, the four alignment workflow YAMLs and both router docs |
+| Q006 | The advisory CI job is renamed after the steps it runs now. | Not stated. | None | .github/workflows/advisory-checks.yml |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -61,6 +66,105 @@ Options:
 Answer:
 ```text
 :auto (Recommended)
+```
+
+### Q002
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_0163n2dMsCHSr7pKZ2yxRCN8:0 -->
+
+Question:
+```text
+Your operator-local topics.json (untracked, in the primary checkout) still has the 'advisor-vector-refresh' topic, which lists code files this branch deleted, so /local-doc-alignment on it exits 2. What should I do with it?
+```
+
+Options:
+```text
+Replace with new topic (Recommended)
+Add new, keep old
+Leave the file alone
+```
+
+Answer:
+```text
+Replace with new topic (Recommended)
+```
+
+### Q003
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_0163n2dMsCHSr7pKZ2yxRCN8:1 -->
+
+Question:
+```text
+Your shared executors.json pins the alignment critic to the OpenCode Go model whose monthly quota is used up, so every default run fails its critic and lanes. Change it?
+```
+
+Options:
+```text
+Leave as is (Recommended)
+Switch critic to deepseek
+Switch default preset too
+```
+
+Answer:
+```text
+Most repo users wont use opencode go, alternatives that uses the active agent / cli / provider?
+```
+
+### Q004
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_0163n2dMsCHSr7pKZ2yxRCN8:3 -->
+
+Question:
+```text
+Asking the advisor to 'clean up what the old embedder left on my machine' routes nowhere or to sk-doc instead of /doctor:update. I documented the path rather than add routing phrases, because new phrases move the frozen routing baselines. What do you want?
+```
+
+Options:
+```text
+Keep it documented (Recommended)
+Add one narrow phrase
+```
+
+Answer:
+```text
+Keep it documented (Recommended)
+```
+
+### Q005
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01ELRCwxVMwfGRzCJwdVHxXV:0 -->
+
+Question:
+```text
+For the shared alignment executors.json (operator-local, used by both /local-doc-alignment and /local-skilled-alignment): the workflows already support kind 'native', where lanes and the critic run as subagents of whichever runtime is conducting the command, with no external CLI or provider. How should the default work?
+```
+
+Options:
+```text
+Native default, inherit model (Recommended)
+Native default, pinned model
+Only fix the critic
+Leave it for now
+```
+
+Answer:
+```text
+Native default, inherit model (Recommended)
+```
+
+### Q006
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_012VHbxtHdJt1Vs3wwyu5ZvW:0 -->
+
+Question:
+```text
+The advisory CI job in .github/workflows/advisory-checks.yml is still named 'Advisory — test suites and doc-model references', but the doc-model step was removed on this branch. Renaming the display name can break a branch-protection rule that requires the check by its exact name. Rename it?
+```
+
+Options:
+```text
+Rename it (Recommended)
+Keep the old name
+```
+
+Answer:
+```text
+Rename it (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

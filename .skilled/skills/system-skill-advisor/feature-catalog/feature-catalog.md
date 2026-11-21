@@ -6,7 +6,7 @@ trigger_phrases:
   - "advisor feature catalog"
   - "native advisor features"
   - "skill advisor inventory"
-version: 0.8.7.0
+version: 0.8.8.0
 ---
 
 # Skill Advisor: Feature Catalog
@@ -82,7 +82,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Derived-lane-only age haircut | [lifecycle-routing/age-haircut.md](../feature-catalog/lifecycle-routing/age-haircut.md) |
 | Asymmetric supersession routing | [lifecycle-routing/supersession.md](./lifecycle-routing/supersession.md) |
 | Archive and future skills indexed but not routed | [lifecycle-routing/archive-handling.md](../feature-catalog/lifecycle-routing/archive-handling.md) |
-| Schema v1 to v2 additive backfill | [lifecycle-routing/schema-migration.md](../feature-catalog/lifecycle-routing/schema-migration.md) |
+| Graph metadata v1 to v2 additive backfill | [lifecycle-routing/schema-migration.md](../feature-catalog/lifecycle-routing/schema-migration.md) |
 | Atomic lifecycle rollback | [lifecycle-routing/rollback.md](./lifecycle-routing/rollback.md) |
 
 ---

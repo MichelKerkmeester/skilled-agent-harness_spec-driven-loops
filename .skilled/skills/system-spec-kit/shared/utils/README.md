@@ -1,10 +1,10 @@
 ---
 title: "Shared Utilities"
-description: "Shared utility modules for path validation, retry behavior, JSONC parsing and token estimation."
+description: "Shared utility modules for path validation, JSONC parsing and token estimation."
 trigger_phrases:
   - "shared utilities"
   - "path validation helpers"
-  - "retry utilities"
+  - "jsonc comment stripping"
 version: 1.0.2.0
 ---
 

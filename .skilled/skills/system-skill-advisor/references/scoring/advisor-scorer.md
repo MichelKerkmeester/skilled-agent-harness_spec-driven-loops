@@ -9,7 +9,7 @@ trigger_phrases:
   - "prompt isolation safety"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.8.0
+version: 0.8.9.0
 ---
 
 # Advisor Scorer: Lane Attribution and Confidence Calibration
@@ -101,9 +101,9 @@ Age-policy haircut reduces derived scores based on projection age and skill life
 
 ## 7. SCORE FUSION AND CONFIDENCE CALIBRATION
 
-Fusion combines weighted lane contributions into a final score, then applies confidence assembly based on live normalization, direct evidence plus intent signals. Confidence uses `liveNormalized` (`score/liveTotal`) as the primary ramp with `baseConstant=0.52` plus `liveNormalizedRampCoefficient=0.43` (`runtime/lib/scorer/scoring-constants.ts:141-144`).
+Fusion combines weighted lane contributions into a final score, then applies confidence assembly based on live normalization, direct evidence plus intent signals. Confidence uses `liveNormalized` (`score/liveTotal`) as the primary ramp with `baseConstant=0.52` plus `liveNormalizedRampCoefficient=0.43` (`runtime/lib/scorer/scoring-constants.ts:184-186`).
 
-The derived-dominant short-circuit pins confidence to 0.72 when the derived lane dominates and `directScore < 0.2` (`runtime/lib/scorer/scoring-constants.ts:146-147`). A task-intent floor of 0.82 applies when `directScore >= 0.18` or `liveNormalized >= 0.2`, with a dispersion guard against token-stuffing (`runtime/lib/scorer/scoring-constants.ts:149-156`).
+The derived-dominant short-circuit pins confidence to 0.72 when the derived lane dominates and `directScore < 0.2` (`runtime/lib/scorer/scoring-constants.ts:188-189`). A task-intent floor of 0.82 applies when `directScore >= 0.18` or `liveNormalized >= 0.2`, with a dispersion guard against token-stuffing (`runtime/lib/scorer/scoring-constants.ts:190-192`, guard in `runtime/lib/scorer/fusion.ts:426-437`).
 
 ### Confidence calibration constants (full reference)
 
@@ -126,15 +126,15 @@ The derived-dominant short-circuit pins confidence to 0.72 when the derived lane
 | `lowConfidencePenalty` | +0.08 | Penalty added to uncertainty when `confidence < 0.8`. |
 | `ambiguityMargin` | 0.05 | Score-gap and confidence-gap margin for cluster detection. |
 
-All 16 constants live in `runtime/lib/scorer/scoring-constants.ts:141-170` under the `ConfidenceCalibration` interface. Changes require measured evidence plus a synchronized update across this doc, the feature catalog, plus the manual playbook.
+The confidence constants are declared by the `ConfidenceCalibration` interface (`runtime/lib/scorer/scoring-constants.ts:20-61`) with their defaults at `:182-198`, the uncertainty constants by `UncertaintyCalibration` (`:66-97`) with their defaults at `:199-214`, and the ambiguity margins are `AMBIGUITY_MARGIN` and `AMBIGUITY_CONFIDENCE_MARGIN` in `runtime/lib/scorer/ambiguity.ts:8-9`. Changes require measured evidence plus a synchronized update across this doc, the feature catalog, plus the manual playbook.
 
 ---
 
 ## 8. UNCERTAINTY AND AMBIGUITY DETECTION
 
-Uncertainty is computed from evidence count and direct evidence. Uncertainty floors: no evidence 0.42, some evidence 0.30, medium evidence 0.22, high evidence 0.18 (`runtime/lib/scorer/scoring-constants.ts:160-165`).
+Uncertainty is computed from evidence count and direct evidence. Uncertainty floors: no evidence 0.42, some evidence 0.30, medium evidence 0.22, high evidence 0.18 (`runtime/lib/scorer/scoring-constants.ts:200-206`).
 
-Direct evidence discount of -0.06 applies when `directScore >= 0.75`. Low-confidence penalty of +0.08 applies when `confidence < 0.8` (`runtime/lib/scorer/scoring-constants.ts:167-170`). Ambiguity clusters use 0.05 margins for both score and confidence gaps, unioning the two conditions (`runtime/lib/scorer/ambiguity.ts:7-8, 22-36`).
+Direct evidence discount of -0.06 applies when `directScore >= 0.75`. Low-confidence penalty of +0.08 applies when `confidence < 0.8` (`runtime/lib/scorer/scoring-constants.ts:207-210`). Ambiguity clusters use 0.05 margins for both score and confidence gaps, unioning the two conditions (`runtime/lib/scorer/ambiguity.ts:8-9, 63-77`).
 
 ---
 

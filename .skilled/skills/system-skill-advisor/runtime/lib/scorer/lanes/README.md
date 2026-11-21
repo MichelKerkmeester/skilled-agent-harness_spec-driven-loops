@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path and 
 
 | Metric | Value |
 |---|---:|
-| Code files | 6 |
+| Code files | 5 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 

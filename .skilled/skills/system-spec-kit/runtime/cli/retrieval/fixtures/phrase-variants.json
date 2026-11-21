@@ -1,5 +1,5 @@
 {
-  "manifestHash": "551412b72708ffd9a161929b58f12a2787160acb40f588f2f7be936c80d40fc0",
+  "manifestHash": "74974fbd03c65f8de6bf61298ab458a967150e57a8814d4a26de2b551f5628cc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -64790,6 +64790,9 @@
     "jsonc comment policy": [
       "jsonc comment policy"
     ],
+    "jsonc comment stripping": [
+      "jsonc comment stripping"
+    ],
     "jsonc file template": [
       "jsonc file template"
     ],
@@ -101461,9 +101464,6 @@
     ],
     "retry throughput env knob": [
       "retry-throughput env knob"
-    ],
-    "retry utilities": [
-      "retry utilities"
     ],
     "reunification with deep loop runtime": [
       "Reunification with deep-loop-runtime"

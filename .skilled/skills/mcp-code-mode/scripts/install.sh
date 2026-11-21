@@ -267,10 +267,6 @@ GITHUB_PAT=
 # Get your key: https://app.clickup.com/settings/apps
 CLICKUP_API_KEY=
 CLICKUP_TEAM_ID=
-
-# Voyage AI - Embedding provider for the Spec Kit shared embedding layer (optional)
-# Get your key: https://www.voyageai.com/
-VOYAGE_API_KEY=
 "
 
     if [[ -f "${env_file}" ]]; then
