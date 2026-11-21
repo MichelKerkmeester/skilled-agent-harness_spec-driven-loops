@@ -70,5 +70,6 @@ describe("git-message-gate Pi extension", () => {
     const result = (await toolCallHandler()(bash('git commit -m "docs(readme): x" -m "A body."'), { cwd })) as any;
     expect(result?.block).toBe(true);
     expect(result?.reason).toContain("rules cannot be read");
+    expect(result?.reason).toMatch(/\n  Next: node \S+validate-message\.mjs --check-template \S+commit-message-template\.md --kind commit$/);
   });
 });

@@ -24,6 +24,7 @@ import fs from 'node:fs';
 import v8 from 'node:v8';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
 import {
   COMMIT_OPTION_ARITY,
@@ -32,6 +33,7 @@ import {
 
 import {
   ContractError,
+  TEMPLATE_FILES,
   loadContract,
   validateBranch,
   validateCommit,
@@ -302,6 +304,23 @@ function format(label, loaded, result) {
   return lines.join('\n');
 }
 
+const VALIDATOR = fileURLToPath(new URL('../validate-message.mjs', import.meta.url));
+
+/** The refusal for a rules file that exists but cannot be read: which file, why it blocks, how to recheck it. */
+export function unreadableRulesReason(err) {
+  const lines = [`sk-git blocked this command: the repository's rules cannot be read: ${err.message}`];
+  const kind = err.file && Object.keys(TEMPLATE_FILES).find((k) => path.basename(err.file) === TEMPLATE_FILES[k]);
+  if (err.file) {
+    lines.push(`  Rules: ${err.file}`);
+    lines.push('  A rules file that exists must parse, so the gate blocks instead of guessing. Repair its ```json block under "Enforced rules", then run the command again.');
+    if (kind) lines.push(`  Next: node ${VALIDATOR} --check-template ${err.file} --kind ${kind}`);
+  } else {
+    lines.push('  The skgit.contractDir setting names a folder that does not exist. Create that folder or remove the setting, then run the command again.');
+    lines.push('  Next: git config --unset skgit.contractDir');
+  }
+  return lines.join('\n');
+}
+
 /** Return a refusal reason for the command, or null to allow it. */
 export function evaluateCommand(command, cwd) {
   if (typeof command !== 'string' || !INTERESTING.test(command)) return null;
@@ -401,7 +420,7 @@ async function main() {
     reason = evaluateCommand(payload?.tool_input?.command, cwd);
   } catch (err) {
     // A rulebook that exists but cannot be read would block the commit anyway; say so now.
-    if (err instanceof ContractError) reason = `sk-git blocked this command: the repository's rules cannot be read: ${err.message}`;
+    if (err instanceof ContractError) reason = unreadableRulesReason(err);
   }
   if (reason) return deny(payload, reason);
   return process.exit(0);

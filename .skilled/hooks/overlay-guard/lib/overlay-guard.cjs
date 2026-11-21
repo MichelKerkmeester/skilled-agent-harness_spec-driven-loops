@@ -41,6 +41,8 @@ const DEFAULT_OVERLAY_FOLDER = 'skilled-overlays';
 const ENGINE_TIMEOUT_MS = 3_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 const EXIT_OWNED = 1;
+// A note stays one line, so its remedy rides on the same line instead of its own.
+const STATUS_NEXT = ' -- ownership is unknown, so the write goes through unguarded. Next: node .skilled/commands/doctor/scripts/overlay-engine.cjs status';
 // Embedded runtimes such as Bun report the host binary as process.execPath,
 // and that binary cannot run the engine.
 const NODE_BINARY = /^node(\.exe)?$/i.test(path.basename(process.execPath)) ? process.execPath : 'node';
@@ -118,7 +120,7 @@ function evaluateWrite(request = {}) {
   try {
     if (!hasManifest(treeRoot, enginePath)) return allow;
   } catch (error) {
-    return { ...allow, notes: ['overlay-guard: could not judge the write, allowing it: ' + oneLine(error.message)] };
+    return { ...allow, notes: ['overlay-guard: could not judge the write, allowing it: ' + oneLine(error.message) + STATUS_NEXT] };
   }
 
   const refusals = [];
@@ -131,7 +133,7 @@ function evaluateWrite(request = {}) {
   }
   if (refusals.length > 0) return { decision: 'deny', reason: refusals.join('\n'), notes: [] };
   if (unjudged.length > 0) {
-    return { ...allow, notes: ['overlay-guard: could not judge ' + unjudged.join('; ') + ', allowing'] };
+    return { ...allow, notes: ['overlay-guard: could not judge ' + unjudged.join('; ') + ', allowing' + STATUS_NEXT] };
   }
   return allow;
 }

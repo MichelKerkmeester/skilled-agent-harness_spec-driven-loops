@@ -10,7 +10,10 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 // allowed: the commit-msg hook, the pre-push hook and CI stand behind it. There is no kill
 // switch, matching the other runtimes' gate.
 
-type GateModule = { evaluateCommand: (command: string, cwd: string) => string | null };
+type GateModule = {
+  evaluateCommand: (command: string, cwd: string) => string | null;
+  unreadableRulesReason: (err: Error) => string;
+};
 type ContractModule = { ContractError: new (...args: unknown[]) => Error };
 
 /** Blocks a bash call whose commit message, PR description or branch name breaks the templates. */
@@ -36,7 +39,7 @@ export default function gitMessageGate(pi: ExtensionAPI): void {
     } catch (err) {
       // A rulebook that exists but cannot be read would block the commit anyway; say so now.
       if (err instanceof contract.ContractError) {
-        reason = `sk-git blocked this command: the repository's rules cannot be read: ${err.message}`;
+        reason = gate.unreadableRulesReason(err);
       }
     }
     return reason ? { block: true, reason } : undefined;
