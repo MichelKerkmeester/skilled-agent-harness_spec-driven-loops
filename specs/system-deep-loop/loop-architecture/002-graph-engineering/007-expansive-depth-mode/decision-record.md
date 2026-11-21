@@ -86,6 +86,10 @@ _memory:
 | Q050 | Mint review row identity like research and refuse a reused key with different content, in the same landing. | Not stated. | None | commit 8170db46079, append-mode-event.cjs |
 | Q051 | Leave the parent goal.md binding row for 015-reducer-test-focus-contract to the session that owns that phase. | Not stated. | None | parent goal.md, 015-reducer-test-focus-contract |
 | Q052 | Resolve the merge conflict to main's side, dropping the OpenCode 1 trigger phrase. | Not stated. | None | merge ae17b03309b, opencode-version-dispatch.md |
+| Q053 | Fix both live-review P1s and every defect the live review found. | Not stated. | None | round 7 commits aca3e6858b3..c3c91457f9f, scratch/dogfood-review-gen3.md |
+| Q054 | Push the dry-run fix, the live review record and the decisions now, and land the new fixes in a later push. | Not stated. | None | push eae0c02ceaf..5a3de84e15b |
+| Q055 | Land round 7, then make --stop stop the surviving members of a group whose leader exited. | Not stated. | None | merge d980ac7da74, commit 4fc94bae0d3 |
+| Q056 | Fix the --stop double close before landing, so a stopped lineage ends with one terminal row. | Not stated. | None | commit 6ff8135076c, merge 2e913d56935 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1120,6 +1124,85 @@ Abort the merge
 Answer:
 ```text
 Take main's side (Recommended)
+```
+
+### Q053
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01TGQncWkYb5NnNzmFupXFVo:1 -->
+
+Question:
+```text
+The live review found 2 new P1s and several defects. P1: --stop signals a ledger pid's process group without checking it's still a lineage. P1: a signal or parent-death stop leaves lineages marked open. Defects: --max-iterations never reaches the lineages (Opus ran 24, costing $20.51), the merge counts a rejected lineage's findings at full weight, the restart lineage is lost when the prior root had no config, kept logs aren't redacted, and the continuity check reads a version number like v2.1.3.0 as sentences. Fix them?
+```
+
+Options:
+```text
+Fix all (Recommended)
+P1s + iteration cap
+Later
+```
+
+Answer:
+```text
+Fix all (Recommended)
+```
+
+### Q054
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01TGQncWkYb5NnNzmFupXFVo:2 -->
+
+Question:
+```text
+Three local commits wait to be pushed: 555487146e2 (dry-run read-only fix, gate green), the live review record, and 8525021efae (your 35 decisions, Q018-Q052). When should they go to main?
+```
+
+Options:
+```text
+Now, then fix (Recommended)
+After the fixes
+```
+
+Answer:
+```text
+Now, then fix (Recommended)
+```
+
+### Q055
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_016LxALfT4h11FMkc8iqC5em:0 -->
+
+Question:
+```text
+Round 7 is 12 local commits with a green gate (3879 passed, up from 3845, 0 failed; spec-kit's affected tests 57/57). Both P1s and every live-review defect are fixed or rebutted. One trade-off: --stop now refuses to signal in three cases it used to handle: runs started before this change, a process group whose leader has exited (its children could survive), and Windows. Main gained one commit. Land it?
+```
+
+Options:
+```text
+Merge, regate, push (Recommended)
+Land + cover orphans
+Keep local
+```
+
+Answer:
+```text
+Land + cover orphans
+```
+
+### Q056
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01Rex9vqRHzbw1b8Bgf2h1aP:0 -->
+
+Question:
+```text
+The orphan follow-up is one local commit, 4fc94bae0d3, with a green gate: 3880 passed, 0 failed. --stop now signals the surviving members of a group whose leader died, but only those started at or after the lineage's spawn. Older processes are left alone and listed as 'spared'. The new test fails on the old code. One gap: if the runner is still in its post-exit grace period, --stop can write the stopped row before the runner writes its own end row, so the lineage gets two terminal rows. Main has gained 5 commits. What next?
+```
+
+Options:
+```text
+Fix the double close, then land (Recommended)
+Land now
+Keep local
+```
+
+Answer:
+```text
+Fix the double close, then land (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

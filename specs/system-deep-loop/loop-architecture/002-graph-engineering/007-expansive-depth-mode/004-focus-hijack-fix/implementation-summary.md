@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/004-focus-hijack-fix"
-    last_updated_at: "2026-11-20T20:01:08Z"
+    last_updated_at: "2026-11-21T06:08:59Z"
     last_updated_by: "generate-context"
     recent_action: "Fixed the focus chain on both loops; DR-066, DRV-073 and the phase changelog written"
     next_safe_action: "None for this phase; the full runtime suite runs at the integration merge gate"
@@ -24,7 +24,7 @@ _memory:
       runtime: "claude"
       sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
       workspace: "/Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration"
-      savedAt: "2026-11-20T20:01:08Z"
+      savedAt: "2026-11-21T06:08:59Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

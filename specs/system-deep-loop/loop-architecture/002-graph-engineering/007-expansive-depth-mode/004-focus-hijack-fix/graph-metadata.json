@@ -205,7 +205,7 @@
     ],
     "causal_summary": "On research runs, a leaf's free text under `## Questions Remaining` becomes a carried-forward question, and `deriveNextFocusFromContinuity` returns the latest one ahead of every machine question, so an iteration's status sentence can become the next focus verbatim (defect D5, parent `research/research.md` §13 and §14)",
     "created_at": "2026-11-17T14:43:29.301Z",
-    "last_save_at": "2026-11-20T20:01:08.714Z",
+    "last_save_at": "2026-11-21T06:08:59.325Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,7 +223,7 @@
       "plan.md": "f4eda21c88069900c5258544433ee83934111bf3c4fc47dfb82450d40a61f7c8",
       "tasks.md": "d8a33702dc87781a986fa74c1251138ddb7ed2f68b2d293bc83099ccb0baa605",
       "decision-record.md": "959a4e28667d159c84e3ef254789b0f9f7bafe94e7134d394ac2a293ed944ed2",
-      "implementation-summary.md": "643d1e19621cb4306a9cda94cf0260cc7089a1fcc1dc3fe7e634311e2c35478e"
+      "implementation-summary.md": "e791cf469ae4654eec6504710ffddea6045c5653c19b998db781a7e8583699d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

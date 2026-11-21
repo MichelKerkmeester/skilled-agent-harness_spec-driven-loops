@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The system-deep-loop workflows are iteration-based loops with linear dispatch, externalized JSONL state, and convergence detection",
     "created_at": "2026-08-08T14:32:54.230Z",
-    "last_save_at": "2026-11-20T20:01:08.776Z",
+    "last_save_at": "2026-11-21T06:08:59.395Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,6 @@
       "handover.md": "495e56ddc7b0aba3ae149b3a79048aeaa48dcbaccfbf43737d33ac18ca6ebdc2"
     },
     "last_active_child_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode",
-    "last_active_at": "2026-11-20T20:01:08.776Z"
+    "last_active_at": "2026-11-21T06:08:59.395Z"
   }
 }
