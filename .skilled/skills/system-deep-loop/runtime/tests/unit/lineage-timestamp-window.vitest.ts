@@ -209,6 +209,23 @@ describe('checkLineageTimestampWindow', () => {
     ]);
   });
 
+  it('judges the gateway time when a row carries no string claim, as the completion check does', () => {
+    const rows = [
+      { type: 'iteration', iteration: 1, timestamp: '2026-07-02T12:01:00Z', claimedTimestamp: null },
+      { type: 'event', event: 'synthesis_complete', timestamp: '2026-07-02T13:40:00Z' },
+    ];
+    const window = { windowStart: '2026-07-02T13:15:00Z', windowEnd: '2026-07-02T13:49:00Z', toleranceMs: 0 };
+
+    const result = checkLineageTimestampWindow(rows, window);
+    expect(result).toMatchObject({ anomalous: 1, untimestamped: 0, unparseable: 0, total: 2 });
+    expect(result.sample[0]).toEqual(expect.objectContaining({ index: 0, reason: 'before_window', timestamp: '2026-07-02T12:01:00Z' }));
+
+    const lateRows = [{ ...rows[0], timestamp: '2026-07-02T14:30:00Z' }, rows[1]];
+    expect(checkLineageCompletion(lateRows, { ...window, terminalEvents: ['synthesis_complete'] }))
+      .toMatchObject({ complete: false, failure: 'stamped_after_completion' });
+    expect(checkLineageTimestampWindow(lateRows, window).sample[0]).toEqual(expect.objectContaining({ index: 0, reason: 'after_window' }));
+  });
+
   it('classifies unparseable timestamps as anomalous and missing timestamps as untimestamped', () => {
     const result = checkLineageTimestampWindow([
       { type: 'iteration', timestamp: 'not-a-date' },
