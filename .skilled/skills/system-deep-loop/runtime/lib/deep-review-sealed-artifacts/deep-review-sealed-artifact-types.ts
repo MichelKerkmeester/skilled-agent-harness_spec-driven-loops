@@ -53,6 +53,10 @@ export type DeepReviewArtifactMaterialFamily =
   | 'scope'
   | 'synthesis';
 
+/**
+ * Registry entry for one Deep Review artifact kind: its lifecycle, material family, canonicalization version and media
+ * type.
+ */
 export interface DeepReviewArtifactKindRegistration {
   readonly artifactKind: DeepReviewArtifactKind;
   readonly lifecycle: DeepReviewArtifactLifecycle;
@@ -65,6 +69,7 @@ export interface DeepReviewArtifactKindRegistration {
 // 2. CLOSED MATERIAL SHAPES
 // ───────────────────────────────────────────────────────────────────
 
+/** Where an artifact's material came from, as a scheme, a locator digest, a selector and an optional revision. */
 export interface DeepReviewArtifactLocator {
   readonly scheme: 'artifact' | 'file' | 'url';
   readonly locatorDigest: string;
@@ -72,11 +77,16 @@ export interface DeepReviewArtifactLocator {
   readonly revision: string | null;
 }
 
+/** A sealed reference to another artifact, Deep Review or shared initial kind, that this material depends on. */
 export interface DeepReviewArtifactDependency {
   readonly artifactKind: DeepReviewArtifactKind | InitialArtifactKind;
   readonly reference: SealedArtifactReference;
 }
 
+/**
+ * Material shared by the scope-family kinds (target snapshot, scope reference set, contract, context, capability,
+ * rubric, policy input), bound to its event and authority epoch.
+ */
 export interface DeepReviewScopeArtifactMaterial {
   readonly artifactId: string;
   readonly eventStem: DeepReviewEventStem;
@@ -89,6 +99,10 @@ export interface DeepReviewScopeArtifactMaterial {
   readonly producerVersion: string;
 }
 
+/**
+ * Material for a dimension pass: ordered inputs, selected target digests, the search ledger and diagnostics digests,
+ * bound to its event.
+ */
 export interface DeepReviewPassArtifactMaterial {
   readonly passId: string;
   readonly eventStem: DeepReviewEventStem;
@@ -110,6 +124,10 @@ export interface DeepReviewPassArtifactMaterial {
 export type DeepReviewEvidenceStrength = 'direct' | 'limited' | 'substantial';
 export type DeepReviewEvidenceScope = 'complete' | 'partial' | 'targeted';
 
+/**
+ * Material for candidate or adjudication evidence: the claim digest, evidence and intermediate fact digests and
+ * reproduction digest.
+ */
 export interface DeepReviewCandidateArtifactMaterial {
   readonly candidateId: string;
   readonly eventStem: DeepReviewEventStem;
@@ -139,6 +157,7 @@ export type DeepReviewConvergenceDecision =
   | 'incomplete'
   | 'recover';
 
+/** Material for a convergence witness: ordered inputs, state history, findings registry input and coverage digests. */
 export interface DeepReviewConvergenceArtifactMaterial {
   readonly witnessId: string;
   readonly eventStem: DeepReviewEventStem;
@@ -160,6 +179,10 @@ export interface DeepReviewConvergenceArtifactMaterial {
 export type DeepReviewSynthesisVerdict = 'blocked' | 'fail' | 'incomplete' | 'pass';
 export type DeepReviewAdvisoryState = 'advisory' | 'blocked' | 'ready' | 'unavailable';
 
+/**
+ * Material for a synthesis view or report: ordered inputs and the findings registry, dashboard and resource map
+ * digests.
+ */
 export interface DeepReviewSynthesisArtifactMaterial {
   readonly outputId: string;
   readonly eventStem: DeepReviewEventStem;
@@ -185,6 +208,10 @@ export type DeepReviewDriftDisposition =
   | 'unchanged'
   | 'unverifiable';
 
+/**
+ * Material for a resume handoff: the prior reference set digest, the changed input and the findings and reports it
+ * affects.
+ */
 export interface DeepReviewResumeArtifactMaterial {
   readonly handoffId: string;
   readonly eventStem: DeepReviewEventStem;
@@ -201,6 +228,7 @@ export interface DeepReviewResumeArtifactMaterial {
   readonly handoffVersion: string;
 }
 
+/** Maps each Deep Review artifact kind to the material shape it must carry. */
 export interface DeepReviewArtifactMaterialByKind {
   readonly 'deep-review-target-snapshot': DeepReviewScopeArtifactMaterial;
   readonly 'deep-review-scope-reference-set': DeepReviewScopeArtifactMaterial;
@@ -227,6 +255,7 @@ export type DeepReviewArtifactMaterial =
 
 export type DeepReviewArtifactEventReference = string;
 
+/** Binds a sealed artifact reference to the Deep Review event, authority epoch and dependencies that produced it. */
 export interface DeepReviewSealedArtifactBinding<
   TKind extends DeepReviewArtifactKind = DeepReviewArtifactKind,
 > {
@@ -240,12 +269,17 @@ export interface DeepReviewSealedArtifactBinding<
   readonly reference: SealedArtifactReference;
 }
 
+/**
+ * Optional event stem, event id and authority epoch a reader expects; any field given must match the sealed binding or
+ * the read is refused.
+ */
 export interface DeepReviewArtifactReadContext {
   readonly eventStem?: DeepReviewEventStem;
   readonly eventId?: string;
   readonly authorityEpoch?: number;
 }
 
+/** A sealed artifact whose binding and seal descriptor were verified, with its canonical bytes. */
 export interface DeepReviewVerifiedSealedArtifact<
   TKind extends DeepReviewArtifactKind = DeepReviewArtifactKind,
 > {
@@ -258,6 +292,7 @@ export interface DeepReviewVerifiedSealedArtifact<
 // 4. ORDERED ARTIFACT SETS
 // ───────────────────────────────────────────────────────────────────
 
+/** Run, session, generation, source tail sequence and replay contract digest an artifact set is bound to. */
 export interface DeepReviewArtifactSetContext {
   readonly runId: string;
   readonly sessionId: string;
@@ -266,6 +301,10 @@ export interface DeepReviewArtifactSetContext {
   readonly replayContractDigest: string;
 }
 
+/**
+ * A candidate artifact-set member: its iteration, logical sequence, sealed binding and verified evidence, before
+ * validation.
+ */
 export interface DeepReviewArtifactSetMemberInput {
   readonly iteration: number;
   readonly logicalSequence: number;
@@ -273,6 +312,7 @@ export interface DeepReviewArtifactSetMemberInput {
   readonly evidence: VerifiedArtifactEvidence;
 }
 
+/** A validated artifact-set member with its position, the lifecycle its kind registers and its sealed binding. */
 export interface DeepReviewArtifactSetMember {
   readonly position: number;
   readonly lifecycle: DeepReviewArtifactLifecycle;
@@ -281,6 +321,7 @@ export interface DeepReviewArtifactSetMember {
   readonly binding: DeepReviewSealedArtifactBinding;
 }
 
+/** The frozen body of an artifact set: version, bound context, ordered members and their reference set. */
 export interface DeepReviewArtifactSetCore {
   readonly artifactSetVersion: 1;
   readonly context: DeepReviewArtifactSetContext;

@@ -127,6 +127,7 @@ and findings belong here.
 | Parent implementation-summary removed 2026-11-21 | Done | Operator ruling on the LOGIC-SYNC: the docs win. save-workflow.md Phase Parent Output Location says a phase parent holds no implementation-summary.md and its continuity is the graph-metadata.json pointer. Durable content moved to the two rows above; metadata re-derived by a plan-only generate-context save. |
 | Research stage plan and tasks, from the deleted parent plan.md and tasks.md | Done | Gen 1 changed no runtime code. T001-T010 all [x]. Archive research_archive/20261117T103614Z/: 7 iteration files, synthesis_complete stopReason converged, totalIterations 7, resource-map.md, research.md §17 Convergence Report. Q1-Q6 answered in §4-8 and §10, Q7 in the executive summary and the §13 D2 row. |
 | Parent plan.md and tasks.md removed 2026-11-21 | Done | Operator ruling: keep decision-record.md for cross-phase decisions. phase-definitions.md §3: a phase parent needs only spec.md, description.json and graph-metadata.json. Durable content moved to spec.md §3 and the row above; metadata re-derived by a plan-only generate-context save. |
+| Round 8-12 operator decisions | recorded | Q057-Q070 in decision-record.md; continuity on 015 |
 
 ### Deviations and findings
 

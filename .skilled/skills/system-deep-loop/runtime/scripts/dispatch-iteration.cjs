@@ -178,6 +178,7 @@ function hasFlag(values, key) {
   return Object.prototype.hasOwnProperty.call(values, key);
 }
 
+/** Parses `--flag value` pairs into flag values, and throws a usage error on a positional argument, an unknown or repeated flag, or a flag with no value. */
 function parseArgs(argv) {
   const values = {};
   for (let index = 0; index < argv.length; index += 1) {
@@ -248,6 +249,7 @@ function nullable(value) {
   return value === 'null' ? null : value;
 }
 
+/** Turns validated flag values into the dispatch context the executors read, deriving the leaf agent from the loop type. */
 function buildContext(values) {
   const loopType = values.loopType;
   return {
@@ -856,6 +858,7 @@ function gatewayExitStatus(result) {
   return typeof signalNumber === 'number' ? 128 + signalNumber : 1;
 }
 
+/** Hands each staged event file to the ledger gateway in name order, stops at the first gateway failure and returns its exit status (0 when all pass), then removes the staging folder. */
 function drainStagedEvents({ eventDir, mode, runDirectory, gatewayPath }) {
   let status = 0;
   const eventFiles = fs
@@ -964,6 +967,7 @@ function runDispatch(values) {
   }
 }
 
+/** Validates the flags and dispatches one iteration, returning the executor's exit status; usage errors, a native executor, a missing executor binary and an artifact folder outside the worktree return 64. */
 function main(argv) {
   let values;
   try {

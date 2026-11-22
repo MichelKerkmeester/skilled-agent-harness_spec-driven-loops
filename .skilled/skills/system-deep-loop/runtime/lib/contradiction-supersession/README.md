@@ -30,13 +30,14 @@ Additive-dark ledger that tracks how two claims relate, either contradicting eac
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/path-coverage-termination/types.ts`
+- `../path-coverage-termination/types.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/contradiction-supersession.vitest.ts`
+- `../../tests/unit/contradiction-supersession.vitest.ts`
+- Also exercised by `path-coverage-termination.vitest.ts` and `stopping-clocks.vitest.ts`.
 
 ---
 

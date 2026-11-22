@@ -30,17 +30,17 @@ Deterministic replay-integrity primitive for the convergent-architecture runtime
 
 ## 3. CONSUMERS
 
-Foundational primitive imported by most other `runtime/lib` domains. Direct consumer in this batch: `stream-fold-gauges` (gauge replay). It is also imported by `blinded-adjudication`, `claim-continuity`, `contradiction-supersession`, `hierarchical-budgets`, `legacy-projections`, `locks-and-fencing`, `mode-contracts`, `path-coverage-termination`, `receipts-and-effect-recovery` and `semantic-communities`.
+Foundational primitive shared across the sibling domains in `../`. These folders import it: `blinded-adjudication`, `claim-continuity`, `contradiction-supersession`, `deep-loop/continuity-identity`, `deep-research-ledger-schema`, `deep-review-ledger-schema`, `hierarchical-budgets`, `legacy-projections`, `locks-and-fencing`, `mode-append-gateway`, `mode-contracts`, `path-coverage-termination`, `receipts-and-effect-recovery`, `semantic-communities` and `stream-fold-gauges` (gauge replay).
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts`
+- [`../../tests/unit/replay-fingerprint.vitest.ts`](../../tests/unit/replay-fingerprint.vitest.ts)
 
 ---
 
 ## 5. RELATED
 
-- [`runtime/lib/README.md`](../README.md)
-- [`system-deep-loop/SKILL.md`](../../../SKILL.md)
+- [`../README.md`](../README.md)
+- [`../../../SKILL.md`](../../../SKILL.md)

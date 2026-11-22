@@ -28,6 +28,10 @@ import type {
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Lineage and trigger facts the pivot id is derived from, so the same trigger in the same session
+ * yields the same id on resume.
+ */
 export interface PivotIdentityInput {
   readonly sessionId: string;
   readonly generation: string | number;
@@ -37,6 +41,7 @@ export interface PivotIdentityInput {
   readonly ordinal: number;
 }
 
+/** Every artifact path of one pivot Council transaction, all under the pivot root, with one report path per seat. */
 export interface PivotCouncilPaths {
   readonly artifactRoot: string;
   readonly pivotRoot: string;
@@ -49,6 +54,7 @@ export interface PivotCouncilPaths {
   readonly reportPath: string;
 }
 
+/** A Council seat's id and the stance it is told to argue. */
 export interface PivotSeatMandate {
   readonly id: string;
   readonly mandate: string;
@@ -56,6 +62,7 @@ export interface PivotSeatMandate {
 
 export type PivotBlockerSeverity = 'low' | 'medium' | 'high';
 
+/** An objection a seat raised; a high-severity blocker vetoes agreement. */
 export interface PivotSeatBlocker {
   readonly severity: PivotBlockerSeverity;
   readonly message: string;
@@ -77,12 +84,17 @@ export type PivotSeatReportParseResult =
   | { readonly valid: true; readonly report: PivotSeatReport }
   | { readonly valid: false; readonly reason: string };
 
+/** How many seats materially endorsed one candidate, and which. */
 export interface PivotAgreementTally {
   readonly candidateId: string;
   readonly endorsementCount: number;
   readonly endorsingSeatIds: readonly string[];
 }
 
+/**
+ * Council outcome: converged only when all three seats reported, one candidate drew at least two
+ * endorsements and no seat raised a high-severity blocker.
+ */
 export interface PivotAgreementResult {
   readonly converged: boolean;
   readonly selectedCandidateId: string | null;
@@ -93,6 +105,7 @@ export interface PivotAgreementResult {
   readonly reason: 'agreed' | 'insufficient_endorsement' | 'high_severity_blocker';
 }
 
+/** Caller-supplied pivot limits; omitted fields fall back to the defaults. */
 export interface DivergentConfigInput {
   readonly maxPivots?: number;
   readonly maxCouncilSeatOutputs?: number;
@@ -100,14 +113,17 @@ export interface DivergentConfigInput {
   readonly candidateSimilarityThreshold?: number;
 }
 
+/** The anti-convergence block of the loop config that carries the divergent pivot limits. */
 export interface DivergentAntiConvergenceInput {
   readonly divergent?: DivergentConfigInput;
 }
 
+/** The slice of loop config a pivot reads; anything else in the config is ignored. */
 export interface PivotConfigInput {
   readonly antiConvergence?: DivergentAntiConvergenceInput;
 }
 
+/** Pivot budget already spent in the run, checked against the limits before a pivot opens. */
 export interface PivotUsage {
   readonly completedPivots: number;
   readonly councilSeatOutputs: number;
@@ -115,6 +131,10 @@ export interface PivotUsage {
   readonly insidePivot?: boolean;
 }
 
+/**
+ * What every Council seat dispatch receives: the pivot's candidates and trigger, pinned to depth 1
+ * with recursion refused.
+ */
 export interface PivotDispatchContext {
   readonly pivotId: string;
   readonly round: PivotAttempt;
@@ -126,6 +146,7 @@ export interface PivotDispatchContext {
   readonly normalizedTrigger: string;
 }
 
+/** One seat's dispatch: its round id and seat index plus the shared pivot context. */
 export interface PivotSeatDispatchContext {
   readonly roundId: string;
   readonly seatIndex: number;
@@ -156,12 +177,14 @@ export type PivotEventName =
   | 'pivot_attempt_failed'
   | 'pivot_failed';
 
+/** The lifecycle move an event records, with the state expected next when one follows. */
 export interface PivotLifecycleTransition {
   readonly from: PivotLifecycleState;
   readonly to: PivotLifecycleState;
   readonly next?: PivotLifecycleState;
 }
 
+/** One persisted pivot event; event-specific fields ride alongside the fixed envelope. */
 export interface PivotEvent {
   readonly schemaVersion: 1;
   readonly eventId: string;
@@ -172,10 +195,12 @@ export interface PivotEvent {
   readonly [field: string]: unknown;
 }
 
+/** Called after each pivot event is durably written. */
 export interface PivotEventObserver {
   (event: PivotEvent): void;
 }
 
+/** Inputs for a full pivot run: the prepare inputs plus the seat dispatcher that runs each Council seat. */
 export interface RunDivergentPivotOptions {
   readonly artifactRoot: string;
   readonly identity: PivotIdentityInput;
@@ -202,6 +227,7 @@ export type PivotFailureReason =
   | 'council_parse_quorum_failed'
   | 'council_agreement_failed';
 
+/** A pivot that reached agreement: the selected candidate, the focus restored after it, and the completion event. */
 export interface PivotCompletedResult {
   readonly status: 'completed';
   readonly pivotId: string;
@@ -213,6 +239,10 @@ export interface PivotCompletedResult {
   readonly completedEvent: PivotEvent;
 }
 
+/**
+ * A pivot that stopped without agreement: the reason, whether the failure was persisted, and whether a
+ * retry may reopen it.
+ */
 export interface PivotFailedResult {
   readonly status: 'failed';
   readonly pivotId: string;
@@ -257,6 +287,7 @@ interface DispatchRoundResult {
   };
 }
 
+/** Seat return counts for one attempt; it passes only when all three seats returned and parsed. */
 export interface PivotQuorumResult {
   readonly required: 3;
   readonly returned: number;
@@ -961,6 +992,7 @@ export function evaluatePivotAgreement(
 // runDivergentPivot composes all three for callers that do have a working
 // synchronous dispatchSeat, so its observable behavior is unchanged.
 
+/** A prepared pivot still waiting on seats: the seats left to dispatch and the context to dispatch them with. */
 export interface PivotPendingResult {
   readonly status: 'pending';
   readonly pivotId: string;
@@ -973,6 +1005,7 @@ export interface PivotPendingResult {
 
 export type PivotPrepareResult = PivotCompletedResult | PivotFailedResult | PivotPendingResult;
 
+/** Inputs for preparing a pivot up to the seat dispatch, which the caller then runs itself. */
 export interface PreparePivotTransactionOptions {
   readonly artifactRoot: string;
   readonly identity: PivotIdentityInput;
@@ -1003,6 +1036,7 @@ export type PivotSeatDispatchOutcome =
     readonly durationMs: number;
   };
 
+/** One seat's dispatch outcome to persist into an open pivot transaction. */
 export interface RecordPivotSeatResultOptions {
   readonly paths: PivotCouncilPaths;
   readonly pivotId: string;
@@ -1012,6 +1046,7 @@ export interface RecordPivotSeatResultOptions {
   readonly afterEventPersisted?: PivotEventObserver;
 }
 
+/** Inputs for closing a pivot from its persisted config and event store once the seats have reported. */
 export interface FinalizePivotTransactionOptions {
   readonly paths: PivotCouncilPaths;
   readonly pivotId: string;
@@ -1205,7 +1240,7 @@ function readPersistedConfig(configPath: string, pivotId: string): PersistedPivo
   const parsed: unknown = JSON.parse(readFileSync(configPath, 'utf8'));
   try {
     return parsePersistedPivotConfig(parsed, pivotId);
-  } catch (error) {
+  } catch (error: unknown) {
     throw new Error(`Pivot config at "${configPath}" does not match the expected contract: ${error instanceof Error ? error.message : String(error)}`);
   }
 }

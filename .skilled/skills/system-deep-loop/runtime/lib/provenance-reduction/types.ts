@@ -39,6 +39,7 @@ export interface SourceFleetEntry {
   readonly status: FleetBucketStatus;
 }
 
+/** A source bucket's weight as an integer numerator over denominator. */
 export interface RationalWeight {
   readonly denominator: number;
   readonly numerator: number;
@@ -60,12 +61,14 @@ export interface ProvenanceReductionPolicy {
   readonly weights: readonly RationalWeight[];
 }
 
+/** A repository identity, by name and URL when known. */
 export interface RepositoryIdentity {
   readonly repositoryName: string | null;
   readonly type: 'repository';
   readonly url: string | null;
 }
 
+/** A claim identity, by namespace and stable id. */
 export interface ClaimIdentity {
   readonly namespace: string;
   readonly stableId: string;
@@ -74,6 +77,7 @@ export interface ClaimIdentity {
 
 export type ReductionIdentity = ClaimIdentity | RepositoryIdentity;
 
+/** Where a candidate came from: its dispatch, leaf, branch lineage, executor and model. */
 export interface CandidateProvenance {
   readonly dispatchReceiptId: string;
   readonly executorKind: string;
@@ -101,11 +105,13 @@ export interface ReductionCandidate {
   readonly semanticEquivalenceKey: string | null;
 }
 
+/** A candidate shown to the adjudicator by digest and content only, with its provenance withheld. */
 export interface BlindedMergeCandidate {
   readonly candidateDigest: string;
   readonly content: string;
 }
 
+/** Blinded candidates sent for adjudication, pinned to the policy, reference, rubric and replay fingerprint. */
 export interface BlindedMergeRequest {
   readonly candidates: readonly BlindedMergeCandidate[];
   readonly policyVersion: string;
@@ -131,6 +137,7 @@ export interface ReduceProvenanceInput {
   readonly sourceRegistrations: readonly SourceProvenanceRegistration[];
 }
 
+/** One contributor to a reduced item, with its dispatch, lineage, executor, model and evidence locators. */
 export interface ContributorRecord {
   readonly contributorId: string;
   readonly dispatchReceiptId: string;
@@ -151,6 +158,7 @@ export interface ContributorRecord {
   readonly successfulDisposition: 'admitted-success';
 }
 
+/** One reduced output item: its payload, digest, output position and the contributors and exact keys merged into it. */
 export interface CanonicalReductionItem {
   readonly canonicalItemId: string;
   readonly contributorIds: readonly string[];
@@ -164,6 +172,7 @@ export interface CanonicalReductionItem {
   readonly supportBucketIds: readonly string[];
 }
 
+/** One conflicting payload under an exact key, with the contributors that produced it. */
 export interface ConflictVariant {
   readonly contributorIds: readonly string[];
   readonly contributors: readonly ContributorRecord[];
@@ -171,6 +180,7 @@ export interface ConflictVariant {
   readonly payloadDigest: string;
 }
 
+/** Payload variants that share an exact key but differ, kept apart as a conflict. */
 export interface ReductionConflictSet {
   readonly conflictId: string;
   readonly exactKey: string;
@@ -186,6 +196,7 @@ export type CandidateDispositionKind =
   | 'quota-deferred'
   | 'selected';
 
+/** What happened to one candidate, with the reason code and the item it was merged into, if any. */
 export interface CandidateDisposition {
   readonly candidateId: string;
   readonly kind: CandidateDispositionKind;
@@ -193,6 +204,7 @@ export interface CandidateDisposition {
   readonly targetId: string | null;
 }
 
+/** Audit of one adjudication: the candidates bound, the preferred digest and whether it was stable or failed closed. */
 export interface AdjudicationAudit {
   readonly adjudicationId: string | null;
   readonly candidateBindings: readonly AdjudicationCandidateBinding[];
@@ -205,16 +217,19 @@ export interface AdjudicationAudit {
   readonly verdictEvidenceId: string | null;
 }
 
+/** Binds an adjudicated candidate digest to the canonical item it stands for. */
 export interface AdjudicationCandidateBinding {
   readonly candidateDigest: string;
   readonly canonicalItemId: string;
 }
 
+/** Marks the legacy fan-in as authoritative and the provenance reducer as shadow-only. */
 export interface ReductionAuthority {
   readonly legacyFanIn: 'authoritative';
   readonly provenanceReducer: 'shadow-only';
 }
 
+/** One source bucket's cap, weight and the items selected, deferred or eligible from it. */
 export interface SourceBucketSchedule {
   readonly cap: number;
   readonly configuredWeight: RationalWeight;
@@ -224,6 +239,7 @@ export interface SourceBucketSchedule {
   readonly sourceBucketId: string;
 }
 
+/** Fleet membership by outcome, and whether consensus covered the full fleet or only part of it. */
 export interface FleetScopeReceipt {
   readonly admitted: readonly string[];
   readonly cancelled: readonly string[];
@@ -235,6 +251,7 @@ export interface FleetScopeReceipt {
   readonly timedOut: readonly string[];
 }
 
+/** A ledger event the reducer reads, with its sequence, type, version and digest. */
 export interface ReductionLedgerEvent {
   readonly eventDigest: string;
   readonly eventId: string;
@@ -283,6 +300,7 @@ export interface ProvenanceReductionReceipt {
   readonly sourceRegistrationDigest: string;
 }
 
+/** Comparison of the shadow reducer's output digest with the authoritative legacy output, when one was observed. */
 export interface ReductionShadowReceipt {
   readonly classification: 'byte-identical' | 'different' | 'legacy-not-observed';
   readonly legacyAuthority: 'authoritative';
@@ -301,6 +319,7 @@ export interface ProvenanceReductionResult {
   readonly shadow: ReductionShadowReceipt;
 }
 
+/** Digests a replay reproduces: ledger head, output, receipt and replay fingerprint. */
 export interface ProvenanceReplayResult {
   readonly ledgerHeadDigest: string;
   readonly outputDigest: string;
@@ -308,6 +327,10 @@ export interface ProvenanceReplayResult {
   readonly replayFingerprint: string;
 }
 
+/**
+ * State rebuilt by replay: accepted candidates, adjudications, conflicts, dedup groups, fleet scope and output
+ * order.
+ */
 export interface ProvenanceReplayProjection {
   readonly acceptedCandidateIds: readonly string[];
   readonly adjudications: readonly AdjudicationAudit[];

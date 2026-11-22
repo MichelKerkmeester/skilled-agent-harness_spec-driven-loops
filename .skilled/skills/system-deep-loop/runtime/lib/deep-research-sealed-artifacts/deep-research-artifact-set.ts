@@ -345,7 +345,7 @@ function parseMember(input: unknown, position: number): DeepResearchArtifactSetM
       { position },
     );
   }
-  let binding;
+  let binding: ReturnType<typeof parseDeepResearchSealedArtifactBinding>;
   try {
     binding = parseDeepResearchSealedArtifactBinding(input.binding);
   } catch {
@@ -421,7 +421,7 @@ export function bindDeepResearchArtifactSet(
         { position },
       );
     }
-    let binding;
+    let binding: ReturnType<typeof parseDeepResearchSealedArtifactBinding>;
     try {
       binding = parseDeepResearchSealedArtifactBinding(candidate.binding);
     } catch {

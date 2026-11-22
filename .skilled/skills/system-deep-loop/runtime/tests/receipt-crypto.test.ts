@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Dispatch Receipt Cryptography Tests
+// ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
 import { createHmac } from 'node:crypto';

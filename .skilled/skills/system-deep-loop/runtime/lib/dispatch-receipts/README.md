@@ -32,16 +32,19 @@ Launch-boundary substrate for `system-deep-loop` dispatch. The barrier resolves,
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/result-envelopes/resume-reducer.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/partial-failure-policy/policy.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
+- `../result-envelopes/event-contracts.ts`
+- `../result-envelopes/recorder.ts`
+- `../result-envelopes/resume-reducer.ts`
+- `../partial-failure-policy/policy.ts`
+- `../partial-failure-policy/types.ts`
+- `../mode-contracts/substrate-ports.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts`
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/post-dispatch-receipt-validator.vitest.ts`
+- `../../tests/unit/dispatch-receipts.vitest.ts`
+- `../../tests/unit/post-dispatch-receipt-validator.vitest.ts`
 
 ---
 

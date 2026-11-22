@@ -44,12 +44,14 @@ const MAX_BOUNDED_ID_LENGTH = 512;
 // 2. VALIDATION HELPERS
 // ───────────────────────────────────────────────────────────────────
 
+/** True only for an object whose prototype is Object.prototype or null, so arrays and class instances are refused. */
 export function isPlainRecord(value: unknown): value is Record<string, unknown> {
   if (value === null || Array.isArray(value) || typeof value !== 'object') return false;
   const prototype = Object.getPrototypeOf(value);
   return prototype === Object.prototype || prototype === null;
 }
 
+/** True when every required field is present and no field outside required plus optional appears. */
 export function hasExactFields(
   value: Record<string, unknown>,
   required: readonly string[],
@@ -61,10 +63,15 @@ export function hasExactFields(
     && keys.every((field) => allowed.has(field));
 }
 
+/** True for a 64-character lower-case hex digest string. */
 export function isHash(value: unknown): value is string {
   return typeof value === 'string' && CONTINUITY_HASH_PATTERN.test(value);
 }
 
+/**
+ * Return the value when it is a non-blank string within the bounded id length; otherwise throw an
+ * invalid-identity error naming the field.
+ */
 export function requireBoundedId(value: unknown, field: string): string {
   if (
     typeof value !== 'string'
@@ -80,6 +87,10 @@ export function requireBoundedId(value: unknown, field: string): string {
   return value;
 }
 
+/**
+ * Return the value as a mode when it is registered for continuity transfer; otherwise throw a cross-
+ * mode conflict error.
+ */
 export function validateContinuityMode(value: unknown): ContinuityMode {
   if (typeof value !== 'string' || !MODE_VALUES.has(value)) {
     throw new ContinuityIdentityError(
@@ -90,6 +101,7 @@ export function validateContinuityMode(value: unknown): ContinuityMode {
   return value as ContinuityMode;
 }
 
+/** Return the value as an identity kind when it is registered; otherwise throw an invalid-identity error. */
 export function validateContinuityKind(value: unknown): ContinuityIdentityKind {
   if (typeof value !== 'string' || !KIND_VALUES.has(value)) {
     throw new ContinuityIdentityError(
@@ -262,10 +274,12 @@ export function legacyAliasDigest(namespace: unknown, legacyId: unknown): string
   }));
 }
 
+/** Map key `namespace:digest` for an alias; throws when the namespace fails validation. */
 export function aliasKey(namespace: string, aliasDigest: string): string {
   return `${validateAliasNamespace(namespace)}:${aliasDigest}`;
 }
 
+/** SHA-256 of the canonical bytes of a provenance object, so field order does not change the digest. */
 export function provenanceDigest(provenance: Readonly<JsonObject>): string {
   return sha256Bytes(canonicalBytes(provenance));
 }

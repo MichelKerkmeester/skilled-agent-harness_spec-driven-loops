@@ -18,7 +18,7 @@ Decision layer for `system-deep-loop` fan-out waves that do not need to wait for
 | File | Purpose |
 |------|---------|
 | `budget-continuation.ts` | Continues or refunds hierarchical budgets tied to branches outstanding at a fan-in cut |
-| `decision-event.ts` | `validateFanInDecisionFinalizedPayload`, the event schema for a finalized fan-in decision |
+| `decision-event.ts` | Event schema and commit path for a finalized fan-in decision. `validateFanInDecisionFinalizedPayload` checks the payload, `prepareFanInDecisionEvent` builds the event and `commitFanInDecision` refuses a stale cut, authorizes the event through the transition-authorization gateway and appends it through the ledger fence |
 | `decision-view.ts` | `buildFanInDecisionView`, building the accepted and outstanding branch view at a cut |
 | `decision.ts` | `evaluateAwaitPredicate` and `finalizeFanInDecisionCandidate`, evaluating and finalizing the fan-in decision |
 | `disposition.ts` | `planOutstandingDispositions`, planning what happens to branches still outstanding at a cut |
@@ -33,16 +33,22 @@ Decision layer for `system-deep-loop` fan-out waves that do not need to wait for
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/voc-allocation/fan-in-handoff.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/provenance-reduction/reducer.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/partial-failure-policy/types.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
+Non-test modules that import this folder:
+
+- `../mode-contracts/substrate-ports.ts`
+- `../partial-failure-policy/types.ts`
+- `../provenance-reduction/reducer.ts`
+- `../provenance-reduction/types.ts`
+- `../voc-allocation/allocation.ts`
+- `../voc-allocation/assessment.ts`
+- `../voc-allocation/fan-in-handoff.ts`
+- `../voc-allocation/types.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/conditional-fanin.vitest.ts`
+- `../../tests/unit/conditional-fanin.vitest.ts`
 
 ---
 

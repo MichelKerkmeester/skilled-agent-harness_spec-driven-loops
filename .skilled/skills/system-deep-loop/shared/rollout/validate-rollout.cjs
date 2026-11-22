@@ -1,6 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ validate-rollout — require evidence before command promotion             ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: validate-rollout — require evidence before command promotion
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 const fs = require('node:fs');
@@ -34,11 +34,24 @@ function readEvidenceField(evidence, field) {
   return undefined;
 }
 
+/**
+ * Read the mode from a rollout entry, which may be a bare mode string or an object with a `mode` field.
+ *
+ * @param {unknown} entry - One command's rollout entry.
+ * @returns {unknown} The entry mode, unvalidated.
+ */
 function getEntryMode(entry) {
   if (isRecord(entry)) return entry.mode;
   return entry;
 }
 
+/**
+ * Check that every `fix` entry carries all four evidence fields, under either
+ * their camelCase or snake_case name. Entries in any other mode are not checked.
+ *
+ * @param {unknown} config - Parsed rollout configuration.
+ * @returns {{valid: boolean, errors: string[]}} One error per incomplete entry, or one for a non-object config.
+ */
 function validateRolloutConfig(config) {
   if (!isRecord(config)) {
     return { valid: false, errors: ['rollout configuration must be a JSON object'] };
@@ -63,6 +76,13 @@ function readConfig(configPath) {
   return JSON.parse(fs.readFileSync(configPath, 'utf8'));
 }
 
+/**
+ * Validate a rollout config file given by `--config <path>` or a first positional path.
+ * With neither, the default rollout config beside this script is validated.
+ *
+ * @param {string[]} [argv] - CLI arguments; defaults to the process arguments.
+ * @returns {number} 0 when validation passes, 1 when evidence is missing, 2 when the path is missing or the file is unreadable or not JSON.
+ */
 function main(argv = process.argv.slice(2)) {
   const configFlagIndex = argv.indexOf('--config');
   const configPath = configFlagIndex >= 0

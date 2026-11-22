@@ -7,6 +7,7 @@
 const path = require('node:path');
 const fs = require('node:fs');
 
+/** Returns the real path of a file, or its resolved path when the real path cannot be read (for example when it does not exist yet). */
 function realpathSafe(p) {
   try {
     return fs.realpathSync(p);
@@ -15,6 +16,7 @@ function realpathSafe(p) {
   }
 }
 
+/** Reports whether an absolute path is the parent path itself or lies inside it. */
 function isSubpath(childAbs, parentAbs) {
   const rel = path.relative(parentAbs, childAbs);
   return rel === '' || (!path.isAbsolute(rel) && !rel.startsWith('..'));

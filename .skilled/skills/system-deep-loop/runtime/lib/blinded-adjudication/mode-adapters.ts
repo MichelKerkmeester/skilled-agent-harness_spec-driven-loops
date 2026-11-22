@@ -25,6 +25,10 @@ import type {
 // 1. REQUEST ADAPTERS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Mode-supplied inputs for an adjudication request: candidate, rubric and reference digests, policy versions, quorum
+ * and independence floor.
+ */
 export interface ModeRequestInput {
   readonly candidateDigests: readonly string[];
   readonly rubricDigest: string;
@@ -104,6 +108,10 @@ function adaptVerdict(
   });
 }
 
+/**
+ * Projects a verdict into deep-review mode input; throws AdjudicationError when the verdict was made for another
+ * decision kind.
+ */
 export function adaptDeepReviewVerdict(verdict: AdjudicationVerdict): ModeAdjudicationInput {
   return adaptVerdict(AdjudicationDecisionKinds.DEEP_REVIEW, verdict);
 }

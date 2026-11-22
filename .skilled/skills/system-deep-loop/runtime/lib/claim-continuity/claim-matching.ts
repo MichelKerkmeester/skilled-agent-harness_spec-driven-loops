@@ -36,6 +36,9 @@ import type {
 // 2. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Match decision and reason for an observation, the claim it resolved to (if any) and the digest of the policy used.
+ */
 export interface EvaluatedClaimMatch {
   readonly matchRecordId: string;
   readonly aliases: string[];

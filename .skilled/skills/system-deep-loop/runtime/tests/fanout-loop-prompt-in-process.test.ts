@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: fan-out lineage prompt — in-process execution directive
+// ───────────────────────────────────────────────────────────────────
 //
 // A CLI lineage subprocess is itself the executor for every iteration of the
 // loop it was handed. A leaf that reads the workflow YAML's per-iteration

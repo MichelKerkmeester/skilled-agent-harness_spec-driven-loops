@@ -431,6 +431,10 @@ const LEGACY_PROJECTION_RULE = objectRule({
 // 4. VALIDATION
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Error thrown by Deep Research reducer validation, carrying a reducer error code and the offending field, or null when
+ * no single field is at fault.
+ */
 export class DeepResearchReducerError extends Error {
   public readonly code: DeepResearchReducerErrorCode;
   public readonly field: string | null;

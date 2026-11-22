@@ -21,8 +21,8 @@ Current state:
 - `dsh-shim.cjs` has its own runner because dsh needs JSON events and a separate process exit status.
 - `vibe-shim.cjs` has its own runner because Vibe reads its prompt from a file, writes an `export.json` verdict, and is version-probed before dispatch.
 - `codex-shim.cjs` does not use the core. It keeps its own mode switch, writes its last message to the `-o` output path, and doubles as a `pkill` stand-in.
-- The mode resolves from `~/.cli-adapter-control.json`, then `CLI_ADAPTER_SHIM_MODE`, then `success`.
-- Capture and pid targets resolve from the control file, then `CLI_ADAPTER_SHIM_CAPTURE` and `CLI_ADAPTER_SHIM_PID_FILE`.
+- The mode resolves from `~/.cli-adapter-control.json`, then `CLI_ADAPTER_SHIM_MODE`, then `success`. Codex reads the environment variable only.
+- Capture and pid targets resolve from the control file, then `CLI_ADAPTER_SHIM_CAPTURE` and `CLI_ADAPTER_SHIM_PID_FILE`. Codex reads the environment variables only.
 
 ---
 
@@ -74,6 +74,8 @@ DSH modes use newline-delimited JSON. The shim never invokes the installed dsh b
 | `stdin-wait` | Reports the closed stdin length in `status`, emits a completed `final` event and writes the lineage artifacts. |
 | `timeout`, `signal-exit`, `orphan-tree` | Exercise the scheduler's timeout, signal and process-tree cleanup cases. |
 
+The DSH shim also accepts three aliases: `auth-denial` acts as `keyless-failure`, `model-not-found` as `error-event` and `rate-limit` as `missing-final`.
+
 Vibe modes keep the core names where the contract matches, but a failing run reports through the export record rather than a JSON event stream. `VIBE_SHIM_EXIT` overrides the status of any terminating mode, and `VIBE_SHIM_NO_EXPORT=1` suppresses the record so the "clean exit, no record" path stays reachable.
 
 | Mode | Behavior |
@@ -92,9 +94,9 @@ Vibe modes keep the core names where the contract matches, but a failing run rep
 
 | Setting | Source |
 |---|---|
-| Shim mode | `mode` in `~/.cli-adapter-control.json`, then `CLI_ADAPTER_SHIM_MODE`, then `success`. |
-| Capture path | `capturePath` in the control file, then `CLI_ADAPTER_SHIM_CAPTURE`. The core appends one JSON record per run with kind, pid, cwd, args, stdin and selected environment values. Codex writes a single record instead. |
-| Pid path | `pidPath` in the control file, then `CLI_ADAPTER_SHIM_PID_FILE`. Holds the root pid, plus child and grandchild pids for `orphan-tree`. |
+| Shim mode | `mode` in `~/.cli-adapter-control.json`, then `CLI_ADAPTER_SHIM_MODE`, then `success`. Codex reads the environment variable only. |
+| Capture path | `capturePath` in the control file, then `CLI_ADAPTER_SHIM_CAPTURE` (codex reads the environment variable only). The core appends one JSON record per run with kind, pid, cwd, args, stdin and selected environment values. Codex writes a single record instead. |
+| Pid path | `pidPath` in the control file, then `CLI_ADAPTER_SHIM_PID_FILE` (codex reads the environment variable only). Holds the root pid, plus child and grandchild pids for `orphan-tree`. |
 | Artifact location | The parent of the state directory named by the per-kind variable (`SPECKIT_OPENCODE_STATE_DIR`, `SPECKIT_PI_STATE_DIR`, `SPECKIT_CLAUDE_CODE_STATE_DIR`, `SPECKIT_DEVIN_STATE_DIR`, `SPECKIT_CURSOR_STATE_DIR`, `SPECKIT_DEEPSEEK_HARNESS_STATE_DIR`, `SPECKIT_MISTRAL_VIBE_STATE_DIR`), otherwise the current working directory. |
 | Reap capture | `CLI_ADAPTER_REAP_CAPTURE`, codex only. Records the arguments when codex is invoked as `pkill`, then forwards to `/usr/bin/pkill` or `/bin/pkill`. |
 

@@ -103,6 +103,7 @@ function lineageFailedRequiredGateIds({ registry, stateRecords }) {
   return normalizeGateIds(ids);
 }
 
+/** Derives the review verdict: FAIL on any active P0 or failed required gate, CONDITIONAL on any active P1 or open search debt, otherwise PASS, with advisories flagged only on a PASS that carries P2 findings. */
 function deriveReviewVerdict({
   activeP0 = 0,
   activeP1 = 0,
@@ -203,6 +204,7 @@ function resolveVerdictInputs(args) {
   return bound ? boundVerdictInputs(args) : registryVerdictInputs(args);
 }
 
+/** Prints the review verdict and its inputs as one JSON object and returns 0, or prints a JSON error and returns `EXIT_ERROR` on a bad flag or input. */
 function main(argv = process.argv.slice(2)) {
   try {
     const args = parseArgs(argv);

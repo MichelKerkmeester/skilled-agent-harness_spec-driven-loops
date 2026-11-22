@@ -519,6 +519,7 @@ function parseMaxIterationsFlag(args) {
   return value;
 }
 
+/** Gives every lineage without its own positive iteration budget the `--max-iterations` value, and returns the lineages unchanged when that flag is unset. */
 function flagLineageBudgets(lineages, maxIterations) {
   if (maxIterations === null) return lineages;
   return lineages.map((lineage) => (
@@ -1576,6 +1577,7 @@ function rotateLineageLog(logPath) {
   fs.unlinkSync(logPath);
 }
 
+/** Copies a lineage log to a new path with provider ids, URLs and email addresses redacted. */
 function writeRedactedLineageLog(fromPath, toPath) {
   fs.writeFileSync(toPath, redactProviderText(fs.readFileSync(fromPath, 'utf8')), 'utf8');
 }
@@ -1628,6 +1630,7 @@ function maskEmailAddresses(text) {
   return masked + text.slice(copied);
 }
 
+/** Masks provider id fields, URLs, email addresses and id tokens in a string, and returns a non-string unchanged. */
 function redactProviderText(text) {
   if (typeof text !== 'string') return text;
   const unmailed = text
@@ -2011,6 +2014,7 @@ function shellQuoteArg(value) {
 // Path values are resolved against this process's cwd, so the command runs from any directory.
 const RERUN_PATH_FLAGS = new Set(['baseArtifactDir', ...Object.keys(TEXT_FILE_FLAGS)]);
 
+/** Builds the shell-quoted command that reruns only the named lineage, with the original flags kept and their path values made absolute. */
 function rerunCommandFor(label, argv = process.argv.slice(2)) {
   const kept = [];
   for (let index = 0; index < argv.length; index += 1) {

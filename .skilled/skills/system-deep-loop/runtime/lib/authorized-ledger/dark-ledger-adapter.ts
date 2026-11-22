@@ -82,6 +82,7 @@ export interface DarkLedgerTelemetryEvent {
   readonly observedAt: string;
 }
 
+/** Optional clock, telemetry observer and telemetry ring-buffer capacity for the dark ledger adapter. */
 export interface DarkLedgerAdapterOptions {
   readonly now?: () => Date;
   readonly observe?: (event: Readonly<DarkLedgerTelemetryEvent>) => void;
@@ -150,7 +151,7 @@ export class DarkLedgerAdapter {
         errorCode: null,
         receipt,
       });
-    } catch (error) {
+    } catch (error: unknown) {
       this.#record({
         boundaryId,
         status: 'failed',

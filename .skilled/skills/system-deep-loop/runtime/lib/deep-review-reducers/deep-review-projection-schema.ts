@@ -371,6 +371,10 @@ const LEGACY_RULE = objectRule({
 // 2. VALIDATION
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Error thrown by Deep Review reducer validation, carrying a reducer error code and the offending field, or null when
+ * no single field is at fault.
+ */
 export class DeepReviewReducerError extends Error {
   public readonly code: DeepReviewReducerErrorCode;
   public readonly field: string | null;

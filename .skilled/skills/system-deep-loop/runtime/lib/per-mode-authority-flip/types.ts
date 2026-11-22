@@ -78,6 +78,10 @@ export const AuthorityFlipStates: ReadonlySet<AuthorityState> = new Set([
   'new_authoritative_final',
 ]);
 
+/**
+ * The authority record fields covered by `recordDigest`: mode, state, epoch, selected writer, policy version and the
+ * candidate and digests behind the current state.
+ */
 export interface AuthorityRecordCore extends JsonObject {
   readonly schemaVersion: typeof AUTHORITY_FLIP_SCHEMA_VERSION;
   readonly mode: CutoverCertificateMode;
@@ -100,6 +104,10 @@ export interface AuthorityRecord extends AuthorityRecordCore {
 // 3. SELECTOR
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * What `selectAuthorityRoute` checks a record against: the mode, and optionally the policy version and an exact record
+ * digest.
+ */
 export interface AuthoritySelectorExpectation {
   readonly mode: CutoverCertificateMode;
   readonly policyVersion?: number;

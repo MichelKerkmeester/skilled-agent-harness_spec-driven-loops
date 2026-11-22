@@ -1,9 +1,9 @@
-// ┌──────────────────────────────────────────────────────────────────────────┐
-// │ MODULE: check-projection-coverage conformance                            │
-// │ Each case writes a real fixture tree (manifest + contract) and asserts    │
-// │ the real process exit code of the checker script, so a pass is a          │
-// │ statement about the checker itself rather than about a mock of it.        │
-// └──────────────────────────────────────────────────────────────────────────┘
+// ───────────────────────────────────────────────────────────────────
+// MODULE: check-projection-coverage conformance
+// ───────────────────────────────────────────────────────────────────
+// Each case writes a real fixture tree (manifest + contract) and asserts
+// the real process exit code of the checker script, so a pass is a
+// statement about the checker itself rather than about a mock of it.
 
 import { afterEach, describe, expect, it } from 'vitest';
 import { mkdtempSync, writeFileSync, readFileSync, mkdirSync, rmSync } from 'node:fs';
@@ -48,6 +48,7 @@ afterEach(() => {
 
 // Writes a fixture tree rooted at a temp dir, mirroring the real layout the
 // script resolves: <dir>/lib/legacy-projections/{manifest,contract}.ts.
+// The checker's stdout JSON is read key by key in the assertions, so the parsed payload stays loosely typed.
 function runWithFixture(files: Record<string, string>): {
   status: number | null;
   stdout: string;
@@ -89,6 +90,7 @@ function runWithFixture(files: Record<string, string>): {
 
 // Run against the real runtime tree (no --dir) so the baseline case is a
 // statement about the tree as it stands, not a fixture approximation.
+// The checker's stdout JSON is read key by key in the assertions, so the parsed payload stays loosely typed.
 function runReal(): { status: number | null; stdout: string; payload: any } {
   const result = spawnSync(process.execPath, [CLI_PATH], { encoding: 'utf8' });
   let payload: any = null;
@@ -100,6 +102,7 @@ function runReal(): { status: number | null; stdout: string; payload: any } {
   return { status: result.status, stdout: result.stdout, payload };
 }
 
+// The checker's stdout JSON is read key by key in the assertions, so the parsed payload stays loosely typed.
 function rulesOf(payload: any): string[] {
   return (payload?.violations ?? []).map((v: any) => v.rule);
 }

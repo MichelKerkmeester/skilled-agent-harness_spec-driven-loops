@@ -67,6 +67,10 @@ import type {
 // 1. REPLAY PROJECTION
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * State the adjudication replay reducer folds events into: evidence order, per-type counts, verdict status and
+ * invalidated evidence.
+ */
 export interface AdjudicationReplayProjection extends JsonObject {
   orderedEvidenceIds: string[];
   eventCounts: Record<string, number>;
@@ -168,6 +172,7 @@ export async function deriveAdjudicationReplayFingerprint(
 // 2. TYPED READER
 // ───────────────────────────────────────────────────────────────────
 
+/** A ledger event narrowed to an adjudication event type, with its ledger sequence. */
 export interface TypedAdjudicationEvent {
   readonly sequence: number;
   readonly eventType: AdjudicationEventType;

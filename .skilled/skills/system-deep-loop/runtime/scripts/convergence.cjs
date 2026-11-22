@@ -237,6 +237,7 @@ function parseRatioWithDefault(value, key, fallback) {
   return parsed === null ? fallback : parsed;
 }
 
+/** Parses a min-observations setting, defaulting when unset and clamping to the allowed range; a non-numeric value throws an input error. */
 function parseMinObservationsValue(value, key = 'minObservations') {
   if (value === undefined || value === null || value === true || value === '') return DEFAULT_MIN_OBSERVATIONS;
   const parsed = Number(value);
@@ -246,6 +247,7 @@ function parseMinObservationsValue(value, key = 'minObservations') {
   return Math.max(MIN_OBSERVATIONS_FLOOR, Math.min(MIN_OBSERVATIONS_CEILING, Math.trunc(parsed)));
 }
 
+/** Validates a convergence mode (`default`, `off`, `sliding-window` or `divergent`), defaulting to `default` when unset; any other value throws an input error. */
 function parseConvergenceModeValue(value, key = 'convergenceMode') {
   if (value === undefined || value === null || value === '') return 'default';
   if (typeof value !== 'string') {
@@ -258,6 +260,7 @@ function parseConvergenceModeValue(value, key = 'convergenceMode') {
   return mode;
 }
 
+/** Parses the sliding-window size, defaulting when unset; anything but a positive integer throws an input error. */
 function parseSlidingWindowSizeValue(value, key = 'slidingWindowSize') {
   if (value === undefined || value === null || value === '') return DEFAULT_SLIDING_WINDOW_SIZE;
   const parsed = Number(value);
@@ -279,6 +282,7 @@ function firstDefined(...values) {
   return undefined;
 }
 
+/** Resolves the convergence mode and window size from flags, then config JSON, then its `antiConvergence` section; the window size is read only in sliding-window mode. */
 function readConvergenceModeConfig(args) {
   const config = parseOptionalJsonObject(args.configJson, 'configJson');
   const antiConvergence = configSection(config, 'antiConvergence');
@@ -321,6 +325,7 @@ function resolveMinObservationsInput(args) {
   return null;
 }
 
+/** Resolves whether the min-observations guard is on and its threshold, from flags, config JSON or the environment; the guard is off when nothing sets it. */
 function readObservationThresholdConfig(args) {
   const input = resolveMinObservationsInput(args);
   const enabledByFlag =
@@ -633,16 +638,19 @@ function snapshotScore(snapshot) {
   return null;
 }
 
+/** Returns the rounded change from the prior snapshot's score, or null when either score is missing. */
 function computeScoreDelta(score, priorSnapshot) {
   const priorScore = snapshotScore(priorSnapshot);
   if (priorScore === null || !Number.isFinite(score)) return null;
   return roundMetricDelta(score - priorScore);
 }
 
+/** Reports whether any of the improvement-effect trace flags is set. */
 function shouldTraceImprovementEffect(args) {
   return asBoolean(args.improvementEffect) || asBoolean(args.improvementEffectTrace) || asBoolean(args.traceImprovementEffect);
 }
 
+/** Downgrades a STOP_ALLOWED decision to STOP_BLOCKED when the leading finding has fewer observations than the guard requires, and adds the guard's trace entry. */
 function applyObservationThresholdGuard(decision, blockers, trace, observationThreshold) {
   if (!observationThreshold || decision !== 'STOP_ALLOWED') {
     return { decision, blockers, trace };
@@ -702,6 +710,7 @@ function applyNoveltyCorroborationGuard(decision, blockers, trace, noveltyCorrob
   return { decision, blockers, trace: nextTrace };
 }
 
+/** Summarizes the score deltas across snapshots, plus the latest delta, as helped, hurt and flat counts with their average. */
 function buildImprovementEffect(snapshots, scoreDelta) {
   const historicalDeltas = [];
   for (let i = 1; i < snapshots.length; i += 1) {
@@ -770,6 +779,7 @@ function noiseFloor(values) {
   return median(values.map((value) => Math.abs(value - center))) * 1.4826;
 }
 
+/** Derives the review rolling-average and no-progress cutoffs from the convergence threshold, using 0.1 when the threshold is not a positive number. */
 function mapReviewThresholds(convergenceThreshold) {
   const threshold = typeof convergenceThreshold === 'number'
     && Number.isFinite(convergenceThreshold)
@@ -783,6 +793,7 @@ function mapReviewThresholds(convergenceThreshold) {
   };
 }
 
+/** Scores the weighted stop signals for a loop's novelty ratios and coverage, and returns the signals, the weighted score, whether it is a stop candidate and, for review, whether progress has stalled. */
 function computeStopSignals(args = {}) {
   const options = args && typeof args === 'object' ? args : {};
   const { loopType, ratios, convergenceThreshold, coverage } = options;
@@ -887,6 +898,7 @@ function normalizeQuestionForAlignment(text) {
     .trim();
 }
 
+/** Evaluates the research source-diversity, focus-alignment and single-weak-source guards; a guard whose input is absent counts as not evaluated, which passes. */
 function evaluateResearchQualityGuards(args = {}) {
   const options = args && typeof args === 'object' ? args : {};
   const { answeredQuestionSourceCounts, iterationRecords } = options;
@@ -941,6 +953,7 @@ function evaluateResearchQualityGuards(args = {}) {
   };
 }
 
+/** Evaluates the review legal-stop gates (convergence, dimension coverage, P0 resolution, evidence density, hotspot saturation, claim adjudication, fix replay, candidate coverage and graphless fallback) and returns each gate's result and the failed ones. */
 function evaluateReviewLegalStopGates(review, options = {}) {
   const settings = options && typeof options === 'object' ? options : {};
   const facts = review && typeof review === 'object' ? review : {};
@@ -1048,6 +1061,7 @@ function blockerName(blocker) {
   return 'graph_blocker';
 }
 
+/** Maps the graph layer's STOP_ALLOWED, STOP_BLOCKED or CONTINUE verdict onto a stop decision; a missing graph verdict continues. */
 function combineGraphDecision(candidate, graphDecision, graphBlockers) {
   const reasonDetail = candidate && typeof candidate.reasonDetail === 'string'
     ? candidate.reasonDetail
@@ -1081,6 +1095,7 @@ function combineGraphDecision(candidate, graphDecision, graphBlockers) {
   };
 }
 
+/** Folds the loop counters, novelty ratios, quality guards, review gates and graph verdict into one stop decision with its reason, blockers and evaluated signals. */
 function buildStopDecision(input) {
   const source = input && typeof input === 'object' ? input : {};
   const loopType = source.loopType;
@@ -1303,6 +1318,7 @@ function stopDecisionNumberFlag(value, key) {
   return Math.trunc(parsed);
 }
 
+/** Reads a file that must hold one JSON object, and throws an input error when it is missing, unreadable, not JSON or not an object. */
 function readJsonObjectFile(filePath, key) {
   if (!fs.existsSync(filePath)) throw inputError(`${key} file does not exist: ${filePath}`);
   let raw;
@@ -1321,6 +1337,7 @@ function readJsonObjectFile(filePath, key) {
   return parsed;
 }
 
+/** Reads the JSONL state log into its object rows, skipping torn lines; throws an input error when the file is missing or unreadable, or when no line parses. */
 function readStateLogRows(filePath) {
   if (!fs.existsSync(filePath)) throw inputError(`stateLog file does not exist: ${filePath}`);
   let raw;
@@ -1853,6 +1870,7 @@ function stopDecisionReviewFacts(options = {}) {
   };
 }
 
+/** Assembles the `buildStopDecision` input from parsed flags, the config, registry and state-log files, and the graph verdict. */
 function buildStopDecisionInput(args, loopType, files, graph) {
   const config = isPlainObject(files?.config) ? files.config : {};
   const registry = isPlainObject(files?.registry) ? files.registry : {};
@@ -1955,6 +1973,7 @@ function qualityGuardRecoveryStrategy(stopDecision) {
   return `Clear the failed quality guards before stopping: ${parts.join(', ')}.`;
 }
 
+/** Returns the recovery advice for a blocked stop, naming any iteration that recorded findings without a matching graph FINDING node. */
 function blockedStopRecoveryStrategy(stopDecision, graphBlockers, missingIterations) {
   const first = (Array.isArray(graphBlockers) ? graphBlockers : [])
     .find((blocker) => blockerName(blocker) === stopDecision.blockedBy[0]);
@@ -2110,6 +2129,7 @@ function adjudicatedFindingCount(stateRows, activeP0P1) {
   return Math.max(0, activeP0P1 - missing);
 }
 
+/** Builds the `deep_review.blocked_stop_recorded` ledger event for a blocked review stop, with the gate results and active finding counts. */
 function buildReviewBlockedStopEvent({ stopDecision, graphBlockers, registry, config, sessionId, generation, iteration, stateRows }) {
   const counts = isPlainObject(registry.findingsBySeverity) ? registry.findingsBySeverity : {};
   const p0 = uint32OrZero(counts.P0);

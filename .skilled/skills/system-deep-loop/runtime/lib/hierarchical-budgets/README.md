@@ -9,7 +9,7 @@ description: "Reserves, settles and replays token, cost, iteration and wall-time
 
 ## 1. OVERVIEW
 
-Runtime primitives for `system-deep-loop` that reserve, settle, release and cancel spend against a closed scope chain from program to mode to lineage to iteration. Every mutation is authorized through the ledger, projected into per-scope balances and replay-verified. A shadow layer compares new decisions against legacy fan-out budget guards during migration.
+Runtime primitives for `system-deep-loop` that reserve, settle, release and cancel spend against a closed scope chain from program to mode to lineage to iteration. Every mutation is authorized through the ledger, projected into per-scope balances and replay-verified. Every decision is tagged `authority: 'shadow'` and carries a `dispatchAllowed` flag that the caller acts on.
 
 ---
 
@@ -28,14 +28,22 @@ Runtime primitives for `system-deep-loop` that reserve, settle, release and canc
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/voc-allocation/`
-- `.skilled/skills/system-deep-loop/runtime/lib/stopping-clocks/`
-- `.skilled/skills/system-deep-loop/runtime/lib/conditional-fanin/`
-- `.skilled/skills/system-deep-loop/runtime/lib/health-degeneration-harness/`
-- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
+- `../voc-allocation/`
+- `../stopping-clocks/`
+- `../conditional-fanin/`
+- `../health-degeneration-harness/`
+- `../mode-contracts/substrate-ports.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/hierarchical-budgets/hierarchical-budgets.vitest.ts`
+- `../../tests/hierarchical-budgets/hierarchical-budgets.vitest.ts`
+- Also exercised by `conditional-fanin.vitest.ts`, `health-degeneration-harness.vitest.ts`, `stopping-clocks.vitest.ts` and `voc-allocation.vitest.ts`.
+
+---
+
+## 5. RELATED
+
+- [`../README.md`](../README.md)
+- [`../../../SKILL.md`](../../../SKILL.md)

@@ -72,12 +72,17 @@ export type ModeWorkstreamId = string;
 // 2. EVENTS AND REDUCERS
 // ───────────────────────────────────────────────────────────────────
 
+/** One input a mode's replay depends on, naming its source; a digest of it is always required. */
 export interface ModeReplayInputDeclaration {
   readonly inputId: string;
   readonly source: 'artifact' | 'configuration' | 'ledger-event' | 'projection';
   readonly digestRequired: true;
 }
 
+/**
+ * Declares one mode event type: schema and interface version, required fields, transition intent, the owning reducer
+ * and its replay inputs.
+ */
 export interface ModeEventSchema {
   readonly eventType: string;
   readonly schemaVersion: number;
@@ -94,6 +99,10 @@ export interface ModeEventSchema {
   };
 }
 
+/**
+ * Declares one reducer: the state fields it owns and the event types it folds, replaying only verified ledger events
+ * into immutable output.
+ */
 export interface ModeReducerDefinition<TState extends JsonObject> {
   readonly reducerId: string;
   readonly reducerVersion: string;
@@ -104,11 +113,13 @@ export interface ModeReducerDefinition<TState extends JsonObject> {
   readonly outputRule: 'immutable';
 }
 
+/** A mode's persisted state fields together with the reducers that own them. */
 export interface ModeReducerSet<TState extends JsonObject> {
   readonly persistedFields: readonly (keyof TState & string)[];
   readonly definitions: readonly ModeReducerDefinition<TState>[];
 }
 
+/** State produced by one reducer after applying an event, with the reducer id, state version and applied event id. */
 export interface ModeReductionResult<TState extends JsonObject> {
   readonly reducerId: string;
   readonly stateVersion: string;
@@ -120,6 +131,10 @@ export interface ModeReductionResult<TState extends JsonObject> {
 // 3. EVIDENCE PRODUCTS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * How a mode artifact kind is identified, which inputs and events it needs, and that it is sealed through the
+ * SealedArtifactStore.
+ */
 export interface ModeArtifactPolicy {
   readonly artifactKind: string;
   readonly schemaVersion: number;
@@ -133,6 +148,7 @@ export interface ModeArtifactPolicy {
   readonly authorityEffect: 'none';
 }
 
+/** Source event ids and input digests an artifact is produced from. */
 export interface ModeArtifactContext extends JsonObject {
   readonly sourceEventIds: string[];
   readonly inputDigests: JsonObject;
@@ -152,6 +168,7 @@ interface ModeArtifactEvidenceShape {
   readonly sealedReference: SealedArtifactReference;
 }
 
+/** Evidence that a mode artifact exists, carrying exactly the fields its shape marks as required. */
 export interface ModeArtifactEvidence extends JsonObject, ModeArtifactEvidenceShape {}
 
 export const ModeArtifactEvidenceFieldSet = Object.freeze({
@@ -168,6 +185,9 @@ export const ModeArtifactEvidenceFieldSet = Object.freeze({
   sealedReference: true,
 } as const satisfies Readonly<Record<keyof ModeArtifactEvidenceShape, true>>);
 
+/**
+ * How a mode certificate kind is scoped and invalidated; it requires evidence references and has no authority effect.
+ */
 export interface ModeCertificatePolicy {
   readonly certificateKind: string;
   readonly evidenceReferencesRequired: true;
@@ -179,6 +199,7 @@ export interface ModeCertificatePolicy {
   readonly legacyAuthority: 'unchanged';
 }
 
+/** Evidence references and input digests a certificate is built from. */
 export interface ModeCertificateEvidence extends JsonObject {
   readonly evidenceReferences: string[];
   readonly inputDigests: string[];
@@ -196,6 +217,7 @@ interface ModeCertificateShape {
   readonly legacyAuthority: 'unchanged';
 }
 
+/** A mode certificate carrying exactly the fields its shape marks as required. */
 export interface ModeCertificate extends JsonObject, ModeCertificateShape {}
 
 export const ModeCertificateFieldSet = Object.freeze({
@@ -214,6 +236,9 @@ export const ModeCertificateFieldSet = Object.freeze({
 // 4. CONVERGENCE OBSERVATIONS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * One convergence signal of a given kind with its evidence references; it is an observation only and decides nothing.
+ */
 export interface ModeConvergenceObservation<TSignal> {
   readonly kind: 'coverage' | 'cycle' | 'health' | 'stopping-clock' | 'value-of-computation';
   readonly signal: TSignal;
@@ -228,17 +253,20 @@ export const ModeConvergenceObservationFieldSet = Object.freeze({
   authority: true,
 } as const satisfies Readonly<Record<keyof ModeConvergenceObservation<unknown>, true>>);
 
+/** Stopping-clock observations with the kind and state vocabularies they draw on. */
 export interface ModeStoppingClockSignals {
   readonly kinds: typeof StoppingClockKinds;
   readonly states: typeof StoppingClockStates;
   readonly observations: readonly StoppingClockObservation[];
 }
 
+/** Individual health signals plus their aggregate. */
 export interface ModeHealthSignals {
   readonly signals: readonly HealthSignal[];
   readonly aggregate: HealthAggregate;
 }
 
+/** Observer hooks a mode provides for coverage, cycles, stopping clocks, value of computation and health. */
 export interface ModeConvergenceHooks {
   readonly observeCoverage: (
     signal: PathCoverageEvaluation,
@@ -276,6 +304,9 @@ export type ModeResumeOutcomeKind =
   | 'migrate'
   | 'block';
 
+/**
+ * Checks a resume must pass: replay fingerprint, lease, receipts, continuity identity, artifacts and pending effects.
+ */
 export interface ModeResumeEvidence {
   readonly replayFingerprint: {
     readonly status: 'mismatch' | 'unknown' | 'verified';
@@ -303,6 +334,7 @@ export interface ModeResumeEvidence {
   };
 }
 
+/** Saved mode state plus the interface version it was written under and the evidence a resume checks it against. */
 export interface ModeResumeSnapshot<TSnapshot extends JsonObject> {
   readonly snapshotId: string;
   readonly sourceInterfaceVersion: ModeInterfaceVersion;
@@ -317,27 +349,32 @@ interface ModeResumeOutcomeBase {
   readonly reasonCodes: readonly string[];
 }
 
+/** Resume outcome where an adapter upcasts the snapshot to a newer interface version. */
 export interface ModeResumeUpcastOutcome extends ModeResumeOutcomeBase {
   readonly outcome: 'upcast';
   readonly adapterId: string;
   readonly targetInterfaceVersion: ModeInterfaceVersion;
 }
 
+/** Resume outcome where the run stays pinned to a legacy projection. */
 export interface ModeResumePinLegacyOutcome extends ModeResumeOutcomeBase {
   readonly outcome: 'pin-legacy';
   readonly legacyProjectionId: string;
 }
 
+/** Resume outcome where the run continues under a new fork identity. */
 export interface ModeResumeForkOutcome extends ModeResumeOutcomeBase {
   readonly outcome: 'fork';
   readonly forkIdentity: string;
 }
 
+/** Resume outcome where the snapshot is migrated under a named migration. */
 export interface ModeResumeMigrateOutcome extends ModeResumeOutcomeBase {
   readonly outcome: 'migrate';
   readonly migrationId: string;
 }
 
+/** Resume outcome that refuses the resume, listing which evidence checks failed. */
 export interface ModeResumeBlockOutcome extends ModeResumeOutcomeBase {
   readonly outcome: 'block';
   readonly failedChecks: readonly (keyof ModeResumeEvidence)[];
@@ -378,6 +415,10 @@ export type ModeRestoreResult<TState extends JsonObject> =
 
 export type ModeInterfaceChangeKind = 'additive' | 'breaking' | 'deprecated' | 'semantic';
 
+/**
+ * One change between mode interface versions, with its kind, the safe defaults it supplies and the fields it
+ * deprecates.
+ */
 export interface ModeInterfaceChange {
   readonly changeId: string;
   readonly kind: ModeInterfaceChangeKind;
@@ -387,6 +428,7 @@ export interface ModeInterfaceChange {
   readonly deprecatedFields: readonly string[];
 }
 
+/** A deterministic adapter between two mode interface versions. */
 export interface ModeCompatibilityAdapter {
   readonly adapterId: string;
   readonly fromVersion: ModeInterfaceVersion;
@@ -394,6 +436,10 @@ export interface ModeCompatibilityAdapter {
   readonly deterministic: true;
 }
 
+/**
+ * A deterministic adapter that resumes a snapshot into the current interface version after the named evidence checks
+ * pass.
+ */
 export interface ModeResumeAdapterDeclaration {
   readonly adapterId: string;
   readonly fromInterfaceVersion: ModeInterfaceVersion;
@@ -402,6 +448,7 @@ export interface ModeResumeAdapterDeclaration {
   readonly requiredChecks: readonly (keyof ModeResumeEvidence)[];
 }
 
+/** One resource a mode writes, with its conflict key, owner, mutation kind and how concurrent writes are serialized. */
 export interface ModeWriteResource {
   readonly resource: string;
   readonly conflictKey: string;
@@ -413,6 +460,10 @@ export interface ModeWriteResource {
   readonly serialization: 'fenced-lease' | 'single-writer' | null;
 }
 
+/**
+ * Every resource a mode writes; the ledger is shadow-written, the legacy projection stays required and authority stays
+ * legacy.
+ */
 export interface ModeWriteSet {
   readonly resources: readonly ModeWriteResource[];
   readonly legacyProjection: 'required';
@@ -420,6 +471,10 @@ export interface ModeWriteSet {
   readonly authority: 'legacy';
 }
 
+/**
+ * Top-level contract for one mode: identity, interface and compatibility versions, provided capabilities and the
+ * declarations that follow.
+ */
 export interface ModeDescriptor {
   readonly modeId: ModeWorkstreamId;
   readonly displayName: string;
@@ -441,6 +496,10 @@ export interface ModeDescriptor {
 // 7. MODE CONTRACT
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * The interface every mode implements: its reducer set and artifact and certificate policies, plus methods to describe
+ * itself, reduce verified events and seal artifacts.
+ */
 export interface ModeContract<
   TState extends JsonObject = JsonObject,
   TSnapshot extends JsonObject = JsonObject,

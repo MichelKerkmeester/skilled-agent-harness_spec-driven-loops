@@ -42,5 +42,5 @@ The default discovers the repository root rather than trusting a directory hande
 
 ## 4. RELATED
 
-- [`runtime/lib/`](../README.md)
-- Parent skill: `.skilled/skills/system-deep-loop/SKILL.md`
+- [`../README.md`](../README.md)
+- Parent skill: [`../../../SKILL.md`](../../../SKILL.md)

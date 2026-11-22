@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7093,
-    "ok": 20248,
+    "ok": 20255,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28969,
+  "documentsScanned": 28976,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "dd1349c4d72e89f15e39adaecc0beb861e362c0f6d0517d475682c0b8df43ed6",
+  "manifestHash": "57543c724265778bf893886400e606d9570bca3b9ca16a26e117858ad2f9c0e1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45814,
+      "ok": 45823,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -62235,6 +62235,10 @@
     },
     {
       "path": "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/scratch",
       "reason": "excluded directory"
     },
     {

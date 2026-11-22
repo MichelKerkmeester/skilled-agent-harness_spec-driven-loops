@@ -9,7 +9,7 @@ description: "Grants leases with monotonic fence tokens and gates ledger and sta
 
 ## 1. OVERVIEW
 
-Runtime primitives that stop two concurrent `system-deep-loop` processes from writing the same resource at once. A lease coordinator issues leases with monotonic fence tokens over canonicalized protected resources, durable writers (ledger append, state store, shadow adapter) refuse a write whose fence token is stale. Every acquire and release is recorded as lock lifecycle evidence so a resumed process can rebuild its fencing state instead of guessing it.
+Runtime primitives that stop two concurrent `system-deep-loop` processes from writing the same resource at once. A lease coordinator issues leases with monotonic fence tokens over canonicalized protected resources. Durable writers (ledger append, state store, shadow adapter) refuse a write whose fence token is stale. The coordinator keeps its lifecycle decisions (acquired, renewed, released, expired and others) in a bounded in-memory log that `readTelemetry()` returns. A caller can promote a decision to authorized ledger evidence through `recordLockLifecycleEvidence`, and replay folds that evidence into action counts plus the latest fence token per resource.
 
 ---
 
@@ -18,6 +18,7 @@ Runtime primitives that stop two concurrent `system-deep-loop` processes from wr
 | File | Purpose |
 |------|---------|
 | `durable-file.ts` | fsync-then-rename atomic write, append and read-if-exists helpers for single-host-filesystem durability |
+| `fence-capability.ts` | `FenceCapability`, `mintFenceCapability` and `resolveFenceCapability`: an opaque process-local claim to a resource and fence token that a validator must re-check against coordinator state |
 | `fenced-lease-coordinator.ts` | `FencedLeaseCoordinator`: acquires and renews leases with monotonic fence tokens over protected resources |
 | `fenced-ledger-writer.ts` | `FencedLedgerWriter`: guards an append-only ledger write behind a held lease and gateway proof |
 | `fenced-shadow-adapter.ts` | `FencedShadowAdapter`: serializes legacy authority and dark observation under one fencing epoch |
@@ -33,13 +34,23 @@ Runtime primitives that stop two concurrent `system-deep-loop` processes from wr
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/transactional-projections/`
-- `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/`
-- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/`
+Many runtime library domains import this module. Consumers include:
+
+- `../authorized-ledger/`
+- `../transactional-projections/`
+- `../legacy-projections/shadow-projection-store.ts`
+- `../receipts-and-effect-recovery/`
+- `../mode-contracts/`
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts`
+- `../../tests/unit/locks-and-fencing.vitest.ts`
+
+---
+
+## 5. RELATED
+
+- [`runtime/lib README`](../README.md)
+- [`authorized-ledger`](../authorized-ledger/README.md)

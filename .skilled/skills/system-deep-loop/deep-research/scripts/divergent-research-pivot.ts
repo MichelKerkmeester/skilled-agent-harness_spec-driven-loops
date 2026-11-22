@@ -59,6 +59,13 @@ export interface ResearchPivotPreparationInput {
   readonly boundaryRejections: readonly CandidateSeed[];
 }
 
+/** Per-dispatch facts every seat prompt shows: the candidates, the previous focus and the normalized saturation trigger. */
+interface PivotSeatDispatchContext {
+  readonly candidates: readonly PivotCandidate[];
+  readonly previousFocus: string;
+  readonly normalizedTrigger: string;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. INPUT HELPERS
 // ───────────────────────────────────────────────────────────────────
@@ -94,7 +101,7 @@ function readJsonl(path: string): JsonRecord[] {
         const parsed = JSON.parse(line) as unknown;
         if (!isRecord(parsed)) throw new TypeError('record must be a JSON object');
         return parsed;
-      } catch (error) {
+      } catch (error: unknown) {
         const message = error instanceof Error ? error.message : String(error);
         throw new Error(`Invalid JSONL at ${path}:${index + 1}: ${message}`);
       }
@@ -294,11 +301,7 @@ function buildCandidateSeeds(
 /** Render the exact parseable result contract for one native research Council seat. */
 export function renderResearchPivotSeatPrompt(
   seat: PivotSeatMandate,
-  dispatchContext: {
-    readonly candidates: readonly PivotCandidate[];
-    readonly previousFocus: string;
-    readonly normalizedTrigger: string;
-  },
+  dispatchContext: PivotSeatDispatchContext,
 ): string {
   return [
     'You are one native research direction-selection Council seat. Do not dispatch sub-agents, write files, or widen the research charter.',

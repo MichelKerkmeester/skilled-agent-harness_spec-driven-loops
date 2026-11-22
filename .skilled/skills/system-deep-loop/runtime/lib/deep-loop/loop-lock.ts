@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Lock
+// ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -70,6 +72,7 @@ const hostLocalSingleFlightLeases = new Map<string, HostLocalSingleFlightLease>(
 // 4. DOMAIN ERRORS
 // ───────────────────────────────────────────────────────────────────
 
+/** Thrown when another owner holds the deep-loop lock; `holder` carries that owner's lock data for the report. */
 export class LoopLockHeldError extends Error {
   holder: LoopLockData;
 
@@ -254,6 +257,7 @@ function writeLoopLockAtomic(lockPath: string, data: LoopLockData): void {
     try {
       fsyncPath(dirname(lockPath));
     } catch {
+      // Best-effort directory fsync: the file change has already landed, and some platforms refuse it.
     }
   } catch (error: unknown) {
     rmSync(tempPath, { force: true });
@@ -294,6 +298,7 @@ function writeLoopLockExclusive(lockPath: string, data: LoopLockData): boolean {
   try {
     fsyncPath(dirname(lockPath));
   } catch {
+    // Best-effort directory fsync: the file change has already landed, and some platforms refuse it.
   }
   return true;
 }
@@ -383,6 +388,7 @@ function restoreReclaimedLoopLock(lockPath: string, reclaimPath: string): void {
   try {
     fsyncPath(dirname(lockPath));
   } catch {
+    // Best-effort directory fsync: the file change has already landed, and some platforms refuse it.
   }
 }
 
@@ -398,6 +404,7 @@ function restoreClaimedLoopLock(lockPath: string, claimedPath: string): void {
   try {
     fsyncPath(dirname(lockPath));
   } catch {
+    // Best-effort directory fsync: the file change has already landed, and some platforms refuse it.
   }
 }
 
@@ -405,6 +412,10 @@ function hostLocalSingleFlightKey(lockPath: string): string {
   return resolve(lockPath);
 }
 
+/**
+ * Host-local single-flight endpoint for a lock file, keyed by a digest of the resolved lock path: a
+ * named pipe on Windows, a socket in the temp dir elsewhere.
+ */
 export function getLoopLockHostLocalSocketPath(lockPath: string): string {
   const digest = createHash('sha256').update(hostLocalSingleFlightKey(lockPath)).digest('hex').slice(0, 32);
   if (process.platform === 'win32') {
@@ -516,6 +527,7 @@ function dropHostLocalSingleFlightLease(lockPath: string, ownerPid: number): voi
   try {
     lease.server.close();
   } catch {
+    // Best-effort: the server may already be closed.
   }
   if (process.platform !== 'win32') {
     rmSync(lease.socketPath, { force: true });
@@ -822,6 +834,7 @@ export function releaseLoopLock(lockPath: string, ownerPid: number, acquireNonce
     try {
       fsyncPath(dirname(lockPath));
     } catch {
+      // Best-effort directory fsync: the file change has already landed, and some platforms refuse it.
     }
     dropHostLocalSingleFlightLease(lockPath, ownerPid);
     return true;

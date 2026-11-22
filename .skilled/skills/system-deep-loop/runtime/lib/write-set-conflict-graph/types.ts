@@ -45,12 +45,14 @@ export type EvidenceBasis =
   | 'required-constraint'
   | 'write-census';
 
+/** Where a resource claim comes from: the source path, the kind of basis and a detail line. */
 export interface ResourceEvidence {
   readonly source_path: string;
   readonly basis: EvidenceBasis;
   readonly detail: string;
 }
 
+/** A resource as a mode declares it, before alias resolution and kind checks. */
 export interface ResourceInput {
   readonly identity: string;
   readonly canonical_id?: string;
@@ -62,6 +64,7 @@ export interface ResourceInput {
   readonly evidence: readonly ResourceEvidence[];
 }
 
+/** A declared resource after canonicalization, with a resolved canonical id and a known kind. */
 export interface CanonicalResource extends ResourceInput {
   readonly canonical_id: string;
   readonly kind: ResourceKind;
@@ -69,11 +72,13 @@ export interface CanonicalResource extends ResourceInput {
   readonly evidence: readonly ResourceEvidence[];
 }
 
+/** Identities that all name the same canonical resource. */
 export interface AliasGroup {
   readonly canonical_id: string;
   readonly aliases: readonly string[];
 }
 
+/** One mode's read set, write set, shared state, migration dependencies and the refs they were taken from. */
 export interface ModeResourceDeclaration {
   readonly id: string;
   readonly modeSlug: string;
@@ -85,12 +90,14 @@ export interface ModeResourceDeclaration {
   readonly sourceRefs: readonly string[];
 }
 
+/** A source path with its recorded digest and the digest observed now. */
 export interface SourceDigestInput {
   readonly path: string;
   readonly digest: string;
   readonly observedDigest: string;
 }
 
+/** A graph source path with its recorded and observed digests, marked stale when they differ. */
 export interface GeneratedSourceDigest {
   readonly path: string;
   readonly digest: string;
@@ -98,12 +105,17 @@ export interface GeneratedSourceDigest {
   readonly status: 'fresh' | 'stale';
 }
 
+/**
+ * Fail-closed graph policy: unknown resources count as conflicts, the default schedule is serial and no manual
+ * edge overrides exist.
+ */
 export interface GraphPolicy {
   readonly unknown_as_conflict: true;
   readonly default_schedule: 'serial-single-writer';
   readonly manual_edge_overrides: readonly [];
 }
 
+/** A graph node for one mode, holding its canonical resource sets and source digest. */
 export interface GraphNode {
   readonly id: string;
   readonly mode_slug: string;
@@ -123,6 +135,7 @@ export type ConflictEdgeType =
   | 'write-read'
   | 'write-write';
 
+/** A conflict between two nodes: its type, origin, resources, how it serializes them and the evidence for it. */
 export interface ConflictEdge {
   readonly id: string;
   readonly from: string;
@@ -135,6 +148,7 @@ export interface ConflictEdge {
   readonly evidence: readonly ResourceEvidence[];
 }
 
+/** A claim that two nodes are independent when their resources are disjoint, and whether the graph validated it. */
 export interface IndependentAssertion {
   readonly left: string;
   readonly right: string;
@@ -145,6 +159,7 @@ export interface IndependentAssertion {
   readonly reason: string;
 }
 
+/** One graph validation problem, naming the nodes, resources and source paths involved. */
 export interface GraphValidationIssue {
   readonly code: string;
   readonly message: string;
@@ -153,12 +168,17 @@ export interface GraphValidationIssue {
   readonly source_paths: readonly string[];
 }
 
+/** Which predecessors a lane requires, which completed before it and which are still pending. */
 export interface PredecessorCompletionEvidence {
   readonly required: readonly string[];
   readonly completed_before_lane: readonly string[];
   readonly pending: readonly string[];
 }
 
+/**
+ * Scheduling decision for a single-node lane: its predecessors, conflict and fence resources, class and any
+ * refusal reason.
+ */
 export interface LaneDecision {
   readonly node_ids: readonly [string];
   readonly predecessor_completion: PredecessorCompletionEvidence;
@@ -169,11 +189,13 @@ export interface LaneDecision {
   readonly refusal_reason: string | null;
 }
 
+/** One scheduled lane and the nodes in it. */
 export interface ScheduleLane {
   readonly lane_id: string;
   readonly node_ids: readonly string[];
 }
 
+/** The derived schedule, its lanes and decisions, and the missing evidence that keeps the phase gate incomplete. */
 export interface GraphSchedule {
   readonly schedule_class: 'parallel-safe-antichains' | 'serial-single-writer';
   readonly graph_state: 'fallback' | 'ready';
@@ -185,6 +207,7 @@ export interface GraphSchedule {
   readonly decisions: readonly LaneDecision[];
 }
 
+/** Digested write-set conflict graph: its sources, policy, nodes, edges, independence assertions and schedule. */
 export interface WriteSetConflictGraph {
   readonly schema_version: typeof WRITE_SET_GRAPH_SCHEMA_VERSION;
   readonly base_identity: string;
@@ -197,6 +220,10 @@ export interface WriteSetConflictGraph {
   readonly graph_digest: string;
 }
 
+/**
+ * Manifest workstreams, mode declarations and source digests to derive a graph from, with optional aliases and
+ * policy overrides.
+ */
 export interface GraphBuildInput {
   readonly baseIdentity: string;
   readonly manifestWorkstreams: readonly string[];
@@ -207,6 +234,7 @@ export interface GraphBuildInput {
   readonly policy?: Partial<GraphPolicy>;
 }
 
+/** Current manifest, declarations and observed source digests a stored graph is checked against before reuse. */
 export interface GraphReuseInput {
   readonly baseIdentity: string;
   readonly manifestWorkstreams: readonly string[];
@@ -215,6 +243,10 @@ export interface GraphReuseInput {
   readonly aliasGroups?: readonly AliasGroup[];
 }
 
+/**
+ * Whether a stored graph may be reused, the schedule required either way and the reasons and source evidence
+ * behind the decision.
+ */
 export interface GraphReuseDecision {
   readonly accepted: boolean;
   readonly graph_refresh_required: boolean;

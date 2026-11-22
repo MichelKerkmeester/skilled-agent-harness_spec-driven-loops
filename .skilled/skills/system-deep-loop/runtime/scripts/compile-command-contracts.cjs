@@ -259,6 +259,7 @@ function relPath(absolutePath) {
 const SOURCE_ROOT_NAMES = ['.skilled', '.opencode'];
 const OWN_SOURCE_ROOT_NAME = path.relative(WORKSPACE_ROOT, __dirname).split(path.sep)[0];
 
+/** Resolves a source path against the workspace root, falling back to the sibling source root, then to this script's own root, when the named root lacks the file. */
 function absolutePath(sourcePath) {
   const resolved = path.resolve(WORKSPACE_ROOT, sourcePath);
   const [head, ...rest] = String(sourcePath).split('/');
@@ -270,14 +271,17 @@ function absolutePath(sourcePath) {
   return path.resolve(WORKSPACE_ROOT, OWN_SOURCE_ROOT_NAME, ...rest);
 }
 
+/** Returns the hex SHA-256 digest of a string or buffer. */
 function sha256(input) {
   return crypto.createHash('sha256').update(input).digest('hex');
 }
 
+/** Returns the hex SHA-256 digest of a source file, resolved through `absolutePath`. */
 function sha256File(sourcePath) {
   return sha256(fs.readFileSync(absolutePath(sourcePath)));
 }
 
+/** Normalizes line endings to LF and leaves exactly one trailing newline, so the body digest does not depend on the platform. */
 function normalizeCompiledBody(body) {
   return body.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trimEnd() + '\n';
 }
@@ -290,6 +294,7 @@ function extractBetween(content, startMarker, endMarker, sourcePath) {
   return content.slice(start, end).trimEnd();
 }
 
+/** Returns the definition of a supported command, and throws naming the supported commands otherwise. */
 function getCommandDefinition(command) {
   const definition = COMMANDS[command];
   if (!definition) {
@@ -299,6 +304,7 @@ function getCommandDefinition(command) {
   return definition;
 }
 
+/** Returns the full-file SHA-256 of every source path a command's contract is compiled from. */
 function sourceDigestsFor(command) {
   const definition = getCommandDefinition(command);
   return definition.sourcePaths.map((sourcePath) => ({
@@ -362,6 +368,7 @@ function buildRenderBlocks(definition) {
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/** Renders the compiled contract body for one command definition: the delegation, setup and route-proof directives plus the source list and render blocks. */
 function buildContractBody(definition) {
   const sourceList = definition.sourcePaths.map((sourcePath, index) => `${index + 1}. \`${sourcePath}\``).join('\n');
   const mode = definition.commandName.replace('/deep:', '');
@@ -523,6 +530,7 @@ function buildHeader(definition, sourceDigests, compiledBodyDigest) {
   return `${GENERATED_HEADER_START}\n${JSON.stringify(header, null, 2)}\n${GENERATED_HEADER_END}\n`;
 }
 
+/** Returns a contract's body with its generated digest header removed, and throws when the header is not at the start. */
 function stripGeneratedHeader(contractText) {
   const start = contractText.indexOf(GENERATED_HEADER_START);
   const end = contractText.indexOf(GENERATED_HEADER_END);
@@ -530,6 +538,7 @@ function stripGeneratedHeader(contractText) {
   return contractText.slice(end + GENERATED_HEADER_END.length).replace(/^\n/, '');
 }
 
+/** Parses the JSON digest header at the start of a contract, and throws when the header is missing. */
 function parseDigestHeader(contractText) {
   const start = contractText.indexOf(GENERATED_HEADER_START);
   const end = contractText.indexOf(GENERATED_HEADER_END);
@@ -538,14 +547,17 @@ function parseDigestHeader(contractText) {
   return JSON.parse(jsonText);
 }
 
+/** Returns the SHA-256 of a contract body after line-ending normalization. */
 function computeCompiledBodyDigest(body) {
   return sha256(normalizeCompiledBody(body));
 }
 
+/** Returns the normalized body digest of a full contract, ignoring its generated header. */
 function computeCompiledBodyDigestFromContract(contractText) {
   return computeCompiledBodyDigest(stripGeneratedHeader(contractText));
 }
 
+/** Compiles one command's full contract text: the digest header over its sources and body, followed by the body. */
 function buildContract(command) {
   const definition = getCommandDefinition(command);
   const body = buildContractBody(definition);
@@ -554,6 +566,7 @@ function buildContract(command) {
   return buildHeader(definition, sourceDigests, compiledBodyDigest) + body;
 }
 
+/** Returns where a command's compiled `.contract.markdown` file is written. */
 function outputPathFor(command) {
   const definition = getCommandDefinition(command);
   return path.join(absolutePath('.skilled/commands/deep/assets/compiled'), `${definition.slug}.contract.markdown`);

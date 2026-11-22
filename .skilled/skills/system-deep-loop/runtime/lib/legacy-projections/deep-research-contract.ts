@@ -25,10 +25,15 @@ import type {
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/** The state-log rows folded so far, in ledger order. */
 export interface DeepResearchProjectionState extends LegacyProjectionJsonObject {
   readonly rows: readonly JsonObject[];
 }
 
+/**
+ * Overrides for the deep-research state-log projection; omitted fields use the research ledger and the
+ * default state-log path.
+ */
 export interface CreateDeepResearchProjectionContractOptions {
   readonly ledgerId?: string;
   readonly streamIds?: readonly string[];

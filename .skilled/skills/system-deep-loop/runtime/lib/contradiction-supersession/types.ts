@@ -52,12 +52,17 @@ interface CandidateEvidenceContext {
   readonly evidenceSnapshotRef: string;
 }
 
+/** Evidence for a candidate contradiction between two claims within an incompatibility scope. */
 export interface ContradictionCandidateInput extends CandidateEvidenceContext {
   readonly observedClaimId: string;
   readonly counterpartClaimId: string;
   readonly incompatibilityScope: string;
 }
 
+/**
+ * Evidence for a candidate supersession of one claim by another, with the replacement scope and why the
+ * successor is stronger.
+ */
 export interface SupersessionCandidateInput extends CandidateEvidenceContext {
   readonly predecessorClaimId: string;
   readonly successorClaimId: string;
@@ -111,12 +116,14 @@ interface RelationshipPayloadBase {
   readonly retracts_event_id?: string;
 }
 
+/** Ledger payload asserting that two claims contradict within a scope. */
 export interface ContradictionEventPayload extends RelationshipPayloadBase {
   readonly left_claim_id: string;
   readonly right_claim_id: string;
   readonly incompatibility_scope: string;
 }
 
+/** Ledger payload asserting that a successor claim supersedes a predecessor within a scope. */
 export interface SupersessionEventPayload extends RelationshipPayloadBase {
   readonly predecessor_claim_id: string;
   readonly successor_claim_id: string;
@@ -147,6 +154,7 @@ export interface RelationshipRecordInput {
 // 3. PROJECTION TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/** The assertion, any withdrawal and the evidence refs behind a relationship. */
 export interface RelationshipEvidenceState extends JsonObject {
   readonly assertion_event_id: string;
   readonly withdrawal_event_id: string | null;
@@ -156,6 +164,7 @@ export interface RelationshipEvidenceState extends JsonObject {
   readonly evidence_snapshot_ref: string;
 }
 
+/** A relationship that is currently asserted and not withdrawn, with its claims, scope, detector and evidence. */
 export interface ActiveRelationshipProjection extends JsonObject {
   readonly relationship_id: string;
   readonly kind: RelationshipKind;
@@ -168,6 +177,7 @@ export interface ActiveRelationshipProjection extends JsonObject {
   readonly evidence_state: RelationshipEvidenceState;
 }
 
+/** One claim's status and the active contradiction and supersession relations that decide it. */
 export interface ClaimRelationshipStatusProjection extends JsonObject {
   readonly claim_id: string;
   readonly status: ClaimStatus;
@@ -181,6 +191,7 @@ export interface ClaimRelationshipStatusProjection extends JsonObject {
   readonly evidence_state: RelationshipEvidenceState[];
 }
 
+/** Full history of one relationship, from assertion to any withdrawal, with ledger sequences. */
 export interface RelationshipHistoryRecord extends JsonObject {
   readonly relationship_id: string;
   readonly kind: RelationshipKind;
@@ -212,6 +223,10 @@ export interface ClaimRelationshipProjection extends JsonObject {
 // 4. SERVICE AND REPLAY TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Root directory, reference snapshot and authority provider the service writes under, with optional ledger,
+ * stream and producer overrides.
+ */
 export interface ContradictionSupersessionServiceOptions {
   readonly rootDirectory: string;
   readonly referenceSnapshot: RelationshipReferenceSnapshot;
@@ -225,11 +240,13 @@ export interface ContradictionSupersessionServiceOptions {
   readonly now?: () => Date;
 }
 
+/** The durable append receipt and the projection after recording a relationship event. */
 export interface RecordedRelationship {
   readonly receipt: DurableAppendReceipt;
   readonly projection: ClaimRelationshipProjection;
 }
 
+/** Why a relationship replay failed, with the ledger sequence and event id when known. */
 export interface RelationshipReplayFailure {
   readonly code: string;
   readonly sequence: number | null;
@@ -237,6 +254,7 @@ export interface RelationshipReplayFailure {
   readonly message: string;
 }
 
+/** A trusted replay result with its projection and fingerprint. */
 export interface RelationshipReplaySuccess {
   readonly ok: true;
   readonly trusted: true;
@@ -244,6 +262,7 @@ export interface RelationshipReplaySuccess {
   readonly fingerprint: DerivedReplayFingerprint<ClaimRelationshipProjection>;
 }
 
+/** An untrusted replay result that carries only the failure. */
 export interface RelationshipReplayFailureResult {
   readonly ok: false;
   readonly trusted: false;
@@ -256,6 +275,7 @@ export type RelationshipReplayResult =
   | RelationshipReplaySuccess
   | RelationshipReplayFailureResult;
 
+/** Audit-ledger position and the decision, request and policy digests that authorized a relationship write. */
 export interface RelationshipAuthorizationReference extends JsonObject {
   readonly audit_ledger_id: string;
   readonly audit_sequence: number;
@@ -267,6 +287,7 @@ export interface RelationshipAuthorizationReference extends JsonObject {
   readonly authority_epoch: number;
 }
 
+/** Ledger position and stream identity of a committed relationship event. */
 export interface RelationshipAppendReceiptEvidence extends JsonObject {
   readonly ledger_id: string;
   readonly sequence: number;
@@ -278,6 +299,7 @@ export interface RelationshipAppendReceiptEvidence extends JsonObject {
   readonly committed_at: string;
 }
 
+/** One audited relationship event: its action, the event it retracts, the claims and evidence it touched. */
 export interface RelationshipAuditRecord extends JsonObject {
   readonly event_id: string;
   readonly event_type: string;
@@ -295,6 +317,7 @@ export interface RelationshipAuditRecord extends JsonObject {
   readonly append_receipt: RelationshipAppendReceiptEvidence;
 }
 
+/** Audit report pairing the projection with every relationship event record and the replay fingerprint. */
 export interface RelationshipAuditReport extends JsonObject {
   readonly projection: ClaimRelationshipProjection;
   readonly records: RelationshipAuditRecord[];
@@ -303,6 +326,7 @@ export interface RelationshipAuditReport extends JsonObject {
   readonly reducer_version: string;
 }
 
+/** A successful audit with its report. */
 export interface RelationshipAuditSuccess {
   readonly ok: true;
   readonly report: RelationshipAuditReport;

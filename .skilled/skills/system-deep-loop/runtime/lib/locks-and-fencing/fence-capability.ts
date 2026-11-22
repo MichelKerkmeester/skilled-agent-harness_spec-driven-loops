@@ -23,6 +23,7 @@ export class FenceCapability {
   readonly #brand = true;
 }
 
+/** The resource and fence token a fence capability stands for. */
 export interface FenceCapabilityState {
   readonly resource: CanonicalProtectedResource;
   readonly fenceToken: number;

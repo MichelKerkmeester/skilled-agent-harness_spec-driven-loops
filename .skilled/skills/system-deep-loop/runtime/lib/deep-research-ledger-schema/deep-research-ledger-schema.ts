@@ -35,6 +35,10 @@ import type {
 // 1. PUBLIC INPUTS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Everything `prepareDeepResearchEvent` needs to build one envelope: the payload parts plus stream position,
+ * timestamps, producer, authority epoch and idempotency key.
+ */
 export interface DeepResearchEventInput<TStem extends DeepResearchEventStem> {
   readonly stem: TStem;
   readonly scope: DeepResearchScopeMap[TStem];
@@ -1204,10 +1208,18 @@ function eventDefinition(stem: DeepResearchEventStem): EventTypeDefinition {
   };
 }
 
+/**
+ * Build a fresh event-type registry with one version-1 definition per Deep Research stem, each validating its payload
+ * fields.
+ */
 export function createDeepResearchEventRegistry(): EventTypeRegistry {
   return new EventTypeRegistry(DeepResearchEventStems.map(eventDefinition));
 }
 
+/**
+ * Assemble the frozen version-1 payload for a stem, with a payloadDigest computed over stem, scope, prior event hash,
+ * replay metadata and data.
+ */
 export function createDeepResearchLedgerPayload<TStem extends DeepResearchEventStem>(
   stem: TStem,
   scope: DeepResearchScopeMap[TStem],
@@ -1233,6 +1245,10 @@ export function createDeepResearchLedgerPayload<TStem extends DeepResearchEventS
   }) as DeepResearchLedgerPayload<TStem>;
 }
 
+/**
+ * Wrap the input in a current-version envelope carrying its wire event type, then run the shared write preflight
+ * against the given registry.
+ */
 export function prepareDeepResearchEvent<TStem extends DeepResearchEventStem>(
   input: DeepResearchEventInput<TStem>,
   registry: EventTypeRegistry,
@@ -1263,10 +1279,15 @@ export function prepareDeepResearchEvent<TStem extends DeepResearchEventStem>(
   return prepareEventWrite(envelope, registry);
 }
 
+/** Return the frozen event-type definitions, one per Deep Research stem, without building a registry. */
 export function deepResearchEventDefinitions(): readonly EventTypeDefinition[] {
   return Object.freeze(DeepResearchEventStems.map(eventDefinition));
 }
 
+/**
+ * Recompute a payload's digest from its stem, scope, prior event hash, replay metadata and data, so a stored
+ * payloadDigest can be checked.
+ */
 export function deepResearchPayloadDigest<TStem extends DeepResearchEventStem>(
   payload: Readonly<{
     stem: TStem;
@@ -1286,6 +1307,7 @@ export function deepResearchPayloadDigest<TStem extends DeepResearchEventStem>(
   );
 }
 
+/** Narrow a JSON value to a Deep Research event stem, rejecting non-strings and unlisted strings. */
 export function isDeepResearchEventStem(value: JsonValue): value is DeepResearchEventStem {
   return typeof value === 'string'
     && (DeepResearchEventStems as readonly string[]).includes(value);

@@ -86,6 +86,7 @@ async function receiptFor(
       matches: matches.length,
     });
   }
+  // The guards above return unless exactly one match exists.
   const verified = matches[0]!;
   const payload = asDispatchReceiptPayload(verified.event.effective.envelope.payload);
   if (payload.receipt_id !== receiptId) {
@@ -139,6 +140,10 @@ function pairedEvents(
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Records a dispatch receipt's leaf result once, returning the existing event when facts match and a conflict
+ * when they differ.
+ */
 export async function recordLeafResult(
   input: RecordLeafResultInput,
 ): Promise<RecordedLeafResult> {
@@ -164,6 +169,7 @@ export async function recordLeafResult(
     });
   }
   if (matches.length === 1) {
+    // This branch runs only when matches.length === 1.
     const existing = matches[0]!;
     const payload = asLeafResultPayload(existing.event.effective.envelope.payload);
     if (
@@ -181,6 +187,7 @@ export async function recordLeafResult(
   return recorded(await input.writer.append(candidateEvent), candidateEvent);
 }
 
+/** Records a salvage fragment once, returning the existing event when facts match and a conflict when they differ. */
 export async function recordSalvageFragment(
   input: RecordSalvageFragmentInput,
 ): Promise<RecordedLeafResult> {
@@ -245,6 +252,10 @@ function recoverySourcePayload(source: VerifiedLedgerEvent): Readonly<{
   return payload as unknown as ReturnType<typeof recoverySourcePayload>;
 }
 
+/**
+ * Records a recovery link after proving the source event is durable and shares the receipt's correlation,
+ * returning a conflict on differing facts.
+ */
 export async function recordLeafRecovery(
   input: RecordLeafRecoveryInput,
 ): Promise<RecordedLeafResult> {
@@ -324,6 +335,7 @@ export async function recordLeafRecovery(
 // 5. EXPORTS
 // ───────────────────────────────────────────────────────────────────
 
+/** Reads a verified ledger event's payload as a leaf result, throwing when it does not validate. */
 export function resultPayloadFromVerified(event: VerifiedLedgerEvent): JsonObject {
   return asLeafResultPayload(event.event.effective.envelope.payload);
 }

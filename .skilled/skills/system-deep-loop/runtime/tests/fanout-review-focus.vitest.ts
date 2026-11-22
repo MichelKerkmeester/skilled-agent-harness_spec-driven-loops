@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: fan-out review focus
+// ───────────────────────────────────────────────────────────────────
 //
 // An operator's review focus has to reach every lineage of a deep-review fan-out, and
 // every iteration prompt the leaf renders, in addition to the review dimensions. These

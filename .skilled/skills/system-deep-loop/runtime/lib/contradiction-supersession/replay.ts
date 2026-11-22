@@ -127,6 +127,7 @@ export function createClaimRelationshipReplayComponentRegistry(
 // 2. FINGERPRINT DERIVATION
 // ───────────────────────────────────────────────────────────────────
 
+/** Ledger, registry, reference snapshot and optional sequence range to derive one run's claim relationships from. */
 export interface DeriveClaimRelationshipReplayInput {
   readonly ledger: AppendOnlyLedger;
   readonly eventRegistry: EventTypeRegistry;
@@ -181,6 +182,7 @@ export async function deriveClaimRelationshipReplayFingerprint(
 // 3. FAIL-CLOSED REPLAY
 // ───────────────────────────────────────────────────────────────────
 
+/** Replay input that can also pin the final digest the derived projection must match. */
 export interface ReplayClaimRelationshipsInput
   extends DeriveClaimRelationshipReplayInput {
   readonly expectedFinalDigest?: string;

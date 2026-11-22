@@ -1,4 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Post-Dispatch Dispatch-Receipt Validator Tests
+// ───────────────────────────────────────────────────────────────────
 //
 // Covers the receipt VALIDATOR side of post-dispatch-validate: when a dispatch
 // opts into receipts, a structurally intact, intent-bound receipt pair is

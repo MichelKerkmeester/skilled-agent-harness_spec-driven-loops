@@ -28,7 +28,7 @@ This folder verifies that the coverage graph database opens and closes cleanly a
 
 | Surface | Entry |
 |---|---|
-| Test command | `db-open-close.vitest.ts` |
+| Test file | `db-open-close.vitest.ts` |
 | Covered boundary | Coverage graph database and writer-lock lifecycle |
 
 The file is executable verification, not a production module.
@@ -46,6 +46,8 @@ Lifecycle tests protect the storage boundary beneath graph queries and reducers.
 ```bash
 .skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/lifecycle
 ```
+
+Expected result: Vitest prints `Test Files  1 passed (1)` and exits 0.
 
 ---
 

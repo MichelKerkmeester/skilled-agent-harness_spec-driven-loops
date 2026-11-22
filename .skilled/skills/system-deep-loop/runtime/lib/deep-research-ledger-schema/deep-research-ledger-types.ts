@@ -26,37 +26,48 @@ export type Fingerprint = string;
 export type Version = string;
 export type Uint32 = number;
 
+/**
+ * Replay fingerprint version, final digest and per-input digests stamped on every Deep Research payload so the event
+ * can be replay-checked.
+ */
 export interface DeepResearchReplayMetadata extends JsonObject {
   readonly fingerprint_version: ReplayFingerprintDescriptor['fingerprint_version'];
   readonly final_digest: ReplayFingerprintDescriptor['final_digest'];
   readonly replay_input_digests: Record<string, string>;
 }
 
+/** Run and lineage identity every Deep Research event carries; the narrower scopes extend it. */
 export interface DeepResearchBaseScope extends JsonObject {
   readonly runId: RunId;
   readonly lineageId: LineageId;
 }
 
+/** Scope for question-level events, adding the question id to the run scope. */
 export interface DeepResearchQuestionScope extends DeepResearchBaseScope {
   readonly questionId: QuestionId;
 }
 
+/** Scope for branch planning and selection events, adding the logical branch id to the question scope. */
 export interface DeepResearchBranchScope extends DeepResearchQuestionScope {
   readonly branchId: LogicalBranchId;
 }
 
+/** Scope for iteration-level events, adding the iteration number to the run scope. */
 export interface DeepResearchIterationScope extends DeepResearchBaseScope {
   readonly iteration: Uint32;
 }
 
+/** Scope for source capture events, adding the captured source version to the iteration scope. */
 export interface DeepResearchSourceScope extends DeepResearchIterationScope {
   readonly sourceVersionId: SourceVersionId;
 }
 
+/** Scope for evidence admission events, adding the evidence id to the source scope. */
 export interface DeepResearchEvidenceScope extends DeepResearchSourceScope {
   readonly evidenceId: EvidenceId;
 }
 
+/** Scope for claim events, adding the claim version id to the iteration scope. */
 export interface DeepResearchClaimScope extends DeepResearchIterationScope {
   readonly claimVersionId: ClaimVersionId;
 }
@@ -74,6 +85,10 @@ export type DeepResearchScope =
 // 2. PAYLOAD VALUE OBJECTS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Branch and focus scoring inputs: expected yield, contradiction risk, impact, independence gain, staleness and
+ * expected cost.
+ */
 export interface ScoreVector extends JsonObject {
   readonly expectedYield: number;
   readonly contradictionRisk: number;
@@ -83,6 +98,7 @@ export interface ScoreVector extends JsonObject {
   readonly expectedCost: number;
 }
 
+/** Where a captured source came from, as a scheme, a locator digest, a selector and an optional revision. */
 export interface SourceLocator extends JsonObject {
   readonly scheme: 'artifact' | 'file' | 'other' | 'url';
   readonly locatorDigest: Digest;
@@ -90,17 +106,20 @@ export interface SourceLocator extends JsonObject {
   readonly revision: string | null;
 }
 
+/** A digest-addressed passage inside a captured source that admitted evidence points to. */
 export interface PassageLocator extends JsonObject {
   readonly locatorDigest: Digest;
   readonly selector: string;
   readonly passageDigest: Digest;
 }
 
+/** First and last event ids bounding the ledger span a memory save covers. */
 export interface SourceEventRange extends JsonObject {
   readonly firstEventId: string;
   readonly lastEventId: string;
 }
 
+/** Totals of iterations, sources, admitted evidence and claims recorded when a run completes. */
 export interface RunCompletionCounts extends JsonObject {
   readonly iterations: Uint32;
   readonly sources: Uint32;
@@ -131,6 +150,10 @@ export type RunInitializedData =
   | RunInitializedCoreData
   | (RunInitializedCoreData & { readonly topic: string });
 
+/**
+ * Payload for `deep_research.run_resumed`, tying the resumed lineage to the prior ledger tail, its compatibility
+ * decision and recovery receipt.
+ */
 export interface RunResumedData extends JsonObject {
   readonly priorTailDigest: Digest;
   readonly sourceLineageId: LineageId;
@@ -140,6 +163,9 @@ export interface RunResumedData extends JsonObject {
   readonly recoveryReceiptRef: string;
 }
 
+/**
+ * Payload for `deep_research.run_restarted`, naming the archived lineage, the prior ledger tail and the restart reason.
+ */
 export interface RunRestartedData extends JsonObject {
   readonly priorTailDigest: Digest;
   readonly archivedLineageId: LineageId;
@@ -151,6 +177,7 @@ export interface RunRestartedData extends JsonObject {
 
 // The budget an extension grants, carried as one row so replay can compare the
 // ceiling the run was extended from against the ceiling it now runs under.
+/** Iteration and duration limits before and after a run extension, with the minutes elapsed when it was granted. */
 export interface RunExtensionBudget extends JsonObject {
   readonly addedIterations: Uint32;
   readonly priorMaxIterations: Uint32;
@@ -160,6 +187,7 @@ export interface RunExtensionBudget extends JsonObject {
   readonly elapsedMinutesAtExtension: Uint32;
 }
 
+/** Payload for `deep_research.run_extended`, recording the extension budget granted to a continued run. */
 export interface RunExtendedData extends JsonObject {
   readonly priorTailDigest: Digest;
   readonly sessionId: LineageId;
@@ -168,6 +196,10 @@ export interface RunExtendedData extends JsonObject {
   readonly extension: RunExtensionBudget;
 }
 
+/**
+ * Payload for `deep_research.question_registered`: the normalized question digest, its dependencies, required source
+ * classes and disconfirming query recipes.
+ */
 export interface QuestionRegisteredData extends JsonObject {
   readonly normalizedQuestionDigest: Digest;
   readonly dependencyQuestionIds: string[];
@@ -176,6 +208,10 @@ export interface QuestionRegisteredData extends JsonObject {
   readonly budgetRef: string;
 }
 
+/**
+ * Payload shared by `deep_research.branch_planned` and `deep_research.branch_selected`, with the score vector and
+ * tie-break key behind the choice.
+ */
 export interface BranchDecisionData extends JsonObject {
   readonly semanticClusterId: string;
   readonly expectedYieldScoreVector: ScoreVector;
@@ -238,6 +274,10 @@ interface IterationCompletedLeafFields {
 
 export type IterationCompletedData = IterationCompletedShape & IterationCompletedLeafFields;
 
+/**
+ * Payload for `deep_research.source_captured`: source identity and content digests, locator, media type, retrieval
+ * receipt and instruction-scan result.
+ */
 export interface SourceCapturedData extends JsonObject {
   readonly sourceIdentityDigest: Digest;
   readonly locator: SourceLocator;
@@ -249,6 +289,10 @@ export interface SourceCapturedData extends JsonObject {
   readonly instructionScanResult: 'clean' | 'flagged' | 'unknown';
 }
 
+/**
+ * Payload for `deep_research.evidence_admission_decided`: admit, degrade or quarantine, with passage locators,
+ * contamination status and the admission policy version.
+ */
 export interface EvidenceAdmissionDecidedData extends JsonObject {
   readonly disposition: 'admit' | 'degrade' | 'quarantine';
   readonly passageLocators: PassageLocator[];
@@ -259,6 +303,10 @@ export interface EvidenceAdmissionDecidedData extends JsonObject {
   readonly reasonCode: string;
 }
 
+/**
+ * Payload for `deep_research.claim_asserted`: the normalized claim digest, its supporting evidence ids, independence
+ * group and raw confidence.
+ */
 export interface ClaimAssertedData extends JsonObject {
   readonly claimId: ClaimId;
   readonly normalizedClaimDigest: Digest;
@@ -268,6 +316,10 @@ export interface ClaimAssertedData extends JsonObject {
   readonly claimStatus: 'contested' | 'supported' | 'unresolved';
 }
 
+/**
+ * Payload for `deep_research.claim_relation_recorded`, linking a claim to another claim version by a typed relation
+ * backed by evidence ids.
+ */
 export interface ClaimRelationRecordedData extends JsonObject {
   readonly claimId: ClaimId;
   readonly relatedClaimVersionId: ClaimVersionId;
@@ -278,6 +330,10 @@ export interface ClaimRelationRecordedData extends JsonObject {
   readonly claimStatus: 'contested' | 'supported' | 'unresolved';
 }
 
+/**
+ * Payload for `deep_research.claim_superseded`, naming the prior and successor claim versions, the reason and the
+ * invalidation scope.
+ */
 export interface ClaimSupersededData extends JsonObject {
   readonly priorClaimVersionId: ClaimVersionId;
   readonly successorClaimVersionId: ClaimVersionId;
@@ -287,6 +343,10 @@ export interface ClaimSupersededData extends JsonObject {
   readonly invalidationScope: string;
 }
 
+/**
+ * Payload for `deep_research.gap_detected`: the gap kind, the claims and questions it affects, its criticality and
+ * proposed query recipes.
+ */
 export interface GapDetectedData extends JsonObject {
   readonly obligationId: string;
   readonly gapKind: 'contradiction' | 'coverage' | 'source-diversity' | 'verification';
@@ -296,6 +356,10 @@ export interface GapDetectedData extends JsonObject {
   readonly proposedQueryRecipeIds: string[];
 }
 
+/**
+ * Payload for `deep_research.next_focus_selected`, recording the scored obligation and the branch or question chosen
+ * next, either of which may be null.
+ */
 export interface NextFocusSelectedData extends JsonObject {
   readonly obligationId: string;
   readonly selectionScoreVector: ScoreVector;
@@ -305,6 +369,7 @@ export interface NextFocusSelectedData extends JsonObject {
   readonly chosenQuestionId: QuestionId | null;
 }
 
+/** Convergence signals as observed, before trust weighting, with a digest of the observation. */
 export interface RawConvergenceSignals extends JsonObject {
   readonly newInfoRatio: number;
   readonly contradictionRisk: number;
@@ -312,6 +377,7 @@ export interface RawConvergenceSignals extends JsonObject {
   readonly observationDigest: Digest;
 }
 
+/** Convergence signals computed over admitted, independent evidence, with a digest of the assessment. */
 export interface TrustedConvergenceSignals extends JsonObject {
   readonly evidenceYield: number;
   readonly independentSourceRatio: number;
@@ -321,6 +387,7 @@ export interface TrustedConvergenceSignals extends JsonObject {
 
 export type ConvergenceGateStatus = 'fail' | 'pass' | 'unknown';
 
+/** Source diversity, contradiction resolution and citation integrity gate statuses under one policy version. */
 export interface ConvergenceQualityGateResults extends JsonObject {
   readonly sourceDiversity: ConvergenceGateStatus;
   readonly contradictionResolution: ConvergenceGateStatus;
@@ -329,6 +396,10 @@ export interface ConvergenceQualityGateResults extends JsonObject {
   readonly resultDigest: Digest;
 }
 
+/**
+ * Payload shared by `deep_research.convergence_evaluated` and `deep_research.convergence_blocked`: the decision, raw
+ * and trusted signals, gate results and blockers.
+ */
 export interface ConvergenceDecisionData extends JsonObject {
   readonly decision: 'blocked' | 'continue' | 'converged' | 'incomplete' | 'recover';
   readonly rawSignals: RawConvergenceSignals;
@@ -342,6 +413,10 @@ export interface ConvergenceDecisionData extends JsonObject {
   readonly recoveryReason: string | null;
 }
 
+/**
+ * Payload for `deep_research.synthesis_started`, pinning the ledger revision, claim-version set and synthesis policy
+ * the report is built from.
+ */
 export interface SynthesisStartedData extends JsonObject {
   readonly admittedLedgerRevision: string;
   readonly selectedClaimVersionSetDigest: Digest;
@@ -351,12 +426,20 @@ export interface SynthesisStartedData extends JsonObject {
   readonly contestedClaimIds: string[];
 }
 
+/**
+ * Payload for `deep_research.synthesis_committed`, adding the report digest, citation event ids and synthesis receipt
+ * to the started record.
+ */
 export interface SynthesisCommittedData extends SynthesisStartedData {
   readonly reportDigest: Digest;
   readonly citationEventIds: string[];
   readonly synthesisReceiptRef: string;
 }
 
+/**
+ * Payload for `deep_research.memory_save_requested`: target packet, continuity payload digest, route, merge mode and
+ * the event range saved.
+ */
 export interface MemorySaveRequestedData extends JsonObject {
   readonly targetPacket: string;
   readonly continuityPayloadDigest: Digest;
@@ -365,11 +448,16 @@ export interface MemorySaveRequestedData extends JsonObject {
   readonly sourceEventRange: SourceEventRange;
 }
 
+/**
+ * Payload for `deep_research.memory_save_completed`, adding the persistence receipts and continuity fingerprint to the
+ * request.
+ */
 export interface MemorySaveCompletedData extends MemorySaveRequestedData {
   readonly persistenceReceiptRefs: string[];
   readonly continuityFingerprint: Fingerprint;
 }
 
+/** Payload for `deep_research.memory_save_failed`, adding the failure reason and whether a retry may succeed. */
 export interface MemorySaveFailedData extends MemorySaveRequestedData {
   readonly retryable: boolean;
   readonly failureReason: string;
@@ -378,6 +466,10 @@ export interface MemorySaveFailedData extends MemorySaveRequestedData {
 // Run-now records are appended at the loop boundary, before any dissection of
 // the run's research state, so they carry only the boundary bookkeeping a
 // reader needs to correlate the sentinel with the iteration it dispatched.
+/**
+ * Payload for `deep_research.run_now_requested`, naming the run, session, generation and the sentinel file that
+ * requested it.
+ */
 export interface RunNowRequestedData extends JsonObject {
   readonly mode: string;
   readonly run: Uint32;
@@ -386,11 +478,13 @@ export interface RunNowRequestedData extends JsonObject {
   readonly sentinelPath: string;
 }
 
+/** Payload for `deep_research.run_now_rejected`, adding the rejection reason and the pause sentinel that blocked it. */
 export interface RunNowRejectedData extends RunNowRequestedData {
   readonly reason: string;
   readonly pauseSentinelPath: string;
 }
 
+/** Payload for `deep_research.run_now_accepted`, adding the dispatch event the accepted request triggered. */
 export interface RunNowAcceptedData extends RunNowRequestedData {
   readonly dispatchEvent: string;
 }
@@ -401,6 +495,10 @@ export type RunNowRestoredData = RunNowRequestedData;
 // reconciliation counts a reader needs to tell a complete report from one that
 // only looked complete; nullable counts stay null when the source artifact was
 // unreadable rather than collapsing to zero.
+/**
+ * Payload for `deep_research.synthesis_incomplete`: stop reason, invariant failures, missing artifacts and the finding
+ * counts that did not reconcile.
+ */
 export interface SynthesisIncompleteData extends JsonObject {
   readonly mode: string;
   readonly severity: string;
@@ -421,6 +519,7 @@ export interface SynthesisIncompleteData extends JsonObject {
   readonly stateParseFailureCount: Uint32;
 }
 
+/** Payload for `deep_research.synthesis_complete`, with iteration and answered-question totals and the stop reason. */
 export interface SynthesisCompleteData extends JsonObject {
   readonly totalIterations: Uint32;
   readonly answeredCount: Uint32;
@@ -428,6 +527,10 @@ export interface SynthesisCompleteData extends JsonObject {
   readonly stopReason: string;
 }
 
+/**
+ * Payload for `deep_research.run_completed`: terminal status, the convergence, synthesis and memory-save event ids, the
+ * final tail hash and totals.
+ */
 export interface RunCompletedData extends JsonObject {
   readonly terminalStatus: 'blocked' | 'completed' | 'incomplete';
   readonly convergenceEventId: string;
@@ -442,6 +545,10 @@ export interface RunCompletedData extends JsonObject {
 // The spec-protocol rows are written by the workflows as untyped state-log
 // records, so each payload keeps the row's own field values verbatim: the
 // upcaster lifts them unchanged and the projection writes the row back.
+/**
+ * Payload for `deep_research.spec_check_result`, recording the spec folder state, normalized topic and the spec and
+ * lock paths.
+ */
 export interface SpecCheckResultData extends JsonObject {
   readonly folderState: string;
   readonly normalizedTopic: string;
@@ -449,6 +556,10 @@ export interface SpecCheckResultData extends JsonObject {
   readonly lockPath: string;
 }
 
+/**
+ * Payload for `deep_research.spec_seed_created`, recording the anchors touched, a diff summary and the seed markers
+ * written.
+ */
 export interface SpecSeedCreatedData extends JsonObject {
   readonly folderState: string;
   readonly anchorsTouched: string[];
@@ -456,6 +567,10 @@ export interface SpecSeedCreatedData extends JsonObject {
   readonly seedMarkers: string[];
 }
 
+/**
+ * Payload for `deep_research.spec_preinit_context_added`, recording the anchors touched and a diff summary for the spec
+ * path.
+ */
 export interface SpecPreinitContextAddedData extends JsonObject {
   readonly folderState: string;
   readonly normalizedTopic: string;
@@ -464,6 +579,10 @@ export interface SpecPreinitContextAddedData extends JsonObject {
   readonly diffSummary: string;
 }
 
+/**
+ * Payload for `deep_research.spec_preinit_context_deduped`, recording the anchors and diff summary of context that was
+ * already present.
+ */
 export interface SpecPreinitContextDedupedData extends JsonObject {
   readonly folderState: string;
   readonly normalizedTopic: string;
@@ -472,6 +591,10 @@ export interface SpecPreinitContextDedupedData extends JsonObject {
   readonly diffSummary: string;
 }
 
+/**
+ * Payload for `deep_research.spec_mutation`, recording the anchors touched, a diff summary and the generated fence
+ * written.
+ */
 export interface SpecMutationData extends JsonObject {
   readonly phase: string;
   readonly anchorsTouched: string[];
@@ -481,6 +604,10 @@ export interface SpecMutationData extends JsonObject {
 
 // The pre-init conflict row carries no fence or conflict kind; the
 // post-synthesis row carries both, so they are null when the row omits them.
+/**
+ * Payload for `deep_research.spec_mutation_conflict`, recording why a spec write was refused and the conflicting fence
+ * or kind when known.
+ */
 export interface SpecMutationConflictData extends JsonObject {
   readonly folderState: string;
   readonly reason: string;
@@ -489,6 +616,10 @@ export interface SpecMutationConflictData extends JsonObject {
   readonly conflictKind: string | null;
 }
 
+/**
+ * Payload for `deep_research.spec_synthesis_deferred`, recording why the spec write was deferred and its generated
+ * fence.
+ */
 export interface SpecSynthesisDeferredData extends JsonObject {
   readonly reason: string;
   readonly generatedFence: string;
@@ -514,6 +645,10 @@ export type IdeaPromotedData = JsonObject & {
   readonly eventAlias?: 'ideaPromoted';
 };
 
+/**
+ * Payload for `deep_research.question_conflict`, recording a disagreement between the inbox and registry values for a
+ * question and the operator decision.
+ */
 export interface QuestionConflictData extends JsonObject {
   readonly mode: string;
   readonly run: Uint32 | null;
@@ -615,6 +750,7 @@ export type MinIterationsGuardPassData = JsonObject & LifecycleRowIdentity & {
   readonly minIterations: Uint32;
 };
 
+/** Payload for `deep_research.migration`, mapping a legacy state path to its canonical path. */
 export interface MigrationData extends JsonObject {
   readonly legacyPath: string;
   readonly canonicalPath: string;
@@ -922,6 +1058,7 @@ export const DeepResearchWireEventTypes = Object.freeze({
 export type DeepResearchWireEventType =
   typeof DeepResearchWireEventTypes[DeepResearchEventStem];
 
+/** Maps each Deep Research event stem to the data shape its payload carries. */
 export interface DeepResearchPayloadMap {
   readonly 'deep_research.run_initialized': RunInitializedData;
   readonly 'deep_research.run_resumed': RunResumedData;
@@ -984,6 +1121,7 @@ export interface DeepResearchPayloadMap {
   readonly 'deep_research.containment_contested': ContainmentContestedData;
 }
 
+/** Maps each Deep Research event stem to the scope shape it must carry. */
 export interface DeepResearchScopeMap {
   readonly 'deep_research.run_initialized': DeepResearchBaseScope;
   readonly 'deep_research.run_resumed': DeepResearchBaseScope;
@@ -1046,6 +1184,10 @@ export interface DeepResearchScopeMap {
   readonly 'deep_research.containment_contested': DeepResearchBaseScope;
 }
 
+/**
+ * The version-1 payload stored for a Deep Research event: stem, scope and data typed by stem, the prior event hash, the
+ * payload digest and replay metadata.
+ */
 export interface DeepResearchLedgerPayload<
   TStem extends DeepResearchEventStem,
 > extends JsonObject {
@@ -1081,6 +1223,10 @@ export type DeepResearchCompatibilityStatus =
   | 'migrate'
   | 'pin-old-runtime';
 
+/**
+ * Result of classifying a stored record: its status and reason code, the target stem when one applies and the source
+ * version when readable.
+ */
 export interface DeepResearchCompatibilityDecision {
   readonly status: DeepResearchCompatibilityStatus;
   readonly reasonCode: string;
@@ -1089,12 +1235,20 @@ export interface DeepResearchCompatibilityDecision {
   readonly targetVersion: 1;
 }
 
+/**
+ * Scope, prior event hash and replay metadata a legacy record is upcast into, since the legacy record does not carry
+ * them.
+ */
 export interface LegacyUpcastContext {
   readonly scope: DeepResearchScope;
   readonly prevEventHash: Digest;
   readonly replay: DeepResearchReplayMetadata;
 }
 
+/**
+ * A legacy record upcast to a current-version event, with the original record digest, upcaster fingerprint and any
+ * warnings.
+ */
 export interface LegacyUpcastCandidate {
   readonly status: 'migrated';
   readonly targetStem: DeepResearchEventStem;

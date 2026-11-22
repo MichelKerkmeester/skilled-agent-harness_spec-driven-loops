@@ -126,7 +126,7 @@ afterEach(() => {
       try {
         rmSync(dir, { recursive: true, force: true });
       } catch {
-        // Ignore cleanup failures
+        // A leaked temp directory is cleanup noise, not a test result.
       }
     }
   }

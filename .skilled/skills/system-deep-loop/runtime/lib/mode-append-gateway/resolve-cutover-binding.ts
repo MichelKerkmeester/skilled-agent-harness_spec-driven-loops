@@ -44,6 +44,9 @@ export const CutoverBindingErrorCodes = Object.freeze({
 export type CutoverBindingErrorCode =
   typeof CutoverBindingErrorCodes[keyof typeof CutoverBindingErrorCodes];
 
+/**
+ * Error thrown when a cutover binding cannot be resolved, carrying a CutoverBindingErrorCode that names the failure.
+ */
 export class CutoverBindingError extends Error {
   public readonly code: CutoverBindingErrorCode;
 
@@ -54,6 +57,10 @@ export class CutoverBindingError extends Error {
   }
 }
 
+/**
+ * Actor, capability, candidate and base commits and the request, correlation and stream ids that an authority flip is
+ * bound to.
+ */
 export interface ResolvedCutoverBinding {
   /** Stable identity of the operator on whose authority the flip proceeds. */
   readonly actorId: string;
@@ -69,6 +76,9 @@ export interface ResolvedCutoverBinding {
   readonly decidedAt: string;
 }
 
+/**
+ * Inputs to `resolveCutoverBinding`: the mode, optional repository root, baseline commit, clock and environment seam.
+ */
 export interface ResolveCutoverBindingOptions {
   /** Repository the flip is bound to. Defaults to the current directory. */
   readonly repositoryRoot?: string;
@@ -81,6 +91,10 @@ export interface ResolveCutoverBindingOptions {
   readonly environment?: CutoverBindingEnvironment;
 }
 
+/**
+ * Git and OS lookups the binding resolver reads; each returns null, or false for commit existence, when the value is
+ * unavailable.
+ */
 export interface CutoverBindingEnvironment {
   readonly gitConfigEmail: () => string | null;
   readonly gitHeadSha: () => string | null;
@@ -107,6 +121,10 @@ function runGit(repositoryRoot: string, args: readonly string[]): string | null 
   }
 }
 
+/**
+ * Build the production environment that reads git and OS identity for a repository, mapping every failed lookup to null
+ * instead of throwing.
+ */
 export function createDefaultEnvironment(repositoryRoot: string): CutoverBindingEnvironment {
   return Object.freeze({
     gitConfigEmail: () => runGit(repositoryRoot, ['config', '--get', 'user.email']),

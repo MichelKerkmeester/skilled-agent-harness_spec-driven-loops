@@ -106,6 +106,7 @@ interface AcquisitionAttemptContended {
 
 type AcquisitionAttempt = AcquisitionAttemptGranted | AcquisitionAttemptContended;
 
+/** On-disk locations of one resource: its directory, state file, journal and mutex. */
 export interface CoordinatorStoragePaths {
   readonly resourceDirectory: string;
   readonly statePath: string;

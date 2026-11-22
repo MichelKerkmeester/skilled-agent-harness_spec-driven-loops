@@ -1,11 +1,11 @@
-// ┌──────────────────────────────────────────────────────────────────────────┐
-// │ MODULE: append-mode-event legacy deep-research upcast seam               │
-// │ Each case spawns the real CLI script and asserts its process exit code    │
-// │ and stdout JSON, so a pass is a statement about the script itself rather  │
-// │ than about a mock of it. Authority is isolated per case via a private     │
-// │ DEEP_LOOP_AUTHORITY_ROOT so the default legacy-authoritative admission    │
-// │ holds regardless of the host checkout's durable authority state.         │
-// └──────────────────────────────────────────────────────────────────────────┘
+// ───────────────────────────────────────────────────────────────────
+// MODULE: append-mode-event legacy deep-research upcast seam
+// ───────────────────────────────────────────────────────────────────
+// Each case spawns the real CLI script and asserts its process exit code
+// and stdout JSON, so a pass is a statement about the script itself rather
+// than about a mock of it. Authority is isolated per case via a private
+// DEEP_LOOP_AUTHORITY_ROOT so the default legacy-authoritative admission
+// holds regardless of the host checkout's durable authority state.
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -61,7 +61,7 @@ afterEach(() => {
       try {
         rmSync(dir, { recursive: true, force: true });
       } catch {
-        // Ignore cleanup failures
+        // A leaked temp directory is cleanup noise, not a test result.
       }
     }
   }

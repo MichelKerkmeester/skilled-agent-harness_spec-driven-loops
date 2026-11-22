@@ -17,6 +17,10 @@ import type {
   CycleStoppingClockInput,
 } from './cycle-detection-types.js';
 
+/**
+ * Shadow-mode output: the authoritative result is returned unchanged next to the cycle history, evaluation and any
+ * stopping-clock input.
+ */
 export interface CycleShadowResult<TAuthoritative> {
   readonly authoritative_result: TAuthoritative;
   readonly history: CycleHistoryProjection;

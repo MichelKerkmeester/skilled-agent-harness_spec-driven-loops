@@ -87,6 +87,7 @@ function unique(values) {
   return [...new Set(values)];
 }
 
+/** Returns the unique packet names in a mode registry and their count. */
 function registryCounts(registry) {
   const packets = unique(registry.modes.map((mode) => mode.packet));
   return {
@@ -95,6 +96,7 @@ function registryCounts(registry) {
   };
 }
 
+/** Lists, sorted and relative to the report root, every folder up to two levels deep that holds a `source.md`. */
 function reportFolders() {
   const folders = [];
   function walk(folder, depth) {
@@ -110,11 +112,13 @@ function reportFolders() {
   return folders.sort();
 }
 
+/** Lists, sorted, the report folders the report index links to. */
 function indexedReportFolders() {
   return unique([...read(REPORT_INDEX).matchAll(/\]\((\.\/[^)]+\/)\)/gu)]
     .map((match) => match[1].replace(/\/$/u, '').slice(2))).sort();
 }
 
+/** Lists every relative Markdown link in the checked docs whose target does not exist on disk, skipping anchors and URLs. */
 function localLinkFailures() {
   const failures = [];
   for (const filePath of LINK_DOCS) {
@@ -330,6 +334,7 @@ function factsRoutingErrors(lines, relativeFile) {
   ];
 }
 
+/** Checks the facts docs under a root for executor-count, file-reference and routing drift; returns `{ errors }`, or `{ fatal }` when the executor kinds cannot be parsed. */
 function runFacts(root = REPO_ROOT) {
   const executorConfigPath = path.resolve(root, FACTS_EXECUTOR_CONFIG);
   const kindCount = executorKindCount(executorConfigPath);
@@ -354,6 +359,7 @@ function runFacts(root = REPO_ROOT) {
   return { errors };
 }
 
+/** Checks registry packets against disk and the hub index, the report index against its folders and local links, honoring the mismatch and scope flags; returns the counts and the errors found. */
 function runChecks(args) {
   const errors = [];
   const registry = JSON.parse(read(REGISTRY_PATH));

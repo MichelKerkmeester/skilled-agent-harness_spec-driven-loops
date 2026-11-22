@@ -1,6 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep Review Contract Snapshot Renderer                                   ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Review Contract Snapshot Renderer
+// ───────────────────────────────────────────────────────────────────
 //
 // Renders review-mode-contract.yaml into a human-readable Markdown snapshot.
 // This is the single real render target declared under the manifest's
@@ -180,6 +180,12 @@ function parseMappingEntry(lines, index, indent) {
   return { key, value, next };
 }
 
+/**
+ * Parse YAML text with the constrained subset parser described in the file header.
+ *
+ * @param {string} rawText - YAML source text.
+ * @returns {Object} The parsed root value, or an empty object for a document with no content lines.
+ */
 function parseYamlDocument(rawText) {
   const lines = tokenizeLines(rawText);
   if (lines.length === 0) return {};
@@ -190,6 +196,12 @@ function parseYamlDocument(rawText) {
 // 4. SHAPE VALIDATION
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Check that a parsed contract has every top-level block, contract key and list this renderer reads.
+ *
+ * @param {Object} doc - Parsed review-mode contract.
+ * @throws {Error} One error listing every shape problem found.
+ */
 function assertContractShape(doc) {
   const problems = [];
   if (!doc || typeof doc !== 'object') problems.push('document root is not a mapping');
@@ -225,6 +237,13 @@ function assertContractShape(doc) {
   }
 }
 
+/**
+ * Find the single snapshot artifact in `render.artifacts` and check it has markers, sections and a path.
+ *
+ * @param {Object} doc - A contract that passed the shape check.
+ * @returns {Object} The snapshot artifact entry.
+ * @throws {Error} When the entry is missing, incomplete or not the only declared artifact.
+ */
 function resolveSnapshotArtifact(doc) {
   const artifacts = doc.render.artifacts;
   const snapshotArtifact = artifacts.find((artifact) => artifact && artifact.id === SNAPSHOT_ARTIFACT_ID);
@@ -454,6 +473,14 @@ const SECTION_RENDERERS = {
 // 7. DOCUMENT ASSEMBLY
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Render the snapshot document: frontmatter, a regeneration note and each declared section between the artifact markers.
+ *
+ * @param {Object} doc - Parsed review-mode contract.
+ * @param {Object} snapshotArtifact - The resolved snapshot artifact.
+ * @returns {string} The complete snapshot file text, ending in one newline.
+ * @throws {Error} When the artifact names a section with no renderer.
+ */
 function renderSnapshot(doc, snapshotArtifact) {
   const sectionBodies = snapshotArtifact.sections.map((sectionId) => {
     const renderFn = SECTION_RENDERERS[sectionId];
@@ -495,6 +522,12 @@ function relPath(absolutePath) {
   return path.relative(WORKSPACE_ROOT, absolutePath).split(path.sep).join('/');
 }
 
+/**
+ * Read the review-mode contract from the workspace, parse it and check its shape.
+ *
+ * @returns {Object} The parsed contract.
+ * @throws {Error} When the file cannot be read or does not match the expected shape.
+ */
 function loadContractDocument() {
   const contractPath = path.join(WORKSPACE_ROOT, CONTRACT_RELATIVE_PATH);
   const contractText = fs.readFileSync(contractPath, 'utf8');
@@ -503,6 +536,12 @@ function loadContractDocument() {
   return doc;
 }
 
+/**
+ * Write the rendered snapshot, or with `--check` compare it to the file on disk without writing.
+ *
+ * @param {string[]} [argv] - CLI arguments; defaults to the process arguments.
+ * @returns {number} 0 on write or a clean check, 1 when `--check` finds drift, 2 for an unknown option.
+ */
 function run(argv = process.argv.slice(2)) {
   // Only --check is known; any other token must fail here, before the
   // no-check fallthrough can choose the write path and rewrite the snapshot.

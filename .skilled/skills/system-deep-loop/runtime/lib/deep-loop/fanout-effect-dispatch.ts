@@ -92,6 +92,7 @@ export type ExecutorDispatch = (
   dispatchOpts: ExecutorDispatchOptions,
 ) => Promise<ExecutorSpawnResult>;
 
+/** Inputs for one lineage dispatch whose effect evidence is recorded in the lineage's effect ledger. */
 export interface DispatchExecutorEffectOptions {
   /** Per-lineage run directory; the effect ledger is created below it. */
   readonly lineageDir: string;
@@ -265,6 +266,10 @@ async function countPriorDispatches(
 // must each take their own short-lived lease rather than sharing one that
 // would expire mid-dispatch.
 
+/**
+ * Effect ledger writer whose appends pass the transition gateway; a repeat of an already-bound event
+ * id is idempotent.
+ */
 export interface EffectGatewayWriter {
   append(event: EventWritePreflight): Promise<{
     status: 'appended' | 'idempotent';
@@ -334,6 +339,7 @@ function createEffectGatewayWriter(
           `Effect evidence append was denied by the transition gateway: ${authorization.reasonCode}`,
         );
       }
+      // A non-allow verdict threw above, and an allow result always carries its proof.
       const receipt = await appendAuthorizedThroughFence(ledger, event, authorization.proof!);
       const verified = (await ledger.readVerifiedEvents()).find((entry) =>
         entry.event.effective.envelope.event_id === event.identity.eventId);
@@ -527,7 +533,7 @@ export async function dispatchExecutorEffect(
 
   try {
     await effectGateway.execute(executionInput, adapter);
-  } catch (error) {
+  } catch (error: unknown) {
     // Fail-closed: if the durable intent could not be recorded, the spawn
     // never ran. Surface a failure result so the launcher settles this
     // lineage as rejected. If the spawn did run, a post-spawn failure

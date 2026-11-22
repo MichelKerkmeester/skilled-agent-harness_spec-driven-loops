@@ -256,7 +256,7 @@ afterEach(() => {
     try {
       rmSync(root, { recursive: true, force: true });
     } catch {
-      // Ignore cleanup errors
+      // A leaked temp directory is cleanup noise, not a test result.
     }
   }
   temporaryRoots.length = 0;

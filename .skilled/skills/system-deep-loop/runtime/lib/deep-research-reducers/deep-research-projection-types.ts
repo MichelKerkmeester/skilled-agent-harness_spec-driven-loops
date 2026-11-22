@@ -86,6 +86,10 @@ export type DeepResearchReducerErrorCode =
 // 2. RUN AND RESEARCH-PLAN PROJECTIONS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Run identity, digests and limits folded from run lifecycle events; identity fields stay null until the run is
+ * initialized.
+ */
 export interface DeepResearchRunProjection {
   readonly runId: string | null;
   readonly lineageId: string | null;
@@ -99,6 +103,10 @@ export interface DeepResearchRunProjection {
   readonly initializationEventId: string | null;
 }
 
+/**
+ * A registered research question as folded into the plan, with its dependencies, required source classes and the event
+ * that registered it.
+ */
 export interface DeepResearchQuestionNode {
   readonly questionId: string;
   readonly normalizedQuestionDigest: string;
@@ -109,6 +117,7 @@ export interface DeepResearchQuestionNode {
   readonly producerEventId: string;
 }
 
+/** A planned or selected branch under a question, carrying its score vector, tie-break key and reservation. */
 export interface DeepResearchBranchNode {
   readonly questionId: string;
   readonly branchId: string;
@@ -126,6 +135,10 @@ export interface DeepResearchBranchNode {
   readonly selectedEventId: string | null;
 }
 
+/**
+ * The focus chosen for one iteration, with its score vector, visit cooldown and the branch or question chosen, either
+ * of which may be null.
+ */
 export interface DeepResearchFocusObligation {
   readonly iteration: number;
   readonly obligationId: string;
@@ -137,6 +150,7 @@ export interface DeepResearchFocusObligation {
   readonly producerEventId: string;
 }
 
+/** The research plan folded from question, branch and focus events, with a digest over the plan. */
 export interface DeepResearchResearchPlanProjection {
   readonly planDigest: string;
   readonly questions: DeepResearchQuestionNode[];
@@ -148,6 +162,9 @@ export interface DeepResearchResearchPlanProjection {
 // 3. CLAIM-EVIDENCE-CONTRADICTION PROJECTION
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * A captured source version as folded from `deep_research.source_captured`, keyed by iteration and source version id.
+ */
 export interface DeepResearchSourceRecord {
   readonly iteration: number;
   readonly sourceVersionId: string;
@@ -162,6 +179,10 @@ export interface DeepResearchSourceRecord {
   readonly producerEventId: string;
 }
 
+/**
+ * An evidence admission decision folded from `deep_research.evidence_admission_decided`, with its disposition and
+ * contamination status.
+ */
 export interface DeepResearchEvidenceRecord {
   readonly iteration: number;
   readonly sourceVersionId: string;
@@ -176,6 +197,10 @@ export interface DeepResearchEvidenceRecord {
   readonly producerEventId: string;
 }
 
+/**
+ * One claim version folded from an assertion or relation event; the related claim version is null for a plain
+ * assertion.
+ */
 export interface DeepResearchClaimRecord {
   readonly iteration: number;
   readonly claimId: string;
@@ -190,6 +215,7 @@ export interface DeepResearchClaimRecord {
   readonly producerEventId: string;
 }
 
+/** A claim version replaced by a successor, with the reason, effective time and invalidation scope. */
 export interface DeepResearchClaimSupersession {
   readonly iteration: number;
   readonly priorClaimVersionId: string;
@@ -201,6 +227,10 @@ export interface DeepResearchClaimSupersession {
   readonly producerEventId: string;
 }
 
+/**
+ * An open gap folded from `deep_research.gap_detected`, with the claims and questions it affects and proposed query
+ * recipes.
+ */
 export interface DeepResearchGapObligation {
   readonly iteration: number;
   readonly obligationId: string;
@@ -212,6 +242,10 @@ export interface DeepResearchGapObligation {
   readonly producerEventId: string;
 }
 
+/**
+ * The claim ledger view: sources, evidence, claim versions, supersessions, gap obligations and the claim versions still
+ * active.
+ */
 export interface DeepResearchClaimEvidenceProjection {
   readonly sources: DeepResearchSourceRecord[];
   readonly evidence: DeepResearchEvidenceRecord[];
@@ -226,6 +260,10 @@ export interface DeepResearchClaimEvidenceProjection {
 // 4. ITERATION AND CONVERGENCE PROJECTIONS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Lifecycle and signals for one iteration; the event ids and digests stay null until the matching start or completion
+ * event is folded.
+ */
 export interface DeepResearchIterationRecord {
   readonly iteration: number;
   readonly lifecycle: 'planned' | 'started' | 'complete' | 'error' | 'insight'
@@ -242,11 +280,13 @@ export interface DeepResearchIterationRecord {
   readonly nextFocusCausationId: string | null;
 }
 
+/** The current iteration number with one record per iteration seen. */
 export interface DeepResearchIterationProjection {
   readonly currentIteration: number;
   readonly records: DeepResearchIterationRecord[];
 }
 
+/** One convergence evaluation at a stream position, with its decision, raw and trusted signals and gate results. */
 export interface DeepResearchConvergenceEvaluation {
   readonly iteration: number;
   readonly streamId: string;
@@ -264,6 +304,7 @@ export interface DeepResearchConvergenceEvaluation {
   readonly producerEventId: string;
 }
 
+/** All convergence evaluations with the observed and finalized revisions and the resulting eligibility and outcome. */
 export interface DeepResearchConvergenceProjection {
   readonly evaluations: DeepResearchConvergenceEvaluation[];
   readonly observedRevision: string | null;
@@ -279,6 +320,10 @@ export interface DeepResearchConvergenceProjection {
 // 5. ARTIFACT AND STATUS PROJECTIONS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * An artifact indexed from the ledger, with its kind, digest, schema version and the run, lineage and iteration that
+ * produced it.
+ */
 export interface DeepResearchArtifactRecord {
   readonly artifactId: string;
   readonly logicalArtifactId: string;
@@ -299,10 +344,12 @@ export interface DeepResearchArtifactRecord {
   readonly supersededByArtifactIds: string[];
 }
 
+/** The index of artifacts the ledger has recorded for the run. */
 export interface DeepResearchArtifactIndexProjection {
   readonly artifacts: DeepResearchArtifactRecord[];
 }
 
+/** One mode status change and the event, stem and stream position that caused it. */
 export interface DeepResearchStatusTransition {
   readonly state: DeepResearchModeStatus;
   readonly producerEventId: string;
@@ -312,6 +359,7 @@ export interface DeepResearchStatusTransition {
   readonly transitionReason: string | null;
 }
 
+/** The current mode status, whether it is terminal and the transitions that led to it. */
 export interface DeepResearchStatusProjection {
   readonly state: DeepResearchModeStatus;
   readonly terminal: boolean;
@@ -322,6 +370,7 @@ export interface DeepResearchStatusProjection {
 // 6. REPLAY STATE AND PUBLIC RESULTS
 // ───────────────────────────────────────────────────────────────────
 
+/** Identity of an event already folded, kept so a repeated event can be detected by id and digest. */
 export interface DeepResearchSeenEvent {
   readonly eventId: string;
   readonly eventDigest: string;
@@ -329,6 +378,10 @@ export interface DeepResearchSeenEvent {
   readonly streamSequence: number;
 }
 
+/**
+ * Per-projection fold positions, one for each of the plan, claim ledger, iteration, convergence, artifact index and
+ * status views.
+ */
 export interface DeepResearchProjectionCursors {
   readonly researchPlan: number;
   readonly claimLedger: number;
@@ -338,6 +391,9 @@ export interface DeepResearchProjectionCursors {
   readonly status: number;
 }
 
+/**
+ * The full Deep Research projection: version stamps, every projection view, fold cursors and the events already seen.
+ */
 export interface DeepResearchProjectionState {
   readonly schemaVersion: string;
   readonly reducerVersion: string;
@@ -356,12 +412,17 @@ export interface DeepResearchProjectionState {
 
 export type DeepResearchPersistedField = keyof DeepResearchProjectionState & string;
 
+/**
+ * A projection snapshot with its integrity digest and the source tail sequence it was taken at, so a fold can resume
+ * from it.
+ */
 export interface DeepResearchProjectionCheckpoint {
   readonly projection: DeepResearchProjectionState;
   readonly integrityDigest: string;
   readonly sourceTailSequence: number;
 }
 
+/** Successful fold result: the projection, its integrity digest and a checkpoint for the next fold. */
 export interface DeepResearchProjectedResult {
   readonly outcome: 'projected';
   readonly projection: DeepResearchProjectionState;
@@ -369,6 +430,7 @@ export interface DeepResearchProjectedResult {
   readonly checkpoint: DeepResearchProjectionCheckpoint;
 }
 
+/** Fold result when the checkpoint or event stream cannot be trusted, listing the reason codes for a full rebuild. */
 export interface DeepResearchRebuildRequiredResult {
   readonly outcome: 'rebuild_required';
   readonly reasonCodes: readonly DeepResearchRebuildReasonCode[];
@@ -378,6 +440,10 @@ export type DeepResearchFoldResult =
   | DeepResearchProjectedResult
   | DeepResearchRebuildRequiredResult;
 
+/**
+ * Optional checkpoint to resume from, the version stamps it must match and the tail sequence and contiguity the fold
+ * must check.
+ */
 export interface DeepResearchFoldOptions {
   readonly checkpoint?: DeepResearchProjectionCheckpoint;
   readonly expectedSchemaVersion?: string;
@@ -388,6 +454,10 @@ export interface DeepResearchFoldOptions {
   readonly requireContiguousTail?: boolean;
 }
 
+/**
+ * Shadow-only view in the legacy state shape that leaves legacy authority unchanged and lists the fields it cannot
+ * carry losslessly.
+ */
 export interface DeepResearchLegacyProjection {
   readonly authority: 'shadow-only';
   readonly legacyAuthority: 'unchanged';
@@ -399,6 +469,7 @@ export interface DeepResearchLegacyProjection {
   readonly lossyFields: string[];
 }
 
+/** Declares which reducer owns a persisted field, the event stems that feed it and the fold algebra it applies. */
 export interface DeepResearchProjectionFieldOwnership {
   readonly field: DeepResearchPersistedField;
   readonly ownerReducerId: string;

@@ -28,15 +28,25 @@ Resume-identity substrate for `system-deep-loop`, so a session that stops and re
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-observation.ts`
-- `.skilled/skills/system-deep-loop/runtime/lib/claim-continuity/claim-service.ts`
+Non-test modules that import this folder:
+
+- `../../claim-continuity/claim-continuity-events.ts`
+- `../../claim-continuity/claim-continuity-types.ts`
+- `../../claim-continuity/claim-frontier.ts`
+- `../../claim-continuity/claim-matching.ts`
+- `../../claim-continuity/claim-reducer.ts`
+- `../../claim-continuity/claim-replay.ts`
+- `../../claim-continuity/claim-service.ts`
+- `../../cycle-detection/cycle-detection-types.ts`
+- `../../cycle-detection/cycle-observation.ts`
+- `../../mode-contracts/mode-contract-types.ts`
+- `../../mode-contracts/substrate-ports.ts`
 
 ---
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts`
+- `../../../tests/unit/continuity-identities.vitest.ts`
 
 ---
 

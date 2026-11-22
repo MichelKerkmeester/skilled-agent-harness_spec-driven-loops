@@ -25,12 +25,14 @@ export type PartialFailureVerdict = 'abort' | 'await' | 'proceed' | 'proceed_deg
 export type EvaluationFinality = 'final' | 'provisional';
 export type PolicyApplicability = 'applicable' | 'not_applicable';
 
+/** A threshold given as a fraction of admitted branches, optionally tightened by an absolute count. */
 export interface CountFractionGate extends JsonObject {
   readonly count: number | null;
   readonly denominator: number;
   readonly numerator: number;
 }
 
+/** Versioned partial-failure policy: its mode and the success and failure gates it judges a fan-out by. */
 export interface PartialFailurePolicy extends JsonObject {
   readonly failureGate: CountFractionGate;
   readonly mode: PartialFailureMode;
@@ -39,12 +41,14 @@ export interface PartialFailurePolicy extends JsonObject {
   readonly successGate: CountFractionGate;
 }
 
+/** Id, version and digest that pin the exact policy an evaluation used. */
 export interface PartialFailurePolicyReference extends JsonObject {
   readonly policyDigest: string;
   readonly policyId: string;
   readonly policyVersion: number;
 }
 
+/** A leaf excluded from waiting, with the evidence and reason code that justify it. */
 export interface NotAwaitedLeaf extends JsonObject {
   readonly evidenceId: string;
   readonly leafId: string;
@@ -52,6 +56,7 @@ export interface NotAwaitedLeaf extends JsonObject {
   readonly reasonCode: string;
 }
 
+/** A logical branch admitted to the decision, with every attempt, dispatch and receipt id behind it. */
 export interface AdmittedBranch extends JsonObject {
   readonly attemptIds: string[];
   readonly dispatchIds: string[];
@@ -61,6 +66,7 @@ export interface AdmittedBranch extends JsonObject {
   readonly logicalBranchId: string;
 }
 
+/** Ledger position and registry digest the admitted set was frozen at. */
 export interface FrozenDecisionBoundary extends JsonObject {
   readonly ledgerId: string;
   readonly recordHash: string;
@@ -68,6 +74,7 @@ export interface FrozenDecisionBoundary extends JsonObject {
   readonly sequence: number;
 }
 
+/** The digested, frozen set of admitted branches and not-awaited leaves for one decision epoch. */
 export interface FrozenAdmittedSet extends JsonObject {
   readonly admittedSetDigest: string;
   readonly branches: AdmittedBranch[];
@@ -81,12 +88,20 @@ export interface FrozenAdmittedSet extends JsonObject {
   readonly waveId: string;
 }
 
+/**
+ * Fan-in decision view and dispatch receipts used to freeze the admitted set, plus any leaves excluded from
+ * waiting.
+ */
 export interface FreezeAdmittedSetInput {
   readonly decisionView: FanInDecisionView;
   readonly dispatchReceipts: readonly DispatchReceiptPayload[];
   readonly notAwaited?: readonly NotAwaitedLeaf[];
 }
 
+/**
+ * One decision epoch: its boundary state, optional deadline, evaluation time and whether it was declared an
+ * empty tick.
+ */
 export interface DecisionEpoch extends JsonObject {
   readonly boundaryState: DecisionBoundaryState;
   readonly deadlineAt: string | null;
@@ -122,6 +137,7 @@ export type LeafFailureClass =
 export type FailureRetryability = 'exhausted' | 'non_retryable';
 export type FailureImpact = 'leaf_local' | 'run_fatal';
 
+/** One attempt's diagnostic for a branch, recording whether a retry was scheduled. */
 export interface RetryDiagnostic extends JsonObject {
   readonly attemptEventId: string;
   readonly attemptId: string;
@@ -133,6 +149,7 @@ export interface RetryDiagnostic extends JsonObject {
   readonly retryScheduled: boolean;
 }
 
+/** Ledger-shaped record of a leaf's terminal failure, linking its attempts, dispatch, receipt and artifacts. */
 export interface TerminalFailureEnvelope extends JsonObject {
   readonly artifact_references: string[];
   readonly attempt_event_ids: string[];
@@ -159,6 +176,7 @@ export interface TerminalFailureEnvelope extends JsonObject {
   readonly terminal: true;
 }
 
+/** Caller-side facts for one leaf's terminal failure, which cannot be an orchestration-integrity failure. */
 export interface TerminalFailureInput {
   readonly artifactReferences?: readonly string[];
   readonly attemptEventIds?: readonly string[];
@@ -173,6 +191,7 @@ export interface TerminalFailureInput {
   readonly startedAt: string;
 }
 
+/** Facts for a run-level orchestration-integrity failure within a decision epoch. */
 export interface IntegrityFailureInput {
   readonly completedAt: string;
   readonly decisionEpochId: string;
@@ -185,11 +204,13 @@ export interface IntegrityFailureInput {
 // 3. EVALUATION AND HANDOFF
 // ───────────────────────────────────────────────────────────────────
 
+/** A success ratio as an integer numerator over denominator. */
 export interface SuccessFraction extends JsonObject {
   readonly denominator: number;
   readonly numerator: number;
 }
 
+/** Digested receipt of one policy evaluation, with the counts, boundary state and applicability it was decided on. */
 export interface PolicyEvaluationReceipt extends JsonObject {
   readonly admitted: number;
   readonly admitted_set_digest: string;
@@ -223,6 +244,7 @@ export interface PolicyEvaluationReceipt extends JsonObject {
   readonly verdict: PartialFailureVerdict | null;
 }
 
+/** Final marker that a fan-out finished degraded, naming the failed branches and the evaluation that decided it. */
 export interface DegradedResultMarker extends JsonObject {
   readonly admitted: number;
   readonly degraded: true;
@@ -241,6 +263,7 @@ export interface DegradedResultMarker extends JsonObject {
   readonly tolerated_failure_ceiling: number;
 }
 
+/** Marker that a fan-out was aborted, naming the failed branches, reason codes and the evaluation that decided it. */
 export interface AbortMarker extends JsonObject {
   readonly abort_id: string;
   readonly decision_epoch_id: string;
@@ -251,6 +274,7 @@ export interface AbortMarker extends JsonObject {
   readonly run_id: string;
 }
 
+/** A result that arrived after its decision epoch closed and is excluded from the decision. */
 export interface LateResultRecord extends JsonObject {
   readonly closed_policy_evaluation_receipt_id: string;
   readonly decision_epoch_id: string;
@@ -265,12 +289,17 @@ export interface LateResultRecord extends JsonObject {
   readonly run_id: string;
 }
 
+/** The successful envelopes handed on for reduction, with the evaluation receipt and any degraded marker. */
 export interface PartialFailureReductionRequest {
   readonly degradedMarker: DegradedResultMarker | null;
   readonly policyEvaluationReceipt: PolicyEvaluationReceipt;
   readonly successfulEnvelopes: readonly LeafResultPayload[];
 }
 
+/**
+ * Full outcome of a policy evaluation: verdict, finality, markers, late results, synthesized failures and the
+ * reduction request, if any.
+ */
 export interface PartialFailureEvaluation {
   readonly abortMarker: AbortMarker | null;
   readonly applicability: PolicyApplicability;
@@ -283,6 +312,7 @@ export interface PartialFailureEvaluation {
   readonly verdict: PartialFailureVerdict | null;
 }
 
+/** The legacy fan-out outcome as its exit code, status and value. */
 export interface LegacyFanOutOutcome<TValue> {
   readonly exitCode: 0 | 2 | 3;
   readonly status: 'ok' | 'partial';
@@ -295,6 +325,7 @@ export type ShadowDifferenceClassification =
   | 'not_applicable'
   | 'unexpected_difference';
 
+/** Digested receipt comparing the legacy fan-out outcome with the policy evaluation and classifying the difference. */
 export interface PolicyShadowComparisonReceipt extends JsonObject {
   readonly classification: ShadowDifferenceClassification;
   readonly compared_at: string;
@@ -310,6 +341,7 @@ export interface PolicyShadowComparisonReceipt extends JsonObject {
   readonly typed_verdict: PartialFailureVerdict | null;
 }
 
+/** Shadow run result in which the legacy outcome stays authoritative and the policy evaluation is only compared. */
 export interface PartialFailureShadowResult<TValue> {
   readonly authority: 'legacy-authoritative';
   readonly comparison: PolicyShadowComparisonReceipt;
@@ -317,6 +349,10 @@ export interface PartialFailureShadowResult<TValue> {
   readonly shadowEvaluation: PartialFailureEvaluation;
 }
 
+/**
+ * Inputs to one evaluation: the frozen admitted set, epoch, policy, results, failures, retry diagnostics and any
+ * earlier closed evaluation.
+ */
 export interface EvaluatePartialFailureInput {
   readonly admittedSet: FrozenAdmittedSet;
   readonly closedEvaluation?: PartialFailureEvaluation | null;
@@ -331,6 +367,7 @@ export interface EvaluatePartialFailureInput {
 // 4. LEDGER EVENTS
 // ───────────────────────────────────────────────────────────────────
 
+/** Envelope fields shared by every partial-failure event written to the ledger. */
 export interface PartialFailureEventContext {
   readonly authorityEpoch: number;
   readonly causationId: string | null;
@@ -341,6 +378,7 @@ export interface PartialFailureEventContext {
   readonly streamSequence: number;
 }
 
+/** An evaluation and its terminal failures to record, with the event context, registry and authorized writer. */
 export interface RecordPartialFailureEvaluationInput {
   readonly context: PartialFailureEventContext;
   readonly evaluation: PartialFailureEvaluation;
@@ -349,6 +387,7 @@ export interface RecordPartialFailureEvaluationInput {
   readonly writer: AuthorizedEvidenceWriter;
 }
 
+/** Append results for the evaluation, its late results and failures, and the transition when one was written. */
 export interface RecordedPartialFailureEvaluation {
   readonly evaluation: AuthorizedEvidenceAppendResult;
   readonly lateResults: readonly AuthorizedEvidenceAppendResult[];

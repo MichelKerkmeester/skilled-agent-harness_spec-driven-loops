@@ -63,6 +63,7 @@ if (require.main === module && !isTsxLoaded) {
 const { existsSync, readFileSync } = require('node:fs');
 const { join } = require('node:path');
 
+/** Parses `--flag value` pairs into a camelCase object, where a flag with no value becomes `true`; a positional argument throws. */
 function parseArgs(argv = process.argv.slice(2)) {
   const args = {};
   for (let i = 0; i < argv.length; i += 1) {
@@ -125,6 +126,7 @@ function readRecordFromDisk(authorityRoot, mode) {
   };
 }
 
+/** Prints every mode's on-disk authority record as one JSON object, and exits 2 unless all modes are ledger-authoritative with the dark writer, or 1 on an argument error. */
 async function main() {
   let args;
   try {

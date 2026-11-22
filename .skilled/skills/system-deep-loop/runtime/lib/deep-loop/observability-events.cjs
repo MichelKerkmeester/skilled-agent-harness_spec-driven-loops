@@ -148,6 +148,10 @@ function normalizeObservabilityEvent(payload, meta = {}) {
   };
 }
 
+// Lifecycle events severe enough to mirror to stderr — the JSONL ledger is otherwise pull-only,
+// so a stall/abort/requeue would only be visible to something actively tailing the file.
+const LOUD_OBSERVABILITY_EVENTS = new Set(['stall_detected', 'orphan_requeued', 'aborted']);
+
 /**
  * Append a normalized observability event as one JSONL row.
  *
@@ -157,10 +161,6 @@ function normalizeObservabilityEvent(payload, meta = {}) {
  * @returns {Object} The appended observability envelope.
  * @throws {TypeError} If eventPath is invalid or normalization fails.
  */
-// Lifecycle events severe enough to mirror to stderr — the JSONL ledger is otherwise pull-only,
-// so a stall/abort/requeue would only be visible to something actively tailing the file.
-const LOUD_OBSERVABILITY_EVENTS = new Set(['stall_detected', 'orphan_requeued', 'aborted']);
-
 function appendObservabilityEvent(eventPath, payload, meta = {}) {
   if (typeof eventPath !== 'string' || eventPath.trim() === '') {
     throw new TypeError('eventPath must be a non-empty string');

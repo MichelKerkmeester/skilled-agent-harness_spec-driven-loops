@@ -97,6 +97,7 @@ function toPosixPath(inputPath) {
   return inputPath.split(path.sep).join('/');
 }
 
+/** Returns a path as a POSIX-style path relative to the workspace root, for stable messages across platforms. */
 function relPath(inputPath) {
   return toPosixPath(path.relative(WORKSPACE_ROOT, inputPath));
 }
@@ -120,6 +121,7 @@ function isChangelogOrReadme(sourcePath) {
   return /(^|\/)changelog\//i.test(sourcePath) || /(^|\/)README\.md$/i.test(sourcePath);
 }
 
+/** Returns `feature-catalog` or `manual-testing-playbook` when a source path runs through one of those package folders, else null. */
 function canonicalNonAuthorityPackageRoot(sourcePath) {
   const roots = new Map([
     ['feature-catalog', 'feature-catalog'],
@@ -298,6 +300,7 @@ function addDeclaredModeSources(sources, definition) {
   );
 }
 
+/** Collects the sorted source paths a command's contract must cover, from its spine, command doc, auto-mode presentation, workflow YAMLs and declared modes. */
 function deriveAuthoritySources(command) {
   const definition = getCommandDefinition(command);
   const sources = new Set();
@@ -354,6 +357,7 @@ function parseScalar(value) {
   return trimmed;
 }
 
+/** Reads the `allowed` list from a compiled contract's `tools` section. */
 function parseContractAllowedTools(contractText) {
   return parseYamlListBlock(extractSection(contractText, 'tools'), 'allowed');
 }
@@ -367,6 +371,7 @@ function expandAllowedTool(toolName) {
   return tools;
 }
 
+/** Reads a command doc's `allowed-tools` frontmatter, in inline or dash-list form, into a Set of expanded tool names. */
 function parseCommandAllowedTools(commandMarkdown) {
   const parsed = parseFrontmatter(commandMarkdown);
   // Tool parsing stays line-level over the raw block: the inline
@@ -392,6 +397,7 @@ function parseCommandAllowedTools(commandMarkdown) {
   return tools;
 }
 
+/** Lists the tools a compiled contract allows that the command's own frontmatter does not, for the drift check to report. */
 function findToolAllowlistOverflow(command, contractText) {
   const definition = getCommandDefinition(command);
   const commandTools = parseCommandAllowedTools(readText(definition.commandPath));
@@ -420,6 +426,7 @@ function renderBlockPayload(blockText) {
     .trim();
 }
 
+/** Lists placeholder tokens left in a contract and each required render block that is missing or empty. */
 function findUnresolvedMarkers(contractText) {
   const issues = [];
   const markers = Array.from(new Set(contractText.match(PLACEHOLDER_PATTERN) || []));
@@ -523,6 +530,7 @@ function checkEnumeratedSourceGaps(command, header) {
     ));
 }
 
+/** Runs every drift check for one command and returns its failures plus any compiled-body warnings; an unknown command throws. */
 function checkCommand(command, options = {}) {
   getCommandDefinition(command);
   const acceptCompiledDrift = Boolean(options.acceptCompiledDrift);
@@ -549,6 +557,7 @@ function commandsToCheck(args) {
   return Object.keys(COMMANDS);
 }
 
+/** Runs `checkCommand` for the requested command, or for every known command, and returns the per-command results with all failures and warnings flattened. */
 function checkContracts(options = {}) {
   const commands = options.commands || commandsToCheck(options);
   const results = commands.map((command) => checkCommand(command, options));
@@ -563,6 +572,7 @@ function checkContracts(options = {}) {
 // ───────────────────────────────────────────────────────────────────
 // 5. CLI ENTRY
 // ───────────────────────────────────────────────────────────────────
+/** Parses `--command`, `--accept-compiled-drift` and `--help`, and throws on an unknown argument or an unsupported command. */
 function parseArgs(argv) {
   const args = { acceptCompiledDrift: false };
   for (let index = 0; index < argv.length; index += 1) {
@@ -601,6 +611,7 @@ function formatDrift(prefix, drift) {
   return `${prefix} ${fields.join(' ')}\n`;
 }
 
+/** Prints drift warnings to stdout and failures to stderr, and returns the exit code: 0 when clean or on help, `EXIT_DRIFT` when any failure was found. */
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   if (args.help) {

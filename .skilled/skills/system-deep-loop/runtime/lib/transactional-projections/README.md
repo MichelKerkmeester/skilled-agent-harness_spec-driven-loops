@@ -30,7 +30,7 @@ Applies verified ledger events into one atomic projection generation, so a bundl
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/health-degeneration-harness/`
+- `../health-degeneration-harness/`
 
 It depends on `locks-and-fencing` for fenced leases and `stream-fold-gauges` for the metric bindings a bundle can carry.
 
@@ -38,12 +38,12 @@ It depends on `locks-and-fencing` for fenced leases and `stream-fold-gauges` for
 
 ## 4. TESTS
 
-- `.skilled/skills/system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts`
+- `../../tests/unit/transactional-projections.vitest.ts`
 - Also exercised by `health-degeneration-harness.vitest.ts`.
 
 ---
 
 ## 5. RELATED
 
-- [`runtime/lib/stream-fold-gauges/README.md`](../stream-fold-gauges/README.md)
-- [`system-deep-loop/SKILL.md`](../../../SKILL.md)
+- [`../stream-fold-gauges/README.md`](../stream-fold-gauges/README.md)
+- [`../../../SKILL.md`](../../../SKILL.md)

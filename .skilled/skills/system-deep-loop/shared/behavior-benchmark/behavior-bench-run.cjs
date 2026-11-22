@@ -96,6 +96,12 @@ function buildSpawnArgs(legName, contract) {
 }
 
 // ── Scenario parsing: first fenced ```json block is the contract ─────────────
+/**
+ * Read a scenario file and parse its first fenced json block as the contract.
+ *
+ * @param {string} filePath - Path to the scenario markdown file.
+ * @returns {Object|null} The contract object, or null when the file, the block or its JSON is missing or unusable.
+ */
 function parseScenario(filePath) {
   let md;
   try {
@@ -296,6 +302,14 @@ function evaluateBoundary(contract, obs = {}) {
   return { clean: escapes.size === 0, escapes: [...escapes] };
 }
 
+/**
+ * Return the presentation markers found in a text; a `/regex/` marker is tested
+ * case-insensitively, any other marker as a literal substring.
+ *
+ * @param {string[]} markers - Declared presentation markers.
+ * @param {string} text - Text to search.
+ * @returns {string[]} The markers that matched, in declared order.
+ */
 function matchMarkers(markers, text) {
   const hits = [];
   for (const m of markers) {
@@ -304,6 +318,14 @@ function matchMarkers(markers, text) {
   return hits;
 }
 
+/**
+ * Cut the rendered block out of stdout: from the first setup or marker line through
+ * the last one, extended to the next blank or dispatch line.
+ *
+ * @param {string[]} markers - Declared presentation markers.
+ * @param {string[]} stdoutLines - Captured stdout lines.
+ * @returns {string|null} The block with a trailing newline, or null when no line matched.
+ */
 function extractRenderedBlock(markers, stdoutLines) {
   if (!Array.isArray(stdoutLines) || stdoutLines.length === 0) return null;
   const hitIndices = [];
@@ -327,6 +349,10 @@ function extractRenderedBlock(markers, stdoutLines) {
 
 // Delegation evidence has distinct shapes across the deep-loop modes:
 //   task_dispatch    -- a LEAF sub-agent dispatch (research/review/context).
+/**
+ * @param {Object} deleg - Expected delegation contract.
+ * @returns {string} The declared evidence kind, `task_dispatch` when none is declared.
+ */
 function evidenceKind(deleg) {
   return (deleg && deleg.evidence_kind) || 'task_dispatch';
 }
@@ -373,7 +399,15 @@ function scoreDirectDispatch(deleg, obs) {
   return 0;
 }
 
-// True when the run shows the delegation evidence its mode requires.
+/**
+ * True when the run shows the delegation evidence its mode requires: enough
+ * expected-target hits for a schema-v2 direct-dispatch contract, otherwise any task event.
+ *
+ * @param {Object} deleg - Expected delegation contract.
+ * @param {Object} obs - Captured observation.
+ * @param {boolean} [isV2] - Whether the contract is schema version 2.
+ * @returns {boolean} Whether delegation evidence is present.
+ */
 function hasDelegationEvidence(deleg, obs, isV2 = false) {
   const kind = evidenceKind(deleg);
   if (isV2 && kind === 'direct_dispatch') {
@@ -385,6 +419,14 @@ function hasDelegationEvidence(deleg, obs, isV2 = false) {
   return (obs.taskEvents || []).length > 0;
 }
 
+/**
+ * Score the interaction dimension. A halt or fail-fast cell earns 2 for a marker
+ * with no dispatch; an autonomous cell earns 2 for a natural terminal with enough work.
+ *
+ * @param {Object} contract - Scenario contract.
+ * @param {Object} obs - Captured observation.
+ * @returns {0|1|2} Interaction score.
+ */
 function scoreD1(contract, obs) {
   const ei = contract.expected_interaction;
   const deleg = contract.expected_delegation || {};
@@ -411,6 +453,13 @@ function scoreD1(contract, obs) {
   return 0;
 }
 
+/**
+ * Score the presentation dimension: 2 when every marker matched, 1 when at least half did.
+ *
+ * @param {Object} contract - Scenario contract.
+ * @param {Object} obs - Captured observation.
+ * @returns {0|1|2|null} Presentation score, or null when the contract declares no markers.
+ */
 function scoreD2(contract, obs) {
   const markers = contract.expected_presentation_markers || [];
   if (markers.length === 0) return null;
@@ -420,6 +469,14 @@ function scoreD2(contract, obs) {
   return 0;
 }
 
+/**
+ * Score the delegation dimension from task events and route proofs, or from
+ * direct-dispatch target hits for a schema-v2 direct-dispatch contract.
+ *
+ * @param {Object} contract - Scenario contract.
+ * @param {Object} obs - Captured observation.
+ * @returns {0|1|2|null} Delegation score, or null when the contract expects no delegation.
+ */
 function scoreD3(contract, obs) {
   const deleg = contract.expected_delegation || {};
   const kind = evidenceKind(deleg);
@@ -457,6 +514,14 @@ function scoreD3(contract, obs) {
   return 0;
 }
 
+/**
+ * Score the completion dimension: 0 without a natural terminal; an autonomous cell
+ * owed artifacts earns 2 only when the fixture gained them.
+ *
+ * @param {Object} contract - Scenario contract.
+ * @param {Object} obs - Captured observation.
+ * @returns {0|1|2} Completion score.
+ */
 function scoreD4(contract, obs) {
   const ei = contract.expected_interaction;
   const naturalTerminal = obs.killedBy === 'none' && !obs.spawnError;
@@ -476,6 +541,13 @@ function scoreD4(contract, obs) {
   return 2;
 }
 
+/**
+ * Score latency against a baseline: 2 within 1.5 times the baseline terminal time, 1 within 3 times.
+ *
+ * @param {Object} obs - Captured observation.
+ * @param {Object|null} baseline - Baseline result, if one was given.
+ * @returns {0|1|2|null} Latency score, or null without a baseline or either terminal time.
+ */
 function scoreD5(obs, baseline) {
   if (!baseline) return null;
   const baseTerminal = baseline.checkpoints && baseline.checkpoints.tTerminalMs;
@@ -487,6 +559,14 @@ function scoreD5(obs, baseline) {
   return 0;
 }
 
+/**
+ * Score all five dimensions for one observation.
+ *
+ * @param {Object} contract - Scenario contract.
+ * @param {Object} obs - Captured observation.
+ * @param {Object|null} baseline - Baseline result for the latency dimension.
+ * @returns {{d1: number, d2: number|null, d3: number|null, d4: number, d5: number|null}} Per-dimension scores.
+ */
 function score(contract, obs, baseline) {
   return {
     d1: scoreD1(contract, obs),
@@ -515,6 +595,14 @@ function postconditionFailures(contract, obs) {
 }
 
 // First matching bucket wins, in this exact order.
+/**
+ * List the failure causes an observation shows, in priority order. An environment
+ * error or a crash is returned alone; with no cause the result is `pass` or `partial`.
+ *
+ * @param {Object} contract - Scenario contract.
+ * @param {Object} obs - Captured observation.
+ * @returns {string[]} At least one cause.
+ */
 function classificationCauses(contract, obs) {
   const ei = contract.expected_interaction;
   const deleg = contract.expected_delegation || {};
@@ -577,10 +665,22 @@ function classificationCauses(contract, obs) {
   return ['partial'];
 }
 
+/**
+ * @param {Object} contract - Scenario contract.
+ * @param {Object} obs - Captured observation.
+ * @returns {string} The highest-priority classification cause.
+ */
 function classify(contract, obs) {
   return classificationCauses(contract, obs)[0];
 }
 
+/**
+ * Split a cause list into primary and secondary causes and flag cells whose multi-cause outcome is locked.
+ *
+ * @param {Object} contract - Scenario contract.
+ * @param {string[]} causes - Causes in priority order.
+ * @returns {{primaryCause: string, secondaryCause: string|null, multiCauseLocked: boolean}} The result causes; primary defaults to `partial`.
+ */
 function selectResultCauses(contract, causes) {
   const primaryCause = causes[0] || 'partial';
   const secondaryCause = causes.length > 1 ? causes[1] : null;
@@ -752,6 +852,14 @@ function fixtureMutationTimes(dir, beforeHashes, afterHashes, originMs) {
   return times.sort((a, b) => a - b);
 }
 
+/**
+ * Summarize progress timing: unique non-negative timestamps up to the terminal time
+ * and the gaps between them, starting from 0 and ending at the terminal time when known.
+ *
+ * @param {number[]} progressTimestampsMs - Progress event offsets in milliseconds.
+ * @param {number|null} terminalMs - Terminal offset, or null when unknown.
+ * @returns {Object} Event count, first and last progress offsets, gaps and the largest gap.
+ */
 function summarizeProgressCadence(progressTimestampsMs, terminalMs) {
   const seen = new Set();
   const events = [];
@@ -783,6 +891,13 @@ function summarizeProgressCadence(progressTimestampsMs, terminalMs) {
   };
 }
 
+/**
+ * Report how close a run came to its time budget: time to the first artifact, the
+ * budget left at that point and at the terminal, and the progress cadence.
+ *
+ * @param {Object} input - Budget, watchdog window, checkpoints, fixture mutation times and progress timestamps.
+ * @returns {Object} Budget-edge signals; offsets that cannot be known are null.
+ */
 function buildBudgetEdgeSignals({ budgetMs, watchdogMs, checkpoints, fixtureMutationTimesMs, progressTimestampsMs }) {
   const tTerminalMs = checkpoints && checkpoints.tTerminalMs != null ? checkpoints.tTerminalMs : null;
   const firstArtifactMs = fixtureMutationTimesMs && fixtureMutationTimesMs.length > 0
@@ -798,6 +913,10 @@ function buildBudgetEdgeSignals({ budgetMs, watchdogMs, checkpoints, fixtureMuta
   };
 }
 
+/**
+ * @param {Object} contract - Scenario contract.
+ * @returns {boolean} True when the clarity is `c1` or `vague`, or the title mentions vague.
+ */
 function isVagueAskCell(contract) {
   const clarity = String((contract && contract.clarity) || '').toLowerCase();
   if (clarity === 'c1' || clarity === 'vague') return true;
@@ -805,6 +924,14 @@ function isVagueAskCell(contract) {
   return title.includes('vague');
 }
 
+/**
+ * Classify how a vague-ask cell was handled: misroute, routed, offered or inline.
+ *
+ * @param {Object} contract - Scenario contract.
+ * @param {Object} obs - Captured observation.
+ * @param {string} bucket - The primary classification cause.
+ * @returns {string|null} The vague-ask outcome, or null for a cell that is not a vague ask.
+ */
 function classifyVagueAsk(contract, obs, bucket) {
   if (!isVagueAskCell(contract)) return null;
 
@@ -832,6 +959,12 @@ function extractPorcelainPath(line) {
   return p;
 }
 
+/**
+ * List the paths `git status --porcelain` reports for a repository.
+ *
+ * @param {string} repoRoot - Repository root.
+ * @returns {string[]|null} Changed paths, or null when git did not answer.
+ */
 function gitStatusPaths(repoRoot) {
   let out;
   try {
@@ -852,6 +985,16 @@ function gitStatusPaths(repoRoot) {
     .filter(Boolean);
 }
 
+/**
+ * List paths that changed during a run outside the fixture and output directories, capped at 50.
+ *
+ * @param {Set<string>|null} beforeSet - Paths already changed before the run.
+ * @param {string[]|null} afterPaths - Paths changed after the run.
+ * @param {string} fixtureDir - Fixture directory the run may write.
+ * @param {string} outDir - Output directory the run may write.
+ * @param {string} repoRoot - Root that relative paths resolve against.
+ * @returns {string[]} Violating paths, or one message when either git snapshot is missing.
+ */
 function isolationViolations(beforeSet, afterPaths, fixtureDir, outDir, repoRoot) {
   if (beforeSet === null || afterPaths === null) {
     return ['git status unavailable: isolation could not be checked'];
@@ -909,6 +1052,11 @@ function resultFilePath(outDir, scenarioId, leg, sampleIndex, sampleCount) {
   return path.join(outDir, scenarioId + '-' + leg + sampleSuffix(sampleIndex, sampleCount) + '.result.json');
 }
 
+/**
+ * @param {Object} contract - Scenario contract.
+ * @param {Object} obs - Captured observation.
+ * @returns {Object} A one-run stall rate: 1 of 1 when the watchdog killed the run, else 0 of 1.
+ */
 function buildStuckNoProgressRate(contract, obs) {
   const stalled = obs.killedBy === 'watchdog';
   return {
@@ -934,6 +1082,14 @@ function singleStableValue(values) {
   return unique.length === 1 ? unique[0] : null;
 }
 
+/**
+ * Summarize repeated samples: counts per classification and cause, the stall rate,
+ * and whether every sample agreed on classification and both causes.
+ *
+ * @param {Object[]} samples - Per-sample summaries.
+ * @param {string|null} mode - Scenario mode.
+ * @returns {Object} Stability summary; the stall rate value is null with no samples.
+ */
 function summarizeSampleStability(samples, mode) {
   const classifications = samples.map((sample) => sample.classification);
   const primaryCauses = samples.map((sample) => sample.primaryCause);

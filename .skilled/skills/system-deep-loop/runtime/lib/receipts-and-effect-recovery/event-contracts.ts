@@ -184,6 +184,7 @@ export class BoundaryRegistry {
   }
 }
 
+/** Returns a new boundary registry loaded with the default boundary definitions. */
 export function createBoundaryRegistry(): BoundaryRegistry {
   return new BoundaryRegistry(DEFAULT_BOUNDARY_DEFINITIONS);
 }

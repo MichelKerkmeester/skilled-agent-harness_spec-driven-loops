@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dd1349c4d72e89f15e39adaecc0beb861e362c0f6d0517d475682c0b8df43ed6",
+  "manifestHash": "57543c724265778bf893886400e606d9570bca3b9ca16a26e117858ad2f9c0e1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11718,6 +11718,9 @@
     ],
     "align system deep loop": [
       "align system deep loop"
+    ],
+    "align system deep loop code with sk code": [
+      "align system deep loop code with sk code"
     ],
     "align system deep loop implementation summary": [
       "align system deep loop implementation summary"
@@ -105392,6 +105395,9 @@
     "runtime test project green": [
       "runtime test project green"
     ],
+    "runtime test setup file": [
+      "runtime test setup file"
+    ],
     "runtime test suites": [
       "runtime test suites"
     ],
@@ -110644,6 +110650,21 @@
     ],
     "sk code alignment tasks": [
       "sk-code alignment tasks"
+    ],
+    "sk code and readme alignment": [
+      "sk code and readme alignment"
+    ],
+    "sk code and readme alignment acceptance criteria": [
+      "sk code and readme alignment acceptance criteria"
+    ],
+    "sk code and readme alignment implementation summary": [
+      "sk code and readme alignment implementation summary"
+    ],
+    "sk code and readme alignment plan": [
+      "sk code and readme alignment plan"
+    ],
+    "sk code and readme alignment tasks": [
+      "sk code and readme alignment tasks"
     ],
     "sk code and sk doc alignment": [
       "sk code and sk doc alignment"
@@ -119890,6 +119911,9 @@
     ],
     "skip dont break floor of three": [
       "skip dont break floor of three"
+    ],
+    "skip fsync test setup": [
+      "skip fsync test setup"
     ],
     "skip manual causal edge promotion shipped": [
       "skip-manual causal edge promotion shipped"
@@ -136138,6 +136162,9 @@
     ],
     "vitest setupfiles bypass": [
       "vitest setupFiles bypass"
+    ],
+    "vitest setupfiles skip fsync": [
+      "vitest setupFiles skip-fsync"
     ],
     "vitest stress config": [
       "vitest stress config"

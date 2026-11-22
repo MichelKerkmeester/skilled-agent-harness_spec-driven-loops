@@ -223,7 +223,7 @@
     ],
     "causal_summary": "The deep-research and deep-review loops converge on the three to five questions seeded at init and stop once novelty drops, so a broad target such as \"research the last 100 commits for bugs, drift and improvements\" or \"analyze system-skill-advisor for chat-time auto-utilization\" gets a narrow, shallow answer",
     "created_at": "2026-11-17T07:53:58Z",
-    "last_save_at": "2026-11-21T12:48:27.472Z",
+    "last_save_at": "2026-11-21T18:36:42.025Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -232,14 +232,14 @@
       "decision-record.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:19081881070f439faf27cad0670a7d1dc27fc94d1cffb6bc2e6f5e5c92086cac",
+    "source_fingerprint": "sha256:7d4f7ba40d2cde910c8c67546e2e6ebdf066097d1a2fe49f8fa7a66cf4103621",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f05295749c2350f6919f66c97a4d0f1ca0f8927a80c4467940610da70c2ea98",
-      "decision-record.md": "529509eb4d67f2ba66c424f13b56d6476363ec32ab1db23255154ef604d22018",
+      "decision-record.md": "4f2e7169f741a08e25b9927bfff237bbb429cfe0ac9e6cd537ad0b948684c110",
       "research/research.md": "4dc6968b9335b3350db858934e7b9dff7d64c49061dcd8c7d4a81e6b666a27f2"
     },
-    "last_active_child_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/011-review-frontier-mode",
-    "last_active_at": "2026-11-21T11:41:46.725Z"
+    "last_active_child_id": "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract",
+    "last_active_at": "2026-11-21T18:35:35.553Z"
   }
 }

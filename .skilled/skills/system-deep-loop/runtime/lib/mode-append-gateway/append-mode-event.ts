@@ -79,6 +79,10 @@ import type {
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Inputs to `appendModeEvent`: the mode, run directory, prepared event record, policy and the registry, gateway and
+ * ledger to append through, plus test seams.
+ */
 export interface AppendModeEventOptions {
   /** Mode whose ledger receives the event (e.g., 'deep-research', 'deep-review'). */
   readonly mode: string;
@@ -120,6 +124,7 @@ export interface AppendModeEventOptions {
   readonly now?: () => Date;
 }
 
+/** Durable append receipt extended with the ledger, event and stream identity of the committed event. */
 export interface ModeAppendReceipt extends DurableAppendReceipt {
   readonly ledgerId: string;
   readonly eventId: string;
@@ -130,6 +135,9 @@ export interface ModeAppendReceipt extends DurableAppendReceipt {
   readonly committedAt: string;
 }
 
+/**
+ * Successful append: the receipt and whether the legacy projection refresh ran, with its error message when it failed.
+ */
 export interface AppendModeEventResult {
   readonly ok: true;
   readonly receipt: ModeAppendReceipt;
@@ -142,6 +150,7 @@ export interface AppendModeEventResult {
   readonly idempotentReplay?: true;
 }
 
+/** Refused or failed append, naming the pipeline phase that stopped it with a reason and error code. */
 export interface AppendModeEventError {
   readonly ok: false;
   /**
@@ -471,7 +480,7 @@ export async function appendModeEvent(
       now,
       environment: options.bindingEnvironment,
     });
-  } catch (error) {
+  } catch (error: unknown) {
     return {
       ok: false,
       phase: 'binding',
@@ -498,7 +507,7 @@ export async function appendModeEvent(
       authorityRoot,
       now,
     });
-  } catch (error) {
+  } catch (error: unknown) {
     return {
       ok: false,
       phase: 'authority',
@@ -629,7 +638,7 @@ export async function appendModeEvent(
         authResult.proof,
       );
       break;
-    } catch (error) {
+    } catch (error: unknown) {
       const isHeadConflict = error instanceof LocksAndFencingError
         && error.code === LocksAndFencingErrorCodes.HEAD_CONFLICT;
       if (isHeadConflict && attempt < maxRetries - 1) {
@@ -763,7 +772,7 @@ export async function appendModeEvent(
       projectionRefreshed = false;
       projectionError = `Surface ${surfaceId} has no declared refresh boundary`;
     }
-  } catch (error) {
+  } catch (error: unknown) {
     projectionRefreshed = false;
     projectionError = error instanceof Error ? error.message : String(error);
   }

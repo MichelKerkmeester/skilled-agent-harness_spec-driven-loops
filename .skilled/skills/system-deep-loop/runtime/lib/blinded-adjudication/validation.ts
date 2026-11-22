@@ -87,12 +87,17 @@ const PROSE_SIDE_CHANNELS: readonly {
 // 2. GENERIC GUARDS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * True only for a non-null, non-array object whose prototype is `Object.prototype` or null, so class instances are
+ * rejected.
+ */
 export function isPlainRecord(value: unknown): value is Record<string, unknown> {
   if (value === null || Array.isArray(value) || typeof value !== 'object') return false;
   const prototype = Object.getPrototypeOf(value);
   return prototype === Object.prototype || prototype === null;
 }
 
+/** Throws when any expected key is missing or any key outside the expected set is present. */
 export function assertClosedKeys(
   value: Record<string, unknown>,
   expected: readonly string[],
@@ -111,6 +116,9 @@ export function assertClosedKeys(
   }
 }
 
+/**
+ * Returns the value when it is a string in the bounded identity grammar, and throws an invalid-input error otherwise.
+ */
 export function requireIdentity(value: unknown, field: string): string {
   if (typeof value !== 'string' || !IDENTITY_PATTERN.test(value)) {
     throw invalidInput('Identity must use the bounded identity grammar', field);
@@ -118,6 +126,7 @@ export function requireIdentity(value: unknown, field: string): string {
   return value;
 }
 
+/** Returns the value when it is a lowercase SHA-256 hex string, and throws an invalid-input error otherwise. */
 export function requireDigest(value: unknown, field: string): string {
   if (typeof value !== 'string' || !SHA256_PATTERN.test(value)) {
     throw invalidInput('Digest must be a lowercase SHA-256 hex string', field);
@@ -125,6 +134,7 @@ export function requireDigest(value: unknown, field: string): string {
   return value;
 }
 
+/** Returns the value when it is a bounded lowercase kebab-case token, and throws an invalid-input error otherwise. */
 export function requireCounterfactualToken(value: unknown, field: string): string {
   if (typeof value !== 'string' || !COUNTERFACTUAL_TOKEN_PATTERN.test(value)) {
     throw invalidInput('Counterfactual token must be bounded lowercase kebab-case', field);
@@ -132,6 +142,7 @@ export function requireCounterfactualToken(value: unknown, field: string): strin
   return value;
 }
 
+/** Returns the value when it is a finite number from 0 to 1 inclusive, and throws an invalid-input error otherwise. */
 export function requireFiniteUnitInterval(value: unknown, field: string): number {
   if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 1) {
     throw invalidInput('Value must be a finite number between zero and one', field);

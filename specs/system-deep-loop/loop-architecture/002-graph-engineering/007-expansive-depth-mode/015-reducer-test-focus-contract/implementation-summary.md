@@ -8,17 +8,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract"
-    last_updated_at: "2026-11-20T15:20:00Z"
-    last_updated_by: "claude-opus"
-    recent_action: "Aligned three reducer tests"
-    next_safe_action: "None; phase complete"
+    last_updated_at: "2026-11-21T18:35:35Z"
+    last_updated_by: "generate-context"
+    recent_action: "Recorded rounds 8-12 operator decisions Q057-Q070 in the parent decision record"
+    next_safe_action: "Fix the fan-out exit 3 collision and one-shot signal forwarders in the parent"
+    packet_purpose: "Purpose: The CLI suite asserts the shipped Next Focus contract, and each test still reaches the branch its name describes."
     blockers: []
     key_files:
-      - ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts"
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/decision-record.md"
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/scratch/dogfood-round8.md"
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/goal.md"
+      - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/goal.md"
+      - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:43dc14eb0354337c7f125e4d7369123e99d519caa33f5cb3c6caf252e2ed2600"
       session_id: "scaffold-015-reducer-test-focus-contract"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
+      workspace: "/Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration"
+      savedAt: "2026-11-21T18:35:35Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

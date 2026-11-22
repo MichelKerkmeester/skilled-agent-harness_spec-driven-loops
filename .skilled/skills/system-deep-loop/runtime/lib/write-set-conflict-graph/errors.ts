@@ -13,6 +13,7 @@ export const WriteSetGraphErrorCodes = {
 export type WriteSetGraphErrorCode =
   typeof WriteSetGraphErrorCodes[keyof typeof WriteSetGraphErrorCodes];
 
+/** Error thrown when write-set graph input or a stored artifact fails validation, carrying a typed code and details. */
 export class WriteSetGraphValidationError extends Error {
   public readonly code: WriteSetGraphErrorCode;
   public readonly details: Readonly<Record<string, unknown>>;

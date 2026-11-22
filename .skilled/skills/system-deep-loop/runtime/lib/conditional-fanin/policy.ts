@@ -21,6 +21,7 @@ function positiveInteger(value: number, field: string): number {
   return value;
 }
 
+/** Return the policy when its version is supported and its thresholds are valid; otherwise throw a TypeError. */
 export function validateConditionalFanInPolicy(
   policy: ConditionalFanInPolicy,
 ): ConditionalFanInPolicy {
@@ -64,11 +65,13 @@ export function validateConditionalFanInPolicy(
   return policy;
 }
 
+/** Validate the policy, then return the SHA-256 of its canonical bytes. */
 export function conditionalFanInPolicyDigest(policy: ConditionalFanInPolicy): string {
   validateConditionalFanInPolicy(policy);
   return sha256Bytes(canonicalBytes(policy));
 }
 
+/** Frozen policy at the current version from the given thresholds, with value-of-computation turned off. */
 export function defaultConditionalFanInPolicy(input: {
   minimumAcceptedCount: number;
   minimumSupportBasisPoints: number;

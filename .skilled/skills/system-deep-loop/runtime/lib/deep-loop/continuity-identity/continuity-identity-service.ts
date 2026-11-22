@@ -96,6 +96,10 @@ type ContinuityWritePreparation<TValue> =
   | PreparedContinuityWrite<TValue>
   | IdempotentContinuityWrite<TValue>;
 
+/**
+ * Where the continuity ledgers live and who supplies authority, with optional ledger ids, clock and
+ * fault injection.
+ */
 export interface ContinuityIdentityRuntimeOptions {
   readonly rootDirectory: string;
   readonly ledgerId?: string;
@@ -105,6 +109,7 @@ export interface ContinuityIdentityRuntimeOptions {
   readonly faultInjection?: AuthorizedLedgerOptions['faultInjection'];
 }
 
+/** The wired continuity stack: registry, ledger, gateway, dark adapter, service and observer under one policy. */
 export interface ContinuityIdentityRuntime {
   readonly eventRegistry: EventTypeRegistry;
   readonly ledger: AppendOnlyLedger;
@@ -115,6 +120,7 @@ export interface ContinuityIdentityRuntime {
   readonly policy: PolicyReference;
 }
 
+/** One dark-boundary observation: how a shadow continuity write ended, for which alias and subject. */
 export interface DarkContinuityIdentityTelemetry {
   readonly boundaryId: LegacyDarkBoundaryId;
   readonly status: 'appended' | 'idempotent' | 'denied' | 'failed' | 'rejected';

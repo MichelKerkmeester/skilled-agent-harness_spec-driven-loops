@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder tests the one council runtime contract that remains: the parallel seat dispatch in `lib/council/multi-seat-dispatch.cjs`.
+This folder tests the one council runtime contract that remains: the parallel seat dispatch in [`../../lib/council/multi-seat-dispatch.cjs`](../../lib/council/multi-seat-dispatch.cjs).
 
 The suite is the executable verification surface for `dispatchCouncilSeats`, the helper the divergent pivot calls to convene seats for a stalled research or review run.
 
@@ -30,7 +30,7 @@ The suite is the executable verification surface for `dispatchCouncilSeats`, the
 
 | Surface | Entry |
 |---|---|
-| Test command | `vitest run -- tests/council` |
+| Test command | The command in section 5, VALIDATION |
 | Covered boundary | Seat dispatch and per-seat outcome aggregation |
 
 The file is a test rather than an importable production module. It protects the seat-dispatch API exposed by the runtime library.
@@ -48,6 +48,8 @@ Council tests verify the multi-seat branch of the runtime spine after event and 
 ```bash
 .skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/council
 ```
+
+Expected result: Vitest prints `Test Files  1 passed (1)` and exits 0.
 
 ---
 

@@ -43,6 +43,7 @@ function absolutePath(sourcePath) {
   return path.resolve(WORKSPACE_ROOT, sourcePath);
 }
 
+/** Returns the hex SHA-256 digest of a string or buffer. */
 function sha256(input) {
   return crypto.createHash('sha256').update(input).digest('hex');
 }
@@ -51,6 +52,7 @@ function readBuffer(sourcePath) {
   return fs.readFileSync(absolutePath(sourcePath));
 }
 
+/** Returns the definition of a supported command under its canonical name, and throws naming the supported commands otherwise. */
 function getCommandDefinition(command) {
   const canonicalCommand = canonicalizeCommand(command);
   const definition = COMMANDS[canonicalCommand];
@@ -61,12 +63,14 @@ function getCommandDefinition(command) {
   return { command: canonicalCommand, ...definition };
 }
 
+/** Joins the passthrough arguments with single spaces, returning an empty string when there are none. */
 function passthroughArgsText(argv) {
   if (argv.length === 0) return '';
   if (argv.length === 1) return argv[0];
   return argv.join(' ');
 }
 
+/** Returns the injection mode for a command from its environment override or the rollout config, with the rollout default as the fallback. */
 function resolveMode(command) {
   return resolveInjectionMode(command);
 }
@@ -82,6 +86,7 @@ function assertCompiledContractFresh(definition, check = checkCommand) {
   }
 }
 
+/** Returns the command body for an injection mode: the legacy body for `fallback`, or the freshness-checked compiled contract followed by the legacy body for `fix`; any other mode throws. */
 function renderPayload(definition, mode) {
   const legacyBody = readBuffer(definition.legacyBodyPath);
 
@@ -117,6 +122,7 @@ function buildInvocationPrefix(argsText) {
   return Buffer.from(lines.join('\n'), 'utf8');
 }
 
+/** Builds the render manifest row of SHA-256 digests over the arguments, legacy body, compiled contract and rendered output. */
 function buildManifestRow(definition, mode, argsText, output) {
   const legacyBody = readBuffer(definition.legacyBodyPath);
   const compiledContract = readBuffer(definition.compiledContractPath);
@@ -130,6 +136,7 @@ function buildManifestRow(definition, mode, argsText, output) {
   };
 }
 
+/** Appends one JSON row to the render manifest, creating its folder when needed. */
 function appendManifestRow(row, manifestPath = absolutePath(MANIFEST_PATH)) {
   fs.mkdirSync(path.dirname(manifestPath), { recursive: true });
   fs.appendFileSync(manifestPath, `${JSON.stringify(row)}\n`, 'utf8');
@@ -138,6 +145,7 @@ function appendManifestRow(row, manifestPath = absolutePath(MANIFEST_PATH)) {
 // ───────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
+/** Renders a command's invocation prefix and payload for its resolved mode, appends the manifest row unless `writeManifest` is false, and returns the output with its parts. */
 function renderCommandContract(command, options = {}) {
   const definition = getCommandDefinition(command);
   const mode = resolveMode(definition.command);
@@ -175,6 +183,7 @@ function firstByteDiff(left, right) {
   return null;
 }
 
+/** Reports whether the fallback render is byte-identical to the legacy body, with both lengths and the first differing byte when they differ. */
 function compareFallback(command) {
   const definition = getCommandDefinition(command);
   const rendered = renderPayload(definition, 'fallback');

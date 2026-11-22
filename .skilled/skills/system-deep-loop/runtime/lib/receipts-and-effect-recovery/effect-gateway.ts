@@ -53,6 +53,7 @@ import type {
 // 1. TYPES AND CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
+/** An operator ruling on an effect recovery, with the evidence digest backing it. */
 export interface OperatorResolutionInput<TRequest> {
   readonly execution: EffectExecutionInput<TRequest>;
   readonly adapter: EffectAdapter<TRequest>;

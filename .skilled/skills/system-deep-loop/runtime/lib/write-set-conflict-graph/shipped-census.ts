@@ -255,6 +255,7 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
 // 6. EXPORTS
 // ───────────────────────────────────────────────────────────────────
 
+/** Returns the read-only `SHIPPED_MODE_CENSUS` list of mode resource declarations. */
 export function shippedModeCensus(): readonly ModeResourceDeclaration[] {
   return SHIPPED_MODE_CENSUS;
 }
