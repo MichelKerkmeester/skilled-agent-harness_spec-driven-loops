@@ -1,0 +1,440 @@
+{
+  "sessionId": "fanout-vibe-1795297959308-ycf8yr",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-21T22:00:38.507Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "logTailText duplicates readLogTail and reuses GOAL_LOG_MAX_TAIL_BYTES with a second meaning, which is how the two log reads came to disagree",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 906,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The two-worktree refusal always reports 2 packets even when more worktrees carry the headline",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 954,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The goal_root mitigation narrows the trust base but leaves it at any directory git lists as a worktree, and the log-naming signal is model-influenced",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 547,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "troubleshooting.md says a worktree-only goal is carried only when the log names the worktree, but the claimed note also carries it",
+      "file": ".skilled/hooks/session-handover/troubleshooting.md",
+      "line": 54,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "The feature catalog describes the goal carry-over without goal_root or the worktree search",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md",
+      "line": 98,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "spec.md and tasks.md still say three CLI worktree tests while the change ships five, and the packet test count proves the prose is stale",
+      "file": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/spec.md",
+      "line": 110,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "resolveGoalPacketResult returns root only on the worktree path, so every consumer must default a key the JSDoc calls optional",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 1436,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "logTailText duplicates readLogTail and reuses GOAL_LOG_MAX_TAIL_BYTES with a second meaning, which is how the two log reads came to disagree",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 906,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "logTailText duplicates readLogTail and reuses GOAL_LOG_MAX_TAIL_BYTES with a second meaning, which is how the two log reads came to disagree",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 906,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 6
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 0,
+      "partial": 3,
+      "fail": 1,
+      "blocked": 0,
+      "notApplicable": 2,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/hooks/session-handover/lib/relaunch-core.cjs:906-920",
+          ".skilled/hooks/session-handover/lib/relaunch-core.cjs:513",
+          ".skilled/bin/skilled-loop:1460"
+        ],
+        "level": "core",
+        "notes": "Final state: REQ-001 through REQ-004 implemented; the bounded tail narrows REQ-001 and the three-CLI-tests prose is stale.",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/tasks.md:44"
+        ],
+        "level": "core",
+        "notes": "T003 names three tests where five exist; T005 and T010 remain claims without artifacts in this lineage.",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard"
+      },
+      {
+        "applicable": false,
+        "evidenceRefs": [],
+        "level": "overlay",
+        "notes": "No SKILL.md or agent definition is in the diff or the declared scope.",
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": false,
+        "evidenceRefs": [],
+        "level": "overlay",
+        "notes": "No .claude/agents or .opencode/agents file is in the diff or the declared scope.",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md:98"
+        ],
+        "level": "overlay",
+        "notes": "The catalog omits goal_root and the worktree search.",
+        "protocolId": "feature_catalog_code",
+        "status": "fail",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-handover-claude.md:758"
+        ],
+        "level": "overlay",
+        "notes": "No worktree-only case; out of the declared change scope, recorded as follow-up.",
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory"
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code",
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

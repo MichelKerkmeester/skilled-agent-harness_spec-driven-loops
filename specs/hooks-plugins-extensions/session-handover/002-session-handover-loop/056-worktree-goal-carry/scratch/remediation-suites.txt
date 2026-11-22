@@ -1,0 +1,30 @@
+# node suite
+ℹ tests 1077
+ℹ suites 0
+ℹ pass 1077
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58996.948375
+EXIT=0
+# opencode plugin
+ℹ tests 75
+ℹ suites 0
+ℹ pass 75
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 619.124
+EXIT=0
+# hooks vitest
+ Test Files  10 passed (10)
+      Tests  509 passed (509)
+   Start at  23:24:21
+   Duration  543ms (tests 87%, transform 6%, import 6%, worker 1%)
+
+EXIT=0
+# validate --strict
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED

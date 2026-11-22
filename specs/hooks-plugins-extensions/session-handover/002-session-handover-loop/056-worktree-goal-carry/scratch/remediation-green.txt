@@ -1,0 +1,15 @@
+✔ prepare carries a Claude goal whose packet lives only in a linked worktree (290.68475ms)
+✔ prepare refuses a worktree goal headline that two linked worktrees carry (226.627625ms)
+✔ consume and claim drop a goal_root that is not a linked worktree of this repository (205.87675ms)
+✔ prepare finds a worktree the log names only before its last 16 MiB (539.80225ms)
+✔ prepare keeps the claimed worktree goal ahead of a primary copy with the same headline (193.100917ms)
+✔ prepare keeps the claimed worktree goal when the log also names a second worktree with it (210.721792ms)
+✔ a worktree git marks prunable is neither searched nor trusted as a goal_root (229.251958ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1939.909875

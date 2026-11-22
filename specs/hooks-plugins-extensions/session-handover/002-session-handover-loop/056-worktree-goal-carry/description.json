@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry",
+  "description": "Phase 56: worktree-goal-carry",
+  "keywords": [
+    "phase",
+    "worktree-goal-carry"
+  ],
+  "lastUpdated": "2026-11-21T22:26:35.392Z",
+  "specId": "056",
+  "folderSlug": "worktree-goal-carry",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "21-11-26_23-13__deep-review-fan-out-vibe-5-claude2-5-iterations.md",
+    "21-11-26_23-26__remediated-the-deep-review-s-p1-and-four-p2-code.md"
+  ]
+}

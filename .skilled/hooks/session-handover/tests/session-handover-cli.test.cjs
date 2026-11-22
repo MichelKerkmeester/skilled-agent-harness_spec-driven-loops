@@ -3937,3 +3937,251 @@ test('prepare on Vibe without --session uses the id the loop recorded', (t) => {
   const record = JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8'));
   assert.equal(record.sessionId, SESSION_ID);
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GOAL PACKET IN A LINKED WORKTREE
+// ─────────────────────────────────────────────────────────────────────────────
+
+const WORKTREE_PACKET = 'specs/mcp/001-worktree-only-hub';
+const WORKTREE_HEADLINE = '# Goal: A hub that lives only in a linked worktree';
+
+function git(cwd, args) {
+  const result = spawnSync('git', [
+    '-c', 'user.name=test', '-c', 'user.email=test@example.invalid', '-c', 'core.hooksPath=/dev/null',
+    ...args,
+  ], { cwd, encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  return result.stdout;
+}
+
+// A repository with one commit and the linked worktrees named, each a real `git worktree add`.
+function addLinkedWorktrees(sandbox, names) {
+  git(sandbox.repoRoot, ['init', '--quiet']);
+  git(sandbox.repoRoot, ['commit', '--quiet', '--allow-empty', '--no-verify', '-m', 'init']);
+  return names.map((name, index) => {
+    const worktree = path.join(sandbox.root, name);
+    git(sandbox.repoRoot, ['worktree', 'add', '--quiet', '-b', `wt-${index}`, worktree]);
+    return fs.realpathSync(worktree);
+  });
+}
+
+// The session log names the worktree the way a real one does: in the commands the session ran.
+function writeWorktreeGoalLog(sandbox, worktrees, headline = WORKTREE_HEADLINE) {
+  writeClaudeGoalLog(sandbox, [
+    ...worktrees.map((worktree) => ({
+      type: 'assistant',
+      message: { content: [{ type: 'tool_use', input: { command: `cd ${worktree}/ && ls` } }] },
+    })),
+    {
+      type: 'attachment',
+      attachment: { type: 'goal_status', met: false, sentinel: true, condition: `${headline}\nbody` },
+    },
+  ]);
+}
+
+function prepareClaudeNote(sandbox) {
+  const handoffPath = writeHandoff(sandbox, { specFolder: '' });
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'claude';
+  sandbox.env.CLAUDE_PID = String(process.pid);
+  sandbox.env.SESSION_HANDOVER_GOAL = '1';
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(result.status, 0, result.stderr);
+  return { handoffPath, result };
+}
+
+function noteGoalFields(handoffPath) {
+  const { frontmatter } = core.parseHandoff(fs.readFileSync(handoffPath, 'utf8'));
+  return { packet: frontmatter.goal_packet, root: frontmatter.goal_root };
+}
+
+test('prepare carries a Claude goal whose packet lives only in a linked worktree', (t) => {
+  const sandbox = createSandbox(t);
+  const [worktree] = addLinkedWorktrees(sandbox, ['wt-hub']);
+  fs.mkdirSync(path.join(worktree, WORKTREE_PACKET), { recursive: true });
+  fs.writeFileSync(path.join(worktree, WORKTREE_PACKET, 'goal.md'), `${WORKTREE_HEADLINE}\n`);
+  writeWorktreeGoalLog(sandbox, [worktree]);
+
+  const { handoffPath, result } = prepareClaudeNote(sandbox);
+
+  assert.equal(result.stderr, '');
+  assert.deepEqual(noteGoalFields(handoffPath), { packet: WORKTREE_PACKET, root: worktree });
+
+  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: handoffPath });
+  const consumed = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+  assert.equal(consumed.status, 0, consumed.stderr);
+  assert.deepEqual(JSON.parse(consumed.stdout), {
+    handoff: handoffPath, spec_folder: '', note: 'open', goal_packet: WORKTREE_PACKET, goal_root: worktree,
+  });
+
+  const claimed = runCli(sandbox, ['claim', handoffPath, '--session', 'receiver-0001']);
+  assert.equal(claimed.status, 0, claimed.stderr);
+  assert.ok(claimed.stdout.includes(`Goal packet: ${WORKTREE_PACKET} in ${worktree} (`), claimed.stdout);
+});
+
+test('prepare refuses a worktree goal headline that two linked worktrees carry', (t) => {
+  const sandbox = createSandbox(t);
+  const worktrees = addLinkedWorktrees(sandbox, ['wt-one', 'wt-two']);
+  for (const worktree of worktrees) {
+    fs.mkdirSync(path.join(worktree, WORKTREE_PACKET), { recursive: true });
+    fs.writeFileSync(path.join(worktree, WORKTREE_PACKET, 'goal.md'), `${WORKTREE_HEADLINE}\n`);
+  }
+  writeWorktreeGoalLog(sandbox, worktrees);
+
+  const { handoffPath, result } = prepareClaudeNote(sandbox);
+
+  assert.match(result.stderr, /^\[session-handover\] goal not carried: the active goal headline appears in more than one packet\n$/);
+  assert.deepEqual(noteGoalFields(handoffPath), { packet: undefined, root: undefined });
+});
+
+test('consume and claim drop a goal_root that is not a linked worktree of this repository', (t) => {
+  const sandbox = createSandbox(t);
+  addLinkedWorktrees(sandbox, ['wt-hub']);
+  const stranger = path.join(sandbox.root, 'not-a-worktree');
+  // The repository holds an older copy of the same packet, which must not stand in for it.
+  for (const root of [stranger, sandbox.repoRoot]) {
+    fs.mkdirSync(path.join(root, WORKTREE_PACKET), { recursive: true });
+    fs.writeFileSync(path.join(root, WORKTREE_PACKET, 'goal.md'), `${WORKTREE_HEADLINE}\n`);
+  }
+  const handoffPath = writeHandoff(sandbox, { specFolder: '' });
+  setNoteField(handoffPath, `goal_packet: ${WORKTREE_PACKET}\ngoal_root: ${fs.realpathSync(stranger)}`);
+
+  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: handoffPath });
+  const consumed = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+  assert.equal(consumed.status, 0, consumed.stderr);
+  assert.deepEqual(JSON.parse(consumed.stdout), { handoff: handoffPath, spec_folder: '', note: 'open' });
+
+  const claimed = runCli(sandbox, ['claim', handoffPath, '--session', 'receiver-0001']);
+  assert.equal(claimed.status, 0, claimed.stderr);
+  assert.doesNotMatch(claimed.stdout, /Goal packet/);
+});
+
+test('prepare carries the worktree goal of the note this session claimed when its log names no worktree path', (t) => {
+  const sandbox = createSandbox(t);
+  const [worktree] = addLinkedWorktrees(sandbox, ['wt-hub']);
+  fs.mkdirSync(path.join(worktree, WORKTREE_PACKET), { recursive: true });
+  fs.writeFileSync(path.join(worktree, WORKTREE_PACKET, 'goal.md'), `${WORKTREE_HEADLINE}\n`);
+  writeWorktreeGoalLog(sandbox, []);
+  const claimed = writeHandoff(sandbox, {
+    fileName: 'claimed.md', status: 'claimed', claimedBy: SESSION_ID, specFolder: '',
+  });
+  setNoteField(claimed, `goal_packet: ${WORKTREE_PACKET}\ngoal_root: ${worktree}`);
+
+  const { handoffPath, result } = prepareClaudeNote(sandbox);
+
+  assert.equal(result.stderr, '');
+  assert.deepEqual(noteGoalFields(handoffPath), { packet: WORKTREE_PACKET, root: worktree });
+});
+
+test('prepare lists this repository worktrees even when GIT_DIR names another repository', (t) => {
+  const sandbox = createSandbox(t);
+  const [worktree] = addLinkedWorktrees(sandbox, ['wt-hub']);
+  fs.mkdirSync(path.join(worktree, WORKTREE_PACKET), { recursive: true });
+  fs.writeFileSync(path.join(worktree, WORKTREE_PACKET, 'goal.md'), `${WORKTREE_HEADLINE}\n`);
+  writeWorktreeGoalLog(sandbox, [worktree]);
+  const other = path.join(sandbox.root, 'other-repo');
+  fs.mkdirSync(other);
+  git(other, ['init', '--quiet']);
+  sandbox.env.GIT_DIR = path.join(other, '.git');
+
+  const { handoffPath, result } = prepareClaudeNote(sandbox);
+
+  assert.equal(result.stderr, '');
+  assert.deepEqual(noteGoalFields(handoffPath), { packet: WORKTREE_PACKET, root: worktree });
+});
+
+test('prepare finds a worktree the log names only before its last 16 MiB', (t) => {
+  const sandbox = createSandbox(t);
+  const [worktree] = addLinkedWorktrees(sandbox, ['wt-hub']);
+  fs.mkdirSync(path.join(worktree, WORKTREE_PACKET), { recursive: true });
+  fs.writeFileSync(path.join(worktree, WORKTREE_PACKET, 'goal.md'), `${WORKTREE_HEADLINE}\n`);
+  const mention = JSON.stringify({
+    type: 'assistant',
+    message: { content: [{ type: 'tool_use', input: { command: `cd ${worktree}/ && ls` } }] },
+  });
+  // The worktree path straddles the 64 KiB boundary the log is scanned in, so a scan that
+  // drops the bytes between two chunks misses it.
+  const pathAt = mention.indexOf(`${worktree}/`);
+  const emptyLine = JSON.stringify({ type: 'user', message: { content: '' } });
+  const padding = 64 * 1024 - Math.floor(worktree.length / 2) - pathAt - emptyLine.length - 1;
+  const opening = JSON.stringify({ type: 'user', message: { content: 'x'.repeat(padding) } });
+  const filler = `${JSON.stringify({ type: 'user', message: { content: 'filler' } })}\n`;
+  const goal = JSON.stringify({
+    type: 'attachment',
+    attachment: { type: 'goal_status', met: false, sentinel: true, condition: `${WORKTREE_HEADLINE}\nbody` },
+  });
+  writeClaudeGoalLog(sandbox, []);
+  const logPath = path.join(sandbox.env.CLAUDE_CONFIG_DIR, 'projects', '-project', `${SESSION_ID}.jsonl`);
+  const fillerBytes = 17 * 1024 * 1024;
+  fs.writeFileSync(logPath, `${opening}\n${mention}\n${filler.repeat(Math.ceil(fillerBytes / filler.length))}${goal}`);
+  assert.ok(fs.statSync(logPath).size - (opening.length + 1) > 16 * 1024 * 1024);
+
+  const { handoffPath, result } = prepareClaudeNote(sandbox);
+
+  assert.equal(result.stderr, '');
+  assert.deepEqual(noteGoalFields(handoffPath), { packet: WORKTREE_PACKET, root: worktree });
+});
+
+test('prepare keeps the claimed worktree goal ahead of a primary copy with the same headline', (t) => {
+  const sandbox = createSandbox(t);
+  const [worktree] = addLinkedWorktrees(sandbox, ['wt-hub']);
+  for (const root of [worktree, sandbox.repoRoot]) {
+    fs.mkdirSync(path.join(root, WORKTREE_PACKET), { recursive: true });
+    fs.writeFileSync(path.join(root, WORKTREE_PACKET, 'goal.md'), `${WORKTREE_HEADLINE}\n`);
+  }
+  writeWorktreeGoalLog(sandbox, []);
+  const claimed = writeHandoff(sandbox, {
+    fileName: 'claimed.md', status: 'claimed', claimedBy: SESSION_ID, specFolder: '',
+  });
+  setNoteField(claimed, `goal_packet: ${WORKTREE_PACKET}\ngoal_root: ${worktree}`);
+
+  const { handoffPath, result } = prepareClaudeNote(sandbox);
+
+  assert.equal(result.stderr, '');
+  assert.deepEqual(noteGoalFields(handoffPath), { packet: WORKTREE_PACKET, root: worktree });
+});
+
+test('prepare keeps the claimed worktree goal when the log also names a second worktree with it', (t) => {
+  const sandbox = createSandbox(t);
+  const [first, second] = addLinkedWorktrees(sandbox, ['wt-one', 'wt-two']);
+  for (const worktree of [first, second]) {
+    fs.mkdirSync(path.join(worktree, WORKTREE_PACKET), { recursive: true });
+    fs.writeFileSync(path.join(worktree, WORKTREE_PACKET, 'goal.md'), `${WORKTREE_HEADLINE}\n`);
+  }
+  writeWorktreeGoalLog(sandbox, [second]);
+  const claimed = writeHandoff(sandbox, {
+    fileName: 'claimed.md', status: 'claimed', claimedBy: SESSION_ID, specFolder: '',
+  });
+  setNoteField(claimed, `goal_packet: ${WORKTREE_PACKET}\ngoal_root: ${first}`);
+
+  const { handoffPath, result } = prepareClaudeNote(sandbox);
+
+  assert.equal(result.stderr, '');
+  assert.deepEqual(noteGoalFields(handoffPath), { packet: WORKTREE_PACKET, root: first });
+});
+
+test('a worktree git marks prunable is neither searched nor trusted as a goal_root', (t) => {
+  const sandbox = createSandbox(t);
+  const [worktree] = addLinkedWorktrees(sandbox, ['wt-stale']);
+  // Deleting a worktree's folder and making a plain one at the same path leaves git listing it
+  // as prunable, and the new folder is not a checkout of this repository.
+  fs.rmSync(worktree, { recursive: true, force: true });
+  fs.mkdirSync(path.join(worktree, WORKTREE_PACKET), { recursive: true });
+  fs.writeFileSync(path.join(worktree, WORKTREE_PACKET, 'goal.md'), `${WORKTREE_HEADLINE}\n`);
+  assert.match(git(sandbox.repoRoot, ['worktree', 'list', '--porcelain']), /^prunable /m);
+  writeWorktreeGoalLog(sandbox, [worktree]);
+
+  const { handoffPath, result } = prepareClaudeNote(sandbox);
+
+  assert.equal(
+    result.stderr,
+    '[session-handover] goal not carried: the active goal names no packet this hand-over can find\n',
+  );
+  assert.deepEqual(noteGoalFields(handoffPath), { packet: undefined, root: undefined });
+
+  setNoteField(handoffPath, `goal_packet: ${WORKTREE_PACKET}\ngoal_root: ${worktree}`);
+  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: handoffPath });
+  const consumed = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+  assert.equal(consumed.status, 0, consumed.stderr);
+  assert.deepEqual(JSON.parse(consumed.stdout), { handoff: handoffPath, spec_folder: '', note: 'open' });
+});

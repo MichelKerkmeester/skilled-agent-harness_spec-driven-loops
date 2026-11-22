@@ -1,0 +1,1 @@
+specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry

@@ -447,16 +447,18 @@ append_name_arguments() {
 
 # Prints the packet's chat slice for a receiver that sets its goal from the start prompt. When
 # no slice can be sent it prints one warning line and returns 1, so the receiver still starts
-# on its claim seed and the operator sees why the goal was left out.
+# on its claim seed and the operator sees why the goal was left out. A packet proven in a
+# linked worktree is read from that worktree alone, the copy the sender's goal came from.
 render_goal_slice() {
   local goal_packet="$1"
+  local goal_root="${2:-}"
 
   node -e '
-    const [helperPath, packet] = process.argv.slice(1);
+    const [helperPath, packet, goalRoot] = process.argv.slice(1);
     let reason = "";
     try {
       const { renderGoalSlice } = require(helperPath);
-      const result = renderGoalSlice({ packet });
+      const result = renderGoalSlice(goalRoot ? { packet, roots: [goalRoot] } : { packet });
       if (result.ok) {
         process.stdout.write(result.slice);
         process.exit(0);
@@ -469,13 +471,29 @@ render_goal_slice() {
       "warning: the goal was not set in the relaunched session: " + reason + "\n",
     );
     process.exit(1);
-  ' -- "$goal_handover" "$goal_packet"
+  ' -- "$goal_handover" "$goal_packet" "$goal_root"
+}
+
+# Prints the goal packet this loop's receiver may bind, or nothing. Only the Claude slice reads
+# a packet from the linked worktree the note names. Every other receiver binds the path against
+# its own checkout, which can hold an older copy of the same packet, so a packet with a worktree
+# is left out there and one warning line says why.
+goal_packet_for_receiver() {
+  local goal_packet="$1"
+  local goal_root="$2"
+
+  if [[ -n "$goal_packet" && -n "$goal_root" && "$runtime" != 'claude' ]]; then
+    printf '%s\n' "warning: the goal was not set in the relaunched session: its packet is only in the linked worktree $goal_root, which a $runtime receiver does not read" >&2
+    return 0
+  fi
+  printf '%s' "$goal_packet"
 }
 
 # Prints the goal packet of the note a claim seed names, or nothing. Only an open note whose
 # real path is inside the repository's handoffs directory is read, so a seed can never point
 # the wrapper at a file elsewhere, and the core applies the goal switch and the packet checks
-# exactly as consume does. Any failure prints nothing and the launch goes on unbound.
+# exactly as consume does. Any failure prints nothing and the launch goes on unbound. A packet
+# proven in a linked worktree is followed by a second line naming that worktree.
 seeded_goal_packet() {
   local seed="$1"
 
@@ -504,7 +522,8 @@ seeded_goal_packet() {
       if (core.noteState(realNote) !== "open") process.exit(0);
       const { frontmatter } = core.parseHandoff(fs.readFileSync(realNote, "utf8"));
       const switches = { ...loadConfigFile(configPath()), ...process.env };
-      process.stdout.write(core.usableGoalPacket(frontmatter, switches, repoRoot));
+      const { packet, root } = core.usableGoal(frontmatter, switches, repoRoot);
+      process.stdout.write(packet === "" || root === "" ? packet : packet + "\n" + root);
     } catch {
       // An unreadable or unparsable note binds nothing.
     }
@@ -1230,10 +1249,17 @@ claim_seed_prefix='[session-handover] claim and continue handoff '
 for ((index = 0; index < ${#launch_arguments[@]}; index++)); do
   if [[ "${launch_arguments[$index]}" == "$claim_seed_prefix"* ]]; then
     first_launch_seed=${launch_arguments[$index]}
-    goal_packet=$(seeded_goal_packet "$first_launch_seed")
+    seeded_goal=$(seeded_goal_packet "$first_launch_seed")
+    goal_packet=${seeded_goal%%$'\n'*}
+    goal_root=''
+    if [[ "$seeded_goal" == *$'\n'* ]]; then
+      goal_root=${seeded_goal#*$'\n'}
+    fi
+    goal_packet=$(goal_packet_for_receiver "$goal_packet" "$goal_root")
     if [[ -n "$goal_packet" ]]; then
       export SESSION_HANDOVER_GOAL_PACKET="$goal_packet"
-      if [[ "$runtime" == 'claude' ]] && goal_slice=$(render_goal_slice "$goal_packet"); then
+      if [[ "$runtime" == 'claude' ]] \
+        && goal_slice=$(render_goal_slice "$goal_packet" "$goal_root"); then
         # Claude takes its goal from a start prompt that is the goal command alone, so the
         # seed moves to the environment for the start hook, as it does on a hop.
         launch_arguments[index]="/goal $goal_slice"
@@ -1431,7 +1457,8 @@ while true; do
 
       spec_folder=$(consumed_spec_folder)
       # A hop without a goal must not inherit the previous hop's packet.
-      goal_packet=$(consumed_goal_packet)
+      goal_root=$(consumed_field goal_root)
+      goal_packet=$(goal_packet_for_receiver "$(consumed_goal_packet)" "$goal_root")
       if [[ -n "$goal_packet" ]]; then
         export SESSION_HANDOVER_GOAL_PACKET="$goal_packet"
       else
@@ -1447,7 +1474,7 @@ while true; do
       launch_prompt="$seed"
       unset SKILLED_LOOP_CLAIM_SEED
       if [[ "$runtime" == 'claude' && -n "$goal_packet" ]] \
-        && goal_slice=$(render_goal_slice "$goal_packet"); then
+        && goal_slice=$(render_goal_slice "$goal_packet" "$goal_root"); then
         launch_prompt="/goal $goal_slice"
         SKILLED_LOOP_CLAIM_SEED="$seed"
         export SKILLED_LOOP_CLAIM_SEED
