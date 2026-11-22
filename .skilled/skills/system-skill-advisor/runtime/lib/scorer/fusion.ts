@@ -18,11 +18,14 @@ import {
 } from '../metrics.js';
 import { normalize } from '../affordance-normalizer.js';
 import {
+  asksForLoopRun,
   COMMAND_ROWS,
   commandOnlyMentioned,
   commandRowFor,
+  DEFECT_CHECK,
   isNoEditRequest,
   isWritingAboutTopic,
+  MODE_CUES,
   TRACKED_COMMANDS,
   typedCommandIn,
 } from '../command-attach.js';
@@ -80,6 +83,11 @@ const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|co
 // study artifact: the thing asked for comes before the phrase it is written about, so a "deep review"
 // between the verb and the noun means the loop itself is the subject.
 const AUTHORS_CODE = /\b(?:add|build|create|implement|write)\b(?:(?!deep[- ]review)[^.?!]){0,60}?\b(?:helper|vitest|tests?)\b/;
+// The ways a check asks to be run as a loop: in passes, iteratively, or for a
+// counted number of iterations. A bare plural names earlier iterations as often
+// as it asks for more ("audit the first two iterations for drift"), so it is
+// left to the explicit lane's weaker loop rule.
+const PASSES_ASK = /\b(?:iterative(?:ly)?|multi-pass|(?:multiple|several|many) passes|\d+ (?:[a-z-]+ ){0,2}iterations?)\b/;
 // Writing a changelog is sk-doc's changelog mode even when the prompt names a
 // packet or spec folder. That folder is only where the change history comes from.
 // The verb must govern the changelog itself: only articles and folder or scope
@@ -608,6 +616,15 @@ export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection
   if (skillId === 'sk-code' && /\bgate-3-classifier\.ts\b/.test(promptLower)) {
     return true;
   }
+  // "inspect the worker for defects iteratively" opens on a verb that also asks
+  // for an explanation, but a check for defects asked for in passes or
+  // iterations is the review loop by name. Only the defect check lifts it: a
+  // research cue beside loop wording is as often a question about the loop.
+  if (skillId === 'system-deep-loop' && isReadOnlyExplainer(promptLower)
+    && DEFECT_CHECK.test(promptLower) && PASSES_ASK.test(promptLower)
+    && asksForLoopRun(promptLower)) {
+    return true;
+  }
   // Reading history is a git task even though its verb reads as a read-only
   // explainer. A lift applies to any prompt, so only a read-only question is
   // lifted, and only when it names git, a commit-history object or a branch ref.
@@ -637,6 +654,15 @@ function primaryIntentBonus(
   }
   if (DEEP_RESEARCH_CYCLE.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code') return R.deepResearchCycleOtherSkillsPenalty;
+  }
+  // Review asked for in iterations or several passes is the same request as a
+  // deep review, so the single-pass code review steps back the same way. Without
+  // this, naming the target as "code" ("the scheduler code") hands sk-code its
+  // own name and keyword and outweighs the loop ask on every lane.
+  if (recommendation.skill === 'sk-code' && MODE_CUES.review.test(promptLower)
+    && PASSES_ASK.test(promptLower) && asksForLoopRun(promptLower)
+    && !AUTHORS_CODE.test(promptLower)) {
+    return R.deepReviewSkCodeReviewPenalty;
   }
   if (/\b(compare|audit|review)\b/.test(promptLower) && /\b(classifier|vocabulary|prose|implementation|agents\.md|drift|mismatch)\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code') return R.compareAuditCodeReviewBonus;

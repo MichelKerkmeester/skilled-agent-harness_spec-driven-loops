@@ -326,10 +326,12 @@ function escapePhrase(phrase: string): string {
 // still names its mode when the prompt carries exactly one of these cues.
 // A check or an inspection aimed at defects is a review in plain words, so it
 // counts beside review and audit. The defect noun is required, because "check
-// that the build passes" asks for no review at all.
+// that the build passes" asks for no review at all. The scorer reads the defect
+// check on its own as well, because its verbs also read as a request to explain.
+export const DEFECT_CHECK = /\b(?:check|inspect|scan|examine|go over|look over)\b(?:\s+[\w./-]+){0,5}?\s+for\s+(?:[\w-]+\s+){0,2}?(?:bugs?|defects?|mistakes?|errors?|vulnerabilit(?:y|ies)|issues?|problems?|regressions?|flaws?)\b/;
 export const MODE_CUES: Readonly<Record<string, RegExp>> = {
   research: /\b(?:research|investigat(?:e|es|ing|ion)|look into|find out)\b/,
-  review: /\b(?:review|audit)\b|\b(?:check|inspect|scan|examine|go over|look over)\b(?:\s+[\w./-]+){0,5}?\s+for\s+(?:[\w-]+\s+){0,2}?(?:bugs?|defects?|mistakes?|errors?|vulnerabilit(?:y|ies)|issues?|problems?|regressions?|flaws?)\b/,
+  review: new RegExp(`\\b(?:review|audit)\\b|${DEFECT_CHECK.source}`),
 };
 
 // A run that is stuck, never converges or whose graph looks stale is a fault in

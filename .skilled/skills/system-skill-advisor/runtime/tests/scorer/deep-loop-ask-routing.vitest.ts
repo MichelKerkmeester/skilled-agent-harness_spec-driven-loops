@@ -80,8 +80,33 @@ describe('deep-loop ask routing', () => {
     expect(passingSkills('review the lexer over several passes')[0]).toBe('system-deep-loop');
   });
 
+  // Naming the target as code hands the code skill its own name and keyword,
+  // which must not outweigh a review asked for in passes or iterations.
+  it.each([
+    'give the importer code many passes of review',
+    'review the auth middleware code over several passes',
+  ])('ranks the hub first when the reviewed target is called code: %s', (prompt) => {
+    expect(passingSkills(prompt)[0]).toBe('system-deep-loop');
+  });
+
   it('keeps a careful single-pass review on the code skill', () => {
     expect(passingSkills('review the lexer carefully')[0]).toBe('sk-code');
+  });
+
+  it('keeps a careful review of code on the code skill', () => {
+    expect(passingSkills('review the importer code carefully')[0]).toBe('sk-code');
+  });
+
+  // "inspect" also reads as a request to explain, which floors every skill.
+  it('routes a defect check asked for iteratively to the hub despite the explain verb', () => {
+    expect(passingSkills('inspect the upload service for errors over several passes')[0]).toBe('system-deep-loop');
+  });
+
+  it.each([
+    'inspect the importer for defects',
+    'explain the iterations of the research loop',
+  ])('keeps the hub from passing without a defect check in passes: %s', (prompt) => {
+    expect(passingSkills(prompt)).not.toContain('system-deep-loop');
   });
 
   it('hands no doctor command to a question about how convergence works', () => {
