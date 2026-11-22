@@ -1,7 +1,7 @@
 ---
 title: "create-benchmark: Manual Testing Playbook"
 description: "Operator playbook for the create-benchmark workflow across MCP promotion and behavior inputs."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # create-benchmark: Manual Testing Playbook
@@ -9,7 +9,7 @@ version: 1.5.1.0
 This playbook validates the `sk-create-benchmark` workflow as an authoring tool. It checks family routing, package shape, lane boundaries and evidence storage guidance. It does not run a benchmark or score a model.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into the skill benchmark reports folder. Generated report Markdown is renderer-owned.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into the skill benchmark reports folder. The run folder is written by `record-playbook-run.cjs`, never by hand.
 
 ## 1. OVERVIEW
 

@@ -66,11 +66,12 @@ describe('skill advisor manual testing playbook inventory', () => {
     expect(rows.map((row) => row.relativePath).sort()).toEqual(files);
   });
 
-  it('names the folder scenario results are recorded in by hand', () => {
+  it('names the folder scenario results are saved in and the recorder that writes it', () => {
     const markdown = readFileSync(rootPlaybook, 'utf8');
 
     expect(markdown).toContain('<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->');
-    expect(markdown).toContain('recorded by hand in');
+    expect(markdown).toContain('record-playbook-run.cjs');
+    expect(markdown).not.toContain('recorded by hand in');
     expect(markdown).toContain('system-skill-advisor/benchmark/reports/<dated-run-label>/');
     expect(markdown).not.toContain('renderer-owned');
   });

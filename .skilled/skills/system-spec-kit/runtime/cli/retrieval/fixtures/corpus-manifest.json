@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3758f76c5aa433d0abe0726bc99edad07894e862a580ed2d1e523bcebe4b8c01",
+  "corpusHash": "29de7c47d9c34889c62cba76a7a593f332c1f7b0e278b73a86e884d075fdd18f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29234,
+  "includedPathCount": 29235,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7066,6 +7066,7 @@
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.1.2.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.2.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.2.1.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/keep-operator-scenarios-in-scope.md",
@@ -29266,7 +29267,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6410e7876438df556641cef7341474732cc770f58cf47b850f385c0df30cadcc",
+  "manifestHash": "3d6dd1079827ad053db9e73091ec21fa2a4a7282849e37beed568b8f94e009ce",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

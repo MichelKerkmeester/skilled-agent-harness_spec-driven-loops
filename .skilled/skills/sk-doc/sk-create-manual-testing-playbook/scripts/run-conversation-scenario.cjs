@@ -3059,18 +3059,20 @@ async function runTurnWithRetry(ctx, turn) {
  * @param {string} out - Run output folder.
  * @param {string} scenarioPath - The scenario file this run played.
  */
-function writeScenarioRecord(out, scenarioPath) {
+function writeScenarioRecord(out, scenarioPath, runtimes) {
   const absolute = path.resolve(scenarioPath);
   const text = fs.readFileSync(absolute, 'utf8');
   const scenarioId = extractFeatureId(text, extractFrontmatter(text));
+  // The runtimes list lets the recorder ignore folders an earlier run left in a reused --out.
   fs.writeFileSync(
     path.join(out, 'scenario.json'),
-    `${JSON.stringify({ scenario_id: scenarioId, scenario_path: absolute }, null, 2)}\n`,
+    `${JSON.stringify({ scenario_id: scenarioId, scenario_path: absolute, runtimes }, null, 2)}\n`,
   );
+  const quote = (value) => (/^[\w@%+=:,./-]+$/.test(value) ? value : `'${value.replace(/'/g, `'\\''`)}'`);
   const recorder = path.join(__dirname, 'record-playbook-run.cjs');
   const variant = path.basename(absolute, '.md').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   process.stdout.write(
-    `save results: node ${recorder} --runner-out ${out} --label manual-testing-playbook--${variant} --executor <runtime and model>\n`,
+    `save results: node ${quote(recorder)} --runner-out ${quote(out)} --label manual-testing-playbook--${variant} --executor "<runtime and model>"\n`,
   );
 }
 
@@ -3795,7 +3797,7 @@ async function main(argv) {
   }
 
   writeMatrix(out, rows);
-  writeScenarioRecord(out, opts.scenario);
+  writeScenarioRecord(out, opts.scenario, rows.map((row) => row.runtime));
   return rows.some((row) => row.verdict === 'FAIL') ? EXIT_FAIL : EXIT_PASS;
 }
 

@@ -1,7 +1,7 @@
 ---
 title: "sk-design-chart: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, the review protocol, the orchestration guide and the per-feature validation files for the sk-design-chart workflow packet."
-version: 0.23.1.0
+version: 0.23.2.0
 ---
 
 # sk-design-chart: Manual Testing Playbook
@@ -23,7 +23,7 @@ This packet ships no `feature-catalog/`. Every scenario records the absence in i
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`. Generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`. The run folder is written by `record-playbook-run.cjs`, never by hand.
 
 The marker comment above is the contract surface the package validator reads. The sentence beside it is the package contract restated without its semicolon, because a semicolon is a hard blocker under the voice standard this hub also ships and a package can meet both by rewording rather than by claiming an exemption.
 

@@ -1,7 +1,7 @@
 ---
 title: "sk-design-diagram: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-design-diagram workflow packet in the sk-design hub."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # sk-design-diagram: Manual Testing Playbook
@@ -24,7 +24,7 @@ The feature-catalog package ships as a sibling deliverable at `feature-catalog/`
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`. The run folder is written by `record-playbook-run.cjs`, never by hand.
 The capture-review scenario (`CAP-001`) persists through the same runner.
 Every `SKIP` carries its reason in the reason column, and a `SKIP` with an empty reason is a failed run.
 

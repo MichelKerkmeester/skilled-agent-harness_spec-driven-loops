@@ -1,7 +1,7 @@
 ---
 title: "sk-create-goal: Manual Testing Playbook"
 description: "Operator directory, review protocol and orchestration guide for validating the sk-create-goal mode through ten deterministic goal-authoring scenarios in one category."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # sk-create-goal: Manual Testing Playbook
@@ -21,7 +21,7 @@ This packet ships no `feature-catalog/`. Every scenario records that absence in 
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<run-label>/` together with the evidence paths. Generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<run-label>/` together with the evidence paths. The run folder is written by `record-playbook-run.cjs`, never by hand.
 
 ---
 

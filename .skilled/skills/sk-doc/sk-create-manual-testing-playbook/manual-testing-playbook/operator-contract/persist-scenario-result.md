@@ -1,7 +1,7 @@
 ---
 title: "MTP-005 -- Persist the scenario result"
 description: "Validates that a finished manual run saves its verdict, reason and evidence path into the owning skill's benchmark folder through record-playbook-run.cjs."
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # MTP-005 -- Persist the scenario result
@@ -42,13 +42,13 @@ Operators run the exact prompt and command sequence for `MTP-005` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MTP-005 | Persist the scenario result | Save a PASS outcome through the recorder with its evidence path | `The operator ran MTP-004. Record its PASS result with the evidence path so the run can be audited later.` | 1. `bash: printf 'scenario_id,verdict,reason,evidence\nMTP-004,PASS,operator contract validator passed,<evidence file>\n' > <scratch>/verdicts.csv` -> 2. `bash: node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook --results <scratch>/verdicts.csv --label manual-testing-playbook--operator-contract --executor "<runtime and model>"` -> 3. `bash: ls .skilled/skills/sk-doc/sk-create-manual-testing-playbook/benchmark/reports/` | Step 1: the CSV holds one MTP-004 row. Step 2: the recorder prints `wrote` lines and exits zero. Step 3: the new dated folder is listed and the index names it first | The exact prompt, the CSV, the recorder output and exit status and the new folder's three files | PASS if the recorder saves the PASS row and the index row. FAIL if it refuses the row, writes nothing or a run folder is written by hand | 1. Read the recorder's `refused:` line. 2. Confirm `MTP-004` is a scenario id in this playbook. 3. Pick a new `--label` when the folder already exists |
+| MTP-005 | Persist the scenario result | Save a PASS outcome through the recorder with its evidence path | `The operator ran MTP-004. Record its PASS result with the evidence path so the run can be audited later.` | 1. `bash: printf 'scenario_id,verdict,reason,evidence\nMTP-004,PASS,operator contract validator passed,<evidence file>\n' > <scratch>/verdicts.csv` -> 2. `bash: node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook --results <scratch>/verdicts.csv --label manual-testing-playbook--operator-contract --executor "<runtime and model>"` -> 3. `bash: ls .skilled/skills/sk-doc/sk-create-manual-testing-playbook/benchmark/reports/ && grep -m1 -n -- '--manual-testing-playbook--' .skilled/skills/sk-doc/sk-create-manual-testing-playbook/benchmark/reports/README.md` | Step 1: the CSV holds one MTP-004 row. Step 2: the recorder prints `wrote` lines and exits zero. Step 3: the new dated folder is listed and the index names it first | The exact prompt, the CSV, the recorder output and exit status and the new folder's three files | PASS if the recorder saves the PASS row and the index row. FAIL if it refuses the row, writes nothing or a run folder is written by hand | 1. Read the recorder's `refused:` line. 2. Confirm `MTP-004` is a scenario id in this playbook. 3. Pick a new `--label` when the folder already exists |
 
 ### Commands
 
 1. `bash: printf 'scenario_id,verdict,reason,evidence\nMTP-004,PASS,operator contract validator passed,<evidence file>\n' > <scratch>/verdicts.csv`
 2. `bash: node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook --results <scratch>/verdicts.csv --label manual-testing-playbook--operator-contract --executor "<runtime and model>"`
-3. `bash: ls .skilled/skills/sk-doc/sk-create-manual-testing-playbook/benchmark/reports/`
+3. `bash: ls .skilled/skills/sk-doc/sk-create-manual-testing-playbook/benchmark/reports/ && grep -m1 -n -- '--manual-testing-playbook--' .skilled/skills/sk-doc/sk-create-manual-testing-playbook/benchmark/reports/README.md`
 
 ### Expected
 
@@ -67,7 +67,7 @@ Capture the exact prompt, the CSV, the recorder transcript, its exit status, the
 
 1. Read the recorder's `refused:` lines, which name every problem at once.
 2. Check the CSV header is `scenario_id,verdict,reason,evidence`.
-3. Remove the run folder this scenario created once the evidence is captured, unless it is the real record of a run.
+3. Remove the run folder this scenario created, and its row in `benchmark/reports/README.md`, once the evidence is captured, unless it is the real record of a run.
 
 ---
 

@@ -172,8 +172,8 @@ def scaffold_benchmark_tree(skill_dir: Path, skill_name: str) -> None:
 def empty_reports_index(skill_name: str) -> str:
     """Return the empty run index in the shape the existing report folders use.
 
-    Runs are now recorded by hand, one row per run folder, so the table columns
-    match the indexes already on disk rather than a writer that appends to them.
+    record-playbook-run.cjs inserts one row per run folder under this header, so
+    the columns match the indexes already on disk and the rows the recorder writes.
     """
     columns = ['Executed', 'Folder', 'Runtime', 'Result', 'Verdict', 'Source']
     header = f"| {' | '.join(columns)} |"

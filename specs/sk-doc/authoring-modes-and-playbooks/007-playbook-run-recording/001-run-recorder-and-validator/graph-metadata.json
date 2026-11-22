@@ -194,7 +194,7 @@
     ],
     "causal_summary": "No script writes a run folder under `<skill>/benchmark/reports/`, so a playbook run saves its verdicts only when someone asks for a report and writes it by hand",
     "created_at": "2026-11-22T09:08:17Z",
-    "last_save_at": "2026-11-22T09:42:55.228Z",
+    "last_save_at": "2026-11-22T10:37:57.939Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73278cbfae87d0add490e1fd35090f7464da686afcaae3f408b21e0f55576cd1",
+    "source_fingerprint": "sha256:f467b2b2b34cb580c77e4d0a1fa752eacb5726d7733910731368aac385ef0ccd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b9f71fe6df56f5e417470b1256b42e5699627b76eb8b5bc3ce48ed4fc10ce356",
       "plan.md": "d0a6ed8b73a1c4d58cd15abf23a7d757832f46a784d51a1f58ce66c8e4e9a739",
-      "tasks.md": "e644e1de4237ac21f5a2ed5fbdc7ed28c800fc1d3d544cde99645d65c291d7ca",
-      "implementation-summary.md": "ffdeb376db686735757883588f5e2d575bcaa1cdf96c8144cf0c543a4ef28bcf"
+      "tasks.md": "d2bfb1f5998a03ab24ce8dd40c8a6cf5a3dc51b77b20f61f2ba83c168218c9ce",
+      "implementation-summary.md": "7c0c270087ffd6fdd4f7e686afac6401b1a746d964242ba92d461bf7f6dbc8e4"
     },
     "last_active_at": null
   }

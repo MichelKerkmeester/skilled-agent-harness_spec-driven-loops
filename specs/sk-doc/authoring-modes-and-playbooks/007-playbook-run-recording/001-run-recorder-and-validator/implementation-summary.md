@@ -51,6 +51,8 @@ A finished playbook run now has one way into the benchmark folder. You write the
 
 The recorder reuses the validator's markdown walk and id extraction, so a scenario id it accepts is one the validator sees. The conversation runner may not write into the repository, so it leaves `scenario.json` in its `--out` folder and prints the exact recorder command. Coverage is a report you ask for with `--coverage`, because most playbooks are partly run. MTP-005, the mode's own scenario for saving results, described a retired wrapper and now tests the recorder.
 
+A fresh review and a doc alignment pass then found one real bug: a reused runner `--out` folder could save another scenario's verdicts. `scenario.json` now lists the runtimes the run played. The same pass made the write atomic, refused malformed input instead of crashing, made coverage parse multi-line CSV fields and aligned 25 playbook roots that still described a renderer or a hand-written record. That shipped as v1.2.1.0.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -99,7 +101,9 @@ The fleet, the two existing test files and the README audit were baselined first
 
 | Check | Result |
 |-------|--------|
-| `node tests/record-playbook-run.test.cjs` | PASS, three PASS lines, 21 assertions |
+| `node tests/record-playbook-run.test.cjs` | PASS, four PASS lines, 36 assertions after the review fixes |
+| The new recorder assertions against the v1.2.0.0 recorder | FAIL on `only the played runtime is saved` and the second-variant label, as intended |
+| Deep-loop `check-documentation-drift.cjs --facts` | 2 errors from the backfill on main, 0 after the rewording |
 | `validate_document.py` on a recorded `README.md`, `source.md` and new index | 0 issues each |
 | `package_skill.py --check --strict` on the 12 touched skills and modes | PASS, exit 0 each |
 | `cite-drift-gate.mjs --base` the merge base | exit 0, no new broken citation |
@@ -123,4 +127,6 @@ The fleet, the two existing test files and the README audit were baselined first
 2. **Hand-written reports stay as they are.** Coverage lists them as runs without `results.csv`, for example the five browser hub reports from 2026-11-22.
 3. **Each new run folder needs the README audit refresh in the same commit.** The recorder prints the command, but nothing runs it for you.
 4. **The repository-level playbook records into `.skilled/benchmark/reports/`.** Its parent folder is `.skilled`, so a dry run plans that folder and titles a new index ".skilled Benchmark Reports". No run has been recorded there yet.
+5. **Three playbooks keep their own results rules.** `cli-mistral-vibe` records in each scenario's `Recorded Result` block, and `sk-code-ci` and `sk-code-frontend` send runs to the hub's report tree. The recorder writes beside the playbook it is given, so those three wait for an operator decision.
+6. **MTP-005 writes a real dated folder.** A second run on the same day is refused, and its triage says to pick a new label.
 <!-- /ANCHOR:limitations -->

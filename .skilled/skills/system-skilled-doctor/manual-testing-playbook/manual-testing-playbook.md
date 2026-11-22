@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor playbook"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # system-skilled-doctor Manual Testing Playbook
@@ -81,7 +81,7 @@ A scenario is `PASS` only when its preconditions hold, the exact prompts and com
 
 ### Result Persistence
 
-Record each verdict under the skill's `benchmark/reports/` directory with the transcript, exit status and one-sentence reason.
+Save each verdict into the skill's `benchmark/reports/` with `record-playbook-run.cjs`: one row holds the verdict, a one-sentence reason and the evidence path, and the transcript and exit status are the evidence that path names.
 
 ---
 

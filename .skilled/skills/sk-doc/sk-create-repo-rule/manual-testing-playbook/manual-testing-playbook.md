@@ -1,7 +1,7 @@
 ---
 title: "create-repo-rule: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the create-repo-rule sk-doc workflow packet."
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # create-repo-rule: Manual Testing Playbook
@@ -24,7 +24,7 @@ This packet ships no `feature-catalog/`. Every scenario therefore records the ab
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`. The run folder is written by `record-playbook-run.cjs`, never by hand.
 
 ---
 

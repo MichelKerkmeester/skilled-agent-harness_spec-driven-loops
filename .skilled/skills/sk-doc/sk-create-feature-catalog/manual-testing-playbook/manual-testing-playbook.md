@@ -1,7 +1,7 @@
 ---
 title: "create-feature-catalog: Manual Testing Playbook"
 description: "Operator playbook for the create-feature-catalog workflow across root inventories, per-feature files, source anchors, current-state claims and package validation."
-version: 1.0.0.4
+version: 1.0.1.0
 ---
 
 # create-feature-catalog: Manual Testing Playbook
@@ -9,7 +9,7 @@ version: 1.0.0.4
 This playbook validates the `sk-create-feature-catalog` workflow as an authoring tool. It checks package shape, root-to-leaf parity, source anchors, current-state wording and the catalog boundary with manual playbooks.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into the skill benchmark reports folder. Generated report Markdown is renderer-owned.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into the skill benchmark reports folder. The run folder is written by `record-playbook-run.cjs`, never by hand.
 
 ## 1. OVERVIEW
 

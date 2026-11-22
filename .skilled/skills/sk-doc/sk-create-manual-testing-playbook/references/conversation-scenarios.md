@@ -9,7 +9,7 @@ trigger_phrases:
   - "conversation script schema"
 importance_tier: normal
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Manual Testing Playbook Conversation Scenarios
@@ -154,7 +154,7 @@ The runtime list accepts `claude-code`, `opencode`, `codex`, `pi`, `devin` and `
 
 Exit status `0` means every runtime passed or skipped. Exit status `1` means at least one runtime failed. Exit status `2` means a usage error or a refused run.
 
-A run that finishes writes `scenario.json` to the evidence root and prints a `save results:` command. Run it: `scripts/record-playbook-run.cjs` copies every runtime's verdict into the skill's `benchmark/reports/`, because the runner itself may not write into the repository.
+A run that finishes writes `scenario.json` to the evidence root and prints a `save results:` command. Run it: `scripts/record-playbook-run.cjs` copies the verdict of every runtime this run played into the skill's `benchmark/reports/`, because the runner itself may not write into the repository. `scenario.json` lists those runtimes, so folders an earlier run left in a reused `--out` are not saved.
 
 Each runtime folder contains `result.json`, `actions.jsonl`, `raw-pane.log`, `setup.log`, `launch-setup.log` when the script has `launch_setup`, `repo-before.txt`, `repo-after.txt` and `checkpoints.tsv`. Each turn folder contains `screen.txt`, `history.txt`, its `raw-pane.log` slice, one `question-N.txt` file per detected question and `check.txt`. The evidence root contains `matrix.md`, with one verdict and evidence path per requested runtime.
 

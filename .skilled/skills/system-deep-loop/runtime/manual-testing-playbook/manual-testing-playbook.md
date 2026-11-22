@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.15.0
+version: 1.4.16.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -9,7 +9,7 @@ version: 1.4.15.0
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
 > outcome and reason are persisted into
-> `.skilled/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.
+> `.skilled/skills/system-deep-loop/runtime/benchmark/reports/<dated-run-label>/` by the sk-doc run recorder.
 
 > **EXECUTION POLICY**: Every scenario MUST be executed against real files, scripts, and test fixtures. Acceptable verdicts are PASS, FAIL, or SKIP; use SKIP only when a concrete sandbox blocker prevents execution.
 

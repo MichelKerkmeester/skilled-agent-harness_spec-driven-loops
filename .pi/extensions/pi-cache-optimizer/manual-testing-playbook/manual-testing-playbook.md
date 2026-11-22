@@ -21,7 +21,7 @@ Canonical package artifacts:
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete once its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded with the captured evidence. This extension ships outside a spec-kit skill tree, so runs are recorded under this package's sibling `benchmark/reports/` folder using the canonical run-folder shape.
+A scenario run is complete once its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded with the captured evidence. Runs are saved into this package's `benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` folder by `record-playbook-run.cjs`, the one writer for run folders: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .pi/extensions/pi-cache-optimizer/manual-testing-playbook --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`.
 
 ---
 

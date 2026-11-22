@@ -20,7 +20,7 @@ Canonical package artifacts:
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome, its reason and its evidence paths are recorded into the `benchmark/reports/<dated-run-label>/` folder of the skill the scenario validates. Generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome, its reason and its evidence paths are recorded into `.skilled/benchmark/reports/<dated-run-label>/`, beside this playbook. The run folder is written by `record-playbook-run.cjs`, never by hand.
 
 ---
 

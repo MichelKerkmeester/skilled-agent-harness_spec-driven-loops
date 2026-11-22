@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6410e7876438df556641cef7341474732cc770f58cf47b850f385c0df30cadcc",
+  "manifestHash": "3d6dd1079827ad053db9e73091ec21fa2a4a7282849e37beed568b8f94e009ce",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -95581,6 +95581,9 @@
     "record playbook run": [
       "record playbook run"
     ],
+    "record playbook run fixes": [
+      "record playbook run fixes"
+    ],
     "record replay cassette harness": [
       "record-replay cassette harness"
     ],
@@ -114536,6 +114539,9 @@
     "sk create manual testing playbook 1 2 0 0": [
       "sk-create-manual-testing-playbook 1.2.0.0"
     ],
+    "sk create manual testing playbook 1 2 1 0": [
+      "sk-create-manual-testing-playbook 1.2.1.0"
+    ],
     "sk create manual testing playbook implementation summary": [
       "sk create manual testing playbook implementation summary"
     ],
@@ -114601,6 +114607,9 @@
     ],
     "sk create manual testing playbook v1 2 0 0": [
       "sk-create-manual-testing-playbook v1.2.0.0"
+    ],
+    "sk create manual testing playbook v1 2 1 0": [
+      "sk-create-manual-testing-playbook v1.2.1.0"
     ],
     "sk create quality control": [
       "sk create quality control"
