@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-bots/001-headless-bots-first-build/005-request-pipeline",
+  "description": "Phase 5: request-pipeline",
+  "keywords": [
+    "phase",
+    "request-pipeline"
+  ],
+  "lastUpdated": "2026-11-22T10:48:31.631Z",
+  "specId": "005",
+  "folderSlug": "request-pipeline",
+  "parentChain": [
+    "system-skilled-bots",
+    "001-headless-bots-first-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
