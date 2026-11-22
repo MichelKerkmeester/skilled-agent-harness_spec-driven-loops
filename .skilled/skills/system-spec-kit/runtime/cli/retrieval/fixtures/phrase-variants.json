@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0591a3b9e3979d8c2ba0ac0f510ba62a92e7b9773024682ca14d9a736f68ef65",
+  "manifestHash": "f52c4fa28e2c54895c748b77fe33f97dc3447089629ea92fff2c4e7f719c2405",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13431,6 +13431,9 @@
     ],
     "aside console capture": [
       "aside console capture"
+    ],
+    "aside console network cookie gaps": [
+      "aside console network cookie gaps"
     ],
     "aside context cookies": [
       "aside context cookies"
@@ -69965,6 +69968,9 @@
     "mcp aside devtools 1 1 11 0": [
       "mcp-aside-devtools 1.1.11.0"
     ],
+    "mcp aside devtools 1 1 12 0": [
+      "mcp-aside-devtools 1.1.12.0"
+    ],
     "mcp aside devtools 1 1 2 0": [
       "mcp-aside-devtools 1.1.2.0"
     ],
@@ -70024,6 +70030,9 @@
     ],
     "mcp aside devtools v1 1 11 0": [
       "mcp-aside-devtools v1.1.11.0"
+    ],
+    "mcp aside devtools v1 1 12 0": [
+      "mcp-aside-devtools v1.1.12.0"
     ],
     "mcp aside devtools v1 1 2 0": [
       "mcp-aside-devtools v1.1.2.0"

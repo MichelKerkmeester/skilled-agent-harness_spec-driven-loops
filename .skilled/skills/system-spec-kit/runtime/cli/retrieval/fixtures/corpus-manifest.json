@@ -1,5 +1,5 @@
 {
-  "corpusHash": "452e9726e70d78aeae854295af177168771738d80dd4a113699ec1e7f061eef8",
+  "corpusHash": "0a73833f41cf8759b2eb43e7fa4f93315f1f2914bb6538f6f071058b5ee6d02b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29349,
+  "includedPathCount": 29350,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2088,6 +2088,7 @@
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.1.0.md",
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.10.0.md",
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.11.0.md",
+    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.12.0.md",
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.2.0.md",
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.3.0.md",
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.4.0.md",
@@ -29381,7 +29382,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0591a3b9e3979d8c2ba0ac0f510ba62a92e7b9773024682ca14d9a736f68ef65",
+  "manifestHash": "f52c4fa28e2c54895c748b77fe33f97dc3447089629ea92fff2c4e7f719c2405",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
