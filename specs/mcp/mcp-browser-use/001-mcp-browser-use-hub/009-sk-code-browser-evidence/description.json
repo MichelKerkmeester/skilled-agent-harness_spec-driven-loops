@@ -1,0 +1,19 @@
+{
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence",
+  "description": "Phase 9: sk-code-browser-evidence",
+  "keywords": [
+    "phase",
+    "sk-code-browser-evidence"
+  ],
+  "lastUpdated": "2026-11-22T21:09:06.901Z",
+  "specId": "009",
+  "folderSlug": "sk-code-browser-evidence",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "0ac7a6fc16993530a4a93d1b79f6c23985a42e4918eae0dcd79a07e83d1957ea",
+  "corpusHash": "66e99ff2f953ec6c9af7c05a37d3d85cd7b372868fe5b99c5803ec5df0f0531f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29350,
+  "includedPathCount": 29356,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3133,6 +3133,7 @@
     ".skilled/skills/sk-code/changelog/v3.11.6.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.1.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.2.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -13395,6 +13396,11 @@
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes/plan.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes/spec.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes/tasks.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/goal.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/implementation-summary.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/plan.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/spec.md",
+    "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/tasks.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/decision-record.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
     "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261121T223122Z-claude2-stopped/claude2/deep-review-dashboard.md",
@@ -29382,7 +29388,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7fc4bf155f729d87fbead7038ec38ca2a4d9a0d59932c22aa5d96078667f2334",
+  "manifestHash": "69835c7792a0b528ba3eb8674837ac71049964eabbc3f3c0029ed8d7a6127102",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33958,6 +33964,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/scratch",
       "reason": "excluded directory"
     },
     {

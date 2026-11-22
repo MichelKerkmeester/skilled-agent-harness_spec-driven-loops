@@ -121,6 +121,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 6 | 006-verification/ | Playbooks, the 14-step live Bladebro macOS plan after the install yes, the two-stage routing benchmark under the hub's `benchmark/reports/compiled-routing/`, alignment check | Complete |
 | 7 | 007-bladebro-parity-and-changelogs/ | Bladebro install guide, UTCP asset and scripts at Aside parity. The `.skilled/changelog/mcp-browser-use/` topology. Changelog entries for what shipped. Benchmark coverage per mode playbook (Level 2) | Complete |
 | 8 | 008-live-runs-and-playbook-fixes/ | Live Bladebro and Aside runs with the operator's approval, the Bladebro attach-mode scenario, catalog, examples and MCP server docs, form fixes in the Chrome DevTools and Aside playbooks, and removal of the leftover 505 worktree (Level 2) | Complete |
+| 9 | 009-sk-code-browser-evidence/ | sk-code's `sk-code-frontend` verification row names the `mcp-browser-use` hub, so a changed page is opened in whichever browser mode the user has installed. sk-code 3.12.2.0, router 2.3.24.0 (Level 1) | Complete |
 
 ### Phase Transition Rules
 
@@ -140,6 +141,7 @@ Per-phase detail lives in each child's `plan.md`. Phases 002 to 006 are refined 
 | 005-routing-and-surfaces | 006-verification | A real browser request reaches each mode through both routing stages | Advisor replay plus hub-router replay per mode |
 | 006-verification | 007-bladebro-parity-and-changelogs | [Criteria TBD] | [Verification TBD] |
 | 007-bladebro-parity-and-changelogs | 008-live-runs-and-playbook-fixes | The 13 Aside signed-in scenarios that 007 deferred to an operator yes run live, and the Bladebro attach-mode gap is covered by a scenario | Each recorded run folder's `results.csv` matches its README tally, and `validate-playbook-package.cjs` exits 0 for the three browser packages |
+| 008-live-runs-and-playbook-fixes | 009-sk-code-browser-evidence | The `sk-code-frontend` row in sk-code's `ROUTER.md` names the `mcp-browser-use` hub and its three browser modes | `parent-skill-check.cjs .skilled/skills/sk-code` exits 0, and `verify-router-sync.cjs` prints `router-sync: 5/5 checks passed` |
 <!-- /ANCHOR:phase-map -->
 
 ---

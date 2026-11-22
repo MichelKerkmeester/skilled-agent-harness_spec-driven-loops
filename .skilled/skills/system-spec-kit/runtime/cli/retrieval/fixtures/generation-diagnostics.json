@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7202,
-    "ok": 20520,
+    "ok": 20526,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29350,
+  "documentsScanned": 29356,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7fc4bf155f729d87fbead7038ec38ca2a4d9a0d59932c22aa5d96078667f2334",
+  "manifestHash": "69835c7792a0b528ba3eb8674837ac71049964eabbc3f3c0029ed8d7a6127102",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46245,
+      "ok": 46256,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -59229,6 +59229,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/scratch",
       "reason": "excluded directory"
     },
     {

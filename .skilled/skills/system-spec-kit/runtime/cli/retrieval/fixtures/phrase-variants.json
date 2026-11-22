@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7fc4bf155f729d87fbead7038ec38ca2a4d9a0d59932c22aa5d96078667f2334",
+  "manifestHash": "69835c7792a0b528ba3eb8674837ac71049964eabbc3f3c0029ed8d7a6127102",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -55169,6 +55169,12 @@
     "frontend upstream proposals phase parent spec": [
       "frontend upstream proposals phase parent spec"
     ],
+    "frontend verification browser evidence": [
+      "frontend verification browser evidence"
+    ],
+    "frontend verification browser hub": [
+      "frontend verification browser hub"
+    ],
     "frontend visual values upgrade": [
       "frontend visual values upgrade"
     ],
@@ -88125,6 +88131,9 @@
     "phase 9 second review remediation": [
       "phase 9 second review remediation"
     ],
+    "phase 9 sk code browser evidence": [
+      "phase 9 sk code browser evidence"
+    ],
     "phase 9 sk code opencode alignment": [
       "phase 9 sk code opencode alignment"
     ],
@@ -111621,6 +111630,9 @@
     "sk code 3 12 1 0": [
       "sk-code 3.12.1.0"
     ],
+    "sk code 3 12 2 0": [
+      "sk-code 3.12.2.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -111845,6 +111857,21 @@
     ],
     "sk code blast radius context": [
       "sk-code blast-radius context"
+    ],
+    "sk code browser evidence": [
+      "sk code browser evidence"
+    ],
+    "sk code browser evidence goal": [
+      "sk code browser evidence goal"
+    ],
+    "sk code browser evidence implementation summary": [
+      "sk code browser evidence implementation summary"
+    ],
+    "sk code browser evidence plan": [
+      "sk code browser evidence plan"
+    ],
+    "sk code browser evidence tasks": [
+      "sk code browser evidence tasks"
     ],
     "sk code build remaining modes": [
       "sk-code build remaining modes"
@@ -112248,6 +112275,9 @@
     ],
     "sk code frontend 1 2 0 0": [
       "sk-code-frontend 1.2.0.0"
+    ],
+    "sk code frontend browser hub": [
+      "sk-code-frontend browser hub"
     ],
     "sk code frontend build plan": [
       "sk-code-frontend build plan"
@@ -113843,6 +113873,9 @@
     ],
     "sk code v3 12 1 0": [
       "sk-code v3.12.1.0"
+    ],
+    "sk code v3 12 2 0": [
+      "sk-code v3.12.2.0"
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"

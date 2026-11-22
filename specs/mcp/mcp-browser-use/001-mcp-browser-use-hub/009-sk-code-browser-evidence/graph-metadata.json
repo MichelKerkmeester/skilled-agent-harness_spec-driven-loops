@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence",
+  "spec_folder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence",
+  "parent_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code browser evidence",
+      "phase 9 sk code browser evidence",
+      "sk-code-frontend browser hub",
+      "frontend verification browser evidence",
+      "sk code browser evidence plan",
+      "sk code browser evidence tasks",
+      "sk code browser evidence goal",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "sk code browser evidence implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "browser",
+      "evidence",
+      "phase",
+      "sk-code-frontend",
+      "hub",
+      "frontend",
+      "verification",
+      "plan",
+      "tasks",
+      "goal",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/description.json",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/changelog/v3.12.2.0.md",
+      "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
+      "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+      ".skilled/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "v3.12.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v3.12.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-performance-and-loading.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "loader.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-code-frontend` row of sk-code's verification table asked for \"the page rendered in a browser\" and named no tool",
+    "created_at": "2026-11-22T21:09:06Z",
+    "last_save_at": "2026-11-22T21:27:01.757Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9eb0fc235a5ee8795bb44665e50d8314e1e5436255c61641e3f07c9ed5ad128a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "168857f6681d09d3cb47617aa684d06b0fe16a9a6df6410160042f32d1d2fb9b",
+      "plan.md": "e343a69d238825ee8a1d722c00a036f452afe040cfd452acab62711321fed36c",
+      "tasks.md": "00325f5a80f855883da78d3ef8f347269b8902922b2d3a0cca1ffc22845f13d0",
+      "implementation-summary.md": "95eba370021007b475dfb0cc6a1a13e0879ea7841ee028cf696665e93b3dcfd5"
+    },
+    "last_active_at": null
+  }
+}
