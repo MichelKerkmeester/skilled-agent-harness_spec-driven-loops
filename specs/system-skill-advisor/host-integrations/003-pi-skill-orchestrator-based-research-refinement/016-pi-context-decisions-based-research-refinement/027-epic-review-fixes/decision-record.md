@@ -37,6 +37,7 @@ _memory:
 | Q001 | Delete the calibration override, query-class routing and the BM25 length calibration rather than wire them up. | Not stated. | None | REQ-001, REQ-005, spec.md section 3 |
 | Q002 | Delete the untracked lane build output from the primary checkout's advisor dist folder. | Not stated. | None | REQ-007, T013 |
 | Q003 | Fix every P1 and P2 finding and the drift the fresh review listed, rather than only saving the report. | Not stated. Evidence: yes_no, option false, overlap 0, imperative true, shift false. | None | spec.md section 3, tasks T004 to T014 |
+| Q004 | Fix all five Opus verification findings in phase 027, including the two that predate the change. | Not stated. | None | REQ-009, REQ-010, REQ-011, tasks T021 to T025 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -98,6 +99,26 @@ Options: none
 Answer:
 ```text
 Fix all p1,p2 drift etc
+```
+
+### Q004
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01VpLGFF789dYgusDkKBFGSc:0 -->
+
+Question:
+```text
+The fresh Opus review found five new P2 defects. Items 1 to 3 are gaps in my phase 027 change: the Python native bridge still drops the two location keys, a comment and a catalog line describe the deleted helper, and the new doctor test only runs `--shared-model keep`. Items 4 and 5 predate the change: three `.env.example` threshold keys do nothing, and the Python fallback never applies route exclusions. Which should I fix?
+```
+
+Options:
+```text
+Fix 1 to 3 in 027 (Recommended)
+Fix all five in 027
+Leave them for now
+```
+
+Answer:
+```text
+Fix all five in 027
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

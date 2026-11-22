@@ -46,6 +46,8 @@
       ".skilled/bin/system-skill-advisor-launcher.cjs",
       ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "evidence/opus-verification.md",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/bm25.ts",
@@ -53,8 +55,7 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
       ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/conflict-query-rerank.vitest.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/projection-fallback-049-005.vitest.ts"
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/conflict-query-rerank.vitest.ts"
     ],
     "entities": [
       {
@@ -118,6 +119,18 @@
         "source": "derived"
       },
       {
+        "name": "opus-verification.md",
+        "kind": "doc",
+        "path": "evidence/opus-verification.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "scoring-constants.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
@@ -166,12 +179,6 @@
         "source": "derived"
       },
       {
-        "name": "projection-fallback-049-005.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/projection-fallback-049-005.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The review found a documented calibration setting that nothing reads, two documented location settings the launcher never forwards, two opt-in switches the daemon cannot see, an eval script that imports a deleted module, unused scoring inputs, a lane cleanup that only wording checks cover, and Python boosts for the retired memory database vocabulary",
     "created_at": "2026-11-22T10:06:33Z",
-    "last_save_at": "2026-11-22T10:37:46.321Z",
+    "last_save_at": "2026-11-22T11:52:28.580Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ee9e3d2caeacfa48f29a32fa2e0834af034360af745016c5a2c11de6f44a801",
+    "source_fingerprint": "sha256:cce1e4cccdd8c5917e7ed9572a87090b418b6a584e7a0b77459e2e414a5cbff9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "91a216ff2f6cce546debc624e3b27529cbd4494ff8104a961bf700c4e13e700f",
+      "spec.md": "c0db8dd7d3c9a82ba16057bdb2bccf739dd1f9da9fcab5a696b6223f3d8d12ed",
       "plan.md": "98d08f0c290529192e6ba696966e809b8733f861e31baa406dcdd0bd9117b0c2",
-      "tasks.md": "71eeb6fbb2f672ef94aecc7eac855d370c0a31a1ee125f76a69fda452d519402",
-      "decision-record.md": "60e036d67b5af90d99509ffd3c6b0ea6721f13d994531b1bf3ab2a021f7ee945",
-      "implementation-summary.md": "7edeaadb587cc9a1a49859fe6f75285aba67f627b77271453c517f67f965ec7b"
+      "tasks.md": "f07c3a4b7aeeb5998917234cdcd1c8217d3ca94cee69f4c8dca53616c8a23020",
+      "decision-record.md": "ba06341c1e2c303d831cadcc805fa6e5b4d0dc5695fce8ac03bb3453d4cc436a",
+      "implementation-summary.md": "a9dc581f2905c8a46792ea2d12c76d6a8808f1a3c90c1f8794211e339489b5f0"
     },
     "last_active_at": null
   }

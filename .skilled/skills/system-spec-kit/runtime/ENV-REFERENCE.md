@@ -322,7 +322,6 @@ Skill-advisor threshold and calibration overrides for tuning the lane fusion sco
 | `SPECKIT_METRICS_ENABLED` | unset (OFF) | boolean (`'true'`) | Enables advisor metrics emission. Default OFF, so the emit path runs only when set to `true`. | `runtime/lib/metrics.ts` |
 | `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED` | unset (OFF) | boolean (`1`/`true`) | Enables shadow-delta collection at the default path. Setting `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` alone also enables it. | `runtime/lib/shadow/shadow-sink.ts` |
 | `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` | unset | string (path, under workspace root) | Override path for the shadow-delta sink. Setting this enables shadow-delta collection on its own. | `runtime/lib/shadow/shadow-sink.ts` |
-| `SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS` | `75` | number (ms) | Warn threshold for advisor hook cache-hit p95 latency. | `runtime/lib/metrics.ts` |
 
 ---
 

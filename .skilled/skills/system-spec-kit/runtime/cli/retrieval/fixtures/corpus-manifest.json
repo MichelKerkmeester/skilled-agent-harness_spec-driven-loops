@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a50f5b3878d0c101c10f203806e2896ee0c8b0025d05d17f98edd1744595188b",
+  "corpusHash": "3758f76c5aa433d0abe0726bc99edad07894e862a580ed2d1e523bcebe4b8c01",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29232,
+  "includedPathCount": 29234,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8306,6 +8306,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v1.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v1.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/anti-stuffing.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/derived-extraction.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/auto-indexing/df-idf-corpus.md",
@@ -19975,6 +19976,7 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/evidence/opus-verification.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/evidence/review-report.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/implementation-summary.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/plan.md",
@@ -29264,7 +29266,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6c27ebf8398c5f714d20361cafd3e7c1848086f247583eb8feb0217eadeed28d",
+  "manifestHash": "6410e7876438df556641cef7341474732cc770f58cf47b850f385c0df30cadcc",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

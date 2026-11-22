@@ -6,7 +6,7 @@ trigger_phrases:
   - "claude user-prompt-submit"
   - "hookSpecificOutput claude"
   - "claude advisor hook"
-version: 0.11.6.0
+version: 0.11.7.0
 ---
 
 # Claude Code user-prompt-submit Hook
@@ -39,7 +39,7 @@ On an unhandled crash, the hook emits the timeout fallback, or the skipped fallb
 
 ### Diagnostics
 
-Hook diagnostics are prompt-safe rollups handled by `lib/metrics.ts`. The `spec_kit.<group>.<metric_name>` instrumentation namespace emits only when `SPECKIT_METRICS_ENABLED=true`. Default off is no emission and is byte-identical to the pre-instrumentation surface. Alert thresholds for the rolling cache-hit p95 are read from the environment with conservative defaults: `SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS` (default 75) and `SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_PAGE_MS` (default 150). Both flags are forwarded to the daemon child through the launcher `CHILD_ENV_ALLOWLIST` so the same thresholds reach every runtime.
+Hook diagnostics are prompt-safe rollups handled by `lib/metrics.ts`. The `spec_kit.<group>.<metric_name>` instrumentation namespace emits only when `SPECKIT_METRICS_ENABLED=true`. Default off is no emission and is byte-identical to the pre-instrumentation surface.
 
 Each record carries `runtime`, taken from `SPECKIT_RUNTIME` when it names a known runtime and `claude` otherwise. Records carry optional `emittedBytes` and `directivesSuppressed`. The hook writes a health record to the diagnostics sink on every prompt and adds the skill label and the error text there only when `SKILL_ADVISOR_DEBUG` is set. A record whose answer came from the CLI's local scorer carries `degraded: true`. Raw prompts never appear in diagnostics. Before exiting, the hook waits up to 100 ms for pending diagnostic writes.
 
@@ -52,7 +52,7 @@ Each record carries `runtime`, taken from `SPECKIT_RUNTIME` when it names a know
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Implementation | Source reference |
-| `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` | Library | `SPECKIT_METRICS_ENABLED` emission gate and `getAdvisorHookAlertThresholds()` cache-hit p95 threshold flags |
+| `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` | Library | `SPECKIT_METRICS_ENABLED` emission gate |
 | `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` | Library | fallback status line and directives block |
 
 ### Validation And Tests

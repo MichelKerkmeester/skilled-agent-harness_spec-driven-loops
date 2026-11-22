@@ -267,11 +267,20 @@ test('the tool accepts the report and apply commands exactly as the phase spells
     assert.equal(spawnSync('git', ['init', '-q', root], { env }).status, 0);
     const fixtureFlags = ['--db-dir', dbDir, '--socket-dir', path.join(base, 'sock')];
 
-    for (const [key, mode] of [['report_command', 'machine'], ['apply_command', 'apply']]) {
+    // The apply phase runs the command three ways: with no answer when askFirst
+    // is empty, and with the value a yes or a no binds.
+    const runs = [
+      ['report_command', 'machine', null],
+      ['apply_command', 'apply', ''],
+      ['apply_command', 'apply', '--shared-model delete'],
+      ['apply_command', 'apply', '--shared-model keep'],
+    ];
+    for (const [key, mode, answer] of runs) {
       const line = LANE_CLEANUP.match(new RegExp('^\\s+' + key + ': "([^"]+)"$', 'm'))[1];
+      if (answer !== null) assert.ok(line.includes(' [--shared-model delete|keep]'), key + ' must offer both answers');
       const words = line
         .replace(' </dev/null', '')
-        .replace('[--shared-model delete|keep]', '--shared-model keep')
+        .replace(' [--shared-model delete|keep]', answer ? ' ' + answer : '')
         .split(/\s+/);
       assert.equal(words[0], 'node', key + ' must start with node');
       const [script, ...args] = words.slice(1);
@@ -281,11 +290,17 @@ test('the tool accepts the report and apply commands exactly as the phase spells
         env,
         stdio: ['ignore', 'pipe', 'pipe'],
       });
-      assert.equal(run.status, 0, key + ' must exit 0 on a clean fixture: ' + run.stderr);
+      assert.equal(run.status, 0, words.join(' ') + ' must exit 0 on a clean fixture: ' + run.stderr);
       const report = JSON.parse(run.stdout);
       assert.equal(report.mode, mode);
       assert.equal(report.exitCode, 0);
       assert.deepEqual(report.askFirst, []);
+      // A clean fixture leaves apply nothing to act on, so even the delete
+      // answer can only have touched the fixture if it acted at all.
+      if (mode === 'apply') {
+        const acted = report.actions.filter((entry) => entry.action !== 'reported');
+        assert.deepEqual(acted, [], words.join(' ') + ' must act on nothing in a clean fixture');
+      }
     }
   } finally {
     fs.rmSync(base, { force: true, recursive: true });

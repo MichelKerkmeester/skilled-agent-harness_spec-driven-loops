@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6c27ebf8398c5f714d20361cafd3e7c1848086f247583eb8feb0217eadeed28d",
+  "manifestHash": "6410e7876438df556641cef7341474732cc770f58cf47b850f385c0df30cadcc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -98620,6 +98620,9 @@
     "remove voyage cohere reranker": [
       "remove voyage cohere reranker"
     ],
+    "removed dead advisor settings": [
+      "removed dead advisor settings"
+    ],
     "removed folder classification": [
       "removed folder classification"
     ],
@@ -103942,6 +103945,9 @@
     ],
     "route diagram resources": [
       "route_diagram_resources"
+    ],
+    "route exclusions in the fallback": [
+      "route exclusions in the fallback"
     ],
     "route fallback": [
       "route fallback"
@@ -127479,6 +127485,9 @@
     "system skill advisor 2 0 0 0": [
       "system-skill-advisor 2.0.0.0"
     ],
+    "system skill advisor 2 0 1 0": [
+      "system-skill-advisor 2.0.1.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -127835,6 +127844,9 @@
     ],
     "system skill advisor v2 0 0 0": [
       "system-skill-advisor v2.0.0.0"
+    ],
+    "system skill advisor v2 0 1 0": [
+      "system-skill-advisor v2.0.1.0"
     ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"

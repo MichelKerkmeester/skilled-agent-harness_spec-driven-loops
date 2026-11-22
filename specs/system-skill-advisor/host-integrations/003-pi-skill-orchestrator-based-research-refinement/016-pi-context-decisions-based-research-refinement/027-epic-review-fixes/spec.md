@@ -91,6 +91,13 @@ The function has one line that names it, its own definition. The launcher allowl
 - Drop the two retired embedding columns from the projection fallback test's fixture table (Leftovers).
 - Delete the untracked lane build output in the primary checkout's `dist/` (Leftovers, operator approved).
 
+Second round, from the Opus verification in `evidence/opus-verification.md`, all five taken on by operator decision:
+- Forward the two location keys through the Python native bridge's env list as well (Opus D1).
+- Apply route exclusions at score time in the Python fallback, read the same way as the native loader (Opus D2).
+- Reword the comment and the catalog line that described the deleted explicit-signal helper (Opus D3).
+- Run the cleanup's apply command in all three forms the YAML prescribes: no answer, `delete` and `keep` (Opus D4).
+- Delete the four hook alert-threshold keys, which only a test read, with their reader, its test, the launcher and bridge entries and their doc rows (Opus D5).
+
 ### Out of Scope
 - Rewording the approval reason in `local-native-approved-divergences.json`. It is a dated reviewer record that the residue allowlist keeps on purpose, and it still names the cause of the divergence.
 - A guard test that compares every daemon-read setting with the launcher allowlist (the review's Next item 2). Both instances it would catch are fixed here, and the test needs its own exception list.
@@ -114,6 +121,14 @@ The function has one line that names it, its own definition. The launcher allowl
 | `.skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs` | Modify | Case that runs both cleanup commands on a fixture checkout |
 | `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` and `.env.example` | Modify | Calibration override rows removed |
 | `../spec.md` (016 parent) | Modify | Row 27 and its handoff row |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py` | Modify | Route-exclusion loader that mirrors the native one |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py` | Modify | Uses that loader, so the folder override reaches graph compilation too |
+| `.skilled/skills/system-skill-advisor/SKILL.md`, `.skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md` | Modify, Create | Patch bump to 2.0.1.0 and its changelog entry, by operator decision |
+| `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` | Modify | Cases for the fallback exclusion filter and the bridge env keys |
+| `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` | Modify | Dead alert-threshold reader, type and defaults removed |
+| `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-observability.vitest.ts` | Modify | The threshold case removed |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts` | Modify | Comment names the slash-command anchor that shares the floor |
+| `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/executor-delegation.md` and `hooks-and-plugin/claude-hook.md` | Modify | Stale floor and threshold sentences corrected |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -139,6 +154,9 @@ REQ ids run in one sequence across the P0 and P1 tables.
 | REQ-006 | The Python fallback no longer boosts the retired memory database vocabulary (finding 7) |
 | REQ-007 | The projection fixture and the primary checkout's `dist/` no longer carry lane leftovers |
 | REQ-008 | The 016 phase map lists this packet as row 27 |
+| REQ-009 | The Python native bridge forwards the two location keys, and the Python fallback drops a route-excluded skill (Opus D1, D2) |
+| REQ-010 | The cleanup test runs the apply command with no answer, with `delete` and with `keep` (Opus D4) |
+| REQ-011 | No doc or comment describes the deleted explicit-signal helper, and no dead alert-threshold key is documented or forwarded (Opus D3, D5) |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`.
 <!-- /ANCHOR:requirements -->

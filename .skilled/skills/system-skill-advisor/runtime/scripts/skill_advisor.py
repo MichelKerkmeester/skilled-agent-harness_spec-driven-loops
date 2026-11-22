@@ -232,7 +232,10 @@ NATIVE_BRIDGE_ENV_ALLOWLIST = {
     "SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST",
     "SPECKIT_ADVISOR_SHADOW_DELTA_PATH",
     "SPECKIT_METRICS_ENABLED",
-    "SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS",
+    # Location overrides the native scorer reads; without them the bridge child
+    # falls back to the packaged defaults and ignores the operator's setting.
+    "SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH",
+    "SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR",
 }
 _RUNTIME_SPEC = None
 _runtime_module = None
@@ -4998,8 +5001,12 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
         return []
 
     search_terms = expand_query(tokens) if tokens else []
+    # The native scorer never routes a route-excluded skill, so the fallback drops it too.
+    excluded_skill_ids = _runtime_module.load_route_excluded_skill_ids()
     recommendations = []
     for name, config in skills.items():
+        if name in excluded_skill_ids:
+            continue
         score = skill_boosts.get(name, 0.0)
         matches = boost_reasons.get(name, []).copy()
 
@@ -5128,6 +5135,10 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     ranked = normalize_command_bridge_recommendations(ranked, prompt_lower)
     refresh_passes_threshold(ranked)
     ranked = _apply_workflow_owner_guard(ranked, prompt_lower)
+    # Executor injection and the command-bridge rename can name a skill the
+    # candidate loop skipped, so the exclusion is applied once more at the end.
+    if excluded_skill_ids:
+        ranked = [rec for rec in ranked if rec.get("skill") not in excluded_skill_ids]
 
     # Internal sort metadata should not leak in advisor output.
     for rec in ranked:

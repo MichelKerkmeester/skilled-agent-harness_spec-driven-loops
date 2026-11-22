@@ -66,6 +66,17 @@ contextType: "implementation"
 - [x] T017 Rerun the whole gate set on the final state. Verify: every gate in plan.md section 5 prints exit 0, as recorded in `implementation-summary.md`.
 - [x] T018 Regenerate the trigger index last, then check it. Verify: `generate-trigger-index.mjs --check` prints `stale documents   : 0`.
 - [x] T019 Validate the packet and its parent. Verify: `validate.sh --strict` prints `RESULT: PASSED` for 027 and 016.
+
+### Second round: the Opus verification
+
+- [x] T020 Run a fresh native Opus high review of `98d7830402b`, read-only. Verify: its report is saved as `evidence/opus-verification.md`.
+- [x] T021 Forward the two location keys in the Python bridge env list and add the BRIDGE-ENV case (`A/scripts/skill_advisor.py`, `A/tests/python/test_skill_advisor.py`). Verify: the Python suite prints the BRIDGE-ENV PASS line.
+- [x] T022 Add the route-exclusion loader (`A/scripts/skill_advisor_runtime.py`), use it in `analyze_request` at the candidate loop and before the return, point `A/scripts/skill_graph_compiler.py` at it, and add the ROUTE-EXCL case. Verify: the case passes and fails with either drop removed, and the compiler prints `Excluded 1` with the folder override set.
+- [x] T023 Run the cleanup apply command with no answer, `delete` and `keep`, and assert each acts on nothing in the clean fixture (`doctor-update-contract.test.cjs`). Verify: the suite prints `pass 21`, and fails with `remove` in place of `delete` in the YAML.
+- [x] T024 Reword the floor comment and catalog line (`A/lib/scorer/executor-delegation.ts`, `feature-catalog/scorer-fusion/executor-delegation.md`). Verify: `rg 'own explicit workflow signal'` outside `specs/` prints nothing.
+- [x] T025 Delete the four alert-threshold keys with their reader, test case, launcher and bridge entries and doc rows. Verify: `git grep 'HOOK_CACHE_HIT_P95\|HOOK_FAILOPEN\|AlertThresholds'` outside `specs/` and changelogs prints nothing.
+- [x] T026 Rerun the whole gate set and revalidate. Verify: every gate exits 0, and `validate.sh --strict` prints `RESULT: PASSED` for 027 and 016.
+- [x] T027 Bump the advisor to 2.0.1.0 and add its changelog entry (`.skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md`). Verify: `check_changelog_shape.py` prints `pass=1` and `validate_document.py` prints `VALID`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -140,10 +151,10 @@ contextType: "implementation"
 ## FIX ADDENDUM: FIX COMPLETENESS
 
 - [x] CHK-FIX-001 [P0] Each finding has a class: 1, 2 and 5 class-of-bug, 3, 6 and 7 instance-only, 4 test-isolation, as the review assigned.
-- [x] CHK-FIX-002 [P0] Same-class producer inventory completed. Evidence: the `git grep` in `plan.md` affected surfaces, run before the edits, listed only the sites changed here.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed. Evidence: round one's `git grep` in `plan.md` affected surfaces missed the Python bridge env list, which the Opus verification found. Round two searched every env allowlist and every exclusion reader, and changed each one it found (T021, T022, T025).
 - [x] CHK-FIX-003 [P0] Consumer inventory completed. Evidence: `plan.md` affected-surfaces table, including the two readers that stay unchanged.
 - [x] CHK-FIX-004 [P0] N/A: no security, path, parser or redaction logic changed. The new case only runs an existing tool on a temp folder.
-- [x] CHK-FIX-005 [P1] Matrix axes listed: setting state by process for the two forwarded keys, four rows, covered by the new set case and the existing filter case.
+- [x] CHK-FIX-005 [P1] Matrix axes listed: setting state by process for the two forwarded keys, now three processes (launcher daemon, Python bridge child, Python fallback), covered by the launcher case, BRIDGE-ENV and ROUTE-EXCL, plus the existing filter case.
 - [x] CHK-FIX-006 [P1] Hostile env variant executed: the new contract case removes every location variable from the child env before it runs.
 - [x] CHK-FIX-007 [P1] Evidence is pinned to the worktree base `e3ca4c96645` plus this packet's commit.
 <!-- /ANCHOR:fix-completeness -->
