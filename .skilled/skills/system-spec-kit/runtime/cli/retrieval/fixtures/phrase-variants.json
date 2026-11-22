@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d8d3f46d00a77ef9aa9ab6467975442277f53a07fb7d43ecbe4e264a747cd982",
+  "manifestHash": "6cbffe39c3dfb8fa9957e9875a9a998d7dfd432059bd95ae6d0a8059d4afb797",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7838,6 +7838,9 @@
     "401 415 post wave validation": [
       "401-415 post-wave validation"
     ],
+    "403 forbidden prompt routing": [
+      "403 forbidden prompt routing"
+    ],
     "409 scenario count guard": [
       "409 scenario count guard"
     ],
@@ -13513,6 +13516,9 @@
     "aside mcp server": [
       "aside mcp server"
     ],
+    "aside moved to browser hub": [
+      "aside moved to browser hub"
+    ],
     "aside multi tab": [
       "aside multi tab"
     ],
@@ -15826,11 +15832,23 @@
     "bladebro doctor": [
       "bladebro doctor"
     ],
+    "bladebro doctor script": [
+      "bladebro doctor script"
+    ],
     "bladebro five tools": [
       "bladebro five tools"
     ],
     "bladebro install": [
       "bladebro install"
+    ],
+    "bladebro install guide and scripts": [
+      "bladebro install guide and scripts"
+    ],
+    "bladebro install script": [
+      "bladebro install script"
+    ],
+    "bladebro manual snippet": [
+      "bladebro manual snippet"
     ],
     "bladebro mcp wiring": [
       "bladebro mcp wiring"
@@ -15850,6 +15868,24 @@
     "bladebro mode tasks": [
       "bladebro-mode tasks"
     ],
+    "bladebro parity and changelogs": [
+      "bladebro parity and changelogs"
+    ],
+    "bladebro parity and changelogs acceptance criteria": [
+      "bladebro parity and changelogs acceptance criteria"
+    ],
+    "bladebro parity and changelogs goal": [
+      "bladebro parity and changelogs goal"
+    ],
+    "bladebro parity and changelogs implementation summary": [
+      "bladebro parity and changelogs implementation summary"
+    ],
+    "bladebro parity and changelogs plan": [
+      "bladebro parity and changelogs plan"
+    ],
+    "bladebro parity and changelogs tasks": [
+      "bladebro parity and changelogs tasks"
+    ],
     "bladebro placeholder": [
       "bladebro placeholder"
     ],
@@ -15858,6 +15894,12 @@
     ],
     "bladebro research charter": [
       "bladebro research charter"
+    ],
+    "bladebro scripts": [
+      "bladebro scripts"
+    ],
+    "bladebro utcp config": [
+      "bladebro utcp config"
     ],
     "blank line removals": [
       "blank line removals"
@@ -16542,6 +16584,9 @@
     ],
     "browser first page write": [
       "browser-first page write"
+    ],
+    "browser hub changelog topology": [
+      "browser hub changelog topology"
     ],
     "browser hub routing": [
       "browser hub routing"
@@ -20224,6 +20269,9 @@
     ],
     "chrome devtools mcp server": [
       "chrome devtools mcp server"
+    ],
+    "chrome devtools moved to browser hub": [
+      "chrome devtools moved to browser hub"
     ],
     "chrome devtools protocol patterns": [
       "chrome devtools protocol patterns"
@@ -69509,6 +69557,9 @@
     "mcp aside devtools 1 1 10 0": [
       "mcp-aside-devtools 1.1.10.0"
     ],
+    "mcp aside devtools 1 1 11 0": [
+      "mcp-aside-devtools 1.1.11.0"
+    ],
     "mcp aside devtools 1 1 2 0": [
       "mcp-aside-devtools 1.1.2.0"
     ],
@@ -69566,6 +69617,9 @@
     "mcp aside devtools v1 1 10 0": [
       "mcp-aside-devtools v1.1.10.0"
     ],
+    "mcp aside devtools v1 1 11 0": [
+      "mcp-aside-devtools v1.1.11.0"
+    ],
     "mcp aside devtools v1 1 2 0": [
       "mcp-aside-devtools v1.1.2.0"
     ],
@@ -69611,6 +69665,9 @@
     "mcp bladebro 1 1 0 0": [
       "mcp-bladebro 1.1.0.0"
     ],
+    "mcp bladebro 1 2 0 0": [
+      "mcp-bladebro 1.2.0.0"
+    ],
     "mcp bladebro benchmark reports": [
       "mcp-bladebro benchmark reports"
     ],
@@ -69626,6 +69683,9 @@
     "mcp bladebro v1 1 0 0": [
       "mcp-bladebro v1.1.0.0"
     ],
+    "mcp bladebro v1 2 0 0": [
+      "mcp-bladebro v1.2.0.0"
+    ],
     "mcp browser use": [
       "mcp-browser-use"
     ],
@@ -69634,6 +69694,9 @@
     ],
     "mcp browser use 1 1 0 0": [
       "mcp-browser-use 1.1.0.0"
+    ],
+    "mcp browser use 1 1 1 0": [
+      "mcp-browser-use 1.1.1.0"
     ],
     "mcp browser use advisor routing": [
       "mcp-browser-use advisor routing"
@@ -69673,6 +69736,9 @@
     ],
     "mcp browser use v1 1 0 0": [
       "mcp-browser-use v1.1.0.0"
+    ],
+    "mcp browser use v1 1 1 0": [
+      "mcp-browser-use v1.1.1.0"
     ],
     "mcp child restart needed": [
       "mcp child restart needed"
@@ -69745,6 +69811,9 @@
     ],
     "mcp chrome devtools 1 0 25 0": [
       "mcp-chrome-devtools 1.0.25.0"
+    ],
+    "mcp chrome devtools 1 0 26 0": [
+      "mcp-chrome-devtools 1.0.26.0"
     ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
@@ -69844,6 +69913,9 @@
     ],
     "mcp chrome devtools v1 0 25 0": [
       "mcp-chrome-devtools v1.0.25.0"
+    ],
+    "mcp chrome devtools v1 0 26 0": [
+      "mcp-chrome-devtools v1.0.26.0"
     ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
@@ -87129,6 +87201,9 @@
     "phase 7 barter review fixes": [
       "phase 7 barter review fixes"
     ],
+    "phase 7 bladebro parity and changelogs": [
+      "phase 7 bladebro parity and changelogs"
+    ],
     "phase 7 checker debt closeout": [
       "phase 7 checker debt closeout"
     ],
@@ -96391,6 +96466,9 @@
     ],
     "registered aside manual": [
       "registered aside manual"
+    ],
+    "registered bladebro manual": [
+      "registered bladebro manual"
     ],
     "registered embedders scaffold": [
       "registered_embedders scaffold"
