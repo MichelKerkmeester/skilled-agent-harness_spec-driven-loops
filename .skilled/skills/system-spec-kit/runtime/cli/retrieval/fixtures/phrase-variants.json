@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ce2744fc058d851bef12ad5ff8557064b8662f278e9f3181c09aac2c7f17bed2",
+  "manifestHash": "3291549e10592af355f329f0dddce1f34f80167fab6a7fdb72dffad85de36d62",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37264,6 +37264,27 @@
     ],
     "deep loop code readme repairs": [
       "deep-loop code README repairs"
+    ],
+    "deep loop command offers": [
+      "deep loop command offers"
+    ],
+    "deep loop command offers acceptance criteria": [
+      "deep loop command offers acceptance criteria"
+    ],
+    "deep loop command offers decision record": [
+      "deep loop command offers decision record"
+    ],
+    "deep loop command offers implementation summary": [
+      "deep loop command offers implementation summary"
+    ],
+    "deep loop command offers plan": [
+      "deep loop command offers plan"
+    ],
+    "deep loop command offers tasks": [
+      "deep loop command offers tasks"
+    ],
+    "deep loop command offers timeline": [
+      "deep loop command offers timeline"
     ],
     "deep loop commands agents review": [
       "deep-loop commands agents review"
@@ -78963,6 +78984,9 @@
     ],
     "offer lookup at claim tasks": [
       "offer lookup at claim tasks"
+    ],
+    "offer the right deep loop command and flags": [
+      "offer the right deep loop command and flags"
     ],
     "official cli agent usage": [
       "official cli agent usage"

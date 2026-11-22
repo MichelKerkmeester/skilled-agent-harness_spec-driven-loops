@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7187,
-    "ok": 20411,
+    "ok": 20418,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29226,
+  "documentsScanned": 29233,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ce2744fc058d851bef12ad5ff8557064b8662f278e9f3181c09aac2c7f17bed2",
+  "manifestHash": "3291549e10592af355f329f0dddce1f34f80167fab6a7fdb72dffad85de36d62",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46041,
+      "ok": 46049,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -63659,6 +63659,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch",
       "reason": "excluded directory"
     },
     {
