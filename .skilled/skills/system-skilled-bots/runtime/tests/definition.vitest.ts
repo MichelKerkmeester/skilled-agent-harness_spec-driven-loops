@@ -3,7 +3,8 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { DEFAULT_BUDGET, parseDefinition, readDefinition, resolveIsolation } from '../lib/definition.js';
+import { executorConfigSchema } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
+import { DEFAULT_BUDGET, DEFAULT_RUNTIME, checkExecutorBounds, parseDefinition, readDefinition, resolveIsolation } from '../lib/definition.js';
 import { defaultRepoConfig } from '../lib/repo-config.js';
 
 const FIXTURES = join(import.meta.dirname, 'fixtures');
@@ -121,5 +122,23 @@ describe('author template', () => {
 
   it('fails as written, so an unfilled template never runs', () => {
     expect(parseDefinition(readFileSync(TEMPLATE, 'utf8'))).toMatchObject({ ok: false, reason: 'id-invalid' });
+  });
+});
+
+describe('checkExecutorBounds', () => {
+  // Read from the executor schema so the test follows the executor's own bound.
+  const ceiling = (executorConfigSchema.shape.timeoutSeconds.unwrap() as unknown as { maxValue: number }).maxValue;
+
+  it('accepts the default runtime and budget', () => {
+    expect(checkExecutorBounds({ runtime: { ...DEFAULT_RUNTIME }, budget: { ...DEFAULT_BUDGET } })).toEqual({ ok: true, value: null });
+  });
+
+  it('refuses an unknown executor kind and a timeout one past the executor ceiling', () => {
+    expect(checkExecutorBounds({ runtime: { kind: 'cli-unknown' }, budget: { ...DEFAULT_BUDGET } }))
+      .toMatchObject({ ok: false, reason: 'runtime-kind-unknown' });
+    expect(Number.isInteger(ceiling)).toBe(true);
+    expect(checkExecutorBounds({ runtime: { ...DEFAULT_RUNTIME }, budget: { ...DEFAULT_BUDGET, timeoutSeconds: ceiling } }).ok).toBe(true);
+    expect(checkExecutorBounds({ runtime: { ...DEFAULT_RUNTIME }, budget: { ...DEFAULT_BUDGET, timeoutSeconds: ceiling + 1 } }))
+      .toMatchObject({ ok: false, reason: 'budget.timeoutSeconds-out-of-bounds' });
   });
 });

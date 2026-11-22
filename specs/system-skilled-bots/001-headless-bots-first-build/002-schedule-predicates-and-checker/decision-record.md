@@ -49,6 +49,8 @@ The man page says a missing calendar key is a wildcard and describes the either-
 
 **Probe observation:** not yet observed. Record here the install date, the plist text, every fire timestamp from the probe log and the weekday of each, across at least one matching and one non-matching day.
 
+**Probe status (2026-11-22):** not loaded. The orchestrator barred loading any launchd agent or writing into `~/Library/LaunchAgents` until the operator says yes, because loading an agent is an install on the operator's machine. The plist template and its install, status and remove script wait, unrun, in `scratch/com.skilled.probe.weekday.plist` and `scratch/probe-weekday.sh`. `plutil -lint` passed on a copy with Weekday 1.
+
 ### Constraints
 
 - The probe is a hand-written plist that only appends `date` to a log outside the checkout. It calls no runner and no agent.
@@ -64,6 +66,10 @@ The man page says a missing calendar key is a wildcard and describes the either-
 **We propose**: Emit a `Weekday`-only cron as calendar dictionaries with that key alone if the probe fires only on matching days, and refuse the form with its own invariant id if it does not. A `Day`-only cron takes the same rule. That is an inference from the shared wildcard sentence (line 450), because the probe tests `Weekday` alone.
 
 **How it works**: Install the probe on day one. Read its log after one matching and one non-matching day. Set the translator rule and its test to the observed result. If the rule is refuse, hand the change of the worked example to phase 1 and research.md §5.
+
+**Interim rule until the probe runs**: refuse. A cron that restricts only one of the two day fields fails translate with `cron-single-day-field-unverified`, behind the one constant `SINGLE_DAY_FIELD_RULE` in `cron-translator.ts`. Refusing is the conservative side of this decision's own alternatives: a wrong emit could fire an unattended bot every day, and a wrong refuse only blocks an install. The same refusal covers `0 9 * * 1-5`, `0 0 1 * *`, `@weekly`, `@monthly` and `@yearly`. If the probe fires only on matching days, the flip is that constant plus its test.
+
+**Found while building**: cron reads the two day fields as AND, not OR, when either field starts with `*` (for example `*/2` beside a weekday). launchd's documented two-key rule is either-match, so that form has no exact translation and is refused with `cron-day-fields-and`.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -138,7 +144,7 @@ The man page says a missing calendar key is a wildcard and describes the either-
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-11-22 |
 | **Deciders** | Phase implementer |
 
@@ -235,7 +241,7 @@ A calendar key holds one integer, so cron lists and steps multiply into an array
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-11-22 |
 | **Deciders** | Phase implementer. The launchd side stays unverified |
 
@@ -259,7 +265,7 @@ The runner must list the slots one wake fire stood for, to write `scheduled_at` 
 
 **We propose**: List slots in local wall-clock time. A slot whose local time does not exist in a spring-forward gap is not listed. A slot in a repeated fall-back hour is listed once, at its first occurrence.
 
-**How it works**: The lister walks each local day in the range, builds each matching wall-clock time from the dictionaries and converts it to an instant. A time that does not round-trip is dropped. A repeated time keeps its earlier instant. For `StartInterval 60` it lists one slot per 60 seconds after the last run, with no calendar alignment.
+**How it works**: The lister walks each local day in the range, builds each matching wall-clock time from the dictionaries and converts it to an instant. A time that does not round-trip is dropped. A repeated time keeps its earlier instant. For `StartInterval 60` it lists one slot per 60 seconds after the last run, with no calendar alignment. Built as proposed. ECMAScript resolves an ambiguous local time to its earlier instant, which is the first occurrence this rule wants; the fall-back test pins it under `TZ=Europe/Amsterdam`.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -332,7 +338,7 @@ The runner must list the slots one wake fire stood for, to write `scheduled_at` 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-11-22 |
 | **Deciders** | Phase implementer |
 
@@ -356,9 +362,9 @@ Every repository installs into the same `~/Library/LaunchAgents`, so a bare bot 
 
 **We propose**: Build labels as `com.skilled.bots.<identity>.<bot-id>.<schedule-index>`, with identity reduced to a label-safe slug, and refuse when identity is unknown.
 
-**How it works**: `label` builds and parses the four parts. The `com.skilled.bots.` prefix marks hub labels. The probe uses `com.skilled.probe.weekday`, which the parser rejects as not a hub label.
+**How it works**: `label` builds and parses the four parts. The identity slug lowercases the identity and writes every character outside `[a-z0-9-]` as `_` plus two hex digits, `_` included, so the slug holds no dot and decodes exactly: `local/tool` becomes `local_2ftool`. The `com.skilled.bots.` prefix marks hub labels. The probe uses `com.skilled.probe.weekday`, which the parser rejects as not a hub label.
 
-**Drain label (Proposed)**: phase 6 installs one queue-drain agent per repository identity, and that agent has no bot id or schedule index. Its label is `com.skilled.bots.<identity>.drain`. `label` builds and parses this form beside the bot form. The bot id `drain` is reserved, so no bot label can be read as a drain label. A checker invariant enforces the reservation and fails a `BOT.md` whose `id` is `drain`.
+**Drain label**: phase 6 installs one queue-drain agent per repository identity, and that agent has no bot id or schedule index. Its label is `com.skilled.bots.<identity>.drain`. `label` builds and parses this form beside the bot form. The bot id `drain` is reserved, so no bot label can be read as a drain label. A checker invariant enforces the reservation and fails a `BOT.md` whose `id` is `drain`.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---
@@ -431,7 +437,7 @@ Every repository installs into the same `~/Library/LaunchAgents`, so a bare bot 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-11-22 |
 | **Deciders** | Phase implementer |
 

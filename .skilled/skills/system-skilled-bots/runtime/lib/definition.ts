@@ -12,6 +12,8 @@ import { readFileSync } from 'node:fs';
 
 import { parse as parseYaml } from 'yaml';
 
+import { EXECUTOR_KINDS, executorConfigSchema } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
+
 import { ISOLATION_VALUES } from './repo-config.js';
 
 import type { Isolation, RepoConfig, Result } from './repo-config.js';
@@ -82,7 +84,8 @@ export const DEFAULT_BUDGET: Readonly<Budget> = Object.freeze({
 
 export const DEFAULT_RUNTIME: Readonly<RuntimeBlock> = Object.freeze({ kind: 'native' });
 
-const BOT_ID_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
+/** Bot ids are label-safe: lowercase letters, digits and hyphens, no dots. */
+export const BOT_ID_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
 const QUEUE_NAME_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
 const DOC_VERSION_PATTERN = /^\d+\.\d+\.\d+\.\d+$/;
 
@@ -318,4 +321,36 @@ export function resolveIsolation(
   const isolation = definition.posture.isolation ?? config.defaultIsolation;
   if (isolation === null) return { ok: false, reason: 'isolation-undeclared' };
   return { ok: true, value: isolation };
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXECUTOR BOUNDS
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * Check a parsed definition against the deep-loop executor's own bounds: a
+ * known executor kind and a timeout the executor accepts. Parsing stays
+ * shape-only so a runner can still read a file the executor would refuse.
+ * The bounds are read from the deep-loop schema, never restated, so the
+ * checker and the dispatcher cannot disagree.
+ *
+ * @returns Nothing on success, or `runtime-kind-unknown` or `budget.timeoutSeconds-out-of-bounds`.
+ */
+export function checkExecutorBounds(definition: Pick<BotDefinition, 'runtime' | 'budget'>): Result<null> {
+  if (!(EXECUTOR_KINDS as readonly string[]).includes(definition.runtime.kind)) {
+    return {
+      ok: false,
+      reason: 'runtime-kind-unknown',
+      detail: `${definition.runtime.kind} is not one of ${EXECUTOR_KINDS.join(', ')}`,
+    };
+  }
+  const timeout = executorConfigSchema.shape.timeoutSeconds.safeParse(definition.budget.timeoutSeconds);
+  if (!timeout.success) {
+    return {
+      ok: false,
+      reason: 'budget.timeoutSeconds-out-of-bounds',
+      detail: timeout.error.issues.map((issue) => issue.message).join('; '),
+    };
+  }
+  return { ok: true, value: null };
 }

@@ -106,7 +106,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 5. TESTING STRATEGY
 <!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
-The one gate command is the skill runtime test suite, and it must exit 0. The checker is proven by running it on each fixture and reading both its lines and its exit code.
+The one gate command is the skill runtime test suite, and it must exit 0. The translator tests pin the dictionary cap of 128 and the interim single-day-field rule, refuse, until the probe decides it (decision-record.md ADR-001, ADR-002). The checker is proven by running it on each fixture and reading both its lines and its exit code.
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|

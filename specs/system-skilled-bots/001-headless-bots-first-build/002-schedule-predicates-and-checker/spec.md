@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-22 |
 | **Branch** | `scaffold/002-schedule-predicates-and-checker` |
 | **Parent Spec** | ../spec.md |
@@ -92,7 +92,7 @@ The man page names `Weekday` only as a key and in the rule for when both `Day` a
 
 ### In Scope
 - Install a hand-written `Weekday`-only probe job on the first day of the phase and record what it does across at least one matching and one non-matching day (research.md §16 Q1).
-- Build the cron translator: exact calendar dictionaries or a refusal with an invariant id. Apply a dictionary cap. Refuse `@reboot`, `@AppleNotOnBattery` and the percent-stdin form. Emit every-minute as `StartInterval 60` (research.md §7).
+- Build the cron translator: exact calendar dictionaries or a refusal with an invariant id. Apply a dictionary cap of 128 (decision-record.md ADR-002). Until the probe runs, refuse a cron that restricts only one day field, the conservative side of ADR-001. Refuse `@reboot`, `@AppleNotOnBattery` and the percent-stdin form. Emit every-minute as `StartInterval 60` (research.md §7).
 - Build the label grammar from repository identity, bot id and schedule index (research.md §7).
 - Build the slot lister from the translator's expanded dictionaries, never from a second cron evaluator, with a tested daylight-saving rule (research.md §7, §16 Q4).
 - Build the definition checker with the `PASS|FAIL|WARN|INFO: <id>: <message>` contract, exits 0, 1 and 2, a strict switch and one negative fixture per invariant (research.md §6).
@@ -236,7 +236,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - Does a `Weekday`-only calendar entry fire only on that weekday? Answered by the probe, not by the operator. Blocks close (research.md §16 Q1).
 - What does launchd do with a calendar slot that a daylight-saving change skips or repeats? UNKNOWN. The lister's rule is decided in `decision-record.md`. launchd's own behavior stays unverified.
-- How does the checker detect a secret literal in the body? Phase 3 decides the detector. This phase ships the invariant id only once that predicate exists, or defers it to phase 3.
+- How does the checker detect a secret literal in the body? Phase 3 decides the detector. This phase ships the invariant id only once that predicate exists, or defers it to phase 3. Deferred: the detector does not exist yet, so the checker ships no body-secret invariant.
+- Is loading the weekday probe approved? Loading a launchd agent is an install on the operator's machine and waits for the operator's yes. The plist and its install, status and remove script are ready in `scratch/`. Until the probe runs, the translator refuses a lone day field, the conservative side of ADR-001.
+- Where does a bot's file live under `bots/`? This phase reads `bots/<id>/BOT.md`, one folder per bot, and warns when the folder name differs from the id. The runner's lookup by id should use the same layout; neither spec states it.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -38,7 +38,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,14 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/cron-translator.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/slot-lister.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts",
+      "scratch/com.skilled.probe.weekday.plist",
+      "scratch/probe-weekday.sh",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".skilled/scripts/launchagents/README.md"
@@ -95,6 +103,54 @@
         "source": "derived"
       },
       {
+        "name": "cron-translator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/cron-translator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "label.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
+        "source": "derived"
+      },
+      {
+        "name": "slot-lister.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/slot-lister.ts",
+        "source": "derived"
+      },
+      {
+        "name": "definition.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bot-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "definition.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "com.skilled.probe.weekday.plist",
+        "kind": "file",
+        "path": "scratch/com.skilled.probe.weekday.plist",
+        "source": "derived"
+      },
+      {
+        "name": "probe-weekday.sh",
+        "kind": "script",
+        "path": "scratch/probe-weekday.sh",
+        "source": "derived"
+      },
+      {
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
@@ -125,6 +181,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -141,65 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Pure",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A bot author writes a cron string, and launchd only takes calendar dictionaries that hold one integer per key",
     "created_at": "2026-11-22T10:48:27Z",
-    "last_save_at": "2026-11-22T16:59:06.953Z",
+    "last_save_at": "2026-11-22T17:12:06.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:290ca957759f37b8a06a5c2b3552c2b5a501cf0dd12856857e5922555f880c4b",
+    "source_fingerprint": "sha256:d9beb85f79922bb20dde938ff3a576ac22c9efdc45003a187a3e966bb221c294",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "15fe793e3069ab58e3375a05b39e3f6c8bb5401e992b5082f30116fbfbd93628",
-      "plan.md": "9f13891277a044c8ecf3b40333e1cf3f51c1865d3528e761d5b33f4ae7085c72",
-      "tasks.md": "cb2301d0e50669959f16eeaab530b3bc753db0a3ad6b41f52406aaa944d14c57",
-      "decision-record.md": "7c4f79ad9d3d3284e57a21d86dc8bf2fc662938c6bfd2b3a39a2f6cc8386cb8f",
-      "implementation-summary.md": "33700b0d0422c089117de47e393c05a51f03088f5d9cda2fd872ebf201de3288"
+      "spec.md": "31ffd1c0b3980ff56171524d84f0f53e725bb50188d3cb2171913a424565ee27",
+      "plan.md": "ef317025ba919f25eb4e0f2f5b0a7ff3f851202694668cee5b614b539ef4d14c",
+      "tasks.md": "afb0bca05c7b5e8870b5916771457257bf4f122aeb7038eb580bd847b96249ef",
+      "decision-record.md": "0fe04a9ef146f4f42d1ba80d6a1152fd694f18279bd9179156a7c3d4f43f2dc5",
+      "implementation-summary.md": "8a6ad432611d3b17f58bfac2dd005b1fb7182e5a99675da504c92f621aadc2f9"
     },
     "last_active_at": null
   }
