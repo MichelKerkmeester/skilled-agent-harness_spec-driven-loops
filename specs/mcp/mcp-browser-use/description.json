@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "mcp/mcp-browser-use",
+  "description": "Container folder for mcp/mcp-browser-use.",
+  "keywords": [
+    "mcp",
+    "browser",
+    "use"
+  ],
+  "lastUpdated": "2026-11-21T07:54:02.789Z",
+  "specId": "mcp/mcp-browser-use",
+  "folderSlug": "mcp-browser-use",
+  "parentChain": [
+    "mcp"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

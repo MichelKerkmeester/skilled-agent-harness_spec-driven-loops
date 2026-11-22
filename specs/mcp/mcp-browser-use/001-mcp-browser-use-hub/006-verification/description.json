@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification",
+  "description": "Phase 6: verification",
+  "keywords": [
+    "phase",
+    "verification"
+  ],
+  "lastUpdated": "2026-11-21T18:40:05.307Z",
+  "specId": "006",
+  "folderSlug": "verification",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_19-40__ran-the-alignment-critic-aggregated-28-findings.md"
+  ]
+}

@@ -964,7 +964,7 @@
     },
     {
       "from": ".opencode/specs/mcp-tooling/003-mcp-figma-transfer/",
-      "to": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/",
+      "to": ".opencode/specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/",
       "records": 66,
       "agreement": 1
     },

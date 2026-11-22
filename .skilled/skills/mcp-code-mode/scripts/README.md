@@ -4,7 +4,7 @@ description: "Code-facing README for .skilled/skills/mcp-code-mode/scripts."
 trigger_phrases:
   - "mcp-code-mode scripts"
   - "code README"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp code mode scripts
@@ -67,7 +67,7 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Path | Purpose |
 |---|---|
-| `_utils.sh` | Shared logging, JSON and prompt helpers that `install.sh` sources. Kept byte-identical with the `mcp-tooling/mcp-chrome-devtools` copy, which a test enforces. |
+| `_utils.sh` | Shared logging, JSON and prompt helpers that `install.sh` sources. Kept byte-identical with the `mcp-browser-use/mcp-chrome-devtools` copy, which a test enforces. |
 | `doctor.sh` | Read-only check of the MCP server's installed dependencies and `dist/index.js`. |
 | `install.sh` | Shell installer for Code Mode prerequisites and local wiring. |
 | `update.sh` | Shell updater for refreshing the local Code Mode installation. |

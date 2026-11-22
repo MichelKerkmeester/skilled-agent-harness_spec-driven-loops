@@ -727,7 +727,7 @@ fi
 if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
   MUTCLASS_GUARD="${SOURCE_ROOT}/commands/doctor/scripts/check-mcp-mutation-class.sh"
   if git_bounded diff --cached --name-only --diff-filter=ACM \
-       | grep -Eq '^\.(opencode|skilled)/(skills/(mcp-tooling/)?mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/(doctor-mcp-install|mcp-mutation-class-manifest)\.yaml)$'; then
+       | grep -Eq '^\.(opencode|skilled)/(skills/(mcp-tooling/|mcp-browser-use/)?mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/(doctor-mcp-install|mcp-mutation-class-manifest)\.yaml)$'; then
     if [[ ! -f "$MUTCLASS_GUARD" ]]; then
       if _in_toolchain_repo; then
         echo "" >&2

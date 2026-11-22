@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/005-resolution-hardening",
+  "description": "The packet shipped a resolver whose search-path branch cannot return a candidate on a real host",
+  "keywords": [
+    "packet",
+    "shipped",
+    "resolver",
+    "whose",
+    "search-path",
+    "branch",
+    "cannot",
+    "return",
+    "candidate",
+    "real",
+    "host"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.863Z",
+  "specId": "005",
+  "folderSlug": "resolution-hardening",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "016-code-mode-node-resolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/009-mcp-refero/005-inventory-parity-and-doc-truth",
+  "spec_folder": "mcp/mcp-tooling/z_archive/009-mcp-refero/005-inventory-parity-and-doc-truth",
+  "parent_id": "mcp/mcp-tooling/z_archive/009-mcp-refero",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "refero inventory parity",
+      "mcp-refero phase 005",
+      "refero sk-design dedup",
+      "refero examples install",
+      "refero parity plan",
+      "mcp-refero 005 plan",
+      "refero dedup plan",
+      "refero parity tasks",
+      "mcp-refero 005 tasks",
+      "refero dedup tasks",
+      "refero parity summary",
+      "mcp-refero phase 005 summary"
+    ],
+    "key_topics": [
+      "refero",
+      "inventory",
+      "parity",
+      "mcp-refero",
+      "phase",
+      "sk-design",
+      "dedup",
+      "examples",
+      "install",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/examples/README.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/examples/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "byte-diffed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v1.0.0.0 `mcp-refero` packet shipped structurally valid but short of hub-sibling inventory parity: no `examples/` directory, no `scripts/install.sh`, a 6-scenario playbook where the research section D supports more workflow coverage, and a feature catalog whose 8 tools share only 3 grouped domain files",
+    "created_at": "2026-07-16T12:58:32Z",
+    "last_save_at": "2026-11-21T07:55:09.756Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:97ebd1b7e480d16d983df0fe423b2d0b81b028b572e49349f516666e49a4be3d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4ae29903575a01316a8c0b9d33efe85b81c1615d1695bbba457272aa8a6728cd",
+      "plan.md": "2372afc30b6194240341b3eb064a297c1452e93932c19d5fac44f0144434fb42",
+      "tasks.md": "c7c87b16ab8090b630a171796a4d173325a8dbcc9853cc946b242dd8b2a0bcca",
+      "implementation-summary.md": "ae8727eca382bd8fd672b1ab45d198b07e266f179cf3f2906648e82a9da115f7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

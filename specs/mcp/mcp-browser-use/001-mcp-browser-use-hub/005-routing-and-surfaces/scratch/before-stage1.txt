@@ -1,0 +1,123 @@
+== debug this page with chrome devtools and take a screenshot
+[
+  {
+    "skill": "mcp-tooling",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.780709,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-tooling",
+      "liveScore": 0.780709,
+      "shadowScore": 0.72191,
+      "delta": -0.058799,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "mcp-browser-use",
+    "kind": "skill",
+    "confidence": 0.8886,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.651515,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-browser-use",
+      "liveScore": 0.651515,
+      "shadowScore": 0.601262,
+      "delta": -0.050253,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+== use aside to fill this form in my signed-in account
+[
+  {
+    "skill": "mcp-tooling",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.18,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "confidenceFloored": true,
+    "score": 0.514541,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-tooling",
+      "liveScore": 0.514541,
+      "shadowScore": 0.484062,
+      "delta": -0.030479,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "mcp-browser-use",
+    "kind": "skill",
+    "confidence": 0.6093,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.157921,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-browser-use",
+      "liveScore": 0.157921,
+      "shadowScore": 0.139934,
+      "delta": -0.017987,
+      "dominantShadowLane": "lexical"
+    }
+  },
+== use bladebro to attach to my open browser and finish the checkout flow
+[
+  {
+    "skill": "mcp-browser-use",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.18,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "confidenceFloored": true,
+    "score": 0.512701,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-browser-use",
+      "liveScore": 0.512701,
+      "shadowScore": 0.470584,
+      "delta": -0.042117,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "mcp-tooling",
+    "kind": "skill",
+    "confidence": 0.5966,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.135305,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-tooling",
+      "liveScore": 0.135305,
+      "shadowScore": 0.124255,
+      "delta": -0.01105,
+      "dominantShadowLane": "lexical"
+    }
+  },

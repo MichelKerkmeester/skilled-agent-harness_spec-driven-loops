@@ -313,11 +313,19 @@ describe('create.sh refuses sub-track values the reader skips', () => {
     expect(fs.readdirSync(target).sort()).toEqual(before);
   });
 
-  it('refuses a track with three path segments before creating specs/a', () => {
+  it('refuses a track with four path segments before creating specs/a', () => {
+    const result = create(['--track', 'a/b/c/d', '--short-name', 'deep-probe', 'Deep probe']);
+
+    expect(result.status, result.stderr).not.toBe(0);
+    expect(result.stderr).toContain('has more than three path segments');
+    expect(fs.existsSync(path.join(workspace, 'specs', 'a'))).toBe(false);
+  });
+
+  it('refuses three path segments that name no declared sub-tracks before creating specs/a', () => {
     const result = create(['--track', 'a/b/c', '--short-name', 'deep-probe', 'Deep probe']);
 
     expect(result.status, result.stderr).not.toBe(0);
-    expect(result.stderr).toContain('has more than two path segments');
+    expect(result.stderr).toContain('undeclared folder ignored');
     expect(fs.existsSync(path.join(workspace, 'specs', 'a'))).toBe(false);
   });
 });

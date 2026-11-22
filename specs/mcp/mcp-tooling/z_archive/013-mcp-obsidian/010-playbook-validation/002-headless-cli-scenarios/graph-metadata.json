@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
+  "spec_folder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
+  "parent_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "headless notesmd-cli scenarios",
+      "notesmd-cli playbook run",
+      "obsidian headless test",
+      "obsidian verification plan",
+      "mcp-obsidian closeout plan",
+      "mcp-obsidian phase 8 plan",
+      "obsidian verification tasks",
+      "mcp-obsidian closeout tasks",
+      "mcp-obsidian phase 8 tasks",
+      "002-headless-cli-scenarios results",
+      "playbook validation results",
+      "mcp-obsidian scenario results"
+    ],
+    "key_topics": [
+      "headless",
+      "notesmd-cli",
+      "scenarios",
+      "playbook",
+      "run",
+      "obsidian",
+      "test",
+      "verification",
+      "plan",
+      "mcp-obsidian",
+      "closeout",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-pi",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE CONTEXT",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Executor",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Scenarios",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Execute the 8 headless notesmd-cli manual-testing-playbook scenarios against the test vault and record pass/fail. Executor: deepseek-v4-flash via cli-pi.",
+    "created_at": "2026-08-03T04:10:01.640Z",
+    "last_save_at": "2026-11-21T07:55:10.002Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f71bb46fa46b7c02d94d814340eb835a393e8327a12ea98b1604fd84d5187258",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "31cf366f83c2f68de443729841edfd321211fe1b7ae48a661e31360ec7654bb0",
+      "plan.md": "8750f43afdbefa9c85b38203b0773228661021077f7a40c411fa0b82ac5b32f6",
+      "tasks.md": "c09f70ba34f9c0f0813b7bed4c477eab547ef586e85e5cbfe0c706c9f20f53a5",
+      "implementation-summary.md": "50d0f7c01fba1009cd4a8433e1147372971d2652b15ec0714c21de90017e8c12"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/007-nested-subtracks",
+  "spec_folder": "system-speckit/spec-folder-tooling/007-nested-subtracks",
+  "parent_id": "system-speckit/spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "nested subtracks",
+      "two level sub-tracks",
+      "sub-track inside a sub-track",
+      "allow a declared sub track to hold declared",
+      "nested subtracks plan",
+      "nested subtracks tasks",
+      "nested subtracks acceptance criteria",
+      "nested subtracks implementation summary"
+    ],
+    "key_topics": [
+      "nested",
+      "subtracks",
+      "two",
+      "level",
+      "sub-tracks",
+      "sub-track",
+      "inside",
+      "allow",
+      "declared",
+      "sub",
+      "track",
+      "hold"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/nested-subtrack.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+      ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/track-root-children-lists.md",
+      ".skilled/skills/system-spec-kit/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "nested-subtrack.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/nested-subtrack.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-track-refresh.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "track-root-children-lists.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/track-root-children-lists.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec-kit supports exactly one level of declared sub-tracks: `create.sh` refuses a `--track` value with three segments, and the track reader, validator, graph parser, repair writer, relocation engine and archive tool never look below a level-1 sub-track",
+    "created_at": "2026-11-21T06:36:30Z",
+    "last_save_at": "2026-11-21T07:10:55.659Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fc9c98130a4f8f84a271e475deb47521e9c33f1180283aafa2f3e1a5fb8e0ed8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6d8d40bd997791928ab25de3cbedbfc2c5930b28e8d599c6dda2e1436d22f1ab",
+      "plan.md": "348855e6531c68fd8e5cc68852891428cdbbe5af76a7a248fbfea89e3fbd2f4b",
+      "tasks.md": "935eb2e92eff0c529c154bacba63388befd17746f5dc369f12cd02db52cdc8ce",
+      "implementation-summary.md": "ea8379d3187c9ffe470a3063a3551d2973073e96e0814600c4c4f74c87d818c1"
+    },
+    "last_active_at": null
+  }
+}

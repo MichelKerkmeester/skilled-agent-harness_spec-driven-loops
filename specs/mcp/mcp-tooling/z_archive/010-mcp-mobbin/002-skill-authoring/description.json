@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/002-skill-authoring",
+  "description": "The hub has no `mcp-mobbin` packet: there is no SKILL.md contract, no tool-surface reference, no install guide, and no UTCP manual snippet for the",
+  "keywords": [
+    "hub",
+    "mcp-mobbin",
+    "packet",
+    "skill",
+    "contract",
+    "tool-surface",
+    "reference",
+    "install",
+    "guide",
+    "utcp",
+    "manual",
+    "snippet"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.731Z",
+  "specId": "002",
+  "folderSlug": "skill-authoring",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "010-mcp-mobbin"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -179,9 +179,9 @@ Open the rendered build in a `bdg` session.
   4. Check names, roles and states with `bdg cdp Accessibility.getFullAXTree`, or with a manual screen-reader pass.
   5. Read computed text and background colours with `Runtime.evaluate` as above, then check contrast against the target `sk-design-fundamentals` sets.
   6. Record any check that cannot run as `NOT RUN` with the reason.
-- Use [mcp-aside-devtools](../../../mcp-tooling/mcp-aside-devtools/SKILL.md) as the fallback renderer. Its `aside repl` is Playwright-compatible and can capture screenshots, but it has no CDP-domain parity, so it cannot force states or emulate media. Keep `bdg` for those checks.
+- Use [mcp-aside-devtools](../../../mcp-browser-use/mcp-aside-devtools/SKILL.md) as the fallback renderer. Its `aside repl` is Playwright-compatible and can capture screenshots, but it has no CDP-domain parity, so it cannot force states or emulate media. Keep `bdg` for those checks.
 
-See [mcp-chrome-devtools](../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for documented `bdg` commands.
+See [mcp-chrome-devtools](../../../mcp-browser-use/mcp-chrome-devtools/SKILL.md) for documented `bdg` commands.
 
 **Deeper:** [Elements and attributes](web-elements-and-attributes.md), [accessibility patterns](web-accessibility-patterns.md), [performance and loading](web-performance-and-loading.md) and [internationalization](web-internationalization.md).
 

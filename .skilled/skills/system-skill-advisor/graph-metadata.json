@@ -14,7 +14,12 @@
       {
         "target": "mcp-tooling",
         "weight": 0.7,
-        "context": "routes browser-debugging and MCP tooling requests via the mcp-tooling hub"
+        "context": "routes MCP tooling requests via the mcp-tooling hub"
+      },
+      {
+        "target": "mcp-browser-use",
+        "weight": 0.7,
+        "context": "routes browser-debugging and browser automation requests via the mcp-browser-use hub"
       },
       {
         "target": "mcp-code-mode",

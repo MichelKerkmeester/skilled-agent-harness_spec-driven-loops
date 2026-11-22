@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent",
+  "spec_folder": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent",
+  "parent_id": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "public-figma-agent",
+      "phase 2 figma",
+      "AI_Systems Public Figma",
+      "Public README §8",
+      "phase 2 plan",
+      "public figma plan",
+      "phase 2 tasks",
+      "public figma tasks",
+      "phase 2 decisions",
+      "public figma adr",
+      "phase 2 summary",
+      "public figma summary"
+    ],
+    "key_topics": [
+      "public-figma-agent",
+      "phase",
+      "figma",
+      "public",
+      "readme",
+      "plan",
+      "tasks",
+      "decisions",
+      "adr",
+      "summary",
+      "produced",
+      "internal-team-framed"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Barter Figma",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Public",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Patch Public",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Figma Agent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Public Figma",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Original Authored Content",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Duplicate Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edit Public",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Compliance Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Phase",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Keep",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered Leaving",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Consequences The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 1 produced an internal-team-framed Barter Figma agent (commit 690b498 with 16 files, ~234K markdown)",
+    "created_at": "2026-05-05T07:49:58Z",
+    "last_save_at": "2026-11-21T07:55:09.446Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1b0f4bee2a771935ff551a76496da977ed77207c102bfbb881b7f15e12c86340",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "be2f688a4f52e45d1fb080f993467e2181b5df0f1b3188b4cc44c1bca90657b8",
+      "plan.md": "aa333b4be0696a6e262cb1e0ed754888083d7d323f4802e91f177e9419787ae7",
+      "tasks.md": "593a7da9b04bde0a79a7374e99775b396bd11fef07eee828e17562ef2e70e9a9",
+      "decision-record.md": "ad40de9f8773175d7f83c57daa63dc75c56c1068d8665c03245a3d8c7be7bd8a",
+      "implementation-summary.md": "5b7c4d31343281ef29fa14f8429cf4ea1fbd44ef6b0415854bf36ac9faa35689"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

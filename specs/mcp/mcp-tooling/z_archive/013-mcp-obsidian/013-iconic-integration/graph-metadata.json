@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/013-iconic-integration",
+  "spec_folder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/013-iconic-integration",
+  "parent_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-obsidian iconic support",
+      "iconic plugin file layer",
+      "iconic rulebook integration",
+      "phase 13 plan",
+      "iconic integration plan",
+      "phase 13 tasks",
+      "phase 13 results",
+      "mcp-obsidian v1.3.1.0",
+      "iconic support shipped"
+    ],
+    "key_topics": [
+      "mcp-obsidian",
+      "iconic",
+      "support",
+      "plugin",
+      "file",
+      "layer",
+      "rulebook",
+      "integration",
+      "phase",
+      "plan",
+      "tasks",
+      "results"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/plugin-operation-logic.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/iconic.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/iconic-rules.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-operation-logic.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/plugin-operation-logic.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "iconic.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/iconic.md",
+        "source": "derived"
+      },
+      {
+        "name": "iconic-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/iconic-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bare Iconic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "file-layer",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "iconic",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The user's vaults run the Iconic plugin (repo `gfxholo/iconic`, v1.1.10 — icon/color customization for tabs, files, folders, bookmarks, tags, properties, ribbon) with a pre-built auto-icon rulebook (21 file rules by extension + 11 folder rules by name) already applied and enabled in all three vaults",
+    "created_at": "2026-08-03T11:57:50.451Z",
+    "last_save_at": "2026-11-21T07:55:10.054Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:17d881f0c1af2d0f0bebad7b0f918d4d8dd3205ee1f1d898a6db8cd19f0bc7c7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dfa7d62f70f6086910edd732147de742db53bf86037518ff0221b68714ba32a0",
+      "plan.md": "bf4b7d88dd71fb6d81de36cfb27f6ecae05ea5363c27c2ebb06f06f04355f828",
+      "tasks.md": "2464c6e5dce025e33a18903cb5ee8b1a3d852150860abe88e45f16a00e8b45a1",
+      "implementation-summary.md": "5eb754d9a19a0a38bcbbeca81afe07d38e2c46340a2e9e5391ce6b319f6c9a90"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

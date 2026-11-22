@@ -178,7 +178,7 @@ function migrationReason(row, previous) {
   const values = [row.gold, row.localTop, row.nativeTop, previous?.gold, previous?.localTop, previous?.nativeTop]
     .filter(Boolean)
     .join(' ');
-  if (values.includes('mcp-chrome-devtools') || values.includes('mcp-tooling')) {
+  if (values.includes('mcp-chrome-devtools') || values.includes('mcp-tooling') || values.includes('mcp-browser-use')) {
     return 'current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity';
   }
   if (values.includes('system-deep-loop') || values.includes('deep-research') || values.includes('deep-review')) {

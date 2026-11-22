@@ -56,7 +56,7 @@
       "runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts",
       "scratch/check-brief-rows.py",
       "runtime/hooks/claude/session-prime.ts",
-      "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/spec.md",
+      "specs/mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/spec.md",
       "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/spec.md",
       "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/spec.md",
       "specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The parent exists because the reason for a piece of work got lost across session handovers and compactions",
     "created_at": "2026-11-14T05:10:09Z",
-    "last_save_at": "2026-11-14T19:47:16.935Z",
+    "last_save_at": "2026-11-21T07:56:20.456Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2150d7556395969f56a94724f969508972fd33d12675073b84baef6fb7a22213",
+    "source_fingerprint": "sha256:f4c229d48d26e06f91937bc4e92ae35c413912c7162c7c4716226bff715ffd9b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f728610ef3176d91c2fea88872d69bc863490ade6d96b95526c54de0232e748",
+      "spec.md": "08d35d8fa3a5d44b14e15c5f9fab87c3c67c7d8cc158fddc7aa5fa6f4a5444ca",
       "plan.md": "26a6f9f1ebd30cb9cb3715d102d0cc3783e523d019855078a559a5b0ed58ab0a",
       "tasks.md": "b10824fd16b86625c4c887a37533656a8ee7432cf03fc0d78dfef81bbe56d1d0",
       "decision-record.md": "0e66f4ba40a2c7920bbd924917caa3ad16a894cb260c5b68c78a065212fc76c4",

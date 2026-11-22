@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/008-verification-and-closeout",
+  "spec_folder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/008-verification-and-closeout",
+  "parent_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "obsidian verification closeout",
+      "mcp-obsidian smoke test",
+      "mcp-obsidian phase 8",
+      "obsidian mode closeout",
+      "obsidian verification plan",
+      "mcp-obsidian closeout plan",
+      "mcp-obsidian phase 8 plan",
+      "obsidian verification tasks",
+      "mcp-obsidian closeout tasks",
+      "mcp-obsidian phase 8 tasks",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "obsidian",
+      "verification",
+      "closeout",
+      "mcp-obsidian",
+      "smoke",
+      "test",
+      "phase",
+      "mode",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After Phase 7 the mode is registered but unproven end-to-end: nothing has confirmed the whole packet validates under `--recursive --strict`, that the advisor actually recalls `mcp-tooling` for obsidian prompts, that the CLI and MCP paths execute against a real vault, or that the packet's completion metadata is internally consistent",
+    "created_at": "2026-08-02T05:50:30Z",
+    "last_save_at": "2026-11-21T07:55:09.968Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ce900bf5122682f064f0ef66f98da6b3943a4de20c7c7c1ff9a97cd2d3ff3a35",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3018dfc6e7d6062d2dd14b56a6778d8347b3e4225d8b97f85813e91ab29210c8",
+      "plan.md": "39951b3282cf57590e3152444ded013d977447f615174875bd40e3686688a9c5",
+      "tasks.md": "9ace1f0986b7c115a3e983f24b7b9a133e89b3dddda8c2034427b23f2d9ccfaa",
+      "implementation-summary.md": "082560d1be7b4f66de9456a39b7bfd2a0bb86e1689d66f80c11e899eea21c4c3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

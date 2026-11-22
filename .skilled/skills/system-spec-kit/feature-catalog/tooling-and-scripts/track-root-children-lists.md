@@ -6,7 +6,7 @@ trigger_phrases:
   - "refresh-track-roots"
   - "sweep-track-roots"
   - "track-root pre-push gate"
-version: 2.0.9.0
+version: 2.0.10.0
 ---
 
 # Track-root children lists
@@ -53,9 +53,9 @@ track, whose files live in another repository. A packet named more than once is
 drift even though the set is unchanged: the sweep names it and the writer
 removes the repeat.
 
-A track that holds numbered packets beside declared sub-tracks is mixed. The
-sweep names the flat packets and exits 1, even when the children list is
-correct. The writer cannot clear it: each flat packet moves into a sub-track.
+A track or a level-1 sub-track that holds numbered packets beside declared
+sub-tracks is mixed. The sweep names the flat packets and exits 1, even when the
+children list is correct. The writer cannot clear it: each flat packet moves into a sub-track.
 In the working tree, a numbered folder without `spec.md` beside sub-tracks is
 not a packet. It is usually ignored files a moved packet left behind, so the
 sweep prints it as a diagnostic and does not fail.
@@ -66,20 +66,25 @@ identity `<track>/<sub>`. The reader returns it after its track, the writer
 refreshes its `children_ids` and the track's in one pass, and the sweep reports
 its packets at the same depth as a flat track's. A non-numbered folder without
 the declaration is reported once and never promoted, and a symlinked sub-track
-is skipped with a diagnostic in both views. In the working tree the sweep also
+is skipped with a diagnostic in both views. A level-1 sub-track may hold declared
+level-2 sub-tracks, `<track>/<sub>/<inner>`, read the same way and listed in its
+`children_ids`. Inside a level-1 sub-track only a declared folder is read, so a
+one-level tree reports what it always did, and a declared folder inside a level-2
+sub-track gets the diagnostic `declared sub-track nested past two sub-track
+levels, not read` and is never listed. In the working tree the sweep also
 prints one line for each declared sub-track that has no `z_archive/` folder,
 naming `refresh-track-roots.mjs --apply` as the way to seed it. A `--rev` sweep
 does not make this check. These diagnostics are advisory to
 the sweep and do not change its exit code. `create.sh` uses the same diagnostic
 to explain a refusal, then exits with status 1.
 
-`create.sh --track` scaffolds under a track or one declared sub-track, then
-refreshes that root and, for a sub-track, its parent. A declared sub-track with
+`create.sh --track` scaffolds under a track, a declared sub-track or a declared
+level-2 sub-track, then refreshes that root and every level above it. A declared sub-track with
 missing metadata is seeded by the refresh. A flat track without
 `graph-metadata.json` remains unrefreshed. If the parent track has no graph metadata,
 creation proceeds without refreshing. It exits with status 1 for absolute paths,
 `.`, `..` or empty segments, and for undeclared or symlinked sub-tracks, declared
-folders containing `spec.md`, or values with more than two path segments. The
+folders containing `spec.md`, or values with more than three path segments. The
 check reads the value as written and never resolves it, so a one-level track
 that is a deliberate symlink to another tree still works. The pre-push hook sweeps
 each pushed commit with `--rev` and blocks on drift. It reads the commit rather
@@ -88,8 +93,8 @@ unfinished packets. `SPECKIT_SKIP_PREPUSH_TRACK_GATE=1` skips it for one push.
 
 `archive.sh` moves a track packet into the track's own `z_archive/` and
 restores it to the track, and runs the writer for that track after both moves.
-A packet in a declared sub-track goes into the sub-track's own `z_archive/`,
-and the writer then runs for the sub-track and for its track.
+A packet in a declared sub-track, at either level, goes into that sub-track's own
+`z_archive/`, and the writer then runs for the sub-track and every level above it.
 
 A packet moved, renamed or deleted by hand leaves the list stale until the
 writer runs again. The gate then names the fix.
@@ -111,6 +116,7 @@ writer runs again. The gate then names the fix.
 | `runtime/cli/tests/archive-track.vitest.ts` | Archive and restore inside a track |
 | `runtime/cli/tests/fixtures/subtrack-tree.mjs` | The shared sub-track tree every sub-track suite builds on |
 | `runtime/cli/tests/validate-subtrack.vitest.ts` | Recursive validation through a declared sub-track |
+| `runtime/cli/tests/nested-subtrack.vitest.ts` | Two sub-track levels across the reader, sweep, writer, `create.sh`, validation, parent derivation, archive and relocation, and the refusal at a third level |
 | `.skilled/scripts/git-hooks/tests/pre-push.test.sh` | The gate's cases |
 
 ---

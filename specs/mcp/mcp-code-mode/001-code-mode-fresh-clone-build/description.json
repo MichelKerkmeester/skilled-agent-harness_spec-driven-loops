@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-code-mode/001-code-mode-fresh-clone-build",
+  "description": "A fresh clone or worktree cannot build Code Mode, and the config preflight reports the shipped UTCP configuration wrongly",
+  "keywords": [
+    "fresh",
+    "clone",
+    "worktree",
+    "cannot",
+    "code",
+    "mode",
+    "config",
+    "preflight",
+    "reports",
+    "shipped",
+    "utcp",
+    "configuration",
+    "wrongly"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.650Z",
+  "specId": "001",
+  "folderSlug": "code-mode-fresh-clone-build",
+  "parentChain": [
+    "mcp",
+    "mcp-code-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

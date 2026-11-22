@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer",
+  "spec_folder": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer",
+  "parent_id": null,
+  "children_ids": [
+    "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent",
+    "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent",
+    "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
+    "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "067-mcp-figma-transfer",
+      "phase parent"
+    ],
+    "key_topics": [
+      "067-mcp-figma-transfer",
+      "phase",
+      "parent",
+      "phased",
+      "decomposition",
+      "tracks",
+      "mcp-figma",
+      "transfer",
+      "tri-repo",
+      "withdraw",
+      "developer",
+      "skill"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phased decomposition tracks mcp-figma transfer (tri-repo): withdraw mcp-figma developer skill from CodeEnvironment/Public, reframe as a Figma MCP Agent in AISystems/Barter (mirroring ClickUp), dual-publish a sanitized duplicate to AISystems/Public, and register it in the Public README across independently executable child phase folders",
+    "created_at": "2026-05-05T07:49:57Z",
+    "last_save_at": "2026-11-21T07:55:09.423Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:3cdaa389578427e1ad87dbb3423dc4aa8b41f80a23c39b13e117b3e71804e9c1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d0e8f053c22f16af00446626e02363ca5ccae2510ccb471528d70711beeb61f0"
+    },
+    "last_active_child_id": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation",
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,11 @@
+{"prompt":"debug this page with chrome devtools and take a screenshot","action":"route","selectionKind":"single","targets":["mcp-chrome-devtools"]}
+{"prompt":"use aside to fill this form in my signed-in account","action":"route","selectionKind":"single","targets":["mcp-aside-devtools"]}
+{"prompt":"use bladebro to attach to my open browser and finish the checkout flow","action":"route","selectionKind":"single","targets":["mcp-bladebro"]}
+{"prompt":"replay this signed-in checkout step by step and save the evidence","action":"route","selectionKind":"single","targets":["mcp-aside-devtools"]}
+{"prompt":"in the browser I already have open, work out how to finish this signup","action":"route","selectionKind":"single","targets":["mcp-bladebro"]}
+{"prompt":"export a HAR of this page load","action":"route","selectionKind":"single","targets":["mcp-chrome-devtools"]}
+{"prompt":"run a lighthouse audit on this page","action":"route","selectionKind":"single","targets":["mcp-chrome-devtools"]}
+{"prompt":"run aside on the pricing page","action":"route","selectionKind":"single","targets":["mcp-aside-devtools"]}
+{"prompt":"open aside and log in","action":"route","selectionKind":"single","targets":["mcp-aside-devtools"]}
+{"prompt":"browser automation for this site","action":"defer","selectionKind":null,"targets":[]}
+{"prompt":"use an agentic browser to click through signup","action":"defer","selectionKind":null,"targets":[]}

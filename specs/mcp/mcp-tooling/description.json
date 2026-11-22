@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "mcp/mcp-tooling",
+  "description": "Container folder for mcp/mcp-tooling.",
+  "keywords": [
+    "mcp",
+    "tooling"
+  ],
+  "lastUpdated": "2026-11-21T07:54:02.681Z",
+  "specId": "mcp/mcp-tooling",
+  "folderSlug": "mcp-tooling",
+  "parentChain": [
+    "mcp"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

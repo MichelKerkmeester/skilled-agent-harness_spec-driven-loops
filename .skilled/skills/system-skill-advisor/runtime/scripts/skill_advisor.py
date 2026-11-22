@@ -1816,7 +1816,7 @@ SYNONYM_MAP = {
     "console": ["chrome", "browser", "debug", "log"],
     "devtools": ["chrome", "browser", "debug", "inspect"],
     "network": ["chrome", "browser", "requests", "debug"],
-    "inspect": ["chrome", "browser", "debug", "devtools"],
+    "inspect": ["debug"],
     "breakpoint": ["debug", "chrome", "devtools"],
     "screenshot": ["capture", "image", "browser", "chrome", "devtools"],
     "error": ["bug", "debug", "fix", "issue"],
@@ -1978,25 +1978,25 @@ INTENT_BOOSTERS = {
     "readiness": ("sk-code", 0.8),
 
     # ─────────────────────────────────────────────────────────────────
-    # MCP-TOOLING: Browser debugging
+    # MCP-BROWSER-USE: Browser debugging
     # ─────────────────────────────────────────────────────────────────
-    "bdg": ("mcp-tooling", 1.0),
-    "breakpoint": ("mcp-tooling", 0.6),
-    "browser": ("mcp-tooling", 1.2),
-    "chrome": ("mcp-tooling", 1.0),
-    "console": ("mcp-tooling", 1.0),
-    "debug": ("mcp-tooling", 0.6),
-    "debugger": ("mcp-tooling", 1.0),
-    "devtools": ("mcp-tooling", 1.2),
-    "dom": ("mcp-tooling", 0.5),
-    "elements": ("mcp-tooling", 0.5),
-    # Keep the generic verb out of the MCP hub: inspection alone is not a
+    "bdg": ("mcp-browser-use", 1.0),
+    "breakpoint": ("mcp-browser-use", 0.6),
+    "browser": ("mcp-browser-use", 1.2),
+    "chrome": ("mcp-browser-use", 1.0),
+    "console": ("mcp-browser-use", 1.0),
+    "debug": ("mcp-browser-use", 0.6),
+    "debugger": ("mcp-browser-use", 1.0),
+    "devtools": ("mcp-browser-use", 1.2),
+    "dom": ("mcp-browser-use", 0.5),
+    "elements": ("mcp-browser-use", 0.5),
+    # Keep the generic verb out of the browser hub: inspection alone is not a
     # tooling request. Browser/devtools-specific tokens below still route to
     # the hub when the prompt identifies that surface.
-    "network": ("mcp-tooling", 0.8),
-    "performance": ("mcp-tooling", 0.5),
-    "screenshot": ("mcp-tooling", 2.0),
-    "waterfall": ("mcp-tooling", 1.0),
+    "network": ("mcp-browser-use", 0.8),
+    "performance": ("mcp-browser-use", 0.5),
+    "screenshot": ("mcp-browser-use", 2.0),
+    "waterfall": ("mcp-browser-use", 1.0),
 
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-DOCUMENTATION: Documentation and diagrams
@@ -2953,9 +2953,14 @@ INTENT_NORMALIZATION_RULES = {
         "boosts": [("command-speckit-save", 0.6)],
     },
     "tooling": {
-        "phrases": ["use mcp", "code mode", "chrome devtools", "use external tool"],
-        "tokens": {"mcp", "devtools", "chrome", "notion", "toolchain"},
+        "phrases": ["use mcp", "code mode", "use external tool"],
+        "tokens": {"mcp", "notion", "toolchain"},
         "boosts": [("mcp-code-mode", 0.3), ("mcp-tooling", 0.3)],
+    },
+    "browser": {
+        "phrases": ["chrome devtools", "browser console"],
+        "tokens": {"devtools", "chrome"},
+        "boosts": [("mcp-code-mode", 0.3), ("mcp-browser-use", 0.3)],
     },
 }
 

@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
+  "description": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
+  "keywords": [
+    "mode",
+    "now",
+    "ships",
+    "six",
+    "community",
+    "artifacts",
+    "five",
+    "plugins",
+    "minimal",
+    "theme",
+    "whose",
+    "file",
+    "layers",
+    "documented",
+    "cataloged",
+    "routed"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.804Z",
+  "specId": "023",
+  "folderSlug": "plugin-assets-catalog-playbook",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

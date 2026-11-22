@@ -1,0 +1,935 @@
+{
+  "sessionId": "fanout-claude2-1795300286921-qfagh7",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-21T22:43:43.177Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "C2-I1-P1-001",
+      "severity": "P1",
+      "title": "Any prompt containing 'forbidden' is rejected, so HTTP 403 Forbidden debugging requests are refused",
+      "file": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs",
+      "line": 107,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "C2-I1-P2-001",
+      "severity": "P2",
+      "title": "Bare-aside note premise contradicted by 005's own stage-one replay",
+      "file": ".skilled/skills/mcp-browser-use/hub-router.json",
+      "line": 117,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "C2-I1-P2-002",
+      "severity": "P2",
+      "title": "ambiguityDelta 1 with uniform weight 4 turns every one-hit cross-mode overlap into a bundle; tie-break never picks a single mode",
+      "file": ".skilled/skills/mcp-browser-use/hub-router.json",
+      "line": 5,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "C2-I2-P2-001",
+      "severity": "P2",
+      "title": "Documented Bladebro update path drops the v4.8.2 pin and digest gate with no re-verify step",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md",
+      "line": 79,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "C2-I2-P2-002",
+      "severity": "P2",
+      "title": "Digest gate verifies the native binary but not the npm launcher that PATH and the Code Mode manual execute",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/preflight-and-install/native-binary-digest.md",
+      "line": 44,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "C2-I2-P2-003",
+      "severity": "P2",
+      "title": "Default auto rb lane attaches to any reachable debug endpoint, bypassing the operator's profile selection",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/references/browser-lanes.md",
+      "line": 51,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "C2-I3-P2-001",
+      "severity": "P2",
+      "title": "Parent spec says 005 has two unmet requirements; 005 summary lists three and 005 spec names a different two",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
+      "line": 51,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "C2-I3-P2-002",
+      "severity": "P2",
+      "title": "Bladebro references still claim nothing has run and no callable observed, contradicting the live macOS run",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md",
+      "line": 14,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "C2-I4-P2-001",
+      "severity": "P2",
+      "title": "Sub-track declaration rule and two-level limit re-encoded in ~8 places; create.sh ignores the exported MAX_SUB_TRACK_DEPTH",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1045,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "C2-I4-P2-002",
+      "severity": "P2",
+      "title": "Symlinked declared folder below level 1 is skipped silently in both readers while level 1 reports it",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      "line": 131,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "C2-I5-P2-001",
+      "severity": "P2",
+      "title": "Lighthouse/trace catalog entry cites a Chrome DevTools playbook with no Lighthouse or trace scenario",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md",
+      "line": 47,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [
+    {
+      "findingId": "C2-I1-P2-001",
+      "severity": "P2",
+      "title": "Bare-aside note premise contradicted by 005's own stage-one replay",
+      "file": ".skilled/skills/mcp-browser-use/hub-router.json",
+      "line": 117,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "C2-I1-P2-001",
+      "severity": "P2",
+      "title": "Bare-aside note premise contradicted by 005's own stage-one replay",
+      "file": ".skilled/skills/mcp-browser-use/hub-router.json",
+      "line": 117,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 10
+  },
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.938,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "catalog_reference",
+      "consent_boundary",
+      "diagnostic_consistency",
+      "duplicated_invariant",
+      "input_matching",
+      "routing_contract",
+      "stale_prose",
+      "status_drift",
+      "supply_chain"
+    ],
+    "ruledOut": [
+      "gold_tuning",
+      "guard_coverage",
+      "metadata_drift",
+      "secret_exposure",
+      "state_identity",
+      "stranded_alias",
+      "view_parity"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "routing_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "input_matching": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_identity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "supply_chain": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "consent_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "guard_coverage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "status_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_prose": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "metadata_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "gold_tuning": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "duplicated_invariant": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "diagnostic_consistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "view_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "catalog_reference": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stranded_alias": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001-3",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs"
+      ],
+      "bugClass": "state_identity",
+      "disposition": "ruled_out",
+      "rationale": "hashes match",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-browser-use/manifest.json:1"
+      ],
+      "reason": "verified by live probe"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-3",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh"
+      ],
+      "bugClass": "guard_coverage",
+      "disposition": "ruled_out",
+      "rationale": "patterns aligned in hook, guard, manifest",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh:124"
+      ],
+      "reason": "guard run passes"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-4",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "redacted",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md:46"
+      ],
+      "reason": "verified by read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-3",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mode-registry.json"
+      ],
+      "bugClass": "metadata_drift",
+      "disposition": "ruled_out",
+      "rationale": "consistent",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/hub-router.json:1"
+      ],
+      "reason": "verified by script"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-4",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/holdout-agentic-browser.md"
+      ],
+      "bugClass": "gold_tuning",
+      "disposition": "ruled_out",
+      "rationale": "operator decision recorded",
+      "evidenceRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/decision-record.md:98"
+      ],
+      "reason": "documented decision"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-3",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs"
+      ],
+      "bugClass": "view_parity",
+      "disposition": "ruled_out",
+      "rationale": "parity holds",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:297"
+      ],
+      "reason": "verified by read and covered by a commit-view test"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-2",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ],
+      "bugClass": "stranded_alias",
+      "disposition": "ruled_out",
+      "rationale": "diffs complete",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:31"
+      ],
+      "reason": "verified by diff"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001-3",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs"
+      ],
+      "bugClass": "state_identity",
+      "disposition": "ruled_out",
+      "rationale": "hashes match",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/013-live-activation/activation/mcp-browser-use/manifest.json:1"
+      ],
+      "proof": "verified by live probe"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-3",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh"
+      ],
+      "bugClass": "guard_coverage",
+      "disposition": "ruled_out",
+      "rationale": "patterns aligned in hook, guard, manifest",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh:124"
+      ],
+      "proof": "guard run passes"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002-4",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "redacted",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md:46"
+      ],
+      "proof": "verified by read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-3",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mode-registry.json"
+      ],
+      "bugClass": "metadata_drift",
+      "disposition": "ruled_out",
+      "rationale": "consistent",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/hub-router.json:1"
+      ],
+      "proof": "verified by script"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-4",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/manual-testing-playbook/hub-routing/holdout-agentic-browser.md"
+      ],
+      "bugClass": "gold_tuning",
+      "disposition": "ruled_out",
+      "rationale": "operator decision recorded",
+      "evidenceRefs": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/decision-record.md:98"
+      ],
+      "proof": "documented decision"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-3",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs"
+      ],
+      "bugClass": "view_parity",
+      "disposition": "ruled_out",
+      "rationale": "parity holds",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:297"
+      ],
+      "proof": "verified by read and covered by a commit-view test"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-2",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      ],
+      "bugClass": "stranded_alias",
+      "disposition": "ruled_out",
+      "rationale": "diffs complete",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:31"
+      ],
+      "proof": "verified by diff"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "stranded_alias",
+      "catalog_reference",
+      "routing_contract"
+    ],
+    "covered": [
+      "catalog_reference",
+      "routing_contract"
+    ],
+    "ruledOut": [
+      "stranded_alias"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 3,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 2,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:124",
+          ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:742"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "stage-one aliases moved to mcp-browser-use as 005 planned"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/acceptance-criteria.md:59"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "AC rows Met with observed evidence; open tasks explained"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/implementation-summary.md:123"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "7 hub-routing scenarios feed admission"
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "no agent definitions in scope"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/lighthouse-and-performance-trace.md:47"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "summary": "cited files exist; validation row has no matching scenario"
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "summary": "no agent references the hub in scope"
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

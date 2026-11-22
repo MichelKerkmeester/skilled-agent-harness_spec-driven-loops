@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "mcp/mcp-tooling/clickup-figma",
+  "description": "Container folder for mcp/mcp-tooling/clickup-figma.",
+  "keywords": [
+    "clickup",
+    "figma"
+  ],
+  "lastUpdated": "2026-11-21T07:55:05.198Z",
+  "specId": "mcp/mcp-tooling/clickup-figma",
+  "folderSlug": "clickup-figma",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

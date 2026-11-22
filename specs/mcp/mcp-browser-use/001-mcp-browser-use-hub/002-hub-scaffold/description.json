@@ -1,0 +1,19 @@
+{
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold",
+  "description": "Phase 2: hub-scaffold",
+  "keywords": [
+    "phase",
+    "hub-scaffold"
+  ],
+  "lastUpdated": "2026-11-21T08:11:42.629Z",
+  "specId": "002",
+  "folderSlug": "hub-scaffold",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -217,16 +217,42 @@ process.exit(1);
 ' "$folder/description.json" >/dev/null 2>&1
 }
 
+# A level-1 sub-track sits directly in a track root. A level-2 one sits directly
+# in a level-1 sub-track, and nothing deeper is a sub-track, as the reader holds.
 is_declared_subtrack_folder() {
+    local folder="$1"
+    local parent track_name
+    [[ -d "$folder" && ! -L "$folder" ]] || return 1
+    parent="$(dirname "$folder")"
+    if ! is_track_root_folder "$parent"; then
+        # The folder's own declaration is read first, so a numbered packet is
+        # rejected by name before its parent's declaration is ever read.
+        has_subtrack_declaration "$folder" || return 1
+        is_level_one_subtrack_folder "$parent"
+        return
+    fi
+    # The track reader never reads an archive, hidden or node_modules track, so
+    # nothing inside one is a sub-track.
+    track_name="$(basename "$parent")"
+    [[ "$track_name" != z_* && "$track_name" != .* && "$track_name" != node_modules ]] || return 1
+    has_subtrack_declaration "$folder"
+}
+
+is_level_one_subtrack_folder() {
     local folder="$1"
     local track_name
     [[ -d "$folder" && ! -L "$folder" ]] || return 1
     is_track_root_folder "$(dirname "$folder")" || return 1
-    # The track reader never reads an archive, hidden or node_modules track, so
-    # nothing inside one is a sub-track.
     track_name="$(basename "$(dirname "$folder")")"
     [[ "$track_name" != z_* && "$track_name" != .* && "$track_name" != node_modules ]] || return 1
     has_subtrack_declaration "$folder"
+}
+
+# The sub-tracks a recursive run descends into: a track root's level-1 ones, and
+# the level-2 ones directly in a level-1 sub-track.
+holds_subtracks() {
+    local folder="$1"
+    is_track_root_folder "$folder" || is_level_one_subtrack_folder "$folder"
 }
 
 has_phase_children() {
@@ -238,7 +264,7 @@ has_phase_children() {
             return 0
         fi
     done
-    if is_track_root_folder "$parent_folder"; then
+    if holds_subtracks "$parent_folder"; then
         for subtrack_folder in "$parent_folder"/*/; do
             [[ -d "$subtrack_folder" ]] || continue
             is_declared_subtrack_folder "${subtrack_folder%/}" && return 0
@@ -371,8 +397,6 @@ collect_phase_dirs() {
     local manifest_rc=0
     local phase_dir=""
     local phase_name=""
-    local subtrack_folder=""
-    local packet_dir=""
 
     PHASE_DIRS=()
     load_child_manifest "$parent_folder" || manifest_rc=$?
@@ -392,32 +416,44 @@ collect_phase_dirs() {
         append_archived_packets "$parent_folder"
     fi
 
-    if ! $CHILD_MANIFEST_ACTIVE && is_track_root_folder "$parent_folder"; then
-        for subtrack_folder in "$parent_folder"/*/; do
-            [[ -d "$subtrack_folder" ]] || continue
-            subtrack_folder="${subtrack_folder%/}"
-            if [[ -L "$subtrack_folder" ]]; then
-                if has_subtrack_declaration "$subtrack_folder"; then
-                    printf 'Skipped symlinked sub-track: %s\n' "$subtrack_folder" >&2
-                fi
-                continue
-            fi
-            is_declared_subtrack_folder "$subtrack_folder" || continue
-            # A sub-track's packets are validated at the same depth as a track's
-            # own packets, so a packet's result never depends on which it sits in.
-            PHASE_DIRS+=("$subtrack_folder")
-            # Every name the track reader counts as a packet, including 001 and
-            # 001_name, and nothing it does not.
-            for packet_dir in "$subtrack_folder"/[0-9][0-9][0-9]*/; do
-                [[ "$(basename "$packet_dir")" =~ ^[0-9]{3}([-_].+)?$ ]] || continue
-                [[ -d "$packet_dir" && ! -L "${packet_dir%/}" ]] && PHASE_DIRS+=("${packet_dir%/}")
-            done
-            if $INCLUDE_ARCHIVE; then
-                append_archived_packets "$subtrack_folder"
-            fi
-        done
+    if ! $CHILD_MANIFEST_ACTIVE && holds_subtracks "$parent_folder"; then
+        append_subtrack_dirs "$parent_folder"
     fi
     return 0
+}
+
+# Every declared sub-track directly in a container, its packets and, for a
+# level-1 sub-track, the level-2 sub-tracks inside it the same way.
+append_subtrack_dirs() {
+    local container="$1"
+    local subtrack_folder=""
+    local packet_dir=""
+    for subtrack_folder in "$container"/*/; do
+        [[ -d "$subtrack_folder" ]] || continue
+        subtrack_folder="${subtrack_folder%/}"
+        if [[ -L "$subtrack_folder" ]]; then
+            if has_subtrack_declaration "$subtrack_folder"; then
+                printf 'Skipped symlinked sub-track: %s\n' "$subtrack_folder" >&2
+            fi
+            continue
+        fi
+        is_declared_subtrack_folder "$subtrack_folder" || continue
+        # A sub-track's packets are validated at the same depth as a track's
+        # own packets, so a packet's result never depends on which it sits in.
+        PHASE_DIRS+=("$subtrack_folder")
+        # Every name the track reader counts as a packet, including 001 and
+        # 001_name, and nothing it does not.
+        for packet_dir in "$subtrack_folder"/[0-9][0-9][0-9]*/; do
+            [[ "$(basename "$packet_dir")" =~ ^[0-9]{3}([-_].+)?$ ]] || continue
+            [[ -d "$packet_dir" && ! -L "${packet_dir%/}" ]] && PHASE_DIRS+=("${packet_dir%/}")
+        done
+        if $INCLUDE_ARCHIVE; then
+            append_archived_packets "$subtrack_folder"
+        fi
+        if is_level_one_subtrack_folder "$subtrack_folder"; then
+            append_subtrack_dirs "$subtrack_folder"
+        fi
+    done
 }
 
 # ───────────────────────────────────────────────────────────────

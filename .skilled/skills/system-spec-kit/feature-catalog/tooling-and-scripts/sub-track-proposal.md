@@ -6,7 +6,7 @@ trigger_phrases:
   - "suggest-subtracks.mjs"
   - "propose sub-tracks for a track"
   - "which sub-track fits this packet"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Sub-track proposal (suggest-subtracks.mjs)
@@ -31,7 +31,7 @@ The tool prints no map in four cases. When a live packet's folder name is not NN
 
 ### Fit for one packet
 
-`--describe "<text>"` answers for a track that already has declared sub-tracks. Each sub-track is scored by the share of the description's words found in its own keywords and its packets' words. The tool prints `best fit: <track>/<sub>` when at least two words match and they are at least a fifth of the description's words. Otherwise it prints `none fits: propose a new sub-track in <track>`. A flat track prints that it has no sub-track to fit.
+`--describe "<text>"` answers for a track that already has declared sub-tracks. Each sub-track is scored by the share of the description's words found in its own keywords and its packets' words. The tool prints `best fit: <track>/<sub>` when at least two words match and they are at least a fifth of the description's words. Otherwise it prints `none fits: propose a new sub-track in <track>`. A flat track prints that it has no sub-track to fit. `--track` names a track directly under `specs/`, so the fit is scored among its level-1 sub-tracks only. `create.sh` compares the fit with the level-1 sub-track that holds the packet, also when the packet is filed in a level-2 sub-track inside it.
 
 ### Arguments and exit codes
 

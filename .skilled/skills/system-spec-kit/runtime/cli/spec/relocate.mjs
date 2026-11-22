@@ -27,6 +27,10 @@
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs --from <path> --to <path> [--apply]
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs --renumber <folder> [--apply]
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs --declare-subtrack <track>/<name> [--apply]
+//   node .skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs --declare-subtrack <track>/<sub>/<name> [--apply]
+//
+// A track holds at most two sub-track levels. A level-2 sub-track is declared
+// inside a level-1 one that already declares itself.
 //
 // A map file holds [{ "from": "<track>/NNN-slug", "to": "<track>/<sub>/NNN-slug" }].
 // Paths are specs-relative; a leading specs/ is accepted.
@@ -50,7 +54,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { SPEC_LEAF_SEGMENT_PATTERN, readWorkingTreeTracks, compareTrackChildren, parseTrackMetadata, trackLayout } from '../lib/track-roots.mjs';
+import { MAX_SUB_TRACK_DEPTH, SPEC_LEAF_SEGMENT_PATTERN, readWorkingTreeTracks, compareTrackChildren, parseTrackMetadata, trackLayout } from '../lib/track-roots.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -114,7 +118,7 @@ const FRONTMATTER_CLOSE = /^(?:---|\.\.\.)[ \t]*\r?$/m;
 
 const CHILD = { cwd: REPO, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 };
 
-const USAGE = `Usage: relocate.mjs (--map <file.json> | --from <path> --to <path> | --renumber <folder> | --declare-subtrack <track>/<name>) [--apply]`;
+const USAGE = `Usage: relocate.mjs (--map <file.json> | --from <path> --to <path> | --renumber <folder> | --declare-subtrack <track>/<name>[/<name>]) [--apply]`;
 
 /** A rejected argument. The usage line follows it. */
 class UsageError extends Error {}
@@ -373,9 +377,20 @@ function renumberEntries(rawFolder, refusals) {
 function trackLevelOf(dirId, newSubtracks) {
   const segments = dirId.split('/');
   if (segments.length === 1 && segments[0] !== '' && isContainerName(segments[0])) return segments[0];
-  if (segments.length === 2 && isContainerName(segments[0]) && isContainerName(segments[1])
-    && (newSubtracks.has(dirId) || isDeclaredSubtrack(abs(dirId)))) return dirId;
-  return null;
+  if (segments.length < 2 || segments.length > MAX_SUB_TRACK_DEPTH + 1 || !segments.every(isContainerName)) return null;
+  // Every sub-track on the way declares itself, or is declared by this run.
+  for (let depth = 2; depth <= segments.length; depth += 1) {
+    const id = segments.slice(0, depth).join('/');
+    if (!newSubtracks.has(id) && !isDeclaredSubtrack(abs(id))) return null;
+  }
+  return dirId;
+}
+
+/** Every container above an id, nearest first, up to its track. */
+function containersAbove(id) {
+  const above = [];
+  for (let up = parentId(id); up !== ''; up = parentId(up)) above.push(up);
+  return above;
 }
 
 /** A track's direct children as the track reader counts them. */
@@ -394,8 +409,9 @@ function trackChildren(track) {
   return [...packets, ...subTracks];
 }
 
-// Checks the destination's shape: a track, at most one sub-track below it, then
-// numbered folders and archives only. Returns the sub-track it would create.
+// Checks the destination's shape: a track, at most two sub-track levels below
+// it, then numbered folders and archives only. Returns the sub-track it would
+// create. A level-2 sub-track is created only inside a declared level-1 one.
 function checkDestinationShape(entry, refusals) {
   const segments = entry.to.split('/');
   let containers = 0;
@@ -410,15 +426,15 @@ function checkDestinationShape(entry, refusals) {
       belowPacket = true;
       continue;
     }
-    if (!isContainerName(segment) || belowPacket || index > 1) {
+    if (isContainerName(segment) && !belowPacket && index > MAX_SUB_TRACK_DEPTH) {
+      refusals.push(`to specs/${entry.to}: deeper than two sub-track levels`);
+      return null;
+    }
+    if (!isContainerName(segment) || belowPacket) {
       refusals.push(`to specs/${entry.to}: "${segment}" is not a track, a sub-track, a packet or z_archive in that position`);
       return null;
     }
     containers += 1;
-  }
-  if (containers > 2) {
-    refusals.push(`to specs/${entry.to}: deeper than one sub-track`);
-    return null;
   }
   if (containers >= 1) {
     const track = segments[0];
@@ -442,6 +458,25 @@ function checkDestinationShape(entry, refusals) {
       return null;
     }
     return sub;
+  }
+  if (containers === 3) {
+    const outer = `${segments[0]}/${segments[1]}`;
+    const inner = `${outer}/${segments[2]}`;
+    if (!isDeclaredSubtrack(abs(outer))) {
+      refusals.push(`to specs/${entry.to}: specs/${outer} is not a declared sub-track; declare it before filing a sub-track inside it`);
+      return null;
+    }
+    if (isDir(abs(inner))) {
+      if (!isDeclaredSubtrack(abs(inner))) {
+        refusals.push(`to specs/${entry.to}: specs/${inner} exists but is not a declared sub-track`);
+      }
+      return null;
+    }
+    if (!fs.existsSync(path.join(abs(segments[0]), 'graph-metadata.json'))) {
+      refusals.push(`to specs/${entry.to}: new sub-track specs/${inner} needs a track with graph-metadata.json`);
+      return null;
+    }
+    return inner;
   }
   return null;
 }
@@ -606,22 +641,23 @@ function preflight(rawEntries, refusals) {
     }
   }
 
-  // Mixed tracks are forbidden: after the moves, a track holds packets or
-  // sub-tracks, never both.
+  // Mixed tracks are forbidden: after the moves, a track or a level-1 sub-track
+  // holds packets or sub-tracks, never both.
   const affectedTracks = new Set();
   for (const entry of entries.filter((item) => item.state === 'pending')) {
     for (const dir of [parentId(entry.from), parentId(entry.to)]) {
-      if (dir !== '' && !dir.includes('/') && isContainerName(dir)) affectedTracks.add(dir);
+      const level = dir === '' ? null : trackLevelOf(dir, newSubtracks);
+      if (level && level.split('/').length <= MAX_SUB_TRACK_DEPTH) affectedTracks.add(level);
     }
   }
-  for (const sub of newSubtracks) affectedTracks.add(sub.split('/')[0]);
+  for (const sub of newSubtracks) affectedTracks.add(parentId(sub));
   for (const track of [...affectedTracks].sort()) {
     const after = new Set(trackChildren(track));
     for (const entry of entries.filter((item) => item.state === 'pending')) {
       if (parentId(entry.from) === track) after.delete(baseName(entry.from));
       if (parentId(entry.to) === track && PACKET_NAME.test(baseName(entry.to))) after.add(baseName(entry.to));
     }
-    for (const sub of newSubtracks) if (sub.startsWith(`${track}/`)) after.add(baseName(sub));
+    for (const sub of newSubtracks) if (parentId(sub) === track) after.add(baseName(sub));
     const layout = trackLayout([...after].sort());
     if (layout.mixed) {
       refusals.push(`track specs/${track}: would hold flat packets (${layout.packets.join(', ')}) beside sub-tracks (${layout.subTracks.join(', ')}); a sub-track map covers the whole track`);
@@ -1485,13 +1521,13 @@ function buildPlan(entries, newSubtracks, inputs = new Set()) {
       const level = trackLevelOf(dir, newSubtracks);
       if (level) {
         trackNames.add(level);
-        if (level.includes('/')) trackNames.add(level.split('/')[0]);
+        for (const above of containersAbove(level)) trackNames.add(above);
       }
     }
   }
   for (const sub of newSubtracks) {
     trackNames.add(sub);
-    trackNames.add(sub.split('/')[0]);
+    for (const above of containersAbove(sub)) trackNames.add(above);
   }
   const known = new Map(readWorkingTreeTracks(SPECS).map((track) => [track.name, track]));
   const trackWork = [];
@@ -1557,7 +1593,7 @@ function printPlan(plan, apply) {
 
 /** The declaration description.json of a sub-track; no other writer makes one. */
 function subtrackDescription(id) {
-  const [track, name] = id.split('/');
+  const name = baseName(id);
   return {
     level: SUB_TRACK_LEVEL,
     specFolder: id,
@@ -1566,7 +1602,7 @@ function subtrackDescription(id) {
     lastUpdated: new Date().toISOString(),
     specId: id,
     folderSlug: name,
-    parentChain: [track],
+    parentChain: id.split('/').slice(0, -1),
     memorySequence: 0,
     memoryNameHistory: [],
   };
@@ -1735,8 +1771,11 @@ function runDeclare(raw, apply) {
   const id = normalizeId(raw, '--declare-subtrack', refusals);
   if (id === null) return refuse(refusals);
   const segments = id.split('/');
-  if (segments.length !== 2 || !isContainerName(segments[0]) || !isContainerName(segments[1])) {
-    return refuse([`--declare-subtrack specs/${id}: needs <track>/<name>, both plain folder names`]);
+  if (segments.length > MAX_SUB_TRACK_DEPTH + 1 && segments.every(isContainerName)) {
+    return refuse([`--declare-subtrack specs/${id}: deeper than two sub-track levels; a track holds <track>/<name> or <track>/<sub>/<name>`]);
+  }
+  if (segments.length < 2 || !segments.every(isContainerName)) {
+    return refuse([`--declare-subtrack specs/${id}: needs <track>/<name> or <track>/<sub>/<name>, all plain folder names`]);
   }
   if (!confine(id, '--declare-subtrack', refusals)) return refuse(refusals);
   const [track] = segments;
@@ -1744,23 +1783,29 @@ function runDeclare(raw, apply) {
   if (!isDir(trackDir) || fs.existsSync(path.join(trackDir, 'spec.md')) || !fs.existsSync(path.join(trackDir, 'graph-metadata.json'))) {
     return refuse([`--declare-subtrack specs/${id}: specs/${track} is not a track root with graph-metadata.json`]);
   }
+  // A level-2 sub-track hangs off a level-1 one, which must already declare itself.
+  const container = parentId(id);
+  if (container !== track && !isDeclaredSubtrack(abs(container))) {
+    return refuse([`--declare-subtrack specs/${id}: specs/${container} is not a declared sub-track; declare it first`]);
+  }
   const dir = abs(id);
   if (fs.existsSync(path.join(dir, 'spec.md'))) return refuse([`--declare-subtrack specs/${id}: holds spec.md, so it is a packet`]);
   // A sub-track beside flat packets is a mixed track, which the sweep and the
   // pre-push gate refuse. Moving those packets is a map, which declares the
   // sub-tracks it names in the same run.
-  const flat = trackLayout(trackChildren(track)).packets;
+  const flat = trackLayout(trackChildren(container)).packets;
   if (flat.length) {
-    return refuse([`--declare-subtrack specs/${id}: specs/${track} holds flat packets (${flat.join(', ')}); move them with --map into specs/${id}/ instead`]);
+    return refuse([`--declare-subtrack specs/${id}: specs/${container} holds flat packets (${flat.join(', ')}); move them with --map into specs/${id}/ instead`]);
   }
 
+  const name = baseName(id);
   const work = [];
   if (!isDeclaredSubtrack(dir)) work.push(`write specs/${id}/description.json (level sub-track)`);
   if (!fs.existsSync(path.join(dir, 'graph-metadata.json'))) work.push(`create specs/${id}/graph-metadata.json (refresh-track-roots)`);
   if (!fs.existsSync(path.join(dir, ARCHIVE, '.gitkeep'))) work.push(`create specs/${id}/${ARCHIVE}/.gitkeep`);
-  const trackMeta = parseTrackMetadata(readText(path.join(trackDir, 'graph-metadata.json')));
-  const listed = trackMeta && Array.isArray(trackMeta.children_ids) && trackMeta.children_ids.some((child) => String(child).endsWith(`/${segments[1]}`));
-  if (!listed) work.push(`list ${segments[1]} in specs/${track}/graph-metadata.json (refresh-track-roots)`);
+  const containerMeta = parseTrackMetadata(readText(path.join(abs(container), 'graph-metadata.json')));
+  const listed = containerMeta && Array.isArray(containerMeta.children_ids) && containerMeta.children_ids.some((child) => String(child).endsWith(`/${name}`));
+  if (!listed) work.push(`list ${name} in specs/${container}/graph-metadata.json (refresh-track-roots)`);
 
   out(`${SCRIPT}: ${apply ? 'applying' : 'dry run, nothing written (pass --apply to write)'}`);
   for (const line of work) out(`  ${line}`);
@@ -1773,7 +1818,7 @@ function runDeclare(raw, apply) {
     declareSubtrack(id);
     return `specs/${id}`;
   })) return 2;
-  if (!childStep('track roots (refresh-track-roots)', 'node', [TOOLS.refresh, '--track', id, '--track', track, '--apply'])) return 2;
+  if (!childStep('track roots (refresh-track-roots)', 'node', [TOOLS.refresh, '--track', id, '--track', container, '--apply'])) return 2;
   return 0;
 }
 

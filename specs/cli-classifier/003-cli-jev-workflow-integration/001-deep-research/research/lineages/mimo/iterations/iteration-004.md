@@ -12,7 +12,7 @@ Read the newest sibling iterations: `deepseek/iterations/iteration-009.md` (fail
 ## Corpus facts opened this iteration
 
 - 181 archived lineages under `specs/**/research/lineages/` carry `deltas/iter-*.jsonl` (counted by find this iteration), so cited findings are machine-readable without opening iteration prose.
-- Sampled state record fields (`specs/mcp-tooling/z_archive/010-mcp-mobbin/001-research/research/lineages/luna/deep-research-state.jsonl`): `newInfoRatio`, `findingsCount`, `sourceDiversity`, `ruledOut`, `status`, `focus` all present per iteration. A replay can run from state logs plus deltas alone.
+- Sampled state record fields (`specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/001-research/research/lineages/luna/deep-research-state.jsonl`): `newInfoRatio`, `findingsCount`, `sourceDiversity`, `ruledOut`, `status`, `focus` all present per iteration. A replay can run from state logs plus deltas alone.
 - The stop model: three weighted signals (rolling average 0.30, MAD noise floor 0.35, question entropy 0.85 coverage 0.35) nominate STOP (`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md:41-47`, opened).
 - The current run itself is forced depth: `stopPolicy max-iterations`, `convergenceMode off`, so convergence is telemetry only (this lineage's config). Many archived runs are the same shape, which is why the gold cannot be "where the run stopped".
 

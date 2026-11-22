@@ -1,15 +1,13 @@
 ---
 title: mcp-tooling
-description: "One advisor identity routes eight MCP tool bridges: five workflow modes and three read-only design transports."
+description: "One advisor identity routes six MCP tool bridges: three workflow modes and three read-only design transports."
 trigger_phrases:
-  - "chrome devtools"
   - "clickup task"
   - "obsidian vault"
-  - "aside browser"
   - "notion mcp"
   - "figma cli"
   - "mcp tool bridge"
-version: 1.8.9.0
+version: 1.8.10.0
 ---
 
 # mcp-tooling
@@ -24,14 +22,16 @@ version: 1.8.9.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Browser debugging, task management, notes, workspace pages and design reference search across eight tool surfaces |
+| **Use it for** | Task management, notes, workspace pages and design reference search across six tool surfaces |
 | **Invoke with** | A plain-language request that names the tool, routed by the skill advisor to one hub identity |
-| **Works on** | Live browser sessions, ClickUp queues, Obsidian vaults, Aside runs, Notion workspaces and three design transports |
+| **Works on** | ClickUp queues, Obsidian vaults, Notion workspaces and three design transports |
 | **Produces** | The selected packet's evidence or state change, under that packet's own safety contract |
 
 ### What It Does
 
 `mcp-tooling` is the routing hub for every MCP tool bridge in this repository. A request names one external tool. The hub resolves a mode and the matching packet does the work with its own commands and safety gates. Start with the routing command in section 2, then read the selected packet's `SKILL.md`.
+
+Browser work, Chrome DevTools and Aside included, lives in the separate `mcp-browser-use` hub.
 
 `mcp-code-mode` is the shared MCP execution substrate for packets that call tools through Code Mode. It is infrastructure rather than a hub member, so a request for that substrate alone routes there directly.
 
@@ -41,10 +41,8 @@ Each packet owns one tool surface. The hub holds the routing decision and the pa
 
 | Packet | What it operates |
 |---|---|
-| `mcp-chrome-devtools` | Chrome over CDP through `bdg`: screenshots, HAR export, console and network evidence, with performance audits through the MCP fallback |
 | `mcp-click-up` | ClickUp tasks through `cupt` or the official MCP: mark done, add notes, log time and create tasks and documents |
 | `mcp-obsidian` | Obsidian vaults and markdown notes through `notesmd-cli`, the `obsidian` CLI or MCP, plus Iconic icon rules |
-| `mcp-aside-devtools` | Aside browser runs through the Aside CLI and REPL, with goal-driven tasks and captured evidence |
 | `mcp-notion` | Notion pages, blocks, data sources, comments and search through MCP, with direct API gap fills |
 | `mcp-figma` | Figma Desktop through `figma-ds-cli`: component renders, token exports and explicit-path local exports |
 | `mcp-refero` | Read-only real-app web UI reference search through Refero MCP |
@@ -57,16 +55,16 @@ Each packet owns one tool surface. The hub holds the routing decision and the pa
 **Step 1: Name the tool you need.** The hub routes on the tool named in the request.
 
 ```text
-Use Chrome DevTools to capture a HAR for the staging dashboard.
+Use ClickUp to mark the onboarding task done.
 ```
 
 **Step 2: Resolve the mode.**
 
 ```bash
-node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use Chrome DevTools to capture a HAR for the staging dashboard"
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use ClickUp to mark the onboarding task done"
 ```
 
-It prints one JSON line. For the request above, that line reports the `route` action for `mcp-chrome-devtools` with `selectionKind` set to `single`.
+It prints one JSON line. For the request above, that line reports the `route` action for `mcp-click-up` with `selectionKind` set to `single`.
 
 **Step 3: Load what the route returns.** On `route`, open the returned targets. On `clarify` or `defer`, name the missing tool identity and run the command again.
 
@@ -74,7 +72,7 @@ It prints one JSON line. For the request above, that line reports the `route` ac
 
 ## 3. HOW IT WORKS
 
-Routing runs in two stages. Stage one scores the request against `hub-router.json` and reads `mode-registry.json` to select a mode. Stage two reads `ROUTER.md` and loads the leaf files that mode declares, so a Chrome request opens the CDP pattern file and the session guide rather than the whole hub.
+Routing runs in two stages. Stage one scores the request against `hub-router.json` and reads `mode-registry.json` to select a mode. Stage two reads `ROUTER.md` and loads the leaf files that mode declares, so a ClickUp request opens the `cupt` command reference and the MCP tool guide rather than the whole hub.
 
 ```text
 ┌──────────────────────┐
@@ -135,10 +133,10 @@ Each passing invariant prints a `PASS` line. A check with nothing to compare pri
 A positive route replay returns one target:
 
 ```bash
-node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use Chrome DevTools to capture a HAR for the staging dashboard"
+node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use ClickUp to mark the onboarding task done"
 ```
 
-The JSON reports `"action":"route"` and a `targets` array with `"workflowMode":"mcp-chrome-devtools"`.
+The JSON reports `"action":"route"` and a `targets` array with `"workflowMode":"mcp-click-up"`.
 
 Skill package check:
 

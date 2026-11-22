@@ -15,7 +15,7 @@ expected_leaf_resources:
   - workflow_mode: mcp-click-up
     leaf_resource_id: references/mcp-tools.md
 created: 2026-07-10
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # MT-002: ClickUp task request routes to mcp-click-up
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `MT-002` and confirm the
 
 ### Success Criteria
 
-The router resolves `mcp-click-up` as a single dominant mode without needing the `mcp-chrome-devtools` default.
+The router resolves `mcp-click-up` as a single dominant mode without needing a default mode.
 
 ---
 

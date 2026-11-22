@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/001-deep-research",
+  "description": "We need to flawlessly migrate a COMPLEX Notion environment — databases, relations, rollups, formulas, nested pages, files, comments, views — fully",
+  "keywords": [
+    "need",
+    "flawlessly",
+    "migrate",
+    "complex",
+    "notion",
+    "environment",
+    "databases",
+    "relations",
+    "rollups",
+    "formulas",
+    "nested",
+    "pages",
+    "files",
+    "comments",
+    "views",
+    "fully"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.828Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

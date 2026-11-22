@@ -1,0 +1,30 @@
+{
+  "level": 1,
+  "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+  "description": "The mcp-obsidian skill still documented Beancount Finance as a supported plugin after its double-entry paradigm was dropped from the vault's finance",
+  "keywords": [
+    "mcp-obsidian",
+    "skill",
+    "still",
+    "documented",
+    "beancount",
+    "finance",
+    "supported",
+    "plugin",
+    "double-entry",
+    "paradigm",
+    "dropped",
+    "vault"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.858Z",
+  "specId": "012",
+  "folderSlug": "makemd-support-beancount-removal",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "015-notion-to-obisidian-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

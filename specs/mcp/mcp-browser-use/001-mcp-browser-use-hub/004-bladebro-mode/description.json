@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode",
+  "description": "Phase 4: bladebro-mode",
+  "keywords": [
+    "phase",
+    "bladebro-mode"
+  ],
+  "lastUpdated": "2026-11-21T13:44:42.049Z",
+  "specId": "004",
+  "folderSlug": "bladebro-mode",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "21-11-26_14-43__authored-the-mcp-bladebro-mode-packet-over-the.md",
+    "21-11-26_14-44__authored-the-mcp-bladebro-mode-packet-over-the.md"
+  ]
+}

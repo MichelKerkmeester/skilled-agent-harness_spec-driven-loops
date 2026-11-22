@@ -1,0 +1,13 @@
+The lineage is complete and internally consistent.
+
+**What ran:** five iterations inline — correctness, security, traceability, maintainability, then a cross-reference pass over the compiled-routing serving closure. Every state record went through the append gateway (ledger sequences 1–11); the reducer ran after each append.
+
+**Result:** `CONDITIONAL` — 0 P0, 3 P1, 7 P2 open, 2 adjudicated out of scope, all three terminal gates passing.
+
+The three P1s are a stage-one/stage-two keyword gap in `hub-router.json:98`/`:119` that silently defers two vocabulary classes, a Bladebro teardown runbook that hardcodes `rm -rf ~/.local/state/blade` against the reference's doctor-reported root, and a hub-routing benchmark record still reporting FAIL against a gold that now says `defer` and a gate that exits 0.
+
+Two findings were removed at synthesis rather than kept: the Aside `install.sh` is byte-identical to `main`'s copy and the `sk-doc` bundle file is absent from the branch diff, so both are pure moves the branch did not edit. The scope gate caught them (`findings-out-of-scope`) and the adjudications resolved it — both survive in the report's Limitations as pre-existing issues worth separate tickets.
+
+Artifacts under `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe`: `iterations/iteration-001..005.md`, `deltas/iter-001..005.jsonl`, `review-report.md`, and the reducer-owned registry, dashboard and strategy. Nothing outside that directory was written.
+
+FANOUT_LINEAGE_COMPLETE:vibe

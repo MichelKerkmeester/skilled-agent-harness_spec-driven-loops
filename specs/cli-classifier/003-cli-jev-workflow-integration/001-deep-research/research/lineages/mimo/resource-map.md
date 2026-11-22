@@ -55,7 +55,7 @@ Cited sources across the ten iterations, with citation counts:
 - `specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/pi-jev-context-main/README.md:37` — cited 1 time(s)
 - `specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/docs/quality.md:182-186` — cited 1 time(s)
 - `specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/docs/quality.md:198-203` — cited 1 time(s)
-- `specs/mcp-tooling/z_archive/010-mcp-mobbin/001-research/research/lineages/luna/deep-research-state.jsonl` — cited 1 time(s)
+- `specs/mcp/mcp-tooling/z_archive/010-mcp-mobbin/001-research/research/lineages/luna/deep-research-state.jsonl` — cited 1 time(s)
 - `specs/sk-prompt/007-sk-prompt-parent/review/deep-review-findings-registry.json` — cited 1 time(s)
 
 ## Coverage note

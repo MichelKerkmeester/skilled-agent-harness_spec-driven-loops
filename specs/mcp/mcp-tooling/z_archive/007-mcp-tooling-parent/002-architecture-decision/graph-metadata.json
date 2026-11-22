@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/002-architecture-decision",
+  "spec_folder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/002-architecture-decision",
+  "parent_id": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-tooling parent architecture decision",
+      "mcp-tooling mode registry",
+      "figma transport axis decision",
+      "code-mode exclusion rationale",
+      "phase 002 architecture-decision",
+      "mcp-tooling architecture plan",
+      "mcp bridge decision gate",
+      "mode-registry transport-axis target",
+      "hub-router target mcp-tooling",
+      "phase 002 decision plan",
+      "mcp-tooling architecture tasks",
+      "mcp bridge decision gate tasks"
+    ],
+    "key_topics": [
+      "mcp-tooling",
+      "parent",
+      "architecture",
+      "decision",
+      "mode",
+      "registry",
+      "figma",
+      "transport",
+      "axis",
+      "code-mode",
+      "exclusion",
+      "rationale"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/mcp-tooling/graph-metadata.json",
+      ".opencode/skills/mcp-code-mode/graph-metadata.json",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".claude/mcp.json",
+      ".opencode/skills/mcp-tooling/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mixed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Figma Desktop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The program has operator-locked structural decisions for bringing `.opencode/skills/mcp-chrome-devtools/`, `.opencode/skills/mcp-click-up/`, and `.opencode/skills/mcp-figma/` under a single `.opencode/skills/mcp-tooling/` parent hub, but phase 003 cannot safely scaffold the hub until those decisions are frozen in one architecture record",
+    "created_at": "2026-07-09T20:18:22Z",
+    "last_save_at": "2026-11-21T07:55:09.525Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:22f9bf800b79e88f6a524d68ab854f437a439b56481ed2a56de01efd3aeea706",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7b04068f0e7b3da208a0910548dda268a6865f5ee343e8b19ca7b864e97f07f2",
+      "plan.md": "8a77fdede96e1926344fb6ff03186863e2b35320a731bf470809a50a8a2e768c",
+      "tasks.md": "c32918e98e6bed7c623e86537f050c060f4bca1a27367cc8a9c127722c0ddc1c",
+      "decision-record.md": "91783639621217518fdd132b98ddc1692061e7c4cb8548f91a9db969d0b26fc8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

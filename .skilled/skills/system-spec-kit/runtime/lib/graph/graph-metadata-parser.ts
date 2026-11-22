@@ -905,13 +905,20 @@ function resolveParentId(specFolder: string, specFolderPath: string): string | n
   if (isSpecLeafSegment(parentLeaf)) {
     return segments.slice(0, -1).join('/');
   }
-  // A sub-track sits directly in its track, so only a packet three segments deep
-  // can have one as its parent.
-  if (segments.length !== 3) {
+  // A level-1 sub-track sits directly in its track and a level-2 one directly in a
+  // level-1 sub-track, so only a packet three or four segments deep can have one as
+  // its parent, and every sub-track on the way must declare itself.
+  if (segments.length !== 3 && segments.length !== 4) {
     return null;
   }
   const parentFolder = path.dirname(path.resolve(specFolderPath));
-  return isDeclaredSubtrackFolder(parentFolder) ? segments.slice(0, -1).join('/') : null;
+  if (!isDeclaredSubtrackFolder(parentFolder)) {
+    return null;
+  }
+  if (segments.length === 4 && !isDeclaredSubtrackFolder(path.dirname(parentFolder))) {
+    return null;
+  }
+  return segments.slice(0, -1).join('/');
 }
 
 /** Resolve the specs-root-relative children_ids for a spec folder from its on-disk phase children. */

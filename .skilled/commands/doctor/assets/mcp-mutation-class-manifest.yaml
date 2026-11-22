@@ -8,8 +8,8 @@
 #
 # Coverage: every script the pre-commit hook sends to the guard needs a
 # row here, or the guard fails:
-#   skills/(mcp-tooling/)?mcp-*/scripts/{doctor,install}*.sh
-#   skills/(mcp-tooling/)?mcp-*/mcp-servers/*/setup.sh
+#   skills/(mcp-tooling/|mcp-browser-use/)?mcp-*/scripts/{doctor,install}*.sh
+#   skills/(mcp-tooling/|mcp-browser-use/)?mcp-*/mcp-servers/*/setup.sh
 #
 # Each entry names its skill_dir plus any of install_script,
 # doctor_script and setup_script, each with a matching
@@ -42,7 +42,7 @@ cli_skill_diagnostics:
     setup_script_mutation_class: mutating  # delegates to the skill installer
   mcp-chrome-devtools:
     label: "Chrome DevTools (CLI)"
-    skill_dir: ".skilled/skills/mcp-tooling/mcp-chrome-devtools"
+    skill_dir: ".skilled/skills/mcp-browser-use/mcp-chrome-devtools"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: npm install + PATH/profile edits
     doctor_script: "scripts/doctor.sh"
@@ -58,7 +58,7 @@ cli_skill_diagnostics:
     setup_script_mutation_class: mutating  # pipx/pip install of cupt
   mcp-aside-devtools:
     label: "Aside DevTools (CLI)"
-    skill_dir: ".skilled/skills/mcp-tooling/mcp-aside-devtools"
+    skill_dir: ".skilled/skills/mcp-browser-use/mcp-aside-devtools"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # wraps the official Aside curl installer
     doctor_script: "scripts/doctor.sh"

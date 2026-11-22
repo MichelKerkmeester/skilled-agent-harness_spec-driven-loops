@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes",
+  "description": "A deep review of the copies Product Owner vendors found 8 P1 and 16 P2 defects in mcp-click-up and mcp-figma: documented commands the CLI does not",
+  "keywords": [
+    "deep",
+    "review",
+    "copies",
+    "product",
+    "owner",
+    "vendors",
+    "found",
+    "defects",
+    "mcp-click-up",
+    "mcp-figma",
+    "documented",
+    "commands",
+    "cli"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.647Z",
+  "specId": "001",
+  "folderSlug": "vendored-copy-review-fixes",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "clickup-figma"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

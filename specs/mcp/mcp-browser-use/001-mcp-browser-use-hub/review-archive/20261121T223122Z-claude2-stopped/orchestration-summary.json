@@ -1,0 +1,34 @@
+{
+  "run_id": "1795299580084-7g6zan",
+  "loop_type": "review",
+  "spec_folder": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "base_artifact_dir": "/Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review",
+  "total_cli_lineages": 2,
+  "stopped": true,
+  "stopped_signal": "SIGTERM",
+  "stopped_at_iso": "2026-11-21T22:29:42.079Z",
+  "status": "partial",
+  "total": 2,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 1,
+    "pending": 0,
+    "failed": 0
+  },
+  "results": [
+    {
+      "label": "vibe",
+      "status": "fulfilled",
+      "started_at_iso": "2026-11-21T22:19:40.087Z",
+      "completed_at_iso": "2026-11-21T22:29:23.460Z",
+      "duration_ms": 583372
+    },
+    {
+      "label": "claude2",
+      "status": "running",
+      "started_at_iso": "2026-11-21T22:19:40.210Z"
+    }
+  ]
+}

@@ -142,6 +142,13 @@ expect_rc "an unlisted mcp-tooling setup.sh fails" 1
 expect_out "unlisted setup.sh is named" "mcp-other/mcp-servers/other-cli/setup.sh  [no manifest row"
 
 ROOT="$(new_root)"
+mkdir -p "$ROOT/.skilled/skills/mcp-browser-use/mcp-other/scripts"
+printf '#!/usr/bin/env bash\necho ok\n' > "$ROOT/.skilled/skills/mcp-browser-use/mcp-other/scripts/doctor.sh"
+run_guard "$ROOT"
+expect_rc "an unlisted mcp-browser-use doctor fails" 1
+expect_out "unlisted browser-hub doctor is named" "FAIL  .skilled/skills/mcp-browser-use/mcp-other/scripts/doctor.sh  [no manifest row"
+
+ROOT="$(new_root)"
 mkdir -p "$ROOT/.skilled/skills/mcp-top/scripts"
 printf '#!/usr/bin/env bash\necho ok\n' > "$ROOT/.skilled/skills/mcp-top/scripts/install-helper.sh"
 run_guard "$ROOT"
@@ -153,6 +160,26 @@ mkdir -p "$ROOT/.skilled/skills/mcp-tooling/mcp-other/scripts"
 printf '#!/usr/bin/env bash\necho ok\n' > "$ROOT/.skilled/skills/mcp-tooling/mcp-other/scripts/update.sh"
 run_guard "$ROOT"
 expect_rc "a script the hook never sends is not required to have a row" 0
+
+# The pre-commit trigger decides which staged paths reach this guard at all, so
+# a hub segment dropped from its pattern would leave that hub's scripts unchecked
+# while every guard test above still passes.
+HOOK_FILE="$TEST_DIR/../../../../scripts/git-hooks/pre-commit"
+HOOK_REGEX="$(grep -E "grep -Eq '\^\\\\\.\(opencode\|skilled\)/\(skills/" "$HOOK_FILE" | sed -E "s/.*grep -Eq '([^']+)'.*/\1/")"
+hook_sends() { printf '%s\n' "$1" | grep -Eq "$HOOK_REGEX"; }
+if [[ -n "$HOOK_REGEX" ]]; then pass "the pre-commit trigger pattern is readable"; else fail "the pre-commit trigger pattern is readable"; fi
+for hook_path in \
+  .skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/doctor.sh \
+  .skilled/skills/mcp-browser-use/mcp-aside-devtools/mcp-servers/aside/setup.sh \
+  .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh \
+  .skilled/skills/mcp-code-mode/scripts/install.sh; do
+  if hook_sends "$hook_path"; then pass "the hook sends $hook_path"; else fail "the hook sends $hook_path"; fi
+done
+if hook_sends .skilled/skills/mcp-browser-use/mcp-bladebro/scripts/update.sh; then
+  fail "the hook ignores a non-doctor browser-hub script"
+else
+  pass "the hook ignores a non-doctor browser-hub script"
+fi
 
 # ───────────────────────────────────────────────────────────────
 # 5. SCANNER PRECISION

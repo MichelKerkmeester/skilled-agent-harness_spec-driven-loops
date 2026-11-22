@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology",
+  "spec_folder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology",
+  "parent_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp obsidian catalog flattening",
+      "reference heading normalization",
+      "feature catalog topology",
+      "phase 18 plan",
+      "catalog topology migration",
+      "phase 18 tasks",
+      "catalog topology tasks",
+      "phase 18 implementation summary",
+      "catalog topology migration summary"
+    ],
+    "key_topics": [
+      "mcp",
+      "obsidian",
+      "catalog",
+      "flattening",
+      "reference",
+      "heading",
+      "normalization",
+      "feature",
+      "topology",
+      "phase",
+      "plan",
+      "migration"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "feature-catalog/feature-catalog.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/feature-catalog.md",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Principle",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "regex",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "durable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-obsidian feature catalog spreads 25 cards over 14 narrowly named directories, making navigation heavier than the surface warrants",
+    "created_at": "2026-08-03T19:59:41.360Z",
+    "last_save_at": "2026-11-21T07:55:10.107Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:98a2ed37f8b6d429b225ce0651ce98c2d1827872d0a3f4f31175f8683aaecaa8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0570979690c650dd6fabf7329748a1777ad1aba9bdefeabe28b8441aac1e35df",
+      "plan.md": "9a97c5cd45aebe30a76a7b8f8c0f61c9fa0a744fb0f304ab55bf47288975a05e",
+      "tasks.md": "8175a6c5f01ff6004db98dc85b4599fbd2ea9351f8b8e8b618ece1dd254b02b9",
+      "implementation-summary.md": "0a2abf9bd558a27d85ea4c63d0732499067d2bb686eba3ba28df8f99ed773623"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

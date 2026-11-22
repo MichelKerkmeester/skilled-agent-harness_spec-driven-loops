@@ -13574,7 +13574,7 @@
       "lastUpdated": "2026-11-13T10:04:42.384Z"
     },
     {
-      "specFolder": "mcp-tooling/clickup-figma/001-vendored-copy-review-fixes",
+      "specFolder": "mcp/mcp-tooling/clickup-figma/001-vendored-copy-review-fixes",
       "description": "A deep review of the copies Product Owner vendors found 8 P1 and 16 P2 defects in mcp-click-up and mcp-figma: documented commands the CLI does not",
       "keywords": [
         "deep",
@@ -13594,7 +13594,7 @@
       "lastUpdated": "2026-11-13T10:04:42.386Z"
     },
     {
-      "specFolder": "mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children",
+      "specFolder": "mcp/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children",
       "description": "`mcp-figma` documents the Code Mode path and calls the hosted server out of scope for it",
       "keywords": [
         "mcp-figma",
@@ -13610,7 +13610,7 @@
       "lastUpdated": "2026-11-13T10:04:42.387Z"
     },
     {
-      "specFolder": "mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing",
+      "specFolder": "mcp/mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing",
       "description": "Every divider the hosted ClickUp MCP writes into a doc page gets an empty line under it",
       "keywords": [
         "every",
@@ -13628,7 +13628,7 @@
       "lastUpdated": "2026-11-13T10:04:42.388Z"
     },
     {
-      "specFolder": "mcp-tooling/code-mode/001-code-mode-fresh-clone-build",
+      "specFolder": "mcp/mcp-code-mode/001-code-mode-fresh-clone-build",
       "description": "A fresh clone or worktree cannot build Code Mode, and the config preflight reports the shipped UTCP configuration wrongly",
       "keywords": [
         "fresh",
@@ -13648,7 +13648,7 @@
       "lastUpdated": "2026-11-13T10:04:42.390Z"
     },
     {
-      "specFolder": "mcp-tooling/code-mode/002-clickup-hosted-route-fix",
+      "specFolder": "mcp/mcp-code-mode/002-clickup-hosted-route-fix",
       "description": "The `clickupofficial` manual in `.utcpconfig.json` runs `npx -y @clickup/mcp-server`, and `npm view @clickup/mcp-server` returns a 404",
       "keywords": [
         "clickupofficial",
@@ -13666,7 +13666,7 @@
       "lastUpdated": "2026-11-13T10:04:42.392Z"
     },
     {
-      "specFolder": "mcp-tooling/code-mode/003-code-mode-js-yaml-override",
+      "specFolder": "mcp/mcp-code-mode/003-code-mode-js-yaml-override",
       "description": "A fresh npm ci of the mcp-code-mode server builds a server that crashes at start-up, because the global js-yaml ^4.3.2 override forces",
       "keywords": [
         "fresh",
@@ -13684,7 +13684,7 @@
       "lastUpdated": "2026-11-13T10:04:42.393Z"
     },
     {
-      "specFolder": "mcp-tooling/mcp-obsidian/001-official-obsidian-cli",
+      "specFolder": "mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli",
       "description": "The official `obsidian` binary is already registered on this machine at `/usr/local/bin/obsidian`, symlinked into the desktop app bundle",
       "keywords": [
         "official",
@@ -13704,7 +13704,7 @@
       "lastUpdated": "2026-11-13T10:04:42.479Z"
     },
     {
-      "specFolder": "mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp",
+      "specFolder": "mcp/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp",
       "description": "The skill described the official CLI and the MCP server side by side and left the choice to the reader",
       "keywords": [
         "skill",
@@ -13721,7 +13721,7 @@
       "lastUpdated": "2026-11-13T10:04:42.477Z"
     },
     {
-      "specFolder": "mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction",
+      "specFolder": "mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction",
       "description": "The `mcp-obsidian` mode documents fourteen Obsidian plugins, and only two are wanted",
       "keywords": [
         "mcp-obsidian",
@@ -13737,7 +13737,7 @@
       "lastUpdated": "2026-11-13T10:04:42.485Z"
     },
     {
-      "specFolder": "mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal",
+      "specFolder": "mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/001-plugin-doc-removal",
       "description": "Twelve of the mode's fourteen dedicated plugin doc sets are unwanted",
       "keywords": [
         "twelve",
@@ -13752,7 +13752,7 @@
       "lastUpdated": "2026-11-13T10:04:42.481Z"
     },
     {
-      "specFolder": "mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation",
+      "specFolder": "mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/002-skill-surface-reconciliation",
       "description": "After phase 1 the mode's own documents are wrong",
       "keywords": [
         "phase",
@@ -13764,7 +13764,7 @@
       "lastUpdated": "2026-11-13T10:04:42.483Z"
     },
     {
-      "specFolder": "mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation",
+      "specFolder": "mcp/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation",
       "description": "Routing runs in two stages, and phase 2 only fixed the second one inside the mode",
       "keywords": [
         "routing",
@@ -13781,7 +13781,7 @@
       "lastUpdated": "2026-11-13T10:04:42.485Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/001-mcp-coco-integration",
+      "specFolder": "mcp/mcp-tooling/z_archive/001-mcp-coco-integration",
       "description": "OpenCode had no semantic code search capability",
       "keywords": [
         "opencode",
@@ -13793,7 +13793,7 @@
       "lastUpdated": "2026-11-13T10:04:42.491Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/002-mcp-testing-playbooks",
+      "specFolder": "mcp/mcp-tooling/z_archive/002-mcp-testing-playbooks",
       "description": "Three of the four MCP- skills (`mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-mode`) ship without a manual testing playbook",
       "keywords": [
         "three",
@@ -13812,7 +13812,7 @@
       "lastUpdated": "2026-11-13T10:04:42.494Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer",
+      "specFolder": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer",
       "description": "This phased decomposition tracks mcp-figma transfer (tri-repo): withdraw mcp-figma developer skill from CodeEnvironment/Public, reframe as a Figma MCP",
       "keywords": [
         "phased",
@@ -13833,7 +13833,7 @@
       "lastUpdated": "2026-11-13T10:04:42.511Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent",
+      "specFolder": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent",
       "description": "The Figma MCP capability lives as a developer-grade skill (`mcp-figma`) inside the Public skill repo",
       "keywords": [
         "figma",
@@ -13850,7 +13850,7 @@
       "lastUpdated": "2026-11-13T10:04:42.498Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent",
+      "specFolder": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent",
       "description": "Phase 1 produced an internal-team-framed Barter Figma agent (commit 690b498 with 16 files, ~234K markdown)",
       "keywords": [
         "phase",
@@ -13868,7 +13868,7 @@
       "lastUpdated": "2026-11-13T10:04:42.502Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
+      "specFolder": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
       "description": "The `mcp-figma` developer skill at `CodeEnvironment/Public/.opencode/skills/mcp-figma/` has been superseded by the new Figma MCP Agent in",
       "keywords": [
         "mcp-figma",
@@ -13887,7 +13887,7 @@
       "lastUpdated": "2026-11-13T10:04:42.505Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation",
+      "specFolder": "mcp/mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation",
       "description": "The 067-mcp-figma-transfer packet shipped 7 commits across 3 repos with functional implementation work, but follow-up commits (`66e1e87`, `766206b`,",
       "keywords": [
         "067-mcp-figma-transfer",
@@ -13906,7 +13906,7 @@
       "lastUpdated": "2026-11-13T10:04:42.507Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/004-mcp-click-up-task-management",
+      "specFolder": "mcp/mcp-tooling/z_archive/004-mcp-click-up-task-management",
       "description": "No `mcp-click-up` skill exists in `.opencode/skills/`",
       "keywords": [
         "mcp-click-up",
@@ -13918,7 +13918,7 @@
       "lastUpdated": "2026-11-13T10:04:42.513Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/005-nested-mcp-readme-sync",
+      "specFolder": "mcp/mcp-tooling/z_archive/005-nested-mcp-readme-sync",
       "description": "The packet-135 QA audit (two read-only gpt-5.5-fast reviewers) found three nested `mcpserver` READMEs that had drifted behind their real tool sets",
       "keywords": [
         "packet-135",
@@ -13942,7 +13942,7 @@
       "lastUpdated": "2026-11-13T10:04:42.516Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization",
+      "specFolder": "mcp/mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization",
       "description": "The five mcp- skills had drifted out of a shared shape",
       "keywords": [
         "five",
@@ -13955,7 +13955,7 @@
       "lastUpdated": "2026-11-13T10:04:42.520Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent",
       "description": "`mcp-chrome-devtools`, `mcp-click-up`, and `mcp-figma` are three flat, independently advisor-routable MCP tool-bridge skills, all `family: mcp`, that",
       "keywords": [
         "mcp-chrome-devtools",
@@ -13973,7 +13973,7 @@
       "lastUpdated": "2026-11-13T10:04:42.564Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/001-research-and-context",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/001-research-and-context",
       "description": "Phase 002 architecture decisions depend on current, re-verified facts about three live bridge skills and their referrers",
       "keywords": [
         "phase",
@@ -13993,7 +13993,7 @@
       "lastUpdated": "2026-11-13T10:04:42.522Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/002-architecture-decision",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/002-architecture-decision",
       "description": "The program has operator-locked structural decisions for bringing `.opencode/skills/mcp-chrome-devtools/`, `.opencode/skills/mcp-click-up/`, and",
       "keywords": [
         "program",
@@ -14009,7 +14009,7 @@
       "lastUpdated": "2026-11-13T10:04:42.525Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/003-scaffold-hub",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/003-scaffold-hub",
       "description": "Phases 004-005 need a hub skeleton to move content INTO, but that skeleton does not exist yet",
       "keywords": [
         "phases",
@@ -14023,7 +14023,7 @@
       "lastUpdated": "2026-11-13T10:04:42.527Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/004-onboard-chrome-devtools",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/004-onboard-chrome-devtools",
       "description": "The hub skeleton exists but has no packet content",
       "keywords": [
         "hub",
@@ -14035,7 +14035,7 @@
       "lastUpdated": "2026-11-13T10:04:42.529Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
       "description": "The hub has one workflow packet (chrome-devtools) but still needs its second workflow bridge (click-up) and its transport (figma)",
       "keywords": [
         "hub",
@@ -14054,7 +14054,7 @@
       "lastUpdated": "2026-11-13T10:04:42.531Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/006-advisor-and-integration",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/006-advisor-and-integration",
       "description": "After phases 004-005 the content lives under the hub, but the advisor still sees three graph identities and every external referrer still points at",
       "keywords": [
         "phases",
@@ -14075,7 +14075,7 @@
       "lastUpdated": "2026-11-13T10:04:42.533Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/007-routing-benchmark-and-review",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/007-routing-benchmark-and-review",
       "description": "The fold-in is functionally complete after phase 006, but two things are unverified: whether the advisor actually routes the three tools correctly",
       "keywords": [
         "fold-in",
@@ -14096,7 +14096,7 @@
       "lastUpdated": "2026-11-13T10:04:42.556Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/008-cutover-and-rollout",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/008-cutover-and-rollout",
       "description": "The fold-in is functionally complete and benchmarked, but it is not canon-clean until the strict parent-hub check passes with zero warnings, the whole",
       "keywords": [
         "fold-in",
@@ -14116,7 +14116,7 @@
       "lastUpdated": "2026-11-13T10:04:42.560Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/009-incumbent-inventory-parity",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/009-incumbent-inventory-parity",
       "description": "The three incumbent mcp-tooling modes carried uneven inventories",
       "keywords": [
         "three",
@@ -14130,7 +14130,7 @@
       "lastUpdated": "2026-11-13T10:04:42.562Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
+      "specFolder": "mcp/mcp-tooling/z_archive/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
       "description": "The hub grew from three modes to six, but the blind-holdout suite in `hubrouting/` covered only mcp-chrome-devtools (MT-H01) and mcp-figma (MT-H02),",
       "keywords": [
         "hub",
@@ -14151,7 +14151,7 @@
       "lastUpdated": "2026-11-13T10:04:42.564Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/008-mcp-aside",
+      "specFolder": "mcp/mcp-tooling/z_archive/008-mcp-aside",
       "description": "The `mcp-tooling` parent hub bridges Chrome DevTools debugging (`mcp-chrome-devtools`), ClickUp orchestration (`mcp-click-up`), and a Figma Desktop",
       "keywords": [
         "mcp-tooling",
@@ -14171,7 +14171,7 @@
       "lastUpdated": "2026-11-13T10:04:42.630Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/008-mcp-aside/001-research",
+      "specFolder": "mcp/mcp-tooling/z_archive/008-mcp-aside/001-research",
       "description": "The Aside browser's developer surface is unverified: the program assumes an Aside CLI (primary) plus an Aside MCP server (fallback through Code Mode),",
       "keywords": [
         "aside",
@@ -14193,7 +14193,7 @@
       "lastUpdated": "2026-11-13T10:04:42.614Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/008-mcp-aside/002-skill-authoring",
+      "specFolder": "mcp/mcp-tooling/z_archive/008-mcp-aside/002-skill-authoring",
       "description": "The mcp-tooling hub has no mode packet for the Aside browser: there is no `SKILL.md` doctrine for when to reach for Aside CLI versus the Aside MCP",
       "keywords": [
         "mcp-tooling",
@@ -14212,7 +14212,7 @@
       "lastUpdated": "2026-11-13T10:04:42.617Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/008-mcp-aside/003-hub-integration",
+      "specFolder": "mcp/mcp-tooling/z_archive/008-mcp-aside/003-hub-integration",
       "description": "After phase 002 the `mcp-aside-devtools` packet exists but is invisible: the hub's mode-registry and router do not know it, the parent SKILL.md does",
       "keywords": [
         "phase",
@@ -14230,7 +14230,7 @@
       "lastUpdated": "2026-11-13T10:04:42.620Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/008-mcp-aside/004-validation-and-handoff",
+      "specFolder": "mcp/mcp-tooling/z_archive/008-mcp-aside/004-validation-and-handoff",
       "description": "After phases 001-003 the mode is authored and registered, but nothing yet proves the whole program holds together under strict gates: the packet has",
       "keywords": [
         "phases",
@@ -14250,7 +14250,7 @@
       "lastUpdated": "2026-11-13T10:04:42.623Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth",
+      "specFolder": "mcp/mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth",
       "description": "The `aside` UTCP manual is now registered in `.utcpconfig.json`, but the `mcp-aside-devtools` packet still documents registration as a \"later phase\"",
       "keywords": [
         "aside",
@@ -14271,7 +14271,7 @@
       "lastUpdated": "2026-11-13T10:04:42.626Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/008-mcp-aside/006-live-verification-capture",
+      "specFolder": "mcp/mcp-tooling/z_archive/008-mcp-aside/006-live-verification-capture",
       "description": "The packet predicted `aside.asiderepl` as THE Code Mode callable and marked it UNCONFIRMED/UNKNOWN in 12 files, because live discovery had never run",
       "keywords": [
         "packet",
@@ -14294,7 +14294,7 @@
       "lastUpdated": "2026-11-13T10:04:42.628Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/009-mcp-refero",
+      "specFolder": "mcp/mcp-tooling/z_archive/009-mcp-refero",
       "description": "The `mcp-tooling` hub has no design-reference research transport: when UI work needs real-world design examples (screens, flows, patterns from",
       "keywords": [
         "mcp-tooling",
@@ -14314,7 +14314,7 @@
       "lastUpdated": "2026-11-13T10:04:42.694Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/009-mcp-refero/001-research",
+      "specFolder": "mcp/mcp-tooling/z_archive/009-mcp-refero/001-research",
       "description": "The Refero MCP is an unverified external surface: this repo has never documented its tool names, parameters, auth expectations, rate limits, or",
       "keywords": [
         "refero",
@@ -14336,7 +14336,7 @@
       "lastUpdated": "2026-11-13T10:04:42.683Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/009-mcp-refero/002-skill-authoring",
+      "specFolder": "mcp/mcp-tooling/z_archive/009-mcp-refero/002-skill-authoring",
       "description": "The `refero` UTCP manual is reachable through Code Mode but has no skill surface: no SKILL.md contract, no documented tool inventory, no routing",
       "keywords": [
         "refero",
@@ -14356,7 +14356,7 @@
       "lastUpdated": "2026-11-13T10:04:42.689Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/009-mcp-refero/003-hub-integration",
+      "specFolder": "mcp/mcp-tooling/z_archive/009-mcp-refero/003-hub-integration",
       "description": "After phase 002 the `mcp-refero` packet exists but is invisible: the hub's mode registry, router signals, parent SKILL.md, and graph identity all",
       "keywords": [
         "phase",
@@ -14377,7 +14377,7 @@
       "lastUpdated": "2026-11-13T10:04:42.690Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/009-mcp-refero/004-validation-and-handoff",
+      "specFolder": "mcp/mcp-tooling/z_archive/009-mcp-refero/004-validation-and-handoff",
       "description": "After phases 001-003 the packet, hub, and spec documentation exist but nothing has proven them consistent end to end: strict gates have not run,",
       "keywords": [
         "phases",
@@ -14398,7 +14398,7 @@
       "lastUpdated": "2026-11-13T10:04:42.692Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/009-mcp-refero/005-inventory-parity-and-doc-truth",
+      "specFolder": "mcp/mcp-tooling/z_archive/009-mcp-refero/005-inventory-parity-and-doc-truth",
       "description": "The v1.0.0.0 `mcp-refero` packet shipped structurally valid but short of hub-sibling inventory parity: no `examples/` directory, no",
       "keywords": [
         "mcp-refero",
@@ -14416,7 +14416,7 @@
       "lastUpdated": "2026-11-13T10:04:42.693Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/009-mcp-refero/006-live-verification-capture",
+      "specFolder": "mcp/mcp-tooling/z_archive/009-mcp-refero/006-live-verification-capture",
       "description": "The packet carried a preserved cross-lineage naming conflict: the doubled-prefix callable `refero.referorefero<tool>` was live-verified only",
       "keywords": [
         "packet",
@@ -14436,7 +14436,7 @@
       "lastUpdated": "2026-11-13T10:04:42.694Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/010-mcp-mobbin",
+      "specFolder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin",
       "description": "The `mcp-tooling` hub has two workflow bridges (`mcp-chrome-devtools`, `mcp-click-up`) and one transport (`mcp-figma`), but no app-design-research",
       "keywords": [
         "mcp-tooling",
@@ -14454,7 +14454,7 @@
       "lastUpdated": "2026-11-13T10:04:42.722Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/010-mcp-mobbin/001-research",
+      "specFolder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/001-research",
       "description": "Phases 002 and 003 must author a transport packet and a `.utcpconfig.json` manual for an MCP server this repo has never run",
       "keywords": [
         "phases",
@@ -14474,7 +14474,7 @@
       "lastUpdated": "2026-11-13T10:04:42.713Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/010-mcp-mobbin/002-skill-authoring",
+      "specFolder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/002-skill-authoring",
       "description": "The hub has no `mcp-mobbin` packet: there is no SKILL.md contract, no tool-surface reference, no install guide, and no UTCP manual snippet for the",
       "keywords": [
         "hub",
@@ -14493,7 +14493,7 @@
       "lastUpdated": "2026-11-13T10:04:42.715Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/010-mcp-mobbin/003-hub-integration",
+      "specFolder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/003-hub-integration",
       "description": "After phase 002 the `mcp-mobbin` packet exists but is invisible: the hub's mode registry, router, parent SKILL.md, and graph metadata do not mention",
       "keywords": [
         "phase",
@@ -14514,7 +14514,7 @@
       "lastUpdated": "2026-11-13T10:04:42.716Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/010-mcp-mobbin/004-validation-and-handoff",
+      "specFolder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/004-validation-and-handoff",
       "description": "After phase 003 the mcp-mobbin mode is wired but unproven at strict level: no strict packaging gate has run on the new packet, the hub has not been",
       "keywords": [
         "phase",
@@ -14534,7 +14534,7 @@
       "lastUpdated": "2026-11-13T10:04:42.718Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
+      "specFolder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
       "description": "The `mobbin` Code Mode manual is now registered in `.utcpconfig.json`, but the entire packet still teaches pre-registration doctrine: 98 marker lines",
       "keywords": [
         "mobbin",
@@ -14557,7 +14557,7 @@
       "lastUpdated": "2026-11-13T10:04:42.719Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/010-mcp-mobbin/006-live-verification-capture",
+      "specFolder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/006-live-verification-capture",
       "description": "The whole packet was built on the official one-public-tool record: `searchscreens` only, `searchflows` explicitly listed as a tool that must never be",
       "keywords": [
         "whole",
@@ -14577,7 +14577,7 @@
       "lastUpdated": "2026-11-13T10:04:42.720Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/010-mcp-mobbin/007-code-mode-transport-leak",
+      "specFolder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/007-code-mode-transport-leak",
       "description": "A browser verification window for Mobbin reopened every few minutes with no user action",
       "keywords": [
         "browser",
@@ -14593,7 +14593,7 @@
       "lastUpdated": "2026-11-13T10:04:42.721Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/011-routing-remediation",
+      "specFolder": "mcp/mcp-tooling/z_archive/011-routing-remediation",
       "description": "The phase-007 deep review (`.opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md`) issued a FAIL,",
       "keywords": [
         "phase-007",
@@ -14611,7 +14611,7 @@
       "lastUpdated": "2026-11-13T10:04:42.735Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/012-template-alignment",
+      "specFolder": "mcp/mcp-tooling/z_archive/012-template-alignment",
       "description": "The new `mcp-aside-devtools`, `mcp-refero`, and `mcp-mobbin` packet documentation had drifted from the canonical create-skill reference and asset",
       "keywords": [
         "new",
@@ -14629,7 +14629,7 @@
       "lastUpdated": "2026-11-13T10:04:42.743Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian",
       "description": "We can drive ClickUp from both a terminal CLI and an MCP tool (the `mcp-click-up` mode of the `mcp-tooling` hub)",
       "keywords": [
         "drive",
@@ -14646,7 +14646,7 @@
       "lastUpdated": "2026-11-13T10:04:42.878Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/001-deep-research",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/001-deep-research",
       "description": "Before building an Obsidian mode we do not know Obsidian's real automation surface: whether there is a first-party CLI, which community CLIs exist and",
       "keywords": [
         "obsidian",
@@ -14665,7 +14665,7 @@
       "lastUpdated": "2026-11-13T10:04:42.760Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/002-tool-selection-and-scaffold",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/002-tool-selection-and-scaffold",
       "description": "Phase 1 produced a recommendation, but nothing is committed: there is no locked build-vs-adopt choice per surface and no package to build into",
       "keywords": [
         "phase",
@@ -14683,7 +14683,7 @@
       "lastUpdated": "2026-11-13T10:04:42.761Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/003-cli-tool-integration",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/003-cli-tool-integration",
       "description": "After Phase 2 the `mcp-obsidian` mode has an empty skeleton but no working CLI surface: there is no way to install the chosen Obsidian CLI, verify it,",
       "keywords": [
         "phase",
@@ -14703,7 +14703,7 @@
       "lastUpdated": "2026-11-13T10:04:42.763Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/004-mcp-server-integration",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/004-mcp-server-integration",
       "description": "The `mcp-obsidian` mode needs an MCP path so agents (Code Mode) can reach Obsidian operations the CLI cannot, exactly as `mcp-click-up` routes",
       "keywords": [
         "mcp-obsidian",
@@ -14725,7 +14725,7 @@
       "lastUpdated": "2026-11-13T10:04:42.764Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/005-skill-authoring",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/005-skill-authoring",
       "description": "After Phases 3 and 4 the CLI and MCP surfaces exist, but nothing tells an agent or human when to use the CLI versus the MCP, how to install the mode,",
       "keywords": [
         "phases",
@@ -14744,7 +14744,7 @@
       "lastUpdated": "2026-11-13T10:04:42.765Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/006-feature-catalog-and-playbook",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/006-feature-catalog-and-playbook",
       "description": "After Phase 5 the `mcp-obsidian` mode has a routing contract but no single inventory of what its CLI + MCP tools actually do, and no reproducible way",
       "keywords": [
         "phase",
@@ -14764,7 +14764,7 @@
       "lastUpdated": "2026-11-13T10:04:42.766Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/007-hub-registration-and-advisor",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/007-hub-registration-and-advisor",
       "description": "The `mcp-obsidian` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for obsidian prompts (its hub",
       "keywords": [
         "mcp-obsidian",
@@ -14782,7 +14782,7 @@
       "lastUpdated": "2026-11-13T10:04:42.768Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/008-verification-and-closeout",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/008-verification-and-closeout",
       "description": "After Phase 7 the mode is registered but unproven end-to-end: nothing has confirmed the whole packet validates under `--recursive --strict`, that the",
       "keywords": [
         "phase",
@@ -14801,7 +14801,7 @@
       "lastUpdated": "2026-11-13T10:04:42.769Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/009-community-plugin-support",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/009-community-plugin-support",
       "description": "The `mcp-obsidian` mode operates a vault at the file layer (read/write/search markdown and data files via CLI/MCP), but it has no knowledge of how",
       "keywords": [
         "mcp-obsidian",
@@ -14824,7 +14824,7 @@
       "lastUpdated": "2026-11-13T10:04:42.820Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation",
       "description": "Phase parent for the mcp-obsidian playbook validation run: execute every manual-testing-playbook scenario against a live throwaway vault (headless",
       "keywords": [
         "phase",
@@ -14846,7 +14846,7 @@
       "lastUpdated": "2026-11-13T10:04:42.826Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/001-provisioning",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/001-provisioning",
       "description": "Provision the live test env for the playbook run: install notesmd-cli, register the Obsidian test vault, install + activate the Local REST API plugin",
       "keywords": [
         "provision",
@@ -14869,7 +14869,7 @@
       "lastUpdated": "2026-11-13T10:04:42.821Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
       "description": "Execute the 8 headless notesmd-cli manual-testing-playbook scenarios against the test vault and record pass/fail.",
       "keywords": [
         "execute",
@@ -14887,7 +14887,7 @@
       "lastUpdated": "2026-11-13T10:04:42.822Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios",
       "description": "Execute the 6 MCP manual-testing-playbook scenarios (round-trip + verification) against the live Local REST API and record pass/fail.",
       "keywords": [
         "execute",
@@ -14908,7 +14908,7 @@
       "lastUpdated": "2026-11-13T10:04:42.823Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios",
       "description": "Execute the 3 plugin tie-in scenarios (OBS-011 beancount, OBS-012 tables, OBS-013 brat) at the file layer in the test vault and record pass/fail.",
       "keywords": [
         "execute",
@@ -14932,7 +14932,7 @@
       "lastUpdated": "2026-11-13T10:04:42.824Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/005-routing-skill-benchmark",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/005-routing-skill-benchmark",
       "description": "Run the mcp-tooling skill/routing benchmark (Mode A router-replay) validating seven-mode routing, and record the official-CLI scenarios as",
       "keywords": [
         "run",
@@ -14951,7 +14951,7 @@
       "lastUpdated": "2026-11-13T10:04:42.826Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/011-plugin-installation",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/011-plugin-installation",
       "description": "The user wants [health-md](https://community.obsidian.md/plugins/health-md) — an Apple Health visualization plugin — installed for Obsidian across all",
       "keywords": [
         "user",
@@ -14971,7 +14971,7 @@
       "lastUpdated": "2026-11-13T10:04:42.827Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/012-skill-support-extension",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/012-skill-support-extension",
       "description": "Phase 11 put health-md in every vault, but the `mcp-obsidian` mode knows nothing about it",
       "keywords": [
         "phase",
@@ -14988,7 +14988,7 @@
       "lastUpdated": "2026-11-13T10:04:42.834Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/013-iconic-integration",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/013-iconic-integration",
       "description": "The user's vaults run the Iconic plugin (repo `gfxholo/iconic`, v1.1.10 — icon/color customization for tabs, files, folders, bookmarks, tags,",
       "keywords": [
         "user",
@@ -15010,7 +15010,7 @@
       "lastUpdated": "2026-11-13T10:04:42.835Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/014-health-md-reference-remediation",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/014-health-md-reference-remediation",
       "description": "The health-md deep research (phase 012, `research/lineages/codex/research.md`, 6 iterations, all questions answered) found the mode's health-md",
       "keywords": [
         "health-md",
@@ -15028,7 +15028,7 @@
       "lastUpdated": "2026-11-13T10:04:42.837Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
       "description": "The deep research found the mode's example asset and quick-start blocks are not safe: the fixture (`healthmd-export.example.json`) was authored from",
       "keywords": [
         "deep",
@@ -15048,7 +15048,7 @@
       "lastUpdated": "2026-11-13T10:04:42.838Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/016-health-md-catalog-and-playbook",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/016-health-md-catalog-and-playbook",
       "description": "The mode's health-md playbook scenario (OBS-014) and feature-catalog card were authored before the deep research and carry the same defects: the",
       "keywords": [
         "mode",
@@ -15068,7 +15068,7 @@
       "lastUpdated": "2026-11-13T10:04:42.839Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/017-health-md-live-validation-closeout",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/017-health-md-live-validation-closeout",
       "description": "Phases 14-16 ship remediated docs, assets, and a scenario — but none of it has run against a real vault",
       "keywords": [
         "phases",
@@ -15086,7 +15086,7 @@
       "lastUpdated": "2026-11-13T10:04:42.842Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology",
       "description": "The mcp-obsidian feature catalog spreads 25 cards over 14 narrowly named directories, making navigation heavier than the surface warrants",
       "keywords": [
         "mcp-obsidian",
@@ -15105,7 +15105,7 @@
       "lastUpdated": "2026-11-13T10:04:42.844Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/020-readme-and-message-refinement",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/020-readme-and-message-refinement",
       "description": "The mcp-obsidian README and SKILL.md state the skill's reason for being as routing between two CLI profiles and the MCP",
       "keywords": [
         "mcp-obsidian",
@@ -15123,7 +15123,7 @@
       "lastUpdated": "2026-11-13T10:04:42.845Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/021-plugin-installation-batch",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/021-plugin-installation-batch",
       "description": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
       "keywords": [
         "mode",
@@ -15146,7 +15146,7 @@
       "lastUpdated": "2026-11-13T10:04:42.846Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/022-plugin-skill-support-references",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/022-plugin-skill-support-references",
       "description": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
       "keywords": [
         "mode",
@@ -15169,7 +15169,7 @@
       "lastUpdated": "2026-11-13T10:04:42.847Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
       "description": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
       "keywords": [
         "mode",
@@ -15192,7 +15192,7 @@
       "lastUpdated": "2026-11-13T10:04:42.848Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/024-plugin-routing-integration-validation",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/024-plugin-routing-integration-validation",
       "description": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
       "keywords": [
         "mode",
@@ -15215,7 +15215,7 @@
       "lastUpdated": "2026-11-13T10:04:42.851Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review",
       "description": "Verify that every community plugin/theme supported by the `mcp-obsidian` skill is properly and completely covered across all documentation surfaces,",
       "keywords": [
         "verify",
@@ -15236,7 +15236,7 @@
       "lastUpdated": "2026-11-13T10:04:42.875Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/029-feature-catalog-divider-conformance",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/029-feature-catalog-divider-conformance",
       "description": "Add the missing Style-A section dividers to the 11 plugin feature-catalog leaves so they match the sibling `cli/` and `mcp/` leaves and the repo-wide",
       "keywords": [
         "missing",
@@ -15255,7 +15255,7 @@
       "lastUpdated": "2026-11-13T10:04:42.876Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes",
+      "specFolder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes",
       "description": "Fix the three defects from the two fresh-Opus bug audits of the `mcp-obsidian` mode skill and its `mcp-tooling` parent integration",
       "keywords": [
         "three",
@@ -15274,7 +15274,7 @@
       "lastUpdated": "2026-11-13T10:04:42.877Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/014-mcp-notion",
+      "specFolder": "mcp/mcp-tooling/z_archive/014-mcp-notion",
       "description": "Phase parent for adding Notion support to the mcp-tooling hub: first validate whether the official Notion MCP (@notionhq/notion-mcp-server, 24 tools)",
       "keywords": [
         "phase",
@@ -15295,7 +15295,7 @@
       "lastUpdated": "2026-11-13T10:04:42.893Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/014-mcp-notion/001-deep-research",
+      "specFolder": "mcp/mcp-tooling/z_archive/014-mcp-notion/001-deep-research",
       "description": "The `mcp-tooling` hub covers ClickUp, Chrome DevTools, Obsidian, and several design transports, but has no Notion support",
       "keywords": [
         "mcp-tooling",
@@ -15314,7 +15314,7 @@
       "lastUpdated": "2026-11-13T10:04:42.885Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/014-mcp-notion/002-skill-authoring",
+      "specFolder": "mcp/mcp-tooling/z_archive/014-mcp-notion/002-skill-authoring",
       "description": "After Phase 1, the research verdict exists but nothing tells an agent how to reach Notion: which backend to use (headless stdio vs interactive OAuth),",
       "keywords": [
         "phase",
@@ -15335,7 +15335,7 @@
       "lastUpdated": "2026-11-13T10:04:42.887Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/014-mcp-notion/003-knowledge-references",
+      "specFolder": "mcp/mcp-tooling/z_archive/014-mcp-notion/003-knowledge-references",
       "description": "After Phase 2 the `mcp-notion` mode has a routing contract but no knowledge layer, so it is a thin transport",
       "keywords": [
         "phase",
@@ -15351,7 +15351,7 @@
       "lastUpdated": "2026-11-13T10:04:42.889Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/014-mcp-notion/004-hub-registration-and-advisor",
+      "specFolder": "mcp/mcp-tooling/z_archive/014-mcp-notion/004-hub-registration-and-advisor",
       "description": "The `mcp-notion` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for Notion prompts (its hub",
       "keywords": [
         "mcp-notion",
@@ -15369,7 +15369,7 @@
       "lastUpdated": "2026-11-13T10:04:42.891Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/014-mcp-notion/005-verification-and-closeout",
+      "specFolder": "mcp/mcp-tooling/z_archive/014-mcp-notion/005-verification-and-closeout",
       "description": "After Phase 4 the mode is registered but unproven end-to-end: nothing has confirmed that every mode doc validates, that a fresh operator can install",
       "keywords": [
         "phase",
@@ -15389,7 +15389,7 @@
       "lastUpdated": "2026-11-13T10:04:42.893Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration",
       "description": "Phase parent for a flawless complex-Notion→Obsidian migration capability: research first (20 iterations, GLM-5.2 via cli-devin + DeepSeek V4 Flash",
       "keywords": [
         "phase",
@@ -15411,7 +15411,7 @@
       "lastUpdated": "2026-11-13T10:04:43.133Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/001-deep-research",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/001-deep-research",
       "description": "We need to flawlessly migrate a COMPLEX Notion environment — databases, relations, rollups, formulas, nested pages, files, comments, views — fully",
       "keywords": [
         "need",
@@ -15434,7 +15434,7 @@
       "lastUpdated": "2026-11-13T10:04:42.915Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook",
       "description": "The 001 research verdict decided the flawless-migration method, but nothing in `mcp-obsidian` or `mcp-notion` carries it",
       "keywords": [
         "research",
@@ -15450,7 +15450,7 @@
       "lastUpdated": "2026-11-13T10:04:42.917Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in",
       "description": "`mcp-obsidian` already knows Core Bases and Dataview in full, but research §8 confirms it has no knowledge of the Notion Bases community plugin — the",
       "keywords": [
         "mcp-obsidian",
@@ -15470,7 +15470,7 @@
       "lastUpdated": "2026-11-13T10:04:42.919Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
       "description": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation",
       "keywords": [
         "phase",
@@ -15491,7 +15491,7 @@
       "lastUpdated": "2026-11-13T10:04:42.922Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
       "description": "The `mcp-obsidian` skill documented thirteen plugins (twelve community plugins plus the Minimal theme), but the operator's vault stack was growing",
       "keywords": [
         "mcp-obsidian",
@@ -15512,7 +15512,7 @@
       "lastUpdated": "2026-11-13T10:04:42.926Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
       "description": "Phase parent for seven per-plugin deep-research legs (GLM-5.2 via cli-devin for the first five, ox-alpha via cli-opencode/OpenRouter for the last two)",
       "keywords": [
         "phase",
@@ -15535,7 +15535,7 @@
       "lastUpdated": "2026-11-13T10:04:43.067Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
       "description": "The shipped mcp-obsidian Advanced Canvas file-layer reference docs (`references/plugins/advanced-canvas/`) carried a `VERIFY`-flagged unknown for the",
       "keywords": [
         "shipped",
@@ -15556,7 +15556,7 @@
       "lastUpdated": "2026-11-13T10:04:42.950Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
       "description": "The shipped mcp-obsidian Claudian reference docs contained two load-bearing factual errors: they instruct operators to author/merge `.claude/mcp.json`",
       "keywords": [
         "shipped",
@@ -15580,7 +15580,7 @@
       "lastUpdated": "2026-11-13T10:04:42.963Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
       "description": "This leg was originally scoped to optimize `references/plugins/project-manager/` — the pm-task frontmatter schema, `customFields` non-scalar encoding,",
       "keywords": [
         "leg",
@@ -15600,7 +15600,7 @@
       "lastUpdated": "2026-11-13T10:04:42.967Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
       "description": "The shipped mcp-obsidian Dataview reference docs are a disciplined file-layer contract but are materially thin on the query language itself: the",
       "keywords": [
         "shipped",
@@ -15620,7 +15620,7 @@
       "lastUpdated": "2026-11-13T10:04:43.006Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
       "description": "The mcp-obsidian Notion Bases file-layer reference tree omitted exact plugin syntax needed for reliable AI-authored files",
       "keywords": [
         "mcp-obsidian",
@@ -15641,7 +15641,7 @@
       "lastUpdated": "2026-11-13T10:04:43.024Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
       "description": "The shipped Meta Bind docs teach a correctness bug: they stamp a button-written timestamp with `value: \"=now()\"`, citing it as \"the documented",
       "keywords": [
         "shipped",
@@ -15662,7 +15662,7 @@
       "lastUpdated": "2026-11-13T10:04:43.045Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine",
       "description": "The mcp-obsidian reference docs depend on the JS Engine plugin for Meta Bind `js` button actions, but the engine API, execution context, and",
       "keywords": [
         "mcp-obsidian",
@@ -15682,7 +15682,7 @@
       "lastUpdated": "2026-11-13T10:04:43.066Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
       "description": "The `mcp-obsidian` skill carried a full Excalidraw integration (a four-file reference tree, a feature-catalog card, two assets, a manual-testing",
       "keywords": [
         "mcp-obsidian",
@@ -15703,7 +15703,7 @@
       "lastUpdated": "2026-11-13T10:04:43.072Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/008-notion-bases-closeout",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/008-notion-bases-closeout",
       "description": "Phase 007 deferred four consolidation items to `008-notion-bases-closeout`, but that folder was never built, so 007's prose pointed at a phantom",
       "keywords": [
         "phase",
@@ -15721,7 +15721,7 @@
       "lastUpdated": "2026-11-13T10:04:43.091Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
       "description": "The shipped `mcp-obsidian` plugin docs carried real correctness defects the 006 research surfaced: advanced-canvas told the AI to never author",
       "keywords": [
         "shipped",
@@ -15742,7 +15742,7 @@
       "lastUpdated": "2026-11-13T10:04:43.099Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
       "description": "Phase 009 left five documentation items and one sibling-packet error unresolved",
       "keywords": [
         "phase",
@@ -15758,7 +15758,7 @@
       "lastUpdated": "2026-11-13T10:04:43.115Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
       "description": "The migration playbook lagged the 006 plugin research",
       "keywords": [
         "migration",
@@ -15770,7 +15770,7 @@
       "lastUpdated": "2026-11-13T10:04:43.126Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+      "specFolder": "mcp/mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
       "description": "The mcp-obsidian skill still documented Beancount Finance as a supported plugin after its double-entry paradigm was dropped from the vault's finance",
       "keywords": [
         "mcp-obsidian",
@@ -15789,7 +15789,7 @@
       "lastUpdated": "2026-11-13T10:04:43.130Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/016-code-mode-node-resolution",
+      "specFolder": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution",
       "description": "Six host configurations launch the `codemode` MCP server with `/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node`",
       "keywords": [
         "six",
@@ -15810,7 +15810,7 @@
       "lastUpdated": "2026-11-13T10:04:43.236Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/016-code-mode-node-resolution/001-resolution-contract",
+      "specFolder": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/001-resolution-contract",
       "description": "The requirement is published in two places already: the server manifest declares `engines.node` as `>=24.0.0 <25.0.0`, and a postinstall check warns",
       "keywords": [
         "requirement",
@@ -15830,7 +15830,7 @@
       "lastUpdated": "2026-11-13T10:04:43.149Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/016-code-mode-node-resolution/002-launcher-shim",
+      "specFolder": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/002-launcher-shim",
       "description": "Host configurations currently name an interpreter directly, which is why they had to name an absolute one",
       "keywords": [
         "host",
@@ -15845,7 +15845,7 @@
       "lastUpdated": "2026-11-13T10:04:43.169Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/016-code-mode-node-resolution/003-host-config-cutover",
+      "specFolder": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/003-host-config-cutover",
       "description": "Nineteen server registrations span six configuration files",
       "keywords": [
         "nineteen",
@@ -15859,7 +15859,7 @@
       "lastUpdated": "2026-11-13T10:04:43.181Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/016-code-mode-node-resolution/004-install-and-doctor",
+      "specFolder": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/004-install-and-doctor",
       "description": "Two install scripts write MCP registrations, so a fresh install would reintroduce whatever shape they encode regardless of what the cutover fixed",
       "keywords": [
         "two",
@@ -15879,7 +15879,7 @@
       "lastUpdated": "2026-11-13T10:04:43.188Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/016-code-mode-node-resolution/005-resolution-hardening",
+      "specFolder": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/005-resolution-hardening",
       "description": "The packet shipped a resolver whose search-path branch cannot return a candidate on a real host",
       "keywords": [
         "packet",
@@ -15897,7 +15897,7 @@
       "lastUpdated": "2026-11-13T10:04:43.229Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/017-mcp-magicpath",
+      "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath",
       "description": "MagicPath has no MCP server",
       "keywords": [
         "magicpath",
@@ -15907,7 +15907,7 @@
       "lastUpdated": "2026-11-13T10:04:43.290Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/017-mcp-magicpath/001-cli-transport-proof",
+      "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath/001-cli-transport-proof",
       "description": "Every manual this repository has ever registered is `calltemplatetype: \"mcp\"`",
       "keywords": [
         "every",
@@ -15921,7 +15921,7 @@
       "lastUpdated": "2026-11-13T10:04:43.245Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/017-mcp-magicpath/002-manual-and-auth",
+      "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath/002-manual-and-auth",
       "description": "The probe proved a transport, not a surface",
       "keywords": [
         "probe",
@@ -15932,7 +15932,7 @@
       "lastUpdated": "2026-11-13T10:04:43.257Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/017-mcp-magicpath/003-skill-packet",
+      "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath/003-skill-packet",
       "description": "A registered manual is reachable but not discoverable",
       "keywords": [
         "registered",
@@ -15943,7 +15943,7 @@
       "lastUpdated": "2026-11-13T10:04:43.265Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/017-mcp-magicpath/004-hub-integration",
+      "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath/004-hub-integration",
       "description": "A packet nothing routes to is a document, not a capability",
       "keywords": [
         "packet",
@@ -15955,7 +15955,7 @@
       "lastUpdated": "2026-11-13T10:04:43.270Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/017-mcp-magicpath/005-playbook-and-verification",
+      "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath/005-playbook-and-verification",
       "description": "Four phases will each have proven their own piece",
       "keywords": [
         "four",
@@ -15967,7 +15967,7 @@
       "lastUpdated": "2026-11-13T10:04:43.277Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/017-mcp-magicpath/006-design-authority",
+      "specFolder": "mcp/mcp-tooling/z_archive/017-mcp-magicpath/006-design-authority",
       "description": "The packet declined to issue design judgment and said so plainly: \"this packet is a read-only transport and issues no such verdict.\" That sentence is",
       "keywords": [
         "packet",
@@ -15986,7 +15986,7 @@
       "lastUpdated": "2026-11-13T10:04:43.285Z"
     },
     {
-      "specFolder": "mcp-tooling/z_archive/018-code-mode-variable-prefixes",
+      "specFolder": "mcp/mcp-tooling/z_archive/018-code-mode-variable-prefixes",
       "description": "Five of the fourteen manuals registered in this repository's Code Mode configuration never reached the server",
       "keywords": [
         "five",

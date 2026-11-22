@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone Skilled skills and two-a
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.13.0
+version: 1.2.14.0
 ---
 
 # create-skill
@@ -214,7 +214,7 @@ No. `SKILL.md` is the root marker. The root metadata contract decides which JSON
 | README structure | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/README.md --type readme` | `✅ VALID` and `Total issues: 0` |
 | Package gate | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <skill-folder> --strict` | A closing `- package_skill.py --check --strict: PASS (exit 0)`, plus the parent checks on a hub |
 | Structure report | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <path/to/SKILL.md>` | A JSON report whose `type` is `skill` and whose `structure.headings` follow the file |
-| Leaf-route replay | `node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` | Exit 0 with seven `hub=` lines, one `total gold=` line, `router reads: not measured` and one `replay verdict:` line |
+| Leaf-route replay | `node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` | Exit 0 with eight `hub=` lines, one `total gold=` line, `router reads: not measured` and one `replay verdict:` line |
 | Operator scenarios | [the manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) | Eleven scenarios, seven for the standalone path and four for hubs |
 
 ---

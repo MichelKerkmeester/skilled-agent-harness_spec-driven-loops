@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/013-mcp-obsidian",
+  "spec_folder": "mcp/mcp-tooling/z_archive/013-mcp-obsidian",
+  "parent_id": null,
+  "children_ids": [
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/001-deep-research",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/002-tool-selection-and-scaffold",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/003-cli-tool-integration",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/004-mcp-server-integration",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/005-skill-authoring",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/006-feature-catalog-and-playbook",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/007-hub-registration-and-advisor",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/008-verification-and-closeout",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/009-community-plugin-support",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/011-plugin-installation",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/012-skill-support-extension",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/013-iconic-integration",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/014-health-md-reference-remediation",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/016-health-md-catalog-and-playbook",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/017-health-md-live-validation-closeout",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/020-readme-and-message-refinement",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/021-plugin-installation-batch",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/022-plugin-skill-support-references",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/024-plugin-routing-integration-validation",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/029-feature-catalog-divider-conformance",
+    "mcp/mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-obsidian",
+      "obsidian cli mcp",
+      "obsidian vault tooling",
+      "mcp-tooling obsidian mode",
+      "mcp-obsidian handover",
+      "mcp-obsidian session continuation",
+      "obsidian mode validation handover"
+    ],
+    "key_topics": [
+      "mcp-obsidian",
+      "obsidian",
+      "cli",
+      "mcp",
+      "vault",
+      "tooling",
+      "mcp-tooling",
+      "mode",
+      "handover",
+      "session",
+      "continuation",
+      "validation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "handover.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/mcp-tooling/description.json",
+      ".opencode/skills/mcp-tooling/graph-metadata.json",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      ".opencode/skills/mcp-tooling/SKILL.md",
+      ".pi/extensions/spec-gate-classify.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.ts",
+        "kind": "code",
+        "path": ".pi/extensions/spec-gate-classify.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement We",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Prompt",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Then Phase",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "GPT-5.6 SOL HIGH FAST",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "LOG",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "high",
+        "kind": "quoted",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "We can drive ClickUp from both a terminal CLI and an MCP tool (the `mcp-click-up` mode of the `mcp-tooling` hub)",
+    "created_at": "2026-08-02T05:50:25Z",
+    "last_save_at": "2026-11-21T07:55:09.890Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:9df038f24b63e7c225f2e0df56aa69771ad72d02f44a427cc2dac9fdefcb6001",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1142318d30a0748d9c75ccce7fbe39a1840f33aba4474e3e06fa2934d3bd8492",
+      "handover.md": "fbf109e7444beb9d5b2c3ee2f68547890c54c25eacdedd52c1e79310aa1438e6"
+    },
+    "last_active_child_id": "mcp-tooling/013-mcp-obsidian/012-skill-support-extension",
+    "last_active_at": "2026-08-02T11:17:14.270Z"
+  }
+}

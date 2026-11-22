@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/009-mcp-refero/004-validation-and-handoff",
+  "spec_folder": "mcp/mcp-tooling/z_archive/009-mcp-refero/004-validation-and-handoff",
+  "parent_id": "mcp/mcp-tooling/z_archive/009-mcp-refero",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-refero validation",
+      "refero handoff",
+      "refero terminal gates",
+      "phase 004 validation-and-handoff",
+      "mcp-refero validation plan",
+      "refero gates plan",
+      "refero handoff plan",
+      "phase 004 plan",
+      "mcp-refero validation tasks",
+      "refero gates tasks",
+      "refero handoff tasks",
+      "phase 004 tasks"
+    ],
+    "key_topics": [
+      "mcp-refero",
+      "validation",
+      "refero",
+      "handoff",
+      "terminal",
+      "gates",
+      "phase",
+      "validation-and-handoff",
+      "plan",
+      "tasks",
+      "phases",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 001-003 the packet, hub, and spec documentation exist but nothing has proven them consistent end to end: strict gates have not run, checklists are unmarked, and no completion state is recorded",
+    "created_at": "2026-07-16T09:39:30Z",
+    "last_save_at": "2026-11-21T07:55:09.742Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:83f88f0507b11549430a6dac078c69eb43aab24af7184c4f56eb7e54ade7ee7f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4704274179e951fae415fc9eb5c4e779d24657c05657d5e7b3a466737da97728",
+      "plan.md": "be761a836f2f7c3ba238315a1b8e70efc960c9234469d1215fab97f367efe976",
+      "tasks.md": "5b44fcf394cd3d606625149b8d88bc9b481762c74b79088008d314f48b6f9409",
+      "implementation-summary.md": "de79bbd04fe1efafa9506e0d4e52b53bed607efef3ca2f4589fa17ca1dcbf7ee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

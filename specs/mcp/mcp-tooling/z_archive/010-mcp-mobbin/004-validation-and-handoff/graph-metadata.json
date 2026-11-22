@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/004-validation-and-handoff",
+  "spec_folder": "mcp/mcp-tooling/z_archive/010-mcp-mobbin/004-validation-and-handoff",
+  "parent_id": "mcp/mcp-tooling/z_archive/010-mcp-mobbin",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-mobbin validation",
+      "mobbin handoff",
+      "mobbin strict gates",
+      "mobbin memory save",
+      "phase 004 validation-and-handoff",
+      "mcp-mobbin validation plan",
+      "mobbin terminal gates",
+      "mobbin close-out plan",
+      "phase 004 plan",
+      "mcp-mobbin validation tasks",
+      "mobbin gate tasks",
+      "mobbin close-out tasks"
+    ],
+    "key_topics": [
+      "mcp-mobbin",
+      "validation",
+      "mobbin",
+      "handoff",
+      "strict",
+      "gates",
+      "memory",
+      "save",
+      "phase",
+      "validation-and-handoff",
+      "plan",
+      "terminal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Terminal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "owning-phase",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 003 the mcp-mobbin mode is wired but unproven at strict level: no strict packaging gate has run on the new packet, the hub has not been re-validated as a four-mode unit, the spec packet's checklists carry no evidence, and no continuity has been saved",
+    "created_at": "2026-07-16T09:39:34Z",
+    "last_save_at": "2026-11-21T07:55:09.824Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fa1036c1ca7c33c8ca26d61efb3e4e8abec522240835c9fa9d09fed8de9977d5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c671e3a4598086353a6dbbbdec26adb8d7cf6e6d87b80be03fdc229e23b630d1",
+      "plan.md": "ff8e999d7356efd9fa3fb2d14192dbb1c338b607855b46e8246ec97f72212072",
+      "tasks.md": "ba7b11e2a7cfe705a9ca468fcc36e2df9222756ff033e1d1118a9bd3b39ec81e",
+      "implementation-summary.md": "f5d82e711d460770fa91895b20382536f71dc33cb8d60bc3a33e4ef00af0f010"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "62a9359e60a",
-  "corpusSha256": "sha256:18bc5977180a722ec3967559fee4dd379f2a2e9404fa9e687304bfe5a0598fe1",
-  "holdoutSha256": "sha256:918265c278fd51fe5198d2a88df357ed40f5bab8d9a14298ae4e7dac6c7b3b21",
+  "capturedAtSha": "c7f38f295d2",
+  "corpusSha256": "sha256:b14b53ed211a5a5f9c871ecb4e10126ac36a8c7c687a8d6f1ba39ffa4ca2c7cb",
+  "holdoutSha256": "sha256:a6aa180c56b5f202e093fe1535a510bf54d24375843350edd6abc4b45edda382",
   "ambiguitySha256": "sha256:62423738cab74cf499d98f2e835e8e78c25e2b57e3c1b6994d8a2bd0bfb88491",
   "env": {
     "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC": "1",
@@ -12,9 +12,9 @@
   },
   "metrics": {
     "full_corpus_top1": {
-      "correct": 159,
+      "correct": 161,
       "total": 196,
-      "accuracy": 0.8112
+      "accuracy": 0.8214
     },
     "unknown_count": {
       "value": 13

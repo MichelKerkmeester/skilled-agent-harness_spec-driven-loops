@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "mcp/mcp-tooling/z_archive/016-code-mode-node-resolution/004-install-and-doctor",
+  "description": "Two install scripts write MCP registrations, so a fresh install would reintroduce whatever shape they encode regardless of what the cutover fixed",
+  "keywords": [
+    "two",
+    "install",
+    "scripts",
+    "write",
+    "mcp",
+    "registrations",
+    "fresh",
+    "reintroduce",
+    "whatever",
+    "shape",
+    "encode",
+    "regardless",
+    "cutover"
+  ],
+  "lastUpdated": "2026-11-21T07:55:08.862Z",
+  "specId": "004",
+  "folderSlug": "install-and-doctor",
+  "parentChain": [
+    "mcp",
+    "mcp-tooling",
+    "z_archive",
+    "016-code-mode-node-resolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

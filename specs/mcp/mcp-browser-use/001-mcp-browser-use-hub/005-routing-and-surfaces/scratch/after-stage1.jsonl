@@ -1,0 +1,9 @@
+{"prompt": "debug this page with chrome devtools and take a screenshot", "top3": [["mcp-browser-use", 0.95, true], ["sk-code", 0.8371, true], ["mcp-tooling", 0.5835, true]], "mcp_tooling_passing": true}
+{"prompt": "use aside to fill this form in my signed-in account", "top3": [["mcp-browser-use", 0.9308, true], ["sk-code", 0.5794, true], ["mcp-code-mode", 0.5691, true]], "mcp_tooling_passing": true}
+{"prompt": "use bladebro to attach to my open browser and finish the checkout flow", "top3": [["mcp-browser-use", 0.9242, true], ["mcp-code-mode", 0.563, true], ["sk-code", 0.5603, true]], "mcp_tooling_passing": true}
+{"prompt": "run a lighthouse audit on this page", "top3": [["mcp-browser-use", 0.95, true], ["sk-code", 0.82, true], ["sk-doc", 0.82, true]], "mcp_tooling_passing": true}
+{"prompt": "replay this signed-in checkout step by step and save the evidence", "top3": [["mcp-browser-use", 0.8255, true], ["system-spec-kit", 0.7271, true], ["sk-code", 0.603, true]], "mcp_tooling_passing": false}
+{"prompt": "in the browser I already have open, work out how to finish this signup", "top3": [["mcp-browser-use", 0.8299, true], ["cli-orca", 0.5886, true], ["sk-code", 0.5842, true]], "mcp_tooling_passing": false}
+{"prompt": "export a HAR of this page load", "top3": [["mcp-browser-use", 0.9161, true], ["sk-code", 0.6356, true], ["mcp-tooling", 0.6068, true]], "mcp_tooling_passing": true}
+{"prompt": "run aside on the pricing page", "top3": [["mcp-browser-use", 0.8925, true], ["sk-doc", 0.82, true], ["mcp-code-mode", 0.82, true]], "mcp_tooling_passing": true}
+{"prompt": "open aside and log in", "top3": [["mcp-browser-use", 0.878, true], ["sk-code", 0.5488, true], ["mcp-code-mode", 0.5461, true]], "mcp_tooling_passing": false}

@@ -1,0 +1,1412 @@
+{
+  "sessionId": "2026-11-21T08:29:48.000Z",
+  "parentSessionId": "2026-11-21T08:29:48.000Z",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-kq1-what-can-bladebro-chrome-devtools-bdg-plus-chrome-devtools-mcp-and-aside-eac",
+      "inboxId": null,
+      "text": "KQ1: What can Bladebro, Chrome DevTools (bdg plus chrome-devtools-mcp) and Aside each do, and where does each stop? Answer as a cited capability matrix over page model, actions, console/network logs, HAR, heap/perf trace, Lighthouse, raw CDP, iframes, signed-in profiles and stealth.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-2-kq2-when-does-each-mode-use-its-cli-and-when-its-mcp-server-through-code-mode-an",
+      "inboxId": null,
+      "text": "KQ2: When does each mode use its CLI and when its MCP server through Code Mode? Answer as one lane rule per mode with the detection command and the fallback trigger.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-kq3-what-hub-contract-does-mcp-browser-use-need-answer-with-proposed-mode-regist",
+      "inboxId": null,
+      "text": "KQ3: What hub contract does mcp-browser-use need? Answer with proposed mode-registry.json, hub-router.json and leaf-manifest.json shapes, the advisor routingClass and packetKind per mode, each checked against mcp-tooling's files.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-kq4-what-is-the-full-blast-radius-of-moving-mcp-chrome-devtools-and-mcp-aside-de",
+      "inboxId": null,
+      "text": "KQ4: What is the full blast radius of moving mcp-chrome-devtools and mcp-aside-devtools out of mcp-tooling? Answer with every file inside and outside mcp-tooling that names them, split into hand-edit, regenerate and leave-as-history.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-kq5-do-the-modes-keep-the-mcp-prefix-inside-the-new-hub-answer-with-one-naming-d",
+      "inboxId": null,
+      "text": "KQ5: Do the modes keep the mcp- prefix inside the new hub? Answer with one naming decision giving the folder, workflowMode and packetSkillName for each of the three modes.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-kq6-how-is-bladebro-verified-on-macos-answer-with-a-step-list-from-install-throu",
+      "inboxId": null,
+      "text": "KQ6: How is Bladebro verified on macOS? Answer with a step list from install through a live agent-browser and real-browser probe, each step with its expected output and its rollback.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-7-kq7-what-are-the-security-risks-of-bladebro-and-the-browser-modes-answer-with-fi",
+      "inboxId": null,
+      "text": "KQ7: What are the security risks of Bladebro and the browser modes? Answer with findings on signed-in profiles, stealth and site terms of service, and the npm binary supply chain, each with a mitigation the 004 safety rules can quote.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-8-kq8-should-bladebro-take-over-aside-s-deterministic-signed-in-work-answer-yes-or",
+      "inboxId": null,
+      "text": "KQ8: Should Bladebro take over Aside's deterministic signed-in work? Answer yes or no with the cases that decide it.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-9-list-every-file-outside-skilled-skills-mcp-tooling-that-names-mcp-chrome-devtool",
+      "inboxId": "inbox-blast-radius-outside-hub",
+      "text": "List every file outside .skilled/skills/mcp-tooling that names mcp-chrome-devtools or mcp-aside-devtools (rg -l, excluding changelog and benchmark/reports), and classify each: rewrite path / rewrite mode name / historical, leave.",
+      "origin": "operator",
+      "source": "research-inbox",
+      "injectedAtIteration": 11,
+      "promotedQuestionId": null,
+      "addedAtIteration": 11,
+      "resolvedAtIteration": 11,
+      "resolved": true
+    },
+    {
+      "id": "question-10-does-the-chrome-devtools-mode-really-offer-lighthouse-its-hub-router-lists-it-bu",
+      "inboxId": "inbox-chrome-devtools-lighthouse",
+      "text": "Does the Chrome DevTools mode really offer Lighthouse? Its hub router lists it but its feature catalog has no entry; settle it from the files and the chrome-devtools-mcp / bdg upstream docs.",
+      "origin": "operator",
+      "source": "research-inbox",
+      "injectedAtIteration": 11,
+      "promotedQuestionId": null,
+      "addedAtIteration": 11,
+      "resolvedAtIteration": 12,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-kq1-what-can-bladebro-chrome-devtools-bdg-plus-chrome-devtools-mcp-and-aside-eac",
+      "inboxId": null,
+      "text": "KQ1: What can Bladebro, Chrome DevTools (bdg plus chrome-devtools-mcp) and Aside each do, and where does each stop? Answer as a cited capability matrix over page model, actions, console/network logs, HAR, heap/perf trace, Lighthouse, raw CDP, iframes, signed-in profiles and stealth.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    },
+    {
+      "id": "question-2-kq2-when-does-each-mode-use-its-cli-and-when-its-mcp-server-through-code-mode-an",
+      "inboxId": null,
+      "text": "KQ2: When does each mode use its CLI and when its MCP server through Code Mode? Answer as one lane rule per mode with the detection command and the fallback trigger.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-kq3-what-hub-contract-does-mcp-browser-use-need-answer-with-proposed-mode-regist",
+      "inboxId": null,
+      "text": "KQ3: What hub contract does mcp-browser-use need? Answer with proposed mode-registry.json, hub-router.json and leaf-manifest.json shapes, the advisor routingClass and packetKind per mode, each checked against mcp-tooling's files.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-kq4-what-is-the-full-blast-radius-of-moving-mcp-chrome-devtools-and-mcp-aside-de",
+      "inboxId": null,
+      "text": "KQ4: What is the full blast radius of moving mcp-chrome-devtools and mcp-aside-devtools out of mcp-tooling? Answer with every file inside and outside mcp-tooling that names them, split into hand-edit, regenerate and leave-as-history.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-kq5-do-the-modes-keep-the-mcp-prefix-inside-the-new-hub-answer-with-one-naming-d",
+      "inboxId": null,
+      "text": "KQ5: Do the modes keep the mcp- prefix inside the new hub? Answer with one naming decision giving the folder, workflowMode and packetSkillName for each of the three modes.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-kq6-how-is-bladebro-verified-on-macos-answer-with-a-step-list-from-install-throu",
+      "inboxId": null,
+      "text": "KQ6: How is Bladebro verified on macOS? Answer with a step list from install through a live agent-browser and real-browser probe, each step with its expected output and its rollback.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-7-kq7-what-are-the-security-risks-of-bladebro-and-the-browser-modes-answer-with-fi",
+      "inboxId": null,
+      "text": "KQ7: What are the security risks of Bladebro and the browser modes? Answer with findings on signed-in profiles, stealth and site terms of service, and the npm binary supply chain, each with a mitigation the 004 safety rules can quote.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-8-kq8-should-bladebro-take-over-aside-s-deterministic-signed-in-work-answer-yes-or",
+      "inboxId": null,
+      "text": "KQ8: Should Bladebro take over Aside's deterministic signed-in work? Answer yes or no with the cases that decide it.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-9-list-every-file-outside-skilled-skills-mcp-tooling-that-names-mcp-chrome-devtool",
+      "inboxId": "inbox-blast-radius-outside-hub",
+      "text": "List every file outside .skilled/skills/mcp-tooling that names mcp-chrome-devtools or mcp-aside-devtools (rg -l, excluding changelog and benchmark/reports), and classify each: rewrite path / rewrite mode name / historical, leave.",
+      "origin": "operator",
+      "source": "research-inbox",
+      "injectedAtIteration": 11,
+      "promotedQuestionId": null,
+      "addedAtIteration": 11,
+      "resolvedAtIteration": 11
+    },
+    {
+      "id": "question-10-does-the-chrome-devtools-mode-really-offer-lighthouse-its-hub-router-lists-it-bu",
+      "inboxId": "inbox-chrome-devtools-lighthouse",
+      "text": "Does the Chrome DevTools mode really offer Lighthouse? Its hub router lists it but its feature catalog has no entry; settle it from the files and the chrome-devtools-mcp / bdg upstream docs.",
+      "origin": "operator",
+      "source": "research-inbox",
+      "injectedAtIteration": 11,
+      "promotedQuestionId": null,
+      "addedAtIteration": 11,
+      "resolvedAtIteration": 12
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-bladebro-ships-exactly-five-mcp-tools-act-see-state-run-vision-and-the-cli-reuse",
+      "text": "Bladebro ships exactly five MCP tools — `act`, `see`, `state`, `run`, `vision` — and the CLI reuses the same handlers, so MCP and CLI capability is symmetric by design [SOURCE: https://github.com/dondai44423/bladebro#the-five-tools] [SOURCE: https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md].",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/dondai44423/bladebro (README, read 2026-11-21)",
+        "https://api.github.com/repos/dondai44423/bladebro/releases/latest",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/SKILL.md, .skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md, feature-catalog/feature-catalog.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md, feature-catalog/feature-catalog.md"
+      ]
+    },
+    {
+      "id": "finding-1-1-bladebro-s-upstream-version-is-pinned-at-v4-8-2-published-2026-11-20t16-33-56z-a",
+      "text": "Bladebro's upstream version is pinned at **v4.8.2**, published 2026-11-20T16:33:56Z; assets include macOS arm64/x64 binaries with published SHA-256 digests [SOURCE: https://api.github.com/repos/dondai44423/bladebro/releases/latest].",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/dondai44423/bladebro (README, read 2026-11-21)",
+        "https://api.github.com/repos/dondai44423/bladebro/releases/latest",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/SKILL.md, .skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md, feature-catalog/feature-catalog.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md, feature-catalog/feature-catalog.md"
+      ]
+    },
+    {
+      "id": "finding-1-3-chrome-devtools-is-the-only-one-of-the-three-with-a-genuine-raw-cdp-and-har-surf",
+      "text": "Chrome DevTools is the only one of the three with a genuine raw-CDP and HAR surface; Aside documents those as explicit gaps and Bladebro does not expose them [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:61-83] [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:145].",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/dondai44423/bladebro (README, read 2026-11-21)",
+        "https://api.github.com/repos/dondai44423/bladebro/releases/latest",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/SKILL.md, .skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md, feature-catalog/feature-catalog.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md, feature-catalog/feature-catalog.md"
+      ]
+    },
+    {
+      "id": "finding-1-6-lighthouse-is-a-genuine-contradiction-to-carry-forward-the-hub-router-advertises",
+      "text": "Lighthouse is a genuine contradiction to carry forward: the hub router advertises it as Chrome DevTools intent, while the feature catalog has no dedicated Lighthouse feature [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:49-53] [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:227-238].",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/dondai44423/bladebro (README, read 2026-11-21)",
+        "https://api.github.com/repos/dondai44423/bladebro/releases/latest",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/SKILL.md, .skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md, feature-catalog/feature-catalog.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md, feature-catalog/feature-catalog.md"
+      ]
+    },
+    {
+      "id": "finding-1-4-signed-in-work-is-reachable-in-all-three-but-by-different-mechanisms-bladebro-yo",
+      "text": "Signed-in work is reachable in all three, but by different mechanisms: Bladebro \"your browser\" attach/copy, Chrome `--autoConnect` live instance (fallback), Aside signed-in account (default) [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:21-37].",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/dondai44423/bladebro (README, read 2026-11-21)",
+        "https://api.github.com/repos/dondai44423/bladebro/releases/latest",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/SKILL.md, .skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md, feature-catalog/feature-catalog.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md, feature-catalog/feature-catalog.md"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-where-each-stops-boundary-chrome-stops-at-agentic-goal-completion-aside-stop",
+      "text": "The \"where each stops\" boundary: Chrome stops at agentic goal completion; Aside stops at CDP/HAR/stealth/parallel isolation; Bladebro stops at HAR, Lighthouse, heap trace, raw CDP and cross-origin iframes [INFERENCE: cross-product of matrix gaps].",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/dondai44423/bladebro (README, read 2026-11-21)",
+        "https://api.github.com/repos/dondai44423/bladebro/releases/latest",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/SKILL.md, .skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md, feature-catalog/feature-catalog.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md, feature-catalog/feature-catalog.md"
+      ]
+    },
+    {
+      "id": "finding-2-5-default-lane-cli-bdg-for-fast-low-token-inspection-full-300-cdp-methods-across-5",
+      "text": "**Default lane**: CLI `bdg` for fast, low-token inspection — full 300+ CDP methods across 53 domains with `--list` / `--describe` / `--search`, HAR export, and shell-scriptable JSON [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:55] [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:118-119].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-2-default-lane-cli-when-the-binary-is-present-it-carries-the-same-five-handlers-as",
+      "text": "**Default lane**: CLI when the binary is present — it carries the same five handlers as MCP and is the self-documenting, token-efficient transport [SOURCE: https://github.com/dondai44423/bladebro#the-five-tools] [SOURCE: https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-8-default-lane-cli-with-two-sub-lanes-aside-prompt-aside-exec-for-outcome-oriented",
+      "text": "**Default lane**: CLI with two sub-lanes — `aside \"<prompt>\"` / `aside exec` for outcome-oriented, approval-gated agent tasks; `aside repl \"<JavaScript>\"` for deterministic, evidence-friendly steps (tab, snapshot, screenshot) [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:53-63].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-7-detection-preflight-always-in-order-command-v-aside-aside-version-2-1-aside-help",
+      "text": "**Detection** — preflight always, in order: `command -v aside` → `aside --version 2>&1` → `aside --help 2>&1` [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:67-73]. On this host `aside` is at `/Users/michelkerkmeester/.local/bin/aside` [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:81-84]. If absent, report the official macOS-only install command and let the operator decide — never install implicitly [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:75].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-4-detection-command-v-bdg-then-bdg-version-2-1-health-session-check-bdg-status-ins",
+      "text": "**Detection**: `command -v bdg`, then `bdg --version 2>&1`; health/session check `bdg status`. Install hint if absent: `npm install -g browser-debugger-cli@alpha` [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:61] [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:204]. On this host `bdg` is at `/opt/homebrew/bin/bdg` [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:81-84].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-1-detection-command-v-bladebro-then-bladebro-doctor-as-the-health-check-on-this-ho",
+      "text": "**Detection**: `command -v bladebro`, then `bladebro doctor` as the health check. On this host `command -v bladebro` returns **absent** [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:81-84]. Upstream setup gives `npm install -g bladebro` followed by `bladebro doctor`; npm selects the native package through optional dependencies (macOS `bladebro-darwin-arm64` / `bladebro-darwin-x64`), there is no postinstall script, and standalone binaries plus SHA-256 checksums are on GitHub Releases [SOURCE: https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-9-fallback-trigger-composition-with-other-code-mode-tools-or-a-capability-that-exi",
+      "text": "**Fallback trigger**: composition with other Code Mode tools, or a capability that exists only on the discovered MCP surface → `aside mcp` (local stdio process) via Code Mode, callable `aside.aside_repl(args)` [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:55] [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:93-105]. Rediscover the inventory every session (`tools.listChanged: true`; one `repl` tool is version-pinned evidence, not a contract), never pass `--account` to `aside mcp` or `aside repl`, and close the stdio process in `try/finally` because there is no public `daemon`/`status`/`stop` command [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:100-104] [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:118-122].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-6-fallback-trigger-mcp-via-code-mode-when-the-cli-is-unavailable-when-work-must-ch",
+      "text": "**Fallback trigger**: MCP via Code Mode when the CLI is unavailable, when work must chain with other MCP tools, for parallel isolated sessions (`--isolated=true`, e.g. `chrome_devtools_1` / `chrome_devtools_2`), complex typed TypeScript automation, or type-safe invocation [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:63-65] [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:106-112]. Confirm registration with `cat .utcp_config.json | jq '.manual_call_templates[] | select(.name | startswith(\"chrome_devtools\"))'` [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:92-96]. Costs to weigh: higher token cost, Code Mode dependency, and a CDP subset versus the CLI's full surface [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:114-119]. Signed-in browser work is a special case: `chrome_devtools_live` (`chrome-devtools-mcp --autoConnect`) is the fallback for work an isolated instance cannot do, with Aside the default owner [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:84-90].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-3-fallback-trigger-switch-to-bladebro-mcp-bladebro-mcp-stdio-mcpservers-bladebro-a",
+      "text": "**Fallback trigger**: switch to Bladebro MCP (`bladebro mcp`, stdio; `mcpServers.bladebro.args = [\"mcp\"]`) when browser work must be chained with other Code Mode tools or the binary/doctor is unavailable and an MCP client can launch it via `npx -y bladebro mcp` [SOURCE: https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md]. If `command -v bladebro` fails and Code Mode cannot launch it, neither lane is available: report the install command and hand the decision to the operator — installing is an explicit non-goal for this run [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:98-100].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-11-bladebro-s-cli-and-mcp-reuse-the-same-five-handlers-so-its-fallback-is-transport",
+      "text": "Bladebro's CLI and MCP reuse the same five handlers, so its fallback is **transport-driven, not capability-driven** — unlike Chrome DevTools, where MCP is explicitly a CDP subset and lacks self-documenting `--list`/`--describe` [SOURCE: https://github.com/dondai44423/bladebro#the-five-tools] [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:114-119].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-13-detection-output-is-version-pinned-fixture-evidence-not-a-permanent-contract-re-",
+      "text": "Detection output is version-pinned fixture evidence, not a permanent contract: re-capture `--help`/inventory per session, never freeze flags from memory, keep captures out of the repository, and redact cookie/credential values [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:75] [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:130-135].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-12-signed-in-work-is-already-cross-mode-routed-rather-than-mode-local-aside-is-the-",
+      "text": "Signed-in work is already cross-mode-routed rather than mode-local: Aside is the default owner, Chrome's `--autoConnect` live instance is its fallback, and Bladebro offers a third mechanism (`rb on`, attach/import, injection off) that KQ8 must place [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:86-90] [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-2-10-the-three-packets-share-one-policy-cli-first-mcp-via-code-mode-for-composition-s",
+      "text": "The three packets share one policy — CLI first, MCP via Code Mode for composition — so the hub can express one uniform `laneRule` shape with per-mode detection and fallback fields [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3] [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3] [SOURCE: https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md].",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://api.github.com/repos/dondai44423/bladebro/contents/docs",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/setup.md (fetched 2026-11-21; v4.8.2 pin carried from iteration 1)",
+        "https://github.com/dondai44423/bladebro#the-five-tools",
+        "https://raw.githubusercontent.com/dondai44423/bladebro/main/docs/tools.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:3,55,61,63-65,84-96,106-123,196-212",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md:3,44,53-75,77-122,126-142,165-169,186",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:62-100",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-001.md:28,82-85"
+      ]
+    },
+    {
+      "id": "finding-3-4-backendkind-cli-plus-mcp-for-all-three-chrome-and-aside-are-cli-plus-mcp-in-the-",
+      "text": "**`backendKind` = `cli-plus-mcp` for all three.** Chrome and Aside are `cli-plus-mcp` in the existing registry [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:9,32,99]. Bladebro qualifies on the same discriminator because its CLI and MCP reuse the same five handlers, making its fallback transport-driven rather than capability-driven [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:9] [INFERENCE: iteration-002 finding that Bladebro CLI and MCP share handlers, recorded in research.md:46]. The new hub therefore needs none of mcp-tooling's other backend kinds (`code-mode-remote-mcp`, `figma-desktop-transport`) [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:9].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/mcp-tooling/SKILL.md",
+        ".skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mode-registry.json",
+        ".skilled/skills/mcp-tooling/hub-router.json",
+        ".skilled/skills/mcp-tooling/leaf-manifest.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/description.json",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md",
+        "glob `.skilled/skills/**/*bladebro*` (no files)"
+      ]
+    },
+    {
+      "id": "finding-3-3-packetkind-workflow-for-all-three-the-new-registry-has-no-transport-axis-extensi",
+      "text": "**`packetKind` = `workflow` for all three; the new registry has no `transport-axis` extension.** All three browser modes change browser/workspace state, matching `mcp-tooling`'s `workflow` discriminator whose tool surfaces allow `Write`/`Edit` and set `mutatesWorkspace: true` [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:8] [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:31-32,98-99]. Because none is a read-only design transport, `mcp-browser-use` must drop `mcp-tooling`'s `extensions.transport-axis` block entirely [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:17-26] — the direct answer to 002's Open Question (\"only workflow modes\") [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md:144]. Consequence: no transport `forbidden: [Write, Edit, Task]` surface and no `crossHubPairing` with `sk-design` in the new hub [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:126,134].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/mcp-tooling/SKILL.md",
+        ".skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mode-registry.json",
+        ".skilled/skills/mcp-tooling/hub-router.json",
+        ".skilled/skills/mcp-tooling/leaf-manifest.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/description.json",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md",
+        "glob `.skilled/skills/**/*bladebro*` (no files)"
+      ]
+    },
+    {
+      "id": "finding-3-2-advisor-routingclass-metadata-for-all-three-modes-every-mcp-tooling-mode-carries",
+      "text": "**Advisor `routingClass` = `metadata` for all three modes.** Every `mcp-tooling` mode carries `advisorRouting.routingClass: \"metadata\"` — resolved by hub membership, so the advisor routes the single hub identity and the hub picks the mode, with no per-mode advisor map entry or merged-identity projection [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:5] [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:11-16] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:55,69]. Applying the same class to Chrome, Aside and Bladebro inside `mcp-browser-use` closes 005's Open Question with the smaller scope: no per-mode projection maps are needed [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md:150].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/mcp-tooling/SKILL.md",
+        ".skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mode-registry.json",
+        ".skilled/skills/mcp-tooling/hub-router.json",
+        ".skilled/skills/mcp-tooling/leaf-manifest.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/description.json",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md",
+        "glob `.skilled/skills/**/*bladebro*` (no files)"
+      ]
+    },
+    {
+      "id": "finding-3-9-cross-file-consistency-and-single-advisor-identity-are-part-of-the-contract-mcp-",
+      "text": "**Cross-file consistency and single advisor identity are part of the contract.** `mcp-tooling` requires registry modes and router signal keys to stay bidirectionally aligned and says to ESCALATE when \"registry modes, stage-one signals, stage-two resource keys, or generated manifest entries disagree\" [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:125] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:140-141]. Version authority: the SKILL.md frontmatter version matches the newest changelog entry and metadata files carry the same value [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:20]. Advisor discovery needs its own `description.json` and one `graph-metadata.json` with a single hub identity (`family: mcp`, `category: mcp-tool`) and three member entities [SOURCE: .skilled/skills/mcp-tooling/description.json:1-23] [SOURCE: .skilled/skills/mcp-tooling/graph-metadata.json:2-5]. Because there are no transports, the transferable cross-skill edges are the external `mcp-code-mode` substrate, not the design siblings [SOURCE: .skilled/skills/mcp-tooling/graph-metadata.json:7-12].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/mcp-tooling/SKILL.md",
+        ".skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mode-registry.json",
+        ".skilled/skills/mcp-tooling/hub-router.json",
+        ".skilled/skills/mcp-tooling/leaf-manifest.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/description.json",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md",
+        "glob `.skilled/skills/**/*bladebro*` (no files)"
+      ]
+    },
+    {
+      "id": "finding-3-8-new-hub-needs-its-own-stage-two-router-md-its-machine-readable-section-holds-int",
+      "text": "**New hub needs its own stage-two `ROUTER.md`.** Its machine-readable section holds `INTENT_SIGNALS` (weight 4, keyword sets per mode) and `RESOURCE_MAP` mapping each mode to packet-qualified leaf resources, with `DEFAULT_RESOURCE = []` so no preamble is always loaded [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:79-137]. Every `RESOURCE_MAP` path must resolve on disk and be registered in the generated `leaf-manifest.json`, converting to canonical `(workflowMode, leafResourceId)` pairs at the leaf-resource contract boundary [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:28-36]. Bladebro's resource rows cannot be filled until 004 authors its packet (see finding 7).",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/mcp-tooling/SKILL.md",
+        ".skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mode-registry.json",
+        ".skilled/skills/mcp-tooling/hub-router.json",
+        ".skilled/skills/mcp-tooling/leaf-manifest.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/description.json",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md",
+        "glob `.skilled/skills/**/*bladebro*` (no files)"
+      ]
+    },
+    {
+      "id": "finding-3-6-proposed-hub-router-json-shape-source-skilled-skills-mcp-tooling-hub-router-json",
+      "text": "**Proposed `hub-router.json` shape** [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:1-33] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:34-119]: top level `skill: \"mcp-browser-use\"`, `version`; `routerPolicy` with `defaultMode: null`, `ambiguityDelta: 1`, `outcomes` (single/orderedBundle/defer), fallback-only `defaultResource: [\"ROUTER.md\",\"mode-registry.json\"]`, and a `discoveryClasses` list holding a hub-identity class plus a browser-generic defer class. `routerSignals` has exactly three keys — one per mode — each `weight: 4` with `classes[]` and `resources: [\"<mode>/SKILL.md\"]`; `vocabularyClasses` supplies keywords per class [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:120-376]. The `tieBreak` order must encode the two overlaps the capability work found: Chrome↔Bladebro on debugging and Aside↔Bladebro on agentic signed-in work, with generic \"browser automation\" phrasing deferring rather than fanning out, mirroring mcp-tooling's discovery-only `provider-neutral-design-research` class [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:42-47] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:28-32].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/mcp-tooling/SKILL.md",
+        ".skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mode-registry.json",
+        ".skilled/skills/mcp-tooling/hub-router.json",
+        ".skilled/skills/mcp-tooling/leaf-manifest.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/description.json",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md",
+        "glob `.skilled/skills/**/*bladebro*` (no files)"
+      ]
+    },
+    {
+      "id": "finding-3-7-proposed-leaf-manifest-json-shape-and-the-bladebro-greenfield-gap-source-skilled",
+      "text": "**Proposed `leaf-manifest.json` shape and the Bladebro greenfield gap** [SOURCE: .skilled/skills/mcp-tooling/leaf-manifest.json:1-25]: three `modes[]` entries, each `{leaves: [...], packet, workflowMode}`, sorted by packet, with `resourceContractVersion: 1` [SOURCE: .skilled/skills/mcp-tooling/leaf-manifest.json:113-115]. Chrome and Aside leaves can be carried over from mcp-tooling's manifest (cdp-patterns/session-management; aside-cli-reference/mcp-wiring) [SOURCE: .skilled/skills/mcp-tooling/leaf-manifest.json:4-15] [SOURCE: .skilled/skills/mcp-tooling/leaf-manifest.json:17-25]. Bladebro has no packet under `.skilled/skills/` (glob for `**/*bladebro*` returned no files, 2026-11-21), so 004-bladebro-mode must author its leaves before the manifest can be regenerated. The manifest is generated and must never be hand-edited [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:111,127].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/mcp-tooling/SKILL.md",
+        ".skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mode-registry.json",
+        ".skilled/skills/mcp-tooling/hub-router.json",
+        ".skilled/skills/mcp-tooling/leaf-manifest.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/description.json",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md",
+        "glob `.skilled/skills/**/*bladebro*` (no files)"
+      ]
+    },
+    {
+      "id": "finding-3-5-proposed-mode-registry-json-shape-source-skilled-skills-mcp-tooling-mode-registr",
+      "text": "**Proposed `mode-registry.json` shape** [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:1-61]: top level `skill: \"mcp-browser-use\"`, `version`, `resourceContractVersion: 1`, `description`, `discriminator` (workflowMode/packetKind/backendKind definitions), `advisorRoutingContract` (routingClass, packetSkillName, grandfatheredFolderMismatch, command), then `modes[]` of length 3. Each mode: `workflowMode`, `packetKind: \"workflow\"`, `backendKind: \"cli-plus-mcp\"`, `toolSurface` (allowed including `Write`/`Edit`/`mcp__code_mode__call_tool_chain`, `forbidden: []`, `mutatesWorkspace: true`, `bashAllowlist: []`), `packet` equal to `packetSkillName`, `grandfatheredFolderMismatch: false`, `command: null` (per ADR-006), `aliases[]`, `advisorRouting: {routingClass: \"metadata\"}`. The exact `workflowMode`/`packetSkillName` strings are KQ5-owned; the folder==name invariant should be preserved whichever naming KQ5 picks [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:13-14].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/mcp-tooling/SKILL.md",
+        ".skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mode-registry.json",
+        ".skilled/skills/mcp-tooling/hub-router.json",
+        ".skilled/skills/mcp-tooling/leaf-manifest.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/description.json",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md",
+        "glob `.skilled/skills/**/*bladebro*` (no files)"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-transferable-contract-is-four-root-files-plus-generated-metadata-mcp-tooling",
+      "text": "**The transferable contract is four root files plus generated metadata.** `mcp-tooling` defines its hub as `SKILL.md` (hub identity + mode table), `mode-registry.json` (per-mode identity and safety), `hub-router.json` (stage-one signals, classes and tie-break) and root `ROUTER.md` (stage-two leaf map), with `leaf-manifest.json` generated and `description.json`/`graph-metadata.json` for advisor discovery; \"the hub holds no per-mode logic. Each mode keeps its contract in its packet\" [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:15-20] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:105-111]. `mcp-browser-use` needs the same skeleton with the identity swapped; 002 already lists exactly these six files as its deliverables [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md:88-96].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/mcp-tooling/SKILL.md",
+        ".skilled/skills/mcp-tooling/ROUTER.md",
+        ".skilled/skills/mcp-tooling/mode-registry.json",
+        ".skilled/skills/mcp-tooling/hub-router.json",
+        ".skilled/skills/mcp-tooling/leaf-manifest.json",
+        ".skilled/skills/mcp-tooling/graph-metadata.json",
+        ".skilled/skills/mcp-tooling/description.json",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/spec.md",
+        "glob `.skilled/skills/**/*bladebro*` (no files)"
+      ]
+    },
+    {
+      "id": "finding-4-2-leaf-manifest-json-is-the-one-unambiguous-regenerate-item-inside-mcp-tooling-the",
+      "text": "**`leaf-manifest.json` is the one unambiguous regenerate item inside mcp-tooling.** The SKILL.md states it \"is generated from packet resources. Never hand-edit it\" and requires regeneration through the canonical metadata command [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:111] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:127]. This confirms the iteration-3 BLOCKED direction and means the new hub's manifest cannot be authored by 002/003 by hand; it must be produced after the mode packets exist at their new root.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `README.md`, `ROUTER.md`, `references/mutation-and-browser-boundaries.md`, three `feature-catalog/` files",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `graph-metadata.json`, `scripts/README.md`, two playbooks",
+        "`.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md`",
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`",
+        "`.skilled/skills/README.txt`, `sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, `runtime/cli/retrieval/lib/corpus.mjs`",
+        "repository-wide `grep` and `.skilled/`/`specs/`-scoped `rg -l`; symlink and leaf-file shell probes"
+      ]
+    },
+    {
+      "id": "finding-4-7-advisor-test-fixtures-are-hand-edits-not-history-because-they-assert-current-rou",
+      "text": "**Advisor/test fixtures are hand-edits, not history, because they assert current routing.** The system-skill-advisor golden prompts and labeled prompts encode the modes as expected route labels [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:6], alongside `labeled-prompts.jsonl:191`, `capture-local-native-divergence-ledger.mjs:181`, `affordance-normalizer.test.ts:62` and `lane-attribution.test.ts:33`; the native-validate playbook uses `mcp-chrome-devtools` as a slice id [SOURCE: .skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-validate-slices.md:148]. These will drift the moment the mode ids change, regardless of which KQ5 naming is chosen.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `README.md`, `ROUTER.md`, `references/mutation-and-browser-boundaries.md`, three `feature-catalog/` files",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `graph-metadata.json`, `scripts/README.md`, two playbooks",
+        "`.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md`",
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`",
+        "`.skilled/skills/README.txt`, `sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, `runtime/cli/retrieval/lib/corpus.mjs`",
+        "repository-wide `grep` and `.skilled/`/`specs/`-scoped `rg -l`; symlink and leaf-file shell probes"
+      ]
+    },
+    {
+      "id": "finding-4-4-first-outside-mcp-tooling-hand-edit-cluster-cli-orca-seven-files-orca-s-skill-md",
+      "text": "**First outside-mcp-tooling hand-edit cluster: `cli-orca` (seven files).** Orca's SKILL.md and README name both modes in their browser-ownership tables [SOURCE: .skilled/skills/cli-orca/SKILL.md:53] [SOURCE: .skilled/skills/cli-orca/SKILL.md:54] [SOURCE: .skilled/skills/cli-orca/README.md:153] [SOURCE: .skilled/skills/cli-orca/README.md:154]; its ROUTER.md lists them as foreign owners and maps keywords to them [SOURCE: .skilled/skills/cli-orca/ROUTER.md:26] [SOURCE: .skilled/skills/cli-orca/ROUTER.md:103] [SOURCE: .skilled/skills/cli-orca/ROUTER.md:104]; and `SKILL.md:237`, `references/mutation-and-browser-boundaries.md:83-84`, and the three `feature-catalog/` files repeat the ownership split [SOURCE: .skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md:83]. These are live routing contracts, so they are hand-edits, not history.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `README.md`, `ROUTER.md`, `references/mutation-and-browser-boundaries.md`, three `feature-catalog/` files",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `graph-metadata.json`, `scripts/README.md`, two playbooks",
+        "`.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md`",
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`",
+        "`.skilled/skills/README.txt`, `sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, `runtime/cli/retrieval/lib/corpus.mjs`",
+        "repository-wide `grep` and `.skilled/`/`specs/`-scoped `rg -l`; symlink and leaf-file shell probes"
+      ]
+    },
+    {
+      "id": "finding-4-9-generated-index-config-surfaces-are-regenerate-or-no-op-and-there-are-no-literal",
+      "text": "**Generated index/config surfaces are regenerate-or-no-op, and there are no literal hits in root runtime configs.** The system-spec-kit trigger index and retrieval fixtures name the mode ids [SOURCE: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json:1] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:1], as do observability reports — these are generated artifacts and belong in regenerate, alongside `leaf-manifest.json`. Runtime skill mirrors need no action because `.claude/skills`, `.opencode/skills` and `.pi/skills` are symlinks to `.skilled/skills` (observed 2026-11-21); moving the canonical directory moves them with it. A literal grep excluding `specs/` and `.skilled/` returned no files, so root configs such as `.utcp_config.json` reach these servers by manual name rather than by skill mode id — consistent with the doctor check that keys the Aside manual on `.utcp_config.json`, not on the mode name [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/README.md:203]. [INFERENCE: symlink and no-hit observations are from shell probes recorded in Actions Taken, not from a file citation.]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `README.md`, `ROUTER.md`, `references/mutation-and-browser-boundaries.md`, three `feature-catalog/` files",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `graph-metadata.json`, `scripts/README.md`, two playbooks",
+        "`.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md`",
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`",
+        "`.skilled/skills/README.txt`, `sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, `runtime/cli/retrieval/lib/corpus.mjs`",
+        "repository-wide `grep` and `.skilled/`/`specs/`-scoped `rg -l`; symlink and leaf-file shell probes"
+      ]
+    },
+    {
+      "id": "finding-4-8-leave-as-history-is-the-largest-class-by-file-count-and-needs-no-edits-every-cha",
+      "text": "**Leave-as-history is the largest class by file count and needs no edits.** Every `changelog/**` file that names a mode (mcp-tooling, both mode packets, mcp-click-up, mcp-figma, mcp-code-mode and `.skilled/changelog/skilled/v4.0.x.md`), every `benchmark/reports/**` capture, and every `specs/**` scratch, evidence, handover, gate-a/gate-b TSV, dispatch receipt and prior research artifact that quotes a mode id is a point-in-time record. Moving the modes does not retroactively change what those records observed. This is why the raw 400-match grep overstates the work: most hits are history. [INFERENCE: classification from path shape — `changelog/`, `benchmark/reports/`, `scratch/`, `evidence/`, `research/`, `receipts/`, `*.tsv` — confirmed by representative hits such as `.skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.21.0.md` and `specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/002-gate-a-signal-closure/research/gate-a-raw.tsv:192`.]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `README.md`, `ROUTER.md`, `references/mutation-and-browser-boundaries.md`, three `feature-catalog/` files",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `graph-metadata.json`, `scripts/README.md`, two playbooks",
+        "`.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md`",
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`",
+        "`.skilled/skills/README.txt`, `sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, `runtime/cli/retrieval/lib/corpus.mjs`",
+        "repository-wide `grep` and `.skilled/`/`specs/`-scoped `rg -l`; symlink and leaf-file shell probes"
+      ]
+    },
+    {
+      "id": "finding-4-5-second-outside-cluster-mcp-code-mode-five-files-and-its-shared-helper-coupling-s",
+      "text": "**Second outside cluster: `mcp-code-mode` (five files) and its shared-helper coupling.** `SKILL.md` names `mcp-chrome-devtools` as the example Code Mode consumer [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:318]; `graph-metadata.json` carries a metadata-only ADR-004/005 carve-out note pointing at the hub [SOURCE: .skilled/skills/mcp-code-mode/graph-metadata.json:21]; `scripts/README.md:70` records that `_utils.sh` is kept byte-identical with the `mcp-tooling/mcp-chrome-devtools` copy and that a test enforces it; and two sibling-pair playbooks cite the Chrome packet `SKILL.md` as the catalog [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/clickup-and-chrome-via-cm/sibling-pair-handover.md:94]. The byte-identical helper coupling is the subtle one: relocating the packet must preserve or deliberately re-point that test-enforced relationship.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `README.md`, `ROUTER.md`, `references/mutation-and-browser-boundaries.md`, three `feature-catalog/` files",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `graph-metadata.json`, `scripts/README.md`, two playbooks",
+        "`.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md`",
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`",
+        "`.skilled/skills/README.txt`, `sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, `runtime/cli/retrieval/lib/corpus.mjs`",
+        "repository-wide `grep` and `.skilled/`/`specs/`-scoped `rg -l`; symlink and leaf-file shell probes"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-hub-level-hand-edit-set-is-nine-live-files-plus-the-hub-readme-skill-md-itse",
+      "text": "**The hub-level hand-edit set is nine live files plus the hub README.** `SKILL.md` itself carries both mode ids in its keyword comment, mode table, ownership boundary and folder tree [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:10] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:30] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:33] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:43] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:95] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:98]; `hub-router.json` names them in discovery classes and router signals [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:8] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:35] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:69] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:144]; `mode-registry.json` carries them as mode identities [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:9] [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:32]. Also hand-written: `ROUTER.md`, `description.json`, `graph-metadata.json`, `feature-catalog/feature-catalog.md`, `feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md`, `manual-testing-playbook/manual-testing-playbook.md` and the six `manual-testing-playbook/hub-routing/*.md` scenarios, plus `README.md`. Strategy already requires bidirectionally aligned registry/router keys and an ESCALATE on disagreement, so removing the two modes is a coordinated edit, not a single-file deletion [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:125] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:140].",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `README.md`, `ROUTER.md`, `references/mutation-and-browser-boundaries.md`, three `feature-catalog/` files",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `graph-metadata.json`, `scripts/README.md`, two playbooks",
+        "`.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md`",
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`",
+        "`.skilled/skills/README.txt`, `sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, `runtime/cli/retrieval/lib/corpus.mjs`",
+        "repository-wide `grep` and `.skilled/`/`specs/`-scoped `rg -l`; symlink and leaf-file shell probes"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-iteration-3-leaf-carry-over-assumption-is-validated-all-four-named-leaves-ex",
+      "text": "**The iteration-3 leaf carry-over assumption is validated: all four named leaves exist.** Chrome's `references/cdp-patterns.md` and `references/session-management.md` (plus `references/troubleshooting.md`) are present under `mcp-chrome-devtools/`; Aside's `references/aside-cli-reference.md` and `references/mcp-wiring.md` (plus `session-management.md`, `troubleshooting.md`, a dated research note and a discovery fixture) are present under `mcp-aside-devtools/`. Because the manifest is generated from packet resources [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:111] and its Chrome/Aside entries already list exactly those leaf pairs [SOURCE: .skilled/skills/mcp-tooling/leaf-manifest.json:4] [SOURCE: .skilled/skills/mcp-tooling/leaf-manifest.json:17], a relocation carries the leaves with the packets and the new manifest regenerates with the same four leaf ids — no hand-written leaf entries are needed. The only blocker remains that Bladebro has no packet, so its leaves cannot be filled yet (carried from iteration 3).",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `README.md`, `ROUTER.md`, `references/mutation-and-browser-boundaries.md`, three `feature-catalog/` files",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `graph-metadata.json`, `scripts/README.md`, two playbooks",
+        "`.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md`",
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`",
+        "`.skilled/skills/README.txt`, `sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, `runtime/cli/retrieval/lib/corpus.mjs`",
+        "repository-wide `grep` and `.skilled/`/`specs/`-scoped `rg -l`; symlink and leaf-file shell probes"
+      ]
+    },
+    {
+      "id": "finding-4-6-third-outside-cluster-sibling-packets-the-skills-index-the-doctor-manifest-and-t",
+      "text": "**Third outside cluster: sibling packets, the skills index, the doctor manifest and the test allowlist.** `mcp-click-up/references/mcp-tools.md` names both modes as the signed-in-work owners in live prose [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:374] [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:636] [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:637]; `mcp-click-up/SKILL.md:317` and `README.md:219` call Chrome a structural sibling/template; `mcp-figma`, `mcp-mobbin` and `mcp-refero` canonical docs and `sk-code`/`sk-design-md-generator` READMEs carry cross-references; the global skills index lists both modes as `mcp-tooling` members [SOURCE: .skilled/skills/README.txt:53]; the doctor mutation-class guard hardcodes both `skill_dir` paths [SOURCE: .skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:43] [SOURCE: .skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:59]; and the manual-testing-playbook fail-closed allowlist names both packet paths [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt:25] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt:26]. The guard manifest is the highest-risk hand-edit because a stale `skill_dir` silently drops mutation-class coverage — the exact defect recorded in an earlier doctor audit [SOURCE: specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift/spec.md:77].",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/mcp-tooling/SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`",
+        "`.skilled/skills/cli-orca/SKILL.md`, `README.md`, `ROUTER.md`, `references/mutation-and-browser-boundaries.md`, three `feature-catalog/` files",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`, `graph-metadata.json`, `scripts/README.md`, two playbooks",
+        "`.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md`",
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`",
+        "`.skilled/skills/README.txt`, `sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`, `runtime/cli/retrieval/lib/corpus.mjs`",
+        "repository-wide `grep` and `.skilled/`/`specs/`-scoped `rg -l`; symlink and leaf-file shell probes"
+      ]
+    },
+    {
+      "id": "finding-5-6-blast-radius-consequence-relocation-not-renaming-with-ids-unchanged-the-kq4-hand",
+      "text": "**Blast-radius consequence: relocation, not renaming.** With ids unchanged, the KQ4 hand-edit list keeps its literal mode ids and only path prefixes move (`mcp-tooling/` → `mcp-browser-use/`) [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-004.md:37-43]. The path-bearing exceptions already identified still need re-pointing: the test-enforced byte-identical `_utils.sh` relationship, the doctor mutation-class guard's `skill_dir` values, and the manual-testing allowlist paths [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:73]. Advisor golden fixtures that assert `mcp-chrome-devtools` as a route label remain textually valid, but 005 must verify the label still resolves under hub-membership (`metadata`) routing after the mode changes hub.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/commands/create/assets/create-skill-parent-confirm.yaml:294`, `create-skill-parent-auto.yaml:261`, `create/skill-parent.md:112`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:520,552,588-612,783`",
+        "`.skilled/skills/mcp-tooling/mode-registry.json:13-15,30,47-49,97,114-116`",
+        "`.skilled/skills/mcp-tooling/SKILL.md:28-37,90-111,123-141`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:82,134-138,146`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md:109-116,144`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/spec.md:40,46,82,113-115`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/spec.md:90,96,114`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:64-66,73,79`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-003.md:25,66`; `iteration-004.md:37-43,96`",
+        "repo-wide grep for `grandfatheredFolderMismatch` over `.skilled`; scoped grep for naming terms over the parent packet"
+      ]
+    },
+    {
+      "id": "finding-5-5-decision-keep-the-mcp-prefix-for-all-three-modes-one-table-with-folder-relative-",
+      "text": "**Decision — keep the `mcp-` prefix for all three modes.** One table, with folder relative to `.skilled/skills/mcp-browser-use/`:",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/commands/create/assets/create-skill-parent-confirm.yaml:294`, `create-skill-parent-auto.yaml:261`, `create/skill-parent.md:112`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:520,552,588-612,783`",
+        "`.skilled/skills/mcp-tooling/mode-registry.json:13-15,30,47-49,97,114-116`",
+        "`.skilled/skills/mcp-tooling/SKILL.md:28-37,90-111,123-141`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:82,134-138,146`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md:109-116,144`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/spec.md:40,46,82,113-115`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/spec.md:90,96,114`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:64-66,73,79`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-003.md:25,66`; `iteration-004.md:37-43,96`",
+        "repo-wide grep for `grandfatheredFolderMismatch` over `.skilled`; scoped grep for naming terms over the parent packet"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-authoritative-checker-enforces-folder-name-equality-but-not-a-prefix-and-tre",
+      "text": "**The authoritative checker enforces folder/name equality but not a prefix, and treats a mismatch flag as legacy-only.** `checkModeNaming` soft-fails when `grandfatheredFolderMismatch:false` coexists with `folder != packetSkillName`, soft-fails a `true` flag when the names actually match (\"stale flag — set it false; a blanket-true flag would mask a real future mismatch\"), and requires the packet `SKILL.md` frontmatter `name:` to equal `packetSkillName` [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:588-612]. There is no check requiring or forbidding the `mcp-` prefix, so the canonical rule (finding 1), not the checker, is the decider. This rules out the hybrid \"bare folder + prefixed name + flag:true\" option.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/commands/create/assets/create-skill-parent-confirm.yaml:294`, `create-skill-parent-auto.yaml:261`, `create/skill-parent.md:112`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:520,552,588-612,783`",
+        "`.skilled/skills/mcp-tooling/mode-registry.json:13-15,30,47-49,97,114-116`",
+        "`.skilled/skills/mcp-tooling/SKILL.md:28-37,90-111,123-141`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:82,134-138,146`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md:109-116,144`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/spec.md:40,46,82,113-115`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/spec.md:90,96,114`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:64-66,73,79`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-003.md:25,66`; `iteration-004.md:37-43,96`",
+        "repo-wide grep for `grandfatheredFolderMismatch` over `.skilled`; scoped grep for naming terms over the parent packet"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-bare-names-bladebro-aside-chrome-devtools-in-the-parent-spec-are-the-mode-no",
+      "text": "**The bare names \"bladebro, aside, chrome-devtools\" in the parent spec are the `<mode>` nouns, not the full ids.** The charter says the hub has \"three modes: bladebro, aside and chrome-devtools\" [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:82] and leaves the prefix question open for 001-research [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:146]. Under the canonical template those nouns compose as `mcp-` + noun; 003's scope likewise says to move the packets \"under the 001-research names\" without fixing them [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/spec.md:82], and 004 explicitly defers the Bladebro folder name to KQ5 [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/spec.md:96]. [INFERENCE: noun-vs-full-id reading, consistent with finding 1.]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/commands/create/assets/create-skill-parent-confirm.yaml:294`, `create-skill-parent-auto.yaml:261`, `create/skill-parent.md:112`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:520,552,588-612,783`",
+        "`.skilled/skills/mcp-tooling/mode-registry.json:13-15,30,47-49,97,114-116`",
+        "`.skilled/skills/mcp-tooling/SKILL.md:28-37,90-111,123-141`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:82,134-138,146`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md:109-116,144`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/spec.md:40,46,82,113-115`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/spec.md:90,96,114`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:64-66,73,79`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-003.md:25,66`; `iteration-004.md:37-43,96`",
+        "repo-wide grep for `grandfatheredFolderMismatch` over `.skilled`; scoped grep for naming terms over the parent packet"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-canonical-parent-hub-rule-is-folder-packetskillname-hub-prefix-mode-so-workf",
+      "text": "**The canonical parent-hub rule is `folder == packetSkillName == [hub-prefix]-<mode>`, so workflow modes keep the prefix.** The create-skill-parent contract states it verbatim: \"registry keys (mode.packet) match packet folder names; canonical workflow folder == packetSkillName == `[hub-prefix]-<mode>`, surface folder == packetSkillName == bare noun; grandfathered mismatches recorded via `grandfatheredFolderMismatch` + `packetSkillName`\" [SOURCE: .skilled/commands/create/assets/create-skill-parent-confirm.yaml:294] [SOURCE: .skilled/commands/create/assets/create-skill-parent-auto.yaml:261]. `mcp-browser-use` has hub prefix `mcp` (exactly as `mcp-tooling` does), so the canonical folder ids are `mcp-<mode>`. [INFERENCE: applying the `[hub-prefix]-<mode>` template to the new hub name.]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/commands/create/assets/create-skill-parent-confirm.yaml:294`, `create-skill-parent-auto.yaml:261`, `create/skill-parent.md:112`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:520,552,588-612,783`",
+        "`.skilled/skills/mcp-tooling/mode-registry.json:13-15,30,47-49,97,114-116`",
+        "`.skilled/skills/mcp-tooling/SKILL.md:28-37,90-111,123-141`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:82,134-138,146`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md:109-116,144`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/spec.md:40,46,82,113-115`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/spec.md:90,96,114`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:64-66,73,79`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-003.md:25,66`; `iteration-004.md:37-43,96`",
+        "repo-wide grep for `grandfatheredFolderMismatch` over `.skilled`; scoped grep for naming terms over the parent packet"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-current-ids-already-satisfy-the-canonical-rule-so-keeping-the-prefix-is-the-",
+      "text": "**The current ids already satisfy the canonical rule, so keeping the prefix is the zero-rename option.** In mcp-tooling, Chrome is `workflowMode: \"mcp-chrome-devtools\"`, `packet: \"mcp-chrome-devtools\"`, `packetSkillName: \"mcp-chrome-devtools\"`, `grandfatheredFolderMismatch: false` [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:30,47-49]; Aside is the same pattern [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:97,114-116]. Both appear as `mcp-*` in the hub mode table and folder tree [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:30,33,95,98]. Relocating with the prefix intact changes only the parent path; renaming would invalidate every literal mode id in the KQ4 hand-edit set.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/commands/create/assets/create-skill-parent-confirm.yaml:294`, `create-skill-parent-auto.yaml:261`, `create/skill-parent.md:112`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:520,552,588-612,783`",
+        "`.skilled/skills/mcp-tooling/mode-registry.json:13-15,30,47-49,97,114-116`",
+        "`.skilled/skills/mcp-tooling/SKILL.md:28-37,90-111,123-141`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:82,134-138,146`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md:109-116,144`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/spec.md:40,46,82,113-115`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/spec.md:90,96,114`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:64-66,73,79`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-003.md:25,66`; `iteration-004.md:37-43,96`",
+        "repo-wide grep for `grandfatheredFolderMismatch` over `.skilled`; scoped grep for naming terms over the parent packet"
+      ]
+    },
+    {
+      "id": "finding-5-7-the-folder-name-invariant-from-kq3-is-preserved-with-the-strings-now-filled-in-k",
+      "text": "**The folder==name invariant from KQ3 is preserved, with the strings now filled in.** KQ3 explicitly deferred the exact strings and promised to preserve folder == `packetSkillName` whatever KQ5 chose [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:66]. Finding 5 fills those strings; no amendment to KQ3's proposed registry shape is needed.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/commands/create/assets/create-skill-parent-confirm.yaml:294`, `create-skill-parent-auto.yaml:261`, `create/skill-parent.md:112`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:520,552,588-612,783`",
+        "`.skilled/skills/mcp-tooling/mode-registry.json:13-15,30,47-49,97,114-116`",
+        "`.skilled/skills/mcp-tooling/SKILL.md:28-37,90-111,123-141`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md:82,134-138,146`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/002-hub-scaffold/spec.md:109-116,144`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation/spec.md:40,46,82,113-115`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/004-bladebro-mode/spec.md:90,96,114`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:64-66,73,79`",
+        "`specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-003.md:25,66`; `iteration-004.md:37-43,96`",
+        "repo-wide grep for `grandfatheredFolderMismatch` over `.skilled`; scoped grep for naming terms over the parent packet"
+      ]
+    },
+    {
+      "id": "finding-11-5-generated-regenerate-surfaces-are-a-third-non-hand-edit-outcome-inside-the-path-",
+      "text": "**Generated / regenerate surfaces are a third, non-hand-edit outcome inside the path and name classes.** The system-spec-kit trigger index carries packet paths as generated data [SOURCE: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json:696], and the observability measurement report declares itself generated (`Generated: 2026-05-03…`) [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-report.md:3]. The sk-doc test fixtures (`durable-directory-manifest.json`, `baseline-readme-verdicts.json`) and `cite-drift-redirects.json` are path-bearing snapshots [SOURCE: .skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json:403] [SOURCE: .skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json:4091] [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json:205]. These should be regenerated by their canonical commands rather than hand-edited — the same rule KQ4 applied to `leaf-manifest.json` [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-004.md:19].",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`, `.skilled/bin/tests/mcp-installers.test.cjs`",
+        "`.skilled/skills/cli-orca/{SKILL.md,README.md,ROUTER.md,references/mutation-and-browser-boundaries.md}`",
+        "`.skilled/skills/mcp-code-mode/{SKILL.md,graph-metadata.json,scripts/README.md,manual-testing-playbook/clickup-and-chrome-via-cm/*.md}`",
+        "`.skilled/skills/README.txt`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/{data/trigger-index.json,cli/retrieval/fixtures/corpus-manifest.json,cli/observability/smart-router-measurement-report.md}`",
+        "`.skilled/skills/sk-doc/{sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt,scripts/tests/code-folder/durable-directory-manifest.json,scripts/tests/code-folder/baseline-readme-verdicts.json,shared/scripts/cite-drift-redirects.json,scripts/tests/render/web-markup-and-css.md}`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`",
+        "repository-wide `rg -l` and live-set `rg -n` probes (2026-11-21); `iteration-004.md`, `research.md`"
+      ]
+    },
+    {
+      "id": "finding-11-6-historical-leave-is-the-largest-class-by-file-count-and-is-exactly-the-set-the-q",
+      "text": "**Historical, leave is the largest class by file count and is exactly the set the question's exclusions target.** Every `specs/**` hit is a point-in-time record — prior research iterations, scratch baselines, review seats, changelog digests and archived plans — and the question additionally excludes `changelog/**` and `benchmark/reports/**`. Moving the modes does not retroactively change what those records observed, which is why the raw repository `rg -l` overstates the work by an order of magnitude. [INFERENCE: path-shape classification confirmed by representative hits such as `specs/.../011-mcp-chrome-devtools/spec.md` and `specs/.../changelog-000-009-011-mcp-chrome-devtools.md` in the repository-wide `rg -l` output.]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`, `.skilled/bin/tests/mcp-installers.test.cjs`",
+        "`.skilled/skills/cli-orca/{SKILL.md,README.md,ROUTER.md,references/mutation-and-browser-boundaries.md}`",
+        "`.skilled/skills/mcp-code-mode/{SKILL.md,graph-metadata.json,scripts/README.md,manual-testing-playbook/clickup-and-chrome-via-cm/*.md}`",
+        "`.skilled/skills/README.txt`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/{data/trigger-index.json,cli/retrieval/fixtures/corpus-manifest.json,cli/observability/smart-router-measurement-report.md}`",
+        "`.skilled/skills/sk-doc/{sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt,scripts/tests/code-folder/durable-directory-manifest.json,scripts/tests/code-folder/baseline-readme-verdicts.json,shared/scripts/cite-drift-redirects.json,scripts/tests/render/web-markup-and-css.md}`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`",
+        "repository-wide `rg -l` and live-set `rg -n` probes (2026-11-21); `iteration-004.md`, `research.md`"
+      ]
+    },
+    {
+      "id": "finding-11-4-kq5-makes-the-rewrite-mode-name-class-a-near-no-op-path-rewrites-dominate-naming",
+      "text": "**KQ5 makes the rewrite-mode-name class a near no-op; path rewrites dominate.** Naming decision KQ5 kept the `mcp-` prefix and set folder == `workflowMode` == `packetSkillName` for each mode, so literal mode ids stay valid and only the `mcp-tooling/` path component moves [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:117]. Therefore every \"rewrite mode name\" file above needs no id change under the current decision; its real action is a no-op (or, for path-bearing files, the path rewrite in finding 2). Rewriting a mode name would only be needed if the operator reverses KQ5. [INFERENCE: applying the KQ5 consequence in research.md to the reference-form split in findings 2 and 3.]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`, `.skilled/bin/tests/mcp-installers.test.cjs`",
+        "`.skilled/skills/cli-orca/{SKILL.md,README.md,ROUTER.md,references/mutation-and-browser-boundaries.md}`",
+        "`.skilled/skills/mcp-code-mode/{SKILL.md,graph-metadata.json,scripts/README.md,manual-testing-playbook/clickup-and-chrome-via-cm/*.md}`",
+        "`.skilled/skills/README.txt`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/{data/trigger-index.json,cli/retrieval/fixtures/corpus-manifest.json,cli/observability/smart-router-measurement-report.md}`",
+        "`.skilled/skills/sk-doc/{sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt,scripts/tests/code-folder/durable-directory-manifest.json,scripts/tests/code-folder/baseline-readme-verdicts.json,shared/scripts/cite-drift-redirects.json,scripts/tests/render/web-markup-and-css.md}`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`",
+        "repository-wide `rg -l` and live-set `rg -n` probes (2026-11-21); `iteration-004.md`, `research.md`"
+      ]
+    },
+    {
+      "id": "finding-11-8-q10-lighthouse-remains-open-this-iteration-did-not-re-enter-it-the-iteration-1-c",
+      "text": "**Q10 (Lighthouse) remains open; this iteration did not re-enter it.** The iteration-1 contradiction still stands: the hub router advertises Lighthouse as Chrome DevTools intent while the feature catalog has no dedicated Lighthouse feature, and `cli-orca` still lists Lighthouse as a Chrome-owned capability [SOURCE: .skilled/skills/cli-orca/SKILL.md:53] [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/research.md:49]. Settling it from the chrome-devtools-mcp / bdg upstream docs is the recommended next focus.",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`, `.skilled/bin/tests/mcp-installers.test.cjs`",
+        "`.skilled/skills/cli-orca/{SKILL.md,README.md,ROUTER.md,references/mutation-and-browser-boundaries.md}`",
+        "`.skilled/skills/mcp-code-mode/{SKILL.md,graph-metadata.json,scripts/README.md,manual-testing-playbook/clickup-and-chrome-via-cm/*.md}`",
+        "`.skilled/skills/README.txt`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/{data/trigger-index.json,cli/retrieval/fixtures/corpus-manifest.json,cli/observability/smart-router-measurement-report.md}`",
+        "`.skilled/skills/sk-doc/{sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt,scripts/tests/code-folder/durable-directory-manifest.json,scripts/tests/code-folder/baseline-readme-verdicts.json,shared/scripts/cite-drift-redirects.json,scripts/tests/render/web-markup-and-css.md}`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`",
+        "repository-wide `rg -l` and live-set `rg -n` probes (2026-11-21); `iteration-004.md`, `research.md`"
+      ]
+    },
+    {
+      "id": "finding-11-3-rewrite-mode-name-class-live-files-whose-reference-is-a-bare-mode-id-used-as-a-r",
+      "text": "**Rewrite-mode-name class — live files whose reference is a bare mode id used as a routing key, label or ownership owner, with no path.** The seven `cli-orca` files encode the two ids as foreign owners and vocabulary values [SOURCE: .skilled/skills/cli-orca/ROUTER.md:26] [SOURCE: .skilled/skills/cli-orca/ROUTER.md:103] [SOURCE: .skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md:83] [SOURCE: .skilled/skills/cli-orca/SKILL.md:237] [SOURCE: .skilled/skills/cli-orca/README.md:154]; the skills index names them as members [SOURCE: .skilled/skills/README.txt:53]; the canary routing fixture uses them as expected route ids [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json:86]; the advisor golden and labeled fixtures use them as expected route labels [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl:6]; and mcp-code-mode's prose uses the bare id as the example consumer [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:318] [SOURCE: .skilled/skills/mcp-code-mode/graph-metadata.json:21].",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`, `.skilled/bin/tests/mcp-installers.test.cjs`",
+        "`.skilled/skills/cli-orca/{SKILL.md,README.md,ROUTER.md,references/mutation-and-browser-boundaries.md}`",
+        "`.skilled/skills/mcp-code-mode/{SKILL.md,graph-metadata.json,scripts/README.md,manual-testing-playbook/clickup-and-chrome-via-cm/*.md}`",
+        "`.skilled/skills/README.txt`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/{data/trigger-index.json,cli/retrieval/fixtures/corpus-manifest.json,cli/observability/smart-router-measurement-report.md}`",
+        "`.skilled/skills/sk-doc/{sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt,scripts/tests/code-folder/durable-directory-manifest.json,scripts/tests/code-folder/baseline-readme-verdicts.json,shared/scripts/cite-drift-redirects.json,scripts/tests/render/web-markup-and-css.md}`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`",
+        "repository-wide `rg -l` and live-set `rg -n` probes (2026-11-21); `iteration-004.md`, `research.md`"
+      ]
+    },
+    {
+      "id": "finding-11-2-rewrite-path-class-live-files-whose-reference-is-a-filesystem-path-containing-mc",
+      "text": "**Rewrite-path class — live files whose reference is a filesystem path containing `mcp-tooling/mcp-(chrome|aside)-devtools`.** These must be re-pointed to the new hub root on relocation: the doctor mutation-class guard hardcodes both `skill_dir` values [SOURCE: .skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:45] [SOURCE: .skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:61]; the installer test joins the path [SOURCE: .skilled/bin/tests/mcp-installers.test.cjs:29]; the fail-closed playbook allowlist lists both packet playbook directories [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt:25] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt:26]; the mcp-code-mode `_utils.sh` byte-identical coupling and its two playbook catalog rows name the Chrome packet path [SOURCE: .skilled/skills/mcp-code-mode/scripts/README.md:70] [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/clickup-and-chrome-via-cm/sibling-pair-handover.md:94] [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/clickup-and-chrome-via-cm/chrome-navigate-screenshot.md:93]; sk-code and sk-doc cross-references use relative links into the packet [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:187] [SOURCE: .skilled/skills/sk-doc/scripts/tests/render/web-markup-and-css.md:184]; and the generated corpus manifest carries the paths as data [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json:2718].",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`, `.skilled/bin/tests/mcp-installers.test.cjs`",
+        "`.skilled/skills/cli-orca/{SKILL.md,README.md,ROUTER.md,references/mutation-and-browser-boundaries.md}`",
+        "`.skilled/skills/mcp-code-mode/{SKILL.md,graph-metadata.json,scripts/README.md,manual-testing-playbook/clickup-and-chrome-via-cm/*.md}`",
+        "`.skilled/skills/README.txt`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/{data/trigger-index.json,cli/retrieval/fixtures/corpus-manifest.json,cli/observability/smart-router-measurement-report.md}`",
+        "`.skilled/skills/sk-doc/{sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt,scripts/tests/code-folder/durable-directory-manifest.json,scripts/tests/code-folder/baseline-readme-verdicts.json,shared/scripts/cite-drift-redirects.json,scripts/tests/render/web-markup-and-css.md}`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`",
+        "repository-wide `rg -l` and live-set `rg -n` probes (2026-11-21); `iteration-004.md`, `research.md`"
+      ]
+    },
+    {
+      "id": "finding-11-7-the-doctor-mutation-class-guard-is-the-single-highest-risk-path-rewrite-a-stale-",
+      "text": "**The doctor mutation-class guard is the single highest-risk path rewrite.** A stale `skill_dir` silently drops mutation-class coverage — the exact defect an earlier doctor audit recorded — so its two `skill_dir` values must be re-pointed and its test re-run before any relocation is called complete [SOURCE: .skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml:43] [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-004.md:27].",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`, `.skilled/bin/tests/mcp-installers.test.cjs`",
+        "`.skilled/skills/cli-orca/{SKILL.md,README.md,ROUTER.md,references/mutation-and-browser-boundaries.md}`",
+        "`.skilled/skills/mcp-code-mode/{SKILL.md,graph-metadata.json,scripts/README.md,manual-testing-playbook/clickup-and-chrome-via-cm/*.md}`",
+        "`.skilled/skills/README.txt`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/{data/trigger-index.json,cli/retrieval/fixtures/corpus-manifest.json,cli/observability/smart-router-measurement-report.md}`",
+        "`.skilled/skills/sk-doc/{sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt,scripts/tests/code-folder/durable-directory-manifest.json,scripts/tests/code-folder/baseline-readme-verdicts.json,shared/scripts/cite-drift-redirects.json,scripts/tests/render/web-markup-and-css.md}`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`",
+        "repository-wide `rg -l` and live-set `rg -n` probes (2026-11-21); `iteration-004.md`, `research.md`"
+      ]
+    },
+    {
+      "id": "finding-11-1-the-literal-outside-hub-scope-excludes-six-sibling-packets-that-kq4-grouped-as-a",
+      "text": "**The literal outside-hub scope excludes six sibling packets that KQ4 grouped as an \"outside cluster.\"** `mcp-click-up`, `mcp-figma`, `mcp-mobbin`, `mcp-notion`, `mcp-obsidian` and `mcp-refero` all live at `.skilled/skills/mcp-tooling/<name>/` — the paths in iteration 4 already show this [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/iterations/iteration-004.md:27]. Under this question's literal \"outside mcp-tooling\" wording they are **inside** and drop out of scope. KQ4's cluster list remains correct for KQ4; this question is a strict subset of it. [INFERENCE: path-prefix comparison of the iteration-4 source list against the question's scope boundary.]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml`, `.skilled/bin/tests/mcp-installers.test.cjs`",
+        "`.skilled/skills/cli-orca/{SKILL.md,README.md,ROUTER.md,references/mutation-and-browser-boundaries.md}`",
+        "`.skilled/skills/mcp-code-mode/{SKILL.md,graph-metadata.json,scripts/README.md,manual-testing-playbook/clickup-and-chrome-via-cm/*.md}`",
+        "`.skilled/skills/README.txt`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl`",
+        "`.skilled/skills/system-spec-kit/runtime/{data/trigger-index.json,cli/retrieval/fixtures/corpus-manifest.json,cli/observability/smart-router-measurement-report.md}`",
+        "`.skilled/skills/sk-doc/{sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt,scripts/tests/code-folder/durable-directory-manifest.json,scripts/tests/code-folder/baseline-readme-verdicts.json,shared/scripts/cite-drift-redirects.json,scripts/tests/render/web-markup-and-css.md}`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`",
+        "repository-wide `rg -l` and live-set `rg -n` probes (2026-11-21); `iteration-004.md`, `research.md`"
+      ]
+    },
+    {
+      "id": "finding-12-7-do-not-freeze-the-tool-count-into-the-hub-contract-the-catalog-says-26-exposed-t",
+      "text": "**Do not freeze the tool count into the hub contract.** The catalog says \"26 exposed tools\" [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md:121] while the 2026-07-16 fixture shows 29 per instance and the current upstream reference lists a larger flag-gated catalog — consistent with the standing rule to rediscover the inventory every session [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:20] [INFERENCE: three inventories at different dates].",
+      "addedAtIteration": 12,
+      "sources": [
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/docs/tool-reference.md (read 2026-11-21)",
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/README.md (read 2026-11-21)",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json:6",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:20,61-132,170-192,227-238",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md:121",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:210",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/performance-timing.md:17",
+        ".skilled/skills/mcp-tooling/ROUTER.md:49-53,94",
+        ".skilled/skills/mcp-tooling/hub-router.json:140",
+        ".skilled/skills/mcp-tooling/mode-registry.json:54",
+        ".skilled/skills/mcp-tooling/graph-metadata.json:329"
+      ]
+    },
+    {
+      "id": "finding-12-6-lighthouse-is-fallback-lane-only-the-bdg-cli-lane-has-no-shipped-lighthouse-feat",
+      "text": "**Lighthouse is fallback-lane only; the bdg CLI lane has no shipped Lighthouse feature.** The CLI feature catalog covers raw CDP, HAR export and example scripts but lists no Lighthouse command [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:61-132] [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:210]. Consequence: the new hub should map the `lighthouse` intent to the MCP leaf surface and have 004/005 add an explicit Lighthouse + performance-trace row to the Chrome packet's catalog so the router's advertised intent has a describing leaf.",
+      "addedAtIteration": 12,
+      "sources": [
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/docs/tool-reference.md (read 2026-11-21)",
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/README.md (read 2026-11-21)",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json:6",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:20,61-132,170-192,227-238",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md:121",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:210",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/performance-timing.md:17",
+        ".skilled/skills/mcp-tooling/ROUTER.md:49-53,94",
+        ".skilled/skills/mcp-tooling/hub-router.json:140",
+        ".skilled/skills/mcp-tooling/mode-registry.json:54",
+        ".skilled/skills/mcp-tooling/graph-metadata.json:329"
+      ]
+    },
+    {
+      "id": "finding-12-5-scope-split-that-the-hub-must-preserve-lighthouse-performance-upstream-lighthous",
+      "text": "**Scope split that the hub must preserve: Lighthouse ≠ performance.** Upstream `lighthouse_audit` explicitly excludes performance; Core Web Vitals and traces come from `performance_start_trace` / `performance_stop_trace` / `performance_analyze_insight` [SOURCE: https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/docs/tool-reference.md]. The router's single phrase \"a Lighthouse or performance trace\" conflates two tool families that both exist; the new hub's capability matrix should keep them as two rows rather than one [INFERENCE: upstream tool descriptions plus ROUTER.md:52].",
+      "addedAtIteration": 12,
+      "sources": [
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/docs/tool-reference.md (read 2026-11-21)",
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/README.md (read 2026-11-21)",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json:6",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:20,61-132,170-192,227-238",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md:121",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:210",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/performance-timing.md:17",
+        ".skilled/skills/mcp-tooling/ROUTER.md:49-53,94",
+        ".skilled/skills/mcp-tooling/hub-router.json:140",
+        ".skilled/skills/mcp-tooling/mode-registry.json:54",
+        ".skilled/skills/mcp-tooling/graph-metadata.json:329"
+      ]
+    },
+    {
+      "id": "finding-12-3-the-feature-catalog-gap-is-a-granularity-artifact-not-a-capability-absence-the-c",
+      "text": "**The \"feature catalog gap\" is a granularity artifact, not a capability absence.** The catalog enumerates 30 features grouped as CLI bdg lifecycle, protocol discovery, DOM/screenshot, console/network, MCP parallel instances, automation/performance and recovery [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:227-238]. Its \"Automation and Performance\" category is four shell-script example patterns, not Lighthouse [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:170-192]. It deliberately does not freeze MCP tool names: \"MCP tool names are a subset of CDP ... must be confirmed with Code Mode discovery ... never guess a tool name\" [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:20]. So a missing Lighthouse *leaf* says nothing about a missing Lighthouse *tool*.",
+      "addedAtIteration": 12,
+      "sources": [
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/docs/tool-reference.md (read 2026-11-21)",
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/README.md (read 2026-11-21)",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json:6",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:20,61-132,170-192,227-238",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md:121",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:210",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/performance-timing.md:17",
+        ".skilled/skills/mcp-tooling/ROUTER.md:49-53,94",
+        ".skilled/skills/mcp-tooling/hub-router.json:140",
+        ".skilled/skills/mcp-tooling/mode-registry.json:54",
+        ".skilled/skills/mcp-tooling/graph-metadata.json:329"
+      ]
+    },
+    {
+      "id": "finding-12-4-the-router-was-right-and-needs-no-keyword-rewrite-run-a-lighthouse-or-performanc",
+      "text": "**The router was right and needs no keyword rewrite.** \"run a Lighthouse or performance trace\" is listed as Chrome DevTools intent [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:49-53], and `lighthouse` is a stage-one signal keyword in every routing surface: CHROME_DEVTOOLS intent [SOURCE: .skilled/skills/mcp-tooling/ROUTER.md:94], hub-router signals [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:140], mode-registry capabilities [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:54], and graph-metadata keywords including \"run lighthouse\" [SOURCE: .skilled/skills/mcp-tooling/graph-metadata.json:329].",
+      "addedAtIteration": 12,
+      "sources": [
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/docs/tool-reference.md (read 2026-11-21)",
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/README.md (read 2026-11-21)",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json:6",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:20,61-132,170-192,227-238",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md:121",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:210",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/performance-timing.md:17",
+        ".skilled/skills/mcp-tooling/ROUTER.md:49-53,94",
+        ".skilled/skills/mcp-tooling/hub-router.json:140",
+        ".skilled/skills/mcp-tooling/mode-registry.json:54",
+        ".skilled/skills/mcp-tooling/graph-metadata.json:329"
+      ]
+    },
+    {
+      "id": "finding-12-2-the-tool-is-registered-locally-not-merely-available-upstream-the-2026-07-16-list",
+      "text": "**The tool is registered locally, not merely available upstream.** The 2026-07-16 `list_tools()` fixture shows `chrome_devtools_1` and `chrome_devtools_2` each exposing 29 tools including `lighthouse_audit`, `performance_start_trace`, `performance_stop_trace`, `performance_analyze_insight` and `take_memory_snapshot` [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json:6]. Aside's own parity leaf names the same pair as the mapping source: \"Chrome DevTools' Performance panel and the Chrome DevTools MCP's `performance_start_trace` / `lighthouse_audit`\" [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/performance-timing.md:17].",
+      "addedAtIteration": 12,
+      "sources": [
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/docs/tool-reference.md (read 2026-11-21)",
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/README.md (read 2026-11-21)",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json:6",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:20,61-132,170-192,227-238",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md:121",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:210",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/performance-timing.md:17",
+        ".skilled/skills/mcp-tooling/ROUTER.md:49-53,94",
+        ".skilled/skills/mcp-tooling/hub-router.json:140",
+        ".skilled/skills/mcp-tooling/mode-registry.json:54",
+        ".skilled/skills/mcp-tooling/graph-metadata.json:329"
+      ]
+    },
+    {
+      "id": "finding-12-1-yes-the-chrome-devtools-mode-really-does-offer-lighthouse-in-the-mcp-via-code-mo",
+      "text": "**Yes — the Chrome DevTools mode really does offer Lighthouse, in the MCP-via-Code-Mode lane.** The upstream Tool Reference documents `lighthouse_audit` as a first-class Debugging tool: \"Get Lighthouse scores, failing audits, and the DOM nodes they flag for accessibility, SEO, best practices, and agentic browsing. Full reports are saved to disk. This excludes performance. For performance audits, run `performance_start_trace`\" [SOURCE: https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/docs/tool-reference.md]. The upstream README independently frames performance trace recording as a key feature [SOURCE: https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/README.md].",
+      "addedAtIteration": 12,
+      "sources": [
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/docs/tool-reference.md (read 2026-11-21)",
+        "https://raw.githubusercontent.com/ChromeDevTools/chrome-devtools-mcp/main/README.md (read 2026-11-21)",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json:6",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md:20,61-132,170-192,227-238",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md:121",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md:210",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/performance-timing.md:17",
+        ".skilled/skills/mcp-tooling/ROUTER.md:49-53,94",
+        ".skilled/skills/mcp-tooling/hub-router.json:140",
+        ".skilled/skills/mcp-tooling/mode-registry.json:54",
+        ".skilled/skills/mcp-tooling/graph-metadata.json:329"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-e6eb08755c8c",
+      "text": "Broad web search for Bladebro capability facts: unnecessary once the official README and `docs/tools.md` were reachable.",
+      "contentHash": "e6eb08755c8c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-df60b9f225e8",
+      "text": "Live `bladebro` probes: the binary is absent from PATH and installation is an explicit non-goal; KQ6 owns live verification.",
+      "contentHash": "df60b9f225e8",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-7b96bcd46e90",
+      "text": "No new directions ruled out this iteration. The two iteration-1 BLOCKED directions (broad Bladebro web search; live `bladebro` probes) were not retried.",
+      "contentHash": "7b96bcd46e90",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ade45e89a889",
+      "text": "Giving any mode a non-`metadata` routingClass: rejected because it would add per-mode projection maps to 005's scope for no benefit under hub-membership routing.",
+      "contentHash": "ade45e89a889",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-716cee6257cb",
+      "text": "Hand-writing `leaf-manifest.json`: rejected by mcp-tooling's \"never hand-edit\" rule; it must be regenerated (blocked until 004 authors the Bladebro packet).",
+      "contentHash": "716cee6257cb",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-2a77bd15a7ec",
+      "text": "Importing `mcp-tooling`'s `extensions.transport-axis` block: rejected because all three new modes are workflow-state-changing, directly answering 002's open question.",
+      "contentHash": "2a77bd15a7ec",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a8aad13e27c7",
+      "text": "Editing runtime mirrors under `.claude`, `.opencode` or `.pi`: rejected after `ls -l` showed them to be symlinks into `.skilled/skills`.",
+      "contentHash": "a8aad13e27c7",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-1ed29b18d762",
+      "text": "Hand-writing the new hub's `leaf-manifest.json`: already BLOCKED in strategy and now independently confirmed by `SKILL.md:111`; not retried.",
+      "contentHash": "1ed29b18d762",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-89fcfb84d4bb",
+      "text": "No new dead end. Candidates for reducer promotion: none; the three ruled-out items above are classification choices specific to KQ4, not exhausted research directions.",
+      "contentHash": "89fcfb84d4bb",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3f504488148e",
+      "text": "Treating the raw 400-match grep as the edit list: rejected because most hits are changelog/benchmark/spec-history records; it would inflate the hand-edit set by an order of magnitude.",
+      "contentHash": "3f504488148e",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-418c2ee4a891",
+      "text": "Dropping the `mcp-` prefix from workflow mode ids: rejected because the canonical create-skill-parent rule is `folder == packetSkillName == [hub-prefix]-<mode>` and dropping it would rename every literal mode id in the KQ4 hand-edit set for no contract benefit.",
+      "contentHash": "418c2ee4a891",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-6ccf2c906415",
+      "text": "Hybrid bare folder + prefixed `packetSkillName` with `grandfatheredFolderMismatch:true`: rejected because the flag is defined as a preserved *legacy* mismatch, `parent-skill-check.cjs:595-597` soft-fails a stale `true` flag, and iteration 3 fixed folder == name as the invariant.",
+      "contentHash": "6ccf2c906415",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-6a3ea42fd932",
+      "text": "None. Both alternatives produced a decisive finding rather than eliminating a path. Candidates for reducer promotion: the two ruled-out options above are classification choices specific to KQ5, not exhausted research directions.",
+      "contentHash": "6a3ea42fd932",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7ad9a0184081",
+      "text": "Broad web search for Bladebro facts: still BLOCKED from iteration 1; the official docs were directly reachable via the docs index.",
+      "contentHash": "7ad9a0184081",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-3fe8f01d6459",
+      "text": "Running any live `bladebro` probe or installing the binary: the iteration-1 BLOCKED \"live `bladebro` probes\" direction and the charter/install non-goal still apply [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:98-100]. The plan is authored from pinned upstream docs, not executed.",
+      "contentHash": "3fe8f01d6459",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-af58e44c9f69",
+      "text": "Broad web search for Bladebro facts: BLOCKED since iteration 1; specific known URLs were fetched instead.",
+      "contentHash": "af58e44c9f69",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-c67255c045f2",
+      "text": "Live `bladebro` probes or installing the binary: BLOCKED since iteration 1; install is a 006 operator stop-for-yes and a charter non-goal [SOURCE: specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/spec.md:98-100].",
+      "contentHash": "c67255c045f2",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-fdc21041adab",
+      "text": "Broad web search for Bladebro facts: BLOCKED since iteration 1; not retried (no upstream fetch needed).",
+      "contentHash": "fdc21041adab",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-70ee0f3fbb87",
+      "text": "Broad web search for Bladebro facts: BLOCKED since iteration 1; not retried — closure uses only local state evidence.",
+      "contentHash": "70ee0f3fbb87",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-aead87dd5c02",
+      "text": "Broad web search for Bladebro facts: BLOCKED since iteration 1; not retried — terminal verification uses only local state evidence.",
+      "contentHash": "aead87dd5c02",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-f3c3fc6550ea",
+      "text": "No new dead end. Candidates for reducer promotion: none; the two ruled-out items are scope/classification choices specific to this question, not exhausted research directions.",
+      "contentHash": "f3c3fc6550ea",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-37d37daaab8e",
+      "text": "Re-running KQ4's whole-repository inventory: rejected because the question is a strict subset and iteration 4 already holds the cluster inventory; only the outside-hub form split was new.",
+      "contentHash": "37d37daaab8e",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-99b47b4bc4c6",
+      "text": "Treating bare mode-id occurrences as path rewrites: rejected after line-level inspection showed cli-orca and advisor fixtures use ids as route labels, not paths, and KQ5 keeps the ids stable.",
+      "contentHash": "99b47b4bc4c6",
+      "addedAtIteration": 11
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 12,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 59,
+    "sourceFindings": 59,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {
+      "api.github.com": 5,
+      "code": 100,
+      "github.com": 3,
+      "other": 42,
+      "raw.githubusercontent.com": 18
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub/specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/001-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
