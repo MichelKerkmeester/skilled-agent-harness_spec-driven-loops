@@ -1,0 +1,190 @@
+[
+ {
+  "id": "A1-ood",
+  "prompt": "write a blog post about iterative research methods in user experience design",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 3,
+  "top": {
+   "skill": "system-deep-loop",
+   "conf": 0.82,
+   "unc": 0.16,
+   "lane": "explicit_author",
+   "action": "route",
+   "sel": "single",
+   "modes": "research",
+   "command": "/deep:research",
+   "policy": "ask",
+   "kind": "skill",
+   "floored": true
+  },
+  "second": {
+   "skill": "sk-design",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "explicit_author",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "system-spec-kit",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "graph_causal",
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "C3",
+  "prompt": "write a blog post about iterative research methods",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 3,
+  "top": {
+   "skill": "system-deep-loop",
+   "conf": 0.8204,
+   "unc": 0.16,
+   "lane": "explicit_author",
+   "action": "route",
+   "sel": "single",
+   "modes": "research",
+   "command": "/deep:research",
+   "policy": "ask",
+   "kind": "skill"
+  },
+  "second": {
+   "skill": "sk-doc",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "system-spec-kit",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "C4",
+  "prompt": "draft a slide deck on autonomous research agents in academia",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 0,
+  "top": null,
+  "second": null,
+  "third": null,
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "A3-in",
+  "prompt": "start autonomous research on how other CLIs handle session resume",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 3,
+  "top": {
+   "skill": "system-deep-loop",
+   "conf": 0.82,
+   "unc": 0.2,
+   "lane": "explicit_author",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "second": {
+   "skill": "system-spec-kit",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "cli-external-orchestration",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "A1-in",
+  "prompt": "run an iterative research pass on rate limiter designs for our API gateway",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 3,
+  "top": {
+   "skill": "system-deep-loop",
+   "conf": 0.836,
+   "unc": 0.16,
+   "lane": "explicit_author",
+   "action": "route",
+   "sel": "single",
+   "modes": "research",
+   "command": "/deep:research",
+   "policy": "ask",
+   "kind": "skill"
+  },
+  "second": {
+   "skill": "cli-external-orchestration",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "mcp-tooling",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ }
+]

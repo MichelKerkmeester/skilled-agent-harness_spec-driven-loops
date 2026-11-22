@@ -1,0 +1,22 @@
+[
+ {"id": "A1-in", "prompt": "run an iterative research pass on rate limiter designs for our API gateway"},
+ {"id": "A1-ood", "prompt": "write a blog post about iterative research methods in user experience design"},
+ {"id": "A2-in", "prompt": "do multi-round research on vector database options for our retrieval layer"},
+ {"id": "A2-ood", "prompt": "summarize this multi-round research interview transcript for the marketing team"},
+ {"id": "A3-in", "prompt": "start autonomous research on how other CLIs handle session resume"},
+ {"id": "A3-ood", "prompt": "update the README section that describes our autonomous research vehicle project"},
+ {"id": "R1", "prompt": "review code quality of the advisor scorer module"},
+ {"id": "R2", "prompt": "audit this code in command-attach.ts"},
+ {"id": "R3", "prompt": "validate spec completeness for the deep loop command offers packet"},
+ {"id": "R4", "prompt": "run a release readiness check on the sk-doc skill"},
+ {"id": "R5", "prompt": "find misalignments between the spec and the implementation of the advisor"},
+ {"id": "R6", "prompt": "verify cross-references across the deep-loop docs and code"},
+ {"id": "R7", "prompt": "run a deep review of the advisor scorer"},
+ {"id": "R8", "prompt": "run an iterative review of the advisor scorer"},
+ {"id": "R9", "prompt": "start a review loop on the advisor scorer"},
+ {"id": "R10", "prompt": "do a quality audit of the advisor scorer"},
+ {"id": "R11", "prompt": "check convergence detection on the advisor scorer review"},
+ {"id": "R12", "prompt": "run a convergence review of the advisor scorer"},
+ {"id": "R13", "prompt": "do a spec folder review of the deep loop command offers packet"},
+ {"id": "R14", "prompt": "check release readiness of the sk-doc skill"}
+]

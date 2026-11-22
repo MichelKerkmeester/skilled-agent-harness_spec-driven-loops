@@ -1,0 +1,6 @@
+[
+ {"id": "OOD1", "prompt": "make a slide deck about autonomous research labs for the board meeting"},
+ {"id": "OOD2", "prompt": "write a short blog post on the history of autonomous research vehicles"},
+ {"id": "KEEP1", "prompt": "run an iterative research pass on how the advisor scores hubs"},
+ {"id": "KEEP2", "prompt": "start a multi-round research run on cache invalidation strategies"}
+]

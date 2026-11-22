@@ -1,0 +1,17 @@
+# Operator decisions for this packet (2026-11-22)
+
+Source analysis: `scratch/routing-analysis.md` (84 advisor probes, gaps G1-G8, proposals P1-P6).
+Probe kit: `scratch/probes/` (`node scratch/probes/probe.mjs <probes.json> <out.json>`, run from the
+repository root; it calls the advisor CLI of the checkout it runs in).
+
+| # | Decision |
+|---|---|
+| D1 | Build all six proposals: P1, P2, P3 (reworked, see D2), P4, P5, P6. |
+| D2 | **Explicit loop asks only.** A deep-loop command is offered only when the request asks for the loop itself. That means one of these: it names a deep loop, deep research, deep review, a research loop or a review loop. It gives an iteration count or says "iterations", "iterative" or "iteratively". It says multi-pass, or multiple, several or many passes. It types a `/deep:*` command. Or it asks to continue, resume or extend a deep run. Depth words alone no longer open the command gate and are not stage-one evidence for the hub: thorough, thoroughly, in depth, exhaustive, deep dive, everything you can, final verdict. The council words also come out: ask the council, convene, several models. This supersedes the rule recorded in `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md` (a loop is "only offered on depth wording"). P3 is rebuilt so that explicit loop wording beside a research or review cue counts at stage one, not depth wording. "do a thorough code review" stays single-pass review. |
+| D3 | **After a yes, run `:auto` with the composed flags**, plus `--spec-folder=<the Gate 3 answer>`. The offer is one question through the runtime question tool. Option A runs it (recommended). Option B is `:confirm` setup. Option C is no loop. |
+| D4 | **Executor: native unless the request names one.** A `cli-*` executor or a model appears only when the request names it. Fan-out appears only when two or more executors or models are named, or independent takes are asked for. |
+| D5 | The advisor keeps carrying only the command and its policy. It gets no `proposedArgs` field. The AI composes flags from the command's presentation contract (P2). |
+| D6 | The single-probe false offers and misroutes (N7, N9, D1, V7, H6, A3) are added to the routing corpus as near-miss rows. No new guard is added for them. |
+| D7 | The three deep-family holdout rows in `command-prompts.jsonl` are replaced by a separate worker after tuning. Builders must not read any corpus row whose split is `holdout`. |
+| D8 | Hub aliases follow D2. Only the loop-shaped aliases are added: "iterative research", "multi-round research", "autonomous research". The depth-shaped packet triggers are removed from the mode packets: "comprehensive research", "deep investigation", "audit spec folder", "pre-release review". Amended after the build: "autonomous research" was dropped. Its out-of-domain replay under skill-hub-routing §4 pulled a slide-deck prompt to the hub. |
+| D9 | The workers run as Opus at medium effort on the operator's claude1 account, in worktree `worktrees/516-deep-loop-command-offers`. Workers edit files and run checks. Only the orchestrator commits. |
