@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-22T12:15:29Z"
+    last_updated_at: "2026-11-22T14:11:22Z"
     last_updated_by: "generate-context"
-    recent_action: "Built and verified the loop-wording gate, offer section and hub cleanup"
-    next_safe_action: "Land the packet on main after the operator approves the push"
+    recent_action: "Closed the open routing items and ran the offer behaviour check"
+    next_safe_action: "Land the follow-up commit on main after the operator approves the push"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
     key_files:
@@ -21,17 +21,17 @@ _memory:
       - ".skilled/commands/deep/assets/deep-review-presentation.txt"
       - ".skilled/skills/system-deep-loop/hub-router.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:2636d4e0b66615e8a701291ad252d465687cf69fb9aa9f1056da45a7cb46c5ca"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
       workspace: "/Users/michelkerkmeester/worktrees/public/516-deep-loop-command-offers"
-      savedAt: "2026-11-22T12:15:29Z"
+      savedAt: "2026-11-22T14:11:22Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -142,6 +142,9 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | `check-contract-drift.cjs`, `check-documentation-drift.cjs`, agent mirror sync, command catalog mirror | All OK, exit 0 |
 | `parent-skill-check.cjs .skilled/skills/system-deep-loop` | OK, 0 warnings |
 | `validate-command-references.cjs` | 1 failure, already there before this work: `speckit-resume.yaml:104` names a gitignored telemetry file that a fresh worktree lacks |
+| After D10: advisor `npm test` | 179 files, 2497 passed, 4 skipped, 0 failed |
+| After D10: probe rerun against the first landing | 7 changes, all intended: V4 gains `/deep:review`; F7, F10 and D1 get `/doctor:deep-loop`; N7 and N9 lose their false offers; R5 is unchanged |
+| After D10: corpus | `false_offer` 0 of 45 |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
@@ -150,13 +153,19 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No behaviour run yet.** No recorded session shows a model asking the new offer as written, so the offer's shape is checked only as text. To confirm it, run the routing-accuracy `run-command-behaviour.mjs` on prompts F3, F5 and F6.
-2. **The fresh review and doctor holdouts miss.**
-   - "check the auth changes on this branch for bugs in multiple passes" gets no recommendation.
-   - A stuck-run complaint tops the hub with no doctor row.
-   - They are recorded, not tuned.
-3. **Two known false or weak routes.**
-   - "write a blog post about iterative research methods" gets a `/deep:research` ask, from the "iterative research" wording.
-   - "review the parser over several passes" still tops sk-code.
-4. **N9 keeps its offer.** "summarize the research.md from the last deep research run" names deep research. No guard was added for it, so it stays a near-miss row.
+The operator then asked for the remaining open items to be fixed (decision D10). Fixes added after the first landing:
+- **Past runs:** a request to read or summarize a past run's output gets no new run.
+- **Writing about a method:** a piece written about a loop method neither tops the hub nor carries a command.
+- **Questions about the loop:** a question about how the loop works gets no run.
+- **Several passes:** review over several passes now gets `/deep:review`.
+- **Stuck runs:** a complaint about a stuck, non-converging or stale run now gets `/doctor:deep-loop`.
+- **Explain questions:** an explain question no longer gets a run-policy doctor row.
+- **Behaviour run:** done. Three plan-mode operator turns on F3, F5 and F6 each opened with the offer: one turn that asks the spec-folder and run questions together, with a recommended option A carrying the composed command.
+
+What stays open:
+1. **The holdout rows are no longer blind.** The fixes target the same failure classes as the fresh holdout rows, so their numbers (2 of 44 at first pick, 3 of 44 in the top three) no longer measure unseen wording.
+2. **Two phrasings still miss.**
+   - "give the scheduler code many passes of review" stays with sk-code.
+   - "inspect the queue worker for defects iteratively" gets no recommendation.
+3. **The question tool is untested.** The behaviour turns ran in `-p` mode, which has no question tool, so they printed the §5 fallback list. A live turn in an interactive session would confirm the tool is used.
 <!-- /ANCHOR:limitations -->

@@ -1,0 +1,7 @@
+[
+ {"id":"M1","prompt":"give me a recap of the previous deep review report","expect":"system-deep-loop, no command"},
+ {"id":"M2","prompt":"write a newsletter piece about iterative research habits","expect":"not system-deep-loop, no command"},
+ {"id":"M3","prompt":"review the lexer carefully","expect":"sk-code, no command"},
+ {"id":"M4","prompt":"check the boarding passes page for bugs","expect":"no deep command"},
+ {"id":"M5","prompt":"explain how the coverage graph is built in the deep-loop runtime","expect":"no doctor, no command"}
+]
