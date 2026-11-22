@@ -168,6 +168,82 @@ chk "$([[ -e "$T/untrusted-guard-ran" ]] && echo ran || echo blocked)" "blocked"
 printf 'subject\n' > "$T/planter-msg"
 ( cd "$T/planter" && bash "$SOURCE/scripts/git-hooks/prepare-commit-msg" "$T/planter-msg" message ) >/dev/null 2>&1
 chk "$([[ -e "$T/untrusted-allocator-ran" ]] && echo ran || echo blocked)" "blocked" "an allocator planted under .skilled-untrusted does not run"
+
+# ── 7. a printed remedy path is the one git tracks when the source root is a link ──
+# A vendored consumer links its source root into a tracked vendor tree, so git tracks
+# each file under the vendor path and rejects the linked spelling.
+git init -q "$T/vendored"
+sentinel "$T/vendored/skilled/.skilled"
+mkdir -p "$T/vendored/skilled/.skilled/scripts" "$T/vendored/skilled/.skilled/hooks/shared"
+printf '#!/usr/bin/env bash\n' > "$T/vendored/skilled/.skilled/scripts/install-git-hooks.sh"
+printf 'hook_enabled() { return 0; }\n' > "$T/vendored/skilled/.skilled/hooks/shared/hook-flags.sh"
+ln -s skilled/.skilled "$T/vendored/.skilled"
+git -C "$T/vendored" add -A
+git -C "$T/vendored" -c core.hooksPath=/dev/null -c user.email=t@example.com -c user.name=test commit -q -m seed
+rm "$T/vendored/skilled/.skilled/hooks/shared/hook-flags.sh"
+git -C "$T/vendored" config skilled.trustRepoHooks true
+tracked() { # tracked <path>: whether git in the vendored repository tracks the path
+  git -C "$T/vendored" ls-files --error-unmatch -- "$1" >/dev/null 2>&1 && echo tracked || echo "untracked: $1"
+}
+last_word() { awk -v p="$1" 'index($0, p) { w = $NF } END { print w }'; }
+vend_out="$(cd "$T/vendored" && SPECKIT_AUTOSYNC=1 SPECKIT_LIVE_BRANCH=live bash "$SOURCE/scripts/git-hooks/post-commit" 2>&1 </dev/null)"
+chk "$(tracked "$(printf '%s\n' "$vend_out" | last_word 'git restore')")" "tracked" "post-commit names the tracked hook-flags.sh to restore"
+chk "$(tracked "$(printf '%s\n' "$vend_out" | last_word 'install-git-hooks.sh')")" "tracked" "post-commit names the tracked installer"
+for name in post-merge post-rewrite; do
+  vend_out="$(cd "$T/vendored" && bash "$SOURCE/scripts/git-hooks/$name" 2>&1 </dev/null)"
+  chk "$(tracked "$(printf '%s\n' "$vend_out" | last_word 'install-git-hooks.sh')")" "tracked" "$name names the tracked installer"
+done
+git -C "$T/vendored" restore --source=HEAD --staged --worktree -- skilled/.skilled/hooks/shared/hook-flags.sh
+chmod 000 "$T/vendored/skilled/.skilled/hooks/shared/hook-flags.sh"
+vend_out="$(cd "$T/vendored" && SPECKIT_AUTOSYNC=1 SPECKIT_LIVE_BRANCH=live bash "$SOURCE/scripts/git-hooks/post-commit" 2>&1 </dev/null)"
+vend_chmod="$(printf '%s\n' "$vend_out" | last_word 'chmod +r')"
+chk "$(tracked "$vend_chmod")" "tracked" "post-commit names the tracked hook-flags.sh to make readable"
+chk "$([[ -e "$T/vendored/$vend_chmod" ]] && echo resolves || echo missing)" "resolves" "the chmod path resolves from the repository root"
+chmod 644 "$T/vendored/skilled/.skilled/hooks/shared/hook-flags.sh"
+# pre-commit names each missing file under the source root in a restore line, and the
+# line has to run as pasted, so each path it names must be one git tracks.
+VEND_SRC="$T/vendored/skilled/.skilled"
+VEND_CHECKER="skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+VEND_LINTER="skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs"
+mkdir -p "$(dirname "$VEND_SRC/$VEND_CHECKER")" "$(dirname "$VEND_SRC/$VEND_LINTER")"
+printf '#!/usr/bin/env bash\n' > "$VEND_SRC/$VEND_CHECKER"
+printf '\n' > "$VEND_SRC/$VEND_LINTER"
+git -C "$T/vendored" add -A
+git -C "$T/vendored" -c core.hooksPath=/dev/null -c user.email=t@example.com -c user.name=test commit -q -m tools
+rm "$VEND_SRC/hooks/shared/hook-flags.sh" "$VEND_SRC/$VEND_CHECKER" "$VEND_SRC/$VEND_LINTER"
+# A missing checker blocks before the linter is reached, so a second run skips it.
+vend_out="$(cd "$T/vendored" && bash "$SOURCE/scripts/git-hooks/pre-commit" 2>&1 </dev/null
+  cd "$T/vendored" && SPECKIT_SKIP_COMMENT_HYGIENE=1 bash "$SOURCE/scripts/git-hooks/pre-commit" 2>&1 </dev/null)"
+restore_path() { # restore_path <file-name>: the path of the last restore line naming the file
+  printf '%s\n' "$vend_out" | awk -v f="$1" 'index($0, "git restore") && index($0, f) { w = $NF } END { print w }'
+}
+for vend_file in hook-flags.sh check-comment-hygiene.sh template-phrase-lint.mjs; do
+  vend_restore="$(restore_path "$vend_file")"
+  chk "$([[ -n "$vend_restore" ]] && echo printed || echo absent)" "printed" "pre-commit prints a restore line for $vend_file"
+  chk "$(tracked "$vend_restore")" "tracked" "pre-commit names the tracked $vend_file to restore"
+done
+# pre-push does the same for the files its gates load. Each missing file blocks before
+# the next gate is reached, so each further run approves the gate that blocked before.
+VEND_PUSH_FILES="scripts/git-hooks/lib/mass-deletion-guard.sh skills/sk-git/scripts/worktree-naming.sh bin/compiled-route-guard.cjs"
+for vend_file in $VEND_PUSH_FILES; do
+  mkdir -p "$(dirname "$VEND_SRC/$vend_file")"
+  printf '\n' > "$VEND_SRC/$vend_file"
+done
+git -C "$T/vendored" add -A
+git -C "$T/vendored" -c core.hooksPath=/dev/null -c user.email=t@example.com -c user.name=test commit -q -m push-tools
+for vend_file in $VEND_PUSH_FILES; do rm "$VEND_SRC/$vend_file"; done
+vend_head="$(git -C "$T/vendored" rev-parse HEAD)"
+vend_push() { # vend_push [env...]: run pre-push for an update of main in the vendored repository
+  (cd "$T/vendored" && printf 'refs/heads/main %s refs/heads/main %s\n' "$vend_head" "$vend_head" \
+    | env "$@" bash "$SOURCE/scripts/git-hooks/pre-push" origin /dev/null 2>&1)
+}
+vend_out="$(vend_push; vend_push SPECKIT_ALLOW_MASS_DELETION=1
+  vend_push SPECKIT_ALLOW_MASS_DELETION=1 SPECKIT_ALLOW_REMOTE_PUSH=1)"
+for vend_file in $VEND_PUSH_FILES; do
+  vend_restore="$(restore_path "${vend_file##*/}")"
+  chk "$([[ -n "$vend_restore" ]] && echo printed || echo absent)" "printed" "pre-push prints a restore line for ${vend_file##*/}"
+  chk "$(tracked "$vend_restore")" "tracked" "pre-push names the tracked ${vend_file##*/} to restore"
+done
 echo ""
 echo "--- source-root-selection: $pass passed, $fail failed ---"
 [[ "$fail" -eq 0 ]]
