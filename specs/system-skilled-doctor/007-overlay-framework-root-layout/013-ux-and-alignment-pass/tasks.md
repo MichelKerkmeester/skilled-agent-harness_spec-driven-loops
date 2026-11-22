@@ -67,6 +67,7 @@ contextType: "implementation"
 - [x] T018 Rebuild the trigger index and strict-validate the 007 parent. Verify: `generate-trigger-index.mjs --check` exits 0 and every folder prints `RESULT: PASSED`. Evidence: the index rebuild commit after this one, and 18 of 18 folders `RESULT: PASSED` on the merged main.
 - [x] T019 Merge into local main with `--no-ff` and rerun every gate there. Verify: each gate is at or above its baseline. Evidence: merge `058e6091759`, gates in `implementation-summary.md` Verification.
 - [x] T020 Merge origin into main and push it, then re-pin Barter onto the pushed commit (Skilled `main`, ai-speckit `skilled/`). Verify: `git ls-remote origin refs/heads/main` prints the pushed SHA, and `record-base` names it in every unit. Evidence: `13eae0c562bb5a3c4cde33974d9420fb128dd904` on the remote; ai-speckit commits `0da88a0d05c8`, `84cef11b371e` and `64f987869333`, 74 of 74 units on `13eae0c`, `status --audit` 139/139.
+- [x] T021 Fix the final review's findings 1 to 5 red-first, one commit per finding, on `worktrees/508-overlay-final-review-fixes`, close limitation 2, and review the range until APPROVED with no P0 or P1 (`E`, `references/overlays.md`, `implementation-summary.md`). Verify: each new test failed on the old engine, and the last `Review status:` line reads APPROVED. Evidence: findings 1 to 5 in `5e41eb36d13`, `bebeb569c76`, `8ab99ee8106`, `b4164bd2ffa`, `e7244e53648` and `7bf4c8d755d`, review fixes through `7a73d77c143`, docs in `1d21d8466d8`; review round 7 `Review status: APPROVED`; engine suite 516 pass, 0 fail.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -191,5 +192,5 @@ A blocked task keeps its committed work and is reported with the failing command
 | P1 Items | 14 | 14/14 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-11-21
+**Verification Date**: 2026-11-22
 <!-- /ANCHOR:summary -->
