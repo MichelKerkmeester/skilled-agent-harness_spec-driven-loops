@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-22T14:11:22Z"
+    last_updated_at: "2026-11-22T16:17:21Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed the open routing items and ran the offer behaviour check"
+    recent_action: "Fixed the last two misses and replaced the holdouts blind"
     next_safe_action: "Land the follow-up commit on main after the operator approves the push"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
@@ -21,14 +21,14 @@ _memory:
       - ".skilled/commands/deep/assets/deep-review-presentation.txt"
       - ".skilled/skills/system-deep-loop/hub-router.json"
     session_dedup:
-      fingerprint: "sha256:2636d4e0b66615e8a701291ad252d465687cf69fb9aa9f1056da45a7cb46c5ca"
+      fingerprint: "sha256:be3c1cf825dec43154e6e89151dc30d9aa421979155a23e38aa40cd792c6b0db"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
       workspace: "/Users/michelkerkmeester/worktrees/public/516-deep-loop-command-offers"
-      savedAt: "2026-11-22T14:11:22Z"
+      savedAt: "2026-11-22T16:17:21Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -145,6 +145,7 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | After D10: advisor `npm test` | 179 files, 2497 passed, 4 skipped, 0 failed |
 | After D10: probe rerun against the first landing | 7 changes, all intended: V4 gains `/deep:review`; F7, F10 and D1 get `/doctor:deep-loop`; N7 and N9 lose their false offers; R5 is unchanged |
 | After D10: corpus | `false_offer` 0 of 45 |
+| Second round: advisor `npm test` | 179 files, 2502 passed, 4 skipped, 0 failed; `false_offer` 0 of 45; blind deep holdouts 1 of 2 attached, doctor holdout missed |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
@@ -162,10 +163,17 @@ The operator then asked for the remaining open items to be fixed (decision D10).
 - **Explain questions:** an explain question no longer gets a run-policy doctor row.
 - **Behaviour run:** done. Three plan-mode operator turns on F3, F5 and F6 each opened with the offer: one turn that asks the spec-folder and run questions together, with a recommended option A carrying the composed command.
 
+A second round, also on "fix open", fixed both phrasings that still missed:
+- **Review called "code":** "give the scheduler code many passes of review" now gets `/deep:review`. Naming the target "code" had scored the code skill twice.
+- **Checks that open with "inspect":** "inspect the queue worker for defects iteratively" now gets `/deep:review`. A prompt opening with "inspect" was read as a request to explain, which capped every skill.
+
+That round also replaced the holdout rows a second time, with -03 rows written by a worker that saw none of the tuning.
+
 What stays open:
-1. **The holdout rows are no longer blind.** The fixes target the same failure classes as the fresh holdout rows, so their numbers (2 of 44 at first pick, 3 of 44 in the top three) no longer measure unseen wording.
-2. **Two phrasings still miss.**
-   - "give the scheduler code many passes of review" stays with sk-code.
-   - "inspect the queue worker for defects iteratively" gets no recommendation.
-3. **The question tool is untested.** The behaviour turns ran in `-p` mode, which has no question tool, so they printed the §5 fallback list. A live turn in an interactive session would confirm the tool is used.
+1. **The blind -03 holdouts score 1 of 3.**
+   - The review row gets `/deep:review`.
+   - "I'd like a twelve-iteration research loop comparing…" reaches the research mode without the command. A spelled-out count and "I'd like a" are not read as a loop ask.
+   - "Why does the code audit loop I launched on Tuesday keep spinning … without ever converging?" goes to sk-code. "code audit loop" is not read as a deep run.
+   - They are reported, not tuned, so the rows stay blind.
+2. **The question tool is untested.** The behaviour turns ran in `-p` mode, which has no question tool, so they printed the §5 fallback list. A live interactive turn would confirm the tool is used.
 <!-- /ANCHOR:limitations -->
