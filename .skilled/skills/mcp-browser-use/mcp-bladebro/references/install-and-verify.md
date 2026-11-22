@@ -6,7 +6,7 @@ trigger_phrases:
   - "bladebro doctor"
 importance_tier: normal
 contextType: reference
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Bladebro Install and Verify
@@ -48,6 +48,8 @@ Installation is an operator stop-for-yes. Without that yes, report the command a
 | 4 | `bladebro doctor` | Health pass, the data root (`~/.local/state/blade` or `~/.blade`), a browser found | Set `CHROME_PATH`, re-run |
 | 5 | `bladebro --version` | `4.8.2` | None |
 
+`scripts/install.sh` runs steps 3 to 5 with the digest check below, and removes the install again on a mismatch. `scripts/doctor.sh` repeats the digest check read-only. Both scripts carry the same two digests, so a new pin changes this file and both scripts together.
+
 Leave optional dependencies enabled. Verify the resolved native binary against the release `.sha256` sidecar with `shasum -a 256 -c` before use. The v4.8.2 macOS digests recorded at authoring are arm64 `sha256:7324e502b1710f8fb0a073b1f71d3647266d986a50e7351cb4257ec4eb5d8fa8` and x64 `sha256:d839f5f8a8bed8f616e68029350b1c36f8bc12ee2a16deb32b6f7df93a5a36c3`. For higher assurance, prefer the standalone prebuilt binary plus its digest over npm.
 
 ---
@@ -85,4 +87,5 @@ Updating is also an operator decision: `npm update -g bladebro` for npm installs
 - [`cli-reference.md`](./cli-reference.md): the commands the probes call.
 - [`browser-lanes.md`](./browser-lanes.md): the consent checklist for steps 11-13.
 - [`mcp-wiring.md`](./mcp-wiring.md): the manual step 6 loads.
+- [`../INSTALL-GUIDE.md`](../INSTALL-GUIDE.md) and [`../scripts/README.md`](../scripts/README.md): the operator walk-through and the scripts that run these steps.
 - Upstream `docs/setup.md` and the GitHub Releases page at `https://github.com/dondai44423/bladebro`.

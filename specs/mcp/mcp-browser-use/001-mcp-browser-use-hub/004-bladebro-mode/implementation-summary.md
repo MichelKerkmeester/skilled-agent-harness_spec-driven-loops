@@ -99,7 +99,7 @@ Every check below was run from the final state, with its exit code read without 
 |----------|-----|
 | Keep the v4.8.2 pin though v4.8.3 shipped 2026-11-21 | R-SEC-2 and R-SEC-3 name v4.8.2 verbatim. The v4.8.2...v4.8.3 compare changes no `docs/` file or README, and every quoted flag was re-read in the v4.8.3 docs |
 | New `changelog/v1.1.0.0.md`, v1.0.0.0 kept | The hub check ties the packet `SKILL.md` version to its newest changelog entry, and the placeholder note stays as history |
-| No `scripts/` in the packet | A `doctor.sh` or `install.sh` under `mcp-browser-use/mcp-*/scripts/` needs a mutation-class manifest row, and 004's Files to Change lists none |
+| No `scripts/` in the packet | A `doctor.sh` or `install.sh` under `mcp-browser-use/mcp-*/scripts/` needs a mutation-class manifest row, and 004's Files to Change lists none. Reversed in `007-bladebro-parity-and-changelogs`, which adds both scripts with their manifest row |
 | Callable names left to discovery | Aside's predicted callable form proved wrong once; `mcp-wiring.md` says to rediscover via `list_tools`/`tool_info` |
 | `## 3. MACHINE ROUTER` heading | sk-doc's `skill_router` check rejects the unnumbered form; this matches the Aside router |
 <!-- /ANCHOR:decisions -->

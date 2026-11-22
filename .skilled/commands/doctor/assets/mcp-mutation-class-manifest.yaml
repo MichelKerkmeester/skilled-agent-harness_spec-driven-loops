@@ -63,6 +63,13 @@ cli_skill_diagnostics:
     install_script_mutation_class: mutating  # wraps the official Aside curl installer
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics plus a stdio MCP handshake
+  mcp-bladebro:
+    label: "Bladebro (CLI)"
+    skill_dir: ".skilled/skills/mcp-browser-use/mcp-bladebro"
+    install_script: "scripts/install.sh"
+    install_script_mutation_class: mutating  # npm install -g of the pinned release, digest-checked
+    doctor_script: "scripts/doctor.sh"
+    doctor_script_mutation_class: read-only  # update check off, digest check, stdio MCP handshake
   mcp-mobbin:
     label: "Mobbin (MCP)"
     skill_dir: ".skilled/skills/mcp-tooling/mcp-mobbin"

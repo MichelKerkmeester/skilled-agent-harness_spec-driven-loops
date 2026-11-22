@@ -2,14 +2,14 @@
 name: mcp-bladebro
 description: "Bladebro browser driver: CLI first, MCP via Code Mode as fallback; owned agent-browser default, gated real-browser lanes."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Bladebro Browser Driver - CLI + MCP Integration
 
 Agentic browser work through Bladebro: five tools (`act`, `see`, `state`, `run`, `vision`) behind one Rust binary. The CLI and the `bladebro mcp` stdio server share the same handlers, so this packet picks a transport, then a browser lane, then checks the safety rules before any action.
 
-Every Bladebro fact here is upstream documentation pinned to v4.8.2 and read 2026-11-21. None of it is observed behavior on this host until the binary is installed and probed.
+Every Bladebro fact here is upstream documentation pinned to v4.8.2 and read 2026-11-21. The install and the agent-browser lane ran live on macOS arm64 on 2026-11-21. The real-browser `clone` reads failed there, and the results are in `benchmark/reports/`.
 
 ---
 
@@ -189,6 +189,13 @@ Run `bladebro help --json` on the installed binary for the live schemas before r
 - [`references/browser-lanes.md`](./references/browser-lanes.md): the agent browser, the `rb` lanes, pause and switch-back, macOS guidance.
 - [`references/mcp-wiring.md`](./references/mcp-wiring.md): the `bladebro` Code Mode manual and the discovery steps.
 - [`references/install-and-verify.md`](./references/install-and-verify.md): the operator-gated install, the pin check, digest verification and rollback.
+
+Assets: [`assets/utcp-bladebro-manual.md`](./assets/utcp-bladebro-manual.md): the registered `bladebro` UTCP manual snapshot, loaded for MCP intent.
+
+Scripts: [`scripts/install.sh`](./scripts/install.sh) and [`scripts/doctor.sh`](./scripts/doctor.sh), described in [`scripts/README.md`](./scripts/README.md). Operators run them. No workflow calls them.
+
+Install guide: [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md).
+
 - [`README.md`](./README.md): packet overview.
 - [`changelog/`](./changelog/): release notes, including the v4.8.2 pin and its read date.
 - Upstream: `https://github.com/dondai44423/bladebro` (README, `docs/tools.md`, `docs/browser-modes.md`, `docs/setup.md`, `docs/configuration.md`).

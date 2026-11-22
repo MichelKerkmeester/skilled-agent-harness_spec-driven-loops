@@ -1,7 +1,7 @@
 ---
 title: "mcp-bladebro"
 description: "Bladebro mode of mcp-browser-use: CLI first with a Code Mode MCP fallback, an owned agent-browser default, operator-gated real-browser lanes and three verbatim safety rules."
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # mcp-bladebro
@@ -24,7 +24,7 @@ Use this mode when the hub selects Bladebro for an agentic, stealth or caller-ow
 
 ### Status
 
-The packet is authored from upstream documentation. Bladebro is not installed on this host, so no command here has been observed running. Installing it is an operator decision.
+The packet is authored from upstream documentation pinned to v4.8.2. The install, the MCP lane and every agent-browser probe ran live on macOS arm64 on 2026-11-21. The real-browser reads in `clone` mode failed with the Aside browser binary, and attaching to a running Aside passed. Bladebro is still installed on this host because the operator chose to keep it. The results are in `benchmark/reports/`. Installing and removing Bladebro stay operator decisions.
 
 ---
 
@@ -36,4 +36,8 @@ The packet is authored from upstream documentation. Bladebro is not installed on
 - `references/browser-lanes.md`: the agent browser and the `rb` lanes.
 - `references/mcp-wiring.md`: the `bladebro` Code Mode manual and discovery.
 - `references/install-and-verify.md`: the operator-gated install, the pin check and rollback.
+- `assets/utcp-bladebro-manual.md`: the registered Code Mode manual, the one place its JSON is stated.
+- `scripts/install.sh` and `scripts/doctor.sh`: the pinned install wrapper and the read-only doctor, described in `scripts/README.md`.
+- `INSTALL-GUIDE.md`: the operator install walk-through.
+- `benchmark/`: the live-run reports.
 - `changelog/`: release notes for this packet.

@@ -1,0 +1,19 @@
+{
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/007-bladebro-parity-and-changelogs",
+  "description": "Phase 7: bladebro-parity-and-changelogs",
+  "keywords": [
+    "phase",
+    "bladebro-parity-and-changelogs"
+  ],
+  "lastUpdated": "2026-11-22T07:02:51.694Z",
+  "specId": "007",
+  "folderSlug": "bladebro-parity-and-changelogs",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

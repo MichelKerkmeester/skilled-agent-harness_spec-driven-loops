@@ -1,6 +1,6 @@
 {
   "skill": "mcp-browser-use",
-  "version": "1.1.0.0",
+  "version": "1.1.1.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
