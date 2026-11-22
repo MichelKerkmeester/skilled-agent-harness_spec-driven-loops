@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e6006d9c2d099d91edf561e5bb1082f2914c093e8ed8811fba56558981a9751c",
+  "corpusHash": "a03c84b90cb7e7f4ba44e2cb861ff4893cf3c33627ea32ffa6de3d725e1bc7cc",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28977,
+  "includedPathCount": 28984,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13192,6 +13192,13 @@
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/plan.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/spec.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/tasks.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/goal.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/plan.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/review/fanout-attribution.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/review/review-report.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/spec.md",
+    "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/tasks.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/decision-record.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/goal.md",
     "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
@@ -29009,7 +29016,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7d64dcc886682b9ac95aac9245d937b4e389237cff540d76d9d3ddd1d60daefe",
+  "manifestHash": "95a49a1cdfcf3685bdad6bb2ce7b7eec0ae80a5d50bf089abc89ccf5064960b0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33481,6 +33488,14 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/scratch",
       "reason": "excluded directory"
     },
     {

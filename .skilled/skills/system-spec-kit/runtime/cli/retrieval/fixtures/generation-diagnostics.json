@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7093,
-    "ok": 20256,
+    "missing-frontmatter": 7095,
+    "ok": 20261,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 28977,
+  "documentsScanned": 28984,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7d64dcc886682b9ac95aac9245d937b4e389237cff540d76d9d3ddd1d60daefe",
+  "manifestHash": "95a49a1cdfcf3685bdad6bb2ce7b7eec0ae80a5d50bf089abc89ccf5064960b0",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45824,
+      "ok": 45833,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -36882,6 +36882,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/research/research.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -58471,6 +58483,14 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/055-cross-checkout-root-pinning/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/scratch",
       "reason": "excluded directory"
     },
     {

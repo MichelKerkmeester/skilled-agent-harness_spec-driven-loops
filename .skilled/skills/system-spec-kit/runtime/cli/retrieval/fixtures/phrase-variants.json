@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7d64dcc886682b9ac95aac9245d937b4e389237cff540d76d9d3ddd1d60daefe",
+  "manifestHash": "95a49a1cdfcf3685bdad6bb2ce7b7eec0ae80a5d50bf089abc89ccf5064960b0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -57598,6 +57598,9 @@
     "goal not carried": [
       "goal not carried"
     ],
+    "goal not carried worktree": [
+      "goal not carried worktree"
+    ],
     "goal objective check": [
       "goal objective check"
     ],
@@ -57657,6 +57660,9 @@
     ],
     "goal packet handoff note field": [
       "goal_packet handoff note field"
+    ],
+    "goal packet in a linked worktree": [
+      "goal packet in a linked worktree"
     ],
     "goal packet tree check": [
       "goal packet tree check"
@@ -57843,6 +57849,9 @@
     ],
     "goal rollback": [
       "goal rollback"
+    ],
+    "goal root worktree": [
+      "goal_root worktree"
     ],
     "goal rubric closure": [
       "goal rubric closure"
@@ -86500,6 +86509,9 @@
     ],
     "phase 56 command folder guard and readme baseline": [
       "phase 56 command folder guard and readme baseline"
+    ],
+    "phase 56 worktree goal carry": [
+      "phase 56 worktree goal carry"
     ],
     "phase 57 v4 0 0 13 reliability fixes": [
       "phase 57 v4 0 0 13 reliability fixes"
@@ -137683,6 +137695,21 @@
     ],
     "worktree git hooks coverage": [
       "worktree git hooks coverage"
+    ],
+    "worktree goal carry": [
+      "worktree goal carry"
+    ],
+    "worktree goal carry goal": [
+      "worktree goal carry goal"
+    ],
+    "worktree goal carry implementation summary": [
+      "worktree goal carry implementation summary"
+    ],
+    "worktree goal carry plan": [
+      "worktree goal carry plan"
+    ],
+    "worktree goal carry tasks": [
+      "worktree goal carry tasks"
     ],
     "worktree guard hook": [
       "worktree guard hook"
