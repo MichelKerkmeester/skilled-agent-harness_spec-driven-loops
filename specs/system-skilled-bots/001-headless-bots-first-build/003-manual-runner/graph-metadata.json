@@ -21,8 +21,8 @@
       "manual runner plan",
       "manual runner tasks",
       "manual runner acceptance criteria",
-      "manual runner decision record",
-      "manual runner implementation summary"
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
       "manual",
@@ -45,9 +45,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/bin/compiled-route.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
@@ -83,6 +85,12 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -98,6 +106,12 @@
         "name": "compiled-route.cjs",
         "kind": "file",
         "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
         "source": "derived"
       },
       {
@@ -189,23 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Create",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A bot is a `BOT.md` file, but nothing can run one",
     "created_at": "2026-11-22T10:48:28Z",
-    "last_save_at": "2026-11-22T12:46:30.359Z",
+    "last_save_at": "2026-11-22T17:00:01.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +215,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e98e53283fa9c986051d2b99a413a501738a5c3f49077c28d2438347a8d42d3",
+    "source_fingerprint": "sha256:cac6a25ea61b22c0f009aa8a119f59a96a2e2278f3a88a7cb88572c4bb71f1ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f4d2993f0850be604161cf40f7461d1570e248185c121737b5a26a081a076f26",

@@ -23,6 +23,10 @@
       "headless bots first build phase parent spec",
       "system-skilled-bots first build",
       "BOT.md bots runner launchd",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "headless bots first build decision record",
       "system-skilled-bots operator decisions"
     ],
@@ -37,24 +41,38 @@
       "bot",
       "runner",
       "launchd",
-      "decision",
-      "record"
+      "packet",
+      "goal"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "decision-record.md",
       ".skilled/skills/sk-git/scripts/worktree-naming.sh",
       ".skilled/bin/worktree-reaper.sh",
       ".skilled/bin/compiled-route.cjs",
-      "specs/other/008-workflow-hub-research/research/research.md"
+      "001-contracts-and-state-root/goal.md",
+      "002-schedule-predicates-and-checker/goal.md",
+      "003-manual-runner/goal.md",
+      "004-worktree-isolation-and-delivery/goal.md",
+      "005-request-pipeline/goal.md",
+      "006-launchd-installer/goal.md",
+      "007-status-index/goal.md",
+      "008-hub-wiring/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -118,6 +136,42 @@
         "source": "derived"
       },
       {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -156,20 +210,21 @@
     ],
     "causal_summary": "Skilled has agents, commands and three installed schedulers",
     "created_at": "2026-11-22T10:48:25Z",
-    "last_save_at": "2026-11-22T15:50:40.062Z",
+    "last_save_at": "2026-11-22T17:01:13.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:928c2c7cfcab56f94d6621197ae7434f1af012ccdccf9e26320233d58edf1985",
+    "source_fingerprint": "sha256:89b5af4f5dcd47cfc03d64ed3d524999c32b4a9f7b66c59a8f3e301c81feddce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2cdd628835d959316140436ec0f54af36f62f5f4052a62b0e2546f8a4c4d577",
       "decision-record.md": "1e42c8bde964bc60cbec9ebf32a26081df9743c8173e7948e2259a8d72b4203b"
     },
-    "last_active_at": "2026-11-22T15:50:40.062Z",
-    "last_active_child_id": "system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root"
+    "last_active_child_id": "system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root",
+    "last_active_at": "2026-11-22T15:50:40.062Z"
   }
 }

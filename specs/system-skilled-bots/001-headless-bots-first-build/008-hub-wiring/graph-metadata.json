@@ -18,8 +18,11 @@
       "hub wiring plan",
       "hub wiring tasks",
       "hub wiring acceptance criteria",
-      "hub wiring decision record",
-      "hub wiring implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hub wiring decision record"
     ],
     "key_topics": [
       "hub",
@@ -33,7 +36,7 @@
       "tasks",
       "acceptance",
       "criteria",
-      "decision"
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -42,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/_routes.yaml",
@@ -74,6 +78,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -189,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After phase 7 the runner, queue, installer and status work from their CLI, but no hub, mode or command points at them",
     "created_at": "2026-11-22T10:48:34Z",
-    "last_save_at": "2026-11-22T12:06:22.248Z",
+    "last_save_at": "2026-11-22T17:00:08.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +211,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0931ba0c82d74205316a1c943d454611fa09df1490a6e5a7bc114dc49f0f40dc",
+    "source_fingerprint": "sha256:dec0fa71780ac1a9bd9c47a0fbbde4b976ba971bb2f8fb2c1b4acf4a9dcb6e2c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f30811862e27e4f22f5a407da5c91dc16e72650badc21779d7585be697abcba",

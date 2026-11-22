@@ -96,7 +96,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-Nothing is built yet, so every criterion is Unmet. AC-006's precondition is now present: the parent decision record carries Q3 as ADR-002 and Q5 as ADR-003, both Accepted, with rows D2 and D3 in its Operator Decisions table. AC-006 stays Unmet until this phase closes and the row is checked.
+Every criterion is Met with observed evidence from 2026-11-22, and none is waived or superseded.
 <!-- /ANCHOR:closure -->

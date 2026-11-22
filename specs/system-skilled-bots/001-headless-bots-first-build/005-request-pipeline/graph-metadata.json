@@ -17,6 +17,10 @@
       "request pipeline plan",
       "request pipeline tasks",
       "request pipeline acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "request pipeline decision record",
       "request pipeline implementation summary"
     ],
@@ -30,9 +34,9 @@
       "tasks",
       "acceptance",
       "criteria",
-      "decision",
-      "record",
-      "implementation"
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -41,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/scripts/git-hooks/README.md",
@@ -55,8 +60,7 @@
       ".skilled/skills/sk-git/assets/commit-message-template.md",
       ".skilled/skills/sk-git/changelog/v1.5.1.0.md",
       ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
-      ".skilled/skills/sk-git/feature-catalog/session-lifecycle/continuous-integration-autosync.md",
-      ".skilled/scripts/git-hooks/tests/README.md"
+      ".skilled/skills/sk-git/feature-catalog/session-lifecycle/continuous-integration-autosync.md"
     ],
     "entities": [
       {
@@ -81,6 +85,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -196,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After phase 3 a bot runs only when someone types `bots run <id>`",
     "created_at": "2026-11-22T10:48:30Z",
-    "last_save_at": "2026-11-22T12:07:41.322Z",
+    "last_save_at": "2026-11-22T17:00:04.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +218,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87d763e5f261563b6c9f1d6999b6c0239827ea541b45435fd21d144bb93c27b9",
+    "source_fingerprint": "sha256:aedcb51fe557617daf29a28927bad21ef6059eb0ef07b0b0c37f41e1fae53058",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3cac6850f4d9c82e2c3a8fbc48046cef53d731ea6ee00a0e83a6d464d94bf4bf",

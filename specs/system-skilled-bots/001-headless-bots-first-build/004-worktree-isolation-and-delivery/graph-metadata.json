@@ -18,8 +18,11 @@
       "worktree isolation and delivery plan",
       "worktree isolation and delivery tasks",
       "worktree isolation and delivery acceptance criteria",
-      "worktree isolation and delivery decision record",
-      "worktree isolation and delivery implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "worktree isolation and delivery decision record"
     ],
     "key_topics": [
       "worktree",
@@ -33,7 +36,7 @@
       "tasks",
       "acceptance",
       "criteria",
-      "decision"
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -42,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-git/scripts/worktree-naming.sh",
@@ -71,6 +75,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -186,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After phase 3 a bot that edits files must run in the operator's shared checkout, because the runner refuses `isolation: worktree` as a posture it cannot honor yet",
     "created_at": "2026-11-22T10:48:29Z",
-    "last_save_at": "2026-11-22T11:39:44.451Z",
+    "last_save_at": "2026-11-22T17:00:02.619Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +208,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c52c174d05c466f5b6aca9e1e9cda908c3293585aa648363078fcd7f79a5efe0",
+    "source_fingerprint": "sha256:a5bc4b3151a5a21e2063ca351fc01b3aca23c65ff91039d96097d34e7a28ca3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "21162453fea9f635f8cfee888f03fa9b969c70acf35bd0197ac5d9ae54fbefb1",
