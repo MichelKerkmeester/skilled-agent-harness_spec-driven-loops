@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7187,
-    "ok": 20418,
+    "ok": 20476,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29233,
+  "documentsScanned": 29291,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "3291549e10592af355f329f0dddce1f34f80167fab6a7fdb72dffad85de36d62",
+  "manifestHash": "9ba6d9aa1f9ff5dec163d75ec9e286c9742ea214790b6e045a52f68913cdbe25",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46049,
+      "ok": 46133,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -63719,6 +63719,38 @@
     },
     {
       "path": "specs/system-skill-advisor/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch",
       "reason": "excluded directory"
     },
     {
