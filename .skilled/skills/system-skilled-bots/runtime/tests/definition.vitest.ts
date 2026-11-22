@@ -87,6 +87,8 @@ describe('rejected definitions', () => {
     expect(parseDefinition(bot('budget: {maxIterations: 0}'))).toMatchObject({ reason: 'budget.maxIterations-invalid' });
     expect(parseDefinition(bot('isolation: sometimes'))).toMatchObject({ reason: 'isolation-invalid' });
     expect(parseDefinition(bot('enabled: "no"'))).toMatchObject({ reason: 'enabled-invalid' });
+    expect(parseDefinition(bot('version: 1.0.0.0'))).toMatchObject({ ok: true });
+    expect(parseDefinition(bot('version: 2'))).toMatchObject({ reason: 'version-invalid' });
   });
 });
 

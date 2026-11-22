@@ -84,6 +84,7 @@ export const DEFAULT_RUNTIME: Readonly<RuntimeBlock> = Object.freeze({ kind: 'na
 
 const BOT_ID_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
 const QUEUE_NAME_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
+const DOC_VERSION_PATTERN = /^\d+\.\d+\.\d+\.\d+$/;
 
 const FRONTMATTER_KEYS = new Set([
   'id',
@@ -97,6 +98,9 @@ const FRONTMATTER_KEYS = new Set([
   'secrets',
   'precheck',
   'spec_folder',
+  // The document edition sk-doc stamps on every authored asset, the template
+  // included. It describes the file, not the bot, so it is checked and dropped.
+  'version',
 ]);
 
 const TRIGGER_KEYS: Record<TriggerKind, readonly string[]> = {
@@ -242,6 +246,9 @@ export function parseDefinition(text: string): Result<BotDefinition> {
   const delivery = parseDelivery(raw.delivery);
   if (!delivery.ok) return delivery;
 
+  if (raw.version !== undefined && !(typeof raw.version === 'string' && DOC_VERSION_PATTERN.test(raw.version))) {
+    return { ok: false, reason: 'version-invalid', detail: 'expected X.Y.Z.W' };
+  }
   if (raw.enabled !== undefined && typeof raw.enabled !== 'boolean') {
     return { ok: false, reason: 'enabled-invalid', detail: 'expected true or false' };
   }
