@@ -1,5 +1,5 @@
 {
-  "manifestHash": "540c35264c493562ae90692a4f7a933dd5d442dd00c81bde4cfe26e6346cf511",
+  "manifestHash": "d580d00c5c13921de8438952f96b043d892254ad0122f7e0f2894077055c3556",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16255,11 +16255,47 @@
     "born findable changelog entries": [
       "born findable changelog entries"
     ],
+    "bot md bots runner launchd": [
+      "BOT.md bots runner launchd"
+    ],
+    "bot runner kill switches": [
+      "bot runner kill switches"
+    ],
     "both advisor output paths": [
       "both advisor output paths"
     ],
     "both canvas modes ship html that has": [
       "both canvas modes ship html that has"
+    ],
+    "bots answer": [
+      "bots answer"
+    ],
+    "bots delivery channels": [
+      "bots delivery channels"
+    ],
+    "bots four mode wiring": [
+      "bots four mode wiring"
+    ],
+    "bots inbox": [
+      "bots inbox"
+    ],
+    "bots install record": [
+      "bots install record"
+    ],
+    "bots run": [
+      "bots run"
+    ],
+    "bots schedule install": [
+      "bots schedule install"
+    ],
+    "bots status": [
+      "bots status"
+    ],
+    "bots status index sqlite": [
+      "bots status index sqlite"
+    ],
+    "bots worktree run": [
+      "bots worktree run"
     ],
     "boundaries containment and naming decisions": [
       "boundaries containment and naming decisions"
@@ -31953,6 +31989,27 @@
     "contract versus enforcement drift": [
       "contract versus enforcement drift"
     ],
+    "contracts and state root": [
+      "contracts and state root"
+    ],
+    "contracts and state root acceptance criteria": [
+      "contracts and state root acceptance criteria"
+    ],
+    "contracts and state root decision record": [
+      "contracts and state root decision record"
+    ],
+    "contracts and state root implementation summary": [
+      "contracts and state root implementation summary"
+    ],
+    "contracts and state root plan": [
+      "contracts and state root plan"
+    ],
+    "contracts and state root tasks": [
+      "contracts and state root tasks"
+    ],
+    "contracts and state root timeline": [
+      "contracts and state root timeline"
+    ],
     "contradiction and supersession events": [
       "contradiction and supersession events"
     ],
@@ -37267,6 +37324,27 @@
     ],
     "deep loop code readme repairs": [
       "deep-loop code README repairs"
+    ],
+    "deep loop command offers": [
+      "deep loop command offers"
+    ],
+    "deep loop command offers acceptance criteria": [
+      "deep loop command offers acceptance criteria"
+    ],
+    "deep loop command offers decision record": [
+      "deep loop command offers decision record"
+    ],
+    "deep loop command offers implementation summary": [
+      "deep loop command offers implementation summary"
+    ],
+    "deep loop command offers plan": [
+      "deep loop command offers plan"
+    ],
+    "deep loop command offers tasks": [
+      "deep loop command offers tasks"
+    ],
+    "deep loop command offers timeline": [
+      "deep loop command offers timeline"
     ],
     "deep loop commands agents review": [
       "deep-loop commands agents review"
@@ -60022,6 +60100,12 @@
     "heading validation rules": [
       "heading validation rules"
     ],
+    "headless bots first build decision record": [
+      "headless bots first build decision record"
+    ],
+    "headless bots first build phase parent spec": [
+      "headless bots first build phase parent spec"
+    ],
     "headless colour scheme": [
       "headless colour scheme"
     ],
@@ -62201,6 +62285,27 @@
     ],
     "hub vocabulary source": [
       "hub vocabulary source"
+    ],
+    "hub wiring": [
+      "hub wiring"
+    ],
+    "hub wiring acceptance criteria": [
+      "hub wiring acceptance criteria"
+    ],
+    "hub wiring decision record": [
+      "hub wiring decision record"
+    ],
+    "hub wiring implementation summary": [
+      "hub wiring implementation summary"
+    ],
+    "hub wiring plan": [
+      "hub wiring plan"
+    ],
+    "hub wiring tasks": [
+      "hub wiring tasks"
+    ],
+    "hub wiring timeline": [
+      "hub wiring timeline"
     ],
     "huggingface gated repo": [
       "huggingface gated repo"
@@ -65788,6 +65893,27 @@
     "launchctl unsetenv voyage api key": [
       "launchctl unsetenv VOYAGE_API_KEY"
     ],
+    "launchd installer": [
+      "launchd installer"
+    ],
+    "launchd installer acceptance criteria": [
+      "launchd installer acceptance criteria"
+    ],
+    "launchd installer decision record": [
+      "launchd installer decision record"
+    ],
+    "launchd installer implementation summary": [
+      "launchd installer implementation summary"
+    ],
+    "launchd installer plan": [
+      "launchd installer plan"
+    ],
+    "launchd installer tasks": [
+      "launchd installer tasks"
+    ],
+    "launchd installer timeline": [
+      "launchd installer timeline"
+    ],
     "launcher 4 layer single writer election": [
       "launcher 4-layer single-writer election"
     ],
@@ -69220,6 +69346,27 @@
     ],
     "manual review remediation tasks": [
       "manual review remediation tasks"
+    ],
+    "manual runner": [
+      "manual runner"
+    ],
+    "manual runner acceptance criteria": [
+      "manual runner acceptance criteria"
+    ],
+    "manual runner decision record": [
+      "manual runner decision record"
+    ],
+    "manual runner implementation summary": [
+      "manual runner implementation summary"
+    ],
+    "manual runner plan": [
+      "manual runner plan"
+    ],
+    "manual runner tasks": [
+      "manual runner tasks"
+    ],
+    "manual runner timeline": [
+      "manual runner timeline"
     ],
     "manual save triggers": [
       "manual save triggers"
@@ -77135,6 +77282,12 @@
     "needs rebuild sentinel source constant tasks": [
       "needs-rebuild sentinel source constant tasks"
     ],
+    "needs you decision queue": [
+      "needs-you decision queue"
+    ],
+    "needs you hold": [
+      "needs-you hold"
+    ],
     "negated write criteria": [
       "negated write criteria"
     ],
@@ -78972,6 +79125,9 @@
     ],
     "offer lookup at claim tasks": [
       "offer lookup at claim tasks"
+    ],
+    "offer the right deep loop command and flags": [
+      "offer the right deep loop command and flags"
     ],
     "official cli agent usage": [
       "official cli agent usage"
@@ -84480,6 +84636,9 @@
     "phase 1 compiled route manifest suite": [
       "phase 1 compiled route manifest suite"
     ],
+    "phase 1 contracts and state root": [
+      "phase 1 contracts and state root"
+    ],
     "phase 1 create track fixes": [
       "phase 1 create track fixes"
     ],
@@ -85686,6 +85845,9 @@
     "phase 2 routing checklist": [
       "phase 2 routing checklist"
     ],
+    "phase 2 schedule predicates and checker": [
+      "phase 2 schedule predicates and checker"
+    ],
     "phase 2 sk code ci": [
       "phase 2 sk code ci"
     ],
@@ -86184,6 +86346,9 @@
     "phase 3 manual claim live settings": [
       "phase 3 manual claim live settings"
     ],
+    "phase 3 manual runner": [
+      "phase 3 manual runner"
+    ],
     "phase 3 markdown reference sweep": [
       "phase 3 markdown reference sweep"
     ],
@@ -86631,6 +86796,9 @@
     "phase 4 workflow single source and drift guard": [
       "phase 4 workflow single source and drift guard"
     ],
+    "phase 4 worktree isolation and delivery": [
+      "phase 4 worktree isolation and delivery"
+    ],
     "phase 4 wrapper change notice": [
       "phase 4 wrapper change notice"
     ],
@@ -86813,6 +86981,9 @@
     ],
     "phase 5 recommendation contract and brief": [
       "phase 5 recommendation contract and brief"
+    ],
+    "phase 5 request pipeline": [
+      "phase 5 request pipeline"
     ],
     "phase 5 resume detection and single workflow": [
       "phase 5 resume detection and single workflow"
@@ -87041,6 +87212,9 @@
     ],
     "phase 6 implementation summary": [
       "phase 6 implementation summary"
+    ],
+    "phase 6 launchd installer": [
+      "phase 6 launchd installer"
     ],
     "phase 6 live conversation test": [
       "phase 6 live conversation test"
@@ -87354,6 +87528,9 @@
     "phase 7 spec kit hook deadlines": [
       "phase 7 spec kit hook deadlines"
     ],
+    "phase 7 status index": [
+      "phase 7 status index"
+    ],
     "phase 7 system deep loop changelogs": [
       "phase 7 system deep loop changelogs"
     ],
@@ -87446,6 +87623,9 @@
     ],
     "phase 8 hub gap report": [
       "phase 8 hub gap report"
+    ],
+    "phase 8 hub wiring": [
+      "phase 8 hub wiring"
     ],
     "phase 8 legacy era report": [
       "phase 8 legacy era report"
@@ -93879,6 +94059,9 @@
     "questions remaining next focus": [
       "questions remaining next focus"
     ],
+    "queue drain agent": [
+      "queue drain agent"
+    ],
     "queued operator answers": [
       "queued operator answers"
     ],
@@ -99620,6 +99803,27 @@
     ],
     "request cost hardening retrieval stack": [
       "request cost hardening retrieval stack"
+    ],
+    "request pipeline": [
+      "request pipeline"
+    ],
+    "request pipeline acceptance criteria": [
+      "request pipeline acceptance criteria"
+    ],
+    "request pipeline decision record": [
+      "request pipeline decision record"
+    ],
+    "request pipeline implementation summary": [
+      "request pipeline implementation summary"
+    ],
+    "request pipeline plan": [
+      "request pipeline plan"
+    ],
+    "request pipeline tasks": [
+      "request pipeline tasks"
+    ],
+    "request pipeline timeline": [
+      "request pipeline timeline"
     ],
     "request quality": [
       "request quality"
@@ -106790,6 +106994,27 @@
     ],
     "scenarios by failure mode": [
       "scenarios by failure mode"
+    ],
+    "schedule predicates and checker": [
+      "schedule predicates and checker"
+    ],
+    "schedule predicates and checker acceptance criteria": [
+      "schedule predicates and checker acceptance criteria"
+    ],
+    "schedule predicates and checker decision record": [
+      "schedule predicates and checker decision record"
+    ],
+    "schedule predicates and checker implementation summary": [
+      "schedule predicates and checker implementation summary"
+    ],
+    "schedule predicates and checker plan": [
+      "schedule predicates and checker plan"
+    ],
+    "schedule predicates and checker tasks": [
+      "schedule predicates and checker tasks"
+    ],
+    "schedule predicates and checker timeline": [
+      "schedule predicates and checker timeline"
     ],
     "schedulebackgroundenrichment unbounded": [
       "scheduleBackgroundEnrichment unbounded"
@@ -124785,6 +125010,27 @@
     "status enum schema close": [
       "status enum schema close"
     ],
+    "status index": [
+      "status index"
+    ],
+    "status index acceptance criteria": [
+      "status index acceptance criteria"
+    ],
+    "status index decision record": [
+      "status index decision record"
+    ],
+    "status index implementation summary": [
+      "status index implementation summary"
+    ],
+    "status index plan": [
+      "status index plan"
+    ],
+    "status index tasks": [
+      "status index tasks"
+    ],
+    "status index timeline": [
+      "status index timeline"
+    ],
     "status instrumentation": [
       "status instrumentation"
     ],
@@ -127856,6 +128102,15 @@
     ],
     "system skill advisor v2 0 1 0": [
       "system-skill-advisor v2.0.1.0"
+    ],
+    "system skilled bots first build": [
+      "system-skilled-bots first build"
+    ],
+    "system skilled bots hub wiring": [
+      "system-skilled-bots hub wiring"
+    ],
+    "system skilled bots operator decisions": [
+      "system-skilled-bots operator decisions"
     ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
@@ -138365,6 +138620,27 @@
     ],
     "worktree hooks verification task": [
       "worktree hooks verification task"
+    ],
+    "worktree isolation and delivery": [
+      "worktree isolation and delivery"
+    ],
+    "worktree isolation and delivery acceptance criteria": [
+      "worktree isolation and delivery acceptance criteria"
+    ],
+    "worktree isolation and delivery decision record": [
+      "worktree isolation and delivery decision record"
+    ],
+    "worktree isolation and delivery implementation summary": [
+      "worktree isolation and delivery implementation summary"
+    ],
+    "worktree isolation and delivery plan": [
+      "worktree isolation and delivery plan"
+    ],
+    "worktree isolation and delivery tasks": [
+      "worktree isolation and delivery tasks"
+    ],
+    "worktree isolation and delivery timeline": [
+      "worktree isolation and delivery timeline"
     ],
     "worktree naming allocator": [
       "worktree naming allocator"

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root",
+  "spec_folder": "system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root",
+  "parent_id": "system-skilled-bots/001-headless-bots-first-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "contracts and state root",
+      "phase 1 contracts and state root",
+      "contracts and state root plan",
+      "contracts and state root tasks",
+      "contracts and state root acceptance criteria",
+      "contracts and state root decision record",
+      "contracts and state root implementation summary"
+    ],
+    "key_topics": [
+      "contracts",
+      "state",
+      "root",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "record",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      "specs/system-skilled-bots/001-headless-bots-first-build/decision-record.md",
+      ".skilled/skills/system-deep-loop/runtime/package.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "repository-identity.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-taxonomy.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No bot definition format, run record or state location exists in the repository today, so the runner, the checker, the installer and the status index have nothing to read or write (research.md §5, §10)",
+    "created_at": "2026-11-22T10:48:26Z",
+    "last_save_at": "2026-11-22T12:10:25.963Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:007101e8be2fe76e62cd4b0d3b5c95c8e33f5e49efa1297014aa1697a959c8f2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "75c6db14597cfa32b9296cdca25da187a202c57995fbf574a63522220b99f80d",
+      "plan.md": "a7121ad5cc7c87b061572b0e23b28a7bb1471abe8d824b8a699ae9bb0e642e41",
+      "tasks.md": "02bded7706b81d24092d772a3696eb2fa5a4fd236d46d79bf1037c26387bf431",
+      "decision-record.md": "ca68db6585159ad460de0d19172a5b0c11308f1cc4244ff7ee51e7ac8b476e15",
+      "implementation-summary.md": "5b93e381ec7d2e7b37291d8ac2b771e675c86eac4873ddb39b39c1a314a8e80c"
+    },
+    "last_active_at": null
+  }
+}

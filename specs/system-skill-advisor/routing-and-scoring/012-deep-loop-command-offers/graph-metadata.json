@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
+  "parent_id": "system-skill-advisor/routing-and-scoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop command offers",
+      "offer the right deep loop command and flags",
+      "deep loop command offers plan",
+      "deep loop command offers tasks",
+      "deep loop command offers acceptance criteria",
+      "deep loop command offers decision record",
+      "deep loop command offers implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "command",
+      "offers",
+      "offer",
+      "right",
+      "flags",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
+      ".skilled/commands/deep/research.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+      "scratch/routing-analysis.md",
+      "scratch/decisions.md",
+      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts",
+      ".skilled/commands/deep/review.md",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      ".skilled/skills/system-deep-loop/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-prompts.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "command-routing-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "routing-analysis.md",
+        "kind": "doc",
+        "path": "scratch/routing-analysis.md",
+        "source": "derived"
+      },
+      {
+        "name": "decisions.md",
+        "kind": "doc",
+        "path": "scratch/decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Offer From",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Brief",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor attaches `/deep:research` or `/deep:review` only when a prompt carries depth wording, so a request that asks for the loop in plain words gets no command row",
+    "created_at": "2026-11-22T11:08:37Z",
+    "last_save_at": "2026-11-22T12:15:29.183Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1f7f1e8c675092137861c2f644db40062cf2ce23b8614e8fcd69671c431ff074",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8e8037b7bf231424a207b8cf6e2037ac7d9f0fbd47b9362438f8e871037a0093",
+      "plan.md": "8dc6502026e9175b1a9d7897400e21bc703efc4ed2367700dda357af45bb52ad",
+      "tasks.md": "89b14b1ae2938b45cf636da836d3843c77c17bc283d6e530f1bf02870926ff5b",
+      "decision-record.md": "712b598b766f5fef8d5afe6d5c02ce64f8ac8b885f2cbdb30717ba58eaaa64a4",
+      "implementation-summary.md": "51787cdc4779f5b23996b207010c76da9aa739eea60a95d7961da9f462360fb7"
+    },
+    "last_active_at": null
+  }
+}

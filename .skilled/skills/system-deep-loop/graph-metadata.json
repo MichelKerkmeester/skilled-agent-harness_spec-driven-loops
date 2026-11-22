@@ -74,7 +74,9 @@
     "follow-up question frontier",
     "frontier of follow-up questions",
     "review target",
-    "this research run"
+    "this research run",
+    "multi-round research",
+    "iterative research"
   ],
   "derived": {
     "trigger_phrases": [
@@ -174,6 +176,8 @@
     "follow-up question frontier",
     "frontier of follow-up questions",
     "review target",
-    "this research run"
+    "this research run",
+    "iterative research",
+    "multi-round research"
   ]
 }

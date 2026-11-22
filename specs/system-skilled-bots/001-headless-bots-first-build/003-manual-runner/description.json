@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-bots/001-headless-bots-first-build/003-manual-runner",
+  "description": "Phase 3: manual-runner",
+  "keywords": [
+    "phase",
+    "manual-runner"
+  ],
+  "lastUpdated": "2026-11-22T10:48:29.348Z",
+  "specId": "003",
+  "folderSlug": "manual-runner",
+  "parentChain": [
+    "system-skilled-bots",
+    "001-headless-bots-first-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

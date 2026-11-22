@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "62a9359e60a",
-  "corpusSha256": "sha256:e08017b5d8face375de4b51e0768fbc451e9b4d7f474e41d4ea25703ea8dcbff",
+  "capturedAtSha": "2ef3895f753",
+  "corpusSha256": "sha256:f957f3bf62cad9f30792bd265247eff647437f3ee6a85c95632d122261ca737c",
   "bridgeCounts": {
     "commandMetadata": 27,
-    "doctorRoutes": 36,
-    "generated": 63,
-    "typescriptActive": 47,
-    "pythonActive": 53
+    "doctorRoutes": 35,
+    "generated": 62,
+    "typescriptActive": 46,
+    "pythonActive": 52
   },
   "metrics": {
     "typed_recall_at_1": {
@@ -40,8 +40,8 @@
       }
     },
     "false_offer": {
-      "count": 0,
-      "total": 35
+      "count": 2,
+      "total": 41
     },
     "slash_variant": {
       "reached_top3": 0,
@@ -50,8 +50,8 @@
       "partial_total": 4
     },
     "agreement": {
-      "correct": 5,
-      "total": 9
+      "correct": 6,
+      "total": 10
     }
   },
   "unreachable": [
@@ -1834,20 +1834,62 @@
       "top1": false,
       "top3": false,
       "offered": false
+    },
+    "nm-system-deep-loop-02": {
+      "expected_command": null,
+      "top": "command-doctor-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": true
+    },
+    "nm-system-deep-loop-03": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-04": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": true
+    },
+    "nm-system-deep-loop-05": {
+      "expected_command": null,
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-sk-code-02": {
+      "expected_command": null,
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-sk-code-03": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
     }
   },
   "attachedMetrics": {
     "plain": {
       "tune": {
         "own": 14,
-        "attached": 14,
-        "combined": 28,
+        "attached": 13,
+        "combined": 27,
         "total": 45
       },
       "holdout": {
         "own": 2,
-        "attached": 0,
-        "combined": 2,
+        "attached": 1,
+        "combined": 3,
         "total": 44
       }
     },
@@ -1857,18 +1899,18 @@
         "own": 14,
         "ownerLed": 22,
         "routed": 20,
-        "withCommand": 14,
-        "attached": 14,
+        "withCommand": 13,
+        "attached": 13,
         "neither": 9
       },
       "holdout": {
         "total": 44,
         "own": 2,
-        "ownerLed": 6,
-        "routed": 3,
-        "withCommand": 0,
-        "attached": 0,
-        "neither": 36
+        "ownerLed": 7,
+        "routed": 4,
+        "withCommand": 1,
+        "attached": 1,
+        "neither": 35
       }
     },
     "plain_by_family": {
@@ -1889,14 +1931,14 @@
       "deep": {
         "tune": {
           "own": 0,
-          "attached": 2,
-          "combined": 2,
+          "attached": 1,
+          "combined": 1,
           "total": 2
         },
         "holdout": {
           "own": 0,
-          "attached": 0,
-          "combined": 0,
+          "attached": 1,
+          "combined": 1,
           "total": 2
         }
       },
@@ -1986,8 +2028,8 @@
       }
     },
     "false_offer_attached": {
-      "count": 0,
-      "total": 35
+      "count": 3,
+      "total": 41
     },
     "typed": {
       "own": 24,
@@ -2327,7 +2369,6 @@
       "cmd-create-skill-typed-01": "/create:sk-skill",
       "cmd-create-skill-plain-tune-01": "/create:sk-skill",
       "cmd-create-with-human-voice-typed-01": "/create:with-human-voice",
-      "cmd-deep-research-plain-tune-01": "/deep:research",
       "cmd-deep-review-plain-tune-01": "/deep:review",
       "cmd-design-chart-typed-01": "/design:chart",
       "cmd-design-chart-plain-tune-01": "/design:chart",
@@ -2336,11 +2377,14 @@
       "cmd-design-extract-typed-01": "/design:extract",
       "cmd-design-extract-plain-tune-01": "/design:extract",
       "sv-07": "/create:sk-skill",
-      "sv-10": "/design:chart"
+      "sv-10": "/design:chart",
+      "nm-system-deep-loop-03": "/deep:research",
+      "nm-system-deep-loop-04": "/deep:review",
+      "nm-system-deep-loop-05": "/create:manual-testing-playbook"
     },
     "needs_mode_floor": {
       "count": 1,
-      "total": 35
+      "total": 41
     },
     "needsModeRows": [
       "nm-system-skill-advisor-01"

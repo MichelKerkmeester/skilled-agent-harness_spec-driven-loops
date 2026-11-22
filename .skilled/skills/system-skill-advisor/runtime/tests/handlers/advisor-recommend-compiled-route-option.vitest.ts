@@ -234,6 +234,30 @@ describe('advisor_recommend compiled-route option', () => {
     expect(skCode).not.toHaveProperty('needsMode');
   });
 
+  // An iteration count asks for the loop itself, while depth wording asks for
+  // care inside one pass, so the same review target lands on different hubs.
+  it('sends a review with an iteration count to the deep loop and a thorough review to sk-code', async () => {
+    advisorPromptCache.clear();
+    mockedChild.execFileSync.mockImplementation((_file: string, args: unknown) => (
+      JSON.stringify(Array.isArray(args) && args.includes('system-deep-loop')
+        ? { action: 'route', hubId: 'system-deep-loop', selectionKind: 'single', targets: [{ workflowMode: 'review' }] }
+        : { action: 'defer', hubId: 'sk-code', selectionKind: null, targets: [] })
+    ));
+
+    const loop = responseData(await handleAdvisorRecommend({
+      prompt: 'run 5 review iterations on the parser',
+      options: { includeCompiledRoute: true },
+    })).data?.recommendations ?? [];
+    expect(loop[0]?.skillId).toBe('system-deep-loop');
+    expect(loop[0]?.command).toBe('/deep:review');
+
+    const singlePass = responseData(await handleAdvisorRecommend({
+      prompt: 'do a thorough code review of the parser',
+      options: { includeCompiledRoute: true },
+    })).data?.recommendations ?? [];
+    expect(singlePass[0]?.skillId).toBe('sk-code');
+  });
+
   it('recognizes only a front door that reads the prompt from stdin', () => {
     const dir = mkdtempSync(join(tmpdir(), 'front-door-'));
     try {

@@ -1,0 +1,7 @@
+[
+ {"id": "A1-ood", "prompt": "write a blog post about iterative research methods in user experience design"},
+ {"id": "C3", "prompt": "write a blog post about iterative research methods"},
+ {"id": "C4", "prompt": "draft a slide deck on autonomous research agents in academia"},
+ {"id": "A3-in", "prompt": "start autonomous research on how other CLIs handle session resume"},
+ {"id": "A1-in", "prompt": "run an iterative research pass on rate limiter designs for our API gateway"}
+]

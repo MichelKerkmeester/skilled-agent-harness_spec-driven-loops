@@ -1,0 +1,146 @@
+[
+ {
+  "id": "OOD1",
+  "prompt": "make a slide deck about autonomous research labs for the board meeting",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 0,
+  "top": null,
+  "second": null,
+  "third": null,
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "OOD2",
+  "prompt": "write a short blog post on the history of autonomous research vehicles",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": true,
+  "n": 3,
+  "top": {
+   "skill": "system-spec-kit",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "second": {
+   "skill": "sk-doc",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "cli-external-orchestration",
+   "conf": 0.82,
+   "unc": 0.26,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "KEEP1",
+  "prompt": "run an iterative research pass on how the advisor scores hubs",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 3,
+  "top": {
+   "skill": "system-deep-loop",
+   "conf": 0.8482,
+   "unc": 0.16,
+   "lane": "explicit_author",
+   "action": "route",
+   "sel": "single",
+   "modes": "research",
+   "command": "/deep:research",
+   "policy": "ask",
+   "kind": "skill"
+  },
+  "second": {
+   "skill": "sk-doc",
+   "conf": 0.82,
+   "unc": 0.26,
+   "lane": "lexical",
+   "action": "route",
+   "sel": "single",
+   "modes": "sk-create-quality-control",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "cli-external-orchestration",
+   "conf": 0.82,
+   "unc": 0.18,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "KEEP2",
+  "prompt": "start a multi-round research run on cache invalidation strategies",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 3,
+  "top": {
+   "skill": "system-deep-loop",
+   "conf": 0.8413,
+   "unc": 0.16,
+   "lane": "explicit_author",
+   "action": "route",
+   "sel": "single",
+   "modes": "research",
+   "kind": "skill"
+  },
+  "second": {
+   "skill": "cli-external-orchestration",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "sk-doc",
+   "conf": 0.82,
+   "unc": 0.26,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ }
+]

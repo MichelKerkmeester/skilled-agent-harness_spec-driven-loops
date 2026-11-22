@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.29.0
+version: 1.14.30.0
 ---
 
 # deep-research
@@ -56,7 +56,7 @@ Expected output: auto resolves setup without a prompt, writes the first packet f
 **Step 2: Run the primary workflow.** Bound the run with flags.
 
 ```bash
-/deep:research:auto "API backpressure patterns" --max-iterations 6 --convergence 0.03
+/deep:research:auto "API backpressure patterns" --max-iterations=6 --convergence=0.03
 ```
 
 Expected output: the loop stops at the six-round cap or when the legal-stop gates pass, then writes `{spec_folder}/research/research.md` with the synthesized findings. The iteration trail sits under `{spec_folder}/research/iterations/`.

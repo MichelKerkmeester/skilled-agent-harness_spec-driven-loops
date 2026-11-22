@@ -1,5 +1,5 @@
 {
-  "corpusHash": "960942ae94ba6ebba40554f8762290175b3bb76838c57097dc22f8578a204282",
+  "corpusHash": "08e9d1df6088021d87918cbeecb666d2be6ee00b85025a8c496bb6cdd6fa54a2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29235,
+  "includedPathCount": 29300,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -20340,6 +20340,13 @@
     "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/011-surfacing-scorer-follow-ups/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/timeline.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/implementation-summary.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/spec.md",
@@ -20407,6 +20414,64 @@
     "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/spec.md",
     "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/tasks.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/acceptance-criteria.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/decision-record.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/implementation-summary.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/plan.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/spec.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/tasks.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/timeline.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/acceptance-criteria.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/decision-record.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/implementation-summary.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/plan.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/spec.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/tasks.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/timeline.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/acceptance-criteria.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/decision-record.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/implementation-summary.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/plan.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/spec.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/tasks.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/timeline.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/acceptance-criteria.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/decision-record.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/implementation-summary.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/plan.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/spec.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/tasks.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/timeline.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/acceptance-criteria.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/decision-record.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/implementation-summary.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/plan.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/spec.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/tasks.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/timeline.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/acceptance-criteria.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/decision-record.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/implementation-summary.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/plan.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/spec.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/tasks.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/timeline.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/acceptance-criteria.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/decision-record.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/implementation-summary.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/plan.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/spec.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/tasks.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/timeline.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/acceptance-criteria.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/decision-record.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/implementation-summary.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/plan.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/spec.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/tasks.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/timeline.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/decision-record.md",
+    "specs/system-skilled-bots/001-headless-bots-first-build/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/acceptance-criteria.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/goal.md",
@@ -29267,7 +29332,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "540c35264c493562ae90692a4f7a933dd5d442dd00c81bde4cfe26e6346cf511",
+  "manifestHash": "d580d00c5c13921de8438952f96b043d892254ad0122f7e0f2894077055c3556",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -38370,6 +38435,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
       "reason": "excluded directory"
     },
@@ -38423,6 +38492,38 @@
     },
     {
       "path": "specs/system-skill-advisor/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch",
       "reason": "excluded directory"
     },
     {

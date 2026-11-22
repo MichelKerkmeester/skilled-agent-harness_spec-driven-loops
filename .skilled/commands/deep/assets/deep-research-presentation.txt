@@ -10,6 +10,51 @@ For `:confirm` or no suffix, the consolidated setup prompt MUST be the first vis
 
 For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the workflow YAML only after all required values are bound.
 
+### Offer From an Advisor Brief
+
+Use this when the operator did not type the command and one of two things brought you here: a
+brief or advisor result named `/deep:research` with policy `ask` or with no policy, or the
+request asks for the loop itself. Asking for the loop means it names a deep loop, deep research
+or a research loop, gives an iteration count or says "iterations", "iterative" or
+"iteratively", says multi-pass or several passes, or asks to continue, resume or extend a deep
+run. Depth words alone, such as "thorough", "in depth", "exhaustive" or "deep dive", are not a
+loop ask: answer those in one pass and offer nothing. A missing policy counts as `ask`. An
+attached `:auto` or `:confirm` suffix means the mode is already chosen, so skip the offer: that
+covers the run you start after a yes and any dispatched child. A brief whose policy is `run` or
+`start` follows that policy, not this offer.
+
+Ask once, through the question tool that `.skilled/repo-rules/communication-handoff.md` §5
+names for your runtime, in the same call as the Gate 3 spec folder question. The offer is one
+question with exactly three options, so it fits a tool that takes two to four. Put one composed
+invocation in front of the operator, mark it recommended and say what it spends. Only where §5
+names no tool for this session, print the offer as text.
+
+  Run a deep research loop on "<topic>"?
+  A) Run it (Recommended): <composed invocation>
+     Up to <N> iterations on <executor>. Writes to <spec folder>/research/. <one clause per flag you added and why>
+  B) Step through setup first: /deep:research:confirm "<topic>"
+     Asks every setup value and stops for approval before each iteration.
+  C) No loop. Answer in one pass.
+
+Compose the invocation from what the request says. Add a flag only on its signal, and write
+every flag with `=`.
+
+| The request says | Add |
+|---|---|
+| Nothing beyond the topic | No flags: 10 iterations, convergence 0.05, the native executor |
+| A broad or open topic, "everything about", "map the space", "follow the questions it raises" | `--depth-mode=expansive`. With no `--max-iterations` the run sizes its own budget from the seed, between 10 and 24 |
+| An iteration count | `--max-iterations=N`. Add `--stop-policy=max-iterations` when the operator wants exactly N |
+| One executor or model by name | `--executor=<kind>`, plus `--model=<id>` and `--reasoning-effort=<level>` when given. With no executor or model named, add none: the run stays native |
+| Two or more executors or models by name, or independent takes | One `--executor=<kind>` group each, `cli-*` kinds only, since a native lineage is refused in fan-out, and `--concurrency=N` (default 2). Independent takes from one named `cli-*` executor use `--count=N` on its group. A single named executor with no ask for independent takes is never fan-out |
+| More passes on a run whose `research/deep-research-config.json` says `"status": "complete"` | `--extend=N` on the same topic and spec folder, plus `--extend-minutes=M` when it stopped on its duration budget. Refused with fan-out. Add open questions to `research/inbox.jsonl` first, or the extension can stop at once |
+| An unfinished run to pick up | `--lineage-mode=resume` |
+| Start over on an existing packet | `--restart`, which archives the current `research/` tree |
+| "Show me first", "before it spends anything", or a fan-out the operator did not spell out | `--dry-run` |
+
+On A, run the composed invocation with the `:auto` suffix and `--spec-folder=<the Gate 3 answer>`.
+On B, run `/deep:research:confirm` with the same topic and flags. On C, answer directly.
+Report `COMMAND: /deep:research → [started|declined]`.
+
 ### `:auto` Setup Resolution
 
 Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`.
@@ -171,7 +216,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
-6. ASK with SINGLE prompt (include only applicable questions):
+6. Ask only the applicable questions, together in one turn, through the question tool that `.skilled/repo-rules/communication-handoff.md` §5 names for your runtime. Each question below becomes one tool question with its lettered options as the choices, and a free-text item such as a topic or a path is answered through the tool's own free-text option. When the tool caps how many questions one call holds, make consecutive calls in the same turn. Only where §5 names no tool for this session, print the form below as text. Do not split these questions across turns.
+   - No question carries more than four lettered options, so each fits a tool that takes two to four. Mark the recommended option in each.
    - Include Q-Exec only when `--executor` is NOT present and the topic text does NOT already mention executor hints such as `cli-opencode`, `cli-claude-code`, or `gpt-5.4`
    - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
 
@@ -183,24 +229,33 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      C) Related (Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track) [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
-     A) Autonomous -- all iterations without approval
-     B) Interactive -- pause at each iteration for review
+     A) Autonomous (Recommended) -- runs every iteration, then reports
+     B) Interactive -- stops for approval before each iteration, up to the iteration cap
 
    Q3. Max Iterations (if not set via flag):
-     Default is 10. Change? [Enter number or press enter for default]
+     A) 10 (Recommended, default)
+     B) 5 -- a short pass
+     C) 15 -- a longer run
+     Any other number goes through the free-text option.
 
-   Q-Exec. Executor (optional, press enter for default):
-     A) Native (default) — dispatch via @deep-research agent with Opus.
-     B) cli-opencode — `opencode run --standalone -m X[#Y] --format json --auto "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is always passed; under `workspace-write` (the default) an inline `OPENCODE_CONFIG_CONTENT` denies `external_directory` to the file tools, Bash is not confined, and `read-only` is refused. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
-     C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`; the default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier. It logs `--output-format stream-json --verbose`, and a single-executor iteration writes its session cost to `iterations/iteration-NNN.cost.json`.
-     D) cli-codex — requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
-     E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
-     F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
-     G) cli-pi — requires `pi`, run as `pi -p --offline --model SELECTOR` (`provider/model`). Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`. Pi has no OS sandbox: `--sandbox-mode=read-only` narrows its tools to `read,grep,find,ls` and passes `--no-extensions --no-skills --no-prompt-templates` (a compensating control), and the other modes pass no restriction.
-     H) cli-deepseek-harness (experimental, explicit choice only) — a single lineage such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash` runs in `:auto` through the shared fan-out command builder, and a fan-out shape such as `--count=2` also works. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
-     B-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
+   Q-Exec. Executor (optional):
+     A) Native (Recommended, default) — dispatch via @deep-research agent with Opus.
+     B) cli-opencode — runs `opencode run`, with the model given as `provider/model`.
+     C) cli-claude-code — runs `claude -p`, with the model and an optional config dir.
+     D) cli-codex — runs `codex`, with optional reasoning effort and service tier.
+     Name cli-cursor, cli-devin, cli-pi or cli-deepseek-harness (experimental, explicit choice only), with its model, through the free-text option.
 
-   Reply format examples:
+   What each executor needs:
+     - cli-opencode: `opencode run --standalone -m X[#Y] --format json --auto "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is always passed; under `workspace-write` (the default) an inline `OPENCODE_CONFIG_CONTENT` denies `external_directory` to the file tools, Bash is not confined, and `read-only` is refused. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
+     - cli-claude-code: `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`; the default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier. It logs `--output-format stream-json --verbose`, and a single-executor iteration writes its session cost to `iterations/iteration-NNN.cost.json`.
+     - cli-codex: requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
+     - cli-cursor: requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
+     - cli-devin: requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
+     - cli-pi: requires `pi`, run as `pi -p --offline --model SELECTOR` (`provider/model`). Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`. Pi has no OS sandbox: `--sandbox-mode=read-only` narrows its tools to `read,grep,find,ls` and passes `--no-extensions --no-skills --no-prompt-templates` (a compensating control), and the other modes pass no restriction.
+     - cli-deepseek-harness: a single lineage such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash` runs in `:auto` through the shared fan-out command builder, and a fan-out shape such as `--count=2` also works. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
+     Every CLI executor builds its command through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
+
+   Reply format examples, for the printed-text fallback only:
    - `"A, A"`
    - `"WebSocket research, A, B, 15"`
    - `"WebSocket reconnection strategies, B, A, 10, 0.05, B, gpt-5.4, high, fast"`
@@ -230,7 +285,7 @@ STOP HERE - Wait for user answers before continuing.
 
 DO NOT proceed until user explicitly answers
 NEVER auto-create spec folders without confirmation
-NEVER split questions into multiple prompts
+NEVER split these questions across turns
 ```
 
 **Phase Output:**
@@ -384,7 +439,7 @@ For code review, see `deep-review` skill (`.skilled/skills/system-deep-loop/deep
 # Single-executor (default — unchanged)
 /deep:research:auto "WebSocket reconnection strategies across browsers"
 /deep:research:confirm "distributed caching patterns for microservices"
-/deep:research:auto "API rate limiting approaches" --max-iterations 5 --convergence 0.10
+/deep:research:auto "API rate limiting approaches" --max-iterations=5 --convergence=0.10
 
 # Fan-out: two CLI lineages in parallel (cli-opencode + cli-claude-code)
 /deep:research:auto "caching patterns" \
@@ -415,6 +470,8 @@ For code review, see `deep-review` skill (`.skilled/skills/system-deep-loop/deep
 | Research complete, ready to plan | `/speckit:plan [feature]` | Use findings for spec/plan |
 | Need more investigation | `/deep:research [new-topic]` | Another deep research session |
 | Need code/spec audit | `/deep:review [target]` | Iterative code review |
+| Stopped on `maxIterationsReached` or `maxDurationReached` with questions open | `/deep:research:auto "[same topic]" --spec-folder=[path] --extend=N` | Adds N iterations to this run in place |
+| A run never converges, or its coverage graph looks empty or stale | `/doctor:deep-loop --scope=research` | Read-only graph and convergence check |
 | Want to refresh search support | `/speckit:save [spec-folder]` | Refresh the packet's generated metadata while canonical continuity stays in spec docs |
 
 ### Key Differences (vs. single-pass research)

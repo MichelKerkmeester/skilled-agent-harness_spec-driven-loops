@@ -58,6 +58,7 @@ No workflow-asset gap exists for this command.
 
 ## 3. MODE ROUTING
 
+0. When no `:auto` or `:confirm` suffix is attached, the operator did not type this command, and either a brief named it with policy `ask` or no policy or the request asks for the loop itself, compose and ask the offer in the presentation contract's "Offer From an Advisor Brief" section before anything else. A missing advisor policy counts as `ask`. After a yes, run it with the `:auto` suffix, the composed flags and the Gate 3 answer as its spec folder.
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
 2. Treat `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--dry-run`, `--spec-folder`, `--executor`, `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`, `--executors`, `--concurrency`, and `--no-resource-map` as workflow inputs, not execution modes.
 3. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, scope-extracted spec-folder paths, and the presentation contract's default resolution table. When all required fields are resolved, persist `{artifact_dir}/deep-research-config.json`, bind runtime YAML placeholders, and load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`.

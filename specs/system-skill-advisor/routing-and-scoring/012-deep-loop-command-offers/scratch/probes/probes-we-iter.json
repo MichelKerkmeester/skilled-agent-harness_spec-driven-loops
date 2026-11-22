@@ -1,0 +1,6 @@
+[
+ {"id": "IT1", "prompt": "run 5 review iterations on the parser"},
+ {"id": "IT2", "prompt": "do a thorough code review of the parser"},
+ {"id": "IT3", "prompt": "review the parser over several passes and audit nothing else"},
+ {"id": "IT4", "prompt": "run a deep review loop"}
+]

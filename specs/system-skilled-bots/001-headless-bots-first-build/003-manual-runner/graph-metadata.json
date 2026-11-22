@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/001-headless-bots-first-build/003-manual-runner",
+  "spec_folder": "system-skilled-bots/001-headless-bots-first-build/003-manual-runner",
+  "parent_id": "system-skilled-bots/001-headless-bots-first-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manual runner",
+      "phase 3 manual runner",
+      "bots run",
+      "bot runner kill switches",
+      "bots inbox",
+      "needs-you hold",
+      "needs-you decision queue",
+      "manual runner plan",
+      "manual runner tasks",
+      "manual runner acceptance criteria",
+      "manual runner decision record",
+      "manual runner implementation summary"
+    ],
+    "key_topics": [
+      "manual",
+      "runner",
+      "phase",
+      "bots",
+      "run",
+      "bot",
+      "kill",
+      "switches",
+      "inbox",
+      "needs-you",
+      "hold",
+      "decision"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/bin/compiled-route.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs",
+      ".skilled/commands/deep/assets/deep-review.yaml",
+      ".skilled/commands/deep/assets/deep-research.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-taxonomy.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "append-mode-event.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-heartbeat.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A bot is a `BOT.md` file, but nothing can run one",
+    "created_at": "2026-11-22T10:48:28Z",
+    "last_save_at": "2026-11-22T12:46:30.359Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2e98e53283fa9c986051d2b99a413a501738a5c3f49077c28d2438347a8d42d3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f4d2993f0850be604161cf40f7461d1570e248185c121737b5a26a081a076f26",
+      "plan.md": "f9ac1a0e8400bb793ae2a028b9961c276bffc9635a9172f068ed1e0630063e14",
+      "tasks.md": "6e875aac61af12b61ff572acd1b9e517fc5e2eb0a499e14b1c35b1d3c016d222",
+      "decision-record.md": "0a966164eb427ec9d700f0438876ae9651287f5fb06eba7e56f8a8b8c2c650e3",
+      "implementation-summary.md": "b048d62c855222f01135474dafd679eb7e4e4e4223241ea15c4f6dd1f0c4c1a8"
+    },
+    "last_active_at": null
+  }
+}

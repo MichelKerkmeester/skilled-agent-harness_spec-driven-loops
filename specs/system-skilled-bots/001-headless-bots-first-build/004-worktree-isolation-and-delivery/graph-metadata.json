@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery",
+  "spec_folder": "system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery",
+  "parent_id": "system-skilled-bots/001-headless-bots-first-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "worktree isolation and delivery",
+      "phase 4 worktree isolation and delivery",
+      "bots worktree run",
+      "bots delivery channels",
+      "worktree isolation and delivery plan",
+      "worktree isolation and delivery tasks",
+      "worktree isolation and delivery acceptance criteria",
+      "worktree isolation and delivery decision record",
+      "worktree isolation and delivery implementation summary"
+    ],
+    "key_topics": [
+      "worktree",
+      "isolation",
+      "delivery",
+      "phase",
+      "bots",
+      "run",
+      "channels",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      ".skilled/bin/worktree-reaper.sh",
+      ".skilled/bin/worktree-session.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runner",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 3 a bot that edits files must run in the operator's shared checkout, because the runner refuses `isolation: worktree` as a posture it cannot honor yet",
+    "created_at": "2026-11-22T10:48:29Z",
+    "last_save_at": "2026-11-22T11:39:44.451Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c52c174d05c466f5b6aca9e1e9cda908c3293585aa648363078fcd7f79a5efe0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "21162453fea9f635f8cfee888f03fa9b969c70acf35bd0197ac5d9ae54fbefb1",
+      "plan.md": "f4db3dd36e7cf0e51334eacab7d07c986af8f8b02a337d807e119cfc2bfc08a1",
+      "tasks.md": "5e1b455138ab4b89ebdea74b6ae9d6d9ea251eead8ccbad4d0a65e3c062f2b0d",
+      "decision-record.md": "9a47f602fdbe091594e15b1c07c7bfadf002343c5e8d6bf0505e914334105adb",
+      "implementation-summary.md": "0af6e8e129cab44ec2ba5da29a34e16e733e6bc27b9d3bea23b38b433f86171e"
+    },
+    "last_active_at": null
+  }
+}

@@ -78,6 +78,7 @@ This contract is your instruction set. The review target is the bound spec_folde
 
 ## 3. MODE ROUTING
 
+0. When no `:auto` or `:confirm` suffix is attached, the operator did not type this command, and either a brief named it with policy `ask` or no policy or the request asks for the loop itself, compose and ask the offer in the presentation contract's "Offer From an Advisor Brief" section before anything else. A missing advisor policy counts as `ask`. After a yes, run it with the `:auto` suffix, the composed flags and the Gate 3 answer as its spec folder.
 1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:review:auto` and `/deep:review:confirm`.
 2. Treat the target text, pre-bound setup answers and every flag in the Workflow Flag Surface table below as workflow inputs, not execution modes. The table is the only list of flags.
 3. If `:auto` is present, set `execution_mode = AUTONOMOUS` and resolve required setup inputs through the presentation contract's three-tier auto setup resolution before loading YAML.

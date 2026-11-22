@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7189,
-    "ok": 20418,
+    "ok": 20483,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29235,
+  "documentsScanned": 29300,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "540c35264c493562ae90692a4f7a933dd5d442dd00c81bde4cfe26e6346cf511",
+  "manifestHash": "d580d00c5c13921de8438952f96b043d892254ad0122f7e0f2894077055c3556",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46048,
+      "ok": 46140,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -63678,6 +63678,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
       "reason": "excluded directory"
     },
@@ -63731,6 +63735,38 @@
     },
     {
       "path": "specs/system-skill-advisor/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch",
       "reason": "excluded directory"
     },
     {
