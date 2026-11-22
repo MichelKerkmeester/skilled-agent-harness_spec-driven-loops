@@ -445,8 +445,9 @@ function headSha(dir) {
  * Work out which skill owns the run folders.
  *
  * A mode packet with no benchmark folder of its own saves into its hub, so --reports may name
- * a reports folder higher up. It must still belong to a skill that contains the playbook, or a
- * typo would scatter run folders anywhere on disk.
+ * the hub's reports folder one level up. Only the skill itself or its direct parent hub, a folder
+ * holding mode-registry.json, may own the runs, or a typo would scatter run folders anywhere on disk. Paths are compared after
+ * resolving symlinks, so one folder reached two ways is still one folder.
  *
  * @param {string} playbookRoot - Playbook root.
  * @param {string|undefined} reports - The --reports value, if given.
@@ -460,9 +461,12 @@ function resolveReports(playbookRoot, reports) {
   if (path.basename(reportsDir) !== 'reports' || path.basename(path.dirname(reportsDir)) !== 'benchmark') {
     return { ownerRoot, reportsDir, problem: `--reports must end in benchmark/reports: ${reportsDir}` };
   }
-  const inside = path.relative(ownerRoot, playbookRoot);
-  if (inside.startsWith('..') || path.isAbsolute(inside)) {
-    return { ownerRoot, reportsDir, problem: `--reports belongs to ${ownerRoot}, which does not contain the playbook ${playbookRoot}` };
+  const real = (p) => (fs.existsSync(p) ? fs.realpathSync(p) : path.resolve(p));
+  const owner = real(ownerRoot);
+  const skill = real(skillRoot);
+  const isHub = owner === path.dirname(skill) && fs.existsSync(path.join(owner, 'mode-registry.json'));
+  if (owner !== skill && !isHub) {
+    return { ownerRoot, reportsDir, problem: `--reports must be the reports folder of ${skillRoot} or of a parent hub holding mode-registry.json, not of ${ownerRoot}` };
   }
   return { ownerRoot, reportsDir, problem: null };
 }

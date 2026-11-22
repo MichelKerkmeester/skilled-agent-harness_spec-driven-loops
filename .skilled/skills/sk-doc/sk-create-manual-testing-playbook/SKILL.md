@@ -2,7 +2,7 @@
 name: sk-create-manual-testing-playbook
 description: Author manual testing playbook packages with deterministic scenarios, evidence collection, and multi-agent execution planning.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 # Manual Testing Playbook Creation
@@ -239,8 +239,8 @@ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-pla
 A mode packet with no `benchmark/` of its own saves into its hub's report tree. Add
 `--reports .skilled/skills/<hub-id>/benchmark/reports` to either command, and pass the same `--reports` to
 `run-conversation-scenario.cjs` so the command it prints names the hub. The recorder refuses a `--reports`
-path that does not end in `benchmark/reports` or whose skill does not contain the playbook. A new index there
-carries the hub's name.
+path that does not end in `benchmark/reports`, and one that belongs to anything other than the playbook's own
+skill or its direct parent hub, a folder holding `mode-registry.json`, symlinks resolved. A new index there carries the hub's name.
 
 The recorder writes `results.csv`, `README.md` and `source.md` into a new dated folder and puts the run's row
 first in `benchmark/reports/README.md`, creating that index when the skill has none. The other files in the

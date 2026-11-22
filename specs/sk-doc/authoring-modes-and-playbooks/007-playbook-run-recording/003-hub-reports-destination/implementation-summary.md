@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "A mode packet with no benchmark folder of its own can now save its playbook runs where its playbook says. Passing --reports with the owning hub's reports folder lands the run there, and the recorder refuses any folder that would put it outside its hub."
+description: "A mode packet with no benchmark folder of its own can now save its playbook runs where its playbook says. Passing --reports with the owning hub's reports folder lands the run there, and the recorder refuses any folder other than the playbook's own skill or its direct parent hub, a folder holding `mode-registry.json`."
 trigger_phrases:
   - "hub reports destination implementation summary"
 importance_tier: "normal"
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A mode packet with no benchmark folder of its own can now save its playbook runs where its playbook says. Pass `--reports` with the owning hub's reports folder, and the run lands there, with the hub named in the reports index and in the run's `source.md`. The recorder refuses any folder that would put a run outside its hub.
+A mode packet with no benchmark folder of its own can now save its playbook runs where its playbook says. Pass `--reports` with the owning hub's reports folder, and the run lands there, with the hub named in the reports index and in the run's `source.md`. The recorder refuses any folder other than the playbook's own skill or its direct parent hub, a folder holding `mode-registry.json`.
 
 ### Phase 3: hub-reports-destination
 
@@ -58,11 +58,12 @@ Before this phase the recorder wrote only into the playbook's own skill. Three p
 |------|--------|---------|
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs` | Modified | `--reports DIR` and the exported `resolveReports` refusal rules |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | Modified | Forwards `--reports` into the printed `save results:` command |
-| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/record-playbook-run.test.cjs` | Modified | `runHubReports`, 8 assertions |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/record-playbook-run.test.cjs` | Modified | `runHubReports`, 8 assertions, then 14 in the review follow-up |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs` | Modified | Passes `--reports` and asserts the printed command carries it |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md` | Modified | `--reports` paragraph under "Recording A Run"; version 1.3.0.0 |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md` | Modified | One sentence on `--reports`; version 1.0.3.0 |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.0.0.md` | Created | Changelog entry that names this phase's spec folder |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.1.0.md` | Created | Review follow-up: the tighter `--reports` check |
 | `.skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md` | Modified | Result block names `--reports`; version 1.1.4.0 |
 | `.skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md` | Modified | Result block names `--reports`; version 1.0.4.0 |
 | `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/manual-testing-playbook.md` | Modified | Root block names `--reports`; version 1.0.12.0 |
@@ -70,6 +71,9 @@ Before this phase the recorder wrote only into the playbook's own skill. Three p
 | `.skilled/skills/cli-external-orchestration/benchmark/reports/2026-11-14--manual-testing-playbook--recorded-results/` | Created | Recorder-written run folder, 22 PASS |
 | `.skilled/skills/cli-external-orchestration/benchmark/reports/2026-11-15--manual-testing-playbook--recorded-results/` | Created | Recorder-written run folder, 3 PASS |
 | `.skilled/skills/cli-external-orchestration/benchmark/reports/README.md` | Created | Reports index the recorder wrote for those two runs |
+### Review follow-up
+
+An independent review after commit `413d3268b8a` found that the first `--reports` check only asked whether the folder above `benchmark/reports` contained the playbook. Any folder above the playbook passed: a dry run accepted the repository root, the disk root and a folder inside the playbook. `resolveReports` now accepts only the playbook's own skill or its direct parent hub, a folder holding `mode-registry.json`, and the parent counts as a hub only when it holds `mode-registry.json`, so `.skilled/skills/` is never an owner. Paths are compared after resolving symlinks. Run against each earlier version of the check, the new test fails on its first new assertion: "a folder above the hub is refused", then "a parent folder without mode-registry.json is not a hub and is refused". The same review found that `sk-code-ci` and `sk-code-frontend` still carried the old paragraph saying a run is written by hand and leaves the index alone, which contradicted the recorder command above it. That paragraph is removed, and the two roots are now 1.1.5.0 and 1.0.5.0. SKILL.md is 1.3.1.0 with changelog `v1.3.1.0.md`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -100,7 +104,7 @@ The recorder and runner changes, their tests, the three roots and the moved bloc
 
 | Check | Result |
 |-------|--------|
-| `node scripts/tests/record-playbook-run.test.cjs` | Exit 0. Five suites print PASS: happy path 8, refusals 8, hub reports 8, runner hand-off 9, edge cases 11 assertions |
+| `node scripts/tests/record-playbook-run.test.cjs` | Exit 0. Five suites print PASS: happy path 8, refusals 8, hub reports 8, runner hand-off 9, edge cases 11 assertions. After the review follow-up, hub reports prints 14 |
 | `node --test scripts/tests/run-conversation-scenario.test.cjs` | Exit 0, `fail 0` |
 | `node scripts/tests/validate-playbook-package.test.cjs` | Exit 0. Prompt sync 8, piped report 2, conversation script 114 assertions PASS |
 | `validate-playbook-package.cjs --package` on sk-code-ci, sk-code-frontend and cli-mistral-vibe | Exit 0 each, `violations=0`, `warnings=0`; 8, 11 and 55 scenarios |
@@ -119,7 +123,7 @@ The recorder and runner changes, their tests, the three roots and the moved bloc
 
 1. **The flag is opt-in.** A mode packet that omits `--reports` still writes into its own skill, so a playbook that does not name the flag keeps the old behavior.
 2. **The 25 verdicts are the blocks as they were recorded.** No scenario ran again, so these reports show the state of those earlier runs, not a fresh run.
-3. **The parent's Out of Scope bullet disagrees with the move.** The bullet excludes rewriting existing run reports. The open question is in `spec.md` section 10, and the parent scope is not edited here.
+3. **The parent's Out of Scope bullet was amended.** It excluded rewriting existing run reports. The operator amended it on 2026-11-22 so that moving verdicts out of scenario files into recorder runs is in scope.
 <!-- /ANCHOR:limitations -->
 
 ---

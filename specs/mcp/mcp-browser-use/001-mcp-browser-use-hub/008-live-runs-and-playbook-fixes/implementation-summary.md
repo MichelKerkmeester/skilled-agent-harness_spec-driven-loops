@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Live Bladebro and Aside verdicts for the signed-in browser paths, corrected scenario forms in three browser playbooks, a Bladebro package with catalog, examples and server docs, and a review follow-up that fixed the findings of an independent review."
 trigger_phrases:
   - "live runs and playbook fixes implementation summary"
 importance_tier: "normal"
@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes"
-    last_updated_at: "2026-11-22T12:00:50Z"
+    last_updated_at: "2026-11-22T17:15:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Recorded what the packet documents and the checks run on the authoring date"
-    next_safe_action: "Operator reviews the packet; commit and push wait for approval"
+    recent_action: "Fixed the independent review findings for the browser hub and recorded them"
+    next_safe_action: "Operator decides on commit and push of the review follow-up"
     blockers: []
     key_files: []
     session_dedup:
@@ -69,6 +69,19 @@ This phase documents the work done on 2026-11-22, after 007 closed. The operator
 | `/Users/michelkerkmeester/worktrees/public/505-mcp-browser-use-hub` | Deleted | Unregistered 4.3 GB leftover, outside this repository |
 
 The skill and playbook rows were written before this packet existed. This packet records them and does not change them.
+
+### Review follow-up
+
+An independent review of the first pass, run after commit `413d3268b8a`, found the problems below in the browser hub. The operator asked for all of them to be fixed.
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `mcp-bladebro/manual-testing-playbook/real-browser/attach-mode-reads.md` | Modified, 1.0.1.0 | The eval returns two booleans and never the hostname, which on a site with one subdomain per customer names the workspace. The `--port` citation names the catalog entry, because `cli-reference.md` does not list the flag |
+| `mcp-bladebro/examples/attach-read.sh`, `examples/README.md` | Modified | The same two-boolean eval. The script refuses a URL with a quote or a backslash, because the URL sits in a quoted JavaScript string |
+| `mcp-aside-devtools/manual-testing-playbook/probes-and-gaps/{console-probe,network-probe}.md`, `devtools-parity/cookies-storage.md` | Modified | A PASS reason opens with the outcome, so an index row never reads as a working capture |
+| `mcp-aside-devtools/SKILL.md` (1.1.12.0), `feature-catalog/feature-catalog.md`, `feature-catalog/devtools-parity/{console-and-network-capture,cookies-and-storage}.md` | Modified | Console, network and context cookies are recorded as gaps on 1.26.626.1517, matching the live runs |
+| `mcp-chrome-devtools/references/{session-management,troubleshooting,cdp-patterns}.md`, `feature-catalog/cli-bdg-lifecycle/session-status.md` | Modified | Every `bdg status` check uses `--json` and `.active`. Plain `bdg status` prints text, and its no-session text contains the word "active", so the old `grep -q "active"` test was always true |
+| `mcp-chrome-devtools/manual-testing-playbook/manual-testing-playbook.md` | Modified, 1.0.7.0 | The hand-typed census of 22 scenarios is gone; the validator derives 30 across 7 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -109,14 +122,14 @@ The skill and playbook rows were written before this packet existed. This packet
 |-------|--------|
 | `validate-playbook-package.cjs --package mcp-browser-use/mcp-bladebro` | Exit 0. `scenarios=15 violations=0 warnings=0` |
 | `validate-playbook-package.cjs --package mcp-browser-use/mcp-aside-devtools` | Exit 0. `scenarios=29 violations=0 warnings=1`, and the warning is a census that predates this packet |
-| `validate-playbook-package.cjs --package mcp-browser-use/mcp-chrome-devtools` | Exit 0. `scenarios=30 violations=0 warnings=2`, and both census warnings predate this packet |
+| `validate-playbook-package.cjs --package mcp-browser-use/mcp-chrome-devtools` | Exit 0. `scenarios=30 violations=0 warnings=2` at first, both census warnings that predate this packet. `warnings=0` after the review follow-up removed the hand-typed census |
 | `validate_catalog_package.py --package mcp-browser-use/mcp-bladebro` | Exit 0. 0 violations. 18 markdown files in `feature-catalog/` |
 | `awk` over each `results.csv` | Bladebro 4 PASS and 1 FAIL over 5 rows. Aside 10 PASS and 5 FAIL over 15 rows |
 | Email-pattern scan of the six run files | 0 matches |
 | `ls` of the 505 path and `git worktree list` | `ls` exits 1 with `No such file or directory`. No worktree is registered for 505, and no branch matches `*505*` |
 | Port 9333 | `curl` exits 7, so the port is closed |
-| `bdg` daemon, pid 47157 | Still running at the last check. It was not stopped |
-| `validate.sh --strict` on this child and on the parent | Run last. The printed `RESULT:` lines are reported with the completion message |
+| `bdg` daemon, pid 47157 | Stopped on the operator's instruction after the first pass. `pgrep -f browser-debugger-cli` then found no process |
+| `validate.sh --strict` on this child and on the parent | `RESULT: PASSED` with 0 errors and 0 warnings on this child after the review follow-up; `--recursive --strict` on the parent prints `RESULT: PASSED` for all 9 folders |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -126,12 +139,12 @@ The skill and playbook rows were written before this packet existed. This packet
 
 1. **Rewritten Aside forms ran live afterwards.** The rerun `2026-11-22--manual-testing-playbook--rewritten-forms-rerun` gave 8 PASS and 2 FAIL. ASD-012 and ASD-013 failed because an early `return` in their `catch` dropped the logged line. With that fixed, `2026-11-22--manual-testing-playbook--probe-guard-fix` gave 2 PASS. The Chrome DevTools rewrites still have no live run, and BDG-015 stays UNKNOWN.
 2. **BDG-015 is UNKNOWN.** Its scenario file still carries the original median-comparison prompt.
-3. **Stale old forms in consumers.** The Aside `SKILL.md`, `README.md`, references, feature catalog and `examples/` still show `/tmp` paths or the old forms. The Chrome DevTools references and the Code Mode `SKILL.md` examples and CM-012 also remain.
-4. **Aside failures stand.** ASD-016 expects an h1 that example.com no longer has. The five Aside FAIL verdicts stay until their scenarios are corrected in a later packet.
+3. **Stale old forms in consumers.** The Aside `README.md`, references and `examples/` still show `/tmp` paths or the old forms, and the Code Mode `SKILL.md` examples and CM-012 remain. The Aside `SKILL.md` and catalog rows and the Chrome DevTools `bdg status` checks were fixed in the review follow-up. The `.active` field is read from the bdg 0.6.10 source (`formatStatusAsJson`, printed unwrapped by `CommandRunner` under `--json`), not from a live run.
+4. **The first Aside failures are history.** The signed-in run's five FAILs (ASD-007, 016, 017, 018 and 019) stay in that run folder. All five passed in the `rewritten-forms-rerun` folder after their forms were corrected.
 5. **Raw evidence is not in the repository.** Each run's `source.md` records that the raw evidence files were written outside the repository and were not kept. The verdicts can be re-read from the CSV but not from the raw output. BB-010, BB-011, BB-013 and BB-015 have no reason text.
 6. **Stale branch metadata.** The parent's Branch row and 007's Branch row still name `worktrees/505-mcp-browser-use-hub`, which no longer exists.
-7. **Not committed.** Commit and push wait for the operator's approval. The trigger index needs a rebuild after the new files are tracked.
-8. **Background daemon.** The `bdg` daemon, pid 47157, is still running and needs the operator's decision.
+7. **Committed.** The first pass is commit `413d3268b8a`, merged as `88ac6b93b7f` and pushed. The review follow-up is not committed yet.
+8. **Chrome DevTools rewrites are still not live-tested.** No Chrome DevTools run folder exists. A live run of that lane needs the operator's approval.
 <!-- /ANCHOR:limitations -->
 
 ---

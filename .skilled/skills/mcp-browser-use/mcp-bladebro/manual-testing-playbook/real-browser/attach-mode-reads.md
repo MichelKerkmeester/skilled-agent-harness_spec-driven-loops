@@ -1,7 +1,7 @@
 ---
 title: "BB-015 -- Reads in the real-browser lane by attaching to a running browser"
 description: "This scenario validates page reads and an eval for `BB-015` by attaching to a browser the operator already runs on a fixed debug port. It focuses on reaching a signed-in site without copying the profile."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-015 -- Reads in the real-browser lane by attaching to a running browser
@@ -46,18 +46,18 @@ Operators run the exact prompt and command sequence for `BB-015` and confirm the
 2. `curl -s http://127.0.0.1:9333/json/version`
 3. `bladebro see content <target URL> --port 9333 --json`
 4. `bladebro see model --port 9333 --json`
-5. `bladebro act eval "location.hostname + ' ' + /sign ?in|log ?in/i.test(document.title)" --port 9333 --json`
+5. `bladebro act eval "'host-match ' + (location.hostname === new URL('<target URL>').hostname) + ' sign-in ' + /sign ?in|log ?in/i.test(document.title)" --port 9333 --json`
 6. Quit the browser, confirm `curl -s http://127.0.0.1:9333/json/version` gets no answer, then start the browser normally.
 
 ### Expected
 
 - A `"Browser"` line from the debug port
 - The page text and a ref list for the target site
-- The eval result: the target hostname and `false`, so the title is not a sign-in page
+- The eval result `host-match true sign-in false`: the tab is on the target and its title is not a sign-in page
 
 ### Evidence
 
-Every output and exit status. Page text, account names, workspace names and cookie values are never quoted in the record. The record keeps the exit status, the `ok` field and the eval result only.
+Every output and exit status. Page text, hostnames, account names, workspace names and cookie values are never quoted in the record, because on a site with one subdomain per customer the hostname is the workspace name. The record keeps the exit status, the `ok` field and the two eval booleans only.
 
 ### Pass / Fail
 
@@ -86,8 +86,8 @@ Every output and exit status. Page text, account names, workspace names and cook
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/browser-lanes.md` | Agent-browser and real-browser lanes |
-| `.skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md` | Bladebro CLI commands and flags |
-| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/real-browser/attach-mode.md` | Feature catalog entry: Attach mode |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md` | Bladebro CLI commands and the JSON result envelope |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/real-browser/attach-mode.md` | Feature catalog entry: Attach mode and the per-command `--port` flag |
 
 ---
 

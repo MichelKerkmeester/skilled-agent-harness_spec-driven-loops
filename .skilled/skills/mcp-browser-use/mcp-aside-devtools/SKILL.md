@@ -2,7 +2,7 @@
 name: mcp-aside-devtools
 description: "Aside AI-browser orchestrator: routes between the aside CLI (agent tasks + deterministic REPL) and Aside MCP via Code Mode."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.1.11.0
+version: 1.1.12.0
 ---
 
 # Aside Browser Orchestrator - CLI + MCP Integration
@@ -199,10 +199,10 @@ Confidence labels mean: `confirmed` is backed by a fixture and online research; 
 |---|---|---|
 | DOM query / eval | `page.$eval` / `page.evaluate` / `snapshot(page)` | confirmed / skip-valid |
 | Screenshot + PDF | `page.screenshot({ fullPage })` / `page.pdf` | confirmed |
-| Console capture | `page.on('console', ...)` | skip-valid |
-| Network capture | `page.on('request'\|'response', ...)` | skip-valid |
+| Console capture | `page.on('console', ...)` | **gap on 1.26.626.1517 — `page.on` rejects the event** |
+| Network capture | `page.on('request'\|'response', ...)` | **gap on 1.26.626.1517 — `page.on` rejects the events** |
 | HAR export | assemble from events | **gap — no native HAR** |
-| Cookies + storage | `page.context().cookies()` / `page.evaluate(localStorage)` | confirmed / skip-valid |
+| Cookies + storage | `page.evaluate(document.cookie / localStorage)`; `page.context()` is undefined | names and keys run without error on 1.26.626.1517 (ASD-019, a page with no cookies) / **context cookies a gap** |
 | Performance timing | `page.evaluate(performance.getEntriesByType(...))` | confirmed / skip-valid |
 | Lighthouse audit | — external tooling required | **gap — no Lighthouse** |
 | Navigate + multi-tab | `openTab` / `attachActiveBrowserTab` / `page.goto` / `tabs` | confirmed / skip-valid |

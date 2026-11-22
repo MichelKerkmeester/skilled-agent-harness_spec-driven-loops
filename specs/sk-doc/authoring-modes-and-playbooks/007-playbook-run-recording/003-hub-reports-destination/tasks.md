@@ -123,7 +123,7 @@ contextType: "general"
 
 - [x] CHK-020 [P0] All acceptance criteria met. Evidence: acceptance-criteria.md AC-001 to AC-005, each Met.
 - [x] CHK-021 [P0] Manual testing complete. Evidence: the sk-code dry run (T014) exits 0 and writes nothing.
-- [x] CHK-022 [P1] Edge cases tested. Evidence: `runHubReports` refuses a path that does not end in `benchmark/reports` and a foreign reports folder.
+- [x] CHK-022 [P1] Edge cases tested. Evidence: `runHubReports` refuses a path that does not end in `benchmark/reports`, a foreign reports folder, a parent without `mode-registry.json`, a folder above the hub and a folder inside the playbook, and accepts the hub through a symlink.
 - [x] CHK-023 [P1] Error scenarios validated. Evidence: the foreign reports folder is refused and not created, asserted by `runHubReports`.
 <!-- /ANCHOR:testing -->
 

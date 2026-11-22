@@ -19,8 +19,9 @@ const fixtureSource = path.join(__dirname, 'fixtures', 'clean-package');
  * @param {string} label - Temporary folder label.
  * @returns {{skillRoot: string, playbookRoot: string, reportsDir: string}} Paths in the copy.
  */
-function makeSkill(label) {
-  const skillRoot = path.join(fs.mkdtempSync(path.join(os.tmpdir(), `recorder-${label}-`)), 'skill');
+function makeSkill(label, underHub = false) {
+  const base = fs.mkdtempSync(path.join(os.tmpdir(), `recorder-${label}-`));
+  const skillRoot = underHub ? path.join(base, 'hub', 'skill') : path.join(base, 'skill');
   const playbookRoot = path.join(skillRoot, 'manual-testing-playbook');
   fs.cpSync(fixtureSource, playbookRoot, { recursive: true });
   return { skillRoot, playbookRoot, reportsDir: path.join(skillRoot, 'benchmark', 'reports') };
@@ -164,10 +165,14 @@ function runRunnerHandOff() {
 
 function runHubReports() {
   // A mode packet has no benchmark folder, so --reports names its hub's reports folder instead.
-  const { skillRoot, playbookRoot, reportsDir: modeReports } = makeSkill('hub');
+  // The hub sits one level inside the temp folder so a refused ancestor can never be the system temp dir.
+  const { skillRoot, playbookRoot, reportsDir: modeReports } = makeSkill('hub', true);
   const hubRoot = path.dirname(skillRoot);
   const hubReports = path.join(hubRoot, 'benchmark', 'reports');
   const csv = writeCsv(skillRoot, 'scenario_id,verdict,reason,evidence\nFX-001,PASS,,\n');
+  const unmarked = record(['--playbook', playbookRoot, '--results', csv, '--reports', hubReports, '--label', 'manual-testing-playbook--unmarked']);
+  assert.strictEqual(unmarked.status, 1, 'a parent folder without mode-registry.json is not a hub and is refused');
+  fs.writeFileSync(path.join(hubRoot, 'mode-registry.json'), '{}\n');
   const saved = record(['--playbook', playbookRoot, '--results', csv, '--reports', hubReports, '--label', 'manual-testing-playbook--hub']);
   assert.strictEqual(saved.status, 0, `a hub destination that contains the playbook is accepted\n${saved.stderr}`);
   assert(fs.existsSync(path.join(hubReports, '2026-11-22--manual-testing-playbook--hub', 'results.csv')), 'the run lands in the hub');
@@ -183,7 +188,21 @@ function runHubReports() {
   const outside = record(['--playbook', playbookRoot, '--results', csv, '--reports', elsewhere, '--label', 'manual-testing-playbook--outside']);
   assert.strictEqual(outside.status, 1, 'a reports folder whose skill does not contain the playbook is refused');
   assert(!fs.existsSync(elsewhere), 'the refused destination is not created');
-  console.log('recorder hub reports: PASS (8 assertions)');
+
+  const tooHigh = path.join(path.dirname(hubRoot), 'benchmark', 'reports');
+  const ancestor = record(['--playbook', playbookRoot, '--results', csv, '--reports', tooHigh, '--label', 'manual-testing-playbook--ancestor']);
+  assert.strictEqual(ancestor.status, 1, 'a folder above the hub is refused even though it contains the playbook');
+  assert(!fs.existsSync(tooHigh), 'the refused ancestor destination is not created');
+
+  const inPlaybook = path.join(playbookRoot, 'benchmark', 'reports');
+  const nested = record(['--playbook', playbookRoot, '--results', csv, '--reports', inPlaybook, '--label', 'manual-testing-playbook--nested']);
+  assert.strictEqual(nested.status, 1, 'a reports folder inside the playbook is refused');
+
+  const alias = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'recorder-alias-')), 'hub-link');
+  fs.symlinkSync(hubRoot, alias);
+  const viaLink = record(['--playbook', playbookRoot, '--results', csv, '--reports', path.join(alias, 'benchmark', 'reports'), '--label', 'manual-testing-playbook--alias']);
+  assert.strictEqual(viaLink.status, 0, `the hub reached through a symlink is still the hub\n${viaLink.stderr}`);
+  console.log('recorder hub reports: PASS (14 assertions)');
 }
 
 runHappyPath();

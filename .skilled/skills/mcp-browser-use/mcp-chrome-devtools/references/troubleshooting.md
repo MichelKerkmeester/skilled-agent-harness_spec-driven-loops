@@ -10,7 +10,7 @@ trigger_phrases:
   - "jq parse error bdg output"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Troubleshooting Guide
@@ -406,8 +406,8 @@ $ bdg status
 # Check Chrome process
 ps aux | grep chrome
 
-# Check logs
-bdg status 2>&1 | jq '.logs // []'
+# Check the session record
+bdg status --json | jq '.'
 ```
 
 **Solutions**:
@@ -459,7 +459,7 @@ ps aux | grep bdg
 3. **Use session management pattern**:
    ```bash
    # Check before starting
-   if bdg status 2>&1 | jq -e '.state == "active"' > /dev/null; then
+   if bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
      echo "Stopping existing session"
      bdg stop 2>&1
    fi
@@ -559,7 +559,7 @@ Error: No active session
 Start session first:
 ```bash
 # Always verify session before CDP commands
-if ! bdg status 2>&1 | jq -e '.state == "active"' > /dev/null; then
+if ! bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
   bdg https://example.com 2>&1
 fi
 
@@ -581,30 +581,29 @@ parse error: Invalid numeric literal at line 1, column 10
 
 **Diagnosis**:
 ```bash
-# Check raw output
-bdg status 2>&1
-
-# Check if stderr mixed with stdout
+# Plain bdg status prints text for people, not JSON
 bdg status 2>&1 | head
 ```
 
+**Cause**: `bdg status` without `--json` prints a human summary, so `jq` cannot parse it. Its no-session text also contains the word "active", so a `grep active` test is always true.
+
 **Solutions**:
 
-1. **Always use 2>&1 to capture stderr**:
+1. **Ask for JSON**:
    ```bash
-   bdg status 2>&1 | jq '.'
+   bdg status --json | jq '.'
    ```
 
-2. **Filter non-JSON lines**:
+2. **Keep stderr out of the pipe**, so a warning line cannot break the parse:
    ```bash
-   bdg status 2>&1 | grep '^{' | jq '.'
+   bdg status --json 2>/dev/null | jq '.active'
    ```
 
 3. **Handle errors gracefully**:
    ```bash
-   output=$(bdg status 2>&1)
+   output=$(bdg status --json 2>&1)
    if echo "$output" | jq . > /dev/null 2>&1; then
-     echo "$output" | jq '.state'
+     echo "$output" | jq '.active'
    else
      echo "Error: Invalid JSON output"
      echo "$output"

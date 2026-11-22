@@ -1,7 +1,7 @@
 ---
 title: "sk-code-frontend: Manual Testing Playbook"
 description: "Corpus for the sk-code-frontend surface: the routing-recall scenarios for its 11 intents, the evidence a run leaves, and the review rules a release reads."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # sk-code-frontend: Manual Testing Playbook
@@ -16,13 +16,6 @@ Routing-recall corpus for the `sk-code-frontend` surface.
 > with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs
 > --playbook .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook --reports .skilled/skills/sk-code/benchmark/reports
 > --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`.
->
-> The record is written by hand, because the harness that once wrote it was retired with its lane.
-> A manual run produces one dated folder holding a `README.md` with the verdict, the reason, the
-> evidence paths and the scenario ids, and a `source.md` naming the spec packet that holds the raw
-> transcript. The hub's own report index states that its rows are written by that harness at the
-> moment it writes a report, so a hand-written run adds its folder and leaves that index alone; the
-> folder name is what makes it findable.
 
 ---
 
