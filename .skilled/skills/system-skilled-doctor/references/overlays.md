@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.49.0
+version: 1.0.50.0
 ---
 
 # Vendored Skilled Overlays
@@ -123,6 +123,8 @@ Three more `status` lines name work no destination state covers.
 
 `STALE` names a root file owned by a `file` or a `marked-section` overlay that carries `pinnedSha256`. Both scopes pin upstream's copy of the destination. A `file` entry copies that file whole, and a `marked-section` entry keeps it as its `base`. One comparison against the pinned commit therefore catches an upstream move for either one. The line prints even while the entry itself still applies cleanly, which is why it is the only sign the pin is out of date. Without a readable checkout at the pin the check cannot run, and `status` prints a `NOTE` line saying it skipped the check.
 
+A copy that is missing, or the wrong kind for its entry, such as a folder where a `file` entry reads a file or a file where a `directory` entry reads a folder, gets no `LAYOUT` line and stays out of `offLayout` for that entry, and `apply --relayout` does not move it for that entry. A copy another entry also names, where it is the right kind, still moves for that other entry. `status` reports its own problem instead, and that is the line to fix first.
+
 `apply --relayout` moves each off-layout copy onto its layout path, `framework/` for a destination under `.skilled/` and `root/` for any other, and with it a `marked-section` entry's `fragment` and `base`. It refuses, before it writes anything, a manifest whose layout link `path` or `replaces.path` escapes the tree root, as text or through a linked folder on its way: it prints `refuse: layout link path escapes the tree root: <path>` and exits 2. `status` and `apply` refuse the same manifest with exit 2 and `layout link path escapes the tree root: <path>`. The engine also refuses a manifest that lists one layout link `path` twice, before it writes anything: `status` and `apply` exit 2 with `layout link path is listed twice: <path>`, and `apply --relayout` prints `refuse: layout link path is listed twice: <path>` and exits 2. `apply --adopt` checks the layout links the same way before it writes the manifest, and refuses with the same `refuse:` line. It compares normalized paths, with `.` and `..` segments resolved, repeated slashes collapsed and a leading `./` and trailing slashes removed, so `./framework/x/`, `framework//x` and `framework/y/../x` all count as `framework/x`. On a filesystem that ignores letter case, such as macOS's default volume, paths that differ only in case count as one path too, under full Unicode case folding, so `STRASSE` and `straße` are one path there. The composed and decomposed forms of an accented name count as one path on every filesystem. The plan compares each nested link with the links above it the same way, so `EXT` pointing out of the tree with `ext/planted` below it is refused before anything is written. List each link once. When a move would land on a documentation-only README, the relayout refuses with `refuse: a documentation-only README sits at <overlay label>/<path>: merge it into the overlay copy or move it, then relayout`. The relayout copies every path it moves into `<overlayDir>/relayout-runs/<stamp>/` first, inside the overlay folder and keyed from its root, so a sibling folder keeps its own backup, then points the entry's fields and the manifest's layout links at the new path. When writing that backup fails before the first move, the run exits 2 with `error: relayout failed while writing the backup: <message>; nothing was moved and the partial backup was removed`, or, when that removal fails too, with `error: relayout failed while writing the backup: <message>; nothing was moved, but the partial backup at <backup> could not be removed: <message>`. It refuses rather than overwrite a path that already exists, and then it writes nothing. It refuses a move to a path under `root/skilled/` too, such as one for a destination named `skilled/...` at the tree root, because that folder holds no copy: the framework's copies live under `framework/` alone, so one destination never has two sources. A manifest whose `source`, `fragment` or `base` already sits there is a blocked overlay. The run retargets each live link that still named a moved copy and prints a `relinked` line for it. The plain `apply` that follows writes the destinations from the moved copies. When a move, the manifest write or a relink fails part way, the run puts back every copy it moved, the manifest and every link it retargeted, removes its own `relayout-runs/<stamp>/` folder, prints `error: relayout failed while <step>: <message>; every moved copy, the manifest and the links are back as they were` and exits 2. If that restore fails too, the line names the path it could not restore, keeps the backup, names `relayout-runs/<stamp>` as the place that holds every moved copy and the manifest as it was, and the run exits 2. When the backup skipped read-protected token-named files, that line ends instead `the backup at <backup> holds the manifest as it was and every moved copy except these files it skipped: <paths>`. Those skipped files are not in the backup, and they sit wherever the failed restore left them. If everything is back but the backup folder cannot be removed, the line says so, names the backup and the reason, and the run exits 2. When a run finishes but cannot remove an emptied source folder, it prints `note: relayout left an emptied folder in place after moving <path>: <message>`, still prints its moved count and its apply line, and exits 0. Nothing failed, and the empty folder can be removed by hand.
 
 ### Placing a Marked Block
@@ -161,7 +163,7 @@ A relative `pin.checkout` is read from the root of the tree the engine runs on, 
 
 ## 4. WHAT THE ENGINE REFUSES
 
-Most refusals the engine, the doctor scripts and the git hooks print end with a `Next:` line naming the exact command to run, and the folder to run it from. The write guard's refusals name their command inline instead.
+Most refusals the engine, the doctor scripts and the git hooks print end with a `Next:` line naming the exact command to run, and the folder to run it from. The write guard's refusals name their command inline instead. The engine prints a path made only of letters, digits, `.`, `_`, `/` and `-` as it is, and single-quotes any other path, writing a `'` in it as `'\''`. So each command inside a `Next:` line, the re-pin's `rollback:` line and a `fix: ... apply --capture <path>` hint pastes into a shell as printed, even when a path holds a space, a `!` or a `$`. Only the keep-aside `mv` and the `mkdir -p` after it are joined with `&&` into one command. Other `Next:` lines join their steps with prose, such as `, then from <dir>:`, so paste each command on its own, and fill in a placeholder such as `<run-id>` first.
 
 ### A Held Lock
 
@@ -197,7 +199,19 @@ BLOCKED  t: thing is a folder that does not match what apply last wrote there, w
   Next: mv /path/to/tree/thing /path/to/tree/thing.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
-Move the unowned copy aside as the `Next:` line says, then compare it with the overlay before you delete it.
+Move the unowned copy aside as the `Next:` line says, then compare it with the overlay before you delete it. The `mv` names the folder where the copy really sits, through any link that stands, so the path still exists after `apply` takes back a layout link it made for the run.
+
+A live folder where a `directory` entry now ships a file or a link is cleared and replaced in the same `apply` once its own files are gone, also when the folder was empty or held only caches to begin with. A file inside the entry's folder where the source now ships a folder, such as `tool/sub` where the source ships `sub/x`, is the engine's own when the state records it under that name, or under a spelling that differs only in case on a filesystem that ignores letter case, and it is the same file with the bytes apply last wrote. `apply` then replaces it in the same run. A file at the entry's destination itself counts as the engine's own only under the exact spelling the state records. Any other file is refused with the first line above, reading `is a file` and `writes a folder`.
+
+An entry whose overlay side is a folder where it reads a file, such as a `file` entry's `source`, a `json-entry` entry's `source`, or a `marked-section` entry's `fragment` or `base`, blocks that entry in `status` and `apply`:
+
+```text
+BLOCKED  t: skilled-overlays/files/dir is a folder, where overlay t reads a file
+  apply reads the bytes of a file entry from its source, and a folder holds none, so the entry writes nothing
+  Next: point the source of overlay t at a file in /path/to/tree/skilled-overlays/overlay-manifest.json, or make it a directory entry, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs status
+```
+
+Only a `file` entry's line offers `or make it a directory entry`. The notes and the re-pin's loss check read a `json-entry` source that is a folder as no entry set.
 
 A link on the path is refused the same way when it leads outside the tree, because apply writes only inside the tree, or when it loops and so never resolves. A link whose target is simply missing is not refused here. A layout link like that, with an entry under it, has its own refusal, described below. The entry writes nothing, the link stays and the run exits 1:
 
@@ -210,7 +224,18 @@ BLOCKED  u: other is a link that does not resolve, where overlay u writes
   Next: mv /path/to/tree/other /path/to/tree/other.keep, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
-The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same lines with `MISS` in place of `BLOCKED`. That holds for a write through a layout link `apply` makes before the writes, too. `status` cannot make that link, so it judges the write where the link will send it. A link beyond it that leads outside the tree prints as `MISS     tool: target is a link that leads outside the tree, to <landed>, where overlay tool writes`, after `MISS     layout: up is missing (link to target)`. Only that refusal is judged ahead. A block that shows only through the link, such as a project file where the entry writes a folder, shows first in `apply`, after it makes the link, and `apply` then writes nothing. That refusal names the link someone else made further along the chain, such as `target`, never the layout link apply makes again. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
+The general forms are `<path> is a link that leads outside the tree, to <landed>, where overlay <id> writes` and `<path> is a link that does not resolve, where overlay <id> writes`. `status` prints the same lines with `MISS` in place of `BLOCKED`. That holds for a write through a layout link `apply` makes before the writes, too. `status` cannot make that link, so it judges the write where the link will send it. A link beyond it that leads outside the tree prints as `MISS     tool: target is a link that leads outside the tree, to <landed>, where overlay tool writes`, after `MISS     layout: up is missing (link to target)`. That refusal names the link someone else made further along the chain, such as `target`, never the layout link apply makes again. Move the link aside to `<path>.keep` as the `Next:` line says, then point it inside the tree or remove it.
+
+Any other entry under such a missing link is planned again at the link's landing inside the tree, against what stands there, with the state and the pin still read at the manifest path, so `status` gives the verdict `apply` gives once it has made the link. A refusal there prints a header line and then the landing's own lines as `apply` prints them, which name the landing path:
+
+```text
+MISS     tool: up/tool.md waits on the layout link up, and apply refuses it once the link stands
+  up is not there yet, so up/tool.md was judged at real/tool.md, where the link leads
+  Next: run the fix on each line below, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+MISS     tool: upstream changed real/tool.md; rebase the overlay
+```
+
+When the plan at the manifest path has a problem but the landing has none, such as a pinned file the tree holds only at the landing, `status` reads `up/tool.md waits on the layout link up, which apply makes before it writes the entry`, with the why line `up is not there yet, so up/tool.md was judged at real/tool.md, where the link leads, and nothing there stops apply` and a `Next:` line that runs `apply`. A missing link that leads outside the tree is never read through by `status`. When the overlay side of the entry is ready, a problem at the manifest path reads `waits on the layout link up`, with the why line `up leads outside the tree, to <target>, and status does not read outside the tree, so up/tool.md is judged once apply has made the link` and a `Next:` line that runs `apply`, then `status`. A missing source prints as written. Only planner refusals are judged at the landing. Whether a file there is a live edit is left to `apply`, so `status` can say `fix: apply` where `apply` then refuses a live edit at the landing, writes nothing and takes the link back.
 
 A layout link the tree lacks outright, with an entry destination at or under it, is made before the entry writes. Once the manifest's own links plan without a problem, `apply` makes each such link, plans every entry again through it and, when that plan passes, prints `linked up -> target` before the writes. When that second plan blocks, `apply` removes the links it made and any folders it made for them, prints that plan's `BLOCKED` lines and writes nothing. A link that retargets, replaces a pinned link or takes the place of the engine's own output keeps its turn after the writes. On a filesystem that ignores letter case, a link and a destination that differ only in case, such as `Up` and `up/tool`, count as one path here.
 
@@ -237,7 +262,7 @@ The general form is `<link> links to <target>, which does not exist, and overlay
 A target that is a file is refused the same way, with `<link> links to <target>, which is a file, and overlay <id> writes under it` and the why line `a write under a link to a file has no folder to land in, so apply writes nothing`. A target that is itself a link that does not resolve keeps the `which does not exist` first line, and its why line reads `a write under a link to a link that does not resolve has no folder to land in, so apply writes nothing`. A `mkdir -p` fails on what stands at either target, so the `Next:` line sets that file or link aside first:
 
 ```text
-  Next: mv /path/to/tree/tfile /path/to/tree/tfile.keep and mkdir -p /path/to/tree/tfile, or point the layout link up in /path/to/tree/skilled-overlays/overlay-manifest.json at a folder that exists, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
+  Next: mv /path/to/tree/tfile /path/to/tree/tfile.keep && mkdir -p /path/to/tree/tfile, or point the layout link up in /path/to/tree/skilled-overlays/overlay-manifest.json at a folder that exists, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
 An apply stopped by a blocked overlay or a `BLOCKED  layout:` refusal ends with `blocked=<n> changed=0`, `  this apply wrote nothing: a blocked overlay stops it before any write` and a `Next:` line that reruns apply after the fixes. An apply or a capture that only a destination's own state stops, such as a `both-changed` line, prints no `blocked=` line and ends with these lines instead:
@@ -405,6 +430,16 @@ node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --rollback <run-i
 ```
 
 Rollback restores each backed-up file byte for byte and removes the files the run created. Run `/doctor:overlay status` afterwards to confirm the tree is back in sync.
+
+Rollback reads `backup.json` only in the shape a re-pin writes it. A `backup.json` that is not JSON, or JSON in another shape, refuses before anything is restored and exits 2:
+
+```text
+refuse: the backup for run <run-id> has an unsupported shape
+  skilled-overlays/repin-runs/<run-id>/backup.json is not JSON (<parser message>), and rollback reads backup.json only in the shape a re-pin writes it
+  Next: ls /path/to/tree/skilled-overlays/repin-runs, then rerun node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --rollback <run-id> from /path/to/tree
+```
+
+JSON in another shape prints the first line with the why line `rollback reads backup.json only in the shape a re-pin writes it`.
 
 With a sibling overlay folder, the backup also keeps the overlay folder's own files, as `area: "overlay"` entries under `<run>/overlay-backup/`, and rollback restores each file against its own root. `repin --stage <dir>` copies the tree to `<dir>/<tree name>` and the overlay folder to `<dir>/<overlay name>`, and it writes nothing live. It prints `staged tree root: <dir>/<tree name>`, the folder to pass as `--root` to a later `status`, because `<dir>` itself holds no setting file. It refuses a stage folder inside the overlay folder.
 

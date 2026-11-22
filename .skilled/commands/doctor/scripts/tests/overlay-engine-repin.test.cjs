@@ -529,6 +529,45 @@ test('--rollback refuses a backed-up file whose bytes no longer match the record
   assert.equal(fixture.digest(), after);
 });
 
+// A hand-edited or truncated backup.json reaches rollback before any shape
+// check, so a parse failure must refuse like any other unreadable backup.
+function writeBackupBytes(fixture, runId, bytes) {
+  const runDir = path.join(fixture.runsDir, runId);
+  fs.mkdirSync(runDir, { recursive: true });
+  fs.writeFileSync(path.join(runDir, 'backup.json'), bytes);
+}
+
+test('--rollback refuses a backup.json that is not JSON with its path, the parse reason and a Next line', (t) => {
+  const fixture = createRepinFixture(t);
+  const runId = '20261121T164357Z-f79dd7';
+  writeBackupBytes(fixture, runId, '{not json');
+  const before = fixture.digest();
+
+  const rolledBack = fixture.run(['repin', '--rollback', runId]);
+  assert.equal(rolledBack.code, 2, rolledBack.output);
+  assert.doesNotMatch(rolledBack.output, /\[overlay-engine\]/);
+  const lines = rolledBack.output.split('\n');
+  assert.equal(lines[0], `refuse: the backup for run ${runId} has an unsupported shape`, rolledBack.output);
+  const backupLabel = `${overlayLabel(fixture)}/repin-runs/${runId}/backup.json`;
+  assert.ok(lines[1].startsWith(`  ${backupLabel} is not JSON (`), rolledBack.output);
+  assert.ok(lines[1].endsWith('), and rollback reads backup.json only in the shape a re-pin writes it'), rolledBack.output);
+  assert.ok(lines[2].startsWith('  Next: ls '), rolledBack.output);
+  assert.match(rolledBack.output, /^RESULT: FAILED$/m);
+  assert.equal(fixture.digest(), before);
+});
+
+test('--rollback refuses a backup.json that holds JSON null as an unsupported shape', (t) => {
+  const fixture = createRepinFixture(t);
+  const runId = '20261121T164357Z-f79dd7';
+  writeBackupBytes(fixture, runId, 'null\n');
+
+  const rolledBack = fixture.run(['repin', '--rollback', runId]);
+  assert.equal(rolledBack.code, 2, rolledBack.output);
+  assert.doesNotMatch(rolledBack.output, /\[overlay-engine\]/);
+  assert.equal(rolledBack.output.split('\n')[0], `refuse: the backup for run ${runId} has an unsupported shape`, rolledBack.output);
+  assert.match(rolledBack.output, /^  Next: ls /m);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. REFUSALS BEFORE ANY WRITE
 // ─────────────────────────────────────────────────────────────────────────────

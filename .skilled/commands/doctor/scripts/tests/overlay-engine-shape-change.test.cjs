@@ -128,6 +128,48 @@ test('a file the engine wrote becomes the layout link the manifest now names, in
   assert.equal(fixture.run(['status']).code, 0);
 });
 
+// The state records a destination as the manifest spelled it, so a name with
+// capitals is still found there on a volume that ignores case.
+test('a file the engine wrote at a name with capitals becomes the layout link there on a volume that ignores case', (t) => {
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'Tool' }]);
+  if (!isCaseInsensitive(fixture.workspace)) {
+    t.skip('the volume tells case apart, so the case fold is not exercised');
+    return;
+  }
+  applyOk(fixture);
+  fixture.setManifest([], [{ path: 'Tool', target: 'target' }]);
+  applyOk(fixture);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'Tool')), 'target');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a folder the engine wrote at a name with capitals becomes the layout link there on a volume that ignores case', (t) => {
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'Tool' }]);
+  if (!isCaseInsensitive(fixture.workspace)) {
+    t.skip('the volume tells case apart, so the case fold is not exercised');
+    return;
+  }
+  applyOk(fixture);
+  fixture.setManifest([], [{ path: 'Tool', target: 'target' }]);
+  applyOk(fixture);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'Tool')), 'target');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'inside.md'), 'utf8'), 'link target\n');
+});
+
+// On a volume that ignores case, a link spelled with other case than the
+// recorded destination stands at the same entry, so it still replaces it.
+test('a file the engine wrote becomes a layout link spelled with other case on a volume that ignores case', (t) => {
+  const fixture = createShapeFixture(t, [FILE_ENTRY]);
+  if (!isCaseInsensitive(fixture.workspace)) {
+    t.skip('the volume tells case apart, so tool and Tool are two paths');
+    return;
+  }
+  applyOk(fixture);
+  fixture.setManifest([], [{ path: 'Tool', target: 'target' }]);
+  applyOk(fixture);
+  assert.equal(fs.readlinkSync(path.join(fixture.tree, 'Tool')), 'target');
+});
+
 test('a layout link the engine made becomes the file an entry now names, and its target is untouched', (t) => {
   const fixture = createShapeFixture(t, [], [LINK]);
   applyOk(fixture);
@@ -174,6 +216,30 @@ test('a subfolder of a directory source that becomes a link is replaced in one a
   assert.equal(fs.readlinkSync(path.join(fixture.tree, 'tool', 'deep')), 'a.md');
 });
 
+// A live folder with no file in it has nothing the walk can see, so the plan
+// holds no delete under it, yet the write still has to clear it.
+test('an empty live folder where a directory source now ships a file is replaced in one apply', (t) => {
+  const fixture = createShapeFixture(t, [DIRECTORY_ENTRY]);
+  writeFile(fixture.overlayDir, 'bundle/x', 'overlay x\n');
+  fs.mkdirSync(path.join(fixture.tree, 'tool', 'x'), { recursive: true });
+  applyOk(fixture);
+  const live = path.join(fixture.tree, 'tool', 'x');
+  assert.equal(kindOf(live), 'file');
+  assert.equal(fs.readFileSync(live, 'utf8'), 'overlay x\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('a live folder holding only a Python cache where a directory source now ships a file is replaced in one apply', (t) => {
+  const fixture = createShapeFixture(t, [DIRECTORY_ENTRY]);
+  writeFile(fixture.overlayDir, 'bundle/x', 'overlay x\n');
+  writeFile(fixture.tree, 'tool/x/__pycache__/m.pyc', 'cache\n');
+  applyOk(fixture);
+  const live = path.join(fixture.tree, 'tool', 'x');
+  assert.equal(kindOf(live), 'file');
+  assert.equal(fs.readFileSync(live, 'utf8'), 'overlay x\n');
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. UNOWNED SHAPES STAY A REFUSAL
 // ─────────────────────────────────────────────────────────────────────────────
@@ -196,6 +262,17 @@ test('an unowned file where a directory entry writes is refused, and nothing is 
   assert.match(result.output, /tool is a file that does not match what apply last wrote there/);
   assert.ok(result.output.includes(`Next: mv ${path.join(fixture.tree, 'tool')} ${path.join(fixture.tree, 'tool')}.keep, then from ${fixture.tree}: node `), result.output);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool'), 'utf8'), 'project file\n');
+});
+
+test('a live folder holding a project file where a directory source now ships a file is refused, and the file stays', (t) => {
+  const fixture = createShapeFixture(t, [DIRECTORY_ENTRY]);
+  writeFile(fixture.overlayDir, 'bundle/x', 'overlay x\n');
+  writeFile(fixture.tree, 'tool/x/user.md', 'project file\n');
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 1, result.output);
+  assert.match(result.output, /^ {2}this apply wrote nothing: a destination above stops it before any write$/m, result.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'tool', 'x')), 'folder');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'tool', 'x', 'user.md'), 'utf8'), 'project file\n');
 });
 
 test('an unowned folder where a layout link goes is still refused, and its files stay', (t) => {
@@ -563,6 +640,225 @@ test('status refuses a write through a missing layout link whose target leads ou
   assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
 });
 
+// A pinned entry under a missing layout link is judged against the bytes its
+// target holds, which are the bytes apply reads once it makes the link, so
+// status never sends to a rebase an entry apply then writes, nor lists as work
+// one apply then refuses. A clean plan names only the manifest path; a refusal
+// names it in one header line, and the planner's lines under it name the target.
+function pinnedUnderMissingLink(t, landing) {
+  const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up/tool.md', pinnedSha256 }], [{ path: 'up', target: 'target' }]);
+  if (landing !== null) writeFile(fixture.tree, 'target/tool.md', landing);
+  return fixture;
+}
+
+test('status sends a pinned entry under a missing layout link to apply when the target holds the pinned bytes, and apply ends in sync', (t) => {
+  const fixture = pinnedUnderMissingLink(t, 'upstream tool\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.equal(status.output.includes('upstream removed'), false, status.output);
+  assert.match(status.output, /^MISS {5}tool: up\/tool\.md waits on the layout link up, which apply makes before it writes the entry$/m, status.output);
+  assert.match(status.output, /^ {2}up is not there yet, so up\/tool\.md was judged at target\/tool\.md, where the link leads, and nothing there stops apply$/m,
+    status.output);
+  assert.match(status.output, /^ {2}Next: from .*: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs apply$/m, status.output);
+  assert.equal(/^MISS .*target\/tool\.md/m.test(status.output), false, status.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  const json = JSON.parse(fixture.run(['status', '--json']).output);
+  assert.equal(json.check.problems.some((problem) => problem.startsWith('tool: up/tool.md waits on the layout link up')), true, JSON.stringify(json.check));
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool.md'), 'utf8'), 'tool file\n');
+  const after = fixture.run(['status']);
+  assert.equal(after.code, 0, after.output);
+  assert.match(after.output, /^in-sync=1 /m, after.output);
+});
+
+// When the target refuses the entry, status says so in two parts: one line that
+// names the manifest path, the link and the target, then the planner's own lines
+// word for word, which name the target's paths, so each Next runs as pasted.
+const WAITS_REFUSED = /^MISS {5}tool: up\/tool\.md waits on the layout link up, and apply refuses it once the link stands$/m;
+const JUDGED_AT_TARGET = /^ {2}up is not there yet, so up\/tool\.md was judged at target\/tool\.md, where the link leads$/m;
+
+test('status and apply refuse a pinned entry under a missing layout link alike when the target lacks the file', (t) => {
+  const fixture = pinnedUnderMissingLink(t, null);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, WAITS_REFUSED, status.output);
+  assert.match(status.output, JUDGED_AT_TARGET, status.output);
+  assert.match(status.output, /^MISS {5}tool: upstream removed target\/tool\.md; rebase the overlay$/m, status.output);
+  assert.ok(status.output.indexOf('waits on the layout link') < status.output.indexOf('upstream removed'), status.output);
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, /^BLOCKED {2}tool: upstream removed up\/tool\.md; rebase the overlay$/m, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+});
+
+test('status and apply refuse a pinned entry under a missing layout link alike when the target holds other bytes', (t) => {
+  const fixture = pinnedUnderMissingLink(t, 'someone else\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, WAITS_REFUSED, status.output);
+  assert.match(status.output, /^MISS {5}tool: upstream changed target\/tool\.md; rebase the overlay$/m, status.output);
+  assert.equal(status.output.includes('upstream removed'), false, status.output);
+  const json = JSON.parse(fixture.run(['status', '--json']).output);
+  const problems = json.check.problems;
+  const header = problems.findIndex((problem) => problem.startsWith('tool: up/tool.md waits on the layout link up, and apply refuses it'));
+  assert.notEqual(header, -1, JSON.stringify(json.check));
+  assert.equal(problems[header + 1], 'tool: upstream changed target/tool.md; rebase the overlay', JSON.stringify(json.check));
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, /^BLOCKED {2}tool: upstream changed up\/tool\.md; rebase the overlay$/m, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'tool.md'), 'utf8'), 'someone else\n');
+});
+
+// A layout link that leads outside the tree is never read through by status, so
+// a pinned entry under it waits on the link whatever bytes stand out there, and
+// apply, which follows the manifest's own link, judges it once the link stands.
+test('status waits on a missing layout link that leads outside the tree without reading there, and apply writes through it', (t) => {
+  const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up/tool.md', pinnedSha256 }], [{ path: 'up', target: '../outside' }]);
+  const outsideFile = path.join(fixture.workspace, 'outside', 'tool.md');
+  fs.mkdirSync(path.dirname(outsideFile));
+  const outputs = [];
+  for (const bytes of [null, 'someone else\n', 'upstream tool\n']) {
+    if (bytes === null) fs.rmSync(outsideFile, { force: true });
+    else fs.writeFileSync(outsideFile, bytes);
+    const status = fixture.run(['status']);
+    assert.equal(status.code, 1, status.output);
+    assert.match(status.output, /^MISS {5}tool: up\/tool\.md waits on the layout link up, which apply makes before it writes the entry$/m, status.output);
+    assert.match(status.output, /^ {2}up leads outside the tree, to \.\.\/outside, and status does not read outside the tree, so up\/tool\.md is judged once apply has made the link$/m,
+      status.output);
+    assert.match(status.output, /^ {2}Next: from .*: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs apply, then node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs status$/m,
+      status.output);
+    assert.equal(/upstream (removed|changed)/.test(status.output), false, status.output);
+    outputs.push(status.output);
+  }
+  assert.equal(outputs[1], outputs[0]);
+  assert.equal(outputs[2], outputs[0]);
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(outsideFile, 'utf8'), 'tool file\n');
+});
+
+// A missing source is refused before the destination is read, so making the
+// link changes nothing about it: status names it as apply does instead of
+// waiting on a link apply never makes.
+for (const [label, entry, problem] of [
+  ['file', { ...FILE_ENTRY, source: 'files/nope.md', destination: 'up/tool.md' }, 'canonical copy is missing: files/nope.md'],
+  ['folder', { ...DIRECTORY_ENTRY, source: 'nope/', destination: 'up/tool' }, 'canonical folder is missing: nope/'],
+]) {
+  test(`status names a missing source ${label} under a missing layout link that leads outside the tree as apply does`, (t) => {
+    const fixture = createShapeFixture(t, [entry], [{ path: 'up', target: '../outside' }]);
+    fs.mkdirSync(path.join(fixture.workspace, 'outside'));
+    const status = fixture.run(['status']);
+    assert.equal(status.code, 1, status.output);
+    assert.ok(status.output.split('\n').includes(`MISS     tool: ${problem}`), status.output);
+    assert.equal(status.output.includes('waits on the layout link'), false, status.output);
+    const apply = fixture.run(['apply']);
+    assert.equal(apply.code, 1, apply.output);
+    assert.ok(apply.output.split('\n').includes(`BLOCKED  tool: ${problem}`), apply.output);
+    assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  });
+}
+
+// An overlay path an entry reads as a file that is a folder has no bytes to
+// apply, so status and apply name it as the entry's problem, with the manifest
+// to fix, rather than stopping the run on the read.
+for (const [label, entry, folder, remedy] of [
+  ['the source of a file entry', { id: 'tool', scope: 'file', source: 'files/dir', destination: 'up/tool.md' },
+    'files/dir', 'point the source of overlay tool at a file in %M, or make it a directory entry'],
+  ['the entry set of a json entry', { id: 'tool', scope: 'json-entry', source: 'files/dir', destination: 'up/settings.json' },
+    'files/dir', 'point the source of overlay tool at a file in %M'],
+  ['the fragment of a marked section', { id: 'tool', scope: 'marked-section', fragment: 'files/dir', base: 'files/tool.md', destination: 'up/doc.md' },
+    'files/dir', 'point the fragment of overlay tool at a file in %M'],
+  ['the base of a marked section', { id: 'tool', scope: 'marked-section', fragment: 'files/tool.md', base: 'files/dir', destination: 'up/doc.md' },
+    'files/dir', 'point the base of overlay tool at a file in %M'],
+]) {
+  for (const [where, links] of [['in a plain tree', []], ['under a missing layout link that leads outside the tree', [{ path: 'up', target: '../outside' }]]]) {
+    test(`a folder where ${label} names a file is the entry's problem ${where}, not a stopped run`, (t) => {
+      const fixture = createShapeFixture(t, [entry], links);
+      writeFile(fixture.overlayDir, 'files/dir/a', 'a\n');
+      writeFile(fixture.tree, 'up/settings.json', '{}\n');
+      writeFile(fixture.tree, 'up/doc.md', 'doc\n');
+      if (links.length > 0) {
+        fs.rmSync(path.join(fixture.tree, 'up'), { recursive: true });
+        fs.mkdirSync(path.join(fixture.workspace, 'outside'));
+      }
+      const overlayLabel = path.relative(fixture.tree, fixture.overlayDir).split(path.sep).join('/');
+      const first = `${overlayLabel}/${folder} is a folder, where overlay tool reads a file`;
+      const next = '  Next: ' + remedy.replace('%M', path.join(fixture.overlayDir, 'overlay-manifest.json')) +
+        `, then from ${fixture.tree}: node .skilled/commands/doctor/scripts/overlay-engine.cjs status`;
+      const status = fixture.run(['status']);
+      assert.equal(status.code, 1, status.output);
+      assert.ok(status.output.split('\n').includes(`MISS     tool: ${first}`), status.output);
+      assert.ok(status.output.split('\n').includes(next), status.output);
+      assert.equal(status.output.includes('EISDIR'), false, status.output);
+      const apply = fixture.run(['apply']);
+      assert.equal(apply.code, 1, apply.output);
+      assert.ok(apply.output.split('\n').includes(`BLOCKED  tool: ${first}`), apply.output);
+      assert.match(apply.output, /^ {2}this apply wrote nothing: /m, apply.output);
+      assert.equal(kindOf(path.join(fixture.tree, 'up', 'tool.md')), 'missing');
+    });
+  }
+}
+
+// An entry set is parsed only once its destination is read, so one that does
+// not parse still waits on the link rather than naming a destination status
+// cannot read.
+test('status waits on a missing layout link that leads outside the tree for an entry set that does not parse', (t) => {
+  const fixture = createShapeFixture(t, [{ id: 'tool', scope: 'json-entry', source: 'files/bad.json', destination: 'up/settings.json' }],
+    [{ path: 'up', target: '../outside' }]);
+  writeFile(fixture.overlayDir, 'files/bad.json', '{ not json\n');
+  fs.mkdirSync(path.join(fixture.workspace, 'outside'));
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: up\/settings\.json waits on the layout link up, which apply makes before it writes the entry$/m, status.output);
+  assert.equal(status.output.includes('upstream removed'), false, status.output);
+});
+
+test('status keeps the planner text whole when the destination is the layout link path itself', (t) => {
+  const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up', pinnedSha256 }], [{ path: 'up', target: 't' }]);
+  writeFile(fixture.tree, 't', 'someone else\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: up waits on the layout link up, and apply refuses it once the link stands$/m, status.output);
+  assert.match(status.output, /^ {2}up is not there yet, so up was judged at t, where the link leads$/m, status.output);
+  assert.match(status.output, /^MISS {5}tool: upstream changed t; rebase the overlay$/m, status.output);
+  assert.equal(/upsupream|uphe/.test(status.output), false, status.output);
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, /^BLOCKED {2}tool: upstream changed up; rebase the overlay$/m, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+});
+
+test('status names a missing source whole when its path holds the layout link target', (t) => {
+  const pinnedSha256 = require('node:crypto').createHash('sha256').update('upstream tool\n').digest('hex');
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, source: 'files/real/tool.md', destination: 'up/tool.md', pinnedSha256 }], [{ path: 'up', target: 'real' }]);
+  writeFile(fixture.tree, 'real/tool.md', 'upstream tool\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /files\/real\/tool\.md/, status.output);
+  assert.equal(status.output.includes('files/up/tool.md'), false, status.output);
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, /files\/real\/tool\.md/, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+});
+
+test('status quotes every path with a space on its Next lines for an entry under a missing layout link', (t) => {
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'my up/tool.md' }], [{ path: 'my up', target: 'real' }]);
+  writeFile(fixture.tree, 'real/tool.md/user.md', 'user work\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: my up\/tool\.md waits on the layout link my up, and apply refuses it once the link stands$/m, status.output);
+  const nextLines = status.output.split('\n').filter((line) => /^\s*Next:/.test(line));
+  assert.ok(nextLines.some((line) => line.includes(path.join(fixture.tree, 'real', 'tool.md'))), status.output);
+  for (const line of nextLines) {
+    assert.equal(/my up/.test(line.replace(/'[^']*'/g, '')), false, line);
+  }
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'real', 'tool.md', 'user.md'), 'utf8'), 'user work\n');
+});
+
 // A missing layout link inside another one whose target leads outside the tree
 // is refused while the manifest is planned, before any link is made. The
 // refusal names the link that leads out, which is the one to move aside.
@@ -587,6 +883,163 @@ test('a nested missing layout link whose folder leads outside the tree through t
   assert.equal(kindOf(path.join(fixture.tree, 'a')), 'missing');
   assert.deepEqual(fs.readdirSync(outside).sort(), before);
 });
+
+// A directory entry whose destination is the layout link itself writes its
+// folders through the link, at its target, where a file the engine did not
+// write can stand in a folder's place. That file is refused before any write,
+// as any unowned shape in the way is, and a link apply made for the run is
+// taken back; a file the engine wrote there is replaced in the same apply.
+const UNOWNED_SUB_REFUSED = /^BLOCKED  tool: up\/sub is a file that does not match what apply last wrote there, where overlay tool writes a folder; apply removes only its own output, so it stays$/m;
+
+test('a directory entry at a missing layout link refuses a file its target holds where the entry writes a folder, and takes the link back', (t) => {
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, destination: 'up' }], [{ path: 'up', target: 'target' }]);
+  writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+  writeFile(fixture.tree, 'target/sub', 'user work\n');
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, UNOWNED_SUB_REFUSED, apply.output);
+  assert.match(apply.output, /^ {2}this apply wrote nothing: a blocked overlay stops it before any write$/m, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'missing');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'sub'), 'utf8'), 'user work\n');
+  assert.equal(kindOf(path.join(fixture.tree, 'target', 'a.md')), 'missing');
+});
+
+test('a directory entry at a standing layout link refuses a file its target holds where the entry writes a folder, in status and apply', (t) => {
+  const fixture = createShapeFixture(t, [], [{ path: 'up', target: 'target' }]);
+  applyOk(fixture);
+  fixture.setManifest([{ ...DIRECTORY_ENTRY, destination: 'up' }], [{ path: 'up', target: 'target' }]);
+  writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+  writeFile(fixture.tree, 'target/sub', 'user work\n');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS {5}tool: up\/sub is a file that does not match what apply last wrote there, where overlay tool writes a folder;/m, status.output);
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, UNOWNED_SUB_REFUSED, apply.output);
+  assert.equal(kindOf(path.join(fixture.tree, 'up')), 'link');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'sub'), 'utf8'), 'user work\n');
+  assert.equal(kindOf(path.join(fixture.tree, 'target', 'a.md')), 'missing');
+});
+
+test('a file the engine wrote through a layout link becomes a folder of a directory entry at that link, in one apply', (t) => {
+  const fixture = createShapeFixture(t, [{ ...FILE_ENTRY, destination: 'up/sub' }], [{ path: 'up', target: 'target' }]);
+  applyOk(fixture);
+  assert.equal(kindOf(path.join(fixture.tree, 'target', 'sub')), 'file');
+  fixture.setManifest([{ ...DIRECTORY_ENTRY, destination: 'up' }], [{ path: 'up', target: 'target' }]);
+  writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+  applyOk(fixture);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'sub', 'x'), 'utf8'), 'x\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'a.md'), 'utf8'), 'bundle a\n');
+  assert.match(fixture.run(['status']).output, /^in-sync=3 overlay-edited=0 live-edited=0 /m);
+});
+
+// On a volume that ignores case, a file the engine wrote as Sub and a folder a
+// directory entry now ships as sub are one path, so the recorded file is the
+// engine's own and goes in the same apply, while a file someone else put there
+// stays.
+for (const [label, links, landing] of [
+  ['in a plain folder', [], 'up'],
+  ['through a standing layout link', [{ path: 'up', target: 'target' }], 'target'],
+]) {
+  const caseFixture = (t) => {
+    const fixture = createShapeFixture(t, [], links);
+    if (!isCaseInsensitive(fixture.workspace)) {
+      t.skip('the volume tells case apart, so Sub and sub are two paths');
+      return null;
+    }
+    applyOk(fixture);
+    fixture.setManifest([{ ...DIRECTORY_ENTRY, destination: 'up' }], links);
+    return fixture;
+  };
+
+  test(`a file the engine wrote under a name that differs only in case becomes the folder a directory entry now ships, ${label}`, (t) => {
+    const fixture = caseFixture(t);
+    if (!fixture) return;
+    writeFile(fixture.overlayDir, 'bundle/Sub', 'owned\n');
+    applyOk(fixture);
+    fs.rmSync(path.join(fixture.overlayDir, 'bundle', 'Sub'));
+    writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+    applyOk(fixture);
+    assert.equal(fs.readFileSync(path.join(fixture.tree, landing, 'sub', 'x'), 'utf8'), 'x\n');
+  });
+
+  test(`a file someone else put under a name that differs only in case from a folder a directory entry ships stays, ${label}`, (t) => {
+    const fixture = caseFixture(t);
+    if (!fixture) return;
+    writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+    writeFile(fixture.tree, `${landing}/Sub`, 'user work\n');
+    const apply = fixture.run(['apply']);
+    assert.equal(apply.code, 1, apply.output);
+    assert.match(apply.output, /^ {2}this apply wrote nothing: /m, apply.output);
+    assert.equal(fs.readFileSync(path.join(fixture.tree, landing, 'Sub'), 'utf8'), 'user work\n');
+    assert.equal(kindOf(path.join(fixture.tree, landing, 'a.md')), 'missing');
+  });
+}
+
+// The engine folds a dotless i to a plain one, where a volume that ignores
+// case keeps sıb and sib as two files. A recorded sıb is then a
+// different file from the sib a folder now ships over, so matching bytes at
+// sib do not make it the engine's own: it stays, and so does sıb.
+test('a file someone else put where a directory entry ships a folder stays when the state records another file under a name the engine folds to it', (t) => {
+  const links = [{ path: 'up', target: 'target' }];
+  const fixture = createShapeFixture(t, [], links);
+  const probe = path.join(fixture.workspace, 'fold-probe');
+  fs.mkdirSync(probe);
+  fs.writeFileSync(path.join(probe, 'sıb'), 'a');
+  const isSplit = !fs.existsSync(path.join(probe, 'sib'));
+  fs.rmSync(probe, { recursive: true });
+  if (!isCaseInsensitive(fixture.workspace) || !isSplit) {
+    t.skip('the volume does not fold case while keeping a dotless i apart from a plain one');
+    return;
+  }
+  applyOk(fixture);
+  fixture.setManifest([{ ...DIRECTORY_ENTRY, destination: 'up' }], links);
+  writeFile(fixture.overlayDir, 'bundle/sıb', 'owned\n');
+  applyOk(fixture);
+  fs.rmSync(path.join(fixture.overlayDir, 'bundle', 'sıb'));
+  writeFile(fixture.overlayDir, 'bundle/sib/x', 'x\n');
+  writeFile(fixture.tree, 'target/sib', 'owned\n');
+  const apply = fixture.run(['apply']);
+  assert.equal(apply.code, 1, apply.output);
+  assert.match(apply.output, /^BLOCKED {2}tool: up\/sib is a file that does not match what apply last wrote there, where overlay tool writes a folder; /m,
+    apply.output);
+  assert.match(apply.output, /^ {2}this apply wrote nothing: /m, apply.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'sib'), 'utf8'), 'owned\n');
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'target', 'sıb'), 'utf8'), 'owned\n');
+});
+
+// Apply takes back a layout link it made before it prints a refusal, so a
+// keep-aside line names the path at the link's target, which is still there
+// once apply returns, and the line works as pasted.
+function keepAsidePaths(output) {
+  return [...output.matchAll(/Next: mv ('([^']*)'|(\S+))/g)].map((match) => match[2] !== undefined ? match[2] : match[3]);
+}
+
+for (const [label, overlays, links, setUp] of [
+  ['a file entry with a folder in its place', [{ ...FILE_ENTRY, destination: 'my up/tool.md' }], [{ path: 'my up', target: 'real' }],
+    (fixture) => writeFile(fixture.tree, 'real/tool.md/user.md', 'user work\n')],
+  ['a directory entry with a file in a folder\'s place', [{ ...DIRECTORY_ENTRY, destination: 'up' }], [{ path: 'up', target: 'target' }],
+    (fixture) => {
+      writeFile(fixture.overlayDir, 'bundle/sub/x', 'x\n');
+      writeFile(fixture.tree, 'target/sub', 'user work\n');
+    }],
+  ['a file entry with a folder in its place outside the tree', [{ ...FILE_ENTRY, destination: 'up/tool.md' }], [{ path: 'up', target: '../outside' }],
+    (fixture) => writeFile(fixture.workspace, 'outside/tool.md/user.md', 'user work\n')],
+]) {
+  test(`an apply that takes back the layout link it made names a keep-aside path that exists, for ${label}`, (t) => {
+    const fixture = createShapeFixture(t, overlays, links);
+    setUp(fixture);
+    const apply = fixture.run(['apply']);
+    assert.equal(apply.code, 1, apply.output);
+    assert.equal(kindOf(path.join(fixture.tree, links[0].path)), 'missing');
+    const paths = keepAsidePaths(apply.output);
+    assert.ok(paths.length > 0, apply.output);
+    for (const keptAside of paths) {
+      assert.equal(path.isAbsolute(keptAside), true, apply.output);
+      assert.notEqual(kindOf(keptAside), 'missing', apply.output);
+    }
+  });
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 8. LAYOUT LINKS APPLY CANNOT WRITE THROUGH AS PLANNED
@@ -780,7 +1233,7 @@ test('a layout link standing at a target that does not exist is refused once an 
 // make the folder, or point the link elsewhere.
 function setAsideNext(fixture, target) {
   const targetPath = path.join(fixture.tree, target);
-  return `  Next: mv ${targetPath} ${targetPath}.keep and mkdir -p ${targetPath}, or point the layout link up in ` +
+  return `  Next: mv ${targetPath} ${targetPath}.keep && mkdir -p ${targetPath}, or point the layout link up in ` +
     `${path.join(fixture.overlayDir, 'overlay-manifest.json')} at a folder that exists, then from ${fixture.tree}: ` +
     'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply';
 }
