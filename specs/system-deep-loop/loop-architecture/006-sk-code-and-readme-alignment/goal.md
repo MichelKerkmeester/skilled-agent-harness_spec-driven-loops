@@ -80,6 +80,7 @@ and findings belong here.
 | Support README | Done | code-folder audit: `runtime/tests/_support/README.md valid` |
 | Code gate | Done | NO_BLOCKER_FOUND over 582 files, typecheck exit 0 |
 | Vitest | Done | 3967 passed, 11 skipped, 0 failed at `fe8909a3a8e` |
+| Alignment fixes and defaults | built, gate green on merged head 55cd... | 35 fixes + 48 defaults, decisions Q001-Q007 |
 
 ### Deviations and findings
 

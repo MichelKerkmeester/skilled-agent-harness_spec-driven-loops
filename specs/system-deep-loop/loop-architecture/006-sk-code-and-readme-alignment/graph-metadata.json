@@ -20,6 +20,7 @@
       "durable directive",
       "completion criteria",
       "goal binding",
+      "006-sk-code-and-readme-alignment operator decisions",
       "sk code and readme alignment implementation summary"
     ],
     "key_topics": [
@@ -44,6 +45,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "runtime/tests/_support/README.md",
       ".skilled/skills/system-deep-loop/runtime/tests/_support/README.md"
@@ -77,6 +79,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -186,18 +194,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A developer opening a system-deep-loop code folder meets READMEs that miss files, name moved paths and fail the sk-doc code-folder validator, and exported TypeScript functions, classes and interfaces that carry no TSDoc although the sk-code TypeScript checklist requires it at P1",
     "created_at": "2026-11-21T18:32:25Z",
-    "last_save_at": "2026-11-21T23:09:44.345Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-22T05:40:11.384Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -205,15 +207,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e3c8fe5132042b96b8417dd2413f51cc2ae7c1a775e9aec6b0ccf929fff1d39",
+    "source_fingerprint": "sha256:acc6f6483a4a76961a1108c5c96e16ae63b5cd923527b5a752473195280e26e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ce71ca5e4d5b97560a19b98ab6c2bc5db3a9c15e4fb011d02e691ab0c53fba4a",
       "plan.md": "87fba6a7a94c1087e256c75ad875049fd2999b66713bc580d4e15afa39da1fd7",
       "tasks.md": "84e9cb12b41d8327ebf3286cf68c9b1561844e24ed1bb752890b1d1db83319d8",
-      "implementation-summary.md": "a5bebe74d195032d1cb0a8f2afd07a315d0eaa6cd18be52cf343455448d977da"
+      "decision-record.md": "6496e06bb43445cd607d819edd3d9e77b6332168d83e0fcf536082eeb5c64cee",
+      "implementation-summary.md": "7f1c0f08bf23d16965fb91c9046596c2a4b5b29559d64ff0bfbe7706212054fe"
     },
     "last_active_at": null
   }
