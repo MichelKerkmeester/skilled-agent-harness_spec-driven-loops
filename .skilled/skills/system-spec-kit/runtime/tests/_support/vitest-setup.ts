@@ -25,17 +25,17 @@ ensureAbsoluteTempEnv();
 
 // ───────────────────────────────────────────────────────────────────
 // PRODUCTION DATABASE ISOLATION
-// With neither MEMORY_DB_PATH nor SPEC_KIT_DB_DIR set, the resolver derives
-// <runtime>/database/context-index.sqlite. That directory is checked-in runtime
-// state, so a test opening the default path writes into the real tree instead of a
-// scratch copy. Force a throwaway DB dir for the whole suite so the resolver can
-// never fall back to it, and fail closed if any env var explicitly targets it.
+// With SPEC_KIT_DB_DIR unset, config.ts falls back to <runtime>/database/. That
+// directory is checked-in runtime state, so a test opening the default path writes
+// into the real tree instead of a scratch copy. Force a throwaway DB dir for the
+// whole suite so nothing can fall back to it, and fail closed if any env var,
+// including a caller that still sets the retired MEMORY_DB_PATH, targets it.
 // ───────────────────────────────────────────────────────────────────
 function isolateProductionDatabase(): void {
   // This setup file lives at <runtime>/tests/_support/, so two levels up is
   // <runtime>. The filename is the retired memory server's and no such file
-  // exists now; it is still the name the profile resolver derives by default,
-  // which is exactly what has to be kept out of reach.
+  // exists now; the guard keeps the checked-in directory out of reach of
+  // config.ts's default and of any caller that still points MEMORY_DB_PATH at it.
   const productionDir = path.resolve(import.meta.dirname, '..', '..', 'database');
   const productionDb = path.join(productionDir, 'context-index.sqlite');
 

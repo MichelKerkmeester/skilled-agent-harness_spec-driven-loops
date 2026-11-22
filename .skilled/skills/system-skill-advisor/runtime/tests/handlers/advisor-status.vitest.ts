@@ -2,29 +2,12 @@
 // MODULE: Advisor Status Tests
 // ───────────────────────────────────────────────────────────────
 
-import { createHash } from 'node:crypto';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import Database from 'better-sqlite3';
 
-import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-
-const ollamaMocks = vi.hoisted(() => ({
-  probeOllamaModel: vi.fn(),
-  resolveOllamaBaseUrl: vi.fn(() => 'http://127.0.0.1:11434'),
-}));
-
-// The handler is the only caller that probes a backend, so the mock keeps
-// every other status case free of network access.
-vi.mock('../../lib/embedders/adapters/ollama.js', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('../../lib/embedders/adapters/ollama.js')>();
-  return {
-    ...actual,
-    probeOllamaModel: ollamaMocks.probeOllamaModel,
-    resolveOllamaBaseUrl: ollamaMocks.resolveOllamaBaseUrl,
-  };
-});
+import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
 
 import { handleAdvisorStatus, readAdvisorStatus } from '../../handlers/advisor-status.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
@@ -33,10 +16,7 @@ import {
   createAdvisorHookDiagnosticRecord,
   persistAdvisorHookDiagnosticRecord,
 } from '../../lib/metrics.js';
-import {
-  computeSkillMetadataContentHash,
-  readCommandEmbeddingSources,
-} from '../../lib/skill-graph/skill-graph-db.js';
+import { computeSkillMetadataContentHash } from '../../lib/skill-graph/skill-graph-db.js';
 import { AdvisorStatusOutputSchema } from '../../schemas/advisor-tool-schemas.js';
 
 const ADVISOR_DB_RELATIVE_PATH = join(
@@ -47,6 +27,8 @@ const ADVISOR_DB_RELATIVE_PATH = join(
   'database',
   'skill-graph.sqlite',
 );
+
+const LANE_IDS = ['derived_generated', 'explicit_author', 'graph_causal', 'lexical'];
 
 // Every temporary tree a case makes is removed when the file ends, so a run
 // leaves nothing behind in the system temp folder.
@@ -113,183 +95,7 @@ function writeIndexDb(root: string, contentHash: string | null): void {
   }
 }
 
-function writeHealthDb(root: string): void {
-  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
-  try {
-    database.exec(`
-      CREATE TABLE skill_nodes (
-        id TEXT PRIMARY KEY,
-        embedding BLOB,
-        embedding_model_id TEXT,
-        embedding_content_hash TEXT
-      );
-      CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
-      CREATE TABLE vec_768 (
-        skill_id TEXT PRIMARY KEY,
-        embedding BLOB NOT NULL,
-        model_id TEXT NOT NULL,
-        content_hash TEXT NOT NULL,
-        updated_at TEXT DEFAULT (datetime('now'))
-      );
-    `);
-    database.prepare('INSERT INTO skill_nodes (id) VALUES (?)').run('alpha');
-    database.prepare('INSERT INTO skill_nodes (id) VALUES (?)').run('beta');
-    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_name', 'nomic-embed-text-v1.5');
-    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_dim', '768');
-    database.prepare('INSERT INTO vec_768 (skill_id, embedding, model_id, content_hash, updated_at) VALUES (?, ?, ?, ?, ?)')
-      .run('alpha', Buffer.from([1, 2, 3]), 'nomic-embed-text-v1.5', 'hash-alpha', '2026-04-20T00:00:00.000Z');
-  } finally {
-    database.close();
-  }
-}
-
-function hashEmbeddingContent(content: string): string {
-  return createHash('sha256').update(content).digest('hex');
-}
-
-function writeCoverageHealthDb(root: string, includeEverySkillVector: boolean): void {
-  const skills = ['alpha', 'beta'].map((skillId) => {
-    const skillDir = join(root, '.skilled', 'skills', skillId);
-    mkdirSync(skillDir, { recursive: true });
-    const metadata = `${JSON.stringify({ skill_id: skillId })}\n`;
-    const description = `${skillId} vector coverage fixture`;
-    const sourcePath = join(skillDir, 'graph-metadata.json');
-    writeFileSync(sourcePath, metadata, 'utf8');
-    writeFileSync(
-      join(skillDir, 'SKILL.md'),
-      `---\ntitle: "${skillId}"\ndescription: "${description}"\n---\n\n# ${skillId}\n`,
-      'utf8',
-    );
-    return { skillId, sourcePath, metadata, description };
-  });
-  const commandSources = readCommandEmbeddingSources() ?? [];
-  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
-  try {
-    database.exec(`
-      CREATE TABLE skill_nodes (
-        id TEXT PRIMARY KEY,
-        source_path TEXT NOT NULL,
-        content_hash TEXT NOT NULL,
-        embedding BLOB,
-        embedding_model_id TEXT,
-        embedding_content_hash TEXT
-      );
-      CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
-      CREATE TABLE vec_768 (
-        skill_id TEXT PRIMARY KEY,
-        embedding BLOB NOT NULL,
-        model_id TEXT NOT NULL,
-        content_hash TEXT NOT NULL,
-        updated_at TEXT DEFAULT (datetime('now'))
-      );
-      CREATE TABLE vec_cmd_768 (
-        command_id TEXT PRIMARY KEY,
-        embedding BLOB NOT NULL,
-        model_id TEXT NOT NULL,
-        content_hash TEXT NOT NULL,
-        updated_at TEXT DEFAULT (datetime('now'))
-      );
-    `);
-    const insertSkill = database.prepare(`
-      INSERT INTO skill_nodes (
-        id, source_path, content_hash, embedding, embedding_model_id, embedding_content_hash
-      ) VALUES (?, ?, ?, ?, ?, ?)
-    `);
-    const insertSkillVector = database.prepare(`
-      INSERT INTO vec_768 (skill_id, embedding, model_id, content_hash, updated_at)
-      VALUES (?, ?, ?, ?, ?)
-    `);
-    for (const skill of skills) {
-      insertSkill.run(
-        skill.skillId,
-        skill.sourcePath,
-        computeSkillMetadataContentHash(skill.metadata),
-        null,
-        null,
-        null,
-      );
-      if (skill.skillId === 'alpha' || includeEverySkillVector) {
-        insertSkillVector.run(
-          skill.skillId,
-          Buffer.from([1, 2, 3]),
-          'nomic-embed-text-v1.5',
-          hashEmbeddingContent(skill.description),
-          '2026-04-20T00:00:00.000Z',
-        );
-      }
-    }
-    const insertCommandVector = database.prepare(`
-      INSERT INTO vec_cmd_768 (command_id, embedding, model_id, content_hash)
-      VALUES (?, ?, ?, ?)
-    `);
-    for (const source of commandSources) {
-      insertCommandVector.run(
-        source.commandId,
-        Buffer.from([1, 2, 3]),
-        'nomic-embed-text-v1.5',
-        hashEmbeddingContent(source.embeddingText),
-      );
-    }
-    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_name', 'nomic-embed-text-v1.5');
-    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_dim', '768');
-  } finally {
-    database.close();
-  }
-}
-
-function writeCommandVectorTable(root: string, rows: number): void {
-  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
-  try {
-    database.exec(`
-      CREATE TABLE vec_cmd_768 (
-        command_id TEXT PRIMARY KEY,
-        embedding BLOB NOT NULL,
-        model_id TEXT NOT NULL,
-        content_hash TEXT NOT NULL,
-        updated_at TEXT DEFAULT (datetime('now'))
-      );
-    `);
-    const insert = database.prepare(`
-      INSERT INTO vec_cmd_768 (command_id, embedding, model_id, content_hash)
-      VALUES (?, ?, ?, ?)
-    `);
-    for (let index = 0; index < rows; index += 1) {
-      insert.run(`command-${index}`, Buffer.from([1, 2, 3]), 'nomic-embed-text-v1.5', `hash-${index}`);
-    }
-  } finally {
-    database.close();
-  }
-}
-
-function writeDimMismatchHealthDb(root: string): void {
-  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
-  try {
-    database.exec(`
-      CREATE TABLE skill_nodes (id TEXT PRIMARY KEY, embedding BLOB);
-      CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
-      CREATE TABLE vec_123 (
-        skill_id TEXT PRIMARY KEY,
-        embedding BLOB NOT NULL,
-        model_id TEXT NOT NULL,
-        content_hash TEXT NOT NULL,
-        updated_at TEXT DEFAULT (datetime('now'))
-      );
-    `);
-    database.prepare('INSERT INTO skill_nodes (id) VALUES (?)').run('alpha');
-    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_name', 'nomic-embed-text-v1.5');
-    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_dim', '123');
-  } finally {
-    database.close();
-  }
-}
-
 describe('advisor_status handler', () => {
-  beforeEach(() => {
-    ollamaMocks.probeOllamaModel.mockReset();
-    ollamaMocks.resolveOllamaBaseUrl.mockReset();
-    ollamaMocks.resolveOllamaBaseUrl.mockReturnValue('http://127.0.0.1:11434');
-  });
-
   afterEach(() => {
     vi.unstubAllEnvs();
     vi.resetModules();
@@ -354,7 +160,7 @@ describe('advisor_status handler', () => {
     expect(status.lastScanAt).toBe('2026-04-20T00:00:00.000Z');
     expect(status.skillCount).toBe(1);
     expect(status.laneWeights.explicit_author).toBe(0.42);
-    expect(status.semanticLaneHealth).toBeUndefined();
+    expect(Object.keys(status.laneWeights).sort()).toEqual(LANE_IDS);
   });
 
   it('reports fresh index hashes without changing a live generation', () => {
@@ -407,211 +213,6 @@ describe('advisor_status handler', () => {
       state: 'unavailable',
       reason: 'database_absent',
     }));
-  });
-
-  it('reports semantic-lane health only when requested', async () => {
-    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', '{"semantic_shadow":0.05}');
-    vi.resetModules();
-    const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
-    const root = workspace('semantic-health');
-    writeCoverageHealthDb(root, false);
-    writeGeneration(root, 'live', 8);
-
-    const compact = readAdvisorStatus({ workspaceRoot: root });
-    const detailed = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
-    const sourceTotal = readCommandEmbeddingSources()?.length ?? 0;
-
-    expect(compact.semanticLaneHealth).toBeUndefined();
-    expect(detailed.semanticLaneHealth).toEqual(expect.objectContaining({
-      activeEmbedder: expect.objectContaining({
-        name: 'nomic-embed-text-v1.5',
-        dim: 768,
-        adapterDim: 768,
-      }),
-      vectorCoverage: {
-        embedded: 1,
-        total: 2,
-        ratio: 0.5,
-        stale: 0,
-        missing: 1,
-      },
-      commandVectorCoverage: {
-        embedded: sourceTotal,
-        total: sourceTotal,
-        stale: 0,
-        missing: 0,
-      },
-      coverageComplete: false,
-      dimMismatch: false,
-      lastRefresh: '2026-04-20T00:00:00.000Z',
-      disabledReason: 'incomplete_skill_vectors',
-      laneEnabled: false,
-    }));
-  });
-
-  it('reports the semantic lane enabled once every skill has a current vector', async () => {
-    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', '{"semantic_shadow":0.05}');
-    vi.resetModules();
-    const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
-    const root = workspace('semantic-health-complete');
-    writeCoverageHealthDb(root, true);
-    writeGeneration(root, 'live', 8);
-
-    const detailed = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
-
-    expect(detailed.semanticLaneHealth).toEqual(expect.objectContaining({
-      coverageComplete: true,
-      disabledReason: null,
-      laneEnabled: true,
-    }));
-  });
-
-  it('reports complete vector coverage when every embeddable row is current', async () => {
-    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', '{"semantic_shadow":0.05}');
-    vi.resetModules();
-    const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
-    const root = workspace('semantic-coverage-complete');
-    writeCoverageHealthDb(root, true);
-    writeGeneration(root, 'live', 8);
-
-    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
-    const sourceTotal = readCommandEmbeddingSources()?.length ?? 0;
-
-    expect(status.semanticLaneHealth).toEqual(expect.objectContaining({
-      vectorCoverage: {
-        embedded: 2,
-        total: 2,
-        ratio: 1,
-        stale: 0,
-        missing: 0,
-      },
-      commandVectorCoverage: {
-        embedded: sourceTotal,
-        total: sourceTotal,
-        stale: 0,
-        missing: 0,
-      },
-      coverageComplete: true,
-    }));
-  });
-
-  it('reports the semantic lane disabled when its default weight is zero', async () => {
-    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', undefined);
-    vi.resetModules();
-    const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
-    const root = workspace('semantic-weight-zero');
-    writeHealthDb(root);
-    writeGeneration(root, 'live', 8);
-
-    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
-
-    expect(status.semanticLaneHealth).toEqual(expect.objectContaining({
-      disabledReason: 'lane_weight_zero',
-      laneEnabled: false,
-    }));
-  });
-
-  it('surfaces semantic-lane dim mismatch as a disabled reason', async () => {
-    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', '{"semantic_shadow":0.05}');
-    vi.resetModules();
-    const { readAdvisorStatus } = await import('../../handlers/advisor-status.js');
-    const root = workspace('semantic-dim-mismatch');
-    writeDimMismatchHealthDb(root);
-    writeGeneration(root, 'live', 9);
-
-    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
-
-    expect(status.semanticLaneHealth).toEqual(expect.objectContaining({
-      activeEmbedder: expect.objectContaining({
-        name: 'nomic-embed-text-v1.5',
-        dim: 123,
-        adapterDim: 768,
-      }),
-      dimMismatch: true,
-      disabledReason: 'dim_mismatch',
-      laneEnabled: false,
-    }));
-  });
-
-  it('reports zero command-vector coverage when no command table exists', () => {
-    const root = workspace('command-coverage-absent');
-    writeHealthDb(root);
-    writeGeneration(root, 'live', 10);
-
-    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
-    const sourceTotal = readCommandEmbeddingSources()?.length ?? 0;
-
-    expect(status.semanticLaneHealth?.commandVectorCoverage).toEqual({
-      embedded: 0,
-      total: sourceTotal,
-    });
-  });
-
-  it('counts command-vector rows when the command table exists', () => {
-    const root = workspace('command-coverage-present');
-    writeHealthDb(root);
-    writeCommandVectorTable(root, 3);
-    writeGeneration(root, 'live', 10);
-
-    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
-    const sourceTotal = readCommandEmbeddingSources()?.length ?? 0;
-
-    expect(status.semanticLaneHealth?.commandVectorCoverage).toEqual({
-      embedded: 3,
-      total: sourceTotal,
-    });
-  });
-
-  it('reports a reachable backend when the model is loaded', async () => {
-    vi.stubEnv('SPECKIT_ADVISOR_LANE_WEIGHTS_JSON', '{"semantic_shadow":0.05}');
-    vi.resetModules();
-    const { handleAdvisorStatus } = await import('../../handlers/advisor-status.js');
-    const root = workspace('backend-reachable');
-    writeHealthDb(root);
-    writeGeneration(root, 'live', 14);
-    ollamaMocks.probeOllamaModel.mockResolvedValue({ available: true });
-
-    const response = await handleAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
-    const envelope = JSON.parse(response.content[0].text) as { data: unknown };
-    const status = AdvisorStatusOutputSchema.parse(envelope.data);
-
-    expect(ollamaMocks.probeOllamaModel).toHaveBeenCalledWith(
-      'http://127.0.0.1:11434',
-      'nomic-embed-text:v1.5',
-      500,
-    );
-    expect(status.semanticLaneHealth?.backend).toEqual({ state: 'reachable', reason: null });
-    expect(status.semanticLaneHealth?.laneEnabled).toBe(true);
-  });
-
-  it('reports an unreachable backend when the probe cannot connect', async () => {
-    const root = workspace('backend-unreachable');
-    writeHealthDb(root);
-    writeGeneration(root, 'live', 14);
-    const reason = 'Ollama backend unreachable at http://127.0.0.1:11434: fetch failed';
-    ollamaMocks.probeOllamaModel.mockResolvedValue({ available: false, reason });
-
-    const response = await handleAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
-    const envelope = JSON.parse(response.content[0].text) as { data: unknown };
-    const status = AdvisorStatusOutputSchema.parse(envelope.data);
-
-    expect(status.semanticLaneHealth?.backend).toEqual({ state: 'unreachable', reason });
-    expect(status.semanticLaneHealth?.laneEnabled).toBe(false);
-  });
-
-  it('reports a missing model when the server answers without it', async () => {
-    const root = workspace('backend-model-missing');
-    writeHealthDb(root);
-    writeGeneration(root, 'live', 14);
-    const reason = 'Ollama model is not loaded: nomic-embed-text:v1.5';
-    ollamaMocks.probeOllamaModel.mockResolvedValue({ available: false, reason });
-
-    const response = await handleAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
-    const envelope = JSON.parse(response.content[0].text) as { data: unknown };
-    const status = AdvisorStatusOutputSchema.parse(envelope.data);
-
-    expect(status.semanticLaneHealth?.backend).toEqual({ state: 'model_missing', reason });
-    expect(status.semanticLaneHealth?.laneEnabled).toBe(false);
   });
 
   // drift: verified against shipped behavior during Unit H
@@ -718,13 +319,22 @@ describe('advisor_status handler', () => {
     }
   });
 
-  it('omits embeddings health when the option is absent', async () => {
-    const root = workspace('embeddings-health-omitted');
+  it('reports exactly the four lane weights', async () => {
+    const root = workspace('lane-weights');
     const response = await handleAdvisorStatus({ workspaceRoot: root });
     const envelope = JSON.parse(response.content[0].text) as { data: unknown };
     const status = AdvisorStatusOutputSchema.parse(envelope.data);
 
-    expect(status).not.toHaveProperty('embeddingsHealth');
+    expect(Object.keys(status.laneWeights).sort()).toEqual(LANE_IDS);
+  });
+
+  it('refuses the removed lane health flags', async () => {
+    const root = workspace('removed-flags');
+    for (const flag of ['includeSemanticHealth', 'includeEmbeddingsHealth']) {
+      const input = { workspaceRoot: root, [flag]: true } as Parameters<typeof readAdvisorStatus>[0];
+      expect(() => readAdvisorStatus(input)).toThrow(flag);
+      await expect(handleAdvisorStatus(input)).rejects.toThrow(flag);
+    }
   });
 
   it('reports hook health from durable diagnostic records', async () => {
@@ -837,26 +447,6 @@ describe('advisor_status handler', () => {
     const status = readAdvisorStatus({ workspaceRoot: root });
 
     expect(status).not.toHaveProperty('hookHealth');
-  });
-
-  it('returns a schema-valid unavailable model-server state when requested', async () => {
-    const root = workspace('embeddings-health-unavailable');
-    const originalServerUrl = process.env.HF_EMBED_SERVER_URL;
-
-    try {
-      process.env.HF_EMBED_SERVER_URL = join(root, 'missing-hf-embed.sock');
-      const response = await handleAdvisorStatus({
-        workspaceRoot: root,
-        includeEmbeddingsHealth: true,
-      });
-      const envelope = JSON.parse(response.content[0].text) as { data: unknown };
-      const status = AdvisorStatusOutputSchema.parse(envelope.data);
-
-      expect(status.embeddingsHealth?.modelServer.state).toBe('unavailable');
-    } finally {
-      if (originalServerUrl === undefined) delete process.env.HF_EMBED_SERVER_URL;
-      else process.env.HF_EMBED_SERVER_URL = originalServerUrl;
-    }
   });
 
   // drift: verified against shipped behavior during Unit H

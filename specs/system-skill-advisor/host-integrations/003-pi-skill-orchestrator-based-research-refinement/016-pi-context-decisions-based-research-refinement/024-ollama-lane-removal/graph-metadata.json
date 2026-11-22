@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/001-residue-check-and-cleanup-tool",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/002-doctor-surface",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/003-lane-feeders",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/004-lane-core",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/006-prose-docs-and-changelogs",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/007-generated-surfaces",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ollama lane removal phase parent spec",
+      "remove the ollama lane",
+      "delete the semantic shadow lane",
+      "ollama residue check",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "024-ollama-lane-removal operator decisions"
+    ],
+    "key_topics": [
+      "ollama",
+      "lane",
+      "removal",
+      "phase",
+      "parent",
+      "spec",
+      "remove",
+      "delete",
+      "semantic",
+      "shadow",
+      "residue",
+      "check"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md",
+      ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      "006-prose-docs-and-changelogs/plan.md",
+      "001-residue-check-and-cleanup-tool/spec.md",
+      "001-residue-check-and-cleanup-tool/goal.md",
+      "002-doctor-surface/goal.md",
+      "003-lane-feeders/goal.md",
+      "004-lane-core/goal.md",
+      "005-shared-embeddings-package/goal.md",
+      "006-prose-docs-and-changelogs/goal.md",
+      "007-generated-surfaces/goal.md",
+      "008-cleanup-wiring-and-gating/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Delete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Executes",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Native Opus",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor's semantic lane, which scores prompts with Ollama or HuggingFace embeddings, ships at live weight 0 after three negative measurements",
+    "created_at": "2026-11-20T21:51:18Z",
+    "last_save_at": "2026-11-22T05:35:40.018Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:0e088fa7f7fb37883e180d0d593a9fc8a6eea71c1d636308bea85b17366decd1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ddd30b83c4f560494c8a33178352445737c64421a6b2b2c733b4a9a88564a211",
+      "decision-record.md": "999b36ec697dea96f65d2cd114d682574dc66dce0144921da7d1a8f1477cd570"
+    },
+    "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating",
+    "last_active_at": "2026-11-21T13:25:49.773Z"
+  }
+}

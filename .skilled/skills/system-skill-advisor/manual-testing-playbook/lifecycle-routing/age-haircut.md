@@ -1,12 +1,12 @@
 ---
 title: "LC-001 Derived-Lane-Only Age Haircut"
-description: "Manual validation that age decay is applied only to the derived lane, not to author, lexical, graph_causal or semantic_shadow lanes."
+description: "Manual validation that age decay is applied only to the derived lane, not to author, lexical or graph_causal lanes."
 trigger_phrases:
   - "lc-001"
   - "age haircut derived"
   - "age decay"
   - "lifecycle age"
-version: 0.8.1.0
+version: 0.8.2.0
 id: LC-001
 category: lifecycle_routing
 stage: routing
@@ -16,14 +16,14 @@ expected_leaf_resources: []
 
 # LC-001 Derived-Lane-Only Age Haircut
 
-Prompt: Manual validation that age decay is applied only to the derived lane, not to author, lexical, graph_causal or semantic_shadow lanes.
+Prompt: Manual validation that age decay is applied only to the derived lane, not to author, lexical or graph_causal lanes.
 
 
 ---
 
 ## 1. OVERVIEW
 
-Validate that `lib/lifecycle/age-haircut.ts` applies age-based decay only to the derived lane and leaves author, lexical, graph_causal and semantic_shadow lanes unchanged.
+Validate that `lib/lifecycle/age-haircut.ts` applies age-based decay only to the derived lane and leaves author, lexical and graph_causal lanes unchanged.
 
 ---
 
@@ -53,7 +53,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt matching
 ### Expected Signals
 
 - Derived lane `weightedScore` for the older skill is lower than `rawScore * weight` by a documented decay factor.
-- Author, lexical, graph_causal and semantic_shadow lanes show `weightedScore = rawScore * weight` without additional multiplier.
+- Author, lexical and graph_causal lanes show `weightedScore = rawScore * weight` without additional multiplier.
 - Recent-skill derived lane shows no significant decay.
 - Overall ordering remains stable as long as non-derived lanes dominate.
 
@@ -82,7 +82,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt matching
 
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [LC-002](./supersession.md), supersession redirects.
-- Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md), 5-lane fusion basics.
+- Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/lane-fusion.md), lane fusion basics.
 - Feature [`lifecycle-routing/age-haircut.md`](../../feature-catalog/lifecycle-routing/age-haircut.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/age-haircut.ts`.
 

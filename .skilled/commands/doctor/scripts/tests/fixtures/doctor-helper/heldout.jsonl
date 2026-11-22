@@ -45,7 +45,6 @@
 {"prompt": "update the framework to the latest release", "expected": "/doctor:update"}
 {"prompt": "migrate an old spec folder layout to the new one", "expected": "/doctor:update compat"}
 {"prompt": "show me the environment switches", "expected": "/doctor:env list"}
-{"prompt": "which environment variable turns off the model server", "expected": "/doctor:env list"}
 {"prompt": "write me a poem about cats", "expected": null}
 {"prompt": "what is the weather in amsterdam tomorrow", "expected": null}
 {"prompt": "summarise the plot of a novel", "expected": null}

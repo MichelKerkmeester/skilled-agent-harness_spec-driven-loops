@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/004-lane-core",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/004-lane-core",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lane core",
+      "phase 4 lane core",
+      "remove the lane registry row",
+      "discard old advisor databases",
+      "lane core plan",
+      "lane core tasks",
+      "lane core acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "lane core implementation summary"
+    ],
+    "key_topics": [
+      "lane",
+      "core",
+      "phase",
+      "remove",
+      "registry",
+      "row",
+      "discard",
+      "old",
+      "advisor",
+      "databases",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json",
+      ".skilled/bin/hf-model-server.cjs",
+      ".skilled/bin/lib/model-server-supervision.cjs",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+      "tests/embedders/README.md",
+      "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json",
+      ".skilled/repo-rules/README.md",
+      ".vibe/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-residue-allowlist.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "replay-helpers.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-lane-residue.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/embedders/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-baseline.json",
+        "kind": "config",
+        "path": "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-script-tests.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The lane is dead after phase 003 but its contract is not",
+    "created_at": "2026-11-20T21:51:21Z",
+    "last_save_at": "2026-11-21T02:22:23.412Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:391f54b0b467bf0f6ec48ac277f4a89262119684aa7ceb98ba779a369c17f99b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a0c00e1aceb826e544f30c6e66f919e8ceeeb45da7805e4145c67a42983b2174",
+      "plan.md": "341e9962d3cf3aafb766f0f6f485f5d7378b1b3378cefeb972f23a60478d5cb0",
+      "tasks.md": "24a5106ff8cb4585a03987290fd9d42f2aa4116aa1c21f579efb34a5aee76896",
+      "implementation-summary.md": "e944744b7575293d75d748b2f13a34ae09b742f843ecd08b7c3ec398552922ba"
+    },
+    "last_active_at": null
+  }
+}

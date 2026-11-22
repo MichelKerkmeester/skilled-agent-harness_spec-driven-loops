@@ -1,0 +1,155 @@
+{
+  "topic": "Review: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes",
+  "sessionId": "2026-11-21T14:41:59Z",
+  "parentSessionId": null,
+  "lineageMode": "completed-continue",
+  "generation": 1,
+  "continuedFromRun": 3,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "depthMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": {
+      "depth1": 0.5,
+      "depth2": 0.35,
+      "depth3": 0.15
+    },
+    "maxFrontierNodes": null
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes",
+  "createdAt": "2026-11-21T14:42:00.001Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Replay the seven P2 findings of iterations 1 to 3 against commit dfdaee3a064 and mark each resolved or still active, then rerun the core traceability protocols spec_code and checklist_evidence over the 025 packet docs and record each as pass, partial or fail with evidence.",
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.depthMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/025-review-p2-fixes/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/review/review-report.md",
+    ".github/workflows/advisory-checks.yml",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/lane-residue-gate-and-cleanup.md",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/001-residue-check-and-cleanup-tool/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/006-prose-docs-and-changelogs/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/goal.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md"
+  ],
+  "stopPolicy": "convergence",
+  "resource_map": {
+    "emit": true
+  }
+}

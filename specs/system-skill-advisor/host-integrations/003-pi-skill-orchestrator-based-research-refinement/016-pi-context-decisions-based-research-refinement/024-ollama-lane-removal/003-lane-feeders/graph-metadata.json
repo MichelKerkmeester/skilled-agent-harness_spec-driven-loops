@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/003-lane-feeders",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/003-lane-feeders",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lane feeders",
+      "phase 3 lane feeders",
+      "remove the background vector refresh",
+      "remove the command meaning path",
+      "lane feeders plan",
+      "lane feeders tasks",
+      "lane feeders acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "lane feeders implementation summary"
+    ],
+    "key_topics": [
+      "lane",
+      "feeders",
+      "phase",
+      "remove",
+      "background",
+      "vector",
+      "refresh",
+      "command",
+      "meaning",
+      "path",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".github/workflows/skill-advisor-stress.yml",
+      ".skilled/bin/launcher-threshold-env.vitest.ts",
+      ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/background-vector-refresh.md",
+      "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json",
+      ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+      "tests/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-stress.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-advisor-stress.yml",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-threshold-env.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/launcher-threshold-env.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "background-vector-refresh.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/background-vector-refresh.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-baseline.json",
+        "kind": "config",
+        "path": "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-script-tests.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-lane-residue.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Feeders",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The lane contributes nothing to the live score, yet its feeders still run: the daemon resolves an embedder at start, refreshes skill and command vectors after start and after every reindex, and asks Ollama whether the model is loaded each time coverage is incomplete",
+    "created_at": "2026-11-20T21:51:20Z",
+    "last_save_at": "2026-11-21T00:49:06.384Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:de08c91ac5f7f91475a052832f43ea041a9b614436a8edaceead8f585adbb577",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e84a56ab6ce1738dbfc5be21adad648fd4390abbb4d46f9e016ef8f24f9a74ca",
+      "plan.md": "abf53bb708b2e6cd89264a64d57c54b970c1530636731a4883680ac8cb29b33e",
+      "tasks.md": "76e3cdb2a95aee71f62104220c0a81504cb10058b16c4f0680e1853e710fb6c3",
+      "implementation-summary.md": "b22c84a55942dfab2f7f4f131462f26d1071542ec605848446f8e3e5bc657a89"
+    },
+    "last_active_at": null
+  }
+}

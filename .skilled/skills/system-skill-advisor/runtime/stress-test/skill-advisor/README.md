@@ -52,9 +52,9 @@ Dependency direction: stress tests -> skill_advisor handlers/lib -> diagnostics
 skill-advisor/
 +-- advisor-recommend-handler-stress.vitest.ts
 +-- daemon-lifecycle-stress.vitest.ts
-+-- five-lane-fusion-stress.vitest.ts
 +-- generation-cache-invalidation-stress.vitest.ts
 +-- hooks-parity-stress.vitest.ts
++-- lane-fusion-stress.vitest.ts
 +-- lifecycle-routing-stress.vitest.ts
 +-- mcp-diagnostics-stress.vitest.ts
 +-- python-compat-stress.vitest.ts
@@ -98,7 +98,7 @@ skill-advisor/
 | File | Responsibility |
 |---|---|
 | `advisor-recommend-handler-stress.vitest.ts` | Stresses recommendation handler behavior. |
-| `five-lane-fusion-stress.vitest.ts` | Stresses multi-lane fusion behavior. |
+| `lane-fusion-stress.vitest.ts` | Stresses multi-lane fusion behavior. |
 | `daemon-lifecycle-stress.vitest.ts` | Stresses daemon lifecycle behavior. |
 | `generation-cache-invalidation-stress.vitest.ts` | Stresses generation cache invalidation. |
 | `single-writer-lease-stress.vitest.ts` | Stresses lease behavior. |

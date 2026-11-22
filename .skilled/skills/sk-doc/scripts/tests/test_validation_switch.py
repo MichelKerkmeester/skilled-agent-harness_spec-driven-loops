@@ -129,7 +129,6 @@ def _guarded(tmp):
     ]
     node = [
         ("shared/scripts/frontmatter-version.mjs", ["gate"]),
-        ("scripts/validate-doc-model-refs.js", []),
         ("sk-create-goal/scripts/check-goal.cjs", [str(tmp)]),
         ("sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs", ["--format", "json"]),
         ("sk-create-repo-rule/scripts/check-repo-rules.cjs", []),
@@ -139,7 +138,7 @@ def _guarded(tmp):
     return [("python3", *entry) for entry in python] + [("node", *entry) for entry in node]
 
 
-GUARDED_COUNT = 20
+GUARDED_COUNT = 19
 
 
 def test_every_guarded_validator_skips_when_the_switch_is_on(scratch):

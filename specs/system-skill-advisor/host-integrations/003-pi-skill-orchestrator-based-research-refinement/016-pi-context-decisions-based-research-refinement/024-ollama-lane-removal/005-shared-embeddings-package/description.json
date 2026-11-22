@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/005-shared-embeddings-package",
+  "description": "Phase 5: shared-embeddings-package",
+  "keywords": [
+    "phase",
+    "shared-embeddings-package"
+  ],
+  "lastUpdated": "2026-11-20T21:51:22.889Z",
+  "specId": "005",
+  "folderSlug": "shared-embeddings-package",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement",
+    "024-ollama-lane-removal"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

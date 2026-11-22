@@ -1,10 +1,10 @@
 ---
 title: "Skill Advisor Skill-Graph Tests"
-description: "Focused Vitest coverage for advisor skill-graph refresh behavior, embeddings round-trips and database invariants."
+description: "Folder README for advisor skill-graph tests, which now run from the package-level skill-graph-db suite."
 trigger_phrases:
   - "skill graph tests"
   - "advisor skill graph tests"
-  - "refresh skill embeddings test"
+  - "skill graph database tests"
 ---
 
 # Skill Advisor Skill-Graph Tests
@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/skill-graph/` contains targeted regression tests for advisor skill-graph database flows that are too specific for the broader root test suites.
+`tests/skill-graph/` once held targeted regression tests for advisor skill-graph database flows. It now holds only this README, and the database cases run from the package-level `../skill-graph-db.vitest.ts`.
 
 ---
 
@@ -23,15 +23,12 @@ trigger_phrases:
 |---|---|---|
 | Test fixtures | Skill advisor tests | Created under temporary directories. |
 | Runtime DB files | Runtime state | Do not commit SQLite outputs from these tests. |
-| Shared embedder mocks | Test suite | Keep tests offline-safe. |
 
 ---
 
 ## 3. KEY FILES
 
-| File | Responsibility |
-|---|---|
-| `refresh-roundtrip.vitest.ts` | Verifies active-embedder and legacy embedding refresh paths round-trip through SQLite. |
+No test file lives in this folder now. The skill-graph database cases run from `../skill-graph-db.vitest.ts`.
 
 ---
 
@@ -46,7 +43,7 @@ trigger_phrases:
 ## 5. ENTRYPOINTS
 
 ```bash
-npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/skill-graph
+npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/skill-graph-db.vitest.ts
 ```
 
 ---
@@ -56,7 +53,7 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/skil
 Run from the repository root.
 
 ```bash
-npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/skill-graph
+npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/skill-graph-db.vitest.ts
 python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/tests/skill-graph/README.md
 ```
 
@@ -66,4 +63,3 @@ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/syst
 
 - [`../README.md`](../README.md)
 - [`../../lib/skill-graph/README.md`](../../lib/skill-graph/README.md)
-- [`../embedders/README.md`](../embedders/README.md)

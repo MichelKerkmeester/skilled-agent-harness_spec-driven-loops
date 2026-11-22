@@ -17,13 +17,10 @@ import {
 
 import {
   closeDb as closeSkillGraphDb,
-  getDb as getSkillGraphDb,
   indexSkillMetadata,
   initDb as initSkillGraphDb,
-  refreshEmbeddingsInBackground,
   resolveSkillGraphDbDir,
 } from './lib/skill-graph/skill-graph-db.js';
-import { ensureActiveEmbedder } from './lib/embedders/schema.js';
 import { findAdvisorWorkspaceRoot } from './lib/utils/workspace-root.js';
 import { computeAdvisorSourceSignature } from './lib/freshness.js';
 import { publishSkillGraphGeneration } from './lib/freshness/generation.js';
@@ -395,22 +392,7 @@ export async function main(): Promise<void> {
     filePath: join(resolveSkillGraphDbDir(), HEARTBEAT_FILE_NAME),
   });
 
-  // An unset or unknown pointer resolves to the one registered manifest. Skill and
-  // command vectors are written by a trusted skill_graph_scan and by the background
-  // refresh this daemon starts after startup and after each watcher reindex.
-  try {
-    const resolved = await ensureActiveEmbedder(getSkillGraphDb(), { contentType: 'text' });
-    console.error(
-      `[system-skill-advisor-launcher] Active embedder: ${resolved.name} (${resolved.dim}-dim)`,
-    );
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(
-      `[system-skill-advisor-launcher] ensureActiveEmbedder failed: ${message}. Semantic-shadow scoring may degrade until the operator runs the swap runbook.`,
-    );
-  }
-
-  const startupSkillsRoot = await startupSkillGraphScan();
+  await startupSkillGraphScan();
   const watchFactory = await loadSkillGraphWatchFactory();
   skillGraphDaemon = await startSkillGraphDaemon({
     workspaceRoot: resolveWorkspaceRoot(),
@@ -441,31 +423,6 @@ export async function main(): Promise<void> {
       process.exit(0);
     },
   });
-  if (skillGraphDaemon.active) {
-    void refreshEmbeddingsInBackground(startupSkillsRoot ?? undefined)
-      .then((result) => {
-        if (result !== null) {
-          const warningDetails = result.warnings.length > 0
-            ? ` warnings=${result.warnings.join('; ')}`
-            : '';
-          console.error(
-            '[system-skill-advisor-launcher] Startup skill embeddings: embedded=%d '
-              + 'skipped=%d failed=%d%s',
-            result.embedded,
-            result.skipped,
-            result.failed,
-            warningDetails,
-          );
-        }
-      })
-      .catch((error: unknown) => {
-        const message = error instanceof Error ? error.message : String(error);
-        console.error(
-          '[system-skill-advisor-launcher] Startup skill embedding refresh failed:',
-          message,
-        );
-      });
-  }
 }
 
 const isMain = process.argv[1] && decodeURIComponent(import.meta.url).endsWith(process.argv[1].replace(/\\/g, '/'));

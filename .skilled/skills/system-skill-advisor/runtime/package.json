@@ -17,7 +17,6 @@
     "test:stress": "SPECKIT_RUN_STRESS=true vitest run"
   },
   "dependencies": {
-    "@huggingface/transformers": "^3.8.1",
     "@spec-kit/shared": "file:../../system-spec-kit/shared",
     "better-sqlite3": "^12.11.1",
     "chokidar": "^4.0.3",
@@ -31,9 +30,7 @@
     "nanoid": "3.3.20",
     "postcss": "^8.5.23",
     "vite": "^8.1.2",
-    "protobufjs": "^7.6.4",
-    "tar": "^7.5.19",
-    "sharp": "^0.35.4"
+    "tar": "^7.5.19"
   },
   "devDependencies": {
     "vitest": "^4.1.12"

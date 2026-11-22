@@ -19,7 +19,6 @@ function runShim(args: string[], input = '', env: NodeJS.ProcessEnv = {}) {
     encoding: 'utf8',
     env: {
       ...process.env,
-      SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
       ...env,
     },
   });

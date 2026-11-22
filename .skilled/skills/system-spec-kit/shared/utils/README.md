@@ -1,11 +1,11 @@
 ---
 title: "Shared Utilities"
-description: "Shared utility modules for path validation, retry behavior, JSONC parsing and token estimation."
+description: "Shared utility modules for path validation, JSONC parsing and token estimation."
 trigger_phrases:
   - "shared utilities"
   - "path validation helpers"
-  - "retry utilities"
-version: 1.0.1.0
+  - "jsonc comment stripping"
+version: 1.0.2.0
 ---
 
 # Shared Utilities
@@ -19,7 +19,6 @@ version: 1.0.1.0
 Current state:
 
 - Path checks return a canonical path or `null`.
-- Retry helpers classify errors before deciding whether to wait and retry.
 - JSONC stripping preserves string content while removing comments.
 - Token estimation uses one chars-per-token approximation.
 
@@ -30,7 +29,6 @@ Current state:
 ```text
 utils/
 +-- path-security.ts      # Filesystem path containment checks
-+-- retry.ts              # Retry policy, backoff and error classification
 +-- jsonc-strip.ts        # JSONC comment stripping
 +-- token-estimate.ts     # Shared token count approximation
 `-- README.md
@@ -40,7 +38,6 @@ Allowed dependency direction:
 
 ```text
 callers -> utils/*
-utils/retry.ts -> shared/types.ts
 utils/path-security.ts -> node:path and node:fs
 utils/jsonc-strip.ts -> no package imports
 utils/token-estimate.ts -> no package imports
@@ -63,7 +60,6 @@ utils/* -> network clients
 |---|---|
 | `path-security.ts` | Validates that a requested path stays inside one of the allowed base directories. |
 | `path-containment.ts` | Canonicalizes the longest existing path prefix and checks that a write target stays inside an allowed root. |
-| `retry.ts` | Runs async work with exponential backoff after classifying transient and permanent errors. |
 | `jsonc-strip.ts` | Removes block and line comments from JSONC text while keeping comment-like text inside strings. |
 | `token-estimate.ts` | Estimates token count with `Math.ceil(text.length / 4)` and returns `0` for empty input. |
 
@@ -75,10 +71,6 @@ utils/* -> network clients
 |---|---|---|
 | `validateFilePath(filePath, allowedBasePaths)` | `path-security.ts` | Returns a real resolved path when contained by an allowed base, else `null`. |
 | `escapeRegex(value)` | `path-security.ts` | Escapes regex metacharacters in a string. |
-| `retryWithBackoff(operation, options)` | `retry.ts` | Runs `operation` with configured retry attempts and throws enriched errors on failure. |
-| `withRetry(fn, options)` | `retry.ts` | Returns a retrying wrapper for an async function. |
-| `classifyError(error)` | `retry.ts` | Returns `transient`, `permanent` or `unknown` with `shouldRetry`. |
-| `calculateBackoff(attempt, config)` | `retry.ts` | Calculates bounded exponential delay in milliseconds. |
 | `stripJsoncComments(content)` | `jsonc-strip.ts` | Returns JSON text with comments removed. |
 | `estimateTokenCount(text)` | `token-estimate.ts` | Returns an integer token estimate. |
 
@@ -113,7 +105,6 @@ caller
 |---|---|---|
 | `path-security.ts` | Module | Path containment and regex escaping. |
 | `path-containment.ts` | Module | Write-boundary containment shared by every skill. |
-| `retry.ts` | Module | Retry wrappers and error classification. |
 | `jsonc-strip.ts` | Module | Config parsing support for JSONC input. |
 | `token-estimate.ts` | Module | Shared token budget estimates. |
 

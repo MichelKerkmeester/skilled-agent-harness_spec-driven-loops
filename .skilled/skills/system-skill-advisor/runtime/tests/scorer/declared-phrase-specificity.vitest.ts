@@ -163,7 +163,7 @@ describe('declared phrase specificity across both scorers', () => {
       const payload = JSON.stringify({ fixtures: PYTHON_FIXTURES, prompts: CROSS_SCORER_CASES.map(([prompt]) => prompt) });
       const result = spawnSync('python3', ['-c', PYTHON_RUNNER, PYTHON_ADVISOR, root, payload], {
         encoding: 'utf8',
-        env: { ...process.env, SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1', SPECKIT_SKILL_ADVISOR_FORCE_LOCAL: '1' },
+        env: { ...process.env, SPECKIT_SKILL_ADVISOR_FORCE_LOCAL: '1' },
       });
       expect(result.status, result.stderr).toBe(0);
       const pythonTops = JSON.parse(result.stdout.trim().split('\n').at(-1) ?? '{}') as Record<string, string | null>;

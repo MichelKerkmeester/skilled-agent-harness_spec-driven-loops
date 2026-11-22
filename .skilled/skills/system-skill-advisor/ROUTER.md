@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skill-advisor routing"
 importance_tier: normal
 contextType: general
-version: 1.0.5.0
+version: 1.0.6.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -39,7 +39,7 @@ Selection draws from:
 
 ## 2. INTENT MODEL
 
-- **SCORER** — fires on "scorer", "lane fusion", "five-lane", "confidence calibration", "lane attribution", "ambiguous brief", "ambiguity window"; loads `references/scoring/advisor-scorer.md`.
+- **SCORER** — fires on "scorer", "lane fusion", "confidence calibration", "lane attribution", "ambiguous brief", "ambiguity window"; loads `references/scoring/advisor-scorer.md`.
 - **LANE_TUNING** — fires on "lane weight tuning", "reweight lane", "lane weight change"; loads `references/scoring/lane-weight-tuning.md`.
 - **VALIDATION_BASELINES** — fires on "validation baseline", "advisor_validate baseline", "validate slice bundle"; loads `references/scoring/validation-baselines.md`.
 - **GRAPH_QUERY** — fires on "skill graph query", "skill_graph_query", "graph query cookbook", "skill graph status", "skill graph validate", "relationship read"; loads `references/graph/skill-graph-query-cookbook.md`.
@@ -172,7 +172,7 @@ PACKAGE_INDEXES = {
 # there are no per-scenario exact-match keys, so measured routing recall stays
 # an honest reflection of natural topic overlap rather than a tuned number.
 INTENT_SIGNALS = {
-    "SCORER": {"weight": 3, "keywords": ["scorer", "lane fusion", "five-lane", "confidence calibration", "lane attribution", "ambiguous brief", "ambiguity window"]},
+    "SCORER": {"weight": 3, "keywords": ["scorer", "lane fusion", "confidence calibration", "lane attribution", "ambiguous brief", "ambiguity window"]},
     "LANE_TUNING": {"weight": 3, "keywords": ["lane weight tuning", "reweight lane", "lane weight change"]},
     "VALIDATION_BASELINES": {"weight": 3, "keywords": ["validation baseline", "advisor_validate baseline", "validate slice bundle"]},
     "GRAPH_QUERY": {"weight": 3, "keywords": ["skill graph query", "skill_graph_query", "graph query cookbook", "skill graph status", "skill graph validate", "relationship read"]},

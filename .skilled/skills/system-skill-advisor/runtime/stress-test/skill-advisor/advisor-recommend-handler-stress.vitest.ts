@@ -76,7 +76,6 @@ describe('sa-025 — advisor_recommend MCP tool', () => {
         lexical: 0.3,
         graph_causal: 0.15,
         derived_generated: 0.1,
-        semantic_shadow: 0,
       },
     };
   }

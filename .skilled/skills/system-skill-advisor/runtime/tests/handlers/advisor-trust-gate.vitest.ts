@@ -17,7 +17,6 @@ import {
   getDbReadOnly,
   initDb,
   isGenuineCorruptionReason,
-  loadSkillEmbeddings,
 } from '../../lib/skill-graph/skill-graph-db.js';
 
 type MCPResponse = { content: Array<{ type: string; text: string }> };
@@ -199,9 +198,8 @@ describe('propagate apply dry-run labeling', () => {
 });
 
 describe('read-only recommend-path database access', () => {
-  it('returns null when the database file is absent and loads no embeddings', () => {
+  it('returns null when the database file is absent', () => {
     expect(getDbReadOnly()).toBeNull();
-    expect(loadSkillEmbeddings()).toEqual([]);
     expect(existsSync(join(sandboxRoot, 'db', 'skill-graph.sqlite'))).toBe(false);
   });
 

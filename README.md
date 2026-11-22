@@ -23,7 +23,7 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor CLI, DeepSeek Ha
 **What's inside**
 
 - **Gate System** - six gates check every request before the agent acts: prior context, the right skill, a spec folder and the repository rules
-- **Skill Advisor** - routes every prompt to the right skill and workflow using 5-lane fusion and a live skill graph, so you never need to remember a command
+- **Skill Advisor** - routes every prompt to the right skill and workflow using lane fusion and a live skill graph, so you never need to remember a command
 - **Spec Kit Framework** - spec folders with plans, tasks and a 42-rule validator, grouped into tracks, sub-tracks and phases, with progress saved into each folder and found again by keyword search after any reset or compaction
 - **Session Handover** - endless sessions: near the context limit, the work moves to a fresh session in the same terminal, which keeps the goal, the session name, the running command, the launch flags and, except on Vibe, the model
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
@@ -201,7 +201,6 @@ Four more rules run after the work. The agent checks the final state, proves com
 The skill advisor scores each prompt and puts a one-line routing brief in front of the agent. An emitted skill recommendation at a confidence of 0.8 or more must be loaded. The task-intent confidence floor is 0.82, but the prompt hook can withhold a confidence-floored route for a weak follow-up when it differs from the session's stored route, so the brief can say `Advisor: prompt skipped.` The scorer strips a recognized earlier reply pasted ahead of the task before scoring.
 
 The advisor is a resident daemon behind one command-line front door. When the daemon is down, a local scorer answers instead and marks its answer stale. A setup or health prompt with no match gets a pointer to `/doctor:setup`. The [Skill Advisor README](.skilled/skills/system-skill-advisor/README.md) has the scoring and the CLI.
-When Ollama is available, the daemon refreshes missing or stale skill and command vectors in the background.
 
 ### Spec Folders
 

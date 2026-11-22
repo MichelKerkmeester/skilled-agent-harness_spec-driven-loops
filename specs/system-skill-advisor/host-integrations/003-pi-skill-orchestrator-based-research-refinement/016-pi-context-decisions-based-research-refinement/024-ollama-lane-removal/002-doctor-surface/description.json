@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/002-doctor-surface",
+  "description": "Phase 2: doctor-surface",
+  "keywords": [
+    "phase",
+    "doctor-surface"
+  ],
+  "lastUpdated": "2026-11-21T00:04:37.642Z",
+  "specId": "002",
+  "folderSlug": "doctor-surface",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement",
+    "024-ollama-lane-removal"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_01-04__removed-the-doctor-surface-of-the-ollama-lane-the.md"
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 title: "243 -- Setup, Native Module Health, and MCP Installation"
 description: "This scenario validates setup and native module health for `243`. It focuses on confirming prerequisite checks, native-module diagnostics, and marker recording."
-version: 1.6.3.0
+version: 1.6.4.0
 id: tooling-and-scripts-setup-native-module-health-and-mcp-installation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -19,10 +19,10 @@ This scenario validates setup and native module health for `243`. It focuses on 
 
 
 - Objective: Confirm prerequisite validation, native-module diagnostics, and marker recording.
-- Real user request: `` Please validate Setup and Native Module Health against SPECIFY_FEATURE=<track>/<packet> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate and tell me whether the expected signals are present: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`. ``
+- Real user request: `` Please validate Setup and Native Module Health against SPECIFY_FEATURE=<track>/<packet> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate and tell me whether the expected signals are present: prerequisite JSON emitted; native-module probe prints the marker's OK or FAIL line; record-node-version writes `.node-version-marker`. ``
 - Prompt: `Validate Setup and Native Module Health against SPECIFY_FEATURE=<track>/<packet> bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`
+- Expected signals: prerequisite JSON emitted; native-module probe prints the marker's OK or FAIL line; record-node-version writes `.node-version-marker`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS if readiness, native-module health, and marker recording match the documented setup contract
 
@@ -62,25 +62,28 @@ Command 2: `cd .skilled/skills/system-spec-kit && bash runtime/cli/setup/check-n
 ```text
 -- Native Module Health Check --
 
-Current Node.js: v22.23.1
-MODULE_VERSION:  127
+Current Node.js: v26.13.0
+MODULE_VERSION:  147
 
-Marker Node.js:  v22.23.1
-Marker MODULE:   127
+Marker Node.js:  v26.13.0
+Marker MODULE:   147
 Version match:   [OK]
-
--- Module Probes --
-
-sharp:             [SKIP] not installed
 
 -- Summary --
 
-If any modules FAILED, run: bash runtime/cli/setup/rebuild-native-modules.sh
+If the check FAILED, run: bash runtime/cli/setup/rebuild-native-modules.sh
 ```
 
-A `[SKIP]` module row is not a failure: it means that optional native module is missing from this environment and the probe skipped it.
+The probe exits 0. With `.node-version-marker` moved aside it prints the `[FAIL] not found` line and exits 1.
 
-Command 3 was not run because `node runtime/cli/setup/record-node-version.js` writes `.node-version-marker`, but the execution request allowed writes only to this scenario file.
+Command 3: `cd .skilled/skills/system-spec-kit && node runtime/cli/setup/record-node-version.js`
+
+```text
+[record-node-version] Wrote <spec-kit root>/.node-version-marker
+[record-node-version] Node v26.13.0, MODULE_VERSION 147, darwin/arm64
+```
+
+The marker is gitignored, so writing it leaves the tree clean.
 
 ### Pass / Fail
 

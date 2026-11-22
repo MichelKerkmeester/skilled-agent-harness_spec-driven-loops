@@ -31,7 +31,7 @@ describe('advisor shadow sink', () => {
       liveScore: 0.7,
       shadowScore: 0.9,
       delta: 0.2,
-      dominantLane: 'semantic_shadow',
+      dominantLane: 'lexical',
       timestamp: '2026-04-29T00:00:00.000Z',
     }, { logPath });
 
@@ -40,7 +40,7 @@ describe('advisor shadow sink', () => {
     const parsed = JSON.parse(line) as Record<string, unknown>;
     expect(parsed).toMatchObject({
       recommendation: 'sk-code',
-      dominantLane: 'semantic_shadow',
+      dominantLane: 'lexical',
       delta: 0.2,
     });
     expect(parsed.prompt).toBe('implement telemetry');

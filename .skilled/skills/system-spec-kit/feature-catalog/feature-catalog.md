@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-15"
-version: 2.1.42.0
+version: 2.1.44.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -327,6 +327,22 @@ See [`tooling-and-scripts/json-primary-deprecation-posture.md`](tooling-and-scri
 
 ---
 
+### Lane residue gate and cleanup
+
+#### Description
+
+`sweep-lane-residue.mjs` answers with an exit code whether anything of the skill advisor's retired embedding route is left, in the tracked repository or on this machine, and its apply mode removes what this checkout owns.
+
+#### Current Reality
+
+Repo mode is the blocking `lane-residue` CI job, with exact-path allowlist rows and the trigger index outputs judged entry by entry. Machine and apply modes are the lane cleanup step of `/doctor:update apply`, which deletes only what this checkout owns and asks before deleting the pulled shared model.
+
+#### Source Files
+
+See [`tooling-and-scripts/lane-residue-gate-and-cleanup.md`](tooling-and-scripts/lane-residue-gate-and-cleanup.md) for full implementation and test file listings.
+
+---
+
 ### Markdown link integrity guard
 
 #### Description
@@ -367,7 +383,7 @@ Dry-run-first operator runbook and scripts for stale MCP helper cleanup, tempora
 
 #### Current Reality
 
-The sweeper serves the skill-advisor and code-mode launchers, and its memory-daemon branches came out with the server. It also reaps a temp-path orphan class: a process reparented to pid 1, owned by the current user, not a zombie, older than `ORPHAN_TEMP_PROCESS_AGE_HOURS` (default 6), whose command line points into the user temp dir, `/tmp/claude-<uid>/` or `~/worktrees/*/.scratch-*`. The shape is re-checked right before each signal, and a TCP listener does not preserve such a process. The skill-advisor launcher is always preserved because it retires itself on its own idle timeout, and its advisor server and hf-model server survive while that launcher is their parent.
+The sweeper serves the skill-advisor and code-mode launchers, and its memory-daemon branches came out with the server. It also reaps a temp-path orphan class: a process reparented to pid 1, owned by the current user, not a zombie, older than `ORPHAN_TEMP_PROCESS_AGE_HOURS` (default 6), whose command line points into the user temp dir, `/tmp/claude-<uid>/` or `~/worktrees/*/.scratch-*`. The shape is re-checked right before each signal, and a TCP listener does not preserve such a process. The skill-advisor launcher is always preserved because it retires itself on its own idle timeout, and its advisor server survives while that launcher is its parent.
 
 #### Source Files
 

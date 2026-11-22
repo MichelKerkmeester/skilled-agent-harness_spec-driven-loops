@@ -31,9 +31,7 @@ const DEFAULT_SKILL_ADVISOR_SOCKET_DIR = '/tmp/system-skill-advisor';
 const SUN_PATH_LIMIT = 104;
 const DEFAULT_PROBE_TIMEOUT_MS = 5000;
 const MAX_PROBE_TIMEOUT_MS = 6999;
-const DEFAULT_MODEL_SERVER_LOADING_MAX_MS = 150000;
 const JSON_RPC_PROTOCOL_VERSION = '2025-06-18';
-const MODEL_SERVER_HEALTH_PATH = '/api/health';
 let nextProbeId = 1;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -335,105 +333,6 @@ async function probeExistingService(socketPath, opts = {}) {
   return normalizeExistingServiceProbeResult(result);
 }
 
-function parseHttpJsonResponse(buffer) {
-  const raw = buffer.toString('utf8');
-  const headerEnd = raw.indexOf('\r\n\r\n');
-  if (headerEnd === -1) return null;
-  const statusLine = raw.slice(0, raw.indexOf('\r\n'));
-  const statusMatch = statusLine.match(/^HTTP\/\d(?:\.\d)?\s+(\d+)/);
-  if (!statusMatch) return null;
-  const statusCode = Number.parseInt(statusMatch[1], 10);
-  const bodyRaw = raw.slice(headerEnd + 4).trim();
-  let body = null;
-  try {
-    body = bodyRaw ? JSON.parse(bodyRaw) : null;
-  } catch {
-    return { statusCode, body: null };
-  }
-  return { statusCode, body };
-}
-
-function probeModelServer(socketPath, options = {}) {
-  const timeoutMs = resolveProbeTimeoutMs(options);
-  const loadingMaxMs = Number.isFinite(options.loadingMaxMs) && options.loadingMaxMs > 0
-    ? options.loadingMaxMs
-    : parsePositiveInteger(
-      (options.env ?? process.env).SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS,
-      DEFAULT_MODEL_SERVER_LOADING_MAX_MS,
-    );
-  const nowMs = typeof options.nowMs === 'function' ? options.nowMs : () => Date.now();
-  const connect = options.connect ?? ((connectionOptions) => net.createConnection(connectionOptions));
-  // Mark this as the launcher's internal liveness probe so a cold-state demand listener can answer
-  // without spawning a model server. Genuine embed consumers do not send this header, so their
-  // wake-on-demand path is unchanged.
-  const request = `GET ${MODEL_SERVER_HEALTH_PATH} HTTP/1.1\r\nHost: localhost\r\nAccept: application/json\r\nX-Speckit-Probe: liveness\r\nConnection: close\r\n\r\n`;
-
-  return new Promise((resolve) => {
-    let socket;
-    let settled = false;
-    let chunks = [];
-    let timer;
-
-    // Carry the parsed health body so callers (the idle-eviction tick) can read
-    // lastSuccessfulEmbedAt / inFlight. The 'alive' branches below pass parsed.body as the 3rd arg.
-    const finish = (status, reason, health) => {
-      if (settled) return;
-      settled = true;
-      if (timer) clearTimeout(timer);
-      if (socket) socket.destroy();
-      resolve({ status, reason, health });
-    };
-
-    try {
-      socket = connect(toConnectionOptions(socketPath));
-    } catch (error) {
-      finish('dead', error instanceof Error ? error.message : 'connect-threw');
-      return;
-    }
-
-    timer = setTimeout(() => finish('dead', 'timeout'), timeoutMs);
-    timer.unref?.();
-
-    socket.once('connect', () => {
-      socket.write(request);
-    });
-    socket.on('data', (chunk) => {
-      chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(String(chunk ?? '')));
-    });
-    socket.once('end', () => {
-      const parsed = parseHttpJsonResponse(Buffer.concat(chunks));
-      const state = parsed && parsed.body && typeof parsed.body === 'object'
-        ? parsed.body.state
-        : null;
-      if (parsed && parsed.statusCode >= 200 && parsed.statusCode < 300 && state === 'ready') {
-        finish('alive', `health-${state}`, parsed.body);
-        return;
-      }
-      if (parsed && parsed.statusCode >= 200 && parsed.statusCode < 300 && state === 'loading') {
-        const loadStartedAt = parsed.body.loadStartedAt;
-        const loadProgressAt = parsed.body.loadProgressAt;
-        // The loading budget is per model-load attempt; device fallback re-stamps loadProgressAt.
-        const loadingMarker = Number.isFinite(loadProgressAt) && loadProgressAt > 0
-          ? loadProgressAt
-          : loadStartedAt;
-        if (Number.isFinite(loadingMarker) && loadingMarker > 0 && nowMs() - loadingMarker > loadingMaxMs) {
-          finish('dead', 'loading-wedged');
-          return;
-        }
-        finish('alive', 'health-loading', parsed.body);
-        return;
-      }
-      finish('dead', state === 'error' ? 'health-error' : 'health-not-ready');
-    });
-    socket.once('error', (error) => {
-      finish('dead', error instanceof Error ? error.message : 'socket-error');
-    });
-    socket.once('close', () => {
-      if (!settled && chunks.length === 0) finish('dead', 'closed-before-reply');
-    });
-  });
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 7. LEASE PROBE AND BRIDGE ORCHESTRATION
 // ─────────────────────────────────────────────────────────────────────────────
@@ -564,7 +463,6 @@ async function maybeBridgeLeaseHolder(options) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
-  DEFAULT_MODEL_SERVER_LOADING_MAX_MS,
   bridgeStdioToSocket,
   getIpcSocketPath,
   resolveIpcSocketDir,
@@ -573,7 +471,6 @@ module.exports = {
   probeDaemon,
   probeExistingService,
   probeLeaseHolderWithRetries,
-  probeModelServer,
   resolveLeaseProbeAttempts,
   resolveLeaseProbeRetryBackoffMs,
   resolveLeaseProbeRetryTimeoutMs,

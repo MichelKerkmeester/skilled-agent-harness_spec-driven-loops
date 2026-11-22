@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d0498e9d706dbd0c5a30b37e47fbdba29746ee7bc7e58170ece5df991e2fc4c5",
+  "manifestHash": "b5724518620508c15c70c37f0a4793ea1b7e0d8a546aeae9f5073fd6e6e1d6b2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5373,11 +5373,17 @@
     "024 launcher lease integration test": [
       "024-launcher-lease-integration-test"
     ],
+    "024 ollama lane removal operator decisions": [
+      "024-ollama-lane-removal operator decisions"
+    ],
     "024 terminal gates script operator decisions": [
       "024-terminal-gates-script operator decisions"
     ],
     "025 artifact certificate binding complete": [
       "025 artifact certificate binding complete"
+    ],
+    "025 deep review report": [
+      "025 deep review report"
     ],
     "025 memory search degraded readiness wiring": [
       "025-memory-search-degraded-readiness-wiring"
@@ -5660,6 +5666,9 @@
     ],
     "026 docs sync": [
       "026 docs sync"
+    ],
+    "026 doctor lane removal alignment operator decisions": [
+      "026-doctor-lane-removal-alignment operator decisions"
     ],
     "026 graph and context optimization": [
       "026 graph and context optimization",
@@ -8324,9 +8333,6 @@
     "active decisions schema design": [
       "active decisions schema design"
     ],
-    "active embedder": [
-      "active embedder"
-    ],
     "active embedder pointer": [
       "active embedder pointer"
     ],
@@ -8623,9 +8629,6 @@
     ],
     "additive hub registration adr": [
       "additive hub registration adr"
-    ],
-    "additive migration": [
-      "additive migration"
     ],
     "additive skill advertising advisor": [
       "additive skill advertising advisor"
@@ -9006,8 +9009,8 @@
     "advisor auth helper": [
       "advisor auth helper"
     ],
-    "advisor background vector refresh": [
-      "advisor background vector refresh"
+    "advisor background embedding refresh": [
+      "advisor background embedding refresh"
     ],
     "advisor baseline": [
       "advisor baseline"
@@ -9304,14 +9307,8 @@
     "advisor doctor routing": [
       "advisor doctor routing"
     ],
-    "advisor embedder adapters": [
-      "advisor embedder adapters"
-    ],
-    "advisor embedder schema": [
-      "advisor embedder schema"
-    ],
-    "advisor embedder tests": [
-      "advisor embedder tests"
+    "advisor embedding lane removed": [
+      "advisor embedding lane removed"
     ],
     "advisor embeddings health": [
       "advisor embeddings health"
@@ -11763,6 +11760,9 @@
     ],
     "align system spec kit tasks": [
       "align system spec kit tasks"
+    ],
+    "align the doctor surface with the removed advisor": [
+      "align the doctor surface with the removed advisor"
     ],
     "align the hub routing repo rule": [
       "align the hub routing repo rule"
@@ -14683,9 +14683,6 @@
     "background sleeptime agent memory": [
       "background sleeptime agent memory"
     ],
-    "background vector refresh": [
-      "background vector refresh"
-    ],
     "backgrounded reconcile drift marker": [
       "backgrounded reconcile drift marker"
     ],
@@ -17354,9 +17351,6 @@
     "canonical mirror tasks": [
       "canonical mirror tasks"
     ],
-    "canonical ollama adapter": [
-      "canonical ollama adapter"
-    ],
     "canonical packet layout": [
       "canonical packet layout"
     ],
@@ -18600,6 +18594,9 @@
     ],
     "changelog rewrite from confirmed drift": [
       "changelog rewrite from confirmed drift"
+    ],
+    "changelog rewrite glossary": [
+      "changelog rewrite glossary"
     ],
     "changelog rewrite pilot": [
       "changelog rewrite pilot"
@@ -21856,6 +21853,21 @@
     ],
     "cleanup verification checklist": [
       "cleanup verification checklist"
+    ],
+    "cleanup wiring and gating": [
+      "cleanup wiring and gating"
+    ],
+    "cleanup wiring and gating acceptance criteria": [
+      "cleanup wiring and gating acceptance criteria"
+    ],
+    "cleanup wiring and gating implementation summary": [
+      "cleanup wiring and gating implementation summary"
+    ],
+    "cleanup wiring and gating plan": [
+      "cleanup wiring and gating plan"
+    ],
+    "cleanup wiring and gating tasks": [
+      "cleanup wiring and gating tasks"
     ],
     "clear cache": [
       "clear cache"
@@ -29042,9 +29054,6 @@
     "command md yaml tasks": [
       "command md yaml tasks"
     ],
-    "command meaning anchor": [
-      "command meaning anchor"
-    ],
     "command meaning matching": [
       "command meaning matching"
     ],
@@ -29161,9 +29170,6 @@
     ],
     "command routing prose": [
       "command routing prose"
-    ],
-    "command row embedding": [
-      "command row embedding"
     ],
     "command runtime mirrors": [
       "command runtime mirrors"
@@ -29284,9 +29290,6 @@
     ],
     "command txt rename tasks": [
       "command txt rename tasks"
-    ],
-    "command vector refresh": [
-      "command vector refresh"
     ],
     "command vs skill vs agent": [
       "command vs skill vs agent"
@@ -40744,6 +40747,12 @@
     "delete taste rules tasks": [
       "delete taste rules tasks"
     ],
+    "delete the hf model server": [
+      "delete the hf model server"
+    ],
+    "delete the semantic shadow lane": [
+      "delete the semantic shadow lane"
+    ],
     "delete unreachable rule scripts": [
       "delete unreachable rule scripts"
     ],
@@ -41108,6 +41117,9 @@
     ],
     "derived id task breakdown": [
       "derived_id task breakdown"
+    ],
+    "derived index residue assertion": [
+      "derived index residue assertion"
     ],
     "derived json write": [
       "derived.json write"
@@ -42776,6 +42788,9 @@
     ],
     "discard failed experiment branch": [
       "discard failed experiment branch"
+    ],
+    "discard old advisor databases": [
+      "discard old advisor databases"
     ],
     "discover team names": [
       "discover team names"
@@ -44494,6 +44509,21 @@
     "doctor install guidance": [
       "doctor install guidance"
     ],
+    "doctor lane removal alignment": [
+      "doctor lane removal alignment"
+    ],
+    "doctor lane removal alignment acceptance criteria": [
+      "doctor lane removal alignment acceptance criteria"
+    ],
+    "doctor lane removal alignment implementation summary": [
+      "doctor lane removal alignment implementation summary"
+    ],
+    "doctor lane removal alignment plan": [
+      "doctor lane removal alignment plan"
+    ],
+    "doctor lane removal alignment tasks": [
+      "doctor lane removal alignment tasks"
+    ],
     "doctor manual playbook rows": [
       "doctor manual playbook rows"
     ],
@@ -44918,6 +44948,9 @@
     "doctor scripts yaml dependency": [
       "doctor-scripts yaml dependency"
     ],
+    "doctor semantic health flag removal": [
+      "doctor semantic health flag removal"
+    ],
     "doctor sequential thinking removal": [
       "doctor sequential thinking removal"
     ],
@@ -45101,8 +45134,23 @@
     "doctor startup questions": [
       "doctor startup questions"
     ],
+    "doctor surface": [
+      "doctor surface"
+    ],
+    "doctor surface acceptance criteria": [
+      "doctor surface acceptance criteria"
+    ],
     "doctor surface authoring handover": [
       "doctor surface authoring handover"
+    ],
+    "doctor surface implementation summary": [
+      "doctor surface implementation summary"
+    ],
+    "doctor surface plan": [
+      "doctor surface plan"
+    ],
+    "doctor surface tasks": [
+      "doctor surface tasks"
     ],
     "doctor symlink gaps": [
       "doctor symlink gaps"
@@ -45217,6 +45265,9 @@
     ],
     "doctor update handover": [
       "/doctor:update handover"
+    ],
+    "doctor update lane cleanup": [
+      "doctor update lane cleanup"
     ],
     "doctor update local state": [
       "doctor update local state"
@@ -47333,9 +47384,6 @@
     "embedder adapter interface": [
       "embedder adapter interface"
     ],
-    "embedder adapter shim": [
-      "embedder adapter shim"
-    ],
     "embedder architecture changelog": [
       "embedder architecture changelog"
     ],
@@ -47356,9 +47404,6 @@
     ],
     "embedder auto resolution fix tasks": [
       "embedder auto resolution fix tasks"
-    ],
-    "embedder auto select": [
-      "embedder auto-select"
     ],
     "embedder auto select health probe": [
       "embedder auto-select health probe"
@@ -47402,9 +47447,6 @@
     "embedder demand listener re arm": [
       "embedder demand listener re-arm"
     ],
-    "embedder device selection": [
-      "embedder device selection"
-    ],
     "embedder hard refusal": [
       "embedder hard refusal"
     ],
@@ -47431,9 +47473,6 @@
     ],
     "embedder packet handover": [
       "embedder packet handover"
-    ],
-    "embedder pluggability": [
-      "embedder pluggability"
     ],
     "embedder pluggability historical annotation": [
       "embedder-pluggability historical annotation"
@@ -47480,9 +47519,6 @@
     "embedder residue cleanup": [
       "embedder residue cleanup"
     ],
-    "embedder rollback": [
-      "embedder rollback"
-    ],
     "embedder seam stage4 detector": [
       "embedder seam stage4 detector"
     ],
@@ -47528,14 +47564,8 @@
     "embedder stack follow ups": [
       "embedder stack follow-ups"
     ],
-    "embedder swap": [
-      "embedder swap"
-    ],
     "embedder testing architecture": [
       "embedder testing architecture"
-    ],
-    "embedder tests": [
-      "embedder tests"
     ],
     "embedder tool registration": [
       "embedder tool registration"
@@ -47563,9 +47593,6 @@
     ],
     "embedding": [
       "embedding"
-    ],
-    "embedding adapter contract": [
-      "embedding adapter contract"
     ],
     "embedding backlog drain": [
       "embedding backlog drain"
@@ -47632,9 +47659,6 @@
     ],
     "embedding context version tasks": [
       "embedding context version tasks"
-    ],
-    "embedding coverage": [
-      "embedding coverage"
     ],
     "embedding coverage changelog": [
       "embedding coverage changelog"
@@ -47717,6 +47741,12 @@
     "embedding generation returned null reset summary": [
       "Embedding generation returned null reset summary"
     ],
+    "embedding lane removed": [
+      "embedding lane removed"
+    ],
+    "embedding lane weight zero": [
+      "embedding lane weight zero"
+    ],
     "embedding local first plan": [
       "embedding local-first plan"
     ],
@@ -47753,17 +47783,11 @@
     "embedding population acceptance criteria": [
       "embedding population acceptance criteria"
     ],
-    "embedding profile": [
-      "embedding profile"
-    ],
     "embedding provider cascade": [
       "embedding provider cascade"
     ],
     "embedding provider default flip quality": [
       "embedding provider default flip quality"
-    ],
-    "embedding provider env vars": [
-      "embedding provider env vars"
     ],
     "embedding provider identification": [
       "embedding provider identification"
@@ -47777,17 +47801,8 @@
     "embedding provider priority fix": [
       "embedding provider priority fix"
     ],
-    "embedding provider selection": [
-      "embedding provider selection"
-    ],
-    "embedding provider stack": [
-      "embedding provider stack"
-    ],
     "embedding provider use after free gate": [
       "embedding provider use-after-free gate"
-    ],
-    "embedding providers": [
-      "embedding providers"
     ],
     "embedding readiness deprecation": [
       "embedding readiness deprecation"
@@ -47974,9 +47989,6 @@
     ],
     "embeddings": [
       "embeddings"
-    ],
-    "embeddings factory": [
-      "embeddings factory"
     ],
     "embeddings health status": [
       "embeddings health status"
@@ -49530,9 +49542,6 @@
     ],
     "execution router sidecar worker provider fallback": [
       "execution router sidecar worker provider fallback"
-    ],
-    "execution router tests": [
-      "execution router tests"
     ],
     "execution scaffold summary": [
       "execution scaffold summary"
@@ -52989,9 +52998,6 @@
     "five iterations of glm 5 3 flash deep": [
       "five iterations of glm 5 3 flash deep"
     ],
-    "five lane fusion": [
-      "five lane fusion"
-    ],
     "five lane fusion scorer": [
       "five-lane fusion scorer"
     ],
@@ -53339,6 +53345,9 @@
     ],
     "fix the stale lock reclaim race": [
       "fix the stale lock reclaim race"
+    ],
+    "fix the ten p2 advisories from the lane": [
+      "fix the ten p2 advisories from the lane"
     ],
     "fix write recipe backfill flag": [
       "fix write recipe backfill flag"
@@ -56260,6 +56269,21 @@
     "generated surfaces": [
       "generated surfaces"
     ],
+    "generated surfaces acceptance criteria": [
+      "generated surfaces acceptance criteria"
+    ],
+    "generated surfaces decisions": [
+      "generated surfaces decisions"
+    ],
+    "generated surfaces implementation summary": [
+      "generated surfaces implementation summary"
+    ],
+    "generated surfaces plan": [
+      "generated surfaces plan"
+    ],
+    "generated surfaces tasks": [
+      "generated surfaces tasks"
+    ],
     "generated title carry": [
       "generated title carry"
     ],
@@ -56304,6 +56328,9 @@
     ],
     "generator check mode task": [
       "generator check mode task"
+    ],
+    "generator check modes": [
+      "generator check modes"
     ],
     "generator defects": [
       "generator defects"
@@ -60489,9 +60516,6 @@
     ],
     "hf local prefix registry": [
       "hf-local prefix registry"
-    ],
-    "hf local provider": [
-      "hf local provider"
     ],
     "hf local q8 default": [
       "hf-local q8 default"
@@ -64914,6 +64938,9 @@
     "jsonc comment policy": [
       "jsonc comment policy"
     ],
+    "jsonc comment stripping": [
+      "jsonc comment stripping"
+    ],
     "jsonc file template": [
       "jsonc file template"
     ],
@@ -65434,8 +65461,53 @@
     "lane champion backfill recall": [
       "lane champion backfill recall"
     ],
+    "lane cleanup": [
+      "lane cleanup"
+    ],
+    "lane cleanup doctor wiring plan": [
+      "lane cleanup doctor wiring plan"
+    ],
+    "lane cleanup in doctor update apply": [
+      "lane cleanup in doctor update apply"
+    ],
+    "lane core": [
+      "lane core"
+    ],
+    "lane core acceptance criteria": [
+      "lane core acceptance criteria"
+    ],
+    "lane core implementation summary": [
+      "lane core implementation summary"
+    ],
+    "lane core plan": [
+      "lane core plan"
+    ],
+    "lane core tasks": [
+      "lane core tasks"
+    ],
     "lane evidence damping": [
       "lane evidence damping"
+    ],
+    "lane feeders": [
+      "lane feeders"
+    ],
+    "lane feeders acceptance criteria": [
+      "lane feeders acceptance criteria"
+    ],
+    "lane feeders implementation summary": [
+      "lane feeders implementation summary"
+    ],
+    "lane feeders plan": [
+      "lane feeders plan"
+    ],
+    "lane feeders tasks": [
+      "lane feeders tasks"
+    ],
+    "lane fusion": [
+      "lane fusion"
+    ],
+    "lane fusion rename plan": [
+      "lane fusion rename plan"
     ],
     "lane identity injective normalizer": [
       "lane identity injective normalizer"
@@ -65463,6 +65535,21 @@
     ],
     "lane repair tasks": [
       "lane repair tasks"
+    ],
+    "lane residue check": [
+      "lane residue check"
+    ],
+    "lane residue cleanup": [
+      "lane residue cleanup"
+    ],
+    "lane residue deep review": [
+      "lane residue deep review"
+    ],
+    "lane residue gate and cleanup": [
+      "lane residue gate and cleanup"
+    ],
+    "lane residue sweep": [
+      "lane residue sweep"
     ],
     "lane rules as heal modes": [
       "lane rules as heal modes"
@@ -65496,9 +65583,6 @@
     ],
     "lane weight source of truth": [
       "lane weight source of truth"
-    ],
-    "lane weight sweep": [
-      "lane weight sweep"
     ],
     "lane weight sweep harder set": [
       "lane weight sweep harder set"
@@ -68142,6 +68226,12 @@
     ],
     "local llm vitest groups": [
       "local llm vitest groups"
+    ],
+    "local model server embedding coverage": [
+      "local model server embedding coverage"
+    ],
+    "local model server prompt path": [
+      "local model server prompt path"
     ],
     "local owner artifact rollback": [
       "local owner artifact rollback"
@@ -78988,9 +79078,6 @@
     "ollama adapter provider merge": [
       "ollama adapter provider merge"
     ],
-    "ollama adapter shim": [
-      "ollama adapter shim"
-    ],
     "ollama advisor analysis": [
       "ollama advisor analysis"
     ],
@@ -79066,9 +79153,6 @@
     "ollama embedder registry summary": [
       "ollama embedder registry summary"
     ],
-    "ollama embeddings": [
-      "ollama embeddings"
-    ],
     "ollama encode path plan": [
       "ollama encode path plan"
     ],
@@ -79123,11 +79207,20 @@
     "ollama lane off and daemon liveness tasks": [
       "ollama lane off and daemon liveness tasks"
     ],
+    "ollama lane removal deep review": [
+      "ollama lane removal deep review"
+    ],
+    "ollama lane removal phase parent spec": [
+      "ollama lane removal phase parent spec"
+    ],
+    "ollama lane removal review report": [
+      "ollama lane removal review report"
+    ],
     "ollama merge closure gate": [
       "ollama merge closure gate"
     ],
-    "ollama prompt path": [
-      "Ollama prompt path"
+    "ollama residue check": [
+      "ollama residue check"
     ],
     "ollama routing task list": [
       "ollama routing task list"
@@ -79146,9 +79239,6 @@
     ],
     "ollama tier 1 embedder": [
       "ollama tier 1 embedder"
-    ],
-    "ollama vector coverage": [
-      "Ollama vector coverage"
     ],
     "ollamaprovider shared factory": [
       "OllamaProvider shared factory"
@@ -79488,9 +79578,6 @@
     ],
     "openai codex subscription route": [
       "openai-codex subscription route"
-    ],
-    "openai embeddings": [
-      "openai embeddings"
     ],
     "openai fallback slug": [
       "openai fallback slug"
@@ -81421,9 +81508,6 @@
     "out of box embedder narrative": [
       "out-of-box embedder narrative"
     ],
-    "out of box embedder support": [
-      "out-of-box embedder support"
-    ],
     "out of box embedder support matrix": [
       "out-of-box embedder support matrix"
     ],
@@ -81480,6 +81564,9 @@
     ],
     "outcome emitter task": [
       "outcome emitter task"
+    ],
+    "outdated database discard": [
+      "outdated database discard"
     ],
     "outlier identification": [
       "outlier identification"
@@ -84399,6 +84486,9 @@
     "phase 1 research": [
       "phase 1 research"
     ],
+    "phase 1 residue check and cleanup tool": [
+      "phase 1 residue check and cleanup tool"
+    ],
     "phase 1 restraint routing": [
       "phase 1 restraint routing"
     ],
@@ -85368,6 +85458,9 @@
     "phase 2 doctor sk code setup": [
       "phase 2 doctor sk-code setup"
     ],
+    "phase 2 doctor surface": [
+      "phase 2 doctor surface"
+    ],
     "phase 2 dsh offline contract pin": [
       "phase 2 dsh offline contract pin"
     ],
@@ -85989,6 +86082,9 @@
     "phase 3 integration and docs": [
       "phase 3 integration and docs"
     ],
+    "phase 3 lane feeders": [
+      "phase 3 lane feeders"
+    ],
     "phase 3 launch flag replay": [
       "phase 3 launch flag replay"
     ],
@@ -86343,6 +86439,9 @@
     "phase 4 integration review and docs closure": [
       "phase 4 integration review and docs closure"
     ],
+    "phase 4 lane core": [
+      "phase 4 lane core"
+    ],
     "phase 4 leftover template comments": [
       "phase 4 leftover template comments"
     ],
@@ -86649,6 +86748,9 @@
     "phase 5 setup check hardening": [
       "phase 5 setup check hardening"
     ],
+    "phase 5 shared embeddings package": [
+      "phase 5 shared embeddings package"
+    ],
     "phase 5 silent input sweep": [
       "phase 5 silent input sweep"
     ],
@@ -86877,6 +86979,9 @@
     "phase 6 plan": [
       "phase 6 plan"
     ],
+    "phase 6 prose docs and changelogs": [
+      "phase 6 prose docs and changelogs"
+    ],
     "phase 6 purpose carry follow ups": [
       "phase 6 purpose carry follow ups"
     ],
@@ -87060,6 +87165,9 @@
     "phase 7 gap closure": [
       "phase 7 gap closure"
     ],
+    "phase 7 generated surfaces": [
+      "phase 7 generated surfaces"
+    ],
     "phase 7 goal handover docs": [
       "phase 7 goal handover docs"
     ],
@@ -87203,6 +87311,9 @@
     ],
     "phase 8 claude hook tree guard": [
       "phase 8 claude hook tree guard"
+    ],
+    "phase 8 cleanup wiring and gating": [
+      "phase 8 cleanup wiring and gating"
     ],
     "phase 8 cli pi": [
       "phase 8 cli pi"
@@ -92423,6 +92534,21 @@
     "prose clarity pass tasks": [
       "prose clarity pass tasks"
     ],
+    "prose docs and changelogs": [
+      "prose docs and changelogs"
+    ],
+    "prose docs and changelogs acceptance criteria": [
+      "prose docs and changelogs acceptance criteria"
+    ],
+    "prose docs and changelogs implementation summary": [
+      "prose docs and changelogs implementation summary"
+    ],
+    "prose docs and changelogs plan": [
+      "prose docs and changelogs plan"
+    ],
+    "prose docs and changelogs tasks": [
+      "prose docs and changelogs tasks"
+    ],
     "prose lines and bullet lists": [
       "prose lines and bullet lists"
     ],
@@ -96074,9 +96200,6 @@
     "refresh run": [
       "refresh run"
     ],
-    "refresh skill embeddings test": [
-      "refresh skill embeddings test"
-    ],
     "refresh skill relationships": [
       "refresh skill relationships"
     ],
@@ -96178,6 +96301,9 @@
     ],
     "regenerate runtime mirrors after move": [
       "regenerate runtime mirrors after move"
+    ],
+    "regenerate the trigger index fixtures": [
+      "regenerate the trigger index fixtures"
     ],
     "regenerated line regenerate step overlay": [
       "regenerated line regenerate step overlay"
@@ -98089,6 +98215,9 @@
     "remote push permission": [
       "remote push permission"
     ],
+    "removal changelog wording": [
+      "removal changelog wording"
+    ],
     "removal decision record": [
       "removal decision record"
     ],
@@ -98202,6 +98331,9 @@
     ],
     "remove hermes from docs": [
       "remove hermes from docs"
+    ],
+    "remove huggingface transformers dependency": [
+      "remove huggingface transformers dependency"
     ],
     "remove isdeeppiowned carve out": [
       "remove isdeeppiowned carve-out"
@@ -98338,11 +98470,26 @@
     "remove task mcp": [
       "remove task mcp"
     ],
+    "remove the background vector refresh": [
+      "remove the background vector refresh"
+    ],
+    "remove the command meaning path": [
+      "remove the command meaning path"
+    ],
+    "remove the doctor embedder route": [
+      "remove the doctor embedder route"
+    ],
     "remove the file total line ceiling from release": [
       "remove the file total line ceiling from release"
     ],
+    "remove the lane registry row": [
+      "remove the lane registry row"
+    ],
     "remove the llmgateway gpt 6 luna route": [
       "remove the llmgateway gpt 6 luna route"
+    ],
+    "remove the ollama lane": [
+      "remove the ollama lane"
     ],
     "remove the operator s personal account name": [
       "remove the operator s personal account name"
@@ -98502,6 +98649,9 @@
     ],
     "rename surface taxonomy": [
       "rename surface taxonomy"
+    ],
+    "rename the lane fusion files": [
+      "rename the lane fusion files"
     ],
     "render advisory": [
       "render advisory"
@@ -100469,6 +100619,24 @@
     "residue census criterion": [
       "residue census criterion"
     ],
+    "residue check and cleanup tool": [
+      "residue check and cleanup tool"
+    ],
+    "residue check and cleanup tool acceptance criteria": [
+      "residue check and cleanup tool acceptance criteria"
+    ],
+    "residue check and cleanup tool implementation summary": [
+      "residue check and cleanup tool implementation summary"
+    ],
+    "residue check and cleanup tool plan": [
+      "residue check and cleanup tool plan"
+    ],
+    "residue check and cleanup tool tasks": [
+      "residue check and cleanup tool tasks"
+    ],
+    "residue check gating in ci": [
+      "residue check gating in ci"
+    ],
     "residue cleanup tasks": [
       "residue cleanup tasks"
     ],
@@ -100501,6 +100669,9 @@
     ],
     "residue flagger verification": [
       "residue flagger verification"
+    ],
+    "residue gate ci job plan": [
+      "residue gate ci job plan"
     ],
     "resilient resource discovery": [
       "resilient resource discovery"
@@ -101229,6 +101400,12 @@
     "retired advisor command ids": [
       "retired advisor command ids"
     ],
+    "retired advisor lane cleanup": [
+      "retired advisor lane cleanup"
+    ],
+    "retired advisor lane shared modules": [
+      "retired advisor lane shared modules"
+    ],
     "retired benchmark handling": [
       "retired benchmark handling"
     ],
@@ -101240,6 +101417,9 @@
     ],
     "retired checklist fixture": [
       "retired checklist fixture"
+    ],
+    "retired embedding route residue": [
+      "retired embedding route residue"
     ],
     "retired jev features removed": [
       "retired jev features removed"
@@ -101684,9 +101864,6 @@
     ],
     "retry throughput env knob": [
       "retry-throughput env knob"
-    ],
-    "retry utilities": [
-      "retry utilities"
     ],
     "reunification with deep loop runtime": [
       "Reunification with deep-loop-runtime"
@@ -102411,11 +102588,17 @@
     "review p2 fixes": [
       "review p2 fixes"
     ],
+    "review p2 fixes acceptance criteria": [
+      "review p2 fixes acceptance criteria"
+    ],
     "review p2 fixes implementation summary": [
       "review p2 fixes implementation summary"
     ],
     "review p2 fixes plan": [
       "review p2 fixes plan"
+    ],
+    "review p2 fixes review report": [
+      "review p2 fixes review report"
     ],
     "review p2 fixes tasks": [
       "review p2 fixes tasks"
@@ -103059,6 +103242,9 @@
     ],
     "rewrite references same commit": [
       "rewrite references same commit"
+    ],
+    "rewrite released changelog entries": [
+      "rewrite released changelog entries"
     ],
     "rewrite runtime adapter readmes": [
       "rewrite runtime adapter readmes"
@@ -106572,6 +106758,9 @@
     "schema v5 parser quarantine": [
       "schema v5 parser quarantine"
     ],
+    "schema version rescan": [
+      "schema version rescan"
+    ],
     "schema warn to error": [
       "schema warn to error"
     ],
@@ -106991,6 +107180,9 @@
     ],
     "scorer deem flag removal tasks": [
       "scorer deem flag removal tasks"
+    ],
+    "scorer eval baseline regeneration": [
+      "scorer eval baseline regeneration"
     ],
     "scorer freeze renewal": [
       "scorer freeze renewal"
@@ -108074,9 +108266,6 @@
     ],
     "semantic web markup": [
       "semantic web markup"
-    ],
-    "semanticlanehealth": [
-      "semanticLaneHealth"
     ],
     "semanticnovelty findingstability": [
       "semanticNovelty findingStability"
@@ -109312,14 +109501,26 @@
     "shared design tokens": [
       "shared design tokens"
     ],
-    "shared embedder adapters": [
-      "shared embedder adapters"
-    ],
     "shared embedder logic skill advisor": [
       "shared embedder logic skill-advisor"
     ],
     "shared embeddings factory ollama": [
       "shared embeddings factory ollama"
+    ],
+    "shared embeddings package": [
+      "shared embeddings package"
+    ],
+    "shared embeddings package acceptance criteria": [
+      "shared embeddings package acceptance criteria"
+    ],
+    "shared embeddings package implementation summary": [
+      "shared embeddings package implementation summary"
+    ],
+    "shared embeddings package plan": [
+      "shared embeddings package plan"
+    ],
+    "shared embeddings package tasks": [
+      "shared embeddings package tasks"
     ],
     "shared engine and research": [
       "shared engine and research"
@@ -109365,9 +109566,6 @@
     ],
     "shared evidence and control services stream fold gauges changelog": [
       "shared evidence and control services stream fold gauges changelog"
-    ],
-    "shared factory parity": [
-      "shared factory parity"
     ],
     "shared feedback aggregation": [
       "shared feedback aggregation"
@@ -109593,6 +109791,9 @@
     ],
     "shared mode interfaces tasks": [
       "shared mode interfaces tasks"
+    ],
+    "shared model question every run": [
+      "shared model question every run"
     ],
     "shared modules readme": [
       "shared modules readme"
@@ -117741,9 +117942,6 @@
     "skill advisor embedderadapter": [
       "skill-advisor EmbedderAdapter"
     ],
-    "skill advisor embedders": [
-      "skill advisor embedders"
-    ],
     "skill advisor esm migration": [
       "skill advisor ESM migration"
     ],
@@ -118780,6 +118978,9 @@
     ],
     "skill graph database": [
       "skill graph database"
+    ],
+    "skill graph database tests": [
+      "skill graph database tests"
     ],
     "skill graph db availability": [
       "skill graph db availability"
@@ -126050,6 +126251,12 @@
     "sweep fleet marker": [
       "sweep fleet marker"
     ],
+    "sweep lane residue": [
+      "sweep lane residue"
+    ],
+    "sweep lane residue mjs": [
+      "sweep-lane-residue.mjs"
+    ],
     "sweep live zero trigger index": [
       "sweep live zero trigger index"
     ],
@@ -127134,6 +127341,9 @@
     "system skill advisor 1 3 0 0": [
       "system-skill-advisor 1.3.0.0"
     ],
+    "system skill advisor 2 0 0 0": [
+      "system-skill-advisor 2.0.0.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -127488,6 +127698,9 @@
     "system skill advisor v1 3 0 0": [
       "system-skill-advisor v1.3.0.0"
     ],
+    "system skill advisor v2 0 0 0": [
+      "system-skill-advisor v2.0.0.0"
+    ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
     ],
@@ -127523,6 +127736,9 @@
     ],
     "system skilled doctor 1 2 0 0 release evidence": [
       "system-skilled-doctor 1.2.0.0 release evidence"
+    ],
+    "system skilled doctor 1 3 0 0": [
+      "system-skilled-doctor 1.3.0.0"
     ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
@@ -127592,6 +127808,9 @@
     ],
     "system skilled doctor v1 2 0 0 release": [
       "system-skilled-doctor v1.2.0.0 release"
+    ],
+    "system skilled doctor v1 3 0 0": [
+      "system-skilled-doctor v1.3.0.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -128010,6 +128229,9 @@
     "system spec kit 2 13 5 0": [
       "system-spec-kit 2.13.5.0"
     ],
+    "system spec kit 2 14 0 0": [
+      "system-spec-kit 2.14.0.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -128240,9 +128462,6 @@
     ],
     "system spec kit runtime tests helpers": [
       "system-spec-kit runtime/tests/helpers"
-    ],
-    "system spec kit runtime tests local llm features performance": [
-      "system-spec-kit runtime/tests/local-llm-features/performance"
     ],
     "system spec kit runtime tests security": [
       "system-spec-kit runtime/tests/security"
@@ -128672,6 +128891,9 @@
     ],
     "system spec kit v2 13 5 0": [
       "system-spec-kit v2.13.5.0"
+    ],
+    "system spec kit v2 14 0 0": [
+      "system-spec-kit v2.14.0.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -131739,6 +131961,9 @@
     "trigger index": [
       "trigger index"
     ],
+    "trigger index allowlist decision": [
+      "trigger index allowlist decision"
+    ],
     "trigger index behavior": [
       "trigger index behavior"
     ],
@@ -131832,8 +132057,14 @@
     "trigger index regeneration": [
       "trigger index regeneration"
     ],
+    "trigger index regeneration order": [
+      "trigger index regeneration order"
+    ],
     "trigger index regeneration task": [
       "trigger index regeneration task"
+    ],
+    "trigger index regeneration tasks": [
+      "trigger index regeneration tasks"
     ],
     "trigger index replacement": [
       "trigger index replacement"
@@ -133813,9 +134044,6 @@
     "v1 search pipeline": [
       "v1 search pipeline"
     ],
-    "v1 to v2 backfill": [
-      "v1 to v2 backfill"
-    ],
     "v1 v2 additive": [
       "v1 v2 additive"
     ],
@@ -134887,9 +135115,6 @@
     ],
     "vec 1024 half wired": [
       "vec_1024 half-wired"
-    ],
-    "vec cmd table": [
-      "vec_cmd table"
     ],
     "vec dim lazy table creation": [
       "vec_dim lazy table creation"
@@ -136593,9 +136818,6 @@
     "voyage egress monitor": [
       "voyage egress monitor"
     ],
-    "voyage embeddings": [
-      "voyage embeddings"
-    ],
     "voyage openai ollama hf local fallback": [
       "voyage openai ollama hf-local fallback"
     ],
@@ -137338,9 +137560,6 @@
     ],
     "which doctor command": [
       "which doctor command"
-    ],
-    "which embedder do we use": [
-      "which embedder do we use"
     ],
     "which findings survived verification": [
       "which findings survived verification"

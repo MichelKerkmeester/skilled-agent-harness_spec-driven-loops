@@ -1,5 +1,5 @@
 {
-  "count": 1248,
+  "count": 1254,
   "mode": "readme",
   "results": [
     {
@@ -3968,7 +3968,124 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing--post-review/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"HEADLINE / OVERVIEW\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"HEADLINE / OVERVIEW\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/compiled-routing/2026-11-21--two-stage-replay--compiled/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--app-running-rerun/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--hub-path-live/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"HEADLINE / OVERVIEW\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -4036,7 +4153,85 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--attach-probe--aside-browser/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"HEADLINE / OVERVIEW\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--hub-path-live/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"HEADLINE / OVERVIEW\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -4094,6 +4289,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/mcp-browser-use/shared/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -7360,6 +7565,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/system-deep-loop/runtime/tests/_support/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/system-deep-loop/runtime/tests/council/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -7720,26 +7935,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/embedders/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/embedders/adapters/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".skilled/skills/system-skill-advisor/runtime/lib/freshness/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -7901,16 +8096,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-skill-advisor/runtime/tests/compat/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-skill-advisor/runtime/tests/embedders/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -9314,26 +9499,6 @@
     {
       "auto_fixable_count": 0,
       "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/runtime/tests/embedders/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "unknown",
-      "file": ".skilled/skills/system-spec-kit/runtime/tests/embedders/fixtures/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
       "document_type": "unknown",
       "file": ".skilled/skills/system-spec-kit/runtime/tests/fixtures/README.md",
       "return_code": 0,
@@ -9366,36 +9531,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/runtime/tests/hooks/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/runtime/tests/local-llm-features/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/runtime/tests/local-llm-features/performance/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/runtime/tests/local-llm-features/performance/baselines/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -9446,36 +9581,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/shared/algorithms/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/shared/embeddings/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/shared/embeddings/adapters/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/shared/embeddings/providers/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

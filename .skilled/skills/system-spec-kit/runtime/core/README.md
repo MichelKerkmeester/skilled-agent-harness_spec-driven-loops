@@ -13,11 +13,10 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`core/` is the shared runtime foundation for the package. Its single module, `config.ts`, exposes path constants, database path resolution with allowed-path boundary checks, batch-processing tuning, and input-validation limits that other layers import rather than recomputing.
+`core/` is the shared runtime foundation for the package. Its single module, `config.ts`, exposes path constants, the allowed base paths, batch-processing tuning, and input-validation limits that other layers import rather than recomputing.
 
 Current responsibilities:
 
-- Resolve database paths from runtime environment variables (`SPEC_KIT_DB_DIR`, `SPECKIT_DB_DIR`, `MEMORY_DB_PATH`) with a realpath-based boundary check against the project, home, and temp directories.
 - Export server/lib/shared path constants (`SERVER_DIR`, `NODE_MODULES`, `LIB_DIR`, `SHARED_DIR`).
 - Export batch-processing tuning (`BATCH_SIZE`, `BATCH_DELAY_MS`), the index-scan cooldown constant, and query/input length limits (`MAX_QUERY_LENGTH`, `INPUT_LIMITS`).
 - Export the allowed base paths used by path-validation callers (`DEFAULT_BASE_PATH`, `ALLOWED_BASE_PATHS`).

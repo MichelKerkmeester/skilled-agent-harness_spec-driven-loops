@@ -232,7 +232,6 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
     parser.add_argument("--out", type=Path, default=None)
-    parser.add_argument("--enable-semantic", action="store_true")
     parser.add_argument("--min-advisor-accuracy", type=float, default=None)
     parser.add_argument("--min-gate3-f1", type=float, default=None)
     parser.add_argument("--min-joint-tt", type=int, default=None)
@@ -240,9 +239,6 @@ def main() -> int:
     parser.add_argument("--max-joint-ff", type=int, default=None)
     parser.add_argument("--require-historical-clean", action="store_true")
     args = parser.parse_args()
-
-    if not args.enable_semantic:
-        os.environ[advisor_env_name()] = "true"
 
     rows = load_jsonl(args.dataset)
     advisor = load_advisor_module()
@@ -255,7 +251,6 @@ def main() -> int:
         "advisor": advisor_metrics,
         "gate3": score_gate3(rows, gate3_predictions),
         "joint": score_joint(rows, gate3_predictions, advisor_predictions),
-        "semantic_enabled": bool(args.enable_semantic),
     }
     failures = threshold_failures(report, args)
     report["threshold_failures"] = failures
@@ -267,11 +262,6 @@ def main() -> int:
 
     print(json.dumps(report, indent=2))
     return 0 if not failures else 1
-
-
-def advisor_env_name() -> str:
-    """Keep the semantic-disable env var in one place."""
-    return "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC"
 
 
 if __name__ == "__main__":

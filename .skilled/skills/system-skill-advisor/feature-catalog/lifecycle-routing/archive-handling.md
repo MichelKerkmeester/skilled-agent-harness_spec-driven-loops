@@ -6,7 +6,7 @@ trigger_phrases:
   - "z_archive skills"
   - "z_future skills"
   - "indexed but not routed"
-version: 0.8.0.12
+version: 0.8.1.0
 ---
 
 # Archive and Future Skills Indexed But Not Routed
@@ -23,7 +23,7 @@ Preserve historical and staged skills for inspection (audits, history, pre-activ
 
 1. `advisor_recommend` recommendations.
 2. DF/IDF corpus statistics (see `lib/df-idf.ts`).
-3. 5-lane fusion scoring inputs.
+3. Lane fusion scoring inputs.
 
 ---
 

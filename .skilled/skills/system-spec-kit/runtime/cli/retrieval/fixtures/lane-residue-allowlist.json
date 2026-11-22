@@ -1,0 +1,193 @@
+{
+  "description": "Exact tracked paths sweep-lane-residue.mjs repo mode may report without failing. Every row names one file, never a folder or glob, and says why each of its matches is not live residue of the skill advisor's retired semantic lane. A row whose file stops matching is listed as unused, never as an error. The trigger index and its three sidecar fixtures take no row: repo mode judges each of their lane entries by the path it points at.",
+  "entries": [
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+      "reason": "The check itself. Its vocabulary is the thing being searched for."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json",
+      "reason": "This allowlist. Its reasons name the terms each exempted file matches."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts",
+      "reason": "The check's test. It plants lane terms in fixtures to prove the check fails."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      "reason": "The check's own doc. It names the --socket-dir default, /tmp/system-hf-embed, the folder apply deletes the model server's files from."
+    },
+    {
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-task-completion/auto-note.md",
+      "reason": "It names Ollama as a future ClickUp note provider. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md",
+      "reason": "Codex's own --oss mode runs local models through Ollama. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md",
+      "reason": "It describes Codex's own --oss mode with local Ollama models. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md",
+      "reason": "It says the Figma CLI supports local LLMs via LM Studio or Ollama. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
+      "reason": "sqlite-vec is a teaching example of typing an untyped module. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md",
+      "reason": "sqlite-vec is a teaching example of a permitted any. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md",
+      "reason": "A TSDoc example class in it uses sqlite-vec. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
+      "reason": "It holds an optional-require example with sqlite-vec. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/lib/database/indexer.mjs",
+      "reason": "sk-design's own style vector store takes an embedder callback parameter. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/lib/database/vectors.mjs",
+      "reason": "sk-design's own style vector store takes an embedder callback parameter. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/database/retrieval.test.mjs",
+      "reason": "Tests of sk-design's own vector store pass stub embedder callbacks. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/database/telemetry.test.mjs",
+      "reason": "Tests of sk-design's own vector store pass stub embedder callbacks. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/oracle/differential-oracle.mjs",
+      "reason": "sk-design's own oracle uses a deterministic embedder and vector coverage of its style corpus. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/oracle/query-set.mjs",
+      "reason": "sk-design's own oracle defines a deterministic embedder for its style corpus. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/tests/oracle/replay-fixtures.mjs",
+      "reason": "sk-design's own oracle defines a scaled deterministic embedder. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/neverhack/DESIGN.md",
+      "reason": "It uses semantic lanes for colour roles in a design system. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/neverhack/neverhack-canonical.json",
+      "reason": "It uses semantic lanes for colour roles in a design system. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-deep-loop/runtime/lib/semantic-communities/community-projection.ts",
+      "reason": "semantic_shadow_only is a deep-loop coverage metric that shares the name. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts",
+      "reason": "A case asserts semantic_shadow_only, the deep-loop coverage metric of the same name. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md",
+      "reason": "Teaching case studies of past embedder bake-offs for the retired memory server and a code index. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md",
+      "reason": "Two links point to the embedder bake-off case studies. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-benchmark/SKILL.md",
+      "reason": "It names an embedder as one example of a promoted default. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+      "reason": "It holds a worked changelog example about the retired memory database and its embedder. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
+      "reason": "Old-to-new spec folder path pairs whose folder names contain embedder. Spec paths, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "reason": "Forwards the OLLAMA_ environment prefix to the external CLI children it runs, because Codex can use Ollama as its local model provider. A child process setting, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/routing-parity-deep-skills.vitest.ts",
+      "reason": "Two routing prompts name an embedder investigation as the research topic. Prompt text about a topic, not the advisor lane; rewording it would move the routing scores the test asserts."
+    },
+    {
+      "path": ".skilled/scripts/orphan-mcp-sweeper.sh",
+      "reason": "The ollama-preserve guard keeps the sweeper from reaping an unrelated local Ollama runner or server. A guard kept on purpose, not the advisor lane; the file names no other lane term."
+    },
+    {
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/cli-exit-taxonomy.vitest.ts",
+      "reason": "Two cases pass the removed includeSemanticHealth status flag to prove the CLI refuses it with exit 64. A refusal test for the removed lane."
+    },
+    {
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+      "reason": "A case loops over the two removed health flags, includeSemanticHealth among them, to prove the status handler refuses each. A refusal test for the removed lane."
+    },
+    {
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+      "reason": "It holds a dated reviewer reason for an approved parity divergence, written when the semantic lane weight was 0. A frozen record of the removed lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/ops/process-memory-harness.ts",
+      "reason": "The ollama-serve rule and its sample row keep the memory harness from flagging an operator-managed Ollama daemon. A guard kept on purpose, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/process-memory-harness.vitest.ts",
+      "reason": "Two cases assert the harness rule that treats an operator-managed Ollama daemon as expected. A test of a kept guard, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/process-sweep.vitest.ts",
+      "reason": "A sample ollama serve command in it proves the sweep plan keeps an expected warm daemon. A test of a kept guard, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-memory-residue.mjs",
+      "reason": "It lists the retired memory server tool names embedder_list, embedder_set and embedder_status, which this sibling check searches for. Its vocabulary, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-invariance.vitest.ts",
+      "reason": "Two comments and two exemptions name the retired memory server embedder manifest, catalog entry and playbook. Not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+      "reason": "It holds three expected spec and catalog paths whose folder or file names contain embedder. Paths in a retrieval fixture, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/specs_system-speckit_028-memory-search-intelligence_002-speckit-memory_012-query-channel-calibration_spec.md",
+      "reason": "A frozen copy of a retired memory-search spec used as an anchor-repair fixture. Its text names that server embedder. Fixture text, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/specs_system-speckit_028-memory-search-intelligence_003-spec-data-quality_006-generated-metadata-build_010-deterministic-ranking-benchmark_spec.md",
+      "reason": "A frozen copy of a retired memory-search spec used as an anchor-repair fixture. Its text names that server nomic-embed embedder. Fixture text, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/specs_system-speckit_028-memory-search-intelligence_scratch_topology-migration-backup_identity-backups_004-dark-flag-graduation_001-multihop-tail-appends_spec.md",
+      "reason": "A frozen copy of a retired memory-search spec used as an anchor-repair fixture. Its text names that server nomic-embed embedder. Fixture text, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md",
+      "reason": "It holds recorded output listing spec folder paths that contain embedder. Spec paths, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md",
+      "reason": "It links a spec packet whose folder path contains embedder. A spec path, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md",
+      "reason": "It documents the sweeper guard that preserves an unrelated local Ollama server, and cites a spec folder path that contains embedder. A kept guard and a spec path, not the advisor lane."
+    },
+    {
+      "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      "reason": "It records a verdict for a file under a specs/ folder whose path contains embedder. A spec folder path string, not the advisor lane."
+    }
+  ]
+}

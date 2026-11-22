@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`runtime/cli/setup/` contains preflight utilities for Spec Kit workflows. These scripts check whether a target spec folder has the required documents, whether native Node.js modules are loadable, and whether the recorded Node.js runtime has changed.
+`runtime/cli/setup/` contains preflight utilities for Spec Kit workflows. These scripts check whether a target spec folder has the required documents, and whether the active Node.js runtime still matches the one recorded at the last native-module rebuild.
 
 Current state:
 
@@ -30,7 +30,7 @@ Current state:
 ```text
 runtime/cli/setup/
 +-- check-prerequisites.sh       # Spec-folder readiness checks
-+-- check-native-modules.sh      # Native module availability checks
++-- check-native-modules.sh      # Node runtime marker check
 +-- rebuild-native-modules.sh    # Native module rebuild helper
 +-- record-node-version.js       # Node.js version recorder
 `-- README.md
@@ -55,7 +55,7 @@ Disallowed direction:
 | File | Responsibility |
 |---|---|
 | `check-prerequisites.sh` | Checks spec-folder presence, required docs, optional task docs and validation status. |
-| `check-native-modules.sh` | Verifies native modules required by the scripts workspace can load. |
+| `check-native-modules.sh` | Compares the active Node.js version and module ABI against `.node-version-marker`. |
 | `rebuild-native-modules.sh` | Rebuilds native modules after Node.js or dependency changes. |
 | `record-node-version.js` | Records the active Node.js version for rebuild checks. |
 
@@ -87,7 +87,7 @@ Expected result: emits JSON and exits non-zero if strict spec validation fails.
 .skilled/skills/system-spec-kit/runtime/cli/setup/check-native-modules.sh
 ```
 
-Expected result: exits zero when native dependencies load in the current Node.js runtime.
+Expected result: exits zero when the marker exists and its module ABI matches the current Node.js runtime, and exits 1 with a `[FAIL]` line otherwise.
 
 ```bash
 .skilled/skills/system-spec-kit/runtime/cli/setup/rebuild-native-modules.sh

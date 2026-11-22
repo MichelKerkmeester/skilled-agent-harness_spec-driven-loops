@@ -2,11 +2,7 @@
 // MODULE: Runtime Lane Health Tests
 // ───────────────────────────────────────────────────────────────
 
-import { afterAll, describe, expect, it, vi } from 'vitest';
-
-vi.hoisted(() => {
-  process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON = '{"semantic_shadow":0.05}';
-});
+import { describe, expect, it } from 'vitest';
 
 import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
 import { createFixtureProjection } from '../../lib/scorer/projection.js';
@@ -54,10 +50,6 @@ function top(result: AdvisorScoringResult) {
   return recommendation!;
 }
 
-afterAll(() => {
-  delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
-});
-
 describe('runtime lane health graceful degradation', () => {
   it('keeps an explicit healthy signal byte-identical to the default path', () => {
     const baseline = score();
@@ -78,7 +70,7 @@ describe('runtime lane health graceful degradation', () => {
 
     expect(graphContribution?.rawScore).toBe(0);
     expect(graphContribution?.weight).toBe(0.13);
-    expect(baseline.metrics.liveLaneCount).toBe(5);
+    expect(baseline.metrics.liveLaneCount).toBe(4);
     expect(baseline.metrics.degradedLanes).toBeUndefined();
   });
 
@@ -97,13 +89,13 @@ describe('runtime lane health graceful degradation', () => {
     const graphHealth = degraded.metrics.laneHealth?.find((entry) => entry.lane === 'graph_causal');
 
     expect(degradedTop.score).toBe(baselineTop.score);
-    expect(baselineTop.confidence).toBe(0.606);
-    expect(degradedTop.confidence).toBe(0.6189);
+    expect(baselineTop.confidence).toBe(0.5992);
+    expect(degradedTop.confidence).toBe(0.6118);
     expect(degradedTop.confidence).toBeGreaterThan(baselineTop.confidence);
-    expect(confidenceDelta).toBe(0.0129);
+    expect(confidenceDelta).toBe(0.0126);
     expect(degradedGraph?.rawScore).toBe(0);
     expect(degradedGraph?.weight).toBe(0);
-    expect(degraded.metrics.liveLaneCount).toBe(4);
+    expect(degraded.metrics.liveLaneCount).toBe(3);
     expect(degraded.metrics.degradedLanes).toEqual(['graph_causal']);
     expect(graphHealth).toEqual({
       lane: 'graph_causal',
@@ -144,7 +136,7 @@ describe('runtime lane health graceful degradation', () => {
     const graphContribution = beta?.laneContributions.find((entry) => entry.lane === 'graph_causal');
 
     expect(graphContribution?.rawScore).toBeGreaterThan(0);
-    expect(result.metrics.liveLaneCount).toBe(5);
+    expect(result.metrics.liveLaneCount).toBe(4);
     expect(result.metrics.degradedLanes).toBeUndefined();
     expect(result.abstainReasons).toBeUndefined();
   });

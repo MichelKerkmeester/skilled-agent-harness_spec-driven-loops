@@ -71,7 +71,7 @@ runtime/cli/
 +-- evals/                 # Evaluation scripts and policy checks
 +-- setup/                 # Environment checks and setup helpers
 +-- ops/                   # Process sweep helpers and the grep-convention retrofit
-+-- retrieval/             # Trigger-index generator/lookup, ripgrep lane and parity
++-- retrieval/             # Trigger-index generator/lookup, ripgrep lane, parity and residue sweeps
 +-- observability/         # Smart-router telemetry recording and measurement
 +-- codex/                 # Codex CLI agent/prompt mirror generators and drift checks
 +-- dsh/                   # DSH skill, prompt and agent mirror generators and drift checks
@@ -119,7 +119,7 @@ Disallowed direction:
 | `runtime-mirrors/` | Keeps runtime mirror exclusions and native command exceptions aligned with generated mirror trees. |
 | `validation/` | Contains active validators used by validation flow, pre-commit checks and write-time comment hygiene. |
 | `lib/` | Shares TypeScript helpers and sourced shell utilities. |
-| `retrieval/` | Generates and looks up the committed trigger index, runs the ripgrep recipe lane, checks retrieval parity, retrofits the grep convention and sweeps for retired-memory-MCP residue. See `retrieval/README.md`. |
+| `retrieval/` | Generates and looks up the committed trigger index, runs the ripgrep recipe lane, checks retrieval parity, retrofits the grep convention and sweeps for retired-memory-MCP residue. `sweep-lane-residue.mjs` checks for what the skill advisor's retired embedding route left, in the tracked repository for the blocking `lane-residue` CI job and on this machine for the cleanup `/doctor:update apply` runs. See `retrieval/README.md`. |
 | `observability/` | Records and measures smart-router resource-routing telemetry (live wrapper plus static corpus harness). See `observability/README.md`. |
 | `codex/` | Generates `.codex/agents` and `.codex/prompts` from their `.skilled/` canonical sources and checks command-router drift. See `codex/README.md`. |
 | `dsh/` | Generates `.dsh/skills`, `.dsh/prompts` and `.dsh/agents` from their `.skilled/` sources and checks mirror drift. See `dsh/README.md`. |

@@ -258,6 +258,7 @@ Applied units: [list or none]
 Skipped units: [unit and reason, with the paths for undecided files, or none]
 Follow-up checks: [regenerate hubs, generated files and their generators, hooks, runtime mirrors, databases]
 Targets modified since alignment: [none or engine refusal]
+Lane cleanup: after the rebuild prompt, delete what the retired embedding lane left in this checkout; ask about the pulled shared model when a local model server lists it
 ```
 
 If the dry-run plan is valid, ask once:
@@ -427,9 +428,38 @@ Run /doctor:skill-advisor rebuild when you are ready.
 
 If rebuild fails, record `reindex=failed`, show the observed error and the same stale-index warning. Never present skipped or failed reindexing as full success.
 
-After the rebuild outcome on an applied run, make one read-only `advisor_status` call with semantic health and report skills and command vectors as current/total. If the daemon is absent or the status cannot be read, report coverage as unavailable. Report an unreachable or missing-model Ollama backend as information; it does not fail an update step. Name a restart of the advisor daemon to load updated command bridges and lane weights, which are read once at startup. Skip this call on dry-run.
+After the rebuild outcome on an applied run, name a restart of the advisor daemon to load updated command bridges and lane weights, which are read once at startup. Skip it on dry-run.
 
-## 9. Result Templates
+## 9. Lane Cleanup
+
+After the rebuild outcome, on every path that reached the rebuild prompt, the lane cleanup reads what the retired embedding lane left on this machine. When its report lists a question under `askFirst`, show the question exactly as the tool wrote it, then the yes-or-no line, and wait:
+
+```text
+[askFirst[].question]
+Reply yes to delete the pulled shared model, or no to keep it. The answer is used for this run only.
+```
+
+Pass the answer only on the apply command that follows. The next run asks again and never reuses an earlier answer. Write no answer to the state log or any other file.
+
+Then show the cleanup report:
+
+```text
+Lane cleanup
+Deleted: [each target the apply report lists as deleted, or none]
+Stopped: [each process the apply report lists as stopped, or none]
+Kept: [each kept target with its reason, or none]
+Refused: [each refused target with its reason, or none]
+Failed: [each failed target with its reason, or none]
+For you to remove: [each reported target with its remedy line, a count per linked worktree rather than one line per item, or none]
+After-check: exit [0|1|2] ([nothing left|remnants remain|a check could not run])
+Lane cleanup: [clean|cleaned|remaining|failed|not_applicable]
+```
+
+Take every bracketed value from the tool's report. Do not write a path, file name, question or command of your own. The `--json` report holds the full list of items. A cleanup exit 1 is `remaining` and an exit 2 is `failed`. Neither one changes the update's STATUS, which the release write and its battery decide.
+
+No other `/doctor` command or action runs this cleanup. An operator who asks to clear what the retired embedding lane left on the machine is pointed to `/doctor:update apply`, which reaches the cleanup after its rebuild prompt. A dry run never reaches it. In a linked project, whose `.skilled` is a link to a Skilled checkout, `/doctor:update` stops at the link with `path parent is not a real directory: <project>/.skilled`. That operator is pointed to `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs machine`, run from the Skilled checkout, then the same script's `apply` when it lists leftovers. When the `machine` report lists an `askFirst` question, show it verbatim and pass the answer as `--shared-model delete` or `--shared-model keep` on that one apply, because without a terminal apply keeps the shared model without asking.
+
+## 10. Result Templates
 
 ### Check
 
@@ -465,11 +495,11 @@ Added: [count]  Deleted: [count]
 Skipped units: [list or none]
 Post-apply checks: [pass count] passed, [fail count] failed
 Database reindex: [rebuilt|skipped|failed|not applicable]
-Vector coverage: skills [current]/[total] current or unavailable, commands [current]/[total] current or unavailable; backend [reachable|unreachable|model_missing|unavailable]
 Advisor daemon: restart to load updated command bridges and lane weights; both are read once at startup
+Lane cleanup: [clean|cleaned|remaining|failed|not_run|not_applicable]
 Rollback: [not needed|completed|partial|failed]
 State log: .skilled/skills/.state/doctor-update/runs/.doctor-update.last-run.json, or none for a dry run
-Before the next /doctor:update apply, commit or restore changed framework files. Updater records remain local and ignored. On a dry-run, omit the vector coverage and advisor daemon lines because the rebuild prompt did not run.
+Before the next /doctor:update apply, commit or restore changed framework files. Updater records remain local and ignored. On a dry-run, omit the advisor daemon line because the rebuild prompt did not run.
 STATUS=[APPLIED|PARTIAL|ROLLED_BACK|DECLINED|CANCELLED|DRY_RUN|FAILED]
 ```
 
@@ -485,7 +515,7 @@ Next: [the updater's own Next: command when it printed one, else the safe next s
 
 The updater ends a refusal with a `Next:` line naming the exact command, and with `--json` that line sits inside the `error` text. Sanitize the error to its first line for `ERROR=`, and carry the `Next:` command into the `Next:` line rather than dropping it.
 
-## 10. Compatibility Action
+## 11. Compatibility Action
 
 ### Compatibility preview
 

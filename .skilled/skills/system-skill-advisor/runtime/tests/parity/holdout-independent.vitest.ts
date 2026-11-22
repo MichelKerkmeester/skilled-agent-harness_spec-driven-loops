@@ -92,7 +92,6 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
       'scripts/routing-accuracy/score-routing-corpus.py',
       'tests/legacy/advisor-corpus-parity.vitest.ts',
       'tests/parity/python-ts-parity.vitest.ts',
-      'tests/scorer/semantic-shadow-ablation.vitest.ts',
     ],
     corpora: ['labeled'],
     allowedOverlap: {},
@@ -135,21 +134,6 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
       'holdout-harder': {
         via: ['harder'],
         reason: 'it compares the two scorers on the harder corpus; it tunes nothing',
-      },
-    },
-  },
-  {
-    id: 'lane-weight-sweep',
-    consumers: ['tests/scorer/lane-weight-sweep.vitest.ts'],
-    corpora: ['intent', 'harder'],
-    allowedOverlap: {
-      'holdout-harder': {
-        via: ['harder'],
-        reason: 'it reports lane-weight vectors over the harder corpus; no weight is chosen from it',
-      },
-      'holdout-delegation': {
-        via: ['intent'],
-        reason: 'two intent-corpus prompts are also executor-delegation cases',
       },
     },
   },
@@ -303,7 +287,6 @@ function restorePrivateSkillRoots(): void {
 
 function freezeEvalEnv(): void {
   process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-holdout-'));
-  process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
   process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
   delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
   delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;

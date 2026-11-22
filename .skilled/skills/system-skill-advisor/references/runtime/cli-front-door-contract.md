@@ -6,7 +6,7 @@ trigger_phrases:
   - "skill advisor cli commands"
   - "advisor exit codes"
   - "advisor cli output shape"
-version: 0.11.2.0
+version: 0.11.3.0
 importance_tier: "important"
 contextType: "implementation"
 ---
@@ -43,8 +43,9 @@ unix socket. It starts the daemon when none is listening.
 
 `--format` takes `json`, `jsonl` or `text`. Callers parse `json`.
 
-`--warm-only` starts or attaches to the daemon and returns without running a command. Use it at
-session start so the first real call does not pay daemon start.
+`--warm-only` probes the daemon socket and attaches only when a daemon already answers. A missed
+probe exits `75` without spawning a launcher, and an attached call still runs its named command.
+Use it to prove the daemon is up, not to warm a cold one.
 
 ---
 

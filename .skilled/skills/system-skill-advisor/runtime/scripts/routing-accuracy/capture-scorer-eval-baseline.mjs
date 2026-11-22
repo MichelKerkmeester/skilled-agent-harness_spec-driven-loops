@@ -51,14 +51,8 @@ const DIST = resolve(HERE, '../../dist/runtime');
 // ───────────────────────────────────────────────────────────────────
 
 process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-eval-baseline-'));
-process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
 process.env.PYTHONDONTWRITEBYTECODE = '1';
-// Match the test-harness regime: the semantic-shadow lane substitutes
-// deterministic fixture vectors under the harness flag (real embeddings are not
-// reproducible in CI), so every scorer gate runs this way. The baseline must be
-// captured under the same regime the ratchet re-scores it in.
-process.env.VITEST = 'true';
 delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
@@ -221,7 +215,6 @@ const baseline = {
   holdoutSha256: sha256File(HOLDOUT_JSONL),
   ambiguitySha256: sha256File(AMBIGUITY_JSONL),
   env: {
-    SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
     SYSTEM_SKILL_ADVISOR_DB_DIR: '<empty-dir>',
     projectionSource: 'filesystem',
   },

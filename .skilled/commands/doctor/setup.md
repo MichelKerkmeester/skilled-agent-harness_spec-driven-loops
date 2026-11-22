@@ -59,7 +59,7 @@ The argument failure wording, the doctor target list, the per-leg result table, 
 ## 6. WORKFLOW SUMMARY
 
 The workflow prints the doctor target list.
-It then runs seven read-only legs once: the sk-code setup battery, the sk-git setup battery, the trigger index freshness check, the runtime mirror check, the advisor status probe with `--warm-only` and the embedder check, which reads the semantic lane and the command vectors, and the delivery check, which reads whether each runtime's prompt hook is wired and whether Codex has approved it.
+It then runs six read-only legs once: the sk-code setup battery, the sk-git setup battery, the trigger index freshness check, the runtime mirror check, the advisor status probe with `--warm-only`, and the delivery check, which reads whether each runtime's prompt hook is wired and whether Codex has approved it.
 The delivery leg reports DEGRADED, never FAIL, when a prompt hook is missing or the Codex hook is unapproved, and names the repair.
 It reports each leg as passing, skipped, degraded or failing.
 For a failing leg, it names the runnable doctor command that repairs it.
@@ -69,7 +69,7 @@ After the legs, it shows the last session hop from the session-handover hop hist
 It shows an open-notes line while any handoff note is still unclaimed.
 It shows the Claude context window the relaunch nudge measures against, or the two settings that supply one when none is configured.
 It shows an orphans line from `orphan-process-check.cjs --summary`.
-That line counts leftover helper processes and model servers whose launcher died.
+That line counts leftover helper processes that were reparented to init.
 These lines are informational and never change the status.
 It writes nothing in the repository and never starts the advisor daemon.
 The only write outside the repository is the advisor CLI creating its socket directory when that directory is absent.

@@ -91,11 +91,6 @@
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/daemon-and-freshness/background-vector-refresh.md",
-    "diskPath": "feature-catalog/daemon-and-freshness/background-vector-refresh.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/daemon-and-freshness/cache-invalidation.md",
     "diskPath": "feature-catalog/daemon-and-freshness/cache-invalidation.md"
   },
@@ -211,11 +206,6 @@
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/scorer-fusion/command-meaning-matching.md",
-    "diskPath": "feature-catalog/scorer-fusion/command-meaning-matching.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/scorer-fusion/doctor-command-routing.md",
     "diskPath": "feature-catalog/scorer-fusion/doctor-command-routing.md"
   },
@@ -226,8 +216,8 @@
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/scorer-fusion/five-lane-fusion.md",
-    "diskPath": "feature-catalog/scorer-fusion/five-lane-fusion.md"
+    "leafResourceId": "feature-catalog/scorer-fusion/lane-fusion.md",
+    "diskPath": "feature-catalog/scorer-fusion/lane-fusion.md"
   },
   {
     "workflowMode": "system-skill-advisor",
@@ -531,13 +521,13 @@
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/scorer-fusion/five-lane-fusion.md",
-    "diskPath": "manual-testing-playbook/scorer-fusion/five-lane-fusion.md"
+    "leafResourceId": "manual-testing-playbook/scorer-fusion/lane-attribution.md",
+    "diskPath": "manual-testing-playbook/scorer-fusion/lane-attribution.md"
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/scorer-fusion/lane-attribution.md",
-    "diskPath": "manual-testing-playbook/scorer-fusion/lane-attribution.md"
+    "leafResourceId": "manual-testing-playbook/scorer-fusion/lane-fusion.md",
+    "diskPath": "manual-testing-playbook/scorer-fusion/lane-fusion.md"
   },
   {
     "workflowMode": "system-skill-advisor",

@@ -70,6 +70,7 @@ All visible text and layouts live only in `.skilled/commands/doctor/assets/docto
 `check` reports release position and per-unit status without changing checkout files.
 `align` gathers explicit decisions into an ignored run directory and never writes outside it.
 `apply` previews the plan, requests one approval before its first write, applies selected decisions and verifies the resulting checkout.
+After its post-apply checks and the advisor rebuild prompt, `apply` runs the lane cleanup, which removes what the skill advisor's retired embedding lane left on this machine. No other action runs it, and a dry run never reaches it.
 When no unapplied alignment run exists at the current HEAD, it writes only update and new units.
 `rollback` previews a recorded rollback, then asks before restoring paths or clearing a stale lock.
 `record-base` previews the units for a release and asks before writing the recorded base.

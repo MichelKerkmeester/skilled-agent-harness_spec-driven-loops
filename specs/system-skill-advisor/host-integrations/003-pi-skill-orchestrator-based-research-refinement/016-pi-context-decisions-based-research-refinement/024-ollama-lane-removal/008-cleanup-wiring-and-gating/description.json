@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating",
+  "description": "Phase 8: cleanup-wiring-and-gating",
+  "keywords": [
+    "phase",
+    "cleanup-wiring-and-gating"
+  ],
+  "lastUpdated": "2026-11-21T13:25:49.691Z",
+  "specId": "008",
+  "folderSlug": "cleanup-wiring-and-gating",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement",
+    "024-ollama-lane-removal"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "21-11-26_08-50__wired-the-lane-cleanup-into-doctor-update-apply.md",
+    "21-11-26_11-43__lane-residue-cleanup-wiring-and-gating-alignment.md",
+    "21-11-26_12-18__lane-residue-cleanup-wiring-and-gating-the.md",
+    "21-11-26_12-31__lane-residue-cleanup-wiring-and-gating-the.md",
+    "21-11-26_14-25__cleanup-wiring-and-gating-review-a-ten-iteration.md"
+  ]
+}

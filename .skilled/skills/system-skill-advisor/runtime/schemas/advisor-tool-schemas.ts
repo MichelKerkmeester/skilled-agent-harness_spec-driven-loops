@@ -240,37 +240,6 @@ const runtimeLaneHealthSchema = z.object({
   degradedLanes: z.array(AdvisorLaneSchema),
 }).strict();
 
-const semanticLaneHealthSchema = z.object({
-  activeEmbedder: z.object({
-    name: z.string().min(1),
-    dim: z.number().int().nonnegative(),
-    adapterDim: z.number().int().positive().nullable(),
-  }).strict().nullable(),
-  vectorCoverage: z.object({
-    embedded: z.number().int().nonnegative(),
-    total: z.number().int().nonnegative(),
-    ratio: z.number().min(0).max(1),
-    stale: z.number().int().nonnegative().optional(),
-    missing: z.number().int().nonnegative().optional(),
-  }).strict(),
-  coverageComplete: z.boolean().optional(),
-  dimMismatch: z.boolean(),
-  lastRefresh: z.string().nullable(),
-  disabledReason: z.string().nullable(),
-  laneEnabled: z.boolean(),
-  backend: z.object({
-    state: z.enum(['reachable', 'unreachable', 'model_missing', 'probe_not_implemented']),
-    reason: z.string().nullable(),
-  }).strict().optional(),
-  commandVectorCoverage: z.object({
-    embedded: z.number().int().nonnegative(),
-    total: z.number().int().nonnegative(),
-    stale: z.number().int().nonnegative().optional(),
-    missing: z.number().int().nonnegative().optional(),
-  }).strict().optional(),
-  checkedAt: z.string().datetime(),
-}).strict();
-
 // NOTE (DEFER decision):
 // `AdvisorScoringOptions.affordances` (see `lib/scorer/types.ts:94`) is a
 // COMPILE-TIME-ONLY internal seam used by the scorer fusion path. Affordance
@@ -382,55 +351,12 @@ export const AdvisorStatusInputSchema = z.object({
   // Bound workspaceRoot to allowed prefix set.
   workspaceRoot: BoundedWorkspaceRootSchema,
   maxMetadataFiles: z.number().int().positive().max(10_000).optional(),
-  includeSemanticHealth: z.boolean().optional(),
-  includeEmbeddingsHealth: z.boolean().optional(),
   // Run a read-only SQLite quick_check on the artifact so genuine corruption
   // downgrades freshness to stale (and advisor_rebuild repairs it). Off by
   // default so the read-style advisor_recommend path pays no per-call probe;
   // the advisor_status diagnostic and advisor_rebuild pre-read opt in.
   checkArtifactIntegrity: z.boolean().optional(),
   debug: z.boolean().optional(),
-}).strict();
-
-const embeddingsHealthSchema = z.object({
-  checkedAt: z.string().datetime(),
-  provider: z.discriminatedUnion('state', [
-    z.object({
-      state: z.literal('resolved'),
-      requestedProvider: z.string(),
-      effectiveProvider: z.string(),
-      fallbackReason: z.string().nullable(),
-      dimensionChanged: z.boolean(),
-      reason: z.string(),
-    }).strict(),
-    z.object({
-      state: z.literal('unavailable'),
-      error: z.string().max(200),
-    }).strict(),
-  ]),
-  modelServer: z.discriminatedUnion('state', [
-    z.object({
-      state: z.literal('reachable'),
-      target: z.string().min(1),
-      serverState: z.string().nullable(),
-      model: z.string().nullable(),
-      dim: z.number().nullable(),
-      device: z.string().nullable(),
-      loadTimeMs: z.number().nullable(),
-      loadStartedAt: z.string().nullable(),
-      loadProgressAt: z.string().nullable(),
-      lastSuccessfulEmbedAt: z.string().nullable(),
-      inFlight: z.number().nullable(),
-      queueDepth: z.number().nullable(),
-      error: z.string().nullable(),
-    }).strict(),
-    z.object({
-      state: z.literal('unavailable'),
-      target: z.string().min(1),
-      errorClass: z.enum(['unreachable', 'timeout', 'bad_response', 'probe_failed']),
-      error: z.string(),
-    }).strict(),
-  ]),
 }).strict();
 
 export const AdvisorStatusOutputSchema = z.object({
@@ -456,8 +382,6 @@ export const AdvisorStatusOutputSchema = z.object({
     staleSkillIds: z.array(z.string()),
   }).strict().optional(),
   laneWeights: z.record(AdvisorLaneSchema, z.number().min(0)),
-  semanticLaneHealth: semanticLaneHealthSchema.optional(),
-  embeddingsHealth: embeddingsHealthSchema.optional(),
   hookHealth: z.object({
     invocations: z.number().int().positive(),
     rollingP95Ms: z.number().nonnegative(),

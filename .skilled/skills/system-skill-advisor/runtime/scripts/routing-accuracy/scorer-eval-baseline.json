@@ -1,12 +1,11 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "c7f38f295d2",
+  "capturedAtSha": "12f9d314979",
   "corpusSha256": "sha256:b14b53ed211a5a5f9c871ecb4e10126ac36a8c7c687a8d6f1ba39ffa4ca2c7cb",
   "holdoutSha256": "sha256:a6aa180c56b5f202e093fe1535a510bf54d24375843350edd6abc4b45edda382",
   "ambiguitySha256": "sha256:62423738cab74cf499d98f2e835e8e78c25e2b57e3c1b6994d8a2bd0bfb88491",
   "env": {
-    "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC": "1",
     "SYSTEM_SKILL_ADVISOR_DB_DIR": "<empty-dir>",
     "projectionSource": "filesystem"
   },

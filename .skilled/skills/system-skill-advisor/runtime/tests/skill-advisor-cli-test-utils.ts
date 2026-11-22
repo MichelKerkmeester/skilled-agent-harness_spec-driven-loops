@@ -23,7 +23,6 @@ export interface IsolatedCliScope {
   readonly socketDir: string;
   readonly socketPath: string;
   readonly skillAdvisorDbDir: string;
-  readonly memoryDbPath: string;
   readonly codeGraphDbDir: string;
   readonly shadowDeltaPath: string;
   readonly env: NodeJS.ProcessEnv;
@@ -54,7 +53,6 @@ export function createIsolatedCliScope(label: string): IsolatedCliScope {
   const inWorktreeDir = join(testsDir, `.tmp-${suffix}`);
   const socketDir = join(rootDir, 'ipc');
   const skillAdvisorDbDir = join(rootDir, 'skill-advisor-db');
-  const memoryDbPath = join(rootDir, 'memory.sqlite');
   const codeGraphDbDir = join(inWorktreeDir, 'code-graph-db');
   const shadowDeltaPath = join(inWorktreeDir, 'shadow-deltas.jsonl');
 
@@ -74,12 +72,7 @@ export function createIsolatedCliScope(label: string): IsolatedCliScope {
     SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS: '200',
     SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS: '10',
     SYSTEM_SKILL_ADVISOR_DB_DIR: skillAdvisorDbDir,
-    MEMORY_DB_PATH: memoryDbPath,
     SPECKIT_ADVISOR_SHADOW_DELTA_PATH: shadowDeltaPath,
-    SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED: '0',
-    SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
-    // Test daemons must not embed against a live local Ollama.
-    SYSTEM_SKILL_ADVISOR_EMBED_REFRESH: 'off',
   };
   // A switch exported in the shell would make every isolated call abstain.
   for (const flag of ADVISOR_DISABLED_FLAGS) delete env[flag];
@@ -90,7 +83,6 @@ export function createIsolatedCliScope(label: string): IsolatedCliScope {
     socketDir,
     socketPath: join(socketDir, 'daemon-ipc.sock'),
     skillAdvisorDbDir,
-    memoryDbPath,
     codeGraphDbDir,
     shadowDeltaPath,
     env,

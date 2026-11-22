@@ -28,7 +28,6 @@ function status(freshness: AdvisorStatusOutput['freshness'], generation: number)
       lexical: 0.3,
       graph_causal: 0.1,
       derived_generated: 0.05,
-      semantic_shadow: 0,
     },
   };
 }

@@ -37,7 +37,6 @@ describe('overlay request routing', () => {
   beforeAll(async () => {
     // Score against the reproducible filesystem projection only.
     process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-overlay-routing-'));
-    process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
     process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
     delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
     delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;

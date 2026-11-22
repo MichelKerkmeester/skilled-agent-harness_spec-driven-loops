@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/004-lane-core",
+  "description": "Phase 4: lane-core",
+  "keywords": [
+    "phase",
+    "lane-core"
+  ],
+  "lastUpdated": "2026-11-21T02:22:23.412Z",
+  "specId": "004",
+  "folderSlug": "lane-core",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement",
+    "024-ollama-lane-removal"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_03-22__removed-the-advisor-semantic-lane-core-registry.md"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal",
+  "description": "Ollama lane removal",
+  "keywords": [
+    "ollama",
+    "lane",
+    "removal"
+  ],
+  "lastUpdated": "2026-11-20T21:51:19.027Z",
+  "specId": "024",
+  "folderSlug": "ollama-lane-removal",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

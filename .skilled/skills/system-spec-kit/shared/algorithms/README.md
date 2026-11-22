@@ -5,7 +5,7 @@ trigger_phrases:
   - "RRF fusion"
   - "rank fusion primitives"
   - "shared algorithms"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Algorithms
@@ -44,7 +44,6 @@ Disallowed dependency direction:
 ```text
 rrf-fusion.ts -> consumer request handlers
 rrf-fusion.ts -> database adapters
-rrf-fusion.ts -> embedding providers
 ```
 
 ---
@@ -107,4 +106,3 @@ Expected result: the validator exits with code `0`. The module's behavior is cov
 ## 8. RELATED
 
 - [`../README.md`](../README.md)
-- [`../embeddings/README.md`](../embeddings/README.md)

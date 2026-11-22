@@ -6,7 +6,7 @@ trigger_phrases:
   - "daemon boot shutdown"
   - "sigterm daemon"
   - "daemon health"
-version: 0.8.3.0
+version: 0.8.4.0
 ---
 
 # Daemon Lifecycle and Health Reporting
@@ -24,8 +24,6 @@ Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM s
 The advisor daemon also participates in the shared launcher idle-timeout guardrail. `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the monitor. Stdio and IPC socket connect/data/write activity refresh the idle timer so active secondary clients keep the server alive.
 
 The advisor server exits within 30 seconds when its launcher dies and its parent PID changes. The launcher passes its own PID when it spawns the server, so a launcher that dies while the server is still starting is caught too. After opening its database, it starts writing `advisor-server.heartbeat` near the top of startup. It rewrites the file every 15 seconds. The launcher checks every 60 seconds. A heartbeat file older than the server start does not count. If no heartbeat arrives within 5 minutes after spawn, the server is stale. If an existing heartbeat is older than 3 minutes, the launcher sends SIGTERM and then SIGKILL after 5 seconds. When more than two check intervals pass between the launcher's own checks, as across a machine sleep, it skips that check, so the server gets one interval to write before the file is judged. Heartbeat checks use no IPC traffic, so the 30-minute idle exit still works.
-
-After startup IPC is ready, the server starts a shared background refresh without awaiting it. Each watcher reindex starts the same refresh. It checks skill and command vector coverage locally, then probes Ollama once with a 500 ms timeout when coverage is incomplete. Coverage requires at least one embeddable skill, so a command-only index can reach the probe even when its command vectors are current. The refresh runs at any lane weight and can be disabled with `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH=off`.
 
 ---
 

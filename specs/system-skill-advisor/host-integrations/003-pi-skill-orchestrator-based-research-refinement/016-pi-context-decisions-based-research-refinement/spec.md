@@ -157,6 +157,9 @@ Phase 1 writes research artifacts only. Phases 002 to 004 list their exact files
 | 21 | 021-epic-verification/ | A fresh Fable 5.2 high read through `claude2`, report only: checks the Ollama claims and the other main claims since v4.1.0.0 against the code at HEAD, one verdict each, plus any defects | Complete |
 | 22 | 022-verification-fixes/ | Fix the eleven defects the 021 verification named: the heartbeat watchdog after sleep, the late parent watch, the semantic lane gates, the refresh after a throwing pass, the disabled hook crash, the DSH receipt boundary, two comments and a pinned strip case | In Progress |
 | 23 | 023-ollama-deprecation-research/ | Five-iteration deep research, Fable 5.2 high on `claude2`: every Ollama and embedding remnant with file:line, the removal order with gates, the user-machine cleanup and a residue check, for a deletion with no backup | Complete |
+| 24 | 024-ollama-lane-removal/ | Phase parent, eight children: delete the Ollama and embedding lane whole, in the repo and on user machines, with a residue check that proves nothing is left | Complete |
+| 25 | 025-review-p2-fixes/ | Fix the ten P2 advisories of the 024 deep review: the residue tool keeps a regular file an explicit server address names, notes a rejected dotenv line and reads a script path with spaces; the gate docs state its push filter and whole-file allowlist limit; the 024 completion metadata matches its evidence | Complete |
+| 26 | 026-doctor-lane-removal-alignment/ | Align the doctor surface with the removed advisor lane: the install guide names the cleanup per install type, cleanup phrases route to `/doctor:update`, and doctor release 1.3.0.0 ships with the setup playbook's six legs and 26 rows | Complete |
 
 **Build order.** Folder numbers stay as they are. The build order is 001, then 005, then 002, then 004, then 003. Phase 004 builds before 003 because both edit `hooks/claude/user-prompt-submit.ts` and its hook test, and 003's guard would shift every line 004 pins.
 
@@ -199,6 +202,7 @@ Phases 015 and 016 are report-only alignment runs the operator asked for on 2026
 | 020-review-p1-fixes | 021-epic-verification | The operator asks for an independent check of the epic | 021's `evidence/report.md` has a verdict for every claim |
 | 021-epic-verification | 022-verification-fixes | The operator asks to fix all the 021 findings | 022's `acceptance-criteria.md` is all `Met` |
 | 022-verification-fixes | 023-ollama-deprecation-research | The operator decides to delete the Ollama lane with no backup | 023's `research/research.md` answers all five key questions |
+| 023-ollama-deprecation-research | 024-ollama-lane-removal | The operator records the seven removal decisions and asks for an unattended build | 024's residue check exits 0 in repo mode and its parent validates strict |
 <!-- /ANCHOR:phase-map -->
 
 ---

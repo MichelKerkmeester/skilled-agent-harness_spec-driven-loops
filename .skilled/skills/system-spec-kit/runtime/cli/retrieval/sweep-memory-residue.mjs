@@ -119,7 +119,7 @@ export const LITERAL_TERMS = Object.freeze([
   'system-spec-memory',
   // Retired alongside the store: the engine's old package path and npm name,
   // and the zvec lane with its vendored plugin home. The database filename is
-  // not listed because the skill advisor's embedding profile still derives it.
+  // not listed because test helpers and generated retrieval data still name it.
   'system-spec-kit/mcp-server',
   '@spec-kit/mcp-server',
   'system-plugins/',

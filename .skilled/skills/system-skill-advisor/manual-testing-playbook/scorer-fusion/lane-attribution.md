@@ -7,7 +7,7 @@ trigger_phrases:
   - "includeAttribution"
   - "laneBreakdown"
   - "why_recommended"
-version: 0.8.4.0
+version: 0.8.5.0
 id: SC-004
 category: scorer_fusion
 stage: routing
@@ -55,8 +55,6 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "review this pull
 
 - With `includeAttribution: true`, each lane entry carries exactly the documented fields: `lane`, `rawScore`, `weight`, `weightedScore`, `shadowOnly`.
 - With `includeAttribution: true`, the recommendation includes `why_recommended` as a short prompt-safe explanation that names contribution categories, not raw prompt phrases or tokens.
-- `semantic_shadow` reports `shadowOnly: false` because it remains registered as a live lane, even though its default live weight is 0.
-- When enabled, the lane requires current vectors for every embeddable skill and command. If prompt embedding fails, confirm the response marks `semantic_shadow` runtime-degraded and omits it from the live confidence total for that call.
 - With `includeAttribution: false`, `laneBreakdown` and `why_recommended` are absent or empty.
 - No raw prompt substring appears in attribution.
 
@@ -67,7 +65,6 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "review this pull
 | Extra fields in attribution | Evidence snippets or triggers present | Block release. Attribution is contribution-only. |
 | Prompt substring in attribution | Grep hits | Block release as privacy failure. |
 | `why_recommended` echoes the prompt | User words appear verbatim | Block release as prompt-safety failure. |
-| shadowOnly missing from semantic | `semantic_shadow` lacks flag | Audit `fusion.ts` lane tagging (`isLiveScorerLane`). |
 
 ### Evidence
 
@@ -100,8 +97,7 @@ Advisor status precondition check:
       "explicit_author": 0.42,
       "lexical": 0.28,
       "graph_causal": 0.13,
-      "derived_generated": 0.12,
-      "semantic_shadow": 0
+      "derived_generated": 0.12
     }
   }
 }
@@ -199,7 +195,7 @@ BLOCKED - The required precondition "Any prompt that routes to a known skill" is
 
 ## 4. SOURCE FILES
 
-- Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md), fusion weights sanity.
+- Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/lane-fusion.md), fusion weights sanity.
 - Scenario [SC-005](./ablation.md), ablation protocol.
 - Feature [`scorer-fusion/attribution.md`](../../feature-catalog/scorer-fusion/attribution.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts`.

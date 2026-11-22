@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/001-residue-check-and-cleanup-tool",
+  "description": "Phase 1: residue-check-and-cleanup-tool",
+  "keywords": [
+    "phase",
+    "residue-check-and-cleanup-tool"
+  ],
+  "lastUpdated": "2026-11-20T23:17:47.573Z",
+  "specId": "001",
+  "folderSlug": "residue-check-and-cleanup-tool",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement",
+    "024-ollama-lane-removal"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "20-11-26_23-03__planned-the-024-ollama-lane-removal-as-an-eight.md",
+    "20-11-26_23-06__planned-the-024-ollama-lane-removal-as-an-eight.md",
+    "21-11-26_00-17__built-sweep-lane-residue-mjs-with-repo-machine.md"
+  ]
+}
