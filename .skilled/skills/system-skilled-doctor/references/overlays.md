@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.50.0
+version: 1.0.51.0
 ---
 
 # Vendored Skilled Overlays
@@ -202,6 +202,16 @@ BLOCKED  t: thing is a folder that does not match what apply last wrote there, w
 Move the unowned copy aside as the `Next:` line says, then compare it with the overlay before you delete it. The `mv` names the folder where the copy really sits, through any link that stands, so the path still exists after `apply` takes back a layout link it made for the run.
 
 A live folder where a `directory` entry now ships a file or a link is cleared and replaced in the same `apply` once its own files are gone, also when the folder was empty or held only caches to begin with. A file inside the entry's folder where the source now ships a folder, such as `tool/sub` where the source ships `sub/x`, is the engine's own when the state records it under that name, or under a spelling that differs only in case on a filesystem that ignores letter case, and it is the same file with the bytes apply last wrote. `apply` then replaces it in the same run. A file at the entry's destination itself counts as the engine's own only under the exact spelling the state records. Any other file is refused with the first line above, reading `is a file` and `writes a folder`.
+
+A folder the source now ships as a file or a link is refused while it is planned when the manifest still keeps a path inside it: a skill-root entry's `retained` path inside a replaced folder, or a `directory` entry's `protectedPaths` path. A file cannot hold that path, so `status` and `apply` both print the refusal and exit 1, and `apply` writes nothing, the state file included:
+
+```text
+BLOCKED  vendor: vendor/keep/sub is a file in the source of overlay vendor, over the retained path vendor/keep/sub/vendor.md
+  a file cannot hold the path the entry keeps inside it, so the entry writes nothing
+  Next: take keep/sub/vendor.md off the retained list of overlay vendor in /path/to/tree/skilled-overlays/overlay-manifest.json, or ship keep/sub as a folder again, then from /path/to/tree: node .skilled/commands/doctor/scripts/overlay-engine.cjs status
+```
+
+For a `directory` entry the first line reads `over the protected path` and the `Next:` line names its `protectedPaths` list.
 
 An entry whose overlay side is a folder where it reads a file, such as a `file` entry's `source`, a `json-entry` entry's `source`, or a `marked-section` entry's `fragment` or `base`, blocks that entry in `status` and `apply`:
 
