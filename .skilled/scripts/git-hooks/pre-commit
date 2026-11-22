@@ -589,7 +589,7 @@ if [[ "${SPECKIT_SKIP_SKILL_AUTHORING:-0}" != "1" ]] && _in_toolchain_repo; then
     # The skill name is the path segment right after skills/, so an added, copied,
     # renamed or deleted file lands on the same skill a modified one does. A file
     # sitting directly under skills/ has no skill segment and belongs to no skill root.
-    SKILLS_REL="$SOURCE_REL/skills"
+    SKILLS_REL="${SOURCE_ROOT#"$REPO_ROOT"/}/skills"
     SKILLS_STAGED="$(git_bounded diff --cached --name-only --diff-filter=ACMRD -- "$SKILLS_REL/" 2>/dev/null || true)"
     SKILL_NAMES="$(
       while IFS= read -r path; do
@@ -983,7 +983,7 @@ fi
 if [[ "${SPECKIT_SKIP_CONTRACT_RECOMPILE:-0}" != "1" ]] && command -v node >/dev/null 2>&1; then
   CONTRACT_COMPILER="$SOURCE_ROOT/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
   CONTRACT_CHECK="$SOURCE_ROOT/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs"
-  CONTRACT_REL="$SOURCE_REL"
+  CONTRACT_REL="${SOURCE_ROOT#"$REPO_ROOT"/}"
   if [[ -f "$CONTRACT_COMPILER" && -f "$CONTRACT_CHECK" ]] \
      && [[ -n "$(git_bounded diff --cached --name-only --diff-filter=ACMR -- \
           "$CONTRACT_REL/skills/system-deep-loop/" "$CONTRACT_REL/commands/deep/" 2>/dev/null)" ]] \
