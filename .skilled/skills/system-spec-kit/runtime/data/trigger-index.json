@@ -1,5 +1,5 @@
 {
-  "manifestHash": "74e5cae9d5fb5ef254906b1066c5ba62e6a3c3f70c5aa9620d9ad2bb8c3adcc3",
+  "manifestHash": "d8d3f46d00a77ef9aa9ab6467975442277f53a07fb7d43ecbe4e264a747cd982",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -59809,6 +59809,9 @@
     "deep loop blast radius synthesis": [
       15816
     ],
+    "deep loop blocked stop": [
+      63
+    ],
     "deep loop boundary receipts": [
       10795
     ],
@@ -86606,6 +86609,9 @@
     ],
     "host root marker refresh tasks": [
       19490
+    ],
+    "host session executor switch": [
+      63
     ],
     "host spec tree readers": [
       10471
