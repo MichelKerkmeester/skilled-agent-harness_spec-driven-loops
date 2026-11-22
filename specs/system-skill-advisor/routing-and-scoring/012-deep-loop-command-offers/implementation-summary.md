@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-22T16:17:21Z"
+    last_updated_at: "2026-11-22T17:31:08Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed the last two misses and replaced the holdouts blind"
+    recent_action: "Fixed the loop-ask classes and confirmed the live question-tool offer"
     next_safe_action: "Land the follow-up commit on main after the operator approves the push"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
@@ -21,14 +21,14 @@ _memory:
       - ".skilled/commands/deep/assets/deep-review-presentation.txt"
       - ".skilled/skills/system-deep-loop/hub-router.json"
     session_dedup:
-      fingerprint: "sha256:be3c1cf825dec43154e6e89151dc30d9aa421979155a23e38aa40cd792c6b0db"
+      fingerprint: "sha256:d41724eccab6a4ca6871e465178ac9a7d5e082eab9a88b507edbb929a7ea6096"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
       workspace: "/Users/michelkerkmeester/worktrees/public/516-deep-loop-command-offers"
-      savedAt: "2026-11-22T16:17:21Z"
+      savedAt: "2026-11-22T17:31:08Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -146,6 +146,7 @@ Each worker changed only its own files and ran its own checks. The orchestrator 
 | After D10: probe rerun against the first landing | 7 changes, all intended: V4 gains `/deep:review`; F7, F10 and D1 get `/doctor:deep-loop`; N7 and N9 lose their false offers; R5 is unchanged |
 | After D10: corpus | `false_offer` 0 of 45 |
 | Second round: advisor `npm test` | 179 files, 2502 passed, 4 skipped, 0 failed; `false_offer` 0 of 45; blind deep holdouts 1 of 2 attached, doctor holdout missed |
+| Third round: advisor `npm test` | 179 files, 2532 passed, 4 skipped, 0 failed; `false_offer` 0 of 45; blind -04 holdouts 2 of 3 live |
 | `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
@@ -169,11 +170,19 @@ A second round, also on "fix open", fixed both phrasings that still missed:
 
 That round also replaced the holdout rows a second time, with -03 rows written by a worker that saw none of the tuning.
 
+A third round, on "do for me / fix":
+- **Spelled-out counts:** counts written as words ("twelve-iteration", "ten rounds") now count as loop asks.
+- **Want verbs:** "I'd like a / I want a / set up a" before a loop name now counts as a loop ask.
+- **Stuck runs named other ways:** complaints about a loop named some other way ("audit loop", "the review I started") now get `/doctor:deep-loop`.
+- **Live check, done:** a claude TUI on the operator's first account, in plan mode, was driven through a pseudo-terminal with "run 5 review iterations on the advisor runtime". It opened one question-tool dialog with two tabs, Spec folder and Deep review. The second tab offered "A) Run it (Recommended): `/deep:review:auto ".skilled/skills/system-skill-advisor/runtime" --max-iterations=5 --stop-policy=max-iterations`", a `:confirm` option and a no-loop option.
+- **Holdouts:** the holdout rows were rewritten blind a third time (-04).
+
 What stays open:
-1. **The blind -03 holdouts score 1 of 3.**
-   - The review row gets `/deep:review`.
-   - "I'd like a twelve-iteration research loop comparing…" reaches the research mode without the command. A spelled-out count and "I'd like a" are not read as a loop ask.
-   - "Why does the code audit loop I launched on Tuesday keep spinning … without ever converging?" goes to sk-code. "code audit loop" is not read as a deep run.
-   - They are reported, not tuned, so the rows stay blind.
-2. **The question tool is untested.** The behaviour turns ran in `-p` mode, which has no question tool, so they printed the §5 fallback list. A live interactive turn would confirm the tool is used.
+1. **The blind -04 holdouts score 2 of 3.**
+   - The doctor and review rows hit.
+   - "Dig into how hospitals de-identify patient records …, and spend eight iterations on it" gets no recommendation: "dig into" is not read as a research cue.
+   - It is reported, not tuned, so the rows stay blind.
+2. **Two edges remain.**
+   - "I would like a deep loop reviewing the session store" gets no command, because "reviewing" is not a review cue.
+   - "audit the first two iterations for drift" still offers `/deep:review`, from the bare word "iterations".
 <!-- /ANCHOR:limitations -->
