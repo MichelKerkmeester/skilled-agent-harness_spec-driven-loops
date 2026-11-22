@@ -17,6 +17,7 @@ import {
   isRouteExcludedSkillId,
   loadRouteExclusionsFromDir,
   resetRouteExclusionsCache,
+  routeExclusionsStamp,
 } from '../lib/route-exclusions.js';
 import { filterDefaultRoutable } from '../lib/lifecycle/archive-handling.js';
 
@@ -130,5 +131,24 @@ describe('route-exclusions loader', () => {
     resetRouteExclusionsCache();
     expect(isRouteExcludedSkillId('sk-example-env')).toBe(true);
     expect(isRouteExcludedSkillId('sk-code')).toBe(false);
+  });
+
+  // The daemon keeps one process for hours, so an edit has to land without a
+  // cache reset. Each write changes the file's size, so the stamp moves even
+  // when two writes share a modification time.
+  it('picks up an edit to the list in a running process without a reset', () => {
+    const dir = scratchDir();
+    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-a'] }), 'utf8');
+    process.env.SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR = dir;
+    resetRouteExclusionsCache();
+    expect(isRouteExcludedSkillId('sk-a')).toBe(true);
+    const before = routeExclusionsStamp();
+
+    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-a', 'sk-bb'] }), 'utf8');
+    expect(routeExclusionsStamp()).not.toBe(before);
+    expect(isRouteExcludedSkillId('sk-bb')).toBe(true);
+
+    writeFileSync(join(dir, LOCAL_FILE), JSON.stringify({ excludedSkillIds: [] }), 'utf8');
+    expect(isRouteExcludedSkillId('sk-a')).toBe(false);
   });
 });

@@ -48,14 +48,14 @@
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
       "evidence/opus-verification.md",
       ".skilled/skills/system-skill-advisor/SKILL.md",
+      "runtime/tests/fixtures/README.md",
+      "evidence/opus-third-review.md",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/bm25.ts",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
-      ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/conflict-query-rerank.vitest.ts"
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts"
     ],
     "entities": [
       {
@@ -131,6 +131,18 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/tests/fixtures/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "opus-third-review.md",
+        "kind": "doc",
+        "path": "evidence/opus-third-review.md",
+        "source": "derived"
+      },
+      {
         "name": "scoring-constants.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
@@ -155,27 +167,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
-        "source": "derived"
-      },
-      {
         "name": "holdout-independent.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-bootstrap.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "conflict-query-rerank.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/conflict-query-rerank.vitest.ts",
         "source": "derived"
       },
       {
@@ -201,11 +195,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The review found a documented calibration setting that nothing reads, two documented location settings the launcher never forwards, two opt-in switches the daemon cannot see, an eval script that imports a deleted module, unused scoring inputs, a lane cleanup that only wording checks cover, and Python boosts for the retired memory database vocabulary",
     "created_at": "2026-11-22T10:06:33Z",
-    "last_save_at": "2026-11-22T16:53:23.792Z",
+    "last_save_at": "2026-11-22T21:43:37.175Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d38ad9c6ab8e4d304406f746102e62e3b66c4e9cb4921a98077aefbdf2f952ea",
+    "source_fingerprint": "sha256:1db8e0e1e9287cb718c7b44724d67241da4b20ee0695a53c108e4fbdcee299b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0db8dd7d3c9a82ba16057bdb2bccf739dd1f9da9fcab5a696b6223f3d8d12ed",
+      "spec.md": "7c427054228021e32f6face6a938e280127f0b650330c0443f4f49dd4a2ce40a",
       "plan.md": "98d08f0c290529192e6ba696966e809b8733f861e31baa406dcdd0bd9117b0c2",
-      "tasks.md": "f07c3a4b7aeeb5998917234cdcd1c8217d3ca94cee69f4c8dca53616c8a23020",
-      "decision-record.md": "8f759de47b34cf078b14563e42f23c95c098a0f943c296608657314214d41910",
-      "implementation-summary.md": "c0011feffdd018195502515e31df88e30691601052237b7b26f5659dc4b75fa9"
+      "tasks.md": "60d1303a7cae50d27b463caa79d7ca20d3bfb49214f73ce04004f1440a93f377",
+      "decision-record.md": "fa41e4310fb939000733efaf25b4288a8c17446d53871059c81a1d62c8a411e9",
+      "implementation-summary.md": "3ff6483255a72868a40b6a0300299153f2402598cf3aa78bb36a90317d006979"
     },
     "last_active_at": null
   }

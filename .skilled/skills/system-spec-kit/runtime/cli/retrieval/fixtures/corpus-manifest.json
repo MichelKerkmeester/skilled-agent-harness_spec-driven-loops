@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6b184ef1ff8672336309d6cd9e9dbf0ca6bc57eb81fa26767b86623d0a134614",
+  "corpusHash": "c48fd81fab7b0d8504e4aae169cd5b14558cecf2ed3ce417d76357be152dabce",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29350,
+  "includedPathCount": 29351,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -20027,6 +20027,7 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/evidence/opus-third-review.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/evidence/opus-verification.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/evidence/review-report.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/implementation-summary.md",
@@ -29382,7 +29383,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7b22536e7ff5eb7954a6239df3f766487a20ed00fb706e7aae287394828f9999",
+  "manifestHash": "3fad06a46309511f5a66930c006f1f58db0553123dc83ae09b195b1e0ca0f8a8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

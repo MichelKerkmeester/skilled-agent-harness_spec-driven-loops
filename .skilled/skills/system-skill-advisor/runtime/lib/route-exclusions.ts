@@ -12,7 +12,7 @@
 // broken config can only stop excluding a skill — it can never crash the
 // advisor or hide an active skill by accident.
 
-import { existsSync } from 'node:fs';
+import { existsSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -83,11 +83,34 @@ export function loadRouteExclusionsFromDir(configDir: string): ReadonlySet<strin
 // ───────────────────────────────────────────────────────────────
 
 let cachedExcludedIds: ReadonlySet<string> | null = null;
+let cachedStamp: string | null = null;
 
-/** Resolved excluded-skill-id set for the runtime's default config dir (cached). */
+/**
+ * A stamp that changes whenever the file the list is read from changes: which
+ * file wins, and its size and modification time. The daemon lives for hours,
+ * so an operator's edit has to reach it without a restart, and a stat is cheap
+ * next to a read and a parse.
+ */
+export function routeExclusionsStamp(): string {
+  const configDir = resolveDefaultConfigDir();
+  for (const file of [LOCAL_OVERRIDE_FILE, COMMITTED_FILE]) {
+    const path = join(configDir, file);
+    try {
+      const stats = statSync(path);
+      return `${path}:${stats.size}:${stats.mtimeMs}`;
+    } catch {
+      // A missing file falls through to the next candidate.
+    }
+  }
+  return `${configDir}:none`;
+}
+
+/** Resolved excluded-skill-id set for the runtime's default config dir, reloaded when its file changes. */
 export function getRouteExcludedSkillIds(): ReadonlySet<string> {
-  if (cachedExcludedIds === null) {
+  const stamp = routeExclusionsStamp();
+  if (cachedExcludedIds === null || stamp !== cachedStamp) {
     cachedExcludedIds = loadRouteExclusionsFromDir(resolveDefaultConfigDir());
+    cachedStamp = stamp;
   }
   return cachedExcludedIds;
 }
@@ -100,4 +123,5 @@ export function isRouteExcludedSkillId(skillId: string): boolean {
 /** Test seam: drop the cached resolution so the next read re-loads config. */
 export function resetRouteExclusionsCache(): void {
   cachedExcludedIds = null;
+  cachedStamp = null;
 }

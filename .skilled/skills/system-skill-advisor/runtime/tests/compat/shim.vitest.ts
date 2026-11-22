@@ -170,8 +170,11 @@ describe('skill_advisor.py compat shim', () => {
     });
 
     expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+    // The doc trigger switch carries the repository's default, as the launcher
+    // gives the daemon, so it is present though the parent never set it.
     expect(parseJson(result.stdout)).toEqual({
       PATH: '/bin',
+      SPECKIT_ADVISOR_DOC_TRIGGERS: 'true',
       SPECKIT_RUNTIME: 'opencode',
     });
   });
