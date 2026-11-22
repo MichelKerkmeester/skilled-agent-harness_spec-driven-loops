@@ -2907,7 +2907,14 @@ function planSkillRootOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
       return { writes: [], deletes: [], outputs: [] };
     }
   }
-  const keptProblem = keptPathUnderFileProblem(entry, ctx, desired, keptRetainedPaths(entry, sourceDir), 'retained');
+  // The refusal reads every retained path under a replace path, whatever shape
+  // its source has now: a replace path that became a file is no longer a
+  // replaced folder, yet it still sits over the retained path inside it.
+  const replacePaths = entry.replace.map(manifestFolderPath);
+  const retainedUnderReplace = new Set(retained.map((item) => manifestFolderPath(item.path))
+    .filter((keptPath) => replacePaths.some((prefix) => keptPath.startsWith(prefix + '/'))));
+  const keptProblem = keptPathUnderFileProblem(entry, ctx, desired,
+    new Set([...keptRetainedPaths(entry, sourceDir), ...retainedUnderReplace]), 'retained');
   if (keptProblem) {
     problems.push(keptProblem);
     return { writes: [], deletes: [], outputs: [] };

@@ -409,6 +409,19 @@ test('a skill-root replace folder that becomes a file over a retained path is re
   });
 });
 
+test('a skill-root replace path that itself becomes a file over a retained path is refused while planned, and nothing is written', (t) => {
+  const fixture = createShapeFixture(t, [{ ...skillRootEntry(['keep/sub']), retained: [{ path: 'keep/sub/vendor.md' }] }]);
+  writeFile(fixture.overlayDir, 'vendor/keep/sub/x.md', 'sub x\n');
+  writeFile(fixture.tree, 'vendor/keep/sub/vendor.md', 'vendor own file\n');
+  applyOk(fixture);
+  swapToFile(fixture, 'vendor/keep/sub', 'now a file\n');
+  assertKeptPathRefusal(fixture, {
+    liveFiles: ['vendor/keep/sub/x.md', 'vendor/keep/sub/vendor.md'],
+    firstLine: 'vendor/keep/sub is a file in the source of overlay vendor, over the retained path vendor/keep/sub/vendor.md',
+    nextLine: 'Next: take keep/sub/vendor.md off the retained list of overlay vendor in ',
+  });
+});
+
 test('a directory entry folder that becomes a file over a protected path is refused while planned, and nothing is written', (t) => {
   const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, protectedPaths: ['sub/token.txt'] }]);
   writeFile(fixture.overlayDir, 'bundle/sub/x.md', 'sub x\n');
