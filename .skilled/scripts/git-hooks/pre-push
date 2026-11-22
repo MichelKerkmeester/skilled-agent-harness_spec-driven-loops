@@ -61,6 +61,15 @@ _shell_words() {
   printf -v _words '%q ' "$@"
   printf '%s' "${_words% }"
 }
+# A path git is asked to restore must be the one it tracks, and a linked source root
+# hides that spelling, so a file under the root is named from SOURCE_REL instead.
+_git_word() {
+  if [[ "$1" == "$SOURCE_ROOT"/* ]]; then
+    _shell_words "$REPO_ROOT/$SOURCE_REL/${1#"$SOURCE_ROOT"/}"
+  else
+    _shell_words "$1"
+  fi
+}
 RESTORE_NOTE="That copies HEAD over both the index and the working tree, so any staged or unstaged edit to the file is lost."
 # The base a rebase over the pushed range starts from, shell-quoted: the parent of the
 # oldest commit in the range, or --root when that commit has no parent. The first
@@ -294,7 +303,7 @@ while read -r _ local_sha remote_ref remote_sha; do
   if [[ "$is_new" -eq 0 && "$_MASS_DEL_MISSING" -eq 1 && "${SPECKIT_ALLOW_MASS_DELETION:-0}" != "1" ]]; then
     echo "BLOCKED [gate:mass-deletion]: guard library is missing: $_MASS_DEL_GUARD" >&2
     echo "  Without it the push cannot be checked for mass deletions, so this checkout's install is broken." >&2
-    echo "  Next: git restore --source=HEAD --staged --worktree -- $(_shell_words "$_MASS_DEL_GUARD")" >&2
+    echo "  Next: git restore --source=HEAD --staged --worktree -- $(_git_word "$_MASS_DEL_GUARD")" >&2
     echo "    $RESTORE_NOTE" >&2
     echo "Approve this push once, deliberately: SPECKIT_ALLOW_MASS_DELETION=1 git push ..." >&2
     REJECTED=1
@@ -456,7 +465,7 @@ while read -r _ local_sha remote_ref remote_sha; do
         echo "  SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...   (an update)"
         echo "  SPECKIT_ALLOW_REMOTE_PUSH=$branch_name git push ...   (creating the branch)"
         echo "To repair the install instead, restore the script and push again:"
-        echo "  Next: git restore --source=HEAD --staged --worktree -- $(_shell_words "$NAMING")"
+        echo "  Next: git restore --source=HEAD --staged --worktree -- $(_git_word "$NAMING")"
         echo "    $RESTORE_NOTE"
         echo ""
       } >&2
@@ -584,7 +593,7 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
     echo "" >&2
     echo "BLOCKED [gate:compiled-routing]: route guard is missing: $ROUTE_GUARD" >&2
     echo "  Without it the routing manifests cannot be checked, so this checkout's install is broken." >&2
-    echo "  Next: git restore --source=HEAD --staged --worktree -- $(_shell_words "$ROUTE_GUARD")" >&2
+    echo "  Next: git restore --source=HEAD --staged --worktree -- $(_git_word "$ROUTE_GUARD")" >&2
     echo "    $RESTORE_NOTE" >&2
     echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..." >&2
     exit 1
@@ -675,7 +684,7 @@ if [[ "${SPECKIT_SKIP_PREPUSH_TRACK_GATE:-0}" != "1" ]] && _in_toolchain_repo &&
     echo "" >&2
     echo "BLOCKED [gate:track-roots]: sweep is missing: $TRACK_SWEEP" >&2
     echo "  Without it the track roots cannot be checked, so this checkout's install is broken." >&2
-    echo "  Next: git restore --source=HEAD --staged --worktree -- $(_shell_words "$TRACK_SWEEP")" >&2
+    echo "  Next: git restore --source=HEAD --staged --worktree -- $(_git_word "$TRACK_SWEEP")" >&2
     echo "    $RESTORE_NOTE" >&2
     echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 git push ..." >&2
     exit 1

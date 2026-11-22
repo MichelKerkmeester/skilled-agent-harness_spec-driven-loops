@@ -222,6 +222,28 @@ for vend_file in hook-flags.sh check-comment-hygiene.sh template-phrase-lint.mjs
   chk "$([[ -n "$vend_restore" ]] && echo printed || echo absent)" "printed" "pre-commit prints a restore line for $vend_file"
   chk "$(tracked "$vend_restore")" "tracked" "pre-commit names the tracked $vend_file to restore"
 done
+# pre-push does the same for the files its gates load. Each missing file blocks before
+# the next gate is reached, so each further run approves the gate that blocked before.
+VEND_PUSH_FILES="scripts/git-hooks/lib/mass-deletion-guard.sh skills/sk-git/scripts/worktree-naming.sh bin/compiled-route-guard.cjs"
+for vend_file in $VEND_PUSH_FILES; do
+  mkdir -p "$(dirname "$VEND_SRC/$vend_file")"
+  printf '\n' > "$VEND_SRC/$vend_file"
+done
+git -C "$T/vendored" add -A
+git -C "$T/vendored" -c core.hooksPath=/dev/null -c user.email=t@example.com -c user.name=test commit -q -m push-tools
+for vend_file in $VEND_PUSH_FILES; do rm "$VEND_SRC/$vend_file"; done
+vend_head="$(git -C "$T/vendored" rev-parse HEAD)"
+vend_push() { # vend_push [env...]: run pre-push for an update of main in the vendored repository
+  (cd "$T/vendored" && printf 'refs/heads/main %s refs/heads/main %s\n' "$vend_head" "$vend_head" \
+    | env "$@" bash "$SOURCE/scripts/git-hooks/pre-push" origin /dev/null 2>&1)
+}
+vend_out="$(vend_push; vend_push SPECKIT_ALLOW_MASS_DELETION=1
+  vend_push SPECKIT_ALLOW_MASS_DELETION=1 SPECKIT_ALLOW_REMOTE_PUSH=1)"
+for vend_file in $VEND_PUSH_FILES; do
+  vend_restore="$(restore_path "${vend_file##*/}")"
+  chk "$([[ -n "$vend_restore" ]] && echo printed || echo absent)" "printed" "pre-push prints a restore line for ${vend_file##*/}"
+  chk "$(tracked "$vend_restore")" "tracked" "pre-push names the tracked ${vend_file##*/} to restore"
+done
 echo ""
 echo "--- source-root-selection: $pass passed, $fail failed ---"
 [[ "$fail" -eq 0 ]]
