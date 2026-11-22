@@ -8,7 +8,7 @@ trigger_phrases:
   - "cli-orca safety boundaries"
   - "official orca skill layer"
 last_updated: "2026-09-20"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # cli-orca: Feature Catalog
@@ -33,7 +33,7 @@ Routes Orca CLI work only when a request carries an Orca-qualified multi-word si
 
 #### Current Reality
 
-Activation triggers carry three signal classes. Command-family phrases pair the Orca qualifier with a surface: `orca cli`, `orca worktree`, `orca terminal`, `orca browser`, `orca automation`, `orca handoff`, `orca artifacts`, `orca skills`, `orca repository` and `orca embedded browser`. Workspace-shaped phrases carry the Orca form without the product name: `managed worktree`, `paired terminal`, `child worktree`, `$orca-cli` and `full ownership handoff`. Official skill names qualify a request when it places them in Orca. A bare `orca` mention is never sufficient, because the token also matches the `OpenOrca` model label, the GNOME Orca screen reader on Linux and Orca app-internal strings, so the router pseudocode defers when no qualified signal is present. The When NOT to Use table holds the negative holdouts: generic git worktrees belong to `sk-git`, Chrome DevTools Protocol work to `mcp-chrome-devtools`, generic agentic browser work to `mcp-aside-devtools`, supervised multi-agent coordination to the official `orchestration` skill, and an unrelated `OpenOrca` model label to no Orca route at all. Recorded replays confirm the split on both sides, and the archived blind holdout pins `managed worktree` and `paired terminal` as the narrow binding exceptions that route without naming Orca.
+Activation triggers carry three signal classes. Command-family phrases pair the Orca qualifier with a surface: `orca cli`, `orca worktree`, `orca terminal`, `orca browser`, `orca automation`, `orca handoff`, `orca artifacts`, `orca skills`, `orca repository` and `orca embedded browser`. Workspace-shaped phrases carry the Orca form without the product name: `managed worktree`, `paired terminal`, `child worktree`, `$orca-cli` and `full ownership handoff`. Official skill names qualify a request when it places them in Orca. A bare `orca` mention is never sufficient, because the token also matches the `OpenOrca` model label, the GNOME Orca screen reader on Linux and Orca app-internal strings, so the router pseudocode defers when no qualified signal is present. The When NOT to Use table holds the negative holdouts: generic git worktrees belong to `sk-git`, Chrome DevTools Protocol work to the `mcp-browser-use` hub's Chrome DevTools mode, generic agentic browser work to the `mcp-browser-use` hub, which routes to its Chrome DevTools, Aside or Bladebro mode, supervised multi-agent coordination to the official `orchestration` skill, and an unrelated `OpenOrca` model label to no Orca route at all. Recorded replays confirm the split on both sides, and the archived blind holdout pins `managed worktree` and `paired terminal` as the narrow binding exceptions that route without naming Orca.
 
 The routing vocabulary and the ownership split are stated canonically in [SKILL.md](../SKILL.md); this section summarizes them for feature discovery.
 
@@ -71,7 +71,7 @@ Separates read-only discovery from state-changing Orca operations and keeps sibl
 
 #### Current Reality
 
-Worktree create, set or remove, terminal send or close, agent launch or handoff, automation changes, browser navigation and publishing are treated as state-changing until the live guide and the requested operation prove otherwise, and mutating or destructive work requires explicit authorization. A worktree removal whose archive hook fails stays blocked, and a force flag does not bypass the failure. Read-only discovery stays free: listings, shows, reads, snapshots, `--help` and `agent-context --json`. On ownership, `sk-git` keeps generic worktree, branch and commit work, `mcp-chrome-devtools` keeps Chrome and CDP inspection, `mcp-aside-devtools` keeps generic agentic browser work, and the official `orchestration` skill keeps supervised multi-agent coordination.
+Worktree create, set or remove, terminal send or close, agent launch or handoff, automation changes, browser navigation and publishing are treated as state-changing until the live guide and the requested operation prove otherwise, and mutating or destructive work requires explicit authorization. A worktree removal whose archive hook fails stays blocked, and a force flag does not bypass the failure. Read-only discovery stays free: listings, shows, reads, snapshots, `--help` and `agent-context --json`. On ownership, `sk-git` keeps generic worktree, branch and commit work, the `mcp-browser-use` hub keeps Chrome and CDP inspection through its Chrome DevTools mode and generic agentic browser work through its Chrome DevTools, Aside or Bladebro mode, and the official `orchestration` skill keeps supervised multi-agent coordination.
 
 #### Source Files
 

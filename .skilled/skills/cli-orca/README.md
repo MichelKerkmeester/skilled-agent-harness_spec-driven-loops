@@ -7,7 +7,7 @@ trigger_phrases:
   - "official orca skills package"
 importance_tier: normal
 contextType: general
-version: 0.1.11.0
+version: 0.1.12.0
 ---
 
 # cli-orca
@@ -150,8 +150,8 @@ The Orca qualifier is the whole routing test. A bare `orca` mention never routes
 |---|---|
 | Generic git worktrees or branch management with no Orca state | `sk-git` |
 | Ordinary shell terminal commands with no Orca terminal involved | The normal coding workflow, which no skill owns |
-| Chrome or Chromium CDP debugging, HAR capture, Lighthouse | `mcp-chrome-devtools` |
-| Generic agentic browser work not tied to Orca state | `mcp-aside-devtools` |
+| Chrome or Chromium CDP debugging, HAR capture, Lighthouse | The `mcp-browser-use` hub, which routes it to its Chrome DevTools mode |
+| Generic agentic browser work not tied to Orca state | The `mcp-browser-use` hub, which routes to its Chrome DevTools, Aside or Bladebro mode and asks which one when the request names none |
 | Supervised multi-agent coordination: runs, task DAGs, dispatches, worker waits | The official `orchestration` skill |
 | Cursor cloud workers or Cursor worktrees | `cli-cursor` inside the `cli-external-orchestration` hub |
 | An unrelated `OpenOrca` model label | No Orca route at all |

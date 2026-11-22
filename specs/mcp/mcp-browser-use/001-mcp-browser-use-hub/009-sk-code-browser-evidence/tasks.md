@@ -57,6 +57,9 @@ contextType: "general"
 - [x] T010 Validate this packet strictly (`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh`). Verify: `validate.sh specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence --strict` prints `RESULT: PASSED`.
 - [x] T011 Validate the parent and its children recursively, strict (`validate.sh specs/mcp/mcp-browser-use/001-mcp-browser-use-hub --recursive --strict`). Verify: every folder it names prints `RESULT: PASSED`.
 - [x] T012 Run the goal checker on this packet and on the parent (`.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs`). Verify: each run prints `RESULT: PASSED`.
+- [x] T013 Follow-up: name the hub in `sk-code/SKILL.md` and ask page-speed claims for two numbers (`sk-code/SKILL.md`, `sk-code-frontend/references/web-performance-and-loading.md`). Verify: `parent-skill-check.cjs .skilled/skills/sk-code` prints `OK`. Evidence: `OK: parent-skill-check — all hard invariants passed, 0 warnings`; router-sync `5/5 checks passed`.
+- [x] T014 Follow-up: hand cli-orca's non-Orca browser work to the hub (`.skilled/skills/cli-orca/`). Verify: `grep -rn "mcp-aside-devtools\|mcp-chrome-devtools" .skilled/skills/cli-orca` prints nothing. Evidence: 0 lines; both `FOREIGN_OWNERS` browser values read `mcp-browser-use`; catalog validator `PASS: 0 violations`.
+- [x] T015 Follow-up: rewrite the dead `mcp-tooling/mcp-chrome-devtools` paths in `local-webflow` (outside this repository). Verify: a grep for that path in the skill prints nothing. Evidence: 11 paths in 8 files rewritten, 0 left; every new path resolves from `.skilled/skills/local-webflow`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

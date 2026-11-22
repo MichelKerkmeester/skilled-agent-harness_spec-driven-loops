@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.12.2.0
+version: 3.12.3.0
 metadata:
   family: sk-code
 ---
@@ -55,7 +55,7 @@ Any other sk-code doc that counts surfaces points to this sentence.
 ### When NOT to Use
 - Documentation-only changes with no code-work contract - use `sk-doc`.
 - Git workflow, branch, commit, PR, merge, or release work - use `sk-git`.
-- Pure browser inspection or external MCP transport work - use the relevant MCP skill.
+- Pure browser inspection - use the `mcp-browser-use` hub, which routes to its Chrome DevTools, Aside or Bladebro mode. Other external MCP transport work - use the relevant MCP skill.
 - For a measured Style Reference (design tokens extracted from a live source), use `sk-design-md-generator` first.
 - When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-code-frontend` and decide it from its visual-values reference.
 - Backend support primitives in `shared/` - they are consumed by the modes, not invoked as a user workflow.

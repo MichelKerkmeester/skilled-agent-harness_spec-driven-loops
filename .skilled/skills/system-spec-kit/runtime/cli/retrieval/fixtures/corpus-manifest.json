@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f28e1535080e3238fa30d6ffdefce7ea55114e565d94476b69a33de1a0b1079b",
+  "corpusHash": "0fd35e1123302245cd1dde39d8f2ec219a1bf5ba1d0b33ab7bac34a8c4668deb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29357,
+  "includedPathCount": 29359,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2007,6 +2007,7 @@
     ".skilled/skills/cli-orca/changelog/v0.1.0.0.md",
     ".skilled/skills/cli-orca/changelog/v0.1.1.0.md",
     ".skilled/skills/cli-orca/changelog/v0.1.10.0.md",
+    ".skilled/skills/cli-orca/changelog/v0.1.11.0.md",
     ".skilled/skills/cli-orca/changelog/v0.1.2.0.md",
     ".skilled/skills/cli-orca/changelog/v0.1.3.0.md",
     ".skilled/skills/cli-orca/changelog/v0.1.4.0.md",
@@ -3134,6 +3135,7 @@
     ".skilled/skills/sk-code/changelog/v3.12.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.1.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.2.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -29389,7 +29391,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "834dda55f9e9c3709541b359e92ff74063392cfe92126581371ca1ea5b8193ec",
+  "manifestHash": "f96dac6dd33797ec18cff21b7673a4a389f72ec8e20d0872605cd5a478662fbf",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

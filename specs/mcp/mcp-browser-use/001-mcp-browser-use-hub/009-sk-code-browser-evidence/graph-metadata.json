@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The `sk-code-frontend` row of sk-code's verification table asked for \"the page rendered in a browser\" and named no tool",
     "created_at": "2026-11-22T21:09:06Z",
-    "last_save_at": "2026-11-22T21:27:01.757Z",
+    "last_save_at": "2026-11-22T22:11:39.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9eb0fc235a5ee8795bb44665e50d8314e1e5436255c61641e3f07c9ed5ad128a",
+    "source_fingerprint": "sha256:c818a3a791253a81581428e03b3b48344a0708e675dfaa174d84d86ef49a0a09",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "168857f6681d09d3cb47617aa684d06b0fe16a9a6df6410160042f32d1d2fb9b",
+      "spec.md": "0c225bc78a0c715bbb666115595522d565fb149adb4ae4fa13d1ef2727a23279",
       "plan.md": "e343a69d238825ee8a1d722c00a036f452afe040cfd452acab62711321fed36c",
-      "tasks.md": "00325f5a80f855883da78d3ef8f347269b8902922b2d3a0cca1ffc22845f13d0",
-      "implementation-summary.md": "95eba370021007b475dfb0cc6a1a13e0879ea7841ee028cf696665e93b3dcfd5"
+      "tasks.md": "b16f7f8d93951c8b621284cff06ed7d5ff26c1036faddd6c55bc77712ccef480",
+      "implementation-summary.md": "7ab96134a3d5502d643a4a07056d2814ec5d799f0fd706203bc91dc5440c3961"
     },
     "last_active_at": null
   }

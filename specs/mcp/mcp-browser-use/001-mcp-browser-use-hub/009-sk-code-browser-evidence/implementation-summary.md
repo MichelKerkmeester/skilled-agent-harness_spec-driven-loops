@@ -65,6 +65,18 @@ The agent uses a browser session it owns, and opens the user's signed-in browser
 | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md` | Modified | Phase map row 9 set to Complete; handoff row 008 to 009 |
 | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md` | Modified | Binding row for 009 |
 | `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/009-sk-code-browser-evidence/` | Created | This packet |
+### Follow-ups, same day
+
+The operator asked for the four follow-ups this packet first left out.
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.skilled/skills/sk-code/SKILL.md` (3.12.3.0), `mode-registry.json`, `hub-router.json`, `description.json`, `changelog/v3.12.3.0.md` | Modified, created | Pure browser inspection goes to the `mcp-browser-use` hub, which routes to its Chrome DevTools, Aside or Bladebro mode |
+| `.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md` (1.0.6.0) | Modified | A claimed LCP, CLS or INP improvement cites a baseline and a current number measured through any browser mode, or says NOT MEASURED with the reason |
+| `.skilled/skills/cli-orca/` `ROUTER.md` (1.0.4.0), `SKILL.md` (0.1.11.0), `README.md`, `references/mutation-and-browser-boundaries.md`, three feature-catalog files, `changelog/v0.1.11.0.md` | Modified, created | Both `FOREIGN_OWNERS` browser handoffs name `mcp-browser-use`; prose names all three modes, Bladebro included |
+| `local-webflow/references/` (8 files, outside this repository, in the site repository the skill is linked from) | Modified | 11 dead `mcp-tooling/mcp-chrome-devtools` paths now read `mcp-browser-use/mcp-chrome-devtools`; each file's version bumped |
+
+Checks for the follow-ups: the sk-code hub check printed `OK: parent-skill-check — all hard invariants passed, 0 warnings`; router-sync printed `5/5 checks passed`. In cli-orca, a grep for the old mode names returned no lines, the playbook validator exited 0 with `violations=0`, the catalog validator printed `PASS: 0 violations` and the link checker reported `failures=0`. In local-webflow no `mcp-tooling/mcp-chrome-devtools` path remains, and each rewritten path resolves from the skill's linked location in this repository.
 <!-- /ANCHOR:what-built -->
 
 ---

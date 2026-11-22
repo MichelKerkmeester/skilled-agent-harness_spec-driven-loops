@@ -2,7 +2,7 @@
 name: cli-orca
 description: "Route Orca CLI work: worktrees, terminals, browser, automations, handoffs, artifacts, and the eight official Orca skills."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.1.10.0
+version: 0.1.11.0
 user-invocable: true
 ---
 
@@ -50,8 +50,8 @@ The installed Orca runtime is versioned. Load the matching guide from the binary
 |---------|-------|
 | Generic Git worktrees or branch management with no Orca state | `sk-git` |
 | Ordinary shell terminal commands with no Orca terminal involved | The normal coding workflow, no skill owns it |
-| Chrome or Chromium CDP debugging, HAR capture, Lighthouse, performance traces | `mcp-chrome-devtools` |
-| Generic agentic browser work not tied to Orca-managed state | `mcp-aside-devtools` |
+| Chrome or Chromium CDP debugging, HAR capture, Lighthouse, performance traces | The `mcp-browser-use` hub, which routes it to its Chrome DevTools mode |
+| Generic agentic browser work not tied to Orca-managed state | The `mcp-browser-use` hub, which routes to its Chrome DevTools, Aside or Bladebro mode and asks which one when the request names none |
 | Supervised multi-agent coordination: Runs, task DAGs, dispatches, coordinator loops, worker waits | The official `orchestration` skill, see [`references/orca-skills/orchestration.md`](references/orca-skills/orchestration.md) |
 | Cursor cloud workers or Cursor worktrees | `cli-cursor` inside the `cli-external-orchestration` hub |
 | Desktop GUI control of a visible app window | The official `computer-use` skill, see [`references/orca-skills/computer-use.md`](references/orca-skills/computer-use.md) |
@@ -68,7 +68,7 @@ The advisor selects cli-orca when a request matches one of its phrases in `graph
 `SKILL.md` loads first and stays in context.
 The selected lane then loads exactly one reference, and the flags themselves come from the version-matched guide served by the binary.
 
-A request that matches no lane returns `UNKNOWN_FALLBACK` and defers instead of guessing, and a request that belongs to `sk-git`, `mcp-chrome-devtools` or another owner is handed to that owner.
+A request that matches no lane returns `UNKNOWN_FALLBACK` and defers instead of guessing, and a request that belongs to `sk-git`, the `mcp-browser-use` hub or another owner is handed to that owner.
 
 Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 
@@ -234,7 +234,7 @@ The task is ready to report when:
 ## 7. INTEGRATION POINTS
 
 - `sk-git` keeps generic worktree, branch and commit work. This skill takes over only when Orca is the source of truth.
-- `mcp-chrome-devtools` keeps Chrome and CDP inspection, and `mcp-aside-devtools` keeps generic agentic browser work.
+- The `mcp-browser-use` hub keeps browser work that is not Orca's. It routes Chrome and CDP inspection, HAR capture and Lighthouse to its Chrome DevTools mode, and routes generic agentic browser work to its Chrome DevTools, Aside or Bladebro mode, asking which one when the request names none.
 - The official `orchestration` skill keeps supervised multi-agent coordination, while this skill keeps the lightweight terminal prompts and full handoffs.
 - The installed Orca guide stays authoritative for version-sensitive command detail, and the snapshot assets stay authoritative for upstream wording.
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "font metrics and layout shift"
 importance_tier: important
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Web Performance and Loading
@@ -32,6 +32,7 @@ This file covers Core Web Vitals, image and font loading, layout stability and m
 ### Boundaries
 
 - **Baseline media rules.** The baseline media rules remain in [web-markup-and-css.md](web-markup-and-css.md).
+- **Evidence for a claimed change.** A claimed LCP, CLS or INP improvement cites a baseline number and a current number, taken on the same page under the same conditions through the `mcp-browser-use` hub in whichever browser mode the user has installed: a Chrome DevTools performance trace or Lighthouse run, or the Performance API read through Aside or Bladebro. Without both numbers, the claim says NOT MEASURED and gives the reason.
 
 ---
 

@@ -93,8 +93,7 @@ Before the change, the row named no tool and the versions were the ones shown ab
 - Agent `browser: deny` permissions: unchanged. This change edits the verification row only.
 - Advisor signals and graph edges: unchanged. The change is a verification step, not routing.
 - sk-design: unchanged.
-- `.skilled/skills/sk-code/SKILL.md:58` wording, and the LCP/INP baseline sentence in `.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md`: optional follow-ups, not done.
-- The cli-orca Aside misroute: a separate defect, named here and not fixed.
+- Amended 2026-11-22 by the operator ("Fix" the four follow-ups): `sk-code/SKILL.md:58` now names the hub, `web-performance-and-loading.md` asks a page-speed claim for two measured numbers, cli-orca hands non-Orca browser work to the hub, and the 11 dead `mcp-tooling/mcp-chrome-devtools` paths in the out-of-repo `local-webflow` skill point at `mcp-browser-use/mcp-chrome-devtools`. These are now in scope.
 - A live browser run: not made. Section 7 names it as open.
 
 ### Files to Change

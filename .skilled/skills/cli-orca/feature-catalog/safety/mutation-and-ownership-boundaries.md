@@ -7,7 +7,7 @@ trigger_phrases:
   - "orca archive hook gate"
   - "orca worktree all scoping"
   - "cli-orca ownership split"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mutation and ownership boundaries (cli-orca)
@@ -28,7 +28,7 @@ Worktree removal passes through the archive-hook gate. The removal call runs wit
 
 The `--worktree all` scoping trap sits inside the browser and emulator lanes. Browser commands default to the current worktree and its active tab, and `--worktree all` exists for intentional reads only, because mutating verbs run unscoped under it. An unscoped mutating verb is no longer a targeted action, so a read-intent flag combined with a write verb widens the blast radius past everything the operator asked for.
 
-The ownership split keeps the neighbours in charge. `sk-git` owns generic git worktrees, branches and commits. `mcp-chrome-devtools` owns Chrome and CDP inspection, HAR capture, Lighthouse and performance traces. `mcp-aside-devtools` owns generic agentic browser work not tied to Orca state. The official `computer-use` skill owns desktop control of a visible app window through `orca computer`, and external pages needing page automation go to a tool such as Playwright or CDP. The official `orchestration` skill owns supervised multi-agent coordination, while full ownership handoffs stay with `orca-cli`. An unrelated `OpenOrca` model label and the bare `orca` token route nowhere in this skill. A request that crosses into generic CDP work, generic agentic browser work, supervised orchestration or an unverified MCP surface escalates instead of being handled here.
+The ownership split keeps the neighbours in charge. `sk-git` owns generic git worktrees, branches and commits. The `mcp-browser-use` hub owns browser work not tied to Orca state. Its Chrome DevTools mode takes Chrome and CDP inspection, HAR capture, Lighthouse and performance traces, and generic agentic browser work goes to its Chrome DevTools, Aside or Bladebro mode, chosen by the hub or by asking when the request names none. The official `computer-use` skill owns desktop control of a visible app window through `orca computer`, and external pages needing page automation go to a tool such as Playwright or CDP. The official `orchestration` skill owns supervised multi-agent coordination, while full ownership handoffs stay with `orca-cli`. An unrelated `OpenOrca` model label and the bare `orca` token route nowhere in this skill. A request that crosses into generic CDP work, generic agentic browser work, supervised orchestration or an unverified MCP surface escalates instead of being handled here.
 
 The ownership matrix and the routing vocabulary are stated canonically in [SKILL.md](../../SKILL.md); the split above expands that statement for this safety surface.
 

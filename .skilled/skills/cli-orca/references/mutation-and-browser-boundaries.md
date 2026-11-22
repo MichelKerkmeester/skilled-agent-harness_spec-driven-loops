@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca untrusted content"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Orca Mutation and Browser Boundaries
@@ -80,8 +80,8 @@ The Orca browser is an embedded tab surface scoped to an Orca worktree. It is no
 | Target | Owner |
 |---|---|
 | Orca-managed pages, worktree tabs, snapshots, refs, page cookies and Orca browser recovery errors | This skill, through the Orca embedded browser |
-| Chrome and CDP inspection, CDP domains, HAR export, Lighthouse, developer-driven Chrome debugging | `mcp-chrome-devtools` |
-| Generic agentic browser work not tied to Orca state | `mcp-aside-devtools` |
+| Chrome and CDP inspection, CDP domains, HAR export, Lighthouse, developer-driven Chrome debugging | The `mcp-browser-use` hub, which routes it to its Chrome DevTools mode |
+| Generic agentic browser work not tied to Orca state | The `mcp-browser-use` hub, which routes to its Chrome DevTools, Aside or Bladebro mode and asks which one when the request names none |
 | Desktop window control of a visible app window, external Chrome, Safari or webview chrome | The official `computer-use` skill through `orca computer` |
 | External pages needing page automation | A page automation tool such as Playwright or CDP (guide: `skill-guides/orca-cli.md`) |
 

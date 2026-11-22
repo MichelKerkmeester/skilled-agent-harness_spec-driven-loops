@@ -1,5 +1,5 @@
 {
-  "manifestHash": "834dda55f9e9c3709541b359e92ff74063392cfe92126581371ca1ea5b8193ec",
+  "manifestHash": "f96dac6dd33797ec18cff21b7673a4a389f72ec8e20d0872605cd5a478662fbf",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24982,6 +24982,9 @@
     "cli orca 0 1 10 0": [
       "cli-orca 0.1.10.0"
     ],
+    "cli orca 0 1 11 0": [
+      "cli-orca 0.1.11.0"
+    ],
     "cli orca 0 1 2 0": [
       "cli-orca 0.1.2.0"
     ],
@@ -25091,6 +25094,9 @@
     ],
     "cli orca v0 1 10 0": [
       "cli-orca v0.1.10.0"
+    ],
+    "cli orca v0 1 11 0": [
+      "cli-orca v0.1.11.0"
     ],
     "cli orca v0 1 2 0": [
       "cli-orca v0.1.2.0"
@@ -83107,6 +83113,9 @@
     "page reads": [
       "page reads"
     ],
+    "page speed claim baseline number": [
+      "page speed claim baseline number"
+    ],
     "pain point diagram": [
       "pain point diagram"
     ],
@@ -111636,6 +111645,9 @@
     "sk code 3 12 2 0": [
       "sk-code 3.12.2.0"
     ],
+    "sk code 3 12 3 0": [
+      "sk-code 3.12.3.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -113879,6 +113891,9 @@
     ],
     "sk code v3 12 2 0": [
       "sk-code v3.12.2.0"
+    ],
+    "sk code v3 12 3 0": [
+      "sk-code v3.12.3.0"
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
