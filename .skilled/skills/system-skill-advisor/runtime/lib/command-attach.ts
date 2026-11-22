@@ -281,10 +281,33 @@ export const LOOP_WORDING: readonly string[] = [
   'iterative',
   'iteratively',
   'multi-pass',
-  'multiple passes',
-  'several passes',
-  'many passes',
 ];
+
+// Passes and rounds are also things a prompt can be about, as in "three funding
+// rounds" or "several rounds of layoffs", so they ask for the loop only when
+// nothing but a loop word stands between the count and the noun, and an "of"
+// after them names the review, the research or the target rather than another
+// subject.
+const PASS_GAP = '(?:(?:more|extra|additional|full|deep|review|research|audit|iterative) ){0,2}';
+const PASS_NOUN = '(?:rounds|passes)\\b(?! of (?!(?:review|research|audit|investigation|the|it|this|that|these|those|my|our)\\b)[a-z])';
+
+// More than one pass or round asks for the loop the way iterations do. "How
+// many passes does it run" asks about the loop, so `many` counts only where no
+// `how` stands before it.
+export const MULTI_PASS = new RegExp(`\\b(?:multiple|several|(?<!\\bhow )many) ${PASS_GAP}${PASS_NOUN}`);
+
+// An iteration count asks for the loop whether it is typed as a digit or spelled
+// out, and a hyphen may join the two, as in "twelve-iteration". A pass or a
+// round counts only from two up, because "one pass" asks for a single pass, and
+// the singular counts only when hyphen-joined, as in "two-pass", because "3
+// tests pass" uses it as a verb. A spelled count after a word that points back,
+// as in "the first two iterations", names runs that already happened rather
+// than asking for more.
+const COUNT_WORDS = '(?<!\\b(?:first|last|previous|past|prior|earlier|those|these|the|both) )(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|(?:a )?dozen)';
+export const LOOP_COUNT = new RegExp(
+  `\\b(?:\\d+|one|${COUNT_WORDS})[- ](?:[a-z-]+ ){0,2}?iterations?\\b`
+  + `|\\b(?:[2-9]|\\d{2,}|${COUNT_WORDS})(?:-(?:rounds?|pass(?:es)?)\\b| ${PASS_GAP}${PASS_NOUN})`,
+);
 
 // A loop's own name is how a reader asks about the loop as often as how they ask
 // to run one, so "how does the research loop decide when it has enough" stays a
@@ -338,11 +361,14 @@ export const MODE_CUES: Readonly<Record<string, RegExp>> = {
 // an existing run, so it asks for a diagnosis rather than for a new run. The
 // subject has to name a deep run or its state, because "my build is stuck" is
 // not about the loop, and a use verb right before the subject turns it back
-// into a request, as in "run deep research on why sockets hang".
-const LOOP_RUN_SUBJECT = /\b(?:deep[- ](?:research|review|loop)|(?:research|review) (?:loop|run)|coverage graph|convergence)\b/;
-// "keep going" asks for more of a run, so it is not among the symptoms.
-const LOOP_RUN_SYMPTOM = /\b(?:stuck|hangs?|hanging|hung|frozen|stalled|stalls|never (?:converges?|finishes|stops|ends|fires)|(?:not|isn't|is not|won't|will not|doesn't|does not|didn't|did not|can't|cannot) (?:converg\w*|finish\w*|progress\w*|mov\w*|fir\w*)|stopped (?:converg\w*|progress\w*|moving)|keeps? (?:running|repeating|looping)|stale|empty|(?:hasn't|has not|haven't|have not) (?:moved|changed|converged|progressed)|no progress)\b/;
-const LOOP_RUN_REQUESTED = /\b(?:run|start|use|launch|kick off|do|rerun|re-run) (?:[a-z0-9'-]+ ){0,2}(?:deep[- ](?:research|review|loop)|(?:research|review) (?:loop|run))\b/;
+// into a request, as in "run deep research on why sockets hang". An audit loop
+// is the review loop by another name, and "the review I started" names a run the
+// reader launched, while "the test runner I started" names no deep run at all.
+const LOOP_RUN_SUBJECT = /\b(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run)|(?:research|review|audit)(?: (?:loop|run))? (?:i|we) (?:just )?(?:started|launched|kicked off|ran|began|set off|set up)|coverage graph|convergence)\b/;
+// "keep going" asks for more of a run, so it is not among the symptoms, and
+// "spinning up" starts a run rather than describing one that is stuck.
+const LOOP_RUN_SYMPTOM = /\b(?:stuck|hangs?|hanging|hung|frozen|stalled|stalls|spins|spinning(?! up)|never (?:converges?|finishes|stops|ends|fires)|(?:not|isn't|is not|won't|will not|doesn't|does not|didn't|did not|can't|cannot|without) (?:converg\w*|finish\w*|progress\w*|mov\w*|fir\w*)|stopped (?:converg\w*|progress\w*|moving)|keeps? (?:running|repeating|looping)|stale|empty|(?:hasn't|has not|haven't|have not) (?:moved|changed|converged|progressed)|no progress)\b/;
+const LOOP_RUN_REQUESTED = /\b(?:run|start|use|launch|kick off|do|rerun|re-run) (?:[a-z0-9'-]+ ){0,2}(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))\b/;
 
 export function isStuckRunComplaint(text: string): boolean {
   const lower = text.toLowerCase().replace(/[‘’]/g, "'");
@@ -409,16 +435,23 @@ export function isNoEditRequest(text: string): boolean {
 export const COMMAND_USE_VERB = '(?:run|start|use|invoke|launch|execute|call|trigger|open|rerun|re-run|kick off)';
 export const COMMAND_GAP_WORDS = "(?:[a-z']+ ){0,2}";
 
+// A loop name also asks for the run when the reader says they want one, as in
+// "I'd like a research loop on X". The article has to follow the want verb at
+// once, so "I'd like to know what a review loop is" stays a question.
+const LOOP_WANT_LEAD = "(?:i'd like|i would like|we'd like|we would like|i want|we want|i need|we need|give me|set up|spin up)";
+
 // One alternation over the loop wording keeps the gate a single test per
 // prompt, and the boundary markers keep `iterative` from firing inside a longer
 // word while a multi-word phrase still has to match as a whole. An iteration
-// count such as `1 more iteration` asks for the loop as the plural does, and a
-// loop name asks for it behind a use verb, so both are appended raw as patterns
-// beside the escaped vocabulary.
+// count, more than one pass, and a loop name behind a use verb or a want verb
+// each ask for the loop, so they are appended raw as patterns beside the
+// escaped vocabulary.
+const LOOP_NAME_PATTERN = `(?:${LOOP_NAMES.map(escapePhrase).join('|')})`;
 export const LOOP_REQUEST = new RegExp(
   `\\b(?:${LOOP_WORDING.map(escapePhrase).join('|')}`
-  + '|\\d+ (?:[a-z-]+ ){0,2}iteration'
-  + `|${COMMAND_USE_VERB} (?:[a-z0-9'-]+ ){0,3}(?:${LOOP_NAMES.map(escapePhrase).join('|')}))\\b`,
+  + `|${COMMAND_USE_VERB} (?:[a-z0-9'-]+ ){0,3}${LOOP_NAME_PATTERN}`
+  + `|${LOOP_WANT_LEAD} (?:an?|another) (?:[a-z0-9'-]+ ){0,2}?${LOOP_NAME_PATTERN})\\b`
+  + `|${MULTI_PASS.source}|${LOOP_COUNT.source}`,
 );
 
 // Loop wording also names a loop the reader is not asking to start: a past run
@@ -444,6 +477,10 @@ const LOOP_QUESTION = new RegExp(
   `\\b(?:how|why|when|what) (?:does|do|is|are|did|makes) ${LOOP_SUBJECT}`
   + `|\\b(?:explain|describe) (?:how|what|why|when) ${LOOP_SUBJECT}`,
 );
+// Only a digit count turns the question back into a request. The spelled count
+// is left out on purpose, so a question that quotes one, as in "why does it stop
+// after ten iterations", stays the question it was before spelled counts were
+// read as a loop ask.
 const ITERATION_COUNT = /\b\d+ (?:[a-z-]+ ){0,2}iterations?\b/;
 
 function isLoopQuestion(lowered: string): boolean {

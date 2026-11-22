@@ -7,7 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 import { phraseSpecificity, skillNameVariants, tokenize, tokenizePrompt } from '../text.js';
-import { MODE_CUES, isWritingAboutTopic } from '../../command-attach.js';
+import { LOOP_COUNT, MODE_CUES, MULTI_PASS, isStuckRunComplaint, isWritingAboutTopic } from '../../command-attach.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -442,20 +442,23 @@ export function scoreExplicitLane(
   // A piece written about a loop method names the loop as its topic, so the loop
   // rules below do not read it. Fusion holds the hub back on the rest.
   const writingAboutLoop = isWritingAboutTopic(lower);
+  // A count or more than one pass asks for the loop however it is spelled, so
+  // "ten rounds" and "twelve-iteration" read as "10 iterations" does.
+  const passesAsked = MULTI_PASS.test(lower) || LOOP_COUNT.test(lower);
   const researchLoop = !writingAboutLoop
-    && /\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative(?:ly)?|multi-pass|(?:multiple|several|many) passes|loop)\b/.test(lower) && /\bresearch\b/.test(lower);
+    && (/\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b/.test(lower) || passesAsked) && /\bresearch\b/.test(lower);
   if (researchLoop) {
     push(scores, 'system-deep-loop', 0.85, 'research-loop');
   }
   // A loop verb counts only when it governs the review ("resume the active
   // deep-review"); a resume or start elsewhere in a review prompt is a topic.
   const reviewLoop = !writingAboutLoop
-    && /\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b|\b(convergence|iterations?|iterative(?:ly)?|multi-pass|(?:multiple|several|many) passes|loop)\b/.test(lower) && /\breview\b/.test(lower);
+    && (/\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b|\b(convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b/.test(lower) || passesAsked) && /\breview\b/.test(lower);
   if (reviewLoop) {
     push(scores, 'system-deep-loop', 0.85, 'review-loop');
     // An iteration count or a request for several passes asks for the loop
     // itself, so it outweighs the single-pass code review sk-code would run.
-    if (/\b(audit|spec folder|packet|convergence|iterations|(?:multiple|several|many) passes)\b|\b\d+\s+(?:[\w-]+\s+){0,2}?iterations?\b/.test(lower)) {
+    if (/\b(audit|spec folder|packet|convergence|iterations)\b/.test(lower) || passesAsked) {
       push(scores, 'sk-code', -0.6, 'iterative-review-vs-pr-disambiguation');
     }
   }
@@ -464,7 +467,7 @@ export function scoreExplicitLane(
   // into or audit instead asks for the same run. Depth wording such as
   // thorough asks for care inside one pass, so it is not read here.
   if (!researchLoop && !reviewLoop && !writingAboutLoop
-    && /\b(iterations?|iterative(?:ly)?|multi-pass|(?:multiple|several|many) passes)\b/.test(lower)) {
+    && (/\b(iterations?|iterative(?:ly)?|multi-pass)\b/.test(lower) || passesAsked)) {
     if (MODE_CUES.research.test(lower)) push(scores, 'system-deep-loop', 0.85, 'research-loop-wording');
     else if (MODE_CUES.review.test(lower)) {
       // A check or an audit asked for in passes is the loop by name, while the
@@ -474,6 +477,14 @@ export function scoreExplicitLane(
       push(scores, 'system-deep-loop', 1.0, 'review-loop-wording');
       push(scores, 'sk-code', -0.6, 'iterative-review-vs-pr-disambiguation');
     }
+  }
+  // A complaint that a deep run the reader launched is stuck asks the loop's own
+  // hub for a diagnosis, even when it calls the run an audit or "the review I
+  // started". The code skill reads "code audit" and "review" as its own review,
+  // so it gives the same ground the hub takes.
+  if (isStuckRunComplaint(lower)) {
+    push(scores, 'system-deep-loop', 1.0, 'stuck-loop-run');
+    push(scores, 'sk-code', -0.6, 'stuck-loop-run');
   }
   if (/\b(figure out|find|diagnose|debug)\b.{0,40}\b(wrong|broken|failing|bug|issue)\b.{0,40}\bcode\b|\b(wrong|broken|failing)\b.{0,30}\bcode\b/.test(lower)) {
     push(scores, 'sk-code', 0.9, 'ambiguous-code-problem');

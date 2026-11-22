@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "e0d008a54db",
-  "corpusSha256": "sha256:97ddf35ec746b8d36211f4e816ccfca7a0931da39ea89377461714199480b72f",
+  "capturedAtSha": "ab2cec359d5",
+  "corpusSha256": "sha256:668a2322fef9d38d48aeedd36397a8987a3d139c2434c1c7434e6a2300cf212a",
   "bridgeCounts": {
     "commandMetadata": 27,
     "doctorRoutes": 35,
@@ -1923,8 +1923,8 @@
       },
       "holdout": {
         "own": 2,
-        "attached": 1,
-        "combined": 3,
+        "attached": 2,
+        "combined": 4,
         "total": 44
       }
     },
@@ -1943,8 +1943,8 @@
         "own": 2,
         "ownerLed": 7,
         "routed": 4,
-        "withCommand": 1,
-        "attached": 1,
+        "withCommand": 2,
+        "attached": 2,
         "neither": 35
       }
     },
@@ -2000,8 +2000,8 @@
         },
         "holdout": {
           "own": 1,
-          "attached": 0,
-          "combined": 1,
+          "attached": 1,
+          "combined": 2,
           "total": 17
         }
       },

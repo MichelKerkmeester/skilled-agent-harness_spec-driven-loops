@@ -15,6 +15,7 @@ import {
   attachCommand,
   commandOnlyMentioned,
   isNoEditRequest,
+  isStuckRunComplaint,
   MODE_COMMANDS,
   NO_EDIT_REQUEST,
   typedCommandForTop,
@@ -633,6 +634,57 @@ describe('command attach on a deep-loop prompt', () => {
     ['research', 'deep research: how do vector databases handle hybrid search', '/deep:research'],
   ])('still offers the %s run when a question also asks for it: %s', (mode, prompt, command) => {
     expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  // A spelled-out count, rounds, and a loop name behind a want verb ask for the
+  // loop as a digit count and a use verb do.
+  it.each([
+    ['research', "I'd like a research loop on vector database pricing", '/deep:research'],
+    ['review', 'I want a review loop over the payments module', '/deep:review'],
+    ['research', 'can you set up a research loop on CRDT sync strategies', '/deep:research'],
+    ['review', 'review the auth service for ten rounds', '/deep:review'],
+    ['review', 'do a dozen passes of review on the importer', '/deep:review'],
+  ])('offers the %s command on a wanted loop or a spelled count: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  it('names the mode a deferred route leaves open on a hyphenated spelled count', () => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, 'run a twelve-iteration research pass on edge caching')).toBe('/deep:research');
+  });
+
+  it.each([
+    ['review', 'write ten tips about review loops'],
+    ['review', 'how many rounds does the review loop run'],
+    ['review', 'how many passes does the review loop make'],
+    ['review', "I'd like to know what a review loop is"],
+    ['review', 'review the five changes in this pull request'],
+    ['review', 'do one pass of review on the parser'],
+    ['review', 'review why 3 tests pass locally but fail in CI'],
+    ['research', 'research the 3 funding rounds Acme raised'],
+    ['research', 'investigate several rounds of layoffs at the company'],
+  ])('withholds the %s command when no loop run is asked for: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  // The run can be named as an audit loop or as the run the reader started.
+  it.each([
+    ['review', 'my audit loop keeps spinning and never converges'],
+    ['review', 'the code audit loop I launched has stalled'],
+    ['review', 'the review I started is stuck on iteration 4'],
+    ['research', 'the research run keeps spinning without converging'],
+    ['research', 'the research I launched yesterday never converges'],
+  ])('offers the doctor on a stuck %s run named in other words: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe('/doctor:deep-loop');
+  });
+
+  it.each([
+    'my build keeps spinning',
+    'the CI job is stuck',
+    'the test runner I started has stalled',
+    'my event loop keeps spinning at full CPU',
+    'review why the retry loop in the scheduler never converges',
+  ])('withholds the doctor when the stuck thing is no deep run: %s', (prompt) => {
+    expect(isStuckRunComplaint(prompt)).toBe(false);
   });
 
   it('reads no deferred mode for a hub other than the deep loop', () => {

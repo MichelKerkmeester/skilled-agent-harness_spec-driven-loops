@@ -109,6 +109,29 @@ describe('deep-loop ask routing', () => {
     expect(passingSkills(prompt)).not.toContain('system-deep-loop');
   });
 
+  // A spelled-out count reads as a digit count does, so the single-pass code
+  // review steps back for it too.
+  it.each([
+    'give the importer code three rounds of review',
+    'do a dozen passes of review on the lexer',
+  ])('ranks the hub first for a review with a spelled-out count: %s', (prompt) => {
+    expect(passingSkills(prompt)[0]).toBe('system-deep-loop');
+  });
+
+  it('keeps a single-pass review of a numbered change set on the code skill', () => {
+    expect(passingSkills('review the five changes in this pull request')[0]).not.toBe('system-deep-loop');
+  });
+
+  // The code skill reads "code audit" as its own review, so a stuck audit loop
+  // has to reach the hub that owns the diagnosis.
+  it('ranks the hub first for a stuck code audit loop the reader launched', () => {
+    expect(passingSkills('the code audit loop I launched has stalled')[0]).toBe('system-deep-loop');
+  });
+
+  it('keeps the hub off a stuck build', () => {
+    expect(passingSkills('my build keeps spinning')).not.toContain('system-deep-loop');
+  });
+
   it('hands no doctor command to a question about how convergence works', () => {
     const passing = passingSkills('explain how convergence detection works in the deep-loop runtime');
     expect(passing.some((skill) => skill.startsWith('command-doctor-'))).toBe(false);

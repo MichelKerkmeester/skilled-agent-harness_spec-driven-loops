@@ -24,8 +24,11 @@ import {
   commandRowFor,
   DEFECT_CHECK,
   isNoEditRequest,
+  isStuckRunComplaint,
   isWritingAboutTopic,
+  LOOP_COUNT,
   MODE_CUES,
+  MULTI_PASS,
   TRACKED_COMMANDS,
   typedCommandIn,
 } from '../command-attach.js';
@@ -87,7 +90,7 @@ const AUTHORS_CODE = /\b(?:add|build|create|implement|write)\b(?:(?!deep[- ]revi
 // counted number of iterations. A bare plural names earlier iterations as often
 // as it asks for more ("audit the first two iterations for drift"), so it is
 // left to the explicit lane's weaker loop rule.
-const PASSES_ASK = /\b(?:iterative(?:ly)?|multi-pass|(?:multiple|several|many) passes|\d+ (?:[a-z-]+ ){0,2}iterations?)\b/;
+const PASSES_ASK = new RegExp(`\\b(?:iterative(?:ly)?|multi-pass)\\b|${MULTI_PASS.source}|${LOOP_COUNT.source}`);
 // Writing a changelog is sk-doc's changelog mode even when the prompt names a
 // packet or spec folder. That folder is only where the change history comes from.
 // The verb must govern the changelog itself: only articles and folder or scope
@@ -661,6 +664,12 @@ function primaryIntentBonus(
   // own name and keyword and outweighs the loop ask on every lane.
   if (recommendation.skill === 'sk-code' && MODE_CUES.review.test(promptLower)
     && PASSES_ASK.test(promptLower) && asksForLoopRun(promptLower)
+    && !AUTHORS_CODE.test(promptLower)) {
+    return R.deepReviewSkCodeReviewPenalty;
+  }
+  // A stuck deep run called a "code audit loop" hands sk-code its own name and
+  // review phrase, so the code skill steps back here as it does for a loop ask.
+  if (recommendation.skill === 'sk-code' && isStuckRunComplaint(promptLower)
     && !AUTHORS_CODE.test(promptLower)) {
     return R.deepReviewSkCodeReviewPenalty;
   }
