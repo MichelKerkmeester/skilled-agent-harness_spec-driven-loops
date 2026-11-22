@@ -104,7 +104,9 @@ function evaluateRoute(snapshot, input) {
   const constraints = new Set((input.constraints || []).map(normalize));
   let decision;
   let scores = [];
-  if (constraints.has('forbidden') || text.includes('forbidden')) {
+  // A reject comes only from the caller's constraints. Prompt text is user content, and a
+  // request that merely mentions the word, such as a 403 Forbidden debugging task, is routable.
+  if (constraints.has('forbidden')) {
     decision = negative('reject', { reason: 'forbidden' });
   } else if (constraints.has('dependency-failure')) {
     decision = negative('defer', { reason: 'dependency-failure', recovery: ['defer'] });

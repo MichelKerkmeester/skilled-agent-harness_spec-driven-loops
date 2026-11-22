@@ -207,6 +207,21 @@
         ],
         "expectedResources": []
       }
+    },
+    {
+      "id": "chrome-devtools-http-403-forbidden",
+      "prompt": "debug the 403 Forbidden network requests in chrome devtools",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-chrome-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": []
+      }
     }
   ],
   "advisorCases": [
