@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 47,
     "missing-frontmatter": 7187,
-    "ok": 20395,
+    "ok": 20410,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29210,
+  "documentsScanned": 29225,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6cbffe39c3dfb8fa9957e9875a9a998d7dfd432059bd95ae6d0a8059d4afb797",
+  "manifestHash": "1482871ce6122cc7b489c0086bcfc7ed1037e57b93ca8466715045831e855f46",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46024,
+      "ok": 46038,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -61287,6 +61287,14 @@
     },
     {
       "path": "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/scratch",
       "reason": "excluded directory"
     },
     {
