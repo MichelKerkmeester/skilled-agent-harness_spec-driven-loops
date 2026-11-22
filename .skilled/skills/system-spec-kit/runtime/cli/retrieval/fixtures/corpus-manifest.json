@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3ded2978f769a0958d675b6eb4d1fd586fb7aab711cdc294ccceaa61589db405",
+  "corpusHash": "7f895f744f8742e29436844f23550b8b22ce89f7ff34e7d86d8bd82c629ba7bc",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29210,
+  "includedPathCount": 29225,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7065,6 +7065,7 @@
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.1.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/keep-operator-scenarios-in-scope.md",
@@ -16284,6 +16285,20 @@
     "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/plan.md",
     "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/spec.md",
     "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/tasks.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/acceptance-criteria.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/goal.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/implementation-summary.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/plan.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/spec.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/tasks.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/acceptance-criteria.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/goal.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/implementation-summary.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/plan.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/spec.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/tasks.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/goal.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/spec.md",
     "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/acceptance-criteria.md",
     "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/implementation-summary.md",
     "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/plan.md",
@@ -29242,7 +29257,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6cbffe39c3dfb8fa9957e9875a9a998d7dfd432059bd95ae6d0a8059d4afb797",
+  "manifestHash": "1482871ce6122cc7b489c0086bcfc7ed1037e57b93ca8466715045831e855f46",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35966,6 +35981,14 @@
     },
     {
       "path": "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/scratch",
       "reason": "excluded directory"
     },
     {
