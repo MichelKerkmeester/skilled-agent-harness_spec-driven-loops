@@ -48,6 +48,8 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
       ".skilled/skills/mcp-browser-use/hub-router.json",
+      ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/teardown/uninstall-and-data-root.md",
+      ".skilled/skills/mcp-browser-use/README.md",
       ".skilled/commands/local-skilled-alignment.md",
       ".skilled/commands/create/assets/create-benchmark-auto.yaml",
       ".skilled/skills/mcp-tooling/benchmark/README.md"
@@ -126,6 +128,18 @@
         "source": "derived"
       },
       {
+        "name": "uninstall-and-data-root.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/teardown/uninstall-and-data-root.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/README.md",
+        "source": "derived"
+      },
+      {
         "name": "local-skilled-alignment.md",
         "kind": "doc",
         "path": ".skilled/commands/local-skilled-alignment.md",
@@ -135,12 +149,6 @@
         "name": "create-benchmark-auto.yaml",
         "kind": "config",
         "path": ".skilled/commands/create/assets/create-benchmark-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/mcp-tooling/benchmark/README.md",
         "source": "derived"
       },
       {
@@ -190,17 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Ask",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Chrome DevTools and Aside have playbooks, but they test the packets where they sat before 003",
     "created_at": "2026-11-21T08:11:47Z",
-    "last_save_at": "2026-11-21T18:40:05.307Z",
+    "last_save_at": "2026-11-22T05:52:16.446Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f63a7eb02320a70dc3c5b9c66b9aa502d633acdd9775cdff87f2117189ca1e8",
+    "source_fingerprint": "sha256:03ddf2440db29139d5ee0013049b81d198e8f28c4ba54f329bbf85bc839cce09",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b703baed26cdffd383b145cdb20101e44143f4c87bfd130bf887cf66343d7885",
       "plan.md": "ba1b6840e91fb1b2c66caf5a19b7ec6022bc92ba4826b19f4108694beba861ac",
-      "tasks.md": "ca92e03fc1f1940ec7a01c7ba5c061e428ebc68504f9f9d3ed3938d4ca4d0aac",
+      "tasks.md": "28fbd93c8b26da4213709d65e47ed24983331bcc53cfb999a3b93f1286315ff2",
       "decision-record.md": "4f1e2d25fee9fae600458365d9747742d931569a00401dddb11f5dd1c3bccae6",
-      "implementation-summary.md": "4924972a15ae5edefa1c02da529a861231b91391c28dea9ac6a65ecf3cb9ace0"
+      "implementation-summary.md": "98fdf2e35a7b73f8b0951ead6ebe7deae7b16b95e824909fae60922de0a5a72d"
     },
     "last_active_at": null
   }

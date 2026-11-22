@@ -67,6 +67,21 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Deep-Review Remediation
+
+The deep review in `../review/review-report.md` (verdict CONDITIONAL: 0 P0, 4 P1, 17 P2) drove this phase.
+
+- [x] T017 Stop the compiled router rejecting prompts that only mention "forbidden" (the router `lib/router.cjs` in the authored hub bundle under `specs/sk-doc/z_archive/…/010-mcp-browser-use/`, promoted to `.skilled/bin/lib/compiled-routing/…/010-mcp-browser-use/`). Verify: a new 403 Forbidden canary case fails on the old router and passes on the fixed one, and the live front door routes it to `mcp-chrome-devtools`. Evidence: the canary harness run in memory printed `gold mismatch for chrome-devtools-http-403-forbidden: action reject but expected route` before the fix and `cases 15 gold built OK` after; `compiled-route.cjs --hub mcp-browser-use` on the 403 prompt prints `"action":"route"` with `mcp-chrome-devtools`. The policy hash stays `8793753e…`. Only this hub's two changed files were copied to the promoted tree, so the unrelated `007-sk-doc` drift is untouched.
+- [x] T018 Check the stage-one gap for "chrome live manual" and "core web vitals" before changing anything. Verify: the advisor is replayed on each phrase alone. Evidence: "chrome live manual" already picks `mcp-browser-use` (0.87); "core web vitals" picks `sk-code` (0.90), whose `WEB_PERF` intent owns it. Declaring "chrome live manual" in `ROUTER.md` made "read the live manual for chrome extensions publishing" pick the hub (0.835, none before), so the edit was reverted. The finding is downgraded to P2 and left for the operator.
+- [x] T019 Rewrite the Bladebro teardown runbook (`$P/teardown/uninstall-and-data-root.md`). Verify: the data root comes from `bladebro doctor`, removal waits for the operator's named-session confirmation, and the pass criterion checks the root is gone. Evidence: steps 1 to 6 do exactly that; `validate-playbook-package.cjs` still passes 14 scenarios with 0 violations and 0 warnings.
+- [x] T020 Record a hub-routing run that supersedes the FAIL record (`$H/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing--post-review/`). Verify: every scenario is run live against the fixed router. Evidence: 7 of 7 PASS plus the 403 canary probe; admission `7 pass, 0 drift`; `compiled-route-admission.test.cjs` 29 of 29; the reports index lists the run first.
+- [x] T021 Fix the cheap P2 doc and status findings. Verify: each edited doc validates. Evidence: the 005 summary description, the 005 and parent status rows (three unmet 005 requirements), the Bladebro install and wiring references (live run recorded, update path re-verifies), the Lighthouse catalog validation row and the hub README navigation table. Every edited doc validates with no new warning.
+- [x] T022 Rerun every baselined gate. Verify: no count drops. Evidence: admission `--all` exit 0, guard exit 0, sync `--check` exit 1 on the same pre-existing `007-sk-doc` file as before, parent-skill-check OK with 0 warnings, intent-signal check PASSED, advisor vitest 2570 passed as before, `.skilled/bin` node tests 195 pass and 1 fail as before, `.skilled/bin` vitest 97 of 97.
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 

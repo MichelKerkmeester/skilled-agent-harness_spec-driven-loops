@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete: all seven goal criteria hold; 005 records two requirements not met as written |
+| **Status** | Complete: all seven goal criteria hold; 005 records three requirements not met as written (REQ-003, REQ-008, REQ-009) |
 | **Created** | 2026-11-21 |
 | **Branch** | `worktrees/505-mcp-browser-use-hub` |
 | **Parent Spec** | `../spec.md` |

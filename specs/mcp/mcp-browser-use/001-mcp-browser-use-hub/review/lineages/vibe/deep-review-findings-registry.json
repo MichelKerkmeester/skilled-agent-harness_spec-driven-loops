@@ -1,0 +1,474 @@
+{
+  "sessionId": "fanout-vibe-1795299580084-7g6zan",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-21T22:28:52.157Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Stage-two intent map omits two stage-one keywords, so a routed request loads no leaf and falls to the defer checklist",
+      "file": ".skilled/skills/mcp-browser-use/hub-router.json",
+      "line": 98,
+      "description": "",
+      "findingClass": "contract-drift",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "The Bladebro teardown runbook hardcodes one of two data roots, drops the packet's named-session precondition, and cannot verify its own pass criterion",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/teardown/uninstall-and-data-root.md",
+      "line": 46,
+      "description": "",
+      "findingClass": "unsafe-procedure",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P1-001",
+      "severity": "P1",
+      "title": "The hub's own routing gate is recorded as failing, and no later run supersedes it after the gold was changed",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing/README.md",
+      "line": 9,
+      "description": "",
+      "findingClass": "stale-evidence",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "routerPolicy.outcomes declares three outcomes while the compiled router emits four",
+      "file": ".skilled/skills/mcp-browser-use/hub-router.json",
+      "line": 12,
+      "description": "",
+      "findingClass": "contract-incompleteness",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The supply-chain digest scenario reads a release sidecar that no step obtains",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/preflight-and-install/native-binary-digest.md",
+      "line": 46,
+      "description": "",
+      "findingClass": "incomplete-procedure",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "The Chrome DevTools installer suggests running a global npm install under sudo",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/scripts/install.sh",
+      "line": 235,
+      "description": "",
+      "findingClass": "hardening-gap",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The 005 summary's frontmatter says the compiled front door was deferred, while its own body says it was built in that phase",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/005-routing-and-surfaces/implementation-summary.md",
+      "line": 3,
+      "description": "",
+      "findingClass": "stale-metadata",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "The 006 continuity block still names landing the per-phase commits as the next safe action, and those commits are already on the branch",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/implementation-summary.md",
+      "line": 14,
+      "description": "",
+      "findingClass": "stale-metadata",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The hub changelog calls the advisor stage one, which is the name the hub gives hub-router.json",
+      "file": ".skilled/skills/mcp-browser-use/changelog/v1.1.0.0.md",
+      "line": 26,
+      "description": "",
+      "findingClass": "terminology-drift",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The hub README's navigation table omits leaf-scopes.json, the file that decides which leaves are routable",
+      "file": ".skilled/skills/mcp-browser-use/README.md",
+      "line": 50,
+      "description": "",
+      "findingClass": "incomplete-navigation",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The Aside installer pipes a remote script into bash with no integrity check",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh",
+      "line": 78,
+      "description": "",
+      "findingClass": "hardening-gap",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "resolution": "false_positive"
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The promoted serving closure is not reproducible from its authored source: one served file has drifted and the parity gate exits 1",
+      "file": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs",
+      "line": 253,
+      "description": "",
+      "findingClass": "promoted-copy-drift",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "resolution": "false_positive"
+    }
+  ],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 5,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": []
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 7
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 2,
+  "convergenceScore": 0.41700000000000004,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 2,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json:1"
+        ],
+        "iteration": 5,
+        "level": "core",
+        "notes": "Carried from iteration 3 and re-confirmed: the serving closure lists mcp-browser-use among 8 hubs with fileCount 69 matching len(files) 69, and generatedFrom resolves to an existing directory.",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "gateClass": "hard"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/tasks.md:65"
+        ],
+        "iteration": 5,
+        "level": "core",
+        "notes": "Carried from iteration 3. This iteration added no criterion evidence and contradicted none. The new P2 is in the promoted mirror of a sibling hub, not in any child phase tasks.md evidence.",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "gateClass": "hard"
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Both routing stages now reach all three browser modes; the compiled front door for the new hub is left for a later phase."
+description: "Both routing stages now reach all three browser modes, and stage two serves through the compiled front door built in this phase."
 trigger_phrases:
   - "routing and surfaces implementation summary"
 importance_tier: "normal"

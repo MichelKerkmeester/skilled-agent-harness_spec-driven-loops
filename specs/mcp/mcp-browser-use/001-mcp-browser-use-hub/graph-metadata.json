@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Browser work in this repository has no home of its own",
     "created_at": "2026-11-21T08:11:39Z",
-    "last_save_at": "2026-11-21T18:46:43.215Z",
+    "last_save_at": "2026-11-21T23:07:38.037Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:50d2be20bb9b00fadd4ffadeee7971c85ee474ad350d1710215503ef2a8fb0d9",
+    "source_fingerprint": "sha256:7e250540e45a1aca701d57cc2c2bb858cd940017640be101773b517407c567e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53ea548d2a5c77625680fd694d70f9efc9850f76c14e9ffb3c08612196a28408",
+      "spec.md": "6832e3faa8691c2fd20de141914dc5af4ba4647d99cc206d2da022cdc63b56a3",
       "decision-record.md": "5689c482fbd726298651ba0981e83e303c2f3ee0d9471bd9600b90e36cb79772"
     },
     "last_active_child_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification",
-    "last_active_at": "2026-11-21T18:40:05.376Z"
+    "last_active_at": "2026-11-21T23:07:38.037Z"
   }
 }

@@ -1,0 +1,775 @@
+{
+  "sessionId": "fanout-vibe-1795298930568-k8qdqy",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Negative detector rejects any prompt containing the word forbidden, including HTTP-status debugging",
+      "file": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs",
+      "line": 107,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Documented MCP fallback installs an unpinned Bladebro, so R-SEC-3 digest verification cannot apply",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/references/mcp-wiring.md",
+      "line": 61,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P2",
+      "title": "Criterion 5 recorded evidence is stamped with a superseded policy, so the two-stage PASS cannot be tied to the shipped policy",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing/README.md",
+      "line": 33,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "ambiguityDelta 1 cannot express a near-tie because every mode weight is 4",
+      "file": ".skilled/skills/mcp-browser-use/hub-router.json",
+      "line": 5,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Destination graph declares two selection kinds while the compiler can emit surfaceBundle",
+      "file": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs",
+      "line": 250,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "selectNearTiedModes reads scores[0] as the top score without asserting sorted input",
+      "file": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs",
+      "line": 96,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "BLADE_LANE=real selects the real-browser lane from ambient environment state, bypassing R-SEC-1 per-request consent",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "BLADE_CONSENT=off is listed as a plain setting with no gate note beside the stealth rules",
+      "file": ".skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md",
+      "line": 79,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Goal evidence-location claim unmet for three of six children, including the verification phase",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
+      "line": 99,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Completion criterion 6 is checked without recording the live run FAIL verdict",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
+      "line": 97,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P2",
+      "title": "Criterion 5 recorded evidence is stamped with a superseded policy, so the two-stage PASS cannot be tied to the shipped policy",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing/README.md",
+      "line": 33,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "repeatedFindings": [
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P2",
+      "title": "Criterion 5 recorded evidence is stamped with a superseded policy, so the two-stage PASS cannot be tied to the shipped policy",
+      "file": ".skilled/skills/mcp-browser-use/benchmark/reports/2026-11-21--manual-testing-playbook--hub-routing/README.md",
+      "line": 33,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 8
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.16700000000000004,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "authorization",
+      "consent_bypass",
+      "contract_mismatch",
+      "credential_exposure",
+      "evidence_gap",
+      "input_validation",
+      "missing_artifact",
+      "stale_evidence",
+      "supply_chain"
+    ],
+    "ruledOut": [
+      "authorization",
+      "contract_mismatch",
+      "missing_artifact",
+      "state_transition"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "input_validation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "contract_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "stale_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "authorization": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "supply_chain": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "consent_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "credential_exposure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "evidence_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "missing_artifact": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "No reachable input produces a surfaceBundle today.",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:128"
+      ],
+      "reason": "Unreachable with the current all-actor mode set; recorded as P2 hardening instead of an active defect."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs"
+      ],
+      "bugClass": "contract_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Enumerated the compiled bundle rules and compared with tieBreakSubsets.",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:139"
+      ],
+      "reason": "Every reachable tie set has a compiled rule, so exactBundle cannot return null."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/references/aside-cli-reference.md"
+      ],
+      "bugClass": "authorization",
+      "disposition": "ruled_out",
+      "rationale": "No account flag is documented for the MCP or REPL lane.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/references/aside-cli-reference.md:95"
+      ],
+      "reason": "The packet restates the R-SEC-1 prohibition exactly."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs"
+      ],
+      "bugClass": "authorization",
+      "disposition": "ruled_out",
+      "rationale": "No cross-mode authority edge exists.",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:246"
+      ],
+      "reason": "approverDestinationId always equals toDestinationId."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-tooling/mode-registry.json"
+      ],
+      "bugClass": "missing_artifact",
+      "disposition": "ruled_out",
+      "rationale": "The relocation is clean.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-tooling/mode-registry.json:1"
+      ],
+      "reason": "Both sweeps and the two extra metadata files print no match."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "No reachable input produces a surfaceBundle today.",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:128"
+      ],
+      "proof": "Unreachable with the current all-actor mode set; recorded as P2 hardening instead of an active defect."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs"
+      ],
+      "bugClass": "contract_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Enumerated the compiled bundle rules and compared with tieBreakSubsets.",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:139"
+      ],
+      "proof": "Every reachable tie set has a compiled rule, so exactBundle cannot return null."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/references/aside-cli-reference.md"
+      ],
+      "bugClass": "authorization",
+      "disposition": "ruled_out",
+      "rationale": "No account flag is documented for the MCP or REPL lane.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/references/aside-cli-reference.md:95"
+      ],
+      "proof": "The packet restates the R-SEC-1 prohibition exactly."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs"
+      ],
+      "bugClass": "authorization",
+      "disposition": "ruled_out",
+      "rationale": "No cross-mode authority edge exists.",
+      "evidenceRefs": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs:246"
+      ],
+      "proof": "approverDestinationId always equals toDestinationId."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/mcp-tooling/mode-registry.json"
+      ],
+      "bugClass": "missing_artifact",
+      "disposition": "ruled_out",
+      "rationale": "The relocation is clean.",
+      "evidenceRefs": [
+        ".skilled/skills/mcp-tooling/mode-registry.json:1"
+      ],
+      "proof": "Both sweeps and the two extra metadata files print no match."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "evidence_gap",
+      "stale_evidence",
+      "contract_mismatch",
+      "missing_artifact"
+    ],
+    "covered": [
+      "evidence_gap",
+      "stale_evidence",
+      "contract_mismatch",
+      "missing_artifact"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 2,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:92",
+          ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:1"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "All seven goal criteria checked; criteria 1-5 re-executed and hold; criterion 7 assessed from recorded evidence only."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:97",
+          "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md:99"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "Criteria 1-5 re-executed and hold; criterion 6 carries no verdict; criterion 7 evidence location unmet for three children."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mcp-bladebro/references/mcp-wiring.md:61",
+          ".skilled/skills/mcp-browser-use/mcp-aside-devtools/references/aside-cli-reference.md:95"
+        ],
+        "gateClass": "soft",
+        "protocolId": "skill_agent",
+        "status": "partial",
+        "summary": "R-SEC-3 contradicted by the unpinned npx fallback; R-SEC-1 and R-SEC-2 weakened by two ambient settings; Aside account prohibition restated correctly."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/README.md:9"
+        ],
+        "gateClass": "soft",
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "All three modes carry a playbook with scenario files and a recorded run; the hub carries 7 routing scenarios."
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
