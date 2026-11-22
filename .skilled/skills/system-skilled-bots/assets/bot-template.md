@@ -1,0 +1,26 @@
+---
+# Bot id: lowercase letters, digits and hyphens. Replace the placeholder; the parser rejects it as written.
+id: <your-bot-id>
+# Required. kind is cron (with expression), queue (with name), git-hook (needs gitHookTrigger in bots/config.json) or manual.
+trigger: {kind: manual}
+# Executor block. Default: {kind: native}. Keys past kind (model and the like) go to the executor as written.
+runtime: {kind: native}
+# Limits. Defaults: maxIterations 10, maxDurationMinutes 120, timeoutSeconds 900.
+budget: {maxIterations: 10, maxDurationMinutes: 120, timeoutSeconds: 900}
+# Default: true. false keeps the definition but runs nothing.
+enabled: true
+# Default: no target. Use local-only to send nothing, or {targets: [...], onFailure: [...]}.
+delivery: {targets: [], onFailure: null}
+# worktree or shared. Omit to use defaultIsolation from bots/config.json; with neither, the run is refused.
+isolation: worktree
+# Sandbox class the executor must honor. Default: undeclared.
+sandbox: null
+# Secrets policy for the run. Default: undeclared.
+secrets: null
+# Command run first. A non-zero exit or [SILENT] output skips the run. Default: none.
+precheck: null
+# Spec folder bound before dispatch. Default: none.
+spec_folder: null
+version: 1.0.0.0
+---
+Write the standing instructions for every run here. The body must not be empty.

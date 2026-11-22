@@ -33,9 +33,9 @@ No bot definition, run record or state location exists today, so no later phase 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-22 |
-| **Branch** | `scaffold/001-contracts-and-state-root` |
+| **Branch** | `system-skilled-bots` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 8 |
 | **Predecessor** | None |

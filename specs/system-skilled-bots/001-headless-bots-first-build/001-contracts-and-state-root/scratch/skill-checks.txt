@@ -1,0 +1,105 @@
+# Skill and advisor checks with the new skill folder present
+# Worktree: /Users/michelkerkmeester/worktrees/public/system-skilled-bots  HEAD: 88ac6b93b7f  Date: 2026-11-22T15:34:43Z
+# Folder contents: .skilled/skills/system-skilled-bots/runtime/package-lock.json .skilled/skills/system-skilled-bots/runtime/package.json .skilled/skills/system-skilled-bots/runtime/tsconfig.json .skilled/skills/system-skilled-bots/runtime/vitest.config.ts 
+
+$ node .skilled/bin/compiled-route-guard.cjs
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-browser-use             fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0
+
+$ node .skilled/bin/compiled-route-admission.cjs --all --warn-only
+  cli-classifier              pass                    4 pass, 0 drift, 0 stale, 0 n/a
+  cli-external-orchestration  pass                    7 pass, 0 drift, 0 stale, 3 n/a; 6 mode(s) without gold
+  mcp-browser-use             pass                    7 pass, 0 drift, 0 stale, 0 n/a
+  mcp-tooling                 pass                    12 pass, 0 drift, 0 stale, 0 n/a
+  sk-code                     pass                    9 pass, 0 drift, 0 stale, 0 n/a
+  sk-design                   pass                    4 pass, 0 drift, 0 stale, 0 n/a; 2 mode(s) without gold
+  sk-doc                      pass                    24 pass, 0 drift, 0 stale, 2 n/a; 6 mode(s) without gold
+  system-deep-loop            pass                    13 pass, 0 drift, 0 stale, 0 n/a
+
+Every hub passes the admission check.
+exit=0
+
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+OK   [S] cli-orca
+OK   [H] mcp-browser-use
+OK   [S] mcp-code-mode
+OK   [H] mcp-tooling
+OK   [H] sk-code
+OK   [H] sk-design
+OK   [H] sk-doc
+OK   [S] sk-git
+OK   [S] sk-prompt
+OK   [H] system-deep-loop
+OK   [S] system-skill-advisor
+OK   [S] system-skilled-doctor
+OK   [S] system-spec-kit
+
+checked=15 passed=15 failed=0 fixed=0
+exit=0
+
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
+OK    cli-orca  9193b5032798148726de1eaabf59627d5834ecbadb9592eec7f24247818d7600
+OK    mcp-browser-use  092611dda02c62bae8f035056a650306e9da0db60df53a857a839957986526fc
+OK    mcp-code-mode  cb54d539bb572416bfdce288b0a8214e7cb872f8559458d09985e048b27c28b1
+OK    mcp-tooling  79cbdf6249e58221696752edcfc7d751a0e354fd7395938bce96b44dcca4a9fe
+OK    sk-code  feb4cf25ac40dbdc359e908fc3aa85f5ce7deb833ffb1f8d1bba8a00b852f786
+OK    sk-design  fae433bd1cf99963d8608cac13a3d2732f142cac13163bf983e8a39d6b292129
+OK    sk-doc  a92c2bd71a6a1cbd0cfe6f3dbf91458c90c22652064d569b37c38e5e0a643583
+OK    sk-git  91e132631e97035c3634819c646c46e548ba5902a6085f75177775ee1030896f
+OK    sk-prompt  70d1097221f5ff4bf52bbe829aae461a2a4025fd051b9f97d3e95303f15c5dd8
+OK    system-deep-loop  eae1c4aea9fd71652ccb85c163cc5115bbee0acf67e97b4bfdb5e4135245fdc0
+OK    system-skill-advisor  e0bbdbb30bed39d874680e4a1cb96f4ca471d9df2701933adeb867a4505f9624
+OK    system-skilled-doctor  7a9025df2832b7c310821234d82c770ad1e19cd9137faddb11d014c4f9c07ee0
+OK    system-spec-kit  57c1a3d3f5857f97f1fe8cec18baa00b5c59a932439dc8f57f7fca445d5b1a8d
+
+checked=15 fresh=15 failed=0
+exit=0
+
+$ node .skilled/bin/check-no-spec-imports.cjs
+ok: no spec-tree imports in 51 runtime file(s) across 1 dir(s)
+exit=0
+
+$ printf '{"prompt":"run a scheduled bot"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/worktrees/public/system-skilled-bots",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [
+      {
+        "skillId": "mcp-code-mode",
+        "score": 0.135069,
+        "confidence": 0.82,
+        "uncertainty": 0.26,
+        "dominantLane": "lexical",
+        "status": "active",
+        "kind": "skill",
+        "confidenceFloored": true
+      },
+      {
+        "skillId": "cli-external-orchestration",
+     
+exit=0 (rerun on its own: the first capture lost the status)
+
+# Note: the folder has no SKILL.md and no registry yet, so these checks see it as a non-skill folder. They are rerun in T015.
+
+# T015 rerun with the finished folder, 2026-11-22T15:41:40Z
+$ node .skilled/bin/compiled-route-guard.cjs -> exit=0
+$ node .skilled/bin/compiled-route-admission.cjs --all --warn-only -> exit=0
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs -> exit=0
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs -> exit=0
+$ node .skilled/bin/check-no-spec-imports.cjs -> exit=0
+$ skill-advisor advisor_recommend -> exit=0

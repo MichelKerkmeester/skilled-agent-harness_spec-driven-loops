@@ -156,7 +156,7 @@
     ],
     "causal_summary": "Skilled has agents, commands and three installed schedulers",
     "created_at": "2026-11-22T10:48:25Z",
-    "last_save_at": "2026-11-22T12:46:27.311Z",
+    "last_save_at": "2026-11-22T15:50:40.062Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -169,6 +169,7 @@
       "spec.md": "d2cdd628835d959316140436ec0f54af36f62f5f4052a62b0e2546f8a4c4d577",
       "decision-record.md": "1e42c8bde964bc60cbec9ebf32a26081df9743c8173e7948e2259a8d72b4203b"
     },
-    "last_active_at": null
+    "last_active_at": "2026-11-22T15:50:40.062Z",
+    "last_active_child_id": "system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root"
   }
 }

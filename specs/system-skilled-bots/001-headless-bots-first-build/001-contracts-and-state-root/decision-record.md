@@ -465,7 +465,7 @@ Iteration status, stop reasons, dispatch failures, verification reasons and deli
 
 **We propose**: store raw reasons from the existing vocabularies and add only the derived failure class field.
 
-**How it works**: Setup task T004 lists the five vocabularies by file and line. `run-record.ts` imports or names those strings and adds no new status enum. The failure class is a separate field with the four classes from research.md §10. The one operator-decided exception is the exit value `awaiting-decision`, which ADR-010 records and maps to `blockedStop`.
+**How it works**: Setup task T004 lists the five vocabularies by file and line. `run-record.ts` imports or names those strings and adds no new status enum. The failure class is a separate field with the four classes from research.md §10 (`author`, `operator`, `environment`, `hub`) plus `budget`, because the same paragraph makes reaching the budget its own class, apart from a timeout. The delivery states follow research.md §10 (`queued`, `claimed`, `delivered`, `failed`, `unknown`, plus `not-attempted` and `attempted`). T004 found that the Hermes file research.md cites stores `pending` and `delivering` instead (`scratch/vocabularies.md`). The record keeps research.md's names, and phase 4 confirms the pair before it writes delivery. The one operator-decided exception is the exit value `awaiting-decision`, which ADR-010 records and maps to `blockedStop`.
 <!-- /ANCHOR:adr-005-decision -->
 
 ---
