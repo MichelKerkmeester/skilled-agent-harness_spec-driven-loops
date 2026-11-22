@@ -1,0 +1,949 @@
+{
+  "mergedFrom": [
+    "claude2",
+    "vibe"
+  ],
+  "lineageExecutors": {
+    "claude2": {
+      "kind": "cli-claude-code",
+      "model": "claude-opus-5-5",
+      "reasoningEffort": "medium"
+    },
+    "vibe": {
+      "kind": "cli-mistral-vibe",
+      "model": "deepseek-flash",
+      "reasoningEffort": null
+    }
+  },
+  "mergedVerdict": "CONDITIONAL",
+  "failedRequiredGateIds": [],
+  "openFindings": [
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "A claimed goal_root is outvoted by a second worktree the receiver log merely mentions",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 958,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "claude2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "claude2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "A claimed goal_root loses to a primary copy carrying the same headline on the next hop",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 888,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "claude2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "claude2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--76d877ea112f",
+      "severity": "P2",
+      "title": "Handoff Criteria says the tampered-root test passes on the old code, but the test now fails there",
+      "file": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/spec.md",
+      "line": 33,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "claude2"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--76d877ea112f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--66ed77365be9",
+          "peerLineages": [
+            "vibe"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "claude2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "logTailText duplicates readLogTail and reuses GOAL_LOG_MAX_TAIL_BYTES with a second meaning, which is how the two log reads came to disagree",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 906,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "logTailText re-implements the existing readLogTail helper",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 905,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "claude2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "claude2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--ca40399c5041",
+      "severity": "P2",
+      "title": "resolveGoalPacketResult returns root only on the worktree path, so every consumer must default a key the JSDoc calls optional",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 1436,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--ca40399c5041",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--4e56a93b2d0f",
+          "peerLineages": [
+            "claude2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-003--729bc6ee0606",
+      "severity": "P2",
+      "title": "Spec, tasks and Files to Change do not cover the three behaviors added after the second-account review",
+      "file": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/spec.md",
+      "line": 89,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "claude2"
+      ],
+      "_conflictOf": "R3-P2-003",
+      "_conflict_id": "R3-P2-003--729bc6ee0606",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-003",
+          "peerId": "R3-P2-003--855e61a5717f",
+          "peerLineages": [
+            "vibe"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "claude2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-003--855e61a5717f",
+      "severity": "P2",
+      "title": "spec.md and tasks.md still say three CLI worktree tests while the change ships five, and the packet test count proves the prose is stale",
+      "file": "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/spec.md",
+      "line": 110,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe"
+      ],
+      "_conflictOf": "R3-P2-003",
+      "_conflict_id": "R3-P2-003--855e61a5717f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-003",
+          "peerId": "R3-P2-003--729bc6ee0606",
+          "peerLineages": [
+            "claude2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--6b837fba703d",
+      "severity": "P2",
+      "title": "Stale (prunable) worktree entries count as trusted roots",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 533,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "claude2"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--6b837fba703d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--fce084875d07",
+          "peerLineages": [
+            "vibe"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "claude2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--4e56a93b2d0f",
+      "severity": "P2",
+      "title": "The claim-line assertion builds a regex from an unescaped temp path",
+      "file": ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
+      "line": 4019,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "claude2"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--4e56a93b2d0f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--ca40399c5041",
+          "peerLineages": [
+            "vibe"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "claude2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-002--faaae6c19fc7",
+      "severity": "P2",
+      "title": "The feature catalog describes the goal carry-over without goal_root or the worktree search",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md",
+      "line": 98,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--faaae6c19fc7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--59ef32cc9487",
+          "peerLineages": [
+            "claude2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--fce084875d07",
+      "severity": "P2",
+      "title": "The goal_root mitigation narrows the trust base but leaves it at any directory git lists as a worktree, and the log-naming signal is model-influenced",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 547,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--fce084875d07",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--6b837fba703d",
+          "peerLineages": [
+            "claude2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001--904fe20e2c53",
+      "severity": "P2",
+      "title": "The two-worktree refusal always reports 2 packets even when more worktrees carry the headline",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 954,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--904fe20e2c53",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--3dad17829f8e",
+          "peerLineages": [
+            "claude2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-002--59ef32cc9487",
+      "severity": "P2",
+      "title": "troubleshooting.md says a worktree goal is carried only when the log names the worktree",
+      "file": ".skilled/hooks/session-handover/troubleshooting.md",
+      "line": 54,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "claude2"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--59ef32cc9487",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--faaae6c19fc7",
+          "peerLineages": [
+            "vibe"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "claude2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--66ed77365be9",
+      "severity": "P2",
+      "title": "troubleshooting.md says a worktree-only goal is carried only when the log names the worktree, but the claimed note also carries it",
+      "file": ".skilled/hooks/session-handover/troubleshooting.md",
+      "line": 54,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--66ed77365be9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--76d877ea112f",
+          "peerLineages": [
+            "claude2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001--3dad17829f8e",
+      "severity": "P2",
+      "title": "Worktree naming reads only the last 16 MiB of the session log",
+      "file": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      "line": 910,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "claude2"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--3dad17829f8e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--904fe20e2c53",
+          "peerLineages": [
+            "vibe"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ],
+      "_untrusted": [
+        {
+          "lineage": "claude2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 15
+  },
+  "openFindingsCount": 16,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 1,
+  "activeP2": 15,
+  "searchDebt": [],
+  "dimensionCoverage": {},
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 0,
+      "partial": 3,
+      "fail": 1,
+      "blocked": 0,
+      "notApplicable": 2,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": false,
+        "evidenceRefs": [],
+        "level": "overlay",
+        "notes": "No .claude/agents or .opencode/agents file is in the diff or the declared scope.",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/tasks.md:45"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "T003/T004 verify text stale; validate.sh criterion unverified in lineage"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md:98"
+        ],
+        "level": "overlay",
+        "notes": "The catalog omits goal_root and the worktree search.",
+        "protocolId": "feature_catalog_code",
+        "status": "fail",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-handover-claude.md:758"
+        ],
+        "level": "overlay",
+        "notes": "No worktree-only case; out of the declared change scope, recorded as follow-up.",
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": false,
+        "evidenceRefs": [],
+        "level": "overlay",
+        "notes": "No SKILL.md or agent definition is in the diff or the declared scope.",
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/hooks/session-handover/lib/relaunch-core.cjs:958"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "D3 implemented literally; claimed-root case unaddressed"
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "checklist_evidence",
+      "spec_code"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "divergenceByLineage": {
+    "claude2": {
+      "started": [],
+      "completed": [],
+      "failed": [],
+      "overrides": [],
+      "saturatedDirections": [],
+      "remainingFrontier": [],
+      "currentFocus": ""
+    },
+    "vibe": {
+      "started": [],
+      "completed": [],
+      "failed": [],
+      "overrides": [],
+      "saturatedDirections": [],
+      "remainingFrontier": [],
+      "currentFocus": ""
+    }
+  },
+  "ruledOutCandidates": [],
+  "untrustedLineages": [
+    {
+      "lineage": "claude2",
+      "runnerStatus": "failed",
+      "failureClass": "exit",
+      "unexaminedPasses": []
+    },
+    {
+      "lineage": "vibe",
+      "runnerStatus": "failed",
+      "failureClass": "exit",
+      "unexaminedPasses": []
+    }
+  ]
+}

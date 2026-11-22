@@ -159,6 +159,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 53 | 053-handover-and-history-deep-review/ | Five-iteration deep review of handover logic and history search on every runtime: FAIL from the coverage gate, 0 P0, 0 P1, 4 P2 | Complete |
 | 54 | 054-handover-review-remediation/ | The deep review's four P2 fixes: one withdraw-on-prompt helper that logs its failures, called by all five adapters, and three hook docs corrected | Complete |
 | 55 | 055-cross-checkout-root-pinning/ | One hand-over root per loop when a session runs another checkout's CLI: the wrapper pins `SESSION_HANDOVER_REPO_ROOT`, printed commands name the CLI by absolute path, an outside note is named with a pinned claim command, and two shims keep both checkouts trusted | Complete |
+| 56 | 056-worktree-goal-carry/ | A Claude goal whose packet lives only in a linked worktree the session log names is carried: the note records the worktree as `goal_root`, and the relaunched session starts on `/goal` read from it | Complete |
 
 ### Phase Transition Rules
 
@@ -225,6 +226,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 052-duplicate-hop-title-numbers | 053-handover-and-history-deep-review | A relaunched session carries one hop number and a fresh wrapper counts from 0 | `review/review-report.md` holds a script-computed verdict over five completed iterations |
 | 053-handover-and-history-deep-review | 054-handover-review-remediation | `review/review-report.md` holds a script-computed verdict over five completed iterations | Node suite 1055 pass, hooks vitest 509 passed |
 | 054-handover-review-remediation | 055-cross-checkout-root-pinning | Node suite 1055 pass, hooks vitest 509 passed | Node suite 1065 pass, OpenCode plugin 75 pass, hooks vitest 509 passed |
+| 055-cross-checkout-root-pinning | 056-worktree-goal-carry | Node suite 1065 pass, OpenCode plugin 75 pass, hooks vitest 509 passed | Node suite 1073 pass, OpenCode plugin 75 pass, hooks vitest 509 passed |
 <!-- /ANCHOR:phase-map -->
 
 ---

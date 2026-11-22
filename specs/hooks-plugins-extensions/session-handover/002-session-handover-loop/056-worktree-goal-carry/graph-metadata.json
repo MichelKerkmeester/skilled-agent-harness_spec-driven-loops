@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "worktree goal carry",
+      "phase 56 worktree goal carry",
+      "goal_root worktree",
+      "goal not carried worktree",
+      "goal packet in a linked worktree",
+      "worktree goal carry plan",
+      "worktree goal carry tasks",
+      "worktree goal carry goal",
+      "worktree goal carry implementation summary"
+    ],
+    "key_topics": [
+      "worktree",
+      "goal",
+      "carry",
+      "phase",
+      "carried",
+      "packet",
+      "linked",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-handover/bin/session-handover.cjs",
+      ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
+      ".skilled/hooks/session-handover/tests/skilled-loop-wrapper-claim-goal.test.cjs",
+      ".skilled/hooks/session-handover/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-handover/goal-carry-over.md",
+      ".skilled/hooks/session-handover/troubleshooting.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md",
+      "review/review-report.md",
+      "scratch/remediation-red.txt",
+      "scratch/remediation-green.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/bin/session-handover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-claim-goal.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/skilled-loop-wrapper-claim-goal.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-carry-over.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/goal-carry-over.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover-loop.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-handover-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-red.txt",
+        "kind": "file",
+        "path": "scratch/remediation-red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-green.txt",
+        "kind": "file",
+        "path": "scratch/remediation-green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator worked packet `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` in worktree 505 from a Claude session whose working directory was the primary checkout",
+    "created_at": "2026-11-21T21:16:59Z",
+    "last_save_at": "2026-11-22T05:52:13.655Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:34a08a20f20b6057cf29cd284b5f491455dfcf7eec112666cd83a9eeba174251",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6a6456adb1d723989ec673c5c1ad655de85dde5b3fb1b7a506d6b778b71b20b4",
+      "plan.md": "cfcbe337203c2682d7189839d58d64659122bae96ab1198ad6071f00a929573b",
+      "tasks.md": "1ec7ed956ee1427d8cc696da502a9edd9322bbc8bc37994c364adb68af706bcc",
+      "implementation-summary.md": "a45f620038f5159dca017a5b59483991640d65c3e0dd97bef7b70fbe8fc410e6"
+    },
+    "last_active_at": null
+  }
+}

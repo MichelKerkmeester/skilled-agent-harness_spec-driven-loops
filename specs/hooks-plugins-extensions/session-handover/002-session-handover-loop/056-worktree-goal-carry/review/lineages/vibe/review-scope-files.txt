@@ -1,0 +1,14 @@
+.skilled/bin/skilled-loop
+.skilled/hooks/session-handover/bin/session-handover.cjs
+.skilled/hooks/session-handover/goal-carry-over.md
+.skilled/hooks/session-handover/lib/relaunch-core.cjs
+.skilled/hooks/session-handover/tests/relaunch-core.test.cjs
+.skilled/hooks/session-handover/tests/session-handover-cli.test.cjs
+.skilled/hooks/session-handover/tests/skilled-loop-wrapper-claim-goal.test.cjs
+.skilled/hooks/session-handover/troubleshooting.md
+specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/spec.md
+specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/spec.md
+specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/plan.md
+specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/tasks.md
+specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/implementation-summary.md
+specs/hooks-plugins-extensions/session-handover/002-session-handover-loop/056-worktree-goal-carry/goal.md
