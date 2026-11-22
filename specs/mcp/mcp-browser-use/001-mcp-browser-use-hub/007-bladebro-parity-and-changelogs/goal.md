@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-22T07:02:51Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored the durable directive"
-    next_safe_action: "Operator review, then commit on instruction"
+    next_safe_action: "Operator decides whether to remove worktree 505 and its branch"
     blockers: []
     key_files: []
     session_dedup:
@@ -81,6 +81,7 @@ and findings belong here.
 | Changelog entries | Done | four new entries plus the advisor fix folded into its v2.0.0.0 entry, shape check exit 0 |
 | Hub gates | Done | parent-skill check `OK`. Guard fresh after one re-mint |
 | Benchmark coverage | Done | five new reports. Chrome DevTools 30 of 30, Aside 16 of 29 |
+| Commit and push | Done | the operator chose commit, merge and push on 2026-11-22: `a5d1912a6c2`, `4d9c5049fca` and merge `5bfe0a856e1`, pushed as `e7b79323c6d..5bfe0a856e1` |
 
 ### Deviations and findings
 
@@ -88,4 +89,6 @@ and findings belong here.
 |------|------|
 | Install guide model | The handoff named `install-template.md`. That template covers a repository-root INSTALL.md, so Aside's validated guide was the model |
 | BB-014 wording | The 006 log records the operator kept Bladebro installed, so the new docs say that instead of "waits for a yes" |
+| Advisor entry folded (D2) | Main reached advisor 2.0.0.0 before the merge. The operator chose on 2026-11-22 to fold the scorer fix into that existing entry, which edits history D2 says to extend. The 1.3.1.0 entry was dropped |
+| Aside runs | The operator answered "Not now" on 2026-11-22, so the 13 scenarios stay on the operator-yes list |
 <!-- /ANCHOR:log -->

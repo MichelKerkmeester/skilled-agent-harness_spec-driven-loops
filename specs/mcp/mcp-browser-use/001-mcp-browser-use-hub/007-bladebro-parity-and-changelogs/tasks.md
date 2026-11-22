@@ -136,7 +136,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Adversarial cases. N/A: no path, parser or redaction code changed.
 - [x] CHK-FIX-005 [P1] Matrix axes listed. N/A: no matrix.
 - [x] CHK-FIX-006 [P1] Hostile env variant. Evidence: ASD-014 ran the Aside doctor with `PATH=/usr/bin:/bin` and a scratch `HOME`.
-- [x] CHK-FIX-007 [P1] Evidence pinned. Evidence: every report names base `b9d156d7473` plus uncommitted changes.
+- [x] CHK-FIX-007 [P1] Evidence pinned. Evidence: every report names base `b9d156d7473` plus the then-uncommitted changes, which landed as `a5d1912a6c2`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

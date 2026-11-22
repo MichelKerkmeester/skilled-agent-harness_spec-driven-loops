@@ -198,7 +198,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Should the 13 Aside scenarios that drive the signed-in browser run now? That waits for an operator yes.
+- Should the 13 Aside scenarios that drive the signed-in browser run now? The operator answered "Not now" on 2026-11-22, so they stay on the operator-yes list.
 <!-- /ANCHOR:questions -->
 
 ---

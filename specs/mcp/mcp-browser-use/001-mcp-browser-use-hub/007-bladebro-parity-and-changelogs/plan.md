@@ -116,7 +116,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: a gate fails after the change, or the operator rejects it.
-- **Procedure**: everything is uncommitted. `git checkout -- <file>` restores a tracked file, and removing the new files undoes the rest. The two deleted links come back with `git checkout`.
+- **Procedure**: the work is on main as `a5d1912a6c2`, `4d9c5049fca` and merge `5bfe0a856e1`. `git revert -m 1 5bfe0a856e1` undoes the advisor merge resolution, and `git revert 4d9c5049fca a5d1912a6c2` undoes the phase docs and the skill changes, including the two deleted links.
 <!-- /ANCHOR:rollback -->
 
 ---

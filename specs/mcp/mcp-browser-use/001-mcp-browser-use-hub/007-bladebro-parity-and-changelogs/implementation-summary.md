@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-22T07:02:51Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded the build and its verification"
-    next_safe_action: "Operator review, then commit on instruction"
+    next_safe_action: "Operator decides whether to remove worktree 505 and its branch"
     blockers: []
     key_files: []
     session_dedup:
