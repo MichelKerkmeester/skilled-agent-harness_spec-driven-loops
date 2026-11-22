@@ -7,7 +7,7 @@ trigger_phrases:
   - "check-native-modules"
   - "node abi marker"
   - "check-prerequisites"
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Setup, Native Module Health, and MCP Installation
@@ -43,7 +43,7 @@ For post-rebuild verification, the authoritative check is that `validate.sh` run
 | File | Layer | Role |
 |------|-------|------|
 | `.skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh` | Workflow guard | Resolves feature-folder paths, validates required spec documents, and optionally invokes spec validation |
-| `.skilled/skills/system-spec-kit/runtime/cli/setup/check-native-modules.sh` | Diagnostic probe | Compares recorded versus active Node ABI details and probes native package loadability |
+| `.skilled/skills/system-spec-kit/runtime/cli/setup/check-native-modules.sh` | Diagnostic probe | Compares recorded versus active Node ABI details from `.node-version-marker` |
 | `.skilled/skills/system-spec-kit/runtime/cli/setup/rebuild-native-modules.sh` | Repair script | Rebuilds ABI-sensitive modules and refreshes the Node-version marker |
 | `.skilled/skills/system-spec-kit/runtime/cli/setup/record-node-version.js` | Marker writer | Persists the current Node/runtime compatibility snapshot into `.node-version-marker` |
 
