@@ -41,6 +41,7 @@ _memory:
 | Q005 | Bump the skill advisor one patch step to 2.0.1.0 and add a changelog entry for these fixes. | Not stated. | None | T027, .skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md |
 | Q006 | Resolve the merge conflicts in the four generated trigger-index files by regenerating them on the merged tree. | Not stated. | None | merge commit on worktrees/515-epic-review-fixes |
 | Q007 | Add the deep-loop command offers, which shipped under 2.0.1.0 without their own bump, to the v2.0.1.0 changelog in a follow-up commit. | Not stated. Evidence: open_value, option not_applicable, overlap 0, imperative false, shift false. | None | .skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md |
+| Q008 | Install dependencies in worktree 517 so the changelog commit runs every pre-commit gate instead of skipping the mirror gate. | Not stated. | None | commit 953e81e9b01 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -175,6 +176,26 @@ Options: none
 Answer:
 ```text
 Yes
+```
+
+### Q008
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_019xKPumFB18NLumWSoVn5cp:0 -->
+
+Question:
+```text
+The changelog line is written and checked, but the commit is blocked. I made worktree 517 without installing dependencies, since the change is docs only. The pre-commit mirror-parity gate needs those dependencies, so its scripts crashed and blocked the commit. Nothing in this commit touches a mirrored file, and the mirror check passes on main: 260 of 260 in sync. How should I get the commit through?
+```
+
+Options:
+```text
+Install deps (Recommended)
+Skip the mirror gate
+Drop it
+```
+
+Answer:
+```text
+Install deps (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
