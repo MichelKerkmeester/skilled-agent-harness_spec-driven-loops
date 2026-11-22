@@ -40,6 +40,7 @@ _memory:
 | Q004 | Fix all five Opus verification findings in phase 027, including the two that predate the change. | Not stated. | None | REQ-009, REQ-010, REQ-011, tasks T021 to T025 |
 | Q005 | Bump the skill advisor one patch step to 2.0.1.0 and add a changelog entry for these fixes. | Not stated. | None | T027, .skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md |
 | Q006 | Resolve the merge conflicts in the four generated trigger-index files by regenerating them on the merged tree. | Not stated. | None | merge commit on worktrees/515-epic-review-fixes |
+| Q007 | Add the deep-loop command offers, which shipped under 2.0.1.0 without their own bump, to the v2.0.1.0 changelog in a follow-up commit. | Not stated. Evidence: open_value, option not_applicable, overlap 0, imperative false, shift false. | None | .skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -159,6 +160,21 @@ Abort the merge
 Answer:
 ```text
 Regenerate them (Recommended)
+```
+
+### Q007
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:chat:9e2a49a2-af57-4e4a-a9ff-cdb86b9ed716:70fac6c8-3c74-4ff0-b086-a1ec77ce8d86 -->
+
+Question:
+```text
+Decision for you: should the 2.0.1.0 changelog get a line for that deep-loop command change? If so, it needs a short follow-up commit.
+```
+
+Options: none
+
+Answer:
+```text
+Yes
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
