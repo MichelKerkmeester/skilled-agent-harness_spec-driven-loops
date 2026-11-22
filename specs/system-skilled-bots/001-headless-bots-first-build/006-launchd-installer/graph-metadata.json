@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/001-headless-bots-first-build/006-launchd-installer",
+  "spec_folder": "system-skilled-bots/001-headless-bots-first-build/006-launchd-installer",
+  "parent_id": "system-skilled-bots/001-headless-bots-first-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "launchd installer",
+      "phase 6 launchd installer",
+      "bots schedule install",
+      "queue drain agent",
+      "bots install record",
+      "launchd installer plan",
+      "launchd installer tasks",
+      "launchd installer acceptance criteria",
+      "launchd installer decision record",
+      "launchd installer implementation summary"
+    ],
+    "key_topics": [
+      "launchd",
+      "installer",
+      "phase",
+      "bots",
+      "schedule",
+      "install",
+      "queue",
+      "drain",
+      "agent",
+      "record",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+      ".skilled/scripts/launchagents/README.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/symlink.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-repin.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/launchagents/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "symlink.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/symlink.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guarded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 5 a bot runs only when someone types `bots run` or `bots drain`",
+    "created_at": "2026-11-22T10:48:31Z",
+    "last_save_at": "2026-11-22T12:10:33.664Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aa16de2a5cf61ca1b7d7241bd0cc3f51c8a048d2e31603e9d0d193e3f0ce3cc8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1932bd9f3b4ab9ce8d8965a63338c221a38276b0df95e99eb87d13d0b61b2c8e",
+      "plan.md": "cf619427d3a3767283688bd60afd0e333dc2d3138932642c8dc43d431f2a3661",
+      "tasks.md": "47acd4b6eec2d435e125015027a3651c964271faf3c7b7572bddd66fc2433044",
+      "decision-record.md": "d5783fa27c7a6e20fd64e0a47bd781e7bfd314dd54c5c03f5b980630a543b81f",
+      "implementation-summary.md": "ae0262ba62f0a9297eb82b1808eee853cec59d2928234a3093b3b33e779e18f9"
+    },
+    "last_active_at": null
+  }
+}

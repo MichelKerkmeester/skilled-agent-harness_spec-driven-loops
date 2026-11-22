@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-bots/001-headless-bots-first-build/006-launchd-installer",
+  "description": "Phase 6: launchd-installer",
+  "keywords": [
+    "phase",
+    "launchd-installer"
+  ],
+  "lastUpdated": "2026-11-22T10:48:32.762Z",
+  "specId": "006",
+  "folderSlug": "launchd-installer",
+  "parentChain": [
+    "system-skilled-bots",
+    "001-headless-bots-first-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

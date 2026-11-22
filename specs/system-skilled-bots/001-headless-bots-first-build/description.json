@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-skilled-bots/001-headless-bots-first-build",
+  "description": "Build system-skilled-bots: file-defined headless agent bots run on a schedule or event",
+  "keywords": [
+    "system-skilled-bots",
+    "file-defined",
+    "headless",
+    "agent",
+    "bots",
+    "run",
+    "schedule",
+    "event"
+  ],
+  "lastUpdated": "2026-11-22T10:48:26.026Z",
+  "specId": "001",
+  "folderSlug": "headless-bots-first-build",
+  "parentChain": [
+    "system-skilled-bots"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

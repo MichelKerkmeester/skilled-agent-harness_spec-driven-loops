@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/001-headless-bots-first-build/008-hub-wiring",
+  "spec_folder": "system-skilled-bots/001-headless-bots-first-build/008-hub-wiring",
+  "parent_id": "system-skilled-bots/001-headless-bots-first-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub wiring",
+      "phase 8 hub wiring",
+      "system-skilled-bots hub wiring",
+      "bots four mode wiring",
+      "hub wiring plan",
+      "hub wiring tasks",
+      "hub wiring acceptance criteria",
+      "hub wiring decision record",
+      "hub wiring implementation summary"
+    ],
+    "key_topics": [
+      "hub",
+      "wiring",
+      "phase",
+      "system-skilled-bots",
+      "bots",
+      "four",
+      "mode",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/create/skill-parent.md",
+      ".skilled/commands/create/command.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/bin/compiled-route.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-parent.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/skill-parent.md",
+        "source": "derived"
+      },
+      {
+        "name": "command.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/command.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 7 the runner, queue, installer and status work from their CLI, but no hub, mode or command points at them",
+    "created_at": "2026-11-22T10:48:34Z",
+    "last_save_at": "2026-11-22T12:06:22.248Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0931ba0c82d74205316a1c943d454611fa09df1490a6e5a7bc114dc49f0f40dc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5f30811862e27e4f22f5a407da5c91dc16e72650badc21779d7585be697abcba",
+      "plan.md": "708eac7cee9b3bedb0450291aeb8ff95be64a8688dd3427afeb86d8dc395f295",
+      "tasks.md": "a6016ebaf58aa5f669dc0bdbaf4f3291bec013792184c528419c22addb175364",
+      "decision-record.md": "c37c6c2c3d691faa97bd7d9844e9b65733499a606b4314a1f386dbbce44b26d8",
+      "implementation-summary.md": "45ef888dfbcb7a89a91e5ca06015deaba7d9cc16aa9d7c0da615833391bb2324"
+    },
+    "last_active_at": null
+  }
+}
