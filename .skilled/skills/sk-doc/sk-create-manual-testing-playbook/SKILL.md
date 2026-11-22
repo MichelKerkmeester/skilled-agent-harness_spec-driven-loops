@@ -2,7 +2,7 @@
 name: sk-create-manual-testing-playbook
 description: Author manual testing playbook packages with deterministic scenarios, evidence collection, and multi-agent execution planning.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.2.0
+version: 1.2.0.0
 ---
 
 # Manual Testing Playbook Creation
@@ -212,9 +212,37 @@ see its naming convention section for the field vocabulary and the one carve-out
 ### Manual scenario completion
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A manual scenario is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome, its reason and its evidence paths are
-recorded in the skill's `benchmark/reports/<dated-run-label>/` folder. The wrapper that once persisted them
-was retired with the Lane C harness, so the record is written by hand until a replacement exists.
+A manual scenario is incomplete until its `PASS`, `FAIL` or `SKIP` outcome, its reason and its evidence paths are
+saved in the skill's `benchmark/reports/<dated-run-label>/` folder. `scripts/record-playbook-run.cjs` is the one
+writer for that folder, so never write a run folder by hand. Every root playbook carries this marker and its
+Result persistence block, and the validator fails a root without it.
+
+### Recording A Run
+
+Save a run from the repository root as soon as it ends. Put the verdicts in a CSV with the header
+`scenario_id,verdict,reason,evidence`, plus an optional `runtime` column:
+
+```bash
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs \
+  --playbook .skilled/skills/<skill-id>/manual-testing-playbook --results <verdicts.csv> \
+  --label manual-testing-playbook--<variant> --executor "<runtime and model>"
+```
+
+A conversation run is saved from the runner's evidence folder. The runner prints this command when it ends:
+
+```bash
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs \
+  --runner-out <evidence dir> --label manual-testing-playbook--<variant> --executor "<runtime and model>"
+```
+
+The recorder writes `results.csv`, `README.md` and `source.md` into a new dated folder and puts the run's row
+first in `benchmark/reports/README.md`, creating that index when the skill has none. The other files in the
+tree above come from harness runs. It refuses, and writes nothing, when a scenario id is not in the playbook,
+a `FAIL` or `SKIP` has no reason or the run folder already exists. A new run folder is a new durable directory,
+so refresh the README audit manifest in the same commit with the `next:` command the recorder prints.
+
+To see which scenarios have a saved verdict, add `--coverage` to the validator. It lists the ids with no
+recorded verdict and the run folders that have no `results.csv`, and it never fails the run.
 
 ### Rules
 
@@ -292,7 +320,7 @@ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conver
   --scenario <scenario.md> --runtime <id[,id...]> --scratch <dir outside the repository> --out <evidence dir>
 ```
 
-It writes one PASS, FAIL or SKIP row per runtime to `<evidence dir>/matrix.md`, with the evidence for each beside it.
+It writes one PASS, FAIL or SKIP row per runtime to `<evidence dir>/matrix.md`, with the evidence for each beside it. It then writes `scenario.json` and prints the `record-playbook-run.cjs` command that saves those verdicts into the skill's benchmark folder.
 
 ### Determinism
 
@@ -516,6 +544,7 @@ The core executable workflow lives in this `SKILL.md`. Use these only for overfl
 - `references/prompt-voice.md` - natural-human vs RCAF decision table and voice guidelines.
 - `references/conversation-scenarios.md` - multi-turn conversation script schema, outcomes and evidence.
 - `scripts/run-conversation-scenario.cjs` - the shared conversation runner that plays a `json conversation` script into a live runtime.
+- `scripts/record-playbook-run.cjs` - the one writer for run folders under `<skill>/benchmark/reports/`.
 - `references/common-pitfalls.md` - recurring package defects and correct fixes.
 - `references/examples.md` - shipped reference playbooks and scaffold templates.
 - `assets/manual-testing-playbook-template.md` - root playbook scaffold.

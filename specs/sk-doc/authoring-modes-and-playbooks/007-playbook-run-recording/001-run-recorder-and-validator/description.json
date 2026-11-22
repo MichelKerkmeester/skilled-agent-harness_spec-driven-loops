@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator",
+  "description": "Phase 1: run-recorder-and-validator",
+  "keywords": [
+    "phase",
+    "run-recorder-and-validator"
+  ],
+  "lastUpdated": "2026-11-22T09:08:18.144Z",
+  "specId": "001",
+  "folderSlug": "run-recorder-and-validator",
+  "parentChain": [
+    "sk-doc",
+    "authoring-modes-and-playbooks",
+    "007-playbook-run-recording"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

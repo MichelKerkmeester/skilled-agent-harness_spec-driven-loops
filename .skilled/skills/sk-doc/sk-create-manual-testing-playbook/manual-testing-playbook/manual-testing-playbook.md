@@ -1,7 +1,7 @@
 ---
 title: "sk-create-manual-testing-playbook: Manual Testing Playbook"
 description: "Operator-facing scenarios for authoring deterministic playbook packages, keeping operator checks in scope and storing run evidence."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # sk-create-manual-testing-playbook: Manual Testing Playbook
@@ -229,15 +229,15 @@ Desired user-visible outcome: the scenario is checked as an operator scenario in
 
 #### Description
 
-Verify that a manual run stores its verdict and reason through the canonical wrapper in the owning skill's benchmark report folder.
+Verify that a manual run saves its verdict and reason through `record-playbook-run.cjs` into the owning skill's benchmark report folder.
 
 #### Scenario Contract
 
 Prompt: `The operator ran MTP-004. Record its PASS result with the evidence path so the run can be audited later.`
 
-The mode should use the retired scenario-persistence wrapper with the scenario ID, variant, verdict, reason, stage and durable outcome evidence. It should not hand-author renderer-owned report Markdown.
+The mode should save the scenario ID, verdict, reason and evidence path with `record-playbook-run.cjs`. It should not write a run folder by hand.
 
-Desired user-visible outcome: the run folder contains the recorded outcome and the renderer can produce its report.
+Desired user-visible outcome: the run folder contains the recorded outcome and the index lists the run.
 
 #### Test Execution
 
@@ -318,7 +318,7 @@ Desired user-visible outcome: each runtime row has a verdict, turn evidence and 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
 | `validate-playbook-package.cjs` | Operator-scenario structure, local links, IDs, root index membership and routing-gold exclusion | MTP-003, MTP-004, MTP-006 and MTP-007 |
-| the retired scenario-persistence wrapper | Durable manual outcome storage and evidence metadata | MTP-005 |
+| `scripts/record-playbook-run.cjs` | Durable manual outcome storage in the skill benchmark folder | MTP-005 |
 
 The package validator does not execute the mode. It checks the authored scenario contract. The wrapper stores results after an operator runs a scenario.
 

@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks",
+  "children_ids": [
+    "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator",
+    "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook run recording phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "playbook",
+      "run",
+      "recording",
+      "phase",
+      "parent",
+      "spec",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "001-run-recorder-and-validator/goal.md",
+      "002-playbook-marker-backfill/goal.md",
+      "001-run-recorder-and-validator/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "record-playbook-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-create-manual-testing-playbook` mode says a scenario run is incomplete until its verdict is recorded under the skill's `benchmark/reports/`",
+    "created_at": "2026-11-22T09:08:17Z",
+    "last_save_at": "2026-11-22T09:32:24.868Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:c3bf77bb71084ab20741c8ac674980c3bc1b606bb5c4373039e053dd19d2e75e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "46a0bf2655ac0e7d75497d43b6ef9733ebbd06d9548aab1ae1f72b46ae03e123"
+    },
+    "last_active_at": null
+  }
+}

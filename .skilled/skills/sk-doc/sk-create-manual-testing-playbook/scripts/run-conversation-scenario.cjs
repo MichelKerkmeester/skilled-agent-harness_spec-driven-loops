@@ -28,6 +28,8 @@ const { spawn, spawnSync } = require('child_process');
 const {
   CONVERSATION_RUNTIMES,
   parseConversationScript,
+  extractFeatureId,
+  extractFrontmatter,
 } = require('./validate-playbook-package.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -3048,6 +3050,31 @@ async function runTurnWithRetry(ctx, turn) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
+ * Name the scenario beside its results and print the command that saves them.
+ *
+ * The runner may not write into the repository, so the verdicts stay in --out until the
+ * recorder copies them into the skill's benchmark folder. The scenario id lets the recorder
+ * find the playbook and check every verdict against it.
+ *
+ * @param {string} out - Run output folder.
+ * @param {string} scenarioPath - The scenario file this run played.
+ */
+function writeScenarioRecord(out, scenarioPath) {
+  const absolute = path.resolve(scenarioPath);
+  const text = fs.readFileSync(absolute, 'utf8');
+  const scenarioId = extractFeatureId(text, extractFrontmatter(text));
+  fs.writeFileSync(
+    path.join(out, 'scenario.json'),
+    `${JSON.stringify({ scenario_id: scenarioId, scenario_path: absolute }, null, 2)}\n`,
+  );
+  const recorder = path.join(__dirname, 'record-playbook-run.cjs');
+  const variant = path.basename(absolute, '.md').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  process.stdout.write(
+    `save results: node ${recorder} --runner-out ${out} --label manual-testing-playbook--${variant} --executor <runtime and model>\n`,
+  );
+}
+
+/**
  * Append one row to the run's checkpoint table.
  *
  * @param {Object} ctx - Run context.
@@ -3768,6 +3795,7 @@ async function main(argv) {
   }
 
   writeMatrix(out, rows);
+  writeScenarioRecord(out, opts.scenario);
   return rows.some((row) => row.verdict === 'FAIL') ? EXIT_FAIL : EXIT_PASS;
 }
 

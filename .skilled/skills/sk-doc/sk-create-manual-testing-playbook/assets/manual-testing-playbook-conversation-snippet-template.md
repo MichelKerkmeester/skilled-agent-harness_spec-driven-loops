@@ -7,7 +7,7 @@ trigger_phrases:
   - "json conversation placeholder block"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Manual Testing Playbook Conversation Snippet Template
@@ -17,7 +17,7 @@ Per-feature conversation scenario files for split manual testing playbooks. Use 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real, never mocked or stubbed. AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers and verify real outputs. The only acceptable classifications are PASS, FAIL or SKIP with a specific sandbox or runtime blocker documented.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-> **COMPLETION**: This feature run is incomplete until its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`. Generated report Markdown is renderer-owned.
+> **COMPLETION**: This feature run is incomplete until its `PASS`, `FAIL` or `SKIP` outcome and reason are saved into `<skill>/benchmark/reports/<dated-run-label>/` with `record-playbook-run.cjs --runner-out <evidence-dir>`, the command the runner prints when it ends.
 
 ---
 
@@ -141,6 +141,8 @@ Operators run the exact prompt and command sequence for `{FEATURE_ID}` and confi
 1. `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario <file.md> --runtime <id[,id...]> --scratch <scratch-dir> --out <evidence-dir> [--seed N] [--overwrite] [--no-sandbox]`
 
 The scratch directory must be outside the repository.
+
+2. Run the `save results:` command the runner prints last. It saves every runtime's verdict into the skill's `benchmark/reports/`.
 
 ### Expected
 

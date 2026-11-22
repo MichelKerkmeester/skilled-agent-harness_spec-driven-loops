@@ -8,6 +8,11 @@ version: 1.0.0.0
 
 This root is intentionally count-free; the validator derives its census from the tree.
 
+### Result persistence
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A scenario run is complete only after its outcome is saved with `record-playbook-run.cjs`.
+
 ## Scenario Index
 
 - [FX-001](scenarios/clean-scenario.md)

@@ -9,7 +9,7 @@ trigger_phrases:
   - "conversation script schema"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Manual Testing Playbook Conversation Scenarios
@@ -153,6 +153,8 @@ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conver
 The runtime list accepts `claude-code`, `opencode`, `codex`, `pi`, `devin` and `vibe`. The scratch directory must be outside the repository. The evidence directory gets one subfolder per requested runtime.
 
 Exit status `0` means every runtime passed or skipped. Exit status `1` means at least one runtime failed. Exit status `2` means a usage error or a refused run.
+
+A run that finishes writes `scenario.json` to the evidence root and prints a `save results:` command. Run it: `scripts/record-playbook-run.cjs` copies every runtime's verdict into the skill's `benchmark/reports/`, because the runner itself may not write into the repository.
 
 Each runtime folder contains `result.json`, `actions.jsonl`, `raw-pane.log`, `setup.log`, `launch-setup.log` when the script has `launch_setup`, `repo-before.txt`, `repo-after.txt` and `checkpoints.tsv`. Each turn folder contains `screen.txt`, `history.txt`, its `raw-pane.log` slice, one `question-N.txt` file per detected question and `check.txt`. The evidence root contains `matrix.md`, with one verdict and evidence path per requested runtime.
 

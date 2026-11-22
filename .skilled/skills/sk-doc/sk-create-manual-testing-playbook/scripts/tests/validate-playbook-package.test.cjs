@@ -738,7 +738,40 @@ function runPipedReportRegression() {
   console.log('piped report regression: PASS (2 assertions)');
 }
 
+// A root without the results contract never tells a runner where verdicts go, so it must
+// fail; coverage must count what the run folders recorded without failing on what they lack.
+function runResultContractRegressions() {
+  expectViolation('marker-missing', (root) => {
+    const file = rootPath(root);
+    fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->', ''));
+  }, 'RESULT_PERSISTENCE_MARKER_MISSING');
+
+  const packageRoot = copyFixture('coverage');
+  const reportsDir = path.join(path.dirname(packageRoot), 'benchmark', 'reports');
+  const runDir = path.join(reportsDir, '2026-11-22--manual-testing-playbook--fixture');
+  fs.mkdirSync(runDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(runDir, 'results.csv'),
+    '# fixture\nscenario_id,runtime,verdict,reason,evidence\nFX-001,,PASS,,\nFX-999,,FAIL,gone,\n',
+  );
+  fs.mkdirSync(path.join(reportsDir, '2026-11-21--manual-testing-playbook--hand-written'));
+  const result = runCli(packageRoot, ['--format', 'json', '--coverage']);
+  assert.strictEqual(result.status, 0, `coverage must not fail the run\n${result.stdout}\n${result.stderr}`);
+  const pkg = JSON.parse(result.stdout).packages[0];
+  assert.deepStrictEqual(pkg.coverage, {
+    defined: 1,
+    recorded: 1,
+    unrecorded: [],
+    resultFiles: 1,
+    runsWithoutCsv: ['2026-11-21--manual-testing-playbook--hand-written'],
+  });
+  assert(pkg.warnings.some((item) => item.code === 'COVERAGE_UNKNOWN_ID' && item.message.includes('FX-999')), 'an unknown recorded id is named');
+  assert.strictEqual(JSON.parse(runCli(packageRoot, ['--format', 'json']).stdout).packages[0].coverage, undefined, 'coverage is opt-in');
+  console.log('result contract regressions: PASS (6 assertions)');
+}
+
 run();
+runResultContractRegressions();
 runContractRegressions();
 runCentralPackageDiscoveryRegression();
 runExternalPackageRegression();

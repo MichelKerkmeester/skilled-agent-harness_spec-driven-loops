@@ -8,7 +8,7 @@ trigger_phrases:
   - "scenario execution detail"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Manual Testing Playbook Snippet Template
@@ -18,7 +18,7 @@ Per-feature scenario files for split manual testing playbooks. Use this template
 > **EXECUTION POLICY**: Every scenario MUST be executed for real, never mocked or stubbed. AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP with a specific sandbox or runtime blocker documented.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-> **COMPLETION**: This feature run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`. Generated report Markdown is renderer-owned.
+> **COMPLETION**: This feature run is incomplete until its `PASS`, `FAIL` or `SKIP` outcome and reason are saved into `<skill>/benchmark/reports/<dated-run-label>/` with `record-playbook-run.cjs`, as the root playbook's Result persistence block shows.
 
 ---
 

@@ -550,6 +550,10 @@ function fakeSubjectRun() {
     result.turns.map((turn) => turn.status),
     ['PASS', 'PASS', 'PASS', 'PASS', 'PASS', 'PASS'],
   );
+  // The recorder finds the playbook through this file, so a run that leaves it out cannot be saved.
+  const scenarioRecord = JSON.parse(fs.readFileSync(path.join(out, 'scenario.json'), 'utf8'));
+  assert.strictEqual(scenarioRecord.scenario_path, path.resolve(scenario));
+  assert.ok(run.stdout.includes(`save results: node ${path.resolve(__dirname, '..', 'record-playbook-run.cjs')} --runner-out ${out}`), 'the runner prints the recorder command');
   assert.strictEqual(result.seed, 7);
   assert.match(result.session_id, /^[0-9a-f-]{36}$/);
 

@@ -1,22 +1,10 @@
 ---
 title: "MTP-005 -- Persist the scenario result"
-description: "Retired: the wrapper this scenario validated went with its benchmark lane. Kept as the contract a replacement must satisfy, not a runnable sequence."
-version: 1.1.0.0
+description: "Validates that a finished manual run saves its verdict, reason and evidence path into the owning skill's benchmark folder through record-playbook-run.cjs."
+version: 1.2.0.0
 ---
 
 # MTP-005 -- Persist the scenario result
-
-> **This scenario has no runner.** The wrapper it validates was built on a benchmark lane
-> that has since been retired, and it depended on that lane's core rather than merely living
-> beside it, so it could not be rehomed as it stood. Until a replacement exists, the
-> obligation stands without its automation: record a scenario's `PASS`, `FAIL` or `SKIP`
-> verdict, its reason and its evidence path into the owning skill's dated report folder by
-> hand. What the scenario below describes is the contract a replacement must satisfy, not a
-> sequence an operator can run today. Run now, it resolves to SKIP, and the blocker is the
-> missing persistence wrapper that was retired with its lane.
->
-> The failure this note prevents: an operator following a command sequence whose binary is
-> gone, and reading the resulting error as their own mistake.
 
 This document captures the operator contract for `MTP-005`.
 
@@ -24,11 +12,11 @@ This document captures the operator contract for `MTP-005`.
 
 ## 1. OVERVIEW
 
-This scenario validates the result-storage contract for a completed manual scenario. It checks that the canonical wrapper receives the verdict, reason, stage and durable evidence instead of a report being written by hand.
+This scenario validates the result-storage contract for a completed manual scenario. It checks that the verdict, reason and evidence path reach the owning skill's `benchmark/reports/` through `scripts/record-playbook-run.cjs`, the one writer for run folders, instead of a report written by hand.
 
 ### Why This Matters
 
-A playbook run has no durable value if its outcome stays in chat. The wrapper creates the dated report folder, records execution metadata and lets the renderer own report Markdown. Hand-authored report files can drift from the run record.
+A playbook run has no durable value if its outcome stays in chat. The recorder checks each verdict against the playbook, writes the dated run folder and adds the run to the folder index, so a later operator can find it.
 
 ---
 
@@ -36,13 +24,13 @@ A playbook run has no durable value if its outcome stays in chat. The wrapper cr
 
 Operators run the exact prompt and command sequence for `MTP-005` and confirm that the result record is durable.
 
-- Objective: persist a PASS outcome through the canonical manual-playbook wrapper with evidence metadata
+- Objective: save a PASS outcome for MTP-004 through the recorder with its evidence path
 - Realistic user request: `The operator ran MTP-004. Record its PASS result with the evidence path so the run can be audited later.`
 - Prompt: `The operator ran MTP-004. Record its PASS result with the evidence path so the run can be audited later.`
-- Expected execution process: capture a durable evidence file, run the retired scenario-persistence wrapper with the skill, scenario, variant, verdict, reason, stage and outcome JSON, then inspect the generated JSON and report files without editing renderer output.
-- Expected signals: the wrapper exits zero, the run folder contains a persisted PASS outcome, the evidence path is beneath the evidence root and generated Markdown is treated as renderer-owned.
+- Expected execution process: write a one-row verdict CSV, run the recorder against this mode's playbook, then read the new run folder and the index row it added.
+- Expected signals: the recorder exits zero, the run folder holds `results.csv`, `README.md` and `source.md`, and the index lists the run first.
 - Desired user-visible outcome: a later operator can find the verdict, reason and evidence path in the run folder.
-- Pass/fail: PASS if the wrapper stores the outcome and evidence metadata. FAIL if the result remains only in the conversation, the evidence is not durable or report Markdown is authored by hand.
+- Pass/fail: PASS if the recorder saves the outcome and the index row. FAIL if the result remains only in the conversation, the recorder refuses a valid row or a run folder is written by hand.
 
 ---
 
@@ -54,32 +42,32 @@ Operators run the exact prompt and command sequence for `MTP-005` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MTP-005 | Persist the scenario result | Persist a PASS outcome through the canonical wrapper with durable evidence | `The operator ran MTP-004. Record its PASS result with the evidence path so the run can be audited later.` | 1. `agent: Create one durable evidence file under the controlled evidence root` -> 2. `bash: node the retired scenario-persistence wrapper --skill sk-create-manual-testing-playbook --scenario MTP-004 --variant operator-contract --verdict PASS --reason "Operator contract validator passed" --stage operator-contract --evidence evidence/operator-contract.txt` -> 3. `agent: Inspect the generated JSON and report Markdown without editing renderer-owned files` | Step 1: the evidence file is a regular file under the evidence root. Step 2: the wrapper records PASS and exits zero. Step 3: the run folder contains the outcome, reason, evidence path, byte count and hash | The exact prompt, evidence path, wrapper command, wrapper output and exit status and the generated report paths | PASS if the wrapper persists the PASS result and evidence metadata. FAIL if the result is not written, the evidence path is outside the evidence root or report Markdown is hand-edited | 1. Confirm the evidence path resolves beneath the controlled root and is not a symlink. 2. Check the wrapper received the exact scenario ID and verdict. 3. Compare the generated Markdown with the JSON record and report any hand edit |
+| MTP-005 | Persist the scenario result | Save a PASS outcome through the recorder with its evidence path | `The operator ran MTP-004. Record its PASS result with the evidence path so the run can be audited later.` | 1. `bash: printf 'scenario_id,verdict,reason,evidence\nMTP-004,PASS,operator contract validator passed,<evidence file>\n' > <scratch>/verdicts.csv` -> 2. `bash: node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook --results <scratch>/verdicts.csv --label manual-testing-playbook--operator-contract --executor "<runtime and model>"` -> 3. `bash: ls .skilled/skills/sk-doc/sk-create-manual-testing-playbook/benchmark/reports/` | Step 1: the CSV holds one MTP-004 row. Step 2: the recorder prints `wrote` lines and exits zero. Step 3: the new dated folder is listed and the index names it first | The exact prompt, the CSV, the recorder output and exit status and the new folder's three files | PASS if the recorder saves the PASS row and the index row. FAIL if it refuses the row, writes nothing or a run folder is written by hand | 1. Read the recorder's `refused:` line. 2. Confirm `MTP-004` is a scenario id in this playbook. 3. Pick a new `--label` when the folder already exists |
 
 ### Commands
 
-1. `agent: Create one durable evidence file under the controlled evidence root`
-2. `bash: node the retired scenario-persistence wrapper --skill sk-create-manual-testing-playbook --scenario MTP-004 --variant operator-contract --verdict PASS --reason "Operator contract validator passed" --stage operator-contract --evidence evidence/operator-contract.txt`
-3. `agent: Inspect the generated JSON and report Markdown without editing renderer-owned files`
+1. `bash: printf 'scenario_id,verdict,reason,evidence\nMTP-004,PASS,operator contract validator passed,<evidence file>\n' > <scratch>/verdicts.csv`
+2. `bash: node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook --results <scratch>/verdicts.csv --label manual-testing-playbook--operator-contract --executor "<runtime and model>"`
+3. `bash: ls .skilled/skills/sk-doc/sk-create-manual-testing-playbook/benchmark/reports/`
 
 ### Expected
 
-Step 1 creates the evidence input for the wrapper. Step 2 persists the outcome and records durable evidence metadata. Step 3 reads the generated record and leaves renderer-owned Markdown untouched.
+Step 1 writes the verdict record. Step 2 checks it against the playbook and saves the run folder and its index row. Step 3 shows the folder where a later operator will look.
 
 ### Evidence
 
-Capture the exact prompt, evidence path, wrapper transcript, exit status, run folder, JSON record and generated report paths.
+Capture the exact prompt, the CSV, the recorder transcript, its exit status, the run folder and the index row.
 
 ### Pass / Fail
 
-- **Pass**: the wrapper persists the PASS outcome with reason and evidence metadata and the report is derived from the record.
-- **Fail**: the result remains only in chat, evidence is outside the controlled root, the wrapper command is incomplete or generated Markdown is hand-authored.
+- **Pass**: the recorder saves the PASS outcome with its reason and evidence path, and the index lists the run.
+- **Fail**: the result remains only in chat, the recorder refuses a valid row or a run folder is written by hand.
 
 ### Failure Triage
 
-1. Inspect the wrapper command for the scenario, verdict, reason, stage and evidence arguments.
-2. Resolve the evidence path and confirm it is a regular file under the controlled evidence root.
-3. Read the JSON record before comparing generated Markdown.
+1. Read the recorder's `refused:` lines, which name every problem at once.
+2. Check the CSV header is `scenario_id,verdict,reason,evidence`.
+3. Remove the run folder this scenario created once the evidence is captured, unless it is the real record of a run.
 
 ---
 
@@ -97,8 +85,8 @@ Capture the exact prompt, evidence path, wrapper transcript, exit status, run fo
 | File | Role |
 |---|---|
 | [`SKILL.md`](../../SKILL.md) | Results storage contract and evidence classes |
+| [`scripts/record-playbook-run.cjs`](../../scripts/record-playbook-run.cjs) | The one writer for run folders |
 | [`scripts/validate-playbook-package.cjs`](../../scripts/validate-playbook-package.cjs) | Package contract validator |
-| the retired scenario-persistence wrapper | Canonical result wrapper |
 
 ---
 

@@ -93,6 +93,8 @@ function usage() {
     '                      are skipped when absent under a non-default --repo-root)',
     '  --format text|json  Report format (default: text)',
     '  --json              Alias for --format json',
+    '  --coverage          Also report which scenario ids have a recorded verdict in the',
+    '                      skill\'s benchmark/reports/**/results.csv files. Report only',
     '  --strict            Fail closed (default)',
     '  --no-strict         Report violations without failing the process',
     '  --help              Show this message',
@@ -100,7 +102,7 @@ function usage() {
 }
 
 function parseArgs(argv) {
-  const args = { packageFilter: null, repoRoot: null, skillsRoot: null, manifest: null, format: 'text', strict: true };
+  const args = { packageFilter: null, repoRoot: null, skillsRoot: null, manifest: null, format: 'text', strict: true, coverage: false };
   for (let i = 0; i < argv.length; i += 1) {
     const value = argv[i];
     if (value === '--help' || value === '-h') args.help = true;
@@ -112,6 +114,7 @@ function parseArgs(argv) {
     else if (value === '--json') args.format = 'json';
     else if (value === '--strict') args.strict = true;
     else if (value === '--no-strict') args.strict = false;
+    else if (value === '--coverage') args.coverage = true;
     else throw new Error(`unknown argument: ${value}`);
   }
   if (!['text', 'json'].includes(args.format)) throw new Error(`unsupported format: ${args.format}`);
@@ -748,12 +751,14 @@ function hasMarker(text, pattern) {
 
 function executionContractChecks(text, relPath) {
   const warnings = [];
+  // Without the marker the root never tells a runner where results go, and runs leave
+  // nothing behind, so this one blocks while the vocabulary check below only advises.
   if (!text.includes(RESULT_PERSISTENCE_MARKER)) {
     warnings.push(issue(
       'RESULT_PERSISTENCE_MARKER_MISSING',
       relPath,
-      `root playbook is missing the advisory ${RESULT_PERSISTENCE_MARKER} completion marker`,
-      'warning',
+      `root playbook is missing the ${RESULT_PERSISTENCE_MARKER} results contract; copy the Result persistence block from assets/manual-testing-playbook-template.md`,
+      'error',
     ));
   }
   const missingOutcomes = REQUIRED_OUTCOME_VOCABULARY.filter(
@@ -1319,7 +1324,63 @@ function validateScenario(absPath, playbookRoot, repoRoot) {
   return errors;
 }
 
-function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest }) {
+/**
+ * Report which defined scenario ids have a recorded verdict in the skill's run folders.
+ *
+ * Coverage is a report, never a failure: most playbooks are partly run, and the record of a
+ * run is what this checks, not whether every scenario has run.
+ *
+ * @param {string} playbookRoot - Playbook root; its parent is the skill root.
+ * @param {Map<string, string>} idMap - Scenario ids the playbook defines.
+ * @returns {{coverage: Object, warnings: Object[]}} The coverage summary and unknown-id warnings.
+ */
+function recordedCoverage(playbookRoot, idMap) {
+  const reportsDir = path.join(path.dirname(playbookRoot), 'benchmark', 'reports');
+  const recorded = new Set();
+  const unknown = new Map();
+  const runsWithoutCsv = [];
+  const csvFiles = [];
+  const visit = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) visit(full);
+      else if (entry.name === 'results.csv') csvFiles.push(full);
+    }
+  };
+  if (fs.existsSync(reportsDir)) {
+    visit(reportsDir);
+    for (const entry of fs.readdirSync(reportsDir, { withFileTypes: true })) {
+      const runDir = path.join(reportsDir, entry.name);
+      if (entry.isDirectory() && !csvFiles.some((file) => isWithin(file, runDir))) runsWithoutCsv.push(entry.name);
+    }
+  }
+  for (const file of csvFiles) {
+    const lines = readText(file).split(/\r?\n/).filter((line) => line.trim() !== '' && !line.startsWith('#'));
+    const column = (lines[0] || '').split(',').map((name) => name.trim().toLowerCase()).indexOf('scenario_id');
+    if (column === -1) continue;
+    const rel = path.relative(path.dirname(playbookRoot), file).split(path.sep).join('/');
+    // Scenario ids come before any free-text column, so a plain split reaches them intact.
+    for (const line of lines.slice(1)) {
+      const id = (line.split(',')[column] || '').replace(/^"|"$/g, '').trim();
+      if (!id) continue;
+      if (idMap.has(id)) recorded.add(id);
+      else if (!unknown.has(id)) unknown.set(id, rel);
+    }
+  }
+  const unrecorded = [...idMap.keys()].filter((id) => !recorded.has(id)).sort();
+  return {
+    coverage: {
+      defined: idMap.size,
+      recorded: recorded.size,
+      unrecorded,
+      resultFiles: csvFiles.length,
+      runsWithoutCsv: runsWithoutCsv.sort(),
+    },
+    warnings: [...unknown].map(([id, rel]) => issue('COVERAGE_UNKNOWN_ID', rel, `results name ${id}, which this playbook does not define`, 'warning')),
+  };
+}
+
+function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest, coverage = false }) {
   const rootPath = path.join(playbookRoot, ROOT_FILENAME);
   if (!fs.existsSync(playbookRoot) || !fs.statSync(playbookRoot).isDirectory()) throw new Error(`missing playbook root: ${playbookRoot}`);
   if (!fs.existsSync(rootPath)) throw new Error(`missing root playbook: ${rootPath}`);
@@ -1336,7 +1397,10 @@ function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest }) {
     routingGoldFilesExcluded: routingFiles.length,
   };
   const warnings = [];
-  warnings.push(...executionContractChecks(rootText, ROOT_FILENAME));
+  const errors = [];
+  for (const problem of executionContractChecks(rootText, ROOT_FILENAME)) {
+    (problem.severity === 'error' ? errors : warnings).push(problem);
+  }
   warnings.push(...backtickPathChecks(rootText, rootPath, playbookRoot, repoRoot, ROOT_FILENAME));
   const census = parseRootCensus(rootText);
   for (const statement of census) {
@@ -1345,7 +1409,6 @@ function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest }) {
       warnings.push(issue('CENSUS_MISMATCH', ROOT_FILENAME, 'hand-typed census disagrees with the walked tree', 'warning', lineNumberAt(rootText, statement.index)));
     }
   }
-  const errors = [];
   const validationRoot = isWithin(playbookRoot, repoRoot) ? repoRoot : playbookRoot;
   const ids = new Map();
   const rootPrompts = rootPromptIndex(rootText, rootPath, playbookRoot);
@@ -1374,6 +1437,8 @@ function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest }) {
     if (id) idMap.set(id, file);
   }
   const packageName = packageId(playbookRoot, skillsRoot, repoRoot);
+  const coverageReport = coverage ? recordedCoverage(playbookRoot, idMap) : null;
+  if (coverageReport) warnings.push(...coverageReport.warnings);
   const hasOperatorFiles = operatorFiles.length > 0;
   const violationCount = errors.length;
   const warnTier = manifest.warnPackages.includes(packageName);
@@ -1389,6 +1454,7 @@ function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest }) {
     featureIds: idMap.size,
     violations: errors,
     warnings,
+    ...(coverageReport ? { coverage: coverageReport.coverage } : {}),
   };
 }
 
@@ -1415,7 +1481,7 @@ function runValidation(options = {}) {
     ? [{ id: packageId(selected, skillsRoot, repoRoot), playbookRoot: selected }]
     : discoverPackages(skillsRoot, repoRoot);
   if (packages.length === 0) throw new Error('no direct skill packages with manual-testing-playbook roots were found');
-  const reports = packages.map((pkg) => validatePackage({ playbookRoot: pkg.playbookRoot, repoRoot, skillsRoot, manifest }));
+  const reports = packages.map((pkg) => validatePackage({ playbookRoot: pkg.playbookRoot, repoRoot, skillsRoot, manifest, coverage: Boolean(options.coverage) }));
   const strict = options.strict !== false;
   const hasFailClosedViolation = reports.some((report) => report.status === 'FAIL');
   const hasWarnedViolations = reports.some((report) => report.status === 'WARN' && report.violations.length > 0);
@@ -1446,6 +1512,11 @@ function formatText(report) {
     lines.push(`${pkg.status} package=${pkg.package} tier=${pkg.tier} scenarios=${c.scenarioFiles} categories=${c.categoryDirs} operator=${c.operatorScenarioFiles} routing_gold_excluded=${c.routingGoldFilesExcluded} violations=${pkg.violations.length} warnings=${pkg.warnings.length}`);
     for (const problem of pkg.violations) lines.push(`  ${problem.code} ${problem.file}${problem.line ? `:${problem.line}` : ''} ${problem.message}`);
     for (const warning of pkg.warnings) lines.push(`  WARN ${warning.code} ${warning.file}${warning.line ? `:${warning.line}` : ''} ${warning.message}`);
+    if (pkg.coverage) {
+      const cov = pkg.coverage;
+      lines.push(`  COVERAGE recorded=${cov.recorded}/${cov.defined} result_files=${cov.resultFiles} runs_without_results_csv=${cov.runsWithoutCsv.length}`);
+      if (cov.unrecorded.length > 0) lines.push(`  COVERAGE unrecorded=${cov.unrecorded.join(',')}`);
+    }
   }
   lines.push(`exit=${report.exitCode}`);
   return lines.join('\n');
@@ -1470,6 +1541,7 @@ if (require.main === module) {
       skillsRoot: args.skillsRoot,
       manifest: args.manifest,
       strict: args.strict,
+      coverage: args.coverage,
     });
     process.stdout.write(args.format === 'json' ? `${JSON.stringify(report, null, 2)}\n` : `${formatText(report)}\n`);
     // Set the code rather than exit: process.exit() drops whatever stdout has not yet
@@ -1508,6 +1580,7 @@ module.exports = {
   validateScenario,
   isRoutingGoldScenario,
   validatePackage,
+  recordedCoverage,
   runValidation,
   formatText,
 };

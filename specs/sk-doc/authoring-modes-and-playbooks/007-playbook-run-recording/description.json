@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording",
+  "description": "Playbook run recording: save manual testing playbook results into benchmark reports and enforce it",
+  "keywords": [
+    "playbook",
+    "run",
+    "recording",
+    "save",
+    "manual",
+    "testing",
+    "results",
+    "benchmark",
+    "reports",
+    "enforce"
+  ],
+  "lastUpdated": "2026-11-22T09:08:17.705Z",
+  "specId": "007",
+  "folderSlug": "playbook-run-recording",
+  "parentChain": [
+    "sk-doc",
+    "authoring-modes-and-playbooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

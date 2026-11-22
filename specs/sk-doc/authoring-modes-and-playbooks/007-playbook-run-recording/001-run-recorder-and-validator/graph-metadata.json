@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "run recorder and validator",
+      "run recorder and validator plan",
+      "run recorder and validator tasks",
+      "run recorder and validator acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "run recorder and validator implementation summary"
+    ],
+    "key_topics": [
+      "run",
+      "recorder",
+      "validator",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/changelog/skilled/v4.2.0.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No script writes a run folder under `<skill>/benchmark/reports/`, so a playbook run saves its verdicts only when someone asks for a report and writes it by hand",
+    "created_at": "2026-11-22T09:08:17Z",
+    "last_save_at": "2026-11-22T09:42:55.228Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:73278cbfae87d0add490e1fd35090f7464da686afcaae3f408b21e0f55576cd1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b9f71fe6df56f5e417470b1256b42e5699627b76eb8b5bc3ce48ed4fc10ce356",
+      "plan.md": "d0a6ed8b73a1c4d58cd15abf23a7d757832f46a784d51a1f58ce66c8e4e9a739",
+      "tasks.md": "e644e1de4237ac21f5a2ed5fbdc7ed28c800fc1d3d544cde99645d65c291d7ca",
+      "implementation-summary.md": "ffdeb376db686735757883588f5e2d575bcaa1cdf96c8144cf0c543a4ef28bcf"
+    },
+    "last_active_at": null
+  }
+}
