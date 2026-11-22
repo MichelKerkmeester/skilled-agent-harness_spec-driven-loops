@@ -2768,11 +2768,136 @@ def test_native_bridge_forwards_location_overrides():
     expected = {
         "SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH": "/tmp/advisor-feedback.jsonl",
         "SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR": "/tmp/advisor-route-config",
+        "SPECKIT_ADVISOR_DOC_TRIGGERS": "true",
     }
     if env == expected:
         ok(name)
     else:
         fail_test(name, f"env={env!r}")
+
+
+def test_native_bridge_covers_launcher_scorer_keys():
+    """Every key the launcher forwards reaches the bridge child or is named launcher-only."""
+    name = "BRIDGE-PARITY: each launcher-forwarded key is forwarded by the bridge or listed as launcher-only"
+    launcher = os.path.realpath(os.path.join(SCRIPT_DIR, "..", "..", "..", "..", "bin", "system-skill-advisor-launcher.cjs"))
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        with open(launcher, "r", encoding="utf-8") as handle:
+            source = handle.read()
+        block = re.search(r"CHILD_ENV_ALLOWLIST = new Set\(\[(.*?)\]\)", source, re.S)
+        launcher_keys = set(re.findall(r"'([A-Z0-9_]+)'", block.group(1))) if block else set()
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    missing = sorted(launcher_keys - advisor.NATIVE_BRIDGE_ENV_ALLOWLIST - advisor.LAUNCHER_ONLY_ENV_KEYS)
+    stale = sorted(advisor.LAUNCHER_ONLY_ENV_KEYS - launcher_keys)
+    if launcher_keys and not missing and not stale:
+        ok(name, f"launcher keys={len(launcher_keys)}")
+    else:
+        fail_test(name, f"missing from the bridge={missing} launcher-only keys the launcher no longer sends={stale}")
+
+
+def test_native_bridge_honors_scorer_override():
+    """A lane-weight override set for the caller changes the bridge child's answer."""
+    name = "BRIDGE-SCORER: a lane-weights override reaches the native bridge child and changes its result"
+    prompt = "create a git commit and push it"
+    key = "SPECKIT_ADVISOR_LANE_WEIGHTS_JSON"
+    previous = os.environ.get(key)
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        if not advisor.probe_native_advisor().get("available"):
+            print(f"  SKIP: {name} (native advisor not built)")
+            return
+        os.environ.pop(key, None)
+        plain = advisor.recommend_with_native_advisor(prompt)
+        os.environ[key] = json.dumps({"explicit_author": 0, "lexical": 0, "graph_causal": 0, "derived_generated": 1})
+        weighted = advisor.recommend_with_native_advisor(prompt)
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    finally:
+        if previous is None:
+            os.environ.pop(key, None)
+        else:
+            os.environ[key] = previous
+    def top(rows):
+        return [(row.get("skill"), round(float(row.get("confidence", 0)), 4)) for row in (rows or [])[:1]]
+    if plain and top(plain) != top(weighted):
+        ok(name, f"plain={top(plain)} weighted={top(weighted)}")
+    else:
+        fail_test(name, f"plain={top(plain)} weighted={top(weighted)}")
+
+
+def test_threshold_settings_reach_python_defaults():
+    """The Python defaults read the two threshold settings the way the native contract does."""
+    name = "THRESHOLD-ENV: the Python defaults honor an in-range threshold setting and ignore a bad one"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        key = "SPECKIT_ADVISOR_TEST_THRESHOLD"
+        results = []
+        for raw in ("0.6", "1.7", "high", None):
+            if raw is None:
+                os.environ.pop(key, None)
+            else:
+                os.environ[key] = raw
+            results.append(advisor._resolved_threshold(key, 0.8))
+        os.environ.pop(key, None)
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if results == [0.6, 0.8, 0.8, 0.8]:
+        ok(name)
+    else:
+        fail_test(name, f"results={results}")
+
+
+def test_deep_loop_offer_gate_parity():
+    """The fallback's offer gate agrees with the native gate on every shared case."""
+    name = "DEEP-LOOP-GATE: the fallback gate matches the shared deep-loop offer cases"
+    fixture = os.path.realpath(os.path.join(SCRIPT_DIR, "..", "tests", "fixtures", "deep-loop-offer-cases.json"))
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        with open(fixture, "r", encoding="utf-8") as handle:
+            cases = json.load(handle)["cases"]
+        wrong = []
+        for case in cases:
+            got = (
+                advisor.asks_for_loop_run(case["prompt"]),
+                advisor.is_stuck_run_complaint(case["prompt"]),
+                advisor.is_writing_about_topic(case["prompt"]),
+            )
+            want = (case["asksForLoopRun"], case["stuckRun"], case["writingAbout"])
+            if got != want:
+                wrong.append((case["id"], got, want))
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if cases and not wrong:
+        ok(name, f"cases={len(cases)}")
+    else:
+        fail_test(name, f"wrong={wrong}")
+
+
+def test_deep_loop_offer_gate_in_fallback():
+    """The fallback offers no deep-loop run the prompt never asks for."""
+    name = "DEEP-LOOP-FALLBACK: a stuck run gets no run row, a piece about the loop drops the hub, a counted ask keeps its row"
+    run_rows = {"command-spec-kit-deep-research", "command-spec-kit-deep-review"}
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        stuck = [row.get("skill") for row in advisor.analyze_request("my deep research run is stuck and never converges")]
+        written = [row.get("skill") for row in advisor.analyze_request("write a blog post about how deep research loops work")]
+        asked = [row.get("skill") for row in advisor.analyze_request("run 5 iterations of deep research on vector indexes")]
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if (
+        not run_rows.intersection(stuck)
+        and "system-deep-loop" not in written
+        and "command-spec-kit-deep-research" in asked
+    ):
+        ok(name, f"stuck={stuck[:2]} written={written[:2]} asked={asked[:2]}")
+    else:
+        fail_test(name, f"stuck={stuck[:3]} written={written[:3]} asked={asked[:3]}")
 
 
 def main():
@@ -2793,6 +2918,11 @@ def main():
     test_deep_routing_clears_floor_flag()
     test_route_exclusions_in_fallback()
     test_native_bridge_forwards_location_overrides()
+    test_native_bridge_covers_launcher_scorer_keys()
+    test_native_bridge_honors_scorer_override()
+    test_threshold_settings_reach_python_defaults()
+    test_deep_loop_offer_gate_parity()
+    test_deep_loop_offer_gate_in_fallback()
 
     print(f"\nSummary: pass={passed}, fail={failed}")
     return 0 if failed == 0 else 1

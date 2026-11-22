@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "ab2cec359d5",
-  "corpusSha256": "sha256:668a2322fef9d38d48aeedd36397a8987a3d139c2434c1c7434e6a2300cf212a",
+  "capturedAtSha": "b9865915857",
+  "corpusSha256": "sha256:1d7a15e13bbb124dc3e8b0d418d0d04a196f1bb04862067963789017615092c3",
   "bridgeCounts": {
     "commandMetadata": 27,
     "doctorRoutes": 35,
@@ -41,7 +41,7 @@
     },
     "false_offer": {
       "count": 0,
-      "total": 45
+      "total": 48
     },
     "slash_variant": {
       "reached_top3": 0,
@@ -1911,6 +1911,27 @@
       "top1": false,
       "top3": false,
       "offered": false
+    },
+    "nm-system-deep-loop-10": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-11": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-12": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
     }
   },
   "attachedMetrics": {
@@ -2064,7 +2085,7 @@
     },
     "false_offer_attached": {
       "count": 1,
-      "total": 45
+      "total": 48
     },
     "typed": {
       "own": 24,
@@ -2419,7 +2440,7 @@
     },
     "needs_mode_floor": {
       "count": 1,
-      "total": 45
+      "total": 48
     },
     "needsModeRows": [
       "nm-system-skill-advisor-01"

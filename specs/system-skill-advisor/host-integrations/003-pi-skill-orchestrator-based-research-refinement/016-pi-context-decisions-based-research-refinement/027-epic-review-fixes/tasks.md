@@ -77,6 +77,19 @@ contextType: "implementation"
 - [x] T025 Delete the four alert-threshold keys with their reader, test case, launcher and bridge entries and doc rows. Verify: `git grep 'HOOK_CACHE_HIT_P95\|HOOK_FAILOPEN\|AlertThresholds'` outside `specs/` and changelogs prints nothing.
 - [x] T026 Rerun the whole gate set and revalidate. Verify: every gate exits 0, and `validate.sh --strict` prints `RESULT: PASSED` for 027 and 016.
 - [x] T027 Bump the advisor to 2.0.1.0 and add its changelog entry (`.skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md`). Verify: `check_changelog_shape.py` prints `pass=1` and `validate_document.py` prints `VALID`.
+
+### Third round: the review of 2.0.1.0 on main
+
+- [x] T028 Run a fresh native Opus high review of the advisor on main, read-only, and rerun its P1 findings and finding 7. Verify: the report and the session's checks are saved as `evidence/opus-third-review.md`.
+- [x] T029 Forward every scorer setting the launcher forwards through the Python bridge, name the launcher-only keys, default the doc trigger switch, and let the Python threshold defaults read their settings (`A/scripts/skill_advisor.py`). Verify: BRIDGE-PARITY, BRIDGE-SCORER and THRESHOLD-ENV pass, and BRIDGE-SCORER and BRIDGE-PARITY fail with the lane-weights key removed from the list.
+- [x] T030 Replace the bare `iterations`, `iterative` and `iteratively` loop words with one iterative-ask pattern, and point the explicit lane and the fusion passes check at it (`A/lib/command-attach.ts`, `A/lib/scorer/lanes/explicit.ts`, `A/lib/scorer/fusion.ts`). Verify: the minimal pairs in `deep-loop-ask-routing.vitest.ts` rank alike and the fixture test passes.
+- [x] T031 Add the shared fixture `A/tests/fixtures/deep-loop-offer-cases.json` and its native test. Verify: the cases pass, 27 after the looped-investigation case was added, and 6 failed with the bare words restored.
+- [x] T032 Port the offer gate and the write-about hold-back to the Python fallback and apply them before it returns (`A/scripts/skill_advisor.py`). Verify: DEEP-LOOP-GATE and DEEP-LOOP-FALLBACK pass, and DEEP-LOOP-FALLBACK fails with the gate call removed.
+- [x] T033 Reload the route-exclusion list when its file changes and add the file's stamp to the prompt cache signature (`A/lib/route-exclusions.ts`, `A/handlers/advisor-recommend.ts`). Verify: the new case in `route-exclusions.vitest.ts` passes, and fails with the stamp check removed.
+- [x] T034 Add the four missing rows and the note on when an env change takes effect (`.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`), and correct the gate sentences in the advisor catalog and playbook. Verify: `grep -c` finds each of the four keys in `ENV-REFERENCE.md`.
+- [x] T035 Add three near-miss rows to the command corpus and recapture its baseline (`A/scripts/routing-accuracy/command-prompts.jsonl`, `command-routing-baseline.json`). Verify: no existing row moved, and the false offers stay at 0 of 48.
+- [x] T036 Read a looped activity as iterative wording in both gate copies, after the first gate run showed corpus row `rr-iter3-170` ("Start a looped investigation ... keep per-iteration artifacts") losing its top-1. Verify: every labeled and ambiguity row's top-1 matches main's, and the scorer-eval, ambiguity and divergence ratchets pass with no recapture.
+- [x] T037 Rerun the whole gate set and revalidate. Verify: every gate exits 0, and `validate.sh --strict` prints `RESULT: PASSED` for 027 and 016.
 <!-- /ANCHOR:phase-3 -->
 
 ---

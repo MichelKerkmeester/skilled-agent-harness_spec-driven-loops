@@ -22,7 +22,7 @@ contextType: "implementation"
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-11-22 |
-| **Branch** | `worktrees/515-epic-review-fixes` |
+| **Branch** | `worktrees/518-advisor-review-round-three` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 27 of 27 |
 | **Predecessor** | 026-doctor-lane-removal-alignment |
@@ -98,9 +98,18 @@ Second round, from the Opus verification in `evidence/opus-verification.md`, all
 - Run the cleanup's apply command in all three forms the YAML prescribes: no answer, `delete` and `keep` (Opus D4).
 - Delete the four hook alert-threshold keys, which only a test read, with their reader, its test, the launcher and bridge entries and their doc rows (Opus D5).
 
+Third round, from the review of 2.0.1.0 on main in `evidence/opus-third-review.md`, taken on by operator decision:
+- Forward every scorer setting the bridge child reads through the Python native bridge, default the doc trigger switch the way the launcher does, and let the Python defaults honor the two threshold settings (third review 1).
+- Read `iterative`, `iteratively` and an uncounted `iterations` as a loop ask only when they say how a review or research runs, in the command gate and in both scorer lanes that read them (third review 2).
+- Give the Python fallback the deep-loop offer gate and the write-about hold-back, checked against one fixture file the native suite also reads (third review 3).
+- Reload the route-exclusion list when its file changes and key the prompt cache on it, and say in `ENV-REFERENCE.md` that a running daemon keeps the env it started with (third review 4).
+- Add the four missing `ENV-REFERENCE.md` rows (third review 5).
+- Test behavior rather than the filtered env list, and add corpus rows that use `iterative` as an adjective (third review 6).
+
 ### Out of Scope
 - Rewording the approval reason in `local-native-approved-divergences.json`. It is a dated reviewer record that the residue allowlist keeps on purpose, and it still names the cause of the divergence.
 - A guard test that compares every daemon-read setting with the launcher allowlist (the review's Next item 2). Both instances it would catch are fixed here, and the test needs its own exception list.
+- Third review finding 7, "do one more iteration of the review". It does not reproduce on main, where every phrasing tried gets `/deep:review`.
 - Changing what the review calls allowlisted by design: the `OLLAMA_` prefix forward in the behaviour runner and the two prompt texts in the routing parity test.
 
 ### Files to Change
@@ -129,6 +138,11 @@ Second round, from the Opus verification in `evidence/opus-verification.md`, all
 | `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-observability.vitest.ts` | Modify | The threshold case removed |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts` | Modify | Comment names the slash-command anchor that shares the floor |
 | `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/executor-delegation.md` and `hooks-and-plugin/claude-hook.md` | Modify | Stale floor and threshold sentences corrected |
+| `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` | Modify | One shared iterative-ask pattern replaces the bare loop words |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` and `lib/scorer/fusion.ts` | Modify | The scorer lanes read the shared pattern |
+| `.skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts` and `handlers/advisor-recommend.ts` | Modify | List reloads on file change and keys the prompt cache |
+| `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json` | Create | Prompts both suites check the offer gate against |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` and `command-routing-baseline.json` | Modify | Near-miss rows for `iterative` as an adjective, baseline recaptured |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -157,6 +171,11 @@ REQ ids run in one sequence across the P0 and P1 tables.
 | REQ-009 | The Python native bridge forwards the two location keys, and the Python fallback drops a route-excluded skill (Opus D1, D2) |
 | REQ-010 | The cleanup test runs the apply command with no answer, with `delete` and with `keep` (Opus D4) |
 | REQ-011 | No doc or comment describes the deleted explicit-signal helper, and no dead alert-threshold key is documented or forwarded (Opus D3, D5) |
+| REQ-012 | Every scorer setting the launcher forwards also reaches the Python bridge child, or is named as launcher-only, and an override changes the bridge's result (third review 1) |
+| REQ-013 | `iterative` or `iterations` used to describe the subject opens no deep-loop run and does not lift the loop hub, while iterative review or research still does (third review 2) |
+| REQ-014 | The Python fallback offers no deep-loop run the native gate withholds and holds the loop hub back on a piece written about the loop (third review 3) |
+| REQ-015 | An edit to the route-exclusion file takes effect in a running daemon without a restart (third review 4) |
+| REQ-016 | `ENV-REFERENCE.md` documents the four missing keys and says when a running daemon picks up an env change (third review 5) |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`.
 <!-- /ANCHOR:requirements -->

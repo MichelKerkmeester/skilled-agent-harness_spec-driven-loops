@@ -233,3 +233,6 @@
 {"id":"nm-system-deep-loop-08","prompt":"explain how the coverage graph is built in the deep-loop runtime","row_type":"near-miss","split":"none","expected_command":null,"expected_top":null,"expected_policy":null,"source":"authored-opus"}
 {"id":"nm-system-deep-loop-09","prompt":"check the boarding passes page for bugs","row_type":"near-miss","split":"none","expected_command":null,"expected_top":null,"expected_policy":null,"source":"authored-opus"}
 {"id":"nm-sk-code-04","prompt":"review the lexer carefully","row_type":"near-miss","split":"none","expected_command":null,"expected_top":"sk-code","expected_policy":null,"source":"authored-opus"}
+{"id":"nm-system-deep-loop-10","prompt":"review the code for the iterative solver","row_type":"near-miss","split":"none","expected_command":null,"expected_top":null,"expected_policy":null,"source":"authored-opus"}
+{"id":"nm-system-deep-loop-11","prompt":"convert this recursive function to an iterative one and review it","row_type":"near-miss","split":"none","expected_command":null,"expected_top":null,"expected_policy":null,"source":"authored-opus"}
+{"id":"nm-system-deep-loop-12","prompt":"review the last three iterations of the migration plan","row_type":"near-miss","split":"none","expected_command":null,"expected_top":null,"expected_policy":null,"source":"authored-opus"}

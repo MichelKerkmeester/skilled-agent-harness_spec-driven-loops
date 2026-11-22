@@ -277,11 +277,25 @@ export function typedCommandForTop(topSkillId: string, prompt: string): TypedCom
 export const LOOP_WORDING: readonly string[] = [
   'deep research',
   'deep review',
-  'iterations',
-  'iterative',
-  'iteratively',
   'multi-pass',
 ];
+
+// `iterative` and an uncounted `iterations` are also how a prompt describes its
+// subject, as in "the iterative solver" or "the last iterations of the plan", so
+// they ask for the loop only where they say how a review or research runs: on
+// the activity itself ("iterative review", "a looped investigation"), as the
+// manner of a review or research verb ("audit it iteratively"), or as the work's
+// unit ("in several iterations", "more iterations"). Counted iterations are
+// LOOP_COUNT's.
+const ITERATIVE_ACTIVITY = '(?:deep[- ])?(?:review|research|audit|investigation|analysis|inspection|check|pass(?:es)?|rounds?|loop)';
+const ITERATIVE_VERB = '(?:review|research|audit|investigate|inspect|check|scan|examine|analy[sz]e|look into|go over)';
+export const ITERATIVE_ASK = new RegExp(
+  `\\b(?:iterative|looped) ${ITERATIVE_ACTIVITY}\\b`
+  + `|\\biteratively ${ITERATIVE_VERB}\\b`
+  + `|\\b${ITERATIVE_VERB}\\b(?: [\\w./'-]+){0,6}? iteratively\\b`
+  + '|\\b(?:in|over|through) (?:(?:several|multiple|many|a few|successive|repeated) )?iterations\\b'
+  + '|\\b(?:several|multiple|(?<!\\bhow )many|a few|successive|repeated|more) iterations\\b',
+);
 
 // Passes and rounds are also things a prompt can be about, as in "three funding
 // rounds" or "several rounds of layoffs", so they ask for the loop only when
@@ -441,17 +455,17 @@ export const COMMAND_GAP_WORDS = "(?:[a-z']+ ){0,2}";
 const LOOP_WANT_LEAD = "(?:i'd like|i would like|we'd like|we would like|i want|we want|i need|we need|give me|set up|spin up)";
 
 // One alternation over the loop wording keeps the gate a single test per
-// prompt, and the boundary markers keep `iterative` from firing inside a longer
-// word while a multi-word phrase still has to match as a whole. An iteration
-// count, more than one pass, and a loop name behind a use verb or a want verb
-// each ask for the loop, so they are appended raw as patterns beside the
-// escaped vocabulary.
+// prompt, and the boundary markers keep a phrase from firing inside a longer
+// word while a multi-word phrase still has to match as a whole. An iterative
+// ask, an iteration count, more than one pass, and a loop name behind a use
+// verb or a want verb each ask for the loop, so they are appended raw as
+// patterns beside the escaped vocabulary.
 const LOOP_NAME_PATTERN = `(?:${LOOP_NAMES.map(escapePhrase).join('|')})`;
 export const LOOP_REQUEST = new RegExp(
   `\\b(?:${LOOP_WORDING.map(escapePhrase).join('|')}`
   + `|${COMMAND_USE_VERB} (?:[a-z0-9'-]+ ){0,3}${LOOP_NAME_PATTERN}`
   + `|${LOOP_WANT_LEAD} (?:an?|another) (?:[a-z0-9'-]+ ){0,2}?${LOOP_NAME_PATTERN})\\b`
-  + `|${MULTI_PASS.source}|${LOOP_COUNT.source}`,
+  + `|${ITERATIVE_ASK.source}|${MULTI_PASS.source}|${LOOP_COUNT.source}`,
 );
 
 // Loop wording also names a loop the reader is not asking to start: a past run

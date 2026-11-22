@@ -8,23 +8,27 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes"
-    last_updated_at: "2026-11-22T16:53:23Z"
+    last_updated_at: "2026-11-22T21:43:37Z"
     last_updated_by: "generate-context"
-    recent_action: "Landed the deep-loop changelog line on origin/main"
-    next_safe_action: "Verify origin/main still carries the v2.0.1.0 changelog line after worktree 517 is removed"
+    recent_action: "Fixed the third review's findings and passed every gate"
+    next_safe_action: "Land the 518 branch on main after merging origin/main and rerunning the gates"
     packet_purpose: "Purpose: Every setting the docs name either works under the daemon or is gone, and the doctor's cleanup command has a test that runs it."
     blockers: []
     key_files:
+      - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      - ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      - ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts"
+      - ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json"
       - ".skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md"
     session_dedup:
-      fingerprint: "sha256:4c77861bd0d168baa341d0d9e2be36484e8080adf2c79b37399bc2e88ccb71f6"
+      fingerprint: "sha256:4b2a0983a18e383cbfd001e59c510b778c30a3105fe1c0f01dee517bf274e0f3"
       session_id: "scaffold-027-epic-review-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
-      workspace: "/Users/michelkerkmeester/worktrees/public/517-changelog-deep-loop-line"
-      savedAt: "2026-11-22T16:53:23Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/518-advisor-review-round-three"
+      savedAt: "2026-11-22T21:43:37Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -87,7 +91,15 @@ A fresh Fable 5.2 review at high effort on the `claude2` account read the adviso
 | `runtime/lib/metrics.ts`, `runtime/tests/legacy/advisor-observability.vitest.ts` | Modified | Second round: the dead alert-threshold reader and its test case removed |
 | `runtime/lib/scorer/executor-delegation.ts`, two feature-catalog pages | Modified | Second round: the floor comment and the catalog sentences match the code |
 | `evidence/opus-verification.md` | Created | The Opus verification report the second round answers |
-| `.skilled/skills/system-skill-advisor/SKILL.md`, `changelog/v2.0.1.0.md` | Modified, Created | Patch bump to 2.0.1.0 and its changelog entry, by operator decision |
+| `.skilled/skills/system-skill-advisor/SKILL.md`, `changelog/v2.0.1.0.md` | Modified, Created | Patch bump to 2.0.1.0 and its changelog entry, by operator decision. The third round is folded into the same entry, by operator decision |
+| `runtime/scripts/skill_advisor.py` | Modified | Third round: the bridge forwards every scorer setting, names the launcher-only keys and defaults doc triggers on, the threshold defaults read their settings, and the fallback carries the deep-loop offer gate |
+| `runtime/lib/command-attach.ts`, `runtime/lib/scorer/lanes/explicit.ts`, `runtime/lib/scorer/fusion.ts` | Modified | Third round: one iterative-ask pattern replaces the bare `iterations`, `iterative` and `iteratively` loop words in the gate and both scorer checks |
+| `runtime/lib/route-exclusions.ts`, `runtime/handlers/advisor-recommend.ts` | Modified | Third round: the list reloads when its file changes, and the prompt cache signature carries the file's stamp |
+| `runtime/tests/fixtures/deep-loop-offer-cases.json`, `runtime/tests/deep-loop-offer-cases.vitest.ts`, `runtime/tests/fixtures/README.md` | Created, Modified | Third round: offer cases both gate copies read |
+| `runtime/tests/scorer/deep-loop-ask-routing.vitest.ts`, `runtime/tests/route-exclusions.vitest.ts`, `runtime/tests/compat/shim.vitest.ts`, `runtime/tests/python/test_skill_advisor.py` | Modified | Third round: minimal-pair ranking, the reload case, the doc-trigger default in the bridge env, and five Python cases |
+| `runtime/scripts/routing-accuracy/command-prompts.jsonl`, `command-routing-baseline.json` | Modified | Third round: three near-miss rows and the recaptured baseline |
+| `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, the advisor's `feature-catalog/cli-surface/advisor-recommend.md` and its playbook page | Modified | Third round: four missing rows, the note on when an env change takes effect, and the gate sentences |
+| `evidence/opus-third-review.md` | Created | The third review and the session's checks of it |
 
 `runtime/` is `.skilled/skills/system-skill-advisor/runtime`. Outside git, the primary checkout's advisor `dist/` lost `lanes/semantic-shadow.js`, its map and the `embedders/` folder.
 <!-- /ANCHOR:what-built -->
@@ -116,6 +128,11 @@ The worktree was created with sk-git's naming script, its skill graph scanned, a
 | Second round: the fallback drops excluded skills twice, at the candidate loop and before it returns | Skipping at the loop mirrors the native `isDefaultRoutable` check. Executor delegation and the command-bridge rename can add a row after the loop, so a final drop catches them. The ROUTE-EXCL case fails when either step is removed |
 | Second round: delete the four alert-threshold keys rather than wire them | Nothing outside one test read them, so no alert was ever raised, and the operator chose deletion for this class of dead setting |
 | No guard test for every daemon-read setting | Both instances it would catch are fixed here, and the test would need its own exception list for settings each caller reads in its own process |
+| Third round: a guard between the launcher's list and the bridge's list, with a named launcher-only set | The bridge child scores in its own process, so its list has to follow the launcher's. The guard fails when a key is added to one list and not the other, which is how the second-round gap happened |
+| Third round: `iterative` asks for the loop only beside a review or research activity, as its manner, or as the work's unit | The bare word described the subject as often as the run. The first gate run showed one corpus prompt reaching the hub only through "per-iteration", so "looped investigation" joined the pattern and every corpus row's top-1 now matches main |
+| Third round: the Python fallback gets its own copy of the offer gate, checked against a shared fixture | The fallback runs where the compiled gate cannot, and Python's lookbehind needs fixed widths, so the patterns cannot be shared directly. The shared fixture fails whichever copy drifts |
+| Third round: a stat on every recommendation instead of a file watcher | The stat is cheap beside scoring, and it needs no new process or lifecycle |
+| Third round: finding 7 left alone | It does not reproduce on main. Every phrasing tried gets `/deep:review` |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -126,10 +143,11 @@ The worktree was created with sk-git's naming script, its skill graph scanned, a
 | Check | Result |
 |-------|--------|
 | Advisor typecheck and clean build | PASS, both exit 0 |
-| Advisor suite | PASS, 178 files. Round one: 2,450 passed and 4 skipped, the baseline totals, one case added and one removed. Round two: 2,449 passed and 4 skipped, one lower because the dead threshold case was removed |
-| Scorer-eval, divergence and holdout ratchets | PASS, 7 of 7, 9 of 9 and 6 of 6, with no baseline recapture |
+| Advisor suite | PASS, 178 files. Round one: 2,450 passed and 4 skipped, the baseline totals, one case added and one removed. Round two: 2,449 passed and 4 skipped, one lower because the dead threshold case was removed. Round three: baseline 2,532 passed and 4 skipped on the newer main, final 2,564 passed and 4 skipped, 180 files |
+| Scorer-eval, divergence and holdout ratchets | PASS, 7 of 7, 9 of 9 and 6 of 6, with no baseline recapture. In round three the first run failed 2 scorer-eval cases and 1 divergence case on corpus row `rr-iter3-170`, fixed by T036, and every labeled and ambiguity row's top-1 then matched main's |
+| Command routing baseline | Round three: recaptured for three near-miss rows. No existing row moved, false offers 0 of 48 |
 | Corpus ratchet | PASS, exit 0 at the same thresholds as the baseline |
-| Python advisor suite | PASS. Round one 123 of 123, the baseline. Round two 125 of 125 with ROUTE-EXCL and BRIDGE-ENV. ROUTE-EXCL failed with the loop skip removed, and again with only the final drop removed |
+| Python advisor suite | PASS. Round one 123 of 123, the baseline. Round two 125 of 125 with ROUTE-EXCL and BRIDGE-ENV. Round three 130 of 130 with BRIDGE-PARITY, BRIDGE-SCORER, THRESHOLD-ENV, DEEP-LOOP-GATE and DEEP-LOOP-FALLBACK. ROUTE-EXCL failed with the loop skip removed, and again with only the final drop removed |
 | Doctor contract suite | PASS, 21 of 21. The cleanup case failed with `--verbose` added to the apply command, and in round two with `remove` in place of `delete` in the YAML's answer values, and passed after each restore. Each apply run must also report no deleted, stopped or removed item on the clean fixture |
 | Doctor `run-all.sh` | PASS, 7 suites passed and 0 failed |
 | Residue repo mode, gate test and tool suite | PASS, 47 allowlisted and 0 live, the gate test passes, the tool suite 117 of 117 |
@@ -145,7 +163,9 @@ The worktree was created with sk-git's naming script, its skill graph scanned, a
 ## Known Limitations
 
 1. **An operator who set a removed setting gets no message.** The calibration override, `SPECKIT_ADVISOR_QUERY_CLASS_ROUTING`, `SPECKIT_ADVISOR_BM25_QUERY_LENGTH_CALIBRATION` and the four hook alert thresholds never changed behavior, so nothing differs for them. Remove them from the dotenv file by hand.
-2. **The advisor skill's version and changelog are unchanged.** This packet changes which settings reach the daemon. A release note for it is a separate step.
+2. **A running daemon keeps the env it started with.** Only the route-exclusion files are read again on the next prompt. `ENV-REFERENCE.md` now says so.
+3. **`iterative` beside `research` still matches the loop hub's own vocabulary.** "research iterative deepening search algorithms" ranks the hub first, with no run offered. No loop rule reads it; the derived lane's word overlap does.
+4. **The other session's deep-loop work shipped under 2.0.1.0.** Its changelog line and this round's fixes to it are folded into the same entry.
 <!-- /ANCHOR:limitations -->
 
 ---

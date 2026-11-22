@@ -26,6 +26,7 @@ import {
   isNoEditRequest,
   isStuckRunComplaint,
   isWritingAboutTopic,
+  ITERATIVE_ASK,
   LOOP_COUNT,
   MODE_CUES,
   MULTI_PASS,
@@ -88,9 +89,10 @@ const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|co
 const AUTHORS_CODE = /\b(?:add|build|create|implement|write)\b(?:(?!deep[- ]review)[^.?!]){0,60}?\b(?:helper|vitest|tests?)\b/;
 // The ways a check asks to be run as a loop: in passes, iteratively, or for a
 // counted number of iterations. A bare plural names earlier iterations as often
-// as it asks for more ("audit the first two iterations for drift"), so it is
-// left to the explicit lane's weaker loop rule.
-const PASSES_ASK = new RegExp(`\\b(?:iterative(?:ly)?|multi-pass)\\b|${MULTI_PASS.source}|${LOOP_COUNT.source}`);
+// as it asks for more ("audit the first two iterations for drift"), and a bare
+// `iterative` describes the subject as often as the run, so both count only
+// where the shared iterative-ask pattern reads them as the way the work runs.
+const PASSES_ASK = new RegExp(`\\bmulti-pass\\b|${ITERATIVE_ASK.source}|${MULTI_PASS.source}|${LOOP_COUNT.source}`);
 // Writing a changelog is sk-doc's changelog mode even when the prompt names a
 // packet or spec folder. That folder is only where the change history comes from.
 // The verb must govern the changelog itself: only articles and folder or scope

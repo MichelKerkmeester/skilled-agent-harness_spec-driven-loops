@@ -14,6 +14,7 @@ import { disabledRecommendOutput, emptyOutput, requestWorkspaceRoot } from '../l
 import { TRACKED_COMMANDS, attachCommand, commandRowFor, routeNeedsMode, typedCommandForTop } from '../lib/command-attach.js';
 import { advisorPromptCache } from '../lib/prompt-cache.js';
 import { extractMetalinguisticSkillMentions, stripLeadingPastedReply } from '../lib/prompt-policy.js';
+import { routeExclusionsStamp } from '../lib/route-exclusions.js';
 import {
   resolveAdvisorThresholdConfig,
 } from '../lib/skill-advisor-brief.js';
@@ -64,8 +65,11 @@ function emitCompiledRoutingBreadcrumb(message: string): void {
   }
 }
 
+// The exclusion list is read beside the graph, so an edit to it retires cached
+// answers the same way a graph rebuild does.
 function cacheSourceSignature(status: AdvisorStatus): string {
-  return `${status.freshness}:${status.generation}:${status.lastGenerationBump ?? 'never'}:${DEEP_ROUTING_PROJECTION_HASH}`;
+  return `${status.freshness}:${status.generation}:${status.lastGenerationBump ?? 'never'}:${DEEP_ROUTING_PROJECTION_HASH}`
+    + `:${routeExclusionsStamp()}`;
 }
 
 function recommendationLabels(output: AdvisorRecommendOutput): string[] {

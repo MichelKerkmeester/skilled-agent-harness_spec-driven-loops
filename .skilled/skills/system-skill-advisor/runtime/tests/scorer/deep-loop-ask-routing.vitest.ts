@@ -89,6 +89,22 @@ describe('deep-loop ask routing', () => {
     expect(passingSkills(prompt)[0]).toBe('system-deep-loop');
   });
 
+  // `iterative` that describes the subject must rank exactly as a word that
+  // carries no loop meaning, so each prompt is scored beside its twin. Beside
+  // `research` the word still matches the hub's own vocabulary, which no loop
+  // rule reads, so that pairing is held to the offer gate's fixture instead.
+  it.each([
+    ['review the code for the iterative solver', 'review the code for the recursive solver'],
+    ['review the diff, it makes the parser iterative', 'review the diff, it makes the parser recursive'],
+  ])('ranks a subject called iterative like its twin: %s', (iterativePrompt, twinPrompt) => {
+    expect(passingSkills(iterativePrompt)[0]).toBe(passingSkills(twinPrompt)[0]);
+    expect(passingSkills(iterativePrompt)[0]).not.toBe('system-deep-loop');
+  });
+
+  it('keeps the hub first for a review asked for iteratively', () => {
+    expect(passingSkills('audit the auth module iteratively')[0]).toBe('system-deep-loop');
+  });
+
   it('keeps a careful single-pass review on the code skill', () => {
     expect(passingSkills('review the lexer carefully')[0]).toBe('sk-code');
   });

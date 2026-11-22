@@ -1,0 +1,33 @@
+{
+  "$comment": "Shared deep-loop offer cases. Read by the TypeScript offer-gate test and the Python advisor test, so the native gate and the Python fallback agree on which prompts ask for a loop run, which complain about a stuck run and which write about the loop. asksForLoopRun is the full gate, after the past-run, stuck-run, write-about and question exceptions.",
+  "schema_version": 1,
+  "cases": [
+    { "id": "iterative-solver", "prompt": "review the code for the iterative solver", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "recursive-solver", "prompt": "review the code for the recursive solver", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "iterative-deepening", "prompt": "research iterative deepening search algorithms", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "parser-made-iterative", "prompt": "review the diff, it makes the parser iterative", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "convert-to-iterative", "prompt": "convert this recursive function to an iterative one and review it", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "past-iterations-plan", "prompt": "review the last three iterations of the migration plan", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "first-two-iterations", "prompt": "audit the first two iterations for drift", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "iterative-review", "prompt": "run an iterative review of the scheduler", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "looped-investigation", "prompt": "start a looped investigation into the cache misses", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "audit-iteratively", "prompt": "audit the auth module iteratively", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "iteratively-research", "prompt": "iteratively research how vector indexes compact", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "several-iterations", "prompt": "research this in several iterations", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "multiple-iterations", "prompt": "review it over multiple iterations", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "counted-deep-research", "prompt": "run 5 iterations of deep research on vector indexes", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "one-more-iteration", "prompt": "do one more iteration of the review", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "defects-iteratively", "prompt": "inspect the worker for defects iteratively", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "several-passes", "prompt": "review the scheduler in several passes", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "funding-rounds", "prompt": "research the three funding rounds of the startup", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "depth-only", "prompt": "do a thorough review of the parser", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "stuck-run", "prompt": "my deep research run is stuck and never converges", "asksForLoopRun": false, "stuckRun": true, "writingAbout": false },
+    { "id": "write-about-loop", "prompt": "write a blog post about how deep research loops work", "asksForLoopRun": false, "stuckRun": false, "writingAbout": true },
+    { "id": "past-run-read", "prompt": "summarize the last deep review report", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "loop-question", "prompt": "how does the deep review decide it has converged", "asksForLoopRun": false, "stuckRun": false, "writingAbout": false },
+    { "id": "named-deep-research", "prompt": "deep research: how do vector databases handle hybrid search", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "start-review-loop", "prompt": "start a review loop on the payments service", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "want-research-loop", "prompt": "i'd like a research loop on cache eviction policies", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false },
+    { "id": "two-pass", "prompt": "do a two-pass audit of the release notes", "asksForLoopRun": true, "stuckRun": false, "writingAbout": false }
+  ]
+}

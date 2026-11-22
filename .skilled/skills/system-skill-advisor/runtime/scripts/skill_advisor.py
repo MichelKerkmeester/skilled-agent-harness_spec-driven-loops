@@ -236,6 +236,34 @@ NATIVE_BRIDGE_ENV_ALLOWLIST = {
     # falls back to the packaged defaults and ignores the operator's setting.
     "SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH",
     "SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR",
+    # The bridge child scores in its own process, so every scorer setting the
+    # launcher hands the daemon has to reach it too, or the fallback answer
+    # quietly differs from the daemon's.
+    "SPECKIT_ADVISOR_LANE_WEIGHTS_JSON",
+    "SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON",
+    "SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW",
+    "SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW",
+    "SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED",
+    "SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD",
+    "SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD",
+    "SPECKIT_ADVISOR_DOC_TRIGGERS",
+    "SPECKIT_COMPILED_ROUTING",
+    "SPECKIT_PRIVATE_SKILL_ROOTS",
+}
+# Keys the launcher forwards that only the launcher or the long-lived daemon
+# reads. The bridge child is neither, so it leaves them out.
+LAUNCHER_ONLY_ENV_KEYS = {
+    "SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT",
+    "SPECKIT_CODEX_HOOK_TIMEOUT_MS",
+    "SPECKIT_IPC_SOCKET_DIR",
+    "SPECKIT_LAUNCHER_BRIDGE_DISABLED",
+    "SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN",
+    "SPECKIT_MAX_SECONDARY_CLIENTS",
+}
+# The repository opts into doc-frontmatter triggers in the launcher, so the bridge
+# child gets the same default when the environment says nothing.
+NATIVE_BRIDGE_ENV_DEFAULTS = {
+    "SPECKIT_ADVISOR_DOC_TRIGGERS": "true",
 }
 _RUNTIME_SPEC = None
 _runtime_module = None
@@ -667,11 +695,14 @@ def _native_bridge_available() -> bool:
 def _native_bridge_env(source_env: Optional[Dict[str, str]] = None) -> Dict[str, str]:
     """Return the explicit environment passed to the Node native bridge."""
     source = source_env if source_env is not None else dict(os.environ)
-    return {
+    env = {
         key: value
         for key, value in source.items()
         if key in NATIVE_BRIDGE_ENV_ALLOWLIST and isinstance(value, str)
     }
+    for key, value in NATIVE_BRIDGE_ENV_DEFAULTS.items():
+        env.setdefault(key, value)
+    return env
 
 
 def _sanitize_native_label(value: Any) -> Optional[str]:
@@ -2295,8 +2326,30 @@ PHRASE_INTENT_BOOSTERS = {
     "hierarchy and spacing": [("sk-design", 1.8)],
 }
 
-DEFAULT_CONFIDENCE_THRESHOLD = NATIVE_DEFAULT_CONFIDENCE_THRESHOLD
-DEFAULT_UNCERTAINTY_THRESHOLD = NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
+
+
+def _resolved_threshold(env_key: str, default: float) -> float:
+    """Read a threshold setting the way the native contract does.
+
+    A value inside 0 to 1 wins, and anything else keeps the default, so a typo can
+    never route every prompt or none.
+    """
+    raw = os.environ.get(env_key)
+    if raw is None:
+        return default
+    try:
+        value = float(raw)
+    except ValueError:
+        return default
+    return value if 0 <= value <= 1 else default
+
+
+DEFAULT_CONFIDENCE_THRESHOLD = _resolved_threshold(
+    "SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD", NATIVE_DEFAULT_CONFIDENCE_THRESHOLD
+)
+DEFAULT_UNCERTAINTY_THRESHOLD = _resolved_threshold(
+    "SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD", NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
+)
 
 # BEGIN GENERATED COMMAND BRIDGES
 GENERATED_COMMAND_BRIDGES = {
@@ -4082,11 +4135,11 @@ _WORKFLOW_OWNER_EVIDENCE_SUFFIXES = ("(signal)", "(phrase)", "(keyword)", "(expl
 # A loop word beside "research" or "review" asks for the deep-loop workflow; the
 # same research-loop and review-loop checks the native explicit lane runs.
 _RESEARCH_LOOP_RE = re.compile(
-    r"\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b"
+    r"\b(continue|resume|launch|kick off|overnight|convergence|multi-pass|loop)\b"
 )
 _REVIEW_LOOP_RE = re.compile(
     r"\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b"
-    r"|\b(convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b"
+    r"|\b(convergence|multi-pass|loop)\b"
 )
 # The native scorer floors a skill with that explicit evidence at this
 # confidence, so a loop request lifts the deep-loop owner to the same value. Its
@@ -4407,12 +4460,184 @@ def _executor_lift_id(executor_id: str) -> str:
         return "cli-external-orchestration"
     return executor_id
 
+# ───────────────────────────────────────────────────────────────
+# DEEP-LOOP OFFER GATE
+# ───────────────────────────────────────────────────────────────
+# A deep-loop run is long and costly, so the native gate in
+# runtime/lib/command-attach.ts offers one only when the prompt asks for the loop
+# itself. The fallback keeps its own copy of that gate, because it runs where the
+# compiled one cannot. Both copies are checked against
+# tests/fixtures/deep-loop-offer-cases.json, so a case that passes in one suite
+# and fails in the other means the copies drifted. Python's lookbehind takes only
+# fixed widths, so the native alternation of back-references is spelled as one
+# lookbehind per word.
+
+_LOOP_PASS_GAP = r"(?:(?:more|extra|additional|full|deep|review|research|audit|iterative) ){0,2}"
+_LOOP_PASS_NOUN = (
+    r"(?:rounds|passes)\b(?! of (?!(?:review|research|audit|investigation|the|it|this|that|these|those|my|our)\b)[a-z])"
+)
+_LOOP_MULTI_PASS = r"\b(?:multiple|several|(?<!\bhow )many) " + _LOOP_PASS_GAP + _LOOP_PASS_NOUN
+_LOOP_COUNT_WORDS = (
+    "".join(
+        rf"(?<!\b{word} )"
+        for word in ("first", "last", "previous", "past", "prior", "earlier", "those", "these", "the", "both")
+    )
+    + r"(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen"
+    + r"|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|(?:a )?dozen)"
+)
+_LOOP_COUNT = (
+    r"\b(?:\d+|one|" + _LOOP_COUNT_WORDS + r")[- ](?:[a-z-]+ ){0,2}?iterations?\b"
+    + r"|\b(?:[2-9]|\d{2,}|" + _LOOP_COUNT_WORDS + r")(?:-(?:rounds?|pass(?:es)?)\b| "
+    + _LOOP_PASS_GAP + _LOOP_PASS_NOUN + ")"
+)
+_ITERATIVE_ACTIVITY = r"(?:deep[- ])?(?:review|research|audit|investigation|analysis|inspection|check|pass(?:es)?|rounds?|loop)"
+_ITERATIVE_VERB = r"(?:review|research|audit|investigate|inspect|check|scan|examine|analy[sz]e|look into|go over)"
+_ITERATIVE_ASK = (
+    r"\b(?:iterative|looped) " + _ITERATIVE_ACTIVITY + r"\b"
+    + r"|\biteratively " + _ITERATIVE_VERB + r"\b"
+    + r"|\b" + _ITERATIVE_VERB + r"\b(?: [\w./'-]+){0,6}? iteratively\b"
+    + r"|\b(?:in|over|through) (?:(?:several|multiple|many|a few|successive|repeated) )?iterations\b"
+    + r"|\b(?:several|multiple|(?<!\bhow )many|a few|successive|repeated|more) iterations\b"
+)
+# Iterative wording, a counted iteration or round, or more than one pass: the
+# ways a prompt asks for the loop by how the work runs rather than by its name.
+_LOOP_PASSES_ASK_RE = re.compile(_ITERATIVE_ASK + r"|" + _LOOP_MULTI_PASS + r"|" + _LOOP_COUNT)
+_LOOP_USE_VERB = r"(?:run|start|use|invoke|launch|execute|call|trigger|open|rerun|re-run|kick off)"
+_LOOP_NAME = r"(?:deep loop|research loop|review loop)"
+_LOOP_WANT_LEAD = r"(?:i'd like|i would like|we'd like|we would like|i want|we want|i need|we need|give me|set up|spin up)"
+_LOOP_REQUEST_RE = re.compile(
+    r"\b(?:deep research|deep review|multi-pass"
+    + r"|" + _LOOP_USE_VERB + r" (?:[a-z0-9'-]+ ){0,3}" + _LOOP_NAME
+    + r"|" + _LOOP_WANT_LEAD + r" (?:an?|another) (?:[a-z0-9'-]+ ){0,2}?" + _LOOP_NAME + r")\b"
+    + r"|" + _ITERATIVE_ASK + r"|" + _LOOP_MULTI_PASS + r"|" + _LOOP_COUNT
+)
+_LOOP_RUN_SUBJECT_RE = re.compile(
+    r"\b(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run)"
+    r"|(?:research|review|audit)(?: (?:loop|run))? (?:i|we) (?:just )?(?:started|launched|kicked off|ran|began|set off|set up)"
+    r"|coverage graph|convergence)\b"
+)
+_LOOP_RUN_SYMPTOM_RE = re.compile(
+    r"\b(?:stuck|hangs?|hanging|hung|frozen|stalled|stalls|spins|spinning(?! up)"
+    r"|never (?:converges?|finishes|stops|ends|fires)"
+    r"|(?:not|isn't|is not|won't|will not|doesn't|does not|didn't|did not|can't|cannot|without) (?:converg\w*|finish\w*|progress\w*|mov\w*|fir\w*)"
+    r"|stopped (?:converg\w*|progress\w*|moving)|keeps? (?:running|repeating|looping)|stale|empty"
+    r"|(?:hasn't|has not|haven't|have not) (?:moved|changed|converged|progressed)|no progress)\b"
+)
+_LOOP_RUN_REQUESTED_RE = re.compile(
+    r"\b(?:run|start|use|launch|kick off|do|rerun|re-run) (?:[a-z0-9'-]+ ){0,2}"
+    r"(?:deep[- ](?:research|review|loop)|(?:research|review|audit) (?:loop|run))\b"
+)
+_PAST_RUN_READ_VERB_RE = re.compile(
+    r"\b(?:summari[sz]e|summary|recap|explain|read|tell me|walk me through|go through|what did|show me|pull out|extract)\b"
+)
+_PAST_RUN_OUTPUT_RE = re.compile(
+    r"\b(?:last|previous|prior|earlier|yesterday's|finished|completed) (?:[\w'-]+ ){0,2}?(?:deep[- ])?(?:research|review|loop|run)\b"
+    r"|\b(?:research|review(?:-report)?)\.md\b|\b(?:research|review) report\b"
+    r"|\bdeep[- ](?:research|review) (?:output|report|results|findings|produced|concluded|found|wrote)\b"
+)
+_RUN_CONTINUED_RE = re.compile(r"\b(?:continue|resume|extend|rerun|re-run|more iterations?|\d+ more)\b")
+_WRITING_ABOUT_TOPIC_RE = re.compile(
+    r"\b(?:write|draft|compose|author|prepare|publish|outline)\b (?:[\w'-]+ ){0,3}?"
+    r"(?:blog(?: post)?|article|essay|newsletter(?: section| issue)?|tweet(?: thread)?|thread|post|talk|presentation"
+    r"|slides?|deck|tutorial|op-ed|piece|whitepaper|white paper|primer|explainer)s?\b (?:[\w'-]+ ){0,3}?"
+    r"(?:about|on|explaining|covering|describing|introducing|why|how)\b"
+)
+_LOOP_SUBJECT = r"(?:[\w'-]+ ){0,2}?(?:deep[- ](?:research|review|loop)|(?:research|review) loop)\b"
+_LOOP_QUESTION_RE = re.compile(
+    r"\b(?:how|why|when|what) (?:does|do|is|are|did|makes) " + _LOOP_SUBJECT
+    + r"|\b(?:explain|describe) (?:how|what|why|when) " + _LOOP_SUBJECT
+)
+_LOOP_DIGIT_COUNT_RE = re.compile(r"\b\d+ (?:[a-z-]+ ){0,2}iterations?\b")
+_TYPED_DEEP_COMMAND_RE = re.compile(r"(?<![\w/])/deep:(research|review)\b")
+_DEEP_LOOP_RUN_ROWS = {
+    "command-spec-kit-deep-research": "/deep:research",
+    "command-spec-kit-deep-review": "/deep:review",
+}
+
+
+def _fold_quotes(text: str) -> str:
+    return text.lower().replace("‘", "'").replace("’", "'")
+
+
+def is_stuck_run_complaint(text: str) -> bool:
+    """True when the prompt reports a fault in an existing deep run."""
+    lower = _fold_quotes(text)
+    return bool(
+        _LOOP_RUN_SUBJECT_RE.search(lower)
+        and _LOOP_RUN_SYMPTOM_RE.search(lower)
+        and not _LOOP_RUN_REQUESTED_RE.search(lower)
+    )
+
+
+def is_past_run_read(text: str) -> bool:
+    """True when the prompt wants a finished run's output read, not a new run."""
+    lower = _fold_quotes(text)
+    return bool(
+        _PAST_RUN_READ_VERB_RE.search(lower)
+        and _PAST_RUN_OUTPUT_RE.search(lower)
+        and not _RUN_CONTINUED_RE.search(lower)
+    )
+
+
+def is_writing_about_topic(text: str) -> bool:
+    """True when the prompt asks for a piece written about the loop."""
+    return bool(_WRITING_ABOUT_TOPIC_RE.search(text.lower()))
+
+
+def _is_loop_question(lower: str) -> bool:
+    return bool(
+        _LOOP_QUESTION_RE.search(lower)
+        and not _LOOP_RUN_REQUESTED_RE.search(lower)
+        and not _LOOP_DIGIT_COUNT_RE.search(lower)
+    )
+
+
+def asks_for_loop_run(prompt: str) -> bool:
+    """True when the prompt asks for a deep-loop run itself."""
+    lower = prompt.lower()
+    return bool(
+        _LOOP_REQUEST_RE.search(lower)
+        and not is_past_run_read(lower)
+        and not is_stuck_run_complaint(lower)
+        and not is_writing_about_topic(lower)
+        and not _is_loop_question(lower)
+    )
+
+
+def _apply_deep_loop_offer_gate(ranked: List[Dict[str, Any]], prompt_lower: str) -> List[Dict[str, Any]]:
+    """Drop deep-loop run rows the prompt never asks for, as the native gate does.
+
+    A typed command asks for that command whatever else the prompt says. A piece
+    written about the loop holds the hub back too, because the hub's aliases are
+    the topic's own words.
+    """
+    typed_match = _TYPED_DEEP_COMMAND_RE.search(prompt_lower)
+    typed = f"/deep:{typed_match.group(1)}" if typed_match else None
+    run_asked = asks_for_loop_run(prompt_lower)
+    stuck = is_stuck_run_complaint(prompt_lower)
+    writing_about = typed is None and is_writing_about_topic(prompt_lower)
+    gated: List[Dict[str, Any]] = []
+    for rec in ranked:
+        skill = rec.get("skill")
+        command = _DEEP_LOOP_RUN_ROWS.get(skill)
+        if command is not None and command != typed and (stuck or not run_asked):
+            continue
+        if writing_about and skill == "system-deep-loop":
+            continue
+        gated.append(rec)
+    return gated
+
 
 def _is_loop_workflow_request(prompt_lower: str) -> bool:
-    """True when a loop word sits beside "research" or "review"."""
-    if _RESEARCH_LOOP_RE.search(prompt_lower) and re.search(r"\bresearch\b", prompt_lower):
+    """True when a loop word sits beside "research" or "review".
+
+    `iterative` and an uncounted `iterations` also describe a subject, as in "the
+    iterative solver", so they count only through the pattern the offer gate reads.
+    """
+    loop_word = _LOOP_PASSES_ASK_RE.search(prompt_lower)
+    if (loop_word or _RESEARCH_LOOP_RE.search(prompt_lower)) and re.search(r"\bresearch\b", prompt_lower):
         return True
-    return bool(_REVIEW_LOOP_RE.search(prompt_lower) and re.search(r"\breview\b", prompt_lower))
+    return bool((loop_word or _REVIEW_LOOP_RE.search(prompt_lower)) and re.search(r"\breview\b", prompt_lower))
 
 
 def _apply_workflow_owner_guard(
@@ -5139,6 +5364,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # candidate loop skipped, so the exclusion is applied once more at the end.
     if excluded_skill_ids:
         ranked = [rec for rec in ranked if rec.get("skill") not in excluded_skill_ids]
+    ranked = _apply_deep_loop_offer_gate(ranked, prompt_lower)
 
     # Internal sort metadata should not leak in advisor output.
     for rec in ranked:
