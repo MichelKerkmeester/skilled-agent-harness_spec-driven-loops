@@ -6,7 +6,7 @@ trigger_phrases:
   - "bladebro code mode manual"
 importance_tier: normal
 contextType: reference
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Bladebro MCP Wiring
@@ -64,7 +64,7 @@ The manual launches the installed binary. Without a global install, an MCP clien
 
 ## 3. DISCOVERY BEFORE INVOCATION
 
-No callable name for this manual has been observed on this host. Do not assume one.
+The live macOS run on 2026-11-21 observed `bladebro.bladebro_{act,see,state,run,vision}` through Code Mode, and the call had to be synchronous (`return bladebro.bladebro_see({...})`); see `benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/`. Names can change with the installed version, so confirm them each session.
 
 1. Start a Code Mode session that loaded the `bladebro` manual.
 2. Run `list_tools()` or `search_tools("bladebro")`, then `tool_info()` on the match.

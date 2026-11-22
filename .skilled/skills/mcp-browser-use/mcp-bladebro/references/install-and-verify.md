@@ -6,12 +6,12 @@ trigger_phrases:
   - "bladebro doctor"
 importance_tier: normal
 contextType: reference
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Bladebro Install and Verify
 
-What to run, in order, once the operator says yes to an install. Every step is upstream documentation pinned to v4.8.2 and read 2026-11-21. None of it has run on this host.
+What to run, in order, once the operator says yes to an install. Every step is upstream documentation pinned to v4.8.2 and read 2026-11-21. The steps ran live on macOS arm64 on 2026-11-21; the results are in `benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/`.
 
 ---
 
@@ -76,7 +76,7 @@ Re-verify every flag against the installed binary (`bladebro help --json`) befor
 | 14 | `bladebro rb off`, then `bladebro stop` | Returns to the agent browser and stops the daemon |
 | Rollback | `npm uninstall -g bladebro` | Remove the data root `bladebro doctor` reported only after confirming no needed named sessions remain |
 
-Updating is also an operator decision: `npm update -g bladebro` for npm installs, `bladebro -u` for the standalone binary, with `bladebro --rollback` to restore the previous standalone binary.
+Updating is also an operator decision: `npm update -g bladebro` for npm installs, `bladebro -u` for the standalone binary, with `bladebro --rollback` to restore the previous standalone binary. An update replaces the version this packet pins, so treat it as a new install under R-SEC-3: record the new version, re-run the section 3 sidecar digest check against that release's sidecar, and re-verify flags with `bladebro help --json` before relying on it.
 
 ---
 

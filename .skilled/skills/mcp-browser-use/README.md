@@ -5,7 +5,7 @@ trigger_phrases:
   - "mcp-browser-use"
   - "browser use hub"
   - "chrome devtools aside bladebro"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # mcp-browser-use
@@ -55,6 +55,7 @@ The tie-break order is Chrome DevTools, then Aside, then Bladebro. It settles ov
 | [`hub-router.json`](./hub-router.json) | Stage-one signals, vocabulary and tie-break order | See how a request scores against each mode |
 | [`ROUTER.md`](./ROUTER.md) | Stage-two intent and resource maps | See which leaves a selected mode loads |
 | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves | Find the reference and asset files a mode loads |
+| [`leaf-scopes.json`](./leaf-scopes.json) | The folders and files each mode may route to, beyond its defaults | See why the Lighthouse catalog leaf is routable for Chrome DevTools |
 
 The manifest regenerates when packets change, so read it as a snapshot.
 

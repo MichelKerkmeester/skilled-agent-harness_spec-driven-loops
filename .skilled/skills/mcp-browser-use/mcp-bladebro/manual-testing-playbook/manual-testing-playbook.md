@@ -1,7 +1,7 @@
 ---
 title: "mcp-bladebro: Manual Testing Playbook"
 description: "Operator playbook for the mcp-bladebro mode: install and pin checks, the MCP and Code Mode lane, the agent-browser probe, the real-browser probe and teardown, following the 14-step macOS plan."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-bladebro: Manual Testing Playbook
@@ -283,7 +283,7 @@ Remove the global package and the data root.
 #### Scenario Contract
 Prompt summary: Uninstall Bladebro and remove its data folder.
 
-Expected signals: npm exits 0, the data root is gone and step 3 prints `absent`
+Expected signals: the doctor prints the data root, the operator confirms no needed named session remains in it, npm exits 0, step 5 prints `absent` and step 6 prints `root absent`
 
 #### Test Execution
 > **Feature File:** [BB-014](teardown/uninstall-and-data-root.md)

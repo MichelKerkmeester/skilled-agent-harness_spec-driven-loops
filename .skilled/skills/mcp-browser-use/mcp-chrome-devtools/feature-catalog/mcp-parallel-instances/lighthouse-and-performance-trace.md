@@ -5,7 +5,7 @@ trigger_phrases:
   - "lighthouse audit"
   - "performance trace"
   - "core web vitals"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Lighthouse and Performance Trace (MCP)
@@ -44,7 +44,7 @@ Call the tools through `call_tool_chain()` with the manual namespace, for exampl
 
 | File | Type | Role |
 |------|------|------|
-| `manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Code Mode scenarios for the MCP lane |
+| `../manual-testing-playbook/hub-routing/lighthouse-performance-audit.md` | Manual playbook | Routing only: MT-013 proves a Lighthouse request reaches this mode. No scenario runs the audit or a trace yet |
 
 ---
 
