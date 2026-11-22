@@ -6,7 +6,7 @@ trigger_phrases:
   - "scorer projection"
   - "skill_nodes skill_edges"
   - "graph projection"
-version: 0.8.0.16
+version: 0.8.1.0
 id: SC-002
 category: scorer_fusion
 stage: routing
@@ -87,7 +87,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "run a deep revie
 
 ## 4. SOURCE FILES
 
-- Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md), fusion weights.
+- Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/lane-fusion.md), fusion weights.
 - Scenario [NC-003](../../manual-testing-playbook/native-cli-tools/native-validate-slices.md), validate slices.
 - Feature [`scorer-fusion/projection.md`](../../feature-catalog/scorer-fusion/projection.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts`.

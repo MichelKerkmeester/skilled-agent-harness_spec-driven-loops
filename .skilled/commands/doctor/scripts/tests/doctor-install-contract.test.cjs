@@ -85,12 +85,6 @@ const CHECKLIST_STEPS = [
     mutating: 'read-only',
   },
   {
-    command: '/doctor:skill-advisor embedder',
-    owner: '/doctor:skill-advisor',
-    target: 'embedder',
-    mutating: 'mutates',
-  },
-  {
     command: '/doctor:setup',
     owner: '/doctor:setup',
     target: 'setup',

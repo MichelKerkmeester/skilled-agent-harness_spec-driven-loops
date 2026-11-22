@@ -426,9 +426,9 @@ specs/**/context/
 # owner that no longer exists.
 .canonical-save.lock/
 
-# The HF model server's default state directory under the spec-kit runtime. It
-# holds sockets, leases and logs for a machine-local process, so it is state
-# rather than history.
+# The spec-kit runtime's default state directory, where the engine writes its
+# access-telemetry store. It holds machine-local state, so it is state rather
+# than history.
 .opencode/skills/system-spec-kit/runtime/database/
 .skilled/skills/system-spec-kit/runtime/database/
 

@@ -33,7 +33,6 @@ from typing import Any, Dict, List
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 ADVISOR_PATH = os.path.join(SCRIPT_DIR, "skill_advisor.py")
-BENCH_ENV_FLAG = "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC"
 
 
 # ───────────────────────────────────────────────────────────────
@@ -106,7 +105,6 @@ def benchmark_subprocess(prompts: List[str], runs: int, threshold: float, uncert
     latencies: List[float] = []
     total_prompts = 0
     run_env = os.environ.copy()
-    run_env[BENCH_ENV_FLAG] = "1"
     t0 = time.perf_counter()
     for _ in range(runs):
         for prompt in prompts:
@@ -139,30 +137,22 @@ def benchmark_subprocess(prompts: List[str], runs: int, threshold: float, uncert
 
 def benchmark_inprocess(prompts: List[str], runs: int, threshold: float, uncertainty: float) -> Dict[str, Any]:
     """Benchmark warm in-process advisor calls after module load."""
-    original_semantic = os.environ.get(BENCH_ENV_FLAG)
-    os.environ[BENCH_ENV_FLAG] = "1"
     advisor = load_advisor_module()
     latencies: List[float] = []
     total_prompts = 0
     t0 = time.perf_counter()
-    try:
-        for _ in range(runs):
-            for prompt in prompts:
-                start = time.perf_counter()
-                advisor.analyze_prompt(
-                    prompt=prompt,
-                    confidence_threshold=threshold,
-                    uncertainty_threshold=uncertainty,
-                    confidence_only=False,
-                    show_rejections=False,
-                )
-                latencies.append((time.perf_counter() - start) * 1000)
-                total_prompts += 1
-    finally:
-        if original_semantic is None:
-            os.environ.pop(BENCH_ENV_FLAG, None)
-        else:
-            os.environ[BENCH_ENV_FLAG] = original_semantic
+    for _ in range(runs):
+        for prompt in prompts:
+            start = time.perf_counter()
+            advisor.analyze_prompt(
+                prompt=prompt,
+                confidence_threshold=threshold,
+                uncertainty_threshold=uncertainty,
+                confidence_only=False,
+                show_rejections=False,
+            )
+            latencies.append((time.perf_counter() - start) * 1000)
+            total_prompts += 1
     elapsed = time.perf_counter() - t0
     summary = summarize(latencies)
     summary["runtime_mode"] = "python_inprocess"
@@ -176,7 +166,6 @@ def benchmark_batch_mode(prompts: List[str], runs: int, threshold: float, uncert
     batch_latencies: List[float] = []
     total_prompts = 0
     run_env = os.environ.copy()
-    run_env[BENCH_ENV_FLAG] = "1"
     with tempfile.NamedTemporaryFile("w", encoding="utf-8", delete=False) as handle:
         for prompt in prompts:
             handle.write(prompt)

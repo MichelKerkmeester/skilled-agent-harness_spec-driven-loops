@@ -63,7 +63,8 @@ The benchmark folders now hold a verdict for every Chrome DevTools scenario and 
 | `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml` | Modified | Guard row for both scripts |
 | `.skilled/changelog/mcp-browser-use/*` | Created | Four changelog links |
 | `.skilled/changelog/mcp-tooling/mcp-{chrome,aside}-devtools` | Deleted | Dangling links to the old paths |
-| Five `changelog/v*.md` entries, their `SKILL.md` versions and the hub JSON versions | Created, Modified | Entries for what shipped |
+| Four new `changelog/v*.md` entries, their `SKILL.md` versions and the hub JSON versions | Created, Modified | Entries for what shipped |
+| `system-skill-advisor/changelog/v2.0.0.0.md` | Modified | The scorer fix, folded into the release that already contains its code |
 | `.skilled/changelog/skilled/v4.2.0.0.md` | Modified | Name the two moved modes among the components with entries |
 | `mcp-{chrome,aside}-devtools/benchmark/reports/2026-11-22--*` and index READMEs | Created, Modified | Five new reports |
 | Hub `leaf-manifest.json` and the activation manifest pair | Modified | Regenerated and re-minted |
@@ -88,6 +89,7 @@ The scripts were tested on their safe paths only: `--help`, a bad option and the
 | Model the guide on Aside's, not `install-template.md` | That template covers a repository-root INSTALL.md, and Aside's guide validates as `install_guide` |
 | Find the install through `npm root -g` in `install.sh` | A PATH miss after `npm install -g` must not look like a broken install and trigger a removal |
 | Leave `shared/` empty | The redaction and discovery texts differ per mode, and the general discovery steps belong to `mcp-code-mode` |
+| Fold the advisor scorer fix into its v2.0.0.0 entry | The operator chose it on 2026-11-22: main reached advisor 2.0.0.0 before this merge, and that release already contains the fix code |
 | Reverse 004's "No `scripts/`" decision here | 004 left scripts out only for want of a manifest row, which this phase adds |
 <!-- /ANCHOR:decisions -->
 
@@ -102,7 +104,7 @@ The scripts were tested on their safe paths only: `--help`, a bad option and the
 | Mutation-class guard and its tests | PASS, 23 scripts, 51 of 51 tests |
 | `scripts/doctor.sh` live | PASS, exit 0, five tools, no leftover process |
 | Changelog coverage | PASS, 58 of 58, no dangling link |
-| `check_changelog_shape.py` on six entries | PASS, exit 0 |
+| `check_changelog_shape.py` on the four entries, advisor v2.0.0.0 and `skilled/v4.2.0.0.md` | PASS, exit 0 |
 | `parent-skill-check.cjs .skilled/skills/mcp-browser-use` | PASS, `OK`, 0 warnings |
 | `compiled-route-guard.cjs` | PASS after one re-mint, `mcp-browser-use fresh` |
 | `compiled-route-sync.cjs --check` | FAIL, one served file differs, `007-sk-doc/lib/registry-compiler.cjs`. The untouched primary checkout at the same commit fails identically |

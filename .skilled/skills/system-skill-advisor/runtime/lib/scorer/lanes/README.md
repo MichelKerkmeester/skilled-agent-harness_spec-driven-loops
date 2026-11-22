@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path and 
 
 | Metric | Value |
 |---|---:|
-| Code files | 6 |
+| Code files | 5 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -71,7 +71,6 @@ Load this folder through the owning skill workflow and run the package test comm
 | `explicit.ts` | TS source file in this folder. |
 | `graph-causal.ts` | TS source file in this folder. |
 | `lexical.ts` | TS source file in this folder. |
-| `semantic-shadow.ts` | TS source file in this folder. |
 
 ---
 

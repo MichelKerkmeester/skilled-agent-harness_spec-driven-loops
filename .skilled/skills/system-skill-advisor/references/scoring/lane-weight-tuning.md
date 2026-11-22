@@ -5,10 +5,10 @@ trigger_phrases:
   - "lane weight tuning"
   - "scorer weight change"
   - "advisor weight calibration"
-  - "lane weight sweep"
+  - "lane ablation"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.3.0
+version: 0.8.5.0
 ---
 
 # Lane Weight Tuning Guide
@@ -55,7 +55,6 @@ Do not tune weights for these reasons:
 
 - "It feels low for lane X." Without measured evidence, intuition mispredicts the cross-skill impact.
 - "We just added this skill." Single-skill tuning belongs in the explicit_author lane's curated boosts (`runtime/lib/scorer/lanes/explicit.ts`), not in global lane weights.
-- "The semantic lane scored higher than expected." The semantic_shadow lane is live in the registry but its default live weight is 0. It adds nothing to the live ranking until an operator raises the weight, while its shadow weight remains 0.05. Re-weight it only with measured evidence. Adjust the shadow weight separately when tuning shadow mode rather than the live ranking.
 
 ---
 
@@ -72,18 +71,13 @@ node .skilled/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --
 
 Save the response. Key fields to retain: `overallAccuracy`, `slices.corpus.full_corpus_top1`, `slices.corpus.unknown_count`, `slices.holdout.holdout_top1`, `slices.parity`, `slices.safety`, `slices.latency.regression_suite_status`, `telemetry`, `perSkill[]`.
 
-**Step 2: Run the lane-weight sweep.**
+**Step 2: Run the lane ablation.**
 
-```bash
-npx vitest run --config .skilled/skills/system-skill-advisor/runtime/vitest.config.ts \
-  .skilled/skills/system-skill-advisor/runtime/tests/scorer/lane-weight-sweep.vitest.ts
-```
-
-This harness exercises each lane weight individually across a small grid plus reports which weight permutations move accuracy. It is the canonical input for any weight change proposal.
+Follow the ablation scenario in `manual-testing-playbook/scorer-fusion/ablation.md`. It calls `runLaneAblation` from `runtime/lib/scorer/ablation.ts`, which scores the corpus once per lane with that lane disabled and reports each lane's accuracy delta. Use those deltas as the input for any weight change proposal.
 
 **Step 3: Make the change.**
 
-Edit `runtime/lib/scorer/lane-registry.ts:8-19` (live and shadow weights per lane) or `lane-registry.ts:44-46` (`DEFAULT_SHADOW_WEIGHTS`). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`.
+Edit `runtime/lib/scorer/lane-registry.ts:8-18` (live and shadow weights per lane) or `lane-registry.ts:43-45` (`DEFAULT_SHADOW_WEIGHTS`). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`.
 
 For experiments:
 
@@ -158,6 +152,6 @@ Confirm the baseline numbers return. Document the rollback rationale in the orig
 - [`advisor-scorer.md`](./advisor-scorer.md), lane attribution model + fusion + 16 confidence calibration constants.
 - [`feature-catalog/scorer-fusion/weights-config.md`](../../feature-catalog/scorer-fusion/weights-config.md), canonical current weights.
 - [`manual-testing-playbook/scorer-fusion/ablation.md`](../../manual-testing-playbook/scorer-fusion/ablation.md), ablation scenario for measuring lane contributions.
-- `runtime/tests/scorer/lane-weight-sweep.vitest.ts`, sweep harness.
-- `runtime/lib/scorer/lane-registry.ts:8-19,44-46`, live + shadow weight source-of-truth.
+- `runtime/lib/scorer/ablation.ts`, lane ablation harness.
+- `runtime/lib/scorer/lane-registry.ts:8-18,43-45`, live + shadow weight source-of-truth.
 - `runtime/lib/scorer/scoring-constants.ts:141-170`, confidence calibration constants.

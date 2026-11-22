@@ -61,11 +61,6 @@
   },
   {
     "workflowMode": "system-spec-kit",
-    "leafResourceId": "references/memory/embedder-pluggability.md",
-    "diskPath": "references/memory/embedder-pluggability.md"
-  },
-  {
-    "workflowMode": "system-spec-kit",
     "leafResourceId": "references/memory/epistemic-vectors.md",
     "diskPath": "references/memory/epistemic-vectors.md"
   },

@@ -418,10 +418,7 @@ print(json.dumps(out))
   const result = spawnSync('python3', ['-c', script, workspaceRoot], {
     input: JSON.stringify(rows.map((row) => row.prompt)),
     encoding: 'utf8',
-    env: {
-      ...process.env,
-      SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
-    },
+    env: process.env,
     maxBuffer: 1024 * 1024 * 10,
   });
   if (result.status !== 0) {

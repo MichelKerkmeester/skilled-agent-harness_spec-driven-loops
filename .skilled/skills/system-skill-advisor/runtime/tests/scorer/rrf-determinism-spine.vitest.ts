@@ -77,7 +77,6 @@ function scores(overrides: Partial<Record<keyof LaneScores, readonly LaneMatch[]
     lexical: [],
     graph_causal: [],
     derived_generated: [],
-    semantic_shadow: [],
     ...overrides,
   };
 }

@@ -229,25 +229,6 @@ routes:
       - "phrase reaches nobody"
       - "routing residue allowlist"
 
-  - command: /doctor:skill-advisor
-    target: embedder
-    yaml: doctor-skill-advisor-embedder.yaml
-    setup_vars: [execution_mode, dry_run]
-    allowed_flags: ["--dry-run"]
-    mutating: mutates
-    gate3_location: "the advisor database .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite, through skill_graph_scan only, and the user's Ollama model store, one pulled copy of nomic-embed-text:v1.5"
-    cli_commands:
-      - 'node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --include-semantic-health true --format json --warm-only'
-      - 'node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json'
-    mcp_tools: []   # CLI front door only, no MCP calls
-    trigger_phrases:
-      - "set up meaning matching"
-      - "install the local embedder"
-      - "ollama is not running for the advisor"
-      - "meaning matching for commands"
-      - "semantic lane is off"
-      - "embedder setup and cost"
-
   - command: /doctor:runtime-mirrors
     target: runtime-mirrors
     yaml: doctor-runtime-mirrors.yaml
@@ -404,7 +385,7 @@ routes:
       - "run the doctor setup checks"
       - "getting started with skilled"
       - "overview of every doctor command"
-      - "model server or helper process still running after the session closed"
+      - "helper process still running after the session closed"
       - "list every check this project has"
       - "run every check in this project"
 
@@ -807,6 +788,14 @@ standalone:
       - "update my project to a newer skilled release"
       - "move my project to the newer spec-kit release"
       - "is there a newer release of the toolkit"
+      - "remove leftovers from the retired advisor lane"
+      - "clean up what the retired lane left behind"
+      - "remove the retired advisor lane model files"
+      - "old advisor embedding model"
+      - "advisor model server still running"
+      - "lane residue gate failing"
+      - "model the advisor lane pulled"
+      - "retired advisor lane cleanup"
 
   - command: /doctor:env
     file: .skilled/commands/doctor/env.md

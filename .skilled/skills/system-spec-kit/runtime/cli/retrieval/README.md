@@ -22,6 +22,7 @@ Current state:
   On an index zero-hit in a git work tree, the default fallback scans unindexed spec docs and scores their declared `trigger_phrases`. The JSON answer adds `staleFallback` with availability, files read, matches, paths and truncation, and `--no-stale-fallback` disables the scan.
 - `rg-wrapper.mjs` runs three of the four documented ripgrep recipes (structured, path-only, count) behind one front door; the context-and-anchor recipe of Section 2.4 is composed by hand. Its glob set now excludes `scratch/` alongside `z_archive/`, `node_modules/` and `.git/` - see `references/retrieval/retrieval-conventions.md` Section 9 for the full root and exclusion coverage table shared with `lib/corpus.mjs`.
 - `sweep-memory-residue.mjs` answers one question with an exit code: does any live consumer of the retired memory MCP surface still exist outside its own subsystem tree.
+- `sweep-lane-residue.mjs` answers whether anything of the skill advisor's retired embedding route is left, with an exit code: in the tracked repository (`repo`) or on this machine (`machine`). Its `apply` mode deletes the machine leftovers this checkout owns and asks before touching the pulled shared model. The blocking `lane-residue` job in `advisory-checks.yml` runs `repo` on every pull request and on pushes to `main` and `skilled/**`, a doctor test runs it too, and `/doctor:update apply` runs the cleanup after its rebuild prompt.
 - All scripts are plain ESM `.mjs`, run directly with `node` (no build step), and read fixtures from `fixtures/` for tests and frozen baselines.
 
 ---
@@ -54,7 +55,7 @@ Current state:
 │ sweep-memory-residue.mjs  │ ──▶ ripgrep over the repo, allowlist-filtered
 └───────────────────────────┘
 
-All five scripts here import shared primitives from lib/ (see lib/README.md).
+All six scripts here import shared primitives from lib/ (see lib/README.md).
 ```
 
 ---
@@ -67,6 +68,7 @@ retrieval/
 +-- lookup-trigger-index.mjs      # Scores a prompt against the committed index
 +-- measure-cold-lookup.mjs       # Times cold-start lookup latency across fresh Node processes
 +-- rg-wrapper.mjs                # One front door for three of the four documented ripgrep recipes
++-- sweep-lane-residue.mjs        # Residue gate and cleanup for the retired advisor embedding route
 +-- sweep-memory-residue.mjs      # Exit-code check for live consumers of the retired memory MCP surface
 +-- lib/                          # Shared, filesystem-free primitives (see lib/README.md)
 `-- fixtures/                     # Frozen manifests, baselines and grep-convention test documents
@@ -94,6 +96,7 @@ Only a build that writes the committed index rewrites those three sidecars. When
 | `lookup-trigger-index.mjs` | Loads the committed index and ranks candidates for one prompt, optionally scoped to a spec folder. The Gate 1 instruction that calls it is authored once, in the root `AGENTS.md`, and Claude reads that file directly, Pi loads it from the working directory and Codex loads it as project instructions, while `.cursor/rules/skill-routing.md` carries a pointer block generated from the same line by `runtime-mirrors/sync-gate1-pointers.cjs`, so all five runtimes reach it and `--check` reports a stale copy. |
 | `measure-cold-lookup.mjs` | Spawns one fresh Node process per sample to measure real cold-start lookup latency against a budget. Acceptance-only: nothing runs it on a schedule, and `/doctor:speckit` offers it as an optional check that writes its report to packet scratch, never to the committed fixture. |
 | `rg-wrapper.mjs` | Builds and runs the structured, path-only and count ripgrep recipes exactly as the convention document specifies. Structured output keeps the highest-ranked row per file and applies `--limit` after ranking, 20 by default and 0 for no cap. JSON uses `schemaVersion: 3` and reports `moreInFile`, `matchCount`, `fileCount`, `hidden: { files, matches }`, `limit` and `truncated`. Human rows add `(+N more in this file)`. Dropped files add `+N more files with M matches`. The path-only and count recipes sort their lists, cut them at the same `--limit` and report the files they hid. |
+| `sweep-lane-residue.mjs` | Lists tracked files outside `specs/` that still name the skill advisor's retired embedding route, found by two `git grep` vocabularies, path words and symlink targets, minus the exact-path rows in `fixtures/lane-residue-allowlist.json`. The trigger index and its three sidecar fixtures are read by structure instead: an entry there is live only when it points outside `specs/` at a file with no allowlist row, so no row covers them. `machine` reports what the route left on this machine and in linked worktrees, including the model cache inside each package folder, and lists in `askFirst` the one question `apply` would ask. `apply` deletes the leftovers this checkout owns, the model cache included, asks before deleting the pulled shared model, then checks again. In a checkout that still holds a source of the route it changes nothing. In the socket folder named by `--socket-dir` (default `/tmp/system-hf-embed`) it deletes only the files the model server writes and keeps a folder that still holds anything else. `apply --shared-model delete\|keep` answers the shared-model question for that one run, which is how `/doctor:update apply` passes the answer it asked for. The report is schema version 2, and the flag that pointed machine mode at a shared model hub folder is gone with the hub check. The blocking `lane-residue` job in `advisory-checks.yml` and `lane-residue-gate.test.cjs` in the doctor tests run `repo`. |
 | `sweep-memory-residue.mjs` | Streams ripgrep JSON-lines matches for retired memory-MCP terms and classifies each hit against an allowlist. Owned by this retrieval package and rerunnable at any time; it was the acceptance check for the memory decommission and stays the residue guard, with the coverage-parity suite keeping its exclusion delta honest. |
 
 ---

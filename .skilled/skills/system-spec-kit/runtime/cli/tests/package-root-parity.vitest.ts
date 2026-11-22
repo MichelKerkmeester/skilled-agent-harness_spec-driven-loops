@@ -66,7 +66,7 @@ function buildTree(root: string, tree: Tree, layout: Layout, entry: string): { r
     }
   }
   const skillRoot = path.join(repoRoot, entry, SKILL_SUBPATH);
-  const start = path.join(skillRoot, 'shared', 'embeddings');
+  const start = path.join(skillRoot, 'shared', 'nested');
   fs.mkdirSync(start, { recursive: true });
   return { repoRoot, skillRoot, start };
 }

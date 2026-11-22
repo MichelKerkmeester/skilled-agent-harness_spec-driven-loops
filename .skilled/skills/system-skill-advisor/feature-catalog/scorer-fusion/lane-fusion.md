@@ -1,0 +1,76 @@
+---
+title: "Analytical Lane Fusion"
+description: "Analytical fusion of the scorer's lanes (explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12) that produces the live routing score."
+trigger_phrases:
+  - "lane fusion"
+  - "lane weights canonical"
+  - "fusion scorer"
+  - "advisor analytical fusion"
+version: 0.8.6.0
+---
+
+# Analytical Lane Fusion
+
+## 1. OVERVIEW
+
+Combine evidence from four registered lanes into a single routing score with documented weights.
+
+---
+
+## 2. HOW IT WORKS
+
+`lib/scorer/fusion.ts` fuses four lanes using the canonical weights below. Each lane runs independently and writes `{ lane, rawScore, weight, weightedScore, shadowOnly }` metadata that the attribution path consumes.
+
+| Lane | Weight | Source |
+| --- | --- | --- |
+| `explicit_author` | 0.42 | Author-declared signals via `intent_signals`, trigger_phrases and explicit mentions. |
+| `lexical` | 0.28 | Token overlap weighted by IDF from the active corpus. |
+| `graph_causal` | 0.13 | Graph-edge evidence projected through skill_nodes and skill_edges. |
+| `derived_generated` | 0.12 | Auto-extracted derived entries under trust-lane control. |
+
+Weight configuration is exposed via `advisor_status.laneWeights`.
+
+### Reciprocal Rank Fusion
+
+The opt-in `SPECKIT_ADVISOR_RRF_FUSION` flag (default off) routes the same four lanes through Reciprocal Rank Fusion instead of the weighted blend, fusing each lane's ranked list with `ADVISOR_RRF_K = 8`. The conflict-rerank seam ships with the RRF core as its regression net: it repairs the one regression plain RRF introduces and corrects conflicting-recommendation cases. Phase 007 benchmarked the RRF spine and the seam on a 42-prompt set and verdicted GRADUATE the core paired with the seam, but the committed flag default stays off, so the weighted blend remains the live path until the flag is enabled. The launcher's `CHILD_ENV_ALLOWLIST` does not forward the flag to the daemon, so setting it in a shell or dotenv file does not reach a daemon-run scorer.
+
+### Self-recommendation penalty
+
+On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPenalty` (-0.25) to any recommendation whose skill is in the canonical self-recommendation id set. That set covers both `system-skill-advisor` and the `skill-advisor` alias, so neither the canonical id nor the alias self-recommends to the top. The penalty is the SOLE defense: the separate opt-in self-recommendation guard that once sat behind it was removed as behaviorally redundant (a benchmark built to trigger it moved zero top-1 results, and the advisor never reaches the guard's confidence branch since it is never `readOnlyRouteAllowed`). The penalty therefore carries a durable rationale and a regression contract test.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Library | Weighted blend and the flag-gated RRF fusion path with its conflict-rerank seam, plus the self-recommendation penalty predicate over the canonical id set |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts` | Library | Holds `auditRecsAdvisorPenalty` (-0.25) and the read-only explainer floor |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/graph-causal.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts` | Library | Source reference |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | fusion arithmetic and lane weights |
+| `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | `laneWeights` exposure |
+| `Playbook scenario [SC-001](../../manual-testing-playbook/scorer-fusion/lane-fusion.md).` | Manual playbook | Source reference |
+
+---
+
+## 4. SOURCE METADATA
+
+- Group: Scorer fusion
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `scorer-fusion/lane-fusion.md`
+
+Related references:
+
+- [02-projection.md](./projection.md).
+- [04-attribution.md](./attribution.md).

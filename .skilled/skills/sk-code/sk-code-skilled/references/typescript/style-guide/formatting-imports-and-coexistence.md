@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript typescript coexistence"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Formatting, Imports, Commenting & JS/TS Coexistence
@@ -182,7 +182,7 @@ Use `import type` for imports used only in type positions. This ensures they are
 
 ```typescript
 // CORRECT — type-only import (erased at compile time)
-import type { EmbeddingProfile } from '../shared/types.js';
+import type { TriggerPhrase } from '../shared/types.js';
 
 // CORRECT — mixed: value import (needed at runtime)
 import { MemoryError } from './errors/core.js';

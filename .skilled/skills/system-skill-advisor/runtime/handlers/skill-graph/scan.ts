@@ -4,7 +4,7 @@
 // Command handler for skill_graph_scan — indexes skill metadata.
 
 import { resolve } from 'node:path';
-import { indexSkillMetadata, refreshSkillEmbeddings } from '../../lib/skill-graph/skill-graph-db.js';
+import { indexSkillMetadata } from '../../lib/skill-graph/skill-graph-db.js';
 import type { CallerContext } from '../../lib/caller-context.js';
 import { requireTrustedCaller } from '../../lib/auth/trusted-caller.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
@@ -51,7 +51,6 @@ export async function handleSkillGraphScan(
     }
 
     const scanResult = indexSkillMetadata(skillsRoot);
-    const embeddingRefresh = await refreshSkillEmbeddings(skillsRoot);
     const sourceSignature = computeAdvisorSourceSignature(cwd);
     publishSkillGraphGeneration({
       workspaceRoot: cwd,
@@ -64,7 +63,6 @@ export async function handleSkillGraphScan(
     return okResponse({
       skillsRoot,
       ...scanResult,
-      embeddings: embeddingRefresh,
     });
   } catch (err: unknown) {
     return errorResponse(

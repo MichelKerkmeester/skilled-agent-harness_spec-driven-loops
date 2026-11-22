@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Bladebro had no install guide, no manual asset and no scripts, while Aside and Chrome DevTools had all three",
     "created_at": "2026-11-22T07:02:50Z",
-    "last_save_at": "2026-11-22T07:26:27.819Z",
+    "last_save_at": "2026-11-22T08:23:35.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e687081784bfaac54212a82539a4e5c1511895828780c896270fc09e6e540e8",
+    "source_fingerprint": "sha256:28e5f9965dbfcc98167779412721b7592ccf58fbc4dd734ac69c6ce85d4b6d1c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71de610ae545704f168ba62c172ab8c86e79e399aca881516a8dc9dc27283244",
+      "spec.md": "4123340599d7403858d03bcd43d04dcb1d41c929fd4b1a789c4078415608877a",
       "plan.md": "d51668c3f26ef342fbf58969f7bf6eca7d6c2ce400ca733d77d30bc5124563d3",
-      "tasks.md": "21f19d2883da7d9f2e1cadf48908da28b388d23864c0bdfea5ba3bb7e444fab1",
-      "implementation-summary.md": "58ddf77df1f5aca1ffa45553a639210611844caf6baac695ccba45bf5508348b"
+      "tasks.md": "b2974df0798ff74ef8b988ad6b2631e91096883b78a07ef798c3a4efb9b83957",
+      "implementation-summary.md": "8ed8beaf9372a6000cf43ee5b1fc40ac2630ea95ca9e23b8dba347b6dd57126a"
     },
     "last_active_at": null
   }

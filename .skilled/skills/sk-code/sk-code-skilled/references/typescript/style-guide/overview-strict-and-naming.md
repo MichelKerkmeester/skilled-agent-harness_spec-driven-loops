@@ -8,7 +8,7 @@ trigger_phrases:
   - "typescript strict mode style"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # TypeScript Style Guide
@@ -192,17 +192,11 @@ interface SearchResult { }
 interface EmbeddingProvider { }
 interface MemoryRecord { }
 
-// CORRECT — legacy exception (documented below)
-interface IEmbeddingProvider { }
-interface IVectorStore { }
-
 // INCORRECT
 interface iSearchResult { }      // camelCase
 interface search_result { }      // snake_case
 interface ISearchResult { }      // I prefix on new interface
 ```
-
-**Legacy Exception**: `IEmbeddingProvider` and `IVectorStore` retain their `I` prefix for backward compatibility with re-export aliases across the codebase. All NEW interfaces omit the prefix. This exception is documented in the migration plan (Decision D5).
 
 ### Type Alias Names
 

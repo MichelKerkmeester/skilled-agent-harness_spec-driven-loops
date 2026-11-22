@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.29.0
+version: 0.12.30.0
 ---
 
 # system-skill-advisor
@@ -35,7 +35,7 @@ The skill runs as a resident daemon behind that one CLI. Routing state lives in 
 
 ### The Scoring Lanes
 
-Five lanes are registered for scoring. `runtime/lib/scorer/lane-registry.ts` holds the live weights that set how much each enabled lane adds to the final score.
+Four lanes are registered for scoring. `runtime/lib/scorer/lane-registry.ts` holds the live weights that set how much each lane adds to the final score.
 
 | Lane | Live weight | What it reads |
 |---|---|---|
@@ -43,9 +43,6 @@ Five lanes are registered for scoring. `runtime/lib/scorer/lane-registry.ts` hol
 | `lexical` | 0.28 | Token overlap with skill name, description, domains, keywords and intent signals |
 | `graph_causal` | 0.13 | Typed edges in the skill graph, such as `depends_on` and `enhances` |
 | `derived_generated` | 0.12 | Derived trigger metadata from prior extraction runs |
-| `semantic_shadow` | 0 | Embedding cosine similarity, disabled by the default zero weight |
-
-The semantic lane remains registered, but its default live weight is 0. A recommendation at that weight does not embed the prompt. Before setting `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'`, check `advisor_status --include-semantic-health true`. In `semanticLaneHealth`, `coverageComplete` must be `true`, with current vectors for every embeddable skill and command. If coverage is incomplete, an enabled lane returns no semantic matches and sets `incomplete_skill_vectors`. The background index refresh still runs at any lane weight. The status call also probes Ollama readiness.
 
 Attribution names the lane that dominated each result, so a surprising score can be traced without printing the prompt.
 
@@ -87,9 +84,9 @@ A prompt reaches the advisor by one of two routes. A prompt hook calls the CLI b
 
 The hook strips a pasted reply marked by an attribution header such as `You said:` before the 10,000-character cut and scoring, and the Claude hook may return `Advisor: prompt skipped.` when a weak follow-up's confidence-floored route conflicts with the session's earlier route.
 
-The CLI resolves the built server, checks that the build is current and reaches the daemon over a unix socket. It starts the daemon when the socket is cold. The daemon holds the scorer, the embedder, the command handlers and the SQLite skill graph.
+The CLI resolves the built server, checks that the build is current and reaches the daemon over a unix socket. It starts the daemon when the socket is cold. The daemon holds the scorer, the command handlers and the SQLite skill graph.
 
-The daemon watches every `SKILL.md`, `ROUTER.md` and `graph-metadata.json` under `.skilled/skills/`. A source change moves the trust state from `live` to `stale`. A new generation clears the recommendation cache. `advisor_rebuild` returns the state to `live`. Once IPC is up at startup and after each watcher reindex, the daemon starts one shared background vector refresh without waiting for it. It checks skill and command coverage locally and probes Ollama once when coverage is incomplete. It embeds only missing or stale rows. Coverage is complete only when at least one embeddable skill exists and every embeddable row is current, so a command-only index can still reach the probe. Set `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH=off` to disable this refresh. A failed embed keeps the old vector.
+The daemon watches every `SKILL.md`, `ROUTER.md` and `graph-metadata.json` under `.skilled/skills/`. A source change moves the trust state from `live` to `stale`. A new generation clears the recommendation cache. `advisor_rebuild` returns the state to `live`.
 
 When the daemon cannot be reached, the CLI calls the Python scorer at `runtime/scripts/skill_advisor.py`, marks the answer degraded and returns it. A degraded answer is stale, not missing. The prompt still proceeds.
 
@@ -110,7 +107,7 @@ When the daemon cannot be reached, the CLI calls the Python scorer at `runtime/s
                       │                                                 │
                       ▼                                                 ▼
 ┌─────────────────────┬────────────────────┐      ┌─────────────────────┬────────────────────┐
-│ Five-lane score                          │ ───▶ │ Ranked recommendations and trust state   │
+│ Lane fusion score                        │ ───▶ │ Ranked recommendations and trust state   │
 └──────────────────────────────────────────┘      └──────────────────────────────────────────┘
 ```
 
@@ -144,7 +141,7 @@ The graph is a package-local SQLite file at `runtime/database/skill-graph.sqlite
 
 | Skill | Relationship |
 |---|---|
-| `system-spec-kit` | Owns memory, spec folders and continuity. The advisor uses its shared embeddings stack and IPC bridge |
+| `system-spec-kit` | Owns memory, spec folders and continuity. The advisor uses its IPC bridge |
 | `sk-code`, `sk-doc`, `sk-git`, `mcp-code-mode` | Target skills the advisor recommends. Each one owns the work after routing |
 
 ---

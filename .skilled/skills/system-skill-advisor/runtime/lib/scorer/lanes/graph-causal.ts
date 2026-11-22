@@ -85,7 +85,6 @@ function buildGraphCausalScores(
 
   const seedScores = new Map<string, number>();
   for (const match of seedMatches) {
-    if (match.lane === 'semantic_shadow') continue;
     seedScores.set(match.skillId, Math.max(seedScores.get(match.skillId) ?? 0, match.score));
   }
 

@@ -78,7 +78,7 @@ and findings belong here.
 |------|-------|----------|
 | Scripts, asset, guide | Done | shellcheck exit 0, guard 23 PASS, asset diff `BYTE_TRUE`, guide 0 issues |
 | Changelog topology | Done | `58 changelog dirs, 58 covered, 0 uncovered` |
-| Changelog entries | Done | five entries, shape check exit 0 |
+| Changelog entries | Done | four new entries plus the advisor fix folded into its v2.0.0.0 entry, shape check exit 0 |
 | Hub gates | Done | parent-skill check `OK`. Guard fresh after one re-mint |
 | Benchmark coverage | Done | five new reports. Chrome DevTools 30 of 30, Aside 16 of 29 |
 

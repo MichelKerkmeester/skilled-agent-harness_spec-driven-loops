@@ -6,7 +6,7 @@ trigger_phrases:
   - "watcher scope"
   - "chokidar narrow scope"
   - "auto update daemon watcher"
-version: 0.8.3.0
+version: 0.8.4.0
 id: AU-001
 category: auto_update_daemon
 stage: routing
@@ -84,7 +84,6 @@ touch .skilled/skills/sk-doc/ROUTER.md
 - After step 6 `ROUTER.md` touch, `generation` increments by exactly 1 and `freshness` settles back to `live`.
 - `freshness` returns to `live` after the debounce window.
 - Daemon logs (if exposed) show a reindex event only after the SKILL.md and ROUTER.md touches, not after the plugin touch.
-- Each watcher reindex starts the shared skill and command vector refresh. It checks coverage without a network call, then probes Ollama once only when its coverage check is incomplete and embeds missing or stale rows.
 
 ### Failure Modes
 

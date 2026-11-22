@@ -6,7 +6,7 @@ trigger_phrases:
   - "daemon absent fallback"
   - "daemon absent"
   - "daemon"
-version: 0.8.1.0
+version: 0.8.2.0
 id: CP-004
 category: compat_and_disable
 stage: routing
@@ -45,14 +45,13 @@ Validate two fallback paths: the Python shim routes to local scoring when native
 SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
 ```
 
-2. Create the sandbox and record the live generation file's checksum. `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=0` keeps the sandbox launcher away from the shared model server, which the launcher otherwise stops when it exits:
+2. Create the sandbox and record the live generation file's checksum:
 
 ```bash
 SANDBOX=$(mktemp -d /tmp/cp004.XXXXXX)
 export SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock"
 export SYSTEM_SKILL_ADVISOR_DB_DIR="$SANDBOX/db"
 export SPECKIT_DAEMON_REELECTION=0
-export SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=0
 GEN=.skilled/skills/.state/advisor/skill-graph-generation.json
 GEN_BEFORE=$(shasum "$GEN")
 ```
@@ -85,7 +84,7 @@ else
   }
   for i in $(seq 1 60); do [ "$i" -gt 25 ] && ! sandbox_advisor_running && break; sleep 1; done
   [ "$(shasum "$GEN")" = "$GEN_BEFORE" ] && echo "live generation file unchanged" || echo "live generation file CHANGED"
-  unset SPECKIT_IPC_SOCKET_DIR SYSTEM_SKILL_ADVISOR_DB_DIR SPECKIT_DAEMON_REELECTION SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED
+  unset SPECKIT_IPC_SOCKET_DIR SYSTEM_SKILL_ADVISOR_DB_DIR SPECKIT_DAEMON_REELECTION
   if [ -z "$(lsof -t -p $$ 2>/dev/null)" ]; then
     echo "lsof cannot list open files here; sandbox kept at $SANDBOX"
   elif sandbox_advisor_running; then

@@ -6,7 +6,7 @@ trigger_phrases:
   - "daemon lifecycle"
   - "sigterm shutdown"
   - "daemon health"
-version: 0.8.3.0
+version: 0.8.4.0
 id: AU-003
 category: auto_update_daemon
 stage: routing
@@ -68,7 +68,6 @@ kill -TERM <daemon_pid>
 - No raw prompt text in lifecycle logs.
 - Idle timeout setting is discoverable in the README/config docs, fractional values are accepted for tests, and `0` disables the monitor.
 - The server starts its heartbeat near the top of startup. A server with no heartbeat within 5 minutes of spawn is treated as stale. An existing heartbeat older than 3 minutes is also stale. After a gap of more than two check intervals between the launcher's own checks, as across a machine sleep, the launcher skips one check before judging the file.
-- After startup IPC is ready, the shared background refresh starts without delaying readiness. It also starts after watcher reindex and runs at any semantic lane weight.
 
 ### Failure Modes
 
@@ -103,8 +102,7 @@ Step 1 was executed exactly against the scenario command's workspace root placeh
       "explicit_author": 0.42,
       "lexical": 0.28,
       "graph_causal": 0.13,
-      "derived_generated": 0.12,
-      "semantic_shadow": 0
+      "derived_generated": 0.12
     }
   }
 }

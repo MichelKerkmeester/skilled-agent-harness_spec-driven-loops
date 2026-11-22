@@ -1,7 +1,7 @@
 ---
 title: "Scripts: System Skill Advisor Doctor"
 description: "Read-only health check script for the system-skill-advisor runtime build and its native runtime dependencies."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Scripts: System Skill Advisor Doctor
@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 | File | Purpose |
 |------|---------|
-| `doctor.sh` | Confirms `runtime/dist/` exists, confirms a `node` interpreter is on `PATH`, and requires each of `@huggingface/transformers`, `better-sqlite3`, and `zod` to `require()` cleanly from inside `runtime/`. |
+| `doctor.sh` | Confirms `runtime/dist/` exists, confirms a `node` interpreter is on `PATH`, and requires each of `better-sqlite3` and `zod` to `require()` cleanly from inside `runtime/`. |
 
 ---
 

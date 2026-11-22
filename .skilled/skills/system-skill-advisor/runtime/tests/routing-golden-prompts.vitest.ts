@@ -10,8 +10,8 @@
 //
 // The scorer runs UNMOCKED. To make its output reproducible without a built
 // SQLite skill graph, it runs in the same force-local regime the pinned
-// routing-accuracy baseline uses (filesystem projection, no built-in semantic
-// lane). That regime is env-sensitive at scorer module load, so the env is set
+// routing-accuracy baseline uses (filesystem projection). That regime is
+// env-sensitive at scorer module load, so the env is set
 // BEFORE the scorer is imported and the scorer is pulled in dynamically.
 
 import { execFileSync } from 'node:child_process';
@@ -32,7 +32,6 @@ const compiledRouteScript = resolve(repoRoot, '.skilled/bin/compiled-route.cjs')
 // Pinned force-local regime — must precede the scorer import so the scorer
 // picks it up at module load, matching the baseline capture exactly.
 process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'golden-prompts-'));
-process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
 process.env.VITEST = 'true';
 delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;

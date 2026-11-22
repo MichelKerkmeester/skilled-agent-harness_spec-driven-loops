@@ -38,7 +38,6 @@ assert.ok(fs.existsSync(path.join(REPO, '.skilled')), `REPO does not hold .skill
 const BUILD_RULE_CARDS = path.join(SKDOC, 'sk-create-repo-rule', 'scripts', 'build-rule-cards.cjs');
 const CHECK_REPO_RULES = path.join(SKDOC, 'sk-create-repo-rule', 'scripts', 'check-repo-rules.cjs');
 const VALIDATE_COMPILED_ROUTING = path.join(SKDOC, 'sk-create-skill', 'scripts', 'validate-compiled-routing-scenarios.cjs');
-const VALIDATE_DOC_MODEL_REFS = path.join(SKDOC, 'scripts', 'validate-doc-model-refs.js');
 const FRONTMATTER_VERSION = path.join(SKDOC, 'shared', 'scripts', 'frontmatter-version.mjs');
 const LINT_GOAL_CRITERIA = path.join(SKDOC, 'sk-create-goal', 'scripts', 'lint-goal-criteria.cjs');
 const CI_LEAF_MANIFEST_FRESHNESS = path.join(SKDOC, 'sk-create-skill', 'scripts', 'ci-leaf-manifest-freshness.cjs');
@@ -106,11 +105,6 @@ test('validate-compiled-routing-scenarios.cjs rejects the misspelled --strct fla
     const result = runScript(VALIDATE_COMPILED_ROUTING, ['--dir', tmpDir, '--strct']);
     assertUsageFailure(result, 2, '--strct');
   });
-});
-
-test('validate-doc-model-refs.js rejects the unknown --bogus-xyz flag', () => {
-  const result = runScript(VALIDATE_DOC_MODEL_REFS, ['--bogus-xyz']);
-  assertUsageFailure(result, 2, '--bogus-xyz');
 });
 
 test('frontmatter-version.mjs rejects the unknown --bogus-xyz flag with its usage status 64', () => {

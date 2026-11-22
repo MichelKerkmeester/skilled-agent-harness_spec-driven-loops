@@ -53,7 +53,7 @@ describe('012/004 affordance lane attribution', () => {
     expect(chromeDerived?.rawScore).toBeGreaterThan(0);
     expect(webGraph?.rawScore).toBeGreaterThan(0);
     expect(result.recommendations.flatMap((entry) => entry.laneContributions.map((lane) => lane.lane))).toEqual(
-      expect.arrayContaining(['explicit_author', 'lexical', 'graph_causal', 'derived_generated', 'semantic_shadow']),
+      expect.arrayContaining(['explicit_author', 'lexical', 'graph_causal', 'derived_generated']),
     );
     expect(result.recommendations.flatMap((entry) => entry.laneContributions.map((lane) => lane.lane))).not.toContain('affordance');
   });

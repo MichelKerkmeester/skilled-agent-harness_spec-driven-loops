@@ -1,9 +1,9 @@
 ---
 title: "bin: MCP Launchers, Daemon CLIs, Compiled Routing and Repo Tooling"
-description: "Executable entrypoints for the OpenCode runtime: the MCP launchers and their daemon-backed CLI shims, the local embedding server, the compiled-routing serving and publication tools, and the git, worktree and hook helpers."
+description: "Executable entrypoints for the OpenCode runtime: the MCP launchers and their daemon-backed CLI shims, the compiled-routing serving and publication tools, and the git, worktree and hook helpers."
 trigger_phrases:
   - "mcp launcher"
-  - "hf model server"
+  - "worktree helper scripts"
   - "code-index cli"
   - "skill-advisor cli"
   - "compiled route cli"
@@ -12,7 +12,7 @@ trigger_phrases:
 
 # bin: MCP Launchers, Daemon CLIs, Compiled Routing and Repo Tooling
 
-> Executable entrypoints for the OpenCode runtime include MCP launchers, daemon-backed CLI shims, the local embedding server and repository tools.
+> Executable entrypoints for the OpenCode runtime include MCP launchers, daemon-backed CLI shims, the compiled-routing tools and repository tools.
 
 `bin/` contains MCP launchers and repository tools, including `skilled-loop`, the runtime wrapper for session handover.
 
@@ -24,8 +24,7 @@ Current state:
 - Each launcher loads project-local `.env.local` / `.env`, ensures the server's `dist/` artifacts are built and current, serializes concurrent starts with a filesystem bootstrap lock, then spawns the daemon child and bridges stdio to the running daemon.
 - The CLI shim runs the built daemon-backed CLI (`skill-advisor`, 9 tools) against the resident daemon. It enforces a dist-freshness guard (exit `69` on missing/stale dist, with a per-CLI `*_DEV_ALLOW_STALE=1` override), defaults `SPECKIT_IPC_SOCKET_DIR` to the short `/tmp/<service>` directory, and refuses a socket path over the Darwin `sun_path` limit.
 - The freshness check itself is a shared module, not per-shim logic: every shim calls `checkPackageFreshness()` from [`system-spec-kit/runtime/cli/lib/dist-freshness.cjs`](../skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs), which also backs `validate.sh`'s hard staleness backstop, the `sk-code` PostToolUse hook, and the `system-dist-freshness-guard` OpenCode plugin, one source of truth for "is this package's dist current" across all four call sites. See §6 "Dist freshness" for the full package table and consumer list.
-- `hf-model-server.cjs` loads a transformers model and answers `/api/health` and `/api/embed` requests. It refuses any non-loopback bind unless the operator sets `HF_EMBED_ALLOW_REMOTE_BIND=1` and supplies `HF_EMBED_AUTH_TOKEN`, and it asserts ownership of the socket directory before listening.
-- Shared launcher behavior (model-server supervision, stdio-to-socket bridging, sidecar env allowlist) lives in `lib/`. The CLI shims' dist entrypoints reuse `lib/launcher-ipc-bridge.cjs` for socket-path resolution and warm-daemon probes.
+- Shared launcher behavior (stdio-to-socket bridging and daemon probes) lives in `lib/`. The CLI shims' dist entrypoints reuse `lib/launcher-ipc-bridge.cjs` for socket-path resolution and warm-daemon probes.
 - A second family serves and publishes **compiled routing**. `compiled-route.cjs` is the runtime front door a hub calls to ask whether the compiled router is authoritative for it, falling back to legacy routing when it is not. `compiled-route-status.cjs` reports per-hub serving state with a cause code that separates expected drift from breakage. `compiled-route-guard.cjs` is the gate: it fails when a hub's activation manifest no longer matches what its routing inputs compile to, when the promoted runtime and its authored source disagree or when the authored manifest is missing. Each failure names the manifest to copy or restore. `compiled-route-sync.cjs` publishes a new closure by tracing, staging, verifying and swapping, then it finalizes or reverts. Its build and `--check` modes stop first when the authored source under `specs/` is missing. They print one line naming the folder to restore. `compiled-route-manifest.cjs` is a thin CLI over the activation-manifest library in `lib/`.
 - `check-no-spec-imports.cjs` proves the durable invariant behind that family: nothing under `bin/` reaches into `specs/` (or its legacy compatibility alias inside the OpenCode directory) at runtime, so the serving path cannot break when the authored tree moves.
 - The remaining files are repository tooling. `worktree-*.sh` launch, prune, guard and report on per-session git worktrees. `git-sync.sh` and `git-live-follow.sh` back the continuous-integration workflow, and `git-primary-reconcile.sh` converges the primary checkout onto its live branch at session start without touching a dirty tree. `check-git-hooks.sh` warns at session start when git hooks are missing or drifted, `relink-local-specs.sh` restores the machine-local spec symlinks after a clean, `install-codex-hooks.mjs` removes copies of the repo's Codex hooks from the user-global config, and `sync-claude-user-hooks.mjs` keeps an opted-in copy of the repo's Claude hooks in the user-level Claude settings current.
@@ -47,16 +46,10 @@ Current state:
                                 ▼
                      ┌──────────────────────┐
                      │ lib/                 │
-                     │ supervision + bridge │
-                     └──────────┬───────────┘
-                                │ (advisor only)
-                                ▼
-                     ┌──────────────────────┐     ┌────────────────┐
-                     │ hf-model-server.cjs  │ ──▶ │ transformers   │
-                     │ /api/embed + health  │     │ embedding model│
-                     └──────────────────────┘     └────────────────┘
+                     │ IPC bridge + probes  │
+                     └──────────────────────┘
 
-Dependency direction: launchers ───▶ lib/ ───▶ hf-model-server.cjs
+Dependency direction: launchers ───▶ lib/
 ```
 
 ---
@@ -65,12 +58,11 @@ Dependency direction: launchers ───▶ lib/ ───▶ hf-model-server.c
 
 ```text
 bin/
-+-- system-skill-advisor-launcher.cjs  # Launches the system-skill-advisor daemon, optional model-server supervision
++-- system-skill-advisor-launcher.cjs  # Launches the system-skill-advisor daemon
 +-- skill-advisor.cjs              # Daemon-backed CLI shim for system-skill-advisor (9 tools)
 +-- cli-offline-smoke.cjs          # Daemon-free smoke: list-tools counts, cwd-independent
 +-- cli-exit-taxonomy-smoke.cjs    # Daemon-free smoke: CLI failure contract (exit 64/69/75, parseable envelopes)
 +-- cli-offline-smoke.test.cjs     # Test runner asserting cli-offline-smoke.cjs passes
-+-- hf-model-server.cjs            # Local HTTP/UDS HuggingFace embedding server
 +-- worktree-session.sh            # Launch an AI session in an isolated git worktree + branch + DBs
 +-- worktree-reaper.sh             # Prune merged/clean per-session worktrees (and, with --numbered, idle numbered ones) + stale socket dirs
 +-- fsmonitor-daemon-reaper.sh     # Report and end git fsmonitor daemons by the worktree each watches
@@ -96,7 +88,7 @@ bin/
 +-- check-no-spec-imports.cjs      # Proves nothing here reaches into the spec tree at runtime
 +-- compiled-routing-*.vitest.ts   # Routing foundation and flag-propagation suites
 +-- tests/                         # node:test suite for the publication lifecycle
-+-- lib/                           # Shared supervision, IPC bridge, env allowlist, routing library
++-- lib/                           # Shared IPC bridge and routing library
 `-- README.md
 ```
 
@@ -106,9 +98,8 @@ bin/
 
 | File | Responsibility |
 |---|---|
-| `system-skill-advisor-launcher.cjs` | Boots the system-skill-advisor daemon child. Loads model-server supervision when enabled, enforces a strict single-writer lease, and rebuilds `dist/` from `handlers`, `lib`, `schemas`, `tools` when stale. |
+| `system-skill-advisor-launcher.cjs` | Boots the system-skill-advisor daemon child. Enforces a strict single-writer lease, and rebuilds `dist/` from `handlers`, `lib`, `schemas`, `tools` when stale. |
 | `skill-advisor.cjs` | CLI shim for system-skill-advisor. Same guard pattern (`SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override), runs `runtime/dist/runtime/skill-advisor-cli.js`. Mutation tools require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. calls are sent untrusted by default. |
-| `hf-model-server.cjs` | Loads a transformers embedding model and serves `/api/health` and `/api/embed`. Enforces the loopback bind perimeter guard, socket-dir ownership, request size limits and inference timeouts. |
 
 
 ---
@@ -117,9 +108,9 @@ bin/
 
 | Boundary | Rule |
 |---|---|
-| Imports | Launchers require `./lib/model-server-supervision.cjs` and `./lib/launcher-ipc-bridge.cjs`. The model server requires only Node core plus `@huggingface/transformers` loaded at runtime. |
-| Exports | Launchers run as CLI processes. `hf-model-server.cjs` exports `createHfModelServer`, `loadHfModel`, `resolveListenTarget`, `assertLoopbackBindAllowed`, `assertSocketDirOwnership` and `probeSocketResident` for tests and direct callers. |
-| Ownership | This folder owns process bootstrap, lease arbitration and the embedding HTTP surface. MCP request handling, schemas and tools live in each server's own skill directory under `.skilled/skills/`. |
+| Imports | Launchers require `./lib/launcher-ipc-bridge.cjs`, which needs only Node core modules. |
+| Exports | Launchers run as CLI processes. |
+| Ownership | This folder owns process bootstrap and lease arbitration. MCP request handling, schemas and tools live in each server's own skill directory under `.skilled/skills/`. |
 
 Main flow:
 
@@ -164,9 +155,6 @@ Main flow:
 | `source /path/to/repo/.skilled/bin/skilled-loop-shell.sh` | Shell shim | Defines `claude`, `pi`, `opencode`, `codex`, `devin`, `cursor-agent` and `vibe` as functions that start an interactive session through the nearest `.skilled/bin/skilled-loop` at or above the current directory, a symlinked `.skilled` included. It trusts wrappers inside the sourced checkout, its registered linked worktrees or absolute checkouts in `SKILLED_LOOP_TRUSTED_CHECKOUTS` (colon-separated). Unset or empty trusts no extra checkout. A shim sourced after another checkout's shim appends that earlier checkout to the list, so both stay trusted. The `skilled-loop` function runs the trusted wrapper for the current directory, or the sourced checkout's wrapper when none is found. Source it from a marked block, one per checkout. [`runtime-behavior.md`](../hooks/session-handover/runtime-behavior.md) §7 gives the block, its removal and the two-checkout order. Subcommands, print and one-shot modes, version and help, non-terminal launches and sessions already under a loop run the binary directly. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing. |
 | `node .skilled/bin/system-skill-advisor-launcher.cjs` | CLI | Start the system-skill-advisor daemon. |
 | `node .skilled/bin/skill-advisor.cjs <tool> [flags]` | CLI | Call any of the 9 system-skill-advisor tools from a shell. pass `--trusted` for maintainer mutations. |
-| `node .skilled/bin/hf-model-server.cjs` | CLI | Start the local embedding server (via `main`). |
-| `createHfModelServer` | Function | Build an embedding server instance with `listen`, `close`, `dispose` and `inject` for tests. |
-| `assertLoopbackBindAllowed` | Function | Refuse non-loopback binds unless remote bind plus auth token are set. |
 | `bash .skilled/bin/worktree-session.sh <runtime> [args]` | CLI | Launch an AI session in its own git worktree + branch + isolated MCP databases. Top-level sessions isolate. orchestrated children (`AI_SESSION_CHILD=1` or already inside a linked worktree) exec in place. `--dry-run` prints the plan. Each top-level launch also starts a detached 12-hour idle sweep through `fsmonitor-daemon-reaper.sh --apply --idle-hours 12`, so the sweep never delays the launch. `SPECKIT_FSMON_REAPER` overrides the reaper path. The one call that creates the worktree runs under a bound of 60 seconds (`SPECKIT_WORKTREE_ADD_TIMEOUT`) with fsmonitor off. When that call fails or times out the launcher prints `git worktree add failed (exit N); no session was started` and exits with git's status instead of starting a session. |
 | `bash .skilled/bin/worktree-reaper.sh [--dry-run] [--numbered] [--idle-hours N]` | CLI | Prune merged + clean per-session worktrees, stale socket dirs and session markers. ends only the fsmonitor daemon of a worktree it removes. Every git call runs under a wall-clock bound (`SPECKIT_GIT_TIMEOUT`, default 20 seconds) with fsmonitor off, the process listing is bounded and an empty, failed or timed-out listing counts as busy, a worktree registry that cannot be read judges nothing and cleans up nothing, and a refused `worktree remove` or `branch -d` is logged and skipped rather than stopping the run. `--numbered` adds the opt-in lane for `worktrees/NNN-slug` worktrees: removed only when clean, merged, unlocked, free of stash entries and live processes, holding no ignored path outside a regenerable allowlist (none under `specs/`, and no SQLite file or `.state` folder in any folder; the provisioning list adds files through `# regenerable: <path>` comments), and idle for `--idle-hours` (default 48) by the newest of the branch reflog, the worktree's own HEAD log and its index. A branch that is not an ancestor of the live branch but whose changes are already in it (a squash merge) is kept with the reason `branch content already in the live branch (squash-merged); remove by hand`. Unregistered `NNN-*` folders under the base are reported and left alone. | Auto-reap is restricted to proven-inactive exact `work/<runtime>/<slug>` pairs (the whole marker file must match a PID grammar, a malformed marker is treated as ambiguous and the worktree is kept. the branch's runtime/slug must equal the directory basename). |
 | `bash .skilled/bin/fsmonitor-daemon-reaper.sh [--apply] [--worktree <path>] [--idle-hours N] [--probe] [--orphans] [--repo <path>]` | CLI | List git fsmonitor daemons by the worktree they watch: main, kept, stray (worktree gone), orphan (repository deleted, with `--orphans`) or out of scope. Dry run by default. Before it signals a daemon it rechecks the process's command line and start time, so a reused pid is left alone, and it skips git's stop while a second daemon watches the same worktree. `--apply` ends strays, `--worktree` ends one worktree's daemon, `--idle-hours N` also ends daemons of worktrees nobody has used for N hours, and `--probe` ends a daemon that does not answer within 15 seconds. Without `--orphans` it never touches another repository's daemons. |
@@ -225,8 +213,6 @@ To isolate a runtime by default, alias its launch through the wrapper, e.g. `ali
 Run from the repository root.
 
 ```bash
-node -e "require('./.skilled/bin/hf-model-server.cjs')"
-node -e "require('./.skilled/bin/lib/model-server-supervision.cjs')"
 node .skilled/bin/skill-advisor.cjs list-tools --format text | head -3
 node .skilled/bin/cli-offline-smoke.cjs --format text          # daemon-free: list-tools counts, cwd-independent
 node .skilled/bin/cli-exit-taxonomy-smoke.cjs --format text    # daemon-free: CLI failure contract (exit 64/69/75)

@@ -8,7 +8,7 @@ trigger_phrases:
   - "daemon contract"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.4.0
+version: 0.8.6.0
 ---
 
 # Freshness Contract
@@ -63,7 +63,7 @@ The advisor reports one of four trust states in every response that touches the 
 | `absent` | The index is missing. The SQLite database file does not exist or was deleted. No recommendation can be computed. |
 | `unavailable` | The advisor subsystem cannot be reached. Either the daemon is down or a hard error blocks all reads. |
 
-State source-of-truth: `runtime/lib/freshness/trust-state.ts` plus `runtime/lib/freshness/freshness-detector.ts`.
+State source-of-truth: `runtime/lib/freshness/trust-state.ts`.
 
 ---
 
@@ -143,7 +143,7 @@ The freshness daemon (`runtime/lib/daemon/`) is responsible for:
 
 The daemon is NOT responsible for:
 
-- Running a full graph rebuild automatically. The watcher incrementally reindexes changed skill metadata, then the daemon starts a background vector refresh. Startup starts the same refresh. It refreshes missing skill and command vectors in SQLite when an active embedder is configured. Set `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH=off` to skip it. Full rebuilds still use trusted maintenance paths such as `advisor_rebuild` and `skill_graph_scan`. Corrupt-database recovery may also move aside and recreate the database during lazy initialization.
+- Running a full graph rebuild automatically. The watcher incrementally reindexes changed skill metadata. Full rebuilds still use trusted maintenance paths such as `advisor_rebuild` and `skill_graph_scan`. Corrupt-database recovery may also move aside and recreate the database during lazy initialization.
 - Validating skill content. Only `skill_graph_validate` checks edge integrity.
 - Caching responses across processes. Each daemon process maintains its own cache.
 

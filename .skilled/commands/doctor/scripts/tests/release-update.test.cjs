@@ -1406,6 +1406,33 @@ test('a second apply without decisions plans from the current check, not the app
   assert.match(readText(fixture.operator, HUB_A_FILE), /Second release line/);
 });
 
+test('an apply at the release already applied writes only the recorded base and exits 0', () => {
+  // A copy that is already current still runs apply to reach the post-upgrade
+  // cleanup after the rebuild prompt, so a plan with nothing to update must pass
+  // through to its follow-ups rather than refuse, and must touch no framework file.
+  const BASE_RECORD = '.skilled/skills/.state/doctor-update/base.json';
+  const fixture = makeFixture();
+  ignoreRuns(fixture.operator);
+  const first = runCli(fixture.operator, 'apply');
+  assert.equal(first.exitCode, 0, JSON.stringify(first.document));
+  commitAll(fixture.operator, 'take v1.1.0.0');
+
+  const preview = runCli(fixture.operator, 'apply', '--dry-run');
+  assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+  assert.equal(preview.document.release, 'v1.1.0.0');
+  assert.deepEqual(preview.document.writes.map((write) => write.path), [BASE_RECORD]);
+  assert.deepEqual(preview.document.appliedUnits, []);
+
+  const second = runCli(fixture.operator, 'apply');
+  assert.equal(second.exitCode, 0, JSON.stringify(second.document));
+  assert.deepEqual(second.document.written, [BASE_RECORD]);
+  assert.deepEqual(second.document.added, []);
+  assert.deepEqual(second.document.deleted, []);
+  assert.deepEqual(second.document.appliedUnits, []);
+  assert.equal(second.document.followUps.rebuildDatabases, true);
+  assert.equal(git(fixture.operator, ['status', '--short']), '');
+});
+
 test('apply honours decided files and deferred units, and kept-local reaches the ledger', () => {
   const fixture = makeFixture({ withHubBRelease: true });
   ignoreRuns(fixture.operator);
@@ -2042,6 +2069,25 @@ test('a root .skilled symlink that leaves the work tree or names another folder 
     '--remote', fixture.upstream, '--dry-run');
   assert.equal(otherName.exitCode, 1, JSON.stringify(otherName.document));
   assert.match(otherName.document.error, /path parent is not a real directory: .*\.skilled$/);
+});
+
+test('apply in a project whose .skilled links to an outside checkout stops at the link', () => {
+  // A linked install points .skilled at a separate Skilled checkout. The engine keeps
+  // the project as its root, so path safety refuses the link before any plan exists.
+  // The install guide quotes this message to send the operator to the checkout.
+  const fixture = makeFixture();
+  const project = path.join(fixture.root, 'linked-project');
+  fs.mkdirSync(project);
+  git(project, ['init', '-q']);
+  configureGit(project);
+  writeFile(project, 'README.md', '# project\n');
+  commitAll(project, 'project');
+  fs.symlinkSync(path.join(fixture.operator, '.skilled'), path.join(project, '.skilled'));
+
+  const preview = runCli(project, 'apply', '--dry-run');
+  assert.equal(preview.exitCode, 1, JSON.stringify(preview.document));
+  assert.match(preview.document.error, /^path parent is not a real directory: .*\/linked-project\/\.skilled$/);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/skills/.state/doctor-update')), false);
 });
 
 test('record-base --pin records a framework commit that falls between release tags', () => {

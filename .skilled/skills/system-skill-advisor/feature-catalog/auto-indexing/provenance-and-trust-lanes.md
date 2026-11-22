@@ -7,7 +7,7 @@ trigger_phrases:
   - "derived provenance"
   - "lane source tagging"
   - "source_kind"
-version: 0.8.0.14
+version: 0.8.1.0
 ---
 
 # Provenance Fingerprints and Trust Lanes
@@ -69,5 +69,5 @@ Skill-graph edge propagation also records write provenance. The guarded apply pa
 Related references:
 
 - [01-derived-extraction.md](../../feature-catalog/auto-indexing/derived-extraction.md).
-- [`scorer-fusion/five-lane-fusion.md`](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
+- [`scorer-fusion/lane-fusion.md`](../../feature-catalog/scorer-fusion/lane-fusion.md).
 - [`scorer-fusion/attribution.md`](../scorer-fusion/attribution.md).

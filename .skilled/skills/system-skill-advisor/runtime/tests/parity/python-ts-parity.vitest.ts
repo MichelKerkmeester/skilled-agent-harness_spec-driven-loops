@@ -23,12 +23,11 @@ function restorePrivateSkillRoots(): void {
 
 // Pinned force-local regime, set before the scorer import because the scorer
 // reads the database directory at module load. This is the regime CI runs in:
-// no skill-graph.sqlite, built-in semantic off. Without it the in-process
+// no skill-graph.sqlite. Without it the in-process
 // scorer and the spawned Python reference both read whatever locally built
 // graph exists, and the pinned counts below move with a daemon rebuild instead
 // of with a diff.
 process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'python-ts-parity-'));
-process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
 delete process.env[PRIVATE_SKILL_ROOTS_ENV];
 
@@ -127,7 +126,6 @@ print(json.dumps(out))
     encoding: 'utf8',
     env: {
       ...process.env,
-      SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
     },
     maxBuffer: 1024 * 1024 * 10,
   });

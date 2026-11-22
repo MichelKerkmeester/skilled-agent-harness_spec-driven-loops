@@ -14,7 +14,6 @@
         "references/config/launcher-lease.md",
         "references/debugging/troubleshooting.md",
         "references/debugging/universal-debugging-methodology.md",
-        "references/memory/embedder-pluggability.md",
         "references/memory/epistemic-vectors.md",
         "references/memory/memory-system.md",
         "references/memory/save-workflow.md",

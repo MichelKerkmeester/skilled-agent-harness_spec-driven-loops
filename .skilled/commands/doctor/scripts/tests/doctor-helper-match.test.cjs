@@ -41,7 +41,10 @@ const TUNE = path.join(FIXTURES, 'tune.jsonl');
 // changed hash means the bar moved, so the suite fails rather than re-baselines.
 // It was re-pinned once, when /doctor:sk-skill split into check and convert
 // targets: two expected labels gained the target name and no prompt changed.
-const HELDOUT_SHA256 = 'e5a41fbcad7db0bd8f5e67034579b74573c6eedf096b60b378d393c32f143191';
+// It was re-pinned a second time when the advisor's model server was retired:
+// the one prompt about switching that server off left the set, and no other
+// prompt or label changed.
+const HELDOUT_SHA256 = '4b90f1fa6ec1df05f3bbfa56face73f85d32e0df3fa3e7ce3edeeeb6a27ec45c';
 
 const BAR = { top1: 0.8, top3: 0.9, negatives: 0.9 };
 
@@ -500,6 +503,44 @@ test('every standalone action phrase ranks its own action first', () => {
     }
   }
 });
+
+// The ways an operator asks to clear what the retired advisor lane left behind.
+// Only `/doctor:update apply` runs that cleanup, so each one must reach it. The
+// retired product's own name cannot sit in a tracked file outside specs/, because
+// the lane residue gate scans them, so `acme` stands in for it. A word the
+// manifest never carries scores nothing, which is also why a request that names
+// the product reaches the route through its other words only.
+for (const prompt of [
+  'remove acme leftovers',
+  'clean embedding model',
+  'advisor model server still running',
+  'lane residue CI failing',
+]) {
+  test(`the cleanup request "${prompt}" ranks /doctor:update first`, () => {
+    const { entries } = matcher.loadEntries(REPO_ROOT);
+    const result = matcher.rankProblem(entries, prompt, {});
+    assert.equal(result.status, 'match', prompt);
+    assert.equal(result.candidates[0].runnable, '/doctor:update', prompt);
+    assert.ok(!result.candidates[0].matchedTerms.includes('acme'), result.candidates[0].reason);
+  });
+}
+
+// The cleanup phrases name the advisor or its lane, so an ordinary CI failure,
+// cache or model question that shares a word with them is not sent to the update
+// command. A request to remove leftovers after an upgrade does reach it, because
+// those two words are all a request naming the retired product carries.
+for (const prompt of [
+  'my CI is failing on lint',
+  'CI failing',
+  'clean model cache',
+  'delete the shared model',
+]) {
+  test(`the unrelated request "${prompt}" does not rank /doctor:update first`, () => {
+    const { entries } = matcher.loadEntries(REPO_ROOT);
+    const result = matcher.rankProblem(entries, prompt, {});
+    if (result.status === 'match') assert.notEqual(result.candidates[0].runnable, '/doctor:update', prompt);
+  });
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 7. THE HELD-OUT BAR

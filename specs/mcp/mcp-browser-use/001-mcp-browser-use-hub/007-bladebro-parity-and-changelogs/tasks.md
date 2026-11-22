@@ -46,7 +46,7 @@ contextType: "general"
 - [x] T006 Wire the router, `SKILL.md`, README and leaf manifest (`mcp-bladebro/ROUTER.md`). Verify: the MCP route loads the asset. Evidence: replay loaded `assets/utcp-bladebro-manual.md`.
 - [x] T007 Add `INSTALL-GUIDE.md` and `scripts/README.md`. Verify: `validate_document.py` reports 0 issues. Evidence: 0 issues on both.
 - [x] T008 Relink changelogs (`.skilled/changelog/mcp-browser-use/`). Verify: the coverage check. Evidence: `58 changelog dirs, 58 covered, 0 uncovered`, no dangling link.
-- [x] T009 Add five changelog entries and bump versions. Verify: `check_changelog_shape.py` exits 0. Evidence: exit 0 on all five, and on the edited `skilled/v4.2.0.0.md`.
+- [x] T009 Add four changelog entries, fold the advisor fix into its v2.0.0.0 entry and bump versions. Verify: `check_changelog_shape.py` exits 0. Evidence: exit 0 on all of them, and on the edited `skilled/v4.2.0.0.md`.
 - [x] T010 Run the uncovered scenarios that need no yes and record them (`*/benchmark/reports/2026-11-22--*`). Verify: an index row per report. Evidence: five reports, four index rows across two READMEs.
 <!-- /ANCHOR:phase-2 -->
 

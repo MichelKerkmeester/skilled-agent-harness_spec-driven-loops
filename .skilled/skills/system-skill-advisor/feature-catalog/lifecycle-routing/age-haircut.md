@@ -6,7 +6,7 @@ trigger_phrases:
   - "derived age decay"
   - "age weighted derived"
   - "lifecycle age"
-version: 0.8.0.13
+version: 0.8.1.0
 ---
 
 # Derived-Lane-Only Age Haircut
@@ -19,7 +19,7 @@ Keep routing sensitive to currency without discounting author-declared signals. 
 
 ## 2. HOW IT WORKS
 
-`lib/lifecycle/age-haircut.ts` reads each skill's source modification time and applies a documented decay curve to the derived lane only. The `explicit_author`, `lexical`, `graph_causal` and `semantic_shadow` lanes are untouched. The haircut shows up as a gap between `rawScore` and `weightedScore` in lane attribution for the derived lane.
+`lib/lifecycle/age-haircut.ts` reads each skill's source modification time and applies a documented decay curve to the derived lane only. The `explicit_author`, `lexical` and `graph_causal` lanes are untouched. The haircut shows up as a gap between `rawScore` and `weightedScore` in lane attribution for the derived lane.
 
 ---
 
@@ -49,6 +49,6 @@ Keep routing sensitive to currency without discounting author-declared signals. 
 
 Related references:
 
-- [`scorer-fusion/five-lane-fusion.md`](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
+- [`scorer-fusion/lane-fusion.md`](../../feature-catalog/scorer-fusion/lane-fusion.md).
 - [`scorer-fusion/attribution.md`](../scorer-fusion/attribution.md).
 - [02-supersession.md](./supersession.md).

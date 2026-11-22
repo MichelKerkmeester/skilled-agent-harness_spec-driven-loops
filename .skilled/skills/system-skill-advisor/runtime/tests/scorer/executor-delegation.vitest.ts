@@ -110,7 +110,6 @@ print(json.dumps(out))
     env: {
       ...process.env,
       PYTHONDONTWRITEBYTECODE: '1',
-      SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
       SPECKIT_SKILL_ADVISOR_FORCE_LOCAL: '1',
     },
     maxBuffer: 1024 * 1024 * 16,

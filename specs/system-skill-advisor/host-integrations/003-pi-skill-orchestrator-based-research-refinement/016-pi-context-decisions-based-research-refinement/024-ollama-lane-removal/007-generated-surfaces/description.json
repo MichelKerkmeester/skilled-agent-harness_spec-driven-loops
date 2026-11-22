@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/007-generated-surfaces",
+  "description": "Phase 7: generated-surfaces",
+  "keywords": [
+    "phase",
+    "generated-surfaces"
+  ],
+  "lastUpdated": "2026-11-21T05:36:28.964Z",
+  "specId": "007",
+  "folderSlug": "generated-surfaces",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement",
+    "024-ollama-lane-removal"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "21-11-26_06-36__regenerated-the-trigger-index-its-three-fixtures.md"
+  ]
+}

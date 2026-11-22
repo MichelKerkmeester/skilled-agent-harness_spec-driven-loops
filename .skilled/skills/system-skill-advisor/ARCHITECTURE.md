@@ -8,7 +8,7 @@ trigger_phrases:
   - "advisor daemon"
   - "skill graph"
 importance_tier: "important"
-version: 1.0.7.0
+version: 1.0.9.0
 ---
 
 # Architecture: system-skill-advisor
@@ -19,7 +19,7 @@ version: 1.0.7.0
 
 ## 1. OVERVIEW
 
-`system-skill-advisor` is the standalone routing runtime that picks the right skill for a non-trivial prompt. Its single front door is `node .skilled/bin/skill-advisor.cjs`, a nine-command CLI that reaches the resident daemon over a unix socket. The daemon holds the scorer, the embedder and the SQLite skill graph, and a file watcher keeps that graph fresh. No MCP transport ships: no stdio server, no SDK, no plugin bridge and no server declaration in any runtime config.
+`system-skill-advisor` is the standalone routing runtime that picks the right skill for a non-trivial prompt. Its single front door is `node .skilled/bin/skill-advisor.cjs`, a nine-command CLI that reaches the resident daemon over a unix socket. The daemon holds the scorer and the SQLite skill graph, and a file watcher keeps that graph fresh. No MCP transport ships: no stdio server, no SDK, no plugin bridge and no server declaration in any runtime config.
 
 The package owns three authored zones:
 
@@ -74,9 +74,9 @@ system-skill-advisor/
 │   ├── skill-advisor-cli.ts # Nine-command CLI over the daemon IPC
 │   ├── handlers/            # Command handlers
 │   ├── tools/               # Command definitions and dispatcher
-│   ├── lib/                 # 18 flat modules (caller-context, df-idf, route-exclusions,
-│   │                        # render, prompt-cache, ...) and 15 domain folders: scorer,
-│   │                        # daemon, freshness, lifecycle, skill-graph, embedders, ipc, ...
+│   ├── lib/                 # 21 flat modules (caller-context, df-idf, route-exclusions,
+│   │                        # render, prompt-cache, ...) and 13 domain folders: scorer,
+│   │                        # daemon, freshness, lifecycle, skill-graph, ipc, ...
 │   ├── schemas/             # Zod and JSON contracts
 │   ├── compat/              # Public compatibility export barrel
 │   ├── config/              # route-exclusions.json and its local override
@@ -107,7 +107,7 @@ Allowed dependency direction:
 
 The advisor treats its SQLite skill graph as the durable record. Recommendations are read-only over that record; the daemon refreshes it from authored skill metadata.
 
-**Read path (`advisor_recommend`):** input prompt enters the CLI, crosses the unix socket, and lands in `runtime/handlers/advisor-recommend.ts`; the scorer fuses 5 lanes; the result joins with trust-state metadata; the handler returns a calibrated `recommendations[]` array with prompt-safe attribution.
+**Read path (`advisor_recommend`):** input prompt enters the CLI, crosses the unix socket, and lands in `runtime/handlers/advisor-recommend.ts`; the scorer fuses four lanes; the result joins with trust-state metadata; the handler returns a calibrated `recommendations[]` array with prompt-safe attribution.
 
 **Write path (`advisor_rebuild`):** the rebuilder scans `.skilled/skills/*/SKILL.md`, `ROUTER.md` and `graph-metadata.json`, applies the affordance normalizer, persists rows to the skill graph, and bumps the generation counter. The daemon watches the same paths and triggers incremental rebuilds on file change.
 
@@ -123,11 +123,11 @@ The advisor treats its SQLite skill graph as the durable record. Recommendations
 
 The daemon is composed of focused subsystems that share the IPC layer and the SQLite skill graph.
 
-**Scorer.** Five lanes fuse into a single calibrated score: explicit author signals, lexical overlap, skill-graph causality, derived metadata, and a semantic shadow lane. The fusion respects per-lane weights and emits per-lane attribution alongside the final score. Command detail lives in `references/runtime/cli-front-door-contract.md`, and lane semantics live in `references/scoring/advisor-scorer.md`. Command rows get vectors of their own in a `vec_cmd_<dim>` table that the skill-graph scan fills from each row's generated `embeddingText`. The semantic lane has a default live weight of 0, so the scorer does not embed recommendation prompts and the cosine pass is off by default. Raise the `semantic_shadow` weight through `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` to enable it. With the lane enabled, its cosine against those vectors is the second way a command row can pass, beside its own phrases. The pass needs a cosine of at least 0.72 and a 0.02 lead over the next command row. A no-edit prompt rules out every command on meaning, and a read-only question admits only a read-only command. With no live embedder the rule never fires.
+**Scorer.** Four lanes fuse into a single calibrated score: explicit author signals, lexical overlap, skill-graph causality and derived metadata. The fusion respects per-lane weights and emits per-lane attribution alongside the final score. Command detail lives in `references/runtime/cli-front-door-contract.md`, and lane semantics live in `references/scoring/advisor-scorer.md`. A command row passes on its own phrases or its slash string.
 
 **Shadow-delta sink.** `advisor_recommend` returns shadow comparison data without writing by default. Durable JSONL deltas are recorded only when `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` points to a workspace-contained file or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` / `true` enables the default sink; the launcher allowlist forwards both env names to the daemon child.
 
-**Daemon and freshness.** A chokidar watcher under `lib/daemon/` observes `.skilled/skills/*/SKILL.md`, per-skill `ROUTER.md` and per-skill `graph-metadata.json` files. On change, it incrementally reindexes metadata and refreshes the trust-state vocabulary: `live`, `stale`, `absent`, `unavailable`. It also starts a background refresh for skill and command vectors. Startup starts the same refresh. When an active embedder is configured, the refresh stores missing or stale vectors in SQLite.
+**Daemon and freshness.** A chokidar watcher under `lib/daemon/` observes `.skilled/skills/*/SKILL.md`, per-skill `ROUTER.md` and per-skill `graph-metadata.json` files. On change, it incrementally reindexes metadata and refreshes the trust-state vocabulary: `live`, `stale`, `absent`, `unavailable`.
 
 **Skill graph.** A SQLite database holds the cross-skill edges (depends_on, dependents, enhances, conflicts) plus per-skill metadata. The `skill_graph_query` command exposes read-only graph traversal.
 
@@ -157,7 +157,7 @@ Validation runs at two layers.
 
 | ADR | Subject | Status |
 |---|---|---|
-| ADR-001 | Five-lane scorer with explicit weights and prompt-safe attribution | Accepted |
+| ADR-001 | Lane fusion scorer with explicit weights and prompt-safe attribution | Accepted |
 | ADR-002 | Daemon-backed freshness via chokidar watching SKILL.md + graph-metadata.json | Accepted |
 | ADR-003 | Trust-state vocabulary (`live`, `stale`, `absent`, `unavailable`) for caller fallback decisions | Accepted |
 | ADR-004 | Python local scorer keeps routing answers flowing when the daemon is unreachable | Accepted |

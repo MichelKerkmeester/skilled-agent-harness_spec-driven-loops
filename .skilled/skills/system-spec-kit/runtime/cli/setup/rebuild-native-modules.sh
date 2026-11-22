@@ -28,25 +28,10 @@ else
 fi
 echo "   ✓ shared modules rebuilt"
 
-# Step 2: Optionally clear HuggingFace cache
-HF_CACHE="$HOME/.cache/huggingface/hub"
-if [[ -d "$HF_CACHE" ]]; then
-  echo ""
-  echo "── Step 2: HuggingFace cache found at $HF_CACHE"
-  read -p "   Clear HuggingFace cache? (y/N): " -n 1 -r
-  echo ""
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    rm -rf "$HF_CACHE"
-    echo "   ✓ HuggingFace cache cleared"
-  else
-    echo "   ⊘ Skipped"
-  fi
-fi
-
-# Step 3: Write .node-version-marker
+# Step 2: Write .node-version-marker
 echo ""
-echo "── Step 3: Writing .node-version-marker..."
-node "$ROOT_DIR/cli/setup/record-node-version.js"
+echo "── Step 2: Writing .node-version-marker..."
+node "$ROOT_DIR/runtime/cli/setup/record-node-version.js"
 echo "   ✓ .node-version-marker updated"
 
 echo ""

@@ -37,11 +37,10 @@ function restorePrivateSkillRoots(): void {
 }
 
 // Freeze scoring to the reproducible filesystem projection: an empty DB dir makes the
-// SQLite loader return null, semantic embeddings are disabled, and the native
-// lane-ranking overrides are cleared so the ordering is deterministic.
+// SQLite loader return null, and the native lane-ranking overrides are cleared so the
+// ordering is deterministic.
 function freezeEvalEnv(): void {
   process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-doctor-handoff-'));
-  process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
   process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
   delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
   delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;

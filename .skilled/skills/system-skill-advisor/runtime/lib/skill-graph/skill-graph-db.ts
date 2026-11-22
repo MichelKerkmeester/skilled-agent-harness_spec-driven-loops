@@ -7,24 +7,11 @@
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import { createPrivateSkillLinkCheck } from '../private-skill-target.js';
 
 import Database from 'better-sqlite3';
-import {
-  commandVecTableNameForDim,
-  ensureCommandVecTableForDim,
-  ensureVecMetadataTable,
-  ensureVecTableForDim,
-  getActiveEmbedder,
-  hasActiveEmbedderPointer,
-  vecTableNameForDim,
-} from '../embedders/schema.js';
-import { getAdapter, getManifest } from '../embedders/registry.js';
-import { probeOllamaModel, resolveOllamaBaseUrl } from '../embedders/adapters/ollama.js';
 import { checkSqliteIntegrity } from '../freshness/sqlite-integrity.js';
-import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
 import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
 import {
   isDocTriggerHarvestEnabled,
@@ -36,8 +23,6 @@ import {
   sanitizeDerivedMetadata,
   sanitizeMetadataStringArray,
 } from './metadata-sanitizer.js';
-
-import type { EmbedderAdapter } from '../embedders/adapter.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -104,42 +89,9 @@ export interface SkillDocHarvestResult {
   deletedDocs: number;
 }
 
-export interface SkillEmbeddingRefreshResult {
-  embedded: number;
-  skipped: number;
-  failed: number;
-  warnings: string[];
-}
-
-export interface SkillEmbeddingRow {
-  skillId: string;
-  embedding: Float32Array;
-  modelId: string;
-  contentHash: string;
-}
-
-export interface EmbeddingCoverage {
-  skills: { total: number; current: number; stale: number; missing: number };
-  commands: { total: number; current: number; stale: number; missing: number };
-  incompleteIds: string[];
-  complete: boolean;
-}
-
 interface ParsedSkillMetadata {
   node: SkillNode;
   edges: SkillEdge[];
-}
-
-interface CommandEmbeddingSource {
-  commandId: string;
-  embeddingText: string;
-}
-
-interface CommandEmbeddingRefreshResult {
-  embedded: number;
-  skipped: number;
-  failed: number;
-  pruned: number;
 }
 
 type JsonRecord = Record<string, unknown>;
@@ -148,26 +100,11 @@ type JsonRecord = Record<string, unknown>;
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────
 
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 
 export const DB_FILENAME = 'skill-graph.sqlite';
 
 const SKILL_METADATA_FILENAME = 'graph-metadata.json';
-// The command-bridge projection is a generated artifact owned by
-// scripts/command-bridges/derive-command-bridges.cjs, so the embedding refresh
-// reads it rather than recomputing command identities. A missing copy means no
-// command can be embedded yet, never a failed skill refresh.
-const COMMAND_BRIDGES_FILENAME = 'command-bridges.generated.json';
-
-const HERE = dirname(fileURLToPath(import.meta.url));
-// scripts/ lives at the runtime root and is NOT copied into dist, so the path is
-// resolved from both the TypeScript source layout and the compiled dist layout
-// (dist nests inside runtime, so the deeper walk reaches the same real scripts/).
-// The first existing candidate wins.
-const COMMAND_BRIDGES_DIR_CANDIDATES: readonly string[] = [
-  join(HERE, '..', '..', 'scripts', 'command-bridges'),             // source: lib/skill-graph -> runtime/scripts/command-bridges
-  join(HERE, '..', '..', '..', '..', 'scripts', 'command-bridges'), // dist: dist/runtime/lib/skill-graph -> runtime/scripts/command-bridges
-];
 
 // Directories never descended when discovering skill metadata: dependency,
 // build, and VCS trees can carry their own graph-metadata.json (e.g. a vendored
@@ -221,7 +158,13 @@ function isWalFallbackError(error: unknown): boolean {
 // 3. SCHEMA
 // ───────────────────────────────────────────────────────────────
 
+// schema_version is created first, so a file another opener is still creating
+// never shows skill tables without it and cannot pass for a pre-version file.
 const SCHEMA_SQL = `
+  CREATE TABLE IF NOT EXISTS schema_version (
+    version INTEGER NOT NULL
+  );
+
   CREATE TABLE IF NOT EXISTS skill_nodes (
     id TEXT PRIMARY KEY,
     family TEXT NOT NULL,
@@ -232,9 +175,6 @@ const SCHEMA_SQL = `
     derived TEXT,
     source_path TEXT NOT NULL UNIQUE,
     content_hash TEXT NOT NULL,
-    embedding BLOB,
-    embedding_model_id TEXT,
-    embedding_content_hash TEXT,
     indexed_at TEXT DEFAULT (datetime('now'))
   );
 
@@ -249,20 +189,10 @@ const SCHEMA_SQL = `
     CHECK(source_id != target_id)
   );
 
-  CREATE TABLE IF NOT EXISTS schema_version (
-    version INTEGER NOT NULL
-  );
-
   CREATE TABLE IF NOT EXISTS skill_graph_metadata (
     key TEXT PRIMARY KEY,
     value TEXT,
     updated_at TEXT DEFAULT (datetime('now'))
-  );
-
-  CREATE TABLE IF NOT EXISTS vec_metadata (
-    key TEXT PRIMARY KEY,
-    value TEXT NOT NULL,
-    created_at TEXT DEFAULT (datetime('now'))
   );
 
   CREATE TABLE IF NOT EXISTS skill_docs (
@@ -361,11 +291,61 @@ function recoverMalformedDatabase(databasePath: string, reason: string): void {
   console.warn(`[skill-graph] Recovered malformed SQLite database via initDb quick_check (${reason})`);
 }
 
-function ensureSchemaMigrations(database: Database.Database): void {
-  ensureVecMetadataTable(database);
-  ensureVecTableForDim(database, 768);
-  ensureVecTableForDim(database, 1024);
+function isMissingSchemaVersionTable(error: unknown): boolean {
+  const { code, message } = error as { code?: unknown; message?: unknown };
+  return code === 'SQLITE_ERROR' && typeof message === 'string' && /no such table: schema_version\b/.test(message);
+}
 
+// Returns the version of a file the schema has outgrown, or null for a file to
+// keep. Only what the probe actually read can condemn a file: a version row
+// below SCHEMA_VERSION, or skill tables with no schema_version table at all,
+// which predates versioning. An empty version table, or a file with neither,
+// is one another opener is still creating.
+function readOutdatedSchemaVersion(probe: Database.Database): number | null {
+  try {
+    const row = probe.prepare('SELECT version FROM schema_version LIMIT 1').get() as { version?: unknown } | undefined;
+    if (typeof row?.version !== 'number') return null;
+    return row.version < SCHEMA_VERSION ? row.version : null;
+  } catch (error: unknown) {
+    if (!isMissingSchemaVersionTable(error)) throw error;
+  }
+  const skillTable = probe.prepare("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'skill_nodes'").get();
+  return skillTable === undefined ? null : 0;
+}
+
+// A database stored below SCHEMA_VERSION was built for tables this schema no
+// longer has. It holds only derived state, so it is deleted with its sidecar
+// files and the next scan rebuilds it, instead of migration code that would
+// have to name every retired table.
+function removeOutdatedDatabase(databasePath: string, storedVersion: number): void {
+  for (const suffix of ['', '-wal', '-shm', '-journal']) {
+    rmSync(`${databasePath}${suffix}`, { force: true });
+  }
+  console.warn(`[skill-graph] Discarded a schema version ${storedVersion} database; the next scan rebuilds it`);
+}
+
+function discardOutdatedDatabase(databasePath: string): void {
+  if (!existsSync(databasePath)) return;
+  let storedVersion: number | null;
+  try {
+    const probe = new Database(databasePath, { readonly: true, fileMustExist: true });
+    try {
+      probe.pragma('busy_timeout = 5000');
+      storedVersion = readOutdatedSchemaVersion(probe);
+    } finally {
+      probe.close();
+    }
+  } catch {
+    // A lock held past the wait, a rollback journal only a writer may replay,
+    // or an I/O, permission or descriptor error says nothing about the schema.
+    // The file stays, and the normal open that follows reports the error or
+    // reads the version itself.
+    return;
+  }
+  if (storedVersion !== null) removeOutdatedDatabase(databasePath, storedVersion);
+}
+
+function ensureSchemaMigrations(database: Database.Database): void {
   database.exec(`
     CREATE TABLE IF NOT EXISTS skill_graph_metadata (
       key TEXT PRIMARY KEY,
@@ -390,113 +370,6 @@ function ensureSchemaMigrations(database: Database.Database): void {
     CREATE INDEX IF NOT EXISTS idx_skill_edges_source ON skill_edges(source_id, edge_type);
     CREATE INDEX IF NOT EXISTS idx_skill_edges_target ON skill_edges(target_id, edge_type);
   `);
-
-  const columns = new Set(
-    (database.prepare('PRAGMA table_info(skill_nodes)').all() as Array<{ name: string }>)
-      .map((column) => column.name),
-  );
-  if (!columns.has('embedding')) {
-    database.exec('ALTER TABLE skill_nodes ADD COLUMN embedding BLOB');
-  }
-  if (!columns.has('embedding_model_id')) {
-    database.exec('ALTER TABLE skill_nodes ADD COLUMN embedding_model_id TEXT');
-  }
-  if (!columns.has('embedding_content_hash')) {
-    database.exec('ALTER TABLE skill_nodes ADD COLUMN embedding_content_hash TEXT');
-  }
-  database.exec(`
-    CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_model ON skill_nodes(embedding_model_id);
-    CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_hash ON skill_nodes(embedding_content_hash);
-  `);
-
-  // Older databases baked the family allowlist into the skill_nodes CHECK constraint.
-  // That duplicates the app-level ALLOWED_FAMILIES source of truth and silently drifts:
-  // a family accepted in code still fails the stale CHECK and aborts the entire scan
-  // transaction. Rebuild the table without the constraint so ALLOWED_FAMILIES is the
-  // one gate. Runs once — a rebuilt table no longer matches the detector.
-  const nodesTableSql = (database
-    .prepare("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'skill_nodes'")
-    .get() as { sql?: string } | undefined)?.sql ?? '';
-  if (/CHECK\s*\(\s*family\s+IN/i.test(nodesTableSql)) {
-    // foreign_keys must be toggled outside a transaction; the DROP would otherwise
-    // cascade-delete every edge and doc that references skill_nodes.
-    const foreignKeysWereOn = database.pragma('foreign_keys', { simple: true }) === 1;
-    if (foreignKeysWereOn) database.pragma('foreign_keys = OFF');
-    try {
-      database.transaction(() => {
-        database.exec(`
-          CREATE TABLE skill_nodes_rebuild (
-            id TEXT PRIMARY KEY,
-            family TEXT NOT NULL,
-            category TEXT NOT NULL,
-            schema_version INTEGER NOT NULL,
-            domains TEXT,
-            intent_signals TEXT,
-            derived TEXT,
-            source_path TEXT NOT NULL UNIQUE,
-            content_hash TEXT NOT NULL,
-            embedding BLOB,
-            embedding_model_id TEXT,
-            embedding_content_hash TEXT,
-            indexed_at TEXT DEFAULT (datetime('now'))
-          );
-          INSERT INTO skill_nodes_rebuild (id, family, category, schema_version, domains,
-            intent_signals, derived, source_path, content_hash, embedding, embedding_model_id,
-            embedding_content_hash, indexed_at)
-          SELECT id, family, category, schema_version, domains, intent_signals, derived,
-            source_path, content_hash, embedding, embedding_model_id, embedding_content_hash,
-            indexed_at
-          FROM skill_nodes;
-          DROP TABLE skill_nodes;
-          ALTER TABLE skill_nodes_rebuild RENAME TO skill_nodes;
-          CREATE INDEX IF NOT EXISTS idx_skill_nodes_family ON skill_nodes(family);
-          CREATE INDEX IF NOT EXISTS idx_skill_nodes_category ON skill_nodes(category);
-          CREATE INDEX IF NOT EXISTS idx_skill_nodes_hash ON skill_nodes(content_hash);
-          CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_model ON skill_nodes(embedding_model_id);
-          CREATE INDEX IF NOT EXISTS idx_skill_nodes_embedding_hash ON skill_nodes(embedding_content_hash);
-        `);
-      })();
-    } finally {
-      if (foreignKeysWereOn) database.pragma('foreign_keys = ON');
-    }
-  }
-
-  // The skill_edges.edge_type CHECK is the same drift-prone mirror as the family CHECK
-  // above: a new edge type added to the app-level EDGE_TYPES gate still fails the stale SQL
-  // constraint and aborts the whole scan. Rebuild skill_edges without it — EDGE_TYPES is the
-  // one gate. Keeps the weight-range and no-self-loop CHECKs (structural, not drift-prone).
-  const edgesTableSql = (database
-    .prepare("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'skill_edges'")
-    .get() as { sql?: string } | undefined)?.sql ?? '';
-  if (/CHECK\s*\(\s*edge_type\s+IN/i.test(edgesTableSql)) {
-    const foreignKeysWereOn = database.pragma('foreign_keys', { simple: true }) === 1;
-    if (foreignKeysWereOn) database.pragma('foreign_keys = OFF');
-    try {
-      database.transaction(() => {
-        database.exec(`
-          CREATE TABLE skill_edges_rebuild (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            source_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
-            target_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
-            edge_type TEXT NOT NULL,
-            weight REAL NOT NULL CHECK(weight >= 0.0 AND weight <= 1.0),
-            context TEXT NOT NULL,
-            UNIQUE(source_id, target_id, edge_type),
-            CHECK(source_id != target_id)
-          );
-          INSERT INTO skill_edges_rebuild (id, source_id, target_id, edge_type, weight, context)
-          SELECT id, source_id, target_id, edge_type, weight, context FROM skill_edges;
-          DROP TABLE skill_edges;
-          ALTER TABLE skill_edges_rebuild RENAME TO skill_edges;
-          CREATE INDEX IF NOT EXISTS idx_skill_edges_source ON skill_edges(source_id, edge_type);
-          CREATE INDEX IF NOT EXISTS idx_skill_edges_target ON skill_edges(target_id, edge_type);
-          CREATE INDEX IF NOT EXISTS idx_skill_edges_type ON skill_edges(edge_type);
-        `);
-      })();
-    } finally {
-      if (foreignKeysWereOn) database.pragma('foreign_keys = ON');
-    }
-  }
 }
 
 /** Initialize (or get) the skill graph database. */
@@ -510,6 +383,7 @@ export function initDb(dbDir: string): Database.Database {
     if (!integrity.ok && integrity.reason !== 'SQLITE_ABSENT' && isGenuineCorruptionReason(integrity.reason)) {
       recoverMalformedDatabase(dbPath, integrity.reason);
     }
+    discardOutdatedDatabase(dbPath);
     db = new Database(dbPath);
     db.pragma('busy_timeout = 5000');
     try {
@@ -531,7 +405,14 @@ export function initDb(dbDir: string): Database.Database {
     if (!versionRow) {
       db.prepare('INSERT INTO schema_version (version) VALUES (?)').run(SCHEMA_VERSION);
     } else if (versionRow.version < SCHEMA_VERSION) {
-      db.prepare('UPDATE schema_version SET version = ?').run(SCHEMA_VERSION);
+      // The probe could not read this file, but this open did. Stamping it
+      // current would keep the outgrown tables forever, so it is discarded
+      // now and the open starts again on a new file.
+      db.close();
+      db = null;
+      dbPath = null;
+      removeOutdatedDatabase(join(dbDir, DB_FILENAME), versionRow.version);
+      return initDb(dbDir);
     }
 
     return db;
@@ -568,13 +449,13 @@ export function probeStatusIntegrity(): { ok: true } | { ok: false; reason: stri
 }
 
 /**
- * Read-only database access for recommend-path consumers (semantic shadow
- * lane). Never creates the database file, never runs schema migrations, and
- * never triggers malformed-database recovery, so secondary/bridge processes
- * cannot become a second writer on the daemon-owned skill graph. Reuses the
- * read-write handle when this process already owns one (daemon path).
- * Returns null when the database file is absent or unopenable; callers must
- * degrade gracefully (no shadow scoring).
+ * Read-only database access for the skill_graph_status reader. Never creates
+ * the database file, never runs schema migrations, and never triggers
+ * malformed-database recovery, so a status call from a secondary or bridge
+ * process cannot become a second writer on the daemon-owned skill graph.
+ * Reuses the read-write handle when this process already owns one (daemon
+ * path). Returns null when the database file is absent or unopenable; callers
+ * must report that state rather than open the file for writing.
  */
 export function getDbReadOnly(): Database.Database | null {
   if (db) return db;
@@ -592,7 +473,7 @@ export function getDbReadOnly(): Database.Database | null {
     return readOnlyDb;
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
-    console.warn(`[skill-graph] Read-only open failed (${message}); shadow scoring degraded for this process`);
+    console.warn(`[skill-graph] Read-only open failed (${message}); read-only status reads degraded for this process`);
     return null;
   }
 }
@@ -721,102 +602,6 @@ export function computeSkillMetadataContentHash(content: string): string {
   return createHash('sha256')
     .update(`${SKILL_METADATA_SANITIZER_VERSION}\n${content}`)
     .digest('hex');
-}
-
-function encodeEmbedding(vector: Float32Array | readonly number[]): Buffer {
-  const array = vector instanceof Float32Array ? vector : Float32Array.from(vector);
-  return Buffer.from(array.buffer, array.byteOffset, array.byteLength);
-}
-
-function decodeEmbedding(blob: Buffer): Float32Array | null {
-  if (blob.byteLength === 0 || blob.byteLength % Float32Array.BYTES_PER_ELEMENT !== 0) {
-    return null;
-  }
-  const copied = blob.buffer.slice(blob.byteOffset, blob.byteOffset + blob.byteLength);
-  return new Float32Array(copied);
-}
-
-function skillDescriptionForEmbedding(sourcePath: string): string {
-  const skillMdPath = join(dirname(sourcePath), 'SKILL.md');
-  if (!existsSync(skillMdPath)) {
-    return '';
-  }
-  const parsed = parseSkillFrontmatter(readFileSync(skillMdPath, 'utf8'));
-  return parsed.frontmatter.description || '';
-}
-
-/**
- * Read the generated command-bridge projection into the texts the refresh embeds.
- *
- * Returns null when the projection is absent, unparsable or shaped differently
- * than expected. A regenerated artifact must never be able to fail a skill
- * refresh, so every one of those cases reads as "no commands to embed".
- */
-export function readCommandEmbeddingSources(): CommandEmbeddingSource[] | null {
-  const filePath = COMMAND_BRIDGES_DIR_CANDIDATES
-    .map((dir) => join(dir, COMMAND_BRIDGES_FILENAME))
-    .find((candidate) => existsSync(candidate));
-  if (!filePath) {
-    return null;
-  }
-
-  let raw: string;
-  try {
-    raw = readFileSync(filePath, 'utf8');
-  } catch {
-    return null;
-  }
-
-  let parsedJson: unknown;
-  try {
-    parsedJson = JSON.parse(raw) as unknown;
-  } catch {
-    return null;
-  }
-
-  if (!isRecord(parsedJson) || !Array.isArray(parsedJson.entries)) {
-    return null;
-  }
-
-  const sources: CommandEmbeddingSource[] = [];
-  const seenIds = new Set<string>();
-  for (const entry of parsedJson.entries) {
-    if (!isRecord(entry) || typeof entry.embeddingText !== 'string') {
-      continue;
-    }
-    const embeddingText = entry.embeddingText.trim();
-    if (!embeddingText) {
-      continue;
-    }
-    // Only a command the TypeScript router serves is ever a scoring candidate,
-    // so a python-only or disabled row would pay for a vector nobody reads.
-    if (!isRecord(entry.runtime) || !isRecord(entry.runtime.typescript)) {
-      continue;
-    }
-    const typescriptRuntime = entry.runtime.typescript;
-    if (typescriptRuntime.enabled !== true) {
-      continue;
-    }
-    const commandId = typescriptRuntime.id;
-    if (typeof commandId !== 'string' || commandId.trim().length === 0) {
-      continue;
-    }
-    // One command can be projected from more than one authored source. The
-    // vector is keyed by runtime id, so a repeat would pay twice for one row.
-    if (seenIds.has(commandId)) {
-      continue;
-    }
-    seenIds.add(commandId);
-    sources.push({ commandId, embeddingText });
-  }
-
-  return sources;
-}
-
-export function providerModelId(profile: { provider: string; model: string; dim: number; dtype?: string | null; slug?: string }): string {
-  return profile.slug ?? [profile.provider, profile.model, profile.dim, profile.dtype ?? null]
-    .filter((part): part is string | number => part !== null && part !== undefined && part !== '')
-    .join(':');
 }
 
 function discoverGraphMetadataFiles(skillDir: string): string[] {
@@ -1291,629 +1076,6 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
   checkpointWal(database);
 
   return summary;
-}
-
-/**
- * Refresh skill embeddings only when an active embedder pointer is configured.
- */
-export async function refreshSkillEmbeddings(skillDir?: string): Promise<SkillEmbeddingRefreshResult> {
-  const database = getDb();
-
-  if (!hasActiveEmbedderPointer(database)) {
-    return {
-      embedded: 0,
-      skipped: 0,
-      failed: 0,
-      warnings: ['no active embedder pointer; skill embeddings not refreshed'],
-    };
-  }
-
-  return refreshSkillEmbeddingsViaAdapter(database, skillDir);
-}
-
-function tableExists(database: Database.Database, tableName: string): boolean {
-  const row = database.prepare(`
-    SELECT 1 AS present
-    FROM sqlite_master
-    WHERE type = 'table' AND name = ?
-    LIMIT 1
-  `).get(tableName) as { present: number } | undefined;
-  return Boolean(row);
-}
-
-/** Count current, stale, and missing vectors without contacting an embedder. */
-export function embeddingCoverage(database?: Database.Database): EmbeddingCoverage {
-  const sourceDatabase = database ?? getDb();
-  const hasActivePointer = hasActiveEmbedderPointer(sourceDatabase);
-  const active = hasActivePointer ? getActiveEmbedder(sourceDatabase) : null;
-  const skillVectors = new Map<string, {
-    embedding: Buffer | null;
-    model_id: string;
-    content_hash: string;
-  }>();
-  const commandVectors = new Map<string, {
-    embedding: Buffer | null;
-    model_id: string;
-    content_hash: string;
-  }>();
-
-  if (active) {
-    const skillTable = vecTableNameForDim(active.dim);
-    if (tableExists(sourceDatabase, skillTable)) {
-      const rows = sourceDatabase.prepare(`
-        SELECT skill_id, embedding, model_id, content_hash
-        FROM ${skillTable}
-      `).all() as Array<{
-        skill_id: string;
-        embedding: Buffer | null;
-        model_id: string;
-        content_hash: string;
-      }>;
-      for (const row of rows) {
-        skillVectors.set(row.skill_id, row);
-      }
-    }
-
-    const commandTable = commandVecTableNameForDim(active.dim);
-    if (tableExists(sourceDatabase, commandTable)) {
-      const rows = sourceDatabase.prepare(`
-        SELECT command_id, embedding, model_id, content_hash
-        FROM ${commandTable}
-      `).all() as Array<{
-        command_id: string;
-        embedding: Buffer | null;
-        model_id: string;
-        content_hash: string;
-      }>;
-      for (const row of rows) {
-        commandVectors.set(row.command_id, row);
-      }
-    }
-  }
-
-  const skills = { total: 0, current: 0, stale: 0, missing: 0 };
-  const commands = { total: 0, current: 0, stale: 0, missing: 0 };
-  const incompleteIds: string[] = [];
-  const skillRows = sourceDatabase.prepare(`
-    SELECT id, source_path
-    FROM skill_nodes
-    ORDER BY id ASC
-  `).all() as Array<{ id: string; source_path: string }>;
-
-  for (const row of skillRows) {
-    const description = skillDescriptionForEmbedding(row.source_path).trim();
-    if (!description) {
-      continue;
-    }
-
-    skills.total++;
-    const stored = skillVectors.get(row.id);
-    if (!stored?.embedding) {
-      skills.missing++;
-      incompleteIds.push(row.id);
-    } else if (
-      active
-      && stored.model_id === active.name
-      && stored.content_hash === computeContentHash(description)
-    ) {
-      skills.current++;
-    } else {
-      skills.stale++;
-      incompleteIds.push(row.id);
-    }
-  }
-
-  const commandSources = readCommandEmbeddingSources() ?? [];
-  for (const source of commandSources) {
-    commands.total++;
-    const stored = commandVectors.get(source.commandId);
-    if (!stored?.embedding) {
-      commands.missing++;
-      incompleteIds.push(source.commandId);
-    } else if (
-      active
-      && stored.model_id === active.name
-      && stored.content_hash === computeContentHash(source.embeddingText)
-    ) {
-      commands.current++;
-    } else {
-      commands.stale++;
-      incompleteIds.push(source.commandId);
-    }
-  }
-
-  return {
-    skills,
-    commands,
-    incompleteIds,
-    complete: skills.total > 0 && incompleteIds.length === 0,
-  };
-}
-
-let backgroundEmbeddingRefresh: Promise<SkillEmbeddingRefreshResult | null> | null = null;
-// A request that lands while a run is in flight may follow a reindex the run's
-// pass has already read past, so the run makes one more pass for it.
-let backgroundEmbeddingRefreshRequested: { skillDir: string | undefined } | null = null;
-
-/**
- * Embedding coverage is index-time and only changed rows cost calls; the prompt
- * path remains tied to the semantic lane weight.
- */
-export async function refreshEmbeddingsInBackground(
-  skillDir?: string,
-): Promise<SkillEmbeddingRefreshResult | null> {
-  if (backgroundEmbeddingRefresh) {
-    backgroundEmbeddingRefreshRequested = { skillDir };
-    return backgroundEmbeddingRefresh;
-  }
-  if (process.env.SYSTEM_SKILL_ADVISOR_EMBED_REFRESH?.toLowerCase() === 'off') {
-    return null;
-  }
-
-  const refresh = (async (): Promise<SkillEmbeddingRefreshResult | null> => {
-    try {
-      // A pass that throws must not cost a queued request its pass, so each pass
-      // catches its own error; the run rethrows only when no pass succeeded.
-      let result: SkillEmbeddingRefreshResult | null = null;
-      let succeeded = false;
-      let lastError: unknown;
-      let request: { skillDir: string | undefined } | null = { skillDir };
-      while (request) {
-        try {
-          // A later pass that finds coverage complete keeps the result of the pass
-          // that did the work.
-          result = (await refreshEmbeddingsOnce(request.skillDir)) ?? result;
-          succeeded = true;
-        } catch (error: unknown) {
-          lastError = error;
-        }
-        request = backgroundEmbeddingRefreshRequested;
-        backgroundEmbeddingRefreshRequested = null;
-      }
-      if (!succeeded) throw lastError;
-      // A failed pass after a successful one is reported, not hidden behind the
-      // earlier pass's counts.
-      if (lastError !== undefined) {
-        const message = lastError instanceof Error ? lastError.message : String(lastError);
-        const warning = `refresh pass failed: ${message}`;
-        result = result
-          ? { ...result, warnings: [...result.warnings, warning] }
-          : { embedded: 0, skipped: 0, failed: 0, warnings: [warning] };
-      }
-      return result;
-    } finally {
-      // Runs in the same turn as the last pending-request check, so a request
-      // either joins this run before it or starts a new run after it.
-      backgroundEmbeddingRefresh = null;
-      backgroundEmbeddingRefreshRequested = null;
-    }
-  })();
-  backgroundEmbeddingRefresh = refresh;
-  return refresh;
-}
-
-async function refreshEmbeddingsOnce(
-  skillDir: string | undefined,
-): Promise<SkillEmbeddingRefreshResult | null> {
-  const database = getDb();
-  const coverage = embeddingCoverage(database);
-  if (coverage.complete) {
-    return null;
-  }
-
-  if (hasActiveEmbedderPointer(database)) {
-    const active = getActiveEmbedder(database);
-    const manifest = getManifest(active.name);
-    if (manifest?.backend === 'ollama') {
-      const probe = await probeOllamaModel(
-        resolveOllamaBaseUrl(),
-        manifest.ollamaName ?? manifest.name,
-        500,
-      );
-      if (!probe.available) {
-        return {
-          embedded: 0,
-          skipped: 0,
-          failed: 0,
-          warnings: [`embedding backend unavailable: ${probe.reason ?? 'unknown reason'}`],
-        };
-      }
-    }
-  }
-
-  return await refreshSkillEmbeddings(skillDir);
-}
-
-// A dead or wedged embedding backend fails every row for the same reason, so a
-// per-row retry buys nothing and costs one full request deadline each time.
-const EMBEDDING_BACKEND_OUTAGE_STREAK = 3;
-
-async function refreshSkillEmbeddingsViaAdapter(
-  database: Database.Database,
-  skillDir: string | undefined,
-): Promise<SkillEmbeddingRefreshResult> {
-  const active = getActiveEmbedder(database);
-  ensureVecTableForDim(database, active.dim);
-  ensureCommandVecTableForDim(database, active.dim);
-  const tableName = vecTableNameForDim(active.dim);
-  let adapter: EmbedderAdapter;
-  try {
-    const resolved = getAdapter(active.name);
-    if (!resolved) {
-      const warning = `ADAPTER-UNAVAILABLE: ${active.name} (manifest not found in registry)`;
-      console.warn(`[skill-graph] ${warning}`);
-      // Report every skill node as failed so refresh-watchers see an outage
-      // signal instead of an empty-corpus-looking zero count.
-      const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
-      return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
-    }
-    adapter = resolved;
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    const warning = `ADAPTER-UNAVAILABLE: ${active.name} (${message})`;
-    console.warn(`[skill-graph] ${warning}`);
-    const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
-    return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
-  }
-
-  // Fail fast on adapter-vs-pointer dim mismatch instead of per-row embedding
-  // noise and accidental table emptying.
-  if (adapter.dim !== active.dim) {
-    const warning = `ADAPTER-DIM-MISMATCH: ${active.name} reports dim=${adapter.dim} but vec_metadata pointer dim=${active.dim}; fix configuration before refresh`;
-    console.warn(`[skill-graph] ${warning}`);
-    const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
-    return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
-  }
-  const modelId = active.name;
-  const warnings: string[] = [];
-  let embedded = 0;
-  let skipped = 0;
-  let failed = 0;
-  // Give up once the run has proved the backend, not the row, is the problem,
-  // and count the rows it never tried as failed so the result still reads as an
-  // outage rather than a healthy short scan.
-  let consecutiveFailures = 0;
-  let backendOutage: string | null = null;
-
-  const rows = database.prepare(`
-    SELECT n.id AS id,
-           n.source_path AS source_path,
-           v.embedding AS vec_embedding,
-           v.model_id AS vec_model_id,
-           v.content_hash AS vec_content_hash
-    FROM skill_nodes n
-    LEFT JOIN ${tableName} v ON v.skill_id = n.id
-    ORDER BY n.id ASC
-  `).all() as Array<{
-    id: string;
-    source_path: string;
-    vec_embedding: Buffer | null;
-    vec_model_id: string | null;
-    vec_content_hash: string | null;
-  }>;
-
-  const upsertEmbedding = database.prepare(`
-    INSERT INTO ${tableName} (skill_id, embedding, model_id, content_hash, updated_at)
-    VALUES (?, ?, ?, ?, datetime('now'))
-    ON CONFLICT(skill_id) DO UPDATE SET
-      embedding = excluded.embedding,
-      model_id = excluded.model_id,
-      content_hash = excluded.content_hash,
-      updated_at = datetime('now')
-  `);
-  const deleteEmbedding = database.prepare(`DELETE FROM ${tableName} WHERE skill_id = ?`);
-
-  for (const row of rows) {
-    if (skillDir && !row.source_path.startsWith(skillDir)) {
-      skipped++;
-      continue;
-    }
-
-    const description = skillDescriptionForEmbedding(row.source_path).trim();
-    if (!description) {
-      deleteEmbedding.run(row.id);
-      skipped++;
-      continue;
-    }
-
-    const contentHash = computeContentHash(description);
-    if (
-      row.vec_embedding
-      && row.vec_model_id === modelId
-      && row.vec_content_hash === contentHash
-    ) {
-      skipped++;
-      continue;
-    }
-
-    // Keep stale vectors: the semantic lane's coverage gate refuses to score while any
-    // row is stale, and the projection check catches a model change.
-    if (backendOutage !== null) {
-      failed++;
-      continue;
-    }
-
-    try {
-      const vectors = await adapter.embed([description], { inputType: 'document' });
-      const vector = vectors[0];
-      if (!vector || vector.length !== active.dim) {
-        throw new Error(`adapter returned vector of length ${vector?.length ?? 0}, expected ${active.dim}`);
-      }
-      upsertEmbedding.run(row.id, encodeEmbedding(vector), modelId, contentHash);
-      embedded++;
-      consecutiveFailures = 0;
-    } catch (error: unknown) {
-      failed++;
-      consecutiveFailures++;
-      const message = error instanceof Error ? error.message : String(error);
-      const warning = `EMBEDDING-FAILED: ${row.id} (${message})`;
-      warnings.push(warning);
-      console.warn(`[skill-graph] ${warning}`);
-      if (consecutiveFailures >= EMBEDDING_BACKEND_OUTAGE_STREAK) {
-        backendOutage = message;
-        const outageWarning = `EMBEDDING-BACKEND-OUTAGE: stopped after ${consecutiveFailures}`
-          + ` consecutive failures (${message}); the remaining skills are counted as`
-          + ' failed and retried on the next refresh';
-        warnings.push(outageWarning);
-        console.warn(`[skill-graph] ${outageWarning}`);
-      }
-    }
-  }
-
-  // Commands share the skill vector space, so a backend the skill loop has
-  // already proved dead is not asked again for them. Their counts stay out of
-  // the returned totals, which report the skill corpus this refresh exists for.
-  const commands = await refreshCommandEmbeddings(database, adapter, active.dim, modelId, backendOutage);
-  if (commands) {
-    console.warn(
-      `[skill-graph] Command embeddings: ${commands.embedded} embedded, ${commands.skipped} skipped,`
-      + ` ${commands.failed} failed, ${commands.pruned} pruned`,
-    );
-  }
-
-  return { embedded, skipped, failed, warnings };
-}
-
-/**
- * Embed the command-bridge projection into its own per-dimension table.
- *
- * Commands are the queries the router matches, not skills, so their vectors live
- * in the command table. That table carries no foreign key into skill_nodes, so a
- * command the projection drops leaves its vector behind unless the refresh prunes
- * it here.
- *
- * A row whose text hash and model id both still match is never re-sent to the
- * backend, so a rerun over an unchanged projection refreshes nothing.
- */
-async function refreshCommandEmbeddings(
-  database: Database.Database,
-  adapter: EmbedderAdapter,
-  dim: number,
-  modelId: string,
-  inheritedOutage: string | null,
-): Promise<CommandEmbeddingRefreshResult | null> {
-  const sources = readCommandEmbeddingSources();
-  if (sources === null) {
-    // A missing or unreadable projection is a regeneration gap, not a refresh
-    // failure, so the stored command vectors stay untouched until it is rebuilt.
-    const warning = `COMMAND-BRIDGES-UNAVAILABLE: ${COMMAND_BRIDGES_FILENAME} is missing or unreadable, skipped command embeddings`;
-    console.warn(`[skill-graph] ${warning}`);
-    return null;
-  }
-
-  const commandTable = commandVecTableNameForDim(dim);
-  const storedRows = new Map(
-    (database.prepare(`
-      SELECT command_id, embedding, model_id, content_hash
-      FROM ${commandTable}
-    `).all() as Array<{
-      command_id: string;
-      embedding: Buffer | null;
-      model_id: string;
-      content_hash: string;
-    }>).map((row) => [row.command_id, row]),
-  );
-
-  const upsertEmbedding = database.prepare(`
-    INSERT INTO ${commandTable} (command_id, embedding, model_id, content_hash, updated_at)
-    VALUES (?, ?, ?, ?, datetime('now'))
-    ON CONFLICT(command_id) DO UPDATE SET
-      embedding = excluded.embedding,
-      model_id = excluded.model_id,
-      content_hash = excluded.content_hash,
-      updated_at = datetime('now')
-  `);
-  const deleteEmbedding = database.prepare(`DELETE FROM ${commandTable} WHERE command_id = ?`);
-
-  const result: CommandEmbeddingRefreshResult = { embedded: 0, skipped: 0, failed: 0, pruned: 0 };
-  const liveIds = new Set(sources.map((source) => source.commandId));
-  for (const storedId of storedRows.keys()) {
-    if (!liveIds.has(storedId)) {
-      result.pruned += deleteEmbedding.run(storedId).changes;
-    }
-  }
-
-  // The same outage rule as the skill loop: give up once the backend, not the
-  // row, is the proven problem, and count what was never tried as failed so the
-  // next refresh retries it.
-  let consecutiveFailures = 0;
-  let backendOutage = inheritedOutage;
-
-  for (const source of sources) {
-    const contentHash = computeContentHash(source.embeddingText);
-    const stored = storedRows.get(source.commandId);
-    if (
-      stored
-      && stored.embedding
-      && stored.model_id === modelId
-      && stored.content_hash === contentHash
-    ) {
-      result.skipped++;
-      continue;
-    }
-
-    // Keep stale vectors: the semantic lane's coverage gate refuses to score while any
-    // row is stale, and the projection check catches a model change.
-    if (backendOutage !== null) {
-      result.failed++;
-      continue;
-    }
-
-    try {
-      const vectors = await adapter.embed([source.embeddingText], { inputType: 'document' });
-      const vector = vectors[0];
-      if (!vector || vector.length !== dim) {
-        throw new Error(`adapter returned vector of length ${vector?.length ?? 0}, expected ${dim}`);
-      }
-      upsertEmbedding.run(source.commandId, encodeEmbedding(vector), modelId, contentHash);
-      result.embedded++;
-      consecutiveFailures = 0;
-    } catch (error: unknown) {
-      result.failed++;
-      consecutiveFailures++;
-      const message = error instanceof Error ? error.message : String(error);
-      const warning = `COMMAND-EMBEDDING-FAILED: ${source.commandId} (${message})`;
-      console.warn(`[skill-graph] ${warning}`);
-      if (consecutiveFailures >= EMBEDDING_BACKEND_OUTAGE_STREAK) {
-        backendOutage = message;
-        const outageWarning = `COMMAND-EMBEDDING-BACKEND-OUTAGE: stopped after ${consecutiveFailures}`
-          + ` consecutive failures (${message}); the remaining commands are counted as`
-          + ' failed and retried on the next refresh';
-        console.warn(`[skill-graph] ${outageWarning}`);
-      }
-    }
-  }
-
-  return result;
-}
-
-export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddingRow[] {
-  // Recommend-path read: must not lazily create or migrate the database.
-  // Absent database means no embeddings; the shadow lane degrades to empty.
-  const database = getDbReadOnly();
-  if (!database) {
-    return [];
-  }
-  const hasTable = (tableName: string): boolean => Boolean(database.prepare(`
-    SELECT 1 AS present
-    FROM sqlite_master
-    WHERE type = 'table' AND name = ?
-    LIMIT 1
-  `).get(tableName));
-
-  const activeRows = hasTable('vec_metadata')
-    ? database.prepare(`
-        SELECT key, value
-        FROM vec_metadata
-        WHERE key IN (?, ?)
-      `).all('active_embedder_name', 'active_embedder_dim') as Array<{ key: string; value: string }>
-    : [];
-  const activeValues = new Map(activeRows.map((row) => [row.key, row.value]));
-  const activeName = activeValues.get('active_embedder_name');
-  const activeDim = Number.parseInt(activeValues.get('active_embedder_dim') ?? '', 10);
-  if (activeName && Number.isInteger(activeDim) && activeDim > 0) {
-    const tableName = vecTableNameForDim(activeDim);
-    if (!hasTable(tableName)) {
-      // Skill vectors are absent, but an explicit id list can still name
-      // command rows, which live in their own table.
-      return appendCommandEmbeddingRows(database, activeDim, skillIds, [], hasTable);
-    }
-
-    const activeRows = skillIds && skillIds.length > 0
-      ? database.prepare(`
-          SELECT skill_id, embedding, model_id, content_hash
-          FROM ${tableName}
-          WHERE skill_id IN (${skillIds.map(() => '?').join(', ')})
-          ORDER BY skill_id ASC
-        `).all(...skillIds)
-      : database.prepare(`
-          SELECT skill_id, embedding, model_id, content_hash
-          FROM ${tableName}
-          ORDER BY skill_id ASC
-        `).all();
-
-    const skillRows = (activeRows as Array<{
-      skill_id: string;
-      embedding: Buffer;
-      model_id: string;
-      content_hash: string;
-    }>)
-      .map((row) => {
-        const embedding = decodeEmbedding(row.embedding);
-        return embedding
-          ? {
-              skillId: row.skill_id,
-              embedding,
-              modelId: row.model_id,
-              contentHash: row.content_hash,
-            }
-          : null;
-      })
-      .filter((row): row is SkillEmbeddingRow => row !== null);
-
-    return appendCommandEmbeddingRows(database, activeDim, skillIds, skillRows, hasTable);
-  }
-
-  return [];
-}
-
-/**
- * Append the command vectors stored beside the skill vectors for `dim`.
- *
- * A no-argument read is the skill corpus the routing lanes rank over, so the
- * sibling table is consulted only for an explicit id list. Command ids are not
- * rows of `skill_nodes`, so their vectors carry no foreign key and live in
- * their own table: an id list that names a command finds it there and nothing
- * else changes. The table is absent until a refresh builds it and can fail on
- * its own, so both cases return the skill rows untouched rather than turning a
- * partial read into a routing outage.
- */
-function appendCommandEmbeddingRows(
-  database: Database.Database,
-  dim: number,
-  skillIds: readonly string[] | undefined,
-  skillRows: SkillEmbeddingRow[],
-  hasTable: (tableName: string) => boolean,
-): SkillEmbeddingRow[] {
-  if (!skillIds || skillIds.length === 0) {
-    return skillRows;
-  }
-  try {
-    const commandTable = commandVecTableNameForDim(dim);
-    if (!hasTable(commandTable)) {
-      return skillRows;
-    }
-
-    const commandRows = (database.prepare(`
-      SELECT command_id, embedding, model_id, content_hash
-      FROM ${commandTable}
-      WHERE command_id IN (${skillIds.map(() => '?').join(', ')})
-      ORDER BY command_id ASC
-    `).all(...skillIds) as Array<{
-      command_id: string;
-      embedding: Buffer;
-      model_id: string;
-      content_hash: string;
-    }>)
-      .map((row) => {
-        const embedding = decodeEmbedding(row.embedding);
-        return embedding
-          ? {
-              skillId: row.command_id,
-              embedding,
-              modelId: row.model_id,
-              contentHash: row.content_hash,
-            }
-          : null;
-      })
-      .filter((row): row is SkillEmbeddingRow => row !== null);
-
-    return [...skillRows, ...commandRows];
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(`[skill-graph] Command embedding load failed; command rows omitted (${message})`);
-    return skillRows;
-  }
 }
 
 // ───────────────────────────────────────────────────────────────

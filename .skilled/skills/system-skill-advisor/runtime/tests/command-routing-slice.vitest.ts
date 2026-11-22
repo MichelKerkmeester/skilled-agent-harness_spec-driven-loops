@@ -40,13 +40,11 @@ const RECAPTURE = BASELINE_READ_PATH === BASELINE_PATH
   ? 'node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write'
   : 'node scripts/routing-accuracy/capture-command-routing-baseline.mjs > scripts/routing-accuracy/command-routing-baseline.host.json';
 
-// The capture projects these nine names to score reproducibly. A harness imports
+// The capture projects these seven names to score reproducibly. A harness imports
 // the module and scores in process, so the projection has to be undone before
 // the call returns or it silently changes how every later test scores.
 const PROJECTED_ENV = [
   'SYSTEM_SKILL_ADVISOR_DB_DIR',
-  'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',
-  'VITEST',
   'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
   'PYTHONDONTWRITEBYTECODE',
   'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON',

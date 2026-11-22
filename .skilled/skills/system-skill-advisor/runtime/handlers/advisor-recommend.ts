@@ -24,10 +24,6 @@ import {
   modeForAlias,
   modeForPromptAlias,
 } from '../lib/scorer/aliases.js';
-import {
-  getSemanticShadowRuntimeHealth,
-  withSemanticShadowPromptEmbedding,
-} from '../lib/scorer/lanes/semantic-shadow.js';
 import { DEFAULT_SHADOW_SCORER_LANE_WEIGHTS } from '../lib/scorer/lane-registry.js';
 import { sanitizeSkillLabel } from '../lib/render.js';
 import { recordShadowDelta, shadowDeltaSinkEnabled } from '../lib/shadow/shadow-sink.js';
@@ -100,32 +96,6 @@ function runtimeLaneHealthForStatus(status: AdvisorStatus): AdvisorScoringOption
   };
 }
 
-const PRE_SCORE_REFUSALS = new Set([
-  'incomplete_skill_vectors',
-  'dim_mismatch',
-  'adapter_unavailable',
-  'database_absent',
-]);
-
-// Exported so prompt embedding degradation can be tested without invoking the handler.
-export function mergeSemanticShadowRuntimeLaneHealth(
-  runtimeLaneHealth: AdvisorScoringOptions['runtimeLaneHealth'],
-  disabledReason: string | null,
-): AdvisorScoringOptions['runtimeLaneHealth'] {
-  // Every refusal set before scoring leaves the lane unable to score, so its weight
-  // leaves the live total the same way a failed prompt embed does.
-  if (!disabledReason || (!disabledReason.startsWith('prompt_embedding_') && !PRE_SCORE_REFUSALS.has(disabledReason))) {
-    return runtimeLaneHealth;
-  }
-  return {
-    ...runtimeLaneHealth,
-    semantic_shadow: {
-      status: 'runtime_degraded',
-      reason: disabledReason,
-    },
-  };
-}
-
 function renderableStatus(status: AdvisorStatus): AdvisorStatus {
   const trustState = status.trustState.state;
   if (status.freshness === 'unavailable' && (trustState === 'live' || trustState === 'stale')) {
@@ -187,8 +157,6 @@ function evidenceFeature(value: string): string {
       return 'derived_skill_signal';
     case 'doc':
       return 'doc_reference_signal';
-    case 'cosine':
-      return 'semantic_similarity';
     default:
       if (value.includes('disambiguation')) return 'disambiguation_rule';
       if (value.includes('surface')) return 'surface_signal';
@@ -505,17 +473,9 @@ function roundScore(value: number): number {
   return Math.round(value * 1_000_000) / 1_000_000;
 }
 
-// A semantic lane that fell back to phrase scoring still answers, so the reason
-// it declined travels as a warning rather than changing the recommendation.
-export function semanticLaneOffWarning(reason: string | null): string[] {
-  // A lane switched off by configuration is not a fallback worth warning about.
-  return reason && reason !== 'lane_weight_zero' ? [`semantic_lane_off:${reason}`] : [];
-}
-
 function outputWarnings(
   status: AdvisorStatus,
   result: ReturnType<typeof scoreAdvisorPrompt>,
-  semanticLaneOffReason: string | null,
 ): string[] {
   const degradedLanes = result.metrics.degradedLanes ?? [];
   return [
@@ -523,7 +483,6 @@ function outputWarnings(
     ...(degradedLanes.length > 0
       ? [`runtime_degraded_lanes:${degradedLanes.join(',')}`]
       : []),
-    ...semanticLaneOffWarning(semanticLaneOffReason),
   ];
 }
 
@@ -562,7 +521,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   }
   const sourceSignature = cacheSourceSignature(status);
   advisorPromptCache.invalidateSourceSignatureChange(sourceSignature);
-  // Stripped once here so the embedding, the cache key and the scorer all see the same text.
+  // Stripped once here so the cache key and the scorer see the same text.
   const scoredPrompt = stripLeadingPastedReply(input.prompt);
   const key = advisorPromptCache.makeKey({
     canonicalPrompt: scoredPrompt.trim(),
@@ -598,24 +557,12 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   }
 
   const topK = input.options?.topK ?? 3;
-  const result = await withSemanticShadowPromptEmbedding(
-    scoredPrompt,
-    () => {
-      const semanticShadowDisabledReason = getSemanticShadowRuntimeHealth().disabledReason;
-      return scoreAdvisorPrompt(scoredPrompt, {
-        workspaceRoot,
-        confidenceThreshold: input.options?.confidenceThreshold,
-        uncertaintyThreshold: input.options?.uncertaintyThreshold,
-        runtimeLaneHealth: mergeSemanticShadowRuntimeLaneHealth(
-          runtimeLaneHealthForStatus(status),
-          semanticShadowDisabledReason,
-        ),
-      });
-    },
-  );
-  // The lane records its health while the scored call runs, so the reason is
-  // read right after that call settles to describe this call's own fallback.
-  const semanticLaneOffReason = getSemanticShadowRuntimeHealth().disabledReason;
+  const result = scoreAdvisorPrompt(scoredPrompt, {
+    workspaceRoot,
+    confidenceThreshold: input.options?.confidenceThreshold,
+    uncertaintyThreshold: input.options?.uncertaintyThreshold,
+    runtimeLaneHealth: runtimeLaneHealthForStatus(status),
+  });
   const recommendations = result.recommendations
     .map((recommendation) => publicRecommendation(
       recommendation,
@@ -625,7 +572,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     .filter((recommendation): recommendation is NonNullable<typeof recommendation> => Boolean(recommendation))
     .slice(0, topK);
   const degradedLanes = result.metrics.degradedLanes ?? [];
-  const warnings = outputWarnings(status, result, semanticLaneOffReason);
+  const warnings = outputWarnings(status, result);
   const abstainReasons = outputAbstainReasons(input, result);
   const output: AdvisorRecommendOutput = {
     workspaceRoot,

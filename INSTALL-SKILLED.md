@@ -83,20 +83,6 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"create 
 
 It prints one skill id, such as `sk-doc`. When it prints nothing or `null`, run `/doctor:skill-advisor rebuild`.
 
-### Meaning Matching For Commands
-
-Out of the box, the advisor matches a request to a command by its phrases. A local embedding model alone does not turn on meaning matching: the `semantic_shadow` lane ships at weight `0`, because a measured run routed fewer prompts correctly with it on. The daemon still keeps the vectors current, so you can try it with `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON='{"semantic_shadow":0.05}'`. The model runs on your own machine through Ollama.
-
-Run the setup from the repository you are setting up:
-
-```
-/doctor:skill-advisor embedder
-```
-
-It first checks Ollama, its server and the model without changing anything. It then lists each missing step with its cost and its undo, and asks once before it acts. After your yes it starts the server, pulls the model and indexes every command. It never installs Ollama itself. When Ollama is missing, the plan prints the install command for you to run.
-
-The model takes about 262 MB on disk and unloads after five idle minutes. The Skill Advisor install guide lists the [measured costs](.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md#127-setup-route-and-cost). Meaning matching is optional. Without it, everything still works on phrases alone.
-
 ### Add Code Mode
 
 Code Mode is the bridge your runtime uses to call external MCP tools. It builds apart from the builds above. Run:
@@ -154,8 +140,7 @@ The command writes nothing. It prints the steps below with your paths filled in.
 | 2 | `/doctor:agents-md embed --root <dir>` | the checkout | Adds the shipped sections to your `AGENTS.md`. Skip it if you chose `link` |
 | 3 | `/doctor:mcp install` | the checkout | Builds and registers Code Mode |
 | 4 | `/doctor:git setup` | your project | Checks the git hooks and sk-git settings |
-| 5 | `/doctor:skill-advisor embedder` | your project | Sets up meaning matching for commands |
-| 6 | `/doctor:setup` | your project | Confirms the whole setup works |
+| 5 | `/doctor:setup` | your project | Confirms the whole setup works |
 
 If you chose `link` for the instruction file, step 1 also carries `--link-instructions` and step 2 drops out. After step 4, `/doctor:git standards` writes your project's own commit, PR and branch rules. Until you run it, the shipped rules apply.
 
@@ -324,7 +309,7 @@ If you already keep overlays with a script of your own, the engine reads the sam
 | When | Linked project | Copied project |
 | --- | --- | --- |
 | **After a `git pull` in the checkout** | Run `/doctor:symlink check --root <dir>`, and run `link` again if it lists missing entries | Nothing until you re-pin |
-| **To adopt a new Skilled release** | The `git pull` already did | Run `/doctor:overlay repin`, then `/doctor:overlay apply --relayout` if `status` prints `LAYOUT` lines |
+| **To adopt a new Skilled release** | The `git pull` already did. Then clear what the retired advisor lane left on your machine. From the checkout, run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs machine`. When it lists leftovers, run the same script's `apply`. In a terminal, apply asks before it deletes the pulled shared model. Without a terminal it keeps that model unless you pass `--shared-model delete`, and the `machine` report shows the question under `askFirst`. `/doctor:update` cannot do this here, because it stops at the link with `path parent is not a real directory: <project>/.skilled` | Run `/doctor:overlay repin`, then `/doctor:overlay apply --relayout` if `status` prints `LAYOUT` lines. Run `/doctor:update record-base` as the re-pin names, then `/doctor:update apply`. On a copy already at the release, its plan holds one write, the recorded base. After its rebuild prompt it clears what the retired advisor lane left on your machine, and it asks before it deletes the pulled shared model |
 | **When something looks wrong** | Run `/doctor:setup` in your project | Run `/doctor:overlay status`, then `/doctor:setup` |
 | **To find the right command** | Run `/doctor:helper` and describe the problem | Same as linked |
 
@@ -345,7 +330,6 @@ If you already keep overlays with a script of your own, the engine reads the sam
 | `refuse: the overlay lock is held` | Another run still holds the lock, or a run on another machine left it | Wait for the other run. Then run the `Next:` line the message prints, which names the pid to check with `ps -p` and the lock file to remove. A lock left by an ended run on this machine is taken over on its own |
 | `LAYOUT   <overlay>: <field> <from> belongs at <to>; <remedy>` | An overlay copy sits off its `framework/` or `root/` layout path, often after a re-pin. `<field>` is `source`, `fragment` or `base` | Do what the remedy says. It is usually `/doctor:overlay apply --relayout`, run once. When `<to>` sits under `root/skilled`, change the entry's destination or remove the entry, because relayout refuses that move. The line never fails `status` |
 | `does not match what apply last wrote there`, `is a link that leads outside the tree` or `is a link that does not resolve` | An unowned file, folder or link stands where an overlay now writes another shape, or a link on the path leads outside the tree or loops | Run the `Next:` line it prints, which moves the path aside to `<path>.keep` and applies again |
-| `semantic_lane_off` in a recommendation's `warnings` | The advisor answered on phrases alone. The reason after the colon says why, such as `prompt_embedding_unreachable` when Ollama is not answering | Run `/doctor:skill-advisor embedder` from the project. If the warning stays, restart the advisor daemon, which picks its embedder at startup |
 
 &nbsp;
 
@@ -354,6 +338,6 @@ If you already keep overlays with a script of your own, the engine reads the sam
 - [Doctor README](.skilled/skills/system-skilled-doctor/README.md): every doctor command in this guide.
 - [Overlay guide](.skilled/skills/system-skilled-doctor/references/overlays.md): sync states, refusals, re-pins and adoption in full.
 - [Overlay guard README](.skilled/hooks/overlay-guard/README.md): the hook that protects overlay-owned files.
-- [Skill Advisor install guide](.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md): the advisor build, its embedder and its tuning.
+- [Skill Advisor install guide](.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md): the advisor build and its tuning.
 - [Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md): the manual Code Mode setup.
 - [Root README](README.md): what Skilled is and what each part does.

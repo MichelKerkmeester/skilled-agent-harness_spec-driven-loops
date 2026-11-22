@@ -9,7 +9,7 @@ trigger_phrases:
   - "indexable content sources"
 importance_tier: normal
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Retrieval and Continuity Reference
@@ -253,7 +253,6 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<track>/
 ### Reference Files
 - [retrieval-conventions.md](../retrieval/retrieval-conventions.md) - The recipes, exit-status mapping and ranking contract
 - [save-workflow.md](./save-workflow.md) - Continuity save workflow
-- [embedder-pluggability.md](./embedder-pluggability.md) - Provider cascade and retry policy for the shared embedding stack
 - [troubleshooting.md](../debugging/troubleshooting.md) - Common issues and solutions
 - [environment-variables.md](../config/environment-variables.md) - Configuration options
 

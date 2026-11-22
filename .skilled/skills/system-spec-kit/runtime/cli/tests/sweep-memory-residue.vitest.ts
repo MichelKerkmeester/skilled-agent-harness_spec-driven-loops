@@ -124,7 +124,7 @@ describe('classifySurface', () => {
     ['.skilled/commands/demo/run.md', 'commands'],
     ['.claude/mcp.json', 'config'],
     ['opencode.json', 'config'],
-    ['.skilled/skills/system-spec-kit/shared/embeddings.ts', 'code'],
+    ['.skilled/skills/system-spec-kit/shared/config.ts', 'code'],
     ['.skilled/skills/sk-code/SKILL.md', 'skills'],
     ['specs/demo/spec.md', 'docs'],
     ['specs/demo/evidence/out.json', 'other'],

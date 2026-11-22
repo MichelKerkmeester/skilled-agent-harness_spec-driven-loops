@@ -12,7 +12,6 @@ import { isLeaseHeld, acquireSkillGraphLease, openLeaseDatabase } from '../lib/d
 import { ADVISOR_DISABLED_FLAGS } from '../lib/advisor-disabled.js';
 import { rebuildAdvisorIndex } from '../handlers/advisor-rebuild.js';
 import type { AdvisorStatusOutput } from '../schemas/advisor-tool-schemas.js';
-import { resolveProvider } from '@spec-kit/shared/embeddings/factory.js';
 
 const require = createRequire(import.meta.url);
 // The launcher hands its child the socket directory the bridge resolves, which may
@@ -22,19 +21,12 @@ const require = createRequire(import.meta.url);
 const ipcBridge = require('../../../../bin/lib/launcher-ipc-bridge.cjs') as {
   resolveIpcSocketDir: (serviceName: string, options?: { dbDir?: string; env?: NodeJS.ProcessEnv }) => string;
 };
-const modelServerSupervision = require('../../../../bin/lib/model-server-supervision.cjs') as {
-  DEFAULT_MODEL_SERVER_SOCKET_DIR: string;
-};
 const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as {
   acquireBootstrapLock: (options?: { staleMs?: number; timeoutMs?: number; retrySleepMs?: number }) => Promise<boolean>;
   advisorDbPath: () => string;
   artifactsReady: () => boolean;
   configureLauncherPathsForTesting: (paths: { runtimeDir: string; dbDir: string; lockDir: string; stateFile: string }) => void;
   createChildEnv: (sourceEnv?: NodeJS.ProcessEnv) => Record<string, string>;
-  resolveModelServerSocketPath: (
-    env?: NodeJS.ProcessEnv,
-    options?: { dbDir?: string },
-  ) => string;
 };
 
 // The child's socket directory is resolved by the shared IPC bridge, which since the
@@ -42,14 +34,6 @@ const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as
 // asks the bridge the same question the launcher does instead of assuming the answer.
 function expectedChildSocketDir(memoryDbPath: string): string {
   return ipcBridge.resolveIpcSocketDir('system-skill-advisor', { dbDir: dirname(memoryDbPath), env: {} });
-}
-
-// configureTempLauncher leaves the model-server file directory on the supervision
-// default. The child address is the launcher resolver's answer for that source env.
-function expectedModelServerUrl(sourceEnv: NodeJS.ProcessEnv): string {
-  return launcher.resolveModelServerSocketPath(sourceEnv, {
-    dbDir: modelServerSupervision.DEFAULT_MODEL_SERVER_SOCKET_DIR,
-  });
 }
 
 describe('system-skill-advisor launcher bootstrap', () => {
@@ -117,9 +101,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
       HOME: '/tmp/home',
       SYSTEM_SKILL_ADVISOR_DB_DIR: '/tmp/db',
       SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
-      MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
-      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
@@ -141,9 +123,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
       // always carries it even when the parent did not set one.
       SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
       SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
-      MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
-      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
@@ -165,9 +145,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
       // always carries it even when the parent did not set one.
       SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
       SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
-      MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
-      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
@@ -187,265 +165,29 @@ describe('system-skill-advisor launcher bootstrap', () => {
       // always carries it even when the parent did not set one.
       SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
       SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
-      MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
-      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
-  it('defaults the child MEMORY_DB_PATH to the advisor own database, not a foreign context-index.sqlite', () => {
+  it('drops the retired database and model-server keys from the child environment', () => {
     configureTempLauncher();
-    const childEnv = launcher.createChildEnv({ PATH: '/bin' });
-
-    expect(childEnv.MEMORY_DB_PATH).toBe(launcher.advisorDbPath());
-    expect(childEnv.MEMORY_DB_PATH).toMatch(/skill-graph\.sqlite$/);
-    expect(childEnv.MEMORY_DB_PATH).not.toMatch(/context-index\.sqlite$/);
-  });
-
-  it('honors an explicit SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH override instead of the default', () => {
-    configureTempLauncher();
-    const explicitOverride = '/tmp/some-other-test-or-external-db/custom.sqlite';
-
+    // Nothing in the daemon reads these keys any more, so an operator who still
+    // exports them must not see them reach the child.
     const childEnv = launcher.createChildEnv({
       PATH: '/bin',
-      SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH: explicitOverride,
+      MEMORY_DB_PATH: '/tmp/some-other-service/context-index.sqlite',
+      SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH: '/tmp/some-other-test-or-external-db/custom.sqlite',
+      SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED: '1',
     });
 
-    expect(childEnv.MEMORY_DB_PATH).toBe(explicitOverride);
-  });
-
-  it('009-REQ-004/005: ignores an ambient MEMORY_DB_PATH that was not set via the dedicated override var', () => {
-    configureTempLauncher();
-    const memoryDbPath = launcher.advisorDbPath();
-    // MEMORY_DB_PATH is a generic name any other service may already export —
-    // a legacy shell/script exporting it must not silently reopen the
-    // cross-server DB-path leak the advisor default protects against.
-    const ambientMemoryDbPath = '/tmp/some-other-service/context-index.sqlite';
-
-    const childEnv = launcher.createChildEnv({ PATH: '/bin', MEMORY_DB_PATH: ambientMemoryDbPath });
-
-    expect(childEnv.MEMORY_DB_PATH).toBe(memoryDbPath);
-    expect(childEnv.MEMORY_DB_PATH).not.toBe(ambientMemoryDbPath);
-  });
-
-  it('009-REQ-004: the dedicated override wins even when a hostile ambient MEMORY_DB_PATH is also present', () => {
-    configureTempLauncher();
-    const explicitOverride = '/tmp/some-other-test-or-external-db/custom.sqlite';
-    const ambientMemoryDbPath = '/tmp/some-other-service/context-index.sqlite';
-
-    const childEnv = launcher.createChildEnv({
-      PATH: '/bin',
-      MEMORY_DB_PATH: ambientMemoryDbPath,
-      SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH: explicitOverride,
-    });
-
-    expect(childEnv.MEMORY_DB_PATH).toBe(explicitOverride);
-  });
-
-  it('points the child at the model server socket while the daemon socket stays in its database scope', () => {
-    configureTempLauncher();
-    const memoryDbPath = launcher.advisorDbPath();
-    // Only the shared default socket directory is database-scoped. A private
-    // directory is left as-is, so this root is the one that splits the two paths.
-    const socketRoot = '/tmp/system-skill-advisor';
-    const sourceEnv = {
-      PATH: '/bin',
-      SPECKIT_IPC_SOCKET_DIR: socketRoot,
-    };
-    const childEnv = launcher.createChildEnv(sourceEnv);
-
-    expect(childEnv.HF_EMBED_SERVER_URL).toBe(join(socketRoot, 'hf-embed.sock'));
-    expect(childEnv.HF_EMBED_SERVER_URL).toBe(expectedModelServerUrl(sourceEnv));
-    expect(childEnv.SPECKIT_IPC_SOCKET_DIR).toBe(
-      ipcBridge.resolveIpcSocketDir('system-skill-advisor', {
-        dbDir: dirname(memoryDbPath),
-        env: sourceEnv,
-      }),
-    );
-    expect(childEnv.SPECKIT_IPC_SOCKET_DIR.startsWith(`${socketRoot}/`)).toBe(true);
-    expect(dirname(childEnv.HF_EMBED_SERVER_URL)).not.toBe(childEnv.SPECKIT_IPC_SOCKET_DIR);
-  });
-
-  it('forwards an explicit model server address to the child unchanged', () => {
-    configureTempLauncher();
-    // The resolver rewrites http to tcp. An unchanged forward keeps the parent string.
-    const explicit = 'http://127.0.0.1:9';
-    const childEnv = launcher.createChildEnv({
-      PATH: '/bin',
-      HF_EMBED_SERVER_URL: explicit,
-      SPECKIT_IPC_SOCKET_DIR: '/tmp/system-skill-advisor',
-    });
-
-    expect(childEnv.HF_EMBED_SERVER_URL).toBe(explicit);
-  });
-});
-
-describe('system-skill-advisor launcher end-to-end MEMORY_DB_PATH resolution (009-REQ-008)', () => {
-  const tempDirs: string[] = [];
-  const restoreKeys = ['MEMORY_DB_PATH', 'SPEC_KIT_DB_DIR', 'SPECKIT_DB_DIR', 'EMBEDDINGS_PROVIDER', 'VOYAGE_API_KEY', 'OPENAI_API_KEY'] as const;
-  const originalEnv: Partial<Record<(typeof restoreKeys)[number], string>> = {};
-  for (const key of restoreKeys) {
-    originalEnv[key] = process.env[key];
-  }
-
-  afterEach(() => {
-    for (const key of restoreKeys) {
-      const value = originalEnv[key];
-      if (value === undefined) {
-        delete process.env[key];
-      } else {
-        process.env[key] = value;
-      }
-    }
-    while (tempDirs.length > 0) {
-      const dir = tempDirs.pop();
-      if (dir) rmSync(dir, { recursive: true, force: true });
-    }
-  });
-
-  // Provider resolution must be driven by the fixture DBs alone, not by
-  // whatever the ambient shell/CI environment happens to have set.
-  function clearNonDbProviderSignals(): void {
-    delete process.env.EMBEDDINGS_PROVIDER;
-    delete process.env.VOYAGE_API_KEY;
-    delete process.env.OPENAI_API_KEY;
-    delete process.env.SPEC_KIT_DB_DIR;
-    delete process.env.SPECKIT_DB_DIR;
-  }
-
-  function configureTempLauncherForE2e(): void {
-    const root = mkdtempSync(join(tmpdir(), 'system-skill-advisor-e2e-'));
-    tempDirs.push(root);
-    const runtimeDir = join(root, 'runtime');
-    const dbDir = join(runtimeDir, 'database');
-    mkdirSync(join(runtimeDir, 'dist/runtime'), { recursive: true });
-    mkdirSync(dbDir, { recursive: true });
-    launcher.configureLauncherPathsForTesting({
-      runtimeDir,
-      dbDir,
-      lockDir: join(dbDir, '.system-skill-advisor-launcher.lockdir'),
-      stateFile: join(dbDir, '.system-skill-advisor-launcher.json'),
-    });
-  }
-
-  // A valid, resolvable ollama pointer: name/dim match the shared registry's
-  // sole real manifest, with the vec_<dim> + vec_memories_rowids tables the
-  // shared factory's active-Ollama gate requires before it will honor the
-  // pointer at all.
-  function createResolvableOllamaFixture(dbPath: string): void {
-    const DatabaseSync = loadNodeSqlite();
-    const db = new DatabaseSync(dbPath);
-    try {
-      db.prepare('CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL)').run();
-      const setMetadata = db.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)');
-      setMetadata.run('active_embedder_name', 'nomic-embed-text-v1.5');
-      setMetadata.run('active_embedder_dim', '768');
-      setMetadata.run('active_embedder_provider', 'ollama');
-      db.prepare('CREATE TABLE vec_768 (id INTEGER PRIMARY KEY, embedding BLOB NOT NULL)').run();
-      db.prepare("INSERT INTO vec_768 (id, embedding) VALUES (1, x'00')").run();
-      db.prepare('CREATE TABLE vec_memories_rowids (rowid INTEGER PRIMARY KEY, memory_id INTEGER NOT NULL)').run();
-      db.prepare('INSERT INTO vec_memories_rowids (rowid, memory_id) VALUES (1, 1)').run();
-    } finally {
-      db.close();
-    }
-  }
-
-  // A deliberately unresolvable pointer at a wrong-shaped DB: same manifest
-  // name but a dim that does not match the registry's known dim for it, so
-  // the shared factory's active-Ollama gate rejects it and falls through to
-  // hf-local. Stands in for "a DB that is not the advisor's own" without
-  // depending on any real repo state.
-  function createUnresolvableFixture(dbPath: string): void {
-    const DatabaseSync = loadNodeSqlite();
-    const db = new DatabaseSync(dbPath);
-    try {
-      db.prepare('CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL)').run();
-      const setMetadata = db.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)');
-      setMetadata.run('active_embedder_name', 'nomic-embed-text-v1.5');
-      setMetadata.run('active_embedder_dim', '512');
-      setMetadata.run('active_embedder_provider', 'ollama');
-    } finally {
-      db.close();
-    }
-  }
-
-  it('the real launcher-derived MEMORY_DB_PATH makes the real shared factory open the advisor own skill-graph.sqlite', () => {
-    configureTempLauncherForE2e();
-    const advisorDbPath = launcher.advisorDbPath();
-    mkdirSync(dirname(advisorDbPath), { recursive: true });
-    createResolvableOllamaFixture(advisorDbPath);
-
-    const childEnv = launcher.createChildEnv({ PATH: '/bin' });
-    expect(childEnv.MEMORY_DB_PATH).toBe(advisorDbPath);
-
-    clearNonDbProviderSignals();
-    process.env.MEMORY_DB_PATH = childEnv.MEMORY_DB_PATH;
-    const resolution = resolveProvider();
-
-    expect(resolution.name).toBe('ollama');
-    expect(resolution.reason).toContain('nomic-embed-text-v1.5');
-    expect(resolution.reason).toContain('768-dim');
-  });
-
-  it('regression: the real shared factory does NOT resolve the advisor sentinel when fed the pre-fix (un-computed) env value', () => {
-    configureTempLauncherForE2e();
-    const advisorDbPath = launcher.advisorDbPath();
-    mkdirSync(dirname(advisorDbPath), { recursive: true });
-    createResolvableOllamaFixture(advisorDbPath);
-
-    const decoyDir = mkdtempSync(join(tmpdir(), 'system-skill-advisor-e2e-decoy-'));
-    tempDirs.push(decoyDir);
-    const decoyDbPath = join(decoyDir, 'context-index.sqlite');
-    createUnresolvableFixture(decoyDbPath);
-
-    // Simulates the exact leak this packet's F2 fix closes: an ambient
-    // MEMORY_DB_PATH pointing at a different service's own database, forwarded
-    // verbatim rather than computed by createChildEnv().
-    clearNonDbProviderSignals();
-    process.env.MEMORY_DB_PATH = decoyDbPath;
-    const preFixResolution = resolveProvider();
-
-    expect(preFixResolution.name).not.toBe('ollama');
-
-    // The real createChildEnv() ignores that same ambient value and computes
-    // the advisor's own path instead — feeding that (not the ambient value)
-    // to the real consumer resolves the advisor sentinel correctly.
-    const childEnv = launcher.createChildEnv({ PATH: '/bin', MEMORY_DB_PATH: decoyDbPath });
-    process.env.MEMORY_DB_PATH = childEnv.MEMORY_DB_PATH;
-    const postFixResolution = resolveProvider();
-
-    expect(postFixResolution.name).toBe('ollama');
-    expect(postFixResolution.reason).toContain('768-dim');
+    expect(childEnv).not.toHaveProperty('MEMORY_DB_PATH');
+    expect(childEnv).not.toHaveProperty('SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH');
+    expect(childEnv).not.toHaveProperty('SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED');
   });
 });
 
 function sourceText(relativePath: string): string {
   return readFileSync(new URL(relativePath, import.meta.url), 'utf8');
-}
-
-interface FixtureSqliteStatement {
-  run(...params: readonly unknown[]): unknown;
-}
-
-interface FixtureSqliteDatabase {
-  prepare(sql: string): FixtureSqliteStatement;
-  close(): void;
-}
-
-type FixtureDatabaseSyncConstructor = new (filename: string) => FixtureSqliteDatabase;
-
-// node:sqlite's DatabaseSync is used only for fixture setup here (writing
-// vec_metadata rows), never as the module under test — the assertions run
-// against the real shared factory's own sqlite reader.
-function loadNodeSqlite(): FixtureDatabaseSyncConstructor {
-  const sqliteModule = require('node:sqlite') as unknown;
-  const DatabaseSync = typeof sqliteModule === 'object' && sqliteModule !== null
-    ? (sqliteModule as { DatabaseSync?: unknown }).DatabaseSync
-    : undefined;
-  if (typeof DatabaseSync !== 'function') {
-    throw new Error('node:sqlite DatabaseSync is unavailable in this test runtime');
-  }
-  return DatabaseSync as FixtureDatabaseSyncConstructor;
 }
 
 function findDeadPid(): number {
@@ -482,7 +224,6 @@ function advisorStatus(freshness: AdvisorStatusOutput['freshness'], generation: 
       lexical: 0.28,
       graph_causal: 0.13,
       derived_generated: 0.12,
-      semantic_shadow: 0.05,
     },
   };
 }
@@ -611,24 +352,13 @@ describe('lease-held single-writer enforcement', () => {
     const watcherSource = sourceText('../lib/daemon/watcher.ts');
 
     expect(dbSource).toMatch(/export function getDb\(\): Database\.Database \{\s*if \(!db\) initDb\(resolveSkillGraphDbDir\(\)\)/);
-    expect(watcherSource).toMatch(/const defaultReindex = async \(\): Promise<ReindexResult> => \{\s*const result = indexSkillMetadata\(skillsRoot\);/);
+    expect(watcherSource).toMatch(/const defaultReindex = async \(\): Promise<ReindexResult> => indexSkillMetadata\(skillsRoot\);/);
 
     const initDbIndex = serverSource.indexOf('initSkillGraphDb(');
     const heartbeatIndex = serverSource.indexOf('startHeartbeat(');
-    const ensureEmbedderIndex = serverSource.indexOf('ensureActiveEmbedder(');
     const ipcServerIndex = serverSource.indexOf('startIpcSocketServer(');
-    const backgroundRefreshIndex = serverSource.indexOf('refreshEmbeddingsInBackground(');
     expect(initDbIndex).toBeGreaterThanOrEqual(0);
     expect(heartbeatIndex).toBeGreaterThan(initDbIndex);
-    expect(heartbeatIndex).toBeLessThan(ensureEmbedderIndex);
-    expect(ipcServerIndex).toBeGreaterThanOrEqual(0);
-    expect(backgroundRefreshIndex).toBeGreaterThan(ipcServerIndex);
-
-    const defaultReindexIndex = watcherSource.indexOf('const defaultReindex = async');
-    const metadataIndex = watcherSource.indexOf('indexSkillMetadata(', defaultReindexIndex);
-    const refreshIndex = watcherSource.indexOf('refreshEmbeddingsInBackground(', defaultReindexIndex);
-    expect(defaultReindexIndex).toBeGreaterThanOrEqual(0);
-    expect(metadataIndex).toBeGreaterThan(defaultReindexIndex);
-    expect(refreshIndex).toBeGreaterThan(metadataIndex);
+    expect(ipcServerIndex).toBeGreaterThan(heartbeatIndex);
   });
 });

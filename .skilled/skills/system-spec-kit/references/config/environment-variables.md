@@ -4,11 +4,10 @@ description: Configuration options via environment variables for the Spec Kit sy
 trigger_phrases:
   - "spec kit environment variables"
   - "validation gate defaults"
-  - "embedding provider env vars"
   - "script execution configuration"
 importance_tier: normal
 contextType: general
-version: 2.7.3.0
+version: 2.7.4.0
 ---
 
 # Environment Variables Reference
@@ -21,7 +20,7 @@ Open this when you are about to set a Spec Kit variable and want to know which f
 
 ### Purpose
 
-These variables control path resolution, script execution, spec validation and generated metadata, and the shared embedding stack the package's operators configure alongside it.
+These variables control path resolution, script execution, spec validation and generated metadata.
 
 ### When to Use
 
@@ -35,12 +34,10 @@ This document is the orientation view. [`runtime/ENV-REFERENCE.md`](../../runtim
 
 - **`runtime/core/config.ts`**: resolves the package's working directories. The database-path derivation it used to carry went with the memory database.
 - **`shared/config.ts`**: reads the directory-override family below for the telemetry store.
-- **`shared/embeddings/`**: reads the directory-override family below for the skill advisor's own database, so the family stays live.
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | Auto-detected | Directory override consulted by `computeDatabasePaths()`. `SPEC_KIT_DB_DIR` is checked first and wins; either is resolved against `process.cwd()` and must land inside the project, home, or temporary directory |
-| `MEMORY_DB_PATH` | Unset | Explicit file path whose parent directory becomes the resolved directory, used only when neither directory override is set |
 | `MEMORY_BASE_PATH` | Current working directory | Exported as `DEFAULT_BASE_PATH`; nothing in `runtime/` reads it outside a parity test, so setting it has no effect |
 | `SPECKIT_SPECS_DIR` | Unset | Fallback specs root used when a spec folder is not directly under `process.cwd()`. `SPEC_KIT_SPECS_DIR` is checked first and wins; the candidate is used only if it exists |
 
@@ -54,52 +51,7 @@ The one daemon an operator still meets is the skill advisor. Its CLI family (`SY
 
 ---
 
-## 3. EMBEDDING PROVIDERS
-
-This section is shared, not this package's. Its readers are `shared/embeddings/**` and the launcher libraries under `.skilled/bin`, and the skill advisor is the consumer that keeps them live. Provider selection is **local-first** and follows this precedence:
-1. Explicit `EMBEDDINGS_PROVIDER` setting (tries the pinned provider first, then falls back to the cascade if unreachable)
-2. `ollama` when a supported model is pulled and reachable
-3. Falls back to `hf-local` (Hugging Face local inference)
-4. `openai` — reached as a cloud cascade fallback when local providers are unavailable and `OPENAI_API_KEY` is usable
-5. `voyage` — reached as a cloud cascade fallback when local providers are unavailable and `VOYAGE_API_KEY` is usable
-
-Cloud providers (OpenAI/Voyage) can be selected by the cascade as a last resort from usable API keys, but detected keys do not outrank local providers. Set `EMBEDDINGS_PROVIDER` explicitly to force a cloud provider first.
-
-### Provider Selection
-
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `EMBEDDINGS_PROVIDER` | `auto` | Explicit provider: `voyage`, `openai`, `ollama`, `hf-local`, or `auto` |
-
-### Voyage AI Provider
-
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `VOYAGE_API_KEY` | - | API key for Voyage AI embeddings (required for `voyage` provider) |
-| `VOYAGE_EMBEDDINGS_MODEL` | `voyage-code-3` | Voyage model name (1024 dimensions) |
-
-### OpenAI Provider
-
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `OPENAI_API_KEY` | - | API key for OpenAI embeddings (required for `openai` provider) |
-| `OPENAI_EMBEDDINGS_MODEL` | `text-embedding-3-small` | OpenAI model name (1536 dimensions) |
-
-### Hugging Face Local Provider
-
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `HF_EMBEDDINGS_MODEL` | `nomic-ai/nomic-embed-text-v1.5` | hf-local model name (768 dimensions) |
-
-### Rate Limiting
-
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `EMBEDDING_BATCH_DELAY_MS` | `100` | Delay between batch embedding requests (ms) |
-
----
-
-## 4. SCRIPTS
+## 3. SCRIPTS
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -111,7 +63,7 @@ Cloud providers (OpenAI/Voyage) can be selected by the cascade as a last resort 
 
 ---
 
-## 5. USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 
 ```bash
 # JSON mode (preferred for routine saves)
@@ -128,18 +80,11 @@ SPECKIT_QUIET=true bash runtime/cli/spec/validate.sh specs/001-feature/
 
 # Narrow a validation run to named rules; an unknown name fails the run
 SPECKIT_RULES=GENERATED_METADATA_INTEGRITY bash runtime/cli/spec/validate.sh specs/001-feature/ --strict
-
-# Force local embeddings for the shared stack (no API key required)
-EMBEDDINGS_PROVIDER=hf-local node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
-
-# Force a cloud provider ahead of the local-first cascade
-EMBEDDINGS_PROVIDER=voyage VOYAGE_API_KEY=your-key-here \
-  node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
 ```
 
 ---
 
-## 6. VALIDATION AND GENERATED METADATA
+## 5. VALIDATION AND GENERATED METADATA
 
 The live half of the package. `lib/validation/orchestrator.ts` runs the rule set, `lib/config/capability-flags.ts` gates generator behavior, and the `runtime/cli/rules/*.sh` checks are invoked by `runtime/cli/spec/validate.sh`. Boolean flags below use graduated semantics: they default ON and you disable them by setting `false`.
 
@@ -196,13 +141,13 @@ The runtime-neutral spec-gate envs (`SYSTEM_SPEC_GATE_ENFORCE`, `SYSTEM_SPEC_GAT
 
 ---
 
-## 7. CLEAN TRANSPORT (HOOK STDOUT)
+## 6. CLEAN TRANSPORT (HOOK STDOUT)
 
 The runtime hook adapters under `runtime/hooks/` write to a host that parses their stdout. Keep stdout reserved for the hook's declared output contract and send diagnostics, warnings and startup logs to stderr, so a host such as OpenCode or Claude does not read extra stdout as a malformed payload.
 
 ---
 
-## 8. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 - [Execution Methods](../workflows/execution-methods.md)
 - [Troubleshooting](../debugging/troubleshooting.md)

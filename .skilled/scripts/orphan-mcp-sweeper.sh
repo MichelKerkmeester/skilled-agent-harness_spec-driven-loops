@@ -213,7 +213,6 @@ classify_command() {
   case "$cmd" in
     *"system-skill-advisor-launcher.cjs"*) printf '%s\n' "system-skill-advisor-launcher"; return 0 ;;
     *"mcp-code-mode-launcher.cjs"*) printf '%s\n' "mcp-code-mode-launcher"; return 0 ;;
-    *"hf-model-server.cjs"*) printf '%s\n' "hf-model-server"; return 0 ;;
     *"system-skill-advisor/runtime/dist/"*"advisor-server.js"*) printf '%s\n' "skill-advisor-server"; return 0 ;;
     *"mcp-code-mode/mcp-server/dist/index.js"*) printf '%s\n' "mcp-code-mode"; return 0 ;;
     *"npm exec @taazkareem/clickup-mcp-server"*) printf '%s\n' "clickup-mcp-wrapper"; return 0 ;;
@@ -459,12 +458,10 @@ EOF
 # session bridged to it. A daemon actively serving connections holds MORE THAN ONE
 # unix-socket FD on its daemon-ipc.sock (the listener + one per live peer); a bare
 # listener with no clients holds exactly one. Treat >1 as "in use" and preserve it.
-# The embedder sidecar serves feature-extraction over its own hf-embed.sock and is
-# preserved by the same rule (listener + one FD per in-flight peer > 1).
 has_live_ipc_socket_connection() {
   local pid="$1"
   local count
-  count="$(lsof -nP -a -p "$pid" -U 2>/dev/null | grep -cE '(daemon-ipc|hf-embed)\.sock' || true)"
+  count="$(lsof -nP -a -p "$pid" -U 2>/dev/null | grep -cE 'daemon-ipc\.sock' || true)"
   [[ -n "$count" ]] || count=0
   [[ "$count" -gt 1 ]] 2>/dev/null
 }
@@ -493,15 +490,14 @@ preserve_reason() {
 
   # The advisor launcher retires itself after its own idle timeout, and hooks reach it
   # only for the length of one prompt, so a sweep between prompts finds no client on it.
-  # Its servers, the advisor server and the model server, are covered while that launcher is
-  # their parent; a server left behind by a dead launcher is the orphan this sweeper exists for
-  # and stays sweepable.
+  # Its server is covered while that launcher is its parent; a server left behind by a dead
+  # launcher is the orphan this sweeper exists for and stays sweepable.
   case "$class" in
     system-skill-advisor-launcher)
       printf '%s\n' "advisor-self-idle-timeout"
       return 0
       ;;
-    skill-advisor-server|hf-model-server)
+    skill-advisor-server)
       local parent_pid parent_cmd
       parent_pid="$(ps -p "$pid" -o ppid= 2>/dev/null | tr -d ' ' || true)"
       if [[ -n "$parent_pid" ]] && [[ "$parent_pid" != "1" ]]; then

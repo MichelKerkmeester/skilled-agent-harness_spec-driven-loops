@@ -36,10 +36,7 @@ function runPython(args: readonly string[], input = '') {
     input,
     encoding: 'utf8',
     timeout: 60_000,
-    env: {
-      ...process.env,
-      SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
-    },
+    env: process.env,
     maxBuffer: 1024 * 1024 * 10,
   });
 }
@@ -93,7 +90,6 @@ describe('sa-035 / sa-036 — Python compat', () => {
       env: {
         ...process.env,
         SPECKIT_SKILL_ADVISOR_HOOK_DISABLED: '1',
-        SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
       },
     });
     const forcedNative = spawnSync('python3', [SHIM_SCRIPT, '--force-native', 'save this context'], {
@@ -102,7 +98,6 @@ describe('sa-035 / sa-036 — Python compat', () => {
       env: {
         ...process.env,
         SPECKIT_SKILL_ADVISOR_HOOK_DISABLED: '1',
-        SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
       },
     });
 

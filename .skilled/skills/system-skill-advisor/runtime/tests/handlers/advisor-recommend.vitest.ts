@@ -51,7 +51,6 @@ function status(freshness: 'live' | 'stale' | 'absent' | 'unavailable' = 'live')
       lexical: 0.28,
       graph_causal: 0.13,
       derived_generated: 0.12,
-      semantic_shadow: 0.05,
     },
   };
 }

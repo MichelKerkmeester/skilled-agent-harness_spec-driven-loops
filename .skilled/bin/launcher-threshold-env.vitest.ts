@@ -19,26 +19,6 @@ describe('routing thresholds through the launcher child-env allowlist', () => {
     expect(childEnv[key]).toBe(value);
   });
 
-  it('forwards Ollama embedding settings unchanged to the daemon child', () => {
-    const childEnv = launcher.createChildEnv({
-      OLLAMA_BASE_URL: 'http://127.0.0.1:11434',
-      OLLAMA_REQUEST_TIMEOUT_MS: '120000',
-      PATH: '/usr/bin',
-    });
-
-    expect(childEnv.OLLAMA_BASE_URL).toBe('http://127.0.0.1:11434');
-    expect(childEnv.OLLAMA_REQUEST_TIMEOUT_MS).toBe('120000');
-  });
-
-  it('forwards the daemon embedding refresh setting unchanged to the daemon child', () => {
-    const childEnv = launcher.createChildEnv({
-      SYSTEM_SKILL_ADVISOR_EMBED_REFRESH: 'off',
-      PATH: '/usr/bin',
-    });
-
-    expect(childEnv.SYSTEM_SKILL_ADVISOR_EMBED_REFRESH).toBe('off');
-  });
-
   it('tells the daemon child its launcher pid, ignoring an inherited value', () => {
     const childEnv = launcher.createChildEnv({
       SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: '1',

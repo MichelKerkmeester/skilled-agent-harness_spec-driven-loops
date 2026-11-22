@@ -1,0 +1,88 @@
+---
+title: "SC-001 Analytical Lane Fusion"
+description: "Manual validation that lane fusion produces weighted scores using the canonical weights: explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12."
+trigger_phrases:
+  - "sc-001"
+  - "lane fusion"
+  - "lane weights canonical"
+  - "advisor fusion"
+version: 0.8.4.0
+id: SC-001
+category: scorer_fusion
+stage: routing
+expected_workflow_mode: system-skill-advisor
+expected_leaf_resources:
+  - workflow_mode: system-skill-advisor
+    leaf_resource_id: references/scoring/advisor-scorer.md
+---
+
+# SC-001 Analytical Lane Fusion
+
+Prompt: Manual validation that lane fusion produces weighted scores using the canonical weights: explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12.
+
+
+---
+
+## 1. OVERVIEW
+
+Validate that `lib/scorer/fusion.ts` combines the four lanes with the canonical weights `explicit_author: 0.42`, `lexical: 0.28`, `graph_causal: 0.13`, `derived_generated: 0.12` and that the weight configuration is discoverable via `advisor_status.laneWeights`.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Repo root working directory.
+- Advisor runtime built. Daemon reachable.
+- `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` unset.
+
+---
+
+## 3. TEST EXECUTION
+
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+
+1. Call status and capture `laneWeights`:
+
+```text
+node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
+```
+
+2. Call `advisor_recommend` with a prompt that hits multiple lanes and `includeAttribution: true`:
+
+```text
+node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{"topK":3,"includeAttribution":true}' --format json
+```
+
+3. For the top recommendation, record each lane's `rawScore`, `weight` and `weightedScore`.
+4. Verify `weightedScore == rawScore * weight` within floating-point tolerance for each lane.
+5. Sum all `weightedScore` values and compare to the reported aggregate score.
+
+### Expected Signals
+
+- `advisor_status.laneWeights` equals the canonical configuration above.
+- For every lane, `weightedScore` matches `rawScore * weight` within `1e-9` tolerance.
+- Aggregate score equals the sum of lane `weightedScore` values (or matches the documented fusion formula).
+
+### Failure Modes
+
+| Symptom | Detection | Action |
+| --- | --- | --- |
+| Lane weights off-canonical | `laneWeights` does not match the canonical set | Inspect `lib/scorer/weights-config.ts`. |
+| Fusion arithmetic mismatch | `weightedScore != rawScore * weight` | Audit `lib/scorer/fusion.ts`. |
+
+---
+
+## 4. SOURCE FILES
+
+- Scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md), lane attribution metadata.
+- Feature [`scorer-fusion/lane-fusion.md`](../../feature-catalog/scorer-fusion/lane-fusion.md).
+- Source: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` and `lib/scorer/weights-config.ts`.
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Scorer Fusion
+- Playbook ID: SC-001
+- Canonical root source: manual-testing-playbook.md
+- Feature file path: scorer-fusion/lane-fusion.md

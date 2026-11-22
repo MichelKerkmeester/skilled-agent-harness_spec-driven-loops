@@ -46,7 +46,7 @@ This is **Phase 7** of the mcp-browser-use hub program. It answers two operator 
 **Deliverables**:
 - Bladebro `INSTALL-GUIDE.md`, `assets/utcp-bladebro-manual.md` and `scripts/` with a manifest row.
 - `.skilled/changelog/mcp-browser-use/` with four links.
-- Five changelog entries and matching version bumps.
+- Four changelog entries, the advisor fix folded into its v2.0.0.0 entry and matching version bumps.
 - Five new mode benchmark reports.
 <!-- /ANCHOR:phase-context -->
 
@@ -101,7 +101,7 @@ sk-doc sk-git sk-prompt skilled system-deep-loop system-skill-advisor system-ski
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/{INSTALL-GUIDE.md,assets/utcp-bladebro-manual.md,scripts/README.md}` | Create | Guide, manual snapshot, scripts README |
 | `.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml` | Modify | `mcp-bladebro` row |
 | `.skilled/changelog/mcp-browser-use/*`, `.skilled/changelog/mcp-tooling/mcp-{chrome,aside}-devtools` | Create, Delete | Changelog links |
-| `.skilled/skills/*/changelog/v*.md` and the matching `SKILL.md` and hub JSON versions | Create, Modify | Five entries and their bumps |
+| `.skilled/skills/*/changelog/v*.md` and the matching `SKILL.md` and hub JSON versions | Create, Modify | Four entries, the advisor v2.0.0.0 extension and the bumps |
 | `.skilled/skills/mcp-browser-use/mcp-{chrome,aside}-devtools/benchmark/reports/2026-11-22--*` | Create | Five reports and index rows |
 <!-- /ANCHOR:scope -->
 

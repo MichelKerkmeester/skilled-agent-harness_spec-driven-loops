@@ -7,7 +7,7 @@ trigger_phrases:
   - "laneBreakdown"
   - "attribution metadata"
   - "why_recommended"
-version: 0.8.2.0
+version: 0.8.4.0
 ---
 
 # Lane Contribution Attribution
@@ -20,9 +20,9 @@ Make the fusion score auditable by exposing each lane's contribution per recomme
 
 ## 2. HOW IT WORKS
 
-`lib/scorer/attribution.ts` builds the `laneBreakdown` array when `includeAttribution: true` is passed to `advisor_recommend`. Each entry carries exactly `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly`. The handler returns the same entries a second time as `laneContributions`, the name the scorer's own result uses, so a caller can read either field. The semantic lane reports `shadowOnly: false` because it is registered as live even though its default weight is 0. Set `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` to enable its scoring. Fusion derives `shadowOnly` from lane liveness. Prompt substrings are never copied into attribution.
+`lib/scorer/attribution.ts` builds the `laneBreakdown` array when `includeAttribution: true` is passed to `advisor_recommend`. Each entry carries exactly `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly`. The handler returns the same entries a second time as `laneContributions`, the name the scorer's own result uses, so a caller can read either field. Fusion derives `shadowOnly` from lane liveness. Prompt substrings are never copied into attribution.
 
-The same opt-in response also includes `why_recommended`, a prompt-safe explanation string that summarizes the dominant lane, top contributing lanes and matched feature categories such as `phrase_match`, `token_match` and `semantic_similarity`. It must not include raw prompt phrases, prompt tokens, scorer evidence strings or the original prompt.
+The same opt-in response also includes `why_recommended`, a prompt-safe explanation string that summarizes the dominant lane, top contributing lanes and matched feature categories such as `phrase_match` and `token_match`. It must not include raw prompt phrases, prompt tokens, scorer evidence strings or the original prompt.
 
 ---
 
@@ -34,7 +34,6 @@ The same opt-in response also includes `why_recommended`, a prompt-safe explanat
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts` | Library | Source reference |
 | `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Source reference |
-| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | semantic-lane attribution source |
 | `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
 
 ### Validation And Tests
@@ -55,6 +54,6 @@ The same opt-in response also includes `why_recommended`, a prompt-safe explanat
 
 Related references:
 
-- [01-five-lane-fusion.md](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
+- [01-lane-fusion.md](../../feature-catalog/scorer-fusion/lane-fusion.md).
 - [05-ablation.md](./ablation.md).
 - [`cli-surface/advisor-recommend.md`](../../feature-catalog/cli-surface/advisor-recommend.md).

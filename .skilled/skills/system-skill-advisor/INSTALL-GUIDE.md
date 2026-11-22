@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor Install + Setup Guide"
 description: "Bootstrap, verification, runtime hooks, local scorer, rollback, operator notes and reference commands for the daemon-backed skill advisor CLI."
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Skill Advisor Install + Setup Guide
@@ -51,7 +51,6 @@ The advisor is a TypeScript package under `.skilled/skills/system-skill-advisor/
 - No runtime configuration: the prompt-time hooks and the OpenCode plugin are committed, and there is no MCP registration step.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless you are intentionally testing rollback.
 - The local shared package at `.skilled/skills/system-spec-kit/shared` is present; `npm install` links it into `runtime/node_modules/@spec-kit/shared`.
-- `/doctor:install` sets up the embedder by default: its checklist includes `/doctor:skill-advisor embedder`, which prints the cost and asks before it pulls the model or starts the server, so answering no leaves a phrase-only install.
 
 ---
 
@@ -102,7 +101,7 @@ Run before declaring setup complete:
 ```bash
 npm --prefix .skilled/skills/system-skill-advisor/runtime run typecheck
 npm --prefix .skilled/skills/system-skill-advisor/runtime run build
-node -e "import('./.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/lanes/semantic-shadow.js')"
+node -e "import('./.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/lanes/lexical.js')"
 npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/handlers/advisor-recommend.vitest.ts tests/compat/shim.vitest.ts --reporter=default
 ```
 
@@ -272,111 +271,7 @@ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_regre
 
 ---
 
-## 12. CHOOSING AN EMBEDDER
-
-The skill-advisor `semantic_shadow` lane uses the registered embedder in `@spec-kit/shared/embeddings/`. The adapter interface, types, manifest registry and Ollama adapter live in that shared package. Skill-advisor's local `runtime/lib/embedders/` files are thin re-export shims plus a `schema.ts` integration that targets the package-local SQLite database at `runtime/database/skill-graph.sqlite`. This section is the new-user onboarding view. The canonical embedder narrative lives at [embedder-pluggability.md](../system-spec-kit/references/memory/embedder-pluggability.md).
-
-### 12.1 Current active default
-
-The persisted default is the `'auto'` sentinel. On daemon start, `ensureActiveEmbedder()` resolves an unset (`auto`) or unknown embedder pointer directly to the registered manifest `nomic-embed-text-v1.5` (768 dimensions) and persists it to `vec_metadata`. This path makes no backend probes. The advisor does not run the shared cascade.
-
-| Pointer state | Resolved manifest | Backend probe |
-| --- | --- | --- |
-| Unset (`auto`) | `nomic-embed-text-v1.5` (768 dimensions) | None |
-| Unknown manifest | `nomic-embed-text-v1.5` (768 dimensions) | None |
-
-`setActiveEmbedder()` can pin the registered manifest, and later daemon starts use that pointer.
-
-After startup IPC comes up, the daemon starts one shared background refresh without awaiting it. It starts the refresh again after each watcher reindex. It counts current, stale and missing vectors locally. Complete coverage returns without a network call. Incomplete coverage triggers one Ollama probe with a 500 ms timeout, followed by embeds for missing or stale rows. Coverage is complete only when at least one embeddable skill exists and all embeddable skill and command rows are current. A command-only index can therefore reach the probe even when all its command vectors are current. A failed embed keeps the prior vector. Set `SYSTEM_SKILL_ADVISOR_EMBED_REFRESH=off` to disable background refreshes. Embeddable skills have a non-empty `SKILL.md` description. Embeddable command rows come from generated command bridges and need non-empty `embeddingText` plus an enabled TypeScript runtime id. The legacy `skill_nodes.embedding` path has been removed.
-
-### 12.2 Registered alternatives
-
-Source of truth: [`@spec-kit/shared/embeddings/registry.ts`](../system-spec-kit/shared/embeddings/registry.ts). Skill-advisor's local `runtime/lib/embedders/registry.ts` is a re-export shim. One text-tuned manifest is registered today as a frozen `EmbedderManifest`:
-
-| Name | Dim | Backend | Ollama tag | Max input | Notes |
-| --- | ---: | --- | --- | ---: | --- |
-| `nomic-embed-text-v1.5` | 768 | `ollama` | `nomic-embed-text:v1.5` | 5000 | 768-dim retrieval specialist. Local-first cascade default per ADR-014. Uses `search_query: ` / `search_document: ` prefix tokens. |
-
-> **Content-type split.** The TS shared registry is text-tuned by design. The `contentType: 'text' \| 'code'` parameter on the shared cascade preserves the conceptual split for any future TS code consumer. The previous skill-advisor-specific `jina-embeddings-v2-base-code` entry was removed because it was code-tuned and did not belong in a text-only registry.
-
-Adding a new candidate is a single registry row in the shared package plus, if the backend is new, a single adapter under `shared/embeddings/adapters/`. No call sites change. The adapter contract (`EmbedderAdapter` in `@spec-kit/shared/embeddings/adapter.ts`) is small — `embed()` plus `ready()`.
-
-### 12.3 Swap mechanism: `'auto'` sentinel + `setActiveEmbedder()`
-
-There are two operator-facing surfaces. **Neither is an environment variable.**
-
-**Sentinel-driven (default).** `vec_metadata` starts unpopulated, and `getActiveEmbedder()` returns `{ name: 'auto', dim: 0 }`. On daemon start, `ensureActiveEmbedder()` resolves an unset (`auto`) or unknown pointer to `nomic-embed-text-v1.5` (768 dimensions) and persists it without probing a backend. The advisor does not run the shared cascade.
-
-**Manual override.** [`setActiveEmbedder()`](./runtime/lib/embedders/schema.ts) writes a specific manifest into `vec_metadata` and creates the matching `vec_<dim>` table:
-
-```typescript
-import Database from 'better-sqlite3';
-import { setActiveEmbedder } from './runtime/dist/.../lib/embedders/schema.js';
-
-const db = new Database('.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite');
-setActiveEmbedder(db, 'nomic-embed-text-v1.5', 768);
-```
-
-Effect of the call:
-
-- `vec_metadata.active_embedder_name` -> `nomic-embed-text-v1.5`
-- `vec_metadata.active_embedder_dim` -> `768`
-- `vec_768` table created (if absent), schema `(skill_id, embedding BLOB, model_id, content_hash, updated_at)`
-- `hasActiveEmbedderPointer(db)` returns `true`, so both read path (`semantic-shadow.ts`, `loadSkillEmbeddings()`) and write path (`refreshSkillEmbeddingsViaAdapter`) target `vec_<active.dim>`
-- The pinned pointer is read on subsequent restarts.
-
-There are intentionally no embedder-administration commands here. Skill-advisor's surface is one database helper plus the registered-manifest pointer. The daemon's shared refresh handles skill and command vectors in the background after startup and watcher reindexing. A trusted `skill_graph_scan` remains available for indexing. The shared refresh also updates vectors.
-
-### 12.4 Operator-safe swap runbook
-
-The advisor resolves an unset or unknown pointer to the registered manifest without probing a backend. Background refresh starts after IPC is ready and after watcher reindexing. It probes Ollama once when coverage is incomplete. Coverage requires at least one embeddable skill, so a command-only index can still reach the probe when its command vectors are current:
-
-1. Stop the daemon.
-2. Snapshot `runtime/database/skill-graph.sqlite`.
-3. (Optional) Call `setActiveEmbedder()` to pin the registered manifest.
-4. Restart the daemon. An unset or unknown pointer resolves to `nomic-embed-text-v1.5` (768 dimensions) without a pointer-resolution probe. Once IPC is ready, the daemon checks vector coverage and refreshes missing or stale skill and command rows in the background. A trusted `skill_graph_scan` is still available when you need to reindex.
-5. Smoke-test `advisor_recommend` through the CLI against three queries (`"memory save"`, `"code search"`, `"spec folder"`) and confirm top-3 picks are sane.
-
-The full runbook (snapshot + stop + override + restart + smoke test + rollback) is documented at [`002-jina-swap-and-reindex/evidence/swap-runbook.md`](../../<spec-folder>). The "Architecture Context" and "Half-wired state" sections are now historical — the half-wired state was closed by phase `004`.
-
-### 12.5 Device selection
-
-Skill-advisor does not ship an explicit `_resolve_device()` shim. Its registered `nomic-embed-text-v1.5` manifest uses Ollama, which owns device selection:
-
-| Backend | Device handling |
-| --- | --- |
-| `ollama` (`nomic-embed-text-v1.5`) | Ollama owns runtime device handling. It covers Metal / CUDA / CPU based on its daemon configuration. |
-
-If you need MPS-style auto-detect for a local model, Ollama provides it on Apple Silicon. Install Ollama and pull the registered manifest.
-
-### 12.6 Cross-references
-
-- Canonical shared-embedder narrative: [`embedder-pluggability.md`](../system-spec-kit/references/memory/embedder-pluggability.md) — covers skill-advisor and the shared design rationale.
-- Shared contract surface: [`@spec-kit/shared/embeddings/`](../system-spec-kit/shared/embeddings/) — the canonical adapter, types, registry and Ollama adapter.
-- Shared cascade: [`@spec-kit/shared/embeddings/auto-select.ts`](../system-spec-kit/shared/embeddings/auto-select.ts) is a file-locked chain that probes Ollama, hf-local, OpenAI and Voyage for shared consumers. The advisor does not use it to resolve its pointer. It accepts an optional `contentType: 'text' \| 'code'` parameter (default `'text'`).
-- Skill-advisor schema helpers: [`runtime/lib/embedders/schema.ts`](./runtime/lib/embedders/schema.ts).
-- Architecture-gap follow-on: packet `003/006-shared-embedder-logic-with-spec-memory` (shipped phase 003/006).
-
-### 12.7 Setup route and cost
-
-`/doctor:install` includes the embedder setup by default, and the setup itself runs as `/doctor:skill-advisor embedder` from inside the target repo. The route probes `command -v ollama`, `/api/version`, `/api/tags` and `advisor_status --include-semantic-health true`, prints one plan row per missing step with its cost and its undo, and asks once before it runs anything. A no stops with `STATUS=CANCELLED` and changes nothing. `--dry-run` prints the plan and stops with `STATUS=OK`. The route never installs or upgrades Ollama: it prints the install command for the operator, and the install guide owns that cost. The two health flags split the diagnosis: `includeEmbeddingsHealth` probes only the hf-local model server, while `includeSemanticHealth` reports the active embedder and probes its backend.
-
-What the embedder costs on this machine, measured 2026-11-13 with `runtime/scripts/measure-embedder-cost.mjs`:
-
-| Measure | Value |
-| --- | ---: |
-| Disk for `nomic-embed-text:v1.5` | 274302450 bytes (261.6 MiB) |
-| Idle memory, `ollama serve` with no model loaded | 25776 KB (25.2 MiB) |
-| Loaded memory, model runner resident | 279520 KB (273.0 MiB) |
-| Unload after the last call | 5 minutes, Ollama keep-alive |
-| Warm embed latency, model loaded | 4.8 ms median, 8.9 ms p95 |
-| Cold first call after the unload | 538.53 ms |
-
-Once the approved steps run, the route runs `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`. Setup and embedder checks pass when `coverageComplete` is true. If Ollama is unavailable, they report `DEGRADED`. A lane weight of 0 passes setup. Update apply, overlay apply and overlay repin report vector coverage. Symlink link reports it too. At the default live weight of 0, recommendations make no prompt embedding call. An `advisor_status --include-semantic-health true` call independently probes Ollama readiness. The database is derived state and gitignored, since `.gitignore` ignores `runtime/database/*.sqlite`.
-
----
-
-## 13. RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 | Document | Purpose |
 | --- | --- |
@@ -384,15 +279,14 @@ Once the approved steps run, the route runs `node .skilled/bin/skill-advisor.cjs
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Package-local architecture and public API entrypoints. |
 | [Hook reference](./hooks/skill-advisor-hook.md) | Prompt-time hook surfaces for each runtime. |
 | [Manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
-| [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder-pluggability.md) | Canonical embedder-pluggability reference. |
 
 ---
 
-## 14. TUNING THE ADVISOR
+## 13. TUNING THE ADVISOR
 
 Installation makes the advisor run; tuning makes it route *your* skills accurately. The advisor scores each prompt against every skill's `graph-metadata.json` signals plus the scorer lane tables (`TOKEN_BOOSTS`, `PHRASE_BOOSTS`, `CATEGORY_HINTS`). There are two tuning paths — a fast signal-only loop and the full gated workflow.
 
-### 14.1 Quick tuning (no rebuild) — recommended for external clones
+### 13.1 Quick tuning (no rebuild) — recommended for external clones
 
 Most "match my setup" needs are signal additions, not lane-weight changes:
 
@@ -406,7 +300,7 @@ Most "match my setup" needs are signal additions, not lane-weight changes:
 
 > **Critical:** the advisor reads scoring inputs from `.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without re-indexing produces identical pre-edit scores.
 
-### 14.2 Full tuning: `/doctor:skill-advisor tune`
+### 13.2 Full tuning: `/doctor:skill-advisor tune`
 
 For batch optimization across all skills plus lane-weight tuning, run the gated doctor workflow:
 
@@ -419,7 +313,7 @@ For batch optimization across all skills plus lane-weight tuning, run the gated 
 
 Five phases gated behind operator approval: Discovery → Analysis → Proposal → Apply → Verify. Phase 3 (Apply) rebuilds `dist/`, runs `skill_graph_scan`, runs the advisor test suite, and writes a per-run rollback script. Full reference: `.skilled/commands/doctor/skill-advisor.md` and `.skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml`.
 
-### 14.3 What tuning touches
+### 13.3 What tuning touches
 
 Mutates only:
 
@@ -429,7 +323,7 @@ Mutates only:
 
 Never touches any `SKILL.md` content, `weights-config.ts`, the fusion scorer, or daemon code. Any MANUAL edit to these files (e.g. the Quick-tuning recipe above) requires a re-index (`skill_graph_scan`) — the SQLite graph is the runtime source of truth.
 
-### 14.4 Tuning rollback
+### 13.4 Tuning rollback
 
 `/doctor:skill-advisor tune` Phase 3 writes a per-run rollback script at `<packet_scratch>/rollback-<timestamp>.sh` (under `<spec-folder>/scratch/` or `.skilled/scratch/`). The script restores only the files that run modified, preserves unrelated WIP and rebuilds the package at the end. Prefer it over a broad `git checkout HEAD -- ...`, which would discard unrelated WIP.
 

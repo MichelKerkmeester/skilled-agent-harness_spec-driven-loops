@@ -7,7 +7,7 @@ trigger_phrases:
   - "workflow-owner guard"
   - "delegate this refactor to codex"
   - "split delegation phrasing"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Executor Delegation and Workflow-Owner Guard
@@ -70,6 +70,6 @@ Before the hub takes first place, the advisor looks for a workflow owner: a pass
 
 Related references:
 
-- [five-lane-fusion.md](./five-lane-fusion.md) - The fusion run whose ranking the override reorders.
+- [lane-fusion.md](./lane-fusion.md) - The fusion run whose ranking the override reorders.
 - [ambiguity.md](./ambiguity.md) - Top-2 ambiguity window that reads the reordered ranking.
 - [doctor-command-routing.md](./doctor-command-routing.md) - The other post-fusion ordering rule, for doctor command bridges.

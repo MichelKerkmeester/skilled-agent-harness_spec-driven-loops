@@ -3,9 +3,6 @@
 # COMPONENT: SYSTEM SKILL ADVISOR DOCTOR
 # ───────────────────────────────────────────────────────────────
 # Read-only health check for the system-skill-advisor runtime.
-# Critical risk: @huggingface/transformers downloads Jina embedding
-# models on first use; can fail silently if disk or network is
-# constrained at install time.
 #
 # Usage: bash .skilled/skills/system-skill-advisor/scripts/doctor.sh [--strict]
 #
@@ -13,7 +10,7 @@
 #   0  - Health checks passed (or advisory mode complete)
 #   1  - Invalid arguments
 #   20 - advisor runtime dist missing
-#   26 - Runtime Node imports missing (HF transformers, better-sqlite3, zod)
+#   26 - Runtime Node imports missing (better-sqlite3, zod)
 
 set -euo pipefail
 
@@ -52,22 +49,19 @@ fi
 log_pass "Node interpreter: $NODE_BIN"
 
 # Critical runtime imports for the skill advisor.
-# @huggingface/transformers is heaviest (model downloads at first use).
 # better-sqlite3 backs the skill-graph cache.
 # zod for schema validation.
-DEP_CHECK_MODULES="@huggingface/transformers better-sqlite3 zod"
+DEP_CHECK_MODULES="better-sqlite3 zod"
 DEP_CHECK_MISSING=()
 for mod in $DEP_CHECK_MODULES; do
     ( cd "$MCP_DIR" && "$NODE_BIN" -e "require('$mod')" 2>/dev/null ) || DEP_CHECK_MISSING+=("$mod")
 done
 
 if [[ ${#DEP_CHECK_MISSING[@]} -eq 0 ]]; then
-    log_pass "Runtime imports OK (@huggingface/transformers + better-sqlite3 + zod)"
+    log_pass "Runtime imports OK (better-sqlite3 + zod)"
 else
     log_warn "Runtime imports FAILED — missing modules: ${DEP_CHECK_MISSING[*]}"
     echo "  Fix via: ( cd $MCP_DIR && npm install )"
-    echo "  Note: @huggingface/transformers downloads Jina models on first import;"
-    echo "  if your disk or network is constrained, the post-install hook may have skipped."
     if [[ "$STRICT_MODE" == true ]]; then
         exit 26
     fi

@@ -6,7 +6,7 @@ trigger_phrases:
   - "advisor_status diagnostic only"
   - "advisor_rebuild explicit repair"
   - "skill advisor stale rebuild"
-version: 0.8.0.9
+version: 0.8.1.0
 id: NC-006
 category: native_cli_tools
 stage: routing
@@ -99,7 +99,7 @@ rm -rf "$WORK"
 
 - Replace copied `skill-graph.sqlite` with invalid bytes and verify `advisor_status` remains diagnostic while `advisor_rebuild` is the repair path.
 - Remove the copied skill graph artifact and verify absent-state repair.
-- Run with a dead `SPECKIT_SKILL_GRAPH_DAEMON_PID` and verify status includes daemon evidence without leaking prompt text.
+- A dead `SPECKIT_SKILL_GRAPH_DAEMON_PID` cannot reach the daemon through the CLI, because the launcher's `CHILD_ENV_ALLOWLIST` does not forward it. Run that case in process from `.skilled/skills/system-skill-advisor/runtime` with `SPECKIT_RUN_STRESS=true npx vitest run stress-test/skill-advisor/mcp-diagnostics-stress.vitest.ts -t "advisor_status returns a schema-valid"` and verify status reports the `daemonPid` with a `no live daemon PID/process evidence` error and no prompt text.
 
 ---
 

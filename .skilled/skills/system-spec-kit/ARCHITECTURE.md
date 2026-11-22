@@ -8,7 +8,7 @@ trigger_phrases:
   - "resume ladder"
   - "spec-kit runtime subsystems"
 importance_tier: "important"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Architecture: system-spec-kit
@@ -55,9 +55,9 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │                            │                                    │
 │  ┌────────────────┐     ┌──┴──────────────┐                     │
 │  │   runtime/cli/ │     │    shared/      │                     │
-│  │ create.sh      │────▶│ embeddings/     │                     │
+│  │ create.sh      │────▶│ ipc/            │                     │
 │  │ validate.sh    │     │ trigger-extract │                     │
-│  │ generate-      │     │ chunking.ts     │                     │
+│  │ generate-      │     │ frontmatter/    │                     │
 │  │ context.ts     │     │ algorithms/     │                     │
 │  │ evals/         │     │ scoring/        │                     │
 │  └────────────────┘     └─────────────────┘                     │
@@ -156,8 +156,8 @@ disagrees with it is the thing to fix.
 | Surface | Owner today | What it is |
 |---------|-------------|------------|
 | `runtime/data/trigger-index.json` | `runtime/cli/retrieval/generate-trigger-index.mjs` (writer), `lookup-trigger-index.mjs` (reader) | The committed Gate 1 retrieval index over author-declared trigger phrases |
-| `runtime/database/` | The HF model server in `.skilled/bin` | Its sockets, leases and logs; no index, no database of ours |
-| `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` | `shared/config.ts` and `shared/embeddings/` for the skill advisor | The advisor's own embedding store location; nothing in this skill opens a database |
+| `runtime/database/` | `shared/config.ts`, for telemetry | The engine's `access-telemetry.json`; no index, no database of ours |
+| `SPEC_KIT_DB_DIR`, `SPECKIT_DB_DIR` | `shared/config.ts` | The telemetry store directory override; nothing in this skill opens a database |
 | `.skilled/skills/system-skill-advisor/runtime/database/` | The skill advisor | Its routing graph and doctor state, served by the advisor's resident daemon over its own socket protocol |
 | `.skilled/skills/system-deep-loop/runtime/database/` | The deep-loop runtime | The coverage graph for research and review loops, and a legacy council graph file nothing reads |
 | `runtime/cli/dist/continuity/generate-context.js`, `/speckit:save`, `/speckit:search` | The scripts workspace | The continuity writer and the retrieval commands; "memory" here is the command family's literal name, not a store |
@@ -197,7 +197,6 @@ Spec-kit's quality gates run at three layers.
 | ADR-002 | Phase parents validate as the lean trio (spec + description + graph-metadata) | Accepted |
 | ADR-005 | 4-level documentation contract (Levels 1, 2, 3, 3+) with manifest templates | Accepted |
 | ADR-006 | Save gate runs 3 layers (intake, router, quality review) on every save | Accepted |
-| ADR-007 | Embedding provider auto-cascade is local-first (Ollama → hf-local → OpenAI → Voyage), per ADR-014 | Accepted |
 
 ---
 

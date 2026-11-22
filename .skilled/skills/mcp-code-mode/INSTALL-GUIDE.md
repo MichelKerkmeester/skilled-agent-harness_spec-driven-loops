@@ -1,7 +1,7 @@
 ---
 title: "MCP Code Mode Installation Guide"
 description: "Installation and configuration for the Code Mode MCP server, which orchestrates external MCP tools through TypeScript."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # MCP Code Mode Installation Guide
@@ -268,9 +268,6 @@ cat > .env << 'EOF'
 
 # GitHub Configuration
 # GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your_token_here
-
-# Voyage AI (for Narsil neural search)
-# VOYAGE_API_KEY=pa-your_voyage_key_here
 
 # =============================================================================
 # Code Mode Prefixed Variables (REQUIRED for Code Mode)

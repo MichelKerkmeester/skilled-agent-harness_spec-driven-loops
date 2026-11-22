@@ -60,7 +60,6 @@ lib/
 +-- cross-skill-edges/          # Inbound enhances edge detection/apply helpers
 +-- daemon/                     # Advisor daemon helpers
 +-- derived/                    # Derived metadata helpers
-+-- embedders/                  # Advisor embedder schema and shared registry shims
 +-- freshness/                  # Freshness and cache state helpers
 +-- ipc/                        # Launcher IPC bridge and idle-timeout helpers
 +-- lifecycle/                  # Skill lifecycle metadata helpers
@@ -125,7 +124,6 @@ lib/
 +-- cross-skill-edges/
 +-- daemon/
 +-- derived/
-+-- embedders/
 +-- freshness/
 +-- ipc/
 +-- lifecycle/
@@ -155,7 +153,6 @@ lib/
 | `route-exclusions.ts` | Loads the operator denylist of skill ids the advisor never routes: `config/route-exclusions.json`, fully replaced by a gitignored `route-exclusions.local.json` when present, or the directory in `SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR`. A missing or malformed file yields an empty set and never throws. |
 | `caller-context.ts` | Holds the per-request caller context (session id, transport, caller pid, `trusted` flag) in `AsyncLocalStorage`, read by the trusted-caller gate. |
 | `cross-skill-edges/` | Detects and optionally applies inbound `enhances` graph edges. |
-| `embedders/` | Owns advisor vector schema helpers and shared embedder shims. It names and creates both the skill vector table and the `vec_cmd_<dim>` command vector table, which has no foreign key into `skill_nodes`. |
 | `ipc/` | Owns launcher socket bridge and idle-timeout helpers. |
 | `shared/` | Keeps advisor-local shared helpers and compatibility shims. |
 
@@ -189,7 +186,6 @@ prompt or status request
 | `scorer/` | Folder | Native scoring implementation. |
 | `compat/` | Folder | Compatibility and daemon probe helpers. |
 | `cross-skill-edges/` | Folder | Inbound enhances edge propagation helpers. |
-| `embedders/` | Folder | Active embedder schema and shared registry shims. |
 | `freshness/` | Folder | Freshness state helpers. |
 | `ipc/` | Folder | Launcher IPC helpers. |
 | `shared/` | Folder | Shared local helper modules. |
@@ -214,6 +210,5 @@ Expected result: exit code `0`.
 - [`../handlers/README.md`](../handlers/README.md)
 - [`../scripts/README.md`](../scripts/README.md)
 - [`cross-skill-edges/README.md`](cross-skill-edges/README.md)
-- [`embedders/README.md`](embedders/README.md)
 - [`ipc/README.md`](ipc/README.md)
 - [`shared/README.md`](shared/README.md)

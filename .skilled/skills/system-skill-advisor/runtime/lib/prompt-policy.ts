@@ -262,7 +262,7 @@ function stripPastedReplyOnce(prompt: string): string {
  * Drop an earlier reply pasted ahead of the task, keeping the text after its task marker.
  * The skill names in a pasted reply would otherwise steer routing away from the task.
  * Repeats until nothing changes, so a second call returns the same text; the handler and
- * the scorer both call it, and the semantic lane matches its embedding by exact text.
+ * the scorer both call it, and both must see the same text for one prompt.
  */
 export function stripLeadingPastedReply(prompt: string): string {
   let current = prompt;

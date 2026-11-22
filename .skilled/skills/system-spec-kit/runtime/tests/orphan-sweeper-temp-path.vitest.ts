@@ -182,20 +182,6 @@ describe('orphan sweeper advisor daemon', () => {
     expect(results).toEqual(['advisor-launcher-child']);
   });
 
-  it('preserves a model server that still names its launcher as parent', () => {
-    const results = runHarness([
-      'ps() {',
-      '  case "$*" in',
-      '    "-p 4242 -o ppid=") printf "80911\\n" ;;',
-      '    "-p 80911 -o command=") printf "node /Users/tester/.skilled/system-skill-advisor-launcher.cjs\\n" ;;',
-      '    *) printf "501\\n" ;;',
-      '  esac',
-      '}',
-      `preserve_reason 4242 hf-model-server ${SIX_HOURS} "node /Users/tester/.skilled/skills/hf-model-server/hf-model-server.cjs" || echo none`,
-    ]);
-    expect(results).toEqual(['advisor-launcher-child']);
-  });
-
   it('does not extend launcher coverage to a server reparented onto init', () => {
     const results = runHarness([
       'ps() {',

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cleanup wiring and gating",
+      "phase 8 cleanup wiring and gating",
+      "lane cleanup in doctor update apply",
+      "residue check gating in ci",
+      "shared model question every run",
+      "cleanup wiring and gating plan",
+      "lane cleanup doctor wiring plan",
+      "residue gate ci job plan",
+      "cleanup wiring and gating tasks",
+      "cleanup wiring and gating acceptance criteria",
+      "packet goal",
+      "durable directive"
+    ],
+    "key_topics": [
+      "cleanup",
+      "wiring",
+      "gating",
+      "phase",
+      "lane",
+      "doctor",
+      "apply",
+      "residue",
+      "check",
+      "shared",
+      "model",
+      "question"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/lane-residue-gate.test.cjs",
+      ".github/workflows/advisory-checks.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md",
+      ".skilled/skills/system-skill-advisor/runtime/bench/latency-bench.ts",
+      ".skilled/skills/system-spec-kit/shared/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-lane-residue.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-lane-residue.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sweep-lane-residue.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lane-residue-allowlist.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/lane-residue-allowlist.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lane-residue-gate.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/lane-residue-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "v2.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v2.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "latency-bench.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/bench/latency-bench.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 built `sweep-lane-residue.mjs` report-only and unwired, and nothing calls it today",
+    "created_at": "2026-11-20T21:51:24Z",
+    "last_save_at": "2026-11-21T14:13:19.626Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e19021f01ded2680b2e83abca8268aac4e31bc4916bd2e59e8b34420adf539bd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "314c9a04cc21136d9a0c3924771dc0e094ef2635587937231839b7a55cc1ccd6",
+      "plan.md": "9c68624b744270263de42f12002406473d993089da30e7255c26b80259225e71",
+      "tasks.md": "7018db21d5fac30cb36fd6e4a9121c0a1ee3bbb13a2e36000e6221fd35ccb3a9",
+      "implementation-summary.md": "d5ca9df31e160c3a3b4244cc2494acde7b5c35e23d3320e4be99baa16687cc52"
+    },
+    "last_active_at": null
+  }
+}

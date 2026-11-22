@@ -14,11 +14,10 @@
 //
 // Regime: a pass shows harness-regime parity, not live-daemon parity. The
 // local side is the Python scorer in a subprocess. The native side is the
-// in-process TypeScript scorer under VITEST, where the semantic-shadow lane
-// substitutes deterministic fixture vectors for real embeddings. Both read a
-// skill graph indexed fresh from this checkout into a temporary directory,
-// never the daemon's live database, and both score at a pinned instant. A
-// prompt the live daemon routes differently can still pass here.
+// in-process TypeScript scorer. Both read a skill graph indexed fresh from this
+// checkout into a temporary directory, never the daemon's live database, and
+// both score at a pinned instant. A prompt the live daemon routes differently
+// can still pass here.
 
 import { createHash } from 'node:crypto';
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
@@ -199,7 +198,6 @@ print(json.dumps(out))
     env: {
       ...process.env,
       PYTHONDONTWRITEBYTECODE: '1',
-      SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC: '1',
       SPECKIT_SKILL_ADVISOR_FORCE_LOCAL: '1',
     },
     maxBuffer: 1024 * 1024 * 16,
