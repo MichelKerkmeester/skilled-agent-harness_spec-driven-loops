@@ -20,7 +20,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   attachCommand,
-  DEPTH_WORDING,
+  LOOP_WORDING,
   MODE_COMMANDS,
   routeNeedsMode,
   typedCommandForTop,
@@ -100,12 +100,12 @@ describe('command attach for a single routed mode', () => {
   });
 
   it('offers a deep-loop command only when the prompt asks for that effort', () => {
-    const plainIsQuiet = DEPTH_WORDING.every((phrase) => !PLAIN_PROMPT.toLowerCase().includes(phrase));
+    const plainIsQuiet = LOOP_WORDING.every((phrase) => !PLAIN_PROMPT.toLowerCase().includes(phrase));
     expect(plainIsQuiet, 'the effort-free probe prompt mentions no effort wording').toBe(true);
 
     const modes = Object.entries(MODE_COMMANDS['system-deep-loop']);
     expect(modes.length).toBeGreaterThan(0);
-    const [effortPhrase] = DEPTH_WORDING;
+    const [effortPhrase] = LOOP_WORDING;
     expect(effortPhrase).toBeTruthy();
 
     for (const [mode, command] of modes) {
