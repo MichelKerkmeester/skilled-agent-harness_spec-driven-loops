@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-22T17:31:08Z"
+    last_updated_at: "2026-11-22T21:36:40Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed the loop-ask classes and confirmed the live question-tool offer"
-    next_safe_action: "Land the follow-up commit on main after the operator approves the push"
+    recent_action: "Added the deep-loop offer work to the v4.2.0.0 changelog"
+    next_safe_action: "Land the changelog commit on main after the operator approves the push"
     packet_purpose: "Purpose: A deep-loop command is offered when, and only when, the request asks for the loop itself."
     blockers: []
     key_files:
@@ -21,14 +21,14 @@ _memory:
       - ".skilled/commands/deep/assets/deep-review-presentation.txt"
       - ".skilled/skills/system-deep-loop/hub-router.json"
     session_dedup:
-      fingerprint: "sha256:d41724eccab6a4ca6871e465178ac9a7d5e082eab9a88b507edbb929a7ea6096"
+      fingerprint: "sha256:ed7b946f01a8d67757861c8b82afd7ac188ebd3ba5da180a7ed674f999f68fb6"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
       workspace: "/Users/michelkerkmeester/worktrees/public/516-deep-loop-command-offers"
-      savedAt: "2026-11-22T17:31:08Z"
+      savedAt: "2026-11-22T21:36:40Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
