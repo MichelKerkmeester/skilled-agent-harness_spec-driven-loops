@@ -120,7 +120,7 @@ test('a state file of an unsupported shape names the field and the git command t
 
   assert.equal(status.code, 2, status.output);
   assert.match(status.output, /\[overlay-engine\] \S+ has an unsupported shape\n {2}its links field is not a map of link targets/);
-  assert.ok(status.output.includes(`  Next: restore the state file from git: git -C ${fixture.tree} checkout -- ` +
+  assert.ok(status.output.includes(`  Next: restore the state file from git: git -C ${fixture.tree} restore --source=HEAD --staged --worktree -- ` +
     path.relative(fixture.tree, statePath)), status.output);
 });
 
@@ -134,7 +134,7 @@ test('a state file that is not valid JSON names why and the git command that res
 
   assert.equal(status.code, 2, status.output);
   assert.match(status.output, /\[overlay-engine\] sync-state\.json is not valid JSON: [^\n]+\n {2}every command reads the state file/);
-  assert.ok(status.output.includes(`  Next: restore the state file from git: git -C ${fixture.tree} checkout -- ` +
+  assert.ok(status.output.includes(`  Next: restore the state file from git: git -C ${fixture.tree} restore --source=HEAD --staged --worktree -- ` +
     path.relative(fixture.tree, statePath)), status.output);
 });
 

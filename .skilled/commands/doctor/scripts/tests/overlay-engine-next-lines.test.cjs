@@ -213,3 +213,91 @@ test('the capture fix for a live edit at a path with a space quotes that path', 
   assert.equal(status.code, 1, status.output);
   assert.ok(status.output.includes(`fix: ${ENGINE} apply --capture 'directory-live/my file.md'`), status.output);
 });
+
+// A refusal reached from every command reruns the read-only check, and names
+// the manifest by its quoted absolute path, so the line works from any folder.
+function statusRerun(fixture) {
+  return `then from ${quoted(fixture.tree)}: ${ENGINE} status`;
+}
+
+function manifestPath(fixture) {
+  return quoted(engine.createContext(fixture.tree).manifestPath);
+}
+
+test('a state file of an unsupported shape is restored from HEAD, index and worktree both', (t) => {
+  const fixture = createSyncFixture(t);
+  assert.equal(fixture.run(['apply']).code, 0);
+  const statePath = engine.createContext(fixture.tree).statePath;
+  fs.writeFileSync(statePath, '[]');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  const expected = `  Next: restore the state file from git: git -C ${quoted(fixture.tree)} restore --source=HEAD --staged --worktree -- ` +
+    quoted(path.relative(fixture.tree, statePath));
+  assert.ok(status.output.split('\n').includes(expected), status.output);
+});
+
+test('a capture whose overlay copy is gone restores that copy from HEAD, index and worktree both', (t) => {
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'tool' }]);
+  assert.equal(fixture.run(['apply']).code, 0);
+  fs.rmSync(path.join(fixture.overlayDir, 'files/tool.md'));
+  const captured = fixture.run(['apply', '--capture', 'tool']);
+  assert.notEqual(captured.code, 0, captured.output);
+  const source = path.join(fixture.overlayDir, 'files/tool.md');
+  assert.ok(captured.output.includes(`  Next: restore the overlay copy (git -C ${quoted(fixture.tree)} restore --source=HEAD ` +
+    `--staged --worktree -- ${quoted(path.relative(fixture.tree, source))}) or copy tool to ${quoted(source)}`), captured.output);
+});
+
+test('two overlays on one destination name the quoted manifest and the status rerun', (t) => {
+  const fixture = createFixture(t, [
+    { id: 'one', scope: 'file', source: 'files/tool.md', destination: 'tool' },
+    { id: 'two', scope: 'file', source: 'bundle/a.md', destination: 'tool' },
+  ]);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  const expected = `  Next: keep tool in one of those two entries in ${manifestPath(fixture)}, ${statusRerun(fixture)}`;
+  assert.ok(status.output.split('\n').includes(expected), status.output);
+});
+
+test('a protectedPaths refusal names the quoted manifest and the status rerun', (t) => {
+  const cases = [
+    ['../outside.txt', 'write it in MANIFEST as a path relative to entry bundle, such as "config/token.txt", '],
+    ['.env.local', 'remove it from protectedPaths of entry bundle in MANIFEST (a .env file is refused without it), '],
+  ];
+  for (const [value, next] of cases) {
+    const fixture = createFixture(t, [{ id: 'bundle', scope: 'directory', source: 'bundle', destination: 'bundle-live',
+      protectedPaths: [value] }]);
+    const status = fixture.run(['status']);
+    assert.equal(status.code, 2, status.output);
+    const expected = '  Next: ' + next.replace('MANIFEST', manifestPath(fixture)) + statusRerun(fixture);
+    assert.ok(status.output.split('\n').includes(expected), value + ': ' + status.output);
+  }
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'tool',
+    protectedPaths: ['x.txt'] }]);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  const expected = `  Next: move protectedPaths of entry tool in ${manifestPath(fixture)} onto a directory or skill-root entry, ` +
+    `or make it a list, ${statusRerun(fixture)}`;
+  assert.ok(status.output.split('\n').includes(expected), status.output);
+});
+
+test('a repin list that is not a list names the quoted manifest and the status rerun', (t) => {
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'tool' }]);
+  fixture.manifest.repin = { runtimeFolders: '.claude' };
+  writeManifest(fixture);
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 2, status.output);
+  const expected = `  Next: set "repin": {"runtimeFolders": ["<path>"]} in ${manifestPath(fixture)}, each path relative to the tree, ` +
+    statusRerun(fixture);
+  assert.ok(status.output.split('\n').includes(expected), status.output);
+});
+
+test('a capture of a live destination that is no longer a file prints the capture command to rerun', (t) => {
+  const fixture = createFixture(t, [{ id: 'tool', scope: 'file', source: 'files/tool.md', destination: 'my tool' }]);
+  assert.equal(fixture.run(['apply']).code, 0);
+  fs.rmSync(path.join(fixture.tree, 'my tool'));
+  writeFile(fixture.tree, 'my tool/inner.md', 'a folder now\n');
+  const captured = fixture.run(['apply', '--capture', 'my tool']);
+  assert.notEqual(captured.code, 0, captured.output);
+  const expected = `  Next: once 'my tool' is a regular file again, from ${quoted(fixture.tree)}: ${ENGINE} apply --capture 'my tool'`;
+  assert.ok(captured.output.split('\n').includes(expected), captured.output);
+});
