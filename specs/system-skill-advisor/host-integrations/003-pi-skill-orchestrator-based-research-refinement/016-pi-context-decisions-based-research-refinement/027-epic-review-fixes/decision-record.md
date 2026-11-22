@@ -38,6 +38,8 @@ _memory:
 | Q002 | Delete the untracked lane build output from the primary checkout's advisor dist folder. | Not stated. | None | REQ-007, T013 |
 | Q003 | Fix every P1 and P2 finding and the drift the fresh review listed, rather than only saving the report. | Not stated. Evidence: yes_no, option false, overlap 0, imperative true, shift false. | None | spec.md section 3, tasks T004 to T014 |
 | Q004 | Fix all five Opus verification findings in phase 027, including the two that predate the change. | Not stated. | None | REQ-009, REQ-010, REQ-011, tasks T021 to T025 |
+| Q005 | Bump the skill advisor one patch step to 2.0.1.0 and add a changelog entry for these fixes. | Not stated. | None | T027, .skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md |
+| Q006 | Resolve the merge conflicts in the four generated trigger-index files by regenerating them on the merged tree. | Not stated. | None | merge commit on worktrees/515-epic-review-fixes |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -119,6 +121,44 @@ Leave them for now
 Answer:
 ```text
 Fix all five in 027
+```
+
+### Q005
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01WYgghZ2q1pNBJ6xDKnjh7A:1 -->
+
+Question:
+```text
+These fixes change the skill advisor's behavior: the Python fallback now applies route exclusions, and four documented settings are gone. Should the advisor get a version bump and a changelog entry?
+```
+
+Options:
+```text
+Patch bump + changelog (Recommended)
+No bump
+```
+
+Answer:
+```text
+Patch bump + changelog (Recommended)
+```
+
+### Q006
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01CcQ8tV4qAuGJszpkFh9mN2:0 -->
+
+Question:
+```text
+Merging main into worktrees/515-epic-review-fixes conflicted in four files: trigger-index.json, corpus-manifest.json, generation-diagnostics.json and phrase-variants.json. All four are outputs of the trigger-index generator. No source file conflicted. How should I resolve them?
+```
+
+Options:
+```text
+Regenerate them (Recommended)
+Abort the merge
+```
+
+Answer:
+```text
+Regenerate them (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

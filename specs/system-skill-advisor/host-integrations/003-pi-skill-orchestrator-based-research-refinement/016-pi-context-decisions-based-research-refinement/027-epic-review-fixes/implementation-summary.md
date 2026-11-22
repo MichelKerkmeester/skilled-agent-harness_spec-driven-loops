@@ -8,27 +8,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes"
-    last_updated_at: "2026-11-22T11:18:00Z"
+    last_updated_at: "2026-11-22T13:13:44Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed the five Opus verification findings and passed every gate again"
-    next_safe_action: "Commit on worktrees/515-epic-review-fixes, then merge to main when the operator asks"
+    recent_action: "Merged origin/main into the 515 branch and passed every gate on the result"
+    next_safe_action: "Land the 515 branch on main, push origin/main, then remove worktree 515 and its branch"
     packet_purpose: "Purpose: Every setting the docs name either works under the daemon or is gone, and the doctor's cleanup command has a test that runs it."
     blockers: []
     key_files:
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py"
-      - ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts"
-      - ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs"
-      - ".skilled/bin/system-skill-advisor-launcher.cjs"
+      - ".skilled/skills/system-skill-advisor/changelog/v2.0.1.0.md"
+      - ".skilled/skills/system-skill-advisor/SKILL.md"
     session_dedup:
-      fingerprint: "sha256:32a9ddb5929ee6777ac69a727de1df5878d0f79684e1cefff3287ef6a7a16a37"
+      fingerprint: "sha256:9ad56548b6242041952a4bf16dd5a6b0cde7651992f6c2465043f6a3455a755c"
       session_id: "scaffold-027-epic-review-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
       workspace: "/Users/michelkerkmeester/worktrees/public/515-epic-review-fixes"
-      savedAt: "2026-11-22T11:18:00Z"
+      savedAt: "2026-11-22T13:13:44Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
