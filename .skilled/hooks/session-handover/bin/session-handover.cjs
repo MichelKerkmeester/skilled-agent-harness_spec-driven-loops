@@ -387,8 +387,8 @@ function goalRoots(noteCwd) {
 
 // A manual claim has no relaunch record, so it passes no recorded switch and reads the switch
 // as it is at claim time.
-function noteGoalPacket(frontmatter, recordedGoalSwitch) {
-  return core.usableGoalPacket(
+function noteGoal(frontmatter, recordedGoalSwitch) {
+  return core.usableGoal(
     frontmatter,
     resolvedSwitches(),
     nudge.resolveRepoRoot(process.env),
@@ -416,9 +416,9 @@ function recordGoalPacket({ handoffPath, noteCwd, specFolder, runtime, sessionId
   };
   // The resolver checks the goal once and returns the packet, the reason it carried none and
   // whether the goal ended, so a miss does not walk the specs tree a second time.
-  const { packet, reason, ended } = core.resolveGoalPacketResult(options);
+  const { packet, reason, ended, root = '' } = core.resolveGoalPacketResult(options);
   try {
-    core.recordGoalPacket(handoffPath, packet, { ended });
+    core.recordGoalPacket(handoffPath, packet, { ended, root });
   } catch {
     // The note stays as written, and the receiver is simply told nothing.
   }
@@ -746,10 +746,12 @@ function claim(args) {
     `\nWhen the remaining work is done, run \`${nudge.completeCommandFor(handoffPath, nudge.CLI_COMMAND)}\``
       + ' to close this note.\n',
   );
-  const goalPacket = noteGoalPacket(claimed.frontmatter);
+  const { packet: goalPacket, root: goalRoot } = noteGoal(claimed.frontmatter);
   if (goalPacket !== '') {
+    // A packet that lives only in a linked worktree is not under this session's checkout.
+    const location = goalRoot === '' ? '' : ` in ${goalRoot}`;
     process.stdout.write(
-      `\nGoal packet: ${goalPacket} (the goal the sending session worked under;`
+      `\nGoal packet: ${goalPacket}${location} (the goal the sending session worked under;`
         + ` read its ${GOAL_FILENAME})\n`,
     );
   }
@@ -842,6 +844,7 @@ function consume(args) {
   }
   let specFolder = '';
   let goalPacket = '';
+  let goalRoot = '';
   let invalidSpecFolder = false;
   if (handoffPath) {
     let handoffText = '';
@@ -853,7 +856,7 @@ function consume(args) {
         : '';
       if (acceptedSpecFolder(candidate)) specFolder = candidate;
       else if (candidate) invalidSpecFolder = true;
-      goalPacket = noteGoalPacket(note.frontmatter, record?.goalSwitch);
+      ({ packet: goalPacket, root: goalRoot } = noteGoal(note.frontmatter, record?.goalSwitch));
     } catch {
       ({ specFolder, invalid: invalidSpecFolder } = specFolderFromBrokenNote(handoffText));
     }
@@ -891,6 +894,7 @@ function consume(args) {
   // A note with no goal packet keeps the output it always had.
   const consumed = { handoff: handoffPath, spec_folder: specFolder, note };
   if (goalPacket !== '') consumed.goal_packet = goalPacket;
+  if (goalRoot !== '') consumed.goal_root = goalRoot;
   // The sender's own latest model, provider, effort, permission mode, name and Pi mode,
   // which the wrapper checks before it uses them.
   for (const key of ['model', 'provider', 'effort', 'permissionMode', 'name', 'mode']) {

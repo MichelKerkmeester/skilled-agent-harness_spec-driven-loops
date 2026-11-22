@@ -68,6 +68,13 @@ const GOAL_LOG_MAX_CANDIDATES = 8;
 // A headline search walks the packet tree, so folders that hold fixtures, history and
 // archived work are skipped, and a match counts only when no second packet shares it.
 const GOAL_SEARCH_SKIP_DIRECTORIES = new Set(['scratch', 'lineages', 'z_archive']);
+// Listing the repository's worktrees is one local git call. A git that hangs must not hold a
+// hand-over up, and a list it cannot finish names no worktree.
+const WORKTREE_LIST_TIMEOUT_MS = 5000;
+const GIT_REPOSITORY_VARIABLES = Object.freeze([
+  'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_NAMESPACE',
+  'GIT_CEILING_DIRECTORIES', 'GIT_DISCOVERY_ACROSS_FILESYSTEM',
+]);
 const GOAL_SWITCH_OFF_VALUES = Object.freeze(['0', 'false', 'off', 'no']);
 // Defaults for a record that names no limits; the wrapper reads the same values.
 const DEFAULT_MAX_HOPS = 10;
@@ -486,9 +493,108 @@ function goalRoots(repoRoot, noteCwd) {
   return roots;
 }
 
+function realPathOrNull(target) {
+  try {
+    return fs.realpathSync(target);
+  } catch {
+    return null;
+  }
+}
+
 /**
- * Pick the packet a note carries that its receiver may be given: the switch is on and the
- * packet still holds a goal.md, which it may have lost since the note was written.
+ * List the other checkouts of this repository that git knows as worktrees. A session can work
+ * in a worktree whose packets the repository's own checkout does not hold, and git is the one
+ * record of which checkouts belong to the repository. Any failure lists none.
+ *
+ * @param {string} repoRoot - Absolute repository root.
+ * @returns {{listed: string, real: string}[]} Each worktree as git lists it and as a real
+ *   path, without the repository root itself.
+ */
+function repositoryWorktrees(repoRoot) {
+  let run;
+  try {
+    // A caller such as a git hook can export variables that point git at another repository
+    // over `-C`, and that repository's worktrees would then count as trusted here.
+    const env = { ...process.env };
+    for (const key of GIT_REPOSITORY_VARIABLES) delete env[key];
+    run = spawnSync('git', ['-C', repoRoot, 'worktree', 'list', '--porcelain'], {
+      env,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: WORKTREE_LIST_TIMEOUT_MS,
+    });
+  } catch {
+    return [];
+  }
+  if (run.error || run.status !== 0) return [];
+  const ownRoot = realPathOrNull(repoRoot);
+  const worktrees = [];
+  // Each worktree is a block of lines that ends at a blank one. Git marks a block prunable
+  // when its folder is gone, and a folder made again at that path is no checkout of this
+  // repository, so a prunable block is never trusted.
+  for (const block of String(run.stdout).split(/\n\s*\n/)) {
+    const lines = block.split('\n');
+    const header = lines.find((line) => line.startsWith('worktree '));
+    if (header === undefined) continue;
+    if (lines.some((line) => line === 'prunable' || line.startsWith('prunable '))) continue;
+    const listed = header.slice('worktree '.length);
+    const real = realPathOrNull(listed);
+    if (real === null || real === ownRoot || worktrees.some((entry) => entry.real === real)) {
+      continue;
+    }
+    worktrees.push({ listed, real });
+  }
+  return worktrees;
+}
+
+// The worktree a note says its goal packet was proven in. A note is a file anyone can edit, so
+// the path counts only while git still lists it as a worktree of this repository; any other
+// directory would widen the roots a packet is checked against to anywhere on the disk.
+function noteGoalRoot(frontmatter, repoRoot) {
+  const goalRoot = typeof frontmatter?.goal_root === 'string' ? frontmatter.goal_root : '';
+  if (goalRoot === '' || !path.isAbsolute(goalRoot)) return '';
+  const real = realPathOrNull(goalRoot);
+  if (real === null) return '';
+  return repositoryWorktrees(repoRoot).some((entry) => entry.real === real) ? real : '';
+}
+
+/**
+ * Pick the goal a note carries that its receiver may be given: the switch is on and the
+ * packet still holds a goal.md, which it may have lost since the note was written. A packet
+ * proven in a linked worktree comes with that worktree as its root, so the receiver reads the
+ * copy the sender's goal came from.
+ *
+ * @param {Object} frontmatter - The note's parsed frontmatter.
+ * @param {Object<string, string|undefined>} switches - Environment merged over the flags file.
+ * @param {string} repoRoot - Absolute repository root.
+ * @param {boolean} [recordedGoalSwitch] - The goal switch as prepare recorded it, when known.
+ * @returns {{packet: string, root: string}} The packet, or '' when none may be handed on, and
+ *   the worktree it lives in, or '' when it is read from the usual roots.
+ */
+function usableGoal(frontmatter, switches, repoRoot, recordedGoalSwitch) {
+  const none = { packet: '', root: '' };
+  const packet = typeof frontmatter?.goal_packet === 'string' ? frontmatter.goal_packet : '';
+  if (packet === '' || !goalSwitchOn(switches)) return none;
+  // A prepare with the switch off leaves the note's packet as an earlier prepare wrote it, so
+  // that packet is not this hand-over's goal. A record without the field predates the
+  // recording and keeps the switch as it reads now.
+  if (recordedGoalSwitch === false) return none;
+  // A packet proven in a worktree is read from that worktree or not at all. Another checkout
+  // can hold an older copy of the same path, which is not the goal the sender worked under.
+  const declaredRoot = typeof frontmatter.goal_root === 'string' ? frontmatter.goal_root : '';
+  if (declaredRoot !== '') {
+    const goalRoot = noteGoalRoot(frontmatter, repoRoot);
+    if (goalRoot === '') return none;
+    return goalPacketProblem(packet, [goalRoot]) === null ? { packet, root: goalRoot } : none;
+  }
+  const noteCwd = typeof frontmatter.cwd === 'string' ? frontmatter.cwd : '';
+  return goalPacketProblem(packet, goalRoots(repoRoot, noteCwd)) === null
+    ? { packet, root: '' }
+    : none;
+}
+
+/**
+ * Pick the packet a note carries that its receiver may be given; see usableGoal.
  *
  * @param {Object} frontmatter - The note's parsed frontmatter.
  * @param {Object<string, string|undefined>} switches - Environment merged over the flags file.
@@ -497,14 +603,7 @@ function goalRoots(repoRoot, noteCwd) {
  * @returns {string} The packet, or '' when none may be handed on.
  */
 function usableGoalPacket(frontmatter, switches, repoRoot, recordedGoalSwitch) {
-  const packet = typeof frontmatter?.goal_packet === 'string' ? frontmatter.goal_packet : '';
-  if (packet === '' || !goalSwitchOn(switches)) return '';
-  // A prepare with the switch off leaves the note's packet as an earlier prepare wrote it, so
-  // that packet is not this hand-over's goal. A record without the field predates the
-  // recording and keeps the switch as it reads now.
-  if (recordedGoalSwitch === false) return '';
-  const noteCwd = typeof frontmatter.cwd === 'string' ? frontmatter.cwd : '';
-  return goalPacketProblem(packet, goalRoots(repoRoot, noteCwd)) === null ? packet : '';
+  return usableGoal(frontmatter, switches, repoRoot, recordedGoalSwitch).packet;
 }
 
 // A spec folder and the packets above it, nearest first: a child packet rarely holds the
@@ -699,7 +798,13 @@ function claudeSessionLogPath(sessionId, env) {
 // and a mark on it would end a goal the session never had. A note with no claim time counts as
 // older than any note that carries one, so it never displaces a later claim.
 function claimedNoteEndedGoal(handoffPath, sessionId) {
-  if (!nonEmptyString(handoffPath)) return false;
+  const claimed = lastClaimedNote(handoffPath, sessionId);
+  return claimed !== null && claimed.goal_ended === 'true';
+}
+
+// The frontmatter of the note this session claimed last, or null when it claimed none.
+function lastClaimedNote(handoffPath, sessionId) {
+  if (!nonEmptyString(handoffPath)) return null;
   const directory = path.dirname(handoffPath);
   let lastClaimed = null;
   for (const fileName of safeDirectory(directory)) {
@@ -715,7 +820,7 @@ function claimedNoteEndedGoal(handoffPath, sessionId) {
       // A note that cannot be read or parsed says nothing about a goal.
     }
   }
-  return lastClaimed !== null && lastClaimed.frontmatter.goal_ended === 'true';
+  return lastClaimed === null ? null : lastClaimed.frontmatter;
 }
 
 function claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env }) {
@@ -768,6 +873,23 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env
   if (headline === '') {
     return { ...none, reason: 'the active goal has no text to match a packet by' };
   }
+  // The note this session claimed proved its goal in a linked worktree, and that worktree
+  // still holding the packet with this headline is the strongest proof there is. A copy in
+  // another checkout or a second worktree the log mentions does not outvote it.
+  const claimedNote = lastClaimedNote(handoffPath, sessionId);
+  const claimedRoot = noteGoalRoot(claimedNote, roots[0]);
+  const searchedRoots = roots.map(realPathOrNull);
+  if (claimedRoot !== '' && !searchedRoots.includes(claimedRoot)) {
+    const claimedPacket = typeof claimedNote.goal_packet === 'string' ? claimedNote.goal_packet : '';
+    if (claimedPacket !== '' && goalPacketProblem(claimedPacket, [claimedRoot]) === null) {
+      try {
+        const goalText = fs.readFileSync(path.join(claimedRoot, claimedPacket, GOAL_FILENAME), 'utf8');
+        if (goalText.includes(headline)) return { ...none, packet: claimedPacket, root: claimedRoot };
+      } catch {
+        // A goal file that cannot be read proves nothing; the searches below still run.
+      }
+    }
+  }
   const named = [...new Set(latest.condition.match(GOAL_LOG_PACKET_PATTERN) ?? [])];
   const candidates = [...lineage, ...named].slice(0, GOAL_LOG_MAX_CANDIDATES);
   // The log keeps the goal's text, not its packet, so a packet is the sender's only when its
@@ -788,10 +910,100 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env
   // its packet. One packet carrying the same headline is still proof of the goal.
   const matches = goalHeadlinePackets({ roots, headline });
   if (matches.length === 1) return { ...none, packet: matches[0] };
-  const reason = matches.length > 1
-    ? `the active goal headline appears in ${matches.length} packets`
+  // Both searches stop at the second match, so the refusal cannot say how many there are.
+  if (matches.length > 1) {
+    return { ...none, reason: 'the active goal headline appears in more than one packet' };
+  }
+  // A session can work in a linked worktree while its note and working directory sit in
+  // another checkout, and the packet then exists only in that worktree.
+  const found = worktreeHeadlinePackets({
+    roots, headline, logPath, claimedRoot: claimedNote?.goal_root,
+  });
+  if (found.length === 1) return { ...none, packet: found[0].packet, root: found[0].root };
+  const reason = found.length > 1
+    ? 'the active goal headline appears in more than one packet'
     : 'the active goal names no packet this hand-over can find';
   return { ...none, reason };
+}
+
+// Which of the given strings a session log holds anywhere in its bytes. The goal reader can
+// take its entry from any part of the log, so the worktree search reads all of it too, in
+// fixed chunks that each keep the bytes a string could straddle from the chunk before. The
+// read stops once every string has shown, and a log that cannot be read holds none.
+function logIncludes(logPath, texts) {
+  const found = new Set();
+  const needles = [...new Set(texts)]
+    .filter((text) => text !== '')
+    .map((text) => ({ text, bytes: Buffer.from(text, 'utf8') }));
+  if (needles.length === 0) return found;
+  const overlap = Math.max(...needles.map((needle) => needle.bytes.length)) - 1;
+  let descriptor = null;
+  try {
+    descriptor = fs.openSync(logPath, 'r');
+    const buffer = Buffer.alloc(overlap + GOAL_LOG_SCAN_CHUNK_BYTES);
+    let kept = 0;
+    let position = 0;
+    for (;;) {
+      const bytesRead = fs.readSync(descriptor, buffer, kept, GOAL_LOG_SCAN_CHUNK_BYTES, position);
+      if (bytesRead === 0) break;
+      position += bytesRead;
+      const filled = kept + bytesRead;
+      const window = buffer.subarray(0, filled);
+      for (const needle of needles) {
+        if (!found.has(needle.text) && window.indexOf(needle.bytes) !== -1) found.add(needle.text);
+      }
+      if (found.size === needles.length) break;
+      kept = Math.min(overlap, filled);
+      buffer.copyWithin(0, filled - kept, filled);
+    }
+  } catch {
+    found.clear();
+  } finally {
+    if (descriptor !== null) fs.closeSync(descriptor);
+  }
+  return found;
+}
+
+/**
+ * Walk the linked worktrees the session's log names for goal files that carry the headline.
+ * Walking every worktree costs seconds on a repository with many of them, and a worktree the
+ * session never touched is no proof of its goal, so only the named ones are read. Matches are
+ * kept per worktree and packet: two worktrees can hold different copies of one packet, and the
+ * receiver must read the copy that was proven.
+ *
+ * @param {Object} options - The search.
+ * @param {string[]} options.roots - The checkouts already searched; the first is the repository.
+ * @param {string} options.headline - The goal log's opening line.
+ * @param {string} options.logPath - The session log that names the worktrees it worked in.
+ * @param {string} [options.claimedRoot] - The `goal_root` of the note this session claimed. A
+ *   receiver started on that goal may never touch the worktree before it hands over again, and
+ *   the note it claimed is what ties the worktree to it.
+ * @returns {{root: string, packet: string}[]} Each match, stopping once a second one shows.
+ */
+function worktreeHeadlinePackets({ roots, headline, logPath, claimedRoot }) {
+  const searched = roots.map(realPathOrNull).filter((root) => root !== null);
+  const worktrees = repositoryWorktrees(roots[0])
+    .filter((entry) => !searched.includes(entry.real));
+  if (worktrees.length === 0) return [];
+  // A path inside the worktree is what work there leaves in the log. A bare worktree path is
+  // also what any `git worktree list` output holds, and that names every worktree at once.
+  const inLog = logIncludes(
+    logPath,
+    worktrees.flatMap(({ listed, real }) => [`${real}/`, `${listed}/`]),
+  );
+  const claimed = typeof claimedRoot === 'string' && path.isAbsolute(claimedRoot)
+    ? realPathOrNull(claimedRoot)
+    : null;
+  const found = [];
+  for (const { listed, real } of worktrees) {
+    const named = real === claimed || inLog.has(`${real}/`) || inLog.has(`${listed}/`);
+    if (!named) continue;
+    for (const packet of goalHeadlinePackets({ roots: [real], headline })) {
+      found.push({ root: real, packet });
+      if (found.length > 1) return found;
+    }
+  }
+  return found;
 }
 
 // OpenCode reads `OPENCODE_DB` the same way: a relative name sits in its data folder and an
@@ -1264,8 +1476,9 @@ function vibeGoalPacket({ roots, env }) {
  * @param {string} [options.handoffPath] - The note being handed over, beside which a Claude
  *   session's claimed note is looked up.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
- * @returns {{packet: string, reason: string, ended: boolean}} The packet, why a known goal
- *   was not carried and whether a Claude goal is known to have ended.
+ * @returns {{packet: string, reason: string, ended: boolean, root?: string}} The packet, why
+ *   a known goal was not carried and whether a Claude goal is known to have ended. `root` is
+ *   set only when a Claude packet was proven in a linked worktree outside the roots given.
  */
 function resolveGoalPacketResult({
   runtime, sessionId, specFolder = '', roots = [], handoffPath, env = process.env,
@@ -1321,15 +1534,18 @@ function resolveGoalPacketReason(options) {
  * Make an open note's goal fields say what the sender's goal is now. `goal_packet` is
  * written, replaced by a different packet or removed when the sender has none. `goal_ended`
  * is written when the goal is known to have ended and removed otherwise, so the next
- * hand-over does not bring an ended goal back. A note that already says so is left untouched.
+ * hand-over does not bring an ended goal back. `goal_root` names the linked worktree a packet
+ * was proven in and goes with the packet. A note that already says so is left untouched.
  *
  * @param {string} filePath - Handoff note path.
  * @param {string} goalPacket - A packet resolveGoalPacket returned, or '' to remove the field.
  * @param {Object} [options] - What else the resolver found.
  * @param {boolean} [options.ended=false] - Whether the goal ended; never set beside a packet.
+ * @param {string} [options.root=''] - The worktree the packet was proven in, when outside the
+ *   usual roots; never set without a packet.
  * @returns {boolean} True when the note changed, false when it already said so.
  */
-function recordGoalPacket(filePath, goalPacket, { ended = false } = {}) {
+function recordGoalPacket(filePath, goalPacket, { ended = false, root = '' } = {}) {
   return withAppendLock(filePath, () => {
     const text = readHandoffText(filePath);
     const { frontmatter } = parseHandoff(text);
@@ -1340,6 +1556,12 @@ function recordGoalPacket(filePath, goalPacket, { ended = false } = {}) {
     const held = Object.hasOwn(frontmatter, 'goal_packet');
     if (goalPacket === '' ? held : frontmatter.goal_packet !== goalPacket) {
       updates.goal_packet = goalPacket === '' ? null : goalPacket;
+    }
+    // A root left from an earlier prepare would point the receiver at another copy of the packet.
+    const goalRoot = goalPacket === '' ? '' : root;
+    const heldRoot = Object.hasOwn(frontmatter, 'goal_root');
+    if (goalRoot === '' ? heldRoot : frontmatter.goal_root !== goalRoot) {
+      updates.goal_root = goalRoot === '' ? null : goalRoot;
     }
     const markEnded = ended && goalPacket === '';
     if (markEnded ? frontmatter.goal_ended !== 'true' : Object.hasOwn(frontmatter, 'goal_ended')) {
@@ -2588,6 +2810,7 @@ module.exports = {
   goalPacketProblem,
   goalSwitchOn,
   goalRoots,
+  usableGoal,
   usableGoalPacket,
   resolveGoalPacket,
   resolveGoalPacketResult,

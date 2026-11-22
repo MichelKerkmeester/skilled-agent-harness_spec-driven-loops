@@ -3302,6 +3302,25 @@ test('recordGoalPacket writes and removes the mark of an ended goal', (t) => {
   assert.deepEqual(fields(), { packet: undefined, ended: undefined });
 });
 
+test('recordGoalPacket writes the worktree root with its packet and never leaves it behind', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const worktree = path.join(sandbox.root, 'worktree');
+  const fields = () => {
+    const { goal_packet: packet, goal_root: root } = parseHandoff(readNote(handoffPath)).frontmatter;
+    return { packet, root };
+  };
+
+  assert.equal(recordGoalPacket(handoffPath, GOAL_PACKET, { root: worktree }), true);
+  assert.deepEqual(fields(), { packet: GOAL_PACKET, root: worktree });
+  assert.equal(recordGoalPacket(handoffPath, GOAL_PACKET), true);
+  assert.deepEqual(fields(), { packet: GOAL_PACKET, root: undefined },
+    'a packet found in the usual roots drops the root an earlier prepare wrote');
+  assert.equal(recordGoalPacket(handoffPath, GOAL_PACKET, { root: worktree }), true);
+  assert.equal(recordGoalPacket(handoffPath, '', { root: worktree }), true);
+  assert.deepEqual(fields(), { packet: undefined, root: undefined }, 'no root without a packet');
+});
+
 test('recordGoalPacket removes an empty field the note holds', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
