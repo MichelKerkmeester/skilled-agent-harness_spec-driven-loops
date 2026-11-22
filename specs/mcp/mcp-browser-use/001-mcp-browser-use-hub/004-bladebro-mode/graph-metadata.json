@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Bladebro has no mode in this repository",
     "created_at": "2026-11-21T08:11:44Z",
-    "last_save_at": "2026-11-21T13:44:42.049Z",
+    "last_save_at": "2026-11-22T07:20:54.004Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4579951cd0607dd700aed42824f1039d5ab201a2ff5707de5cf2504e070b8f28",
+    "source_fingerprint": "sha256:c02807288ccacc8ca789beb3e13b26c5ec3bfa375fb7daee6cddadfd12c0af85",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e767479e28e41a6e8efafd29e20a3d074a78e6eb9fa696c5c0d38fb3a344a2ac",
       "plan.md": "58c6ccca3ef32b0532de667b18b1bee37b21f12a4a9b6208de0182d8ab298681",
       "tasks.md": "0be500b4f0729ce01fc9bef211ce9b2a19c2cbfe4334e63b19aa36158528b494",
-      "implementation-summary.md": "5b987d8dbd2d7df9bc61b99131d9d02318279aeb7829e90b0cef0fada64e4230"
+      "implementation-summary.md": "15a5ae8ed076b3d42cd5a24a5212814feb3d9879c728deb807c44195ce0b1c2b"
     },
     "last_active_at": null
   }
