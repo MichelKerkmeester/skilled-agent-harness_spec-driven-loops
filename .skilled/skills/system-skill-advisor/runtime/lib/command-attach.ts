@@ -192,6 +192,9 @@ export function commandRowFor(id: string): CommandRow | undefined {
   return Object.hasOwn(COMMAND_ROWS, id) ? COMMAND_ROWS[id] : undefined;
 }
 
+// The deep-loop hub owns one diagnosis command besides its two run commands.
+const DEEP_LOOP_DOCTOR_COMMAND = '/doctor:deep-loop';
+
 // A typed command is the reader's own wording, so it counts only where a command
 // can start and where it ends on a boundary. That keeps a path such as
 // `docs/create:goal.md` and a prefix such as `/create:sk` from reading as a
@@ -321,10 +324,48 @@ function escapePhrase(phrase: string): string {
 
 // One word that names a deep-loop mode. A route that defers on a loop request
 // still names its mode when the prompt carries exactly one of these cues.
+// A check or an inspection aimed at defects is a review in plain words, so it
+// counts beside review and audit. The defect noun is required, because "check
+// that the build passes" asks for no review at all.
 export const MODE_CUES: Readonly<Record<string, RegExp>> = {
   research: /\b(?:research|investigat(?:e|es|ing|ion)|look into|find out)\b/,
-  review: /\b(?:review|audit)\b/,
+  review: /\b(?:review|audit)\b|\b(?:check|inspect|scan|examine|go over|look over)\b(?:\s+[\w./-]+){0,5}?\s+for\s+(?:[\w-]+\s+){0,2}?(?:bugs?|defects?|mistakes?|errors?|vulnerabilit(?:y|ies)|issues?|problems?|regressions?|flaws?)\b/,
 };
+
+// A run that is stuck, never converges or whose graph looks stale is a fault in
+// an existing run, so it asks for a diagnosis rather than for a new run. The
+// subject has to name a deep run or its state, because "my build is stuck" is
+// not about the loop, and a use verb right before the subject turns it back
+// into a request, as in "run deep research on why sockets hang".
+const LOOP_RUN_SUBJECT = /\b(?:deep[- ](?:research|review|loop)|(?:research|review) (?:loop|run)|coverage graph|convergence)\b/;
+// "keep going" asks for more of a run, so it is not among the symptoms.
+const LOOP_RUN_SYMPTOM = /\b(?:stuck|hangs?|hanging|hung|frozen|stalled|stalls|never (?:converges?|finishes|stops|ends|fires)|(?:not|isn't|is not|won't|will not|doesn't|does not|didn't|did not|can't|cannot) (?:converg\w*|finish\w*|progress\w*|mov\w*|fir\w*)|stopped (?:converg\w*|progress\w*|moving)|keeps? (?:running|repeating|looping)|stale|empty|(?:hasn't|has not|haven't|have not) (?:moved|changed|converged|progressed)|no progress)\b/;
+const LOOP_RUN_REQUESTED = /\b(?:run|start|use|launch|kick off|do|rerun|re-run) (?:[a-z0-9'-]+ ){0,2}(?:deep[- ](?:research|review|loop)|(?:research|review) (?:loop|run))\b/;
+
+export function isStuckRunComplaint(text: string): boolean {
+  const lower = text.toLowerCase().replace(/[‘’]/g, "'");
+  return LOOP_RUN_SUBJECT.test(lower) && LOOP_RUN_SYMPTOM.test(lower) && !LOOP_RUN_REQUESTED.test(lower);
+}
+
+// A request to read, summarize or explain what a past run produced wants that
+// output, not another run. A continue, resume or extend verb asks for the run
+// again, so it keeps the offer.
+const PAST_RUN_READ_VERB = /\b(?:summari[sz]e|summary|recap|explain|read|tell me|walk me through|go through|what did|show me|pull out|extract)\b/;
+const PAST_RUN_OUTPUT = /\b(?:last|previous|prior|earlier|yesterday's|finished|completed) (?:[\w'-]+ ){0,2}?(?:deep[- ])?(?:research|review|loop|run)\b|\b(?:research|review(?:-report)?)\.md\b|\b(?:research|review) report\b|\bdeep[- ](?:research|review) (?:output|report|results|findings|produced|concluded|found|wrote)\b/;
+const RUN_CONTINUED = /\b(?:continue|resume|extend|rerun|re-run|more iterations?|\d+ more)\b/;
+
+export function isPastRunRead(text: string): boolean {
+  const lower = text.toLowerCase().replace(/[‘’]/g, "'");
+  return PAST_RUN_READ_VERB.test(lower) && PAST_RUN_OUTPUT.test(lower) && !RUN_CONTINUED.test(lower);
+}
+
+// Writing a piece about a loop method names the loop as a topic. The genre noun
+// is what marks it, so "write up the findings" after a run still asks for one.
+const WRITING_ABOUT_TOPIC = /\b(?:write|draft|compose|author|prepare|publish|outline)\b (?:[\w'-]+ ){0,3}?(?:blog(?: post)?|article|essay|newsletter(?: section| issue)?|tweet(?: thread)?|thread|post|talk|presentation|slides?|deck|tutorial|op-ed|piece|whitepaper|white paper|primer|explainer)s?\b (?:[\w'-]+ ){0,3}?(?:about|on|explaining|covering|describing|introducing|why|how)\b/;
+
+export function isWritingAboutTopic(text: string): boolean {
+  return WRITING_ABOUT_TOPIC.test(text.toLowerCase());
+}
 
 // The line alternative is a pattern rather than a phrase, so it is appended raw
 // beside the escaped vocabulary instead of being escaped with it.
@@ -377,6 +418,37 @@ export const LOOP_REQUEST = new RegExp(
   + '|\\d+ (?:[a-z-]+ ){0,2}iteration'
   + `|${COMMAND_USE_VERB} (?:[a-z0-9'-]+ ){0,3}(?:${LOOP_NAMES.map(escapePhrase).join('|')}))\\b`,
 );
+
+// Loop wording also names a loop the reader is not asking to start: a past run
+// whose output they want read, a stuck run they want diagnosed, or a method they
+// want to write about. Both deep-loop offer paths read this one test, so the
+// routed mode and the deferred mode cannot disagree on what counts as the ask.
+export function asksForLoopRun(prompt: string): boolean {
+  const lowered = prompt.toLowerCase();
+  return LOOP_REQUEST.test(lowered)
+    && !isPastRunRead(lowered)
+    && !isStuckRunComplaint(lowered)
+    && !isWritingAboutTopic(lowered)
+    && !isLoopQuestion(lowered);
+}
+
+// A question about how the loop works names it the way a request to run it
+// does, as in "how does the deep review decide it has converged". It asks for
+// the run only when it also tells the loop to start or gives an iteration count.
+// The loop has to be what the question is about, so "deep research: how do
+// vector databases handle hybrid search" still asks for a run on that topic.
+const LOOP_SUBJECT = '(?:[\\w\'-]+ ){0,2}?(?:deep[- ](?:research|review|loop)|(?:research|review) loop)\\b';
+const LOOP_QUESTION = new RegExp(
+  `\\b(?:how|why|when|what) (?:does|do|is|are|did|makes) ${LOOP_SUBJECT}`
+  + `|\\b(?:explain|describe) (?:how|what|why|when) ${LOOP_SUBJECT}`,
+);
+const ITERATION_COUNT = /\b\d+ (?:[a-z-]+ ){0,2}iterations?\b/;
+
+function isLoopQuestion(lowered: string): boolean {
+  return LOOP_QUESTION.test(lowered)
+    && !LOOP_RUN_REQUESTED.test(lowered)
+    && !ITERATION_COUNT.test(lowered);
+}
 
 // `why not` proposes the command rather than refusing it, so the word refuses
 // only where no `why` stands before it.
@@ -538,6 +610,13 @@ export function attachCommand(
 ): string | undefined {
   const route = asRecord(compiledRoute);
   if (!route) return undefined;
+  // A complaint about a stuck run is answered by the hub's own diagnosis command,
+  // whichever mode the route picked, because a new run would repeat the fault.
+  if (skillId === 'system-deep-loop' && isStuckRunComplaint(prompt)) {
+    return isNoEditRequest(prompt) || commandOnlyMentioned(prompt, DEEP_LOOP_DOCTOR_COMMAND)
+      ? undefined
+      : DEEP_LOOP_DOCTOR_COMMAND;
+  }
   if (skillId === 'system-deep-loop' && (route.action === 'defer' || route.action === 'clarify')) {
     return deferredLoopCommand(skillId, prompt, modeCommands);
   }
@@ -584,7 +663,7 @@ export function attachCommand(
   // wording list.
   if (skillId === 'system-deep-loop') {
     const typesThisCommand = typedCommandIn(prompt) === commands[workflowMode];
-    if (!typesThisCommand && !LOOP_REQUEST.test(prompt.toLowerCase())) return undefined;
+    if (!typesThisCommand && !asksForLoopRun(prompt)) return undefined;
   }
 
   return commands[workflowMode];
@@ -602,7 +681,7 @@ function deferredLoopCommand(
 ): string | undefined {
   if (!Object.prototype.hasOwnProperty.call(modeCommands, skillId)) return undefined;
   const lowered = prompt.toLowerCase();
-  if (!LOOP_REQUEST.test(lowered) || isNoEditRequest(prompt)) return undefined;
+  if (!asksForLoopRun(prompt) || isNoEditRequest(prompt)) return undefined;
   const commands = modeCommands[skillId];
   const cued = Object.keys(MODE_CUES).filter((mode) => (
     MODE_CUES[mode].test(lowered) && Object.prototype.hasOwnProperty.call(commands, mode)

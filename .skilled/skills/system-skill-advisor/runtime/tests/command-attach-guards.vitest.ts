@@ -538,9 +538,54 @@ describe('command attach on a deep-loop prompt', () => {
   // A loop's name with no use verb asks about the loop rather than for a run.
   it.each([
     'how does the research loop decide when it has enough',
-    'my research loop stopped converging and I cannot see why',
   ])('withholds the research command on a loop name with no use verb: %s', (prompt) => {
     expect(attachCommand('system-deep-loop', SINGLE('research'), prompt)).toBeUndefined();
+  });
+
+  // A request to read what a past run produced asks for its output, not a run.
+  it.each([
+    ['research', 'summarize the findings.md from yesterday\'s deep research run'],
+    ['review', 'give me a recap of the previous deep review report'],
+    ['research', 'explain what the earlier deep research concluded about retries'],
+  ])('withholds the %s command on a request to read a past run: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'extend the previous deep review by 2 iterations', '/deep:review'],
+    ['research', 'run deep research on log shipping, then summarize it', '/deep:research'],
+  ])('keeps the %s command when the run is asked for again: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  // Writing a piece about a loop method names the loop as a topic.
+  it.each([
+    ['research', 'draft a blog post about iterative research for designers'],
+    ['review', 'write an essay on why multi-pass review finds more bugs'],
+  ])('withholds the %s command on writing about the loop: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  // A stuck run is diagnosed, not rerun, whichever mode the route picked.
+  it.each([
+    ['research', 'my research loop stopped converging and I cannot see why'],
+    ['review', 'the deep review is stuck and keeps repeating the same findings'],
+    ['research', 'the coverage graph of my deep research looks empty after 6 iterations'],
+  ])('offers the doctor on a stuck %s run: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe('/doctor:deep-loop');
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe('/doctor:deep-loop');
+  });
+
+  it.each([
+    ['research', 'run deep research on why websocket connections hang', '/deep:research'],
+    ['review', 'the deep review hit max iterations, keep going for a few more', '/deep:review'],
+  ])('keeps the %s run command when a symptom word is the topic or the ask is more: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  it('withholds the doctor on a stuck run when the reader rules out a change', () => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), 'the deep review is stuck, make no changes')).toBeUndefined();
   });
 
   it.each([
@@ -556,6 +601,8 @@ describe('command attach on a deep-loop prompt', () => {
     ['run 5 iterations with cli-opencode on the caching research', '/deep:research'],
     ['run 8 more review iterations with cli-codex on the advisor runtime', '/deep:review'],
     ['investigate iteratively how the hook pipeline orders its adapters', '/deep:research'],
+    ['check the billing service for bugs in several passes', '/deep:review'],
+    ['inspect the importer for regressions iteratively', '/deep:review'],
   ])('names the mode a deferred route leaves open when one cue names it: %s', (prompt, command) => {
     expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
   });
@@ -566,8 +613,26 @@ describe('command attach on a deep-loop prompt', () => {
     'how does the deep loop decide to stop?',
     'do a thorough review of the release packet',
     "don't run /deep:review for 5 iterations, just summarize the report",
+    'check that the build passes in several environments',
+    'check the boarding passes page for bugs',
   ])('leaves a deferred route without a command: %s', (prompt) => {
     expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'how does the deep review decide that it has converged'],
+    ['research', 'why does deep research stop after ten iterations?'],
+    ['review', 'explain what the review loop does between passes'],
+  ])('offers no %s run on a question about how the loop works: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'how does deep review handle this? run a deep review on the parser', '/deep:review'],
+    ['research', 'what is the best cache policy? do 5 research iterations on it', '/deep:research'],
+    ['research', 'deep research: how do vector databases handle hybrid search', '/deep:research'],
+  ])('still offers the %s run when a question also asks for it: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
   });
 
   it('reads no deferred mode for a hub other than the deep loop', () => {

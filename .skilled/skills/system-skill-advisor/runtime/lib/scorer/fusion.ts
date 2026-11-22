@@ -22,6 +22,7 @@ import {
   commandOnlyMentioned,
   commandRowFor,
   isNoEditRequest,
+  isWritingAboutTopic,
   TRACKED_COMMANDS,
   typedCommandIn,
 } from '../command-attach.js';
@@ -975,6 +976,10 @@ export function runnableDoctorBridgeId(runnable: string, projection: AdvisorProj
 // first passes when that command runs without asking, and the helper passes
 // otherwise. A plain request for a repair route with no ranked command and no
 // passing skill also gets the helper.
+// How something works, not how to do something: "how do I" and "walk me
+// through" ask for steps, which a doctor route can be the answer to.
+const CONCEPT_QUESTION = /^(?:explain|describe)\b|\b(?:explain|describe) (?:how|what|why)\b|\bhow (?:does|is|are)\b|\bwhy (?:does|do|is|are)\b|\bwhat (?:is|are|does)\b/;
+
 export function applyDoctorHelperHandoff(
   ranked: readonly AdvisorScoredRecommendation[],
   context: {
@@ -1015,6 +1020,10 @@ export function applyDoctorHelperHandoff(
   const match = matchDoctorProblem(context.prompt, context.workspaceRoot);
   if (!match && (skillPasses || !genericRepairCue(context.prompt))) return [...ranked];
   if (match && cue === null && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
+  // A question about how something works shares a doctor route's topic words
+  // but reports no problem, so with no cue the ranker's match cannot stand in
+  // for one. That matters most for a route that runs without asking.
+  if (match && cue === null && CONCEPT_QUESTION.test(context.promptLower)) return [...ranked];
   if (match && cue === 'weak' && match.score < DOCTOR_HELPER_WEAK_CUE_MIN_SCORE) return [...ranked];
   if (match && weakCueOverWords && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
 
@@ -1056,6 +1065,25 @@ export function withholdMentionedCommands(
     if (command === undefined || !commandOnlyMentioned(prompt, command)) return recommendation;
     return { ...recommendation, passes_threshold: false };
   });
+}
+
+// A piece written about a loop method carries the hub's own aliases as its
+// topic, and every lane scores those words, so no single lane can take the hub
+// back off the list. The hub is held back here instead, unless the prompt also
+// types one of its commands, which asks for the run whatever else it says.
+export function withholdLoopHubOnWritingAbout(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+): AdvisorScoredRecommendation[] {
+  if (!isWritingAboutTopic(promptLower)) return [...ranked];
+  const typed = typedCommandIn(promptLower);
+  if (typed !== undefined && TRACKED_COMMANDS[typed]?.ownerSkillId === 'system-deep-loop'
+    && !commandOnlyMentioned(promptLower, typed)) return [...ranked];
+  return ranked.map((recommendation) => (
+    recommendation.skill === 'system-deep-loop' && recommendation.passes_threshold
+      ? { ...recommendation, passes_threshold: false }
+      : recommendation
+  ));
 }
 
 // A reader who ruled out a change must not be handed a command that writes,
@@ -1446,6 +1474,7 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
   });
   ranked = withholdMentionedCommands(ranked, prompt);
   ranked = withholdWritingCommandsOnNoEdit(ranked, promptLower);
+  ranked = withholdLoopHubOnWritingAbout(ranked, promptLower);
   ranked = rankTypedCommandOwnerFirst(ranked, promptLower);
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);

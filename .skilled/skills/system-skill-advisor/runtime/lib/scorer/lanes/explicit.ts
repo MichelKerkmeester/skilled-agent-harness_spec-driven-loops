@@ -7,7 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 import { phraseSpecificity, skillNameVariants, tokenize, tokenizePrompt } from '../text.js';
-import { MODE_CUES } from '../../command-attach.js';
+import { MODE_CUES, isWritingAboutTopic } from '../../command-attach.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -439,13 +439,18 @@ export function scoreExplicitLane(
   if (/\breview\b/.test(lower) && /\b(update|edit|fix|modify)\b/.test(lower)) {
     push(scores, 'sk-code', 3.0, 'review-plus-write-disambiguation');
   }
-  const researchLoop = /\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower);
+  // A piece written about a loop method names the loop as its topic, so the loop
+  // rules below do not read it. Fusion holds the hub back on the rest.
+  const writingAboutLoop = isWritingAboutTopic(lower);
+  const researchLoop = !writingAboutLoop
+    && /\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative(?:ly)?|multi-pass|(?:multiple|several|many) passes|loop)\b/.test(lower) && /\bresearch\b/.test(lower);
   if (researchLoop) {
     push(scores, 'system-deep-loop', 0.85, 'research-loop');
   }
   // A loop verb counts only when it governs the review ("resume the active
   // deep-review"); a resume or start elsewhere in a review prompt is a topic.
-  const reviewLoop = /\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b|\b(convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower);
+  const reviewLoop = !writingAboutLoop
+    && /\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b|\b(convergence|iterations?|iterative(?:ly)?|multi-pass|(?:multiple|several|many) passes|loop)\b/.test(lower) && /\breview\b/.test(lower);
   if (reviewLoop) {
     push(scores, 'system-deep-loop', 0.85, 'review-loop');
     // An iteration count or a request for several passes asks for the loop
@@ -458,10 +463,17 @@ export function scoreExplicitLane(
   // that asks for the loop by iterations or passes and says investigate, look
   // into or audit instead asks for the same run. Depth wording such as
   // thorough asks for care inside one pass, so it is not read here.
-  if (!researchLoop && !reviewLoop
+  if (!researchLoop && !reviewLoop && !writingAboutLoop
     && /\b(iterations?|iterative(?:ly)?|multi-pass|(?:multiple|several|many) passes)\b/.test(lower)) {
     if (MODE_CUES.research.test(lower)) push(scores, 'system-deep-loop', 0.85, 'research-loop-wording');
-    else if (MODE_CUES.review.test(lower)) push(scores, 'system-deep-loop', 0.85, 'review-loop-wording');
+    else if (MODE_CUES.review.test(lower)) {
+      // A check or an audit asked for in passes is the loop by name, while the
+      // code skill's own review and audit phrases match the same words, so the
+      // hub takes the full lane and the code skill gives the same ground the
+      // review rule above takes from it.
+      push(scores, 'system-deep-loop', 1.0, 'review-loop-wording');
+      push(scores, 'sk-code', -0.6, 'iterative-review-vs-pr-disambiguation');
+    }
   }
   if (/\b(figure out|find|diagnose|debug)\b.{0,40}\b(wrong|broken|failing|bug|issue)\b.{0,40}\bcode\b|\b(wrong|broken|failing)\b.{0,30}\bcode\b/.test(lower)) {
     push(scores, 'sk-code', 0.9, 'ambiguous-code-problem');

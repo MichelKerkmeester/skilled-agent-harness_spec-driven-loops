@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "2ef3895f753",
-  "corpusSha256": "sha256:f957f3bf62cad9f30792bd265247eff647437f3ee6a85c95632d122261ca737c",
+  "capturedAtSha": "027bb5ece94",
+  "corpusSha256": "sha256:b29a781d612612c7d74729addf52aac6a73e679d6cb1ab5c949148b3e885ac16",
   "bridgeCounts": {
     "commandMetadata": 27,
     "doctorRoutes": 35,
@@ -22,7 +22,7 @@
     "plain_recall_at_1": {
       "tune": {
         "correct": 14,
-        "total": 45
+        "total": 46
       },
       "holdout": {
         "correct": 2,
@@ -31,8 +31,8 @@
     },
     "plain_reach_top3": {
       "tune": {
-        "correct": 16,
-        "total": 45
+        "correct": 17,
+        "total": 46
       },
       "holdout": {
         "correct": 3,
@@ -40,8 +40,8 @@
       }
     },
     "false_offer": {
-      "count": 2,
-      "total": 41
+      "count": 0,
+      "total": 45
     },
     "slash_variant": {
       "reached_top3": 0,
@@ -461,9 +461,9 @@
       },
       "plain": {
         "tune": {
-          "rows": 1,
+          "rows": 2,
           "top1": 0,
-          "top3": 1
+          "top3": 2
         },
         "holdout": {
           "rows": 1,
@@ -1837,10 +1837,10 @@
     },
     "nm-system-deep-loop-02": {
       "expected_command": null,
-      "top": "command-doctor-deep-loop",
+      "top": null,
       "top1": false,
       "top3": false,
-      "offered": true
+      "offered": false
     },
     "nm-system-deep-loop-03": {
       "expected_command": null,
@@ -1849,11 +1849,11 @@
       "top3": false,
       "offered": false
     },
-    "nm-system-deep-loop-04": {
-      "expected_command": null,
+    "cmd-doctor-deep-loop-plain-tune-02": {
+      "expected_command": "/doctor:deep-loop",
       "top": "system-deep-loop",
       "top1": false,
-      "top3": false,
+      "top3": true,
       "offered": true
     },
     "nm-system-deep-loop-05": {
@@ -1876,31 +1876,66 @@
       "top1": false,
       "top3": false,
       "offered": false
+    },
+    "nm-system-deep-loop-06": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-07": {
+      "expected_command": null,
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-08": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-09": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-sk-code-04": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
     }
   },
   "attachedMetrics": {
     "plain": {
       "tune": {
         "own": 14,
-        "attached": 13,
-        "combined": 27,
-        "total": 45
+        "attached": 15,
+        "combined": 29,
+        "total": 46
       },
       "holdout": {
         "own": 2,
-        "attached": 1,
-        "combined": 3,
+        "attached": 2,
+        "combined": 4,
         "total": 44
       }
     },
     "plain_stages": {
       "tune": {
-        "total": 45,
+        "total": 46,
         "own": 14,
-        "ownerLed": 22,
-        "routed": 20,
-        "withCommand": 13,
-        "attached": 13,
+        "ownerLed": 23,
+        "routed": 21,
+        "withCommand": 15,
+        "attached": 15,
         "neither": 9
       },
       "holdout": {
@@ -1908,8 +1943,8 @@
         "own": 2,
         "ownerLed": 7,
         "routed": 4,
-        "withCommand": 1,
-        "attached": 1,
+        "withCommand": 2,
+        "attached": 2,
         "neither": 35
       }
     },
@@ -1959,14 +1994,14 @@
       "doctor": {
         "tune": {
           "own": 9,
-          "attached": 0,
-          "combined": 9,
-          "total": 17
+          "attached": 2,
+          "combined": 11,
+          "total": 18
         },
         "holdout": {
           "own": 1,
-          "attached": 0,
-          "combined": 1,
+          "attached": 1,
+          "combined": 2,
           "total": 17
         }
       },
@@ -2028,8 +2063,8 @@
       }
     },
     "false_offer_attached": {
-      "count": 3,
-      "total": 41
+      "count": 1,
+      "total": 45
     },
     "typed": {
       "own": 24,
@@ -2369,6 +2404,7 @@
       "cmd-create-skill-typed-01": "/create:sk-skill",
       "cmd-create-skill-plain-tune-01": "/create:sk-skill",
       "cmd-create-with-human-voice-typed-01": "/create:with-human-voice",
+      "cmd-doctor-deep-loop-plain-tune-01": "/doctor:deep-loop",
       "cmd-deep-review-plain-tune-01": "/deep:review",
       "cmd-design-chart-typed-01": "/design:chart",
       "cmd-design-chart-plain-tune-01": "/design:chart",
@@ -2378,13 +2414,12 @@
       "cmd-design-extract-plain-tune-01": "/design:extract",
       "sv-07": "/create:sk-skill",
       "sv-10": "/design:chart",
-      "nm-system-deep-loop-03": "/deep:research",
-      "nm-system-deep-loop-04": "/deep:review",
+      "cmd-doctor-deep-loop-plain-tune-02": "/doctor:deep-loop",
       "nm-system-deep-loop-05": "/create:manual-testing-playbook"
     },
     "needs_mode_floor": {
       "count": 1,
-      "total": 41
+      "total": 45
     },
     "needsModeRows": [
       "nm-system-skill-advisor-01"
