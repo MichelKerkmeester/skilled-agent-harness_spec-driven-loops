@@ -92,6 +92,10 @@ const AUTHORS_CODE = /\b(?:add|build|create|implement|write)\b(?:(?!deep[- ]revi
 // spec-folder work.
 const CHANGELOG_AUTHORING = /\b(?:add|create|draft|write)\s+(?:(?:a|an|the|new|nested|packet|packet-local|phase|global|release)\s+){0,4}changelog(?:\s+entry)?\b/;
 const CHANGELOG_PACKET_SOURCE = /\b(?:packet|nested|spec folder)\b/;
+// Code Mode is the transport every other MCP is called through, so a prompt that names
+// one ("aside mcp through code mode") asks for that MCP's owner. The words excluded here
+// are determiners and prepositions, plus "mode" so "code mode mcp" names no other server.
+const NAMES_ANOTHER_MCP = /\b(?!(?:code|mode|the|an?|my|our|your|this|that|its|their|any|each|every|via|through|with|from|for|to|of|in|on)\b)[a-z][a-z0-9-]* mcp\b/;
 const FILE_SAVE_OPERATION = /\bsave\b.{0,48}\b(file|files|document|documents|buffer|tab|workspace)\b|\b(file|files|document|documents|buffer|tab|workspace)\b.{0,48}\bsave\b/;
 const MEMORY_SAVE_CONTEXT_ANCHOR = /\b(memory|context|conversation|session|handover|checkpoint|resume|preserve|remember|capture|store)\b|\/memory:save|memory:save/;
 // Class C breadth/multi-concern abstention gates. A broad greenfield build or a
@@ -813,7 +817,9 @@ function primaryIntentBonus(
   // Toolchain + external-data-source vocabulary (webflow CMS, cms collection)
   // is mcp-code-mode territory, not the generic code skill.
   if (/\b(call_tool_chain|code mode|tool ?chain|api chain|webflow cms|cms collection)\b/.test(promptLower)) {
-    if (recommendation.skill === 'mcp-code-mode') return R.mcpToolchainCodeModeBonus;
+    if (recommendation.skill === 'mcp-code-mode' && !NAMES_ANOTHER_MCP.test(promptLower)) {
+      return R.mcpToolchainCodeModeBonus;
+    }
     if (recommendation.skill === 'sk-code') return R.mcpToolchainSkCodePenalty;
   }
   // A "code audit" is a single-pass code-review task, not a deep-review loop, so

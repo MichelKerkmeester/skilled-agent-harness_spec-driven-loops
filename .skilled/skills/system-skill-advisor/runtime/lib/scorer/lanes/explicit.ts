@@ -122,6 +122,9 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   // exact two-word phrase, so these anchors hand the phrase back to its owner.
   'figma mcp': [['mcp-tooling', 0.65], ['sk-code', -0.5]],
   'browser automation': [['mcp-browser-use', 1], ['sk-code', -0.5]],
+  // A browser automation test is test code to write or fix, so the anchor above
+  // must not take it from the code skill.
+  'automation test': [['sk-code', 1], ['mcp-browser-use', -1]],
   'ruleset context': [['sk-code', 0.65], ['system-spec-kit', -0.5]],
   'cleaner prompt': [['sk-prompt', 1]],
   'code review': [['sk-code', 1]],

@@ -753,14 +753,14 @@
       "approvedAt": "2026-11-05"
     },
     {
-      "id": "rr-hub6-204",
+      "id": "rr-hub6-207",
       "corpus": "labeled",
-      "prompt": "Run an agentic browser session with aside mcp through Code Mode and save the screenshots.",
-      "gold": "mcp-browser-use",
-      "promptHash": "sha256:33cdf36f2e5e6bfc4519399de41a6b53ff8ea200217a799fb5164c125d40b70b",
-      "localTop": "mcp-browser-use",
-      "nativeTop": "mcp-code-mode",
-      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "prompt": "Use the Mobbin MCP through code mode to collect screen examples of paywall designs.",
+      "gold": "mcp-tooling",
+      "promptHash": "sha256:c0c89cbb409585b5caf50bb7445fa5689006e5149bc294d2c5d77a1b6c7b26a6",
+      "localTop": "mcp-code-mode",
+      "nativeTop": "mcp-tooling",
+      "reason": "native improvement: the native Code Mode bonus no longer lifts the transport over an MCP the prompt names, so native reaches the gold while the Python reference still ranks mcp-code-mode first",
       "approvedAt": "2026-11-21"
     },
     {

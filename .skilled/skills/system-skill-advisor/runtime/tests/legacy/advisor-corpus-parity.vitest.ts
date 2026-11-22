@@ -41,8 +41,9 @@ const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   'rr-iter3-092',
   'rr-iter3-097',
   'rr-iter3-099',
-  // rr-hub6-207 left this list once the native scorer answered it
-  // Python-correctly again. Re-add an id only after checking it against gold.
+  // rr-hub6-204 and rr-hub6-207 left this list once the native scorer
+  // answered both Python-correctly again, so neither is a regression now.
+  // Re-add an id only after checking it against gold.
   //
   // rr-iter3-105 typed "/memory:save" outright and carries the save gold. The
   // Python reference answers it; the native scorer gives the packet vocabulary
@@ -50,13 +51,6 @@ const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   // command (0.56). Recorded as a divergence, not accepted as correct: a named
   // command must outrank the hub that owns its topic.
   'rr-iter3-105',
-  //
-  // rr-hub6-204 names Aside ("aside mcp") and Code Mode in one prompt. Its gold
-  // moved to mcp-browser-use when the browser modes left mcp-tooling. The
-  // Python reference answers it; the native scorer scores mcp-browser-use
-  // higher yet ranks mcp-code-mode first. Recorded as a divergence, not
-  // accepted as correct: a named browser mode must outrank its substrate.
-  'rr-hub6-204',
 ];
 
 const workspaceRoot = findAdvisorWorkspaceRoot(import.meta.dirname);
@@ -184,12 +178,13 @@ describe('advisor 196-prompt corpus regression-protection parity', () => {
       // 117 -> 118 and 112 -> 113: the Python reference now drops a pasted
       // earlier reply before scoring, as the native scorer does, so the
       // pasted-reply row reaches its gold on both.
-      // 118 -> 119, 113 unchanged: the browser-debugging boosts in the Python
+      // 118 -> 119 and 113 -> 114: the browser-debugging boosts in the Python
       // reference now name mcp-browser-use, the hub that owns the browser modes,
-      // so one browser row reaches its gold there. The native scorer keeps 113;
-      // rr-hub6-204, the row it ranks differently, is recorded in the list above.
+      // so one browser row reaches its gold there. The native scorer keeps it
+      // too, because the Code Mode bonus no longer lifts the transport over an
+      // MCP the prompt names. The accepted regression list is unchanged.
       expect(pythonCorrect).toBe(119);
-      expect(hookPreservedPythonCorrect).toBe(113);
+      expect(hookPreservedPythonCorrect).toBe(114);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),
