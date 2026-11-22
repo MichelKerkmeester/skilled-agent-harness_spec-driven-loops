@@ -376,6 +376,52 @@ test('an unowned file where a skill-root replace path writes a folder is refused
   assert.equal(fs.readFileSync(target, 'utf8'), 'project file\n');
 });
 
+// A folder that becomes a file cannot hold a path the manifest still keeps
+// inside it, so the entry is refused while it is planned: apply would delete
+// the overlay's files there and then stop on the kept one, and status would
+// keep pointing back at apply.
+function assertKeptPathRefusal(fixture, { liveFiles, firstLine, nextLine }) {
+  const stateBefore = fs.readFileSync(fixture.statePath);
+  const result = fixture.run(['apply']);
+  assert.equal(result.code, 1, result.output);
+  assert.ok(result.output.includes(firstLine), result.output);
+  assert.ok(result.output.includes(nextLine), result.output);
+  for (const relativePath of liveFiles) {
+    assert.equal(fs.existsSync(path.join(fixture.tree, relativePath)), true, `${relativePath} was removed\n${result.output}`);
+  }
+  assert.equal(Buffer.compare(fs.readFileSync(fixture.statePath), stateBefore), 0, 'the state file changed');
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.ok(status.output.includes(firstLine), status.output);
+  assert.doesNotMatch(status.output, /fix: .*apply/, status.output);
+}
+
+test('a skill-root replace folder that becomes a file over a retained path is refused while planned, and nothing is written', (t) => {
+  const fixture = createShapeFixture(t, [{ ...skillRootEntry(['keep']), retained: [{ path: 'keep/sub/vendor.md' }] }]);
+  writeFile(fixture.overlayDir, 'vendor/keep/sub/x.md', 'sub x\n');
+  writeFile(fixture.tree, 'vendor/keep/sub/vendor.md', 'vendor own file\n');
+  applyOk(fixture);
+  swapToFile(fixture, 'vendor/keep/sub', 'now a file\n');
+  assertKeptPathRefusal(fixture, {
+    liveFiles: ['vendor/keep/sub/x.md', 'vendor/keep/sub/vendor.md'],
+    firstLine: 'vendor/keep/sub is a file in the source of overlay vendor, over the retained path vendor/keep/sub/vendor.md',
+    nextLine: 'Next: take keep/sub/vendor.md off the retained list of overlay vendor in ',
+  });
+});
+
+test('a directory entry folder that becomes a file over a protected path is refused while planned, and nothing is written', (t) => {
+  const fixture = createShapeFixture(t, [{ ...DIRECTORY_ENTRY, protectedPaths: ['sub/token.txt'] }]);
+  writeFile(fixture.overlayDir, 'bundle/sub/x.md', 'sub x\n');
+  writeFile(fixture.overlayDir, 'bundle/sub/token.txt', 'token\n');
+  applyOk(fixture);
+  swapToFile(fixture, 'bundle/sub', 'now a file\n');
+  assertKeptPathRefusal(fixture, {
+    liveFiles: ['tool/sub/x.md', 'tool/sub/token.txt'],
+    firstLine: 'tool/sub is a file in the source of overlay tool, over the protected path tool/sub/token.txt',
+    nextLine: 'Next: take sub/token.txt off the protectedPaths list of overlay tool in ',
+  });
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. LINKS THAT LEAD OUTSIDE THE TREE
 // ─────────────────────────────────────────────────────────────────────────────

@@ -171,6 +171,24 @@ function overlayFolderProblem(entry, ctx, field) {
       nextEngine(ctx.root, 'status').slice('Next: '.length));
 }
 
+// A path the manifest keeps inside a folder the source now ships as a file or a
+// link: the file cannot hold it, so apply would delete the overlay's files there
+// and then stop on the kept one. The planner refuses before any write instead,
+// and names the manifest change that clears it.
+function keptPathUnderFileProblem(entry, ctx, desired, keptPaths, listName) {
+  for (const [rel, wanted] of desired) {
+    const kept = [...keptPaths].find((keptPath) => keptPath.startsWith(rel + '/'));
+    if (kept === undefined) continue;
+    const destination = path.posix.normalize(entry.destination);
+    return withRemedy(`${path.posix.join(destination, rel)} is a ${wanted.kind === 'symlink' ? 'link' : 'file'} in the source of overlay ${entry.id}, ` +
+      `over the ${listName === 'retained' ? 'retained' : 'protected'} path ${path.posix.join(destination, kept)}`,
+    `a file cannot hold the path the entry keeps inside it, so the entry writes nothing`,
+    `Next: take ${kept} off the ${listName} list of overlay ${entry.id} in ${shellPath(ctx.manifestPath)}, ` +
+      `or ship ${rel} as a folder again, then ` + nextEngine(ctx.root, 'status').slice('Next: '.length));
+  }
+  return null;
+}
+
 // Whether a path, read through any link on it, is a folder.
 function leadsToFolder(filePath) {
   try {
@@ -2444,6 +2462,11 @@ function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
     return { writes: [], deletes: [] };
   }
   const desired = walkTree(sourceDir);
+  const keptProblem = keptPathUnderFileProblem(entry, ctx, desired, protectedPathsFor(entry), 'protectedPaths');
+  if (keptProblem) {
+    problems.push(keptProblem);
+    return { writes: [], deletes: [], outputs: [] };
+  }
   const writes = [];
   const deletes = [];
   const outputs = [];
@@ -2883,6 +2906,11 @@ function planSkillRootOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
       problems.push(`canonical path is missing: ${entry.source}/${rel}`);
       return { writes: [], deletes: [], outputs: [] };
     }
+  }
+  const keptProblem = keptPathUnderFileProblem(entry, ctx, desired, keptRetainedPaths(entry, sourceDir), 'retained');
+  if (keptProblem) {
+    problems.push(keptProblem);
+    return { writes: [], deletes: [], outputs: [] };
   }
   // A replace path whose source changed shape since the last apply: the old
   // shape goes before the write only when the state records it as the engine's
