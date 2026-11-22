@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3778e9e565bb985c32a2e54968380aa2cda9bacae2f3af22112d95fd6ce03ab1",
+  "corpusHash": "6b184ef1ff8672336309d6cd9e9dbf0ca6bc57eb81fa26767b86623d0a134614",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29348,
+  "includedPathCount": 29350,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2088,6 +2088,7 @@
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.1.0.md",
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.10.0.md",
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.11.0.md",
+    ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.12.0.md",
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.2.0.md",
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.3.0.md",
     ".skilled/skills/mcp-browser-use/mcp-aside-devtools/changelog/v1.1.4.0.md",
@@ -7103,6 +7104,7 @@
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.2.1.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.1.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/keep-operator-scenarios-in-scope.md",
@@ -29380,7 +29382,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "35c862ffb75f4487fac196c4a1e962fd9d6a145bf05701b16c7bfae2af7e1d86",
+  "manifestHash": "7b22536e7ff5eb7954a6239df3f766487a20ed00fb706e7aae287394828f9999",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

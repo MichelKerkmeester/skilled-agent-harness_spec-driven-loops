@@ -5,7 +5,7 @@ trigger_phrases:
   - "bladebro examples"
   - "bladebro example scripts"
   - "bladebro workflow scripts"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Bladebro - Example Scripts
@@ -81,7 +81,7 @@ open -a "<browser app>" --args --remote-debugging-port=9333
 
 **What it does:**
 - Probes `http://127.0.0.1:<port>/json/version` and stops when no `Browser` line answers
-- Runs `see content <url> --port <N> --json`, `see model --port <N> --json` and an `act eval` that returns the hostname and whether the title looks like a sign-in page
+- Runs `see content <url> --port <N> --json`, `see model --port <N> --json` and an `act eval` that returns two booleans, whether the tab is on the target host and whether the title looks like a sign-in page, and never the hostname itself
 - Prints only exit codes, the `ok` result and the eval line, never page text, so no signed-in content reaches the output
 - Never clicks, types, launches, quits or kills a browser; starting the browser and closing the port stay with the operator
 

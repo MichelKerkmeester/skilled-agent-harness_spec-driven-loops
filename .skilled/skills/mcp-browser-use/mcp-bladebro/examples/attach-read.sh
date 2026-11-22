@@ -98,6 +98,11 @@ if [[ ! "$URL" =~ ^https?:// ]]; then
   usage >&2
   exit 2
 fi
+# The URL is embedded in a single-quoted JavaScript string below.
+if [[ "$URL" == *"'"* || "$URL" == *\\* ]]; then
+  err "the URL must not contain a quote or a backslash"
+  exit 2
+fi
 for tool in bladebro curl; do
   if ! command -v "$tool" >/dev/null 2>&1; then
     err "$tool not found"
@@ -130,10 +135,11 @@ if ! model_out="$(bladebro see model --port "$PORT" --json 2>/dev/null)"; then
 fi
 check_read "see model" "$model_out"
 
-# The eval returns the hostname and whether the title looks like a sign-in
-# page, so "false" means the browser holds a session for the site.
+# The eval returns two booleans and never the hostname, which on a site with
+# one subdomain per customer would name the workspace. "host-match true
+# sign-in false" means the tab is on the target and holds a session for it.
 printf '== Step 4: act eval ==\n'
-eval_js="location.hostname + ' ' + /sign ?in|log ?in/i.test(document.title)"
+eval_js="'host-match ' + (location.hostname === new URL('$URL').hostname) + ' sign-in ' + /sign ?in|log ?in/i.test(document.title)"
 if ! eval_out="$(bladebro act eval "$eval_js" --port "$PORT" --json 2>/dev/null)"; then
   err "act eval exited non-zero"
   exit 1

@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg status"
   - "check browser session state"
   - "session health check"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Session Status
@@ -20,7 +20,7 @@ version: 1.0.0.0
 
 ## 2. HOW IT WORKS
 
-Verify session status before every CDP command (SKILL.md ALWAYS rule 3). The standard gate is `bdg status 2>&1 | jq -e '.state == "active"'`; the session_management reference builds a full health-check function on top of it with per-state exit codes.
+Verify session status before every CDP command (SKILL.md ALWAYS rule 3). The standard gate is `bdg status --json 2>/dev/null | jq -e '.active'`; `bdg status --json` reports `active` as true or false, and `stale` when the recorded bdg process is gone. Plain `bdg status` prints text, not JSON. The session_management reference builds a health-check function on top of it with distinct exit codes.
 
 ---
 

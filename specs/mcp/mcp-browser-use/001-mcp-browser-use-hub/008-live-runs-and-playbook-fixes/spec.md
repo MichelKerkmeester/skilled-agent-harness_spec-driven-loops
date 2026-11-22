@@ -98,9 +98,9 @@ no 505 worktree registered
 - Remove the unregistered 505 worktree.
 
 ### Out of Scope
-- Commit, push and install. These wait for the operator's approval.
+- Install. Commit and push wait for the operator's approval; the first pass was committed as `413d3268b8a` and pushed on the operator's instruction.
 - A redesign of BDG-015. It stays UNKNOWN because its prompt measures a parallel speedup that blocking Code Mode calls cannot show.
-- Stale old forms in the Aside `SKILL.md`, its references and its feature catalog, in the Chrome DevTools references, and in the Code Mode `SKILL.md` examples and CM-012. These are open items in section 10.
+- Stale old forms in the Aside `README.md`, its references and its `examples/`, and in the Code Mode `SKILL.md` examples and CM-012. These are open items in section 10. Amended 2026-11-22 by the operator ("fix all", after an independent review of the first pass): the Aside `SKILL.md` and feature-catalog rows for console, network and cookies, and the `bdg status` checks in the Chrome DevTools references and catalog, are now in scope, together with the review's other browser-hub findings (BB-015's hostname evidence and citation, the outcome wording of three Aside probes, the Chrome root census).
 - Rebuilding the trigger index. It waits until the new files are tracked.
 - `.skilled/changelog/system-deep-loop/deep-ai-council`. It stays a real folder because its packet was retired on purpose in commit `adbba5a06a9`, and nothing links to it.
 - Re-running the earlier 2026-11-22 Aside folders from 007, `app-closed-safe-set` and `routing-recall`.
@@ -222,10 +222,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Which rewritten forms need a live run before they count as verified? Aside's `./tmp` and `./artifacts` paths, `$eval('title')`, a names-only cookie read, Chrome page-id parsing and `bdg status .active` have no live run yet.
+- Which rewritten forms need a live run before they count as verified? Aside's `./tmp` and `./artifacts` paths, `$eval('title')`, a names-only cookie read, Chrome page-id parsing and `bdg status --json` with its `.active` field have no live run yet. The `.active` field is confirmed from the installed bdg 0.6.10 source (`dist/ui/formatters/status.js`, `formatStatusAsJson`, printed unwrapped by `dist/commands/shared/CommandRunner.js` under `--json`), not from a run.
 - BDG-015 stays UNKNOWN. Its scenario file still carries the original prompt, which compares sequential and parallel medians. Blocking Code Mode calls cannot show a parallel speedup, so the scenario needs a redesign in a later packet.
-- Do the stale old forms in the Aside `SKILL.md`, its `README.md`, its references and its feature catalog, the Chrome DevTools references, and the Code Mode `SKILL.md` examples and CM-012 need the same rewrite? The Aside `examples/` also need it: `repl-evidence-capture.sh` defaults its output to `/tmp/aside-evidence`, and `examples/README.md` lists `/tmp` paths.
-- A `bdg` daemon, pid 47157, was started by `bdg --version` and was still running at the last check. Should the operator stop it?
+- Do the stale old forms in the Aside `README.md` and its references, and the Code Mode `SKILL.md` examples and CM-012, need the same rewrite? The Aside `SKILL.md` and catalog rows and the Chrome DevTools `bdg status` checks were fixed in the review follow-up. The Aside `examples/` also need it: `repl-evidence-capture.sh` defaults its output to `/tmp/aside-evidence`, and `examples/README.md` lists `/tmp` paths.
 - The trigger index needs a rebuild once the new files are tracked.
 <!-- /ANCHOR:questions -->
 

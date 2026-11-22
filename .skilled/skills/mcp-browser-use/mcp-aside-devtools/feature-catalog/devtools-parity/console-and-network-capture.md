@@ -6,8 +6,8 @@ trigger_phrases:
   - "aside network capture"
   - "aside page.on request"
   - "aside har"
-last_updated: "2026-07-17"
-version: 1.0.0.0
+last_updated: "2026-11-22"
+version: 1.0.1.0
 ---
 
 # Console and Network Capture (DevTools parity)
@@ -15,6 +15,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 Chrome DevTools' Console list and Network panel map onto Playwright event listeners in the repl. Earlier research flagged console/network capture as UNKNOWN because Aside exposes no dedicated `console`/`network` tool. The discovery fixture ([`../../references/discovery-fixture-2026-07-16.json`](../../references/discovery-fixture-2026-07-16.json)) **resolves the pattern**: `page` is a real Playwright `Page`, so `page.on('console', …)`, `page.on('request', …)`, `page.on('response', …)`, and `page.on('requestfinished', …)` are the API-grounded capture paths. What remains open is a live-executed result-shape fixture — running these needs a bound, authorized session, so the matching playbook scenario is SKIP-valid until then (superseding the fail-closed framing of ASD-012/ASD-013 with a documented pattern).
+
+**Live result on Aside 1.26.626.1517 (2026-11-22, ASD-012, ASD-013 and ASD-018).** `page.on` accepts only close, crash, dialog, domcontentloaded, download, filechooser, frameattached, framedetached, framenavigated, load and popup. It throws for `console`, `request`, `response` and `requestfinished`, so neither capture works through these listeners on this version. The error points to `page.console.logs()` for console output; that call has not been run. Treat the patterns below as the shape to retry when a later version accepts the events.
 
 Capability class: READ-ONLY (listeners observe; they do not mutate). Honest gap: there is **no native HAR export** (contrast `bdg network har`). You collect `request`/`response` events and assemble a HAR-equivalent yourself; call it "Playwright-assembled HAR-equivalent", never a HAR export.
 

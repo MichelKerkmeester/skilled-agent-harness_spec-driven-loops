@@ -1,7 +1,7 @@
 ---
 title: "MCP Chrome DevTools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-chrome-devtools skill."
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # MCP Chrome DevTools: Manual Testing Playbook
@@ -32,7 +32,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-This playbook provides 22 deterministic scenarios across 6 categories validating the `mcp-chrome-devtools` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
+This playbook provides deterministic operator scenarios validating the `mcp-chrome-devtools` skill surface, plus the benchmark-facing routing-recall checks in §15. The validator derives the counts from the tree. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
 
 ### Realistic Test Model
 
@@ -473,9 +473,9 @@ Expected signals: Step 1: pre-session Chrome count baseline; Step 2: post-sessio
 
 ---
 
-## 15. INTRA-ROUTING RECALL (`CD-R01`..`CD-R05`, `CD-H01`, `CD-H02`, `CD-N01`) -- BENCHMARK-FACING, NOT PART OF THE 22-SCENARIO COUNT
+## 15. INTRA-ROUTING RECALL (`CD-R01`..`CD-R05`, `CD-H01`, `CD-H02`, `CD-N01`) -- BENCHMARK-FACING, NOT AN OPERATOR SCENARIO
 
-This category validates the `mcp-chrome-devtools` smart router itself (`../ROUTER.md` §3 `INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live `bdg` session or Chrome instance. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Five scenarios (`CD-R01`-`CD-R05`) are fitted to each of the five declared intents, two (`CD-H01`, `CD-H02`) are natural-phrasing holdouts that decontaminate `CD-R04` and `CD-R01` (`CD-H01` also resolves a near-tie against the incidental `CLI` keyword "headless"), and one (`CD-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. This set is benchmark-facing and intentionally outside the 22-scenario count above, but every file is still linked here so nothing is orphaned from this root index.
+This category validates the `mcp-chrome-devtools` smart router itself (`../ROUTER.md` §3 `INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live `bdg` session or Chrome instance. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Five scenarios (`CD-R01`-`CD-R05`) are fitted to each of the five declared intents, two (`CD-H01`, `CD-H02`) are natural-phrasing holdouts that decontaminate `CD-R04` and `CD-R01` (`CD-H01` also resolves a near-tie against the incidental `CLI` keyword "headless"), and one (`CD-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. This set is benchmark-facing and intentionally kept apart from the operator scenarios above, but every file is still linked here so nothing is orphaned from this root index.
 
 ### Scenario Summary
 

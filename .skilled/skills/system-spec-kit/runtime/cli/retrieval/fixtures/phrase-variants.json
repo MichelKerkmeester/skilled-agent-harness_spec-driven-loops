@@ -1,5 +1,5 @@
 {
-  "manifestHash": "35c862ffb75f4487fac196c4a1e962fd9d6a145bf05701b16c7bfae2af7e1d86",
+  "manifestHash": "7b22536e7ff5eb7954a6239df3f766487a20ed00fb706e7aae287394828f9999",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13431,6 +13431,9 @@
     ],
     "aside console capture": [
       "aside console capture"
+    ],
+    "aside console network cookie gaps": [
+      "aside console network cookie gaps"
     ],
     "aside context cookies": [
       "aside context cookies"
@@ -69965,6 +69968,9 @@
     "mcp aside devtools 1 1 11 0": [
       "mcp-aside-devtools 1.1.11.0"
     ],
+    "mcp aside devtools 1 1 12 0": [
+      "mcp-aside-devtools 1.1.12.0"
+    ],
     "mcp aside devtools 1 1 2 0": [
       "mcp-aside-devtools 1.1.2.0"
     ],
@@ -70024,6 +70030,9 @@
     ],
     "mcp aside devtools v1 1 11 0": [
       "mcp-aside-devtools v1.1.11.0"
+    ],
+    "mcp aside devtools v1 1 12 0": [
+      "mcp-aside-devtools v1.1.12.0"
     ],
     "mcp aside devtools v1 1 2 0": [
       "mcp-aside-devtools v1.1.2.0"
@@ -96040,6 +96049,9 @@
     "record playbook run fixes": [
       "record playbook run fixes"
     ],
+    "record playbook run reports guard": [
+      "record playbook run reports guard"
+    ],
     "record playbook run reports option": [
       "record playbook run reports option"
     ],
@@ -115049,6 +115061,9 @@
     "sk create manual testing playbook 1 3 0 0": [
       "sk-create-manual-testing-playbook 1.3.0.0"
     ],
+    "sk create manual testing playbook 1 3 1 0": [
+      "sk-create-manual-testing-playbook 1.3.1.0"
+    ],
     "sk create manual testing playbook implementation summary": [
       "sk create manual testing playbook implementation summary"
     ],
@@ -115120,6 +115135,9 @@
     ],
     "sk create manual testing playbook v1 3 0 0": [
       "sk-create-manual-testing-playbook v1.3.0.0"
+    ],
+    "sk create manual testing playbook v1 3 1 0": [
+      "sk-create-manual-testing-playbook v1.3.1.0"
     ],
     "sk create quality control": [
       "sk create quality control"

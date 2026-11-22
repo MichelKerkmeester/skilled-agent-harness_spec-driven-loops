@@ -10,7 +10,7 @@ trigger_phrases:
   - "pipe bdg output to jq"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CDP Patterns & Command Examples
@@ -707,7 +707,7 @@ For genuine parallel browser control, use `mcp-chrome-devtools`'s multiple regis
 
 ```bash
 # Execute CDP only if session active
-if bdg status 2>&1 | grep -q "active"; then
+if bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
   bdg cdp Page.captureScreenshot 2>&1
 else
   echo "No active session"

@@ -6,8 +6,8 @@ trigger_phrases:
   - "aside localStorage"
   - "aside sessionStorage"
   - "aside context cookies"
-last_updated: "2026-07-17"
-version: 1.0.1.0
+last_updated: "2026-11-22"
+version: 1.0.2.0
 ---
 
 # Cookies and Web Storage (DevTools parity)
@@ -15,6 +15,8 @@ version: 1.0.1.0
 ## 1. OVERVIEW
 
 Chrome DevTools' Application panel (Cookies, Local Storage, Session Storage) maps onto the Playwright browser-context API plus `page.evaluate`. The discovery fixture ([`../../references/discovery-fixture-2026-07-16.json`](../../references/discovery-fixture-2026-07-16.json)) confirms `page` is a real Playwright `Page`, so `page.context().cookies()` and `page.context().addCookies()` (the `bdg network getCookies` / `Network.setCookie` analog) and storage reads via `evaluate` are reachable.
+
+**Live result on Aside 1.26.626.1517 (2026-11-22, ASD-019).** `page.context` is undefined, so `page.context().cookies()` and `addCookies()` fail and context cookies, including HttpOnly ones and their domains, cannot be read this way. Page-visible cookie names through `document.cookie` and storage keys through `page.evaluate` ran without error, on example.com, which sets no cookies. Keep the context calls below as the shape to retry when a later version exposes `page.context`.
 
 Capability class: READ-ONLY for reads (`cookies()`, storage reads), MUTATING for writes (`addCookies()`, `localStorage.setItem`). Cookies and storage are sensitive: redact values from every log, transcript, saved capture, report and reply, and record names and keys only (SKILL.md ALWAYS rule 6). Saved-password values are never exposed to the agent (confirmed online, `security.md`).
 
