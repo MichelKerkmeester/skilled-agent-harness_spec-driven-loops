@@ -1,15 +1,16 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.21.0
+version: 1.5.22.0
 ---
 
 # sk-code: Manual Testing Playbook
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and
-> reason are persisted through the operator's evidence trail described in §3 GLOBAL EVIDENCE
-> REQUIREMENTS below.
+> reason are saved into `sk-code/benchmark/reports/<dated-run-label>/` by `record-playbook-run.cjs`, the
+> one writer for run folders: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/sk-code/manual-testing-playbook --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`.
+> The transcripts in §3 GLOBAL EVIDENCE REQUIREMENTS are the evidence those rows point at.
 
 > **EXECUTION POLICY**: Every scenario MUST be executed against the live sk-code skill — no mocks, no stubs, no "unautomatable" verdicts. Scenarios verify the AI's actual routing behavior: which surface it detects, which references/assets it loads, which agent it dispatches. Acceptable verdicts are PASS, FAIL, or SKIP (with a documented sandbox or runtime blocker).
 

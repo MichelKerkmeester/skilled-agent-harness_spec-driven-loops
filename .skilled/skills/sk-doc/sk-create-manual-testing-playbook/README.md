@@ -6,7 +6,7 @@ trigger_phrases:
   - "/create:manual-testing-playbook"
   - "deterministic scenario"
   - "release readiness"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # create-manual-testing-playbook
@@ -83,7 +83,7 @@ Authoring runs in a fixed order. Decide the category folders and the `{PREFIX}-{
 
 Per-feature files carry one of two styles. A single prompt sends the Exact Prompt once and the operator judges the answer against the Expected Signals. A conversation carries one `json conversation` block. The shared runner plays each turn into a live runtime session, answers the runtime's questions and runs a shell check after every turn. The ordered test for which style to use is in `SKILL.md` §6, Choosing the Scenario Style.
 
-Then run the operator-contract validator over the whole package. A run is not complete until its verdict, its reason and its evidence paths are saved in the owning skill's `benchmark/reports/<dated-run-label>/` folder by `scripts/record-playbook-run.cjs`. The validator fails a root playbook that drops this rule.
+Then run the operator-contract validator over the whole package. A run is not complete until its verdict, its reason and its evidence paths are saved in the owning skill's `benchmark/reports/<dated-run-label>/` folder by `scripts/record-playbook-run.cjs`. The validator reports a root playbook that drops this rule as a violation, which fails the package unless it is a SKIP or warn-tier package.
 
 ```text
 ┌───────────────────────────────┐
@@ -217,5 +217,5 @@ Expected final line: `PASS package=sk-doc/sk-create-manual-testing-playbook tier
 | [`assets/manual-testing-playbook-conversation-snippet-template.md`](./assets/manual-testing-playbook-conversation-snippet-template.md) | Conversation scenario scaffold |
 | [`scripts/validate-playbook-package.cjs`](./scripts/validate-playbook-package.cjs) | Operator-contract validator |
 | [`scripts/run-conversation-scenario.cjs`](./scripts/run-conversation-scenario.cjs) | Shared conversation runner |
-| [`scripts/record-playbook-run.cjs`](./scripts/record-playbook-run.cjs) | Saves a run into the skill's `benchmark/reports/` |
+| [`scripts/record-playbook-run.cjs`](./scripts/record-playbook-run.cjs) | Saves a run into the skill's benchmark reports folder |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The mode's own operator package: eight scenarios across four categories |

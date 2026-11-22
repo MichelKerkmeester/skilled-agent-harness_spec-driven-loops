@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-11-15"
-version: 2.1.33.0
+version: 2.1.34.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -11,7 +11,8 @@ version: 2.1.33.0
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
-> outcome and its reason are persisted alongside the captured evidence for that run, so a later
+> outcome and its reason are saved into `system-spec-kit/benchmark/reports/<dated-run-label>/` by
+> `record-playbook-run.cjs`, with the evidence path for that run, so a later
 > reader can reconstruct which scenarios ran, what each returned, and why — without the original
 > operator. An outcome that exists only in a chat transcript does not count as persisted.
 

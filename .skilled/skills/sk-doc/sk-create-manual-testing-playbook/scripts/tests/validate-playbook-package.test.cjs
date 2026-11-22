@@ -752,7 +752,7 @@ function runResultContractRegressions() {
   fs.mkdirSync(runDir, { recursive: true });
   fs.writeFileSync(
     path.join(runDir, 'results.csv'),
-    '# fixture\nscenario_id,runtime,verdict,reason,evidence\nFX-001,,PASS,,\nFX-999,,FAIL,gone,\n',
+    '# fixture\nscenario_id,runtime,verdict,reason,evidence\nFX-001,,PASS,,\nFX-999,,FAIL,gone,"two\nlines, not-an-id"\n',
   );
   fs.mkdirSync(path.join(reportsDir, '2026-11-21--manual-testing-playbook--hand-written'));
   const result = runCli(packageRoot, ['--format', 'json', '--coverage']);
@@ -766,8 +766,9 @@ function runResultContractRegressions() {
     runsWithoutCsv: ['2026-11-21--manual-testing-playbook--hand-written'],
   });
   assert(pkg.warnings.some((item) => item.code === 'COVERAGE_UNKNOWN_ID' && item.message.includes('FX-999')), 'an unknown recorded id is named');
+  assert(!pkg.warnings.some((item) => item.message.includes('not-an-id')), 'a quoted field that spans lines is not read as an id');
   assert.strictEqual(JSON.parse(runCli(packageRoot, ['--format', 'json']).stdout).packages[0].coverage, undefined, 'coverage is opt-in');
-  console.log('result contract regressions: PASS (6 assertions)');
+  console.log('result contract regressions: PASS (7 assertions)');
 }
 
 run();

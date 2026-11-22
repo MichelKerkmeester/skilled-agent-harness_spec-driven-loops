@@ -1,7 +1,7 @@
 ---
 title: "sk-code-quality: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review protocol, execution expectations and per-feature validation files for the sk-code-quality skill."
-version: 1.1.10.0
+version: 1.1.11.0
 ---
 
 # sk-code-quality: Manual Testing Playbook
@@ -19,7 +19,7 @@ Canonical package artifacts:
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `sk-code-quality/benchmark/reports/<dated-run-label>/`. Generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `sk-code-quality/benchmark/reports/<dated-run-label>/`. The run folder is written by `record-playbook-run.cjs`, never by hand.
 
 ---
 

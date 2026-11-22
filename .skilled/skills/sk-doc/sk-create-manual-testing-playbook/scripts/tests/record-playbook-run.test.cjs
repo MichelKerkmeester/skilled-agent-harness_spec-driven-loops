@@ -26,8 +26,8 @@ function makeSkill(label) {
   return { skillRoot, playbookRoot, reportsDir: path.join(skillRoot, 'benchmark', 'reports') };
 }
 
-function writeCsv(dir, body) {
-  const file = path.join(dir, 'verdicts.csv');
+function writeCsv(dir, body, name = 'verdicts.csv') {
+  const file = path.join(dir, name);
   fs.writeFileSync(file, body);
   return file;
 }
@@ -70,12 +70,56 @@ function runRefusals() {
 
   const good = writeCsv(skillRoot, 'scenario_id,verdict,reason,evidence\nFX-001,PASS,,\n');
   assert.strictEqual(record(['--playbook', playbookRoot, '--results', good, '--label', 'manual-testing-playbook--again']).status, 0);
+  const indexBefore = fs.readFileSync(path.join(reportsDir, 'README.md'), 'utf8');
   const again = record(['--playbook', playbookRoot, '--results', good, '--label', 'manual-testing-playbook--again']);
   assert.strictEqual(again.status, 1, 'an existing run folder is never overwritten');
+  assert.strictEqual(fs.readFileSync(path.join(reportsDir, 'README.md'), 'utf8'), indexBefore, 'a refused record leaves the index alone');
 
   const usage = record(['--playbook', playbookRoot, '--results', good]);
   assert.strictEqual(usage.status, 2, 'a missing label is a usage error');
-  console.log('recorder refusals: PASS (7 assertions)');
+  console.log('recorder refusals: PASS (8 assertions)');
+}
+
+function runEdgeCases() {
+  const { skillRoot, playbookRoot, reportsDir } = makeSkill('edge');
+  const good = writeCsv(skillRoot, 'scenario_id,verdict,reason,evidence\nFX-001,PASS,,/speckit:save printed the folder\n');
+  const deletedPath = path.join(os.tmpdir(), 'recorder-deleted-evidence', 'turn-1.txt');
+  const deleted = writeCsv(skillRoot, `scenario_id,verdict,reason,evidence\nFX-001,PASS,,${deletedPath}\n`, 'deleted.csv');
+
+  const dry = record(['--playbook', playbookRoot, '--results', good, '--label', 'manual-testing-playbook--create-goal--rerun', '--dry-run']);
+  assert.strictEqual(dry.status, 0, `a label with a second variant part is accepted\n${dry.stderr}`);
+  assert(!fs.existsSync(reportsDir), 'a dry run writes nothing');
+  assert.strictEqual(record(['--playbook', playbookRoot, '--results', good, '--label', 'manual-testing-playbook--x', '--date', '2026-02-31']).status, 2, 'an impossible date is a usage error');
+
+  // A quote inside a comment must not open a field and swallow the rows after it.
+  const commented = writeCsv(skillRoot, '# a "quoted note\nscenario_id,verdict,reason,evidence\nFX-999,PASS,,\n', 'commented.csv');
+  const unknown = record(['--playbook', playbookRoot, '--results', commented, '--label', 'manual-testing-playbook--commented']);
+  assert(unknown.stderr.includes('record 3') && unknown.stderr.includes('FX-999'), `the problem names the file line; got ${unknown.stderr}`);
+
+  fs.mkdirSync(reportsDir, { recursive: true });
+  const indexFile = path.join(reportsDir, 'README.md');
+  fs.writeFileSync(indexFile, '# Reports\n\n| Folder | Description |\n|---|---|\n');
+  const noTable = record(['--playbook', playbookRoot, '--results', good, '--label', 'manual-testing-playbook--no-table']);
+  assert.strictEqual(noTable.status, 1, 'an index without a run table is refused');
+  assert.deepStrictEqual(fs.readdirSync(reportsDir), ['README.md'], 'the refusal writes no run folder');
+
+  fs.writeFileSync(indexFile, '# Reports\n\n| Executed | Folder | Runtime | Result | Verdict | Source |\n|---|---|---|---|---|---|\n');
+  fs.chmodSync(indexFile, 0o444);
+  const readOnly = record(['--playbook', playbookRoot, '--results', good, '--label', 'manual-testing-playbook--read-only']);
+  fs.chmodSync(indexFile, 0o644);
+  assert.strictEqual(readOnly.status, 1, `a failed write is a refusal\n${readOnly.stderr}`);
+  assert.deepStrictEqual(fs.readdirSync(reportsDir), ['README.md'], 'a failed write leaves no half-saved run folder');
+
+  const freeText = record(['--playbook', playbookRoot, '--results', good, '--label', 'manual-testing-playbook--free-text']);
+  assert.strictEqual(freeText.status, 0, `free text records\n${freeText.stderr}`);
+  const row = fs.readFileSync(path.join(reportsDir, '2026-11-22--manual-testing-playbook--free-text', 'results.csv'), 'utf8').split('\n')[2];
+  assert(row.endsWith(',/speckit:save printed the folder'), `free-text evidence is kept as written; got ${row}`);
+
+  // A temp file deleted before the record is still a machine path, so it must not reach the committed CSV.
+  assert.strictEqual(record(['--playbook', playbookRoot, '--results', deleted, '--label', 'manual-testing-playbook--deleted']).status, 0);
+  const deletedRow = fs.readFileSync(path.join(reportsDir, '2026-11-22--manual-testing-playbook--deleted', 'results.csv'), 'utf8').split('\n')[2];
+  assert(deletedRow.endsWith('outside the repository and not kept (turn-1.txt)'), `a deleted absolute path is not committed; got ${deletedRow}`);
+  console.log('recorder edge cases: PASS (11 assertions)');
 }
 
 function runRunnerHandOff() {
@@ -93,6 +137,11 @@ function runRunnerHandOff() {
     blocker: null,
     turns: [{ id: '1', status: 'PASS' }, { id: '2', status: 'FAIL', reason: 'CHECK_FAILED' }],
   }));
+  // A folder an earlier run left in the same --out is not one this run played.
+  fs.mkdirSync(path.join(out, 'stale'));
+  fs.writeFileSync(path.join(out, 'stale', 'result.json'), JSON.stringify({ runtime: 'stale', verdict: 'PASS', turns: [] }));
+  const scenarioRecord = JSON.parse(fs.readFileSync(path.join(out, 'scenario.json'), 'utf8'));
+  fs.writeFileSync(path.join(out, 'scenario.json'), JSON.stringify({ ...scenarioRecord, runtimes: ['fake'] }));
   const result = record(['--runner-out', out, '--label', 'manual-testing-playbook--conversation']);
   assert.strictEqual(result.status, 0, `the runner folder records without --playbook\n${result.stderr}`);
   const rows = fs.readFileSync(path.join(reportsDir, '2026-11-22--manual-testing-playbook--conversation', 'results.csv'), 'utf8').split('\n');
@@ -104,9 +153,16 @@ function runRunnerHandOff() {
     assert(!text.includes(out), `${name} must not carry the runner's absolute path`);
   }
   assert(rows[2].endsWith('outside the repository and not kept (fake)'), `evidence names the runtime folder only; got ${rows[2]}`);
-  console.log('recorder runner hand-off: PASS (6 assertions)');
+  assert.strictEqual(rows.filter((line) => line && !line.startsWith('#')).length, 2, 'only the played runtime is saved');
+
+  fs.writeFileSync(path.join(out, 'fake', 'result.json'), '{bad');
+  const broken = record(['--runner-out', out, '--label', 'manual-testing-playbook--broken']);
+  assert.strictEqual(broken.status, 1, 'unreadable runner output is a refusal, not a crash');
+  assert(broken.stderr.includes(path.join('fake', 'result.json')), `the refusal names the file; got ${broken.stderr}`);
+  console.log('recorder runner hand-off: PASS (9 assertions)');
 }
 
 runHappyPath();
 runRefusals();
 runRunnerHandOff();
+runEdgeCases();

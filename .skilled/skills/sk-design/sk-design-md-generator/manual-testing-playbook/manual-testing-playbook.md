@@ -1,7 +1,7 @@
 ---
 title: "md-generator: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-scenario validation for the md-generator skill. Covers live extraction, v3 Style Reference fidelity validation, the cardinal verbatim-value rule, Quick-Start fidelity, dark-mode gating, tool setup, anti-bot escalation, the authoring boundary between measured and non-measured values plus the source-of-truth router card."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # md-generator: Manual Testing Playbook
@@ -13,7 +13,7 @@ End-to-end manual testing reference for the md-generator skill. Every scenario v
 ---
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-> **COMPLETION:** A scenario run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `../benchmark/reports/<dated-run-label>/`. Generated report markdown is renderer-owned and is never hand-authored.
+> **COMPLETION:** A scenario run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `../benchmark/reports/<dated-run-label>/`. The run folder is written by `record-playbook-run.cjs`, never by hand.
 
 **EXECUTION POLICY:** Every default scenario in this playbook is SAFE to execute for real: it extracts from a live URL, validates the output, and inspects file content. None of the default scenarios fabricate tokens, overwrite production files, or mutate anything outside the `--output` spec folder passed to extraction. Run actual commands, inspect real outputs, and call the real embedded tool. Valid statuses are PASS, FAIL, or SKIP with a documented blocker. The escalation scenario exercises the anti-bot refusal gate as a negative control: it proves the skill escalates rather than fabricates. Fabricating tokens in any scenario is a HARD FAIL.
 

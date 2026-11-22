@@ -25,6 +25,7 @@ const {
   walkMarkdown,
   extractFeatureId,
   extractFrontmatter,
+  parseCsv,
 } = require('./validate-playbook-package.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -37,7 +38,7 @@ const EXIT_USAGE = 2;
 const ROOT_FILENAME = 'manual-testing-playbook.md';
 const PLAYBOOK_DIRNAME = 'manual-testing-playbook';
 const VERDICTS = Object.freeze(['PASS', 'FAIL', 'SKIP']);
-const LABEL_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*--[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const LABEL_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)+$/;
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const CSV_COLUMNS = Object.freeze(['scenario_id', 'runtime', 'verdict', 'reason', 'evidence']);
 const RECORDED_BY = 'recorded by record-playbook-run.cjs';
@@ -49,6 +50,12 @@ const NOT_RECORDED = 'not recorded';
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. ARGUMENTS
 // ─────────────────────────────────────────────────────────────────────────────
+
+function isCalendarDate(value) {
+  if (!DATE_PATTERN.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+}
 
 function usage() {
   return [
@@ -105,50 +112,13 @@ function parseArgs(argv) {
   if (!args.results && !args.runnerOut) args.errors.push('pass --results or --runner-out');
   if (args.results && !args.playbook) args.errors.push('--results needs --playbook');
   if (args.label && !LABEL_PATTERN.test(args.label)) args.errors.push(`--label must look like subject--variant: ${args.label}`);
-  if (args.date && !DATE_PATTERN.test(args.date)) args.errors.push(`--date must be YYYY-MM-DD: ${args.date}`);
+  if (args.date && !isCalendarDate(args.date)) args.errors.push(`--date must be a real YYYY-MM-DD date: ${args.date}`);
   return args;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. INPUT READERS
 // ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * Split CSV text into rows of fields, honouring double-quoted fields.
- *
- * @param {string} text - CSV text.
- * @returns {string[][]} Rows, comment and blank lines removed.
- */
-function parseCsv(text) {
-  const rows = [];
-  let row = [];
-  let field = '';
-  let quoted = false;
-  const pushRow = () => {
-    row.push(field);
-    const blank = row.length === 1 && row[0].trim() === '';
-    if (!blank && !row[0].startsWith('#')) rows.push(row);
-    row = [];
-    field = '';
-  };
-  for (let index = 0; index < text.length; index += 1) {
-    const char = text[index];
-    if (quoted) {
-      if (char === '"' && text[index + 1] === '"') {
-        field += '"';
-        index += 1;
-      } else if (char === '"') quoted = false;
-      else field += char;
-    } else if (char === '"') quoted = true;
-    else if (char === ',') {
-      row.push(field);
-      field = '';
-    } else if (char === '\n') pushRow();
-    else if (char !== '\r') field += char;
-  }
-  if (field !== '' || row.length > 0) pushRow();
-  return rows;
-}
 
 /**
  * Read verdict records from a CSV file.
@@ -162,8 +132,8 @@ function readCsvRecords(file) {
   const header = rows[0].map((name) => name.trim().toLowerCase());
   const missing = ['scenario_id', 'verdict', 'reason', 'evidence'].filter((name) => !header.includes(name));
   if (missing.length > 0) return { records: [], problems: [`${file} header lacks: ${missing.join(', ')}`] };
-  const records = rows.slice(1).map((fields, offset) => {
-    const record = { line: offset + 2 };
+  const records = rows.slice(1).map((fields) => {
+    const record = { line: fields.line };
     header.forEach((name, column) => { record[name] = (fields[column] || '').trim(); });
     return record;
   });
@@ -188,10 +158,20 @@ function readRunnerRecords(outDir) {
     return { records: [], problems: [`${scenarioFile} is not JSON: ${error.message}`], scenarioPath: null };
   }
   const records = [];
+  const problems = [];
+  // A reused --out folder can still hold another scenario's runtimes, so only the ones this run played count.
+  const played = Array.isArray(scenario.runtimes) ? new Set(scenario.runtimes.map(String)) : null;
   for (const entry of fs.readdirSync(outDir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
     const resultFile = path.join(outDir, entry.name, RUNNER_RESULT_FILE);
     if (!entry.isDirectory() || !fs.existsSync(resultFile)) continue;
-    const result = JSON.parse(fs.readFileSync(resultFile, 'utf8'));
+    if (played && !played.has(entry.name)) continue;
+    let result;
+    try {
+      result = JSON.parse(fs.readFileSync(resultFile, 'utf8'));
+    } catch (error) {
+      problems.push(`${resultFile} is not JSON: ${error.message}`);
+      continue;
+    }
     // A failed turn carries its reason on the turn, not on the run, so the first one stands in.
     const failedTurn = (result.turns || []).find((turn) => turn.status === 'FAIL');
     const turnReason = failedTurn ? `turn ${failedTurn.id}: ${failedTurn.reason || failedTurn.blocker || 'failed'}` : '';
@@ -204,7 +184,7 @@ function readRunnerRecords(outDir) {
       evidence: path.join(outDir, entry.name),
     });
   }
-  const problems = records.length === 0 ? [`${outDir} holds no <runtime>/${RUNNER_RESULT_FILE}`] : [];
+  if (records.length === 0 && problems.length === 0) problems.push(`${outDir} holds no <runtime>/${RUNNER_RESULT_FILE}`);
   return { records, problems, scenarioPath: scenario.scenario_path || null };
 }
 
@@ -443,7 +423,11 @@ function gitRoot(dir) {
  * @returns {string} A repository-relative path, a fixed outside note, or the text unchanged.
  */
 function portablePath(value, repoRoot) {
+  // Free text such as "/speckit:save printed the folder" starts with a slash too. A real path keeps a first
+  // segment that exists on disk even after the file is deleted, so that segment tells the two apart.
   if (!value || !path.isAbsolute(value)) return value;
+  const firstSegment = value.split(/[\\/]+/).filter(Boolean)[0];
+  if (!firstSegment || !fs.existsSync(path.join(path.parse(value).root, firstSegment))) return value;
   const relative = path.relative(repoRoot, value);
   if (relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative))) return relative.split(path.sep).join('/') || '.';
   return `outside the repository and not kept (${path.basename(value)})`;
@@ -515,17 +499,32 @@ function planRun(args) {
  * @returns {string[]} The files written.
  */
 function writeRun(run) {
-  fs.mkdirSync(run.runDir, { recursive: true });
-  const written = [];
-  const write = (file, body) => {
-    fs.writeFileSync(file, body);
-    written.push(file);
-  };
-  write(path.join(run.runDir, 'results.csv'), renderCsv(run.records, run.input));
-  write(path.join(run.runDir, 'README.md'), renderReadme(run));
-  write(path.join(run.runDir, 'source.md'), renderSource(run));
-  write(run.indexFile, run.indexText === null ? renderNewIndex(run) : insertIndexRow(run.indexText, indexRow(run)));
-  return written;
+  const files = [
+    ['results.csv', renderCsv(run.records, run.input)],
+    ['README.md', renderReadme(run)],
+    ['source.md', renderSource(run)],
+  ];
+  const indexBody = run.indexText === null ? renderNewIndex(run) : insertIndexRow(run.indexText, indexRow(run));
+  // The folder is built under a staging name and renamed last, so a failed write never leaves a
+  // half-saved run whose folder name would then block the retry.
+  const staging = `${run.runDir}.partial-${process.pid}`;
+  fs.mkdirSync(staging, { recursive: true });
+  try {
+    for (const [name, body] of files) fs.writeFileSync(path.join(staging, name), body);
+    fs.writeFileSync(run.indexFile, indexBody);
+  } catch (error) {
+    fs.rmSync(staging, { recursive: true, force: true });
+    throw error;
+  }
+  try {
+    fs.renameSync(staging, run.runDir);
+  } catch (error) {
+    if (run.indexText === null) fs.rmSync(run.indexFile, { force: true });
+    else fs.writeFileSync(run.indexFile, run.indexText);
+    fs.rmSync(staging, { recursive: true, force: true });
+    throw error;
+  }
+  return [...files.map(([name]) => path.join(run.runDir, name)), run.indexFile];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -553,7 +552,14 @@ function main(argv) {
     process.stdout.write(`[record-playbook-run] dry run: would write ${run.runDir} (${run.tally.text}) and update ${run.indexFile}\n`);
     return EXIT_OK;
   }
-  for (const file of writeRun(run)) process.stdout.write(`[record-playbook-run] wrote ${path.relative(run.repoRoot, file)}\n`);
+  let written;
+  try {
+    written = writeRun(run);
+  } catch (error) {
+    process.stderr.write(`[record-playbook-run] refused: could not write the run (${error.message}); nothing was saved\n`);
+    return EXIT_REFUSED;
+  }
+  for (const file of written) process.stdout.write(`[record-playbook-run] wrote ${path.relative(run.repoRoot, file)}\n`);
   process.stdout.write(`[record-playbook-run] ${run.folder}: ${run.tally.text}, verdict ${run.tally.overall}\n`);
   // The README audit freezes the repository's durable directories, so every new run folder
   // must be added to that list in the same commit or the audit test fails.

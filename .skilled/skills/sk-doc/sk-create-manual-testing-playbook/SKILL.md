@@ -2,7 +2,7 @@
 name: sk-create-manual-testing-playbook
 description: Author manual testing playbook packages with deterministic scenarios, evidence collection, and multi-agent execution planning.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # Manual Testing Playbook Creation
@@ -215,7 +215,8 @@ see its naming convention section for the field vocabulary and the one carve-out
 A manual scenario is incomplete until its `PASS`, `FAIL` or `SKIP` outcome, its reason and its evidence paths are
 saved in the skill's `benchmark/reports/<dated-run-label>/` folder. `scripts/record-playbook-run.cjs` is the one
 writer for that folder, so never write a run folder by hand. Every root playbook carries this marker and its
-Result persistence block, and the validator fails a root without it.
+Result persistence block. The validator reports a root without it as a violation, which fails the package unless
+it is a SKIP or warn-tier package.
 
 ### Recording A Run
 
@@ -238,11 +239,14 @@ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-pla
 The recorder writes `results.csv`, `README.md` and `source.md` into a new dated folder and puts the run's row
 first in `benchmark/reports/README.md`, creating that index when the skill has none. The other files in the
 tree above come from harness runs. It refuses, and writes nothing, when a scenario id is not in the playbook,
-a `FAIL` or `SKIP` has no reason or the run folder already exists. A new run folder is a new durable directory,
+a verdict is not `PASS`, `FAIL` or `SKIP`, a `FAIL` or `SKIP` has no reason, a scenario and runtime pair repeats,
+there are no records, the run folder already exists, the index has no run table headed `| Executed | Folder |`,
+the runner output cannot be read or a write fails partway. A new run folder is a new durable directory,
 so refresh the README audit manifest in the same commit with the `next:` command the recorder prints.
 
-To see which scenarios have a saved verdict, add `--coverage` to the validator. It lists the ids with no
-recorded verdict and the run folders that have no `results.csv`, and it never fails the run.
+To see which scenarios have a saved verdict, add `--coverage` to the validator. The text report gives the
+recorded count, lists the unrecorded ids and counts the run folders with no `results.csv`. `--format json` also names
+those folders. It never fails the run.
 
 ### Rules
 
@@ -473,7 +477,8 @@ listed in the validator's staged warning set for the first fleet run; clean pack
 Promotion removes a package from that warning set only after a clean run.
 
 The validator also checks the root playbook for the result-persistence completion marker and the complete `PASS` / `FAIL` / `SKIP`
-vocabulary as advisory warnings. Missing either item never creates a new fail-closed violation for an existing package.
+vocabulary. A missing marker is a `RESULT_PERSISTENCE_MARKER_MISSING` violation, which fails the package unless it is
+a SKIP or warn-tier package. Missing vocabulary is an advisory warning.
 Prompt synchronization is advisory in the same way: a prompt copy that disagrees with the scenario contract is a
 `PROMPT_UNSYNCED` warning, never a violation.
 

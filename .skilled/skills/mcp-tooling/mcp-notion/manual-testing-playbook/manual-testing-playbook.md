@@ -1,7 +1,7 @@
 ---
 title: "mcp-notion: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, and execution expectations for the mcp-notion skill: MCP tool round-trips via Code Mode, a direct-API gap call, backend selection, and auth/rate-limit failure -- read-only and scratch-safe, never destructive on a real workspace."
-version: 0.1.0.1
+version: 0.1.1.0
 ---
 
 # mcp-notion: Manual Testing Playbook
@@ -26,7 +26,7 @@ Canonical package artifacts:
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`. The run folder is written by `record-playbook-run.cjs`, never by hand.
 
 ---
 

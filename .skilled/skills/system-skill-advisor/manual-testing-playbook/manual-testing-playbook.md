@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.17.0
+version: 0.8.18.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome, its reason and its evidence paths are recorded by hand in `.skilled/skills/system-skill-advisor/benchmark/reports/<dated-run-label>/`. The first recorded run creates that folder, because the wrapper that once wrote these records was retired and no renderer writes them now.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome, its reason and its evidence paths are saved into `.skilled/skills/system-skill-advisor/benchmark/reports/<dated-run-label>/` by `record-playbook-run.cjs`, the one writer for run folders: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/system-skill-advisor/manual-testing-playbook --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`. The first recorded run creates that folder.
 
 ---
 

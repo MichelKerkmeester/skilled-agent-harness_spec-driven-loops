@@ -1334,6 +1334,59 @@ function validateScenario(absPath, playbookRoot, repoRoot) {
  * @param {Map<string, string>} idMap - Scenario ids the playbook defines.
  * @returns {{coverage: Object, warnings: Object[]}} The coverage summary and unknown-id warnings.
  */
+/**
+ * Split CSV text into rows of fields, honouring double-quoted fields that may span lines.
+ *
+ * @param {string} text - CSV text.
+ * @returns {string[][]} Rows, each carrying the file line it starts on as `line`; comment and blank lines removed.
+ */
+function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let field = '';
+  let quoted = false;
+  let line = 1;
+  let rowLine = 1;
+  const pushRow = () => {
+    row.push(field);
+    const blank = row.length === 1 && row[0].trim() === '';
+    if (!blank) {
+      row.line = rowLine;
+      rows.push(row);
+    }
+    row = [];
+    field = '';
+  };
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    const atRowStart = !quoted && row.length === 0 && field === '';
+    if (atRowStart) rowLine = line;
+    // A comment is a whole line, so it is dropped before a quote inside it can open a field.
+    if (atRowStart && char === '#') {
+      const end = text.indexOf('\n', index);
+      if (end === -1) break;
+      index = end;
+      line += 1;
+      continue;
+    }
+    if (char === '\n') line += 1;
+    if (quoted) {
+      if (char === '"' && text[index + 1] === '"') {
+        field += '"';
+        index += 1;
+      } else if (char === '"') quoted = false;
+      else field += char;
+    } else if (char === '"') quoted = true;
+    else if (char === ',') {
+      row.push(field);
+      field = '';
+    } else if (char === '\n') pushRow();
+    else if (char !== '\r') field += char;
+  }
+  if (field !== '' || row.length > 0) pushRow();
+  return rows;
+}
+
 function recordedCoverage(playbookRoot, idMap) {
   const reportsDir = path.join(path.dirname(playbookRoot), 'benchmark', 'reports');
   const recorded = new Set();
@@ -1355,13 +1408,12 @@ function recordedCoverage(playbookRoot, idMap) {
     }
   }
   for (const file of csvFiles) {
-    const lines = readText(file).split(/\r?\n/).filter((line) => line.trim() !== '' && !line.startsWith('#'));
-    const column = (lines[0] || '').split(',').map((name) => name.trim().toLowerCase()).indexOf('scenario_id');
+    const rows = parseCsv(readText(file));
+    const column = (rows[0] || []).map((name) => name.trim().toLowerCase()).indexOf('scenario_id');
     if (column === -1) continue;
     const rel = path.relative(path.dirname(playbookRoot), file).split(path.sep).join('/');
-    // Scenario ids come before any free-text column, so a plain split reaches them intact.
-    for (const line of lines.slice(1)) {
-      const id = (line.split(',')[column] || '').replace(/^"|"$/g, '').trim();
+    for (const row of rows.slice(1)) {
+      const id = (row[column] || '').trim();
       if (!id) continue;
       if (idMap.has(id)) recorded.add(id);
       else if (!unknown.has(id)) unknown.set(id, rel);
@@ -1437,7 +1489,13 @@ function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest, coverag
     if (id) idMap.set(id, file);
   }
   const packageName = packageId(playbookRoot, skillsRoot, repoRoot);
-  const coverageReport = coverage ? recordedCoverage(playbookRoot, idMap) : null;
+  // The recorder accepts every scenario id, routing-gold included, so coverage counts the same set.
+  const recordableIds = new Map();
+  for (const file of scenarioFiles) {
+    const id = extractFeatureId(readText(file), extractFrontmatter(readText(file)));
+    if (id && !recordableIds.has(id)) recordableIds.set(id, file);
+  }
+  const coverageReport = coverage ? recordedCoverage(playbookRoot, recordableIds) : null;
   if (coverageReport) warnings.push(...coverageReport.warnings);
   const hasOperatorFiles = operatorFiles.length > 0;
   const violationCount = errors.length;
@@ -1576,6 +1634,7 @@ module.exports = {
   parseConversationScript,
   extractFeatureId,
   walkMarkdown,
+  parseCsv,
   loadManifest,
   validateScenario,
   isRoutingGoldScenario,
