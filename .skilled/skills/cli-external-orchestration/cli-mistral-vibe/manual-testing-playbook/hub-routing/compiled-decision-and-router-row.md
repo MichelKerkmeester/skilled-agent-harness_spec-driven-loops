@@ -1,7 +1,7 @@
 ---
 title: "VIB-ROUTE-002 -- Compiled decision and router row"
 description: "This scenario validates that the compiled engine and the hub router both name cli-mistral-vibe for the prompt 'delegate to vibe'."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-ROUTE-002 -- Compiled decision and router row
@@ -50,15 +50,6 @@ rg -n '"cli-mistral-vibe": \{' .skilled/skills/cli-external-orchestration/hub-ro
 rg -n 'delegate to vibe' .skilled/skills/cli-external-orchestration/hub-router.json
 rg -n '"workflowMode": "cli-mistral-vibe"' .skilled/skills/cli-external-orchestration/mode-registry.json
 ```
-
-### Recorded Result
-
-- Verdict: `PASS`.
-- Date: 2026-11-14.
-- Observed: the compiled engine printed one target with `backendKind` `cli-dispatch`, `packetId` `cli-mistral-vibe`, `packetKind` `workflow`, `skillId` `cli-external-orchestration` and `workflowMode` `cli-mistral-vibe`.
-- Observed: `hub-router.json` line `104` carries the `"cli-mistral-vibe": {` mode row, and line `276` carries the keyword `delegate to vibe` in the `cli-mistral-vibe-aliases` class.
-- Observed: `mode-registry.json` line `241` carries `"workflowMode": "cli-mistral-vibe"`.
-- Note: the front door serves this same decision, which `VIB-ROUTE-001` records; the legacy row matters when the serving gate falls back.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

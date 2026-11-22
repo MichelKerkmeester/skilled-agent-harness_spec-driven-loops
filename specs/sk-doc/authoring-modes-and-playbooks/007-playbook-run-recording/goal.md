@@ -66,6 +66,7 @@ phase and binds as if written here.
 |-------|---------------|
 | 001-run-recorder-and-validator | `001-run-recorder-and-validator/goal.md` |
 | 002-playbook-marker-backfill | `002-playbook-marker-backfill/goal.md` |
+| 003-hub-reports-destination | `003-hub-reports-destination/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -83,7 +84,7 @@ string, not these files.
 - [x] `node scripts/tests/record-playbook-run.test.cjs` in the mode exits 0
 - [x] `validate-playbook-package.cjs` exits 0 across the fleet and reports no `RESULT_PERSISTENCE_MARKER_MISSING`
 - [x] A root without the marker makes the validator exit 1
-- [x] `validate.sh --strict` prints `RESULT: PASSED` for the parent and both children
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for the parent and all three children
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +104,5 @@ and findings belong here.
 | Phase 1 recorder, runner hand-off, validator and docs | Done | Three test files exit 0. Detail in `001-run-recorder-and-validator/implementation-summary.md` |
 | Phase 2 backfill | Done | Fleet exit 0, 55 PASS and 4 SKIP |
 | Worktree tooling | Repaired locally | 514's install lacked two `@spec-kit` workspace links and `tsx`. Gitignored links were added, matching 505 and the primary install |
+| Phase 3 hub reports destination | Done | `--reports` on the recorder and runner; the three suites exit 0; the three roots validate with `violations=0`; 25 cli-mistral-vibe blocks saved as 22 and 3 PASS report rows. Detail in `003-hub-reports-destination/implementation-summary.md` |
 <!-- /ANCHOR:log -->

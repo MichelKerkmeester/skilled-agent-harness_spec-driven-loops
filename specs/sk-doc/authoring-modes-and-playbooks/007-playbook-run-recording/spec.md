@@ -74,7 +74,7 @@ Every playbook run ends with its verdicts saved in the skill's benchmark folder 
 ### Out of Scope
 - Running any playbook scenario. This program saves results, it does not produce them.
 - Making coverage a default failure. Most playbooks are partly run, and the request was for saved output.
-- Rewriting existing run reports into the recorder's format.
+- Rewriting existing run reports into the recorder's format. Amended 2026-11-22 by the operator: moving verdicts a playbook kept inside its scenario files into recorder runs is in scope, as phase 3 did for cli-mistral-vibe.
 
 ### Files to Change
 
@@ -84,6 +84,11 @@ Every playbook run ends with its verdicts saved in the skill's benchmark folder 
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/{validate-playbook-package,run-conversation-scenario}.cjs` and their tests | Modify | 001-run-recorder-and-validator | Marker error, coverage report, runner hand-off |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/{SKILL.md,assets/*.md}` | Modify | 001-run-recorder-and-validator | One results contract |
 | 11 `manual-testing-playbook/manual-testing-playbook.md` roots | Modify | 002-playbook-marker-backfill | The results marker |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/{record-playbook-run,run-conversation-scenario}.cjs` and their tests | Modify | 003-hub-reports-destination | `--reports` flag, its refusal rules and the hub-reports test |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/{SKILL.md,assets/*.md}` and `changelog/v1.3.0.0.md` | Modify and Create | 003-hub-reports-destination | `--reports` documented; changelog entry for this phase |
+| `.skilled/skills/sk-code/sk-code-ci` and `sk-code-frontend` playbook roots | Modify | 003-hub-reports-destination | The result block's save command names `--reports` |
+| `.skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/` (root and 25 scenario files) | Modify | 003-hub-reports-destination | 25 `Recorded Result` blocks moved out of the scenario files; the root names `--reports` |
+| `.skilled/skills/cli-external-orchestration/benchmark/reports/` (two run folders and `README.md`) | Create | 003-hub-reports-destination | Recorder-written reports for the moved blocks |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -97,6 +102,7 @@ Every playbook run ends with its verdicts saved in the skill's benchmark folder 
 |-------|--------|-------|--------|
 | 1 | 001-run-recorder-and-validator/ | Recorder script, runner hand-off, validator enforcement and the mode's docs | Complete |
 | 2 | 002-playbook-marker-backfill/ | The results marker in the 11 roots that lack it | Complete |
+| 3 | 003-hub-reports-destination/ | The hub reports destination: `--reports` for a mode with no benchmark folder, the roots and docs that name it, and the cli-mistral-vibe reports | Complete |
 
 ### Phase Transition Rules
 
@@ -110,6 +116,7 @@ Every playbook run ends with its verdicts saved in the skill's benchmark folder 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-run-recorder-and-validator | 002-playbook-marker-backfill | The validator reports a missing marker as an error, and the template marker text is final | `validate-playbook-package.cjs` exits 1 and names `RESULT_PERSISTENCE_MARKER_MISSING` for the 11 roots |
+| 002-playbook-marker-backfill | 003-hub-reports-destination | The 11 roots carry the results marker, and the fleet validator passes with it enforced | `validate-playbook-package.cjs --package` exits 0 with `violations=0` for sk-code-ci, sk-code-frontend and cli-mistral-vibe, and the recorder accepts `--reports` for a hub |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -117,7 +124,8 @@ Every playbook run ends with its verdicts saved in the skill's benchmark folder 
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- None. The operator chose the two phases, the backfill and the worktree on 2026-11-22.
+- Resolved 2026-11-22: the operator accepted the phase 3 move of the 25 cli-mistral-vibe blocks as a scope amendment, recorded in Out of Scope.
+- The operator chose the two phases, the backfill and the worktree on 2026-11-22. Phase 3 was added the same day for the hub destination.
 <!-- /ANCHOR:questions -->
 
 ---

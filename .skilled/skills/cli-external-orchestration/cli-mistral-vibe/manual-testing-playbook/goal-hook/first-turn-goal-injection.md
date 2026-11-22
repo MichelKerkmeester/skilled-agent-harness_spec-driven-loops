@@ -1,7 +1,7 @@
 ---
 title: "VIB-GOAL-002 -- First-turn goal injection"
 description: "This scenario validates that the single session_start hook is registered and that a bound first turn received the packet's goal slice in the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-GOAL-002 -- First-turn goal injection
@@ -50,17 +50,6 @@ rg -c 'vibe\.hookContext' specs/cli-external-orchestration/runtime-lifecycle/004
 rg -c 'Give every Vibe dispatch bound to a packet' specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks/scratch/first-turn/session/journal/0000000000000001.jsonl
 node -e 'const j=require("./specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks/scratch/first-turn/export.json"); console.log(j.exit_code, j.outcome);'
 ```
-
-### Recorded Result
-
-- Verdict: `PASS`.
-- Date: 2026-11-14.
-- Basis: recorded evidence from an earlier keyed run, not a run started by this review. The journal and the record named above exist, and the counts and the pair below were read from them.
-- Observed: `rg -c 'session_start' .vibe/hooks.toml` printed `1` and exited `0`.
-- Observed: `rg -c 'vibe\.hookContext'` over the journal printed `3` and exited `0`; the Objective phrase count printed `6` and exited `0`.
-- Observed: the recorded `export.json` printed `0 finished`.
-- Observed: the journal's first user message carries the packet's goal slice in a block tagged `vibe.hookContext: true`, beside the session context and the startup warnings.
-- Caveat: the recorded run trusted the checkout root and ran from the root on purpose so the project hook would load. A scratch-cwd dispatch and a fan-out lineage trust only their own folder, so the project hook does not load there; they get the slice from the hooks `render-home-hooks.cjs` writes into their home, when `VIBE_SPEC_FOLDER` names the packet. A keyed scratch-cwd run with the home file quoted the Objective line; its record is under `011-vibe-context-and-goal-hooks/scratch/scratch-cwd-home-hooks/`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

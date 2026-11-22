@@ -1,7 +1,7 @@
 ---
 title: "BB-002 -- Pinned npm install"
 description: "This scenario validates the pinned Bladebro npm install for `BB-002`. It focuses on the global package and its native darwin package arriving without a postinstall script."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-002 -- Pinned npm install
@@ -78,6 +78,7 @@ The npm output and exit status.
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md` | Install, digest pin and doctor checks |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/install-and-health/pinned-install-and-digest-check.md` | Feature catalog entry: Pinned install and digest check |
 
 ---
 

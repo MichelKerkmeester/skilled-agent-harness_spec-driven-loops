@@ -1,7 +1,7 @@
 ---
 title: "BB-014 -- Uninstall and data root removal"
 description: "This scenario validates the final uninstall for `BB-014`. It focuses on the package and its data root being gone after operator approval."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # BB-014 -- Uninstall and data root removal
@@ -88,6 +88,7 @@ All outputs, the data root step 1 printed, and the operator's confirmation from 
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md` | Install, digest pin and doctor checks |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/install-and-health/teardown-and-rollback.md` | Feature catalog entry: Teardown and rollback |
 
 ---
 

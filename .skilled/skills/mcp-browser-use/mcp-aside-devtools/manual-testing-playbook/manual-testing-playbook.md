@@ -1,7 +1,7 @@
 ---
 title: "MCP Aside Devtools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-aside-devtools skill."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # MCP Aside Devtools: Manual Testing Playbook
@@ -44,7 +44,7 @@ This playbook provides 29 deterministic scenarios across 8 categories (7 operato
 ### Epistemic Ground Rules
 
 - The MCP tool inventory is version-pinned evidence (one `repl` tool on `1.26.626.1517`) — scenarios assert *discovery ran*, not that the inventory matches forever.
-- Console capture (ASD-012) and network capture (ASD-013) began as guarded probes with no verified contract; the DevTools-parity scenario ASD-018 now documents the API-grounded Playwright `page.on(...)` pattern that supersedes the fail-closed framing — live execution still needs a bound authorized session, so ASD-018 (and its sibling parity scenarios ASD-016..021) are SKIP-valid without one.
+- Console capture (ASD-012) and network capture (ASD-013) began as guarded probes with no verified contract. ASD-018 then documented the Playwright `page.on(...)` pattern, but on Aside 1.26.626.1517 `page.on('console')`, `page.on('request')` and `page.on('response')` each throw an error that lists the supported page events and points to `page.console.logs()`, and `page.context()` does not exist. The probes and ASD-018 record that per-event outcome; live execution still needs a bound authorized session, so ASD-016..021 are SKIP-valid without one.
 - The DevTools-parity family (ASD-016..021) mirrors the Chrome DevTools capability surface through the fixture-confirmed Playwright `page` API. Two honest gaps stay flagged, never claimed: **no native HAR export** (assemble a HAR-equivalent from events) and **no Lighthouse audit** (Performance-API timing only).
 - Never run the installer or `aside --update` inside a scenario; ASD-014 simulates absence with PATH manipulation only.
 
@@ -76,7 +76,8 @@ This playbook provides 29 deterministic scenarios across 8 categories (7 operato
 
 ## 4. DETERMINISTIC COMMAND NOTATION
 
-- CLI commands are shown as `aside <subcommand/args>` (e.g., `aside repl "openTab('https://example.com')"`).
+- CLI commands are shown as `aside <subcommand/args>` (e.g., `aside repl "await openTab('https://example.com'); console.log(page.url())"`).
+- REPL process rules, observed on Aside 1.26.626.1517: each `aside repl "<code>"` call starts a new process with `page` null, so a page opened by one call never carries over to the next. A scenario that needs a page opens it with `await openTab(...)` at the start of the same evaluation, or feeds several evaluations to one process on stdin (`{ echo "await openTab('https://example.com')"; sleep 5; echo "<code>"; sleep 6; echo exit; } | aside repl`). Only `console.log` output is printed by `aside repl` and by the MCP `repl` tool; a top-level `return` value never appears. Writes outside the session folder are refused or redirected (`[WARN] Use <session>/tmp instead of /tmp`, or `escapes the session directory` for `page.pdf`), and a redirected file is gone after the REPL exits, so file checks run with the REPL's `fs` global inside the same evaluation. An `aside repl` error still exits 0, so exit status alone is never a pass signal.
 - MCP requests are shown as JSON-RPC method names (`initialize`, `tools/list`, `tools/call(repl)`).
 - Code Mode calls are shown as `aside.aside_repl({ ... })` (the TS call surface, confirmed by live discovery 2026-07-16; the registry/discovery name is `aside.aside.repl` — see `references/discovery-fixture-2026-07-16.json`).
 - Bash steps are shown as `bash: <command>`.
@@ -176,7 +177,7 @@ Verify `aside --session <id> "<task>"` continues a prior task's account-scoped s
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, continue a prior agent task by its session id through the aside CLI against the same account. Verify the continuation references prior-task context rather than starting cold. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: a prior task's session id is captured from its run output/UI; Step 2: `aside --session <id> "<follow-up>" 2>&1` returns; Step 3: the response demonstrably uses prior context. Where the session id is not surfaced by the installed version, record that as the finding (storage backend is an open question) and SKIP with that blocker.
+Expected signals: Step 1: the seed task notes the page title (`Example Domain`; example.com has no `h1`); Step 2: the seed's session id is read as the new `id` row in the `sessions` table of `~/.aside/u/0/state.db`, since the run prints none and the dated folder name is rejected; Step 3: `aside --session <id> "<follow-up>" 2>&1` returns; Step 4: the response demonstrably uses prior context. Where no session id is found in the run output or the `sessions` table, record that as the finding and SKIP with that blocker.
 
 #### Test Execution
 > **Feature File:** [ASD-005](agent-task/session-continuation.md)
@@ -190,12 +191,12 @@ This category covers 2 scenario summaries while the linked feature files remain 
 ### ASD-006 | REPL open tab
 
 #### Description
-Verify `aside repl "await openTab('https://example.com')"` round-trips against a bound browser context.
+Verify `aside repl "await openTab('https://example.com'); console.log(page.url())"` round-trips against a bound browser context and logs the opened URL.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, open a tab deterministically through the aside REPL against the signed-in browser. Verify the call returns without error; if it reports an unbound browser profile, classify that distinctly and document it. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, open a tab deterministically through the aside REPL against the signed-in browser. Verify the call logs the opened URL without error; if it reports an unbound browser profile, classify that distinctly and document it. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `aside repl "await openTab('https://example.com')" 2>&1` exits 0; Step 2: no "not bound to a browser profile" error (if present, the verdict is FAIL-with-binding-cause, cross-reference ASD-010's explanation of the same state on MCP).
+Expected signals: Step 1: the call prints `https://example.com/` with no error line (exit 0 alone is not a pass signal); Step 2: no "not bound to a browser profile" error (if present, the verdict is FAIL-with-binding-cause, cross-reference ASD-010's explanation of the same state on MCP).
 
 #### Test Execution
 > **Feature File:** [ASD-006](repl-evidence/repl-open-tab.md)
@@ -206,9 +207,9 @@ Expected signals: Step 1: `aside repl "await openTab('https://example.com')" 2>&
 Verify a REPL screenshot writes a real PNG (existence, size > 0, magic bytes `89 50 4e 47`) independent of the tool response.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, capture a screenshot of the opened page through the aside REPL against an open tab from ASD-006. Verify the file exists, is non-empty, and starts with PNG magic bytes. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, capture a screenshot of a page opened in the same REPL evaluation through the aside REPL. Verify the file exists, is non-empty, and starts with PNG magic bytes. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `bash: examples/repl-evidence-capture.sh https://example.com /tmp/aside-evidence` (or the equivalent inline REPL calls) exits 0; Step 2: file exists with size > 0; Step 3: `xxd` head shows `89 50 4e 47`.
+Expected signals: Step 1: one `aside repl` evaluation opens the tab, writes `./tmp/aside-test.png` in the session folder and reads it back with `fs`; Step 2: the logged size is > 0; Step 3: the logged magic is `89504e47`. The older `examples/repl-evidence-capture.sh` chains separate calls and a `/tmp` path, so it does not hold on Aside 1.26.626.1517.
 
 #### Test Execution
 > **Feature File:** [ASD-007](repl-evidence/repl-screenshot-artifact.md)
@@ -248,12 +249,12 @@ Expected signals: Step 1: `tools/list` returns a non-empty `tools` array; Step 2
 ### ASD-010 | Unbound-profile error classification
 
 #### Description
-Verify a fresh `aside mcp` process reports the browser-unbound state on `listBrowserTabs()` and the orchestrator classifies it as binding, not auth.
+Verify a fresh `aside mcp` process reports its binding state on `listBrowserTabs()`, and that any not-bound error is classified as binding, not auth.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, call listBrowserTabs() via tools/call(repl) on a fresh aside mcp process against no bound profile. Verify the "not bound to a browser profile" message is returned and classified as PROFILE_UNBOUND — explicitly not a missing-credential failure. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, call listBrowserTabs() via tools/call(repl) on a fresh aside mcp process and log the tab count. Verify the binding state is recorded; if the "not bound to a browser profile" message appears, classify it as PROFILE_UNBOUND, explicitly not a missing-credential failure. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `tools/call(repl)` with `listBrowserTabs()` returns the binding error text; Step 2: the report names the state PROFILE_UNBOUND and cites the undocumented binding procedure as an open question. If the installed version returns tabs instead (behavior change), record the new behavior as the finding.
+Expected signals: Step 1: `tools/call(repl)` with code that logs `listBrowserTabs()`'s count; on Aside 1.26.626.1517 with the app running and signed in, a fresh process is bound and the count is logged; Step 2: if the binding error appears instead, the report names the state PROFILE_UNBOUND and cites the undocumented binding procedure as an open question. Code that uses `return` yields empty result text.
 
 #### Test Execution
 > **Feature File:** [ASD-010](mcp-transport/unbound-profile-error.md)
@@ -285,7 +286,7 @@ Probe whether Playwright `page.on('console', ...)` works on a bound page inside 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, attempt a sentinel console round trip on a bound page through the aside REPL against an open tab. Verify either the sentinel is captured (supported — record the result-shape fixture) or the probe fails cleanly (unsupported — fail closed, no parity claim). Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: guarded listener registration + `console.log('ASD-012 sentinel')` evaluation; Step 2: either the sentinel appears in captured output (record shape) or the failure is captured verbatim; Step 3: the verdict never claims parity with dedicated console tooling.
+Expected signals: Step 1: one evaluation opens its own tab, then guarded listener registration + `console.log('ASD-012 sentinel')` evaluation, with results printed by `console.log`; Step 2: either the sentinel appears in captured output (record shape) or the failure is captured verbatim (on Aside 1.26.626.1517 the event is unsupported and the error points to `page.console.logs()`); Step 3: the verdict never claims parity with dedicated console tooling.
 
 #### Test Execution
 > **Feature File:** [ASD-012](probes-and-gaps/console-probe.md)
@@ -296,9 +297,9 @@ Expected signals: Step 1: guarded listener registration + `console.log('ASD-012 
 Probe whether `page.on('request'/'response', ...)` yields structured network events on a bound page; no HAR parity is promised.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, attempt guarded request/response listeners on a bound page through the aside REPL against a page reload. Verify either parseable structured events are captured (record shape, redact headers/bodies) or the probe fails cleanly. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, attempt guarded request/response listeners on a page opened in the same REPL evaluation, then navigate it. Verify either parseable structured events are captured (record shape, redact headers/bodies) or the probe fails cleanly. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: guarded listener registration + navigation; Step 2: either parseable event records with a known marker or the failure captured verbatim; Step 3: no HAR-export parity claim in the verdict.
+Expected signals: Step 1: tab opened in the same evaluation, then guarded listener registration + navigation, results printed by `console.log`; Step 2: either parseable event records with a known marker or the failure captured verbatim (on Aside 1.26.626.1517 the events are unsupported); Step 3: no HAR-export parity claim in the verdict.
 
 #### Test Execution
 > **Feature File:** [ASD-013](probes-and-gaps/network-probe.md)
@@ -315,9 +316,9 @@ This category covers 6 scenario summaries mirroring the Chrome DevTools capabili
 Verify `page.$eval` / `page.evaluate` / `snapshot(page)` read the DOM of a bound tab (the `bdg dom query` / `bdg dom eval` analog through Playwright).
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, query the DOM and evaluate page JS through the aside REPL on a bound tab, and read the accessibility snapshot. Verify the h1, title, and a non-empty snapshot tree all come from real calls. Return a concise user-facing pass/fail verdict with the main reason. SKIP-valid with the blocker "no bound Aside session available".
+Prompt summary: As a manual-testing orchestrator, query the DOM and evaluate page JS through the aside REPL on a bound tab, and read the accessibility snapshot. Verify the `<title>` text, `document.title`, the h1 count, and a non-empty snapshot tree all come from real calls. Return a concise user-facing pass/fail verdict with the main reason. SKIP-valid with the blocker "no bound Aside session available".
 
-Expected signals: Step 1: bound tab from ASD-006; Step 2: `page.$eval('h1',...)` = "Example Domain", `page.evaluate(()=>document.title)` contains "Example", `snapshot(page).tree` non-empty.
+Expected signals: Step 1: tab opened in the same evaluation; Step 2: `page.$eval('title',...)` = "Example Domain", `page.evaluate(()=>document.title)` contains "Example", the h1 count is a number (0 on example.com, which no longer has an `h1`), `snapshot(page).tree` non-empty.
 
 #### Test Execution
 > **Feature File:** [ASD-016](devtools-parity/dom-query-inspection.md)
@@ -325,12 +326,12 @@ Expected signals: Step 1: bound tab from ASD-006; Step 2: `page.$eval('h1',...)`
 ### ASD-017 | Full-page screenshot + PDF capture
 
 #### Description
-Verify `page.screenshot({ fullPage })` and `page.pdf` write valid artifacts to `/tmp/aside-artifacts/`, each verified by magic bytes.
+Verify `page.screenshot({ fullPage })` and `page.pdf` write valid artifacts to `./artifacts/` in the session folder, each verified by magic bytes inside the same evaluation.
 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, capture a full-page screenshot and a PDF through the aside REPL and confirm both artifacts are valid by magic bytes. Verify PNG magic `89 50 4e 47` and PDF header `%PDF`. Return a concise user-facing pass/fail verdict with the main reason. SKIP-valid with the blocker "no bound Aside session available".
 
-Expected signals: Step 3: capture exits 0; Step 4: both files size > 0; Step 5: PNG magic `89 50 4e 47`, PDF header `%PDF`.
+Expected signals: Step 2: one evaluation captures, reads both files back with `fs` and deletes them; the logged sizes are > 0, PNG magic `89504e47`, PDF header `%PDF`; no `/tmp` redirect warning or `escapes the session directory` error.
 
 #### Test Execution
 > **Feature File:** [ASD-017](devtools-parity/screenshot-pdf-capture.md)
@@ -338,12 +339,12 @@ Expected signals: Step 3: capture exits 0; Step 4: both files size > 0; Step 5: 
 ### ASD-018 | Console + network event capture
 
 #### Description
-Verify Playwright `page.on('console'|'request'|'response', ...)` listeners capture events on a bound tab — the documented successor to guarded probes ASD-012/ASD-013, with no native-tool or HAR-export parity claim.
+Verify Playwright `page.on('console'|'request'|'response', ...)` listeners on a bound tab, each guarded, and record per event whether it registers or is unsupported, with no native-tool or HAR-export parity claim. This is the documented successor to guarded probes ASD-012/ASD-013.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, capture console and network events through the aside REPL with page.on listeners on a bound tab, and report the shape honestly. Verify a parseable console array (with the sentinel) and a parseable network array (request+response phases), redacted, with an explicit HAR-equivalent note. Return a concise user-facing pass/fail verdict with the main reason. SKIP-valid with the blocker "no bound Aside session available".
+Prompt summary: As a manual-testing orchestrator, capture console and network events through the aside REPL with page.on listeners on a bound tab, and report the shape honestly. Verify a parseable per-event outcome map, and for any registered event its parseable array, redacted, with an explicit HAR-equivalent note. Return a concise user-facing pass/fail verdict with the main reason. SKIP-valid with the blocker "no bound Aside session available".
 
-Expected signals: Step 2: listeners registered before reload; console array includes `ASD-018 sentinel`; network array has request and response phases; verdict claims no dedicated console tool and no HAR export.
+Expected signals: Step 2: listeners attempted before navigation; each event is reported `registered` or `UNSUPPORTED:` with the verbatim error (all three unsupported on Aside 1.26.626.1517); a registered console event captures `ASD-018 sentinel` and registered network events show request and response phases; verdict claims no dedicated console tool and no HAR export.
 
 #### Test Execution
 > **Feature File:** [ASD-018](devtools-parity/console-network-capture.md)
@@ -351,12 +352,12 @@ Expected signals: Step 2: listeners registered before reload; console array incl
 ### ASD-019 | Cookies + web storage read
 
 #### Description
-Verify `page.context().cookies()` and `localStorage`/`sessionStorage` key reads via `page.evaluate` return redacted state on a bound tab.
+Verify the `page.context()` cookie gap is recorded and page-visible cookie names plus `localStorage`/`sessionStorage` keys read via `page.evaluate` return redacted state on a bound tab.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, read cookies and web-storage keys through the aside REPL on a bound tab, redacting values. Verify a parseable `{name,domain}` cookie array and a parseable `{local,session}` key map, with no values in saved evidence. Return a concise user-facing pass/fail verdict with the main reason. SKIP-valid with the blocker "no bound Aside session available".
+Prompt summary: As a manual-testing orchestrator, read cookies and web-storage keys through the aside REPL on a bound tab, redacting values. Verify the context-cookie gap is stated, plus a parseable cookie-name array and a parseable `{local,session}` key map, with no values in saved evidence. Return a concise user-facing pass/fail verdict with the main reason. SKIP-valid with the blocker "no bound Aside session available".
 
-Expected signals: Step 2: cookies as `{name, domain}` (empty is valid for example.com); storage keys enumerated; no values logged.
+Expected signals: Step 2: `typeof page.context` is not `"function"` on Aside 1.26.626.1517 and the verdict states the gap; page-visible cookie names (empty is valid for example.com); storage keys enumerated; no values logged.
 
 #### Test Execution
 > **Feature File:** [ASD-019](devtools-parity/cookies-storage.md)
@@ -369,7 +370,7 @@ Verify `page.evaluate` over the Performance API returns navigation + paint metri
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, capture Performance-API timing through the aside REPL on a bound tab, and state the Lighthouse gap. Verify parseable navigation timing (ttfb/dcl/load) and paint entries, plus an explicit "no Lighthouse score — requires external tooling" note. Return a concise user-facing pass/fail verdict with the main reason. SKIP-valid with the blocker "no bound Aside session available".
 
-Expected signals: Step 2: after `waitForLoadState('load')`, `{ nav: {...}, paint: [...] }` parses; verdict states no Lighthouse score is produced.
+Expected signals: Step 2: in one evaluation that opens its own tab, after `waitForLoadState('load')`, `{ nav: {...}, paint: [...] }` parses; verdict states no Lighthouse score is produced.
 
 #### Test Execution
 > **Feature File:** [ASD-020](devtools-parity/performance-timing.md)

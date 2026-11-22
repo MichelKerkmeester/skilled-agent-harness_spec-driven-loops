@@ -1,0 +1,4 @@
+# recorded by record-playbook-run.cjs from outside the repository and not kept (r.csv)
+scenario_id,runtime,verdict,reason,evidence
+ASD-012,,PASS,"unsupported path: page.on console is not supported, verbatim error logged, pointer to page.console.logs()",outside the repository and not kept (ASD-012.txt)
+ASD-013,,PASS,"unsupported path: page.on request is not supported, verbatim error logged; no headers or bodies captured",outside the repository and not kept (ASD-013.txt)

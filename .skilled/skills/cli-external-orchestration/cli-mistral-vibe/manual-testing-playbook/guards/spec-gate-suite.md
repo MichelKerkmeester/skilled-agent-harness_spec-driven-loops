@@ -1,7 +1,7 @@
 ---
 title: "VIB-GRD-001 -- Repo-guards spec-gate suite"
 description: "This scenario validates that the Vibe repo-guards spec-gate suite passes: an interactive write is denied until the spec-folder question is answered, and a child dispatch is never denied."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-GRD-001 -- Repo-guards spec-gate suite
@@ -47,15 +47,6 @@ The spec gate is the guard that can stop a write, and its exemption is what keep
 ```bash
 node --test .vibe/plugins/repo-guards/tests/spec-gate.test.mjs
 ```
-
-### Recorded Result
-
-- Verdict: `PASS`.
-- Date: 2026-11-14.
-- Observed: the command exited `0` with `tests 3`, `pass 3`, `fail 0`, `cancelled 0`, `skipped 0` and `todo 0`.
-- Observed: the three cases printed as `an interactive session is denied a write until the spec-folder question is answered`, `a headless dispatch that inherits AI_SESSION_CHILD=1 is never denied` and `a session whose payload names a parent is never denied`, all passing.
-- Note: the bundle is a hook bundle declared in `.vibe/hooks.toml`, not a plugin package. A run's export can warn that no supported plugin manifest was found for the folder, which is expected for a hook bundle and does not change the guard result.
-- Note: this suite covers the spec gate only. The other guards in the bundle have their own fixtures and are outside this scenario.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

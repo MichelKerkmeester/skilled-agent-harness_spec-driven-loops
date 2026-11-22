@@ -1,7 +1,7 @@
 ---
 title: "BB-005 -- MCP tools and a Code Mode call"
 description: "This scenario validates the Bladebro MCP lane for `BB-005`. It focuses on the five tools over stdio, their Code Mode names and one live synchronous call."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-005 -- MCP tools and a Code Mode call
@@ -82,6 +82,7 @@ The tools/list line, the Code Mode discovery lines and the call result.
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/mcp-wiring.md` | MCP and Code Mode wiring |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/transport/mcp-code-mode-lane.md` | Feature catalog entry: MCP lane through Code Mode |
 
 ---
 

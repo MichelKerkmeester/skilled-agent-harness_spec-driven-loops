@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/003-hub-reports-destination",
+  "description": "Phase 3: hub-reports-destination",
+  "keywords": [
+    "phase",
+    "hub-reports-destination"
+  ],
+  "lastUpdated": "2026-11-22T11:43:14.084Z",
+  "specId": "003",
+  "folderSlug": "hub-reports-destination",
+  "parentChain": [
+    "sk-doc",
+    "authoring-modes-and-playbooks",
+    "007-playbook-run-recording"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

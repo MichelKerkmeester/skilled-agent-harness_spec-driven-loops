@@ -1,7 +1,7 @@
 ---
 title: "BB-003 -- Native binary digest against the release sidecar"
 description: "This scenario validates the native binary pin for `BB-003`. It focuses on the SHA-256 of the installed binary matching the release sidecar before the binary first runs."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-003 -- Native binary digest against the release sidecar
@@ -80,6 +80,7 @@ Both digest lines.
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md` | Install, digest pin and doctor checks |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/install-and-health/pinned-install-and-digest-check.md` | Feature catalog entry: Pinned install and digest check |
 
 ---
 

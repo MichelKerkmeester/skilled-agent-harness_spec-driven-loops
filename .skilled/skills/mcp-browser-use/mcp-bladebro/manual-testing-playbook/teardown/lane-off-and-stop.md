@@ -1,7 +1,7 @@
 ---
 title: "BB-013 -- Lane off, clone wiped and daemon stopped"
 description: "This scenario validates the real-browser rollback for `BB-013`. It focuses on the lane off, the clone wiped, the overrides reset and the daemon stopped."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-013 -- Lane off, clone wiped and daemon stopped
@@ -88,6 +88,7 @@ Every output. Leave out any line that names the host user profile.
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/browser-lanes.md` | Agent-browser and real-browser lanes |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/install-and-health/teardown-and-rollback.md` | Feature catalog entry: Teardown and rollback |
 
 ---
 

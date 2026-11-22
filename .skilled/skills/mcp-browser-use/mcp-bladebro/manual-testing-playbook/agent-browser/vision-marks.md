@@ -1,7 +1,7 @@
 ---
 title: "BB-008 -- Marked screenshot"
 description: "This scenario validates `vision --marks` for `BB-008`. It focuses on a PNG with an image path and interactive marks."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-008 -- Marked screenshot
@@ -78,6 +78,7 @@ The JSON and the exit status.
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md` | Bladebro CLI commands and flags |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/agent-browser/marked-screenshots.md` | Feature catalog entry: Marked screenshots |
 
 ---
 

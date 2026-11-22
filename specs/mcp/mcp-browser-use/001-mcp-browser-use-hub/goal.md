@@ -35,7 +35,6 @@ _memory:
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
-<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
 **Objective:** Agents reach Bladebro, Aside and Chrome DevTools through one hub, `.skilled/skills/mcp-browser-use/`, whose modes route through both advisor stages.
 
@@ -62,7 +61,6 @@ D1 note: 12 ran, 2 operator-added for a setup fix. D1 stands.
 
 <!-- ANCHOR:binding -->
 ## 2. BINDING
-<!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->
 
 **Read the child goal before working a phase.** Each is authoritative for its
 phase and binds as if written here.
@@ -75,6 +73,8 @@ phase and binds as if written here.
 | 004-bladebro-mode | `004-bladebro-mode/goal.md` |
 | 005-routing-and-surfaces | `005-routing-and-surfaces/goal.md` |
 | 006-verification | `006-verification/goal.md` |
+| 007-bladebro-parity-and-changelogs | `007-bladebro-parity-and-changelogs/goal.md` |
+| 008-live-runs-and-playbook-fixes | `008-live-runs-and-playbook-fixes/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -87,7 +87,6 @@ string, not these files.
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
-<!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
 - [x] 001-research/research/deep-research-state.jsonl holds at least 10 iteration records and 001-research/research/research.md exists
 - [x] .skilled/skills/mcp-browser-use/mode-registry.json lists exactly three modes and .skilled/skills/mcp-tooling/mode-registry.json lists six
@@ -127,5 +126,6 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Parent goal.md not produced by --with-goal | Written by hand from the sk-create-goal phase-parent template |
+| Parent over the 4,000-character durable budget after the 007 and 008 binding rows | The slice measured 4165 characters. The three `FILL` template comments were removed (cut order step 3 in `budget-and-handoff.md`). It now measures 3704. No criterion and no decision changed |
 | Brief estimated about 30 referencing files outside mcp-tooling | `rg -l` counted 45 on 2026-11-21, several of them generated fixtures and benchmark reports; 003 carries the measured list |
 <!-- /ANCHOR:log -->

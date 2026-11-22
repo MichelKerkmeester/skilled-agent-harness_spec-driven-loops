@@ -1,7 +1,7 @@
 ---
 title: "VIB-MIR-001 -- Sync generator checks"
 description: "This scenario validates that the three generated .vibe mirrors report in sync through their --check mode without writing to the tree."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-MIR-001 -- Sync generator checks
@@ -49,15 +49,6 @@ node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-agents-vibe.cjs --che
 node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-skills-vibe.cjs --check
 node .skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs --check
 ```
-
-### Recorded Result
-
-- Verdict: `PASS`.
-- Date: 2026-11-14.
-- Observed: `sync-agents-vibe.cjs --check` exited `0` with `[vibe-agent-sync] PASS: 11 agent profiles are in sync.`
-- Observed: `sync-skills-vibe.cjs --check` exited `0` with `[vibe-skill-sync] LINKS: 56` and `[vibe-skill-sync] PASS: 56 skill links are in sync.` The run printed `EXCLUDED` lines for `.state`, `benchmark`, `dist`, `node_modules`, `fixtures` and `scratch` directories.
-- Observed: `sync-prompts-vibe.cjs --check` exited `0` with `[vibe-prompt-sync] PASS: 45 prompt stubs are in sync.`
-- Note: no command printed a write, prune or drift line. The counts come from the run; `.vibe/SYNC.md` names the generators and the drift condition but does not pin a count.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

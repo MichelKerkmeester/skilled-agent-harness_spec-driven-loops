@@ -1,7 +1,7 @@
 ---
 title: "MCP Chrome DevTools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-chrome-devtools skill."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # MCP Chrome DevTools: Manual Testing Playbook
@@ -129,12 +129,12 @@ Expected signals: Step 1: `bdg https://example.com` exits 0; Step 2: `bdg status
 ### BDG-003 | Status JSON
 
 #### Description
-Verify `bdg status` returns valid JSON with expected fields (`state`, `url`).
+Verify `bdg status --json` returns valid JSON that reports an active session and its url.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, query bdg session status as JSON through the bdg CLI against an active session. Verify output is valid JSON with state and url fields. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, query bdg session status as JSON through the bdg CLI against an active session. Verify output is valid JSON with an active session and a url. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `bdg status 2>&1 | jq '.'` succeeds; Step 2: parsed object contains `state` and `url` fields.
+Expected signals: Step 1: `bdg status --json | jq -c 'keys'` succeeds; Step 2: `.active` is `true`; Step 3: a `url` string is present.
 
 #### Test Execution
 > **Feature File:** [BDG-003](../manual-testing-playbook/cli-bdg-lifecycle/status-json.md)
@@ -166,7 +166,7 @@ Verify `bdg cdp --list` returns a non-empty list of CDP domains (Page, Network, 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, enumerate available Chrome DevTools Protocol domains through the bdg CLI against the live CDP catalog. Verify output contains common domains like Page, Network, Runtime. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `bdg cdp --list` returns non-empty output; Step 2: output contains `Page`, `Network`, `Runtime`.
+Expected signals: Step 1: `bdg cdp --list` returns non-empty JSON; Step 2: a quoted-name grep finds `"Page"`, `"Network"` and `"Runtime"`.
 
 #### Test Execution
 > **Feature File:** [BDG-005](../manual-testing-playbook/protocol-discovery/list-cdp-domains.md)
@@ -174,12 +174,12 @@ Expected signals: Step 1: `bdg cdp --list` returns non-empty output; Step 2: out
 ### BDG-006 | Describe Page domain
 
 #### Description
-Verify `bdg cdp --describe Page` returns method signatures for Page domain.
+Verify `bdg cdp --describe Page` summarizes the Page domain and `bdg cdp Page --list` lists its methods.
 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, describe the Page CDP domain through the bdg CLI against the live CDP catalog. Verify output lists at least navigate and reload methods. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `bdg cdp --describe Page` returns non-empty output; Step 2: output mentions `navigate` and `reload` (or similar core methods).
+Expected signals: Step 1: `bdg cdp --describe Page` returns a domain summary; Step 2: `bdg cdp Page --list` names `navigate` and `reload`.
 
 #### Test Execution
 > **Feature File:** [BDG-006](../manual-testing-playbook/protocol-discovery/describe-page-domain.md)
@@ -251,12 +251,12 @@ This category covers 3 scenario summaries while the linked feature files remain 
 ### BDG-011 | Console list
 
 #### Description
-Verify `bdg console --list` returns console messages from the active page.
+Verify `bdg console --list --json` returns console messages from the active page.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, retrieve console messages from the active page through the bdg CLI against an active session that has logged some console output. Verify output is JSON with messages array. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, retrieve console messages from the active page through the bdg CLI against an active session that has logged some console output. Verify output is JSON that holds the logged message. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `bdg dom eval "console.log('BDG-011 test')"` exits 0; Step 2: `bdg console --list 2>&1 | jq '.'` includes a message containing `BDG-011 test`.
+Expected signals: Step 1: `bdg dom eval "console.log('BDG-011 test')"` exits 0; Step 2: `bdg console --list --json | jq '.'` includes a message containing `BDG-011 test`.
 
 #### Test Execution
 > **Feature File:** [BDG-011](../manual-testing-playbook/console-and-network/console-list.md)
@@ -264,12 +264,12 @@ Expected signals: Step 1: `bdg dom eval "console.log('BDG-011 test')"` exits 0; 
 ### BDG-012 | Cookie retrieval
 
 #### Description
-Verify `bdg network getCookies` returns cookie array from the active page.
+Verify `bdg network getCookies --json` returns cookie array from the active page.
 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, retrieve cookies from the active page through the bdg CLI against an active session. Verify output is JSON array (may be empty for example.com). Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `bdg network getCookies 2>&1 | jq 'map({name, domain})'` succeeds; Step 2: result is an array (length >= 0; empty is valid for example.com).
+Expected signals: Step 1: `bdg network getCookies --json | jq 'map({name, domain})'` succeeds; Step 2: result is an array (length >= 0; empty is valid for example.com).
 
 #### Test Execution
 > **Feature File:** [BDG-012](../manual-testing-playbook/console-and-network/cookies-retrieval.md)
@@ -296,12 +296,12 @@ This category covers 5 scenario summaries while the linked feature files remain 
 ### BDG-014 | chrome_devtools_1 navigate via Code Mode
 
 #### Description
-Verify `chrome_devtools_1.chrome_devtools_1_navigate_page({url})` succeeds via Code Mode.
+Verify `chrome_devtools_1.chrome_devtools_1_navigate_page({url})` succeeds via Code Mode as a synchronous call, with no `await`.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com through Code Mode against the configured chrome_devtools_1 MCP server. Verify the call succeeds and screenshot returns valid bytes. Cross-reference: this scenario depends on CM-005 (correct manual.tool form) and CM-015 (Chrome navigate + screenshot). Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com through Code Mode against the configured chrome_devtools_1 MCP server. Verify the call succeeds and the screenshot file is a valid PNG. Cross-reference: this scenario depends on CM-005 (correct manual.tool form) and CM-015 (Chrome navigate + screenshot). Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: navigate call succeeds; Step 2: subsequent screenshot returns base64 of length > 1000.
+Expected signals: Step 1: navigate call succeeds; Step 2: `take_screenshot` with a `filePath` writes a non-empty file that starts with PNG magic `89 50 4e 47`.
 
 #### Test Execution
 > **Feature File:** [BDG-014](../manual-testing-playbook/mcp-parallel-instances/chrome-devtools-1-navigate.md)
@@ -327,7 +327,7 @@ Verify `close_page` and `select_page` work for managing multiple pages in a sing
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, open 2 pages in chrome_devtools_1, close the first, and confirm the second is still accessible through Code Mode against the chrome_devtools_1 MCP instance. Verify select_page can switch back to the surviving page. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: 2 pages opened; Step 2: close_page returns success for first; Step 3: select_page returns success for second; Step 4: subsequent take_screenshot returns valid bytes for the second page.
+Expected signals: Step 1: 2 pages opened, their numeric IDs read from the `## Pages` text; Step 2: the close_page page list drops the first; Step 3: the select_page page list marks the second `[selected]`; Step 4: take_screenshot writes a valid PNG for the second page.
 
 #### Test Execution
 > **Feature File:** [BDG-016](../manual-testing-playbook/mcp-parallel-instances/close-and-select-page.md)
@@ -340,7 +340,7 @@ Verify `new_page` opens additional pages within `chrome_devtools_1` (multi-tab i
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, open a new page in chrome_devtools_1 (additional to the initial page) through Code Mode against the chrome_devtools_1 MCP instance. Verify both pages are accessible via select_page. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: new_page returns success with new page id; Step 2: list_pages or equivalent shows >= 2 pages; Step 3: select_page works for both.
+Expected signals: Step 1: new_page returns without throwing; Step 2: the list_pages `## Pages` text shows >= 2 pages with distinct numeric IDs; Step 3: each select_page result marks its requested ID `[selected]`.
 
 #### Test Execution
 > **Feature File:** [BDG-017](../manual-testing-playbook/mcp-parallel-instances/multi-tab-same-instance.md)
@@ -353,7 +353,7 @@ Verify `chrome_devtools_1` and `chrome_devtools_2` have isolated cookie / storag
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, set a cookie in chrome_devtools_1 then check it does NOT appear in chrome_devtools_2 through Code Mode against both MCP instances. Verify cookie isolation. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: cookie set in instance 1 succeeds; Step 2: getCookies on instance 1 returns the cookie; Step 3: getCookies on instance 2 returns empty (or doesn't include the cookie).
+Expected signals: Step 1: cookie set in instance 1 via `evaluate_script` succeeds; Step 2: `document.cookie` read via `evaluate_script` on instance 1 includes the cookie; Step 3: the same read on instance 2 does not include it.
 
 #### Test Execution
 > **Feature File:** [BDG-018](../manual-testing-playbook/mcp-parallel-instances/page-context-isolation.md)

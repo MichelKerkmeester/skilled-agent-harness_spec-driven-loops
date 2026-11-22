@@ -75,6 +75,8 @@ function usage() {
     '  --date YYYY-MM-DD   Execution date (default: today)',
     '  --executor TEXT     The model, runtime or host that ran the scenarios',
     '  --base TEXT         The git state the run used (default: the short HEAD sha)',
+    '  --reports DIR       Save into this <skill>/benchmark/reports instead of the playbook\'s own.',
+    '                      The skill must contain the playbook, so a mode can save into its hub',
     '  --dry-run           Check everything and print the plan without writing',
     '  --help              Show this message',
     '',
@@ -92,6 +94,7 @@ function parseArgs(argv) {
     '--date': 'date',
     '--executor': 'executor',
     '--base': 'base',
+    '--reports': 'reports',
   };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -439,6 +442,32 @@ function headSha(dir) {
 }
 
 /**
+ * Work out which skill owns the run folders.
+ *
+ * A mode packet with no benchmark folder of its own saves into its hub, so --reports may name
+ * a reports folder higher up. It must still belong to a skill that contains the playbook, or a
+ * typo would scatter run folders anywhere on disk.
+ *
+ * @param {string} playbookRoot - Playbook root.
+ * @param {string|undefined} reports - The --reports value, if given.
+ * @returns {{ownerRoot: string, reportsDir: string, problem: string|null}} The owner and its reports folder.
+ */
+function resolveReports(playbookRoot, reports) {
+  const skillRoot = path.dirname(playbookRoot);
+  if (!reports) return { ownerRoot: skillRoot, reportsDir: path.join(skillRoot, 'benchmark', 'reports'), problem: null };
+  const reportsDir = path.resolve(reports);
+  const ownerRoot = path.dirname(path.dirname(reportsDir));
+  if (path.basename(reportsDir) !== 'reports' || path.basename(path.dirname(reportsDir)) !== 'benchmark') {
+    return { ownerRoot, reportsDir, problem: `--reports must end in benchmark/reports: ${reportsDir}` };
+  }
+  const inside = path.relative(ownerRoot, playbookRoot);
+  if (inside.startsWith('..') || path.isAbsolute(inside)) {
+    return { ownerRoot, reportsDir, problem: `--reports belongs to ${ownerRoot}, which does not contain the playbook ${playbookRoot}` };
+  }
+  return { ownerRoot, reportsDir, problem: null };
+}
+
+/**
  * Check the inputs and work out everything the record needs, writing nothing.
  *
  * @param {Object} args - Parsed arguments.
@@ -457,8 +486,8 @@ function planRun(args) {
   }
   const ids = collectScenarioIds(playbookRoot);
   const problems = checkRecords(source.records, ids);
-  const skillRoot = path.dirname(playbookRoot);
-  const reportsDir = path.join(skillRoot, 'benchmark', 'reports');
+  const { ownerRoot: skillRoot, reportsDir, problem: reportsProblem } = resolveReports(playbookRoot, args.reports);
+  if (reportsProblem) problems.push(reportsProblem);
   const date = args.date || today();
   const folder = `${date}--${args.label}`;
   const runDir = path.join(reportsDir, folder);
@@ -595,6 +624,7 @@ module.exports = {
   readRunnerRecords,
   collectScenarioIds,
   checkRecords,
+  resolveReports,
   insertIndexRow,
   planRun,
   writeRun,

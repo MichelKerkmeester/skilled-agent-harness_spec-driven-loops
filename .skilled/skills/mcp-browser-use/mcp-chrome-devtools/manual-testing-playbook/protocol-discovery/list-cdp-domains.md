@@ -1,7 +1,7 @@
 ---
 title: "BDG-005 -- List CDP domains"
 description: "This scenario validates CDP domain enumeration for `BDG-005`. It focuses on confirming `bdg cdp --list` returns a non-empty catalog containing common Chrome DevTools Protocol domains."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # BDG-005 -- List CDP domains
@@ -43,12 +43,12 @@ Operators run the exact prompt and command sequence for `BDG-005` and confirm th
 ### Commands
 
 1. `bash: bdg cdp --list 2>&1`
-2. `bash: bdg cdp --list 2>&1 | grep -E "^(Page|Network|Runtime)\b"`
+2. `bash: bdg cdp --list 2>&1 | grep -oE '"(Page|Network|Runtime)"' | sort -u`
 
 ### Expected
 
-- Step 1: returns multi-line output enumerating CDP domains; exit code 0
-- Step 2: matches all three core domain names; exit code 0
+- Step 1: returns JSON enumerating CDP domains (53 on `bdg` 0.6.10); exit code 0
+- Step 2: prints exactly three lines, `"Network"`, `"Page"` and `"Runtime"`; exit code 0
 
 ### Evidence
 
@@ -56,13 +56,13 @@ Capture full `--list` output and the grep match output.
 
 ### Pass / Fail
 
-- **Pass**: `--list` returns non-empty output AND grep matches `Page`, `Network`, AND `Runtime`.
+- **Pass**: `--list` returns non-empty output AND step 2 prints all three quoted names `Page`, `Network` and `Runtime`.
 - **Fail**: `--list` returns empty output (catalog broken); any of the three core domain names missing.
 
 ### Failure Triage
 
 1. If `bdg cdp --list` errors with "command not found" for the `cdp` subcommand: verify bdg version with `bdg --version` and cross-reference BDG-001 (install + version) — older bdg builds may lack `cdp` subcommand.
-2. If output is non-empty but missing `Page`/`Network`/`Runtime`: dump the full catalog with `bdg cdp --list 2>&1 | sort | uniq` and inspect for naming variations; the upstream CDP catalog may have renamed domains in a recent Chrome release.
+2. If output is non-empty but missing `Page`/`Network`/`Runtime`: dump the full catalog with `bdg cdp --list 2>&1 | jq '.'` and inspect for naming variations; the upstream CDP catalog may have renamed domains in a recent Chrome release. The output is JSON, so a line-anchored grep such as `^Page` matches nothing even when the domain is listed.
 
 ---
 

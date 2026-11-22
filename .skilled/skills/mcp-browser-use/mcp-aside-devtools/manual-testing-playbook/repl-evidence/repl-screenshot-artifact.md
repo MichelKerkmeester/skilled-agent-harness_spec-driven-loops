@@ -1,7 +1,7 @@
 ---
 title: "ASD-007 -- Screenshot artifact verification"
-description: "This scenario validates REPL screenshot evidence for `ASD-007`. It focuses on writing a real PNG via `page.screenshot` and verifying it by existence, size, and magic bytes."
-version: 1.0.1.0
+description: "This scenario validates REPL screenshot evidence for `ASD-007`. It focuses on writing a real PNG via `page.screenshot` into the session folder and verifying it by existence, size, and magic bytes inside the same REPL process."
+version: 1.0.2.0
 ---
 
 # ASD-007 -- Screenshot artifact verification
@@ -14,9 +14,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario captures a screenshot through the REPL's advertised Playwright surface and verifies the artifact independently: existence, size > 0, and PNG magic bytes `89 50 4e 47`.
 
+On Aside 1.26.626.1517 the REPL confines file writes to the session folder. A `/tmp` path is redirected with `[WARN] Use <session>/tmp instead of /tmp`, and the redirected file is gone once the REPL exits, so a shell check after the call finds nothing. The scenario therefore writes to `./tmp/` under the session folder (the REPL's working directory, exposed as `pwd`) and runs every file check with the REPL's `fs` global inside the same evaluation.
+
 ### Why This Matters
 
-The packet's artifact-evidence standard says a screenshot is a non-empty PNG-magic file, never a successful tool response. Bound-page output shapes are untested research territory, so the on-disk file is the only trustworthy signal — a corrupt or zero-byte PNG is silently broken without the magic-byte check.
+The packet's artifact-evidence standard says a screenshot is a non-empty PNG-magic file, never a successful tool response. Bound-page output shapes are untested research territory, so the written file is the only trustworthy signal, and a corrupt or zero-byte PNG is silently broken without the magic-byte check.
 
 ---
 
@@ -24,13 +26,13 @@ The packet's artifact-evidence standard says a screenshot is a non-empty PNG-mag
 
 Operators run the exact prompt and command sequence for `ASD-007` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify `page.screenshot({ path })` (after ASD-006's tab) writes a file that exists, has size > 0, and begins with PNG magic bytes.
+- Objective: Verify `page.screenshot({ path })` on a tab opened in the same evaluation writes a file under the session folder that exists, has size > 0, and begins with PNG magic bytes.
 - Real user request: `"Screenshot the page you just opened and prove the file is a real image."`
 - Prompt: `Capture a screenshot of the open page through the aside REPL and confirm the saved file is a valid PNG.`
-- Expected execution process: screenshot call, file check, magic check.
-- Expected signals: file exists; size > 0; first four bytes `89 50 4e 47`.
-- Desired user-visible outcome: A short report quoting the path, size, and magic confirmation with a PASS verdict.
-- Pass/fail: PASS if all three signals hold; FAIL on error, missing file, zero bytes, or wrong magic.
+- Expected execution process: one REPL evaluation that opens the tab, takes the screenshot, and reads the file back with `fs`.
+- Expected signals: the logged JSON shows the file size > 0 and magic `89504e47`; the output carries no error line.
+- Desired user-visible outcome: A short report quoting the session path, size, and magic confirmation with a PASS verdict.
+- Pass/fail: PASS if all signals hold; FAIL on error, missing file, zero bytes, or wrong magic.
 
 ---
 
@@ -42,37 +44,32 @@ Operators run the exact prompt and command sequence for `ASD-007` and confirm th
 
 ### Commands
 
-1. Precondition: ASD-006 opened `https://example.com`.
-2. `bash: rm -f /tmp/aside-test.png` — clean prior artifact so the existence check is meaningful
-3. `bash: aside repl "await page.screenshot({ path: '/tmp/aside-test.png' })" 2>&1`
-4. `bash: ls -la /tmp/aside-test.png`
-5. `bash: xxd /tmp/aside-test.png | head -1`
-
-(Or run `bash: examples/repl-evidence-capture.sh https://example.com /tmp/aside-evidence`, which chains steps 2-5.)
+1. Precondition: ASD-006 passed, so `openTab()` works on this profile. Its tab does not carry over, because each `aside repl` call starts a new process with `page` null.
+2. `bash: aside repl "await openTab('https://example.com'); await fs.mkdir('./tmp', { recursive: true }); const shotBytes = await page.screenshot({ path: './tmp/aside-test.png' }); const shotStat = await fs.stat('./tmp/aside-test.png'); const shotHead = (await fs.readFile('./tmp/aside-test.png')).subarray(0, 4).toString('hex'); console.log(JSON.stringify({ dir: pwd, size: shotStat.size, magic: shotHead, returnedBytes: shotBytes ? shotBytes.length : null }))" 2>&1`
 
 ### Expected
 
-- Step 3: exits 0
-- Step 4: file with size > 0
-- Step 5: first four bytes `89 50 4e 47`
+- Step 2: prints one JSON line with `size` > 0 and `magic` equal to `89504e47`, plus the session folder in `dir`; no error line and no `[WARN] Use <session>/tmp instead of /tmp` line. Exit 0 alone is not a pass signal, because an `aside repl` error still exits 0.
+- The `./tmp/` path is the form the REPL tool description and the redirect warning point to; it has not yet passed a live run on Aside 1.26.626.1517, so record the outcome as installed-version evidence.
 
 ### Evidence
 
-All command outputs, file size, and the xxd magic-byte line. Record the response shape of step 3 as an installed-version fixture — it is currently undocumented territory.
+The full step 2 output, which carries the session folder, file size and magic bytes. Record the `returnedBytes` value as an installed-version fixture, since the response shape of `page.screenshot` is undocumented territory.
 
 ### Pass / Fail
 
-- **Pass**: exit 0 AND file exists AND size > 0 AND magic `89 50 4e 47`.
+- **Pass**: logged `size` > 0 AND `magic` is `89504e47` AND the output carries no error.
 - **Fail**: any signal missing. A "successful" response with a bad file is a FAIL.
 
 ### Failure Triage
 
-1. Binding error: cross-reference ASD-006/ASD-010 — the tab precondition did not hold.
-2. Zero-byte or wrong-magic file: retry once after confirming page load completed; if it persists, record the exact call form used — evaluate/argument edge cases are a known vendor-changelog theme, so the used method/argument form belongs in the smoke fixture.
+1. `page` is null or a binding error: the tab was not opened in the same evaluation, or the profile is unbound; cross-reference ASD-006/ASD-010.
+2. `[WARN] Use <session>/tmp instead of /tmp` or `escapes the session directory`: the path left the session folder; keep it relative to `./tmp/`.
+3. Zero-byte or wrong-magic file: retry once after `await page.waitForLoadState('load')`; if it persists, record the exact call form used, since evaluate/argument edge cases are a known vendor-changelog theme.
 
 ### Optional Supplemental Checks
 
-- `bash: file /tmp/aside-test.png` — independent format detection (should print `PNG image data`).
+- Compare `returnedBytes` with `size`: when `page.screenshot` returns the bytes, the two should match.
 
 ---
 
@@ -88,7 +85,8 @@ All command outputs, file size, and the xxd magic-byte line. Record the response
 
 | File | Role |
 |---|---|
-| `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh` | Scripted equivalent with the same verification gate |
+| `.skilled/skills/mcp-browser-use/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json` | REPL globals: `fs`, `pwd` as the session directory, `page.screenshot` options and the `./tmp/` example path |
+| `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh` | Older scripted equivalent; it chains separate `aside repl` calls and checks a shell path afterwards, so it does not hold on Aside 1.26.626.1517 |
 
 ---
 

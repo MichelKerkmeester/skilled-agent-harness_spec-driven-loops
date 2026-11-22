@@ -23,5 +23,6 @@ Each row below is one run folder. A run whose result changes gets a new folder. 
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-11-22 | [`2026-11-22--manual-testing-playbook--clickup-real-browser/`](./2026-11-22--manual-testing-playbook--clickup-real-browser/README.md) | claude-opus-5-5-on-claude-code-bladebro-v4.8.2-macos-arm64 | 4 PASS, 1 FAIL | **FAIL** | `source.md` in the run folder |
 | 2026-11-21 | [`2026-11-21--attach-probe--aside-browser/`](./2026-11-21--attach-probe--aside-browser/) | Bladebro v4.8.2, macOS arm64, attach to running Aside on port 9333 | 3 PASS | **PASS** | real-browser attach probe |
 | 2026-11-21 | [`2026-11-21--manual-testing-playbook--macos-live/`](./2026-11-21--manual-testing-playbook--macos-live/) | Bladebro v4.8.2, macOS arm64, 14-step plan | 12 PASS, 1 FAIL, 1 SKIP | **FAIL** | `manual-testing-playbook` |

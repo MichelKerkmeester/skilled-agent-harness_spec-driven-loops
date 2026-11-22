@@ -1,7 +1,7 @@
 ---
 title: "sk-code-frontend: Manual Testing Playbook"
 description: "Corpus for the sk-code-frontend surface: the routing-recall scenarios for its 11 intents, the evidence a run leaves, and the review rules a release reads."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # sk-code-frontend: Manual Testing Playbook
@@ -10,8 +10,12 @@ Routing-recall corpus for the `sk-code-frontend` surface.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and
-> reason are recorded into `sk-code/benchmark/reports/<dated-run-label>/`. The packet carries no
-> `benchmark/` of its own, so its runs land in the hub's report tree.
+> reason are saved into `sk-code/benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` by
+> `record-playbook-run.cjs`, the one writer for run folders. The packet carries no `benchmark/` of its
+> own, so its runs land in the hub's report tree through `--reports`. Save a run from the repository root
+> with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs
+> --playbook .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook --reports .skilled/skills/sk-code/benchmark/reports
+> --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`.
 >
 > The record is written by hand, because the harness that once wrote it was retired with its lane.
 > A manual run produces one dated folder holding a `README.md` with the verdict, the reason, the

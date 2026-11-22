@@ -1,7 +1,7 @@
 ---
 title: "ASD-020 -- Performance timing + Lighthouse gap"
 description: "This scenario validates Chrome-DevTools Performance parity for `ASD-020`: page.evaluate over the Performance API through the aside REPL, and an explicit assertion of the honest Lighthouse gap, with a SKIP-valid path when no bound session exists."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # ASD-020 -- Performance timing + Lighthouse gap
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `ASD-020` and confirm th
 - Objective: On a bound tab, return navigation timing + paint entries via the Performance API; explicitly state that no Lighthouse score is produced.
 - Real user request: `"How fast does this page load — give me the timing metrics."`
 - Prompt: `Capture Performance-API timing through the aside REPL on a bound tab, and state the Lighthouse gap.`
-- Expected execution process: `waitForLoadState('load')` then `page.evaluate` over `performance.getEntriesByType`.
+- Expected execution process: one REPL evaluation that opens its own tab, since a separate `aside repl` call starts with `page` null, then `waitForLoadState('load')` and `page.evaluate` over `performance.getEntriesByType`.
 - Expected signals: a parseable object with navigation timing (ttfb/dcl/load) and a paint array.
 - Desired user-visible outcome: The timing metrics, plus an explicit "no Lighthouse score — requires external tooling" note.
 - Pass/fail: PASS when timing parses AND the verdict states the Lighthouse gap; SKIP (valid) with the blocker "no bound Aside session available"; FAIL if the verdict claims a Lighthouse score or trace.
@@ -42,13 +42,13 @@ Operators run the exact prompt and command sequence for `ASD-020` and confirm th
 
 ### Commands
 
-1. Precondition: a bound tab (ASD-006). If none, SKIP with that blocker.
-2. `bash:` capture timing after load:
-   `aside repl "await page.waitForLoadState('load'); const perf = await page.evaluate(() => { const [n] = performance.getEntriesByType('navigation'); return { nav: n ? { ttfbMs: Math.round(n.responseStart), dclMs: Math.round(n.domContentLoadedEventEnd), loadMs: Math.round(n.loadEventEnd) } : null, paint: performance.getEntriesByType('paint').map(p => ({ name: p.name, startMs: Math.round(p.startTime) })) }; }); console.log(JSON.stringify(perf))" 2>&1`
+1. Precondition: ASD-006 passed, so `openTab()` works on this profile. If no bound session is available, SKIP with that blocker.
+2. `bash:` open the tab and capture timing after load:
+   `aside repl "await openTab('https://example.com'); await page.waitForLoadState('load'); const perf = await page.evaluate(() => { const [n] = performance.getEntriesByType('navigation'); return { nav: n ? { ttfbMs: Math.round(n.responseStart), dclMs: Math.round(n.domContentLoadedEventEnd), loadMs: Math.round(n.loadEventEnd) } : null, paint: performance.getEntriesByType('paint').map(p => ({ name: p.name, startMs: Math.round(p.startTime) })) }; }); console.log(JSON.stringify(perf))" 2>&1`
 
 ### Expected
 
-- Output parses to `{ nav: { ttfbMs, dclMs, loadMs }, paint: [{ name: 'first-contentful-paint', startMs }...] }`. The verdict explicitly notes no Lighthouse score is produced.
+- Output parses to `{ nav: { ttfbMs, dclMs, loadMs }, paint: [{ name: 'first-contentful-paint', startMs }...] }`. The verdict explicitly notes no Lighthouse score is produced. The output carries no error line; exit 0 alone is not a pass signal, because an `aside repl` error still exits 0.
 
 ### Evidence
 
@@ -63,7 +63,7 @@ The REPL transcript and parsed timing JSON, plus the written Lighthouse-gap stat
 ### Failure Triage
 
 1. Empty `paint`/`navigation`: measure after `waitForLoadState('load')` (or `'networkidle'`) and retry once.
-2. Binding error: cross-reference ASD-006/ASD-010.
+2. `page` is null or a binding error: the tab was not opened in the same evaluation, or the profile is unbound; cross-reference ASD-006/ASD-010.
 
 ---
 

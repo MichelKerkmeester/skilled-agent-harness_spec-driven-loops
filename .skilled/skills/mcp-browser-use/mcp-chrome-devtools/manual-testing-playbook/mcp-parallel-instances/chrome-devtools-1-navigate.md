@@ -1,7 +1,7 @@
 ---
 title: "BDG-014 -- chrome_devtools_1 navigate via Code Mode"
 description: "This scenario validates Code Mode invocation of `chrome_devtools_1` for `BDG-014`. It focuses on confirming a navigate + screenshot round-trip via the manual-namespace contract returns valid bytes."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # BDG-014 -- chrome_devtools_1 navigate via Code Mode
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `BDG-014` and confirm th
 - Objective: Verify `chrome_devtools_1.chrome_devtools_1_navigate_page({url: 'https://example.com'})` succeeds via Code Mode and that a subsequent `take_screenshot` call with an explicit `filePath` writes a valid PNG to disk.
 - Real user request: `"Open example.com in chrome_devtools_1 and take a screenshot."`
 - Prompt: `As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com through Code Mode against the configured chrome_devtools_1 MCP server. Verify the call succeeds and the screenshot file is a valid PNG. Cross-reference: this scenario depends on CM-005 (correct manual.tool form) and CM-015 (Chrome navigate + screenshot). Return a concise user-facing pass/fail verdict with the main reason.` (RCAF format)
-- Expected execution process: build a Code Mode script that calls navigate then screenshot (with an explicit `filePath`) via `call_tool_chain`; execute; then verify the written file with a separate shell step (Code Mode's V8 sandbox has no filesystem access, so file checks run outside the script).
+- Expected execution process: build a Code Mode script that calls navigate then screenshot (with an explicit `filePath`) via `call_tool_chain`, written as plain synchronous JavaScript with no `await`, because Code Mode runs the code inside a plain function and each tool call blocks until it returns; execute; then verify the written file with a separate shell step (Code Mode's V8 sandbox has no filesystem access, so file checks run outside the script).
 - Expected signals: navigate call returns success (no thrown error); the screenshot call returns without throwing; the file at `filePath` exists, is non-empty, and starts with the PNG magic bytes `89 50 4e 47`.
 - Desired user-visible outcome: A short report quoting the navigated URL, the screenshot file path and size, and "VALID PNG" with a PASS verdict.
 - Pass/fail: PASS if both signals hold; FAIL if navigate errors, the screenshot call throws, the file is missing or empty, or the manual-namespace lookup fails.
@@ -42,19 +42,19 @@ Operators run the exact prompt and command sequence for `BDG-014` and confirm th
 
 ### Commands
 
-1. Precondition: `chrome_devtools_1` is registered in `.utcp_config.json`; verify with `bash: jq '.manuals | keys' .utcp_config.json | grep chrome_devtools_1`
+1. Precondition: `chrome_devtools_1` is registered in `.utcp_config.json`; verify with `bash: jq -r '.manual_call_templates[].name' .utcp_config.json | grep chrome_devtools_1`
 2. Code Mode script — build and dispatch via `call_tool_chain`:
-   ```ts
-   const nav = await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' });
-   const shot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({ filePath: '/tmp/bdg-014-screenshot.png' });
+   ```js
+   const nav = chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' });
+   const shot = chrome_devtools_1.chrome_devtools_1_take_screenshot({ filePath: '/tmp/bdg-014-screenshot.png' });
    return { nav, shot };
    ```
 3. `bash: ls -la /tmp/bdg-014-screenshot.png && xxd /tmp/bdg-014-screenshot.png | head -1` — confirm the file exists, is non-empty, and starts with the PNG magic bytes `89 50 4e 47`
 
 ### Expected
 
-- Step 1: `.utcp_config.json` lists `chrome_devtools_1` under `manuals`
-- Step 2: navigate returns success; the screenshot call returns without throwing
+- Step 1: `.utcp_config.json` lists `chrome_devtools_1` under `manual_call_templates`
+- Step 2: navigate returns success text that names `https://example.com`; the screenshot call returns without throwing; the logs carry no `[ERROR] Code execution failed` line
 - Step 3: file exists, size > 0, first bytes are the PNG magic number `89 50 4e 47`
 
 ### Evidence
@@ -68,8 +68,9 @@ Capture the Code Mode script, the returned object (or summarized fields), and th
 
 ### Failure Triage
 
-1. If the call errors with "manual not found" or "tool not found": confirm the namespace pattern matches CM-005 — the call must be `chrome_devtools_1.chrome_devtools_1_<tool>`, not `chrome_devtools_1_<tool>` directly; cross-reference CM-014 for the canonical Chrome via Code Mode pattern.
-2. If the file is missing or zero bytes: inspect the raw return object for an error envelope instead of a normal response; cross-reference CM-015 for the `take_screenshot` `filePath` contract and confirm the underlying browser launched (`chrome-devtools-mcp` starts its own Chrome instance per manual; this is independent of the `bdg` CLI).
+1. If the call fails with `await is only valid in async functions`: the script still uses `await`; drop it, since Code Mode tool calls are synchronous.
+2. If the call errors with "manual not found" or "tool not found": confirm the namespace pattern matches CM-005: the call must be `chrome_devtools_1.chrome_devtools_1_<tool>`, not `chrome_devtools_1_<tool>` directly; cross-reference CM-014 for the canonical Chrome via Code Mode pattern.
+3. If the file is missing or zero bytes: inspect the raw return object for an error envelope instead of a normal response; cross-reference CM-015 for the `take_screenshot` `filePath` contract and confirm the underlying browser launched (`chrome-devtools-mcp` starts its own Chrome instance per manual; this is independent of the `bdg` CLI).
 
 ---
 
@@ -88,6 +89,7 @@ Capture the Code Mode script, the returned object (or summarized fields), and th
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md` | chrome_devtools_1 MCP reference |
 | `.skilled/skills/mcp-code-mode/SKILL.md` | Code Mode + manual-namespace contract |
+| `@utcp/code-mode` package source, installed with the Code Mode server | Wraps the code in a plain function and makes each tool call block, so `await` is rejected |
 
 ---
 

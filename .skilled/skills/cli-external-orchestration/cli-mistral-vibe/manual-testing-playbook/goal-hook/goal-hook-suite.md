@@ -1,7 +1,7 @@
 ---
 title: "VIB-GOAL-001 -- Goal hook suite"
 description: "This scenario validates that the Vibe goal-hook suite passes for a bound packet, no packet and malformed input, and that the hook fails open."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-GOAL-001 -- Goal hook suite
@@ -47,14 +47,6 @@ The hook injects text into a session's first message, and a hook that throws wou
 ```bash
 node --test .skilled/hooks/goal/vibe/goal-vibe.test.mjs
 ```
-
-### Recorded Result
-
-- Verdict: `PASS`.
-- Date: 2026-11-14.
-- Observed: the command exited `0` with `tests 3`, `pass 3`, `fail 0`, `cancelled 0`, `skipped 0` and `todo 0`.
-- Observed: the three cases printed as `bound packet`, `no packet` and `malformed input`, all passing.
-- Note: the suite is hermetic. It renders the slice from a fixture packet and never starts `vibe` or reads a live session.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

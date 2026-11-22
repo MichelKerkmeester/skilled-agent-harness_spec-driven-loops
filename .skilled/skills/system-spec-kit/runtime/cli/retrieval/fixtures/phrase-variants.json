@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ce2744fc058d851bef12ad5ff8557064b8662f278e9f3181c09aac2c7f17bed2",
+  "manifestHash": "678704d12d70d485100019d3232b9b4d778e04e582de1ef63fdfc3b0b021399a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10520,6 +10520,9 @@
     "agent boilerplate boundary statement": [
       "agent boilerplate boundary statement"
     ],
+    "agent browser isolation": [
+      "agent-browser isolation"
+    ],
     "agent common mistakes": [
       "agent common mistakes"
     ],
@@ -13609,6 +13612,9 @@
     "aside setup": [
       "aside setup"
     ],
+    "aside signed in run": [
+      "aside signed-in run"
+    ],
     "aside signed out": [
       "aside signed out"
     ],
@@ -13917,6 +13923,9 @@
     ],
     "attach file to task": [
       "attach file to task"
+    ],
+    "attach mode": [
+      "attach mode"
     ],
     "attach url": [
       "attach url"
@@ -15817,17 +15826,68 @@
     "black cell tasks": [
       "black cell tasks"
     ],
+    "blade fresh": [
+      "blade_fresh"
+    ],
+    "blade home": [
+      "blade_home"
+    ],
+    "bladebro act": [
+      "bladebro act"
+    ],
+    "bladebro act batch": [
+      "bladebro act batch"
+    ],
+    "bladebro act click": [
+      "bladebro act click"
+    ],
+    "bladebro act eval": [
+      "bladebro act eval"
+    ],
+    "bladebro agent browser": [
+      "bladebro agent browser"
+    ],
+    "bladebro attach": [
+      "bladebro attach"
+    ],
+    "bladebro attach mode scenario": [
+      "bladebro attach mode scenario"
+    ],
+    "bladebro binary": [
+      "bladebro binary"
+    ],
+    "bladebro blocked verdict": [
+      "bladebro blocked verdict"
+    ],
     "bladebro browser lanes": [
       "bladebro browser lanes"
     ],
     "bladebro browser mode": [
       "bladebro browser mode"
     ],
+    "bladebro call tool chain": [
+      "bladebro call_tool_chain"
+    ],
+    "bladebro capabilities": [
+      "bladebro capabilities"
+    ],
+    "bladebro cli": [
+      "bladebro cli"
+    ],
+    "bladebro cli install": [
+      "bladebro cli install"
+    ],
     "bladebro cli reference": [
       "bladebro cli reference"
     ],
+    "bladebro code mode": [
+      "bladebro code mode"
+    ],
     "bladebro code mode manual": [
       "bladebro code mode manual"
+    ],
+    "bladebro code mode setup": [
+      "bladebro code mode setup"
     ],
     "bladebro doctor": [
       "bladebro doctor"
@@ -15835,8 +15895,26 @@
     "bladebro doctor script": [
       "bladebro doctor script"
     ],
+    "bladebro doctor sh": [
+      "bladebro doctor.sh"
+    ],
+    "bladebro example scripts": [
+      "bladebro example scripts"
+    ],
+    "bladebro examples": [
+      "bladebro examples"
+    ],
+    "bladebro exit codes": [
+      "bladebro exit codes"
+    ],
+    "bladebro feature catalog": [
+      "bladebro feature catalog"
+    ],
     "bladebro five tools": [
       "bladebro five tools"
+    ],
+    "bladebro har": [
+      "bladebro har"
     ],
     "bladebro install": [
       "bladebro install"
@@ -15847,8 +15925,29 @@
     "bladebro install script": [
       "bladebro install script"
     ],
+    "bladebro install sh": [
+      "bladebro install.sh"
+    ],
+    "bladebro json output": [
+      "bladebro json output"
+    ],
+    "bladebro lighthouse": [
+      "bladebro lighthouse"
+    ],
+    "bladebro limits": [
+      "bladebro limits"
+    ],
+    "bladebro live clickup run": [
+      "bladebro live clickup run"
+    ],
     "bladebro manual snippet": [
       "bladebro manual snippet"
+    ],
+    "bladebro mcp": [
+      "bladebro mcp"
+    ],
+    "bladebro mcp server": [
+      "bladebro mcp server"
     ],
     "bladebro mcp wiring": [
       "bladebro mcp wiring"
@@ -15867,6 +15966,12 @@
     ],
     "bladebro mode tasks": [
       "bladebro-mode tasks"
+    ],
+    "bladebro named sessions": [
+      "bladebro named sessions"
+    ],
+    "bladebro npm package": [
+      "bladebro npm package"
     ],
     "bladebro parity and changelogs": [
       "bladebro parity and changelogs"
@@ -15889,17 +15994,104 @@
     "bladebro placeholder": [
       "bladebro placeholder"
     ],
+    "bladebro port": [
+      "bladebro --port"
+    ],
+    "bladebro rb attach": [
+      "bladebro rb attach"
+    ],
+    "bladebro rb forget": [
+      "bladebro rb forget"
+    ],
+    "bladebro rb mode": [
+      "bladebro rb mode"
+    ],
+    "bladebro rb mode clone": [
+      "bladebro rb mode clone"
+    ],
+    "bladebro rb off": [
+      "bladebro rb off"
+    ],
+    "bladebro rb on clone": [
+      "bladebro rb on clone"
+    ],
+    "bladebro rb pause": [
+      "bladebro rb pause"
+    ],
+    "bladebro rb refresh": [
+      "bladebro rb refresh"
+    ],
+    "bladebro rb resume": [
+      "bladebro rb resume"
+    ],
+    "bladebro rb status": [
+      "bladebro rb status"
+    ],
+    "bladebro rb use": [
+      "bladebro rb use"
+    ],
     "bladebro real browser": [
       "bladebro real browser"
     ],
     "bladebro research charter": [
       "bladebro research charter"
     ],
+    "bladebro run": [
+      "bladebro run"
+    ],
+    "bladebro run plan": [
+      "bladebro run plan"
+    ],
+    "bladebro safety rules": [
+      "bladebro safety rules"
+    ],
+    "bladebro screenshot": [
+      "bladebro screenshot"
+    ],
     "bladebro scripts": [
       "bladebro scripts"
     ],
+    "bladebro see": [
+      "bladebro see"
+    ],
+    "bladebro see content": [
+      "bladebro see content"
+    ],
+    "bladebro see model": [
+      "bladebro see model"
+    ],
+    "bladebro sha256": [
+      "bladebro sha256"
+    ],
+    "bladebro state": [
+      "bladebro state"
+    ],
+    "bladebro state tabs": [
+      "bladebro state tabs"
+    ],
+    "bladebro stealth consent": [
+      "bladebro stealth consent"
+    ],
+    "bladebro stop": [
+      "bladebro stop"
+    ],
     "bladebro utcp config": [
       "bladebro utcp config"
+    ],
+    "bladebro utcp manual": [
+      "bladebro utcp manual"
+    ],
+    "bladebro version": [
+      "bladebro version"
+    ],
+    "bladebro vision": [
+      "bladebro vision"
+    ],
+    "bladebro vision marks": [
+      "bladebro vision marks"
+    ],
+    "bladebro workflow scripts": [
+      "bladebro workflow scripts"
     ],
     "blank line removals": [
       "blank line removals"
@@ -17536,6 +17728,9 @@
     ],
     "capability flags template system": [
       "capability flags template system"
+    ],
+    "capability gaps and handoffs": [
+      "capability gaps and handoffs"
     ],
     "capability inventory template": [
       "capability inventory template"
@@ -23566,6 +23761,9 @@
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
+    "cli external orchestration benchmark reports": [
+      "cli-external-orchestration benchmark reports"
+    ],
     "cli external orchestration changelog retrofit": [
       "cli-external-orchestration changelog retrofit"
     ],
@@ -24189,6 +24387,9 @@
     ],
     "cli jev workflow integration goal": [
       "cli-jev workflow integration goal"
+    ],
+    "cli lane and output envelope": [
+      "cli lane and output envelope"
     ],
     "cli lineage findings contract": [
       "cli lineage findings contract"
@@ -25816,6 +26017,9 @@
     ],
     "clipped register versus a plan": [
       "clipped register versus a plan"
+    ],
+    "clone mode": [
+      "clone mode"
     ],
     "clone path and messages": [
       "clone path and messages"
@@ -30931,6 +31135,9 @@
     ],
     "consecutive probe failure reap summary": [
       "consecutive probe failure reap summary"
+    ],
+    "consent gates and blocked verdicts": [
+      "consent gates and blocked verdicts"
     ],
     "conservative defaults pass": [
       "conservative defaults pass"
@@ -60109,6 +60316,9 @@
     "health degeneration harness implementation": [
       "health degeneration harness implementation"
     ],
+    "health diagnostics": [
+      "health diagnostics"
+    ],
     "health md android": [
       "health md android"
     ],
@@ -61961,6 +62171,21 @@
     "hub repo folder exemption tasks": [
       "hub repo folder exemption tasks"
     ],
+    "hub reports destination": [
+      "hub reports destination"
+    ],
+    "hub reports destination acceptance criteria": [
+      "hub reports destination acceptance criteria"
+    ],
+    "hub reports destination implementation summary": [
+      "hub reports destination implementation summary"
+    ],
+    "hub reports destination plan": [
+      "hub reports destination plan"
+    ],
+    "hub reports destination tasks": [
+      "hub reports destination tasks"
+    ],
     "hub router agreement": [
       "hub router agreement"
     ],
@@ -63569,6 +63794,9 @@
     ],
     "install bdg": [
       "install bdg"
+    ],
+    "install bladebro": [
+      "install bladebro"
     ],
     "install codex hooks check": [
       "install codex hooks check"
@@ -65619,6 +65847,9 @@
     ],
     "lane rules as heal modes tasks": [
       "lane rules as heal modes tasks"
+    ],
+    "lane selection and status": [
+      "lane selection and status"
     ],
     "lane source tagging": [
       "lane source tagging"
@@ -67873,6 +68104,21 @@
     "live review iteration format": [
       "live review iteration format"
     ],
+    "live runs and playbook fixes": [
+      "live runs and playbook fixes"
+    ],
+    "live runs and playbook fixes acceptance criteria": [
+      "live runs and playbook fixes acceptance criteria"
+    ],
+    "live runs and playbook fixes implementation summary": [
+      "live runs and playbook fixes implementation summary"
+    ],
+    "live runs and playbook fixes plan": [
+      "live runs and playbook fixes plan"
+    ],
+    "live runs and playbook fixes tasks": [
+      "live runs and playbook fixes tasks"
+    ],
     "live session reelection validation": [
       "live session reelection validation"
     ],
@@ -69419,6 +69665,9 @@
     "markdown reference sweep tasks": [
       "markdown reference sweep tasks"
     ],
+    "marked screenshots": [
+      "marked screenshots"
+    ],
     "marked section insertbefore": [
       "marked section insertBefore"
     ],
@@ -69658,6 +69907,9 @@
     ],
     "mcp benchmarks discoverability": [
       "mcp benchmarks discoverability"
+    ],
+    "mcp bladebro": [
+      "mcp-bladebro"
     ],
     "mcp bladebro 1 0 0 0": [
       "mcp-bladebro 1.0.0.0"
@@ -70776,6 +71028,9 @@
     ],
     "mcp keepalive task": [
       "mcp keepalive task"
+    ],
+    "mcp lane through code mode": [
+      "mcp lane through code mode"
     ],
     "mcp launcher concurrency arc": [
       "mcp launcher concurrency arc"
@@ -82663,6 +82918,12 @@
     "packets filed under tracks": [
       "packets filed under tracks"
     ],
+    "page actions": [
+      "page actions"
+    ],
+    "page reads": [
+      "page reads"
+    ],
     "pain point diagram": [
       "pain point diagram"
     ],
@@ -83422,6 +83683,9 @@
     ],
     "patterns evaluation section read task": [
       "patterns-evaluation section read task"
+    ],
+    "pause resume and switch back": [
+      "pause, resume and switch back"
     ],
     "pause review loop": [
       "pause review loop"
@@ -86151,6 +86415,9 @@
     "phase 3 hook folder readmes": [
       "phase 3 hook folder readmes"
     ],
+    "phase 3 hub reports destination": [
+      "phase 3 hub reports destination"
+    ],
     "phase 3 hub surface precedence": [
       "phase 3 hub surface precedence"
     ],
@@ -87443,6 +87710,9 @@
     ],
     "phase 8 lineage proof enforcement": [
       "phase 8 lineage proof enforcement"
+    ],
+    "phase 8 live runs and playbook fixes": [
+      "phase 8 live runs and playbook fixes"
     ],
     "phase 8 mcp obsidian": [
       "phase 8 mcp obsidian"
@@ -89492,6 +89762,9 @@
     ],
     "pinned docs": [
       "pinned docs"
+    ],
+    "pinned install and digest check": [
+      "pinned install and digest check"
     ],
     "pinned legacy rows": [
       "pinned legacy rows"
@@ -95575,6 +95848,9 @@
     "record playbook run fixes": [
       "record playbook run fixes"
     ],
+    "record playbook run reports option": [
+      "record playbook run reports option"
+    ],
     "record replay cassette harness": [
       "record-replay cassette harness"
     ],
@@ -96454,6 +96730,9 @@
     ],
     "register aside mcp": [
       "register aside mcp"
+    ],
+    "register bladebro mcp": [
+      "register bladebro mcp"
     ],
     "register card": [
       "register card"
@@ -114527,6 +114806,9 @@
     "sk create manual testing playbook 1 2 1 0": [
       "sk-create-manual-testing-playbook 1.2.1.0"
     ],
+    "sk create manual testing playbook 1 3 0 0": [
+      "sk-create-manual-testing-playbook 1.3.0.0"
+    ],
     "sk create manual testing playbook implementation summary": [
       "sk create manual testing playbook implementation summary"
     ],
@@ -114595,6 +114877,9 @@
     ],
     "sk create manual testing playbook v1 2 1 0": [
       "sk-create-manual-testing-playbook v1.2.1.0"
+    ],
+    "sk create manual testing playbook v1 3 0 0": [
+      "sk-create-manual-testing-playbook v1.3.0.0"
     ],
     "sk create quality control": [
       "sk create quality control"
@@ -124902,6 +125187,9 @@
     "step order acceptance after development tasks": [
       "step order acceptance after development tasks"
     ],
+    "step plans": [
+      "step plans"
+    ],
     "step refresh lineage context": [
       "step_refresh_lineage_context"
     ],
@@ -129252,6 +129540,9 @@
     "table wording preregistration": [
       "table wording preregistration"
     ],
+    "tabs cookies and sessions": [
+      "tabs, cookies and sessions"
+    ],
     "tag exclusion": [
       "tag exclusion"
     ],
@@ -129455,6 +129746,9 @@
     ],
     "team wide task listing": [
       "team-wide task listing"
+    ],
+    "teardown and rollback": [
+      "teardown and rollback"
     ],
     "teardown guard checks": [
       "teardown guard checks"
@@ -133221,6 +133515,9 @@
     ],
     "unindexed spec packet search": [
       "unindexed spec packet search"
+    ],
+    "uninstall bladebro": [
+      "uninstall bladebro"
     ],
     "union alpha dual provider roster implementation summary": [
       "union alpha dual provider roster implementation summary"

@@ -1,7 +1,7 @@
 ---
 title: "mcp-bladebro"
 description: "Bladebro mode of mcp-browser-use: CLI first with a Code Mode MCP fallback, an owned agent-browser default, operator-gated real-browser lanes and three verbatim safety rules."
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # mcp-bladebro
@@ -39,5 +39,8 @@ The packet is authored from upstream documentation pinned to v4.8.2. The install
 - `assets/utcp-bladebro-manual.md`: the registered Code Mode manual, the one place its JSON is stated.
 - `scripts/install.sh` and `scripts/doctor.sh`: the pinned install wrapper and the read-only doctor, described in `scripts/README.md`.
 - `INSTALL-GUIDE.md`: the operator install walk-through.
+- `feature-catalog/`: the current capability inventory, one file per feature, linked from the playbook scenarios.
+- `examples/`: runnable example scripts for an isolated agent-browser read, a step plan and read-only attach reads, described in `examples/README.md`.
+- `mcp-servers/`: install pointers for the `bladebro` binary (`bladebro-cli/`) and the built-in MCP server (`bladebro-mcp/`). Nothing is vendored there.
 - `benchmark/`: the live-run reports.
 - `changelog/`: release notes for this packet.

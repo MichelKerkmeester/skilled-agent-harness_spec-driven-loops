@@ -1,7 +1,7 @@
 ---
 title: "ASD-010 -- Unbound-profile error classification"
-description: "This scenario validates browser-binding failure classification for `ASD-010`. It focuses on reproducing the not-bound-to-a-browser-profile error and classifying it as PROFILE_UNBOUND, not auth."
-version: 1.0.1.0
+description: "This scenario validates browser-binding failure classification for `ASD-010`. It focuses on recording the binding state of a fresh MCP process and classifying a not-bound-to-a-browser-profile error as PROFILE_UNBOUND, not auth."
+version: 1.0.2.0
 ---
 
 # ASD-010 -- Unbound-profile error classification
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario calls `listBrowserTabs()` through `tools/call(repl)` on a fresh `aside mcp` process and verifies the browser-unbound state is returned and classified correctly.
+This scenario calls `listBrowserTabs()` through `tools/call(repl)` on a fresh `aside mcp` process and verifies the binding state is reported and classified correctly. On Aside 1.26.626.1517, with the Aside app running and signed in, a fresh `aside mcp` process is bound and lists tabs, and the not-bound error no longer reproduces. The scenario therefore records whichever state appears. The MCP `repl` tool prints only `console.log` output, never a returned value, so the result is logged.
 
 ### Why This Matters
 
@@ -24,13 +24,13 @@ This error is the first thing real MCP users will hit: a fresh server process is
 
 Operators run the exact prompt and command sequence for `ASD-010` and confirm the expected signals without contradictory evidence.
 
-- Objective: Reproduce the unbound-profile error on a fresh MCP process and verify the report names PROFILE_UNBOUND, cites the undocumented binding procedure, and never mentions missing credentials.
+- Objective: Call `listBrowserTabs()` on a fresh MCP process and record the binding state: a tab count when bound, or the unbound-profile error classified as PROFILE_UNBOUND with the undocumented binding procedure cited, never as missing credentials.
 - Real user request: `"The Aside MCP server says my task isn't bound to a browser profile — what's wrong?"`
 - Prompt: `Call listBrowserTabs() via the MCP repl tool on a fresh aside mcp process and classify the result.`
 - Expected execution process: spawn, handshake, tools/call(repl) with `listBrowserTabs()`, classification.
-- Expected signals: the binding-error text returned; classification PROFILE_UNBOUND with the open-question citation.
+- Expected signals: either a logged tab count (bound, the observed state on Aside 1.26.626.1517 with the app running and signed in) or the binding-error text classified PROFILE_UNBOUND with the open-question citation.
 - Desired user-visible outcome: The verbatim error plus its correct classification and the escalation guidance.
-- Pass/fail: PASS if the error reproduces and is classified correctly; if the installed version instead returns tabs (behavior change), PASS with the new behavior recorded as the finding.
+- Pass/fail: PASS if a tab count is logged and the bound state is recorded, or if the error appears and is classified correctly; FAIL if the result text is empty, which means the code returned instead of logging, or if the report blames authentication.
 
 ---
 
@@ -43,12 +43,12 @@ Operators run the exact prompt and command sequence for `ASD-010` and confirm th
 ### Commands
 
 1. Spawn and handshake as in ASD-008, then send:
-   `tools/call` → `{"name":"repl","arguments":{"title":"binding probe","code":"return await listBrowserTabs()"}}`
+   `tools/call` → `{"name":"repl","arguments":{"title":"binding probe","code":"const bindingTabs = await listBrowserTabs(); console.log(JSON.stringify({ tabCount: bindingTabs.length }))"}}`
 2. Capture the result text and close the process.
 
 ### Expected
 
-- Step 1: on the research-pinned version, the result contains `This task is not bound to a browser profile`
+- Step 1: on Aside 1.26.626.1517 with the app running and signed in, the result text carries `{"tabCount":<n>}` with n >= 0; on the research-pinned version, the result contains `This task is not bound to a browser profile`. Only the count is logged, so no tab title or URL from the user's browser lands in the evidence.
 - Step 2: clean shutdown, no leaked process
 
 ### Evidence
@@ -57,13 +57,14 @@ The JSON-RPC transcript, the verbatim error text, the classification statement, 
 
 ### Pass / Fail
 
-- **Pass**: error reproduced AND classified PROFILE_UNBOUND (or new behavior recorded as a version-drift finding).
-- **Fail**: the report attributes the failure to authentication, or improvises a binding workaround.
+- **Pass**: tab count logged AND the bound state recorded as the installed-version behavior, OR error reproduced AND classified PROFILE_UNBOUND.
+- **Fail**: empty result text (the value was returned, not logged), the report attributes a failure to authentication, or improvises a binding workaround.
 
 ### Failure Triage
 
-1. If tabs are returned: the process was somehow bound (or behavior changed) — record how the environment differed (Aside app open? prior task?) as evidence toward the open binding-procedure question.
-2. If the call times out: cross-reference ASD-008 (transport) before classifying anything.
+1. If a tab count is returned: the process is bound; record the environment (Aside app open and signed in, prior task) as evidence toward the open binding-procedure question.
+2. If the result text is empty: the code used `return`; the MCP `repl` tool prints only `console.log` output.
+3. If the call times out: cross-reference ASD-008 (transport) before classifying anything.
 
 ---
 
