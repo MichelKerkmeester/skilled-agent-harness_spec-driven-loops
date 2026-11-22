@@ -129,6 +129,7 @@ and findings belong here.
 | Parent plan.md and tasks.md removed 2026-11-21 | Done | Operator ruling: keep decision-record.md for cross-phase decisions. phase-definitions.md §3: a phase parent needs only spec.md, description.json and graph-metadata.json. Durable content moved to spec.md §3 and the row above; metadata re-derived by a plan-only generate-context save. |
 | Round 8-12 operator decisions | recorded | Q057-Q070 in decision-record.md; continuity on 015 |
 | Claude check literal answer | recorded | Q071 points to Q069 |
+| v4.2.0.0 changelog | deep-loop epic added | three sections, 18-item break box, suite 4,039 passed |
 
 ### Deviations and findings
 

@@ -105,6 +105,7 @@ _memory:
 | Q069 | Add an opt-in switch to the Claude-under-Claude recursion guard, read from the typo "nypass" and the follow-up. | Not stated. | None | commit 3c8df597438 (SPECKIT_ALLOW_HOST_SESSION_EXECUTOR), scratch/dogfood-round8.md Round 11 replay |
 | Q070 | Take all four round 11 leftovers in a last fix round: the audit row's model, Claude id masking, usage errors and signals plus doc drift. | Not stated. | None | round 12 commits 4e5216729f9, 8fc35a98984, 09076dd4e0f, 0d1725f86e5 |
 | Q071 | The literal answer to the Claude check, a typo for bypass, which the follow-up question clarified into an opt-in switch rather than a detached end-run around the guard. | Not stated. The follow-up answer is Q069. | None | Q069, commit 3c8df597438 |
+| Q072 | Rebuild the deep-loop additions to the v4.2.0.0 changelog on the latest approved entry, in the create-changelog format, instead of merging the older edit. | Not stated. | None | .skilled/changelog/skilled/v4.2.0.0.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1510,6 +1511,26 @@ Leave it unproven
 Answer:
 ```text
 nypass
+```
+
+### Q072
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_01F2jZLM1xSPNA3Dhk6BHarW:0 -->
+
+Question:
+```text
+Main changed v4.2.0.0 while I worked. Another session removed the advisor's embedding lane, rewrote the Skill Advisor section and added 5 breaking changes. Merging conflicts in 8 spots of the changelog: frontmatter, the box of breaking changes, Why This Release, the glance table, How It Was Checked and Upgrade Notes. Every spot splits cleanly, with the deep-loop lines mine and the advisor lines theirs. I aborted the merge, so the tree is clean. How should I resolve it?
+```
+
+Options:
+```text
+Union, then push (Recommended)
+Union, hold the push
+Drop my edit
+```
+
+Answer:
+```text
+it was just edited again and approved, analyze it and make changes to latest whilst adhering to create changelog format
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

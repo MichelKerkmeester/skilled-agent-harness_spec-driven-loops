@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract"
-    last_updated_at: "2026-11-22T05:40:14Z"
+    last_updated_at: "2026-11-22T08:28:57Z"
     last_updated_by: "generate-context"
     recent_action: "Recorded rounds 8-12 operator decisions Q057-Q070 in the parent decision record"
     next_safe_action: "Fix the fan-out exit 3 collision and one-shot signal forwarders in the parent"
@@ -21,14 +21,14 @@ _memory:
       - "specs/system-deep-loop/loop-architecture/002-graph-engineering/007-expansive-depth-mode/015-reducer-test-focus-contract/goal.md"
       - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     session_dedup:
-      fingerprint: "sha256:12873dbeb90faf9fd8398664b6b984254785ea1d01d0f45e404a29da2f9994c2"
+      fingerprint: "sha256:5f09ef66d6c32732a8c816e1ee283a0a8b173530830fb31895ac664b4ace0a35"
       session_id: "scaffold-015-reducer-test-focus-contract"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "91021a9f-dca3-4cb7-9743-2973efffa465"
       workspace: "/Users/michelkerkmeester/worktrees/public/455-expansive-depth-integration"
-      savedAt: "2026-11-22T05:40:14Z"
+      savedAt: "2026-11-22T08:28:57Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
