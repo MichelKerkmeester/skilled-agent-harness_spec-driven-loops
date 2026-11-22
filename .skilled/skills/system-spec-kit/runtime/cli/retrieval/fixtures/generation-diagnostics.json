@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7178,
-    "ok": 20383,
+    "missing-frontmatter": 7187,
+    "ok": 20395,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29189,
+  "documentsScanned": 29210,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "74e5cae9d5fb5ef254906b1066c5ba62e6a3c3f70c5aa9620d9ad2bb8c3adcc3",
+  "manifestHash": "ea096af39fb848293c81e0c0a5c285e70ce8703a8d440605dd7d1f28bd932d2b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 45996,
+      "ok": 46022,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -8602,6 +8602,30 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--app-closed-safe-set/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--app-closed-safe-set/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--routing-recall/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--routing-recall/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/manual-testing-playbook/agent-task/direct-task.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -8783,6 +8807,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/INSTALL-GUIDE.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -8922,6 +8952,30 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-21--manual-testing-playbook--hub-path-live/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--remaining-live/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--remaining-live/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--routing-recall/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--routing-recall/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -59077,6 +59131,10 @@
     },
     {
       "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/007-bladebro-parity-and-changelogs/scratch",
       "reason": "excluded directory"
     },
     {
