@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts"
 test_name: "terminates the captured detached cli-mistral-vibe process group after timeout"
 playbook_path: "cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook/stress/orphan-cleanup.md"
 id: "cli-mistral-vibe-EC-011"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # EC-011 -- cli-mistral-vibe orphan cleanup
@@ -68,14 +68,6 @@ The command exits 0 and the verbose reporter names `terminates the captured deta
 - **FAIL**: The command exits non-zero after the test starts, an assertion fails, or the command exceeds its test bound.
 - **SKIP**: Only Node or the checked-in Vitest dependency cannot start; record the exact missing prerequisite. Provider credentials are not required for this hermetic cell.
 - Live provider step: none. This stress cell is hermetic and needs no live provider step.
-
-### Recorded Result
-
-- Date: 2026-11-14
-- Command: the exact Vitest invocation in §3, run from the repository root with stdin closed.
-- Exit code: 0.
-- Observed stdout: `✓ |serial| tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts > cli-mistral-vibe adapter contracts > terminates the captured detached cli-mistral-vibe process group after timeout 2799ms` with the summary `Test Files  1 passed (1)` and `Tests  1 passed | 22 skipped (23)` (3.09s).
-- Verdict: PASS. The named test passed and the file summary was green; the temporary lineage ledger and artifacts were removed with the fixtures during teardown.
 
 ### Triage
 

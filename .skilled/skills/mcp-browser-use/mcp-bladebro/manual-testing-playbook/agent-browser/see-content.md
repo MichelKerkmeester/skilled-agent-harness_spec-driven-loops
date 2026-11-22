@@ -1,7 +1,7 @@
 ---
 title: "BB-006 -- Read page content"
 description: "This scenario validates `see content` on the agent browser for `BB-006`. It focuses on page text returned in the ok, is_error and text shape."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-006 -- Read page content
@@ -79,6 +79,7 @@ The JSON and the exit status.
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md` | Bladebro CLI commands and flags |
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/browser-lanes.md` | Agent-browser and real-browser lanes |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/agent-browser/page-reads.md` | Feature catalog entry: Page reads |
 
 ---
 

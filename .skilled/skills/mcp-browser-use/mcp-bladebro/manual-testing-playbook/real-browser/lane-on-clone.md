@@ -1,7 +1,7 @@
 ---
 title: "BB-011 -- Real-browser lane on in clone mode"
 description: "This scenario validates `rb on` in clone mode for `BB-011`. It focuses on the profile import and the lane reporting ON and ACTIVE."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-011 -- Real-browser lane on in clone mode
@@ -80,6 +80,7 @@ Both outputs.
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/browser-lanes.md` | Agent-browser and real-browser lanes |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/real-browser/clone-mode.md` | Feature catalog entry: Clone mode |
 
 ---
 

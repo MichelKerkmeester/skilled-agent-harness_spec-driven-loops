@@ -1,7 +1,7 @@
 ---
 title: "BB-004 -- Version and doctor health check"
 description: "This scenario validates the Bladebro version and doctor output for `BB-004`. It focuses on v4.8.2, the data root and the browser being found."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-004 -- Version and doctor health check
@@ -81,6 +81,7 @@ Both full outputs.
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md` | Install, digest pin and doctor checks |
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md` | Bladebro CLI commands and flags |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/install-and-health/health-diagnostics.md` | Feature catalog entry: Health diagnostics |
 
 ---
 

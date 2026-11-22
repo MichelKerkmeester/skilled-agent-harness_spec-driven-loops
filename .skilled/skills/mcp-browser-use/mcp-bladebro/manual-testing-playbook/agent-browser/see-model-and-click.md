@@ -1,7 +1,7 @@
 ---
 title: "BB-007 -- Page model and a click by text"
 description: "This scenario validates `see model` and `act click` for `BB-007`. It focuses on refs in the page model and one click dispatched by its visible text."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-007 -- Page model and a click by text
@@ -79,6 +79,7 @@ Both JSON outputs.
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md` | Bladebro CLI commands and flags |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/agent-browser/page-actions.md` | Feature catalog entry: Page actions |
 
 ---
 

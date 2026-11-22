@@ -1,7 +1,7 @@
 ---
 title: "VIB-CLI-001 -- First-turn print-mode run"
 description: "This scenario validates that a keyed Vibe print-mode turn on the deepseek-flash alias finishes and writes an export.json outcome record with exit_code 0 and outcome finished."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-CLI-001 -- First-turn print-mode run
@@ -56,15 +56,6 @@ node "$REPO/.vibe/plugins/repo-guards/render-home-hooks.cjs" "$VIBE_HOME"
 cd "$RUN_DIR" && AI_SESSION_CHILD=1 VIBE_SPEC_FOLDER="$REPO/specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks" VIBE_HOME="$VIBE_HOME" vibe -p 'Quote the line in your context that starts with "**Objective:**" exactly, then stop. Use no tools.' --model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null
 node -e 'const j=require(process.argv[1]); console.log(JSON.stringify({exit_code:j.exit_code,outcome:j.outcome,active_model:j.config.active_model,vibe_version:j.vibe_version},null,2))' "$RUN_DIR/out/export.json"
 ```
-
-### Recorded Result
-
-- Verdict: `PASS`.
-- Date: 2026-11-14.
-- Basis: recorded evidence from an earlier keyed run, not a run started by this review. The record at `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks/scratch/first-turn/export.json` exists, and `node` read `exit_code` `0` and `outcome` `finished` from it.
-- Observed: `vibe_version` `3.1.2`, `config.active_model` `deepseek-flash`, `steps` `1`, `journal_dir` `session`, `stop_reason` null and `error` null.
-- Observed: the export carries one warning that no supported plugin manifest was found for the guard bundle folder. The bundle is a hook bundle declared in `hooks.toml`, so the warning is informational and does not change the outcome pair.
-- Caveat: the recorded run passed `--prompt-file` and ran from the checkout root with a trusted home so the project hook would load. It proves print mode and the outcome record; it does not prove the scratch-cwd isolation, which `VIB-HR-001` checks statically. A later keyed scratch-cwd run with the rendered home hooks also quoted the Objective line; its record is under `011-vibe-context-and-goal-hooks/scratch/scratch-cwd-home-hooks/`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

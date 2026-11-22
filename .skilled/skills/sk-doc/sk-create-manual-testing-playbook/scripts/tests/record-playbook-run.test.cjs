@@ -162,7 +162,32 @@ function runRunnerHandOff() {
   console.log('recorder runner hand-off: PASS (9 assertions)');
 }
 
+function runHubReports() {
+  // A mode packet has no benchmark folder, so --reports names its hub's reports folder instead.
+  const { skillRoot, playbookRoot, reportsDir: modeReports } = makeSkill('hub');
+  const hubRoot = path.dirname(skillRoot);
+  const hubReports = path.join(hubRoot, 'benchmark', 'reports');
+  const csv = writeCsv(skillRoot, 'scenario_id,verdict,reason,evidence\nFX-001,PASS,,\n');
+  const saved = record(['--playbook', playbookRoot, '--results', csv, '--reports', hubReports, '--label', 'manual-testing-playbook--hub']);
+  assert.strictEqual(saved.status, 0, `a hub destination that contains the playbook is accepted\n${saved.stderr}`);
+  assert(fs.existsSync(path.join(hubReports, '2026-11-22--manual-testing-playbook--hub', 'results.csv')), 'the run lands in the hub');
+  assert(!fs.existsSync(modeReports), 'the mode gets no benchmark folder of its own');
+  const index = fs.readFileSync(path.join(hubReports, 'README.md'), 'utf8');
+  assert(index.includes(`# ${path.basename(hubRoot)} Benchmark Reports`), 'a new hub index carries the hub name, not the mode name');
+
+  const notReports = record(['--playbook', playbookRoot, '--results', csv, '--reports', path.join(hubRoot, 'reports'), '--label', 'manual-testing-playbook--typo']);
+  assert.strictEqual(notReports.status, 1, 'a destination that is not a benchmark/reports folder is refused');
+  assert(notReports.stderr.includes('must end in benchmark/reports'), `the refusal says why; got ${notReports.stderr}`);
+
+  const elsewhere = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'recorder-elsewhere-')), 'benchmark', 'reports');
+  const outside = record(['--playbook', playbookRoot, '--results', csv, '--reports', elsewhere, '--label', 'manual-testing-playbook--outside']);
+  assert.strictEqual(outside.status, 1, 'a reports folder whose skill does not contain the playbook is refused');
+  assert(!fs.existsSync(elsewhere), 'the refused destination is not created');
+  console.log('recorder hub reports: PASS (8 assertions)');
+}
+
 runHappyPath();
 runRefusals();
+runHubReports();
 runRunnerHandOff();
 runEdgeCases();

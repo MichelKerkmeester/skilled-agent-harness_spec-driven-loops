@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes",
+  "description": "Phase 27: epic-review-fixes",
+  "keywords": [
+    "phase",
+    "epic-review-fixes"
+  ],
+  "lastUpdated": "2026-11-22T13:13:44.651Z",
+  "specId": "027",
+  "folderSlug": "epic-review-fixes",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "22-11-26_11-37__fixed-the-one-p1-and-six-p2-findings-of-the-fresh.md",
+    "22-11-26_12-17__a-fresh-native-opus-high-review-confirmed-the.md",
+    "22-11-26_14-13__round-two-is-committed-with-the-advisor-bumped-to.md"
+  ]
+}

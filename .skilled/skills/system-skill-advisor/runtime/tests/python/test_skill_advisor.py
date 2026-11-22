@@ -2712,6 +2712,69 @@ def test_deep_routing_clears_floor_flag():
         fail_test(name, f"raised={raised[0]!r} kept={kept[0]!r}")
 
 
+def test_route_exclusions_in_fallback():
+    """The fallback scorer drops a route-excluded skill, read from the override folder, as native does."""
+    name = "ROUTE-EXCL: the fallback drops a skill the override folder excludes and keeps it otherwise"
+    prompt = "create a git worktree and commit the changes"
+    # Executor delegation adds the hub row back even when the candidate loop skipped it.
+    executor_prompt = "delegate this to cli-opencode"
+    previous = os.environ.get("SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR")
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        os.environ.pop("SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR", None)
+        before = [row.get("skill") for row in advisor.analyze_request(prompt)]
+        executor_before = [row.get("skill") for row in advisor.analyze_request(executor_prompt)]
+        with tempfile.TemporaryDirectory() as config_dir:
+            with open(os.path.join(config_dir, "route-exclusions.json"), "w", encoding="utf-8") as handle:
+                json.dump({"excludedSkillIds": ["sk-git"]}, handle)
+            os.environ["SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR"] = config_dir
+            after = [row.get("skill") for row in advisor.analyze_request(prompt)]
+            with open(os.path.join(config_dir, "route-exclusions.json"), "w", encoding="utf-8") as handle:
+                json.dump({"excludedSkillIds": ["sk-git", "cli-external-orchestration"]}, handle)
+            injected = [row.get("skill") for row in advisor.analyze_request(executor_prompt)]
+            with open(os.path.join(config_dir, "route-exclusions.local.json"), "w", encoding="utf-8") as handle:
+                json.dump({"excludedSkillIds": []}, handle)
+            local_empty = [row.get("skill") for row in advisor.analyze_request(prompt)]
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    finally:
+        if previous is None:
+            os.environ.pop("SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR", None)
+        else:
+            os.environ["SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR"] = previous
+    if (
+        before[:1] == ["sk-git"] and "sk-git" not in after and "sk-git" in local_empty
+        and executor_before[:1] == ["cli-external-orchestration"] and "cli-external-orchestration" not in injected
+    ):
+        ok(name, f"before={before[:2]} after={after[:2]} executor_before={executor_before[:2]}")
+    else:
+        fail_test(name, f"before={before[:3]} after={after[:3]} local_empty={local_empty[:3]} executor_before={executor_before[:3]} injected={injected[:3]}")
+
+
+def test_native_bridge_forwards_location_overrides():
+    """The native bridge child gets the two location overrides the native scorer reads."""
+    name = "BRIDGE-ENV: the native bridge forwards the feedback path and route-exclusions folder and drops unlisted keys"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        env = advisor._native_bridge_env({
+            "SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH": "/tmp/advisor-feedback.jsonl",
+            "SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR": "/tmp/advisor-route-config",
+            "AWS_SECRET_ACCESS_KEY": "should-not-leak",
+        })
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    expected = {
+        "SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH": "/tmp/advisor-feedback.jsonl",
+        "SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR": "/tmp/advisor-route-config",
+    }
+    if env == expected:
+        ok(name)
+    else:
+        fail_test(name, f"env={env!r}")
+
+
 def main():
     print("=" * 60)
     print("  SKILL ADVISOR AUTOMATED TEST SUITE (T243/T246)")
@@ -2728,6 +2791,8 @@ def main():
     test_pasted_reply_strip_parity()
     test_native_bridge_floor_flag()
     test_deep_routing_clears_floor_flag()
+    test_route_exclusions_in_fallback()
+    test_native_bridge_forwards_location_overrides()
 
     print(f"\nSummary: pass={passed}, fail={failed}")
     return 0 if failed == 0 else 1

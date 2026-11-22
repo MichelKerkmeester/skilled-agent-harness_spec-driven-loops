@@ -1,7 +1,7 @@
 ---
 title: "BDG-018 -- Page-context isolation cross-instance"
 description: "This scenario validates cookie/storage isolation between `chrome_devtools_1` and `chrome_devtools_2` for `BDG-018`. It focuses on confirming a cookie set in instance 1 does not appear in instance 2."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # BDG-018 -- Page-context isolation cross-instance
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `BDG-018` and confirm th
 - Objective: Verify a cookie `bdg_test=BDG-018` set in `chrome_devtools_1` appears in `chrome_devtools_1`'s `getCookies` output and does NOT appear in `chrome_devtools_2`'s `getCookies` output.
 - Real user request: `"Confirm that cookies set in one MCP browser don't leak to the other one."`
 - Prompt: `As a manual-testing orchestrator, set a cookie in chrome_devtools_1 then check it does NOT appear in chrome_devtools_2 through Code Mode against both MCP instances. Verify cookie isolation. Return a concise user-facing pass/fail verdict with the main reason.` (RCAF format)
-- Expected execution process: navigate both instances to the same origin; set cookie in instance 1 via `dom eval`; call `getCookies` on both; assert cookie present in 1, absent in 2.
+- Expected execution process: navigate both instances to the same origin; set cookie in instance 1 via `evaluate_script`; read `document.cookie` via `evaluate_script` on both; assert cookie present in 1, absent in 2; write the script as plain synchronous JavaScript with no `await`, since Code Mode tool calls block until they return.
 - Expected signals: cookie set succeeds in instance 1; `getCookies` on instance 1 includes `bdg_test`; `getCookies` on instance 2 does NOT include `bdg_test`.
 - Desired user-visible outcome: A short report listing the cookie name in instance 1, "absent in instance 2", and "ISOLATION CONFIRMED" with a PASS verdict.
 - Pass/fail: PASS if all three signals hold; FAIL if the cookie set fails, instance 1 doesn't see the cookie, or instance 2 sees it (isolation broken).
@@ -44,24 +44,24 @@ Operators run the exact prompt and command sequence for `BDG-018` and confirm th
 
 1. Precondition: both `chrome_devtools_1` and `chrome_devtools_2` registered (cross-reference BDG-014, BDG-015)
 2. Code Mode script — build and dispatch via `call_tool_chain`:
-   ```ts
-   await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' });
-   await chrome_devtools_2.chrome_devtools_2_navigate_page({ url: 'https://example.com' });
-   await chrome_devtools_1.chrome_devtools_1_evaluate_script({
+   ```js
+   chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' });
+   chrome_devtools_2.chrome_devtools_2_navigate_page({ url: 'https://example.com' });
+   chrome_devtools_1.chrome_devtools_1_evaluate_script({
      function: "() => { document.cookie = 'bdg_test=BDG-018; path=/'; return document.cookie; }"
    });
    // No dedicated cookie-retrieval tool is registered for chrome_devtools_1/2, so read
    // document.cookie via evaluate_script independently in each instance.
-   const c1 = await chrome_devtools_1.chrome_devtools_1_evaluate_script({ function: "() => document.cookie" });
-   const c2 = await chrome_devtools_2.chrome_devtools_2_evaluate_script({ function: "() => document.cookie" });
-   const has = (cs: any) => JSON.stringify(cs).includes('bdg_test');
+   const c1 = chrome_devtools_1.chrome_devtools_1_evaluate_script({ function: "() => document.cookie" });
+   const c2 = chrome_devtools_2.chrome_devtools_2_evaluate_script({ function: "() => document.cookie" });
+   const has = (cs) => JSON.stringify(cs).includes('bdg_test');
    return { in1: has(c1), in2: has(c2) };
    ```
 3. Assert: `in1 === true` AND `in2 === false`
 
 ### Expected
 
-- Step 2: returns `{ in1, in2 }`
+- Step 2: returns `{ in1, in2 }`; the logs carry no `[ERROR] Code execution failed` line
 - Step 3: `in1` is `true` AND `in2` is `false`
 
 ### Evidence
@@ -75,8 +75,9 @@ Capture the Code Mode script, returned object, and explicit boolean values for b
 
 ### Failure Triage
 
-1. If `in2 === true`: ISOLATION BROKEN. Confirm `chrome_devtools_2` is configured with a distinct user-data-dir / profile path in `.utcp_config.json` — both instances cannot share the same Chrome profile directory. Cross-reference CM-014 (Chrome via CM) for the canonical separated-profile config.
-2. If `in1 === false` despite a clean set: cookies set via `document.cookie` may not persist across the round-trip if the page is `about:blank` or has a `data:` scheme — confirm the navigation to `https://example.com` actually completed by adding a `console.log(location.href)` eval before the cookie set; cross-reference BDG-009 for the eval contract.
+1. If the call fails with `await is only valid in async functions`: the script still uses `await`; drop it, since Code Mode tool calls are synchronous.
+2. If `in2 === true`: ISOLATION BROKEN. Confirm `chrome_devtools_2` is configured with a distinct user-data-dir / profile path in `.utcp_config.json`, since both instances cannot share the same Chrome profile directory. Cross-reference CM-014 (Chrome via CM) for the canonical separated-profile config.
+3. If `in1 === false` despite a clean set: cookies set via `document.cookie` may not persist across the round-trip if the page is `about:blank` or has a `data:` scheme; confirm the navigation to `https://example.com` actually completed by adding a `console.log(location.href)` eval before the cookie set; cross-reference BDG-009 for the eval contract.
 
 ---
 

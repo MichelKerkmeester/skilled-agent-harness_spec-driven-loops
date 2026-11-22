@@ -1,7 +1,7 @@
 ---
 title: "ASD-019 -- Cookies + web storage read"
-description: "This scenario validates Chrome-DevTools Application-panel parity for `ASD-019`: page.context().cookies() and localStorage/sessionStorage key reads via page.evaluate through the aside REPL, redacted, with a SKIP-valid path when no bound session exists."
-version: 1.0.1.0
+description: "This scenario validates Chrome-DevTools Application-panel parity for `ASD-019`: the page.context() cookie gap, page-visible cookie names, and localStorage/sessionStorage key reads via page.evaluate through the aside REPL, redacted, with a SKIP-valid path when no bound session exists."
+version: 1.0.2.0
 ---
 
 # ASD-019 -- Cookies + web storage read
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario reads cookies for the bound context via `page.context().cookies()` and enumerates `localStorage`/`sessionStorage` keys via `page.evaluate` — the Application-panel parity path. Values are redacted; only names/keys are logged.
+This scenario was written to read cookies for the bound context via `page.context().cookies()` and to enumerate `localStorage`/`sessionStorage` keys via `page.evaluate`, the Application-panel parity path. On Aside 1.26.626.1517 `page.context` is not a function, so the context cookie read is a gap: the scenario records that the API is absent, reads only the cookie names the page itself can see through `document.cookie` (no HttpOnly cookies, no domains), and keeps the storage-key read. Values are redacted; only names/keys are logged.
 
 ### Why This Matters
 
-Cookie and storage inspection is a common debugging need (`bdg network getCookies` analog). The Playwright context API makes it reachable, but cookies and storage are sensitive: the packet redacts values by default and never exposes saved-password values (confirmed online in `security.md`).
+Cookie and storage inspection is a common debugging need (`bdg network getCookies` analog). The Playwright context API would make it reachable, but Aside 1.26.626.1517 does not expose `page.context()`. Cookies and storage are also sensitive: the packet redacts values by default and never exposes saved-password values (confirmed online in `security.md`).
 
 ---
 
@@ -24,13 +24,13 @@ Cookie and storage inspection is a common debugging need (`bdg network getCookie
 
 Operators run the exact prompt and command sequence for `ASD-019` and confirm the expected signals without contradictory evidence.
 
-- Objective: On a bound tab, return the cookie names+domains and the storage key lists — no values in saved evidence.
+- Objective: On a tab opened in the same evaluation, record whether `page.context` exists, return the page-visible cookie names and the storage key lists, with no values in saved evidence.
 - Real user request: `"What cookies and local storage does this page have?"`
 - Prompt: `Read cookies and web-storage keys through the aside REPL on a bound tab, redacting values.`
-- Expected execution process: one persistent REPL context; cookies + storage read in one call.
-- Expected signals: a parseable array of `{name, domain}` and a parseable `{ local: [...], session: [...] }` key map.
+- Expected execution process: one REPL evaluation that opens its own tab first, since a separate `aside repl` call starts with `page` null; API check, cookie names and storage keys read in that call.
+- Expected signals: `contextApi` reported (not `"function"` on Aside 1.26.626.1517); a parseable `cookieNames` array; a parseable `{ local: [...], session: [...] }` key map.
 - Desired user-visible outcome: Cookie names/domains and storage keys, values redacted, PASS verdict.
-- Pass/fail: PASS when both parse; SKIP (valid) with the blocker "no bound Aside session available"; FAIL if values are logged unredacted or the call errors against a bound tab.
+- Pass/fail: PASS when the output parses and the verdict states the context-cookie gap; SKIP (valid) with the blocker "no bound Aside session available"; FAIL if values are logged unredacted or the call errors against a bound tab.
 
 ---
 
@@ -42,13 +42,14 @@ Operators run the exact prompt and command sequence for `ASD-019` and confirm th
 
 ### Commands
 
-1. Precondition: a bound tab (ASD-006). If none, SKIP with that blocker.
-2. `bash:` read cookies (redacted) + storage keys:
-   `aside repl "const ck = await page.context().cookies(); const st = await page.evaluate(() => ({ local: Object.keys(localStorage), session: Object.keys(sessionStorage) })); console.log(JSON.stringify({ cookies: ck.map(c => ({ name: c.name, domain: c.domain })), storage: st }))" 2>&1`
+1. Precondition: ASD-006 passed, so `openTab()` works on this profile. If no bound session is available, SKIP with that blocker.
+2. `bash:` open the tab, check the context API, read page-visible cookie names (redacted) + storage keys:
+   `aside repl "await openTab('https://example.com'); const contextApi = typeof page.context; const st = await page.evaluate(() => ({ cookieNames: document.cookie.split('; ').filter(Boolean).map(c => c.split('=')[0]), local: Object.keys(localStorage), session: Object.keys(sessionStorage) })); console.log(JSON.stringify({ contextApi, cookieNames: st.cookieNames, storage: { local: st.local, session: st.session } }))" 2>&1`
 
 ### Expected
 
-- Output parses to `{ cookies: [{name, domain}...], storage: { local: [...], session: [...] } }`. For `example.com` the cookie array may be empty (valid).
+- Output parses to `{ contextApi, cookieNames: [...], storage: { local: [...], session: [...] } }` and carries no error line. For `example.com` the arrays may be empty (valid). On Aside 1.26.626.1517 `contextApi` is not `"function"`; the verdict states that context cookies (with domains and HttpOnly entries) are not readable this way. If a later version reports `"function"`, record it as version drift; the context cookie read can then be retried.
+- Exit 0 alone is not a pass signal, because an `aside repl` error still exits 0.
 
 ### Evidence
 
@@ -56,14 +57,14 @@ The REPL transcript and the parsed, redacted JSON. Never save cookie/storage VAL
 
 ### Pass / Fail
 
-- **Pass**: both structures parse; no values in evidence.
+- **Pass**: the output parses; the verdict states the context-cookie gap; no values in evidence.
 - **Skip**: no bound session — documented blocker.
 - **Fail**: values logged unredacted, or the call errors against a genuinely bound tab.
 
 ### Failure Triage
 
-1. Binding error: cross-reference ASD-006/ASD-010.
-2. `context()` undefined: record the exact call form; evaluate/context edge cases are a known vendor-changelog theme.
+1. `page` is null or a binding error: the tab was not opened in the same evaluation, or the profile is unbound; cross-reference ASD-006/ASD-010.
+2. `page.context is not a function`: the call form still uses `page.context().cookies()`; that API is absent on Aside 1.26.626.1517, so use the check above and report the gap.
 
 ---
 

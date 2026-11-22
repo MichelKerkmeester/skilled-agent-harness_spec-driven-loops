@@ -73,7 +73,6 @@ import type { RankedList, RrfItem } from '@spec-kit/shared/algorithms/rrf-fusion
 const DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
 const DEFAULT_UNCERTAINTY_THRESHOLD = resolvedUncertaintyThreshold();
 export const ADVISOR_RRF_FUSION_FLAG = 'SPECKIT_ADVISOR_RRF_FUSION';
-export const ADVISOR_QUERY_CLASS_ROUTING_FLAG = 'SPECKIT_ADVISOR_QUERY_CLASS_ROUTING';
 export const ADVISOR_RRF_K = 8;
 const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b/;
 const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
@@ -131,7 +130,6 @@ interface AdvisorRrfFusion {
 
 type AdvisorRuntimeLabel = (typeof ADVISOR_RUNTIME_VALUES)[number];
 type AdvisorFreshnessLabel = (typeof ADVISOR_HOOK_FRESHNESS_VALUES)[number];
-export type AdvisorQueryClass = 'implementation' | 'review' | 'documentation' | 'memory' | 'tooling' | 'unknown';
 
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
@@ -156,87 +154,19 @@ export function isAdvisorRrfFusionEnabled(): boolean {
   return value ? TRUE_FLAG_VALUES.has(value) : false;
 }
 
-export function isAdvisorQueryClassRoutingEnabled(): boolean {
-  const value = process.env[ADVISOR_QUERY_CLASS_ROUTING_FLAG]?.trim().toLowerCase();
-  return value ? TRUE_FLAG_VALUES.has(value) : false;
-}
-
-export function classifyAdvisorQuery(prompt: string): AdvisorQueryClass {
-  const promptLower = prompt.toLowerCase();
-  if (/\b(save context|save memory|handover|resume|checkpoint|spec folder|implementation summary|packet docs?)\b/.test(promptLower)) {
-    return 'memory';
-  }
-  if (/\b(review|audit|findings|regression|pull request|pr readiness|release readiness)\b/.test(promptLower)) {
-    return 'review';
-  }
-  if (/\b(readme|markdown|documentation|docs|manual testing playbook|feature catalog|taxonomy)\b/.test(promptLower)) {
-    return 'documentation';
-  }
-  if (/\b(call_tool_chain|code mode|tool ?chain|chrome devtools|browser console|figma|github|clickup)\b/.test(promptLower)) {
-    return 'tooling';
-  }
-  if (TASK_INTENT.test(promptLower) || /\b(typescript|javascript|python|vitest|mcp|handler|schema|fixture)\b/.test(promptLower)) {
-    return 'implementation';
-  }
-  return 'unknown';
-}
-
-export function queryClassLaneMultipliers(queryClass: AdvisorQueryClass): Readonly<Partial<Record<ScorerLane, number>>> {
-  switch (queryClass) {
-    case 'implementation':
-      return { explicit_author: 1.04, lexical: 1.00, graph_causal: 0.98, derived_generated: 0.98 };
-    case 'review':
-      return { explicit_author: 1.03, lexical: 1.02, graph_causal: 0.96, derived_generated: 0.98 };
-    case 'documentation':
-      return { explicit_author: 1.03, lexical: 0.98, graph_causal: 0.95, derived_generated: 1.04 };
-    case 'memory':
-      return { explicit_author: 1.04, lexical: 0.98, graph_causal: 1.02, derived_generated: 1.00 };
-    case 'tooling':
-      return { explicit_author: 1.04, lexical: 1.00, graph_causal: 0.98, derived_generated: 0.96 };
-    case 'unknown':
-      return {};
-  }
-}
-
-export function applyQueryClassLaneMultipliers(
-  weights: Readonly<Record<ScorerLane, number>>,
-  queryClass: AdvisorQueryClass,
-): Readonly<Record<ScorerLane, number>> {
-  const multipliers = queryClassLaneMultipliers(queryClass);
-  if (Object.keys(multipliers).length === 0) return weights;
-  const next = { ...weights };
-  for (const lane of SCORER_LANES) {
-    const multiplier = multipliers[lane];
-    if (typeof multiplier === 'number' && Number.isFinite(multiplier)) {
-      next[lane] = Number((next[lane] * multiplier).toFixed(6));
-    }
-  }
-  const strongestOther = Math.max(...SCORER_LANES
-    .filter((lane) => lane !== 'explicit_author')
-    .map((lane) => next[lane]));
-  if (next.explicit_author < strongestOther) {
-    next.explicit_author = Number(strongestOther.toFixed(6));
-  }
-  return next;
-}
-
 function effectiveScorerWeights(
   override: AdvisorScoringOptions['laneWeightsOverride'] | undefined,
-  queryClass: AdvisorQueryClass = 'unknown',
 ): Readonly<Record<ScorerLane, number>> {
-  const base = !override ? DEFAULT_SCORER_WEIGHTS : (() => {
-    const weights: Record<ScorerLane, number> = { ...DEFAULT_SCORER_WEIGHTS };
-    const runtimeOverride = override as Partial<Record<string, number>>;
-    for (const lane of SCORER_LANES) {
-      const value = runtimeOverride[lane];
-      if (typeof value === 'number' && Number.isFinite(value)) {
-        weights[lane] = value;
-      }
+  if (!override) return DEFAULT_SCORER_WEIGHTS;
+  const weights: Record<ScorerLane, number> = { ...DEFAULT_SCORER_WEIGHTS };
+  const runtimeOverride = override as Partial<Record<string, number>>;
+  for (const lane of SCORER_LANES) {
+    const value = runtimeOverride[lane];
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      weights[lane] = value;
     }
-    return weights;
-  })();
-  if (queryClass === 'unknown') return base;
-  return applyQueryClassLaneMultipliers(base, queryClass);
+  }
+  return weights;
 }
 
 function normalizeRuntimeLabel(value: string | undefined): AdvisorRuntimeLabel | null {
@@ -397,7 +327,6 @@ function confidenceFor(args: {
   liveNormalized: number;
   directScore: number;
   readOnlyExplainer: boolean;
-  hasExplicitWorkflowSignal: boolean;
   hasTaskIntent: boolean;
   readOnlyRouteAllowed: boolean;
   derivedDominant: boolean;
@@ -614,19 +543,6 @@ export function boundGraphSupportBySeedWithHolders(
     if (binding) heldBelow.set(targetId, binding);
   }
   return { scores: bounded, heldBelow };
-}
-
-function hasExplicitWorkflowSignal(contributions: readonly LaneContribution[], skillId: string): boolean {
-  const explicit = contributions.find((contribution) => contribution.lane === 'explicit_author');
-  if (!explicit || explicit.rawScore < EXPLICIT_WORKFLOW_SIGNAL_FLOOR) return false;
-  return explicit.evidence.some((entry) => (
-    entry.startsWith('phrase:')
-    || entry.startsWith('explicit:')
-    || entry.startsWith('author:')
-    || entry.includes(skillId)
-    || entry.includes('loop')
-    || entry.includes('write-')
-  ));
 }
 
 export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): boolean {
@@ -1138,11 +1054,7 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
     options.projection ?? loadAdvisorProjection(options.workspaceRoot),
   );
   const promptLower = prompt.toLowerCase();
-  const queryClass = classifyAdvisorQuery(promptLower);
-  const weights = effectiveScorerWeights(
-    options.laneWeightsOverride,
-    isAdvisorQueryClassRoutingEnabled() ? queryClass : 'unknown',
-  );
+  const weights = effectiveScorerWeights(options.laneWeightsOverride);
   const disabled = new Set(options.disabledLanes ?? []);
   const affordances = normalize(options.affordances ?? []);
   const useRrfFusion = isAdvisorRrfFusionEnabled();
@@ -1239,13 +1151,11 @@ export function scoreAdvisorPrompt(rawPrompt: string, options: AdvisorScoringOpt
       contributions.find((contribution) => contribution.lane === 'lexical')?.rawScore ?? 0,
     );
     const derivedDominant = isDerivedDominant(contributions);
-    const explicitSignal = hasExplicitWorkflowSignal(contributions, skill.id);
     const liveNormalized = score / liveTotal;
     const confidenceResult = confidenceFor({
       liveNormalized,
       directScore,
       readOnlyExplainer,
-      hasExplicitWorkflowSignal: explicitSignal,
       hasTaskIntent,
       readOnlyRouteAllowed: readOnlyRouteAllowed(promptLower, skill),
       derivedDominant,

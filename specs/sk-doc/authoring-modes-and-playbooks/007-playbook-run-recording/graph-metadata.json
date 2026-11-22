@@ -5,7 +5,8 @@
   "parent_id": "sk-doc/authoring-modes-and-playbooks",
   "children_ids": [
     "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator",
-    "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill"
+    "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill",
+    "sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/003-hub-reports-destination"
   ],
   "manual": {
     "depends_on": [],
@@ -43,7 +44,9 @@
       "manual-testing-playbook/manual-testing-playbook.md",
       "001-run-recorder-and-validator/goal.md",
       "002-playbook-marker-backfill/goal.md",
-      "001-run-recorder-and-validator/implementation-summary.md"
+      "003-hub-reports-destination/goal.md",
+      "001-run-recorder-and-validator/implementation-summary.md",
+      "003-hub-reports-destination/implementation-summary.md"
     ],
     "entities": [
       {
@@ -145,17 +148,17 @@
     ],
     "causal_summary": "The `sk-create-manual-testing-playbook` mode says a scenario run is incomplete until its verdict is recorded under the skill's `benchmark/reports/`",
     "created_at": "2026-11-22T09:08:17Z",
-    "last_save_at": "2026-11-22T09:32:24.868Z",
+    "last_save_at": "2026-11-22T13:42:28.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c3bf77bb71084ab20741c8ac674980c3bc1b606bb5c4373039e053dd19d2e75e",
+    "source_fingerprint": "sha256:2efeec1ff2b22149f702b6d1fb8192e9f95395e00173e301e5ba33bdd14eb573",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46a0bf2655ac0e7d75497d43b6ef9733ebbd06d9548aab1ae1f72b46ae03e123"
+      "spec.md": "c79da6d019b816f9e6e475f5a7f22d784d1c1e91e2d0c8a229473c1586077a90"
     },
     "last_active_at": null
   }

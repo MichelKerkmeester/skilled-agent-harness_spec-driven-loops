@@ -1,7 +1,7 @@
 ---
 title: "VIB-HR-001 -- Dispatch rule-check suite"
 description: "This scenario validates that the dispatch rule-check suite passes and that every Vibe hard rule refuses its own violation through the shared evaluator."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # VIB-HR-001 -- Dispatch rule-check suite
@@ -47,15 +47,6 @@ The hard rules are the gate a caller relies on before spending a keyed run. A ru
 ```bash
 node --test .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.test.mjs
 ```
-
-### Recorded Result
-
-- Verdict: `PASS`.
-- Date: 2026-11-15.
-- Observed: the command exited `0` with `tests 64`, `pass 64`, `fail 0`, `cancelled 0`, `skipped 0` and `todo 0`.
-- Observed: the run printed the five Vibe rule cases, `stdin-redirect-required covers vibe print mode and its prompt-file form`, `the documented vibe dispatch line passes every hard rule` and `every vibe hard rule names an implemented check and never borrows the dsh roster check`, all passing.
-- Observed: the run also printed `dsh hard rules refuse the retired Mistral route`, which shows the shared evaluator keeps the dsh roster closed while the Vibe roster names Mistral models.
-- Note: the suite is hermetic. It evaluates command strings and never starts `vibe` or contacts a provider.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

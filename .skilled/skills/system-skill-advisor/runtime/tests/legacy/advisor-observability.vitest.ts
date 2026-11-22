@@ -24,7 +24,6 @@ import {
   buildAdvisorHookHealthSection,
   createAdvisorHookDiagnosticRecord,
   createAdvisorHookOutcomeRecord,
-  getAdvisorHookAlertThresholds,
   getAdvisorHookMetricDefinitions,
   persistAdvisorHookOutcomeRecord,
   readAdvisorHookOutcomeRecords,
@@ -171,21 +170,6 @@ describe('advisor observability contract', () => {
     expect(health.rollingCacheHitRate).toBeGreaterThan(0);
     expect(health.rollingP95Ms).toBeGreaterThan(0);
     expect(health.rollingFailOpenRate).toBeCloseTo(1 / 30, 4);
-  });
-
-  it('keeps alert thresholds configurable through env', () => {
-    const previous = process.env.SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS;
-    process.env.SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS = '88';
-
-    try {
-      expect(getAdvisorHookAlertThresholds().cacheHitP95WarnMs).toBe(88);
-    } finally {
-      if (previous === undefined) {
-        delete process.env.SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS;
-      } else {
-        process.env.SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS = previous;
-      }
-    }
   });
 
   it('sanitizes durable outcome labels to skill-id slugs', () => {

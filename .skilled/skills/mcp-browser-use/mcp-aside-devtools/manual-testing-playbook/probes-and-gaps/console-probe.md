@@ -1,7 +1,7 @@
 ---
 title: "ASD-012 -- Console capture probe (guarded)"
 description: "This scenario validates the console-capture gap for `ASD-012`. It is a guarded probe: either a sentinel round trip succeeds and its shape is recorded, or the failure is captured and console capture stays unsupported."
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # ASD-012 -- Console capture probe (guarded)
@@ -13,6 +13,8 @@ This document captures the realistic user-testing contract, current behavior, ex
 ## 1. OVERVIEW
 
 This scenario probes whether Playwright-style `page.on('console', ...)` works on a bound page inside the Aside REPL. **No dedicated console contract exists in any research lineage** — not in docs, not in the live tool schema — so this probe either records a first supported fixture or confirms the fail-closed posture.
+
+On Aside 1.26.626.1517 the listener throws: the error says the `console` page event is not supported, lists the supported events (close, crash, dialog, domcontentloaded, download, filechooser, frameattached, framedetached, framenavigated, load, popup) and points to `page.console.logs()`. That pointer is recorded as the error's own suggestion; its return shape is not yet evidenced.
 
 ### Why This Matters
 
@@ -27,7 +29,7 @@ Operators run the exact prompt and command sequence for `ASD-012` and confirm th
 - Objective: Attempt a sentinel console round trip on a bound page; record the captured shape on success, or the verbatim failure on unsupported — with no parity claim in either verdict.
 - Real user request: `"Can Aside show me the page's console output?"`
 - Prompt: `Probe console capture on a bound page through the aside REPL with a sentinel message and report supported/unsupported honestly.`
-- Expected execution process: guarded listener + sentinel evaluation in one persistent REPL context.
+- Expected execution process: one REPL evaluation that opens its own tab, registers the guarded listener, emits the sentinel, and prints the result with `console.log`, since a separate `aside repl` call starts with `page` null and a top-level `return` value is never printed.
 - Expected signals: sentinel captured (supported) OR failure captured verbatim (unsupported, fail closed).
 - Desired user-visible outcome: A supported/unsupported verdict with the exact evidence, plus cleanup confirmation.
 - Pass/fail: PASS for either honest outcome; FAIL only if the probe is skipped, unguarded, or the verdict overclaims.
@@ -42,14 +44,15 @@ Operators run the exact prompt and command sequence for `ASD-012` and confirm th
 
 ### Commands
 
-1. Precondition: ASD-006 opened a page (bound context).
-2. `bash:` run a single REPL evaluation that registers a guarded listener, triggers a sentinel, waits briefly, and returns captured messages:
-   `aside repl "const seen = []; try { page.on('console', m => seen.push(String(m.text?.() ?? m))); } catch (e) { return 'LISTENER_UNSUPPORTED: ' + e.message } await page.evaluate(() => console.log('ASD-012 sentinel')); await sleep(1000); return seen" 2>&1`
+1. Precondition: ASD-006 passed, so `openTab()` works on this profile. Its tab does not carry over to this call, so the evaluation opens its own.
+2. `bash:` run a single REPL evaluation that opens the tab, registers a guarded listener, triggers a sentinel, waits briefly, and logs the captured messages:
+   `aside repl "await openTab('https://example.com'); const seen = []; let unsupported = null; try { page.on('console', m => seen.push(String(m.text?.() ?? m))); } catch (e) { unsupported = 'LISTENER_UNSUPPORTED: ' + e.message; } if (unsupported) { console.log(unsupported); } else { await page.evaluate(() => console.log('ASD-012 sentinel')); await sleep(1000); console.log(JSON.stringify(seen)); }" 2>&1`
 
 ### Expected
 
-- Supported path: returned array contains `ASD-012 sentinel` — save the full result shape as a fixture.
-- Unsupported path: `LISTENER_UNSUPPORTED: ...` or an evaluation error — save verbatim; console capture remains unsupported.
+- Supported path: the logged array contains `ASD-012 sentinel`; save the full result shape as a fixture.
+- Unsupported path, the observed outcome on Aside 1.26.626.1517: `LISTENER_UNSUPPORTED:` followed by the error that lists the supported page events and points to `page.console.logs()`; save it verbatim; console capture remains unsupported through `page.on`.
+- An empty output means the result was returned rather than logged. Exit 0 alone is not a signal, because an `aside repl` error still exits 0.
 
 ### Evidence
 
@@ -62,8 +65,9 @@ The full REPL transcript and, on success, the result-shape fixture (message text
 
 ### Failure Triage
 
-1. `page.evaluate` argument errors: evaluate-compatibility edge cases are a known vendor-changelog theme — record the exact call form and retry with the simplest form only once.
-2. Binding error: precondition failed — cross-reference ASD-006/ASD-010.
+1. `page.evaluate` argument errors: evaluate-compatibility edge cases are a known vendor-changelog theme; record the exact call form and retry with the simplest form only once.
+2. `page` is null or a binding error: the tab was not opened in the same evaluation, or the profile is unbound; cross-reference ASD-006/ASD-010.
+3. The error points to `page.console.logs()`: record the pointer only. Probing that method is a separate scenario, and its output shape is not part of this verdict.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "mcp-bladebro: Manual Testing Playbook"
 description: "Operator playbook for the mcp-bladebro mode: install and pin checks, the MCP and Code Mode lane, the agent-browser probe, the real-browser probe and teardown, following the 14-step macOS plan."
-version: 1.0.1.0
+version: 1.1.0.0
 ---
 
 # mcp-bladebro: Manual Testing Playbook
@@ -17,7 +17,7 @@ This playbook holds the manual validation contract for the `mcp-bladebro` mode o
 
 ## 1. OVERVIEW
 
-The playbook holds 14 scenarios across 5 categories. Plan steps 1 to 5 cover preflight, install, the digest pin and the health check. Step 6 covers the MCP and Code Mode lane. Steps 7 to 10 are the agent-browser probe and steps 11 to 13 the real-browser probe. Step 14 is teardown, split into the lane reset and the uninstall that waits for operator approval.
+The playbook holds 15 scenarios across 5 categories. Plan steps 1 to 5 cover preflight, install, the digest pin and the health check. Step 6 covers the MCP and Code Mode lane. Steps 7 to 10 are the agent-browser probe and steps 11 to 13 the real-browser probe, with BB-015 as the attach-mode alternative to step 13. Step 14 is teardown, split into the lane reset and the uninstall that waits for operator approval.
 
 ### Realistic Test Model
 
@@ -34,7 +34,7 @@ The playbook holds 14 scenarios across 5 categories. Plan steps 1 to 5 cover pre
 - The operator has said yes to the install and its rollback before scenario BB-002 runs.
 - Node 14 or later and a Chromium-family browser are present.
 - Every page action targets `https://example.com`. No sign-in, no form submit and no other site.
-- The real-browser scenarios BB-010 to BB-012 run only after the operator picks the browser and profile and confirms the target site. `profile` mode is never used on a live branded Chrome 136 or later.
+- The real-browser scenarios BB-010 to BB-012 and BB-015 run only after the operator picks the browser and profile and confirms the target site. `profile` mode is never used on a live branded Chrome 136 or later.
 
 ---
 
@@ -64,7 +64,7 @@ The playbook holds 14 scenarios across 5 categories. Plan steps 1 to 5 cover pre
 
 ### Result persistence
 
-A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/<dated-run-label>/`. The latest recorded run is `2026-11-21--manual-testing-playbook--macos-live`.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into `.skilled/skills/mcp-browser-use/mcp-bladebro/benchmark/reports/<dated-run-label>/`. The latest recorded run is `2026-11-22--manual-testing-playbook--clickup-real-browser`, the real-browser scenarios and BB-015 against a signed-in site. The latest full run is `2026-11-21--manual-testing-playbook--macos-live`.
 
 ---
 
@@ -73,7 +73,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 - Wave 1, in order: BB-001 to BB-004. Each step gates the next.
 - Wave 2: BB-005, the MCP and Code Mode lane.
 - Wave 3, one browser at a time: BB-006 to BB-009 on the isolated agent browser.
-- Wave 4, after the operator gates: BB-010 to BB-012 on the real-browser lane.
+- Wave 4, after the operator gates: BB-010 to BB-012 on the real-browser lane, then BB-015 by attaching to the running browser.
 - Wave 5: BB-013, then BB-014 once the operator approves the uninstall.
 
 ---
@@ -256,6 +256,19 @@ Expected signals: each call returns `ok: true` and exits 0
 #### Test Execution
 > **Feature File:** [BB-012](real-browser/real-mode-reads.md)
 
+### BB-015 | Reads by attaching to a running browser
+
+#### Description
+Attach to the running browser on a fixed debug port, read the confirmed target site and evaluate its title, read-only.
+
+#### Scenario Contract
+Prompt summary: Attach Bladebro to my running browser and read the site I confirmed, without clicking or typing anything.
+
+Expected signals: the debug port answers with a browser version, each read returns `ok: true` and exits 0, and the eval reports a signed-in page rather than a sign-in page
+
+#### Test Execution
+> **Feature File:** [BB-015](real-browser/attach-mode-reads.md)
+
 ---
 
 ## 11. TEARDOWN
@@ -292,4 +305,24 @@ Expected signals: the doctor prints the data root, the operator confirms no need
 
 ## 12. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-The `mcp-bladebro` packet has no feature catalog yet, so no scenario links to a catalog entry. The packet references named in each scenario are the implementation anchors.
+Each scenario maps to the feature-catalog entry that describes the behavior it validates. The catalog root is [feature-catalog.md](../feature-catalog/feature-catalog.md), and each scenario file names its catalog entry in its implementation anchors.
+
+| Feature ID | Feature Name | Category | Feature File | Catalog Entry |
+|---|---|---|---|---|
+| BB-001 | Host preflight before install | Preflight and Install | [BB-001](preflight-and-install/host-preflight.md) | [Pinned install and digest check](../feature-catalog/install-and-health/pinned-install-and-digest-check.md) |
+| BB-002 | Pinned npm install | Preflight and Install | [BB-002](preflight-and-install/npm-install.md) | [Pinned install and digest check](../feature-catalog/install-and-health/pinned-install-and-digest-check.md) |
+| BB-003 | Native binary digest against the release sidecar | Preflight and Install | [BB-003](preflight-and-install/native-binary-digest.md) | [Pinned install and digest check](../feature-catalog/install-and-health/pinned-install-and-digest-check.md) |
+| BB-004 | Version and doctor health check | Preflight and Install | [BB-004](preflight-and-install/version-and-doctor.md) | [Health diagnostics](../feature-catalog/install-and-health/health-diagnostics.md) |
+| BB-005 | MCP tools and a Code Mode call | MCP Lane | [BB-005](mcp-lane/mcp-tools-and-code-mode.md) | [MCP lane through Code Mode](../feature-catalog/transport/mcp-code-mode-lane.md) |
+| BB-006 | Read page content | Agent Browser | [BB-006](agent-browser/see-content.md) | [Page reads](../feature-catalog/agent-browser/page-reads.md) |
+| BB-007 | Page model and a click by text | Agent Browser | [BB-007](agent-browser/see-model-and-click.md) | [Page actions](../feature-catalog/agent-browser/page-actions.md) |
+| BB-008 | Marked screenshot | Agent Browser | [BB-008](agent-browser/vision-marks.md) | [Marked screenshots](../feature-catalog/agent-browser/marked-screenshots.md) |
+| BB-009 | Tab list and a step plan | Agent Browser | [BB-009](agent-browser/tabs-and-run-plan.md) | [Step plans](../feature-catalog/agent-browser/step-plans.md) |
+| BB-010 | Real-browser lane status and selection | Real Browser | [BB-010](real-browser/lane-status-and-selection.md) | [Lane selection and status](../feature-catalog/real-browser/lane-selection-and-status.md) |
+| BB-011 | Real-browser lane on in clone mode | Real Browser | [BB-011](real-browser/lane-on-clone.md) | [Clone mode](../feature-catalog/real-browser/clone-mode.md) |
+| BB-012 | Reads and actions in the real-browser lane | Real Browser | [BB-012](real-browser/real-mode-reads.md) | [Clone mode](../feature-catalog/real-browser/clone-mode.md) |
+| BB-015 | Reads by attaching to a running browser | Real Browser | [BB-015](real-browser/attach-mode-reads.md) | [Attach mode](../feature-catalog/real-browser/attach-mode.md) |
+| BB-013 | Lane off, clone wiped and daemon stopped | Teardown | [BB-013](teardown/lane-off-and-stop.md) | [Teardown and rollback](../feature-catalog/install-and-health/teardown-and-rollback.md) |
+| BB-014 | Uninstall and data root removal | Teardown | [BB-014](teardown/uninstall-and-data-root.md) | [Teardown and rollback](../feature-catalog/install-and-health/teardown-and-rollback.md) |
+
+Catalog entries with no scenario yet: [CLI lane and output envelope](../feature-catalog/transport/cli-lane-and-output-envelope.md), [Agent-browser isolation](../feature-catalog/agent-browser/agent-browser-isolation.md), [Tabs, cookies and sessions](../feature-catalog/agent-browser/tabs-cookies-and-sessions.md), [Pause, resume and switch back](../feature-catalog/real-browser/pause-resume-and-switch-back.md), [Capability gaps and handoffs](../feature-catalog/limits-and-safety/capability-gaps-and-handoffs.md) and [Consent gates and blocked verdicts](../feature-catalog/limits-and-safety/consent-gates-and-blocked-verdicts.md). The first three are exercised along the way by BB-006 and BB-009. The pause and resume pair has no live run.

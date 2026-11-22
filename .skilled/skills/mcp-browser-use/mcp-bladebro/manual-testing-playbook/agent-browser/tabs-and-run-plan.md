@@ -1,7 +1,7 @@
 ---
 title: "BB-009 -- Tab list and a step plan"
 description: "This scenario validates `state tabs` and `run` for `BB-009`. It focuses on the tab list and a two-step plan that returns status completed."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-009 -- Tab list and a step plan
@@ -79,6 +79,7 @@ Both outputs, including any failed attempt.
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md` | Bladebro CLI commands and flags |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/agent-browser/step-plans.md` | Feature catalog entry: Step plans |
 
 ---
 

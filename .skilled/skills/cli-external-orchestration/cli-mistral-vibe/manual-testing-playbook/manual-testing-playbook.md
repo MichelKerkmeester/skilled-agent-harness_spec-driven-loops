@@ -1,7 +1,7 @@
 ---
 title: "cli-mistral-vibe: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-mistral-vibe skill."
-version: 1.0.11.0
+version: 1.0.12.0
 ---
 
 # cli-mistral-vibe: Manual Testing Playbook
@@ -14,8 +14,16 @@ This document is the operator directory and package-level validation contract fo
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL` or `SKIP`
-> outcome, its reason and its evidence path are recorded in the scenario file's
-> `Recorded Result` block.
+> outcome, its reason and its evidence path are saved into
+> `cli-external-orchestration/benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` by
+> `record-playbook-run.cjs`, the one writer for run folders. The mode carries no `benchmark/` of its
+> own, so its runs land in the hub's report tree through `--reports`, and a run never edits the
+> scenario files. Save a run from the repository root with
+> `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs
+> --playbook .skilled/skills/cli-external-orchestration/cli-mistral-vibe/manual-testing-playbook
+> --reports .skilled/skills/cli-external-orchestration/benchmark/reports --results <verdicts.csv>
+> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`. The verdicts first
+> recorded in the scenario files are in the `2026-11-14--` and `2026-11-15--manual-testing-playbook--recorded-results` run folders there.
 
 ---
 

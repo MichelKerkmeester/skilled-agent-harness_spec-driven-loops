@@ -105,8 +105,6 @@ export interface UncertaintyCalibration {
  * block per call site.
  */
 export interface RoutingCalibration {
-  // semantic search intent
-  readonly semanticSearchCodeGraphBonus: number;
   // deep-review intent
   readonly deepReviewSkCodeReviewPenalty: number;
   // a request to write a test or helper that merely names a deep-review phrase
@@ -213,7 +211,6 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     hardCeiling: 0.95,
   }),
   routing: Object.freeze({
-    semanticSearchCodeGraphBonus: 0.5,
     deepReviewSkCodeReviewPenalty: -0.25,
     deepReviewCodeAuthoringSkCodeBonus: 0.1,
     deepResearchOtherSkillsPenalty: -0.18,
@@ -246,31 +243,3 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
   }),
 });
 
-// ───────────────────────────────────────────────────────────────────
-// 3. CORE LOGIC
-// ───────────────────────────────────────────────────────────────────
-export interface RoutingCalibrationOverride {
-  memorySaveBonus?: number;
-  createAgentBonus?: number;
-  testingPlaybookBonus?: number;
-}
-
-export function resolvedCalibration(): ScoringCalibration {
-  const raw = process.env.SPECKIT_ADVISOR_CALIBRATION_OVERRIDE_JSON;
-  if (!raw) return SCORING_CALIBRATION;
-  try {
-    const override = JSON.parse(raw) as RoutingCalibrationOverride;
-    return {
-      ...SCORING_CALIBRATION,
-      routing: Object.freeze({
-        ...SCORING_CALIBRATION.routing,
-        ...(override.memorySaveBonus !== undefined ? { saveContextMemorySaveBonus: override.memorySaveBonus } : {}),
-        ...(override.createAgentBonus !== undefined ? { createAgentCreateAgentBonus: override.createAgentBonus } : {}),
-        ...(override.testingPlaybookBonus !== undefined ? { createTestingPlaybookBonus: override.testingPlaybookBonus } : {}),
-      }),
-    };
-  } catch {
-    console.warn('[skill-advisor] Failed to parse SPECKIT_ADVISOR_CALIBRATION_OVERRIDE_JSON; using defaults');
-    return SCORING_CALIBRATION;
-  }
-}

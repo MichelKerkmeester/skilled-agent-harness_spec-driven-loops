@@ -169,6 +169,24 @@ describe('system-skill-advisor launcher bootstrap', () => {
     });
   });
 
+  it('passes the documented feedback-records and route-denylist locations through to the child env', () => {
+    configureTempLauncher();
+    const memoryDbPath = launcher.advisorDbPath();
+    const socketDir = expectedChildSocketDir(memoryDbPath);
+    const sourceEnv = {
+      SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH: '/tmp/advisor-feedback.jsonl',
+      SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR: '/tmp/advisor-route-config',
+      AWS_SECRET_ACCESS_KEY: 'should-not-leak',
+    };
+    expect(launcher.createChildEnv(sourceEnv)).toEqual({
+      SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH: '/tmp/advisor-feedback.jsonl',
+      SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR: '/tmp/advisor-route-config',
+      SYSTEM_SKILL_ADVISOR_DB_DIR: dirname(memoryDbPath),
+      SYSTEM_SKILL_ADVISOR_LAUNCHER_PID: String(process.pid),
+      SPECKIT_IPC_SOCKET_DIR: socketDir,
+    });
+  });
+
   it('drops the retired database and model-server keys from the child environment', () => {
     configureTempLauncher();
     // Nothing in the daemon reads these keys any more, so an operator who still

@@ -1,7 +1,7 @@
 ---
 title: "BB-010 -- Real-browser lane status and selection"
 description: "This scenario validates `rb status`, `rb use`, `rb profile` and `rb mode` for `BB-010`. It focuses on the lane showing the operator-chosen browser, profile and clone mode."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-010 -- Real-browser lane status and selection
@@ -85,6 +85,7 @@ Every output. Profile contents are never quoted.
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/browser-lanes.md` | Agent-browser and real-browser lanes |
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/cli-reference.md` | Bladebro CLI commands and flags |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/real-browser/lane-selection-and-status.md` | Feature catalog entry: Lane selection and status |
 
 ---
 

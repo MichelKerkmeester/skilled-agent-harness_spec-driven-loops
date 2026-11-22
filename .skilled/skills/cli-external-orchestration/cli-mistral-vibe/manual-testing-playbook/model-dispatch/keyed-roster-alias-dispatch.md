@@ -1,7 +1,7 @@
 ---
 title: "VIB-MOD-001 -- Keyed roster alias dispatch"
 description: "This scenario validates that a keyed Vibe lineage on the deepseek-flash alias resolves the roster row, finishes, and records exit_code 0 with outcome finished."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-MOD-001 -- Keyed roster alias dispatch
@@ -49,16 +49,6 @@ The roster is closed by `allowed_models`, which matches each `[[models]]` row's 
 node -e 'const j=require("./specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/vibe-1/vibe-output/export.json"); console.log(JSON.stringify({exit_code:j.exit_code,outcome:j.outcome,active_model:j.config.active_model,steps:j.steps,row:j.config.models["deepseek-flash"]},null,2))'
 node -e 'const m=require("./specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/vibe-1/invocation-metadata.json"); console.log(JSON.stringify(m.effectiveConfig,null,2))'
 ```
-
-### Recorded Result
-
-- Verdict: `PASS`.
-- Date: 2026-11-14.
-- Basis: recorded evidence from an earlier keyed lineage, not a run started by this review. The record at `specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/009-deep-loop-executor-kind/research/keyed-lineage-run/lineages/vibe-1/vibe-output/export.json` exists, and `node` read `exit_code` `0` and `outcome` `finished` from it.
-- Observed: `config.active_model` `deepseek-flash`, `steps` `50`, `vibe_version` `3.1.2`, `stop_reason` null and `error` null. The `deepseek-flash` row records `name` `deepseek-v4-1-flash-1017`, `provider` `mistral`, `thinking` `max` and the `thinking_levels` ladder `off`, `low`, `medium`, `high`, `max`.
-- Observed: the invocation metadata records `model` `deepseek-flash`, `executable` `vibe`, `reasoningEffort` null, `sandboxMode` null and `permissionMode` null.
-- Observed: the run summary records two lineages, two succeeded and zero failed, with `completed_with_containment_advisory` `2`.
-- Caveat: a lineage runs with `--auto-approve` and with no confinement, and the recorded run predates the rendered home hooks, so its journal holds no repository hook record. This scenario proves alias resolution and completion; it does not prove the hard-rule-checked dispatch shape, which `VIB-HR-001` covers statically, or the guards, which `VIB-GRD-001` covers.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

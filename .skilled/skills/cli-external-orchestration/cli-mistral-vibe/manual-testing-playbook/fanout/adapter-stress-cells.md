@@ -1,7 +1,7 @@
 ---
 title: "VIB-FAN-001 -- CLI adapter stress cells"
 description: "This scenario validates the cli-mistral-vibe adapter stress cells: the hermetic manifest, command, timeout, stdin, gate and export contracts pass, and the live probe is the one skipped cell."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-FAN-001 -- CLI adapter stress cells
@@ -30,6 +30,7 @@ The adapter builds the lineage argv, closes stdin, applies the budgets and reads
 - Evidence: The command transcript with the per-cell lines, the counts and the exit code.
 - Desired user-visible outcome: A clear statement that the hermetic cells pass and that the only skipped cell is the live probe, with its switch named.
 - Pass/fail: PASS if the file exits `0` with `22 passed` and the live probe as the only skipped cell. FAIL if any cell fails, if another cell is skipped, or if the file exits non-zero.
+- Skip blocker: the live probe is unavailable until `DEEP_LOOP_CLI_MISTRAL_VIBE_LIVE=1` is set in the environment, so its SKIP is an environment blocker, not a failure.
 
 ---
 
@@ -47,17 +48,6 @@ The adapter builds the lineage argv, closes stdin, applies the budgets and reads
 ```bash
 cd .skilled/skills/system-deep-loop/runtime && npx --no-install vitest run --no-coverage tests/stress/cli-adapter/cli-mistral-vibe.vitest.ts </dev/null
 ```
-
-### Recorded Result
-
-- Verdict: `PASS`.
-- Date: 2026-11-14.
-- Observed: the command exited `0` with `Test Files 1 passed (1)` and `Tests 22 passed | 1 skipped (23)`.
-- Observed: the skipped cell printed `live cli-mistral-vibe transport probe (dependency SKIP: live probe disabled: set DEEP_LOOP_CLI_MISTRAL_VIBE_LIVE=1)`.
-- Note: the cell is skipped because the live probe is unavailable until `DEEP_LOOP_CLI_MISTRAL_VIBE_LIVE=1` is set in the environment; the skip is an environment blocker, not a failure.
-- Observed: the manifest cell printed `cli-mistral-vibe manifest integrity > binds exactly fourteen implemented adapter cells without forbidden overclaims`.
-- Observed: the contract cells covered the shipped argv, a clean export, exit `3` with and without an export, and a partial lineage through the fan-out scheduler.
-- Note: a second verbose run reproduced the same `22 passed | 1 skipped` result with the same skipped cell.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

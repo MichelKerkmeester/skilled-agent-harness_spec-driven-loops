@@ -3058,8 +3058,10 @@ async function runTurnWithRetry(ctx, turn) {
  *
  * @param {string} out - Run output folder.
  * @param {string} scenarioPath - The scenario file this run played.
+ * @param {string[]} runtimes - The runtimes this run played.
+ * @param {string|null} reports - A hub reports folder to name in the printed command, if any.
  */
-function writeScenarioRecord(out, scenarioPath, runtimes) {
+function writeScenarioRecord(out, scenarioPath, runtimes, reports) {
   const absolute = path.resolve(scenarioPath);
   const text = fs.readFileSync(absolute, 'utf8');
   const scenarioId = extractFeatureId(text, extractFrontmatter(text));
@@ -3071,8 +3073,9 @@ function writeScenarioRecord(out, scenarioPath, runtimes) {
   const quote = (value) => (/^[\w@%+=:,./-]+$/.test(value) ? value : `'${value.replace(/'/g, `'\\''`)}'`);
   const recorder = path.join(__dirname, 'record-playbook-run.cjs');
   const variant = path.basename(absolute, '.md').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const destination = reports ? ` --reports ${quote(path.resolve(reports))}` : '';
   process.stdout.write(
-    `save results: node ${quote(recorder)} --runner-out ${quote(out)} --label manual-testing-playbook--${variant} --executor "<runtime and model>"\n`,
+    `save results: node ${quote(recorder)} --runner-out ${quote(out)}${destination} --label manual-testing-playbook--${variant} --executor "<runtime and model>"\n`,
   );
 }
 
@@ -3448,6 +3451,7 @@ function usage() {
     '  --repo-root DIR     Repository to snapshot (default: git top level)',
     '  --no-sandbox        Disable the macOS write sandbox wrapper',
     '  --remove-home       Delete the Vibe home after the run; its journal is then gone',
+    '  --reports DIR       Pass to the printed record command when the playbook saves into a hub',
     '  --help              Show this message',
     '',
     'Exit: 0 every runtime PASS or SKIP, 1 any FAIL, 2 usage error or refusal.',
@@ -3471,6 +3475,7 @@ function parseArgs(argv) {
     repoRoot: null,
     noSandbox: false,
     removeHome: false,
+    reports: null,
     help: false,
     errors: [],
   };
@@ -3501,6 +3506,9 @@ function parseArgs(argv) {
       index += 1;
     } else if (arg === '--repo-root') {
       opts.repoRoot = take(index, arg);
+      index += 1;
+    } else if (arg === '--reports') {
+      opts.reports = take(index, arg);
       index += 1;
     } else if (arg === '--seed') {
       const value = take(index, arg);
@@ -3797,7 +3805,7 @@ async function main(argv) {
   }
 
   writeMatrix(out, rows);
-  writeScenarioRecord(out, opts.scenario, rows.map((row) => row.runtime));
+  writeScenarioRecord(out, opts.scenario, rows.map((row) => row.runtime), opts.reports);
   return rows.some((row) => row.verdict === 'FAIL') ? EXIT_FAIL : EXIT_PASS;
 }
 

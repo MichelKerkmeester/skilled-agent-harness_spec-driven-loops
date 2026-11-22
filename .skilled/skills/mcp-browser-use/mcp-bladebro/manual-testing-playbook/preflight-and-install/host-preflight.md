@@ -1,7 +1,7 @@
 ---
 title: "BB-001 -- Host preflight before install"
 description: "This scenario validates the macOS host before a Bladebro install for `BB-001`. It focuses on Bladebro being absent and Node and a Chromium-family browser being present."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BB-001 -- Host preflight before install
@@ -83,6 +83,7 @@ All three outputs with their exit status.
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/references/install-and-verify.md` | Install, digest pin and doctor checks |
 | `.skilled/skills/mcp-browser-use/mcp-bladebro/SKILL.md` | Mode packet entry point |
+| `.skilled/skills/mcp-browser-use/mcp-bladebro/feature-catalog/install-and-health/pinned-install-and-digest-check.md` | Feature catalog entry: Pinned install and digest check |
 
 ---
 

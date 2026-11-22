@@ -1,7 +1,7 @@
 ---
 title: "VIB-HR-002 -- Hard-rule sidecar integrity"
 description: "This scenario validates that the Vibe hard-rule sidecar parses and still carries the seven fail-closed rule ids at error severity."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # VIB-HR-002 -- Hard-rule sidecar integrity
@@ -47,15 +47,6 @@ The preflight reads `hard-rules.json` beside the skill, not a copy. A malformed 
 ```bash
 node -e 'const r=require("./.skilled/skills/cli-external-orchestration/cli-mistral-vibe/hard-rules.json"); console.log("count="+r.length); console.log("ids="+r.map(x=>x.id).join(",")); console.log("severities="+[...new Set(r.map(x=>x.severity))].join(","));'
 ```
-
-### Recorded Result
-
-- Verdict: `PASS`.
-- Date: 2026-11-15.
-- Observed: the command exited `0` and printed `count=7`.
-- Observed: `ids=print-mode-only,isolated-vibe-home,output-dir-required,vibe-closed-roster,no-repo-root-cwd,stdin-redirect-required,rendered-home-hooks`.
-- Observed: `severities=error`.
-- Note: the sidecar is read by the preflight and by the suite; this scenario checks the file, and `VIB-HR-001` checks that each id has an implemented check.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

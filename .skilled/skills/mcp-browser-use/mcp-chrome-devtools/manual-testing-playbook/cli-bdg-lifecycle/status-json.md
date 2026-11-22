@@ -1,7 +1,7 @@
 ---
 title: "BDG-003 -- Status JSON"
-description: "This scenario validates bdg status JSON output for `BDG-003`. It focuses on confirming `bdg status` returns valid JSON with state and url fields."
-version: 1.0.1.0
+description: "This scenario validates bdg status JSON output for `BDG-003`. It focuses on confirming `bdg status --json` returns valid JSON that reports an active session and its url."
+version: 1.0.2.0
 ---
 
 # BDG-003 -- Status JSON
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates bdg status JSON output for `BDG-003`. It focuses on confirming `bdg status 2>&1` returns parseable JSON containing at minimum `state` and `url` fields, so downstream scripts can reliably parse the session state.
+This scenario validates bdg status JSON output for `BDG-003`. It focuses on confirming `bdg status --json` returns parseable JSON that reports the session as active and carries the page url, so downstream scripts can reliably parse the session state. Without `--json`, `bdg` 0.6.10 prints human-readable text, which `jq` cannot parse.
 
 ### Why This Matters
 
-Operator scripts often pipe `bdg status` to `jq` to make decisions (e.g., "if state != active then start session"). If the output is non-JSON or missing expected fields, scripted automation breaks silently.
+Operator scripts often pipe `bdg status` to `jq` to make decisions (e.g., "if the session is not active then start one"). If the output is non-JSON or missing expected fields, scripted automation breaks silently.
 
 ---
 
@@ -24,13 +24,13 @@ Operator scripts often pipe `bdg status` to `jq` to make decisions (e.g., "if st
 
 Operators run the exact prompt and command sequence for `BDG-003` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify `bdg status 2>&1 | jq '.'` succeeds AND parsed object contains `state` and `url` fields.
+- Objective: Verify `bdg status --json | jq '.'` succeeds, the parsed object has `active` set to `true`, and a `url` string appears somewhere in it.
 - Real user request: `"Get the bdg status as JSON."`
-- Prompt: `Get bdg status as JSON and confirm it includes state and url.`
-- Expected execution process: assumes BDG-002 ran successfully (active session); run jq pipeline.
-- Expected signals: jq pipeline succeeds (no parse error); fields `state` and `url` present.
-- Desired user-visible outcome: A short report quoting the parsed `state` and `url` values with a PASS verdict.
-- Pass/fail: PASS if both signals hold; FAIL if output isn't valid JSON or fields missing.
+- Prompt: `Get bdg status as JSON and confirm it reports an active session and its url.`
+- Expected execution process: assumes BDG-002 ran successfully (active session); run the jq pipelines.
+- Expected signals: jq pipeline succeeds (no parse error); `.active` is `true`; a `url` string is present.
+- Desired user-visible outcome: A short report quoting the parsed `active` and `url` values with a PASS verdict.
+- Pass/fail: PASS if all three signals hold; FAIL if output isn't valid JSON, `active` is not `true`, or no `url` is present.
 
 ---
 
@@ -38,31 +38,35 @@ Operators run the exact prompt and command sequence for `BDG-003` and confirm th
 
 ### Prompt
 
-- Prompt: `Get bdg status as JSON and confirm it includes state and url.`
+- Prompt: `Get bdg status as JSON and confirm it reports an active session and its url.`
 
 ### Commands
 
 1. Precondition: BDG-002 has started a session (run `bdg https://example.com` if not)
-2. `bash: bdg status 2>&1 | jq '.state, .url'`
+2. `bash: bdg status --json | jq -c 'keys'`
+3. `bash: bdg status --json | jq -e '.active == true'`
+4. `bash: bdg status --json | jq -r '[.. | objects | .url | strings] | first'`
 
 ### Expected
 
-- Step 2: jq exits 0; output contains a state value (e.g., `"active"`, `"running"`) and a URL string
+- Step 2: jq exits 0 and prints the top-level key list, which includes `active`
+- Step 3: prints `true`; jq exits 0
+- Step 4: prints a URL string (e.g., `https://example.com/`), not `null`
 
 ### Evidence
 
-Capture jq output verbatim.
+Capture all three jq outputs verbatim.
 
 ### Pass / Fail
 
-- **Pass**: jq parses successfully; both `state` and `url` present.
-- **Fail**: jq parse error (output isn't JSON); `state` or `url` missing (schema drift).
+- **Pass**: jq parses successfully; `.active` is `true`; a `url` string is present.
+- **Fail**: jq parse error (output isn't JSON); `.active` missing or `false`; step 4 prints `null` (schema drift).
 
 ### Failure Triage
 
-1. If jq parse error: bdg may print non-JSON status when no session is active — start a session first per BDG-002.
-2. If fields missing: schema may have evolved; compare to bdg's documented status fields in SKILL.md or `bdg help status`.
-3. If output mixes JSON and plain text: bdg may be writing logs to stdout instead of stderr; redirect with `bdg status 2>/dev/null` and re-test.
+1. If jq parse error: confirm `--json` is on the command (`bdg status --help` lists `-j, --json`); without it `bdg` prints text. If the flag is present, start a session first per BDG-002.
+2. If fields are missing: the schema may have evolved; compare the step 2 key list with `bdg status --help` and record the new keys. Step 4 searches the whole object because the nesting of `url` is not documented.
+3. If output mixes JSON and plain text: bdg may be writing logs to stdout instead of stderr; redirect with `bdg status --json 2>/dev/null` and re-test.
 
 ---
 
@@ -78,7 +82,8 @@ Capture jq output verbatim.
 
 | File | Role |
 |---|---|
-| `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md` | bdg status JSON schema |
+| `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md` | bdg status reference |
+| `bdg status --help` | Confirms the `-j, --json` output flag |
 
 ---
 

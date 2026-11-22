@@ -1,7 +1,7 @@
 ---
 title: "BDG-016 -- Close + select page"
 description: "This scenario validates page-level lifecycle operations for `BDG-016`. It focuses on confirming `close_page` and `select_page` correctly manage multiple pages within a single MCP instance."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # BDG-016 -- Close + select page
@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `BDG-016` and confirm th
 - Objective: Verify two pages can be opened in `chrome_devtools_1`; `close_page` succeeds for the first; `select_page` succeeds for the second; and `take_screenshot` on the surviving page, given an explicit `filePath`, writes a valid PNG to disk.
 - Real user request: `"Open two tabs in chrome_devtools_1, close the first one, and screenshot the second."`
 - Prompt: `As a manual-testing orchestrator, open 2 pages in chrome_devtools_1, close the first, and confirm the second is still accessible through Code Mode against the chrome_devtools_1 MCP instance. Verify select_page can switch back to the surviving page. Return a concise user-facing pass/fail verdict with the main reason.` (RCAF format)
-- Expected execution process: navigate first page; open second page via `new_page`; close first via `close_page`; select second via `select_page`; screenshot with an explicit `filePath`; verify the written file in a separate shell step (Code Mode's V8 sandbox has no filesystem access).
+- Expected execution process: navigate first page; open second page via `new_page`; read both page IDs from the `## Pages` list in the `new_page` result, matched by URL; close first via `close_page`; select second via `select_page`; screenshot with an explicit `filePath`; write the script as plain synchronous JavaScript with no `await`, since Code Mode tool calls block until they return; verify the written file in a separate shell step (Code Mode's V8 sandbox has no filesystem access).
 - Expected signals: 2 page IDs allocated; close returns success for the first ID; select returns success for the second ID; the screenshot file exists, is non-empty, and has PNG magic bytes.
 - Desired user-visible outcome: A short report listing both page IDs, the closed page, and the surviving screenshot file path and size with a PASS verdict.
 - Pass/fail: PASS if all four signals hold; FAIL if any step throws or the surviving screenshot file is missing or empty.
@@ -44,21 +44,33 @@ Operators run the exact prompt and command sequence for `BDG-016` and confirm th
 
 1. Precondition: `chrome_devtools_1` registered (cross-reference BDG-014); BDG-014 has passed (single-instance round-trip works)
 2. Code Mode script — build and dispatch via `call_tool_chain`:
-   ```ts
-   const p1 = await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' });
-   const p2 = await chrome_devtools_1.chrome_devtools_1_new_page({ url: 'https://example.org' });
-   const id1 = (p1 as any)?.pageId ?? (p1 as any)?.id;
-   const id2 = (p2 as any)?.pageId ?? (p2 as any)?.id;
-   await chrome_devtools_1.chrome_devtools_1_close_page({ pageId: id1 });
-   await chrome_devtools_1.chrome_devtools_1_select_page({ pageId: id2 });
-   const shot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({ filePath: '/tmp/bdg-016-screenshot.png' });
-   return { id1, id2, shot };
+   ```js
+   const listOf = (r) => {
+     const out = [];
+     let inPages = false;
+     for (const raw of (typeof r === 'string' ? r : JSON.stringify(r)).split(/\n|\\n/)) {
+       const l = raw.replace(/^"/, '');
+       if (l.startsWith('## ')) { inPages = l.startsWith('## Pages'); continue; }
+       const m = inPages && l.match(/^(\d+): ([^\s"\\]+)/);
+       if (m) out.push({ id: Number(m[1]), url: m[2], selected: l.includes('[selected]') });
+     }
+     return out;
+   };
+   chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' });
+   const opened = listOf(chrome_devtools_1.chrome_devtools_1_new_page({ url: 'https://example.org' }));
+   const id1 = (opened.find(p => p.url.startsWith('https://example.com')) || {}).id;
+   const id2 = (opened.find(p => p.url.startsWith('https://example.org')) || {}).id;
+   const afterClose = listOf(chrome_devtools_1.chrome_devtools_1_close_page({ pageId: id1 }));
+   const afterSelect = listOf(chrome_devtools_1.chrome_devtools_1_select_page({ pageId: id2 }));
+   const shot = chrome_devtools_1.chrome_devtools_1_take_screenshot({ filePath: '/tmp/bdg-016-screenshot.png' });
+   return { id1, id2, opened, afterClose, afterSelect, shot };
    ```
+   The page tools return text, not page objects. Each `new_page`, `close_page` and `select_page` result carries a `## Pages` section with one `<id>: <url>` line per page and ` [selected]` on the selected one; `listOf` reads that section.
 3. `bash: ls -la /tmp/bdg-016-screenshot.png && xxd /tmp/bdg-016-screenshot.png | head -1` — confirm the file exists, is non-empty, and starts with the PNG magic bytes `89 50 4e 47`
 
 ### Expected
 
-- Step 2: both `id1` and `id2` are non-empty and distinct; close + select + screenshot succeed without throwing
+- Step 2: `id1` and `id2` are distinct numbers; `afterClose` no longer lists `id1`; `afterSelect` marks `id2` as `selected`; the screenshot call returns without throwing; the logs carry no `[ERROR] Code execution failed` line
 - Step 3: file exists, size > 0, first bytes are the PNG magic number `89 50 4e 47`
 
 ### Evidence
@@ -67,13 +79,14 @@ Capture the Code Mode script, both page IDs, and the `ls -la` / `xxd` output for
 
 ### Pass / Fail
 
-- **Pass**: two distinct page IDs allocated AND close succeeds AND select succeeds AND the surviving screenshot file exists, is non-empty, and has PNG magic bytes.
+- **Pass**: two distinct numeric page IDs read from the page list AND `afterClose` drops `id1` AND `afterSelect` marks `id2` selected AND the surviving screenshot file exists, is non-empty, and has PNG magic bytes.
 - **Fail**: `new_page` or `close_page` throws (cross-reference CM-014 Chrome via CM); select fails; the surviving screenshot file is missing or empty (the page may have been closed by mistake — verify ID handling).
 
 ### Failure Triage
 
-1. If `new_page` returns a result without a recognizable ID field: dump the raw result with `console.log(JSON.stringify(p2))` and update the ID extraction path; cross-reference CM-016 for the canonical multi-page response shape.
-2. If `select_page` throws "page not found" for `id2`: confirm `id2` was actually persisted (sometimes `new_page` returns a wrapper with `data.id`); cross-reference CM-014 for the via-Code-Mode call shape and BDG-014 to confirm the single-instance baseline still passes.
+1. If the call fails with `await is only valid in async functions`: the script still uses `await`; drop it, since Code Mode tool calls are synchronous.
+2. If `close_page` or `select_page` fails validation with `expected number`: `id1` or `id2` is undefined, so `listOf` found no matching line. Return `opened` raw and compare it with the `<id>: <url>` line format; cross-reference CM-016 for the canonical multi-page response shape.
+3. If `select_page` throws "page not found" for `id2`: confirm `id2` came from the `new_page` result and not from a stale list; cross-reference CM-014 for the via-Code-Mode call shape and BDG-014 to confirm the single-instance baseline still passes.
 
 ---
 
@@ -92,6 +105,7 @@ Capture the Code Mode script, both page IDs, and the `ls -la` / `xxd` output for
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-chrome-devtools/SKILL.md` | new_page / close_page / select_page reference |
 | `.skilled/skills/mcp-code-mode/SKILL.md` | Code Mode invocation contract |
+| `chrome-devtools-mcp` 0.26.0 package source, its page tools and response formatter | `pageId` is a number; page tools answer with a `## Pages` list of `<id>: <url>` lines |
 
 ---
 

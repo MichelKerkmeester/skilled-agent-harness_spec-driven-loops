@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes",
+  "spec_folder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/008-live-runs-and-playbook-fixes",
+  "parent_id": "mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live runs and playbook fixes",
+      "phase 8 live runs and playbook fixes",
+      "bladebro live clickup run",
+      "aside signed-in run",
+      "bladebro attach mode scenario",
+      "live runs and playbook fixes plan",
+      "live runs and playbook fixes tasks",
+      "live runs and playbook fixes acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "live",
+      "runs",
+      "playbook",
+      "phase",
+      "bladebro",
+      "clickup",
+      "run",
+      "aside",
+      "signed-in",
+      "attach",
+      "mode",
+      "scenario"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/spec.md",
+      "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
+      "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/graph-metadata.json",
+      ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/real-browser/attach-mode-reads.md",
+      ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/manual-testing-playbook.md",
+      "benchmark/reports/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "attach-mode-reads.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/real-browser/attach-mode-reads.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-browser-use/mcp-bladebro/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Recorded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Scenario",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 13 signed-in Aside scenarios that 007 deferred had no recorded verdict, and Bladebro had no scenario for reading a browser the operator already had open",
+    "created_at": "2026-11-22T11:55:18Z",
+    "last_save_at": "2026-11-22T13:42:50.285Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:60886ab17b89542ea41236250102725f47d0d687ff1ad71a5498f010acd34825",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5387519fe9baefb3f31ff2475054cdbc8367c8b2afc4273fe97bdab559388519",
+      "plan.md": "5042336c32e04c0d36daf6447c94b9fac81544a0ac1e287e330bae42b1ff043f",
+      "tasks.md": "156b4e3d2bfdaba3511872e8a440081ac74ab239462261e088cab3009e93b3c1",
+      "implementation-summary.md": "6dd20e1d2b82fb4f0b466c0989b7bf5e4831e9e9ef4c989e0804de170631c036"
+    },
+    "last_active_at": null
+  }
+}
