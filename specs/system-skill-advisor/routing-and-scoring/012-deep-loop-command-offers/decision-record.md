@@ -141,6 +141,7 @@ Write in direct, active voice.]
 | Q005 | An offer proposes the native executor unless the request names one. | Not stated. | None | deep-*-presentation.txt flag table, decisions D4 |
 | Q006 | Replace the three deep-family holdout rows with fresh prompts written blind. | Not stated. | None | command-prompts.jsonl holdout -02 rows, decisions D7 |
 | Q007 | Provision the new worktree with npm ci and builds. | Not stated. | None | worktrees/516-deep-loop-command-offers |
+| Q008 | Add the deep-loop offer work to the untagged v4.2.0.0 changelog in place. | Not stated. | None | .skilled/changelog/skilled/v4.2.0.0.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -285,6 +286,25 @@ Create, skip install
 Answer:
 ```text
 Yes, provision it (Recommended)
+```
+
+### Q008
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_018RsUNdyKrJb5Ux1aRZhRsa:0 -->
+
+Question:
+```text
+v4.2.0.0 covers the expanded deep modes themselves: expansive depth, open nodes holding the stop, --extend, fan-out and dispatch. It says nothing about today's deep-loop offer work in packet 012: the advisor offering /deep:* only on explicit loop asks, the one-question offer with the flags already filled in, setup through the question tool, and /doctor:deep-loop for stuck runs. Should I add it?
+```
+
+Options:
+```text
+Add it (Recommended)
+Leave as is
+```
+
+Answer:
+```text
+Add it (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
