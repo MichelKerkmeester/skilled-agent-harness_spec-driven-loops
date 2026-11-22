@@ -166,9 +166,10 @@ On 2026-11-22 the operator asked to fix the remaining items and the existing bug
 
 - **Rebuild helper path.** The marker step called `record-node-version.js` at `cli/setup/` under the skill root, a path left from before the `runtime/` move. It now uses `runtime/cli/setup/`. Under the script's own `ROOT_DIR` the old path is missing and the new one exists, and the marker writer exits 0. The whole script was not run, because its first step runs `npm rebuild`.
 - **Dead overrides.** `sharp`, `protobufjs` and `@protobufjs/utf8` left both `package.json` files. A lockfile-only resolve in a scratch copy, with and without them, gave lockfiles byte-identical to the committed ones, and nothing was installed in the worktree.
-- **Doctor changelogs.** `v1.2.0.0.md` failed the shape check on four long sentences, which were split. `v1.0.0.0.md` lacked the "How It Was Checked" section an expanded entry needs. The new section quotes only the verification tables of `specs/system-skilled-doctor/001-skill-and-overlay-build` children 001 to 004. All twelve entries now pass, up from 10.
+- **Dead probe.** A word-bounded search for `sharp` then found `check-native-modules.sh` probing `shared/node_modules/sharp`. The package had sat hoisted at the root, so the probe always skipped, and now nothing can install it. The probe is gone, the script checks the version marker alone, and its catalog and playbook entries follow. It exits 0 with the marker and 1 without it.
+- **Doctor changelogs.** `v1.2.0.0.md` failed the shape check on four long sentences, which were split. `v1.0.0.0.md` lacked the "How It Was Checked" section an expanded entry needs. The new section quotes only the verification tables of `specs/system-skilled-doctor/001-skill-and-overlay-build` children 001 to 004, the phases that entry covers. A review of the first draft caught two lines broader than their sources, and the follow-up scoped them. All twelve entries now pass, up from 10.
 - **024 drift.** Its parent `spec.md` listed two questions its children had answered, and pointed only at 023's decisions. Both now point to the answers and to 024's own record.
-- **Release notes.** The spec-kit `v2.14.0.0` and advisor `v2.0.0.0` entries name the two fixes. Both pass the shape check, and repo mode stays at 47 of 47 with `live` 0.
+- **Release notes.** The spec-kit `v2.14.0.0` and advisor `v2.0.0.0` entries name the fixes. Both pass the shape check, and repo mode stays at 47 of 47 with `live` 0.
 
 ## Known Limitations
 

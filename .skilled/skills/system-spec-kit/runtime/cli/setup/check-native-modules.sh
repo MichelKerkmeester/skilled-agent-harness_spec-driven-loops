@@ -54,25 +54,9 @@ else
 fi
 
 echo ""
-echo "-- Module Probes --"
-echo ""
-
-# Probe sharp (optional)
-if [[ -d "$ROOT_DIR/shared/node_modules/sharp" ]]; then
-  if node -e "require('$ROOT_DIR/shared/node_modules/sharp')" 2>/dev/null; then
-    echo "sharp:             [OK] loads"
-  else
-    FAILED=1
-    echo "sharp:             [FAIL] did not load" >&2
-  fi
-else
-  echo "sharp:             [SKIP] not installed"
-fi
-
-echo ""
 echo "-- Summary --"
 echo ""
-echo "If any modules FAILED, run: bash runtime/cli/setup/rebuild-native-modules.sh" >&2
+echo "If the check FAILED, run: bash runtime/cli/setup/rebuild-native-modules.sh" >&2
 
 if [[ "$FAILED" -eq 1 ]]; then
   exit 1
@@ -80,4 +64,4 @@ fi
 
 # Exit codes:
 #   0 - Success
-#   1 - ERROR: node missing, or a module check reported [FAIL]
+#   1 - ERROR: node missing, or the marker check reported [FAIL]

@@ -106,7 +106,8 @@ On 2026-11-22 the operator asked to fix the remaining items and the existing bug
 - The `sharp`, `protobufjs` and `@protobufjs/utf8` overrides leave the two `package.json` files, proven by a lockfile-only resolve in a scratch copy, with no install in the worktree.
 - `system-skilled-doctor/changelog/v1.2.0.0.md` splits its four long sentences, and `v1.0.0.0.md` gains the "How It Was Checked" section its expanded format requires, quoting only numbers its build packet recorded.
 - 024's parent `spec.md` drops two open questions its children answered and names its own decision record.
-- The spec-kit `v2.14.0.0` and advisor `v2.0.0.0` release notes name the two fixes.
+- `check-native-modules.sh` drops its `sharp` probe, which only the removed transformers package could satisfy, and its catalog and playbook entries follow.
+- The spec-kit `v2.14.0.0` and advisor `v2.0.0.0` release notes name the fixes.
 
 ### Out of Scope
 - Naming the removed setting keys in the advisor changelog. The residue gate forbids those names in tracked files.
@@ -179,6 +180,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-023 | Neither `package.json` overrides `sharp`, `protobufjs` or `@protobufjs/utf8`, and both lockfiles resolve byte-identical without them |
 | REQ-024 | Every `system-skilled-doctor` changelog passes the shape check, and no added "How It Was Checked" line states a number its build packet did not record |
 | REQ-025 | 024's parent `spec.md` lists no open question a child answered, and its related documents name its own decision record |
+| REQ-026 | `check-native-modules.sh` probes no package the removed dependency installed, and its catalog and playbook entries describe what it checks now |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

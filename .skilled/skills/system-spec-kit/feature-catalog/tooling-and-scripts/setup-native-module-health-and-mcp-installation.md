@@ -7,7 +7,7 @@ trigger_phrases:
   - "check-native-modules"
   - "node abi marker"
   - "check-prerequisites"
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Setup, Native Module Health, and MCP Installation
@@ -28,7 +28,7 @@ The shipped behavior in this slice currently works as follows:
 
 1. `check-prerequisites.sh` is the workflow-facing prerequisite gate for spec work. It resolves repo, branch, and feature paths through `common.sh`, supports JSON and path-only output, can require `tasks.md`, and can pass through to `spec/validate.sh` in normal, strict, or verbose validation modes.
 2. Outside path-only mode, that same script hard-fails when the resolved feature directory is missing, when `plan.md` is absent, or when `--require-tasks` is used and `tasks.md` is absent. It also surfaces optional companion docs such as `research/research.md`, `checklists/`, `decisions/`, and `tasks.md` when requested.
-3. `check-native-modules.sh` is the standalone diagnostic probe. It compares the current Node runtime against `.node-version-marker`, reports Node and `MODULE_VERSION`, and attempts to load the optional `sharp` install so an ABI mismatch shows up as an explicit `[FAIL]` line.
+3. `check-native-modules.sh` is the standalone diagnostic probe. It compares the current Node runtime against `.node-version-marker`, and reports Node and `MODULE_VERSION`. A module ABI that differs from the marker, or a missing marker, shows up as an explicit `[FAIL]` line and exit 1.
 4. `rebuild-native-modules.sh` is the repair path for ABI drift. It runs `npm rebuild` in `shared/` when that workspace is installed and then calls `record-node-version.js` to rewrite `.node-version-marker` with the current Node version, module ABI, platform, architecture, and timestamp.
 5. Running the probe is now a deliberate step rather than a tail-end of an installer. Run it after a Node upgrade, after switching Node versions, or when a native optional dependency load fails at runtime.
 

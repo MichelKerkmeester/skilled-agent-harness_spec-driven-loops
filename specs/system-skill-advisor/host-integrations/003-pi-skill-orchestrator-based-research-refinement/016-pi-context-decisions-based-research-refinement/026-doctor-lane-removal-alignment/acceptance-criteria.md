@@ -78,8 +78,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-023 | REQ-021 | Given origin/main merged into the branch, When the gates run on the merged tree, Then repo mode exits 0 with `live` 0 and the residue, doctor, advisor and strict validation gates pass | The T032 and T033 runs. Observed: repo mode `live` 0 at 47 of 47, advisor 2450 passed, doctor 1613 passed, residue 117 passed, and both strict runs `RESULT: PASSED` | Met | - |
 | AC-024 | REQ-022 | Given the rebuild helper, When its marker path is resolved from its own `ROOT_DIR`, Then the file exists | `bash -n`, `test -f` on the old and new paths, and the marker writer run directly. Observed: old path missing, new path present, writer exit 0 | Met | - |
 | AC-025 | REQ-023 | Given both packages without the three overrides, When a lockfile-only resolve runs in a scratch copy, Then each lockfile comes out byte-identical | `npm install --package-lock-only` and `cmp`, baseline and edited. Observed: four exits 0, four identical lockfiles, `npm ls --package-lock-only` exit 0 in both | Met | - |
-| AC-026 | REQ-024 | Given the twelve doctor changelogs, When the shape check runs, Then all pass and the new checked section cites recorded numbers | `check_changelog_shape.py`. Observed: `pass=12 fail=0`, and each number in `v1.0.0.0.md` appears in the build packet's verification tables | Met | - |
+| AC-026 | REQ-024 | Given the twelve doctor changelogs, When the shape check runs, Then all pass and the new checked section cites recorded numbers | `check_changelog_shape.py`. Observed: `pass=12 fail=0`, and a `grep` of each number in the `v1.0.0.0.md` section finds it in children 001 to 004's summaries | Met | - |
 | AC-027 | REQ-025 | Given 024's parent `spec.md`, When section 4 and Related Documents are read, Then no answered question stays open and the decision record is named | Reading the file. Observed: section 4 points to both answers, and Related Documents names Q001 to Q011 | Met | - |
+| AC-028 | REQ-026 | Given the native module probe, When it runs with and without the marker, Then it loads no removed package and its docs match its output | `git grep -nw sharp`, `bash -n` and two runs. Observed: no code reference left, exit 0 with the marker, exit 1 without it, and the playbook block copied from the first run | Met | - |
 
 ### Status values
 
@@ -106,5 +107,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All twenty-seven rows are `Met`, and each names the output it observed. AC-001 and AC-002 carry corrections from the implementation run: a search pattern that could not match, and an expected empty write list where the engine writes the recorded base. The first round is committed as `092ebd6c256`. The second review round's fixes are committed as `533cb420627`, and origin/main is merged in as `12a5a29ab09`. The third round closes AC-024 to AC-027.
+All twenty-eight rows are `Met`, and each names the output it observed. AC-001 and AC-002 carry corrections from the implementation run: a search pattern that could not match, and an expected empty write list where the engine writes the recorded base. The first round is committed as `092ebd6c256`. The second review round's fixes are committed as `533cb420627`, and origin/main is merged in as `12a5a29ab09`. The third round closes AC-024 to AC-028.
 <!-- /ANCHOR:closure -->
