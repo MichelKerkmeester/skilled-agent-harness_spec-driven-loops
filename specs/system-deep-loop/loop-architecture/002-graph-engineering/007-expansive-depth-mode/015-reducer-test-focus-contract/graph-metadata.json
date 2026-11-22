@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phase 004 made the research reducer read the leaf's `## Recommended Next Focus` and return it ahead of the carried-forward thread when it is open and unresolved",
     "created_at": "2026-11-20T14:48:13Z",
-    "last_save_at": "2026-11-21T18:35:35.476Z",
+    "last_save_at": "2026-11-22T05:40:14.685Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1876c894ab7958471e6f3d63dcf7d02f7b4709f3e499e15b1941dc57d23d8570",
+    "source_fingerprint": "sha256:0482df0c92a0045af5a96dd0c78aa2b2ee61ea7734d8485c929c7fd9487e88e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b9341746c4f4c4420379ea4fd2723174a8c21a9fd7bfdcb1a03be04758c13672",
       "plan.md": "11f4c8fce49d484a7b9fcb38942cdde3460d1a6bd57c10f98b009c1ca0a6036e",
       "tasks.md": "7c53849b722880479c3df2d6e25bd36ea12221a8748a6f1b0a59bca1ff55fec3",
-      "implementation-summary.md": "a9ba56bcf3454ea5a0d3559a27b98f4b7057e179d9b6ed5d00eb986061c9580d"
+      "implementation-summary.md": "eb09586e433ba62d2a7be1bde183d042876f3275537879cca83e7f7481872137"
     },
     "last_active_at": null
   }
