@@ -200,6 +200,28 @@ vend_chmod="$(printf '%s\n' "$vend_out" | last_word 'chmod +r')"
 chk "$(tracked "$vend_chmod")" "tracked" "post-commit names the tracked hook-flags.sh to make readable"
 chk "$([[ -e "$T/vendored/$vend_chmod" ]] && echo resolves || echo missing)" "resolves" "the chmod path resolves from the repository root"
 chmod 644 "$T/vendored/skilled/.skilled/hooks/shared/hook-flags.sh"
+# pre-commit names each missing file under the source root in a restore line, and the
+# line has to run as pasted, so each path it names must be one git tracks.
+VEND_SRC="$T/vendored/skilled/.skilled"
+VEND_CHECKER="skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+VEND_LINTER="skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs"
+mkdir -p "$(dirname "$VEND_SRC/$VEND_CHECKER")" "$(dirname "$VEND_SRC/$VEND_LINTER")"
+printf '#!/usr/bin/env bash\n' > "$VEND_SRC/$VEND_CHECKER"
+printf '\n' > "$VEND_SRC/$VEND_LINTER"
+git -C "$T/vendored" add -A
+git -C "$T/vendored" -c core.hooksPath=/dev/null -c user.email=t@example.com -c user.name=test commit -q -m tools
+rm "$VEND_SRC/hooks/shared/hook-flags.sh" "$VEND_SRC/$VEND_CHECKER" "$VEND_SRC/$VEND_LINTER"
+# A missing checker blocks before the linter is reached, so a second run skips it.
+vend_out="$(cd "$T/vendored" && bash "$SOURCE/scripts/git-hooks/pre-commit" 2>&1 </dev/null
+  cd "$T/vendored" && SPECKIT_SKIP_COMMENT_HYGIENE=1 bash "$SOURCE/scripts/git-hooks/pre-commit" 2>&1 </dev/null)"
+restore_path() { # restore_path <file-name>: the path of the last restore line naming the file
+  printf '%s\n' "$vend_out" | awk -v f="$1" 'index($0, "git restore") && index($0, f) { w = $NF } END { print w }'
+}
+for vend_file in hook-flags.sh check-comment-hygiene.sh template-phrase-lint.mjs; do
+  vend_restore="$(restore_path "$vend_file")"
+  chk "$([[ -n "$vend_restore" ]] && echo printed || echo absent)" "printed" "pre-commit prints a restore line for $vend_file"
+  chk "$(tracked "$vend_restore")" "tracked" "pre-commit names the tracked $vend_file to restore"
+done
 echo ""
 echo "--- source-root-selection: $pass passed, $fail failed ---"
 [[ "$fail" -eq 0 ]]

@@ -120,9 +120,9 @@ done
 _hook_common="$(cd "$(dirname "$_trust_self")" 2>/dev/null && env -u GIT_DIR -u GIT_WORK_TREE -u GIT_COMMON_DIR -u GIT_INDEX_FILE git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
 _repo_common="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
 # git names a file only by the path it tracks, and the source root can be a link into a
-# vendored tree, so a path printed for git, or used as a pathspec, is spelled from the
-# root after its links resolve. It is set before the root can be replaced below, and a
-# root that resolves outside the repository keeps the spelling it was reached by.
+# vendored tree, so a path printed for git is spelled from the root after its links
+# resolve. It is set before the root can be replaced below, and a root that resolves
+# outside the repository keeps the spelling it was reached by.
 SOURCE_REL="${SOURCE_ROOT#"$REPO_ROOT"/}"
 _rel_repo="$([[ -n "$REPO_ROOT" ]] && cd "$REPO_ROOT" 2>/dev/null && pwd -P || true)"
 _rel_src="$([[ -n "$REPO_ROOT" ]] && cd "$SOURCE_ROOT" 2>/dev/null && pwd -P || true)"
