@@ -5,7 +5,7 @@ trigger_phrases:
   - "mcp-browser-use"
   - "browser use hub"
   - "chrome devtools aside bladebro"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # mcp-browser-use
@@ -67,6 +67,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 | Release | Entry |
 |---|---|
+| 1.1.1.0 | [`changelog/v1.1.1.0.md`](./changelog/v1.1.1.0.md) |
 | 1.1.0.0 | [`changelog/v1.1.0.0.md`](./changelog/v1.1.0.0.md) |
 | 1.0.0.0 | [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) |
 

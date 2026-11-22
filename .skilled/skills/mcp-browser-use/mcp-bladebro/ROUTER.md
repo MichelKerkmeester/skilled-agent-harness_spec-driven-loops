@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-bladebro routing"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.2.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -19,7 +19,7 @@ The machine router for [`SKILL.md`](./SKILL.md). `SKILL.md` keeps the short rout
 
 ## 1. OVERVIEW
 
-A request reaches this packet when the `mcp-browser-use` hub's `mcp-bladebro` mode signal selects it for a prompt naming Bladebro, a stealth browser, `rb attach`, a caller-owned browser or agentic signed-in work. It routes to four flat reference leaves under `references/`: `cli-reference.md` for the five tools and the CLI, `browser-lanes.md` for the agent browser and the `rb` lanes, `mcp-wiring.md` for the Code Mode path, and `install-and-verify.md` for install, pin and health-check intent. `references/cli-reference.md` is the fallback suggestion and never loads on its own.
+A request reaches this packet when the `mcp-browser-use` hub's `mcp-bladebro` mode signal selects it for a prompt naming Bladebro, a stealth browser, `rb attach`, a caller-owned browser or agentic signed-in work. It routes to four flat reference leaves under `references/`: `cli-reference.md` for the five tools and the CLI, `browser-lanes.md` for the agent browser and the `rb` lanes, `mcp-wiring.md` for the Code Mode path together with the `assets/utcp-bladebro-manual.md` snapshot, and `install-and-verify.md` for install, pin and health-check intent. `references/cli-reference.md` is the fallback suggestion and never loads on its own.
 
 Every path below stays inside this packet folder, and no resource loads before an intent selects it.
 
@@ -29,7 +29,7 @@ Every path below stays inside this packet folder, and no resource loads before a
 
 - **`CLI`** fires on bladebro, bladebro cli, see content, see model, act click, run plan, vision, state tabs, extract, agentic and branching at weight 4, plus 4 more when the CLI is available. It loads `references/cli-reference.md`.
 - **`LANES`** fires on rb on, rb status, rb attach, rb mode, real browser, signed-in, signed in, profile, clone, attach, caller-owned, stealth, pause and my browser at weight 4. It loads `references/browser-lanes.md` then `references/cli-reference.md`.
-- **`MCP`** fires on mcp server, bladebro mcp, code mode, call_tool_chain, tool chain, stdio, manual, composition, parallel isolated and model context protocol at weight 4, plus 4 more when Code Mode is configured. It loads `references/mcp-wiring.md` then `references/cli-reference.md`.
+- **`MCP`** fires on mcp server, bladebro mcp, code mode, call_tool_chain, tool chain, stdio, manual, composition, parallel isolated and model context protocol at weight 4, plus 4 more when Code Mode is configured. It loads `references/mcp-wiring.md`, then `references/cli-reference.md`, then `assets/utcp-bladebro-manual.md`.
 - **`INSTALL`** fires on install, setup, set up, doctor, not installed, not found, command -v bladebro, version, pin, sha256, uninstall, rollback and update at weight 4, plus 4 more when the request carries an error. It loads `references/install-and-verify.md`.
 
 ---
@@ -42,7 +42,7 @@ The one machine-readable projection of the intent model above. This section is t
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references",)
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/cli-reference.md"
 # Fallback-only: a zero-score route loads nothing and offers this file
 # beside the disambiguation checklist; scored routes load exactly their map.
@@ -64,7 +64,7 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "CLI": ["references/cli-reference.md"],
     "LANES": ["references/browser-lanes.md", "references/cli-reference.md"],
-    "MCP": ["references/mcp-wiring.md", "references/cli-reference.md"],
+    "MCP": ["references/mcp-wiring.md", "references/cli-reference.md", "assets/utcp-bladebro-manual.md"],
     "INSTALL": ["references/install-and-verify.md"],
 }
 

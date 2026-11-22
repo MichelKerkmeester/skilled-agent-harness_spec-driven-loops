@@ -23,5 +23,7 @@ Each row below is one run folder. A run whose result changes gets a new folder. 
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-11-22 | [`2026-11-22--manual-testing-playbook--app-closed-safe-set/`](./2026-11-22--manual-testing-playbook--app-closed-safe-set/README.md) | aside 1.26.626.1517, macOS, Aside app closed | 1 PASS, 2 FAIL | **FAIL** | `source.md` in the run folder |
+| 2026-11-22 | [`2026-11-22--manual-testing-playbook--routing-recall/`](./2026-11-22--manual-testing-playbook--routing-recall/README.md) | packet `ROUTER.md` replay, offline | 8 PASS | **PASS** | `source.md` in the run folder |
 | 2026-11-21 | [`2026-11-21--manual-testing-playbook--app-running-rerun/`](./2026-11-21--manual-testing-playbook--app-running-rerun/) | aside 1.26.626.1517, macOS, Aside app running | 3 PASS (ASD-006, ASD-008, ASD-009) | **PASS** | `manual-testing-playbook` |
 | 2026-11-21 | [`2026-11-21--manual-testing-playbook--hub-path-live/`](./2026-11-21--manual-testing-playbook--hub-path-live/) | aside 1.26.626.1517, macOS | 2 PASS, 2 FAIL, 1 SKIP | **FAIL** | `manual-testing-playbook` |

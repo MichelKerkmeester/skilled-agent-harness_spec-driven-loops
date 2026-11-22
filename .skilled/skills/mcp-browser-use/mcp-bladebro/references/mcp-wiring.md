@@ -6,7 +6,7 @@ trigger_phrases:
   - "bladebro code mode manual"
 importance_tier: normal
 contextType: reference
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Bladebro MCP Wiring
@@ -33,24 +33,7 @@ The MCP lane changes the transport, not the capability. Both lanes call the same
 
 ## 2. THE MANUAL
 
-`.utcp_config.json` carries one manual named `bladebro`, in the same shape as the `aside` manual:
-
-```json
-{
-  "name": "bladebro",
-  "call_template_type": "mcp",
-  "config": {
-    "mcpServers": {
-      "bladebro": {
-        "transport": "stdio",
-        "command": "bladebro",
-        "args": ["mcp"],
-        "env": {}
-      }
-    }
-  }
-}
-```
+`.utcp_config.json` carries one manual named `bladebro`, in the same shape as the `aside` manual: a stdio server that runs `bladebro mcp` with an empty `env`. The exact JSON lives once, in [`../assets/utcp-bladebro-manual.md`](../assets/utcp-bladebro-manual.md).
 
 Confirm it is registered rather than adding a second one:
 

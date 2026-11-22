@@ -15,6 +15,7 @@
     },
     {
       "leaves": [
+        "assets/utcp-bladebro-manual.md",
         "references/browser-lanes.md",
         "references/cli-reference.md",
         "references/install-and-verify.md",
