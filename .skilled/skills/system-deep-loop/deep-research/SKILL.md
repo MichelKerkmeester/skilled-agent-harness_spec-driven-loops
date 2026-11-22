@@ -35,8 +35,6 @@ Keyword triggers:
 - `research loop`
 - `iterative research`
 - `multi-round research`
-- `deep investigation`
-- `comprehensive research`
 
 ### Use Cases
 
@@ -302,7 +300,7 @@ Every completed loop produces a convergence report:
 Operates within the active runtime's root-doc behavioral framework (CLAUDE.md/AGENTS.md).
 
 Key integrations:
-- **Gate 2**: Skill routing via `skill_advisor.py` (keywords: autoresearch, deep research)
+- **Gate 2**: skill routing through the advisor brief, or `node .skilled/bin/skill-advisor.cjs advisor_recommend` (hub phrases: deep research, research loop)
 - **Gate 3**: File modifications require the root-doc Gate 3 spec-folder question
 - **Continuity**: `/speckit:resume` is the operator-facing recovery surface; canonical packet continuity is written via `generate-context.js`
 - **Dispatch**: the `/deep:research` command workflow is the only dispatcher of `@deep-research` as LEAF agent

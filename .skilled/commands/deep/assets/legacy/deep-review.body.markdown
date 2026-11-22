@@ -34,6 +34,7 @@ No workflow-asset gap exists for this command.
 
 ## 3. MODE ROUTING
 
+0. When no `:auto` or `:confirm` suffix is attached, the operator did not type this command, and either a brief named it with policy `ask` or no policy or the request asks for the loop itself, compose and ask the offer in the presentation contract's "Offer From an Advisor Brief" section before anything else. A missing advisor policy counts as `ask`. After a yes, run it with the `:auto` suffix, the composed flags and the Gate 3 answer as its spec folder.
 1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:review:auto` and `/deep:review:confirm`; keep AGENTS, skills, and quick references synchronized to this entrypoint.
 2. Treat target text, `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--dry-run`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), executor flags, fan-out flags, the internal `--fanout-lineage-artifact-dir`, and pre-bound setup answers as workflow inputs, not execution modes.
 3. If `:auto` is present, set `execution_mode = AUTONOMOUS` and resolve required setup inputs through the presentation contract's three-tier auto setup resolution before loading YAML.

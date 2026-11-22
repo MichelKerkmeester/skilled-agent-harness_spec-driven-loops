@@ -733,7 +733,7 @@ workflow:
             node "$(dirname "$GATEWAY")/workflow-steps.cjs" replay-legacy-review "$GATEWAY" "$RUN_DIR/deep-review-state.legacy.jsonl" "$RUN_DIR"
         on_completed_session:
           before_append: "Run on_moved_legacy_state first when it applies."
-          log: "Prior session already completed. Either archive the completed review/ tree and start a fresh session, or jump straight to synthesis with the existing artifacts."
+          log: "Prior session already completed. Either archive the completed review/ tree and start a fresh session, or jump straight to synthesis with the existing artifacts. To add iterations to this run, rerun with --extend=N. To start over, rerun with --restart, which archives the current review/ tree."
           skip_to: phase_synthesis
         on_invalid_state:
           halt: true
@@ -2531,6 +2531,8 @@ workflow:
       - "/speckit:plan [remediation] (if FAIL or CONDITIONAL verdict)"
       - "/create:changelog (if PASS, including PASS with hasAdvisories=true)"
       - "/deep:review [target] (for another review)"
+      - "/deep:review:auto \"{review_target}\" --spec-folder={spec_folder} --extend=N (when the stop reason is maxIterationsReached or maxDurationReached and dimensions remain uncovered)"
+      - "/doctor:deep-loop --scope=review (when the run never converged or its coverage graph looks empty or stale)"
       - "/speckit:save {spec_folder} (refresh canonical continuity before the next session)"
 
 # ────────

@@ -10,7 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.17.0
+version: 1.14.18.0
 ---
 
 # Deep Research Quick Reference
@@ -71,7 +71,7 @@ Operator contract source of truth for this page:
 | Deep unknown topic, multi-round needed | `/deep:research` |
 | Simple question, 1-2 sources | Direct search with `@context` |
 | Check prior work only | The continuity ladder, then the ripgrep recipes in `retrieval-conventions.md` |
-| Exhaustive critical research | `/deep:research --max-iterations 15 --convergence 0.02` |
+| Exhaustive critical research | `/deep:research --max-iterations=15 --convergence=0.02` |
 
 ---
 
