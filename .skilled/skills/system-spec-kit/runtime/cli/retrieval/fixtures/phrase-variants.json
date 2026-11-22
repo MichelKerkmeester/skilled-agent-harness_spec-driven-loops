@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4341df73f5db63d4defe8b66522130f93a2dc79ed05b1f91f2af96eb2189d1b9",
+  "manifestHash": "7d64dcc886682b9ac95aac9245d937b4e389237cff540d76d9d3ddd1d60daefe",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1848,6 +1848,9 @@
     ],
     "006 setup guide operator decisions": [
       "006-setup-guide operator decisions"
+    ],
+    "006 sk code and readme alignment operator decisions": [
+      "006-sk-code-and-readme-alignment operator decisions"
     ],
     "006 sk code audit remediation operator decisions": [
       "006-sk-code-audit-remediation operator decisions"

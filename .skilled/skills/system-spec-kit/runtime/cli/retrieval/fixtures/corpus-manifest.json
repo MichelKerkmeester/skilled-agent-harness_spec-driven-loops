@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9458b87f0580b8879c84a34c172b4b95042746674e00f983587ce13e11ccb9e9",
+  "corpusHash": "e6006d9c2d099d91edf561e5bb1082f2914c093e8ed8811fba56558981a9751c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28976,
+  "includedPathCount": 28977,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19050,6 +19050,7 @@
     "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/spec.md",
     "specs/system-deep-loop/loop-architecture/005-state-log-route-proof/tasks.md",
     "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/decision-record.md",
     "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/goal.md",
     "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment/plan.md",
@@ -29008,7 +29009,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4341df73f5db63d4defe8b66522130f93a2dc79ed05b1f91f2af96eb2189d1b9",
+  "manifestHash": "7d64dcc886682b9ac95aac9245d937b4e389237cff540d76d9d3ddd1d60daefe",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
