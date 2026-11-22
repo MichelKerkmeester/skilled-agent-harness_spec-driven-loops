@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/007-overlay-framework-root-layout/013-ux-and-alignment-pass"
-    last_updated_at: "2026-11-22T04:30:00Z"
+    last_updated_at: "2026-11-22T01:55:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Fixed the second final review findings 2, 3 and 5, reviewed until APPROVED"
     next_safe_action: "None: a later phase takes the open limits"
@@ -184,14 +184,14 @@ No fix needed a revert under the stop rule: each P1 cleared on its one more atte
 
 ### Second final review fixes
 
-A second independent final review, on Opus, came back APPROVED with four P2 findings and one P2 nit. Finding 4, Barter's `init-repository.sh` mode, is Barter's to fix. The others were fixed on `worktrees/511-overlay-opus-review-fixes`, with the hook work on `worktrees/512-hook-tracked-source-path` merged into it as `611b9c1ea37`. `origin/main` equalled local main `e0f7e0a11d3` when the worktrees were made, so no merge came first. Each fix started with a test that failed on the old code, and every worker ran on `model: "opus"` at medium effort.
+A second independent final review, on Opus, came back APPROVED with four P2 findings and one P2 nit. Finding 4, Barter's `init-repository.sh` mode, is Barter's to fix. The others were fixed on `worktrees/511-overlay-opus-review-fixes`, with the hook work on `worktrees/512-hook-tracked-source-path` merged into it as `611b9c1ea37`. `origin/main` equalled local main `e0f7e0a11d3` when 511 was made. By the time 512 was made, main had fast-forwarded to `b619b087eed`, a trigger-index rebuild, which reached 511 through the hook merge, so no origin merge was needed. Each fix started with a test that failed on the old code, except `330d75d1a54`, which returns pre-commit's gate pathspecs to main's behaviour and adds no test. Every worker ran on `model: "opus"` at medium effort.
 
 | Finding | Fix | Commits |
 |---------|-----|---------|
 | 1. An owned folder with capitals read as unowned when it became a layout link | Already fixed by `8ab99ee8106`. The suite's "a folder the engine wrote at a name with capitals becomes the layout link there" runs the review's own trigger, a directory entry `Tool` swapped for the link `Tool -> target`, and passes. No new commit | - |
 | 2. A replaced folder that became a file over a `retained` path, or over a directory entry's `protectedPaths` entry, looped between `apply` and `status` | Planning refuses it before any write, with exit 1 and the state file untouched, and names the manifest change. `status` gives the same refusal. A replace path that itself became a file is covered too | `6bb2b1c659d`, `88032876cfb` |
 | 3. The git hooks printed a path through the link when the source root is a link into a vendored tree | The shared trust block sets `SOURCE_REL`, the source root after its links resolve less the physical repo root, before the root can be replaced. Every printed restore, `chmod` and installer path uses it. pre-commit's gate pathspecs stay on the logical spelling, see limitation 14 | `d85d6e763c1`, `330d75d1a54`, `7961ada26d7`, `0a1806a09df` |
-| 5. Some remedies named no command or a bare manifest name, and two restores copied from the index | `git restore --source=HEAD --staged --worktree`, the manifest quoted through `shellPath`, and a runnable `status` or `apply --capture` rerun | `e22fda5b1e6` |
+| 5. Some remedies named no command or a bare manifest name, and two restores copied from the index | `git restore --source=HEAD --staged --worktree`, the manifest quoted through `shellPath`, and a runnable `status` or `apply --capture` rerun. The manifest refusals rerun `status`, because they fire from many subcommands. Three `repin.exclude` lines that end in `then rerun the re-pin` are left as they were | `e22fda5b1e6` |
 
 | Round | Range end | Result | Fixed in |
 |-------|-----------|--------|----------|
