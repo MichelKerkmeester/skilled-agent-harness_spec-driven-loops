@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.23.0
+version: 2.3.24.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -190,7 +190,7 @@ The map is the packet's own `RESOURCE_MAP` for the web, visual and Figma-to-code
 | --- | --- |
 | SKILLED | `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | `sk-code-ci` | The changed workflow checked against each rule in `sk-code-ci/references/ci-workflow-standards.md`, which the quality runner names for `.github/workflows/**`, plus a run of the changed workflow or the reason it could not run |
-| `sk-code-frontend` | The changed file checked against `sk-code-frontend/references/frontend-practice.md`, which the quality runner names for stylesheet, markup and component files, plus the page rendered in a browser. A Figma comparison records the five passes in `sk-code-frontend/references/figma-to-code.md` |
+| `sk-code-frontend` | The changed file checked against `sk-code-frontend/references/frontend-practice.md`, which the quality runner names for stylesheet, markup and component files, plus the changed page opened through the `mcp-browser-use` hub in whichever browser mode the user has installed (Chrome DevTools, Aside or Bladebro): a screenshot at the affected viewport and the console showing no new errors, or NOT RUN with the reason, such as no browser mode installed. The agent uses a browser session it owns, and opens the user's signed-in browser only when the user asks. A Figma comparison records the five passes in `sk-code-frontend/references/figma-to-code.md` |
 | UNKNOWN | User-selected verification command set before completion claim |
 
 ---

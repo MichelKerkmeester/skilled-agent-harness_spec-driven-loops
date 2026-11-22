@@ -75,6 +75,7 @@ phase and binds as if written here.
 | 006-verification | `006-verification/goal.md` |
 | 007-bladebro-parity-and-changelogs | `007-bladebro-parity-and-changelogs/goal.md` |
 | 008-live-runs-and-playbook-fixes | `008-live-runs-and-playbook-fixes/goal.md` |
+| 009-sk-code-browser-evidence | `009-sk-code-browser-evidence/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
