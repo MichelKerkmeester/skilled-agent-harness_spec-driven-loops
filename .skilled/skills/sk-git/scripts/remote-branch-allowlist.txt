@@ -7,3 +7,5 @@
 #
 # Keep this list short. A branch listed here can be published by any session
 # without anyone being asked.
+
+system-skilled-bots
