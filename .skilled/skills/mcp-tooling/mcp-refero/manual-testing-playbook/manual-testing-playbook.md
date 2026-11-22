@@ -1,7 +1,7 @@
 ---
 title: "mcp-refero: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-refero skill. Covers wiring verification, discovery-first callable confirmation, the read-only research funnel (single-layer and full walk), response_format discipline, quota/429 honesty, the config-mutation refusal gate, and the mandatory sk-design-md-generator pairing."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # mcp-refero: Manual Testing Playbook
@@ -13,6 +13,13 @@ End-to-end manual testing reference for the mcp-refero skill. Every scenario val
 ---
 
 **EXECUTION POLICY:** Every scenario in this playbook is SAFE to execute for real: it verifies wiring read-only, discovers, searches, retrieves detail, or proves a refusal. No scenario mutates this workspace, edits `.utcp_config.json`, touches `~/.mcp-auth`, or handles credentials. Run actual commands and calls where access permits, inspect real outputs, and record verdicts as PASS, FAIL, or SKIP with a documented blocker. The config-mutation scenario is exercised by requesting a forbidden mutation and proving it is refused, so the mutation itself never runs. Operator OAuth completion is a precondition step, never a scenario action performed by the agent.
+
+### Result persistence
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are saved into `<skill>/benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` by `record-playbook-run.cjs`, the one writer for run folders. Save a run from the repository root with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`.
+
+`<verdicts.csv>` has the header `scenario_id,verdict,reason,evidence`. A conversation run is saved with `--runner-out <evidence-dir>` instead, the command the runner prints when it ends. The recorder refuses a scenario id this playbook does not define, a `FAIL` or `SKIP` without a reason and a run folder that already exists.
 
 ---
 

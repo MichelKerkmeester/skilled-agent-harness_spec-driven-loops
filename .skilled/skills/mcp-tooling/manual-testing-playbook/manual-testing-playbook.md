@@ -1,7 +1,7 @@
 ---
 title: "mcp-tooling: Manual Testing Playbook"
 description: "Operator-facing index for mcp-tooling hub-routing validation across six modes: three workflow bridges, three read-only design transports, five blind holdouts, and the generic-tool ownership boundaries."
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # mcp-tooling: Manual Testing Playbook
@@ -11,6 +11,13 @@ version: 1.2.3.0
 This is the hub-level operator directory for six modes: three workflow bridges (`mcp-click-up`, `mcp-obsidian`, and `mcp-notion`) and three read-only design transports (`mcp-figma`, `mcp-refero`, and `mcp-mobbin`). It validates hub-level mode resolution only; each packet owns its internal behavior tests.
 
 The source of truth for routing is `.skilled/skills/mcp-tooling/hub-router.json`, `.skilled/skills/mcp-tooling/mode-registry.json`, and the root `ROUTER.md` surface map. The compiled route is checked first when its activation manifest is fresh; a legacy-authority or stale-manifest result is recorded rather than presented as compiled-serving evidence.
+
+### Result persistence
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are saved into `<skill>/benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` by `record-playbook-run.cjs`, the one writer for run folders. Save a run from the repository root with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/mcp-tooling/manual-testing-playbook --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`.
+
+`<verdicts.csv>` has the header `scenario_id,verdict,reason,evidence`. A conversation run is saved with `--runner-out <evidence-dir>` instead, the command the runner prints when it ends. The recorder refuses a scenario id this playbook does not define, a `FAIL` or `SKIP` without a reason and a run folder that already exists.
 
 ---
 

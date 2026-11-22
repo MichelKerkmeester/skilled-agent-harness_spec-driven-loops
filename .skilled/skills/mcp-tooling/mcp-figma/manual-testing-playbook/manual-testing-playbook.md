@@ -1,7 +1,7 @@
 ---
 title: "mcp-figma: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-figma skill. Covers binary detection, the Figma Desktop requirement, safe connect, daemon health, read-only inspect and export, the destructive-verb refusal gate, and optional Framelink MCP discovery via Code Mode."
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # mcp-figma: Manual Testing Playbook
@@ -13,6 +13,13 @@ End-to-end manual testing reference for the mcp-figma skill. Every scenario vali
 ---
 
 **EXECUTION POLICY:** Every default scenario in this playbook is SAFE to execute for real: it detects, connects in safe mode, checks daemon health, reads, exports to an explicit path, or proves a refusal. None of the default scenarios perform a destructive Figma write. Run actual commands, inspect real outputs, and call the real daemon where possible. Valid statuses are PASS, FAIL, or SKIP with a documented blocker. The destructive-refusal scenario is exercised by attempting an unconfirmed destructive verb and proving it is refused, so the destructive action itself is never executed. The yolo `app.asar` patch and any actual destructive write are **separately-approved-only** and are NOT part of the default set (see Section 11).
+
+### Result persistence
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are saved into `<skill>/benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` by `record-playbook-run.cjs`, the one writer for run folders. Save a run from the repository root with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`.
+
+`<verdicts.csv>` has the header `scenario_id,verdict,reason,evidence`. A conversation run is saved with `--runner-out <evidence-dir>` instead, the command the runner prints when it ends. The recorder refuses a scenario id this playbook does not define, a `FAIL` or `SKIP` without a reason and a run folder that already exists.
 
 ---
 

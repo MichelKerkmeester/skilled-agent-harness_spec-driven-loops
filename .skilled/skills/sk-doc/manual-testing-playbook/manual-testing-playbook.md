@@ -1,7 +1,7 @@
 ---
 title: "sk-doc: Manual Testing Playbook"
 description: "Operator-facing index for sk-doc smart-router validation: intent detection, resource loading, unknown-fallback, cross-CLI dispatch, and token-cost baselines."
-version: 2.1.4.0
+version: 2.1.5.0
 ---
 
 # sk-doc: Manual Testing Playbook
@@ -11,6 +11,13 @@ version: 2.1.4.0
 This document is the operator directory for the sk-doc manual testing playbook. Per-scenario execution detail lives in the category folders below; each scenario file ships a YAML contract (id, expected_intent, expected_resources, token ranges) plus setup, expected behavior, cross-CLI variants, and success criteria.
 
 Source of truth for routing behavior: `.skilled/skills/sk-doc/SKILL.md` §2 Smart Routing, resolved at runtime through `mode-registry.json` / `hub-router.json` for the mode, and through the `INTENT_SIGNALS` / `RESOURCE_MAP` block in `.skilled/skills/sk-doc/ROUTER.md` §3 for the leaves that mode loads — that block is the byte-for-byte source the deterministic replay parses — plus the UNKNOWN_FALLBACK_CHECKLIST in the same file's §5 MACHINE ROUTER.
+
+### Result persistence
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are saved into `<skill>/benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` by `record-playbook-run.cjs`, the one writer for run folders. Save a run from the repository root with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/sk-doc/manual-testing-playbook --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`.
+
+`<verdicts.csv>` has the header `scenario_id,verdict,reason,evidence`. A conversation run is saved with `--runner-out <evidence-dir>` instead, the command the runner prints when it ends. The recorder refuses a scenario id this playbook does not define, a `FAIL` or `SKIP` without a reason and a run folder that already exists.
 
 ---
 

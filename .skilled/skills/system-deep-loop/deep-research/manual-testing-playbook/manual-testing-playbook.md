@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.16.11.0
+version: 1.16.12.0
 ---
 
 # deep-research: Manual Testing Playbook
@@ -22,6 +22,13 @@ Canonical package artifacts:
 - `synthesis-save-and-guardrails/`
 - `command-flow-stress-tests/`
 - `fanout/`
+
+### Result persistence
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are saved into `<skill>/benchmark/reports/<YYYY-MM-DD>--<subject>--<variant>/` by `record-playbook-run.cjs`, the one writer for run folders. Save a run from the repository root with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`.
+
+`<verdicts.csv>` has the header `scenario_id,verdict,reason,evidence`. A conversation run is saved with `--runner-out <evidence-dir>` instead, the command the runner prints when it ends. The recorder refuses a scenario id this playbook does not define, a `FAIL` or `SKIP` without a reason and a run folder that already exists.
 
 ---
 
