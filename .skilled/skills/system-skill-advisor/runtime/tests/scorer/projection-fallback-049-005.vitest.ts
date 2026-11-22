@@ -75,9 +75,7 @@ function writeSqliteFixture(root: string, sourcePath: string): void {
         domains TEXT,
         intent_signals TEXT,
         derived TEXT,
-        source_path TEXT NOT NULL,
-        embedding BLOB,
-        embedding_model_id TEXT
+        source_path TEXT NOT NULL
       );
       CREATE TABLE skill_edges (
         source_id TEXT NOT NULL,

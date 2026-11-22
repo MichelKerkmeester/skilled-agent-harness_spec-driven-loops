@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes",
+  "spec_folder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes",
+  "parent_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "epic review fixes",
+      "fix the fresh epic review findings",
+      "epic review fixes plan",
+      "epic review fixes tasks",
+      "epic review fixes acceptance criteria",
+      "027-epic-review-fixes operator decisions",
+      "epic review fixes implementation summary"
+    ],
+    "key_topics": [
+      "epic",
+      "review",
+      "fresh",
+      "findings",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "027-epic-review-fixes",
+      "operator",
+      "decisions",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "evidence/review-report.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/bm25.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/conflict-query-rerank.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/projection-fallback-049-005.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "evidence/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-constants.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/bm25.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "holdout-independent.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-bootstrap.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "conflict-query-rerank.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/conflict-query-rerank.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "projection-fallback-049-005.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/projection-fallback-049-005.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review found a documented calibration setting that nothing reads, two documented location settings the launcher never forwards, two opt-in switches the daemon cannot see, an eval script that imports a deleted module, unused scoring inputs, a lane cleanup that only wording checks cover, and Python boosts for the retired memory database vocabulary",
+    "created_at": "2026-11-22T10:06:33Z",
+    "last_save_at": "2026-11-22T10:37:46.321Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5ee9e3d2caeacfa48f29a32fa2e0834af034360af745016c5a2c11de6f44a801",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "91a216ff2f6cce546debc624e3b27529cbd4494ff8104a961bf700c4e13e700f",
+      "plan.md": "98d08f0c290529192e6ba696966e809b8733f861e31baa406dcdd0bd9117b0c2",
+      "tasks.md": "71eeb6fbb2f672ef94aecc7eac855d370c0a31a1ee125f76a69fda452d519402",
+      "decision-record.md": "60e036d67b5af90d99509ffd3c6b0ea6721f13d994531b1bf3ab2a021f7ee945",
+      "implementation-summary.md": "7edeaadb587cc9a1a49859fe6f75285aba67f627b77271453c517f67f965ec7b"
+    },
+    "last_active_at": null
+  }
+}

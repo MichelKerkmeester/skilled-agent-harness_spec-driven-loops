@@ -9,9 +9,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const assert = require('node:assert/strict');
+const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const { test } = require('node:test');
+const { pathToFileURL } = require('node:url');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PATHS AND TEXT HELPERS
@@ -238,6 +241,55 @@ test('the lane cleanup reports first, asks only on a non-empty askFirst, then ap
   assert.match(LANE_CLEANUP, /Exit 1 with a non-empty askFirst: show each askFirst\[\]\.question verbatim/);
   assert.match(LANE_CLEANUP, /for the one apply_command that follows/);
   assert.match(LANE_CLEANUP, /Exit 0: record lane_cleanup=clean, run no apply and ask nothing/);
+});
+
+// Text checks above pin the wording. This one runs both commands as the phase
+// spells them, so a flag the tool renames or drops fails here before it fails
+// on a user's machine. The child env is built from scratch, so no location the
+// tool could read points outside the fixture, and the extra flags only move
+// the database and socket folders into it. The one key set below comes from
+// the tool's own list, so this file names no lane term.
+test('the tool accepts the report and apply commands exactly as the phase spells them', async () => {
+  const repoRoot = path.resolve(COMMAND_ROOT, '../../..');
+  const tool = LANE_CLEANUP.match(/^\s+report_command: "node (\S+) /m)[1];
+  const { LANE_ENV_KEYS } = await import(pathToFileURL(path.join(repoRoot, tool)).href);
+  const hostKey = LANE_ENV_KEYS.find((key) => key.endsWith('_BASE_URL'));
+  assert.equal(typeof hostKey, 'string', 'the tool lists the model host key');
+
+  const base = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'doctor-lane-cleanup-')));
+  try {
+    const root = path.join(base, 'root');
+    const home = path.join(base, 'home');
+    const dbDir = path.join(base, 'db');
+    for (const dir of [root, home, dbDir]) fs.mkdirSync(dir);
+    // Nothing listens on the discard port, so the model host probe is refused at once.
+    const env = { PATH: process.env.PATH, HOME: home, TMPDIR: base, [hostKey]: 'http://127.0.0.1:9' };
+    assert.equal(spawnSync('git', ['init', '-q', root], { env }).status, 0);
+    const fixtureFlags = ['--db-dir', dbDir, '--socket-dir', path.join(base, 'sock')];
+
+    for (const [key, mode] of [['report_command', 'machine'], ['apply_command', 'apply']]) {
+      const line = LANE_CLEANUP.match(new RegExp('^\\s+' + key + ': "([^"]+)"$', 'm'))[1];
+      const words = line
+        .replace(' </dev/null', '')
+        .replace('[--shared-model delete|keep]', '--shared-model keep')
+        .split(/\s+/);
+      assert.equal(words[0], 'node', key + ' must start with node');
+      const [script, ...args] = words.slice(1);
+      const run = spawnSync(process.execPath, [path.join(repoRoot, script), ...args, ...fixtureFlags], {
+        cwd: root,
+        encoding: 'utf8',
+        env,
+        stdio: ['ignore', 'pipe', 'pipe'],
+      });
+      assert.equal(run.status, 0, key + ' must exit 0 on a clean fixture: ' + run.stderr);
+      const report = JSON.parse(run.stdout);
+      assert.equal(report.mode, mode);
+      assert.equal(report.exitCode, 0);
+      assert.deepEqual(report.askFirst, []);
+    }
+  } finally {
+    fs.rmSync(base, { force: true, recursive: true });
+  }
 });
 
 test('the shared-model answer and the closed stdin appear only in the lane cleanup phase', () => {

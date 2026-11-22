@@ -1790,7 +1790,7 @@ SYNONYM_MAP = {
     "forget": ["memory", "delete", "remove"],
     "checkpoint": ["memory", "save", "restore", "backup"],
     "history": ["memory", "context", "past", "previous"],
-    "memory": ["context", "session", "save", "store", "database", "vector", "embedding", "index"],
+    "memory": ["context", "session", "save", "store", "database", "index"],
     "session": ["memory", "context", "conversation"],
     "preserve": ["memory", "save", "context", "store"],
     "store": ["memory", "save", "context", "persist"],
@@ -1904,8 +1904,6 @@ INTENT_BOOSTERS = {
     "checkpoint": ("system-spec-kit", 0.6),
     "context": ("system-spec-kit", 0.6),
     "database": ("system-spec-kit", 0.4),
-    "embedding": ("system-spec-kit", 0.5),
-    "embeddings": ("system-spec-kit", 0.5),
     "forget": ("system-spec-kit", 0.4),
     "history": ("system-spec-kit", 0.4),
     "index": ("system-spec-kit", 0.4),
@@ -1917,8 +1915,6 @@ INTENT_BOOSTERS = {
     "restore": ("system-spec-kit", 0.4),
     "session": ("system-spec-kit", 0.4),
     "store": ("system-spec-kit", 0.4),
-    "vector": ("system-spec-kit", 0.5),
-    "voyage": ("system-spec-kit", 0.5),
 
     # ─────────────────────────────────────────────────────────────────
     # SYSTEM-SPEC-KIT: Specification and planning

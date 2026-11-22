@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3ded2978f769a0958d675b6eb4d1fd586fb7aab711cdc294ccceaa61589db405",
+  "corpusHash": "a50f5b3878d0c101c10f203806e2896ee0c8b0025d05d17f98edd1744595188b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29210,
+  "includedPathCount": 29232,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7065,6 +7065,7 @@
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.1.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/keep-operator-scenarios-in-scope.md",
@@ -16284,6 +16285,20 @@
     "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/plan.md",
     "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/spec.md",
     "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/tasks.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/acceptance-criteria.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/goal.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/implementation-summary.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/plan.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/spec.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/tasks.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/acceptance-criteria.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/goal.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/implementation-summary.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/plan.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/spec.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/tasks.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/goal.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/spec.md",
     "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/acceptance-criteria.md",
     "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/implementation-summary.md",
     "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/plan.md",
@@ -19958,6 +19973,13 @@
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/plan.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/spec.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/tasks.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/acceptance-criteria.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/decision-record.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/evidence/review-report.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/implementation-summary.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/plan.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/spec.md",
+    "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/tasks.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/decision-record.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/delegation-strategy.md",
     "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/goal.md",
@@ -29242,7 +29264,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6cbffe39c3dfb8fa9957e9875a9a998d7dfd432059bd95ae6d0a8059d4afb797",
+  "manifestHash": "6c27ebf8398c5f714d20361cafd3e7c1848086f247583eb8feb0217eadeed28d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35969,6 +35991,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/001-run-recorder-and-validator/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/authoring-modes-and-playbooks/z_archive",
       "reason": "excluded directory"
     },
@@ -38058,6 +38088,10 @@
     },
     {
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/scratch",
       "reason": "excluded directory"
     },
     {

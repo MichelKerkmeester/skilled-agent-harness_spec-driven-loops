@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6cbffe39c3dfb8fa9957e9875a9a998d7dfd432059bd95ae6d0a8059d4afb797",
+  "manifestHash": "6c27ebf8398c5f714d20361cafd3e7c1848086f247583eb8feb0217eadeed28d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5991,6 +5991,9 @@
     ],
     "027 epic close verdict": [
       "027 epic close verdict"
+    ],
+    "027 epic review fixes operator decisions": [
+      "027-epic-review-fixes operator decisions"
     ],
     "027 epic sweep review report": [
       "027 epic sweep review report"
@@ -48908,6 +48911,9 @@
     "epic review fixes": [
       "epic review fixes"
     ],
+    "epic review fixes acceptance criteria": [
+      "epic review fixes acceptance criteria"
+    ],
     "epic review fixes goal": [
       "epic review fixes goal"
     ],
@@ -53390,6 +53396,9 @@
     ],
     "fix the flaky cross process loop lock race": [
       "fix the flaky cross process loop lock race"
+    ],
+    "fix the fresh epic review findings": [
+      "fix the fresh epic review findings"
     ],
     "fix the gap detector over capping": [
       "fix the gap detector over-capping"
@@ -90006,6 +90015,21 @@
     "playbook inventory timeline": [
       "playbook inventory timeline"
     ],
+    "playbook marker backfill": [
+      "playbook marker backfill"
+    ],
+    "playbook marker backfill acceptance criteria": [
+      "playbook marker backfill acceptance criteria"
+    ],
+    "playbook marker backfill implementation summary": [
+      "playbook marker backfill implementation summary"
+    ],
+    "playbook marker backfill plan": [
+      "playbook marker backfill plan"
+    ],
+    "playbook marker backfill tasks": [
+      "playbook marker backfill tasks"
+    ],
     "playbook negative control": [
       "playbook negative control"
     ],
@@ -90173,6 +90197,9 @@
     ],
     "playbook run phase 003 verification": [
       "playbook run phase 003 verification"
+    ],
+    "playbook run recording phase parent spec": [
+      "playbook run recording phase parent spec"
     ],
     "playbook scaffold templates": [
       "playbook scaffold templates"
@@ -95550,6 +95577,9 @@
     ],
     "record my chat reply as a decision routing": [
       "record my chat reply as a decision routing"
+    ],
+    "record playbook run": [
+      "record playbook run"
     ],
     "record replay cassette harness": [
       "record-replay cassette harness"
@@ -105150,6 +105180,21 @@
     "run now requested": [
       "run_now_requested"
     ],
+    "run recorder and validator": [
+      "run recorder and validator"
+    ],
+    "run recorder and validator acceptance criteria": [
+      "run recorder and validator acceptance criteria"
+    ],
+    "run recorder and validator implementation summary": [
+      "run recorder and validator implementation summary"
+    ],
+    "run recorder and validator plan": [
+      "run recorder and validator plan"
+    ],
+    "run recorder and validator tasks": [
+      "run recorder and validator tasks"
+    ],
     "run request read only floor": [
       "run request read-only floor"
     ],
@@ -114482,6 +114527,9 @@
     "sk create manual testing playbook 1 1 2 0": [
       "sk-create-manual-testing-playbook 1.1.2.0"
     ],
+    "sk create manual testing playbook 1 2 0 0": [
+      "sk-create-manual-testing-playbook 1.2.0.0"
+    ],
     "sk create manual testing playbook implementation summary": [
       "sk create manual testing playbook implementation summary"
     ],
@@ -114544,6 +114592,9 @@
     ],
     "sk create manual testing playbook v1 1 2 0": [
       "sk-create-manual-testing-playbook v1.1.2.0"
+    ],
+    "sk create manual testing playbook v1 2 0 0": [
+      "sk-create-manual-testing-playbook v1.2.0.0"
     ],
     "sk create quality control": [
       "sk create quality control"

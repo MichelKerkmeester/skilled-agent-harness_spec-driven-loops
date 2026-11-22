@@ -136,6 +136,11 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_PRIVATE_SKILL_ROOTS',
   'SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW',
   'SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW',
+  // Documented location overrides the daemon reads: the feedback records file and
+  // the folder holding the route denylist. Without them the daemon uses the
+  // packaged defaults and ignores the operator's setting.
+  'SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH',
+  'SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR',
   // The disable switch is read by each caller in its own process and never by the
   // shared daemon, so a flagged call cannot silence every later caller.
   'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
