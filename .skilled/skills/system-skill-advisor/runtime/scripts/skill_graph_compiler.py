@@ -16,6 +16,7 @@ Usage:
 """
 
 import argparse
+import importlib.util
 import json
 import os
 import re
@@ -31,7 +32,6 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 SKILLS_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", ".."))
 DEFAULT_OUTPUT = os.path.join(SCRIPT_DIR, "skill-graph.json")
-ROUTE_EXCLUSIONS_DIR = os.path.join(SCRIPT_DIR, "..", "config")
 
 COMPILED_SCHEMA_VERSION = 1
 ALLOWED_METADATA_SCHEMA_VERSIONS = {1, 2}
@@ -82,25 +82,23 @@ AFFORDANCE_ALLOWED_FIELDS = {
 
 
 def load_route_excluded_skill_ids() -> Set[str]:
-    """Load the advisor's committed route exclusions for graph compilation.
+    """Load the advisor's route exclusions for graph compilation.
 
     A route-excluded skill remains on disk for its own package, but it is not
     part of the advisor graph. Excluding it before topology validation keeps
     the compiled graph and the runtime route-policy seam on the same current
-    skill set; malformed or missing config remains fail-open for compilation.
+    skill set. The runtime helper resolves the folder and files exactly as the
+    native loader does, environment override included; malformed or missing
+    config remains fail-open for compilation.
     """
-    local_path = os.path.join(ROUTE_EXCLUSIONS_DIR, "route-exclusions.local.json")
-    committed_path = os.path.join(ROUTE_EXCLUSIONS_DIR, "route-exclusions.json")
-    source_path = local_path if os.path.isfile(local_path) else committed_path
-    try:
-        with open(source_path, "r", encoding="utf-8") as handle:
-            parsed = json.load(handle)
-    except (OSError, ValueError, json.JSONDecodeError):
+    spec = importlib.util.spec_from_file_location(
+        "skill_advisor_runtime", os.path.join(SCRIPT_DIR, "skill_advisor_runtime.py")
+    )
+    if spec is None or spec.loader is None:
         return set()
-    raw_ids = parsed.get("excludedSkillIds") if isinstance(parsed, dict) else None
-    if not isinstance(raw_ids, list):
-        return set()
-    return {entry for entry in raw_ids if isinstance(entry, str) and entry}
+    runtime = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(runtime)
+    return runtime.load_route_excluded_skill_ids()
 # Broadened prompt-injection denylist. Mirrors the TS-side
 # `INSTRUCTION_PATTERN` in `affordance-normalizer.ts` so both compile-
 # time (Python) and score-time (TypeScript) input paths reject the

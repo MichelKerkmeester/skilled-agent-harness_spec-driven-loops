@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker",
+  "spec_folder": "system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker",
+  "parent_id": "system-skilled-bots/001-headless-bots-first-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "schedule predicates and checker",
+      "phase 2 schedule predicates and checker",
+      "schedule predicates and checker plan",
+      "schedule predicates and checker tasks",
+      "schedule predicates and checker acceptance criteria",
+      "schedule predicates and checker decision record",
+      "schedule predicates and checker implementation summary"
+    ],
+    "key_topics": [
+      "schedule",
+      "predicates",
+      "checker",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "record",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/scripts/launchagents/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/launchagents/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A bot author writes a cron string, and launchd only takes calendar dictionaries that hold one integer per key",
+    "created_at": "2026-11-22T10:48:27Z",
+    "last_save_at": "2026-11-22T12:06:12.705Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:03fc0c4de7c04a9e315f282570ab1906006796597650c541a26447df25d09254",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "15fe793e3069ab58e3375a05b39e3f6c8bb5401e992b5082f30116fbfbd93628",
+      "plan.md": "9f13891277a044c8ecf3b40333e1cf3f51c1865d3528e761d5b33f4ae7085c72",
+      "tasks.md": "cb2301d0e50669959f16eeaab530b3bc753db0a3ad6b41f52406aaa944d14c57",
+      "decision-record.md": "7c4f79ad9d3d3284e57a21d86dc8bf2fc662938c6bfd2b3a39a2f6cc8386cb8f",
+      "implementation-summary.md": "33700b0d0422c089117de47e393c05a51f03088f5d9cda2fd872ebf201de3288"
+    },
+    "last_active_at": null
+  }
+}

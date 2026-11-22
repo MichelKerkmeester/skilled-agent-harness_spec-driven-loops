@@ -54,7 +54,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 **COMMAND-DRIVEN FAN-OUT IS SUPPORTED:** use `--executor`/`--executors`/`--concurrency` flags on `/deep:review`. The command's YAML `step_fanout_spawn` owns multi-lineage dispatch; `fanout-merge.cjs` applies strongest-restriction (any lineage with an active P0, or a required quality gate still failing at its stop → merged FAIL). This is not ad-hoc shell dispatch — it is the canonical fan-out path. Intra-lineage wave orchestration remains deferred.
 
 **ALWAYS:**
-- Invoke via `/deep:review :auto` or `/deep:review :confirm`
+- Invoke via `/deep:review:auto` or `/deep:review:confirm`
 - Let the command's YAML workflow own dispatch (auto: `.skilled/commands/deep/assets/deep-review.yaml`)
 - Record each leaf iteration through the append gateway (`runtime/scripts/append-mode-event.cjs --mode review --run-directory <spec folder> --event-json <file>`) — the gateway is the SINGLE state-log writer: it authorizes, fences, and receipts the write, then refreshes `{state_paths.state_log}` from the ledger
 - Treat `runtime/scripts/reduce-state.cjs` as the reducer for DERIVED artifacts only (finding registry, dashboard metrics, strategy updates); it never writes the state log
@@ -63,17 +63,13 @@ This skill is invoked EXCLUSIVELY through the `/deep:review` command. The comman
 
 ### Trigger Phrases
 
-- "review code quality" / "audit this code"
-- "audit spec folder" / "validate spec completeness"
-- "release readiness check" / "pre-release review"
-- "find misalignments" (between spec and implementation)
-- "verify cross-references" (across docs and code)
+- "release readiness check"
 - "deep review" / "iterative review" / "review loop"
-- "quality audit" / "convergence detection"
+- "convergence review"
 
 ### Keyword Triggers
 
-`deep review`, `convergence review`, `iterative review`, `review loop`, `release readiness`, `spec folder review`, `convergence detection`, `quality audit`, `find misalignments`, `verify cross-references`, `pre-release review`, `audit spec folder`
+`deep review`, `convergence review`, `iterative review`, `review loop`, `release readiness`
 
 ---
 
@@ -309,7 +305,7 @@ Nine binary quality gates, from config validity through adversarial P0 replay an
 The security-sensitive override also applies when the target touches security, path handling, env precedence, schema boundaries, persistence or shared policy (`minStabilizationPasses=2` plus fix-completeness replay).
 Full gate-by-gate criteria and rationale: `references/protocol/completion-criteria.md`.
 
-Validate a completed run with `skill_advisor.py "run a deep review loop" --threshold 0.8` (skill still surfaces) and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` (exits 0).
+Validate a completed run with `printf '%s' '{"prompt":"run a deep review loop"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json` (the hub still tops the list at confidence 0.8 or above) and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` (exits 0).
 
 ---
 
@@ -320,7 +316,7 @@ Validate a completed run with `skill_advisor.py "run a deep review loop" --thres
 This skill operates within the behavioral framework defined in the active runtime's root doc (CLAUDE.md or AGENTS.md).
 
 Key integrations:
-- **Gate 2**: Skill routing via `skill_advisor.py` (keywords: deep review, convergence review, iterative review)
+- **Gate 2**: skill routing through the advisor brief, or `node .skilled/bin/skill-advisor.cjs advisor_recommend` (hub phrases: deep review, review loop)
 - **Gate 3**: File modifications require spec folder question per the root doc Gate 3. The spec folder determines the `{spec_folder}/review/` state packet location
 - **Continuity**: `/speckit:resume` is the operator-facing recovery surface, resolving context in the order `handover.md -> _memory.continuity -> spec docs`. During review, the agent writes iteration, strategy, and JSONL state; after synthesis, run `generate-context.js` to write canonical packet continuity
 - **Command**: `/deep:review` is the primary invocation point

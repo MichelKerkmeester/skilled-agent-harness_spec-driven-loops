@@ -73,13 +73,6 @@ export interface AdvisorHookHealthSection {
   readonly lastRecordAt: string | null;
 }
 
-export interface AdvisorHookAlertThresholds {
-  readonly failOpenWarnRate: number;
-  readonly failOpenPageRate: number;
-  readonly cacheHitP95WarnMs: number;
-  readonly cacheHitP95PageMs: number;
-}
-
 export interface AdvisorHookMetricSnapshot {
   readonly definitions: readonly AdvisorMetricDefinition[];
   readonly records: readonly AdvisorHookDiagnosticRecord[];
@@ -172,13 +165,6 @@ const FORBIDDEN_DIAGNOSTIC_FIELDS = new Set([
   'stderr',
 ]);
 
-const DEFAULT_ALERT_THRESHOLDS: AdvisorHookAlertThresholds = {
-  failOpenWarnRate: 0.02,
-  failOpenPageRate: 0.05,
-  cacheHitP95WarnMs: 75,
-  cacheHitP95PageMs: 150,
-};
-
 const MAX_HEALTH_RECORDS = 30;
 const MAX_DURABLE_DIAGNOSTIC_RECORDS = 200;
 const MAX_DURABLE_OUTCOME_RECORDS = 200;
@@ -269,15 +255,6 @@ function percentile(values: readonly number[], percentileValue: number): number 
   return Number(sorted[index]?.toFixed(3) ?? 0);
 }
 
-function envNumber(name: string, fallback: number): number {
-  const raw = process.env[name];
-  if (raw === undefined) {
-    return fallback;
-  }
-  const parsed = Number(raw);
-  return Number.isFinite(parsed) ? parsed : fallback;
-}
-
 async function ensureParentDir(path: string): Promise<void> {
   if (!dirReady) {
     const dir = dirname(path);
@@ -364,16 +341,6 @@ function tryParseJsonLine(line: string): unknown | null {
 /** Return the stable metric definitions emitted by advisor hook diagnostics. */
 export function getAdvisorHookMetricDefinitions(): readonly AdvisorMetricDefinition[] {
   return ADVISOR_HOOK_METRIC_DEFINITIONS;
-}
-
-/** Read alert thresholds from environment with conservative defaults. */
-export function getAdvisorHookAlertThresholds(): AdvisorHookAlertThresholds {
-  return {
-    failOpenWarnRate: envNumber('SPECKIT_ADVISOR_HOOK_FAILOPEN_WARN_RATE', DEFAULT_ALERT_THRESHOLDS.failOpenWarnRate),
-    failOpenPageRate: envNumber('SPECKIT_ADVISOR_HOOK_FAILOPEN_PAGE_RATE', DEFAULT_ALERT_THRESHOLDS.failOpenPageRate),
-    cacheHitP95WarnMs: envNumber('SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS', DEFAULT_ALERT_THRESHOLDS.cacheHitP95WarnMs),
-    cacheHitP95PageMs: envNumber('SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_PAGE_MS', DEFAULT_ALERT_THRESHOLDS.cacheHitP95PageMs),
-  };
 }
 
 /** Build a prompt-safe diagnostic record from hook execution metadata. */

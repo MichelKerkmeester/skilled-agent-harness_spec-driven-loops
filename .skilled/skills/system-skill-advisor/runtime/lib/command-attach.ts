@@ -264,29 +264,33 @@ export function typedCommandForTop(topSkillId: string, prompt: string): TypedCom
 // Deep-loop commands open a long, multi-pass run, so one attached to a prompt
 // that merely mentions the topic spends the reader's budget on work they never
 // asked for. The list below is the vocabulary that counts as asking for it, and
-// it holds only effort wording: a bare topic word such as `research`, `review`
-// or `council` says what to look at, never how far to go, so it never qualifies
-// on its own.
+// it names the loop itself: a deep loop by name, iterations, or more than one
+// pass. Depth wording such as `thorough` or `in depth` asks for care inside a
+// single pass, and a bare topic word such as `research` or `review` says what
+// to look at, so neither qualifies on its own.
 //
 // The phrases live in a data list, one per line, so the vocabulary a reviewer
 // has to judge stays visible and cheap to correct.
-export const DEPTH_WORDING: readonly string[] = [
-  'in depth',
-  'deep dive',
+export const LOOP_WORDING: readonly string[] = [
   'deep research',
   'deep review',
-  'thorough',
-  'thoroughly',
-  'exhaustive',
+  'iterations',
+  'iterative',
   'iteratively',
+  'multi-pass',
   'multiple passes',
-  'many passes',
   'several passes',
-  'ask the council',
-  'convene',
-  'several models',
-  'final verdict',
-  'everything you can',
+  'many passes',
+];
+
+// A loop's own name is how a reader asks about the loop as often as how they ask
+// to run one, so "how does the research loop decide when it has enough" stays a
+// question. The name counts as asking for the run only behind a use verb, as in
+// "start a research loop".
+export const LOOP_NAMES: readonly string[] = [
+  'deep loop',
+  'research loop',
+  'review loop',
 ];
 
 // A creation workflow scaffolds, reviews and validates a whole document, which is
@@ -315,10 +319,12 @@ function escapePhrase(phrase: string): string {
   return phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-// One alternation over the list keeps the gate a single test per prompt, and the
-// boundary markers keep `thorough` from firing inside a longer word while a
-// multi-word phrase still has to match as a whole.
-const DEPTH_REQUEST = new RegExp(`\\b(?:${DEPTH_WORDING.map(escapePhrase).join('|')})\\b`);
+// One word that names a deep-loop mode. A route that defers on a loop request
+// still names its mode when the prompt carries exactly one of these cues.
+export const MODE_CUES: Readonly<Record<string, RegExp>> = {
+  research: /\b(?:research|investigat(?:e|es|ing|ion)|look into|find out)\b/,
+  review: /\b(?:review|audit)\b/,
+};
 
 // The line alternative is a pattern rather than a phrase, so it is appended raw
 // beside the escaped vocabulary instead of being escaped with it.
@@ -359,6 +365,18 @@ export function isNoEditRequest(text: string): boolean {
 // punctuation, because a comma ends the clause that holds the lead.
 export const COMMAND_USE_VERB = '(?:run|start|use|invoke|launch|execute|call|trigger|open|rerun|re-run|kick off)';
 export const COMMAND_GAP_WORDS = "(?:[a-z']+ ){0,2}";
+
+// One alternation over the loop wording keeps the gate a single test per
+// prompt, and the boundary markers keep `iterative` from firing inside a longer
+// word while a multi-word phrase still has to match as a whole. An iteration
+// count such as `1 more iteration` asks for the loop as the plural does, and a
+// loop name asks for it behind a use verb, so both are appended raw as patterns
+// beside the escaped vocabulary.
+export const LOOP_REQUEST = new RegExp(
+  `\\b(?:${LOOP_WORDING.map(escapePhrase).join('|')}`
+  + '|\\d+ (?:[a-z-]+ ){0,2}iteration'
+  + `|${COMMAND_USE_VERB} (?:[a-z0-9'-]+ ){0,3}(?:${LOOP_NAMES.map(escapePhrase).join('|')}))\\b`,
+);
 
 // `why not` proposes the command rather than refusing it, so the word refuses
 // only where no `why` stands before it.
@@ -520,6 +538,9 @@ export function attachCommand(
 ): string | undefined {
   const route = asRecord(compiledRoute);
   if (!route) return undefined;
+  if (skillId === 'system-deep-loop' && (route.action === 'defer' || route.action === 'clarify')) {
+    return deferredLoopCommand(skillId, prompt, modeCommands);
+  }
   if (route.action !== 'route' || route.selectionKind !== 'single') return undefined;
 
   const targets = route.targets;
@@ -556,16 +577,39 @@ export function attachCommand(
   ) return undefined;
 
   // Deep-loop commands are the ones that commit the reader to a long, multi-pass
-  // run, so they are offered only when the prompt asks for that effort. Typing
-  // the command being attached is itself the ask, while typing another deep-loop
-  // command asks for that command, not this one. Every other hub answers a short
-  // question with a short answer, so no other skill consults the wording list.
+  // run, so they are offered only when the prompt asks for the loop itself.
+  // Typing the command being attached is itself the ask, while typing another
+  // deep-loop command asks for that command, not this one. Every other hub
+  // answers a short question with a short answer, so no other skill consults the
+  // wording list.
   if (skillId === 'system-deep-loop') {
     const typesThisCommand = typedCommandIn(prompt) === commands[workflowMode];
-    if (!typesThisCommand && !DEPTH_REQUEST.test(prompt.toLowerCase())) return undefined;
+    if (!typesThisCommand && !LOOP_REQUEST.test(prompt.toLowerCase())) return undefined;
   }
 
   return commands[workflowMode];
+}
+
+// The hub's router reads fixed phrases, so it defers on "run 8 more review
+// iterations" though the prompt asks for the loop and names one mode. A loop
+// request with exactly one mode cue names that mode as surely as a router
+// phrase does, while a cue for both modes or for neither leaves the choice to
+// the reader. The refusal and mention guards apply here as on a routed mode.
+function deferredLoopCommand(
+  skillId: string,
+  prompt: string,
+  modeCommands: Readonly<Record<string, Readonly<Record<string, string>>>>,
+): string | undefined {
+  if (!Object.prototype.hasOwnProperty.call(modeCommands, skillId)) return undefined;
+  const lowered = prompt.toLowerCase();
+  if (!LOOP_REQUEST.test(lowered) || isNoEditRequest(prompt)) return undefined;
+  const commands = modeCommands[skillId];
+  const cued = Object.keys(MODE_CUES).filter((mode) => (
+    MODE_CUES[mode].test(lowered) && Object.prototype.hasOwnProperty.call(commands, mode)
+  ));
+  if (cued.length !== 1) return undefined;
+  const command = commands[cued[0]];
+  return commandOnlyMentioned(prompt, command) ? undefined : command;
 }
 
 // A hub that withholds its command because the prompt names no single mode must

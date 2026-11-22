@@ -1,0 +1,44 @@
+[
+ {
+  "id": "K1",
+  "cat": "packet-keywords",
+  "prompt": "comprehensive research on prompt caching strategies",
+  "expect": "system-deep-loop research (packet keyword trigger)"
+ },
+ {
+  "id": "K2",
+  "cat": "packet-keywords",
+  "prompt": "multi-round research into vector index compaction",
+  "expect": "system-deep-loop research (packet keyword trigger)"
+ },
+ {
+  "id": "K3",
+  "cat": "packet-keywords",
+  "prompt": "start an autonomous research session on agent sandboxes and let it run overnight",
+  "expect": "system-deep-loop research + /deep:research ask"
+ },
+ {
+  "id": "K4",
+  "cat": "packet-keywords",
+  "prompt": "release readiness check on the sk-git skill",
+  "expect": "system-deep-loop review (packet trigger phrase)"
+ },
+ {
+  "id": "K5",
+  "cat": "packet-keywords",
+  "prompt": "pre-release review of the hooks tree",
+  "expect": "system-deep-loop review (packet trigger phrase)"
+ },
+ {
+  "id": "K6",
+  "cat": "packet-keywords",
+  "prompt": "audit spec folder specs/system-deep-loop/loop-architecture for misalignments with the code",
+  "expect": "system-deep-loop review (packet trigger phrase)"
+ },
+ {
+  "id": "H1c",
+  "cat": "gate-mismatch",
+  "prompt": "autoresearch the best embedding models for code search",
+  "expect": "system-deep-loop research + /deep:research ask"
+ }
+]

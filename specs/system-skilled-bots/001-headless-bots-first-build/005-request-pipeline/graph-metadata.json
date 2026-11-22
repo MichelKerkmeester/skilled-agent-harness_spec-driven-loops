@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/001-headless-bots-first-build/005-request-pipeline",
+  "spec_folder": "system-skilled-bots/001-headless-bots-first-build/005-request-pipeline",
+  "parent_id": "system-skilled-bots/001-headless-bots-first-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "request pipeline",
+      "phase 5 request pipeline",
+      "bots answer",
+      "request pipeline plan",
+      "request pipeline tasks",
+      "request pipeline acceptance criteria",
+      "request pipeline decision record",
+      "request pipeline implementation summary"
+    ],
+    "key_topics": [
+      "request",
+      "pipeline",
+      "phase",
+      "bots",
+      "answer",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "record",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/scripts/git-hooks/README.md",
+      ".skilled/skills/sk-git/references/continuous-integration.md",
+      ".skilled/scripts/git-hooks/tests/source-root-selection.test.sh",
+      ".skilled/scripts/git-hooks/tests/autostash-orphan-guard.test.sh",
+      ".skilled/scripts/git-hooks/lib/autostash-orphan-guard.sh",
+      ".skilled/bin/compiled-route.cjs",
+      ".skilled/scripts/install-git-hooks.sh",
+      ".skilled/scripts/git-hooks/tests/gate-config.test.sh",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/assets/commit-message-template.md",
+      ".skilled/skills/sk-git/changelog/v1.5.1.0.md",
+      ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-git/feature-catalog/session-lifecycle/continuous-integration-autosync.md",
+      ".skilled/scripts/git-hooks/tests/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuous-integration.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/references/continuous-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-root-selection.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/source-root-selection.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "autostash-orphan-guard.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/autostash-orphan-guard.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "autostash-orphan-guard.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/lib/autostash-orphan-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "gate-config.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/gate-config.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-message-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/assets/commit-message-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.5.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuous-integration-autosync.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/session-lifecycle/continuous-integration-autosync.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase 3 a bot runs only when someone types `bots run <id>`",
+    "created_at": "2026-11-22T10:48:30Z",
+    "last_save_at": "2026-11-22T12:07:41.322Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:87d763e5f261563b6c9f1d6999b6c0239827ea541b45435fd21d144bb93c27b9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3cac6850f4d9c82e2c3a8fbc48046cef53d731ea6ee00a0e83a6d464d94bf4bf",
+      "plan.md": "9ed954731a12dd9973b1742d5c5c4d2f136ad39154494ab421937d0c95d2a890",
+      "tasks.md": "43d4a4bf218aa5dbbe770f2841bf7eaa42dc9e83bafe9f538960574109d4113f",
+      "decision-record.md": "6e4a97c5735bdca0f740edd507bce47761806ab02e6778d2820ffc32d3e8e152",
+      "implementation-summary.md": "d637486c2c35a9eac8e2c8945d1f6426ea2ff4164d6dabc15521c2335000cee2"
+    },
+    "last_active_at": null
+  }
+}

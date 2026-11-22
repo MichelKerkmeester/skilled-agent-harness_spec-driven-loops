@@ -1,0 +1,12 @@
+[
+ {"id":"K1","cat":"packet-keywords","prompt":"comprehensive research on prompt caching strategies","expect":"system-deep-loop research (packet keyword trigger)"},
+ {"id":"K2","cat":"packet-keywords","prompt":"multi-round research into vector index compaction","expect":"system-deep-loop research (packet keyword trigger)"},
+ {"id":"K3","cat":"packet-keywords","prompt":"start an autonomous research session on agent sandboxes and let it run overnight","expect":"system-deep-loop research + /deep:research ask"},
+ {"id":"K4","cat":"packet-keywords","prompt":"release readiness check on the sk-git skill","expect":"system-deep-loop review (packet trigger phrase)"},
+ {"id":"K5","cat":"packet-keywords","prompt":"pre-release review of the hooks tree","expect":"system-deep-loop review (packet trigger phrase)"},
+ {"id":"K6","cat":"packet-keywords","prompt":"audit spec folder specs/system-deep-loop/loop-architecture for misalignments with the code","expect":"system-deep-loop review (packet trigger phrase)"},
+ {"id":"D1","cat":"doctor","prompt":"my deep review keeps running and never converges, what is wrong with its coverage graph","expect":"/doctor:deep-loop run"},
+ {"id":"D2","cat":"doctor","prompt":"diagnose the deep-loop coverage graph for the last research run","expect":"/doctor:deep-loop run"},
+ {"id":"X1","cat":"lifecycle","prompt":"resume the deep research","expect":"system-deep-loop research + /deep:research ask"},
+ {"id":"X2","cat":"lifecycle","prompt":"the deep review hit max iterations, keep going for a few more","expect":"system-deep-loop review + /deep:review ask (--extend fits)"}
+]

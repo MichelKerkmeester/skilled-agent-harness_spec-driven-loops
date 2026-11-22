@@ -15,6 +15,7 @@ from __future__ import annotations
 # 1. IMPORTS
 # ───────────────────────────────────────────────────────────────
 
+import json
 import os
 import re
 from typing import Any, Callable, Dict, Iterable, List, Optional, Set, Tuple
@@ -391,3 +392,36 @@ def compare_inventories(
         "missing_in_graph": missing_in_graph,
         "missing_in_discovery": missing_in_discovery,
     }
+
+
+# ───────────────────────────────────────────────────────────────
+# 8. ROUTE EXCLUSIONS
+# ───────────────────────────────────────────────────────────────
+
+ROUTE_EXCLUSIONS_DIR_ENV = "SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR"
+DEFAULT_ROUTE_EXCLUSIONS_DIR = os.path.normpath(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config")
+)
+
+
+def load_route_excluded_skill_ids(environ: Optional[Dict[str, str]] = None) -> Set[str]:
+    """Return the skill ids the advisor must never route, as the native loader reads them.
+
+    The folder is the environment override when set, else the packaged config
+    folder. A local override file there fully replaces the committed list, and
+    any read or parse failure yields an empty set, so a broken config can only
+    stop excluding a skill and never hide an active one.
+    """
+    env = os.environ if environ is None else environ
+    config_dir = env.get(ROUTE_EXCLUSIONS_DIR_ENV) or DEFAULT_ROUTE_EXCLUSIONS_DIR
+    local_path = os.path.join(config_dir, "route-exclusions.local.json")
+    source_path = local_path if os.path.exists(local_path) else os.path.join(config_dir, "route-exclusions.json")
+    try:
+        with open(source_path, "r", encoding="utf-8") as handle:
+            parsed = json.load(handle)
+    except (OSError, ValueError):
+        return set()
+    raw_ids = parsed.get("excludedSkillIds") if isinstance(parsed, dict) else None
+    if not isinstance(raw_ids, list):
+        return set()
+    return {entry for entry in raw_ids if isinstance(entry, str) and entry}

@@ -660,7 +660,7 @@ workflow:
           log: "Prior session already completed. Do not route directly to synthesis; archive the completed research/ tree or start a fresh packet instead."
           halt: true
           release_lock: step_release_lock
-          message: "Completed deep-research packet detected. Archive or replace the existing research/ tree before starting a new session."
+          message: "Completed deep-research packet detected. To add iterations to this run, rerun with --extend=N. To start over, rerun with --restart, which archives the current research/ tree."
         on_invalid_state:
           halt: true
           release_lock: step_release_lock
@@ -2265,6 +2265,8 @@ workflow:
     next_steps:
       - "/speckit:plan [feature-description]"
       - "/deep:research [new-topic] (for related deep research)"
+      - "/deep:research:auto \"{research_topic}\" --spec-folder={spec_folder} --extend=N (when the stop reason is maxIterationsReached or maxDurationReached and questions remain)"
+      - "/doctor:deep-loop --scope=research (when the run never converged or its coverage graph looks empty or stale)"
       - "/speckit:save {spec_folder} (refresh canonical continuity before the next session)"
 
 # ────────

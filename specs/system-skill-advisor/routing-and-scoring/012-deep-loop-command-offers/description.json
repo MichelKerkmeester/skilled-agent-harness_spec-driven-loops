@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
+  "description": "Offer the right deep-loop command and flags from explicit loop wording",
+  "keywords": [
+    "offer",
+    "right",
+    "deep-loop",
+    "command",
+    "flags",
+    "explicit",
+    "loop",
+    "wording"
+  ],
+  "lastUpdated": "2026-11-22T12:15:29.183Z",
+  "specId": "012",
+  "folderSlug": "deep-loop-command-offers",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-11-26_13-15__analyzed-deep-loop-command-routing-with-a-fable.md"
+  ]
+}

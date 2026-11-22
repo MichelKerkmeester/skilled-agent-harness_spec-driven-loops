@@ -1,0 +1,157 @@
+[
+ {
+  "id": "C1",
+  "prompt": "write a blog post about iterative studies in user experience design",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 3,
+  "top": {
+   "skill": "sk-design",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "explicit_author",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "second": {
+   "skill": "sk-doc",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "mcp-tooling",
+   "conf": 0.82,
+   "unc": 0.26,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "C2",
+  "prompt": "write a blog post about research methods in user experience design",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 3,
+  "top": {
+   "skill": "sk-design",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "explicit_author",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "second": {
+   "skill": "mcp-tooling",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "sk-doc",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "C3",
+  "prompt": "write a blog post about iterative research methods",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 3,
+  "top": {
+   "skill": "system-deep-loop",
+   "conf": 0.8204,
+   "unc": 0.16,
+   "lane": "explicit_author",
+   "action": "route",
+   "sel": "single",
+   "modes": "research",
+   "command": "/deep:research",
+   "policy": "ask",
+   "kind": "skill"
+  },
+  "second": {
+   "skill": "sk-doc",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "system-spec-kit",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "C4",
+  "prompt": "draft a slide deck on autonomous research agents in academia",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 1,
+  "top": {
+   "skill": "system-deep-loop",
+   "conf": 0.82,
+   "unc": 0.16,
+   "lane": "explicit_author",
+   "action": "route",
+   "sel": "single",
+   "modes": "research",
+   "kind": "skill",
+   "floored": true
+  },
+  "second": null,
+  "third": null,
+  "extra": [],
+  "stderr": ""
+ }
+]

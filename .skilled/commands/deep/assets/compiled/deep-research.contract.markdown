@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "59a1258d78710e0afcdbf8374a5f525e531dbf2bef82129729fe6b49a33ed0c1",
+      "sha256": "f9fd8ad964c255b838a0f3fdbdedb99176b370ff0cab4800b224014d9da1adfa",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "c5094b3a96007320a8928de90c87dd9285fbd75bbf5130e7fed5b1d4bec5a428",
+      "sha256": "920c4f497745bf76f74e123c345eca3d1c501b2adc955bc92f7ffa567e542bf4",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research.yaml",
-      "sha256": "6acaf6c5d24aba2c368eda58245ccd4fbbd74fbc419644e7299ba49bda9138d3",
+      "sha256": "e3e97dd2ea9e086c3b1028646de2b9f0edb00c6757e68582e3b8225d7d2ced3a",
       "section": "full"
     },
     {
@@ -32,12 +32,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "407c06fef47142ed0d6674a9494f17f6ad290e9b1b7b2f6eaa830c4cb732a394",
+      "sha256": "041fd5df01b9fd474a097e17f009e66eb0f1e9e42ce1ac343639e28485e6cddb",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "9b4b30635d6aa6376dfd1651fa6aeb078734fe50aa71f4baedf6b364ee33e287",
+      "sha256": "a08cec15293b014722d0d18ff563d6c054da2ddf36eef5349eaeb9326e102e6f",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "fd07fd9a31d1ac5e20a238c0b7c2f52f7154000ea5958f65f524be5f2f934e13"
+  "compiledBodyDigest": "eb87bca5d191086e40f3cfd280636cee243212cbac2c47ac9d3ec7c462cccae7"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -322,7 +322,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - Exit 0 is a hit set, exit 1 is a clean no-hit, exit 2 or higher is a failure to surface rather than report as no-hit
    - Store: prior_work_found = [yes/no]
 
-6. ASK with SINGLE prompt (include only applicable questions):
+6. Ask only the applicable questions, together in one turn, through the question tool that `.skilled/repo-rules/communication-handoff.md` §5 names for your runtime. Each question below becomes one tool question with its lettered options as the choices, and a free-text item such as a topic or a path is answered through the tool's own free-text option. When the tool caps how many questions one call holds, make consecutive calls in the same turn. Only where §5 names no tool for this session, print the form below as text. Do not split these questions across turns.
+   - No question carries more than four lettered options, so each fits a tool that takes two to four. Mark the recommended option in each.
    - Include Q-Exec only when `--executor` is NOT present and the topic text does NOT already mention executor hints such as `cli-opencode`, `cli-claude-code`, or `gpt-5.4`
    - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
 
@@ -334,24 +335,33 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      C) Related (Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track) [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
-     A) Autonomous -- all iterations without approval
-     B) Interactive -- pause at each iteration for review
+     A) Autonomous (Recommended) -- runs every iteration, then reports
+     B) Interactive -- stops for approval before each iteration, up to the iteration cap
 
    Q3. Max Iterations (if not set via flag):
-     Default is 10. Change? [Enter number or press enter for default]
+     A) 10 (Recommended, default)
+     B) 5 -- a short pass
+     C) 15 -- a longer run
+     Any other number goes through the free-text option.
 
-   Q-Exec. Executor (optional, press enter for default):
-     A) Native (default) — dispatch via @deep-research agent with Opus.
-     B) cli-opencode — `opencode run --standalone -m X[#Y] --format json --auto "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is always passed; under `workspace-write` (the default) an inline `OPENCODE_CONFIG_CONTENT` denies `external_directory` to the file tools, Bash is not confined, and `read-only` is refused. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
-     C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`; the default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier. It logs `--output-format stream-json --verbose`, and a single-executor iteration writes its session cost to `iterations/iteration-NNN.cost.json`.
-     D) cli-codex — requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
-     E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
-     F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
-     G) cli-pi — requires `pi`, run as `pi -p --offline --model SELECTOR` (`provider/model`). Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`. Pi has no OS sandbox: `--sandbox-mode=read-only` narrows its tools to `read,grep,find,ls` and passes `--no-extensions --no-skills --no-prompt-templates` (a compensating control), and the other modes pass no restriction.
-     H) cli-deepseek-harness (experimental, explicit choice only) — a single lineage such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash` runs in `:auto` through the shared fan-out command builder, and a fan-out shape such as `--count=2` also works. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
-     B-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
+   Q-Exec. Executor (optional):
+     A) Native (Recommended, default) — dispatch via @deep-research agent with Opus.
+     B) cli-opencode — runs `opencode run`, with the model given as `provider/model`.
+     C) cli-claude-code — runs `claude -p`, with the model and an optional config dir.
+     D) cli-codex — runs `codex`, with optional reasoning effort and service tier.
+     Name cli-cursor, cli-devin, cli-pi or cli-deepseek-harness (experimental, explicit choice only), with its model, through the free-text option.
 
-   Reply format examples:
+   What each executor needs:
+     - cli-opencode: `opencode run --standalone -m X[#Y] --format json --auto "PROMPT"`, started in `{repo_root}`, with `reasoningEffort` Y on the model id. `--auto` is always passed; under `workspace-write` (the default) an inline `OPENCODE_CONFIG_CONTENT` denies `external_directory` to the file tools, Bash is not confined, and `read-only` is refused. DeepSeek V4 and V4.1 Flash and GLM-5.3-Flash are pinned to `max`. No `--agent`: the default agent runs. No service-tier.
+     - cli-claude-code: `claude -p "PROMPT" --model X --permission-mode X`, where the permission mode is `acceptEdits` at the default `workspace-write` and `bypassPermissions` with `--sandbox-mode=danger-full-access`; the default cannot run Bash in `-p` mode, so a lineage that must record state needs the flag. Optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier. It logs `--output-format stream-json --verbose`, and a single-executor iteration writes its session cost to `iterations/iteration-NNN.cost.json`.
+     - cli-codex: requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
+     - cli-cursor: requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
+     - cli-devin: requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
+     - cli-pi: requires `pi`, run as `pi -p --offline --model SELECTOR` (`provider/model`). Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`. Pi has no OS sandbox: `--sandbox-mode=read-only` narrows its tools to `read,grep,find,ls` and passes `--no-extensions --no-skills --no-prompt-templates` (a compensating control), and the other modes pass no restriction.
+     - cli-deepseek-harness: a single lineage such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash` runs in `:auto` through the shared fan-out command builder, and a fan-out shape such as `--count=2` also works. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
+     Every CLI executor builds its command through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
+
+   Reply format examples, for the printed-text fallback only:
    - `"A, A"`
    - `"WebSocket research, A, B, 15"`
    - `"WebSocket reconnection strategies, B, A, 10, 0.05, B, gpt-5.4, high, fast"`
@@ -381,7 +391,7 @@ STOP HERE - Wait for user answers before continuing.
 
 DO NOT proceed until user explicitly answers
 NEVER auto-create spec folders without confirmation
-NEVER split questions into multiple prompts
+NEVER split these questions across turns
 ```
 
 **Phase Output:**

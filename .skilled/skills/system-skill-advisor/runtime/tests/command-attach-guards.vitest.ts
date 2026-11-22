@@ -524,8 +524,54 @@ describe('command attach on a deep-loop prompt', () => {
     expect(attachCommand('system-deep-loop', SINGLE('review'), 'run /deep:review now')).toBe('/deep:review');
   });
 
-  it('offers the review command when the prompt asks for depth', () => {
-    expect(attachCommand('system-deep-loop', SINGLE('review'), 'review the parser in depth')).toBe('/deep:review');
+  // Depth wording asks for care inside one pass, so only wording that names the
+  // loop itself opens the gate.
+  it.each([
+    'review the parser in depth',
+    'do a thorough review of the parser',
+    'find out everything you can about the parser',
+    'give me a final verdict on the parser',
+  ])('withholds the review command on depth wording alone: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBeUndefined();
+  });
+
+  // A loop's name with no use verb asks about the loop rather than for a run.
+  it.each([
+    'how does the research loop decide when it has enough',
+    'my research loop stopped converging and I cannot see why',
+  ])('withholds the research command on a loop name with no use verb: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE('research'), prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'run an iterative review loop over the hooks folder until findings stop changing', '/deep:review'],
+    ['review', 'run an iterative review loop on skill:sk-doc', '/deep:review'],
+    ['research', 'start a research loop on caching strategies', '/deep:research'],
+    ['review', 'review the parser in several passes', '/deep:review'],
+  ])('offers the %s command on loop wording: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  it.each([
+    ['run 5 iterations with cli-opencode on the caching research', '/deep:research'],
+    ['run 8 more review iterations with cli-codex on the advisor runtime', '/deep:review'],
+    ['investigate iteratively how the hook pipeline orders its adapters', '/deep:research'],
+  ])('names the mode a deferred route leaves open when one cue names it: %s', (prompt, command) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
+  });
+
+  it.each([
+    'run a deep loop on the routing code',
+    'run 5 iterations of research and review on the parser',
+    'how does the deep loop decide to stop?',
+    'do a thorough review of the release packet',
+    "don't run /deep:review for 5 iterations, just summarize the report",
+  ])('leaves a deferred route without a command: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+
+  it('reads no deferred mode for a hub other than the deep loop', () => {
+    expect(attachCommand('sk-doc', { action: 'defer' }, 'run 5 iterations of review')).toBeUndefined();
   });
 });
 

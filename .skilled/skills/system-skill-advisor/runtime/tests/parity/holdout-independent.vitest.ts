@@ -88,7 +88,6 @@ const SCORING_SURFACES: readonly ScoringSurface[] = [
     consumers: [
       'bench/scorer-calibration.bench.ts',
       'scripts/routing-accuracy/gate3-corpus-runner.mjs',
-      'scripts/routing-accuracy/score-outcome-rerank.mjs',
       'scripts/routing-accuracy/score-routing-corpus.py',
       'tests/legacy/advisor-corpus-parity.vitest.ts',
       'tests/parity/python-ts-parity.vitest.ts',

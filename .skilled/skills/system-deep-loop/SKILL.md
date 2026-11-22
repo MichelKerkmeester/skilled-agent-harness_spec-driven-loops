@@ -17,7 +17,7 @@ Each active mode keeps its own contract in its packet. The hub only routes by `w
 
 **Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json` and `hub-router.json` carry the same value, so every hub-root JSON routing file states the same release; `ROUTER.md` keeps its own document version.
 
-Use `@context` for one-shot retrieval, `/deep:research` for iterative investigation with a bounded context snapshot, `/deep:review` for iterative audit with a bounded review snapshot, or `/speckit:plan` for implementation planning.
+Use `@context` for one-shot retrieval, `/deep:research` for iterative investigation with a bounded context snapshot, `/deep:review` for iterative audit with a bounded review snapshot, or `/speckit:plan` for implementation planning. Use `/doctor:deep-loop` to diagnose a run whose coverage graph or convergence looks wrong.
 
 ---
 

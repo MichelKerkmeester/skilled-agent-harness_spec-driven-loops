@@ -62,7 +62,7 @@ const CODE_HUB_CONFIDENCE_CAP = 0.88;
 const WORKFLOW_OWNER_SKILL_IDS: ReadonlySet<string> = new Set(['system-deep-loop', 'system-spec-kit']);
 
 // Below this explicit-lane score a match is a side mention, not a request.
-// Same floor the fusion scorer applies to its own explicit workflow signal.
+// The fusion scorer's slash-command anchor uses the same floor.
 const WORKFLOW_OWNER_EXPLICIT_FLOOR = 0.55;
 
 // How far below its workflow owner the lifted CLI hub sits.

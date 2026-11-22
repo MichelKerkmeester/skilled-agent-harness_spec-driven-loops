@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7200,
-    "ok": 20446,
+    "missing-frontmatter": 7202,
+    "ok": 20518,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29274,
+  "documentsScanned": 29348,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "678704d12d70d485100019d3232b9b4d778e04e582de1ef63fdfc3b0b021399a",
+  "manifestHash": "fcdcb6054feeab3eb6363848ebf78dbf943337eb0c5701c3839a4f57bbabcf37",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46140,
+      "ok": 46239,
       "prose-sentence": 23,
       "single-token": 153,
       "stop-word-only": 1,
@@ -43387,6 +43387,18 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/evidence/opus-verification.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/evidence/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -63476,6 +63488,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/027-epic-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/host-integrations/z_archive",
       "reason": "excluded directory"
     },
@@ -63748,6 +63764,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
       "reason": "excluded directory"
     },
@@ -63801,6 +63821,38 @@
     },
     {
       "path": "specs/system-skill-advisor/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/001-contracts-and-state-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/002-schedule-predicates-and-checker/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/003-manual-runner/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/004-worktree-isolation-and-delivery/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/005-request-pipeline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/006-launchd-installer/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/007-status-index/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch",
       "reason": "excluded directory"
     },
     {

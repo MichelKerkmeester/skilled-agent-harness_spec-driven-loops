@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/001-headless-bots-first-build/007-status-index",
+  "spec_folder": "system-skilled-bots/001-headless-bots-first-build/007-status-index",
+  "parent_id": "system-skilled-bots/001-headless-bots-first-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "status index",
+      "phase 7 status index",
+      "bots status",
+      "bots status index sqlite",
+      "status index plan",
+      "status index tasks",
+      "status index acceptance criteria",
+      "status index decision record",
+      "status index implementation summary"
+    ],
+    "key_topics": [
+      "status",
+      "index",
+      "phase",
+      "bots",
+      "sqlite",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decision",
+      "record",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs",
+      ".skilled/bin/worktree-reaper.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "repository-identity.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/shared/scripts/lib/repository-identity.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Predecessor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Derived",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 3 and 6, bots run by hand and on launchd, but nothing answers \"what is installed, what ran and did it deliver\"",
+    "created_at": "2026-11-22T10:48:32Z",
+    "last_save_at": "2026-11-22T12:10:35.295Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:330223cbeaeadb30aa081641a7e8ca920246fcbd4fa9251fce21fbfacaaa0777",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2df5551ba835759f08044438aa31ca5f2317d11ba08219fae241378561f61469",
+      "plan.md": "708599bd3ba9d858d10414bbc944c60e5931e9e614c4c6a4a6c696b081b5db2c",
+      "tasks.md": "935f07bfb1d9bd994819cfbaa6692c7f96d8fa8778eeaf0604b8144999e4344a",
+      "decision-record.md": "fe6431f6c670f3ed8a61774b0f851e197a7e8138fff73ee930ad11d7e8ae18be",
+      "implementation-summary.md": "0ede20f4d3e6df6b0b5819c4d8ad4b377a4d2819c9fadafc9bf0aa9c2910304b"
+    },
+    "last_active_at": null
+  }
+}
