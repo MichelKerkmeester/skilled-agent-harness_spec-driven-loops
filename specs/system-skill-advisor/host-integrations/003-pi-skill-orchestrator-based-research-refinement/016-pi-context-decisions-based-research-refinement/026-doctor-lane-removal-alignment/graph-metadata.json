@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Packet 024 deleted the advisor's embedding lane, and the doctor commands already run the new surface",
     "created_at": "2026-11-21T16:16:42Z",
-    "last_save_at": "2026-11-21T22:16:32.444Z",
+    "last_save_at": "2026-11-22T05:35:29.616Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d34f716ca5bcd7aff71383647bbf2aa6b392a7edec6d7bdef07dae720530c8d",
+    "source_fingerprint": "sha256:726b95917fbd520eff9470bd4e9dbb137c361eb14866ed95b6a704a1a662a9d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28625f51b981682adf057bb8f8e7db3745349589a55947f01d92ed380d17f835",
+      "spec.md": "93c87ce8aa6fb720880dd1108f2c181a3186a29406feb2e825a4f1feb1b406d4",
       "plan.md": "e12ff4e6bb08525fb39e152e1011823a0ee9a78bb7fbc1bfb87164ec38450e9e",
-      "tasks.md": "93e8620f765ff2527b491de398cf0e529daad14b4ef695bc8522e5f4621914d1",
+      "tasks.md": "c9dfbecb4ae9ce15e09408b9d7d32fd35d69de42bd555aa33222a3444e00e1d1",
       "decision-record.md": "22cf3e96b3d7154a6d8d0d3c79717e0e7eba4bd8a1e9f7e245951ac284e1d36f",
-      "implementation-summary.md": "e06f63331cb1f4df0f47294668208c8342e3951083fd3c5be6a4b0028e4f3d40"
+      "implementation-summary.md": "7eaeafddad2bc1ddcd38e5190dbf4796706dd4b894a1a6854877b88fe1576904"
     },
     "last_active_at": null
   }

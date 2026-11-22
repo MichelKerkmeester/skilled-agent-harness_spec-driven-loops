@@ -8,26 +8,27 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/026-doctor-lane-removal-alignment"
-    last_updated_at: "2026-11-21T22:14:11Z"
+    last_updated_at: "2026-11-22T05:35:29Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed the second review's findings in 533cb420627 and merged origin/main as 12a5a29ab09"
-    next_safe_action: "Decide whether to push and merge the lane removal branch to main"
+    recent_action: "Closed the third round: rebuild path, dead overrides, doctor changelogs and 024 drift"
+    next_safe_action: "Review the branch, then push and merge it to main when ready"
     packet_purpose: "Purpose: A user who types a cleanup request reaches `/doctor:update`, the install guide names the cleanup command for that user's install type, and the doctor release records what 024 removed."
     blockers: []
     key_files:
-      - ".skilled/skills/system-spec-kit/runtime/cli/retrieval/sweep-lane-residue.mjs"
-      - ".skilled/changelog/skilled/v4.2.0.0.md"
-      - ".skilled/skills/system-spec-kit/changelog/v2.14.0.0.md"
-      - "INSTALL-SKILLED.md"
+      - ".skilled/skills/system-spec-kit/runtime/cli/setup/rebuild-native-modules.sh"
+      - ".skilled/skills/system-spec-kit/package.json"
+      - ".skilled/skills/system-skill-advisor/runtime/package.json"
+      - ".skilled/skills/system-skilled-doctor/changelog/v1.0.0.0.md"
+      - ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md"
     session_dedup:
-      fingerprint: "sha256:48ff0d11504565f76c7589566e0c8d495891f45dfb521ff23fafb2afde54e59c"
+      fingerprint: "sha256:577d52cf1c3757a17a07b5c618043a77c703165f998c04885e5d222248cb56f3"
       session_id: "planning-026-doctor-lane-removal-alignment"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "0b81ad2f-04a7-4ad7-b174-0b3f9930b833"
       workspace: "/Users/michelkerkmeester/worktrees/public/497-ollama-lane-removal"
-      savedAt: "2026-11-21T22:14:11Z"
+      savedAt: "2026-11-22T05:35:29Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -100,7 +101,7 @@ The two fixture observations ran first, under a temp root and a fixture HOME tha
 | One helper-match case uses `acme` for the retired product's name | The residue gate keeps that name out of tracked files outside `specs/`. A word the manifest never carries scores nothing, so the case also asserts the stand-in adds no matched term |
 | All eight planned phrases were kept | Each ranks `/doctor:update` first in the helper and reaches the bridge in phrase-reach, and the held-out rates did not move |
 | Two tests were added to `release-update.test.cjs` | The guide relies on both behaviors, and no existing test covered an apply at the same release or the apply refusal through an outside link |
-| The release note follows the layout of `v1.2.0.0.md` with shorter sentences | `v1.2.0.0.md` itself fails `check_changelog_shape.py` on its sentence ceilings, and the new entry passes |
+| The release note follows the layout of `v1.2.0.0.md` with shorter sentences | `v1.2.0.0.md` itself failed `check_changelog_shape.py` on its sentence ceilings until the third round split them, and the new entry passes |
 | The packet status is In Progress | The handoff criterion includes a commit, and this run was barred from committing |
 <!-- /ANCHOR:decisions -->
 
@@ -157,10 +158,17 @@ A fresh reviewer read the whole epic on 2026-11-21 and returned CONDITIONAL, wit
 
 Gates on the merged tree: residue repo mode 47 of 47 with live 0, residue vitest 117 passed, advisor typecheck exit 0, advisor suite 2450 passed and 4 skipped, doctor suites 1613 passed and 0 failed, route validation 31 routes, phrase reach `STATUS=OK phrases=262`, bridges `"changed": []` and mirrors 260 in sync. The advisor suite needed `npm run build` and a skill-graph rescan first, because the merge changed sources the attested build and the local graph predated.
 
-Not done, by choice:
-- The `sharp` and `protobufjs` overrides in the two `package.json` files stay. Removing them needs an install to prove the lockfiles stay in sync.
-- The advisor changelog still does not name the removed setting keys, because the residue gate forbids those names.
-- `rebuild-native-modules.sh` calls `record-node-version.js` at `cli/setup/` under the skill root, but the file is at `runtime/cli/setup/`. That bug predates this branch and is left for its own fix.
+Not done, by choice: the advisor changelog still does not name the removed setting keys, because the residue gate forbids those names. The overrides and the rebuild helper's path, left here at first, were fixed in the third round.
+
+## Third Round
+
+On 2026-11-22 the operator asked to fix the remaining items and the existing bugs and drift.
+
+- **Rebuild helper path.** The marker step called `record-node-version.js` at `cli/setup/` under the skill root, a path left from before the `runtime/` move. It now uses `runtime/cli/setup/`. Under the script's own `ROOT_DIR` the old path is missing and the new one exists, and the marker writer exits 0. The whole script was not run, because its first step runs `npm rebuild`.
+- **Dead overrides.** `sharp`, `protobufjs` and `@protobufjs/utf8` left both `package.json` files. A lockfile-only resolve in a scratch copy, with and without them, gave lockfiles byte-identical to the committed ones, and nothing was installed in the worktree.
+- **Doctor changelogs.** `v1.2.0.0.md` failed the shape check on four long sentences, which were split. `v1.0.0.0.md` lacked the "How It Was Checked" section an expanded entry needs. The new section quotes only the verification tables of `specs/system-skilled-doctor/001-skill-and-overlay-build` children 001 to 004. All twelve entries now pass, up from 10.
+- **024 drift.** Its parent `spec.md` listed two questions its children had answered, and pointed only at 023's decisions. Both now point to the answers and to 024's own record.
+- **Release notes.** The spec-kit `v2.14.0.0` and advisor `v2.0.0.0` entries name the two fixes. Both pass the shape check, and repo mode stays at 47 of 47 with `live` 0.
 
 ## Known Limitations
 
@@ -169,7 +177,7 @@ Not done, by choice:
 3. **Phase 7 on a current copy is derived.** The engine half is observed and pinned by a test. That the workflow then runs the cleanup comes from the YAML text and its contract test, not from a run.
 4. **The new release note is untracked.** Residue repo mode scans tracked files only, so `v1.3.0.0.md` was checked with the term script and `git grep --untracked` until it is committed.
 5. **A running advisor daemon keeps its startup bridges.** The new phrases reach a daemon only after it restarts, which the update workflow's rebuild step already names.
-6. **Outside this packet's scope.** The model entry `system-skilled-doctor/changelog/v1.2.0.0.md` fails the changelog shape check. It was not changed. Row 25 of the 016 phase map, which read In Progress while 025 was Complete, was set to Complete by the orchestrator.
+6. **Phase map row.** Row 25 of the 016 phase map, which read In Progress while 025 was Complete, was set to Complete by the orchestrator.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -31,7 +31,7 @@ echo "   ✓ shared modules rebuilt"
 # Step 2: Write .node-version-marker
 echo ""
 echo "── Step 2: Writing .node-version-marker..."
-node "$ROOT_DIR/cli/setup/record-node-version.js"
+node "$ROOT_DIR/runtime/cli/setup/record-node-version.js"
 echo "   ✓ .node-version-marker updated"
 
 echo ""

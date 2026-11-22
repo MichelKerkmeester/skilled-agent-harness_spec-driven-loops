@@ -76,6 +76,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-021 | REQ-019 | Given system-spec-kit, When its version and changelog are read, Then it reads 2.14.0.0 and the entry passes the shape check and the residue gate | `rg -n '^version' SKILL.md`, the shape check and repo mode. Observed: `5:version: 2.14.0.0`, `PASS`, and `live` 0 | Met | - |
 | AC-022 | REQ-020 | Given the 024 and 026 records, When they are read, Then 024's handoff names the fixture proof, its goal log marks the stale rows superseded, and 026's decision record keeps the cleanup phrases over Q004 | Reading 024 `spec.md`, the goal log and this packet's `decision-record.md`. Observed: all three present after the continuity save | Met | - |
 | AC-023 | REQ-021 | Given origin/main merged into the branch, When the gates run on the merged tree, Then repo mode exits 0 with `live` 0 and the residue, doctor, advisor and strict validation gates pass | The T032 and T033 runs. Observed: repo mode `live` 0 at 47 of 47, advisor 2450 passed, doctor 1613 passed, residue 117 passed, and both strict runs `RESULT: PASSED` | Met | - |
+| AC-024 | REQ-022 | Given the rebuild helper, When its marker path is resolved from its own `ROOT_DIR`, Then the file exists | `bash -n`, `test -f` on the old and new paths, and the marker writer run directly. Observed: old path missing, new path present, writer exit 0 | Met | - |
+| AC-025 | REQ-023 | Given both packages without the three overrides, When a lockfile-only resolve runs in a scratch copy, Then each lockfile comes out byte-identical | `npm install --package-lock-only` and `cmp`, baseline and edited. Observed: four exits 0, four identical lockfiles, `npm ls --package-lock-only` exit 0 in both | Met | - |
+| AC-026 | REQ-024 | Given the twelve doctor changelogs, When the shape check runs, Then all pass and the new checked section cites recorded numbers | `check_changelog_shape.py`. Observed: `pass=12 fail=0`, and each number in `v1.0.0.0.md` appears in the build packet's verification tables | Met | - |
+| AC-027 | REQ-025 | Given 024's parent `spec.md`, When section 4 and Related Documents are read, Then no answered question stays open and the decision record is named | Reading the file. Observed: section 4 points to both answers, and Related Documents names Q001 to Q011 | Met | - |
 
 ### Status values
 
@@ -102,5 +106,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All twenty-three rows are `Met`, and each names the output it observed. AC-001 and AC-002 carry corrections from the implementation run: a search pattern that could not match, and an expected empty write list where the engine writes the recorded base. The first round is committed as `092ebd6c256`. The second review round's fixes are committed as `533cb420627`, and origin/main is merged in as `12a5a29ab09`.
+All twenty-seven rows are `Met`, and each names the output it observed. AC-001 and AC-002 carry corrections from the implementation run: a search pattern that could not match, and an expected empty write list where the engine writes the recorded base. The first round is committed as `092ebd6c256`. The second review round's fixes are committed as `533cb420627`, and origin/main is merged in as `12a5a29ab09`. The third round closes AC-024 to AC-027.
 <!-- /ANCHOR:closure -->

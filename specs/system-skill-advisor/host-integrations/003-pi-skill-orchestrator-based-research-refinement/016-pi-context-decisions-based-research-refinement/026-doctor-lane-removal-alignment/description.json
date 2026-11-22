@@ -17,7 +17,7 @@
     "installs",
     "release"
   ],
-  "lastUpdated": "2026-11-21T22:14:11.064Z",
+  "lastUpdated": "2026-11-22T05:35:29.616Z",
   "specId": "026",
   "folderSlug": "doctor-lane-removal-alignment",
   "parentChain": [
@@ -26,10 +26,11 @@
     "003-pi-skill-orchestrator-based-research-refinement",
     "016-pi-context-decisions-based-research-refinement"
   ],
-  "memorySequence": 3,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "21-11-26_17-24__planned-the-doctor-lane-removal-alignment-make.md",
     "21-11-26_18-25__completed-the-doctor-lane-removal-alignment-the.md",
-    "21-11-26_23-14__fixed-the-second-epic-review-s-findings-in-the.md"
+    "21-11-26_23-14__fixed-the-second-epic-review-s-findings-in-the.md",
+    "22-11-26_06-35__third-round-fixed-the-rebuild-helper-s-marker.md"
   ]
 }

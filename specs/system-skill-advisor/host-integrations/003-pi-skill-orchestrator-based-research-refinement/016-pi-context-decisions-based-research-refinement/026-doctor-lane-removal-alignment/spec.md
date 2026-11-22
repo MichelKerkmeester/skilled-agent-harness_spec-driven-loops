@@ -100,8 +100,15 @@ An independent review of the whole epic on 2026-11-21 returned CONDITIONAL with 
 - The 024 records stop contradicting each other, and the operator's answer that the cleanup phrases replace 024 decision Q004 is recorded.
 - origin/main is merged into the branch, its conflicts are resolved in favour of the lane removal, and the gates pass on the merged tree.
 
+### In Scope: third round
+On 2026-11-22 the operator asked to fix the remaining items and the existing bugs and drift the second round left.
+- `rebuild-native-modules.sh` finds `record-node-version.js` under `runtime/cli/setup/`. The old `cli/setup/` path predates this branch.
+- The `sharp`, `protobufjs` and `@protobufjs/utf8` overrides leave the two `package.json` files, proven by a lockfile-only resolve in a scratch copy, with no install in the worktree.
+- `system-skilled-doctor/changelog/v1.2.0.0.md` splits its four long sentences, and `v1.0.0.0.md` gains the "How It Was Checked" section its expanded format requires, quoting only numbers its build packet recorded.
+- 024's parent `spec.md` drops two open questions its children answered and names its own decision record.
+- The spec-kit `v2.14.0.0` and advisor `v2.0.0.0` release notes name the two fixes.
+
 ### Out of Scope
-- Removing the `sharp` and `protobufjs` overrides from the two `package.json` files. They pin nothing that is installed, and changing them needs an install to prove the lockfiles stay in sync, which this run may not do.
 - Naming the removed setting keys in the advisor changelog. The residue gate forbids those names in tracked files.
 - Reverting the `system-skilled-doctor/changelog/v1.1.7.0.md` rewrite. That was 024's decision D3, and it stands.
 - Re-adding the retired server name to `orphan-process-check.cjs`. Detecting retired processes belongs to the residue tool's M4 check.
@@ -168,6 +175,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-019 | system-spec-kit reads version 2.14.0.0 and has `changelog/v2.14.0.0.md`, and the entry passes the residue gate |
 | REQ-020 | 024's handoff criterion matches decisions Q007 and Q010, its goal log marks the stale rows superseded, and 026's decision record states that the cleanup phrases replace Q004 |
 | REQ-021 | origin/main is merged into `worktrees/497-ollama-lane-removal` with every conflict resolved in favour of the lane removal. On the merged tree repo mode exits 0 with `live` 0, and the residue, doctor, advisor and strict validation gates pass |
+| REQ-022 | `rebuild-native-modules.sh` calls `record-node-version.js` at a path that exists |
+| REQ-023 | Neither `package.json` overrides `sharp`, `protobufjs` or `@protobufjs/utf8`, and both lockfiles resolve byte-identical without them |
+| REQ-024 | Every `system-skilled-doctor` changelog passes the shape check, and no added "How It Was Checked" line states a number its build packet did not record |
+| REQ-025 | 024's parent `spec.md` lists no open question a child answered, and its related documents name its own decision record |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

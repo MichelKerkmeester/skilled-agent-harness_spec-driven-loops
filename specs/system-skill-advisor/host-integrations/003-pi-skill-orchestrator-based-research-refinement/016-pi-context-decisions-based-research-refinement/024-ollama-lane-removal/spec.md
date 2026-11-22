@@ -145,8 +145,9 @@ Per-phase detail lives in each child's `spec.md` and `plan.md`. The research inv
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- The changelog entry that announces the removal has to say what was removed. Does it get an exact-path allowlist row, or is it worded without the lane's vocabulary? Phase 006 decides.
-- Is an empty advisor database rescanned at daemon start, so that discard-and-rescan needs no extra step? Phase 001 checks it before the cleanup tool relies on it.
+- None. Both questions this parent raised are answered:
+  - The changelog entry that announces the removal is worded without the lane's vocabulary and gets no allowlist row. See `006-prose-docs-and-changelogs/plan.md`, the decision on the advisor's `v2.0.0.0` entry.
+  - The daemon scans at every start and creates a missing database, so deleting the database is enough for a rescan. See `001-residue-check-and-cleanup-tool/spec.md` section 12.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -156,5 +157,5 @@ Per-phase detail lives in each child's `spec.md` and `plan.md`. The research inv
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
 - **Parent Spec**: See `../spec.md`
 - **Research**: See `../023-ollama-deprecation-research/research/research.md`
-- **Operator decisions**: See `../023-ollama-deprecation-research/decision-record.md`, Q002 to Q008
+- **Operator decisions**: See `../023-ollama-deprecation-research/decision-record.md`, Q002 to Q008, and this packet's `decision-record.md`, Q001 to Q011
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

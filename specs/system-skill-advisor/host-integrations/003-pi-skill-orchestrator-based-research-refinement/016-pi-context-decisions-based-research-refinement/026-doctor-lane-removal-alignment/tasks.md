@@ -93,10 +93,24 @@ An independent review of the whole epic returned CONDITIONAL on 2026-11-21. Two 
 
 ---
 
+<!-- ANCHOR:phase-5 -->
+## Phase 5: Third Round
+
+The operator asked on 2026-11-22 to fix the remaining items and the existing bugs and drift.
+
+- [x] T034 Point the rebuild helper's marker step at `runtime/cli/setup/` (REQ-022). Verify: the old path is missing and the new one exists under the script's own `ROOT_DIR`. Evidence: `bash -n` exits 0, `test -f` reports the old path missing and the new one present, and running the marker writer from the spec-kit root exits 0. The marker is gitignored. The whole script was not run, because its first step runs `npm rebuild`.
+- [x] T035 Remove the dead overrides (REQ-023). Verify: a lockfile-only resolve with and without them gives byte-identical lockfiles. Evidence: in a scratch copy of both packages and their workspaces, `npm install --package-lock-only --ignore-scripts` exited 0 four times, and `cmp` found each result identical to the committed lockfile, baseline and edited alike. The edited `package.json` files match the proven copies byte for byte, and `npm ls --package-lock-only` exits 0 in both packages.
+- [x] T036 Make every doctor changelog pass the shape check (REQ-024). Verify: `check_changelog_shape.py` over all twelve entries. Evidence: `SUMMARY files=12 pass=12 fail=0`, up from 10 of 12. The `v1.0.0.0.md` section quotes the verification tables of `specs/system-skilled-doctor/001-skill-and-overlay-build` children 001 to 004.
+- [x] T037 Clear 024's answered questions and name its decision record (REQ-025). Verify: section 4 of 024 `spec.md` points to each answer. Evidence: it cites 001 `spec.md` section 12 and 006 `plan.md`. Its template continuity block stays, because the writer sends a phase-parent save to a child, and `specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md` carries the same block.
+- [x] T038 Regenerate the trigger index last, then validate 024, 016 and this packet strictly. Verify: the index `--check` reports no stale document and each strict run prints `RESULT: PASSED`. Evidence: recorded in implementation-summary.md section Third Round.
+<!-- /ANCHOR:phase-5 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`, with T002 and T003 closed by their observed output, and T024 to T033 closed by the second review round
+- [x] All tasks marked `[x]`, with T002 and T003 closed by their observed output, T024 to T033 closed by the second review round, and T034 to T038 closed by the third round
 - [x] No `[B]` blocked tasks remaining
 - [x] Each Met acceptance criterion names the output it observed
 - [x] The implementation commit holds every file in `spec.md` Files to Change, and nothing outside it. Evidence: commit `092ebd6c256` on `worktrees/497-ollama-lane-removal`; `git show --name-only 092ebd6c256` lists the planned files, the packet docs, the 016 phase map and the regenerated index outputs

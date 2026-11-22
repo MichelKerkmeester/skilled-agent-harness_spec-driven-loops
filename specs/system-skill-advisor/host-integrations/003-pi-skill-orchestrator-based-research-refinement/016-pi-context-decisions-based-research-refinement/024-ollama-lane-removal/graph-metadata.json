@@ -51,6 +51,8 @@
       "goal.md",
       "decision-record.md",
       ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      "006-prose-docs-and-changelogs/plan.md",
+      "001-residue-check-and-cleanup-tool/spec.md",
       "001-residue-check-and-cleanup-tool/goal.md",
       "002-doctor-surface/goal.md",
       "003-lane-feeders/goal.md",
@@ -58,8 +60,7 @@
       "005-shared-embeddings-package/goal.md",
       "006-prose-docs-and-changelogs/goal.md",
       "007-generated-surfaces/goal.md",
-      "008-cleanup-wiring-and-gating/goal.md",
-      "001-residue-check-and-cleanup-tool/spec.md"
+      "008-cleanup-wiring-and-gating/goal.md"
     ],
     "entities": [
       {
@@ -197,7 +198,7 @@
     ],
     "causal_summary": "The advisor's semantic lane, which scores prompts with Ollama or HuggingFace embeddings, ships at live weight 0 after three negative measurements",
     "created_at": "2026-11-20T21:51:18Z",
-    "last_save_at": "2026-11-21T21:53:18.119Z",
+    "last_save_at": "2026-11-22T05:35:40.018Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +206,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:5a90bea16526516dc7def115d9d35e73833b72882cf9152c7150a9af9f96161d",
+    "source_fingerprint": "sha256:0e088fa7f7fb37883e180d0d593a9fc8a6eea71c1d636308bea85b17366decd1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7f80da7fa27162ab7c6e8766ee1ad8aac10b2c7bac5aa9d96fdc5e4befe484ba",
+      "spec.md": "ddd30b83c4f560494c8a33178352445737c64421a6b2b2c733b4a9a88564a211",
       "decision-record.md": "999b36ec697dea96f65d2cd114d682574dc66dce0144921da7d1a8f1477cd570"
     },
     "last_active_child_id": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/024-ollama-lane-removal/008-cleanup-wiring-and-gating",
